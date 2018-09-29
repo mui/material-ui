@@ -22,7 +22,7 @@ describe('<SvgIcon />', () => {
 
   it('renders children by default', () => {
     const wrapper = shallow(<SvgIcon>{path}</SvgIcon>);
-    assert.strictEqual(wrapper.contains(path), true, 'should contain the children');
+    assert.strictEqual(wrapper.contains(path), true);
     assert.strictEqual(wrapper.props()['aria-hidden'], 'true');
   });
 
@@ -37,8 +37,8 @@ describe('<SvgIcon />', () => {
         {path}
       </SvgIcon>,
     );
-    assert.strictEqual(wrapper.props()['data-test'], 'hello', 'should be spread on the svg');
-    assert.strictEqual(wrapper.props().viewBox, '0 0 32 32', 'should override the viewBox');
+    assert.strictEqual(wrapper.props()['data-test'], 'hello');
+    assert.strictEqual(wrapper.props().viewBox, '0 0 32 32');
   });
 
   describe('prop: titleAccess', () => {
@@ -56,8 +56,8 @@ describe('<SvgIcon />', () => {
   describe('prop: color', () => {
     it('should render with the user and SvgIcon classes', () => {
       const wrapper = shallow(<SvgIcon className="meow">{path}</SvgIcon>);
-      assert.strictEqual(wrapper.hasClass('meow'), true, 'should have the "meow" class');
-      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the SvgIcon class');
+      assert.strictEqual(wrapper.hasClass('meow'), true);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
 
     it('should render with the secondary color', () => {
@@ -67,40 +67,24 @@ describe('<SvgIcon />', () => {
 
     it('should render with the action color', () => {
       const wrapper = shallow(<SvgIcon color="action">{path}</SvgIcon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorAction),
-        true,
-        'should have the "action" color',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.colorAction), true);
     });
 
     it('should render with the error color', () => {
       const wrapper = shallow(<SvgIcon color="error">{path}</SvgIcon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorError),
-        true,
-        'should have the "error" color',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.colorError), true);
     });
 
     it('should render with the primary class', () => {
       const wrapper = shallow(<SvgIcon color="primary">{path}</SvgIcon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorPrimary),
-        true,
-        'should have the "primary" color',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
     });
   });
 
   describe('prop: fontSize', () => {
     it('should be able to change the fontSize', () => {
       const wrapper = shallow(<SvgIcon fontSize="inherit">{path}</SvgIcon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.fontSizeInherit),
-        true,
-        'should have fontSize "inherit',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.fontSizeInherit), true);
     });
   });
 

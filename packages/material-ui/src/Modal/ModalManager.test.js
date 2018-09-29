@@ -38,19 +38,19 @@ describe('ModalManager', () => {
     it('should add modal1', () => {
       const idx = modalManager.add(modal1, container1);
       assert.strictEqual(idx, 0, 'should be the first modal');
-      assert.strictEqual(modalManager.isTopModal(modal1), true, 'should be the top modal');
+      assert.strictEqual(modalManager.isTopModal(modal1), true);
     });
 
     it('should add modal2', () => {
       const idx = modalManager.add(modal2, container1);
       assert.strictEqual(idx, 1, 'should be the second modal');
-      assert.strictEqual(modalManager.isTopModal(modal2), true, 'should be the top modal');
+      assert.strictEqual(modalManager.isTopModal(modal2), true);
     });
 
     it('should add modal3', () => {
       const idx = modalManager.add(modal3, container1);
       assert.strictEqual(idx, 2, 'should be the third modal');
-      assert.strictEqual(modalManager.isTopModal(modal3), true, 'should be the top modal');
+      assert.strictEqual(modalManager.isTopModal(modal3), true);
     });
 
     it('should remove modal2', () => {
@@ -61,7 +61,7 @@ describe('ModalManager', () => {
     it('should add modal2', () => {
       const idx = modalManager.add(modal2, container1);
       assert.strictEqual(idx, 2, 'should be the "third" modal');
-      assert.strictEqual(modalManager.isTopModal(modal2), true, 'modal2 should be the top modal');
+      assert.strictEqual(modalManager.isTopModal(modal2), true);
       assert.strictEqual(
         modalManager.isTopModal(modal3),
         false,
@@ -71,23 +71,23 @@ describe('ModalManager', () => {
 
     it('should remove modal3', () => {
       const idx = modalManager.remove(modal3);
-      assert.strictEqual(idx, 1, 'should be the "second" modal');
+      assert.strictEqual(idx, 1);
     });
 
     it('should remove modal2', () => {
       const idx = modalManager.remove(modal2);
-      assert.strictEqual(idx, 1, 'should be the "second" modal');
-      assert.strictEqual(modalManager.isTopModal(modal1), true, 'modal1 should be the top modal');
+      assert.strictEqual(idx, 1);
+      assert.strictEqual(modalManager.isTopModal(modal1), true);
     });
 
     it('should remove modal1', () => {
       const idx = modalManager.remove(modal1);
-      assert.strictEqual(idx, 0, 'should be the "first" modal');
+      assert.strictEqual(idx, 0);
     });
 
     it('should not do anything', () => {
       const idx = modalManager.remove({ nonExisting: true });
-      assert.strictEqual(idx, -1, 'should not find the non existing modal');
+      assert.strictEqual(idx, -1);
     });
   });
 

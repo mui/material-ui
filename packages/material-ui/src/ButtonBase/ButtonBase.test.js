@@ -30,7 +30,7 @@ describe('<ButtonBase />', () => {
     it('should render a button with type="button" by default', () => {
       const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'button');
-      assert.strictEqual(wrapper.childAt(0).equals('Hello'), true, 'should say Hello');
+      assert.strictEqual(wrapper.childAt(0).equals('Hello'), true);
       assert.strictEqual(wrapper.props().type, 'button');
     });
 
@@ -49,7 +49,7 @@ describe('<ButtonBase />', () => {
 
     it('should spread props on button', () => {
       const wrapper = shallow(<ButtonBase data-test="hello">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the button');
+      assert.strictEqual(wrapper.props()['data-test'], 'hello');
     });
 
     it('should render the custom className and the root class', () => {
@@ -139,7 +139,7 @@ describe('<ButtonBase />', () => {
 
     it('should be enabled by default', () => {
       const ripple = wrapper.find(TouchRipple);
-      assert.strictEqual(ripple.length, 1, 'should have one TouchRipple');
+      assert.strictEqual(ripple.length, 1);
     });
 
     it('should not have a focus ripple by default', () => {
@@ -157,76 +157,48 @@ describe('<ButtonBase />', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.start.callCount,
-        1,
-        'should call start on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.start.callCount, 1);
     });
 
     it('should stop the ripple when the mouse is released', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseUp', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        1,
-        'should call stop on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
     it('should start the ripple when the mouse is pressed', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.start.callCount,
-        1,
-        'should call start on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.start.callCount, 1);
     });
 
     it('should stop the ripple when the button blurs', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        1,
-        'should call stop on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
     it('should start the ripple when the mouse is pressed', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.start.callCount,
-        1,
-        'should call start on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.start.callCount, 1);
     });
 
     it('should stop the ripple when the mouse leaves', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('mouseLeave', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        1,
-        'should call stop on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
     it('should center the ripple', () => {
-      assert.strictEqual(
-        wrapper.find(TouchRipple).prop('center'),
-        false,
-        'should not be centered by default',
-      );
+      assert.strictEqual(wrapper.find(TouchRipple).props().center, false);
       wrapper.setProps({ centerRipple: true });
-      assert.strictEqual(wrapper.find(TouchRipple).prop('center'), true, 'should be centered');
+      assert.strictEqual(wrapper.find(TouchRipple).props().center, true);
     });
   });
 
@@ -243,18 +215,14 @@ describe('<ButtonBase />', () => {
 
     it('should be enabled by default', () => {
       const ripple = wrapper.find(TouchRipple);
-      assert.strictEqual(ripple.length, 1, 'should have one TouchRipple');
+      assert.strictEqual(ripple.length, 1);
     });
 
     it('should pulsate the ripple when focusVisible', () => {
       wrapper.instance().ripple = { pulsate: spy() };
       wrapper.setState({ focusVisible: true });
 
-      assert.strictEqual(
-        wrapper.instance().ripple.pulsate.callCount,
-        1,
-        'should call pulsate on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.pulsate.callCount, 1);
     });
 
     it('should not stop the ripple when the mouse leaves', () => {
@@ -266,57 +234,32 @@ describe('<ButtonBase />', () => {
         },
       });
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        0,
-        'should not call stop on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 0);
     });
 
     it('should stop pulsate and start a ripple when the space button is pressed', () => {
       wrapper.instance().ripple = { stop: spy((event, cb) => cb()), start: spy() };
       wrapper.simulate('keyDown', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        1,
-        'should call stop on the ripple',
-      );
-
-      assert.strictEqual(
-        wrapper.instance().ripple.start.callCount,
-        1,
-        'should call start on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
+      assert.strictEqual(wrapper.instance().ripple.start.callCount, 1);
     });
 
     it('should stop and re-pulsate when space bar is released', () => {
       wrapper.instance().ripple = { stop: spy((event, cb) => cb()), pulsate: spy() };
       wrapper.simulate('keyUp', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        1,
-        'should call stop on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
 
-      assert.strictEqual(
-        wrapper.instance().ripple.pulsate.callCount,
-        1,
-        'should call pulsate on the ripple',
-      );
+      assert.strictEqual(wrapper.instance().ripple.pulsate.callCount, 1);
     });
 
     it('should stop on blur and set focusVisible to false', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
 
-      assert.strictEqual(
-        wrapper.instance().ripple.stop.callCount,
-        1,
-        'should call stop on the ripple',
-      );
-      assert.strictEqual(wrapper.state().focusVisible, false, 'should not be focusVisible');
+      assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
+      assert.strictEqual(wrapper.state().focusVisible, false);
     });
   });
 
@@ -350,48 +293,32 @@ describe('<ButtonBase />', () => {
     });
 
     it('should detect the keyboard', () => {
-      assert.strictEqual(
-        wrapper.state().focusVisible,
-        false,
-        'should not set keyboard focus before time has passed',
-      );
+      assert.strictEqual(wrapper.state().focusVisible, false);
       clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(
-        wrapper.state().focusVisible,
-        true,
-        'should listen for tab presses and set keyboard focus',
-      );
+      assert.strictEqual(wrapper.state().focusVisible, true);
     });
 
     it('should ignore the keyboard after 1s', () => {
       clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(wrapper.state().focusVisible, true, 'should think it is keyboard based');
+      assert.strictEqual(wrapper.state().focusVisible, true);
       button.blur();
-      assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
+      assert.strictEqual(wrapper.state().focusVisible, false);
       button.focus();
       clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(
-        wrapper.state().focusVisible,
-        true,
-        'should still think it is keyboard based',
-      );
+      assert.strictEqual(wrapper.state().focusVisible, true);
       clock.tick(1e3);
       button.blur();
-      assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
+      assert.strictEqual(wrapper.state().focusVisible, false);
       button.focus();
       clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
-      assert.strictEqual(
-        wrapper.state().focusVisible,
-        false,
-        'should stop think it is keyboard based',
-      );
+      assert.strictEqual(wrapper.state().focusVisible, false);
     });
   });
 
   describe('prop: disabled', () => {
-    it('should apply the right tabIndex', () => {
+    it('should not receive the focus', () => {
       const wrapper = shallow(<ButtonBase disabled>Hello</ButtonBase>);
-      assert.strictEqual(wrapper.props().tabIndex, '-1', 'should not receive the focus');
+      assert.strictEqual(wrapper.props().tabIndex, '-1');
     });
 
     it('should also apply it when using component', () => {
@@ -513,14 +440,10 @@ describe('<ButtonBase />', () => {
         instance.keyDown = false;
         instance.ripple = { stop: spy() };
         instance.handleKeyDown(event);
-        assert.strictEqual(instance.keyDown, true, 'should mark keydown as true');
-        assert.strictEqual(event.persist.callCount, 1, 'should call event.persist exactly once');
-        assert.strictEqual(instance.ripple.stop.callCount, 1, 'should call stop exactly once');
-        assert.strictEqual(
-          instance.ripple.stop.calledWith(event),
-          true,
-          'should call stop with event',
-        );
+        assert.strictEqual(instance.keyDown, true);
+        assert.strictEqual(event.persist.callCount, 1);
+        assert.strictEqual(instance.ripple.stop.callCount, 1);
+        assert.strictEqual(instance.ripple.stop.calledWith(event), true);
       });
     });
 
@@ -540,14 +463,10 @@ describe('<ButtonBase />', () => {
         instance.keyDown = false;
         instance.handleKeyDown(event);
 
-        assert.strictEqual(instance.keyDown, false, 'should not change keydown');
-        assert.strictEqual(event.persist.callCount, 0, 'should not call event.persist');
-        assert.strictEqual(onKeyDownSpy.callCount, 1, 'should call onKeyDown');
-        assert.strictEqual(
-          onKeyDownSpy.calledWith(event),
-          true,
-          'should call onKeyDown with event',
-        );
+        assert.strictEqual(instance.keyDown, false);
+        assert.strictEqual(event.persist.callCount, 0);
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+        assert.strictEqual(onKeyDownSpy.calledWith(event), true);
       });
     });
 
@@ -571,10 +490,10 @@ describe('<ButtonBase />', () => {
         instance.keyDown = false;
         instance.handleKeyDown(event);
 
-        assert.strictEqual(instance.keyDown, false, 'should not change keydown');
-        assert.strictEqual(event.preventDefault.callCount, 1, 'should call event.preventDefault');
-        assert.strictEqual(onClickSpy.callCount, 1, 'should call onClick');
-        assert.strictEqual(onClickSpy.calledWith(event), true, 'should call onClick with event');
+        assert.strictEqual(instance.keyDown, false);
+        assert.strictEqual(event.preventDefault.callCount, 1);
+        assert.strictEqual(onClickSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.calledWith(event), true);
       });
 
       it('should hanlde the link with no href', () => {
@@ -626,17 +545,9 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(wrapper.find(TouchRipple).length, 1);
         wrapper.instance().ripple = { start: spy(), stop: spy() };
         wrapper.simulate('mouseDown', {});
-        assert.strictEqual(
-          wrapper.instance().ripple.start.callCount,
-          0,
-          'should not call start on the ripple',
-        );
+        assert.strictEqual(wrapper.instance().ripple.start.callCount, 0);
         wrapper.simulate('mouseUp', {});
-        assert.strictEqual(
-          wrapper.instance().ripple.stop.callCount,
-          0,
-          'should not call stop on the ripple',
-        );
+        assert.strictEqual(wrapper.instance().ripple.stop.callCount, 0);
       });
     });
 
@@ -660,14 +571,10 @@ describe('<ButtonBase />', () => {
         instance.keyDown = false;
         instance.handleKeyDown(event);
 
-        assert.strictEqual(instance.keyDown, false, 'should not change keydown');
-        assert.strictEqual(event.persist.callCount, 0, 'should not call event.persist');
-        assert.strictEqual(onKeyDownSpy.callCount, 1, 'should call onKeyDown');
-        assert.strictEqual(
-          onKeyDownSpy.calledWith(event),
-          true,
-          'should call onKeyDown with event',
-        );
+        assert.strictEqual(instance.keyDown, false);
+        assert.strictEqual(event.persist.callCount, 0);
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+        assert.strictEqual(onKeyDownSpy.calledWith(event), true);
       });
     });
   });
@@ -683,7 +590,7 @@ describe('<ButtonBase />', () => {
 
       const ref = spy();
       mount(<ButtonBaseRef rootRef={ref}>Hello</ButtonBaseRef>);
-      assert.strictEqual(ref.callCount, 1, 'should call the ref function');
+      assert.strictEqual(ref.callCount, 1);
       assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
     });
   });
@@ -704,11 +611,7 @@ describe('<ButtonBase />', () => {
         </ButtonBaseNaked>,
       );
 
-      assert.strictEqual(
-        typeof buttonActions.focusVisible === 'function',
-        true,
-        'Should be a function.',
-      );
+      assert.strictEqual(typeof buttonActions.focusVisible, 'function');
       buttonActions.focusVisible();
       wrapper.update();
       assert.strictEqual(wrapper.instance().button, document.activeElement);

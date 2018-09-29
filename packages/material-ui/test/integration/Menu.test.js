@@ -39,7 +39,7 @@ describe('<Menu> integration', () => {
       const popover = wrapper.find(Popover);
       assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
-      assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
+      assert.strictEqual(menuEl, null);
     });
 
     it('should focus the first item as nothing has been selected', () => {
@@ -48,62 +48,38 @@ describe('<Menu> integration', () => {
         .find(Portal)
         .instance()
         .getMountNode();
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[0],
-        'should be the first menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
     });
 
     it('should change focus to the 2nd item when down arrow is pressed', () => {
       simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('down') });
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[1],
-        'should be the 2nd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
     });
 
     it('should change focus to the 3rd item when down arrow is pressed', () => {
       simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('down') });
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[2],
-        'should be the 3rd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should keep focus on the 3rd item (last item) when down arrow is pressed', () => {
       simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('down') });
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[2],
-        'should be the 3rd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should keep focus on the last item when a key with no associated action is pressed', () => {
       simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('right') });
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[2],
-        'should be the 3rd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should change focus to the 2nd item when up arrow is pressed', () => {
       simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('up') });
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[1],
-        'should be the 2nd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
     });
 
     it('should select the 2nd item and close the menu', () => {
       portalLayer.querySelectorAll('li')[1].click();
-      assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
-      assert.strictEqual(wrapper.state().open, false, 'should have closed');
+      assert.strictEqual(wrapper.state().selectedIndex, 1);
+      assert.strictEqual(wrapper.state().open, false);
     });
   });
 
@@ -117,9 +93,9 @@ describe('<Menu> integration', () => {
 
     it('should not be open', () => {
       const popover = wrapper.find(Popover);
-      assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
+      assert.strictEqual(popover.props().open, false);
       const menuEl = document.getElementById('simple-menu');
-      assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
+      assert.strictEqual(menuEl, null);
     });
 
     it('should focus the 3rd selected item', () => {
@@ -128,11 +104,7 @@ describe('<Menu> integration', () => {
         .find(Portal)
         .instance()
         .getMountNode();
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[2],
-        'should be the 3rd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should select the 2nd item and close the menu', () => {
@@ -142,8 +114,8 @@ describe('<Menu> integration', () => {
         .getMountNode();
       const item = portalLayer.querySelector('ul').children[1];
       item.click();
-      assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
-      assert.strictEqual(wrapper.state().open, false, 'should have closed');
+      assert.strictEqual(wrapper.state().selectedIndex, 1);
+      assert.strictEqual(wrapper.state().open, false);
     });
 
     it('should focus the 2nd selected item', () => {
@@ -152,11 +124,7 @@ describe('<Menu> integration', () => {
         .find(Portal)
         .instance()
         .getMountNode();
-      assert.strictEqual(
-        document.activeElement,
-        portalLayer.querySelectorAll('li')[1],
-        'should be the 2nd menu item',
-      );
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
     });
   });
 
@@ -172,7 +140,7 @@ describe('<Menu> integration', () => {
       const portalWrapper = new ReactWrapper(portal);
       list = portalWrapper.find('List');
       backdrop = portalWrapper.find('Backdrop');
-      assert.strictEqual(backdrop.length, 1, 'find a backdrop');
+      assert.strictEqual(backdrop.length, 1);
     });
 
     it('should close the menu with tab', done => {
@@ -182,9 +150,9 @@ describe('<Menu> integration', () => {
           done();
         },
       });
-      assert.strictEqual(wrapper.state().open, true, 'should start open');
+      assert.strictEqual(wrapper.state().open, true);
       list.simulate('keyDown', { which: keycode('tab') });
-      assert.strictEqual(wrapper.state().open, false, 'should be closed');
+      assert.strictEqual(wrapper.state().open, false);
     });
 
     it('should close the menu using the backdrop', done => {
@@ -194,9 +162,9 @@ describe('<Menu> integration', () => {
           done();
         },
       });
-      assert.strictEqual(wrapper.state().open, true, 'should start open');
+      assert.strictEqual(wrapper.state().open, true);
       backdrop.simulate('click');
-      assert.strictEqual(wrapper.state().open, false, 'should be closed');
+      assert.strictEqual(wrapper.state().open, false);
     });
   });
 });

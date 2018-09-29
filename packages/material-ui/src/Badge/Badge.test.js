@@ -17,8 +17,8 @@ describe('<Badge />', () => {
   it('renders children and badgeContent', () => {
     const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.ok(wrapper.find('span').length, 'should contain the badgeContent');
+    assert.strictEqual(wrapper.contains(testChildren), true);
+    assert.strictEqual(wrapper.find('span').length, 2);
   });
 
   it('renders children and overwrite badge class', () => {
@@ -30,7 +30,7 @@ describe('<Badge />', () => {
       </Badge>,
     );
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
+    assert.strictEqual(wrapper.contains(testChildren), true);
     assert.strictEqual(
       wrapper
         .find('span')
@@ -43,7 +43,7 @@ describe('<Badge />', () => {
   it('renders children by default', () => {
     const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
+    assert.strictEqual(wrapper.contains(testChildren), true);
   });
 
   it('renders children and className', () => {
@@ -53,8 +53,8 @@ describe('<Badge />', () => {
       </Badge>,
     );
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.is('.testClassName'), true, 'should contain the className');
+    assert.strictEqual(wrapper.contains(testChildren), true);
+    assert.strictEqual(wrapper.is('.testClassName'), true);
   });
 
   it('renders children and have primary styles', () => {
@@ -64,14 +64,13 @@ describe('<Badge />', () => {
       </Badge>,
     );
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
+    assert.strictEqual(wrapper.contains(testChildren), true);
     assert.strictEqual(
       wrapper
         .find('span')
         .at(1)
         .hasClass(classes.colorPrimary),
       true,
-      'should have primary class',
     );
   });
 
@@ -82,7 +81,7 @@ describe('<Badge />', () => {
       </Badge>,
     );
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
+    assert.strictEqual(wrapper.contains(testChildren), true);
     assert.strictEqual(
       wrapper
         .find('span')
@@ -116,11 +115,7 @@ describe('<Badge />', () => {
       </Badge>,
     );
 
-    assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(
-      wrapper.props().style.backgroundColor,
-      style.backgroundColor,
-      'should overwrite badge backgroundColor',
-    );
+    assert.strictEqual(wrapper.contains(testChildren), true);
+    assert.strictEqual(wrapper.props().style.backgroundColor, style.backgroundColor);
   });
 });

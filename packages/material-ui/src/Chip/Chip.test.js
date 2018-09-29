@@ -27,7 +27,7 @@ describe('<Chip />', () => {
     it('should render a div containing a span', () => {
       const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.childAt(0).name(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
       assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
@@ -72,7 +72,7 @@ describe('<Chip />', () => {
 
     it('should render a div containing a span', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.childAt(0).name(), 'span');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -167,9 +167,9 @@ describe('<Chip />', () => {
 
     it('should render a div containing an Avatar, span and svg', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
-      assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
-      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(0).type(), Avatar);
+      assert.strictEqual(wrapper.childAt(1).name(), 'span');
+      assert.strictEqual(wrapper.childAt(2).name(), 'pure(Cancel)');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -193,7 +193,7 @@ describe('<Chip />', () => {
       wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
+      assert.strictEqual(onDeleteSpy.callCount, 1);
     });
 
     it('should stop propagation in onDeleteRequest', () => {
@@ -353,12 +353,8 @@ describe('<Chip />', () => {
         const onKeyDownSpy = spy();
         wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
         wrapper.find('div').simulate('keyDown', anyKeydownEvent);
-        assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
-        assert.strictEqual(
-          onKeyDownSpy.args[0][0].keyCode,
-          anyKeydownEvent.keyCode,
-          'should have same keyCode',
-        );
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+        assert.strictEqual(onKeyDownSpy.args[0][0].keyCode, anyKeydownEvent.keyCode);
       });
     });
 

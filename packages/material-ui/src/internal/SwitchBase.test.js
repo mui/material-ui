@@ -16,11 +16,11 @@ function assertIsChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.instance().checked, true, 'the DOM node should be checked');
+  assert.strictEqual(input.instance().checked, true);
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
-  assert.strictEqual(icon.is('h2'), true, 'should be the checked icon');
+  assert.strictEqual(icon.name(), 'h2');
 }
 
 function assertIsNotChecked(wrapper) {
@@ -33,11 +33,11 @@ function assertIsNotChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.instance().checked, false, 'the DOM node should not be checked');
+  assert.strictEqual(input.instance().checked, false);
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
-  assert.strictEqual(icon.is('h1'), true, 'should be the icon');
+  assert.strictEqual(icon.name(), 'h1');
 }
 
 describe('<SwitchBase />', () => {
@@ -69,12 +69,8 @@ describe('<SwitchBase />', () => {
 
   it('should render an icon and input inside the button by default', () => {
     const wrapper = shallow(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.childAt(0).is('h1'), true, 'should be the icon');
-    assert.strictEqual(
-      wrapper.childAt(1).is('input[type="checkbox"]'),
-      true,
-      'should be a checkbox input',
-    );
+    assert.strictEqual(wrapper.childAt(0).name(), 'h1');
+    assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true);
   });
 
   it('should have a ripple by default', () => {
@@ -84,7 +80,7 @@ describe('<SwitchBase />', () => {
 
   it('should pass disableRipple={true} to IconButton', () => {
     const wrapper = shallow(<SwitchBase {...defaultProps} disableRipple />);
-    assert.strictEqual(wrapper.props().disableRipple, true, 'should set disableRipple to true');
+    assert.strictEqual(wrapper.props().disableRipple, true);
   });
 
   // className is put on the root node, this is a special case!
@@ -122,8 +118,8 @@ describe('<SwitchBase />', () => {
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = shallow(<SwitchBase {...defaultProps} disabled />);
-    assert.strictEqual(wrapper.props().disabled, true, 'should disable the root node');
-    assert.strictEqual(wrapper.childAt(1).props().disabled, true, 'should disable the input node');
+    assert.strictEqual(wrapper.props().disabled, true);
+    assert.strictEqual(wrapper.childAt(1).props().disabled, true);
   });
 
   it('should apply the custom disabled className when disabled', () => {

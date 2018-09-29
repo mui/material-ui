@@ -23,8 +23,8 @@ describe('<FormControlLabel />', () => {
     const wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
     const label = wrapper.childAt(1);
     assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(label.childAt(0).text(), 'Pizza', 'should be the label text');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
+    assert.strictEqual(label.childAt(0).text(), 'Pizza');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   describe('prop: disabled', () => {

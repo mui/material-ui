@@ -38,15 +38,11 @@ describe('<Drawer />', () => {
       );
 
       const slide = wrapper.childAt(0);
-      assert.strictEqual(
-        slide.length === 1 && slide.is(Slide),
-        true,
-        'immediate wrapper child should be Slide',
-      );
+      assert.strictEqual(slide.length === 1 && slide.is(Slide), true);
 
       const paper = slide.childAt(0);
       assert.strictEqual(paper.length === 1 && paper.type(), Paper);
-      assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
+      assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
     describe('transitionDuration property', () => {
@@ -96,7 +92,7 @@ describe('<Drawer />', () => {
 
       const modal = wrapper.find(Modal);
 
-      assert.strictEqual(modal.hasClass('woofDrawer'), true, 'should have the woofDrawer class');
+      assert.strictEqual(modal.hasClass('woofDrawer'), true);
     });
 
     it('should set the Paper className', () => {
@@ -106,8 +102,8 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
       const paper = wrapper.find(Paper);
-      assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
-      assert.strictEqual(paper.hasClass('woofDrawer'), true, 'should have the woofDrawer class');
+      assert.strictEqual(paper.hasClass(classes.paper), true);
+      assert.strictEqual(paper.hasClass('woofDrawer'), true);
     });
 
     it('should be closed by default', () => {
@@ -120,8 +116,8 @@ describe('<Drawer />', () => {
       const modal = wrapper;
       const slide = modal.find(Slide);
 
-      assert.strictEqual(modal.props().open, false, 'should not show the modal');
-      assert.strictEqual(slide.props().in, false, 'should not transition in');
+      assert.strictEqual(modal.props().open, false);
+      assert.strictEqual(slide.props().in, false);
     });
 
     describe('opening and closing', () => {
@@ -137,20 +133,20 @@ describe('<Drawer />', () => {
       });
 
       it('should start closed', () => {
-        assert.strictEqual(wrapper.props().open, false, 'should not show the modal');
-        assert.strictEqual(wrapper.find(Slide).props().in, false, 'should not transition in');
+        assert.strictEqual(wrapper.props().open, false);
+        assert.strictEqual(wrapper.find(Slide).props().in, false);
       });
 
       it('should open', () => {
         wrapper.setProps({ open: true });
-        assert.strictEqual(wrapper.props().open, true, 'should show the modal');
-        assert.strictEqual(wrapper.find(Slide).props().in, true, 'should transition in');
+        assert.strictEqual(wrapper.props().open, true);
+        assert.strictEqual(wrapper.find(Slide).props().in, true);
       });
 
       it('should close', () => {
         wrapper.setProps({ open: false });
-        assert.strictEqual(wrapper.props().open, false, 'should not show the modal');
-        assert.strictEqual(wrapper.find(Slide).props().in, false, 'should not transition in');
+        assert.strictEqual(wrapper.props().open, false);
+        assert.strictEqual(wrapper.find(Slide).props().in, false);
       });
     });
   });
@@ -168,7 +164,7 @@ describe('<Drawer />', () => {
 
     it('should render a div instead of a Modal when persistent', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.docked), true, 'should have the docked class');
+      assert.strictEqual(wrapper.hasClass(classes.docked), true);
     });
 
     it('should render Slide > Paper inside the div', () => {
@@ -194,7 +190,7 @@ describe('<Drawer />', () => {
 
     it('should render a div instead of a Modal when permanent', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.docked), true, 'should have the docked class');
+      assert.strictEqual(wrapper.hasClass(classes.docked), true);
     });
 
     it('should render div > Paper inside the div', () => {

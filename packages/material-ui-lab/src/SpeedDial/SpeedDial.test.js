@@ -104,8 +104,8 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const actionsWrapper = wrapper.childAt(1);
-    assert.strictEqual(actionsWrapper.childAt(0).props().open, true, 'open should be true');
-    assert.strictEqual(actionsWrapper.childAt(1).props().open, true, 'open should be true');
+    assert.strictEqual(actionsWrapper.childAt(0).props().open, true);
+    assert.strictEqual(actionsWrapper.childAt(1).props().open, true);
   });
 
   describe('prop: onClick', () => {

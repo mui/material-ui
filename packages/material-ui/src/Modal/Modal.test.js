@@ -178,9 +178,9 @@ describe('<Modal />', () => {
         'div',
         'should have the element in the DOM',
       );
-      assert.strictEqual(heading.tagName.toLowerCase(), 'h1', 'should have the element in the DOM');
-      assert.strictEqual(portalLayer.contains(container), true, 'should be in the portal');
-      assert.strictEqual(portalLayer.contains(heading), true, 'should be in the portal');
+      assert.strictEqual(heading.tagName.toLowerCase(), 'h1');
+      assert.strictEqual(portalLayer.contains(container), true);
+      assert.strictEqual(portalLayer.contains(heading), true);
 
       const container2 = document.getElementById('container');
 
@@ -193,7 +193,7 @@ describe('<Modal />', () => {
         'document',
         'should add the document role',
       );
-      assert.strictEqual(container2.getAttribute('tabindex'), '-1', 'should add a -1 tab-index');
+      assert.strictEqual(container2.getAttribute('tabindex'), '-1');
     });
   });
 
@@ -214,16 +214,9 @@ describe('<Modal />', () => {
         throw new Error('missing modal');
       }
 
-      assert.strictEqual(
-        modal.children.length,
-        2,
-        'should have 2 children, the backdrop and the test container',
-      );
-      assert.ok(
-        modal.children[0],
-        'this is the backdrop, so no assertions about implementation details',
-      );
-      assert.strictEqual(modal.children[1], container, 'should be the container');
+      assert.strictEqual(modal.children.length, 2);
+      assert.ok(modal.children[0]);
+      assert.strictEqual(modal.children[1], container);
     });
   });
 
@@ -243,8 +236,8 @@ describe('<Modal />', () => {
         throw new Error('missing modal');
       }
 
-      assert.strictEqual(modal.children.length, 1, 'should have 1 child, the test container');
-      assert.strictEqual(modal.children[0], container, 'should be the container');
+      assert.strictEqual(modal.children.length, 1);
+      assert.strictEqual(modal.children[0], container);
     });
   });
 
@@ -491,7 +484,7 @@ describe('<Modal />', () => {
           <Dialog />
         </Modal>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(consoleErrorMock.args()[0][0], /the modal content node does not accept focus/);
     });
 

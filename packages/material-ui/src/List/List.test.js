@@ -27,7 +27,7 @@ describe('<List />', () => {
     const wrapper = shallow(<List className="woofList" />);
     assert.strictEqual(wrapper.hasClass('woofList'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.padding), true, 'should have the padding class');
+    assert.strictEqual(wrapper.hasClass(classes.padding), true);
   });
 
   it('should disable the padding', () => {
@@ -53,7 +53,7 @@ describe('<List />', () => {
 
     it('should render ListSubheader', () => {
       const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      assert.strictEqual(wrapper.find(ListSubheader).length, 1, 'should render ListSubheader');
+      assert.strictEqual(wrapper.find(ListSubheader).length, 1);
     });
   });
 
@@ -67,11 +67,7 @@ describe('<List />', () => {
       );
 
       const wrapper2 = shallow(<List dense />);
-      assert.strictEqual(
-        wrapper2.instance().getChildContext().dense,
-        true,
-        'dense should be true when set',
-      );
+      assert.strictEqual(wrapper2.instance().getChildContext().dense, true);
     });
   });
 });
