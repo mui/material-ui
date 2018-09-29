@@ -30,6 +30,9 @@ export const styles = theme => {
       '&$disabled': {
         backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
       },
+      'label + & input': {
+        padding: '27px 12px 10px',
+      },
     },
     /* Styles applied to the root element. */
     underline: {
@@ -95,12 +98,12 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element. */
     input: {
-      padding: '27px 12px 10px',
+      padding: '10px 12px',
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
-      paddingTop: 24,
-      paddingBottom: 6,
+      paddingTop: [24, '!important'],
+      paddingBottom: [6, '!important'],
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
