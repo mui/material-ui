@@ -33,10 +33,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '18.5px 14px',
-      // // These values are needed to prevent us from
-      // // overrunning the notched outline (including label)
-      // paddingTop: 27,
-      // paddingBottom: 10,
+      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     },
     /* Styles applied to the `NotchedOutline` element. */
     notchedOutline: {},

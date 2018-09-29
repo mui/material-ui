@@ -17,7 +17,6 @@ export const styles = theme => {
       backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
       borderTopLeftRadius: theme.shape.borderRadius,
       borderTopRightRadius: theme.shape.borderRadius,
-      boxSizing: 'border-box',
       transition: theme.transitions.create('background-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
@@ -93,6 +92,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '27px 12px 10px',
+      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     },
     /* Styles applied to the `input` element. */
     input: {
