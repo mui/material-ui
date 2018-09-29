@@ -21,9 +21,9 @@ export type StepConnectorClasskey =
   | 'line'
   | 'lineHorizontal'
   | 'lineVertical'
-  | 'lineActive'
-  | 'lineCompleted'
-  | 'lineDisabled';
+  | 'active'
+  | 'completed'
+  | 'disabled';
 
 declare const StepConnector: React.ComponentType<StepConnectorProps>;
 

@@ -19,11 +19,15 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
-  lineActive: {
-    borderColor: theme.palette.secondary.main,
+  connectorActive: {
+    '& span': {
+      borderColor: theme.palette.secondary.main,
+    },
   },
-  lineCompleted: {
-    borderColor: theme.palette.primary.main,
+  connectorCompleted: {
+    '& span': {
+      borderColor: theme.palette.primary.main,
+    },
   },
 });
 
@@ -113,7 +117,7 @@ class HorizontalLinearStepper extends React.Component {
           activeStep={activeStep}
           connector={
             <StepConnector
-              classes={{ lineActive: classes.lineActive, lineCompleted: classes.lineCompleted }}
+              classes={{ active: classes.connectorActive, completed: classes.connectorCompleted }}
             />
           }
         >

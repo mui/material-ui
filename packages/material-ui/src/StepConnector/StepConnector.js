@@ -38,12 +38,12 @@ export const styles = theme => ({
     borderLeftWidth: 1,
     minHeight: 24,
   },
-  /* Styles applied to the line element if `active={true}`. */
-  lineActive: {},
-  /* Styles applied to the line element if `completed={true}`. */
-  lineCompleted: {},
-  /* Styles applied to the line element if `disabled={true}`. */
-  lineDisabled: {},
+  /* Styles applied to the root element if `active={true}`. */
+  active: {},
+  /* Styles applied to the root element if `completed={true}`. */
+  completed: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
 });
 
 function StepConnector(props) {
@@ -63,15 +63,15 @@ function StepConnector(props) {
     classes[orientation],
     {
       [classes.alternativeLabel]: alternativeLabel,
+      [classes.active]: active,
+      [classes.completed]: completed,
+      [classes.disabled]: disabled,
     },
     classNameProp,
   );
   const lineClassName = classNames(classes.line, {
     [classes.lineHorizontal]: orientation === 'horizontal',
     [classes.lineVertical]: orientation === 'vertical',
-    [classes.lineActive]: active,
-    [classes.lineCompleted]: completed,
-    [classes.lineDisabled]: disabled,
   });
 
   return (
