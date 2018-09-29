@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -8,6 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'gatsby';
 import withRoot from '../withRoot';
 
 const styles = theme => ({
@@ -56,6 +59,9 @@ class Index extends React.Component {
         </Typography>
         <Typography variant="subheading" gutterBottom>
           example project
+        </Typography>
+        <Typography gutterBottom>
+          <Link to="/about">Go to the about page</Link>
         </Typography>
         <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password

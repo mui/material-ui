@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-with-flow",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.0.0",
