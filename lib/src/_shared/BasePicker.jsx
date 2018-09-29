@@ -31,7 +31,7 @@ class BasePicker extends React.Component {
 
   handleAccept = () => this.props.onChange(this.state.date);
 
-  handleSetTodayDate = () => this.changeDate(this.props.utils.date());
+  handleSetTodayDate = () => this.handleChange(this.props.utils.date(), false);
 
   handleTextFieldChange = (date) => {
     const { onChange } = this.props;
