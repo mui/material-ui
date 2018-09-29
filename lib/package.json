@@ -47,8 +47,7 @@
     "classnames": "^2.2.5",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
-    "react-transition-group": "^2.5.0",
-    "throttle-debounce": "^2.0.1"
+    "react-transition-group": "^2.5.0"
   },
   "size-limit": [
     {

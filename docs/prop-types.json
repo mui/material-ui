@@ -406,7 +406,15 @@
         },
         "forwardedRef": {
           "type": {
-            "name": "func"
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
           },
           "required": false,
           "description": "",
@@ -624,7 +632,15 @@
         },
         "forwardedRef": {
           "type": {
-            "name": "func"
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
           },
           "required": false,
           "description": "",
@@ -1982,7 +1998,15 @@
         },
         "forwardedRef": {
           "type": {
-            "name": "func"
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
           },
           "required": false,
           "description": "",
@@ -2258,7 +2282,15 @@
         },
         "forwardedRef": {
           "type": {
-            "name": "func"
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
           },
           "required": false,
           "description": "",
@@ -2658,7 +2690,15 @@
         },
         "forwardedRef": {
           "type": {
-            "name": "func"
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
           },
           "required": false,
           "description": "",
@@ -2741,7 +2781,15 @@
         },
         "forwardedRef": {
           "type": {
-            "name": "func"
+            "name": "union",
+            "value": [
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
           },
           "required": false,
           "description": "",
@@ -3138,6 +3186,111 @@
       }
     }
   ],
+  "../lib/src/_shared/BasePicker.jsx": [
+    {
+      "description": "",
+      "displayName": "BasePicker",
+      "methods": [
+        {
+          "name": "changeDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "date",
+              "type": null
+            },
+            {
+              "name": "callback",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleAcceptedChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "isAccepted",
+              "type": null
+            },
+            {
+              "name": "callback",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleClear",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleAccept",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleSetTodayDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleTextFieldChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "date",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "pick12hOr24hFormat",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "default12hFormat",
+              "type": null
+            },
+            {
+              "name": "default24hFormat",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "newDate",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ]
+    }
+  ],
   "../lib/src/_shared/DateTextField.jsx": [
     {
       "description": "",
@@ -3231,14 +3384,6 @@
         }
       ],
       "props": {
-        "classes": {
-          "type": {
-            "name": "shape",
-            "value": {}
-          },
-          "required": true,
-          "description": ""
-        },
         "value": {
           "type": {
             "name": "union",
@@ -3578,6 +3723,17 @@
           },
           "required": false,
           "description": "Callback firing on change input in keyboard mode [(e: Event) => void]",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "pipe": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "undefined",
             "computed": true
