@@ -169,6 +169,10 @@ Input.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
+   * The label content.
+   */
+  label: PropTypes.node,
+  /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */

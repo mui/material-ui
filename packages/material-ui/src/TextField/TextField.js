@@ -116,6 +116,7 @@ class TextField extends React.Component {
         autoFocus={autoFocus}
         defaultValue={defaultValue}
         fullWidth={fullWidth}
+        label={label}
         multiline={multiline}
         name={name}
         rows={rows}
