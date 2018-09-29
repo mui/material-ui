@@ -64,8 +64,8 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.childAt(0).props().selected, false, 'should have selected to false');
-    assert.strictEqual(wrapper.childAt(1).props().selected, true, 'should have selected');
+    assert.strictEqual(wrapper.childAt(0).props().selected, false);
+    assert.strictEqual(wrapper.childAt(1).props().selected, true);
   });
 
   it('should overwrite parent showLabel prop', () => {
@@ -75,8 +75,8 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} showLabel={false} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.childAt(0).props().showLabel, true, 'should have parent showLabel');
-    assert.strictEqual(wrapper.childAt(1).props().showLabel, false, 'should overwrite showLabel');
+    assert.strictEqual(wrapper.childAt(0).props().showLabel, true);
+    assert.strictEqual(wrapper.childAt(1).props().showLabel, false);
   });
 
   it('should pass selected prop to children', () => {
@@ -91,8 +91,8 @@ describe('<BottomNavigation />', () => {
       .find(BottomNavigationAction)
       .at(1)
       .simulate('click');
-    assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
-    assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
+    assert.strictEqual(handleChange.callCount, 1);
+    assert.strictEqual(handleChange.args[0][1], 1);
   });
 
   it('should use custom action values', () => {

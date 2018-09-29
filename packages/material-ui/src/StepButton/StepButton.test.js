@@ -34,7 +34,7 @@ describe('<StepButton />', () => {
     const wrapper = shallow(<StepButton {...defaultProps}>Step One</StepButton>);
     assert.ok(wrapper.is(ButtonBase), 'should be an ButtonBase');
     const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.length, 1, 'should have a stepLabel');
+    assert.strictEqual(stepLabel.length, 1);
     assert.strictEqual(stepLabel.props().children, 'Step One');
   });
 
@@ -45,9 +45,9 @@ describe('<StepButton />', () => {
       </StepButton>,
     );
     const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.props().active, true, 'should be active');
-    assert.strictEqual(stepLabel.props().completed, true, 'should be completed');
-    assert.strictEqual(stepLabel.props().disabled, true, 'should be disabled');
+    assert.strictEqual(stepLabel.props().active, true);
+    assert.strictEqual(stepLabel.props().completed, true);
+    assert.strictEqual(stepLabel.props().disabled, true);
   });
 
   it('should pass props to a provided StepLabel', () => {
@@ -57,9 +57,9 @@ describe('<StepButton />', () => {
       </StepButton>,
     );
     const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.props().active, true, 'should be active');
-    assert.strictEqual(stepLabel.props().completed, true, 'should be completed');
-    assert.strictEqual(stepLabel.props().disabled, true, 'should be disabled');
+    assert.strictEqual(stepLabel.props().active, true);
+    assert.strictEqual(stepLabel.props().completed, true);
+    assert.strictEqual(stepLabel.props().disabled, true);
   });
 
   it("should pass disabled prop to a StepLabel's Button", () => {
@@ -88,10 +88,10 @@ describe('<StepButton />', () => {
           </StepButton>,
         );
         wrapper.simulate('mouseEnter');
-        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+        assert.strictEqual(handleMouseEnter.callCount, 1);
         wrapper.simulate('mouseLeave');
-        assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
-        assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+        assert.strictEqual(handleMouseEnter.callCount, 1);
+        assert.strictEqual(handleMouseLeave.callCount, 1);
       });
     });
 
@@ -110,19 +110,19 @@ describe('<StepButton />', () => {
         </StepButton>,
       );
       wrapper.simulate('mouseEnter');
-      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
+      assert.strictEqual(handleMouseEnter.callCount, 1);
       wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
-      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
+      assert.strictEqual(handleMouseEnter.callCount, 1);
+      assert.strictEqual(handleMouseLeave.callCount, 1);
       wrapper.simulate('touchStart');
-      assert.strictEqual(handleMouseEnter.callCount, 1, 'should call handleMouseEnter once');
-      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
-      assert.strictEqual(handleTouchStart.callCount, 1, 'should call handleTouchStart once');
+      assert.strictEqual(handleMouseEnter.callCount, 1);
+      assert.strictEqual(handleMouseLeave.callCount, 1);
+      assert.strictEqual(handleTouchStart.callCount, 1);
       wrapper.simulate('mouseEnter');
       wrapper.simulate('touchStart');
-      assert.strictEqual(handleMouseEnter.callCount, 2, 'should call handleMouseEnter twice');
-      assert.strictEqual(handleMouseLeave.callCount, 1, 'should call handleMouseLeave once');
-      assert.strictEqual(handleTouchStart.callCount, 2, 'should call handleTouchStart twice');
+      assert.strictEqual(handleMouseEnter.callCount, 2);
+      assert.strictEqual(handleMouseLeave.callCount, 1);
+      assert.strictEqual(handleTouchStart.callCount, 2);
     });
   });
 });

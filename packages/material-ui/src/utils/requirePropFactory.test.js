@@ -10,8 +10,8 @@ describe('requirePropFactory', () => {
   });
 
   it('should have the right shape', () => {
-    assert.strictEqual(typeof requirePropFactory, 'function', 'should be a function');
-    assert.strictEqual(typeof requireProp, 'function', 'should return a function');
+    assert.strictEqual(typeof requirePropFactory, 'function');
+    assert.strictEqual(typeof requireProp, 'function');
   });
 
   describe('requireProp()', () => {
@@ -59,25 +59,12 @@ describe('requirePropFactory', () => {
         });
 
         it('should return Error', () => {
-          assert.property(result, 'name', 'result should have name property');
-          assert.property(result, 'name', 'result should have name property');
+          assert.property(result, 'name');
           assert.strictEqual(result.name, 'Error');
-          assert.property(result, 'message', 'result should have message property');
-          assert.strictEqual(
-            result.message.indexOf(propName) > -1,
-            true,
-            'returned error message should have propName',
-          );
-          assert.strictEqual(
-            result.message.indexOf(requiredPropName) > -1,
-            true,
-            'returned error message should have requiredPropName',
-          );
-          assert.strictEqual(
-            result.message.indexOf(componentNameInError) > -1,
-            true,
-            'returned error message should have componentNameInError',
-          );
+          assert.property(result, 'message');
+          assert.strictEqual(result.message.indexOf(propName) > -1, true);
+          assert.strictEqual(result.message.indexOf(requiredPropName) > -1, true);
+          assert.strictEqual(result.message.indexOf(componentNameInError) > -1, true);
         });
 
         describe('propFullName given to validator', () => {

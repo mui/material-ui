@@ -70,8 +70,8 @@ describe('<Slider />', () => {
       wrapper.simulate('mousedown');
       callGlobalListeners();
       // pre condition: the dispatched event actually did something when mounted
-      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
-      assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleDragEnd.callCount, 1);
 
       wrapper.unmount();
 
@@ -80,8 +80,8 @@ describe('<Slider />', () => {
       // or other component logic throws.
       // post condition: the dispatched events dont cause errors/warnings
       callGlobalListeners();
-      assert.strictEqual(handleChange.callCount, 1, 'should not have called handleChange again');
-      assert.strictEqual(handleDragEnd.callCount, 1, 'should not have called handleDragEnd again');
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleDragEnd.callCount, 1);
     });
   });
 
@@ -137,7 +137,7 @@ describe('<Slider />', () => {
 
     it('should render thumb in initial state', () => {
       const button = wrapper.find('button');
-      assert.strictEqual(button.prop('style').left, '0%');
+      assert.strictEqual(button.props().style.left, '0%');
     });
 
     it('should render tracks in initial state', () => {
@@ -145,8 +145,8 @@ describe('<Slider />', () => {
       const trackBefore = tracks.at(0);
       const trackAfter = tracks.at(1);
 
-      assert.strictEqual(trackBefore.prop('style').width, '0%');
-      assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
+      assert.strictEqual(trackBefore.props().style.width, '0%');
+      assert.strictEqual(trackAfter.props().style.width, 'calc(100% - 5px)');
     });
 
     it('after change value should change position of thumb', () => {
@@ -155,7 +155,7 @@ describe('<Slider />', () => {
       clock.tick(transitionComplexDuration);
 
       const button = wrapper.find('button');
-      assert.strictEqual(button.prop('style').left, '50%');
+      assert.strictEqual(button.props().style.left, '50%');
     });
 
     it('should render tracks in new state', () => {
@@ -163,8 +163,8 @@ describe('<Slider />', () => {
       const trackBefore = tracks.at(0);
       const trackAfter = tracks.at(1);
 
-      assert.strictEqual(trackBefore.prop('style').width, '50%');
-      assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
+      assert.strictEqual(trackBefore.props().style.width, '50%');
+      assert.strictEqual(trackAfter.props().style.width, 'calc(100% - 5px)');
     });
   });
 });

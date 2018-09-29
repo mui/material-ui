@@ -25,27 +25,15 @@ describe('<Avatar />', () => {
       );
 
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('img'), true, 'should be an img');
+      assert.strictEqual(wrapper.childAt(0).name(), 'img');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofAvatar');
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorDefault),
-        false,
-        'should not apply the colorDefault class for image avatars',
-      );
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), false);
       const img = wrapper.childAt(0);
-      assert.strictEqual(
-        img.hasClass(classes.img),
-        true,
-        'should add the img class to the img node',
-      );
-      assert.strictEqual(img.props().alt, 'Hello World!', 'should apply img props to the img node');
-      assert.strictEqual(
-        img.props().src,
-        'something.jpg',
-        'should apply img props to the img node',
-      );
+      assert.strictEqual(img.hasClass(classes.img), true);
+      assert.strictEqual(img.props().alt, 'Hello World!');
+      assert.strictEqual(img.props().src, 'something.jpg');
     });
 
     it('should be able to add more properties to the image', () => {
@@ -69,7 +57,7 @@ describe('<Avatar />', () => {
     it('should render a div containing an font icon', () => {
       const icon = wrapper.childAt(0);
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(icon.is('span'), true, 'should be a span');
+      assert.strictEqual(icon.name(), 'span');
       assert.strictEqual(icon.hasClass('my-icon-font'), true);
       assert.strictEqual(icon.text(), 'icon');
     });
@@ -77,7 +65,7 @@ describe('<Avatar />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofAvatar');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
@@ -102,13 +90,13 @@ describe('<Avatar />', () => {
 
     it('should render a div containing an svg icon', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('pure(Cancel)'), true, 'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(0).name(), 'pure(Cancel)');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofAvatar');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
@@ -139,7 +127,7 @@ describe('<Avatar />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-avatar'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofAvatar');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
     });
 
     it('should apply the colorDefault class', () => {
