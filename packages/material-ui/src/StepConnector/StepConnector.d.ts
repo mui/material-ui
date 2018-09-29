@@ -6,11 +6,11 @@ export type StepConnectorIcon = React.ReactElement<any> | string | number;
 
 export interface StepConnectorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepConnectorClasskey> {
-  alternativeLabel?: boolean;
-  orientation?: Orientation;
   active?: boolean;
+  alternativeLabel?: boolean;
   completed?: boolean;
   disabled?: boolean;
+  orientation?: Orientation;
 }
 
 export type StepConnectorClasskey =
@@ -18,12 +18,12 @@ export type StepConnectorClasskey =
   | 'horizontal'
   | 'vertical'
   | 'alternativeLabel'
-  | 'line'
-  | 'lineHorizontal'
-  | 'lineVertical'
   | 'active'
   | 'completed'
-  | 'disabled';
+  | 'disabled'
+  | 'line'
+  | 'lineHorizontal'
+  | 'lineVertical';
 
 declare const StepConnector: React.ComponentType<StepConnectorProps>;
 

@@ -30,8 +30,6 @@ The `Stepper` can be controlled by passing the current step index (zero-based) a
 
 This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
-The example also uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
-
 {{"demo": "pages/demos/steppers/HorizontalLinearStepper.js"}}
 
 ## Horizontal Non-linear
@@ -63,6 +61,12 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 ## Vertical Stepper
 
 {{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}
+
+## Customized Stepper
+
+The example also uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
+
+{{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 
 ## Mobile Stepper
 

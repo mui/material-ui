@@ -22,6 +22,12 @@ export const styles = theme => ({
     left: 'calc(50% + 20px)',
     right: 'calc(-50% + 20px)',
   },
+  /* Styles applied to the root element if `active={true}`. */
+  active: {},
+  /* Styles applied to the root element if `completed={true}`. */
+  completed: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
   /* Styles applied to the line element. */
   line: {
     display: 'block',
@@ -38,45 +44,41 @@ export const styles = theme => ({
     borderLeftWidth: 1,
     minHeight: 24,
   },
-  /* Styles applied to the root element if `active={true}`. */
-  active: {},
-  /* Styles applied to the root element if `completed={true}`. */
-  completed: {},
-  /* Styles applied to the root element if `disabled={true}`. */
-  disabled: {},
 });
 
 function StepConnector(props) {
   const {
-    alternativeLabel,
-    className: classNameProp,
-    classes,
-    orientation,
     active,
+    alternativeLabel,
+    classes,
+    className: classNameProp,
     completed,
     disabled,
+    orientation,
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    classes[orientation],
-    {
-      [classes.alternativeLabel]: alternativeLabel,
-      [classes.active]: active,
-      [classes.completed]: completed,
-      [classes.disabled]: disabled,
-    },
-    classNameProp,
-  );
-  const lineClassName = classNames(classes.line, {
-    [classes.lineHorizontal]: orientation === 'horizontal',
-    [classes.lineVertical]: orientation === 'vertical',
-  });
-
   return (
-    <div className={className} {...other}>
-      <span className={lineClassName} />
+    <div
+      className={classNames(
+        classes.root,
+        classes[orientation],
+        {
+          [classes.alternativeLabel]: alternativeLabel,
+          [classes.active]: active,
+          [classes.completed]: completed,
+          [classes.disabled]: disabled,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
+      <span
+        className={classNames(classes.line, {
+          [classes.lineHorizontal]: orientation === 'horizontal',
+          [classes.lineVertical]: orientation === 'vertical',
+        })}
+      />
     </div>
   );
 }
