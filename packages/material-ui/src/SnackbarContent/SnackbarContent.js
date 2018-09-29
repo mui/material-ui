@@ -19,7 +19,7 @@ export const styles = theme => {
       backgroundColor,
       display: 'flex',
       alignItems: 'center',
-      flexWrap: 'wrap',
+      flexWrap: 'nowrap',
       padding: '6px 24px',
       [theme.breakpoints.up('md')]: {
         minWidth: 288,
