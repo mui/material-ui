@@ -52,8 +52,6 @@ export const styles = theme => {
     adornedEnd: {},
     /* Styles applied to the root element if `error={true}`. */
     error: {},
-    /* Styles applied to the root element if `label` is provided. */
-    labelInput: {},
     /* Styles applied to the `input` element if `margin="dense"`. */
     marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
@@ -327,7 +325,6 @@ class InputBase extends React.Component {
       inputComponent,
       inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
-      label,
       margin,
       multiline,
       name,
@@ -377,7 +374,6 @@ class InputBase extends React.Component {
       classes.input,
       {
         [classes.disabled]: fcs.disabled,
-        [classes.labelInput]: label,
         [classes.inputType]: type !== 'text',
         [classes.inputTypeSearch]: type === 'search',
         [classes.inputMultiline]: multiline,

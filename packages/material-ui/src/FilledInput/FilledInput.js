@@ -95,10 +95,6 @@ export const styles = theme => {
     },
     /* Styles applied to the `input` element. */
     input: {
-      padding: '10px 12px',
-    },
-    /* Styles applied to the `input` element if `label` is provided. */
-    labelInput: {
       padding: '27px 12px 10px',
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
