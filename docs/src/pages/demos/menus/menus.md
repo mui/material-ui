@@ -19,6 +19,13 @@ Choosing an option should immediately ideally commit the option and close the me
 
 {{"demo": "pages/demos/menus/SimpleMenu.js"}}
 
+## PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu
+state for you in most cases.
+
+{{"demo": "pages/utils/popup-state/MenuPopupState.js"}}
+
 ## Selected menus
 
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element.

@@ -120,6 +120,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.0",
     "lz-string": "^1.4.4",
+    "material-ui-popup-state": "^1.0.1",
     "mocha": "^5.0.0",
     "next": "^7.0.0",
     "nyc": "^13.0.0",

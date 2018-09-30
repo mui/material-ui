@@ -15,6 +15,13 @@ Things to know when using the `Popover` component:
 
 {{"demo": "pages/utils/popover/SimplePopover.js" }}
 
+## PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover
+state for you in most cases.
+
+{{"demo": "pages/utils/popup-state/PopoverPopupState.js"}}
+
 ## Anchor playground
 
 Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions.

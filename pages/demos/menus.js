@@ -16,6 +16,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/SimpleMenu'), 'utf8')
 `,
         },
+        'pages/utils/popup-state/MenuPopupState.js': {
+          js: require('docs/src/pages/utils/popup-state/MenuPopupState.js').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popup-state/MenuPopupState'), 'utf8')
+`,
+        },
         'pages/demos/menus/SimpleListMenu.js': {
           js: require('docs/src/pages/demos/menus/SimpleListMenu').default,
           raw: preval`

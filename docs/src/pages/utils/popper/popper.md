@@ -20,6 +20,13 @@ The placement of the popper updates with the available area in the viewport.
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
+## PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper
+state for you in most cases.
+
+{{"demo": "pages/utils/popup-state/PopperPopupState.js"}}
+
 ## Scroll playground
 
 {{"demo": "pages/utils/popper/ScrollPlayground.js"}}
