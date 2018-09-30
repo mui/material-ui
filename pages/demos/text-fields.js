@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/text-fields/text-fields.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./text-fields-${props.lang}.md`)}
       demos={{
         'pages/demos/text-fields/TextFields.js': {
           js: require('docs/src/pages/demos/text-fields/TextFields').default,

@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/dividers/dividers.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./dividers-${props.lang}.md`)}
       demos={{
         'pages/demos/dividers/ListDividers.js': {
           js: require('docs/src/pages/demos/dividers/ListDividers').default,

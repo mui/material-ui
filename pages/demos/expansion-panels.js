@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/expansion-panels/expansion-panels.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./expansion-panels-${props.lang}.md`)}
       demos={{
         'pages/demos/expansion-panels/DetailedExpansionPanel.js': {
           js: require('docs/src/pages/demos/expansion-panels/DetailedExpansionPanel').default,
