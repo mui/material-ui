@@ -33,7 +33,7 @@ You can take advantage of the spread behavior:
 ```jsx
 <MenuItem disableRipple />
 ```
-The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item) > [`ListItem`](/api/list-item) > [`ButtonBase`](/api/button-base).
+The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
 
 ### Native properties
 

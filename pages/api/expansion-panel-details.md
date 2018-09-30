@@ -44,5 +44,5 @@ you need to use the following style sheet name: `MuiExpansionPanelDetails`.
 
 ## Demos
 
-- [Expansion Panels](/demos/expansion-panels)
+- [Expansion Panels](/demos/expansion-panels/)
 

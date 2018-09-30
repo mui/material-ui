@@ -38,5 +38,5 @@ Any other properties supplied will be spread to the root element (native element
 
 ## Demos
 
-- [Hidden](/layout/hidden)
+- [Hidden](/layout/hidden/)
 

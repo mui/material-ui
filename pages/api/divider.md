@@ -50,6 +50,6 @@ you need to use the following style sheet name: `MuiDivider`.
 
 ## Demos
 
-- [Dividers](/demos/dividers)
-- [Lists](/demos/lists)
+- [Dividers](/demos/dividers/)
+- [Lists](/demos/lists/)
 

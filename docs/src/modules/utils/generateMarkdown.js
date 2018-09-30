@@ -2,6 +2,7 @@
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
+import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
@@ -226,7 +227,9 @@ function generateProps(reactAPI) {
   text = `${text}
 Any other properties supplied will be spread to the root element (${
     reactAPI.inheritance
-      ? `[${reactAPI.inheritance.component}](${reactAPI.inheritance.pathname})`
+      ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+          reactAPI.inheritance.pathname,
+        )})`
       : 'native element'
   }).`;
 
@@ -308,7 +311,7 @@ function generateInheritance(reactAPI) {
 The properties of the [${inheritance.component}](${
     inheritance.pathname
   }) component${suffix} are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 `;
 }
@@ -328,7 +331,9 @@ function generateDemos(reactAPI) {
 
   return `## Demos
 
-${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('\n')}
+${pagesMarkdown
+    .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
+    .join('\n')}
 
 `;
 }

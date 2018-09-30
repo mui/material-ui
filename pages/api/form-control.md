@@ -61,6 +61,6 @@ you need to use the following style sheet name: `MuiFormControl`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls)
-- [Text Fields](/demos/text-fields)
+- [Selection Controls](/demos/selection-controls/)
+- [Text Fields](/demos/text-fields/)
 

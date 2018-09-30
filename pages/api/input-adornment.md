@@ -51,5 +51,5 @@ you need to use the following style sheet name: `MuiInputAdornment`.
 
 ## Demos
 
-- [Text Fields](/demos/text-fields)
+- [Text Fields](/demos/text-fields/)
 

@@ -56,5 +56,5 @@ you need to use the following style sheet name: `MuiCardHeader`.
 
 ## Demos
 
-- [Cards](/demos/cards)
+- [Cards](/demos/cards/)
 

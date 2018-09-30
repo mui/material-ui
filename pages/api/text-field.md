@@ -72,16 +72,16 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The value of the `Input` element, required for a controlled component. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> | <span class="prop-default">'standard'</span> | The variant to use. |
 
-Any other properties supplied will be spread to the root element ([FormControl](/api/form-control)).
+Any other properties supplied will be spread to the root element ([FormControl](/api/form-control/)).
 
 ## Inheritance
 
 The properties of the [FormControl](/api/form-control) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Autocomplete](/demos/autocomplete)
-- [Pickers](/demos/pickers)
-- [Text Fields](/demos/text-fields)
+- [Autocomplete](/demos/autocomplete/)
+- [Pickers](/demos/pickers/)
+- [Text Fields](/demos/text-fields/)
 

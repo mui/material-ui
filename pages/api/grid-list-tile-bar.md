@@ -58,5 +58,5 @@ you need to use the following style sheet name: `MuiGridListTileBar`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list)
+- [Grid List](/demos/grid-list/)
 

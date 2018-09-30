@@ -25,15 +25,15 @@ For instance, if you need to hide a menu when people click anywhere else on your
 | <span class="prop-name required">onClickAway *</span> | <span class="prop-type">func |   | Callback fired when a "click away" event is detected. |
 | <span class="prop-name">touchEvent</span> | <span class="prop-type">enum:&nbsp;'onTouchStart'&nbsp;&#124;<br>&nbsp;'onTouchEnd'&nbsp;&#124;<br>&nbsp;false<br> | <span class="prop-default">'onTouchEnd'</span> | The touch event to listen to. You can disable the listener by providing `false`. |
 
-Any other properties supplied will be spread to the root element ([EventListener](https://github.com/oliviertassinari/react-event-listener)).
+Any other properties supplied will be spread to the root element ([EventListener](https://github.com/oliviertassinari/react-event-listener/)).
 
 ## Inheritance
 
 The properties of the [EventListener](https://github.com/oliviertassinari/react-event-listener) component, from react-event-listener, are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Menus](/demos/menus)
-- [Click Away Listener](/utils/click-away-listener)
+- [Menus](/demos/menus/)
+- [Click Away Listener](/utils/click-away-listener/)
 

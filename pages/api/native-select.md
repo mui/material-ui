@@ -28,7 +28,7 @@ An alternative to `<Select native />` with a much smaller bundle size footprint.
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool<br> |   | The input value. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The variant to use. |
 
-Any other properties supplied will be spread to the root element ([Input](/api/input)).
+Any other properties supplied will be spread to the root element ([Input](/api/input/)).
 
 ## CSS API
 
@@ -57,9 +57,9 @@ you need to use the following style sheet name: `MuiNativeSelect`.
 ## Inheritance
 
 The properties of the [Input](/api/input) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Selects](/demos/selects)
+- [Selects](/demos/selects/)
 

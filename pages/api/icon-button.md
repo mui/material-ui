@@ -26,7 +26,7 @@ regarding the available icon options.
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool |   | If `true`, the ripple will be disabled. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -54,10 +54,10 @@ you need to use the following style sheet name: `MuiIconButton`.
 ## Inheritance
 
 The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Buttons](/demos/buttons)
-- [Grid List](/demos/grid-list)
+- [Buttons](/demos/buttons/)
+- [Grid List](/demos/grid-list/)
 

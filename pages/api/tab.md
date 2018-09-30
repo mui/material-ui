@@ -26,7 +26,7 @@ import Tab from '@material-ui/core/Tab';
 | <span class="prop-name">label</span> | <span class="prop-type">node |   | The label element. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |   | You can provide your own value. Otherwise, we fallback to the child position index. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -60,9 +60,9 @@ you need to use the following style sheet name: `MuiTab`.
 ## Inheritance
 
 The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Tabs](/demos/tabs)
+- [Tabs](/demos/tabs/)
 

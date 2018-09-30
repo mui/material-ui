@@ -1,4 +1,4 @@
-### [Versions](https://material-ui.com/versions)
+### [Versions](https://material-ui.com/versions/)
 
 ## 3.1.1
 ###### *Sep 24, 2018*

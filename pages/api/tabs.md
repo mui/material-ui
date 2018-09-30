@@ -64,5 +64,5 @@ you need to use the following style sheet name: `MuiTabs`.
 
 ## Demos
 
-- [Tabs](/demos/tabs)
+- [Tabs](/demos/tabs/)
 

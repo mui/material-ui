@@ -60,5 +60,5 @@ you need to use the following style sheet name: `MuiCircularProgress`.
 
 ## Demos
 
-- [Progress](/demos/progress)
+- [Progress](/demos/progress/)
 

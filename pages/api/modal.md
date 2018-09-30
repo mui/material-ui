@@ -62,5 +62,5 @@ you need to use the following style sheet name: `MuiModal`.
 
 ## Demos
 
-- [Modal](/utils/modal)
+- [Modal](/utils/modal/)
 

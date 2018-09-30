@@ -46,5 +46,5 @@ you need to use the following style sheet name: `MuiCardActions`.
 
 ## Demos
 
-- [Cards](/demos/cards)
+- [Cards](/demos/cards/)
 

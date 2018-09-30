@@ -52,5 +52,5 @@ you need to use the following style sheet name: `MuiTableRow`.
 
 ## Demos
 
-- [Tables](/demos/tables)
+- [Tables](/demos/tables/)
 

@@ -27,7 +27,7 @@ import Stepper from '@material-ui/core/Stepper';
 | <span class="prop-name">nonLinear</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If set the `Stepper` will not assist in controlling steps for linear flow. |
 | <span class="prop-name">orientation</span> | <span class="prop-type">enum:&nbsp;'horizontal'&nbsp;&#124;<br>&nbsp;'vertical'<br> | <span class="prop-default">'horizontal'</span> | The stepper orientation (layout flow direction). |
 
-Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS API
 
@@ -53,9 +53,9 @@ you need to use the following style sheet name: `MuiStepper`.
 ## Inheritance
 
 The properties of the [Paper](/api/paper) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 

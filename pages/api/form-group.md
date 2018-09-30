@@ -48,5 +48,5 @@ you need to use the following style sheet name: `MuiFormGroup`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls)
+- [Selection Controls](/demos/selection-controls/)
 

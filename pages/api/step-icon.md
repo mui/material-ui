@@ -51,5 +51,5 @@ you need to use the following style sheet name: `MuiStepIcon`.
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 
