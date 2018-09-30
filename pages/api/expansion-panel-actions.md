@@ -35,7 +35,7 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">action</span> | Styles applied to the children.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.js)
 for more detail.
 

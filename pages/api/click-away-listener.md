@@ -29,7 +29,7 @@ Any other properties supplied will be spread to the root element ([EventListener
 
 ## Inheritance
 
-The properties of the [EventListener](https://github.com/oliviertassinari/react-event-listener) component, from react-event-listener, are also available.
+The properties of the [EventListener](https://github.com/oliviertassinari/react-event-listener/) component, from react-event-listener, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

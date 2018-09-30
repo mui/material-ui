@@ -42,7 +42,7 @@ This property accepts the following keys:
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
 | <span class="prop-name">label</span> | Styles applied to the `label` wrapper element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/ToggleButton/ToggleButton.js)
 for more detail.
 
@@ -52,7 +52,7 @@ you need to use the following style sheet name: `MuiToggleButton`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
+The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

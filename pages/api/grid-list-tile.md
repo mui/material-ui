@@ -40,7 +40,7 @@ This property accepts the following keys:
 | <span class="prop-name">imgFullHeight</span> | Styles applied to an `ing` element child, if if needed to ensure it covers the tile.
 | <span class="prop-name">imgFullWidth</span> | Styles applied to an `ing` element child, if if needed to ensure it covers the tile.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/GridListTile/GridListTile.js)
 for more detail.
 

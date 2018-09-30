@@ -54,7 +54,7 @@ This property accepts the following keys:
 | <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`.
 | <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tabs/Tabs.js)
 for more detail.
 

@@ -49,7 +49,7 @@ This property accepts the following keys:
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Radio/Radio.js)
 for more detail.
 

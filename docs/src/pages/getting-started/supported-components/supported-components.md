@@ -23,7 +23,7 @@ to discuss the approach before submitting a pull request.
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions:
     - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~
-     **([Lab](/lab/about))
+     **([Lab](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -80,7 +80,7 @@ to discuss the approach before submitting a pull request.
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Sliders](https://material.io/design/components/sliders.html) ~
-     **([Lab](/lab/about))
+     **([Lab](/lab/about/))
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)

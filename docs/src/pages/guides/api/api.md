@@ -37,11 +37,11 @@ The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) >
 
 ### Native properties
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides#overriding-with-class-names).
+We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides/#overriding-with-class-names).
 
 ### CSS Classes
 
-All the components accept a [`classes`](/customization/overrides#overriding-with-classes) property to customize the styles.
+All the components accept a [`classes`](/customization/overrides/#overriding-with-classes) property to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 - The class applied to the root element is always called `root`.
@@ -81,7 +81,7 @@ Nested components inside a component have:
 - their own `xxxComponent` property for performing component injection.
 - their own `xxxRef` property when user might need to perform imperative actions,
   for instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
-  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq#how-can-i-access-the-dom-element-)
+  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element-)
 
 ### Property naming
 

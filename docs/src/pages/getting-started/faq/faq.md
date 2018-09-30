@@ -48,7 +48,7 @@ It's highly recommended:
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
-[Style Library Interoperability](/guides/interoperability) section,
+[Style Library Interoperability](/guides/interoperability/) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
 ## When should I use inline-style vs classes?

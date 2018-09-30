@@ -271,7 +271,7 @@ This property accepts the following keys:
 
 ${text}
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
     reactAPI.filename,
   )})
@@ -308,9 +308,9 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [${inheritance.component}](${
-    inheritance.pathname
-  }) component${suffix} are also available.
+The properties of the [${inheritance.component}](${_rewriteUrlForNextExport(
+    inheritance.pathname,
+  )}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 `;

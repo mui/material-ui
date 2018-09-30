@@ -38,7 +38,7 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-To test a [material.io/color](https://material.io/color) color scheme with the Material-UI
+To test a [material.io/color](https://material.io/design/color/) color scheme with the Material-UI
 documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 

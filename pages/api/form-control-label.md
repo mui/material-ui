@@ -46,7 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">label</span> | Styles applied to the label's Typography component.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/FormControlLabel/FormControlLabel.js)
 for more detail.
 

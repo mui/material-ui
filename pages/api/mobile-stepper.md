@@ -47,7 +47,7 @@ This property accepts the following keys:
 | <span class="prop-name">dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
 | <span class="prop-name">progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/MobileStepper/MobileStepper.js)
 for more detail.
 
@@ -57,7 +57,7 @@ you need to use the following style sheet name: `MuiMobileStepper`.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper) component are also available.
+The properties of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

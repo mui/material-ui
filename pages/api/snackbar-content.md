@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">message</span> | Styles applied to the message wrapper element.
 | <span class="prop-name">action</span> | Styles applied to the action wrapper element if `action` is provided.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
 for more detail.
 
@@ -47,7 +47,7 @@ you need to use the following style sheet name: `MuiSnackbarContent`.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper) component are also available.
+The properties of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

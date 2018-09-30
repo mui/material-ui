@@ -5,7 +5,7 @@
 ## Overview
 
 Mui-Org houses projects related to [Material-UI](https://material-ui.com/), a set of [React](https://reactjs.org/) components
-that implement [Google's Material Design](https://material.io/guidelines/material-design/introduction.html)
+that implement [Google's Material Design](https://material.io/design/introduction)
 specification. Our mission is to create a customizable Material Design implementation
 for anyone to use. We value an open, collaborative, and diverse community where anyone can join in
 discussions, learn from one another, and contribute to the project. This document describes how

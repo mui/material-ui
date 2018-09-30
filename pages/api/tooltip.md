@@ -56,7 +56,7 @@ This property accepts the following keys:
 | <span class="prop-name">tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
 | <span class="prop-name">tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tooltip/Tooltip.js)
 for more detail.
 
