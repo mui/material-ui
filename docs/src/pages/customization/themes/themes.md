@@ -43,7 +43,7 @@ The theme exposes the following color intentions:
 The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
 and the un-prefixed shades for the other intentions.
 
-If you want to learn more about color, you can check out [the color section](/style/color).
+If you want to learn more about color, you can check out [the color section](/style/color/).
 
 #### Custom palette
 
@@ -54,7 +54,7 @@ If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.pa
 [`palette.error`](/customization/default-theme/?expend-path=$.palette.error)
 'intention' objects are provided, they will replace the defaults.
 
-The intention value can either be a [color](/style/color) object, or an object with one or more of the following keys:
+The intention value can either be a [color](/style/color/) object, or an object with one or more of the following keys:
 
 ```js
 interface PaletteIntention {
@@ -182,7 +182,7 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 #### Color tool
 
-Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color#color-tool) to help you.
+Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color/#color-tool) to help you.
 
 ### Type (light /dark theme)
 

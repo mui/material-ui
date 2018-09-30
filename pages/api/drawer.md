@@ -27,8 +27,8 @@ when `variant="temporary"` is set.
 | <span class="prop-name">ModalProps</span> | <span class="prop-type">object |   | Properties applied to the [`Modal`](/api/modal) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">open</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the drawer is open. |
-| <span class="prop-name">PaperProps</span> | <span class="prop-type">object |   | Properties applied to the [`Paper`](/api/paper) element. |
-| <span class="prop-name">SlideProps</span> | <span class="prop-type">object |   | Properties applied to the [`Slide`](/api/slide) element. |
+| <span class="prop-name">PaperProps</span> | <span class="prop-type">object |   | Properties applied to the [`Paper`](/api/paper/) element. |
+| <span class="prop-name">SlideProps</span> | <span class="prop-type">object |   | Properties applied to the [`Slide`](/api/slide/) element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'permanent'&nbsp;&#124;<br>&nbsp;'persistent'&nbsp;&#124;<br>&nbsp;'temporary'<br> | <span class="prop-default">'temporary'</span> | The variant to use. |
 
@@ -59,7 +59,7 @@ and the [implementation of the component](https://github.com/mui-org/material-ui
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiDrawer`.
 
 ## Demos

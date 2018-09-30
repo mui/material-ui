@@ -48,7 +48,7 @@ Read more about [Server Rendering](/guides/server-rendering/).
 The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
 This technique provides an important performance boost when re-rendering instances of a component.
 
-When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering).
+When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering/).
 
 ## Class names
 
@@ -243,7 +243,7 @@ Given `withStyles` is our internal styling solution, all the plugins aren't avai
 - [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
 It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
-Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left#3-jss-rtl).
+Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3-jss-rtl).
 
 ## API
 

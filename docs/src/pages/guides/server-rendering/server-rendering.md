@@ -236,7 +236,7 @@ Another symptom is that the styling changes between initial page load and the do
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
+The class names value relies on the concept of [class name generator](/customization/css-in-js/#creategenerateclassname-options-class-name-generator).
 The whole page needs to be rendered with **a single generator**.
 This generator needs to behave identically on the server and on the client. For instance:
 

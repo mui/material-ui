@@ -83,7 +83,7 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 ## Customized inputs
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
