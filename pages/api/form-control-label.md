@@ -7,7 +7,7 @@ title: FormControlLabel API
 
 # FormControlLabel
 
-<p class="description">The API documentation of the FormControlLabel React component.</p>
+<p class="description">The API documentation of the FormControlLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import FormControlLabel from '@material-ui/core/FormControlLabel';

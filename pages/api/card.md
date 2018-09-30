@@ -7,7 +7,7 @@ title: Card API
 
 # Card
 
-<p class="description">The API documentation of the Card React component.</p>
+<p class="description">The API documentation of the Card React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Card from '@material-ui/core/Card';

@@ -7,7 +7,7 @@ title: ToggleButton API
 
 # ToggleButton
 
-<p class="description">The API documentation of the ToggleButton React component.</p>
+<p class="description">The API documentation of the ToggleButton React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ToggleButton from '@material-ui/lab/ToggleButton';

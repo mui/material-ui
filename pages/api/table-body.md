@@ -7,7 +7,7 @@ title: TableBody API
 
 # TableBody
 
-<p class="description">The API documentation of the TableBody React component.</p>
+<p class="description">The API documentation of the TableBody React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import TableBody from '@material-ui/core/TableBody';

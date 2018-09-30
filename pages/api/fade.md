@@ -7,7 +7,7 @@ title: Fade API
 
 # Fade
 
-<p class="description">The API documentation of the Fade React component.</p>
+<p class="description">The API documentation of the Fade React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Fade from '@material-ui/core/Fade';

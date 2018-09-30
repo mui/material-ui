@@ -7,7 +7,7 @@ title: MobileStepper API
 
 # MobileStepper
 
-<p class="description">The API documentation of the MobileStepper React component.</p>
+<p class="description">The API documentation of the MobileStepper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import MobileStepper from '@material-ui/core/MobileStepper';

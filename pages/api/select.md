@@ -7,7 +7,7 @@ title: Select API
 
 # Select
 
-<p class="description">The API documentation of the Select React component.</p>
+<p class="description">The API documentation of the Select React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Select from '@material-ui/core/Select';

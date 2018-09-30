@@ -7,7 +7,7 @@ title: Grid API
 
 # Grid
 
-<p class="description">The API documentation of the Grid React component.</p>
+<p class="description">The API documentation of the Grid React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Grid from '@material-ui/core/Grid';

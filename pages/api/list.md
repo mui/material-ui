@@ -7,7 +7,7 @@ title: List API
 
 # List
 
-<p class="description">The API documentation of the List React component.</p>
+<p class="description">The API documentation of the List React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import List from '@material-ui/core/List';

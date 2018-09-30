@@ -7,7 +7,7 @@ title: Tooltip API
 
 # Tooltip
 
-<p class="description">The API documentation of the Tooltip React component.</p>
+<p class="description">The API documentation of the Tooltip React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Tooltip from '@material-ui/core/Tooltip';

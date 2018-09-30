@@ -161,7 +161,7 @@ function Pricing(props) {
                 />
                 <CardContent>
                   <div className={classes.cardPricing}>
-                    <Typography variant="display2" color="textPrimary">
+                    <Typography component="h2" variant="display2" color="textPrimary">
                       ${tier.price}
                     </Typography>
                     <Typography variant="title" color="textSecondary">

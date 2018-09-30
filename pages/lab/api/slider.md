@@ -7,7 +7,7 @@ title: Slider API
 
 # Slider
 
-<p class="description">The API documentation of the Slider React component.</p>
+<p class="description">The API documentation of the Slider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Slider from '@material-ui/lab/Slider';

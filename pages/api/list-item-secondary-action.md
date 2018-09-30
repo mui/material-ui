@@ -7,7 +7,7 @@ title: ListItemSecondaryAction API
 
 # ListItemSecondaryAction
 
-<p class="description">The API documentation of the ListItemSecondaryAction React component.</p>
+<p class="description">The API documentation of the ListItemSecondaryAction React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';

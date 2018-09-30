@@ -7,7 +7,7 @@ title: Stepper API
 
 # Stepper
 
-<p class="description">The API documentation of the Stepper React component.</p>
+<p class="description">The API documentation of the Stepper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Stepper from '@material-ui/core/Stepper';

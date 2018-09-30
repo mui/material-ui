@@ -7,7 +7,7 @@ title: TableHead API
 
 # TableHead
 
-<p class="description">The API documentation of the TableHead React component.</p>
+<p class="description">The API documentation of the TableHead React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import TableHead from '@material-ui/core/TableHead';

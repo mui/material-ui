@@ -7,7 +7,7 @@ title: Collapse API
 
 # Collapse
 
-<p class="description">The API documentation of the Collapse React component.</p>
+<p class="description">The API documentation of the Collapse React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Collapse from '@material-ui/core/Collapse';

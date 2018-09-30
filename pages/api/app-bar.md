@@ -7,7 +7,7 @@ title: AppBar API
 
 # AppBar
 
-<p class="description">The API documentation of the AppBar React component.</p>
+<p class="description">The API documentation of the AppBar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import AppBar from '@material-ui/core/AppBar';

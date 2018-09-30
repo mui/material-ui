@@ -7,7 +7,7 @@ title: TablePagination API
 
 # TablePagination
 
-<p class="description">The API documentation of the TablePagination React component.</p>
+<p class="description">The API documentation of the TablePagination React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import TablePagination from '@material-ui/core/TablePagination';

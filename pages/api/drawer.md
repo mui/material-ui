@@ -7,7 +7,7 @@ title: Drawer API
 
 # Drawer
 
-<p class="description">The API documentation of the Drawer React component.</p>
+<p class="description">The API documentation of the Drawer React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Drawer from '@material-ui/core/Drawer';

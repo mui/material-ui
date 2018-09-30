@@ -7,7 +7,7 @@ title: Portal API
 
 # Portal
 
-<p class="description">The API documentation of the Portal React component.</p>
+<p class="description">The API documentation of the Portal React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Portal from '@material-ui/core/Portal';

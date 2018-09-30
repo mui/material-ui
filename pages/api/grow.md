@@ -7,7 +7,7 @@ title: Grow API
 
 # Grow
 
-<p class="description">The API documentation of the Grow React component.</p>
+<p class="description">The API documentation of the Grow React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Grow from '@material-ui/core/Grow';

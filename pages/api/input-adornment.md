@@ -7,7 +7,7 @@ title: InputAdornment API
 
 # InputAdornment
 
-<p class="description">The API documentation of the InputAdornment React component.</p>
+<p class="description">The API documentation of the InputAdornment React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import InputAdornment from '@material-ui/core/InputAdornment';

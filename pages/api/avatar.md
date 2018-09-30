@@ -7,7 +7,7 @@ title: Avatar API
 
 # Avatar
 
-<p class="description">The API documentation of the Avatar React component.</p>
+<p class="description">The API documentation of the Avatar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Avatar from '@material-ui/core/Avatar';

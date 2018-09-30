@@ -7,7 +7,7 @@ title: GridList API
 
 # GridList
 
-<p class="description">The API documentation of the GridList React component.</p>
+<p class="description">The API documentation of the GridList React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import GridList from '@material-ui/core/GridList';

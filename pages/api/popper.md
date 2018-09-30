@@ -7,7 +7,7 @@ title: Popper API
 
 # Popper
 
-<p class="description">The API documentation of the Popper React component.</p>
+<p class="description">The API documentation of the Popper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Popper from '@material-ui/core/Popper';

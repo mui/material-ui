@@ -7,7 +7,7 @@ title: TextField API
 
 # TextField
 
-<p class="description">The API documentation of the TextField React component.</p>
+<p class="description">The API documentation of the TextField React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import TextField from '@material-ui/core/TextField';

@@ -7,7 +7,7 @@ title: Paper API
 
 # Paper
 
-<p class="description">The API documentation of the Paper React component.</p>
+<p class="description">The API documentation of the Paper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Paper from '@material-ui/core/Paper';

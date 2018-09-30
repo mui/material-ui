@@ -7,7 +7,7 @@ title: Divider API
 
 # Divider
 
-<p class="description">The API documentation of the Divider React component.</p>
+<p class="description">The API documentation of the Divider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Divider from '@material-ui/core/Divider';
