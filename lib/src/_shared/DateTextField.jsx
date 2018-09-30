@@ -62,7 +62,6 @@ const getError = (value, props) => {
     (minDate && utils.isBefore(value, utils.startOfDay(utils.date(minDate))))
     || (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
   ) {
-    console.log(value, minDate);
     return minDateMessage;
   }
 

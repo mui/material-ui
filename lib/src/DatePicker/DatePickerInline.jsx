@@ -42,6 +42,7 @@ export const DatePickerInline = (props) => {
           isAccepted,
           handleChange,
           handleTextFieldChange,
+          handleAccept,
         }) => (
           <InlineWrapper
             disableFuture={disableFuture}
@@ -54,6 +55,7 @@ export const DatePickerInline = (props) => {
             innerRef={forwardedRef}
             value={value}
             isAccepted={isAccepted}
+            handleAccept={handleAccept}
             {...other}
           >
             <ComponentToShow

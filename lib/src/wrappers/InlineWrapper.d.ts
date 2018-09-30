@@ -5,6 +5,7 @@ import { PopoverProps } from '@material-ui/core/Popover';
 export interface InlineWrapperProps extends Partial<DateTextFieldProps> {
   onOpen?: () => void;
   onClose?: () => void;
+  handleAccept: () => void;
   PopoverProps?: Partial<PopoverProps>;
 }
 

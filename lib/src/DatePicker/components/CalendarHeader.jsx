@@ -32,7 +32,7 @@ export const CalendarHeader = ({
           onClick={selectPreviousMonth}
           className={classes.iconButton}
         >
-          <Icon> {rtl ? rightArrowIcon : leftArrowIcon} </Icon>
+          <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
         </IconButton>
 
         <SlideTransition

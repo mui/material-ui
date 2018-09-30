@@ -2,6 +2,8 @@ import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Popover from '@material-ui/core/Popover';
 import withStyles from '@material-ui/core/styles/withStyles';
+import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 import DateTextField from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
@@ -22,6 +24,7 @@ export class InlineWrapper extends PureComponent {
     labelFunc: PropTypes.func,
     onClear: PropTypes.func,
     isAccepted: PropTypes.bool,
+    handleAccept: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     keyboard: PropTypes.bool,
     classes: PropTypes.object.isRequired,
@@ -69,6 +72,22 @@ export class InlineWrapper extends PureComponent {
     }
   }
 
+  handleKeyDown = (event) => {
+    switch (keycode(event)) {
+      case 'enter': {
+        this.props.handleAccept();
+        this.close();
+        break;
+      }
+      default:
+        // if keycode is not handled, stop execution
+        return;
+    }
+
+    // if event was handled prevent other side effects
+    event.preventDefault();
+  }
+
   render() {
     const {
       value,
@@ -81,11 +100,16 @@ export class InlineWrapper extends PureComponent {
       keyboard,
       onlyCalendar,
       classes,
+      handleAccept,
       ...other
     } = this.props;
 
+    const isOpen = Boolean(this.state.anchorEl);
+
     return (
       <Fragment>
+        { isOpen && <EventListener target="window" onKeyDown={this.handleKeyDown} /> }
+
         <DateTextField
           value={value}
           format={format}
@@ -96,7 +120,7 @@ export class InlineWrapper extends PureComponent {
 
         <Popover
           id="picker-popover"
-          open={Boolean(this.state.anchorEl)}
+          open={isOpen}
           anchorEl={this.state.anchorEl}
           onClose={this.close}
           classes={{

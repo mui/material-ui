@@ -42,6 +42,7 @@ export const DateTimePickerInline = (props) => {
           handleTextFieldChange,
           isAccepted,
           pick12hOr24hFormat,
+          handleAccept,
         }) => (
           <InlineWrapper
             innerRef={forwardedRef}
@@ -52,6 +53,7 @@ export const DateTimePickerInline = (props) => {
             onChange={handleTextFieldChange}
             value={value}
             isAccepted={isAccepted}
+            handleAccept={handleAccept}
             format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
             {...other}
           >
