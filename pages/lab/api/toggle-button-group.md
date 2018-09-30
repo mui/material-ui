@@ -49,5 +49,5 @@ you need to use the following style sheet name: `MuiToggleButtonGroup`.
 
 ## Demos
 
-- [Toggle Button](/lab/toggle-button)
+- [Toggle Button](/lab/toggle-button/)
 

@@ -23,7 +23,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 
-Any other properties supplied will be spread to the root element ([ListItem](/api/list-item)).
+Any other properties supplied will be spread to the root element ([ListItem](/api/list-item/)).
 
 ## CSS API
 
@@ -47,10 +47,10 @@ you need to use the following style sheet name: `MuiMenuItem`.
 ## Inheritance
 
 The properties of the [ListItem](/api/list-item) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Autocomplete](/demos/autocomplete)
-- [Menus](/demos/menus)
+- [Autocomplete](/demos/autocomplete/)
+- [Menus](/demos/menus/)
 

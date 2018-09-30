@@ -28,7 +28,7 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 | <span class="prop-name required">steps *</span> | <span class="prop-type">number |   | The total steps. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br> | <span class="prop-default">'dots'</span> | The variant to use. |
 
-Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS API
 
@@ -58,9 +58,9 @@ you need to use the following style sheet name: `MuiMobileStepper`.
 ## Inheritance
 
 The properties of the [Paper](/api/paper) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 

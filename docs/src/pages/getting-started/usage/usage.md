@@ -57,7 +57,7 @@ It's fixing some inconsistencies across browsers and devices while providing sli
 ## Versioned Documentation
 
 This documentation always reflects the latest stable version of Material-UI.
-You can find older versions of the documentation on a [separate page](/versions).
+You can find older versions of the documentation on a [separate page](/versions/).
 
 ## Next steps
 

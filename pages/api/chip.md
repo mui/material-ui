@@ -77,5 +77,5 @@ you need to use the following style sheet name: `MuiChip`.
 
 ## Demos
 
-- [Chips](/demos/chips)
+- [Chips](/demos/chips/)
 

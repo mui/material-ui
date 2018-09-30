@@ -25,5 +25,5 @@ Any other properties supplied will be spread to the root element (native element
 
 ## Demos
 
-- [Css Baseline](/style/css-baseline)
+- [Css Baseline](/style/css-baseline/)
 

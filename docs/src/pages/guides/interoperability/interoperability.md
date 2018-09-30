@@ -146,7 +146,7 @@ export default StyledComponentsButton;
 ### Deeper elements
 
 In some cases, the approaches above will not work.
-For example, if you attempt to style a [Drawer](/demos/drawers) with variant `permanent`,
+For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `permanent`,
 you will likely need to affect the Drawer's underlying `paper` style.
 
 However, this is not the root element of `Drawer` and therefore styled-components customization as above will not work.

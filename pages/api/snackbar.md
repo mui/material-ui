@@ -70,5 +70,5 @@ you need to use the following style sheet name: `MuiSnackbar`.
 
 ## Demos
 
-- [Snackbars](/demos/snackbars)
+- [Snackbars](/demos/snackbars/)
 

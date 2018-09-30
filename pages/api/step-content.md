@@ -49,5 +49,5 @@ you need to use the following style sheet name: `MuiStepContent`.
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 

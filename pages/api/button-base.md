@@ -60,5 +60,5 @@ you need to use the following style sheet name: `MuiButtonBase`.
 
 ## Demos
 
-- [Buttons](/demos/buttons)
+- [Buttons](/demos/buttons/)
 

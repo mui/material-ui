@@ -52,5 +52,5 @@ you need to use the following style sheet name: `MuiAvatar`.
 
 ## Demos
 
-- [Avatars](/demos/avatars)
+- [Avatars](/demos/avatars/)
 

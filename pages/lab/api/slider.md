@@ -66,5 +66,5 @@ you need to use the following style sheet name: `MuiSlider`.
 
 ## Demos
 
-- [Slider](/lab/slider)
+- [Slider](/lab/slider/)
 

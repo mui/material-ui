@@ -33,5 +33,5 @@ Any other properties supplied will be spread to the root element (native element
 
 ## Demos
 
-- [No Ssr](/utils/no-ssr)
+- [No Ssr](/utils/no-ssr/)
 

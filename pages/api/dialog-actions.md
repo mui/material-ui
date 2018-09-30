@@ -46,5 +46,5 @@ you need to use the following style sheet name: `MuiDialogActions`.
 
 ## Demos
 
-- [Dialogs](/demos/dialogs)
+- [Dialogs](/demos/dialogs/)
 

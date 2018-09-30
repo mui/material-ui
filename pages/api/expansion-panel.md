@@ -27,7 +27,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool |   | If `true`, expands the panel, otherwise collapse it. Setting this prop enables control over the panel. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, expanded: boolean) => void`<br>*event:* The event source of the callback<br>*expanded:* The `expanded` state of the panel |
 
-Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS API
 
@@ -52,9 +52,9 @@ you need to use the following style sheet name: `MuiExpansionPanel`.
 ## Inheritance
 
 The properties of the [Paper](/api/paper) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Expansion Panels](/demos/expansion-panels)
+- [Expansion Panels](/demos/expansion-panels/)
 

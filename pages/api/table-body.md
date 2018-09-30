@@ -45,5 +45,5 @@ you need to use the following style sheet name: `MuiTableBody`.
 
 ## Demos
 
-- [Tables](/demos/tables)
+- [Tables](/demos/tables/)
 

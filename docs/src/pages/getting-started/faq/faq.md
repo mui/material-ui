@@ -62,7 +62,7 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 ## How do I use react-router?
 
-We have documented how to use a [third-party routing library](/demos/buttons#third-party-routing-library) with the `ButtonBase` component.
+We have documented how to use a [third-party routing library](/demos/buttons/#third-party-routing-library) with the `ButtonBase` component.
 A lot of our interactive components use it internally:
 `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc.
 You can use the same solution with them.
@@ -96,7 +96,7 @@ export default withTheme()(withStyles(styles)(Modal));
 
 ## How can I access the DOM element?
 
-Wrap the component with the [`<RootRef>`](/api/root-ref) helper.
+Wrap the component with the [`RootRef`](/api/root-ref/) helper.
 
 ## Why are the colors I am seeing different from what I see here?
 

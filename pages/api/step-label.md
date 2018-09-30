@@ -60,5 +60,5 @@ you need to use the following style sheet name: `MuiStepLabel`.
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 

@@ -77,5 +77,5 @@ you need to use the following style sheet name: `MuiTypography`.
 
 ## Demos
 
-- [Typography](/style/typography)
+- [Typography](/style/typography/)
 

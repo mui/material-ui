@@ -24,7 +24,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node |   | The icon to display as the expand indicator. |
 | <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object |   | Properties applied to the `TouchRipple` element wrapping the expand icon. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -52,9 +52,9 @@ you need to use the following style sheet name: `MuiExpansionPanelSummary`.
 ## Inheritance
 
 The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Expansion Panels](/demos/expansion-panels)
+- [Expansion Panels](/demos/expansion-panels/)
 

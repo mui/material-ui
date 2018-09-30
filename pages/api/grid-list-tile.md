@@ -50,5 +50,5 @@ you need to use the following style sheet name: `MuiGridListTile`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list)
+- [Grid List](/demos/grid-list/)
 

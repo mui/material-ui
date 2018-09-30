@@ -324,7 +324,7 @@ const theme = createMuiTheme({
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
 The list of these customization points for each component is documented under the **Component API** section.
-For instance, you can have a look at the [Button](/api/button#css-api).
+For instance, you can have a look at the [Button](/api/button/#css-api).
 Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 ### Properties
@@ -374,7 +374,7 @@ The main point to understand is that we cache the injected CSS with the followin
 This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context.
 It should preferably be used at **the root of your component tree**.
 
-You can see the full properties API in [this dedicated page](/api/mui-theme-provider).
+You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
 #### Examples
 

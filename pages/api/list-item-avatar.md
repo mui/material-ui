@@ -45,5 +45,5 @@ you need to use the following style sheet name: `MuiListItemAvatar`.
 
 ## Demos
 
-- [Lists](/demos/lists)
+- [Lists](/demos/lists/)
 
