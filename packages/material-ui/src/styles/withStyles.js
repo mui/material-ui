@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
-import * as ns from 'react-jss/lib/ns';
+import ns from './reactJssContext';
 import jssPreset from './jssPreset';
 import mergeClasses from './mergeClasses';
 import createMuiTheme from './createMuiTheme';
@@ -301,7 +300,9 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
   WithStyles.contextTypes = {
     muiThemeProviderOptions: PropTypes.object,
-    ...contextTypes,
+    [ns.jss]: PropTypes.object,
+    [ns.sheetOptions]: PropTypes.object,
+    [ns.sheetsRegistry]: PropTypes.object,
     ...(listenToTheme ? themeListener.contextTypes : {}),
   };
 

@@ -130,6 +130,7 @@
     "react-docgen": "^3.0.0-beta10",
     "react-dom": "^16.4.0",
     "react-inspector": "^2.2.2",
+    "react-jss": "^8.1.0",
     "react-markdown": "^3.4.1",
     "react-number-format": "^3.0.2",
     "react-redux": "^5.0.6",
