@@ -7,7 +7,7 @@ title: Table API
 
 # Table
 
-<p class="description">The API documentation of the Table React component.</p>
+<p class="description">The API documentation of the Table React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Table from '@material-ui/core/Table';

@@ -7,7 +7,7 @@ title: TableFooter API
 
 # TableFooter
 
-<p class="description">The API documentation of the TableFooter React component.</p>
+<p class="description">The API documentation of the TableFooter React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import TableFooter from '@material-ui/core/TableFooter';

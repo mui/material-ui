@@ -7,7 +7,7 @@ title: DialogActions API
 
 # DialogActions
 
-<p class="description">The API documentation of the DialogActions React component.</p>
+<p class="description">The API documentation of the DialogActions React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import DialogActions from '@material-ui/core/DialogActions';

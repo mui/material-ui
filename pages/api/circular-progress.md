@@ -7,7 +7,7 @@ title: CircularProgress API
 
 # CircularProgress
 
-<p class="description">The API documentation of the CircularProgress React component.</p>
+<p class="description">The API documentation of the CircularProgress React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import CircularProgress from '@material-ui/core/CircularProgress';

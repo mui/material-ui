@@ -7,7 +7,7 @@ title: Tab API
 
 # Tab
 
-<p class="description">The API documentation of the Tab React component.</p>
+<p class="description">The API documentation of the Tab React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Tab from '@material-ui/core/Tab';

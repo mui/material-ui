@@ -7,7 +7,7 @@ title: Modal API
 
 # Modal
 
-<p class="description">The API documentation of the Modal React component.</p>
+<p class="description">The API documentation of the Modal React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Modal from '@material-ui/core/Modal';

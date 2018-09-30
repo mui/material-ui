@@ -7,7 +7,7 @@ title: StepContent API
 
 # StepContent
 
-<p class="description">The API documentation of the StepContent React component.</p>
+<p class="description">The API documentation of the StepContent React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import StepContent from '@material-ui/core/StepContent';

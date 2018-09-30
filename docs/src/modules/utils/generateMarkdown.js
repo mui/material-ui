@@ -362,7 +362,8 @@ export default function generateMarkdown(reactAPI) {
     '',
     `# ${reactAPI.name}`,
     '',
-    `<p class="description">The API documentation of the ${reactAPI.name} React component.</p>`,
+    `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
+      'Learn more about the properties and the CSS customization points.</p>',
     '',
     generateImportStatement(reactAPI),
     '',

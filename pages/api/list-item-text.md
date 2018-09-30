@@ -7,7 +7,7 @@ title: ListItemText API
 
 # ListItemText
 
-<p class="description">The API documentation of the ListItemText React component.</p>
+<p class="description">The API documentation of the ListItemText React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ListItemText from '@material-ui/core/ListItemText';

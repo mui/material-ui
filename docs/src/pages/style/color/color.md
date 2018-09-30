@@ -70,7 +70,7 @@ The Material Design team has also built an awesome palette configuration tool: [
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
 <a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
-  <img src="/static/images/color/colorTool.png" style="width: 574px" />
+  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
 </a>
 
 The output can be fed into `createMuiTheme()` function:

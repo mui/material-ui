@@ -7,7 +7,7 @@ title: Toolbar API
 
 # Toolbar
 
-<p class="description">The API documentation of the Toolbar React component.</p>
+<p class="description">The API documentation of the Toolbar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Toolbar from '@material-ui/core/Toolbar';

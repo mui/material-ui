@@ -7,7 +7,7 @@ title: Slide API
 
 # Slide
 
-<p class="description">The API documentation of the Slide React component.</p>
+<p class="description">The API documentation of the Slide React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Slide from '@material-ui/core/Slide';

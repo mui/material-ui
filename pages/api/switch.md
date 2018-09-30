@@ -7,7 +7,7 @@ title: Switch API
 
 # Switch
 
-<p class="description">The API documentation of the Switch React component.</p>
+<p class="description">The API documentation of the Switch React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Switch from '@material-ui/core/Switch';

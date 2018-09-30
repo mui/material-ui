@@ -7,7 +7,7 @@ title: Backdrop API
 
 # Backdrop
 
-<p class="description">The API documentation of the Backdrop React component.</p>
+<p class="description">The API documentation of the Backdrop React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Backdrop from '@material-ui/core/Backdrop';

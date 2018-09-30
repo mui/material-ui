@@ -7,7 +7,7 @@ title: SpeedDialAction API
 
 # SpeedDialAction
 
-<p class="description">The API documentation of the SpeedDialAction React component.</p>
+<p class="description">The API documentation of the SpeedDialAction React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';

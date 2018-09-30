@@ -7,7 +7,7 @@ title: CardActions API
 
 # CardActions
 
-<p class="description">The API documentation of the CardActions React component.</p>
+<p class="description">The API documentation of the CardActions React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import CardActions from '@material-ui/core/CardActions';

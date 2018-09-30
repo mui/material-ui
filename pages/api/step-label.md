@@ -7,7 +7,7 @@ title: StepLabel API
 
 # StepLabel
 
-<p class="description">The API documentation of the StepLabel React component.</p>
+<p class="description">The API documentation of the StepLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import StepLabel from '@material-ui/core/StepLabel';

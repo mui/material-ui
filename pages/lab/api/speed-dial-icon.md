@@ -7,7 +7,7 @@ title: SpeedDialIcon API
 
 # SpeedDialIcon
 
-<p class="description">The API documentation of the SpeedDialIcon React component.</p>
+<p class="description">The API documentation of the SpeedDialIcon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';

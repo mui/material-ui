@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { _rewriteUrlForNextExport } from 'next/router';
 
 const styles = {
   item: {
@@ -35,7 +36,7 @@ const themes = [
       'A minimal dashboard with taskbar and mini variant draw. ' +
       'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
     src: '/static/images/layouts/dashboard.png',
-    href: '/page-layout-examples/dashboard',
+    pathname: '/page-layout-examples/dashboard',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/dashboard',
   },
@@ -43,7 +44,7 @@ const themes = [
     name: 'Sign-in',
     description: 'A simple sign-in page.',
     src: '/static/images/layouts/sign-in.png',
-    href: '/page-layout-examples/sign-in',
+    pathname: '/page-layout-examples/sign-in',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/sign-in',
   },
@@ -53,7 +54,7 @@ const themes = [
       'A sophisticated blog page layout. Markdown support is courtesy of react-markdown, ' +
       'but is easily replaced.',
     src: '/static/images/layouts/blog.png',
-    href: '/page-layout-examples/blog',
+    pathname: '/page-layout-examples/blog',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/blog',
   },
@@ -63,7 +64,7 @@ const themes = [
       'A step-by-step checkout page layout. ' +
       'Adapt the number of steps to suit your needs, or make steps optional.',
     src: '/static/images/layouts/checkout.png',
-    href: '/page-layout-examples/checkout',
+    pathname: '/page-layout-examples/checkout',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/checkout',
   },
@@ -71,7 +72,7 @@ const themes = [
     name: 'Album',
     description: 'A responsive album / gallery page layout with a hero unit and footer.',
     src: '/static/images/layouts/album.png',
-    href: '/page-layout-examples/album',
+    pathname: '/page-layout-examples/album',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/album',
   },
@@ -81,7 +82,7 @@ const themes = [
       'Quickly build an effective pricing table for your potential customers with this page ' +
       'layout.',
     src: '/static/images/layouts/pricing.png',
-    href: '/page-layout-examples/pricing',
+    pathname: '/page-layout-examples/pricing',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/pricing',
   },
@@ -96,7 +97,7 @@ function PageLayoutExamples(props) {
           <Card className={classes.card}>
             <CardMedia
               component="a"
-              href={theme.href}
+              href={_rewriteUrlForNextExport(theme.pathname)}
               className={classes.cardMedia}
               image={theme.src}
               title={theme.name}

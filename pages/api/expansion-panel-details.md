@@ -7,7 +7,7 @@ title: ExpansionPanelDetails API
 
 # ExpansionPanelDetails
 
-<p class="description">The API documentation of the ExpansionPanelDetails React component.</p>
+<p class="description">The API documentation of the ExpansionPanelDetails React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';

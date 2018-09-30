@@ -7,7 +7,7 @@ title: Radio API
 
 # Radio
 
-<p class="description">The API documentation of the Radio React component.</p>
+<p class="description">The API documentation of the Radio React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Radio from '@material-ui/core/Radio';

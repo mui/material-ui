@@ -7,7 +7,7 @@ title: BottomNavigationAction API
 
 # BottomNavigationAction
 
-<p class="description">The API documentation of the BottomNavigationAction React component.</p>
+<p class="description">The API documentation of the BottomNavigationAction React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';

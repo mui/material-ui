@@ -7,7 +7,7 @@ title: Step API
 
 # Step
 
-<p class="description">The API documentation of the Step React component.</p>
+<p class="description">The API documentation of the Step React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Step from '@material-ui/core/Step';

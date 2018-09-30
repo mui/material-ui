@@ -7,7 +7,7 @@ title: Snackbar API
 
 # Snackbar
 
-<p class="description">The API documentation of the Snackbar React component.</p>
+<p class="description">The API documentation of the Snackbar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Snackbar from '@material-ui/core/Snackbar';

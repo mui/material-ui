@@ -7,7 +7,7 @@ title: Typography API
 
 # Typography
 
-<p class="description">The API documentation of the Typography React component.</p>
+<p class="description">The API documentation of the Typography React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Typography from '@material-ui/core/Typography';

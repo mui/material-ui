@@ -7,7 +7,7 @@ title: IconButton API
 
 # IconButton
 
-<p class="description">The API documentation of the IconButton React component.</p>
+<p class="description">The API documentation of the IconButton React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import IconButton from '@material-ui/core/IconButton';

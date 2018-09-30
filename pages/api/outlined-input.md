@@ -7,7 +7,7 @@ title: OutlinedInput API
 
 # OutlinedInput
 
-<p class="description">The API documentation of the OutlinedInput React component.</p>
+<p class="description">The API documentation of the OutlinedInput React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import OutlinedInput from '@material-ui/core/OutlinedInput';

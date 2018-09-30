@@ -7,7 +7,7 @@ title: Checkbox API
 
 # Checkbox
 
-<p class="description">The API documentation of the Checkbox React component.</p>
+<p class="description">The API documentation of the Checkbox React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Checkbox from '@material-ui/core/Checkbox';

@@ -7,7 +7,7 @@ title: ListItemIcon API
 
 # ListItemIcon
 
-<p class="description">The API documentation of the ListItemIcon React component.</p>
+<p class="description">The API documentation of the ListItemIcon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ListItemIcon from '@material-ui/core/ListItemIcon';

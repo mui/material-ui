@@ -7,7 +7,7 @@ title: FormLabel API
 
 # FormLabel
 
-<p class="description">The API documentation of the FormLabel React component.</p>
+<p class="description">The API documentation of the FormLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import FormLabel from '@material-ui/core/FormLabel';

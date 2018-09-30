@@ -7,7 +7,7 @@ title: InputBase API
 
 # InputBase
 
-<p class="description">The API documentation of the InputBase React component.</p>
+<p class="description">The API documentation of the InputBase React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import InputBase from '@material-ui/core/InputBase';

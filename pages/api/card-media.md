@@ -7,7 +7,7 @@ title: CardMedia API
 
 # CardMedia
 
-<p class="description">The API documentation of the CardMedia React component.</p>
+<p class="description">The API documentation of the CardMedia React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import CardMedia from '@material-ui/core/CardMedia';

@@ -7,7 +7,7 @@ title: ButtonBase API
 
 # ButtonBase
 
-<p class="description">The API documentation of the ButtonBase React component.</p>
+<p class="description">The API documentation of the ButtonBase React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ButtonBase from '@material-ui/core/ButtonBase';

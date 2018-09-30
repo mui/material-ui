@@ -7,7 +7,7 @@ title: GridListTileBar API
 
 # GridListTileBar
 
-<p class="description">The API documentation of the GridListTileBar React component.</p>
+<p class="description">The API documentation of the GridListTileBar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import GridListTileBar from '@material-ui/core/GridListTileBar';

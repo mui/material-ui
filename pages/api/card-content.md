@@ -7,7 +7,7 @@ title: CardContent API
 
 # CardContent
 
-<p class="description">The API documentation of the CardContent React component.</p>
+<p class="description">The API documentation of the CardContent React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import CardContent from '@material-ui/core/CardContent';

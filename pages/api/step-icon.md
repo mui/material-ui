@@ -7,7 +7,7 @@ title: StepIcon API
 
 # StepIcon
 
-<p class="description">The API documentation of the StepIcon React component.</p>
+<p class="description">The API documentation of the StepIcon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import StepIcon from '@material-ui/core/StepIcon';

@@ -7,7 +7,7 @@ title: Button API
 
 # Button
 
-<p class="description">The API documentation of the Button React component.</p>
+<p class="description">The API documentation of the Button React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Button from '@material-ui/core/Button';

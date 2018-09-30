@@ -7,7 +7,7 @@ title: NativeSelect API
 
 # NativeSelect
 
-<p class="description">The API documentation of the NativeSelect React component.</p>
+<p class="description">The API documentation of the NativeSelect React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import NativeSelect from '@material-ui/core/NativeSelect';
