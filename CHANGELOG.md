@@ -1,5 +1,51 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.1.2
+###### *Sep 30, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+It contains many bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.1.2`
+
+- [FormControlLabel] Reverse margins values when labelPlacement="start" (#13007) @IvanoffDan
+- [InputBase] Fix cursor on disabled state (#13008) @itskibo
+- [InputLabel] Add `variant` property to InputLabel type definition (#13009) @chrislambe
+- [StepLabel] Introduce StepIconComponent property (#13003) @semos
+- [StepConnector] Customize connector based on internal states (#13023) @spirosikmd
+- [OutlinedInput] `notched` should be boolean type (#13038) @zheeeng
+- [TextField] Add "pointerEvents: none" to outline and filled variants (#13040) @byronluk
+- [TextField] Fix the recent regressions (#13017) @slipo
+- [Portal] container should allow being 'null' type (#13043) @zheeeng
+
+### `@material-ui/lab@v3.0.0-alpha.18`
+
+#### Breaking change
+
+- [Slider] Replace reversed with rtl support on horizontal sliders (#12972)
+
+### `@material-ui/docs@v3.0.0-alpha.6`
+
+- [docs] Defer NProgressBar rendering to the client (e5d757dc8fec9dd6a0951b865dec531528b7f1d0) @oliviertassinari
+
+### Docs
+
+- [docs] Fix typo in grid.md (#12978) @jschnurr
+- [examples] Clean up create-react-app-with-typescript (#12992) @eps1lon
+- [docs] Small spelling correction (#13012) @innovade
+- [docs] Add closing tag in the Popover snippet (#13026) @liesislukas
+- [docs] The Grammar Nazi (#13031) @maciej-gurban
+- [docs] Improve the Gatsby demo (#13041) @oliviertassinari
+- [docs] Fix 3xx and 4xx HTTP statuses (#13046) @oliviertassinari
+- [docs] Fix issues spotted by ahrefs.com (#13047) @oliviertassinari
+
+### Core
+
+- [core] Upgrade the @types/jss dependency to 9.5.6 (#12982) @qvxqvx
+- [core] Upgrade the dev dependencies (#13016) @oliviertassinari
+- [core] Remove redundant class field initializers, save 1% of bundle size (#13022) @RobertPurcea
+- [core] Better assertion (#13035) @oliviertassinari
+
 ## 3.1.1
 ###### *Sep 24, 2018*
 
