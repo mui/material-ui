@@ -41,7 +41,7 @@ This property accepts the following keys:
 | <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js)
 for more detail.
 
@@ -51,7 +51,7 @@ you need to use the following style sheet name: `MuiExpansionPanel`.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper) component are also available.
+The properties of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

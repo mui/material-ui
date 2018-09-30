@@ -49,7 +49,7 @@ This property accepts the following keys:
 | <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
 | <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/InputLabel/InputLabel.js)
 for more detail.
 
@@ -59,7 +59,7 @@ you need to use the following style sheet name: `MuiInputLabel`.
 
 ## Inheritance
 
-The properties of the [FormLabel](/api/form-label) component are also available.
+The properties of the [FormLabel](/api/form-label/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

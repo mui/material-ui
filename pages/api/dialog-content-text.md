@@ -34,7 +34,7 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/DialogContentText/DialogContentText.js)
 for more detail.
 
@@ -44,7 +44,7 @@ you need to use the following style sheet name: `MuiDialogContentText`.
 
 ## Inheritance
 
-The properties of the [Typography](/api/typography) component are also available.
+The properties of the [Typography](/api/typography/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

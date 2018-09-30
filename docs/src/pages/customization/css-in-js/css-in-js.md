@@ -4,7 +4,7 @@
 
 Material-UI aims to provide strong foundations for building dynamic UIs.
 For the sake of simplicity, **we expose our styling solution to users**.
-You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability) all the other major solutions.
+You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
 
 ## Material-UI's styling solution
 
@@ -39,7 +39,7 @@ Check the jss-rtl [readme](https://github.com/alitaheri/jss-rtl#simple-usage) to
 
 When rendering on the server, you will need to get all rendered styles as a CSS string.
 The `SheetsRegistry` class allows you to manually aggregate and stringify them.
-Read more about [Server Rendering](/guides/server-rendering).
+Read more about [Server Rendering](/guides/server-rendering/).
 
 {{"demo": "pages/customization/css-in-js/JssRegistry.js", "hideEditButton": true}}
 
@@ -206,8 +206,8 @@ export default App;
 react-jss exposes a `JssProvider` component to configure JSS for the underlying child components.
 There are different use cases:
 - Providing a class name generator.
-- [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
-- Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or changing the [CSS injection order](/customization/css-in-js#css-injection-order).
+- [Providing a Sheets registry.](/customization/css-in-js/#sheets-registry)
+- Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left/) or changing the [CSS injection order](/customization/css-in-js/#css-injection-order).
 Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.
 Here is an example:
 
@@ -295,7 +295,7 @@ class MyComponent extends React.Component {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
+Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-transform-decorators/) like so:
 
 ```jsx
 import { withStyles } from '@material-ui/core/styles';
@@ -318,7 +318,7 @@ export default MyComponent
 
 ### `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/js-api#generate-your-own-class-names).
+A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
 
 #### Arguments
 

@@ -63,7 +63,7 @@ This property accepts the following keys:
 | <span class="prop-name">elevation23</span> | 
 | <span class="prop-name">elevation24</span> | 
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Paper/Paper.js)
 for more detail.
 

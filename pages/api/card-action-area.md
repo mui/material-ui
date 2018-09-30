@@ -36,7 +36,7 @@ This property accepts the following keys:
 | <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the action area is keyboard focused.
 | <span class="prop-name">focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/CardActionArea/CardActionArea.js)
 for more detail.
 
@@ -46,7 +46,7 @@ you need to use the following style sheet name: `MuiCardActionArea`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
+The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

@@ -50,7 +50,7 @@ This property accepts the following keys:
 | <span class="prop-name">circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
 | <span class="prop-name">circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/CircularProgress/CircularProgress.js)
 for more detail.
 

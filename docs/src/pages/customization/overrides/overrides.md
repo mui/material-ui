@@ -17,10 +17,10 @@ You might need to change the style of a component in some very specific situatio
 The first way to override the style of a component is to use **class names**.
 Every component provides a `className` property which is always applied to the root element.
 
-In this example, we are using the [`withStyles()`](/customization/css-in-js#withstyles-styles-options-higher-order-component) higher-order
+In this example, we are using the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order
 component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via
 its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to
-consider the [CSS injection order](/customization/css-in-js#css-injection-order), as the CSS injected into the DOM
+consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM
 by Material-UI to style a component has the highest specificity possible since the `<link>` is injected at the bottom
 of the `<head />` to ensure the components always render correctly.
 
@@ -131,7 +131,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq#when-should-i-use-inline-style-vs-classes-)
+[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
 
 ## 2. Dynamic variation for a one-time situation
 
@@ -180,7 +180,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
-Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
+Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
 
 ## 5. Global theme variation
 
@@ -200,4 +200,4 @@ Learn more about it in the [themes section](/customization/themes#customizing-al
 
 You can also customize all instances of a component with CSS.
 We expose a `dangerouslyUseGlobalCSS` option to do so.
-Learn more about it in the [CSS in JS section](/customization/css-in-js#global-css) of the documentation. It's very similar to how you would customize Bootstrap.
+Learn more about it in the [CSS in JS section](/customization/css-in-js/#global-css) of the documentation. It's very similar to how you would customize Bootstrap.

@@ -49,9 +49,9 @@ If you want to learn more about color, you can check out [the color section](/st
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
-If any of the [`palette.primary`](/customization/default-theme?expend-path=$.palette.primary),
-[`palette.secondary`](/customization/default-theme?expend-path=$.palette.secondary) or
-[`palette.error`](/customization/default-theme?expend-path=$.palette.error)
+If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary),
+[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or
+[`palette.error`](/customization/default-theme/?expend-path=$.palette.error)
 'intention' objects are provided, they will replace the defaults.
 
 The intention value can either be a [color](/style/color) object, or an object with one or more of the following keys:
@@ -210,7 +210,7 @@ The theme provides a **limited set of type sizes** that work well together along
 These sizes are used across the components.
 
 Have a look at the following example regarding changing the default values, such as the font family.
-If you want to learn more about typography, you can check out [the typography section](/style/typography).
+If you want to learn more about typography, you can check out [the typography section](/style/typography/).
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
@@ -290,11 +290,11 @@ html {
 ### Other variables
 
 In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
-You can check out the [default theme section](/customization/default-theme) to view the default theme in full.
+You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
 ### Custom variables
 
-When using Material-UI's [styling solution](/customization/css-in-js) with your own components,
+When using Material-UI's [styling solution](/customization/css-in-js/) with your own components,
 you can also take advantage of the theme.
 It can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:

@@ -53,7 +53,7 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the internal SwitchBase component's disabled class.
 | <span class="prop-name">bar</span> | Styles applied to the bar element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Switch/Switch.js)
 for more detail.
 

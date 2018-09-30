@@ -34,7 +34,7 @@ Any other properties supplied will be spread to the root element ([Drawer](/api/
 
 ## Inheritance
 
-The properties of the [Drawer](/api/drawer) component are also available.
+The properties of the [Drawer](/api/drawer/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos

@@ -25,7 +25,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 | <span class="prop-name">children</span> | <span class="prop-type">element |   | If you wish the take control over the children of the component you can use this property. When used, you replace the `SnackbarContent` component with the children. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">ClickAwayListenerProps</span> | <span class="prop-type">object |   | Properties applied to the `ClickAwayListener` element. |
-| <span class="prop-name">ContentProps</span> | <span class="prop-type">object |   | Properties applied to the [`SnackbarContent`](/api/snackbar-content) element. |
+| <span class="prop-name">ContentProps</span> | <span class="prop-type">object |   | Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element. |
 | <span class="prop-name">disableWindowBlurListener</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the `autoHideDuration` timer will expire even if the window is not focused. |
 | <span class="prop-name">key</span> | <span class="prop-type">any |   | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | <span class="prop-name">message</span> | <span class="prop-type">node |   | The message to display. |
@@ -60,7 +60,7 @@ This property accepts the following keys:
 | <span class="prop-name">anchorOriginTopLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
 | <span class="prop-name">anchorOriginBottomLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Snackbar/Snackbar.js)
 for more detail.
 

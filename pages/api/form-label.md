@@ -46,7 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
 | <span class="prop-name">asterisk</span> | 
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/FormLabel/FormLabel.js)
 for more detail.
 

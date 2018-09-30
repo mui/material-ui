@@ -1,6 +1,6 @@
 import React from 'react';
 import NextHead from 'next/head';
-import { withRouter } from 'next/router';
+import { _rewriteUrlForNextExport, withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 function Head(props) {
@@ -19,7 +19,10 @@ function Head(props) {
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
-      <meta property="og:url" content={`https://material-ui.com${router.asPath}`} />
+      <meta
+        property="og:url"
+        content={`https://material-ui.com${_rewriteUrlForNextExport(router.asPath)}`}
+      />
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/brand.png" />
       <meta property="og:locale" content="en_US" />
