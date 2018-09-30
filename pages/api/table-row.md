@@ -47,7 +47,7 @@ and the [implementation of the component](https://github.com/mui-org/material-ui
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTableRow`.
 
 ## Demos

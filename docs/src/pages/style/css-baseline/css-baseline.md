@@ -43,4 +43,4 @@ which ensures that the declared width of the element is never exceeded due to pa
 
 - Font antialiasing is enabled for better display of the Roboto font.
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
-You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/themes#typography-html-font-size) page.
+You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/themes/#typography-html-font-size) page.

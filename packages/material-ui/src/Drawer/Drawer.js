@@ -227,11 +227,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the [`Slide`](/api/slide) element.
+   * Properties applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

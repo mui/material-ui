@@ -14,7 +14,7 @@ import Collapse from '@material-ui/core/Collapse';
 ```
 
 The Collapse transition is used by the
-[Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
+[Vertical Stepper](/demos/steppers/#vertical-stepper) StepContent component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -48,7 +48,7 @@ and the [implementation of the component](https://github.com/mui-org/material-ui
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCollapse`.
 
 ## Inheritance

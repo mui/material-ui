@@ -148,7 +148,7 @@ InputLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * `classes` property applied to the [`FormLabel`](/api/form-label) element.
+   * `classes` property applied to the [`FormLabel`](/api/form-label/) element.
    */
   FormLabelClasses: PropTypes.object,
   /**

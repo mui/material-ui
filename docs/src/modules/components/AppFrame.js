@@ -155,7 +155,7 @@ class AppFrame extends React.Component {
                 color="inherit"
                 aria-label="Edit docs colors"
                 component={Link}
-                href="/style/color#color-tool"
+                href="/style/color/#color-tool"
               >
                 <ColorsIcon />
               </IconButton>

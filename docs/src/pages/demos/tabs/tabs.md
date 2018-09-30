@@ -73,7 +73,7 @@ Tab labels may be either all icons or all text.
 
 ## Customized Tabs
 
-If you have read the [overrides documentation page](/customization/overrides)
+If you have read the [overrides documentation page](/customization/overrides/)
 but aren't confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}

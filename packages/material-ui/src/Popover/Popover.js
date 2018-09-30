@@ -464,7 +464,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**

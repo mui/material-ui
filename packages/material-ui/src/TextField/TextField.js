@@ -26,10 +26,10 @@ const variantComponent = {
  *
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
- * - [FormControl](/api/form-control)
- * - [InputLabel](/api/input-label)
- * - [Input](/api/input)
- * - [FormHelperText](/api/form-helper-text)
+ * - [FormControl](/api/form-control/)
+ * - [InputLabel](/api/input-label/)
+ * - [Input](/api/input/)
+ * - [FormHelperText](/api/form-helper-text/)
  *
  * If you wish to alter the properties applied to the native input, you can do so as follows:
  *
@@ -199,7 +199,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the [`FormHelperText`](/api/form-helper-text) element.
+   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -216,7 +216,7 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the [`InputLabel`](/api/input-label) element.
+   * Properties applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
@@ -284,7 +284,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the [`Select`](/api/select) element.
+   * Properties applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**
