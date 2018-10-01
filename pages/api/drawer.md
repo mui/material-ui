@@ -13,7 +13,7 @@ title: Drawer API
 import Drawer from '@material-ui/core/Drawer';
 ```
 
-The properties of the [Modal](/api/modal) component are available
+The properties of the [Modal](/api/modal/) component are available
 when `variant="temporary"` is set.
 
 ## Props
@@ -24,7 +24,7 @@ when `variant="temporary"` is set.
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | The contents of the drawer. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number | <span class="prop-default">16</span> | The elevation of the drawer. |
-| <span class="prop-name">ModalProps</span> | <span class="prop-type">object |   | Properties applied to the [`Modal`](/api/modal) element. |
+| <span class="prop-name">ModalProps</span> | <span class="prop-type">object |   | Properties applied to the [`Modal`](/api/modal/) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">open</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the drawer is open. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object |   | Properties applied to the [`Paper`](/api/paper/) element. |
