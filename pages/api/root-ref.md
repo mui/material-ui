@@ -7,7 +7,7 @@ title: RootRef API
 
 # RootRef
 
-<p class="description">The API documentation of the RootRef React component.</p>
+<p class="description">The API documentation of the RootRef React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import RootRef from '@material-ui/core/RootRef';

@@ -36,13 +36,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/lab/slider/VerticalSlider'), 'utf8')
 `,
         },
-        'pages/lab/slider/ReverseSlider.js': {
-          js: require('docs/src/pages/lab/slider/ReverseSlider').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/lab/slider/ReverseSlider'), 'utf8')
-`,
-        },
         'pages/lab/slider/CustomIconSlider.js': {
           js: require('docs/src/pages/lab/slider/CustomIconSlider').default,
           raw: preval`

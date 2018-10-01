@@ -136,6 +136,7 @@ function Blog(props) {
         <Toolbar className={classes.toolbarMain}>
           <Button size="small">Subscribe</Button>
           <Typography
+            component="h2"
             variant="headline"
             color="inherit"
             align="center"
@@ -169,10 +170,7 @@ function Blog(props) {
                   </Typography>
                   <Typography variant="headline" color="inherit" paragraph>
                     Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently about what&apos;s most interesting in this post&apos;s contents.
-                  </Typography>
-                  <Typography variant="title" color="inherit">
-                    Continue reading...
+                    efficiently about what&apos;s most interesting in this post&apos;s contents…
                   </Typography>
                 </div>
               </Grid>
@@ -186,7 +184,9 @@ function Blog(props) {
                 <Card className={classes.card}>
                   <div className={classes.cardDetails}>
                     <CardContent>
-                      <Typography variant="headline">{post.title}</Typography>
+                      <Typography component="h2" variant="headline">
+                        {post.title}
+                      </Typography>
                       <Typography variant="subheading" color="textSecondary">
                         {post.date}
                       </Typography>

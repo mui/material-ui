@@ -7,7 +7,7 @@ title: SpeedDialAction API
 
 # SpeedDialAction
 
-<p class="description">The API documentation of the SpeedDialAction React component.</p>
+<p class="description">The API documentation of the SpeedDialAction React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -19,7 +19,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button) component. |
+| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button/) component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Useful to extend the style applied to components. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node |   | The Icon to display in the SpeedDial Floating Action Button. |
@@ -40,15 +40,15 @@ This property accepts the following keys:
 | <span class="prop-name">button</span> | Styles applied to the `Button` component.
 | <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSpeedDialAction`.
 
 ## Demos
 
-- [Speed Dial](/lab/speed-dial)
+- [Speed Dial](/lab/speed-dial/)
 

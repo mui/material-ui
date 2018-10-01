@@ -46,12 +46,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
-  mountNode = null;
-
-  modalRef = null;
-
-  dialogRef = null;
-
   mounted = false;
 
   constructor(props) {
@@ -321,7 +315,7 @@ Modal.propTypes = {
    */
   BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`Backdrop`](/api/backdrop) element.
+   * Properties applied to the [`Backdrop`](/api/backdrop/) element.
    */
   BackdropProps: PropTypes.object,
   /**

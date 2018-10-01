@@ -7,7 +7,7 @@ title: Switch API
 
 # Switch
 
-<p class="description">The API documentation of the Switch React component.</p>
+<p class="description">The API documentation of the Switch React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Switch from '@material-ui/core/Switch';
@@ -53,15 +53,15 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the internal SwitchBase component's disabled class.
 | <span class="prop-name">bar</span> | Styles applied to the bar element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Switch/Switch.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSwitch`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls)
+- [Selection Controls](/demos/selection-controls/)
 

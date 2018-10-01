@@ -31,8 +31,6 @@ export const styles = {
 };
 
 class Menu extends React.Component {
-  menuListRef = null;
-
   componentDidMount() {
     if (this.props.open && this.props.disableAutoFocusItem !== true) {
       this.focus();
@@ -154,7 +152,7 @@ Menu.propTypes = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Properties applied to the [`MenuList`](/api/menu-list) element.
+   * Properties applied to the [`MenuList`](/api/menu-list/) element.
    */
   MenuListProps: PropTypes.object,
   /**
@@ -196,7 +194,7 @@ Menu.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` property applied to the [`Popover`](/api/popover) element.
+   * `classes` property applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**

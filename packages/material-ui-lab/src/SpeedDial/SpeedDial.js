@@ -272,7 +272,7 @@ SpeedDial.propTypes = {
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
-   * Properties applied to the [`Button`](/api/button) element.
+   * Properties applied to the [`Button`](/api/button/) element.
    */
   ButtonProps: PropTypes.object,
   /**

@@ -237,7 +237,7 @@ function Showcase(props) {
     <div className={classes.root}>
       {appList.map(app => (
         <div key={app.image}>
-          <Typography variant="display1" gutterBottom>
+          <Typography component="h2" variant="display1" gutterBottom>
             <span>{app.title}</span>
             {app.source ? (
               <IconButton href={app.source} target="_blank" aria-label={`${app.title} source code`}>

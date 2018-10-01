@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
+import { setRef } from '../utils/reactHelpers';
 
 const ROWS_HEIGHT = 19;
 
@@ -42,16 +43,6 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  isControlled = null;
-
-  shadowRef = null;
-
-  singlelineShadowRef = null;
-
-  inputRef = null;
-
-  value = null;
-
   handleResize = debounce(() => {
     this.syncHeightWithShadow();
   }, 166); // Corresponds to 10 frames at 60 Hz.
@@ -66,10 +57,6 @@ class Textarea extends React.Component {
       height: Number(props.rows) * ROWS_HEIGHT,
     };
   }
-
-  state = {
-    height: null,
-  };
 
   componentDidMount() {
     this.syncHeightWithShadow();
@@ -86,14 +73,7 @@ class Textarea extends React.Component {
   handleRefInput = ref => {
     this.inputRef = ref;
 
-    const { textareaRef } = this.props;
-    if (textareaRef) {
-      if (typeof textareaRef === 'function') {
-        textareaRef(ref);
-      } else {
-        textareaRef.current = ref;
-      }
-    }
+    setRef(this.props.textareaRef, ref);
   };
 
   handleRefSinglelineShadow = ref => {

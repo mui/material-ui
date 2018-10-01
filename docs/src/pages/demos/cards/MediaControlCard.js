@@ -23,7 +23,6 @@ const styles = theme => ({
   },
   cover: {
     width: 151,
-    height: 151,
   },
   controls: {
     display: 'flex',
@@ -44,7 +43,9 @@ function MediaControlCard(props) {
     <Card className={classes.card}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography variant="headline">Live From Space</Typography>
+          <Typography component="h2" variant="headline">
+            Live From Space
+          </Typography>
           <Typography variant="subheading" color="textSecondary">
             Mac Miller
           </Typography>

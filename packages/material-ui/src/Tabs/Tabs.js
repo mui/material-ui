@@ -46,7 +46,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `sscrollButtons="auto"`. */
+  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`. */
   scrollButtonsAuto: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
@@ -57,8 +57,6 @@ export const styles = theme => ({
 });
 
 class Tabs extends React.Component {
-  tabs = null;
-
   valueToIndex = new Map();
 
   handleResize = debounce(() => {

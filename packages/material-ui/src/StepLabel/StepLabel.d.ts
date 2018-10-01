@@ -16,6 +16,7 @@ export interface StepLabelProps
   last?: boolean;
   optional?: React.ReactNode;
   orientation?: Orientation;
+  StepIconComponent?: React.ReactType;
   StepIconProps?: Partial<StepIconProps>;
 }
 

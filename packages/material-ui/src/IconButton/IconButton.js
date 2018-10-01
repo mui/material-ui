@@ -73,7 +73,7 @@ export const styles = theme => ({
 });
 
 /**
- * Refer to the [Icons](/style/icons) section of the documentation
+ * Refer to the [Icons](/style/icons/) section of the documentation
  * regarding the available icon options.
  */
 function IconButton(props) {

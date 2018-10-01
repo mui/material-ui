@@ -1,4 +1,4 @@
-// @inheritedComponent ButtonBase
+// @inheritedComponent InputBase
 
 import React from 'react';
 import PropTypes from 'prop-types';

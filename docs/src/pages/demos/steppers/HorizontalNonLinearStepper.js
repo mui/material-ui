@@ -67,10 +67,9 @@ class HorizontalNonLinearStepper extends React.Component {
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleStep = step => () => {

@@ -7,7 +7,7 @@ title: MuiThemeProvider API
 
 # MuiThemeProvider
 
-<p class="description">The API documentation of the MuiThemeProvider React component.</p>
+<p class="description">The API documentation of the MuiThemeProvider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';

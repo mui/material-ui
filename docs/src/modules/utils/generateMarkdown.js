@@ -2,6 +2,7 @@
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
+import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
@@ -226,7 +227,9 @@ function generateProps(reactAPI) {
   text = `${text}
 Any other properties supplied will be spread to the root element (${
     reactAPI.inheritance
-      ? `[${reactAPI.inheritance.component}](${reactAPI.inheritance.pathname})`
+      ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+          reactAPI.inheritance.pathname,
+        )})`
       : 'native element'
   }).`;
 
@@ -268,14 +271,14 @@ This property accepts the following keys:
 
 ${text}
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
     reactAPI.filename,
   )})
 for more detail.
 
 If using the \`overrides\` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 
 `;
@@ -305,10 +308,10 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [${inheritance.component}](${
-    inheritance.pathname
-  }) component${suffix} are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [${inheritance.component}](${_rewriteUrlForNextExport(
+    inheritance.pathname,
+  )}) component${suffix} are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 `;
 }
@@ -328,7 +331,9 @@ function generateDemos(reactAPI) {
 
   return `## Demos
 
-${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('\n')}
+${pagesMarkdown
+    .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
+    .join('\n')}
 
 `;
 }
@@ -357,7 +362,8 @@ export default function generateMarkdown(reactAPI) {
     '',
     `# ${reactAPI.name}`,
     '',
-    `<p class="description">The API documentation of the ${reactAPI.name} React component.</p>`,
+    `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
+      'Learn more about the properties and the CSS customization points.</p>',
     '',
     generateImportStatement(reactAPI),
     '',

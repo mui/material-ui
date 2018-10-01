@@ -7,13 +7,15 @@ title: InputBase API
 
 # InputBase
 
-<p class="description">The API documentation of the InputBase React component.</p>
+<p class="description">The API documentation of the InputBase React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import InputBase from '@material-ui/core/InputBase';
 ```
 
-
+`InputBase` contains as few styles as possible.
+It aims to be a simple building block for creating an input.
+It contains a load of style reset and some state logic.
 
 ## Props
 
@@ -73,11 +75,15 @@ This property accepts the following keys:
 | <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
 | <span class="prop-name">inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/InputBase/InputBase.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiInputBase`.
+
+## Demos
+
+- [Text Fields](/demos/text-fields/)
 

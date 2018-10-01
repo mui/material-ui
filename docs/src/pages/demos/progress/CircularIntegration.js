@@ -41,8 +41,6 @@ const styles = theme => ({
 });
 
 class CircularIntegration extends React.Component {
-  timer = null;
-
   state = {
     loading: false,
     success: false,

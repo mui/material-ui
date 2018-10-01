@@ -10,14 +10,6 @@ if (process.env.BABEL_ENV === 'es') {
     [
       '@babel/preset-env',
       {
-        targets: {
-          ie: 11,
-          edge: 14,
-          firefox: 52,
-          chrome: 49,
-          safari: 10,
-          node: '6.11',
-        },
         modules: ['modules', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],

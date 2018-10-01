@@ -43,26 +43,14 @@ describe('<SpeedDialAction />', () => {
   it('should render the Button with the button class', () => {
     const wrapper = shallow(<SpeedDialAction {...defaultProps} open />);
     const buttonWrapper = wrapper.childAt(0);
-    assert.strictEqual(
-      buttonWrapper.hasClass(classes.button),
-      true,
-      'should have the actionButton class',
-    );
+    assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
   });
 
   it('should render the Button with the button and buttonClosed classes', () => {
     const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
     const buttonWrapper = wrapper.childAt(0);
-    assert.strictEqual(
-      buttonWrapper.hasClass(classes.button),
-      true,
-      'should have the button class',
-    );
-    assert.strictEqual(
-      buttonWrapper.hasClass(classes.buttonClosed),
-      true,
-      'should have the buttonClosed class',
-    );
+    assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
+    assert.strictEqual(buttonWrapper.hasClass(classes.buttonClosed), true);
   });
 
   describe('prop: onClick', () => {
@@ -71,17 +59,7 @@ describe('<SpeedDialAction />', () => {
       const wrapper = shallow(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
       const buttonWrapper = wrapper.childAt(0);
       buttonWrapper.simulate('click');
-      assert.strictEqual(handleClick.callCount, 1, 'it should forward the click event');
+      assert.strictEqual(handleClick.callCount, 1);
     });
   });
-
-  // it('should call handleTooltipOpen & handleTooltipClose on mouseOver & blur', () => {
-  //   const wrapper = shallow(<SpeedDialAction icon={icon} open />);
-  //   const buttonWrapper = wrapper.childAt(0);
-  //   assert.strictEqual(wrapper.state().tooltipOpen, false);
-  //   buttonWrapper.simulate('mouseOver', {});
-  //   assert.strictEqual(wrapper.state().tooltipOpen, true);
-  //   buttonWrapper.simulate('blur', {});
-  //   assert.strictEqual(wrapper.state().tooltipOpen, false);
-  // });
 });

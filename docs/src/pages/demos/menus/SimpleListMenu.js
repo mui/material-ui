@@ -23,8 +23,6 @@ const options = [
 ];
 
 class SimpleListMenu extends React.Component {
-  button = null;
-
   state = {
     anchorEl: null,
     selectedIndex: 1,

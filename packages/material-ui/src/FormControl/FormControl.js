@@ -12,11 +12,12 @@ export const styles = {
     display: 'inline-flex',
     flexDirection: 'column',
     position: 'relative',
-    // Reset fieldset default style
+    // Reset fieldset default style.
     minWidth: 0,
     padding: 0,
     margin: 0,
     border: 0,
+    verticalAlign: 'top', // Fix alignment issue on Safari.
   },
   /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {
@@ -47,6 +48,13 @@ export const styles = {
 class FormControl extends React.Component {
   constructor(props) {
     super();
+
+    this.state = {
+      adornedStart: false,
+      filled: false,
+      focused: false,
+    };
+
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
     const { children } = props;
@@ -68,12 +76,6 @@ class FormControl extends React.Component {
       });
     }
   }
-
-  state = {
-    adornedStart: false,
-    filled: false,
-    focused: false,
-  };
 
   getChildContext() {
     const { disabled, error, required, margin, variant } = this.props;

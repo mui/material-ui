@@ -112,6 +112,7 @@ class Drawer extends React.Component {
   render() {
     const {
       anchor: anchorProp,
+      BackdropProps,
       children,
       classes,
       className,
@@ -173,6 +174,7 @@ class Drawer extends React.Component {
     return (
       <Modal
         BackdropProps={{
+          ...BackdropProps,
           ...BackdropPropsProp,
           transitionDuration,
         }}
@@ -225,11 +227,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the [`Slide`](/api/slide) element.
+   * Properties applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

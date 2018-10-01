@@ -7,7 +7,7 @@ title: BottomNavigationAction API
 
 # BottomNavigationAction
 
-<p class="description">The API documentation of the BottomNavigationAction React component.</p>
+<p class="description">The API documentation of the BottomNavigationAction React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -26,7 +26,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 | <span class="prop-name">showLabel</span> | <span class="prop-type">bool |   | If `true`, the `BottomNavigationAction` will show its label. By default, only the selected `BottomNavigationAction` inside `BottomNavigation` will show its label. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |   | You can provide your own value. Otherwise, we fallback to the child position index. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -42,20 +42,20 @@ This property accepts the following keys:
 | <span class="prop-name">wrapper</span> | Styles applied to the span element that wraps the icon and label.
 | <span class="prop-name">label</span> | Styles applied to the label's span element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiBottomNavigationAction`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Bottom Navigation](/demos/bottom-navigation)
+- [Bottom Navigation](/demos/bottom-navigation/)
 

@@ -166,6 +166,28 @@ describe('<Stepper />', () => {
         'should not contain a <StepConnector /> child',
       );
     });
+
+    it('should pass active prop to connector when second step is active', () => {
+      const wrapper = shallow(
+        <Stepper activeStep={1}>
+          <Step />
+          <Step />
+        </Stepper>,
+      );
+      const connectors = wrapper.find(StepConnector);
+      assert.strictEqual(connectors.first().props().active, true);
+    });
+
+    it('should pass completed prop to connector when second step is completed', () => {
+      const wrapper = shallow(
+        <Stepper activeStep={2}>
+          <Step />
+          <Step />
+        </Stepper>,
+      );
+      const connectors = wrapper.find(StepConnector);
+      assert.strictEqual(connectors.first().props().completed, true);
+    });
   });
 
   it('renders with a null child', () => {

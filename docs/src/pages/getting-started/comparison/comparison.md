@@ -78,7 +78,7 @@ We removed one important friction in the installation process. (**simpler**)
 Eventually, we reached the limitations of inline-styles and moved toward a CSS-in-JS
 solution. This transition was made without losing the enhancements the first migration introduced 💅.
 **We strongly think that CSS-in-JS is the future of the web platform**.
-You can [learn more about our new styling solution](/customization/css-in-js) in the documentation.
+You can [learn more about our new styling solution](/customization/css-in-js/) in the documentation.
 
 MDC-web relies on SCSS as Bootstrap v4. The SCSS architecture is pretty close to LESS -
 a technology we replaced for its limitations.
@@ -117,7 +117,7 @@ The **less** time you spend on a single contribution, the **more** contributions
 ### Browser support
 
 Materialize supports a wider range of browsers than Material-UI does, for instance,
-they support IE 10 while [we only support IE 11](/getting-started/supported-platforms).
+they support IE 10 while [we only support IE 11](/getting-started/supported-platforms/).
 Only supporting IE 11 allows us to take full advantage of the flexbox layout.
 IE 10 has many issues with flexbox.
 

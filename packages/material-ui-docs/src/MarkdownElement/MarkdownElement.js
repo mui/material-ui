@@ -27,7 +27,7 @@ export function textToHash(text) {
 
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.
-  // It's reducing the risk of duplicated id and it's less elements in the DOM.
+  // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
   if (level >= 4) {
     return `<h${level}>${text}</h${level}>`;
   }

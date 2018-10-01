@@ -7,7 +7,7 @@ title: StepIcon API
 
 # StepIcon
 
-<p class="description">The API documentation of the StepIcon React component.</p>
+<p class="description">The API documentation of the StepIcon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import StepIcon from '@material-ui/core/StepIcon';
@@ -41,15 +41,15 @@ This property accepts the following keys:
 | <span class="prop-name">completed</span> | Styles applied to the root element if `completed={true}`.
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/StepIcon/StepIcon.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiStepIcon`.
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 

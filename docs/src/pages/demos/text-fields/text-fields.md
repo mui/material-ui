@@ -1,6 +1,6 @@
 ---
 title: Text Field React component
-components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
 # Text Fields
@@ -15,21 +15,28 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
-## Filled
-
-`TextField` supports filled styling.
-
-{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
-
 ## Outlined
 
 `TextField` supports outlined styling.
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
 
+## Filled
+
+`TextField` supports filled styling.
+
+{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
+
 ## Components
 
-`TextField` is composed of smaller components ([`FormControl`](/api/form-control), [`InputLabel`](/api/input-label), [`Input`](/api/input), and [`FormHelperText`](/api/form-helper-text)) that you can leverage directly to significantly customize your form inputs.
+`TextField` is composed of smaller components (
+[`FormControl`](/api/form-control/),
+[`Input`](/api/input/),
+[`InputLabel`](/api/filled-input/),
+[`InputLabel`](/api/input-label/),
+[`OutlinedInput`](/api/outlined-input/),
+and [`FormHelperText`](/api/form-helper-text/)
+) that you can leverage directly to significantly customize your form inputs.
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.
@@ -76,7 +83,7 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 ## Customized inputs
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}

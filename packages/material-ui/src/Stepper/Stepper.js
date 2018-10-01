@@ -58,20 +58,23 @@ function Stepper(props) {
     const controlProps = {
       index,
       orientation,
-      active: false,
-      completed: false,
-      disabled: false,
       last: index + 1 === childrenArray.length,
       alternativeLabel,
       connector: connectorProp,
     };
 
+    const state = {
+      active: false,
+      completed: false,
+      disabled: false,
+    };
+
     if (activeStep === index) {
-      controlProps.active = true;
+      state.active = true;
     } else if (!nonLinear && activeStep > index) {
-      controlProps.completed = true;
+      state.completed = true;
     } else if (!nonLinear && activeStep < index) {
-      controlProps.disabled = true;
+      state.disabled = true;
     }
 
     return [
@@ -80,8 +83,9 @@ function Stepper(props) {
         index > 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
+          ...state,
         }),
-      React.cloneElement(step, { ...controlProps, ...step.props }),
+      React.cloneElement(step, { ...controlProps, ...step.props, ...state }),
     ];
   });
 

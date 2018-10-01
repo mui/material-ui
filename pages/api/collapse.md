@@ -7,14 +7,14 @@ title: Collapse API
 
 # Collapse
 
-<p class="description">The API documentation of the Collapse React component.</p>
+<p class="description">The API documentation of the Collapse React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Collapse from '@material-ui/core/Collapse';
 ```
 
 The Collapse transition is used by the
-[Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
+[Vertical Stepper](/demos/steppers/#vertical-stepper) StepContent component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -43,22 +43,22 @@ This property accepts the following keys:
 | <span class="prop-name">wrapper</span> | Styles applied to the outer wrapper element.
 | <span class="prop-name">wrapperInner</span> | Styles applied to the inner wrapper element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Collapse/Collapse.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCollapse`.
 
 ## Inheritance
 
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Cards](/demos/cards)
-- [Lists](/demos/lists)
-- [Transitions](/utils/transitions)
+- [Cards](/demos/cards/)
+- [Lists](/demos/lists/)
+- [Transitions](/utils/transitions/)
 

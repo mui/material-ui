@@ -5,6 +5,7 @@ import keycode from 'keycode';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
+import { setRef } from '../utils/reactHelpers';
 
 /**
  * @ignore - internal component.
@@ -12,14 +13,14 @@ import { isFilled } from '../InputBase/utils';
 class SelectInput extends React.Component {
   ignoreNextBlur = false;
 
-  displayRef = null;
-
-  isOpenControlled = this.props.open !== undefined;
-
-  state = {
-    menuMinWidth: null,
-    open: false,
-  };
+  constructor(props) {
+    super();
+    this.isOpenControlled = props.open !== undefined;
+    this.state = {
+      menuMinWidth: null,
+      open: false,
+    };
+  }
 
   componentDidMount() {
     if (this.isOpenControlled && this.props.open) {
@@ -148,11 +149,7 @@ class SelectInput extends React.Component {
       value: this.props.value,
     };
 
-    if (typeof inputRef === 'function') {
-      inputRef(nodeProxy);
-    } else {
-      inputRef.current = nodeProxy;
-    }
+    setRef(inputRef, nodeProxy);
   };
 
   render() {
@@ -367,7 +364,7 @@ SelectInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

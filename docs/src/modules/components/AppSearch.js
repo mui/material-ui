@@ -144,8 +144,6 @@ const styles = theme => ({
 });
 
 class AppSearch extends React.Component {
-  inputRef = null;
-
   handleKeyDown = event => {
     if (
       ['/', 's'].indexOf(keycode(event)) !== -1 &&

@@ -26,6 +26,7 @@ function ImgMediaCard(props) {
       <CardActionArea>
         <CardMedia
           component="img"
+          alt="Contemplative Reptile"
           className={classes.media}
           height="140"
           image="/static/images/cards/contemplative-reptile.jpg"

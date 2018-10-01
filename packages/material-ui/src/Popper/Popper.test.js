@@ -110,7 +110,7 @@ describe('<Popper />', () => {
     it('should position the popper when opening', () => {
       const wrapper = mount(<PopperNaked {...defaultProps} open={false} anchorEl={anchorEl} />);
       const instance = wrapper.instance();
-      assert.strictEqual(instance.popper, null);
+      assert.strictEqual(instance.popper == null, true);
       wrapper.setProps({ open: true });
       assert.strictEqual(instance.popper !== null, true);
     });

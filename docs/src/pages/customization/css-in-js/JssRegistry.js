@@ -8,8 +8,6 @@ const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
 class JssRegistry extends React.Component {
-  timer = null;
-
   state = {
     length: 0,
   };
@@ -41,7 +39,7 @@ class JssRegistry extends React.Component {
           length: sheetsRegistry.registry.length,
         });
       }
-    }, 1000);
+    }, 1e3);
   }
 
   render() {

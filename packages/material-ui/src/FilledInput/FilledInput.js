@@ -1,4 +1,4 @@
-// @inheritedComponent ButtonBase
+// @inheritedComponent InputBase
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -25,10 +25,10 @@ export const styles = theme => {
         backgroundColor: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
       },
       '&$focused': {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.18)' : 'rgba(255, 255, 255, 0.18)',
+        backgroundColor: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
       },
       '&$disabled': {
-        backgroundColor: light ? 'rgba(0, 0, 0, 0.14)' : 'rgba(255, 255, 255, 0.14)',
+        backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
       },
     },
     /* Styles applied to the root element. */
@@ -92,6 +92,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '27px 12px 10px',
+      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     },
     /* Styles applied to the `input` element. */
     input: {

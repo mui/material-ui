@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { setRef } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 import { isFilled } from './utils';
 
@@ -36,6 +37,7 @@ export const styles = theme => {
       alignItems: 'center',
       '&$disabled': {
         color: theme.palette.text.disabled,
+        cursor: 'default',
       },
     },
     /* Styles applied to the root element if the component is a descendant of `FormControl`. */
@@ -67,7 +69,6 @@ export const styles = theme => {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
       border: 0,
       boxSizing: 'content-box',
-      verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
       // Remove grey highlight
@@ -75,7 +76,7 @@ export const styles = theme => {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      flexGrow: 1,
+      width: '100%', // Fix IE11 width issue
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -147,16 +148,15 @@ export function formControlState({ props, states, context }) {
   }, {});
 }
 
+/**
+ * `InputBase` contains as few styles as possible.
+ * It aims to be a simple building block for creating an input.
+ * It contains a load of style reset and some state logic.
+ */
 class InputBase extends React.Component {
-  isControlled = null;
-
-  input = null; // Holds the input reference
-
   constructor(props, context) {
     super(props, context);
-
     this.isControlled = props.value != null;
-
     if (this.isControlled) {
       this.checkDirty(props);
     }
@@ -276,13 +276,7 @@ class InputBase extends React.Component {
       refProp = this.props.inputProps.ref;
     }
 
-    if (refProp) {
-      if (typeof refProp === 'function') {
-        refProp(ref);
-      } else {
-        refProp.current = ref;
-      }
-    }
+    setRef(refProp, ref);
   };
 
   handleClick = event => {

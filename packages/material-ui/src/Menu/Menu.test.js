@@ -60,30 +60,26 @@ describe('<Menu />', () => {
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
-    assert.strictEqual(
-      wrapper.props().getContentAnchorEl,
-      wrapper.instance().getContentAnchorEl,
-      'should be the same function',
-    );
+    assert.strictEqual(wrapper.props().getContentAnchorEl, wrapper.instance().getContentAnchorEl);
   });
 
   it('should pass onClose prop to Popover', () => {
     const fn = () => {};
     const wrapper = shallow(<Menu {...defaultProps} onClose={fn} />);
-    assert.strictEqual(wrapper.props().onClose, fn, 'should be the same function');
+    assert.strictEqual(wrapper.props().onClose, fn);
   });
 
   it('should pass anchorEl prop to Popover', () => {
     const el = document.createElement('div');
     const wrapper = shallow(<Menu {...defaultProps} anchorEl={el} />);
-    assert.strictEqual(wrapper.props().anchorEl, el, 'should be the same object');
+    assert.strictEqual(wrapper.props().anchorEl, el);
   });
 
   it('should pass through the `open` prop to Popover', () => {
     const wrapper = shallow(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.props().open, false, 'should have an open prop of false');
+    assert.strictEqual(wrapper.props().open, false);
     wrapper.setProps({ open: true });
-    assert.strictEqual(wrapper.props().open, true, 'should have an open prop of true');
+    assert.strictEqual(wrapper.props().open, true);
   });
 
   describe('list node', () => {
@@ -96,19 +92,15 @@ describe('<Menu />', () => {
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(
-        list.is('MenuList'),
-        true,
-        'should have a MenuList as the immediate child',
-      );
+      assert.strictEqual(list.name(), 'MenuList');
     });
 
     it('should spread other props on the list', () => {
-      assert.strictEqual(wrapper.props()['data-test'], 'hi', 'should have the custom prop');
+      assert.strictEqual(wrapper.props()['data-test'], 'hi');
     });
 
     it('should have the user classes', () => {
-      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
+      assert.strictEqual(wrapper.hasClass('test-class'), true);
     });
   });
 
@@ -121,11 +113,7 @@ describe('<Menu />', () => {
     const popover = wrapper.find('Popover');
     assert.strictEqual(popover.props().open, true);
     const menuEl = document.querySelector('[data-mui-test="Menu"]');
-    assert.strictEqual(
-      document.activeElement,
-      menuEl && menuEl.firstChild,
-      'should be the first menu item',
-    );
+    assert.strictEqual(document.activeElement, menuEl && menuEl.firstChild);
   });
 
   describe('mount', () => {

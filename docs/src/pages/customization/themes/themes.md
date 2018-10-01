@@ -1,6 +1,6 @@
 # Themes
 
-<p class="description">Customize Material-UI with our theme. You can change the colors, the typography and much more.</p>
+<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
@@ -43,18 +43,18 @@ The theme exposes the following color intentions:
 The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
 and the un-prefixed shades for the other intentions.
 
-If you want to learn more about color, you can check out [the color section](/style/color).
+If you want to learn more about color, you can check out [the color section](/style/color/).
 
 #### Custom palette
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
-If any of the [`palette.primary`](/customization/default-theme?expend-path=$.palette.primary),
-[`palette.secondary`](/customization/default-theme?expend-path=$.palette.secondary) or
-[`palette.error`](/customization/default-theme?expend-path=$.palette.error)
+If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary),
+[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or
+[`palette.error`](/customization/default-theme/?expend-path=$.palette.error)
 'intention' objects are provided, they will replace the defaults.
 
-The intention value can either be a [color](/style/color) object, or an object with one or more of the following keys:
+The intention value can either be a [color](/style/color/) object, or an object with one or more of the following keys:
 
 ```js
 interface PaletteIntention {
@@ -182,7 +182,7 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 #### Color tool
 
-Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color#color-tool) to help you.
+Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color/#color-tool) to help you.
 
 ### Type (light /dark theme)
 
@@ -210,7 +210,7 @@ The theme provides a **limited set of type sizes** that work well together along
 These sizes are used across the components.
 
 Have a look at the following example regarding changing the default values, such as the font family.
-If you want to learn more about typography, you can check out [the typography section](/style/typography).
+If you want to learn more about typography, you can check out [the typography section](/style/typography/).
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
@@ -290,11 +290,11 @@ html {
 ### Other variables
 
 In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
-You can check out the [default theme section](/customization/default-theme) to view the default theme in full.
+You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
 ### Custom variables
 
-When using Material-UI's [styling solution](/customization/css-in-js) with your own components,
+When using Material-UI's [styling solution](/customization/css-in-js/) with your own components,
 you can also take advantage of the theme.
 It can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
@@ -324,7 +324,7 @@ const theme = createMuiTheme({
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
 The list of these customization points for each component is documented under the **Component API** section.
-For instance, you can have a look at the [Button](/api/button#css-api).
+For instance, you can have a look at the [Button](/api/button/#css-api).
 Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 ### Properties
@@ -374,7 +374,7 @@ The main point to understand is that we cache the injected CSS with the followin
 This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context.
 It should preferably be used at **the root of your component tree**.
 
-You can see the full properties API in [this dedicated page](/api/mui-theme-provider).
+You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
 #### Examples
 

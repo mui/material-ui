@@ -38,13 +38,13 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-To test a [material.io/color](https://material.io/color) color scheme with the Material-UI
+To test a [material.io/color](https://material.io/design/color/) color scheme with the Material-UI
 documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/themes#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/themes#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/themes/#theme-provider)):
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -60,17 +60,17 @@ const theme = createMuiTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customise `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/themes#palette) section.
+Only the `main` shades need be provided (unless you wish to further customise `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/themes/#palette) section.
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
 
-### Material color tool
+### Official color tool
 
 The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
 <a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
-  <img src="/static/images/color/colorTool.png" style="width: 574px" />
+  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
 </a>
 
 The output can be fed into `createMuiTheme()` function:
@@ -95,6 +95,11 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+### Tools by the community
+
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 
 ## Color palette
 

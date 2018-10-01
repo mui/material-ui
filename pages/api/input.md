@@ -7,7 +7,7 @@ title: Input API
 
 # Input
 
-<p class="description">The API documentation of the Input React component.</p>
+<p class="description">The API documentation of the Input React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Input from '@material-ui/core/Input';
@@ -46,7 +46,7 @@ import Input from '@material-ui/core/Input';
 | <span class="prop-name">type</span> | <span class="prop-type">string |   | Type of the input element. It should be a valid HTML5 input type. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The input value, required for a controlled component. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([InputBase](/api/input-base/)).
 
 ## CSS API
 
@@ -70,20 +70,20 @@ This property accepts the following keys:
 | <span class="prop-name">inputType</span> | Styles applied to the `input` element if `type` is not "text"`.
 | <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Input/Input.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiInput`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [InputBase](/api/input-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Text Fields](/demos/text-fields)
+- [Text Fields](/demos/text-fields/)
 

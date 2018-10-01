@@ -274,8 +274,6 @@ function findActivePage(currentPages, router) {
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    redux = null;
-
     constructor(props) {
       super();
       this.redux = initRedux(props.reduxServerState || {});
@@ -288,6 +286,7 @@ function withRoot(Component) {
       if (pathname !== '/') {
         // The leading / is only added to support static hosting (resolve /index.html).
         // We remove it to normalize the pathname.
+        // See `_rewriteUrlForNextExport` on Next.js side.
         pathname = pathname.replace(/\/$/, '');
       }
 
