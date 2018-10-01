@@ -88,7 +88,7 @@ const AppBarTest = () => (
       <IconButton color="inherit" aria-label="Menu">
         <FakeIcon />
       </IconButton>
-      <Typography variant="title" color="inherit">
+      <Typography variant="h6" color="inherit">
         Title
       </Typography>
       <Button color="inherit">Login</Button>
@@ -161,7 +161,7 @@ const CardTest = () => (
   <Card>
     <CardContent>
       <Typography variant="body1">Word of the Day</Typography>
-      <Typography variant="headline" component="h2">
+      <Typography variant="h5" component="h2">
         be-nev-o-lent
       </Typography>
       <Typography variant="body1">adjective</Typography>
@@ -470,7 +470,7 @@ const MenuTest = () => {
 
 const PaperTest = () => (
   <Paper elevation={4}>
-    <Typography variant="headline" component="h3">
+    <Typography variant="h5" component="h3">
       This is a sheet of paper.
     </Typography>
     <Typography variant="body1" component="p">

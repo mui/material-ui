@@ -88,10 +88,10 @@ const styles = theme => ({
         background: 'transparent',
       },
       '& .algolia-docsearch-suggestion--title': {
-        ...theme.typography.title,
+        ...theme.typography.h6,
       },
       '& .algolia-docsearch-suggestion--text': {
-        ...theme.typography.body1,
+        ...theme.typography.body2,
       },
       '& .ds-dropdown-menu': {
         boxShadow: theme.shadows[1],

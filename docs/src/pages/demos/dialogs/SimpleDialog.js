@@ -93,7 +93,7 @@ class SimpleDialogDemo extends React.Component {
   render() {
     return (
       <div>
-        <Typography variant="subheading">Selected: {this.state.selectedValue}</Typography>
+        <Typography variant="subtitle1">Selected: {this.state.selectedValue}</Typography>
         <br />
         <Button onClick={this.handleClickOpen}>Open simple dialog</Button>
         <SimpleDialogWrapped

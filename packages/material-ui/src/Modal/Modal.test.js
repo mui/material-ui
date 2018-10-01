@@ -215,7 +215,7 @@ describe('<Modal />', () => {
       }
 
       assert.strictEqual(modal.children.length, 2);
-      assert.ok(modal.children[0]);
+      assert.strictEqual(modal.children[0] != null, true);
       assert.strictEqual(modal.children[1], container);
     });
   });

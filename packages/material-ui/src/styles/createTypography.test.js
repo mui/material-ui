@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { mock } from 'sinon';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
 
@@ -38,10 +39,10 @@ describe('createTypography', () => {
     assert.strictEqual(typography.display4.fontSize, '11.2rem');
   });
 
-  it('should create a typography with custom display4', () => {
+  it('should create a typography with custom h1', () => {
     const customFontSize = '18px';
-    const typography = createTypography(palette, { display4: { fontSize: customFontSize } });
-    assert.strictEqual(typography.display4.fontSize, customFontSize);
+    const typography = createTypography(palette, { h1: { fontSize: customFontSize } });
+    assert.strictEqual(typography.h1.fontSize, customFontSize);
   });
 
   it('should apply a CSS property to all the variants', () => {
@@ -62,6 +63,76 @@ describe('createTypography', () => {
 
     allVariants.forEach(variant => {
       assert.strictEqual(typography[variant].marginLeft, 0);
+    });
+  });
+
+  it('only defines letter-spacing if the font-family is not overwritten', () => {
+    assert.isDefined(createTypography(palette, {}).h1.letterSpacing);
+    assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing);
+  });
+
+  describe('typography v2 migration', () => {
+    let warning;
+
+    beforeEach(() => {
+      warning = mock(console).expects('error');
+    });
+
+    afterEach(() => {
+      warning.restore();
+    });
+
+    const testTypography = (options, expectDeprecation) => {
+      warning.resetHistory();
+
+      const typography = createTypography(palette, options);
+
+      if (expectDeprecation) {
+        assert.strictEqual(warning.calledOnce, true);
+        assert.include(warning.firstCall.args[0], 'Deprecation Warning: Material-UI:');
+      }
+
+      return typography;
+    };
+
+    it('warns if deprecated variants are overwritten', () => {
+      const customFontSize = '1px';
+      const typography = testTypography(
+        {
+          display1: {
+            fontSize: customFontSize,
+          },
+        },
+        true,
+      );
+      assert.strictEqual(typography.display1.fontSize, customFontSize);
+    });
+
+    it('warns if deprecated variants are overwritten even if typography v2 is enabled', () => {
+      testTypography({ display1: { fontSize: '1px' }, useNextVariants: true }, true);
+    });
+
+    it('warns if restyled variants are overwritten', () => {
+      const customFontSize = '1px';
+      const typography = testTypography(
+        {
+          body1: {
+            fontSize: customFontSize,
+          },
+        },
+        true,
+      );
+
+      assert.strictEqual(typography.body1.fontSize, customFontSize);
+    });
+
+    it('does not warn if restyled variants are overwritten in typography v2', () => {
+      testTypography({ body1: { fontSize: '1px' }, useNextVariants: true }, false);
+    });
+
+    it('overwrites restyled variants with `useNextVariants: true`', () => {
+      const typography = testTypography({ useNextVariants: true }, false);
+      assert.strictEqual(typography.body1, typography.body1Next);
     });
   });
 });

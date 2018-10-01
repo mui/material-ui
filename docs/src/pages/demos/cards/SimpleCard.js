@@ -35,7 +35,7 @@ function SimpleCard(props) {
         <Typography className={classes.title} color="textSecondary">
           Word of the Day
         </Typography>
-        <Typography variant="headline" component="h2">
+        <Typography variant="h5" component="h2">
           be
           {bull}
           nev
