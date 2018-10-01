@@ -70,7 +70,7 @@ export const ModalDialog = ({
 
     <DialogActions
       classes={{
-        root: clearable && classes.dialogActions,
+        root: (clearable || showTodayButton) && classes.dialogActions,
         action: classnames(classes.dialogAction, {
           [classes.clearableDialogAction]: clearable,
           [classes.todayDialogAction]: !clearable && showTodayButton,
