@@ -291,14 +291,14 @@ class Chip extends React.Component {
       variant,
       ...other
     } = this.props;
-
+    const clickableFlag = clickable === false ? false : onClick || clickable;
     const className = classNames(
       classes.root,
       {
         [classes[`color${capitalize(color)}`]]: color !== 'default',
-        [classes.clickable]: onClick || clickable,
+        [classes.clickable]: clickableFlag,
         [classes[`clickableColor${capitalize(color)}`]]:
-          (onClick || clickable) && color !== 'default',
+          (clickableFlag) && color !== 'default',
         [classes.deletable]: onDelete,
         [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
         [classes.outlined]: variant === 'outlined',
@@ -408,7 +408,8 @@ Chip.propTypes = {
   className: PropTypes.string,
   /**
    * If true, the chip will appear clickable, and will raise when pressed,
-   * even if the onClick property is not defined. This can be used, for example,
+   * even if the onClick property is not defined. If false, the chip will not be clickable,
+   * even if onClick peoperty is defined. This can be used, for example,
    * along with the component property to indicate an anchor Chip is clickable.
    */
   clickable: PropTypes.bool,
@@ -461,7 +462,7 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
-  clickable: false,
+  clickable: null,
   component: 'div',
   color: 'default',
   variant: 'default',

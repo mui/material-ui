@@ -76,6 +76,21 @@ function Chips(props) {
       />
       <Chip
         avatar={<Avatar>MB</Avatar>}
+        label="Non-Clickable Chip with onClick"
+        onClick={handleClick}
+        clickable={false}
+        className={classes.chip}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Non-Clickable Deletable Chip with onClick"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        clickable={false}
+        className={classes.chip}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
         label="Primary Clickable Chip"
         clickable
         className={classes.chip}
