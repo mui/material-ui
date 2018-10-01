@@ -13,7 +13,7 @@ export interface FormControlLabelProps
   inputRef?: React.Ref<any>;
   label: React.ReactNode;
   name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   labelPlacement?: 'end' | 'start';
   value?: string;
 }
