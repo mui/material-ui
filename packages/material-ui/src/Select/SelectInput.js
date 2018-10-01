@@ -13,14 +13,14 @@ import { setRef } from '../utils/reactHelpers';
 class SelectInput extends React.Component {
   ignoreNextBlur = false;
 
-  displayRef = null;
-
-  isOpenControlled = this.props.open !== undefined;
-
-  state = {
-    menuMinWidth: null,
-    open: false,
-  };
+  constructor(props) {
+    super();
+    this.isOpenControlled = props.open !== undefined;
+    this.state = {
+      menuMinWidth: null,
+      open: false,
+    };
+  }
 
   componentDidMount() {
     if (this.isOpenControlled && this.props.open) {
@@ -364,7 +364,7 @@ SelectInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

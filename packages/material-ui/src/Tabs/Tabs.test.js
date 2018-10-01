@@ -116,8 +116,8 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       const selector = `.${classes.flexContainer}.${classes.centered}`;
-      assert.strictEqual(wrapper.find(selector).is('div'), true, 'should be a div');
-      assert.strictEqual(wrapper.find(selector).length, 1, 'should only be one');
+      assert.strictEqual(wrapper.find(selector).name(), 'div');
+      assert.strictEqual(wrapper.find(selector).length, 1);
     });
   });
 
@@ -367,8 +367,8 @@ describe('<Tabs />', () => {
 
     it('should render with the scrollable class', () => {
       const selector = `.${classes.scroller}.${classes.scrollable}`;
-      assert.strictEqual(wrapper.find(selector).is('div'), true, 'should be a div');
-      assert.strictEqual(wrapper.find(selector).length, 1, 'should only be one');
+      assert.strictEqual(wrapper.find(selector).name(), 'div');
+      assert.strictEqual(wrapper.find(selector).length, 1);
     });
 
     it('should response to scroll events', () => {
@@ -393,7 +393,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(mountWrapper.find('ScrollbarSize').length, 1, 'should be one');
+      assert.strictEqual(mountWrapper.find('ScrollbarSize').length, 1);
       mountWrapper.unmount();
     });
   });
@@ -408,8 +408,8 @@ describe('<Tabs />', () => {
       );
       const baseSelector = `.${classes.scroller}`;
       const selector = `.${classes.scroller}.${classes.scrollable}`;
-      assert.strictEqual(wrapper.find(baseSelector).length, 1, 'base selector should exist');
-      assert.strictEqual(wrapper.find(selector).length, 0, 'scrolling selector should not exist');
+      assert.strictEqual(wrapper.find(baseSelector).length, 1);
+      assert.strictEqual(wrapper.find(selector).length, 0);
     });
   });
 
@@ -473,16 +473,8 @@ describe('<Tabs />', () => {
         .at(0)
         .simulate('resize');
       clock.tick(166);
-      assert.strictEqual(
-        instance.updateScrollButtonState.called,
-        true,
-        'should have called updateScrollButtonState',
-      );
-      assert.strictEqual(
-        instance.updateIndicatorState.called,
-        true,
-        'should have called updateIndicatorState',
-      );
+      assert.strictEqual(instance.updateScrollButtonState.called, true);
+      assert.strictEqual(instance.updateIndicatorState.called, true);
     });
 
     describe('scroll button visibility states', () => {
@@ -501,29 +493,29 @@ describe('<Tabs />', () => {
       it('should set neither left nor right scroll button state', () => {
         instance.tabsRef = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
-        assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
+        assert.strictEqual(wrapper.state().showLeftScroll, false);
+        assert.strictEqual(wrapper.state().showRightScroll, false);
       });
 
       it('should set only left scroll button state', () => {
         instance.tabsRef = { scrollLeft: 1, ...fakeTabs };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
-        assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
+        assert.strictEqual(wrapper.state().showLeftScroll, true);
+        assert.strictEqual(wrapper.state().showRightScroll, false);
       });
 
       it('should set only right scroll button state', () => {
         instance.tabsRef = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
-        assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
+        assert.strictEqual(wrapper.state().showLeftScroll, false);
+        assert.strictEqual(wrapper.state().showRightScroll, true);
       });
 
       it('should set both left and right scroll button state', () => {
         instance.tabsRef = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
-        assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
+        assert.strictEqual(wrapper.state().showLeftScroll, true);
+        assert.strictEqual(wrapper.state().showRightScroll, true);
       });
     });
   });
@@ -595,7 +587,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][0], 0, 'should scroll to 0 position');
+      assert.strictEqual(scrollStub.args[0][0], 0);
     });
 
     it('should scroll right tab into view', () => {
@@ -605,7 +597,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][0], 10, 'should scroll to 10 position');
+      assert.strictEqual(scrollStub.args[0][0], 10);
     });
 
     it('should support value=false', () => {
@@ -615,7 +607,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.callCount, 0, 'should not scroll');
+      assert.strictEqual(scrollStub.callCount, 0);
     });
   });
 

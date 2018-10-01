@@ -19,8 +19,6 @@ function getDefaultTheme() {
 // Provide the theme object as a property to the input component.
 const withTheme = () => Component => {
   class WithTheme extends React.Component {
-    unsubscribeId = null;
-
     constructor(props, context) {
       super();
       this.state = {
@@ -28,8 +26,6 @@ const withTheme = () => Component => {
         theme: themeListener.initial(context) || getDefaultTheme(),
       };
     }
-
-    state = {};
 
     componentDidMount() {
       this.unsubscribeId = themeListener.subscribe(this.context, theme => {

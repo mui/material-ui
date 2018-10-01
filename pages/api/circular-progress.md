@@ -7,7 +7,7 @@ title: CircularProgress API
 
 # CircularProgress
 
-<p class="description">The API documentation of the CircularProgress React component.</p>
+<p class="description">The API documentation of the CircularProgress React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -50,15 +50,15 @@ This property accepts the following keys:
 | <span class="prop-name">circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
 | <span class="prop-name">circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/CircularProgress/CircularProgress.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCircularProgress`.
 
 ## Demos
 
-- [Progress](/demos/progress)
+- [Progress](/demos/progress/)
 

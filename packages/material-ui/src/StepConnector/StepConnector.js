@@ -22,6 +22,12 @@ export const styles = theme => ({
     left: 'calc(50% + 20px)',
     right: 'calc(-50% + 20px)',
   },
+  /* Styles applied to the root element if `active={true}`. */
+  active: {},
+  /* Styles applied to the root element if `completed={true}`. */
+  completed: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
   /* Styles applied to the line element. */
   line: {
     display: 'block',
@@ -41,29 +47,47 @@ export const styles = theme => ({
 });
 
 function StepConnector(props) {
-  const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
-
-  const className = classNames(
-    classes.root,
-    classes[orientation],
-    {
-      [classes.alternativeLabel]: alternativeLabel,
-    },
-    classNameProp,
-  );
-  const lineClassName = classNames(classes.line, {
-    [classes.lineHorizontal]: orientation === 'horizontal',
-    [classes.lineVertical]: orientation === 'vertical',
-  });
+  const {
+    active,
+    alternativeLabel,
+    classes,
+    className: classNameProp,
+    completed,
+    disabled,
+    orientation,
+    ...other
+  } = props;
 
   return (
-    <div className={className} {...other}>
-      <span className={lineClassName} />
+    <div
+      className={classNames(
+        classes.root,
+        classes[orientation],
+        {
+          [classes.alternativeLabel]: alternativeLabel,
+          [classes.active]: active,
+          [classes.completed]: completed,
+          [classes.disabled]: disabled,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
+      <span
+        className={classNames(classes.line, {
+          [classes.lineHorizontal]: orientation === 'horizontal',
+          [classes.lineVertical]: orientation === 'vertical',
+        })}
+      />
     </div>
   );
 }
 
 StepConnector.propTypes = {
+  /**
+   * @ignore
+   */
+  active: PropTypes.bool,
   /**
    * @ignore
    * Set internally by Step when it's supplied with the alternativeLabel property.
@@ -78,6 +102,14 @@ StepConnector.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  completed: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
   /**
    * @ignore
    */

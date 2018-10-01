@@ -35,8 +35,6 @@ import { setRef } from '../utils/reactHelpers';
  * ```
  */
 class RootRef extends React.Component {
-  ref = null;
-
   componentDidMount() {
     this.ref = ReactDOM.findDOMNode(this);
     setRef(this.props.rootRef, this.ref);

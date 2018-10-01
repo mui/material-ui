@@ -7,7 +7,7 @@ title: Button API
 
 # Button
 
-<p class="description">The API documentation of the Button React component.</p>
+<p class="description">The API documentation of the Button React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Button from '@material-ui/core/Button';
@@ -32,7 +32,7 @@ import Button from '@material-ui/core/Button';
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab'<br> | <span class="prop-default">'text'</span> | The variant to use. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -69,20 +69,20 @@ This property accepts the following keys:
 | <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Button/Button.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiButton`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Buttons](/demos/buttons)
+- [Buttons](/demos/buttons/)
 

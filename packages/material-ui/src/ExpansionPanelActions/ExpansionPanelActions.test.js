@@ -21,11 +21,7 @@ describe('<ExpansionPanelActions />', () => {
     const wrapper = shallow(
       <ExpansionPanelActions data-my-prop="woofExpansionPanelActions">foo</ExpansionPanelActions>,
     );
-    assert.strictEqual(
-      wrapper.props()['data-my-prop'],
-      'woofExpansionPanelActions',
-      'custom prop should be woofExpansionPanelActions',
-    );
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofExpansionPanelActions');
   });
 
   it('should render with the user and root classes', () => {
@@ -45,13 +41,9 @@ describe('<ExpansionPanelActions />', () => {
       </ExpansionPanelActions>,
     );
     const button = wrapper.childAt(0);
-    assert.strictEqual(button.hasClass(classes.action), true, 'should have the action wrapper');
+    assert.strictEqual(button.hasClass(classes.action), true);
     assert.strictEqual(button.type(), 'button');
-    assert.strictEqual(
-      button.hasClass('woofExpansionPanelActions'),
-      true,
-      'should have the user class',
-    );
+    assert.strictEqual(button.hasClass('woofExpansionPanelActions'), true);
   });
 
   it('should render a valid children', () => {
@@ -63,7 +55,7 @@ describe('<ExpansionPanelActions />', () => {
     );
 
     const button = wrapper.childAt(0);
-    assert.strictEqual(button.hasClass(classes.action), true, 'should have the action wrapper');
+    assert.strictEqual(button.hasClass(classes.action), true);
     assert.strictEqual(button.type(), 'button');
   });
 });

@@ -7,7 +7,7 @@ title: Paper API
 
 # Paper
 
-<p class="description">The API documentation of the Paper React component.</p>
+<p class="description">The API documentation of the Paper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Paper from '@material-ui/core/Paper';
@@ -63,17 +63,17 @@ This property accepts the following keys:
 | <span class="prop-name">elevation23</span> | 
 | <span class="prop-name">elevation24</span> | 
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Paper/Paper.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiPaper`.
 
 ## Demos
 
-- [Autocomplete](/demos/autocomplete)
-- [Cards](/demos/cards)
-- [Paper](/demos/paper)
+- [Autocomplete](/demos/autocomplete/)
+- [Cards](/demos/cards/)
+- [Paper](/demos/paper/)
 

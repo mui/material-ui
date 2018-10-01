@@ -13,17 +13,17 @@ Each breakpoint matches with a *fixed* screen width:
 - **xl**, extra-large: 1920px or larger
 
 These values can always be customized.
-You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme?expend-path=$.breakpoints.values) object.
+You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
-for controlling the layout of your application through the [Grid](/layout/grid) and
-[Hidden](/layout/hidden) components.
+for controlling the layout of your application through the [Grid](/layout/grid/) and
+[Hidden](/layout/hidden/) components.
 
 ## Media Queries
 
 CSS media queries is the idiomatic approach to make your UI responsive.
-We provide some [CSS-in-JS](/customization/css-in-js) helpers to do so.
+We provide some [CSS-in-JS](/customization/css-in-js/) helpers to do so.
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
 
@@ -73,7 +73,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   In some situation, you might want to use an heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the client-hints.
-  http://caniuse.com/#search=client%20hint, we also can set the initial width
+  https://caniuse.com/#search=client%20hint, we also can set the initial width
   globally using [`custom properties`](/customization/themes/#properties) on the theme.
   In order to set the initialWidth we need to pass a custom property with this shape:
 

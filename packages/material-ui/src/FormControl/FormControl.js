@@ -48,6 +48,13 @@ export const styles = {
 class FormControl extends React.Component {
   constructor(props) {
     super();
+
+    this.state = {
+      adornedStart: false,
+      filled: false,
+      focused: false,
+    };
+
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
     const { children } = props;
@@ -69,12 +76,6 @@ class FormControl extends React.Component {
       });
     }
   }
-
-  state = {
-    adornedStart: false,
-    filled: false,
-    focused: false,
-  };
 
   getChildContext() {
     const { disabled, error, required, margin, variant } = this.props;

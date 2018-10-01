@@ -7,7 +7,7 @@ title: ListSubheader API
 
 # ListSubheader
 
-<p class="description">The API documentation of the ListSubheader React component.</p>
+<p class="description">The API documentation of the ListSubheader React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -44,16 +44,16 @@ This property accepts the following keys:
 | <span class="prop-name">inset</span> | Styles applied to the root element if `inset={true}`.
 | <span class="prop-name">sticky</span> | Styles applied to the root element if `disableSticky={false}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ListSubheader/ListSubheader.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiListSubheader`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list)
-- [Lists](/demos/lists)
+- [Grid List](/demos/grid-list/)
+- [Lists](/demos/lists/)
 

@@ -7,7 +7,7 @@ title: ToggleButtonGroup API
 
 # ToggleButtonGroup
 
-<p class="description">The API documentation of the ToggleButtonGroup React component.</p>
+<p class="description">The API documentation of the ToggleButtonGroup React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
@@ -39,15 +39,15 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiToggleButtonGroup`.
 
 ## Demos
 
-- [Toggle Button](/lab/toggle-button)
+- [Toggle Button](/lab/toggle-button/)
 

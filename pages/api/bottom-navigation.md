@@ -7,7 +7,7 @@ title: BottomNavigation API
 
 # BottomNavigation
 
-<p class="description">The API documentation of the BottomNavigation React component.</p>
+<p class="description">The API documentation of the BottomNavigation React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -37,15 +37,15 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/BottomNavigation/BottomNavigation.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiBottomNavigation`.
 
 ## Demos
 
-- [Bottom Navigation](/demos/bottom-navigation)
+- [Bottom Navigation](/demos/bottom-navigation/)
 

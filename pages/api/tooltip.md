@@ -7,7 +7,7 @@ title: Tooltip API
 
 # Tooltip
 
-<p class="description">The API documentation of the Tooltip React component.</p>
+<p class="description">The API documentation of the Tooltip React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Tooltip from '@material-ui/core/Tooltip';
@@ -56,15 +56,15 @@ This property accepts the following keys:
 | <span class="prop-name">tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
 | <span class="prop-name">tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tooltip/Tooltip.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTooltip`.
 
 ## Demos
 
-- [Tooltips](/demos/tooltips)
+- [Tooltips](/demos/tooltips/)
 

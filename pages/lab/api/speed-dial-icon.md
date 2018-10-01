@@ -7,7 +7,7 @@ title: SpeedDialIcon API
 
 # SpeedDialIcon
 
-<p class="description">The API documentation of the SpeedDialIcon React component.</p>
+<p class="description">The API documentation of the SpeedDialIcon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -40,15 +40,15 @@ This property accepts the following keys:
 | <span class="prop-name">openIcon</span> | Styles applied to the `openIcon` if provided.
 | <span class="prop-name">openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSpeedDialIcon`.
 
 ## Demos
 
-- [Speed Dial](/lab/speed-dial)
+- [Speed Dial](/lab/speed-dial/)
 

@@ -34,7 +34,7 @@ We provide a separate NPM package,
 that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 
 <a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
-  <img src="/static/images/icons/icons.png" style="width: 566px" />
+  <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
 </a>
 
 #### Usage

@@ -7,7 +7,7 @@ title: Typography API
 
 # Typography
 
-<p class="description">The API documentation of the Typography React component.</p>
+<p class="description">The API documentation of the Typography React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Typography from '@material-ui/core/Typography';
@@ -67,15 +67,15 @@ This property accepts the following keys:
 | <span class="prop-name">colorTextSecondary</span> | Styles applied to the root element if `color="textSecondary"`.
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Typography/Typography.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTypography`.
 
 ## Demos
 
-- [Typography](/style/typography)
+- [Typography](/style/typography/)
 

@@ -35,7 +35,7 @@ describe('<ToggleButtonGroup />', () => {
         <ToggleButton value="hello" />
       </ToggleButtonGroup>,
     );
-    assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
+    assert.strictEqual(wrapper.is('.test-class-name'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -46,7 +46,7 @@ describe('<ToggleButtonGroup />', () => {
       </ToggleButtonGroup>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
   });
 
   it('should render a selected div when selected is "auto" and a value is present', () => {
@@ -56,7 +56,7 @@ describe('<ToggleButtonGroup />', () => {
       </ToggleButtonGroup>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
   });
 
   it('should not render a selected div when selected is "auto" and a value is missing', () => {
@@ -66,11 +66,7 @@ describe('<ToggleButtonGroup />', () => {
       </ToggleButtonGroup>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.hasClass(classes.selected),
-      false,
-      'should not have the selected class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.selected), false);
   });
 
   describe('exclusive', () => {
@@ -113,7 +109,6 @@ describe('<ToggleButtonGroup />', () => {
           .at(0)
           .props().selected,
         true,
-        'should be selected',
       );
       assert.strictEqual(
         wrapper
@@ -121,7 +116,6 @@ describe('<ToggleButtonGroup />', () => {
           .at(1)
           .props().selected,
         false,
-        'should not be selected',
       );
     });
   });

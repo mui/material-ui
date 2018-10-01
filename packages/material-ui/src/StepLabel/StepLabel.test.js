@@ -59,6 +59,42 @@ describe('<StepLabel />', () => {
     });
   });
 
+  describe('prop: StepIconComponent', () => {
+    it('should render', () => {
+      const CustomizedIcon = () => <div />;
+      const wrapper = shallow(
+        <StepLabel
+          StepIconComponent={CustomizedIcon}
+          active
+          completed
+          StepIconProps={{ prop1: 'value1', prop2: 'value2' }}
+        >
+          Step One
+        </StepLabel>,
+      );
+      const stepIcon = wrapper.find(StepIcon);
+      assert.strictEqual(stepIcon.length, 0);
+
+      const customizedIcon = wrapper.find(CustomizedIcon);
+      assert.strictEqual(customizedIcon.length, 1);
+      const props = customizedIcon.props();
+      assert.strictEqual(props.prop1, 'value1');
+      assert.strictEqual(props.prop2, 'value2');
+      assert.strictEqual(props.completed, true);
+      assert.strictEqual(props.active, true);
+    });
+
+    it('should not render', () => {
+      const wrapper = shallow(
+        <StepLabel active completed>
+          Step One
+        </StepLabel>,
+      );
+      const stepIcon = wrapper.find(StepIcon);
+      assert.strictEqual(stepIcon.length, 0);
+    });
+  });
+
   describe('prop: active', () => {
     it('renders <Typography> with the className active', () => {
       const wrapper = shallow(<StepLabel active>Step One</StepLabel>);
@@ -73,7 +109,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().active, true, 'should set active');
+      assert.strictEqual(stepIcon.props().active, true);
     });
 
     it('renders <Typography> without the className active', () => {
@@ -97,7 +133,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().completed, true, 'should set completed');
+      assert.strictEqual(stepIcon.props().completed, true);
     });
   });
 
@@ -115,7 +151,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().error, true, 'should set error');
+      assert.strictEqual(stepIcon.props().error, true);
     });
   });
 

@@ -1,6 +1,8 @@
-import NProgress from 'nprogress';
+import React from 'react';
 import PropTypes from 'prop-types';
+import NProgress from 'nprogress';
 import { withStyles } from '@material-ui/core/styles';
+import NoSsr from '@material-ui/core/NoSsr';
 import exactProp from '@material-ui/core/utils/exactProp';
 
 NProgress.configure({
@@ -76,20 +78,23 @@ const styles = theme => {
   };
 };
 
+const GlobalStyles = withStyles(styles, { flip: false })(() => null);
+
 /**
  * Elegant and ready to use wrapper on top of https://github.com/rstacruz/nprogress/.
- * The implementation is highly inspired by the YouTube version.
+ * The implementation is highly inspired by the YouTube one.
  */
 function NProgressBar(props) {
-  return props.children;
+  return (
+    <NoSsr>
+      {props.children}
+      <GlobalStyles />
+    </NoSsr>
+  );
 }
 
 NProgressBar.propTypes = {
   children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
 };
 
 NProgressBar.propTypes = exactProp(NProgressBar.propTypes, 'NProgressBar');
@@ -98,4 +103,4 @@ NProgressBar.defaultProps = {
   children: null,
 };
 
-export default withStyles(styles, { flip: false })(NProgressBar);
+export default NProgressBar;

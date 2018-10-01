@@ -10,6 +10,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   focused?: boolean;
   required?: boolean;
   shrink?: boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export type InputLabelClassKey =

@@ -49,7 +49,7 @@ describe('<Switch />', () => {
 
     it('should render the bar as the 2nd child', () => {
       const bar = wrapper.childAt(1);
-      assert.strictEqual(bar.is('span'), true);
+      assert.strictEqual(bar.name(), 'span');
       assert.strictEqual(bar.hasClass(classes.bar), true);
     });
   });

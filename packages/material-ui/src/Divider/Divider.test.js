@@ -24,16 +24,16 @@ describe('<Divider />', () => {
 
   it('should set the absolute class', () => {
     const wrapper = shallow(<Divider absolute />);
-    assert.strictEqual(wrapper.hasClass(classes.absolute), true, 'should be absolute');
+    assert.strictEqual(wrapper.hasClass(classes.absolute), true);
   });
 
   it('should set the inset class', () => {
     const wrapper = shallow(<Divider inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have inset class');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true);
   });
 
   it('should set the light class', () => {
     const wrapper = shallow(<Divider light />);
-    assert.strictEqual(wrapper.hasClass(classes.light), true, 'should have light class');
+    assert.strictEqual(wrapper.hasClass(classes.light), true);
   });
 });

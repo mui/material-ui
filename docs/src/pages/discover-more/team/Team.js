@@ -123,7 +123,9 @@ function Team(props) {
               </Grid>
               <Grid item>
                 <div className={classes.details}>
-                  <Typography variant="headline">{member.name}</Typography>
+                  <Typography component="h2" variant="headline">
+                    {member.name}
+                  </Typography>
                   <Typography variant="subheading" color="textSecondary">
                     {member.flag}
                   </Typography>

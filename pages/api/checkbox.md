@@ -7,7 +7,7 @@ title: Checkbox API
 
 # Checkbox
 
-<p class="description">The API documentation of the Checkbox React component.</p>
+<p class="description">The API documentation of the Checkbox React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Checkbox from '@material-ui/core/Checkbox';
@@ -52,15 +52,15 @@ This property accepts the following keys:
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Checkbox/Checkbox.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCheckbox`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls)
+- [Selection Controls](/demos/selection-controls/)
 

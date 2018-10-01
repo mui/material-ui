@@ -16,7 +16,7 @@ export const styles = theme => {
 
   const trackTransitions = theme.transitions.create(['width', 'height'], commonTransitionsOptions);
   const thumbCommonTransitions = theme.transitions.create(
-    ['width', 'height', 'left', 'top', 'box-shadow'],
+    ['width', 'height', 'left', 'right', 'top', 'box-shadow'],
     commonTransitionsOptions,
   );
   // no transition on the position
@@ -49,12 +49,6 @@ export const styles = theme => {
       },
       '&$vertical': {
         height: '100%',
-      },
-      '&$reverse': {
-        transform: 'scaleX(-1)',
-      },
-      '&$vertical$reverse': {
-        transform: 'scaleY(-1)',
       },
     },
     /* Styles applied to the container element. */
@@ -135,8 +129,6 @@ export const styles = theme => {
       height: 'inherit',
       width: 'inherit',
     },
-    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}`. */
-    reverse: {},
     /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
     disabled: {},
     /* Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`. */
@@ -182,7 +174,7 @@ function getMousePosition(event) {
   };
 }
 
-function calculatePercent(node, event, isVertical, isReverted) {
+function calculatePercent(node, event, isVertical, isRtl) {
   const { width, height } = node.getBoundingClientRect();
   const { top, left } = getOffset(node);
   const { x, y } = getMousePosition(event);
@@ -190,7 +182,7 @@ function calculatePercent(node, event, isVertical, isReverted) {
   const value = isVertical ? y - top : x - left;
   const onePercent = (isVertical ? height : width) / 100;
 
-  return isReverted ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
+  return isRtl && !isVertical ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
 }
 
 function preventPageScrolling(event) {
@@ -203,7 +195,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Slider extends React.Component {
-  state = { currentState: 'initial' };
+  state = {
+    currentState: 'initial',
+  };
 
   jumpAnimationTimeoutId = -1;
 
@@ -280,8 +274,8 @@ class Slider extends React.Component {
   };
 
   handleClick = event => {
-    const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, reverse);
+    const { min, max, vertical } = this.props;
+    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value, () => {
@@ -325,8 +319,8 @@ class Slider extends React.Component {
   };
 
   handleMouseMove = event => {
-    const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, reverse);
+    const { min, max, vertical } = this.props;
+    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value);
@@ -388,6 +382,10 @@ class Slider extends React.Component {
     });
   }
 
+  isReverted() {
+    return this.props.theme.direction === 'rtl';
+  }
+
   render() {
     const { currentState } = this.state;
     const {
@@ -401,7 +399,6 @@ class Slider extends React.Component {
       onChange,
       onDragEnd,
       onDragStart,
-      reverse,
       step,
       theme,
       value,
@@ -422,7 +419,6 @@ class Slider extends React.Component {
       classes.root,
       {
         [classes.vertical]: vertical,
-        [classes.reverse]: reverse,
         [classes.disabled]: disabled,
       },
       classNameProp,
@@ -441,7 +437,8 @@ class Slider extends React.Component {
     });
 
     const trackProperty = vertical ? 'height' : 'width';
-    const thumbProperty = vertical ? 'top' : 'left';
+    const horizontalMinimumPosition = theme.direction === 'ltr' ? 'left' : 'right';
+    const thumbProperty = vertical ? 'top' : horizontalMinimumPosition;
     const inlineTrackBeforeStyles = { [trackProperty]: this.calculateTrackBeforeStyles(percent) };
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
@@ -542,10 +539,6 @@ Slider.propTypes = {
    * Callback function that is fired when the slider has begun to move.
    */
   onDragStart: PropTypes.func,
-  /**
-   * If `true`, the slider will be reversed.
-   */
-  reverse: PropTypes.bool,
   /**
    * The granularity the slider can step through values.
    */

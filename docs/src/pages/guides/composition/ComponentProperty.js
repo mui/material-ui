@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -64,29 +65,33 @@ ListItemLink2.propTypes = {
 
 function ComponentProperty(props) {
   const { classes } = props;
+
+  // Use NoSsr to avoid SEO issues with the documentation website.
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
-      <div className={classes.root}>
-        <Route>
-          {({ location }) => (
-            <Typography gutterBottom type="title">
-              Current route: {location.pathname}
-            </Typography>
-          )}
-        </Route>
-        <div className={classes.lists}>
-          <List component="nav">
-            <ListItemLink1 to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink1 to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
-          </List>
-          <Divider />
-          <List component="nav">
-            <ListItemLink2 to="/trash" primary="Trash" />
-            <ListItemLink2 to="/spam" primary="Spam" />
-          </List>
+    <NoSsr>
+      <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+        <div className={classes.root}>
+          <Route>
+            {({ location }) => (
+              <Typography gutterBottom type="title">
+                Current route: {location.pathname}
+              </Typography>
+            )}
+          </Route>
+          <div className={classes.lists}>
+            <List component="nav">
+              <ListItemLink1 to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+              <ListItemLink1 to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            </List>
+            <Divider />
+            <List component="nav">
+              <ListItemLink2 to="/trash" primary="Trash" />
+              <ListItemLink2 to="/spam" primary="Spam" />
+            </List>
+          </div>
         </div>
-      </div>
-    </MemoryRouter>
+      </MemoryRouter>
+    </NoSsr>
   );
 }
 

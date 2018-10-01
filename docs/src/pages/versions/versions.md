@@ -21,7 +21,7 @@ We recognize that you need **stability** from the Material-UI library. Stability
 
 This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
+Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/).
 Material-UI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 

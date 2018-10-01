@@ -7,7 +7,7 @@ title: ButtonBase API
 
 # ButtonBase
 
-<p class="description">The API documentation of the ButtonBase React component.</p>
+<p class="description">The API documentation of the ButtonBase React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -50,15 +50,15 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">focusVisible</span> | Styles applied to the root element if keyboard focused.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ButtonBase/ButtonBase.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiButtonBase`.
 
 ## Demos
 
-- [Buttons](/demos/buttons)
+- [Buttons](/demos/buttons/)
 

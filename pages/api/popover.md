@@ -7,7 +7,7 @@ title: Popover API
 
 # Popover
 
-<p class="description">The API documentation of the Popover React component.</p>
+<p class="description">The API documentation of the Popover React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Popover from '@material-ui/core/Popover';
@@ -39,13 +39,13 @@ import Popover from '@material-ui/core/Popover';
 | <span class="prop-name">onExited</span> | <span class="prop-type">func |   | Callback fired when the component has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func |   | Callback fired when the component is exiting. |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool |   | If `true`, the popover is visible. |
-| <span class="prop-name">PaperProps</span> | <span class="prop-type">object |   | Properties applied to the [`Paper`](/api/paper) element. |
+| <span class="prop-name">PaperProps</span> | <span class="prop-type">object |   | Properties applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">transformOrigin</span> | <span class="prop-type">{ horizontal: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br> } | <span class="prop-default">{  vertical: 'top',  horizontal: 'left',}</span> | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">Grow</span> | Transition component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | Set to 'auto' to automatically calculate transition time based on height. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |   | Properties applied to the `Transition` element. |
 
-Any other properties supplied will be spread to the root element ([Modal](/api/modal)).
+Any other properties supplied will be spread to the root element ([Modal](/api/modal/)).
 
 ## CSS API
 
@@ -57,21 +57,21 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Popover/Popover.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiPopover`.
 
 ## Inheritance
 
-The properties of the [Modal](/api/modal) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [Modal](/api/modal/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Menus](/demos/menus)
-- [Popover](/utils/popover)
+- [Menus](/demos/menus/)
+- [Popover](/utils/popover/)
 

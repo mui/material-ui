@@ -33,14 +33,12 @@ const options = [
 ];
 
 class ConfirmationDialogRaw extends React.Component {
-  radioGroupRef = null;
-
   constructor(props) {
     super();
-    this.state.value = props.value;
+    this.state = {
+      value: props.value,
+    };
   }
-
-  state = {};
 
   // TODO
   componentWillReceiveProps(nextProps) {
@@ -124,8 +122,6 @@ const styles = theme => ({
 });
 
 class ConfirmationDialog extends React.Component {
-  button = null;
-
   state = {
     open: false,
     value: 'Dione',

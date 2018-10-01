@@ -31,8 +31,8 @@ describe('<ListItemIcon />', () => {
         <span className="bar" />
       </ListItemIcon>,
     );
-    assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
-    assert.strictEqual(wrapper.hasClass('bar'), true, 'should have the "bar" class');
+    assert.strictEqual(wrapper.hasClass('foo'), true);
+    assert.strictEqual(wrapper.hasClass('bar'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });
