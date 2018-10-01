@@ -138,7 +138,7 @@ function getVariant(theme, props, variant) {
 
   warning(
     typography.suppressDeprecationWarnings ||
-      props.suppressDeprecationWarnings ||
+      (props.internalDeprecatedVariant && typography.useNextVariants) ||
       !typographyMigration.deprecatedVariants.includes(variant),
     'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
       `${variant} that will be removed in the next major release. ${
@@ -154,7 +154,6 @@ function getVariant(theme, props, variant) {
   // v1 => restyle warnings
   warning(
     typography.suppressDeprecationWarnings ||
-      props.suppressDeprecationWarnings ||
       !typographyMigration.restyledVariants.includes(variant),
     'Deprecation Warning: Material-UI: You are using the typography variant ' +
       `${variant} which will be restyled in the next major release. ${
@@ -174,9 +173,9 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
+    internalDeprecatedVariant,
     noWrap,
     paragraph,
-    suppressDeprecationWarnings,
     theme,
     variant: variantProp,
     ...other
@@ -248,6 +247,13 @@ Typography.propTypes = {
    */
   headlineMapping: PropTypes.object,
   /**
+   * A deprecated variant is used from an internal component. Users don't need
+   * a deprecation warning here if they switched to the v2 theme. They already
+   * get the mapping that will be applied in the next major release.
+   * @internal
+   */
+  internalDeprecatedVariant: PropTypes.bool,
+  /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
   noWrap: PropTypes.bool,
@@ -255,10 +261,6 @@ Typography.propTypes = {
    * If `true`, the text will have a bottom margin.
    */
   paragraph: PropTypes.bool,
-  /**
-   * Suppress the deprecation warnings when using the old v1 variants.
-   */
-  suppressDeprecationWarnings: PropTypes.bool,
   /**
    * Applies the theme typography styles.
    */
@@ -315,7 +317,6 @@ Typography.defaultProps = {
   },
   noWrap: false,
   paragraph: false,
-  suppressDeprecationWarnings: false,
   variant: 'body1',
 };
 

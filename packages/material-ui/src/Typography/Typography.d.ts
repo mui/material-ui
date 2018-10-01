@@ -12,7 +12,6 @@ export interface TypographyProps
   gutterBottom?: boolean;
   headlineMapping?: { [type in Style]: string };
   noWrap?: boolean;
-  suppressDeprecationWarnings?: boolean;
   paragraph?: boolean;
   variant?: Style | 'inherit';
 }

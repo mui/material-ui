@@ -21,7 +21,7 @@ function DialogTitle(props) {
       {disableTypography ? (
         children
       ) : (
-        <Typography variant="title" suppressDeprecationWarnings>
+        <Typography variant="title" internalDeprecatedVariant>
           {children}
         </Typography>
       )}

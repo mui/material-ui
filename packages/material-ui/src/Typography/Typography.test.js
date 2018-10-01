@@ -158,25 +158,17 @@ describe('<Typography />', () => {
       const expectedWarning = expectDeprecation ? 'Deprecation Warning: Material-UI:' : undefined;
       warning.resetHistory();
 
-      try {
-        const theme = createMuiTheme({
-          typography: {
-            suppressDeprecationWarnings: false,
-          },
-        });
-        const wrapper = mount(<MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>);
-        wrapper.unmount();
+      const theme = createMuiTheme({
+        typography: {
+          suppressDeprecationWarnings: false,
+        },
+      });
+      const wrapper = mount(<MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>);
+      wrapper.unmount();
 
-        if (expectedWarning) {
-          assert.fail('got no error', `expected a warning to match '${expectedWarning}'`);
-        }
-      } catch (err) {
-        assert.strictEqual(
-          expectDeprecation,
-          true,
-          'expected no deprecation but got a warning anyway',
-        );
-        assert.strictEqual(warning.calledOnce, true);
+      assert.strictEqual(warning.calledOnce, expectDeprecation);
+
+      if (expectedWarning) {
         assert.include(warning.firstCall.args[0], expectedWarning);
       }
     };
@@ -187,6 +179,19 @@ describe('<Typography />', () => {
 
     it('warns on restyle variant usage', () => {
       testMount(<Typography variant="body1" />, true);
+    });
+
+    describe('prop: internalDeprecatedVariant', () => {
+      it('still warns if the user is on a v1 theme', () => {
+        testMount(<Typography internalDeprecatedVariant variant="headline" />, true);
+      });
+
+      it('suppresses warnings if the user is on a v2 theme', () => {
+        testMount(
+          <Typography internalDeprecatedVariant theme={v2Theme} variant="headline" />,
+          false,
+        );
+      });
     });
 
     describe('theme.typography.useNextVariants', () => {

@@ -60,7 +60,7 @@ function ListItemText(props, context) {
     primary = (
       <Typography
         variant="subheading"
-        suppressDeprecationWarnings
+        internalDeprecatedVariant
         className={classNames(classes.primary, { [classes.textDense]: dense })}
         component="span"
         {...primaryTypographyProps}
