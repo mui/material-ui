@@ -76,6 +76,7 @@ export const styles = theme => {
         transform: 'translate(-50%, 0)',
         left: '50%',
         top: 'initial',
+        bottom: 0,
         width: 2,
       },
     },
@@ -98,7 +99,7 @@ export const styles = theme => {
     thumb: {
       position: 'absolute',
       zIndex: 2,
-      transform: 'translate(-50%, -50%)',
+      transform: 'translate(-50%, +50%)',
       width: 12,
       height: 12,
       borderRadius: '50%',
@@ -152,10 +153,10 @@ function roundToStep(number, step) {
 
 function getOffset(node) {
   const { pageYOffset, pageXOffset } = global;
-  const { left, top } = node.getBoundingClientRect();
+  const { left, bottom } = node.getBoundingClientRect();
 
   return {
-    top: top + pageYOffset,
+    bottom: bottom + pageYOffset,
     left: left + pageXOffset,
   };
 }
@@ -176,10 +177,10 @@ function getMousePosition(event) {
 
 function calculatePercent(node, event, isVertical, isRtl) {
   const { width, height } = node.getBoundingClientRect();
-  const { top, left } = getOffset(node);
+  const { bottom, left } = getOffset(node);
   const { x, y } = getMousePosition(event);
 
-  const value = isVertical ? y - top : x - left;
+  const value = isVertical ? bottom - y : x - left;
   const onePercent = (isVertical ? height : width) / 100;
 
   return isRtl && !isVertical ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
@@ -438,7 +439,7 @@ class Slider extends React.Component {
 
     const trackProperty = vertical ? 'height' : 'width';
     const horizontalMinimumPosition = theme.direction === 'ltr' ? 'left' : 'right';
-    const thumbProperty = vertical ? 'top' : horizontalMinimumPosition;
+    const thumbProperty = vertical ? 'bottom' : horizontalMinimumPosition;
     const inlineTrackBeforeStyles = { [trackProperty]: this.calculateTrackBeforeStyles(percent) };
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
