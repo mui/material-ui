@@ -137,7 +137,7 @@ function Blog(props) {
           <Button size="small">Subscribe</Button>
           <Typography
             component="h2"
-            variant="h5"
+            variant="headline"
             color="inherit"
             align="center"
             noWrap
@@ -165,10 +165,10 @@ function Blog(props) {
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturedPostContent}>
-                  <Typography variant="h3" color="inherit" gutterBottom>
+                  <Typography variant="display2" color="inherit" gutterBottom>
                     Title of a longer featured blog post
                   </Typography>
-                  <Typography variant="h5" color="inherit" paragraph>
+                  <Typography variant="headline" color="inherit" paragraph>
                     Multiple lines of text that form the lede, informing new readers quickly and
                     efficiently about what&apos;s most interesting in this post&apos;s contents…
                   </Typography>
@@ -184,16 +184,16 @@ function Blog(props) {
                 <Card className={classes.card}>
                   <div className={classes.cardDetails}>
                     <CardContent>
-                      <Typography component="h2" variant="h5">
+                      <Typography component="h2" variant="headline">
                         {post.title}
                       </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
+                      <Typography variant="subheading" color="textSecondary">
                         {post.date}
                       </Typography>
-                      <Typography variant="subtitle1" paragraph>
+                      <Typography variant="subheading" paragraph>
                         {post.description}
                       </Typography>
-                      <Typography variant="subtitle1" color="primary">
+                      <Typography variant="subheading" color="primary">
                         Continue reading...
                       </Typography>
                     </CardContent>
@@ -213,7 +213,7 @@ function Blog(props) {
           <Grid container spacing={40} className={classes.mainGrid}>
             {/* Main content */}
             <Grid item xs={12} md={8}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="title" gutterBottom>
                 From the Firehose
               </Typography>
               <Divider />
@@ -227,7 +227,7 @@ function Blog(props) {
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
               <Paper elevation={0} className={classes.sidebarAboutBox}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="title" gutterBottom>
                   About
                 </Typography>
                 <Typography>
@@ -235,13 +235,13 @@ function Blog(props) {
                   amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
                 </Typography>
               </Paper>
-              <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+              <Typography variant="title" gutterBottom className={classes.sidebarSection}>
                 Archives
               </Typography>
               {archives.map(archive => (
                 <Typography key={archive}>{archive}</Typography>
               ))}
-              <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+              <Typography variant="title" gutterBottom className={classes.sidebarSection}>
                 Social
               </Typography>
               {social.map(network => (
@@ -254,10 +254,10 @@ function Blog(props) {
       </div>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
+        <Typography variant="title" align="center" gutterBottom>
           Footer
         </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <Typography variant="subheading" align="center" color="textSecondary" component="p">
           Something here to give the footer a purpose!
         </Typography>
       </footer>

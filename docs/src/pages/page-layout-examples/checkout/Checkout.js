@@ -98,14 +98,14 @@ class Checkout extends React.Component {
         <CssBaseline />
         <AppBar position="absolute" color="default" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography variant="title" color="inherit" noWrap>
               Company name
             </Typography>
           </Toolbar>
         </AppBar>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography variant="h4" align="center">
+            <Typography variant="display1" align="center">
               Checkout
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
@@ -118,10 +118,10 @@ class Checkout extends React.Component {
             <React.Fragment>
               {activeStep === steps.length ? (
                 <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
+                  <Typography variant="headline" gutterBottom>
                     Thank you for your order.
                   </Typography>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subheading">
                     Your order number is #2001539. We have emailed your order confirmation, and will
                     send you an update when your order has shipped.
                   </Typography>

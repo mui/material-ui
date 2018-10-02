@@ -104,7 +104,7 @@ function PageLayoutExamples(props) {
               target="_blank"
             />
             <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h5" align="left" component="h2">
+              <Typography gutterBottom variant="headline" align="left" component="h2">
                 {theme.name}
               </Typography>
               <Typography component="p">{theme.description}</Typography>
