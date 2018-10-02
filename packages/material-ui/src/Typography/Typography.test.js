@@ -218,4 +218,24 @@ describe('<Typography />', () => {
       });
     });
   });
+
+  describe('prop: headlineMapping', () => {
+    it('should work with a single value', () => {
+      const wrapper = shallow(
+        <Typography variant="title" headlineMapping={{ title: 'aside' }}>
+          Hello
+        </Typography>,
+      );
+      assert.strictEqual(wrapper.type(), 'aside');
+    });
+
+    it('should work event without the full mapping', () => {
+      const wrapper = shallow(
+        <Typography variant="title" headlineMapping={{}}>
+          Hello
+        </Typography>,
+      );
+      assert.strictEqual(wrapper.type(), 'h2');
+    });
+  });
 });

@@ -164,6 +164,27 @@ function getVariant(theme, props, variant) {
   return variant;
 }
 
+const defaultHeadlineMapping = {
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  subtitle1: 'h6',
+  subtitle2: 'h6',
+  body1: 'p',
+  body2: 'p',
+  // deprecated
+  display4: 'h1',
+  display3: 'h1',
+  display2: 'h1',
+  display1: 'h1',
+  headline: 'h1',
+  title: 'h2',
+  subheading: 'h3',
+};
+
 function Typography(props) {
   const {
     align,
@@ -195,7 +216,10 @@ function Typography(props) {
     classNameProp,
   );
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variantProp]) || 'span';
+  const Component =
+    componentProp ||
+    (paragraph ? 'p' : headlineMapping[variant] || defaultHeadlineMapping[variant]) ||
+    'span';
 
   return <Component className={className} {...other} />;
 }
@@ -242,8 +266,10 @@ Typography.propTypes = {
   gutterBottom: PropTypes.bool,
   /**
    * We are empirically mapping the variant property to a range of different DOM element types.
-   * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
+   * For instance, subtitle1 to `<h6>`.
+   * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
+   * The default mapping is the following:
    */
   headlineMapping: PropTypes.object,
   /**
@@ -295,26 +321,7 @@ Typography.defaultProps = {
   align: 'inherit',
   color: 'default',
   gutterBottom: false,
-  headlineMapping: {
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    h4: 'h4',
-    h5: 'h5',
-    h6: 'h6',
-    subtitle1: 'h6',
-    subtitle2: 'h6',
-    body1: 'p',
-    body2: 'p',
-    // deprecated
-    display4: 'h1',
-    display3: 'h1',
-    display2: 'h1',
-    display1: 'h1',
-    headline: 'h1',
-    title: 'h2',
-    subheading: 'h3',
-  },
+  headlineMapping: defaultHeadlineMapping,
   noWrap: false,
   paragraph: false,
   variant: 'body1',
