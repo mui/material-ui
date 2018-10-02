@@ -26,19 +26,19 @@ function DeprecatedTypes(props) {
   return (
     <MuiThemeProvider theme={typographyV1Theme}>
       <div className={classes.root}>
-        <Typography variant="display4" gutterBottom>
+        <Typography component="h2" variant="display4" gutterBottom>
           Display 4
         </Typography>
-        <Typography variant="display3" gutterBottom>
+        <Typography component="h2" variant="display3" gutterBottom>
           Display 3
         </Typography>
-        <Typography variant="display2" gutterBottom>
+        <Typography component="h2" variant="display2" gutterBottom>
           Display 2
         </Typography>
-        <Typography variant="display1" gutterBottom>
+        <Typography component="h2" variant="display1" gutterBottom>
           Display 1
         </Typography>
-        <Typography variant="headline" gutterBottom>
+        <Typography component="h2" variant="headline" gutterBottom>
           Headline
         </Typography>
         <Typography variant="title" gutterBottom>
