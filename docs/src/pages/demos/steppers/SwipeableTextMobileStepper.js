@@ -87,7 +87,7 @@ class SwipeableTextMobileStepper extends React.Component {
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
-          <Typography>{tutorialSteps[activeStep].label}</Typography>
+          <Typography variant="body2">{tutorialSteps[activeStep].label}</Typography>
         </Paper>
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -96,9 +96,9 @@ class SwipeableTextMobileStepper extends React.Component {
           enableMouseEvents
         >
           {tutorialSteps.map((step, index) => (
-            <div>
+            <div key={step.label}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <img key={step.label} className={classes.img} src={step.imgPath} alt={step.label} />
+                <img className={classes.img} src={step.imgPath} alt={step.label} />
               ) : null}
             </div>
           ))}

@@ -54,6 +54,7 @@ function StepConnector(props) {
     className: classNameProp,
     completed,
     disabled,
+    index,
     orientation,
     ...other
   } = props;
@@ -110,6 +111,10 @@ StepConnector.propTypes = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  index: PropTypes.number,
   /**
    * @ignore
    */
