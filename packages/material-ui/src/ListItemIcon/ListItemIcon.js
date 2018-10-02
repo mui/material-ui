@@ -18,10 +18,11 @@ export const styles = theme => ({
 function ListItemIcon(props) {
   const { children, classes, className: classNameProp, ...other } = props;
 
-  return React.cloneElement(children, {
-    className: classNames(classes.root, classNameProp, children.props.className),
-    ...other,
-  });
+  return (
+    <div className={classNames(classes.root, classNameProp)} {...other}>
+      {children}
+    </div>
+  );
 }
 
 ListItemIcon.propTypes = {
