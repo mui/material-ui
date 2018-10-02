@@ -2,8 +2,15 @@ const bpmr = require('babel-plugin-module-resolver');
 
 function resolvePath(sourcePath, currentFile, opts) {
   if (sourcePath === 'markdown') {
+    let projectRoot = currentFile.indexOf('material-ui') + 12;
+
+    // Netlify clones 'material-ui' to 'repo'
+    if (projectRoot === 11) {
+      projectRoot = 16;
+    }
+
     return `${__dirname}/docs/src/${currentFile
-      .slice(currentFile.indexOf('material-ui') + 12, -3)}/`;
+      .slice(projectRoot, -3)}/`;
   }
   return bpmr.resolvePath(sourcePath, currentFile, opts);
 }
