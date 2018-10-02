@@ -15,20 +15,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/SimpleSelect'), 'utf8')
 `,
         },
-        'pages/demos/selects/OutlinedSelects.js': {
-          js: require('docs/src/pages/demos/selects/OutlinedSelects').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/OutlinedSelects'), 'utf8')
-`,
-        },
-        'pages/demos/selects/FilledSelects.js': {
-          js: require('docs/src/pages/demos/selects/FilledSelects').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/FilledSelects'), 'utf8')
-`,
-        },
         'pages/demos/selects/NativeSelects.js': {
           js: require('docs/src/pages/demos/selects/NativeSelects').default,
           raw: preval`

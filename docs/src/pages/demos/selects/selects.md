@@ -13,18 +13,6 @@ Menus are positioned over their emitting elements such that the currently select
 
 {{"demo": "pages/demos/selects/SimpleSelect.js"}}
 
-## Outlined Select
-
-`Select` supports outlined styling.
-
-{{"demo": "pages/demos/selects/OutlinedSelects.js"}}
-
-## Filled Select
-
-`Select` supports filled styling.
-
-{{"demo": "pages/demos/selects/FilledSelects.js"}}
-
 ## Native Select
 
 As the user experience can be improved on mobile using the native select of the platform,
