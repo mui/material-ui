@@ -9,6 +9,7 @@ export const styles = theme => ({
     marginRight: 16,
     color: theme.palette.action.active,
     flexShrink: 0,
+    display: 'flex',
   },
 });
 
