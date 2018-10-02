@@ -17,6 +17,7 @@ export interface ListItemProps
   disableGutters?: boolean;
   divider?: boolean;
   focusVisibleClassName?: string;
+  href?: string;
   selected?: boolean;
 }
 
