@@ -14,7 +14,7 @@ function WithWidth(props) {
   const Component = components[width] || 'span';
 
   return (
-    <Typography variant="subheading">
+    <Typography variant="subtitle1">
       <Component>{`Current width: ${width}`}</Component>
     </Typography>
   );

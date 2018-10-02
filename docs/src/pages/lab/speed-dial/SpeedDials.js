@@ -1,7 +1,13 @@
+import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Switch from '@material-ui/core/Switch';
+import { capitalize } from '@material-ui/core/utils/helpers';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -13,13 +19,33 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
   root: {
+    width: '100%',
+  },
+  controls: {
+    margin: theme.spacing.unit * 3,
+  },
+  exampleWrapper: {
+    position: 'relative',
     height: 380,
+  },
+  radioGroup: {
+    margin: `${theme.spacing.unit}px 0`,
   },
   speedDial: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3,
+    '&$directionUp, &$directionLeft': {
+      bottom: theme.spacing.unit * 2,
+      right: theme.spacing.unit * 3,
+    },
+    '&$directionDown, &$directionRight': {
+      top: theme.spacing.unit * 2,
+      left: theme.spacing.unit * 3,
+    },
   },
+  directionUp: {},
+  directionRight: {},
+  directionDown: {},
+  directionLeft: {},
 });
 
 const actions = [
@@ -32,15 +58,9 @@ const actions = [
 
 class SpeedDials extends React.Component {
   state = {
+    direction: 'up',
     open: false,
     hidden: false,
-  };
-
-  handleVisibility = () => {
-    this.setState(state => ({
-      open: false,
-      hidden: !state.hidden,
-    }));
   };
 
   handleClick = () => {
@@ -49,49 +69,91 @@ class SpeedDials extends React.Component {
     }));
   };
 
-  handleOpen = () => {
-    if (!this.state.hidden) {
-      this.setState({
-        open: true,
-      });
-    }
+  handleDirectionChange = (event, value) => {
+    this.setState({
+      direction: value,
+    });
+  };
+
+  handleHiddenChange = (event, hidden) => {
+    this.setState(state => ({
+      hidden,
+      // hidden implies !open
+      open: hidden ? false : state.open,
+    }));
   };
 
   handleClose = () => {
-    this.setState({
-      open: false,
-    });
+    this.setState({ open: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
   };
 
   render() {
     const { classes } = this.props;
-    const { hidden, open } = this.state;
+    const { direction, hidden, open } = this.state;
+
+    const speedDialClassName = classNames(
+      classes.speedDial,
+      classes[`direction${capitalize(direction)}`],
+    );
 
     return (
       <div className={classes.root}>
-        <Button onClick={this.handleVisibility}>Toggle Speed Dial</Button>
-        <SpeedDial
-          ariaLabel="SpeedDial example"
-          className={classes.speedDial}
-          hidden={hidden}
-          icon={<SpeedDialIcon />}
-          onBlur={this.handleClose}
-          onClick={this.handleClick}
-          onClose={this.handleClose}
-          onFocus={this.handleOpen}
-          onMouseEnter={this.handleOpen}
-          onMouseLeave={this.handleClose}
-          open={open}
-        >
-          {actions.map(action => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={this.handleClick}
-            />
-          ))}
-        </SpeedDial>
+        <div className={classes.controls}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={hidden}
+                onChange={this.handleHiddenChange}
+                value="hidden"
+                color="primary"
+              />
+            }
+            label="Hidden"
+          />
+          <FormLabel component="legend">Direction</FormLabel>
+          <RadioGroup
+            aria-label="Direction"
+            name="direction"
+            className={classes.radioGroup}
+            value={direction}
+            onChange={this.handleDirectionChange}
+            row
+          >
+            <FormControlLabel value="up" control={<Radio />} label="Up" />
+            <FormControlLabel value="right" control={<Radio />} label="Right" />
+            <FormControlLabel value="down" control={<Radio />} label="Down" />
+            <FormControlLabel value="left" control={<Radio />} label="Left" />
+          </RadioGroup>
+        </div>
+        <div className={classes.exampleWrapper}>
+          <SpeedDial
+            ariaLabel="SpeedDial example"
+            className={speedDialClassName}
+            hidden={hidden}
+            icon={<SpeedDialIcon />}
+            onBlur={this.handleClose}
+            onClick={this.handleClick}
+            onClose={this.handleClose}
+            onFocus={this.handleOpen}
+            onMouseEnter={this.handleOpen}
+            onMouseLeave={this.handleClose}
+            open={open}
+            direction={direction}
+          >
+            {actions.map(action => (
+              <SpeedDialAction
+                key={action.name}
+                icon={action.icon}
+                tooltipTitle={action.name}
+                onClick={this.handleClick}
+              />
+            ))}
+          </SpeedDial>
+        </div>
       </div>
     );
   }

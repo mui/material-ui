@@ -5,16 +5,16 @@ import { deepOrange, green } from '../colors';
 describe('createMuiTheme', () => {
   it('should have a palette', () => {
     const muiTheme = createMuiTheme();
-    assert.strictEqual(typeof createMuiTheme, 'function', 'should be a function');
-    assert.ok(muiTheme.palette, 'should have a palette');
+    assert.strictEqual(typeof createMuiTheme, 'function');
+    assert.strictEqual(typeof muiTheme.palette, 'object');
   });
 
   it('should have the custom palette', () => {
     const muiTheme = createMuiTheme({
       palette: { primary: { main: deepOrange[500] }, secondary: { main: green.A400 } },
     });
-    assert.strictEqual(muiTheme.palette.primary.main, deepOrange[500], 'should have a palette');
-    assert.strictEqual(muiTheme.palette.secondary.main, green.A400, 'should have a palette');
+    assert.strictEqual(muiTheme.palette.primary.main, deepOrange[500]);
+    assert.strictEqual(muiTheme.palette.secondary.main, green.A400);
   });
 
   it('should allow providing a partial structure', () => {

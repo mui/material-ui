@@ -54,6 +54,7 @@ module.exports = function setKarmaConfig(config) {
         new webpack.DefinePlugin({
           'process.env': {
             NODE_ENV: JSON.stringify('test'),
+            MUI_SUPPRESS_DEPRECATION_WARNINGS: JSON.stringify('true'),
           },
         }),
       ],

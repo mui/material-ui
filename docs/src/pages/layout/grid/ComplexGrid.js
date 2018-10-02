@@ -37,7 +37,7 @@ function ComplexGrid(props) {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={16}>
             <Grid item xs>
-              <Typography gutterBottom variant="subheading">
+              <Typography gutterBottom variant="subtitle1">
                 Standard license
               </Typography>
               <Typography gutterBottom>Full resolution 1920x1080 • JPEG</Typography>
@@ -48,7 +48,7 @@ function ComplexGrid(props) {
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subheading">$19.00</Typography>
+            <Typography variant="subtitle1">$19.00</Typography>
           </Grid>
         </Grid>
       </Grid>

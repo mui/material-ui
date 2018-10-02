@@ -31,7 +31,7 @@ You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing th
 Then, you can import it in your entry-point.
 
 ```js
-import 'typeface-roboto'
+import 'typeface-roboto';
 ```
 For more info check out the [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) project.
 
@@ -44,9 +44,64 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 
 {{"demo": "pages/style/typography/Types.js"}}
 
+### Deprecated variants
+
+{{"demo": "pages/style/typography/DeprecatedTypes.js"}}
+
 ## Theme
 
 In some situations you might not be able to use the `Typography` component.
 Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
+
+## Migration to typography v2
+
+The material design specification changed concerning variant names and styles. To allow
+a smooth transition we kept old variants and restyled variants for backwards compatibility
+but will log deprecation warnings. We will remove the old variants with our next
+major release.
+
+### Strategies
+
+To make an immediate switch to typography v2 you can simply pass `useNextVariants: true` when
+calling `createMuiTheme`:
+```js
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
+```
+
+This will use new variants instead of old variants according to the following mapping:
+```json
+display4 => h1
+display3 => h2
+display2 => h3
+display1 => h4
+headline => h5
+title => h6
+subheading => subtitle1
+```
+Please note that this will still log deprecation warnings if you use one of the variants.
+We recommend you replace those old variants with the recommended variants to be prepared
+for the next major release.
+
+See [Themes](/customization/themes/) for more information about how to use a global theme.
+
+### Deprecation warnings for v4.0.0
+
+Deprecation warnings are logged when:
+- `NODE_ENV` is not strictly equal to `production`
+- Regardless of whether you directly use the `Typography` component with a deprecated variant or another component
+  has a `Typography` component with a deprecated variant
+- You override the style of a deprecated variant with `createMuiTheme`
+- You override the style of a restyled variant without `useNextVariants` with `createMuiTheme`
+- Variants are considered deprecated if:
+  - They will be removed in the next major release. This includes: display4, display3, display2, display1, headline, title, subheading
+  - They will be restyled and `useNextVariants` is falsy. This includes: body2, body1, caption, button
+
+In some cases the deprecation warnings can break your test suite which might be inconvenient.
+In those cases you can set the environment variable `MUI_SUPPRESS_DEPRECATION_WARNINGS` to a truthy value.
+Passing `suppressDeprecationWarnings: true` to the typography options in `createMuiTheme` is equivalent.

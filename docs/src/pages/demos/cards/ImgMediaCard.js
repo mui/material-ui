@@ -33,7 +33,7 @@ function ImgMediaCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
+          <Typography gutterBottom variant="h5" component="h2">
             Lizard
           </Typography>
           <Typography component="p">
