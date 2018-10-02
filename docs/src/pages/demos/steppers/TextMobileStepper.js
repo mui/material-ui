@@ -82,7 +82,7 @@ class TextMobileStepper extends React.Component {
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
-          <Typography>{tutorialSteps[activeStep].label}</Typography>
+          <Typography variant="body2">{tutorialSteps[activeStep].label}</Typography>
         </Paper>
         <img
           className={classes.img}

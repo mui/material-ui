@@ -54,6 +54,7 @@ function StepConnector(props) {
     className: classNameProp,
     completed,
     disabled,
+    index,
     orientation,
     ...other
   } = props;
