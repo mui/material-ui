@@ -61,10 +61,10 @@ class Index extends React.Component<ProvidedProps & Props, State> {
             </Button>
           </DialogActions>
         </Dialog>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="display1" gutterBottom>
           Material-UI
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="subheading" gutterBottom>
           example project
         </Typography>
         <Button variant="contained" color="secondary" onClick={this.handleClick}>
