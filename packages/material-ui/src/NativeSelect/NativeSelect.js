@@ -47,6 +47,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Input` component if `variant="filled"`. */
   filled: {
+    padding: '27px 12px 10px',
     width: 'calc(100% - 44px)',
   },
   /* Styles applied to the `Input` component if `variant="outlined"`. */
