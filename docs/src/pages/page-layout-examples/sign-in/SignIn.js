@@ -56,7 +56,7 @@ function SignIn(props) {
           <Avatar className={classes.avatar}>
             <LockIcon />
           </Avatar>
-          <Typography variant="h5">Sign in</Typography>
+          <Typography variant="headline">Sign in</Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>

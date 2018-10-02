@@ -73,7 +73,7 @@ function Album(props) {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="title" color="inherit" noWrap>
             Album layout
           </Typography>
         </Toolbar>
@@ -82,10 +82,10 @@ function Album(props) {
         {/* Hero unit */}
         <div className={classes.heroUnit}>
           <div className={classes.heroContent}>
-            <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
               Album layout
             </Typography>
-            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+            <Typography variant="title" align="center" color="textSecondary" paragraph>
               Something short and leading about the collection below—its contents, the creator, etc.
               Make it short and sweet, but not too short so folks don&apos;t simply skip over it
               entirely.
@@ -118,7 +118,7 @@ function Album(props) {
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="headline" component="h2">
                       Heading
                     </Typography>
                     <Typography>
@@ -141,10 +141,10 @@ function Album(props) {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
+        <Typography variant="title" align="center" gutterBottom>
           Footer
         </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <Typography variant="subheading" align="center" color="textSecondary" component="p">
           Something here to give the footer a purpose!
         </Typography>
       </footer>

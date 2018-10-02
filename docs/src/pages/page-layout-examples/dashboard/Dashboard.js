@@ -92,9 +92,6 @@ const styles = theme => ({
   tableContainer: {
     height: 320,
   },
-  h5: {
-    marginBottom: theme.spacing.unit * 2,
-  },
 });
 
 class Dashboard extends React.Component {
@@ -135,7 +132,7 @@ class Dashboard extends React.Component {
               </IconButton>
               <Typography
                 component="h1"
-                variant="h6"
+                variant="title"
                 color="inherit"
                 noWrap
                 className={classes.title}
@@ -168,13 +165,13 @@ class Dashboard extends React.Component {
           </Drawer>
           <main className={classes.content}>
             <div className={classes.appBarSpacer} />
-            <Typography variant="h4" gutterBottom component="h2">
+            <Typography variant="display1" gutterBottom component="h2">
               Orders
             </Typography>
             <Typography component="div" className={classes.chartContainer}>
               <SimpleLineChart />
             </Typography>
-            <Typography variant="h4" gutterBottom component="h2">
+            <Typography variant="display1" gutterBottom component="h2">
               Products
             </Typography>
             <div className={classes.tableContainer}>
