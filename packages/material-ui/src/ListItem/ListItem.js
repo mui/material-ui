@@ -124,7 +124,7 @@ class ListItem extends React.Component {
     let Component = componentProp || 'li';
 
     if (button || href) {
-      componentProps.component = componentProp || href ? 'a' : 'div';
+      componentProps.component = componentProp || (href ? 'a' : 'div');
       componentProps.focusVisibleClassName = classNames(
         classes.focusVisible,
         focusVisibleClassName,
