@@ -10,6 +10,7 @@ export interface StepConnectorProps
   alternativeLabel?: boolean;
   completed?: boolean;
   disabled?: boolean;
+  index?: number;
   orientation?: Orientation;
 }
 

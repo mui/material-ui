@@ -113,6 +113,10 @@ StepConnector.propTypes = {
   /**
    * @ignore
    */
+  index: PropTypes.number,
+  /**
+   * @ignore
+   */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 

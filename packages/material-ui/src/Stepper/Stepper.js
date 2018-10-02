@@ -83,6 +83,7 @@ function Stepper(props) {
         index > 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
+          index,
           ...state,
         }),
       React.cloneElement(step, { ...controlProps, ...step.props, ...state }),
