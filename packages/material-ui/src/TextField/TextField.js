@@ -105,7 +105,7 @@ class TextField extends React.Component {
         InputMore.notched = InputLabelProps.shrink;
       }
 
-      InputMore.labelWidth = this.labelNode ? this.labelNode.offsetWidth : 0;
+      InputMore.labelWidth = (this.labelNode && this.labelNode.offsetWidth) || 0;
     }
 
     const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
