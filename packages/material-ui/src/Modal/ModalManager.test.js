@@ -169,7 +169,7 @@ describe('ModalManager', () => {
       modalManager.add(modal3, container2);
       assert.strictEqual(mountNode2.getAttribute('aria-hidden'), 'true');
       modalManager.remove(modal3, container2);
-      assert.strictEqual(mountNode2.getAttribute('aria-hidden'), null);
+      assert.strictEqual(mountNode2.getAttribute('aria-hidden'), 'false');
     });
 
     it('should remove aria-hidden on siblings', () => {
@@ -178,7 +178,7 @@ describe('ModalManager', () => {
       modalManager.add(modal, container2);
       assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'true');
       modalManager.remove(modal, container2);
-      assert.strictEqual(mountNode1.getAttribute('aria-hidden'), null);
+      assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'false');
     });
   });
 });

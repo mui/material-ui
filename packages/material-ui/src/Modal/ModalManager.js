@@ -93,6 +93,7 @@ class ModalManager {
     modalIdx = this.modals.length;
     this.modals.push(modal);
 
+    ariaHidden(false, modal.modalRef);
     if (this.hideSiblingNodes) {
       hideSiblings(container, modal.mountNode, modal.modalRef);
     }
@@ -139,6 +140,7 @@ class ModalManager {
         removeContainerStyle(data, container);
       }
 
+      ariaHidden(true, modal.modalRef);
       if (this.hideSiblingNodes) {
         showSiblings(container, modal.mountNode, modal.modalRef);
       }
