@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/selects/selects.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./selects-${props.lang}.md`)}
       demos={{
         'pages/demos/selects/SimpleSelect.js': {
           js: require('docs/src/pages/demos/selects/SimpleSelect').default,

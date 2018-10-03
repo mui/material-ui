@@ -13,25 +13,25 @@ const [main] = fs.readdirSync(dirname).reduce((result, filename) => {
 
 module.exports = [
   {
-    name: 'The initial cost people pay for using one component',
+    name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
     limit: '18.2 KB',
   },
   {
-    name: 'The size of all the modules of material-ui.',
+    name: 'The size of all the material-ui modules.',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
     limit: '92.5 KB',
   },
   {
-    name: 'The main bundle of the docs',
+    name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '177 KB',
+    limit: '179 KB',
   },
   {
-    name: 'The home page of the docs',
+    name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
     limit: '6 KB',

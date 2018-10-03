@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/selection-controls/selection-controls.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./selection-controls-${props.lang}.md`)}
       demos={{
         'pages/demos/selection-controls/Checkboxes.js': {
           js: require('docs/src/pages/demos/selection-controls/Checkboxes').default,

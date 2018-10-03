@@ -1,10 +1,11 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/migration-v0x/migration-v0x.md';
 
-function Page() {
-  return <MarkdownDocs markdown={markdown} />;
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
+  return <MarkdownDocs markdown={req(`./migration-v0x-${props.lang}.md`)} />;
 }
 
 export default withRoot(Page);

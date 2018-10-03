@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/style/color/color.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./color-${props.lang}.md`)}
       demos={{
         'pages/style/color/Color.js': {
           js: require('docs/src/pages/style/color/Color').default,

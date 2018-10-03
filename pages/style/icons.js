@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/style/icons/icons.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./icons-${props.lang}.md`)}
       demos={{
         'pages/style/icons/SvgIcons.js': {
           js: require('docs/src/pages/style/icons/SvgIcons').default,

@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/lab/speed-dial/speed-dial.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./speed-dial-${props.lang}.md`)}
       demos={{
         'pages/lab/speed-dial/SpeedDials.js': {
           js: require('docs/src/pages/lab/speed-dial/SpeedDials').default,

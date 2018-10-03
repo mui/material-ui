@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/customization/css-in-js/css-in-js.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./css-in-js-${props.lang}.md`)}
       demos={{
         'pages/customization/css-in-js/CssInJs.js': {
           js: require('docs/src/pages/customization/css-in-js/CssInJs').default,

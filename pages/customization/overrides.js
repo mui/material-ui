@@ -3,12 +3,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/customization/overrides/overrides.md';
 
-function Page() {
+const req = require.context('markdown', true, /\.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./overrides-${props.lang}.md`)}
       demos={{
         'pages/customization/overrides/ClassNames.js': {
           js: require('docs/src/pages/customization/overrides/ClassNames').default,

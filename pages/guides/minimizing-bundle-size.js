@@ -1,10 +1,11 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/minimizing-bundle-size/minimizing-bundle-size.md';
 
-function Page() {
-  return <MarkdownDocs markdown={markdown} />;
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
+  return <MarkdownDocs markdown={req(`./minimizing-bundle-size-${props.lang}.md`)} />;
 }
 
 export default withRoot(Page);

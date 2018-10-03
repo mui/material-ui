@@ -7,6 +7,9 @@ import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import acceptLanguage from 'accept-language';
+
+acceptLanguage.languages(['en', 'zh']);
 
 if (process.browser) {
   loadCSS(
@@ -279,6 +282,10 @@ function withRoot(Component) {
       this.redux = initRedux(props.reduxServerState || {});
     }
 
+    state = {
+      userLanguage: 'en',
+    };
+
     getChildContext() {
       const { router } = this.props;
 
@@ -296,13 +303,17 @@ function withRoot(Component) {
       };
     }
 
+    componentDidMount() {
+      this.setState({ userLanguage: acceptLanguage.get(navigator.language) || 'en' });
+    }
+
     render() {
       const { pageContext, ...other } = this.props;
       return (
         <React.StrictMode>
           <Provider store={this.redux}>
             <AppWrapper pageContext={pageContext}>
-              <Component initialProps={other} />
+              <Component initialProps={other} lang={this.state.userLanguage} />
             </AppWrapper>
           </Provider>
         </React.StrictMode>
