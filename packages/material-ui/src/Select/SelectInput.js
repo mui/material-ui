@@ -147,6 +147,9 @@ class SelectInput extends React.Component {
       node: ref,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
+      focus: () => {
+        this.displayRef.focus();
+      },
     };
 
     setRef(inputRef, nodeProxy);
