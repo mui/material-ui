@@ -14,7 +14,8 @@ export const styles = theme => {
     easing: theme.transitions.easing.easeOut,
   };
 
-  const commonTransitions = theme.transitions.create(
+  const trackTransitions = theme.transitions.create(['width', 'height'], commonTransitionsOptions);
+  const thumbCommonTransitions = theme.transitions.create(
     ['width', 'height', 'left', 'right', 'top', 'box-shadow'],
     commonTransitionsOptions,
   );
@@ -27,14 +28,20 @@ export const styles = theme => {
   const colors = {
     primary: theme.palette.primary.main,
     disabled: theme.palette.grey[400],
+    thumbOutline: fade(theme.palette.primary.main, 0.16),
   };
+
+  /**
+   * radius of the box-shadow when pressed
+   * hover should have a diameter equal to the pressed radius
+   */
+  const pressedOutlineRadius = 9;
 
   return {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
       width: '100%',
-      padding: '16px 8px',
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
@@ -42,7 +49,6 @@ export const styles = theme => {
       },
       '&$vertical': {
         height: '100%',
-        padding: '8px 16px',
       },
     },
     /* Styles applied to the container element. */
@@ -64,6 +70,7 @@ export const styles = theme => {
       },
       '&$disabled': {
         backgroundColor: colors.disabled,
+        boxShadow: 'none',
       },
       '&$vertical': {
         transform: 'translate(-50%, 0)',
@@ -76,13 +83,13 @@ export const styles = theme => {
     trackBefore: {
       zIndex: 1,
       left: 0,
-      transition: commonTransitions,
+      transition: trackTransitions,
     },
     /* Styles applied to the track element after the thumb. */
     trackAfter: {
       right: 0,
       opacity: 0.24,
-      transition: commonTransitions,
+      transition: trackTransitions,
       '&$vertical': {
         bottom: 0,
       },
@@ -95,14 +102,13 @@ export const styles = theme => {
       width: 12,
       height: 12,
       borderRadius: '50%',
-      transition: commonTransitions,
+      transition: thumbCommonTransitions,
       backgroundColor: colors.primary,
-      '&$focused': {
-        boxShadow: `0px 0px 0px 9px ${fade(colors.primary, 0.16)}`,
+      '&$focused, &:hover': {
+        boxShadow: `0px 0px 0px ${pressedOutlineRadius}px ${colors.thumbOutline}`,
       },
       '&$activated': {
-        width: 17,
-        height: 17,
+        boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
         transition: thumbActivatedTransitions,
       },
       '&$disabled': {
@@ -112,8 +118,7 @@ export const styles = theme => {
         backgroundColor: colors.disabled,
       },
       '&$jumped': {
-        width: 17,
-        height: 17,
+        boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
       },
     },
     /* Class applied to the thumb element if custom thumb icon provided. */

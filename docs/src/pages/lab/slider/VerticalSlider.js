@@ -8,6 +8,9 @@ const styles = {
     display: 'flex',
     height: 300,
   },
+  slider: {
+    padding: '0px 22px',
+  },
 };
 
 class VerticalSlider extends React.Component {

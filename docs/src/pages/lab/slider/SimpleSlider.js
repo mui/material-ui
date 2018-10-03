@@ -8,6 +8,9 @@ const styles = {
   root: {
     width: 300,
   },
+  slider: {
+    padding: '22px 0px',
+  },
 };
 
 class SimpleSlider extends React.Component {
@@ -26,7 +29,12 @@ class SimpleSlider extends React.Component {
     return (
       <div className={classes.root}>
         <Typography id="label">Slider label</Typography>
-        <Slider value={value} aria-labelledby="label" onChange={this.handleChange} />
+        <Slider
+          className={classes.slider}
+          value={value}
+          aria-labelledby="label"
+          onChange={this.handleChange}
+        />
       </div>
     );
   }
