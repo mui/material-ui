@@ -366,7 +366,7 @@ describe('<SelectInput />', () => {
       const onFocus = spy();
       mount(<SelectInput {...defaultProps} inputRef={ref} onFocus={onFocus} />);
       ref.current.focus();
-      assert.isOk(onFocus.called);
+      assert.strictEqual(onFocus.called, true);
     });
   });
 });
