@@ -354,5 +354,11 @@ describe('<SelectInput />', () => {
       mount(<SelectInput {...defaultProps} inputRef={ref} />);
       assert.strictEqual(ref.current.node.tagName, 'INPUT');
     });
+
+    it('should be able to return the input focus proxy function', () => {
+      const ref = React.createRef();
+      mount(<SelectInput {...defaultProps} inputRef={ref} />);
+      assert.strictEqual(typeof ref.current.focus, 'function');
+    });
   });
 });
