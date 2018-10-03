@@ -16,7 +16,7 @@ export const styles = theme => {
 
   const trackTransitions = theme.transitions.create(['width', 'height'], commonTransitionsOptions);
   const thumbCommonTransitions = theme.transitions.create(
-    ['width', 'height', 'left', 'right', 'top', 'box-shadow'],
+    ['width', 'height', 'left', 'right', 'bottom', 'box-shadow'],
     commonTransitionsOptions,
   );
   // no transition on the position
