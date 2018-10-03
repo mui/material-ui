@@ -99,7 +99,7 @@ export const styles = theme => {
     thumb: {
       position: 'absolute',
       zIndex: 2,
-      transform: 'translate(-50%, +50%)',
+      transform: 'translate(-50%, -50%)',
       width: 12,
       height: 12,
       borderRadius: '50%',
@@ -120,6 +120,9 @@ export const styles = theme => {
       },
       '&$jumped': {
         boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
+      },
+      '&$vertical': {
+        transform: 'translate(-50%, +50%)',
       },
     },
     /* Class applied to the thumb element if custom thumb icon provided. */
@@ -414,6 +417,7 @@ class Slider extends React.Component {
       [classes.jumped]: !disabled && currentState === 'jumped',
       [classes.focused]: !disabled && currentState === 'focused',
       [classes.activated]: !disabled && currentState === 'activated',
+      [classes.vertical]: vertical,
     };
 
     const className = classNames(
@@ -429,13 +433,8 @@ class Slider extends React.Component {
       [classes.vertical]: vertical,
     });
 
-    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses, {
-      [classes.vertical]: vertical,
-    });
-
-    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses, {
-      [classes.vertical]: vertical,
-    });
+    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
+    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
 
     const trackProperty = vertical ? 'height' : 'width';
     const horizontalMinimumPosition = theme.direction === 'ltr' ? 'left' : 'right';
