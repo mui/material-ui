@@ -32,7 +32,8 @@ const appList = [
   {
     title: 'SFR Presse',
     description:
-      '"SFR Presse" provides the best access to the french newspapers, magazines and real time streams, personalized for you.',
+      '"SFR Presse" provides the best access to the french newspapers, ' +
+      'magazines and real time streams, personalized for you.',
     image: '/static/images/showcase/sfrpresse.jpg',
     link: 'https://magazine-presse.sfr.fr/',
   },
