@@ -360,5 +360,13 @@ describe('<SelectInput />', () => {
       mount(<SelectInput {...defaultProps} inputRef={ref} />);
       assert.strictEqual(typeof ref.current.focus, 'function');
     });
+
+    it('should be able to hit proxy function', () => {
+      const ref = React.createRef();
+      const onFocus = spy();
+      mount(<SelectInput {...defaultProps} inputRef={ref} onFocus={onFocus} />);
+      ref.current.focus();
+      assert.isOk(onFocus.called);
+    });
   });
 });
