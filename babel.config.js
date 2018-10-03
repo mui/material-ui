@@ -9,8 +9,7 @@ function resolvePath(sourcePath, currentFile, opts) {
       projectRoot = 16;
     }
 
-    return `${__dirname}/docs/src/${currentFile
-      .slice(projectRoot, -3)}/`;
+    return `${__dirname}/docs/src/${currentFile.slice(projectRoot, -3)}/`;
   }
   return bpmr.resolvePath(sourcePath, currentFile, opts);
 }
@@ -90,10 +89,7 @@ module.exports = {
               modules: './modules',
               pages: './pages',
             },
-            transformFunctions: [
-              'require',
-              'require.context',
-            ],
+            transformFunctions: ['require', 'require.context'],
             resolvePath,
           },
         ],
@@ -114,10 +110,7 @@ module.exports = {
               modules: './modules',
               pages: './pages',
             },
-            transformFunctions: [
-              'require',
-              'require.context',
-            ],
+            transformFunctions: ['require', 'require.context'],
             resolvePath,
           },
         ],
