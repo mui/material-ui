@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
-import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
+import { isMuiElement, setRef } from '@material-ui/core/utils/reactHelpers';
 import * as utils from './utils';
 import clamp from '../utils/clamp';
 
@@ -258,9 +258,7 @@ class SpeedDial extends React.Component {
             {...ButtonProps}
             buttonRef={ref => {
               this.actions[0] = ref;
-              if (origDialButtonRef) {
-                origDialButtonRef(ref);
-              }
+              setRef(origDialButtonRef, ref);
             }}
           >
             {icon()}
