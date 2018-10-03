@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
-import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
+import { isMuiElement, setRef } from '@material-ui/core/utils/reactHelpers';
+import * as utils from './utils';
+import clamp from '../utils/clamp';
 
 const dialRadius = 32;
 const spacingActions = 16;
@@ -69,69 +70,93 @@ export const styles = {
 };
 
 class SpeedDial extends React.Component {
-  state = {
-    nextKey: null,
-    prevKey: null,
+  static initialNavigationState = {
+    /**
+     * an index in this.actions
+     */
+    focusedAction: 0,
+    /**
+     * pressing this key while the focus is on a child SpeedDialAction focuses
+     * the next SpeedDialAction.
+     * It is equal to the first arrow key pressed while focus is on the SpeedDial
+     * that is not orthogonal to the direction.
+     * @type {utils.ArrowKey?}
+     */
+    nextItemArrowKey: undefined,
   };
 
-  handleKeyDown = event => {
-    const actions = ReactDOM.findDOMNode(this.actionsRef);
-    const fab = ReactDOM.findDOMNode(this.fabRef);
+  static getDerivedStateFromProps(props, state) {
+    // actions were closed while navigation state was not reset
+    if (!props.open && state.nextItemArrowKey !== undefined) {
+      return SpeedDial.initialNavigationState;
+    }
+    return null;
+  }
+
+  /**
+   * refs to the Button that have an action associated to them in this SpeedDial
+   * [FAB, ...(SpeeDialActions > Button)]
+   * @type {HTMLButtonElement[]}
+   */
+  actions = [];
+
+  state = SpeedDial.initialNavigationState;
+
+  handleKeyboardNavigation = event => {
     const key = keycode(event);
-    const currentFocus = document.activeElement;
-    const { open, onClose, onKeyDown } = this.props;
-    const { nextKey, prevKey } = this.state;
+    const { direction, onKeyDown } = this.props;
+    const { focusedAction, nextItemArrowKey = key } = this.state;
 
-    const firstKeyPress = (key === 'up' || key === 'down') && nextKey == null;
-
-    if (key === 'up' || key === 'down') {
+    if (key === 'esc') {
+      this.closeActions(event, key);
+    } else if (utils.sameOrientation(key, direction)) {
       event.preventDefault();
+
+      const actionStep = key === nextItemArrowKey ? 1 : -1;
+
+      // stay within array indices
+      const nextAction = clamp(focusedAction + actionStep, 0, this.actions.length - 1);
+      const nextActionRef = this.actions[nextAction];
+      nextActionRef.focus();
+      this.setState({ focusedAction: nextAction, nextItemArrowKey });
     }
-    // If not actions, SpeedDial must be focused, so focus the first action.
-    if (currentFocus.parentElement.parentElement !== actions) {
-      if (open && (firstKeyPress || key === nextKey)) {
-        actions.firstChild.firstChild.focus();
 
-        // This determines which key focuses the next / previous action.
-        // For example, if a user presses down to select the first action
-        // (i.e. following DOM ordering rather than visual ordering),
-        // down will select the next action, and up the previous.
-        if (nextKey == null) {
-          this.setState({ nextKey: key });
-          this.setState({ prevKey: key === 'up' ? 'down' : 'up' });
-        }
-      }
-      // Select the previous action or SpeedDial
-    } else if (key === prevKey) {
-      event.preventDefault();
-      if (currentFocus.parentElement.previousElementSibling) {
-        currentFocus.parentElement.previousElementSibling.firstChild.focus();
-      } else {
-        fab.focus();
-      }
-      // Select the next action
-    } else if (key === nextKey) {
-      event.preventDefault();
-      if (currentFocus.parentElement.nextElementSibling) {
-        currentFocus.parentElement.nextElementSibling.firstChild.focus();
-      }
-      // Close the SpeedDial
-    } else if (key === 'esc') {
-      fab.focus();
-      if (onClose) {
-        onClose(event, key);
-      }
-    }
-    // Forward the event
     if (onKeyDown) {
       onKeyDown(event, key);
     }
   };
 
+  /**
+   * creates a ref callback for the Button in a SpeedDialAction
+   * Is called before the original ref callback for Button that was set in buttonProps
+   *
+   * @param dialActionIndex {number}
+   * @param origButtonRef {React.RefObject?}
+   */
+  createHandleSpeedDialActionButtonRef(dialActionIndex, origButtonRef) {
+    return ref => {
+      this.actions[dialActionIndex + 1] = ref;
+      if (origButtonRef) {
+        origButtonRef(ref);
+      }
+    };
+  }
+
+  closeActions(event, key) {
+    const { onClose } = this.props;
+
+    this.actions[0].focus();
+    this.setState(SpeedDial.initialNavigationState);
+
+    if (onClose) {
+      onClose(event, key);
+    }
+  }
+
   render() {
     const {
       ariaLabel,
-      ButtonProps,
+      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = {},
       children: childrenProp,
       classes,
       className: classNameProp,
@@ -152,11 +177,14 @@ class SpeedDial extends React.Component {
     // Filter the label for valid id characters.
     const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
 
+    const orientation = utils.getOrientation(direction);
+
     let totalValidChildren = 0;
     React.Children.forEach(childrenProp, child => {
       if (React.isValidElement(child)) totalValidChildren += 1;
     });
 
+    this.actions = [];
     let validChildCount = 0;
     const children = React.Children.map(childrenProp, child => {
       if (!React.isValidElement(child)) {
@@ -173,22 +201,27 @@ class SpeedDial extends React.Component {
 
       const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
       validChildCount += 1;
+
+      const { ButtonProps: { buttonRef: origButtonRef, ...ChildButtonProps } = {} } = child.props;
+      const NewChildButtonProps = {
+        ...ChildButtonProps,
+        buttonRef: this.createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
+      };
+
       return React.cloneElement(child, {
+        ButtonProps: NewChildButtonProps,
         delay,
+        onKeyDown: this.handleKeyboardNavigation,
         open,
-        onKeyDown: this.handleKeyDown,
         id: `${id}-item-${validChildCount}`,
       });
     });
 
     const icon = () => {
-      if (!React.isValidElement(iconProp)) {
-        return iconProp;
-      }
-      if (isMuiElement(iconProp, ['SpeedDialIcon'])) {
+      if (React.isValidElement(iconProp) && isMuiElement(iconProp, ['SpeedDialIcon'])) {
         return React.cloneElement(iconProp, { open });
       }
-      return icon;
+      return iconProp;
     };
 
     const actionsPlacementClass = {
@@ -215,17 +248,18 @@ class SpeedDial extends React.Component {
           <Button
             variant="fab"
             color="primary"
-            onKeyDown={this.handleKeyDown}
+            onKeyDown={this.handleKeyboardNavigation}
             aria-label={ariaLabel}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            ref={ref => {
-              this.fabRef = ref;
-            }}
             className={classes.fab}
             {...clickProp}
             {...ButtonProps}
+            buttonRef={ref => {
+              this.actions[0] = ref;
+              setRef(origDialButtonRef, ref);
+            }}
           >
             {icon()}
           </Button>
@@ -233,14 +267,12 @@ class SpeedDial extends React.Component {
         <div
           id={`${id}-actions`}
           role="menu"
+          aria-orientation={orientation}
           className={classNames(
             classes.actions,
             { [classes.actionsClosed]: !open },
             actionsPlacementClass,
           )}
-          ref={ref => {
-            this.actionsRef = ref;
-          }}
         >
           {children}
         </div>
