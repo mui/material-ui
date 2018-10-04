@@ -90,24 +90,6 @@ class HomePage extends React.Component {
     return (
       <AppFrame>
         <div className={classes.root}>
-          <script
-            type="application/ld+json"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "Material-UI",
-  "url": "https://material-ui.com",
-  "logo": "https://material-ui.com/static/brand.png",
-  "sameAs": [
-    "https://twitter.com/materialUI"
-  ]
-}
-            `,
-            }}
-          />
           <Head />
           <Tidelift />
           <div className={classes.hero}>
@@ -159,6 +141,26 @@ class HomePage extends React.Component {
           <HomeBackers />
           <HomeFooter />
         </div>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com",
+  "logo": "https://material-ui.com/static/brand.png",
+  "sameAs": [
+    "https://twitter.com/materialUI",
+    "https://github.com/mui-org/material-ui",
+    "https://opencollective.com/material-ui"
+  ]
+}
+          `,
+          }}
+        />
       </AppFrame>
     );
   }
