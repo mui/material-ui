@@ -1,2 +1,2 @@
-export { default } from './MenuList';
-export * from './MenuList';
+export { default } from '../../../material-ui/src/MenuList';
+export * from '../../../material-ui/src/MenuList';

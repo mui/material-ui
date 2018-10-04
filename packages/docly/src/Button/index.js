@@ -1,1 +1,1 @@
-export { default } from './Button';
+export { default } from '../../../material-ui/src/Button';

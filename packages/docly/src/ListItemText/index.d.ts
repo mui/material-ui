@@ -1,2 +1,2 @@
-export { default } from './ListItemText';
-export * from './ListItemText';
+export { default } from '../../../material-ui/src/ListItemText';
+export * from '../../../material-ui/src/ListItemText';

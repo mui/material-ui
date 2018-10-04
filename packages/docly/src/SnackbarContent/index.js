@@ -1,1 +1,1 @@
-export { default } from './SnackbarContent';
+export { default } from '../../../material-ui/src/SnackbarContent';

@@ -1,1 +1,1 @@
-export { default } from './Dialog';
+export { default } from '../../../material-ui/src/Dialog';

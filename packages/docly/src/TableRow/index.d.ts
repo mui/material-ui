@@ -1,2 +1,2 @@
-export { default } from './TableRow';
-export * from './TableRow';
+export { default } from '../../../material-ui/src/TableRow';
+export * from '../../../material-ui/src/TableRow';

@@ -1,1 +1,1 @@
-export { default } from './MobileStepper';
+export { default } from '../../../material-ui/src/MobileStepper';

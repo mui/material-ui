@@ -1,1 +1,1 @@
-export { default } from './TablePagination';
+export { default } from '../../../material-ui/src/TablePagination';

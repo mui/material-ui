@@ -1,8 +1,8 @@
-export { default as createGenerateClassName } from './createGenerateClassName';
-export { default as createMuiTheme, Theme, Direction } from './createMuiTheme';
-export { default as jssPreset } from './jssPreset';
-export { default as MuiThemeProvider } from './MuiThemeProvider';
-export { default as createStyles } from './createStyles';
+export { default as createGenerateClassName } from '../../../material-ui/src/createGenerateClassName';
+export { default as createMuiTheme, Theme, Direction } from '../../../material-ui/src/createMuiTheme';
+export { default as jssPreset } from '../../../material-ui/src/jssPreset';
+export { default as MuiThemeProvider } from '../../../material-ui/src/MuiThemeProvider';
+export { default as createStyles } from '../../../material-ui/src/createStyles';
 export {
   default as withStyles,
   WithStyles,
@@ -10,4 +10,4 @@ export {
   StyleRulesCallback,
   StyledComponentProps,
 } from './withStyles';
-export { default as withTheme, WithTheme } from './withTheme';
+export { default as withTheme, WithTheme } from '../../../material-ui/src/withTheme';

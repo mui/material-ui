@@ -1,2 +1,2 @@
-export { default } from './Menu';
-export * from './Menu';
+export { default } from '../../../material-ui/src/Menu';
+export * from '../../../material-ui/src/Menu';

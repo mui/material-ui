@@ -1,2 +1,2 @@
-export { default } from './Grid';
-export * from './Grid';
+export { default } from '../../../material-ui/src/Grid';
+export * from '../../../material-ui/src/Grid';

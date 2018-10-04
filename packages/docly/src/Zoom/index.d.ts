@@ -1,2 +1,2 @@
-export { default } from './Zoom';
-export * from './Zoom';
+export { default } from '../../../material-ui/src/Zoom';
+export * from '../../../material-ui/src/Zoom';

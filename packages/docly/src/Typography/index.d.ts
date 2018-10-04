@@ -1,2 +1,2 @@
-export { default } from './Typography';
-export * from './Typography';
+export { default } from '../../../material-ui/src/Typography';
+export * from '../../../material-ui/src/Typography';

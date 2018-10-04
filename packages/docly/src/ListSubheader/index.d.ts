@@ -1,2 +1,2 @@
-export { default } from './ListSubheader';
-export * from './ListSubheader';
+export { default } from '../../../material-ui/src/ListSubheader';
+export * from '../../../material-ui/src/ListSubheader';

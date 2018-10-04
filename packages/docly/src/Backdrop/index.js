@@ -1,1 +1,1 @@
-export { default } from './Backdrop';
+export { default } from '../../../material-ui/src/Backdrop';

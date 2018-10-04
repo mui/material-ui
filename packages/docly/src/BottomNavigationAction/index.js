@@ -1,1 +1,1 @@
-export { default } from './BottomNavigationAction';
+export { default } from '../../../material-ui/src/BottomNavigationAction';

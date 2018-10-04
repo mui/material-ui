@@ -1,1 +1,1 @@
-export { default } from './FormGroup';
+export { default } from '../../../material-ui/src/FormGroup';

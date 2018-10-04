@@ -1,2 +1,2 @@
-export { default } from './AppBar';
-export * from './AppBar';
+export { default } from '../../../material-ui/src/AppBar';
+export * from '../../../material-ui/src/AppBar';

@@ -1,2 +1,2 @@
-export { default } from './Input';
-export * from './Input';
+export { default } from '../../../material-ui/src/Input';
+export * from '../../../material-ui/src/Input';

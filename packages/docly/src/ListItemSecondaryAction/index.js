@@ -1,1 +1,1 @@
-export { default } from './ListItemSecondaryAction';
+export { default } from '../../../material-ui/src/ListItemSecondaryAction';

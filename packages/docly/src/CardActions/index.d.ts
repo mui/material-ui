@@ -1,2 +1,2 @@
-export { default } from './CardActions';
-export * from './CardActions';
+export { default } from '../../../material-ui/src/CardActions';
+export * from '../../../material-ui/src/CardActions';

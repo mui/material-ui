@@ -1,1 +1,1 @@
-export { default } from './CssBaseline';
+export { default } from '../../../material-ui/src/CssBaseline';

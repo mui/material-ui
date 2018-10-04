@@ -1,2 +1,2 @@
-export { default } from './SwipeableDrawer';
-export * from './SwipeableDrawer';
+export { default } from '../../../material-ui/src/SwipeableDrawer';
+export * from '../../../material-ui/src/SwipeableDrawer';

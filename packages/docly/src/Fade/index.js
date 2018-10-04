@@ -1,1 +1,1 @@
-export { default } from './Fade';
+export { default } from '../../../material-ui/src/Fade';

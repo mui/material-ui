@@ -1,1 +1,1 @@
-export { default } from './Popper';
+export { default } from '../../../material-ui/src/Popper';

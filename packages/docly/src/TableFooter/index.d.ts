@@ -1,2 +1,2 @@
-export { default } from './TableFooter';
-export * from './TableFooter';
+export { default } from '../../../material-ui/src/TableFooter';
+export * from '../../../material-ui/src/TableFooter';

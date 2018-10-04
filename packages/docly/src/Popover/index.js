@@ -1,1 +1,1 @@
-export { default } from './Popover';
+export { default } from '../../../material-ui/src/Popover';

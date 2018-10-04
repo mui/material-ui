@@ -1,2 +1,2 @@
-export { default } from './RootRef';
-export * from './RootRef';
+export { default } from '../../../material-ui/src/RootRef';
+export * from '../../../material-ui/src/RootRef';

@@ -1,1 +1,1 @@
-export { default } from './FilledInput';
+export { default } from '../../../material-ui/src/FilledInput';

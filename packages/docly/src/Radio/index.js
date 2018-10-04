@@ -1,1 +1,1 @@
-export { default } from './Radio';
+export { default } from '../../../material-ui/src/Radio';

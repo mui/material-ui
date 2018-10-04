@@ -1,1 +1,1 @@
-export { default } from './Paper';
+export { default } from '../../../material-ui/src/Paper';

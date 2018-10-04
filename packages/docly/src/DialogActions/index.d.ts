@@ -1,2 +1,2 @@
-export { default } from './DialogActions';
-export * from './DialogActions';
+export { default } from '../../../material-ui/src/DialogActions';
+export * from '../../../material-ui/src/DialogActions';

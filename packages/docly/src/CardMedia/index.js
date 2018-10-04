@@ -1,1 +1,1 @@
-export { default } from './CardMedia';
+export { default } from '../../../material-ui/src/CardMedia';

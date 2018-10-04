@@ -1,2 +1,2 @@
-export { default } from './Table';
-export * from './Table';
+export { default } from '../../../material-ui/src/Table';
+export * from '../../../material-ui/src/Table';

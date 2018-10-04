@@ -1,1 +1,1 @@
-export { default } from './TableRow';
+export { default } from '../../../material-ui/src/TableRow';

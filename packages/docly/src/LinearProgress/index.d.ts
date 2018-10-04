@@ -1,2 +1,2 @@
-export { default } from './LinearProgress';
-export * from './LinearProgress';
+export { default } from '../../../material-ui/src/LinearProgress';
+export * from '../../../material-ui/src/LinearProgress';
