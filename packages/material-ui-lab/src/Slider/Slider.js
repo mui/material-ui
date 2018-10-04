@@ -16,7 +16,7 @@ export const styles = theme => {
 
   const trackTransitions = theme.transitions.create(['width', 'height'], commonTransitionsOptions);
   const thumbCommonTransitions = theme.transitions.create(
-    ['width', 'height', 'left', 'right', 'top', 'box-shadow'],
+    ['width', 'height', 'left', 'right', 'bottom', 'box-shadow'],
     commonTransitionsOptions,
   );
   // no transition on the position
@@ -76,6 +76,7 @@ export const styles = theme => {
         transform: 'translate(-50%, 0)',
         left: '50%',
         top: 'initial',
+        bottom: 0,
         width: 2,
       },
     },
@@ -120,6 +121,9 @@ export const styles = theme => {
       '&$jumped': {
         boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
       },
+      '&$vertical': {
+        transform: 'translate(-50%, +50%)',
+      },
     },
     /* Class applied to the thumb element if custom thumb icon provided. */
     thumbIconWrapper: {
@@ -152,10 +156,10 @@ function roundToStep(number, step) {
 
 function getOffset(node) {
   const { pageYOffset, pageXOffset } = global;
-  const { left, top } = node.getBoundingClientRect();
+  const { left, bottom } = node.getBoundingClientRect();
 
   return {
-    top: top + pageYOffset,
+    bottom: bottom + pageYOffset,
     left: left + pageXOffset,
   };
 }
@@ -176,10 +180,10 @@ function getMousePosition(event) {
 
 function calculatePercent(node, event, isVertical, isRtl) {
   const { width, height } = node.getBoundingClientRect();
-  const { top, left } = getOffset(node);
+  const { bottom, left } = getOffset(node);
   const { x, y } = getMousePosition(event);
 
-  const value = isVertical ? y - top : x - left;
+  const value = isVertical ? bottom - y : x - left;
   const onePercent = (isVertical ? height : width) / 100;
 
   return isRtl && !isVertical ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
@@ -413,6 +417,7 @@ class Slider extends React.Component {
       [classes.jumped]: !disabled && currentState === 'jumped',
       [classes.focused]: !disabled && currentState === 'focused',
       [classes.activated]: !disabled && currentState === 'activated',
+      [classes.vertical]: vertical,
     };
 
     const className = classNames(
@@ -428,17 +433,12 @@ class Slider extends React.Component {
       [classes.vertical]: vertical,
     });
 
-    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses, {
-      [classes.vertical]: vertical,
-    });
-
-    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses, {
-      [classes.vertical]: vertical,
-    });
+    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
+    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
 
     const trackProperty = vertical ? 'height' : 'width';
     const horizontalMinimumPosition = theme.direction === 'ltr' ? 'left' : 'right';
-    const thumbProperty = vertical ? 'top' : horizontalMinimumPosition;
+    const thumbProperty = vertical ? 'bottom' : horizontalMinimumPosition;
     const inlineTrackBeforeStyles = { [trackProperty]: this.calculateTrackBeforeStyles(percent) };
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };

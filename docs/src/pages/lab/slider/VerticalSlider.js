@@ -28,7 +28,12 @@ class VerticalSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Slider value={value} onChange={this.handleChange} vertical />
+        <Slider
+          classes={{ container: classes.slider }}
+          value={value}
+          onChange={this.handleChange}
+          vertical
+        />
       </div>
     );
   }
