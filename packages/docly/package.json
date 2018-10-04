@@ -2,7 +2,7 @@
   "name": "@docly/web",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.1.2",
+  "version": "0.0.1",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
