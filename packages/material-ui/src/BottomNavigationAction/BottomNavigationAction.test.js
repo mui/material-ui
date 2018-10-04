@@ -34,19 +34,19 @@ describe('<BottomNavigationAction />', () => {
 
   it('should render with the selected and root classes', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} selected />);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the selectedIconOnly and root classes', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} showLabel={false} />);
-    assert.strictEqual(wrapper.hasClass(classes.iconOnly), true, 'should have the iconOnly class');
+    assert.strictEqual(wrapper.hasClass(classes.iconOnly), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render icon', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} />);
-    assert.strictEqual(wrapper.contains(icon), true, 'should have the icon');
+    assert.strictEqual(wrapper.contains(icon), true);
   });
 
   it('should render label with the selected class', () => {
@@ -64,7 +64,7 @@ describe('<BottomNavigationAction />', () => {
       true,
       'should have the iconOnly class',
     );
-    assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
+    assert.strictEqual(labelWrapper.hasClass(classes.label), true);
   });
 
   it('should not render an Icon if icon is not provided', () => {
@@ -79,7 +79,7 @@ describe('<BottomNavigationAction />', () => {
         <BottomNavigationAction icon="book" onClick={handleClick} value="foo" />,
       );
       wrapper.simulate('click', 'bar');
-      assert.strictEqual(handleClick.callCount, 1, 'it should forward the onClick');
+      assert.strictEqual(handleClick.callCount, 1);
     });
   });
 
@@ -90,7 +90,7 @@ describe('<BottomNavigationAction />', () => {
         <BottomNavigationAction icon="book" onChange={handleChange} value="foo" />,
       );
       wrapper.simulate('click', 'bar');
-      assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
+      assert.strictEqual(handleChange.callCount, 1);
     });
   });
 });

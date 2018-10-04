@@ -7,7 +7,7 @@ title: ListItemText API
 
 # ListItemText
 
-<p class="description">The API documentation of the ListItemText React component.</p>
+<p class="description">The API documentation of the ListItemText React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ListItemText from '@material-ui/core/ListItemText';
@@ -45,15 +45,15 @@ This property accepts the following keys:
 | <span class="prop-name">secondary</span> | Styles applied to the secondary `Typography` component.
 | <span class="prop-name">textDense</span> | Styles applied to the `Typography` components if `context.dense` is `true`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ListItemText/ListItemText.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiListItemText`.
 
 ## Demos
 
-- [Lists](/demos/lists)
+- [Lists](/demos/lists/)
 

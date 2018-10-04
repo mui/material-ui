@@ -7,13 +7,13 @@ title: Slide API
 
 # Slide
 
-<p class="description">The API documentation of the Slide React component.</p>
+<p class="description">The API documentation of the Slide React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Slide from '@material-ui/core/Slide';
 ```
 
-The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+The Slide transition is used by the [Snackbar](/demos/snackbars/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -30,10 +30,10 @@ Any other properties supplied will be spread to the root element ([Transition](h
 ## Inheritance
 
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Dialogs](/demos/dialogs)
-- [Transitions](/utils/transitions)
+- [Dialogs](/demos/dialogs/)
+- [Transitions](/utils/transitions/)
 

@@ -7,7 +7,7 @@ title: Tabs API
 
 # Tabs
 
-<p class="description">The API documentation of the Tabs React component.</p>
+<p class="description">The API documentation of the Tabs React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Tabs from '@material-ui/core/Tabs';
@@ -54,15 +54,15 @@ This property accepts the following keys:
 | <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`.
 | <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tabs/Tabs.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTabs`.
 
 ## Demos
 
-- [Tabs](/demos/tabs)
+- [Tabs](/demos/tabs/)
 

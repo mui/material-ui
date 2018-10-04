@@ -7,7 +7,7 @@ title: DialogTitle API
 
 # DialogTitle
 
-<p class="description">The API documentation of the DialogTitle React component.</p>
+<p class="description">The API documentation of the DialogTitle React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -35,15 +35,15 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/DialogTitle/DialogTitle.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiDialogTitle`.
 
 ## Demos
 
-- [Dialogs](/demos/dialogs)
+- [Dialogs](/demos/dialogs/)
 

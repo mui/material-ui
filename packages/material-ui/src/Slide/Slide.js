@@ -69,7 +69,7 @@ export function setTranslateValue(props, node) {
 }
 
 /**
- * The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+ * The Slide transition is used by the [Snackbar](/demos/snackbars/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Slide extends React.Component {

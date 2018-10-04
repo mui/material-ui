@@ -55,7 +55,7 @@ Pick one of the following plugins:
 
 ## ECMAScript
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms).
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
 We also publish a second version of the components to target **evergreen browsers**.
 You can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core/es/).
@@ -65,6 +65,6 @@ Older browsers will require more JavaScript features to be transpiled,
 which increases the size of the bundle.
 No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the
 necessary features. If you need support for other browsers, consider using
-[`@babel/polyfill`](https://npmjs.com/package/@babel/polyfill).
+[`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.

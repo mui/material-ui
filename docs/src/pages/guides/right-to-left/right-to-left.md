@@ -21,7 +21,7 @@ npm install jss-rtl
 ```
 
 Internally, we are dynamically enabling this plugin when `direction: 'rtl'` is set on the theme.
-The [CSS-in-JS documentation](/customization/css-in-js#opting-out-of-rtl-transformation) explains a bit more how this plugin is working. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to know everything about it.
+The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more how this plugin is working. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to know everything about it.
 
 Once you have created a new JSS instance with the plugin, you need to make it available to all components in the component tree. JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
 

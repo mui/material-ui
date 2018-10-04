@@ -208,34 +208,26 @@ describe('<SwipeableDrawer />', () => {
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
+          assert.strictEqual(wrapper.state().maybeSwiping, true);
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true, 'should be swiping');
+          assert.strictEqual(instance.isSwiping, true);
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[2]] });
-          assert.strictEqual(handleOpen.callCount, 1, 'should call onOpen');
-          assert.strictEqual(
-            instance.setPosition.callCount,
-            3,
-            'should move the drawer on touchstart and touchmove',
-          );
+          assert.strictEqual(handleOpen.callCount, 1);
+          assert.strictEqual(instance.setPosition.callCount, 3);
 
           // simulate close swipe
           instance.setPosition.resetHistory();
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.closeTouches[0]] });
-          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
+          assert.strictEqual(wrapper.state().maybeSwiping, true);
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true, 'should be swiping');
+          assert.strictEqual(instance.isSwiping, true);
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[2]] });
-          assert.strictEqual(handleClose.callCount, 1, 'should call onClose');
-          assert.strictEqual(
-            instance.setPosition.callCount,
-            2,
-            'should move the drawer on touchmove',
-          );
+          assert.strictEqual(handleClose.callCount, 1);
+          assert.strictEqual(instance.setPosition.callCount, 2);
         });
 
         it('should stay closed when not swiping far enough', () => {
@@ -243,11 +235,11 @@ describe('<SwipeableDrawer />', () => {
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
+          assert.strictEqual(wrapper.state().maybeSwiping, true);
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true, 'should be swiping');
+          assert.strictEqual(instance.isSwiping, true);
           fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[1]] });
-          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
+          assert.strictEqual(handleOpen.callCount, 0);
         });
 
         it('should stay opened when not swiping far enough', () => {
@@ -255,11 +247,11 @@ describe('<SwipeableDrawer />', () => {
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.closeTouches[0]] });
-          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
+          assert.strictEqual(wrapper.state().maybeSwiping, true);
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
-          assert.strictEqual(instance.isSwiping, true, 'should be swiping');
+          assert.strictEqual(instance.isSwiping, true);
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[1]] });
-          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+          assert.strictEqual(handleClose.callCount, 0);
         });
 
         it('should ignore swiping in the wrong direction if discovery is disabled', () => {
@@ -296,11 +288,11 @@ describe('<SwipeableDrawer />', () => {
           const handleClose = spy();
           wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
-          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
-          assert.strictEqual(instance.setPosition.callCount, 1, 'should slide in a bit');
+          assert.strictEqual(wrapper.state().maybeSwiping, true);
+          assert.strictEqual(instance.setPosition.callCount, 1);
           fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
-          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
-          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+          assert.strictEqual(handleOpen.callCount, 0);
+          assert.strictEqual(handleClose.callCount, 0);
         });
 
         it('should makes the drawer stay hidden', () => {
@@ -315,11 +307,11 @@ describe('<SwipeableDrawer />', () => {
             onClose: handleClose,
           });
           fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
-          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
-          assert.strictEqual(instance.setPosition.callCount, 1, 'should slide in');
+          assert.strictEqual(wrapper.state().maybeSwiping, true);
+          assert.strictEqual(instance.setPosition.callCount, 1);
           fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
-          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
-          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+          assert.strictEqual(handleOpen.callCount, 0);
+          assert.strictEqual(handleClose.callCount, 0);
         });
 
         it('should let user scroll the page', () => {
@@ -335,11 +327,11 @@ describe('<SwipeableDrawer />', () => {
             onClose: handleClose,
           });
           fireBodyMouseEvent('touchstart', { touches: [params.ignoreTouch] });
-          assert.strictEqual(wrapper.state().maybeSwiping, false, 'should be listening for swipe');
-          assert.strictEqual(instance.setPosition.callCount, 0, 'should slide in');
+          assert.strictEqual(wrapper.state().maybeSwiping, false);
+          assert.strictEqual(instance.setPosition.callCount, 0);
           fireBodyMouseEvent('touchend', { changedTouches: [params.ignoreTouch] });
-          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
-          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+          assert.strictEqual(handleOpen.callCount, 0);
+          assert.strictEqual(handleClose.callCount, 0);
         });
       });
     });

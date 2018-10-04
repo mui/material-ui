@@ -15,44 +15,48 @@ function Types(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="display4" gutterBottom>
-        Display 4
+      <Typography component="h2" variant="h1" gutterBottom>
+        H1
       </Typography>
-      <Typography variant="display3" gutterBottom>
-        Display 3
+      <Typography variant="h2" gutterBottom>
+        H2
       </Typography>
-      <Typography variant="display2" gutterBottom>
-        Display 2
+      <Typography variant="h3" gutterBottom>
+        H3
       </Typography>
-      <Typography variant="display1" gutterBottom>
-        Display 1
+      <Typography variant="h4" gutterBottom>
+        H4
       </Typography>
-      <Typography variant="headline" gutterBottom>
-        Headline
+      <Typography variant="h5" gutterBottom>
+        H5
       </Typography>
-      <Typography variant="title" gutterBottom>
-        Title
+      <Typography variant="h6" gutterBottom>
+        H6
       </Typography>
-      <Typography variant="subheading" gutterBottom>
-        Subheading
+      <Typography variant="subtitle1" gutterBottom>
+        subtitle 1
+      </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        subtitle 2
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
       <Typography variant="body2" gutterBottom>
-        Body 2
-      </Typography>
-      <Typography variant="body1" gutterBottom align="right">
-        Body 1
-      </Typography>
-      <Typography variant="caption" gutterBottom align="center">
-        Caption
-      </Typography>
-      <Typography gutterBottom noWrap>
-        {`
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        `}
+        Body 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
       <Typography variant="button" gutterBottom>
-        Button
+        button text
+      </Typography>
+      <Typography variant="caption" gutterBottom>
+        caption text
+      </Typography>
+      <Typography variant="overline" gutterBottom>
+        overline text
       </Typography>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { _rewriteUrlForNextExport } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
@@ -63,9 +64,9 @@ function MarkdownDocs(props, context) {
 ${headers.components
       .map(
         component =>
-          `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
-            component,
-          )})`,
+          `- [&lt;${component} /&gt;](${
+            section === 'lab' ? '/lab/api' : '/api'
+          }/${_rewriteUrlForNextExport(kebabCase(component))})`,
       )
       .join('\n')}
         `);

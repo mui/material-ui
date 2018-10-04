@@ -31,8 +31,8 @@ describe('<IconButton />', () => {
   it('should render an inner label span (bloody safari)', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
     const label = wrapper.childAt(0);
-    assert.strictEqual(label.hasClass(classes.label), true, 'should have the label class');
-    assert.strictEqual(label.is('span'), true, 'should be a span');
+    assert.strictEqual(label.hasClass(classes.label), true);
+    assert.strictEqual(label.name(), 'span');
   });
 
   it('should render the child normally inside the label span', () => {
@@ -40,7 +40,7 @@ describe('<IconButton />', () => {
     const wrapper = shallow(<IconButton>{child}</IconButton>);
     const label = wrapper.childAt(0);
     const icon = label.childAt(0);
-    assert.strictEqual(icon.equals(child), true, 'should be the child');
+    assert.strictEqual(icon.equals(child), true);
   });
 
   it('should render Icon children with right classes', () => {
@@ -50,7 +50,7 @@ describe('<IconButton />', () => {
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
     assert.strictEqual(renderedIconChild.type(), Icon);
-    assert.strictEqual(renderedIconChild.hasClass(childClassName), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
   });
 
   it('should have a ripple by default', () => {
@@ -69,7 +69,7 @@ describe('<IconButton />', () => {
         book
       </IconButton>,
     );
-    assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the ButtonBase');
+    assert.strictEqual(wrapper.props()['data-test'], 'hello');
     assert.strictEqual(wrapper.props().disableRipple, true);
   });
 
@@ -81,14 +81,14 @@ describe('<IconButton />', () => {
 
   it('should pass centerRipple={true} to ButtonBase', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
-    assert.strictEqual(wrapper.props().centerRipple, true, 'should set centerRipple to true');
+    assert.strictEqual(wrapper.props().centerRipple, true);
   });
 
   describe('prop: disabled', () => {
     it('should disable the component', () => {
       const wrapper = shallow(<IconButton disabled>book</IconButton>);
-      assert.strictEqual(wrapper.props().disabled, true, 'should pass the property down the tree');
-      assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should add the disabled class');
+      assert.strictEqual(wrapper.props().disabled, true);
+      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
     });
   });
 

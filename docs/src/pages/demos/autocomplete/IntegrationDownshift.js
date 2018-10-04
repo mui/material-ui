@@ -56,6 +56,7 @@ function renderInput(inputProps) {
         inputRef: ref,
         classes: {
           root: classes.inputRoot,
+          input: classes.inputInput,
         },
         ...InputProps,
       }}
@@ -233,6 +234,10 @@ const styles = theme => ({
   },
   inputRoot: {
     flexWrap: 'wrap',
+  },
+  inputInput: {
+    width: 'auto',
+    flexGrow: 1,
   },
   divider: {
     height: theme.spacing.unit * 2,

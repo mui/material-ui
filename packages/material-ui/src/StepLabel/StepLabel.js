@@ -192,11 +192,11 @@ StepLabel.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The component to render in place of the [`StepIcon`](/api/step-icon).
+   * The component to render in place of the [`StepIcon`](/api/step-icon/).
    */
   StepIconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`StepIcon`](/api/step-icon) element.
+   * Properties applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
 };

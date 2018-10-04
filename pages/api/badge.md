@@ -7,7 +7,7 @@ title: Badge API
 
 # Badge
 
-<p class="description">The API documentation of the Badge React component.</p>
+<p class="description">The API documentation of the Badge React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Badge from '@material-ui/core/Badge';
@@ -41,15 +41,15 @@ This property accepts the following keys:
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Badge/Badge.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiBadge`.
 
 ## Demos
 
-- [Badges](/demos/badges)
+- [Badges](/demos/badges/)
 

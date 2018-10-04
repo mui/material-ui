@@ -99,7 +99,7 @@ jobs:
             fi
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash)
+          command: bash <(curl -s https://codecov.io/bash) -Z
   test_material-ui-x:
     <<: *defaults
     steps:

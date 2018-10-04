@@ -31,16 +31,8 @@ describe('<Ripple />', () => {
     const wrapper = shallow(
       <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
     );
-    assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.ripple),
-      true,
-      'should have the ripple class',
-    );
-    assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.fast),
-      false,
-      'should not have the fast (pulse) class',
-    );
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.ripple), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false);
   });
 
   describe('starting and stopping', () => {
@@ -60,29 +52,21 @@ describe('<Ripple />', () => {
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().visible, false, 'should not be visible');
+      assert.strictEqual(wrapper.state().visible, false);
       wrapper.setProps({ in: true });
       wrapper.update();
-      assert.strictEqual(wrapper.state().visible, true, 'should be visible');
+      assert.strictEqual(wrapper.state().visible, true);
       const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(
-        rippleWrapper.hasClass(classes.rippleVisible),
-        true,
-        'should have the visible class',
-      );
+      assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
     });
 
     it('should stop the ripple', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
       wrapper.update();
-      assert.strictEqual(wrapper.state().leaving, true, 'should be leaving');
+      assert.strictEqual(wrapper.state().leaving, true);
       const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(
-        childWrapper.hasClass(classes.childLeaving),
-        true,
-        'should have the leaving class',
-      );
+      assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
     });
   });
 
@@ -106,53 +90,29 @@ describe('<Ripple />', () => {
     it('should render the ripple inside a pulsating Ripple', () => {
       assert.strictEqual(wrapper.name(), 'Ripple');
       const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(
-        rippleWrapper.hasClass(classes.ripple),
-        true,
-        'should have the ripple class',
-      );
-      assert.strictEqual(
-        rippleWrapper.hasClass(classes.ripplePulsate),
-        true,
-        'should have the fast class',
-      );
+      assert.strictEqual(rippleWrapper.hasClass(classes.ripple), true);
+      assert.strictEqual(rippleWrapper.hasClass(classes.ripplePulsate), true);
       const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(
-        childWrapper.hasClass(classes.childPulsate),
-        true,
-        'should have the pulsating class',
-      );
+      assert.strictEqual(childWrapper.hasClass(classes.childPulsate), true);
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().visible, false, 'should not be visible');
+      assert.strictEqual(wrapper.state().visible, false);
       wrapper.setProps({ in: true });
       wrapper.update();
-      assert.strictEqual(wrapper.state().visible, true, 'should be visible');
+      assert.strictEqual(wrapper.state().visible, true);
       const rippleWrapper = wrapper.find('span').first();
-      assert.strictEqual(
-        rippleWrapper.hasClass(classes.rippleVisible),
-        true,
-        'should have the visible class',
-      );
+      assert.strictEqual(rippleWrapper.hasClass(classes.rippleVisible), true);
       const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(
-        childWrapper.hasClass(classes.childPulsate),
-        true,
-        'should have the pulsating class',
-      );
+      assert.strictEqual(childWrapper.hasClass(classes.childPulsate), true);
     });
 
     it('should stop the ripple', () => {
       wrapper.setProps({ in: false });
       wrapper.update();
-      assert.strictEqual(wrapper.state().leaving, true, 'should be leaving');
+      assert.strictEqual(wrapper.state().leaving, true);
       const childWrapper = wrapper.find('span').last();
-      assert.strictEqual(
-        childWrapper.hasClass(classes.childLeaving),
-        true,
-        'should have the leaving class',
-      );
+      assert.strictEqual(childWrapper.hasClass(classes.childLeaving), true);
     });
   });
 
@@ -185,16 +145,16 @@ describe('<Ripple />', () => {
     it('handleExit should trigger a timer', () => {
       wrapper.setProps({ in: false });
       clock.tick(549);
-      assert.strictEqual(callbackSpy.callCount, 0, 'The timer is not finished yet');
+      assert.strictEqual(callbackSpy.callCount, 0);
       clock.tick(1);
-      assert.strictEqual(callbackSpy.callCount, 1, 'handleExit callback should have been called');
+      assert.strictEqual(callbackSpy.callCount, 1);
     });
 
     it('unmount should defuse the handleExit timer', () => {
       wrapper.setProps({ in: false });
       wrapper.unmount();
       clock.tick(550);
-      assert.strictEqual(callbackSpy.callCount, 0, 'handleExit callback should not be called');
+      assert.strictEqual(callbackSpy.callCount, 0);
     });
   });
 });

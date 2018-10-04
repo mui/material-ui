@@ -7,7 +7,7 @@ title: FormHelperText API
 
 # FormHelperText
 
-<p class="description">The API documentation of the FormHelperText React component.</p>
+<p class="description">The API documentation of the FormHelperText React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -49,15 +49,15 @@ This property accepts the following keys:
 | <span class="prop-name">filled</span> | Styles applied to the root element if `filled={true}`.
 | <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/FormHelperText/FormHelperText.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiFormHelperText`.
 
 ## Demos
 
-- [Text Fields](/demos/text-fields)
+- [Text Fields](/demos/text-fields/)
 

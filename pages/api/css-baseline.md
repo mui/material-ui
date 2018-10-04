@@ -7,7 +7,7 @@ title: CssBaseline API
 
 # CssBaseline
 
-<p class="description">The API documentation of the CssBaseline React component.</p>
+<p class="description">The API documentation of the CssBaseline React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,5 +25,5 @@ Any other properties supplied will be spread to the root element (native element
 
 ## Demos
 
-- [Css Baseline](/style/css-baseline)
+- [Css Baseline](/style/css-baseline/)
 

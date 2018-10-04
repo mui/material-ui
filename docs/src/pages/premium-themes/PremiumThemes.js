@@ -75,7 +75,7 @@ function PremiumThemes(props) {
             <CardContent className={classes.cardContent}>
               <Grid container alignItems="center">
                 <Grid item xs>
-                  <Typography gutterBottom variant="headline" align="left" component="h2">
+                  <Typography gutterBottom variant="h5" align="left" component="h2">
                     {theme.name}
                   </Typography>
                 </Grid>

@@ -28,7 +28,7 @@ describe('<TabScrollButton />', () => {
     it('should render as a button with the root class', () => {
       const wrapper = shallow(<TabScrollButton {...props} visible />);
 
-      assert.strictEqual(wrapper.is(ButtonBase), true, 'should be a button');
+      assert.strictEqual(wrapper.type(), ButtonBase);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });
@@ -53,12 +53,12 @@ describe('<TabScrollButton />', () => {
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
       const wrapper = mount(<TabScrollButton {...props} direction="left" visible />);
-      assert.strictEqual(wrapper.find(KeyboardArrowLeft).length, 1, 'should be the left icon');
+      assert.strictEqual(wrapper.find(KeyboardArrowLeft).length, 1);
     });
 
     it('should render with the right icon', () => {
       const wrapper = mount(<TabScrollButton {...props} direction="right" visible />);
-      assert.strictEqual(wrapper.find(KeyboardArrowRight).length, 1, 'should be the right icon');
+      assert.strictEqual(wrapper.find(KeyboardArrowRight).length, 1);
     });
   });
 });

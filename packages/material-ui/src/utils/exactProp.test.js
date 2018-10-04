@@ -11,8 +11,8 @@ describe('exactProp()', () => {
   });
 
   it('should have the right shape', () => {
-    assert.strictEqual(typeof exactProp, 'function', 'should be a function');
-    assert.strictEqual(typeof exactPropTypes, 'object', 'should be a function');
+    assert.strictEqual(typeof exactProp, 'function');
+    assert.strictEqual(typeof exactPropTypes, 'object');
   });
 
   describe('exactPropTypes', () => {

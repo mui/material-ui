@@ -7,7 +7,7 @@ title: SvgIcon API
 
 # SvgIcon
 
-<p class="description">The API documentation of the SvgIcon React component.</p>
+<p class="description">The API documentation of the SvgIcon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SvgIcon from '@material-ui/core/SvgIcon';
@@ -48,15 +48,15 @@ This property accepts the following keys:
 | <span class="prop-name">fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
 | <span class="prop-name">fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/SvgIcon/SvgIcon.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSvgIcon`.
 
 ## Demos
 
-- [Icons](/style/icons)
+- [Icons](/style/icons/)
 

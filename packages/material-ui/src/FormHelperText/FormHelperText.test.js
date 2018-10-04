@@ -16,7 +16,7 @@ describe('<FormHelperText />', () => {
     const wrapper = shallow(<FormHelperText className="woofHelperText" />);
     assert.strictEqual(wrapper.name(), 'p');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woofHelperText'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofHelperText'), true);
   });
 
   describe('prop: component', () => {

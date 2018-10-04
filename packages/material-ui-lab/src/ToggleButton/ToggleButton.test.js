@@ -27,7 +27,7 @@ describe('<ToggleButton />', () => {
         Hello World
       </ToggleButton>,
     );
-    assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
+    assert.strictEqual(wrapper.is('.test-class-name'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -38,7 +38,7 @@ describe('<ToggleButton />', () => {
       </ToggleButton>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
   });
 
   it('should render a disabled button', () => {
@@ -48,7 +48,7 @@ describe('<ToggleButton />', () => {
       </ToggleButton>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
+    assert.strictEqual(wrapper.hasClass(classes.disabled), true);
   });
 
   describe('prop: onChange', () => {
@@ -80,7 +80,7 @@ describe('<ToggleButton />', () => {
     it('should not be called if the click is prevented', () => {
       const handleChange = spy();
       const wrapper = shallow(
-        <ToggleButton value="one" onChange={handleChange} onClick={e => e.preventDefault()}>
+        <ToggleButton value="one" onChange={handleChange} onClick={event => event.preventDefault()}>
           Hello
         </ToggleButton>,
       );

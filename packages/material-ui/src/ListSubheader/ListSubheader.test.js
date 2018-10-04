@@ -35,7 +35,7 @@ describe('<ListSubheader />', () => {
 
   it('should display inset class', () => {
     const wrapper = shallow(<ListSubheader inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

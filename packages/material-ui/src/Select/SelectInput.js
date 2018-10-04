@@ -147,6 +147,9 @@ class SelectInput extends React.Component {
       node: ref,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
+      focus: () => {
+        this.displayRef.focus();
+      },
     };
 
     setRef(inputRef, nodeProxy);
@@ -364,7 +367,7 @@ SelectInput.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

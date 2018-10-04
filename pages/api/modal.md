@@ -7,7 +7,7 @@ title: Modal API
 
 # Modal
 
-<p class="description">The API documentation of the Modal React component.</p>
+<p class="description">The API documentation of the Modal React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Modal from '@material-ui/core/Modal';
@@ -20,7 +20,7 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">BackdropComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">Backdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
-| <span class="prop-name">BackdropProps</span> | <span class="prop-type">object |   | Properties applied to the [`Backdrop`](/api/backdrop) element. |
+| <span class="prop-name">BackdropProps</span> | <span class="prop-type">object |   | Properties applied to the [`Backdrop`](/api/backdrop/) element. |
 | <span class="prop-name">children</span> | <span class="prop-type">element |   | A single child content element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">container</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |   | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |
@@ -52,15 +52,15 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">hidden</span> | Styles applied to the root element if the `Modal` has exited.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Modal/Modal.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiModal`.
 
 ## Demos
 
-- [Modal](/utils/modal)
+- [Modal](/utils/modal/)
 

@@ -75,7 +75,7 @@ describe('<Select />', () => {
         .at(1)
         .simulate('click');
       const selected = onChangeHandler.args[0][1];
-      assert.strictEqual(React.isValidElement(selected), true, 'should b be a element');
+      assert.strictEqual(React.isValidElement(selected), true);
     });
   });
 });

@@ -30,6 +30,14 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'SFR Presse',
+    description:
+      '"SFR Presse" provides the best access to the french newspapers, ' +
+      'magazines and real time streams, personalized for you.',
+    image: '/static/images/showcase/sfrpresse.jpg',
+    link: 'https://magazine-presse.sfr.fr/',
+  },
+  {
     title: 'Insights',
     description:
       '"Insights" by Just Ask Users helps user experience research teams ' +
@@ -237,7 +245,7 @@ function Showcase(props) {
     <div className={classes.root}>
       {appList.map(app => (
         <div key={app.image}>
-          <Typography variant="display1" gutterBottom>
+          <Typography component="h2" variant="h4" gutterBottom>
             <span>{app.title}</span>
             {app.source ? (
               <IconButton href={app.source} target="_blank" aria-label={`${app.title} source code`}>
@@ -245,7 +253,7 @@ function Showcase(props) {
               </IconButton>
             ) : null}
           </Typography>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {app.description}
           </Typography>
           <Card className={classes.card}>

@@ -7,7 +7,7 @@ title: SpeedDial API
 
 # SpeedDial
 
-<p class="description">The API documentation of the SpeedDial React component.</p>
+<p class="description">The API documentation of the SpeedDial React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -20,7 +20,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">ariaLabel *</span> | <span class="prop-type">string |   | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button) element. |
+| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button/) element. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |   | SpeedDialActions to display when the SpeedDial is `open`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'&nbsp;&#124;<br>&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
@@ -52,15 +52,15 @@ This property accepts the following keys:
 | <span class="prop-name">actions</span> | Styles applied to the actions (`children` wrapper) element.
 | <span class="prop-name">actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSpeedDial`.
 
 ## Demos
 
-- [Speed Dial](/lab/speed-dial)
+- [Speed Dial](/lab/speed-dial/)
 

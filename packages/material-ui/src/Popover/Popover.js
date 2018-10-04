@@ -426,7 +426,7 @@ Popover.propTypes = {
    */
   marginThreshold: PropTypes.number,
   /**
-   * `classes` property applied to the [`Modal`](/api/modal) element.
+   * `classes` property applied to the [`Modal`](/api/modal/) element.
    */
   ModalClasses: PropTypes.object,
   /**
@@ -464,7 +464,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**

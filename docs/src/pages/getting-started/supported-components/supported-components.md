@@ -23,7 +23,7 @@ to discuss the approach before submitting a pull request.
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions:
     - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~
-     **([Lab](/lab/about))
+     **([Lab](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -80,7 +80,7 @@ to discuss the approach before submitting a pull request.
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Sliders](https://material.io/design/components/sliders.html) ~
-     **([Lab](/lab/about))
+     **([Lab](/lab/about/))
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
@@ -96,8 +96,9 @@ to discuss the approach before submitting a pull request.
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields](https://material.io/design/components/text-fields.html) ✓**
-  - [Filled](https://material.io/design/components/text-fields.html#filled-text-field)
-  - [Outline](https://material.io/design/components/text-fields.html#outlined-text-field)
+  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
+  - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/design/components/text-fields.html#input-types):
     - **Single-line ✓**
     - **Multi-line ✓**
