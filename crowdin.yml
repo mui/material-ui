@@ -1,0 +1,3 @@
+files:
+  - source: docs/src/pages/**/*.md
+    translation: '%original_path%/%file_name%-%two_letters_code%.%file_extension%'
