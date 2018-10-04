@@ -20,7 +20,7 @@ export function ariaHidden(show, node) {
   if (show) {
     node.setAttribute('aria-hidden', 'true');
   } else {
-    node.setAttribute('aria-hidden', 'false');
+    node.removeAttribute('aria-hidden');
   }
 }
 
