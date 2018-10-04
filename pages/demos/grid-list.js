@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./grid-list-${props.lang}.md`)}
+      markdown={req(`./grid-list${props.lang}.md`)}
       demos={{
         'pages/demos/grid-list/ImageGridList.js': {
           js: require('docs/src/pages/demos/grid-list/ImageGridList').default,

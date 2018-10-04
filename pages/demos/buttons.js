@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./buttons-${props.lang}.md`)}
+      markdown={req(`./buttons${props.lang}.md`)}
       demos={{
         'pages/demos/buttons/TextButtons.js': {
           js: require('docs/src/pages/demos/buttons/TextButtons').default,

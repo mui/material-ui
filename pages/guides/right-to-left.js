@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./right-to-left-${props.lang}.md`)}
+      markdown={req(`./right-to-left${props.lang}.md`)}
       demos={{
         'pages/guides/right-to-left/Direction.js': {
           js: require('docs/src/pages/guides/right-to-left/Direction').default,

@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./avatars-${props.lang}.md`)}
+      markdown={req(`./avatars${props.lang}.md`)}
       demos={{
         'pages/demos/avatars/ImageAvatars.js': {
           js: require('docs/src/pages/demos/avatars/ImageAvatars').default,

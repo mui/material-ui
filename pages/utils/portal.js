@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./portal-${props.lang}.md`)}
+      markdown={req(`./portal${props.lang}.md`)}
       demos={{
         'pages/utils/portal/SimplePortal.js': {
           js: require('docs/src/pages/utils/portal/SimplePortal').default,

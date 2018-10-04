@@ -8,7 +8,7 @@ function Page(props) {
   return (
     <MarkdownDocs
       disableAd
-      markdown={req(`./premium-themes-${props.lang}.md`)}
+      markdown={req(`./premium-themes${props.lang}.md`)}
       demos={{
         'pages/premium-themes/PremiumThemes.js': {
           js: require('docs/src/pages/premium-themes/PremiumThemes').default,

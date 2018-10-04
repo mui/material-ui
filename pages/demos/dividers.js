@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./dividers-${props.lang}.md`)}
+      markdown={req(`./dividers${props.lang}.md`)}
       demos={{
         'pages/demos/dividers/ListDividers.js': {
           js: require('docs/src/pages/demos/dividers/ListDividers').default,

@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./text-fields-${props.lang}.md`)}
+      markdown={req(`./text-fields${props.lang}.md`)}
       demos={{
         'pages/demos/text-fields/TextFields.js': {
           js: require('docs/src/pages/demos/text-fields/TextFields').default,

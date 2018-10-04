@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./composition-${props.lang}.md`)}
+      markdown={req(`./composition${props.lang}.md`)}
       demos={{
         'pages/guides/composition/Composition.js': {
           js: require('docs/src/pages/guides/composition/Composition').default,

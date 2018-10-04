@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./color-${props.lang}.md`)}
+      markdown={req(`./color${props.lang}.md`)}
       demos={{
         'pages/style/color/Color.js': {
           js: require('docs/src/pages/style/color/Color').default,

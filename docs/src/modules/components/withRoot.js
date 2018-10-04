@@ -309,11 +309,16 @@ function withRoot(Component) {
 
     render() {
       const { pageContext, ...other } = this.props;
+      const { userLanguage } = this.state;
+
       return (
         <React.StrictMode>
           <Provider store={this.redux}>
             <AppWrapper pageContext={pageContext}>
-              <Component initialProps={other} lang={this.state.userLanguage} />
+              <Component
+                initialProps={other}
+                lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+              />
             </AppWrapper>
           </Provider>
         </React.StrictMode>

@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./progress-${props.lang}.md`)}
+      markdown={req(`./progress${props.lang}.md`)}
       demos={{
         'pages/demos/progress/CircularIndeterminate.js': {
           js: require('docs/src/pages/demos/progress/CircularIndeterminate').default,

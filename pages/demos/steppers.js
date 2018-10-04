@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./steppers-${props.lang}.md`)}
+      markdown={req(`./steppers${props.lang}.md`)}
       demos={{
         'pages/demos/steppers/HorizontalLinearAlternativeLabelStepper.js': {
           js: require('docs/src/pages/demos/steppers/HorizontalLinearAlternativeLabelStepper')

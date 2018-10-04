@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /\.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./themes-${props.lang}.md`)}
+      markdown={req(`./themes${props.lang}.md`)}
       demos={{
         'pages/customization/themes/Palette.js': {
           js: require('docs/src/pages/customization/themes/Palette').default,

@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./transitions-${props.lang}.md`)}
+      markdown={req(`./transitions${props.lang}.md`)}
       demos={{
         'pages/utils/transitions/SimpleCollapse.js': {
           js: require('docs/src/pages/utils/transitions/SimpleCollapse').default,
