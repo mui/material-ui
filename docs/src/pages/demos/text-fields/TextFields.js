@@ -56,6 +56,14 @@ class TextFields extends React.Component {
     });
   };
 
+  handleControlChange = name => event => {
+    const { value } = event.target;
+    if (value.length > 15) {
+      return;
+    }
+    this.setState({ [name]: value });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -248,15 +256,12 @@ class TextFields extends React.Component {
         />
         <TextField
           id="standard-name-with-character-limit"
-          label="Name"
+          label="Controlled Character Limit"
           className={classes.textField}
           value={this.state.name}
-          onChange={this.handleChange('name')}
+          onChange={this.handleControlChange('name')}
           margin="dense"
           characterLimit={15}
-          inputProps={{
-            maxlength: '15',
-          }}
         />
       </form>
     );

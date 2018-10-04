@@ -158,7 +158,7 @@ class TextField extends React.Component {
         ) : (
           InputElement
         )}
-        {characterLimit && (
+        {characterLimit && value && (
           <Typography variant="caption" align="right">
             {value.length}/{characterLimit}
           </Typography>
