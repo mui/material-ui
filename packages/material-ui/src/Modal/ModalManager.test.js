@@ -139,6 +139,13 @@ describe('ModalManager', () => {
       document.body.removeChild(container2);
     });
 
+    it('should not contain aria-hidden on modal', () => {
+      const modal2 = document.createElement('div');
+
+      modalManager.add(modal2, container2);
+      assert.strictEqual(modal2.getAttribute('aria-hidden'), null);
+    });
+
     it('should add aria-hidden to container siblings', () => {
       modalManager.add({}, container2);
       assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'true');
@@ -146,7 +153,7 @@ describe('ModalManager', () => {
 
     it('should add aria-hidden to previous modals', () => {
       const modal2 = {};
-      const modal3 = {};
+      const modal3 = document.createElement('div');
       const mountNode2 = document.createElement('div');
 
       modal2.mountNode = mountNode2;
@@ -155,6 +162,7 @@ describe('ModalManager', () => {
       modalManager.add(modal3, container2);
       assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'true');
       assert.strictEqual(mountNode2.getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(modal3.getAttribute('aria-hidden'), null);
     });
 
     it('should remove aria-hidden on americas next top modal', () => {
