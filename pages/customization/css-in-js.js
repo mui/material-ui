@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./css-in-js-${props.lang}.md`)}
+      markdown={req(`./css-in-js${props.lang}.md`)}
       demos={{
         'pages/customization/css-in-js/CssInJs.js': {
           js: require('docs/src/pages/customization/css-in-js/CssInJs').default,

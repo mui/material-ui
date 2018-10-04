@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./hidden-${props.lang}.md`)}
+      markdown={req(`./hidden${props.lang}.md`)}
       demos={{
         'pages/layout/hidden/BreakpointUp.js': {
           js: require('docs/src/pages/layout/hidden/BreakpointUp').default,

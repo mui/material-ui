@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./icons-${props.lang}.md`)}
+      markdown={req(`./icons${props.lang}.md`)}
       demos={{
         'pages/style/icons/SvgIcons.js': {
           js: require('docs/src/pages/style/icons/SvgIcons').default,

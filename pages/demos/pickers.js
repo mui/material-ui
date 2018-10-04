@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./pickers-${props.lang}.md`)}
+      markdown={req(`./pickers${props.lang}.md`)}
       demos={{
         'pages/demos/pickers/DatePickers.js': {
           js: require('docs/src/pages/demos/pickers/DatePickers').default,

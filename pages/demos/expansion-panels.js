@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./expansion-panels-${props.lang}.md`)}
+      markdown={req(`./expansion-panels${props.lang}.md`)}
       demos={{
         'pages/demos/expansion-panels/DetailedExpansionPanel.js': {
           js: require('docs/src/pages/demos/expansion-panels/DetailedExpansionPanel').default,

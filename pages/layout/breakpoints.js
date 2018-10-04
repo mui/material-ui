@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./breakpoints-${props.lang}.md`)}
+      markdown={req(`./breakpoints${props.lang}.md`)}
       demos={{
         'pages/layout/breakpoints/MediaQuery.js': {
           js: require('docs/src/pages/layout/breakpoints/MediaQuery').default,

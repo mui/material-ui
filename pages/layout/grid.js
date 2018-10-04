@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./grid-${props.lang}.md`)}
+      markdown={req(`./grid${props.lang}.md`)}
       demos={{
         'pages/layout/grid/SpacingGrid.js': {
           js: require('docs/src/pages/layout/grid/SpacingGrid').default,

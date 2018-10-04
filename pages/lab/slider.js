@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./slider-${props.lang}.md`)}
+      markdown={req(`./slider${props.lang}.md`)}
       demos={{
         'pages/lab/slider/SimpleSlider.js': {
           js: require('docs/src/pages/lab/slider/SimpleSlider').default,

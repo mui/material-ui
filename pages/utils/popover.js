@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./popover-${props.lang}.md`)}
+      markdown={req(`./popover${props.lang}.md`)}
       demos={{
         'pages/utils/popover/SimplePopover.js': {
           js: require('docs/src/pages/utils/popover/SimplePopover').default,

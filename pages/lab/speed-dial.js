@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./speed-dial-${props.lang}.md`)}
+      markdown={req(`./speed-dial${props.lang}.md`)}
       demos={{
         'pages/lab/speed-dial/SpeedDials.js': {
           js: require('docs/src/pages/lab/speed-dial/SpeedDials').default,

@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./page-layout-examples-${props.lang}.md`)}
+      markdown={req(`./page-layout-examples${props.lang}.md`)}
       demos={{
         'pages/page-layout-examples/PageLayoutExamples.js': {
           js: require('docs/src/pages/page-layout-examples/PageLayoutExamples').default,

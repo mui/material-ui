@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./toggle-button-${props.lang}.md`)}
+      markdown={req(`./toggle-button${props.lang}.md`)}
       demos={{
         'pages/lab/toggle-button/ToggleButtons.js': {
           js: require('docs/src/pages/lab/toggle-button/ToggleButtons').default,

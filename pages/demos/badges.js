@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./badges-${props.lang}.md`)}
+      markdown={req(`./badges${props.lang}.md`)}
       demos={{
         'pages/demos/badges/SimpleBadge.js': {
           js: require('docs/src/pages/demos/badges/SimpleBadge').default,

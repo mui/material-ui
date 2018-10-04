@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./tabs-${props.lang}.md`)}
+      markdown={req(`./tabs${props.lang}.md`)}
       demos={{
         'pages/demos/tabs/SimpleTabs.js': {
           js: require('docs/src/pages/demos/tabs/SimpleTabs').default,

@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./typography-${props.lang}.md`)}
+      markdown={req(`./typography${props.lang}.md`)}
       demos={{
         'pages/style/typography/Types.js': {
           js: require('docs/src/pages/style/typography/Types').default,

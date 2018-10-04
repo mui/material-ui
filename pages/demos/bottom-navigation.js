@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./bottom-navigation-${props.lang}.md`)}
+      markdown={req(`./bottom-navigation${props.lang}.md`)}
       demos={{
         'pages/demos/bottom-navigation/SimpleBottomNavigation.js': {
           js: require('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation').default,

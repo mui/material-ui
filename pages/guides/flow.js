@@ -6,7 +6,7 @@ const req = require.context('markdown', true, /.md$/);
 
 function Page(props) {
   return <MarkdownDocs
-      markdown={req(`./flow-${props.lang}.md`)} />;
+      markdown={req(`./flow${props.lang}.md`)} />;
 }
 
 export default withRoot(Page);

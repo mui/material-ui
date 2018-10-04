@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./versions-${props.lang}.md`)}
+      markdown={req(`./versions${props.lang}.md`)}
       demos={{
         'pages/versions/LatestVersion.js': {
           js: require('docs/src/pages/versions/LatestVersion').default,

@@ -5,7 +5,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 const req = require.context('markdown', true, /.md$/);
 
 function Page(props) {
-  return <MarkdownDocs markdown={req(`./supported-components-${props.lang}.md`)} />;
+  return <MarkdownDocs markdown={req(`./supported-components${props.lang}.md`)} />;
 }
 
 export default withRoot(Page);

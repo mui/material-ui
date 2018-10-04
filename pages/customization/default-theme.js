@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./default-theme-${props.lang}.md`)}
+      markdown={req(`./default-theme${props.lang}.md`)}
       demos={{
         'pages/customization/default-theme/DefaultTheme.js': {
           js: require('docs/src/pages/customization/default-theme/DefaultTheme').default,

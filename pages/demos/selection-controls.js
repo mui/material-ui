@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./selection-controls-${props.lang}.md`)}
+      markdown={req(`./selection-controls${props.lang}.md`)}
       demos={{
         'pages/demos/selection-controls/Checkboxes.js': {
           js: require('docs/src/pages/demos/selection-controls/Checkboxes').default,

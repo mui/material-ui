@@ -7,7 +7,7 @@ const req = require.context('markdown', true, /.md$/);
 function Page(props) {
   return (
     <MarkdownDocs
-      markdown={req(`./dialogs-${props.lang}.md`)}
+      markdown={req(`./dialogs${props.lang}.md`)}
       demos={{
         'pages/demos/dialogs/SimpleDialog.js': {
           js: require('docs/src/pages/demos/dialogs/SimpleDialog').default,
