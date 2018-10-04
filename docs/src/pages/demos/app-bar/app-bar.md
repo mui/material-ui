@@ -39,6 +39,6 @@ A primary searchbar.
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
-## Appbar Fixed Bottom
+## Bottom App Bar
 
 {{"demo": "pages/demos/app-bar/BottomAppBar.js"}}
