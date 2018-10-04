@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/withWidth';
-export * from '../../../material-ui/src/withWidth';
+export { default } from '../material-core/withWidth';
+export * from '../material-core/withWidth';

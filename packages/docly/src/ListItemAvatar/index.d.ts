@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/ListItemAvatar';
-export * from '../../../material-ui/src/ListItemAvatar';
+export { default } from '../material-core/ListItemAvatar';
+export * from '../material-core/ListItemAvatar';

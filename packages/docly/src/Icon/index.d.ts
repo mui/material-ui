@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Icon';
-export * from '../../../material-ui/src/Icon';
+export { default } from '../material-core/Icon';
+export * from '../material-core/Icon';

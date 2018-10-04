@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/GridListTileBar';
-export * from '../../../material-ui/src/GridListTileBar';
+export { default } from '../material-core/GridListTileBar';
+export * from '../material-core/GridListTileBar';

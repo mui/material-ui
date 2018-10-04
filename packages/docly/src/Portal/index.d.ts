@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Portal';
-export * from '../../../material-ui/src/Portal';
+export { default } from '../material-core/Portal';
+export * from '../material-core/Portal';

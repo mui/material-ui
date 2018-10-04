@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Switch';
+export { default } from '../material-core/Switch';

@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/FormHelperText';
-export * from '../../../material-ui/src/FormHelperText';
+export { default } from '../material-core/FormHelperText';
+export * from '../material-core/FormHelperText';

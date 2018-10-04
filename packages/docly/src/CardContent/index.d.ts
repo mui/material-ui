@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/CardContent';
-export * from '../../../material-ui/src/CardContent';
+export { default } from '../material-core/CardContent';
+export * from '../material-core/CardContent';

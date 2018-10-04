@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Zoom';
+export { default } from '../material-core/Zoom';

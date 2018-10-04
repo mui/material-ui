@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Avatar';
+export { default } from '../material-core/Avatar';

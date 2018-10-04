@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Grid';
+export { default } from '../material-core/Grid';

@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Chip';
+export { default } from '../material-core/Chip';

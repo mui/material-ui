@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Popover';
-export * from '../../../material-ui/src/Popover';
+export { default } from '../material-core/Popover';
+export * from '../material-core/Popover';

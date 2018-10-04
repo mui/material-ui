@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/FormLabel';
-export * from '../../../material-ui/src/FormLabel';
+export { default } from '../material-core/FormLabel';
+export * from '../material-core/FormLabel';

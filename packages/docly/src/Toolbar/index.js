@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Toolbar';
+export { default } from '../material-core/Toolbar';

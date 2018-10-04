@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/TextField';
-export * from '../../../material-ui/src/TextField';
+export { default } from '../material-core/TextField';
+export * from '../material-core/TextField';

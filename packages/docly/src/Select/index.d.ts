@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Select';
-export * from '../../../material-ui/src/Select';
+export { default } from '../material-core/Select';
+export * from '../material-core/Select';

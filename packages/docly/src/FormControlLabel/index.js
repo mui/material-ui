@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/FormControlLabel';
+export { default } from '../material-core/FormControlLabel';

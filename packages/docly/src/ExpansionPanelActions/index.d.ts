@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/ExpansionPanelActions';
-export * from '../../../material-ui/src/ExpansionPanelActions';
+export { default } from '../material-core/ExpansionPanelActions';
+export * from '../material-core/ExpansionPanelActions';

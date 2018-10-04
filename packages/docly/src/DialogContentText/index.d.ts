@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/DialogContentText';
-export * from '../../../material-ui/src/DialogContentText';
+export { default } from '../material-core/DialogContentText';
+export * from '../material-core/DialogContentText';

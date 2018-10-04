@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/InputAdornment';
+export { default } from '../material-core/InputAdornment';

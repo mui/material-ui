@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Hidden';
-export * from '../../../material-ui/src/Hidden';
+export { default } from '../material-core/Hidden';
+export * from '../material-core/Hidden';

@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Tab';
-export * from '../../../material-ui/src/Tab';
+export { default } from '../material-core/Tab';
+export * from '../material-core/Tab';

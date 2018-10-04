@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/ButtonBase';
-export * from '../../../material-ui/src/ButtonBase';
+export { default } from '../material-core/ButtonBase';
+export * from '../material-core/ButtonBase';

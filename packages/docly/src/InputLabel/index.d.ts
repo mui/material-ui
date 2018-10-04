@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/InputLabel';
-export * from '../../../material-ui/src/InputLabel';
+export { default } from '../material-core/InputLabel';
+export * from '../material-core/InputLabel';

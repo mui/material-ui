@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/FormControl';
-export * from '../../../material-ui/src/FormControl';
+export { default } from '../material-core/FormControl';
+export * from '../material-core/FormControl';

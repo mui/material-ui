@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Input';
+export { default } from '../material-core/Input';

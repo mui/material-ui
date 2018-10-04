@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/OutlinedInput';
-export * from '../../../material-ui/src/OutlinedInput';
+export { default } from '../material-core/OutlinedInput';
+export * from '../material-core/OutlinedInput';

@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/RadioGroup';
-export * from '../../../material-ui/src/RadioGroup';
+export { default } from '../material-core/RadioGroup';
+export * from '../material-core/RadioGroup';

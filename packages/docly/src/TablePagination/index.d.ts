@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/TablePagination';
-export * from '../../../material-ui/src/TablePagination';
+export { default } from '../material-core/TablePagination';
+export * from '../material-core/TablePagination';

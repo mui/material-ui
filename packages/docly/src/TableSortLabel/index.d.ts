@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/TableSortLabel';
-export * from '../../../material-ui/src/TableSortLabel';
+export { default } from '../material-core/TableSortLabel';
+export * from '../material-core/TableSortLabel';

@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Grow';
-export * from '../../../material-ui/src/Grow';
+export { default } from '../material-core/Grow';
+export * from '../material-core/Grow';

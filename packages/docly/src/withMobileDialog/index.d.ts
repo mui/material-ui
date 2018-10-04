@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/withMobileDialog';
-export * from '../../../material-ui/src/withMobileDialog';
+export { default } from '../material-core/withMobileDialog';
+export * from '../material-core/withMobileDialog';

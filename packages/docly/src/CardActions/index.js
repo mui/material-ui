@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/CardActions';
+export { default } from '../material-core/CardActions';

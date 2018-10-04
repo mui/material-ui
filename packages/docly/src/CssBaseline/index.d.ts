@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/CssBaseline';
-export * from '../../../material-ui/src/CssBaseline';
+export { default } from '../material-core/CssBaseline';
+export * from '../material-core/CssBaseline';

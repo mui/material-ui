@@ -1,2 +1,2 @@
-export { default } from '../../../material-ui/src/Slide';
-export * from '../../../material-ui/src/Slide';
+export { default } from '../material-core/Slide';
+export * from '../material-core/Slide';

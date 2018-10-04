@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Collapse';
+export { default } from '../material-core/Collapse';

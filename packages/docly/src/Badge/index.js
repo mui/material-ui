@@ -1,1 +1,1 @@
-export { default } from '../../../material-ui/src/Badge';
+export { default } from '../material-core/Badge';
