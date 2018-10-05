@@ -65,10 +65,11 @@ describe('<Select />', () => {
     );
     assert.strictEqual(wrapper.find('input').props().value, 10);
   });
+
   describe('prop: onChange', () => {
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
-      const wrapper = mount(<Select onChange={onChangeHandler} {...defaultProps} value={'1'} />);
+      const wrapper = mount(<Select onChange={onChangeHandler} {...defaultProps} value="1" />);
       wrapper.find('[role="button"]').simulate('click');
       wrapper
         .find(MenuItem)
