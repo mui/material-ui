@@ -1,14 +1,35 @@
-import React, { PureComponent, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-import Calendar from './components/Calendar';
+import Calendar, { RenderDay } from './components/Calendar';
 import YearSelection from './components/YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import DomainPropTypes from '../constants/prop-types';
-import withUtils from '../_shared/WithUtils';
+import DomainPropTypes, { DateType } from '../constants/prop-types';
+import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
+import { MaterialUiPickersDate } from '../typings/date';
 
-export class DatePicker extends PureComponent {
+export interface BaseDatePickerProps {
+  minDate?: DateType;
+  maxDate?: DateType;
+  initialFocusedDate?: DateType;
+  disablePast?: boolean;
+  disableFuture?: boolean;
+  animateYearScrolling?: boolean;
+  openToYearSelection?: boolean;
+  leftArrowIcon?: React.ReactNode;
+  rightArrowIcon?: React.ReactNode;
+  renderDay?: RenderDay;
+  allowKeyboardControl?: boolean;
+  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+}
+
+export interface DatePickerProps extends BaseDatePickerProps {
+  date: MaterialUiPickersDate;
+  onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
+}
+
+export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsProps> {
   static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
@@ -25,6 +46,7 @@ export class DatePicker extends PureComponent {
     utils: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
     allowKeyboardControl: PropTypes.bool,
+    initialFocusedDate: DomainPropTypes.date
   }
 
   static defaultProps = {
@@ -43,7 +65,7 @@ export class DatePicker extends PureComponent {
   }
 
   state = {
-    showYearSelection: this.props.openToYearSelection,
+    showYearSelection: Boolean(this.props.openToYearSelection),
   }
 
   get date() {
@@ -58,7 +80,7 @@ export class DatePicker extends PureComponent {
     return this.props.utils.date(this.props.maxDate);
   }
 
-  handleYearSelect = (date) => {
+  handleYearSelect = (date: MaterialUiPickersDate) => {
     this.props.onChange(date, false);
     this.openCalendar();
   }
@@ -72,6 +94,7 @@ export class DatePicker extends PureComponent {
   }
 
   render() {
+    const { showYearSelection } = this.state;
     const {
       disablePast,
       disableFuture,
@@ -84,10 +107,9 @@ export class DatePicker extends PureComponent {
       shouldDisableDate,
       allowKeyboardControl,
     } = this.props;
-    const { showYearSelection } = this.state;
 
     return (
-      <Fragment>
+      <>
         <PickerToolbar>
           <ToolbarButton
             variant="subheading"
@@ -117,7 +139,6 @@ export class DatePicker extends PureComponent {
                 disablePast={disablePast}
                 disableFuture={disableFuture}
                 animateYearScrolling={animateYearScrolling}
-                utils={utils}
               />
             )
             : (
@@ -137,9 +158,9 @@ export class DatePicker extends PureComponent {
               />
             )
         }
-      </Fragment>
+      </>
     );
   }
 }
 
-export default withUtils()(DatePicker);
+export default withUtils()(DatePicker as React.ComponentType<DatePickerProps & WithUtilsProps>);

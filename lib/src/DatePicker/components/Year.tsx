@@ -1,10 +1,20 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import createStyles from '@material-ui/core/styles/createStyles';
 import Typography from '@material-ui/core/Typography';
+import { Theme } from '@material-ui/core';
 
-export class Year extends PureComponent {
+export interface YearProps extends WithStyles<typeof styles> {
+  children: React.ReactNode;
+  disabled?: boolean;
+  onSelect: (value: any) => void;
+  selected?: boolean;
+  value: any;
+}
+
+export class Year extends React.PureComponent<YearProps> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
@@ -12,6 +22,7 @@ export class Year extends PureComponent {
     onSelect: PropTypes.func.isRequired,
     selected: PropTypes.bool,
     value: PropTypes.any.isRequired,
+    innerRef: PropTypes.any
   }
 
   static defaultProps = {
@@ -49,7 +60,7 @@ export class Year extends PureComponent {
   }
 }
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
   root: {
     height: theme.spacing.unit * 5,
     display: 'flex',
@@ -72,4 +83,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersYear' })(Year);
+export default withStyles(styles, { name: 'MuiPickersYear' })(Year as React.ComponentClass<YearProps>);

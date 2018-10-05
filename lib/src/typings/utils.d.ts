@@ -2,7 +2,7 @@ export class Utils<TDate> {
   locale: any;
   constructor (options?: { locale: any, moment: any });
 
-  date(value: any): TDate;
+  date(value?: any): TDate;
   parse(value: string): TDate | null;
 
   isNull(value: TDate): boolean;

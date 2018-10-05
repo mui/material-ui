@@ -1,12 +1,24 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import withStyles from '@material-ui/core/styles/withStyles';
-import DomainPropTypes from '../../constants/prop-types';
-import withUtils from '../../_shared/WithUtils';
+import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import DomainPropTypes, { DateType } from '../../constants/prop-types';
+import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
 import Year from './Year';
+import { MaterialUiPickersDate } from '../../typings/date';
 
-export class YearSelection extends PureComponent {
+export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
+  date: MaterialUiPickersDate;
+  minDate?: DateType;
+  maxDate?: DateType;
+  onChange: (date: MaterialUiPickersDate) => void;
+  disablePast?: boolean;
+  disableFuture?: boolean;
+  animateYearScrolling?: boolean;
+}
+
+export class YearSelection extends React.PureComponent<YearSelectionProps> {
   static propTypes = {
     date: PropTypes.shape({}).isRequired,
     minDate: DomainPropTypes.date.isRequired,
@@ -17,21 +29,22 @@ export class YearSelection extends PureComponent {
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
     utils: PropTypes.object.isRequired,
+    innerRef: PropTypes.any,
   }
 
   static defaultProps = {
     animateYearScrolling: false,
   }
 
-  selectedYearRef = undefined;
+  selectedYearRef?: React.ReactInstance = undefined;
 
-  getSelectedYearRef = (ref) => {
+  getSelectedYearRef = (ref?: React.ReactInstance) => {
     this.selectedYearRef = ref;
   }
 
-  scrollToCurrentYear = () => {
+  scrollToCurrentYear = (domNode: React.ReactInstance) => {
     const { animateYearScrolling } = this.props;
-    const currentYearElement = findDOMNode(this.selectedYearRef);
+    const currentYearElement = findDOMNode(domNode) as Element;
 
     if (currentYearElement && currentYearElement.scrollIntoView) {
       if (animateYearScrolling) {
@@ -43,10 +56,12 @@ export class YearSelection extends PureComponent {
   }
 
   componentDidMount = () => {
-    this.scrollToCurrentYear();
+    if (this.selectedYearRef) {
+      this.scrollToCurrentYear(this.selectedYearRef);
+    }
   }
 
-  onYearSelect = (year) => {
+  onYearSelect = (year: number) => {
     const { date, onChange, utils } = this.props;
 
     const newDate = utils.setYear(date, year);
@@ -73,6 +88,7 @@ export class YearSelection extends PureComponent {
                   selected={selected}
                   value={yearNumber}
                   onSelect={this.onYearSelect}
+                  // @ts-ignore
                   ref={selected ? this.getSelectedYearRef : undefined}
                   disabled={(
                     (disablePast && utils.isBeforeYear(year, utils.date()))
@@ -89,12 +105,14 @@ export class YearSelection extends PureComponent {
   }
 }
 
-const styles = {
+const styles = createStyles({
   container: {
     maxHeight: 300,
     overflowY: 'auto',
     justifyContent: 'center',
   },
-};
+})
 
-export default withStyles(styles, { name: 'MuiPickersYearSelection' })(withUtils()(YearSelection));
+export default withStyles(styles, { name: 'MuiPickersYearSelection' })(
+  withUtils()(YearSelection as React.ComponentType<YearSelectionProps>)
+);

@@ -15,13 +15,13 @@ const SlideTransition = ({
   <TransitionGroup
     className={classnames(classes.transitionContainer, className)}
     childFactory={transitionFactory({
-       classNames: {
-              enter: classes[`slideEnter-${slideDirection}`],
-              enterActive: classes.slideEnterActive,
-              exit: classes.slideExit,
-              exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
-            },
-      })
+      classNames: {
+        enter: classes[`slideEnter-${slideDirection}`],
+        enterActive: classes.slideEnterActive,
+        exit: classes.slideExit,
+        exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
+      },
+    })
     }
   >
     <CSSTransition key={transKey} mountOnEnter unmountOnExit timeout={animationDuration}>

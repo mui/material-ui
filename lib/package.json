@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "@types/react-dom": "^16.0.8",
     "classnames": "^2.2.5",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",

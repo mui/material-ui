@@ -1,15 +1,28 @@
-import { ComponentClass, ReactNode } from 'react';
-import { DateTimePickerView } from '../constants/date-picker-view';
-import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
-
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+export declare const MuiPickersContextConsumer: React.ComponentType<React.ConsumerProps<any>>;
 export interface MuiPickersUtilsProviderProps {
-  utils: any;
-  children: ReactNode;
-  locale?: any;
-  moment?: any;
+    utils: any;
+    children: React.ReactNode;
+    locale?: any;
+    moment?: any;
 }
-
-declare const MuiPickersUtilsProvider: ComponentClass<MuiPickersUtilsProviderProps>;
-
-export default MuiPickersUtilsProvider;
+export default class MuiPickersUtilsProvider extends React.Component<MuiPickersUtilsProviderProps> {
+    static propTypes: {
+        utils: PropTypes.Validator<(...args: any[]) => any>;
+        locale: PropTypes.Requireable<string | object>;
+        children: PropTypes.Validator<PropTypes.ReactElementLike | PropTypes.ReactElementLike[]>;
+        moment: PropTypes.Requireable<(...args: any[]) => any>;
+    };
+    static defaultProps: {
+        locale: undefined;
+        moment: undefined;
+    };
+    state: {
+        utils: null;
+    };
+    static getDerivedStateFromProps({ utils: Utils, locale, moment }: MuiPickersUtilsProviderProps): {
+        utils: any;
+    };
+    render(): JSX.Element;
+}

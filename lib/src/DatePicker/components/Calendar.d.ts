@@ -24,6 +24,7 @@ export interface CalendarProps {
     rightArrowIcon?: ReactNode;
     renderDay?: RenderDay;
     utils?: Utils<MaterialUiPickersDate>;
+    allowKeyboardControl?: boolean;
     shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 

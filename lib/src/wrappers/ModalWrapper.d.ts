@@ -18,6 +18,7 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
     showTodayButton?: boolean;
     container?: ReactNode;
     DialogProps?: Partial<DialogProps>;
+    isAccepted?: boolean;
 }
 
 declare const ModalWrapper: ComponentClass<ModalWrapperProps>;

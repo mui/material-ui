@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-const { Consumer, Provider } = React.createContext();
+const { Consumer, Provider } = React.createContext(null as any);
 export const MuiPickersContextConsumer = Consumer;
 
-export default class MuiPickersUtilsProvider extends Component {
+export interface MuiPickersUtilsProviderProps {
+  utils: any;
+  children: React.ReactNode;
+  locale?: any;
+  moment?: any;
+}
+
+export default class MuiPickersUtilsProvider extends React.Component<MuiPickersUtilsProviderProps> {
   static propTypes = {
-    /* eslint-disable react/no-unused-prop-types */
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     children: PropTypes.oneOfType([
@@ -25,13 +31,13 @@ export default class MuiPickersUtilsProvider extends Component {
     utils: null,
   }
 
-  static getDerivedStateFromProps({ utils: Utils, locale, moment }) {
+  static getDerivedStateFromProps({ utils: Utils, locale, moment }: MuiPickersUtilsProviderProps) {
     return {
       utils: new Utils({ locale, moment }),
     };
   }
 
   render() {
-    return <Provider value={this.state.utils}>{this.props.children}</Provider>;
+    return <Provider value={this.state.utils} children={this.props.children} />;
   }
 }

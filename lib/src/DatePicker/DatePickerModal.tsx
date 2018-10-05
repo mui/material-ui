@@ -1,12 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-import ModalWrapper from '../wrappers/ModalWrapper';
-import DatePicker from './DatePicker';
+import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import DatePicker, { BaseDatePickerProps } from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
-import BasePicker from '../_shared/BasePicker';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import { Omit } from '@material-ui/core';
 
-export const DatePickerModal = (props) => {
+export interface DatePickerModalProps extends
+  BasePickerProps,
+  BaseDatePickerProps,
+  Omit<ModalWrapperProps, 'onChange' | 'value'> {}
+
+export const DatePickerModal: React.SFC<DatePickerModalProps> = (props) => {
   const {
     allowKeyboardControl,
     animateYearScrolling,
@@ -46,7 +52,7 @@ export const DatePickerModal = (props) => {
           <ModalWrapper
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format || utils.dateFormat}
+            format={format || utils.datePickerFormat}
             labelFunc={labelFunc}
             maxDate={maxDate}
             minDate={minDate}
@@ -82,7 +88,7 @@ export const DatePickerModal = (props) => {
   );
 };
 
-DatePickerModal.propTypes = {
+(DatePickerModal as any).propTypes = {
   /** Datepicker value */
   value: DomainPropTypes.date,
   /** Min selectable date */
@@ -144,6 +150,6 @@ DatePickerModal.defaultProps = {
   forwardedRef: undefined,
 };
 
-export default React.forwardRef((props, ref) => (
+export default React.forwardRef((props: DatePickerModalProps, ref) => (
   <DatePickerModal {...props} forwardedRef={ref} />
 ));
