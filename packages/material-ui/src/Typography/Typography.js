@@ -140,7 +140,7 @@ function getVariant(theme, props, variant) {
     typography.suppressDeprecationWarnings ||
       (props.internalDeprecatedVariant && typography.useNextVariants) ||
       !typographyMigration.deprecatedVariants.includes(variant),
-    'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
+    'Material-UI: You are using the deprecated typography variant ' +
       `${variant} that will be removed in the next major release. ${
         typographyMigration.migrationGuideMessage
       }`,
@@ -155,7 +155,7 @@ function getVariant(theme, props, variant) {
   warning(
     typography.suppressDeprecationWarnings ||
       !typographyMigration.restyledVariants.includes(variant),
-    'Deprecation Warning: Material-UI: You are using the typography variant ' +
+    'Material-UI: You are using the typography variant ' +
       `${variant} which will be restyled in the next major release. ${
         typographyMigration.migrationGuideMessage
       }`,

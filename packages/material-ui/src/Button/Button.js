@@ -229,13 +229,13 @@ function Button(props) {
 
   warning(
     process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'flat',
-    'Deprecation Warning: Material-UI: The `flat` Button variant will be removed in ' +
+    'Material-UI: The `flat` Button variant will be removed in ' +
       'the next major release. `text` is equivalent and should be used instead.',
   );
 
   warning(
     process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'raised',
-    'Deprecation Warning: Material-UI: The `raised` Button variant will be removed in ' +
+    'Material-UI: The `raised` Button variant will be removed in ' +
       'the next major release. `contained` is equivalent and should be used instead.',
   );
 
