@@ -123,7 +123,7 @@ function Pricing(props) {
       <CssBaseline />
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
+          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
           </Typography>
           <Button>Features</Button>
@@ -137,10 +137,10 @@ function Pricing(props) {
       <main className={classes.layout}>
         {/* Hero unit */}
         <div className={classes.heroContent}>
-          <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
+          <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
             Pricing
           </Typography>
-          <Typography variant="title" align="center" color="textSecondary" component="p">
+          <Typography variant="h6" align="center" color="textSecondary" component="p">
             Quickly build an effective pricing table for your potential customers with this layout.
             It&apos;s built with default Material-UI components with little customization.
           </Typography>
@@ -161,15 +161,15 @@ function Pricing(props) {
                 />
                 <CardContent>
                   <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="display2" color="textPrimary">
+                    <Typography component="h2" variant="h3" color="textPrimary">
                       ${tier.price}
                     </Typography>
-                    <Typography variant="title" color="textSecondary">
+                    <Typography variant="h6" color="textSecondary">
                       /mo
                     </Typography>
                   </div>
                   {tier.description.map(line => (
-                    <Typography variant="subheading" align="center" key={line}>
+                    <Typography variant="subtitle1" align="center" key={line}>
                       {line}
                     </Typography>
                   ))}
@@ -189,11 +189,11 @@ function Pricing(props) {
         <Grid container spacing={32} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs key={footer.title}>
-              <Typography variant="title" color="textPrimary" gutterBottom>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
                 {footer.title}
               </Typography>
               {footer.description.map(item => (
-                <Typography key={item} variant="subheading" color="textSecondary">
+                <Typography key={item} variant="subtitle1" color="textSecondary">
                   {item}
                 </Typography>
               ))}
