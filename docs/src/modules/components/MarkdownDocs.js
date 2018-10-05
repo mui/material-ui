@@ -17,6 +17,7 @@ import {
   getTitle,
   getDescription,
 } from 'docs/src/modules/utils/parseMarkdown';
+import acceptLanguage from 'accept-language';
 
 const styles = theme => ({
   root: {
@@ -37,81 +38,104 @@ const styles = theme => ({
 const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
 
-function MarkdownDocs(props, context) {
-  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
-  const contents = getContents(markdown);
-  const headers = getHeaders(markdown);
+class MarkdownDocs extends React.Component {
+  state = {
+    userLanguage: 'en',
+  };
 
-  let markdownLocation = markdownLocationProp || context.activePage.pathname;
-
-  if (!markdownLocationProp) {
-    const token = markdownLocation.split('/');
-    token.push(token[token.length - 1]);
-    markdownLocation = token.join('/');
-
-    if (headers.filename) {
-      markdownLocation = headers.filename;
-    } else {
-      markdownLocation = `/docs/src/pages${markdownLocation}.md`;
-    }
+  componentDidMount() {
+    this.setState({ userLanguage: acceptLanguage.get(navigator.language) || 'en' });
   }
 
-  if (headers.components.length > 0) {
-    const section = markdownLocation.split('/')[4];
-    contents.push(`
+  render() {
+    const {
+      classes,
+      demos,
+      disableAd,
+      markdown,
+      markdownLocation: markdownLocationProp,
+    } = this.props;
+    const contents = getContents(markdown);
+    const headers = getHeaders(markdown);
+
+    let markdownLocation = markdownLocationProp || this.context.activePage.pathname;
+
+    if (!markdownLocationProp) {
+      const token = markdownLocation.split('/');
+      token.push(token[token.length - 1]);
+      markdownLocation = token.join('/');
+
+      if (headers.filename) {
+        markdownLocation = headers.filename;
+      } else {
+        markdownLocation = `/docs/src/pages${markdownLocation}.md`;
+      }
+    }
+
+    if (headers.components.length > 0) {
+      const section = markdownLocation.split('/')[4];
+      contents.push(`
 ## API
 
 ${headers.components
-      .map(
-        component =>
-          `- [&lt;${component} /&gt;](${
-            section === 'lab' ? '/lab/api' : '/api'
-          }/${_rewriteUrlForNextExport(kebabCase(component))})`,
-      )
-      .join('\n')}
+        .map(
+          component =>
+            `- [&lt;${component} /&gt;](${
+              section === 'lab' ? '/lab/api' : '/api'
+            }/${_rewriteUrlForNextExport(kebabCase(component))})`,
+        )
+        .join('\n')}
         `);
-  }
+    }
 
-  return (
-    <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdown)} - Material-UI`}
-        description={getDescription(markdown)}
-      />
-      <AppTableOfContents contents={contents} disableAd={disableAd} />
-      <AppContent className={classes.root}>
-        <div className={classes.header}>
-          <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
-            {'Edit this page'}
-          </Button>
-        </div>
-        {contents.map((content, index) => {
-          const match = content.match(demoRegexp);
+    const button =
+      this.state.userLanguage === 'zh' ? (
+        <Button component="a" href="https://crowdin.com/project/material-ui-docs/zh-CN#">
+          {'将此页面翻译成中文'}
+        </Button>
+      ) : (
+        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
+          {'Edit this page'}
+        </Button>
+      );
 
-          if (match && demos) {
-            const demoOptions = JSON.parse(`{${content}}`);
+    return (
+      <AppFrame>
+        <Head
+          title={`${headers.title || getTitle(markdown)} - Material-UI`}
+          description={getDescription(markdown)}
+        />
+        <AppTableOfContents contents={contents} disableAd={disableAd} />
+        <AppContent className={classes.root}>
+          <div className={classes.header}>{button}</div>
+          {contents.map((content, index) => {
+            const match = content.match(demoRegexp);
 
-            const name = demoOptions.demo;
-            warning(demos && demos[name], `Missing demo: ${name}.`);
+            if (match && demos) {
+              const demoOptions = JSON.parse(`{${content}}`);
+
+              const name = demoOptions.demo;
+              warning(demos && demos[name], `Missing demo: ${name}.`);
+              return (
+                <Demo
+                  key={content}
+                  js={demos[name].js}
+                  raw={demos[name].raw}
+                  index={index}
+                  demoOptions={demoOptions}
+                  githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                />
+              );
+            }
+
             return (
-              <Demo
-                key={content}
-                js={demos[name].js}
-                raw={demos[name].raw}
-                index={index}
-                demoOptions={demoOptions}
-                githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-              />
+              <MarkdownElement className={classes.markdownElement} key={content} text={content} />
             );
-          }
-
-          return (
-            <MarkdownElement className={classes.markdownElement} key={content} text={content} />
-          );
-        })}
-      </AppContent>
-    </AppFrame>
-  );
+          })}
+        </AppContent>
+      </AppFrame>
+    );
+  }
 }
 
 MarkdownDocs.propTypes = {
