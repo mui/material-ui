@@ -57,6 +57,7 @@ import { MenuListClassKey } from '../MenuList';
 import { MobileStepperClassKey } from '../MobileStepper';
 import { ModalClassKey } from '../Modal';
 import { NativeSelectClassKey } from '../NativeSelect';
+import { NotchedOutlineClassKey } from '../OutlinedInput/NotchedOutline';
 import { OutlinedInputClassKey } from '../OutlinedInput';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
@@ -154,6 +155,7 @@ export interface ComponentNameToClassKey {
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;
+  MuiNotchedOutline: NotchedOutlineClassKey;
   MuiOutlinedInput: OutlinedInputClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
