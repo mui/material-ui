@@ -347,7 +347,8 @@ Button.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The variant to use.
+   * The variant to use. __WARNING__: `flat` and `raised` are deprecated. Instead use
+   * `text` and `contained` respectively.
    */
   variant: PropTypes.oneOf([
     'text',
