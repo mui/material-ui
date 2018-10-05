@@ -119,6 +119,16 @@ This will apply a change such as the following:
 +<Button variant="contained" />
 ```
 
+### Enhanced Button
+
+```diff
+-import EnhancedButton from 'material-ui/internal/EnhancedButton';
++import Button from '@material-ui/core/Button';
+
+-<EnhancedButton />
++<Button />
+```
+
 ### Subheader
 
 ```diff
