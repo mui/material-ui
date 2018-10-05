@@ -15,7 +15,8 @@ import FormControl from '@material-ui/core/FormControl';
 
 Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibilty and ensures that the state always stays
-consistent across the children of the `FormControl`.
+consistent across the children of the `FormControl`. Only one input can be used within a
+FormControl but this can be used in combination with a label and helper text if desired.
 This context is used by the following components:
  - FormLabel
  - FormHelperText
