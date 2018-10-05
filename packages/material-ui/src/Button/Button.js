@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -225,6 +226,18 @@ function Button(props) {
     variant,
     ...other
   } = props;
+
+  warning(
+    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'flat',
+    'Deprecation Warning: Material-UI: The `flat` Button variant will be removed in ' +
+      'the next major release. `text` is equivalent and should be used instead.',
+  );
+
+  warning(
+    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'raised',
+    'Deprecation Warning: Material-UI: The `raised` Button variant will be removed in ' +
+      'the next major release. `contained` is equivalent and should be used instead.',
+  );
 
   const fab = variant === 'fab' || variant === 'extendedFab';
   const contained = variant === 'contained' || variant === 'raised';
