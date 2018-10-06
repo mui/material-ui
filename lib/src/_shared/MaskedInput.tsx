@@ -1,8 +1,13 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
+import MaskedInput, { MaskedInputProps } from 'react-text-mask';
 
-export default class Input extends React.PureComponent {
+export interface CustomMaskedInputProps extends React.InputHTMLAttributes<MaskedInputProps> {
+  mask?: any;
+  inputRef: React.Ref<any>;
+}
+
+export default class Input extends React.PureComponent<CustomMaskedInputProps> {
   static propTypes = {
     mask: PropTypes.any,
     inputRef: PropTypes.func.isRequired,
@@ -13,11 +18,11 @@ export default class Input extends React.PureComponent {
   }
 
   render() {
-    const { inputRef, ...props } = this.props;
+    const { inputRef, ...rest } = this.props;
     return (
       this.props.mask
-        ? <MaskedInput {...props} ref={inputRef} />
-        : <input {...props} ref={inputRef} />
+        ? <MaskedInput {...rest} ref={inputRef} />
+        : <input {...rest} ref={inputRef} />
     );
   }
 }

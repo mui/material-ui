@@ -14,5 +14,5 @@
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["src/**/*", "__tests__/**/*.tsx"]
+  "include": ["src/DatePicker/**/*", "__tests__/**/*.tsx"]
 }

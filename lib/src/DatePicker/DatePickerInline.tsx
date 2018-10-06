@@ -9,7 +9,7 @@ import Calendar from './components/Calendar';
 import { Omit } from '@material-ui/core';
 
 export interface DatePickerInlineProps extends
-  BasePickerProps,
+  Omit<BasePickerProps, 'ampm'>,
   BaseDatePickerProps,
   Omit<InlineWrapperProps, 'onChange' | 'value' | 'utils' | 'onlyCalendar' > {
     onlyCalendar?: boolean
@@ -89,7 +89,7 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = (props) => {
   );
 };
 
-DatePickerInline.propTypes = {
+(DatePickerInline as any).propTypes = {
   onlyCalendar: PropTypes.bool,
   value: DomainPropTypes.date,
   minDate: DomainPropTypes.date,
@@ -132,6 +132,6 @@ DatePickerInline.defaultProps = {
   onlyCalendar: false,
 };
 
-export default React.forwardRef((props, ref) => (
+export default React.forwardRef((props: DatePickerInlineProps, ref) => (
   <DatePickerInline {...props} forwardedRef={ref} />
 ));

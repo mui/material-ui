@@ -4,9 +4,10 @@ import classnames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import { Omit, WithStyles } from '@material-ui/core';
 
 const dialogWidth = 310;
 const dialogHeight = 405;
@@ -44,7 +45,23 @@ const styles = {
   },
 };
 
-export const ModalDialog = ({
+export type DialogBaseProps = Omit<DialogProps, "onKeyDown">
+export interface ModalDialogProps extends DialogBaseProps {
+  onAccept: () => void;
+  onDismiss: () => void;
+  onClear: () => void;
+  onSetToday: () => void;
+  onKeyDown: (e: KeyboardEvent) => void;
+  dialogContentClassName?: string;
+  okLabel?: React.ReactNode;
+  cancelLabel?: React.ReactNode;
+  clearLabel?: React.ReactNode;
+  todayLabel?: React.ReactNode;
+  clearable?: boolean;
+  showTodayButton?: boolean;
+}
+
+export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,
   onKeyDown,
@@ -70,58 +87,53 @@ export const ModalDialog = ({
 
     <DialogActions
       classes={{
-        root: clearable && classes.dialogActions,
+        root: clearable ? classes.dialogActions : undefined,
         action: classnames(classes.dialogAction, {
           [classes.clearableDialogAction]: clearable,
           [classes.todayDialogAction]: !clearable && showTodayButton,
         }),
       }}
     >
-      { clearable
-        && (
-        <Button
-          color="primary"
-          onClick={onClear}
-          aria-label={clearLabel}
-        >
-          { clearLabel }
-        </Button>
+      {
+        clearable && (
+          <Button
+            color="primary"
+            onClick={onClear}
+          >
+            {clearLabel}
+          </Button>
         )
       }
 
-      { !clearable && showTodayButton
-        && (
-        <Button
-          color="primary"
-          onClick={onSetToday}
-          aria-label={todayLabel}
-        >
-          { todayLabel }
-        </Button>
+      {
+        !clearable && showTodayButton && (
+          <Button
+            color="primary"
+            onClick={onSetToday}
+          >
+            {todayLabel}
+          </Button>
         )
       }
 
       <Button
         color="primary"
         onClick={onDismiss}
-        aria-label={cancelLabel}
       >
-        { cancelLabel }
+        {cancelLabel}
       </Button>
 
       <Button
         color="primary"
         onClick={onAccept}
-        aria-label={okLabel}
       >
-        { okLabel }
+        {okLabel}
       </Button>
     </DialogActions>
   </Dialog>
 );
 
-
-ModalDialog.propTypes = {
+(ModalDialog as any).propTypes = {
   children: PropTypes.node.isRequired,
   onKeyDown: PropTypes.func.isRequired,
   onAccept: PropTypes.func.isRequired,

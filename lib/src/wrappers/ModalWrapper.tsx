@@ -1,11 +1,31 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import keycode from 'keycode';
+import * as keycode from 'keycode';
 import ModalDialog from '../_shared/ModalDialog';
-import DateTextField from '../_shared/DateTextField';
+import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
+import { DialogProps } from '@material-ui/core/Dialog';
+import { Omit } from '@material-ui/core';
 
-export default class ModalWrapper extends React.PureComponent {
+export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
+  onAccept?: () => void;
+  onDismiss?: () => void;
+  onClear?: () => void;
+  onSetToday?: () => void;
+  onOpen?: () => void;
+  onClose?: () => void;
+  dialogContentClassName?: string;
+  okLabel?: React.ReactNode;
+  cancelLabel?: React.ReactNode;
+  clearLabel?: React.ReactNode;
+  todayLabel?: React.ReactNode;
+  showTodayButton?: boolean;
+  container?: React.ReactNode;
+  DialogProps?: Partial<Omit<DialogProps, 'classes'>>;
+  isAccepted?: boolean;
+}
+
+export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
   static propTypes = {
     /** "OK" label message */
     okLabel: PropTypes.node,
@@ -66,7 +86,7 @@ export default class ModalWrapper extends React.PureComponent {
     open: false,
   }
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProps: ModalWrapperProps) {
     // only if accept = true close the dialog
     if (nextProps.isAccepted) {
       return {
@@ -77,7 +97,7 @@ export default class ModalWrapper extends React.PureComponent {
     return null;
   }
 
-  handleKeyDown = (event) => {
+  handleKeyDown = (event: KeyboardEvent) => {
     switch (keycode(event)) {
       case 'enter':
         this.handleAccept();
@@ -171,7 +191,7 @@ export default class ModalWrapper extends React.PureComponent {
 
         <ModalDialog
           open={this.state.open}
-          onKeyDown={this.handleKeyDown}
+          onKeyDown={this.handleKeyDown as any}
           onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
