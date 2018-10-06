@@ -305,7 +305,10 @@ function withRoot(Component) {
     }
 
     componentDidMount() {
-      this.setState({ userLanguage: acceptLanguage.get(navigator.language) || 'en' });
+      this.setState({
+        userLanguage:
+          this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en',
+      });
     }
 
     render() {

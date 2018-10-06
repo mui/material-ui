@@ -75,6 +75,7 @@ const theme = createMuiTheme({
 ```
 
 This will use new variants instead of old variants according to the following mapping:
+
 ```json
 display4 => h1
 display3 => h2
@@ -83,7 +84,10 @@ display1 => h4
 headline => h5
 title => h6
 subheading => subtitle1
+body2 => body1
+body1 (default) => body2 (default)
 ```
+
 Please note that this will still log deprecation warnings if you use one of the variants.
 We recommend you replace those old variants with the recommended variants to be prepared
 for the next major release.
