@@ -33,7 +33,7 @@
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "docs:deploy": "git push material-ui-docs master:latest",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
-    "jsonlint:files": "find . -name \"*.json\"  | grep -v -f .eslintignore",
+    "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "prettier": "yarn --silent prettier:files | xargs prettier --write",
