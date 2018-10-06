@@ -67,3 +67,8 @@ but you are not confident jumping in,
 here are examples of how you can change the look of a Snackbar.
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
+
+## Advanced use cases
+
+For more advanced use cases you might be able to take advantage of:
+- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other
