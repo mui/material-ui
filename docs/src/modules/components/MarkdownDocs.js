@@ -74,7 +74,7 @@ ${headers.components
 
   const button =
     context.userLanguage === 'zh' ? (
-      <Button component="a" href="https://crowdin.com/project/material-ui-docs/zh-CN#">
+      <Button component="a" href="https://translate.material-ui.com/project/material-ui-docs">
         {'将此页面翻译成中文'}
       </Button>
     ) : (
