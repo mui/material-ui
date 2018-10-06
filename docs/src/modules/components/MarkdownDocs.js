@@ -72,6 +72,17 @@ ${headers.components
         `);
   }
 
+  const button =
+    context.userLanguage === 'zh' ? (
+      <Button component="a" href="https://crowdin.com/project/material-ui-docs/zh-CN#">
+        {'将此页面翻译成中文'}
+      </Button>
+    ) : (
+      <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
+        {'Edit this page'}
+      </Button>
+    );
+
   return (
     <AppFrame>
       <Head
@@ -80,11 +91,7 @@ ${headers.components
       />
       <AppTableOfContents contents={contents} disableAd={disableAd} />
       <AppContent className={classes.root}>
-        <div className={classes.header}>
-          <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
-            {'Edit this page'}
-          </Button>
-        </div>
+        <div className={classes.header}>{button}</div>
         {contents.map((content, index) => {
           const match = content.match(demoRegexp);
 
@@ -132,6 +139,7 @@ MarkdownDocs.contextTypes = {
   activePage: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+  userLanguage: PropTypes.string,
 };
 
 export default withStyles(styles)(MarkdownDocs);

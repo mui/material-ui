@@ -2,5 +2,9 @@
   {
     "id": 19,
     "text": "Material-UI v3.1.0 is out 🎉. Please see <a style=\"color: white;\" target=\"_blank\" href=\"https://github.com/mui-org/material-ui/releases/tag/v3.1.0\">the release notes</a>."
-  }
+  },
+  {
+    "id": 20,
+    "text": "Let's localize!<a style=\"color: white;\" target=\"_blank\" href=\"https://crowdin.com/project/material-ui-docs/zh-CN#">帮助将Material-UI文档翻译成中文</a>."
+  },
 ]
