@@ -133,8 +133,14 @@ function nextVariantMapping(variant) {
   return nextVariant;
 }
 
-function getVariant(theme, props, variant) {
+function getVariant(theme, props, variantProp) {
   const typography = theme.typography;
+
+  let variant = variantProp;
+
+  if (!variant) {
+    variant = typography.useNextVariants ? 'body2' : 'body1';
+  }
 
   warning(
     typography.suppressDeprecationWarnings ||
@@ -276,6 +282,7 @@ Typography.propTypes = {
    * A deprecated variant is used from an internal component. Users don't need
    * a deprecation warning here if they switched to the v2 theme. They already
    * get the mapping that will be applied in the next major release.
+   *
    * @internal
    */
   internalDeprecatedVariant: PropTypes.bool,
@@ -289,6 +296,7 @@ Typography.propTypes = {
   paragraph: PropTypes.bool,
   /**
    * Applies the theme typography styles.
+   * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
    */
   variant: PropTypes.oneOf([
     'h1',
@@ -324,7 +332,6 @@ Typography.defaultProps = {
   headlineMapping: defaultHeadlineMapping,
   noWrap: false,
   paragraph: false,
-  variant: 'body1',
 };
 
 export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

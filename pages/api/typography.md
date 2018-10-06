@@ -29,7 +29,7 @@ import Typography from '@material-ui/core/Typography';
 | <span class="prop-name">internalDeprecatedVariant</span> | <span class="prop-type">bool |   | A deprecated variant is used from an internal component. Users don't need a deprecation warning here if they switched to the v2 theme. They already get the mapping that will be applied in the next major release. |
 | <span class="prop-name">noWrap</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
 | <span class="prop-name">paragraph</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'button', 'overline', 'srOnly', 'inherit', "display4", 'display3', 'display2', 'display1', 'headline', 'title', 'subheading'<br> | <span class="prop-default">'body1'</span> | Applies the theme typography styles. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'button', 'overline', 'srOnly', 'inherit', "display4", 'display3', 'display2', 'display1', 'headline', 'title', 'subheading'<br> |   | Applies the theme typography styles. Use `body1` as the default value with the legacy implementation and `body2` with the new one. |
 
 Any other properties supplied will be spread to the root element (native element).
 

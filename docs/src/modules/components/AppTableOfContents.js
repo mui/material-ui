@@ -141,7 +141,7 @@ class AppTableOfContents extends React.Component {
         {disableAd ? null : <Ad />}
         {itemsServer.length > 0 ? (
           <React.Fragment>
-            <Typography variant="body2" gutterBottom className={classes.contents}>
+            <Typography gutterBottom className={classes.contents}>
               Contents
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />

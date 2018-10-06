@@ -72,14 +72,12 @@ class Ad extends React.Component {
     if (adblock) {
       return (
         <Paper elevation={0} className={classes.paper}>
-          <Typography variant="body2" gutterBottom>
-            Like Material-UI?
-          </Typography>
-          <Typography variant="body2" gutterBottom>
+          <Typography gutterBottom>Like Material-UI?</Typography>
+          <Typography gutterBottom>
             {`If you don't mind tech-related ads, and want to support Open Source,
             please whitelist Material-UI in your ad blocker.`}
           </Typography>
-          <Typography variant="body2">
+          <Typography>
             Thank you!{' '}
             <span role="img" aria-label="Love">
               ❤️

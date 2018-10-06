@@ -51,7 +51,6 @@ export default function createTypography(palette, typography) {
   );
 
   const coef = fontSize / 14;
-  const letterSpacingToEm = (tracking, spSize) => `${(tracking / spSize) * coef}em`;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
     color: palette.text.primary,
@@ -63,7 +62,7 @@ export default function createTypography(palette, typography) {
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
     ...(fontFamily === defaultFontFamiliy
-      ? { letterSpacing: letterSpacingToEm(letterSpacing, size) }
+      ? { letterSpacing: `${round(letterSpacing / size)}em` }
       : {}),
     ...casing,
     ...allVariants,
@@ -78,11 +77,11 @@ export default function createTypography(palette, typography) {
     h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
     subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
     subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
-    body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.5),
-    body2Next: buildVariant(fontWeightRegular, 14, 1.42, 0.25),
-    buttonNext: buildVariant(fontWeightMedium, 14, 2.57, 0.75, caseAllCaps),
+    body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
+    body2Next: buildVariant(fontWeightRegular, 14, 1.42, 0.15),
+    buttonNext: buildVariant(fontWeightMedium, 14, 2.57, 0.4, caseAllCaps),
     captionNext: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
-    overline: buildVariant(fontWeightRegular, 12, 2.66, 1.5, caseAllCaps),
+    overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps),
   };
 
   // To remove in v4
