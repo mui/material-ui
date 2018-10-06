@@ -1,24 +1,26 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 
-import DomainPropTypes from '../constants/prop-types';
+import DomainPropTypes, { DateType } from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
-import withUtils from './WithUtils';
+import withUtils, { WithUtilsProps } from './WithUtils';
+import { Omit } from '@material-ui/core';
+import { MaterialUiPickersDate } from '../typings/date';
+import { InputProps } from '@material-ui/core/Input';
 
-const getDisplayDate = (props) => {
-  const {
-    utils, value, format, invalidLabel, emptyLabel, labelFunc,
-  } = props;
+const getDisplayDate = ({
+  utils, value, format, invalidLabel, emptyLabel, labelFunc,
+}: DateTextFieldProps) => {
 
   const isEmpty = value === null;
   const date = utils.date(value);
 
   if (labelFunc) {
-    return labelFunc(isEmpty ? null : date, invalidLabel);
+    return labelFunc(isEmpty ? null : date, invalidLabel!);
   }
 
   if (isEmpty) {
@@ -68,7 +70,36 @@ const getError = (value, props) => {
   return '';
 };
 
-export class DateTextField extends PureComponent {
+export interface DateTextFieldProps extends WithUtilsProps, Omit<TextFieldProps, 'onError' | 'onChange' | 'value'> {
+  value: DateType;
+  minDate?: DateType;
+  minDateMessage?: React.ReactNode;
+  disablePast?: boolean;
+  disableFuture?: boolean;
+  maxDate?: DateType;
+  maxDateMessage?: React.ReactNode;
+  mask?: any;
+  pipe?: any;
+  onChange: (date: MaterialUiPickersDate) => void;
+  onClear?: () => void;
+  keyboard?: boolean;
+  format: string;
+  invalidLabel?: string;
+  emptyLabel?: string;
+  disableOpenOnEnter?: boolean;
+  labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
+  keyboardIcon?: React.ReactNode;
+  invalidDateMessage?: React.ReactNode;
+  clearable?: boolean;
+  TextFieldComponent?: React.ComponentType<TextFieldProps>;
+  InputAdornmentProps?: object;
+  adornmentPosition?: "start" | "end";
+  onClick?: (e: React.SyntheticEvent) => void;
+  onError?: (newValue: MaterialUiPickersDate, error: string) => void;
+  onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+}
+
+export class DateTextField extends React.PureComponent<DateTextFieldProps> {
   static updateState = props => ({
     value: props.value,
     displayValue: getDisplayDate(props),
@@ -94,7 +125,7 @@ export class DateTextField extends PureComponent {
     clearable: PropTypes.bool,
     utils: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
-    InputProps: PropTypes.shape(),
+    InputProps: PropTypes.shape({}),
     /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
     mask: PropTypes.any,
     /** Error message, shown if date is less then minimal date */
@@ -249,21 +280,22 @@ export class DateTextField extends PureComponent {
     }
   }
 
-  handleKeyPress = (e) => {
+  handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       if (!this.props.disableOpenOnEnter) {
         this.openPicker(e);
       } else {
+        // @ts-ignore TODO check me
         this.commitUpdates(e.target.value);
       }
     }
   }
 
-  openPicker = (e) => {
+  openPicker = (e: React.SyntheticEvent) => {
     const { disabled, onClick } = this.props;
 
     if (!disabled) {
-      onClick(e);
+      onClick!(e);
     }
   }
 
@@ -313,7 +345,7 @@ export class DateTextField extends PureComponent {
     if (keyboard) {
       localInputProps[`${adornmentPosition}Adornment`] = (
         <InputAdornment
-          position={adornmentPosition}
+          position={adornmentPosition!}
           {...InputAdornmentProps}
         >
           <IconButton
@@ -330,8 +362,9 @@ export class DateTextField extends PureComponent {
       );
     }
 
+    const Component = TextFieldComponent!
     return (
-      <TextFieldComponent
+      <Component
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
@@ -340,11 +373,13 @@ export class DateTextField extends PureComponent {
         disabled={disabled}
         value={displayValue}
         {...other}
+        onError={undefined}
         onChange={this.handleChange}
-        InputProps={{ ...localInputProps, ...InputProps }}
+        InputProps={{ ...localInputProps, ...InputProps } as InputProps}
       />
     );
   }
 }
 
+// @ts-ignore ts requires to duplicate proptypes of textfield
 export default withUtils()(DateTextField);

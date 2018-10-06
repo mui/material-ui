@@ -1,10 +1,19 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import IconButton from '@material-ui/core/IconButton';
+import { createStyles } from '@material-ui/core';
 
-class Day extends PureComponent {
+export interface DayProps extends WithStyles<typeof styles> {
+  children: React.ReactNode;
+  current?: boolean;
+  disabled?: boolean;
+  hidden?: boolean;
+  selected?: boolean;
+}
+
+class Day extends React.PureComponent<DayProps> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
@@ -12,6 +21,7 @@ class Day extends PureComponent {
     disabled: PropTypes.bool,
     hidden: PropTypes.bool,
     selected: PropTypes.bool,
+    innerRef: PropTypes.any
   }
 
   static defaultProps = {
@@ -45,7 +55,7 @@ class Day extends PureComponent {
   }
 }
 
-const styles = theme => ({
+const styles = theme => createStyles({
   day: {
     width: 36,
     height: 36,
@@ -76,4 +86,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersDay' })(Day);
+export default withStyles(styles, { name: 'MuiPickersDay' })(Day as React.ComponentType<DayProps>);

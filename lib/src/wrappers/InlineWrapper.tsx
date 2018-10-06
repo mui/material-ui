@@ -1,13 +1,22 @@
-import React, { Fragment, PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import Popover from '@material-ui/core/Popover';
-import withStyles from '@material-ui/core/styles/withStyles';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as keycode from 'keycode';
+import Popover, { PopoverProps } from '@material-ui/core/Popover';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import EventListener from 'react-event-listener';
-import keycode from 'keycode';
-import DateTextField from '../_shared/DateTextField';
+import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
-export class InlineWrapper extends PureComponent {
+export interface InlineWrapperProps extends Partial<DateTextFieldProps> {
+  onOpen?: () => void;
+  onClose?: () => void;
+  handleAccept: () => void;
+  PopoverProps?: Partial<PopoverProps>;
+  isAccepted: boolean;
+  onlyCalendar: boolean;
+}
+
+export class InlineWrapper extends React.PureComponent<InlineWrapperProps & WithStyles<typeof styles>>{
   static propTypes = {
     /** Show only calendar for datepicker in popover mode */
     onlyCalendar: PropTypes.bool,
@@ -28,6 +37,7 @@ export class InlineWrapper extends PureComponent {
     children: PropTypes.node.isRequired,
     keyboard: PropTypes.bool,
     classes: PropTypes.object.isRequired,
+    innerRef: PropTypes.any
   }
 
   static defaultProps = {
@@ -107,7 +117,7 @@ export class InlineWrapper extends PureComponent {
     const isOpen = Boolean(this.state.anchorEl);
 
     return (
-      <Fragment>
+      <React.Fragment>
         { isOpen && <EventListener target="window" onKeyDown={this.handleKeyDown} /> }
 
         <DateTextField
@@ -137,7 +147,7 @@ export class InlineWrapper extends PureComponent {
           children={children}
           {...PopoverProps}
         />
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
@@ -150,4 +160,5 @@ const styles = {
   },
 };
 
+// @ts-ignore
 export default withStyles(styles)(InlineWrapper);

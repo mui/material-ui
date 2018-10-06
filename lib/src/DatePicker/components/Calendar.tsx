@@ -1,19 +1,48 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import keycode from 'keycode';
-import withStyles from '@material-ui/core/styles/withStyles';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as keycode from 'keycode';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import EventListener from 'react-event-listener';
 
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
-import CalendarHeader from './CalendarHeader';
+import CalendarHeader, { SlideDirection } from './CalendarHeader';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
-import DomainPropTypes from '../../constants/prop-types';
-import withUtils from '../../_shared/WithUtils';
+import DomainPropTypes, { DateType } from '../../constants/prop-types';
+import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
 import SlideTransition from './SlideTransition';
+import { MaterialUiPickersDate } from '../../typings/date';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 
-/* eslint-disable no-unused-expressions */
-export class Calendar extends Component {
+export type DayComponent = React.ReactElement<IconButtonProps>;
+
+export type RenderDay = (
+  day: MaterialUiPickersDate,
+  selectedDate: MaterialUiPickersDate,
+  dayInCurrentMonth: boolean,
+  dayComponent: DayComponent,
+) => JSX.Element;
+
+export interface CalendarProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+  date: MaterialUiPickersDate;
+  minDate?: DateType;
+  maxDate?: DateType;
+  onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  disablePast?: boolean;
+  disableFuture?: boolean;
+  leftArrowIcon?: React.ReactNode;
+  rightArrowIcon?: React.ReactNode;
+  renderDay?: RenderDay;
+  allowKeyboardControl?: boolean;
+  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+}
+
+export interface CalendarState {
+  slideDirection: SlideDirection;
+  currentMonth: MaterialUiPickersDate;
+}
+
+export class Calendar extends React.Component<CalendarProps, CalendarState> {
   static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
@@ -29,6 +58,7 @@ export class Calendar extends Component {
     shouldDisableDate: PropTypes.func,
     utils: PropTypes.object.isRequired,
     allowKeyboardControl: PropTypes.bool,
+    innerRef: PropTypes.any
   };
 
   static defaultProps = {
@@ -43,7 +73,7 @@ export class Calendar extends Component {
     shouldDisableDate: () => false,
   };
 
-  state = {
+  state: CalendarState = {
     slideDirection: 'left',
     currentMonth: this.props.utils.getStartOfMonth(this.props.date),
   };
@@ -79,6 +109,7 @@ export class Calendar extends Component {
 
   onDateSelect = (day, isFinish = true) => {
     const { date, utils } = this.props;
+
     this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
   };
 
@@ -126,7 +157,7 @@ export class Calendar extends Component {
       (disableFuture && utils.isAfterDay(day, utils.date()))
       || (disablePast && utils.isBeforeDay(day, utils.date()))
       || this.validateMinMaxDate(day)
-      || shouldDisableDate(day)
+      || shouldDisableDate && shouldDisableDate(day)
     );
   };
 
@@ -225,10 +256,10 @@ export class Calendar extends Component {
     const { classes, utils, allowKeyboardControl } = this.props;
 
     return (
-      <Fragment>
+      <React.Fragment>
         {
           allowKeyboardControl
-          && <EventListener target="window" onKeyDown={this.handleKeyDown} />
+            && <EventListener target="window" onKeyDown={this.handleKeyDown} />
         }
 
         <CalendarHeader
@@ -239,7 +270,6 @@ export class Calendar extends Component {
           rightArrowIcon={this.props.rightArrowIcon}
           disablePrevMonth={this.shouldDisablePrevMonth()}
           disableNextMonth={this.shouldDisableNextMonth()}
-          utils={utils}
         />
 
         <SlideTransition
@@ -248,13 +278,13 @@ export class Calendar extends Component {
           className={classes.transitionContainer}
         >
           <div
-            /* eslint-disable-next-line */
-            autoFocus // Autofocus required for getting work keyboard navigation feature
+            // @ts-ignore Autofocus required for getting work keyboard navigation feature
+            autoFocus
           >
             {this.renderWeeks()}
           </div>
         </SlideTransition>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
@@ -273,4 +303,4 @@ const styles = theme => ({
 export default withStyles(styles, {
   name: 'MuiPickersCalendar',
   withTheme: true,
-})(withUtils()(Calendar));
+})(withUtils()(Calendar as React.ComponentType<CalendarProps>));

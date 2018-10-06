@@ -1,13 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-import withUtils from '../../_shared/WithUtils';
+import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
 import SlideTransition from './SlideTransition';
+import { MaterialUiPickersDate } from '../../typings/date';
+import { createStyles } from '@material-ui/core';
 
-export const CalendarHeader = ({
+export type SlideDirection = 'right' | 'left'
+export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+  currentMonth: object;
+  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
+  leftArrowIcon?: React.ReactNode;
+  rightArrowIcon?: React.ReactNode;
+  disablePrevMonth?: boolean;
+  disableNextMonth?: boolean;
+  slideDirection?: SlideDirection;
+}
+
+export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   classes,
   theme,
   currentMonth,
@@ -74,7 +87,7 @@ export const CalendarHeader = ({
   );
 };
 
-CalendarHeader.propTypes = {
+(CalendarHeader as any).propTypes = {
   currentMonth: PropTypes.object.isRequired,
   onMonthChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
@@ -85,6 +98,7 @@ CalendarHeader.propTypes = {
   disableNextMonth: PropTypes.bool,
   utils: PropTypes.object.isRequired,
   slideDirection: PropTypes.oneOf(['right', 'left']).isRequired,
+  innerRef: PropTypes.any
 };
 
 CalendarHeader.defaultProps = {
@@ -94,7 +108,7 @@ CalendarHeader.defaultProps = {
   disableNextMonth: false,
 };
 
-const styles = theme => ({
+const styles = theme => createStyles({
   switchHeader: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -131,7 +145,7 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(
-  styles,
-  { withTheme: true, name: 'MuiPickersCalendarHeader' },
-)(withUtils()(CalendarHeader));
+export default withStyles(styles, {
+  withTheme: true,
+  name: 'MuiPickersCalendarHeader'
+})(withUtils()(CalendarHeader));

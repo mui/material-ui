@@ -1,34 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-import InlineWrapper from '../wrappers/InlineWrapper';
+import ModalWrapper from '../wrappers/ModalWrapper';
 import TimePicker from './TimePicker';
 import DomainPropTypes from '../constants/prop-types';
 import BasePicker from '../_shared/BasePicker';
 
-export const TimePickerInline = (props) => {
+export const TimePickerModal = (props) => {
   const {
-    value, format, onChange, ampm, forwardedRef, seconds, ...other
+    value, format, autoOk, onChange, ampm, forwardedRef, seconds, ...other
   } = props;
 
   return (
-    <BasePicker {...props} autoOk>
+    <BasePicker {...props}>
       {
         ({
           date,
           utils,
+          handleAccept,
           handleChange,
+          handleClear,
+          handleDismiss,
+          handleSetTodayDate,
           handleTextFieldChange,
           isAccepted,
           pick12hOr24hFormat,
-          handleAccept,
         }) => (
-          <InlineWrapper
-            innerRef={forwardedRef}
+          <ModalWrapper
+            ref={forwardedRef}
             value={value}
+            onClear={handleClear}
+            onAccept={handleAccept}
             onChange={handleTextFieldChange}
+            onDismiss={handleDismiss}
+            onSetToday={handleSetTodayDate}
             isAccepted={isAccepted}
-            handleAccept={handleAccept}
             format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
             {...other}
           >
@@ -38,30 +44,38 @@ export const TimePickerInline = (props) => {
               ampm={ampm}
               seconds={seconds}
             />
-          </InlineWrapper>
+          </ModalWrapper>
         )
       }
     </BasePicker>
   );
 };
 
-TimePickerInline.propTypes = {
+TimePickerModal.propTypes = {
+  /** DateTimepicker value */
   value: DomainPropTypes.date,
+  /** Date format string for input */
   format: PropTypes.string,
+  /** Callback firing when date accepted [(date: Date) => void] */
   onChange: PropTypes.func.isRequired,
+  /** Auto accept date on minute selection */
+  autoOk: PropTypes.bool,
+  /** 12h/24h view for hour selection clock */
   ampm: PropTypes.bool,
+  /** Show the seconds view */
   seconds: PropTypes.bool,
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
-TimePickerInline.defaultProps = {
-  ampm: true,
+TimePickerModal.defaultProps = {
   value: new Date(),
   format: undefined,
+  autoOk: false,
+  ampm: true,
   forwardedRef: undefined,
   seconds: false,
 };
 
 export default React.forwardRef((props, ref) => (
-  <TimePickerInline {...props} forwardedRef={ref} />
+  <TimePickerModal {...props} forwardedRef={ref} />
 ));

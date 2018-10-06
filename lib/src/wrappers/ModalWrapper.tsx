@@ -1,11 +1,11 @@
-import React, { Fragment, PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import keycode from 'keycode';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
-export default class ModalWrapper extends PureComponent {
+export default class ModalWrapper extends React.PureComponent {
   static propTypes = {
     /** "OK" label message */
     okLabel: PropTypes.node,
@@ -157,7 +157,7 @@ export default class ModalWrapper extends PureComponent {
     } = this.props;
 
     return (
-      <Fragment>
+      <React.Fragment>
         <DateTextField
           value={value}
           format={format}
@@ -186,7 +186,7 @@ export default class ModalWrapper extends PureComponent {
           children={children}
           {...DialogProps}
         />
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

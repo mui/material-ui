@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ClockNumber from './ClockNumber';
 
 export const getHourNumbers = ({ ampm, utils, date }) => {

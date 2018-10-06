@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -10,7 +10,7 @@ import withUtils from '../_shared/WithUtils';
 import TimePickerView from './components/TimePickerView';
 import * as clockType from '../constants/clock-types';
 
-export class TimePicker extends Component {
+export class TimePicker extends React.Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -125,7 +125,7 @@ export class TimePicker extends Component {
       : classes.hourMinuteLabel;
 
     return (
-      <Fragment>
+      <React.Fragment>
         <PickerToolbar
           className={classnames(
             classes.toolbar,
@@ -157,7 +157,7 @@ export class TimePicker extends Component {
             {
               seconds
                 && (
-                <Fragment>
+                <React.Fragment>
                   <ToolbarButton
                     variant="display3"
                     label=":"
@@ -171,7 +171,7 @@ export class TimePicker extends Component {
                     selected={openView === clockType.SECONDS}
                     label={utils.getSecondText(date)}
                   />
-                </Fragment>
+                </React.Fragment>
                 )
             }
           </div>
@@ -210,7 +210,7 @@ export class TimePicker extends Component {
           onMinutesChange={this.handleMinutesChange}
           onSecondsChange={this.handleSecondsChange}
         />
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

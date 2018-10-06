@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
@@ -31,7 +31,7 @@ const positions = {
   23: [-37, 50],
 };
 
-export class ClockNumber extends Component {
+export class ClockNumber extends React.Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,

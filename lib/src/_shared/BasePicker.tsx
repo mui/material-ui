@@ -21,7 +21,6 @@ export interface InnerBasePickerProps {
 
 export interface BasePickerProps {
   value: DateType;
-  utils?: any;
   onChange: (date: MaterialUiPickersDate) => void;
   autoOk?: boolean;
   ampm?: boolean;

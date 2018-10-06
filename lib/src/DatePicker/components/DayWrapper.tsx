@@ -1,7 +1,15 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-class DayWrapper extends PureComponent {
+export interface DayWrapperProps {
+  children: React.ReactNode;
+  dayInCurrentMonth?: boolean,
+  disabled?: boolean;
+  onSelect: (value: any) => void;
+  value: any;
+}
+
+class DayWrapper extends React.PureComponent<DayWrapperProps> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     dayInCurrentMonth: PropTypes.bool,

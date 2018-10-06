@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import classnames from 'classnames';
 import * as clockType from '../../constants/clock-types';
 
-export class ClockPointer extends Component {
+export class ClockPointer extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,

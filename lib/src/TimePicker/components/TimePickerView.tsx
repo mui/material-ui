@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Clock from './Clock';
 import * as clockType from '../../constants/clock-types';
 import withUtils from '../../_shared/WithUtils';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 
-export class TimePickerView extends PureComponent {
+export class TimePickerView extends React.PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onHourChange: PropTypes.func.isRequired,

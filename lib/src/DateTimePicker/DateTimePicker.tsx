@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import View from './components/DateTimePickerView';
@@ -14,7 +14,7 @@ import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
 import withUtils from '../_shared/WithUtils';
 
-export class DateTimePicker extends Component {
+export class DateTimePicker extends React.Component {
   static propTypes = {
     allowKeyboardControl: PropTypes.bool,
     ampm: PropTypes.bool,
@@ -130,7 +130,7 @@ export class DateTimePicker extends Component {
       ? {} : { openView, onChange: this.onChange };
 
     return (
-      <Fragment>
+      <React.Fragment>
         <DatetimePickerHeader
           date={date}
           openView={openView}
@@ -194,7 +194,7 @@ export class DateTimePicker extends Component {
             />
           </View>
         </ViewContainerComponent>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

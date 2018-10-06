@@ -7,7 +7,7 @@
     "sourceMap": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "declaration": true,

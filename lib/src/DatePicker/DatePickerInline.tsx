@@ -1,36 +1,46 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
+import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
+import DatePicker, { BaseDatePickerProps } from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper from '../wrappers/InlineWrapper';
-import DateTimePicker from './DateTimePicker';
-import BasePicker from '../_shared/BasePicker';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import Calendar from './components/Calendar';
+import { Omit } from '@material-ui/core';
 
-export const DateTimePickerInline = (props) => {
+export interface DatePickerInlineProps extends
+  BasePickerProps,
+  BaseDatePickerProps,
+  Omit<InlineWrapperProps, 'onChange' | 'value' | 'utils' | 'onlyCalendar' > {
+    onlyCalendar?: boolean
+  }
+
+
+export const DatePickerInline: React.SFC<DatePickerInlineProps> = (props) => {
   const {
-    value,
-    format,
-    autoOk,
-    openTo,
-    minDate,
-    maxDate,
-    initialFocusedDate,
-    showTabs,
-    autoSubmit,
-    disablePast,
-    disableFuture,
-    leftArrowIcon,
-    rightArrowIcon,
-    dateRangeIcon,
-    timeIcon,
-    renderDay,
-    ampm,
-    shouldDisableDate,
-    animateYearScrolling,
-    forwardedRef,
     allowKeyboardControl,
+    animateYearScrolling,
+    disableFuture,
+    disablePast,
+    format,
+    forwardedRef,
+    labelFunc,
+    leftArrowIcon,
+    maxDate,
+    minDate,
+    initialFocusedDate,
+    onChange,
+    openToYearSelection,
+    renderDay,
+    rightArrowIcon,
+    shouldDisableDate,
+    value,
+    autoOk,
+    onlyCalendar,
     ...other
   } = props;
+
+  const ComponentToShow = onlyCalendar ? Calendar : DatePicker;
 
   return (
     <BasePicker {...props} autoOk>
@@ -38,44 +48,39 @@ export const DateTimePickerInline = (props) => {
         ({
           date,
           utils,
+          isAccepted,
           handleChange,
           handleTextFieldChange,
-          isAccepted,
-          pick12hOr24hFormat,
           handleAccept,
         }) => (
           <InlineWrapper
-            innerRef={forwardedRef}
             disableFuture={disableFuture}
             disablePast={disablePast}
+            format={format || utils.datePickerFormat}
+            labelFunc={labelFunc}
             maxDate={maxDate}
             minDate={minDate}
             onChange={handleTextFieldChange}
+            innerRef={forwardedRef}
             value={value}
             isAccepted={isAccepted}
             handleAccept={handleAccept}
-            format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
             {...other}
           >
-            <DateTimePicker
-              allowKeyboardControl={allowKeyboardControl}
-              ampm={ampm}
-              animateYearScrolling={animateYearScrolling}
-              autoSubmit={autoSubmit}
+            <ComponentToShow
               date={date}
-              dateRangeIcon={dateRangeIcon}
+              allowKeyboardControl={allowKeyboardControl}
+              animateYearScrolling={animateYearScrolling}
               disableFuture={disableFuture}
               disablePast={disablePast}
               leftArrowIcon={leftArrowIcon}
               maxDate={maxDate}
               minDate={minDate}
               onChange={handleChange}
-              openTo={openTo}
+              openToYearSelection={openToYearSelection}
               renderDay={renderDay}
               rightArrowIcon={rightArrowIcon}
               shouldDisableDate={shouldDisableDate}
-              showTabs={showTabs}
-              timeIcon={timeIcon}
             />
           </InlineWrapper>
         )
@@ -84,55 +89,49 @@ export const DateTimePickerInline = (props) => {
   );
 };
 
-DateTimePickerInline.propTypes = {
+DatePickerInline.propTypes = {
+  onlyCalendar: PropTypes.bool,
   value: DomainPropTypes.date,
-  format: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  autoOk: PropTypes.bool,
-  autoSubmit: PropTypes.bool,
-  disableFuture: PropTypes.bool,
-  disablePast: PropTypes.bool,
   minDate: DomainPropTypes.date,
   maxDate: DomainPropTypes.date,
   initialFocusedDate: DomainPropTypes.date,
-  showTabs: PropTypes.bool,
+  format: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  disablePast: PropTypes.bool,
+  disableFuture: PropTypes.bool,
+  animateYearScrolling: PropTypes.bool,
+  openToYearSelection: PropTypes.bool,
+  labelFunc: PropTypes.func,
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
-  dateRangeIcon: PropTypes.node,
-  timeIcon: PropTypes.node,
   renderDay: PropTypes.func,
-  ampm: PropTypes.bool,
   shouldDisableDate: PropTypes.func,
-  animateYearScrolling: PropTypes.bool,
-  openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  autoOk: PropTypes.bool,
 };
 
-DateTimePickerInline.defaultProps = {
+DatePickerInline.defaultProps = {
   value: new Date(),
   format: undefined,
-  autoOk: false,
-  autoSubmit: true,
-  openTo: 'date',
-  disableFuture: false,
-  disablePast: false,
   minDate: '1900-01-01',
   maxDate: '2100-01-01',
   initialFocusedDate: undefined,
-  showTabs: true,
+  disableFuture: false,
+  disablePast: false,
+  animateYearScrolling: false,
+  openToYearSelection: false,
+  allowKeyboardControl: true,
   leftArrowIcon: 'keyboard_arrow_left',
   rightArrowIcon: 'keyboard_arrow_right',
-  dateRangeIcon: 'date_range',
-  timeIcon: 'access_time',
   renderDay: undefined,
-  ampm: true,
+  labelFunc: undefined,
   shouldDisableDate: undefined,
-  animateYearScrolling: false,
   forwardedRef: undefined,
-  allowKeyboardControl: true,
+  autoOk: undefined,
+  onlyCalendar: false,
 };
 
-export default React.forwardRef(
-  (props, ref) => <DateTimePickerInline {...props} forwardedRef={ref} />,
-);
+export default React.forwardRef((props, ref) => (
+  <DatePickerInline {...props} forwardedRef={ref} />
+));
