@@ -1,16 +1,25 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import classnames from 'classnames';
-import * as clockType from '../../constants/clock-types';
+import ClockType from '../../constants/ClockType';
+import { createStyles } from '@material-ui/core';
 
-export class ClockPointer extends React.Component {
+export interface ClockPointerProps extends WithStyles<typeof styles> {
+  value: number;
+  hasSelected: boolean;
+  isInner: boolean;
+  type: ClockType;
+}
+
+export class ClockPointer extends React.Component<ClockPointerProps> {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
     isInner: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf(Object.keys(clockType).map(key => clockType[key])).isRequired,
+    innerRef: PropTypes.any,
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
   }
 
   state = {
@@ -35,10 +44,10 @@ export class ClockPointer extends React.Component {
   getAngleStyle = () => {
     const { value, isInner, type } = this.props;
 
-    const max = type === clockType.HOURS ? 12 : 60;
+    const max = type === ClockType.HOURS ? 12 : 60;
     let angle = (360 / max) * value;
 
-    if (type === clockType.HOURS && value > 12) {
+    if (type === ClockType.HOURS && value > 12) {
       angle -= 360; // round up angle to max 360 degrees
     }
 
@@ -64,7 +73,7 @@ export class ClockPointer extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = theme => createStyles({
   pointer: {
     width: 2,
     backgroundColor: theme.palette.primary.main,
@@ -92,5 +101,7 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersClockPointer' })(ClockPointer);
+export default withStyles(styles, {
+  name: 'MuiPickersClockPointer'
+})(ClockPointer as React.ComponentType<ClockPointerProps>);
 

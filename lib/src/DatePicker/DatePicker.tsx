@@ -140,8 +140,7 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
                 disableFuture={disableFuture}
                 animateYearScrolling={animateYearScrolling}
               />
-            )
-            : (
+            ) : (
               <Calendar
                 date={this.date}
                 onChange={onChange}
@@ -152,7 +151,6 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
                 leftArrowIcon={leftArrowIcon}
                 rightArrowIcon={rightArrowIcon}
                 renderDay={renderDay}
-                utils={utils}
                 shouldDisableDate={shouldDisableDate}
                 allowKeyboardControl={allowKeyboardControl}
               />

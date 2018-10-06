@@ -1,12 +1,19 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-import ModalWrapper from '../wrappers/ModalWrapper';
-import TimePicker from './TimePicker';
+import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import TimePicker, { BaseTimePickerProps } from './TimePicker';
 import DomainPropTypes from '../constants/prop-types';
-import BasePicker from '../_shared/BasePicker';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import { Omit } from 'recompose';
 
-export const TimePickerModal = (props) => {
+export interface TimePickerModalProps extends
+  BasePickerProps,
+  BaseTimePickerProps,
+  Omit<ModalWrapperProps, 'onChange' | 'value'>
+{ }
+
+export const TimePickerModal: React.SFC<TimePickerModalProps> = (props) => {
   const {
     value, format, autoOk, onChange, ampm, forwardedRef, seconds, ...other
   } = props;
@@ -35,7 +42,7 @@ export const TimePickerModal = (props) => {
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
             isAccepted={isAccepted}
-            format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
+            format={pick12hOr24hFormat(utils.timePicker12hFormat, utils.timePicker24hFormat)}
             {...other}
           >
             <TimePicker
@@ -51,7 +58,7 @@ export const TimePickerModal = (props) => {
   );
 };
 
-TimePickerModal.propTypes = {
+(TimePickerModal as any).propTypes = {
   /** DateTimepicker value */
   value: DomainPropTypes.date,
   /** Date format string for input */
@@ -76,6 +83,6 @@ TimePickerModal.defaultProps = {
   seconds: false,
 };
 
-export default React.forwardRef((props, ref) => (
+export default React.forwardRef((props: TimePickerModalProps, ref) => (
   <TimePickerModal {...props} forwardedRef={ref} />
 ));

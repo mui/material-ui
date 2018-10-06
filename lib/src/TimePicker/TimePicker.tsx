@@ -6,11 +6,23 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import { convertToMeridiem } from '../_helpers/time-utils';
-import withUtils from '../_shared/WithUtils';
+import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
 import TimePickerView from './components/TimePickerView';
-import * as clockType from '../constants/clock-types';
+import { MaterialUiPickersDate } from '../typings/date';
+import ClockType from '../constants/ClockType'
+import { createStyles, WithStyles } from '@material-ui/core';
 
-export class TimePicker extends React.Component {
+export interface BaseTimePickerProps {
+  ampm?: boolean;
+  seconds?: boolean;
+}
+
+export interface TimePickerProps extends BaseTimePickerProps, WithUtilsProps, WithStyles<typeof styles, true> {
+  date: MaterialUiPickersDate;
+  onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
+}
+
+export class TimePicker extends React.Component<TimePickerProps> {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -20,6 +32,7 @@ export class TimePicker extends React.Component {
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     seconds: PropTypes.bool,
+    innerRef: PropTypes.any
   }
 
   static defaultProps = {
@@ -29,7 +42,7 @@ export class TimePicker extends React.Component {
   }
 
   state = {
-    openView: clockType.HOURS,
+    openView: ClockType.HOURS,
     meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
@@ -101,15 +114,15 @@ export class TimePicker extends React.Component {
   }
 
   openSecondsView = () => {
-    this.setState({ openView: clockType.SECONDS });
+    this.setState({ openView: ClockType.SECONDS });
   }
 
   openMinutesView = () => {
-    this.setState({ openView: clockType.MINUTES });
+    this.setState({ openView: ClockType.MINUTES });
   }
 
   openHourView = () => {
-    this.setState({ openView: clockType.HOURS });
+    this.setState({ openView: ClockType.HOURS });
   }
 
   render() {
@@ -136,8 +149,8 @@ export class TimePicker extends React.Component {
             <ToolbarButton
               variant="display3"
               onClick={this.openHourView}
-              selected={openView === clockType.HOURS}
-              label={utils.getHourText(date, ampm)}
+              selected={openView === ClockType.HOURS}
+              label={utils.getHourText(date, Boolean(ampm))}
             />
 
             <ToolbarButton
@@ -150,7 +163,7 @@ export class TimePicker extends React.Component {
             <ToolbarButton
               variant="display3"
               onClick={this.openMinutesView}
-              selected={openView === clockType.MINUTES}
+              selected={openView === ClockType.MINUTES}
               label={utils.getMinuteText(date)}
             />
 
@@ -168,7 +181,7 @@ export class TimePicker extends React.Component {
                   <ToolbarButton
                     variant="display3"
                     onClick={this.openSecondsView}
-                    selected={openView === clockType.SECONDS}
+                    selected={openView === ClockType.SECONDS}
                     label={utils.getSecondText(date)}
                   />
                 </React.Fragment>
@@ -196,7 +209,7 @@ export class TimePicker extends React.Component {
                   onClick={this.setMeridiemMode('pm')}
                 />
               </div>
-              )
+            )
           }
         </PickerToolbar>
 
@@ -215,7 +228,7 @@ export class TimePicker extends React.Component {
   }
 }
 
-const styles = () => ({
+const styles = () => createStyles({
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -251,7 +264,7 @@ const styles = () => ({
   },
 });
 
-export default withStyles(
-  styles,
-  { withTheme: true, name: 'MuiPickersTimePicker' },
-)(withUtils()(TimePicker));
+export default withStyles(styles, {
+  withTheme: true,
+  name: 'MuiPickersTimePicker'
+})(withUtils()(TimePicker as React.ComponentType<TimePickerProps>));

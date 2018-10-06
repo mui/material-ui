@@ -4,7 +4,7 @@ import ClockNumber from './ClockNumber';
 export const getHourNumbers = ({ ampm, utils, date }) => {
   const currentHours = utils.getHours(date);
 
-  const hourNumbers = [];
+  const hourNumbers: JSX.Element[] = [];
   const startHour = ampm ? 1 : 0;
   const endHour = ampm ? 12 : 23;
 

@@ -3,22 +3,33 @@ import * as PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import ClockPointer from './ClockPointer';
-import * as clockType from '../../constants/clock-types';
 import { getMinutes, getHours } from '../../_helpers/time-utils';
+import ClockType from '../../constants/ClockType';
+import { createStyles, WithStyles } from '@material-ui/core';
 
-export class Clock extends React.Component {
+export interface ClockProps extends WithStyles<typeof styles> {
+  type: ClockType;
+  value: number;
+  onChange: (value: number, isFinish?: boolean) => void;
+  ampm?: boolean;
+}
+
+export class Clock extends React.Component<ClockProps> {
   static propTypes = {
-    type: PropTypes.oneOf(Object.keys(clockType).map(key => clockType[key])).isRequired,
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
     ampm: PropTypes.bool,
+    innerRef: PropTypes.any
   }
 
   static defaultProps = {
     ampm: false,
   }
+
+  isMoving = false;
 
   setTime(e, isFinish = false) {
     let { offsetX, offsetY } = e;
@@ -30,7 +41,7 @@ export class Clock extends React.Component {
       offsetY = e.changedTouches[0].clientY - rect.top;
     }
 
-    const value = this.props.type === clockType.SECONDS || this.props.type === clockType.MINUTES
+    const value = this.props.type === ClockType.SECONDS || this.props.type === ClockType.MINUTES
       ? getMinutes(offsetX, offsetY)
       : getHours(offsetX, offsetY, this.props.ampm);
 
@@ -73,7 +84,7 @@ export class Clock extends React.Component {
   hasSelected = () => {
     const { type, value } = this.props;
 
-    if (type === clockType.HOURS) {
+    if (type === ClockType.HOURS) {
       return true;
     }
 
@@ -85,7 +96,7 @@ export class Clock extends React.Component {
       classes, value, children, type, ampm,
     } = this.props;
 
-    const isPointerInner = !ampm && type === clockType.HOURS && (value < 1 || value > 12);
+    const isPointerInner = !ampm && type === ClockType.HOURS && (value < 1 || value > 12);
 
     return (
       <div className={classes.container}>
@@ -118,12 +129,12 @@ export class Clock extends React.Component {
   }
 }
 
-const styles = theme => ({
+const styles = theme => createStyles({
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    margin: [[theme.spacing.unit * 4, 0, theme.spacing.unit]],
+    margin: `${theme.spacing.unit * 4} 0 ${theme.spacing.unit}`,
   },
   clock: {
     backgroundColor: 'rgba(0,0,0,.07)',
@@ -158,5 +169,7 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersClock' })(Clock);
+export default withStyles(styles, {
+  name: 'MuiPickersClock'
+})(Clock as React.ComponentType<ClockProps>);
 

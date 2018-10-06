@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import { createStyles } from '@material-ui/core';
 
 const positions = {
   0: [0, 40],
@@ -31,20 +32,28 @@ const positions = {
   23: [-37, 50],
 };
 
-export class ClockNumber extends React.Component {
+export interface ClockNumberProps extends WithStyles<typeof styles> {
+  index: number;
+  label: string;
+  selected: boolean;
+  isInner?: boolean;
+}
+
+export class ClockNumber extends React.Component<ClockNumberProps> {
   static propTypes = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
     isInner: PropTypes.bool,
+    innerRef: PropTypes.any
   }
 
   static defaultProps = {
     isInner: false,
   }
 
-  getTransformStyle = (index) => {
+  getTransformStyle = (index: number) => {
     const position = positions[index];
 
     return {
@@ -66,7 +75,7 @@ export class ClockNumber extends React.Component {
         variant={isInner ? 'body1' : 'subheading'}
         component="span"
         className={className}
-        style={this.getTransformStyle(index, isInner)}
+        style={this.getTransformStyle(index)}
       >
         { label }
       </Typography>
@@ -76,7 +85,8 @@ export class ClockNumber extends React.Component {
 
 const styles = (theme) => {
   const size = theme.spacing.unit * 4;
-  return {
+
+  return createStyles({
     clockNumber: {
       width: size,
       height: size,
@@ -94,7 +104,9 @@ const styles = (theme) => {
     selected: {
       color: theme.palette.common.white,
     },
-  };
+  })
 };
 
-export default withStyles(styles, { name: 'MuiPickersClockNumber' })(ClockNumber);
+export default withStyles(styles, {
+  name: 'MuiPickersClockNumber'
+})(ClockNumber as React.ComponentType<ClockNumberProps>);

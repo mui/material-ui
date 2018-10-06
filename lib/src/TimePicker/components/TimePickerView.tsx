@@ -1,11 +1,22 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Clock from './Clock';
-import * as clockType from '../../constants/clock-types';
-import withUtils from '../../_shared/WithUtils';
-import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 
-export class TimePickerView extends React.PureComponent {
+import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
+import ClockType from '../../constants/ClockType';
+import { MaterialUiPickersDate } from '../../typings/date';
+
+interface TimePickerViewProps extends WithUtilsProps {
+  date: MaterialUiPickersDate;
+  type: ClockType;
+  ampm?: boolean;
+  onHourChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  onMinutesChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  onSecondsChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+}
+
+export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onHourChange: PropTypes.func.isRequired,
@@ -13,7 +24,7 @@ export class TimePickerView extends React.PureComponent {
     onSecondsChange: PropTypes.func.isRequired,
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
-    type: PropTypes.oneOf(Object.keys(clockType).map(key => clockType[key])).isRequired,
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
   }
 
   static defaultProps = {
@@ -26,14 +37,14 @@ export class TimePickerView extends React.PureComponent {
     } = this.props;
 
     switch (type) {
-      case clockType.HOURS:
+      case ClockType.HOURS:
         return {
           value: utils.getHours(date),
           children: getHourNumbers({ date, ampm, utils }),
           onChange: this.handleHourChange,
         };
 
-      case clockType.MINUTES:
+      case ClockType.MINUTES:
         const minutesValue = utils.getMinutes(date);
         return {
           value: minutesValue,
@@ -41,7 +52,7 @@ export class TimePickerView extends React.PureComponent {
           onChange: this.handleMinutesChange,
         };
 
-      case clockType.SECONDS:
+      case ClockType.SECONDS:
         const secondsValue = utils.getSeconds(date);
         return {
           value: secondsValue,
@@ -89,5 +100,5 @@ export class TimePickerView extends React.PureComponent {
   }
 }
 
-export default withUtils()(TimePickerView);
+export default withUtils()(TimePickerView as React.ComponentType<TimePickerViewProps>);
 
