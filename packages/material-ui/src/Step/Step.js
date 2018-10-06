@@ -42,6 +42,7 @@ function Step(props) {
     index,
     last,
     orientation,
+    prevStepState,
     ...other
   } = props;
 
@@ -84,7 +85,7 @@ function Step(props) {
       {connector &&
         alternativeLabel &&
         !last &&
-        React.cloneElement(connector, { orientation, alternativeLabel })}
+        React.cloneElement(connector, { orientation, alternativeLabel, ...prevStepState })}
     </div>
   );
 }
