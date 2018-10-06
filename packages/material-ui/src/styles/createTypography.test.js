@@ -89,7 +89,7 @@ describe('createTypography', () => {
 
       if (expectDeprecation) {
         assert.strictEqual(warning.calledOnce, true);
-        assert.include(warning.firstCall.args[0], 'Deprecation Warning: Material-UI:');
+        assert.include(warning.firstCall.args[0], 'Material-UI:');
       }
 
       return typography;

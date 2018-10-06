@@ -36,14 +36,14 @@ export default function createTypography(palette, typography) {
 
   warning(
     !Object.keys(other).some(variant => typographyMigration.deprecatedVariants.includes(variant)),
-    'Deprecation Warning: Material-UI: You are passing a deprecated variant to ' +
+    'Material-UI: You are passing a deprecated variant to ' +
       `createTypography. ${typographyMigration.migrationGuideMessage}`,
   );
 
   warning(
     useNextVariants ||
       !Object.keys(other).some(variant => typographyMigration.restyledVariants.includes(variant)),
-    'Deprecation Warning: Material-UI: You are passing a variant to createTypography ' +
+    'Material-UI: You are passing a variant to createTypography ' +
       'that will be restyled in the next major release, without indicating that you ' +
       `are using typography v2 (set \`useNextVariants\` to true. ${
         typographyMigration.migrationGuideMessage

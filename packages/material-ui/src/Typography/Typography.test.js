@@ -155,7 +155,7 @@ describe('<Typography />', () => {
      * tests if a warning is issued from the `warning` module when mounting {component}
      */
     const testMount = (component, expectDeprecation) => {
-      const expectedWarning = expectDeprecation ? 'Deprecation Warning: Material-UI:' : undefined;
+      const expectedWarning = expectDeprecation ? 'Material-UI:' : undefined;
       warning.resetHistory();
 
       const theme = createMuiTheme({
