@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
+    ...theme.typography.body2,
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
