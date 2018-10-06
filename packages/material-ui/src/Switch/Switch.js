@@ -29,7 +29,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the internal `SwitchBase` component's `root` class. */
   switchBase: {
-    zIndex: 1,
     padding: 0,
     height: 48,
     width: 48,
@@ -84,6 +83,7 @@ export const styles = theme => ({
     borderRadius: 14 / 2,
     display: 'block',
     position: 'absolute',
+    zIndex: -1,
     width: 34,
     height: 14,
     top: '50%',
