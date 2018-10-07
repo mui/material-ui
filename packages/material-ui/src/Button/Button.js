@@ -321,14 +321,14 @@ Button.propTypes = {
    * If `true`, the  keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.
    */
-  disableFocusRipple: PropTypes.bool,
-  /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: deprecated(
+  disableFocusRipple: deprecated(
     PropTypes.bool,
     'Focus ripple will be removed because it does not follow Material design.',
   ),
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
   /**
    * @ignore
    */
