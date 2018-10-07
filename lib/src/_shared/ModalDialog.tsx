@@ -87,7 +87,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
 
     <DialogActions
       classes={{
-        root: clearable ? classes.dialogActions : undefined,
+        root: (clearable || showTodayButton)  ? classes.dialogActions : undefined,
         action: classnames(classes.dialogAction, {
           [classes.clearableDialogAction]: clearable,
           [classes.todayDialogAction]: !clearable && showTodayButton,
