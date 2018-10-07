@@ -1,30 +1,29 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 3.2.0
-###### *Oct 7, 2018*
+###### *Oct 8, 2018*
 
-Big thanks to the 17 contributors who made this release possible!
+Big thanks to the 18 contributors who made this release possible!
 
 Here are some highlights ✨:
-- 💅 Update the Typography implementation to better follow the spec (#12916) @eps1lon.
+- 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
 - 📝 Start translating the documentation in Chinese @mbrookes.
-- 📝 Fix many SEO issues.
+- 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 
 ### `@material-ui/core@v3.2.0`
-
-- [TextField] Ensure labelWidth is set (#13077) @evanstern
 
 #### Deprecations
 
 - [Typography] Add typography v2 variants (#12916) @eps1lon
 
 This is a backward compatible change.
+You can opt-in the usage of the new Material Design typography specification.
 To learn more about the upgrade path, follow https://material-ui.com/style/typography/#migration-to-typography-v2.
 
 - [Button] Deprecate flat and raised variant naming (#13113) @eps1lon
 
-This change updates the variant wording to match the one used in the material design specification.
+This change updates the variant wording to match the one used in the Material Design specification.
 
 ```diff
 -<Button variant="flat" />
@@ -40,16 +39,20 @@ You can suppress the warnings with the environment variable `MUI_SUPPRESS_DEPREC
 
 #### Changes
 
+- [TextField] Ensure labelWidth is set (#13077) @evanstern
 - [styles] Remove react-jss dependency (#12993) @oliviertassinari
 - [TextField] Fix ClassKey inference for outlined and filled variants (#13060) @eps1lon
 - [Select] Document the filled and outlined variants (#13071) @JulienUsson
 - [Typography] Support incomplete headlineMapping property (#13078) @oliviertassinari
 - [Stepper] Expose connector index to <StepConnector /> (#13079) @dannycochran
-- [ListItemIcon] Add wrapper <div> element to children (#13067) @izyb
+- [ListItemIcon] Add wrapper `<div>` element to children (#13067) @izyb
 - [TextField] Fix of Uncaught TypeError: r.inputRef.focus is not a function (#13091) @MustD
 - [InputAdornment] Add missing "variant" prop to types (#13107) @cmfcmf
 - [Textarea] Merge style with calculated height (#13125) @daniel-rabe
 - [Typography] Small improvements (#13129) @oliviertassinari
+- [Typography] Run the e2e tests with the next variant (#13136) @oliviertassinari
+- [Tooltip] Forward the properties to the child element (#13138) @parulgupta26
+- [Tooltip] Prevent onOpen, onClose to pass through (#13139) @eps1lon
 
 ### `@material-ui/lab@v3.0.0-alpha.19`
 
