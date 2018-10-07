@@ -337,8 +337,8 @@ function withRoot(Component) {
   };
 
   WithRoot.childContextTypes = {
-    pages: PropTypes.array,
     activePage: PropTypes.object,
+    pages: PropTypes.array,
     userLanguage: PropTypes.string,
   };
 

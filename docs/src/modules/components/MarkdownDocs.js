@@ -139,7 +139,7 @@ MarkdownDocs.contextTypes = {
   activePage: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-  userLanguage: PropTypes.string,
+  userLanguage: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(MarkdownDocs);
