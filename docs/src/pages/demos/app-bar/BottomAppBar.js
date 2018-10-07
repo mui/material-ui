@@ -19,7 +19,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const styles = theme => ({
   container: {
     position: 'relative',
-    width: '100%',
+    maxWidth: 500,
   },
   text: {
     paddingTop: theme.spacing.unit,
@@ -35,20 +35,10 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   fabButton: {
-    position: 'relative',
+    position: 'absolute',
     top: -30,
+    left: '44%',
   },
 });
 
@@ -117,14 +107,9 @@ function BottomAppBar(props) {
       </Paper>
       <AppBar position="sticky" color="primary">
         <Toolbar className={classes.toolbar}>
-          <div className={classes.row}>
-            <IconButton color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Material-UI
-            </Typography>
-          </div>
+          <IconButton color="inherit" aria-label="Open drawer">
+            <MenuIcon />
+          </IconButton>
           <Button variant="fab" color="secondary" aria-label="Add" className={classes.fabButton}>
             <AddIcon />
           </Button>
