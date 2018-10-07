@@ -272,9 +272,9 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.props().disableRipple, true);
   });
 
-  it('should have a focusRipple by default', () => {
+  it('should have no focusRipple by default', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.props().focusRipple, true);
+    assert.strictEqual(wrapper.props().focusRipple, false);
   });
 
   it('should pass disableFocusRipple to ButtonBase', () => {

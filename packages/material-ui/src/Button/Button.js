@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import chainPropTypes from '../utils/chainPropTypes';
+import deprecated from '../utils/deprecatedProp';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
@@ -36,6 +37,9 @@ export const styles = theme => ({
     '&$disabled': {
       color: theme.palette.action.disabled,
     },
+    '&$focusVisible': {
+      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.focusOpacity),
+    },
   },
   /* Styles applied to the span element that wraps the children. */
   label: {
@@ -56,6 +60,9 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$focusVisible': {
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.focusOpacity),
+    },
   },
   /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
   textSecondary: {
@@ -66,6 +73,9 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
+    },
+    '&$focusVisible': {
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.focusOpacity),
     },
   },
   /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
@@ -138,6 +148,9 @@ export const styles = theme => ({
         backgroundColor: theme.palette.primary.main,
       },
     },
+    '&$focusVisible': {
+      backgroundColor: fade(theme.palette.primary.main, 1 - 2 * theme.palette.action.focusOpacity),
+    },
   },
   /* Styles applied to the root element if `variant="[contained | fab]"` and `color="secondary"`. */
   containedSecondary: {
@@ -149,6 +162,12 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: theme.palette.secondary.main,
       },
+    },
+    '&$focusVisible': {
+      backgroundColor: fade(
+        theme.palette.secondary.main,
+        1 - 2 * theme.palette.action.focusOpacity,
+      ),
     },
   },
   /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
@@ -306,7 +325,10 @@ Button.propTypes = {
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple: PropTypes.bool,
+  disableRipple: deprecated(
+    PropTypes.bool,
+    'Focus ripple will be removed because it does not follow Material design.',
+  ),
   /**
    * @ignore
    */
@@ -363,7 +385,7 @@ Button.defaultProps = {
   color: 'default',
   component: 'button',
   disabled: false,
-  disableFocusRipple: false,
+  disableFocusRipple: true,
   fullWidth: false,
   mini: false,
   size: 'medium',
