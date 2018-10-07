@@ -258,6 +258,8 @@ class Tooltip extends React.Component {
       id,
       leaveDelay,
       leaveTouchDelay,
+      onClose,
+      onOpen,
       open: openProp,
       placement,
       PopperProps,
