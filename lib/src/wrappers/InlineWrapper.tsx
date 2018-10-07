@@ -57,7 +57,7 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
     anchorEl: null,
   }
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProps: InlineWrapperProps) {
     // only if accept = true close the popover
     if (nextProps.isAccepted) {
       return {
@@ -68,7 +68,7 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
     return null;
   }
 
-  open = (e) => {
+  open = (e: React.SyntheticEvent) => {
     this.setState({ anchorEl: e.currentTarget });
     if (this.props.onOpen) {
       this.props.onOpen();
@@ -82,7 +82,7 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
     }
   }
 
-  handleKeyDown = (event) => {
+  handleKeyDown = (event: Event) => {
     switch (keycode(event)) {
       case 'enter': {
         this.props.handleAccept();

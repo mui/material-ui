@@ -1,14 +1,20 @@
 import * as React from 'react';
 import ClockNumber from './ClockNumber';
+import { Utils } from '../../typings/utils';
+import { MaterialUiPickersDate } from '../../typings/date';
 
-export const getHourNumbers = ({ ampm, utils, date }) => {
+export const getHourNumbers = ({
+  ampm, utils, date
+}: {
+  ampm: boolean, utils: Utils<MaterialUiPickersDate>, date: MaterialUiPickersDate
+}) => {
   const currentHours = utils.getHours(date);
 
   const hourNumbers: JSX.Element[] = [];
   const startHour = ampm ? 1 : 0;
   const endHour = ampm ? 12 : 23;
 
-  const isSelected = (hour) => {
+  const isSelected = (hour: number) => {
     if (ampm) {
       if (hour === 12) {
         return currentHours === 12 || currentHours === 0;
@@ -40,7 +46,7 @@ export const getHourNumbers = ({ ampm, utils, date }) => {
   return hourNumbers;
 };
 
-export const getMinutesNumbers = ({ value, utils }) => {
+export const getMinutesNumbers = ({ value, utils }: { value: number, utils: Utils<MaterialUiPickersDate>}) => {
   const f = utils.formatNumber;
 
   return [

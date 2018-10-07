@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import MaskedInput, { MaskedInputProps } from 'react-text-mask';
 
-export interface CustomMaskedInputProps extends React.InputHTMLAttributes<MaskedInputProps> {
+export interface CustomMaskedInputProps extends MaskedInputProps {
   mask?: any;
   inputRef: React.Ref<any>;
 }

@@ -7,7 +7,7 @@ import Icon from '@material-ui/core/Icon';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { createStyles } from '@material-ui/core';
+import { createStyles, Theme } from '@material-ui/core';
 
 export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
   currentMonth: object;
@@ -107,7 +107,7 @@ CalendarHeader.defaultProps = {
   disableNextMonth: false,
 };
 
-const styles = theme => createStyles({
+const styles = (theme: Theme) => createStyles({
   switchHeader: {
     display: 'flex',
     justifyContent: 'space-between',

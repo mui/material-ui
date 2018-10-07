@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import classnames from 'classnames';
 import ClockType from '../../constants/ClockType';
-import { createStyles } from '@material-ui/core';
+import { createStyles, Theme } from '@material-ui/core';
 
 export interface ClockPointerProps extends WithStyles<typeof styles> {
   value: number;
@@ -27,7 +27,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
     previousType: undefined, // eslint-disable-line
   }
 
-  static getDerivedStateFromProps = (nextProps, state) => {
+  static getDerivedStateFromProps = (nextProps: ClockPointerProps, state: ClockPointer["state"]) => {
     if (nextProps.type !== state.previousType) {
       return {
         toAnimateTransform: true,
@@ -73,7 +73,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
   }
 }
 
-const styles = theme => createStyles({
+const styles = (theme: Theme) => createStyles({
   pointer: {
     width: 2,
     backgroundColor: theme.palette.primary.main,

@@ -32,7 +32,7 @@ const getDisplayDate = ({
     : invalidLabel;
 };
 
-const getError = (value, props) => {
+const getError = (value: MaterialUiPickersDate, props: DateTextFieldProps): React.ReactNode => {
   const {
     utils,
     maxDate,
@@ -95,12 +95,12 @@ export interface DateTextFieldProps extends WithUtilsProps, Omit<TextFieldProps,
   InputAdornmentProps?: object;
   adornmentPosition?: "start" | "end";
   onClick?: (e: React.SyntheticEvent) => void;
-  onError?: (newValue: MaterialUiPickersDate, error: string) => void;
+  onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
   onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 export class DateTextField extends React.PureComponent<DateTextFieldProps> {
-  static updateState = props => ({
+  static updateState = (props: DateTextFieldProps) => ({
     value: props.value,
     displayValue: getDisplayDate(props),
     error: getError(props.utils.date(props.value), props),
@@ -193,7 +193,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
 
   state = DateTextField.updateState(this.props)
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: DateTextFieldProps) {
     if (
       !this.props.utils.isEqual(this.props.value, prevProps.value)
       || prevProps.format !== this.props.format
@@ -207,7 +207,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     }
   }
 
-  commitUpdates = (value) => {
+  commitUpdates = (value: string) => {
     const {
       clearable,
       onClear,
@@ -245,7 +245,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     });
   }
 
-  handleBlur = (e) => {
+  handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this.props.keyboard) {
       e.preventDefault();
       e.stopPropagation();
@@ -257,7 +257,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     }
   };
 
-  handleChange = (e) => {
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { utils, format, onInputChange } = this.props;
     const parsedValue = utils.parse(e.target.value, format);
 
@@ -271,7 +271,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     });
   }
 
-  handleFocus = (e) => {
+  handleFocus = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     e.preventDefault();
 

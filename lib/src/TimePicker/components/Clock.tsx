@@ -5,7 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import ClockPointer from './ClockPointer';
 import { getMinutes, getHours } from '../../_helpers/time-utils';
 import ClockType from '../../constants/ClockType';
-import { createStyles, WithStyles } from '@material-ui/core';
+import { createStyles, WithStyles, Theme } from '@material-ui/core';
 
 export interface ClockProps extends WithStyles<typeof styles> {
   type: ClockType;
@@ -31,7 +31,7 @@ export class Clock extends React.Component<ClockProps> {
 
   isMoving = false;
 
-  setTime(e, isFinish = false) {
+  setTime(e: any, isFinish = false) {
     let { offsetX, offsetY } = e;
 
     if (typeof offsetX === 'undefined') {
@@ -43,24 +43,24 @@ export class Clock extends React.Component<ClockProps> {
 
     const value = this.props.type === ClockType.SECONDS || this.props.type === ClockType.MINUTES
       ? getMinutes(offsetX, offsetY)
-      : getHours(offsetX, offsetY, this.props.ampm);
+      : getHours(offsetX, offsetY, Boolean(this.props.ampm));
 
     this.props.onChange(value, isFinish);
   }
 
-  handleTouchMove = (e) => {
+  handleTouchMove = (e: React.TouchEvent) => {
     this.isMoving = true;
     this.setTime(e);
   }
 
-  handleTouchEnd = (e) => {
+  handleTouchEnd = (e: React.TouchEvent) => {
     if (this.isMoving) {
       this.setTime(e, true);
       this.isMoving = false;
     }
   }
 
-  handleMove = (e) => {
+  handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
@@ -73,7 +73,7 @@ export class Clock extends React.Component<ClockProps> {
     }
   };
 
-  handleMouseUp = (e) => {
+  handleMouseUp = (e: React.MouseEvent) => {
     if (this.isMoving) {
       this.isMoving = false;
     }
@@ -129,7 +129,7 @@ export class Clock extends React.Component<ClockProps> {
   }
 }
 
-const styles = theme => createStyles({
+const styles = (theme: Theme) => createStyles({
   container: {
     display: 'flex',
     justifyContent: 'center',

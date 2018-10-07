@@ -99,8 +99,8 @@ export default class DateFnsUtils implements Utils<Date> {
 
   endOfDay = endOfDay
 
-  formatNumber(num: number) {
-    return num.toString();
+  formatNumber(num: string) {
+    return num;
   }
 
   getHours = getHours
@@ -210,7 +210,7 @@ export default class DateFnsUtils implements Utils<Date> {
     return format(date, 'd', { locale: this.locale });
   }
 
-  getHourText(date, ampm) {
+  getHourText(date: Date, ampm: boolean) {
     return format(date, ampm ? 'hh' : 'HH', { locale: this.locale });
   }
 

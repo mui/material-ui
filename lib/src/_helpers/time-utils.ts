@@ -1,3 +1,7 @@
+import { MaterialUiPickersDate } from "../typings/date";
+import { MeridiemMode } from "../DateTimePicker/components/DateTimePickerHeader";
+import { Utils } from "../typings/utils";
+
 const center = {
   x: 260 / 2,
   y: 260 / 2,
@@ -11,9 +15,9 @@ const basePoint = {
 const cx = basePoint.x - center.x;
 const cy = basePoint.y - center.y;
 
-const rad2deg = rad => rad * 57.29577951308232;
+const rad2deg = (rad: number) => rad * 57.29577951308232;
 
-const getAngleValue = (step, offsetX, offsetY) => {
+const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
   const x = offsetX - center.x;
   const y = offsetY - center.y;
 
@@ -31,7 +35,7 @@ const getAngleValue = (step, offsetX, offsetY) => {
   return { value, distance };
 };
 
-export const getHours = (offsetX, offsetY, ampm) => {
+export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
   // eslint-disable-next-line
   let { value, distance } = getAngleValue(30, offsetX, offsetY);
   value = value || 12;
@@ -48,13 +52,18 @@ export const getHours = (offsetX, offsetY, ampm) => {
   return value;
 };
 
-export const getMinutes = (offsetX, offsetY, step = 6) => {
+export const getMinutes = (offsetX: number, offsetY: number, step = 6) => {
   const { value } = getAngleValue(step, offsetX, offsetY);
 
   return value;
 };
 
-export const convertToMeridiem = (time, meridiem, ampm, utils) => {
+export const convertToMeridiem = (
+  time: MaterialUiPickersDate,
+  meridiem: MeridiemMode,
+  ampm: boolean,
+  utils: Utils<MaterialUiPickersDate>
+) => {
   if (ampm) {
     const currentMeridiem = utils.getHours(time) >= 12 ? 'pm' : 'am';
     if (currentMeridiem !== meridiem) {

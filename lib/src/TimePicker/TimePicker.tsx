@@ -11,6 +11,7 @@ import TimePickerView from './components/TimePickerView';
 import { MaterialUiPickersDate } from '../typings/date';
 import ClockType from '../constants/ClockType'
 import { createStyles, WithStyles } from '@material-ui/core';
+import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 
 export interface BaseTimePickerProps {
   ampm?: boolean;
@@ -20,6 +21,11 @@ export interface BaseTimePickerProps {
 export interface TimePickerProps extends BaseTimePickerProps, WithUtilsProps, WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
+}
+
+interface TimePickerState {
+  openView: ClockType;
+  meridiemMode: MeridiemMode;
 }
 
 export class TimePicker extends React.Component<TimePickerProps> {
@@ -41,12 +47,12 @@ export class TimePicker extends React.Component<TimePickerProps> {
     seconds: false,
   }
 
-  state = {
+  state: TimePickerState = {
     openView: ClockType.HOURS,
     meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
-  setMeridiemMode = mode => () => {
+  setMeridiemMode = (mode: MeridiemMode) => () => {
     this.setState(
       { meridiemMode: mode },
       () => this.handleChange({
@@ -60,11 +66,13 @@ export class TimePicker extends React.Component<TimePickerProps> {
 
   handleChange = ({
     time, isFinish, openMinutes, openSeconds,
+  }: {
+    time: MaterialUiPickersDate, isFinish?: boolean, openMinutes: boolean, openSeconds: boolean
   }) => {
     const withMeridiem = convertToMeridiem(
       time,
       this.state.meridiemMode,
-      this.props.ampm,
+      Boolean(this.props.ampm),
       this.props.utils,
     );
 
@@ -86,7 +94,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     this.props.onChange(withMeridiem, false);
   }
 
-  handleHourChange = (time, isFinish) => {
+  handleHourChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.handleChange({
       time,
       isFinish,
@@ -95,16 +103,16 @@ export class TimePicker extends React.Component<TimePickerProps> {
     });
   }
 
-  handleMinutesChange = (time, isFinish) => {
+  handleMinutesChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.handleChange({
       time,
       isFinish,
       openMinutes: false,
-      openSeconds: this.props.seconds,
+      openSeconds: Boolean(this.props.seconds),
     });
   }
 
-  handleSecondsChange = (time, isFinish) => {
+  handleSecondsChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.handleChange({
       time,
       isFinish,

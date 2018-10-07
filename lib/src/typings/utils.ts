@@ -25,7 +25,7 @@ export interface Utils<TDate> {
   endOfDay(value: TDate): TDate;
 
   format(value: TDate, formatString: string): string;
-  formatNumber(number: number): string;
+  formatNumber(number: string): string;
 
   getHours(value: TDate): number;
   setHours(value: TDate, count: number): TDate;

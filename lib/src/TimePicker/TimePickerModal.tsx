@@ -5,7 +5,7 @@ import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import TimePicker, { BaseTimePickerProps } from './TimePicker';
 import DomainPropTypes from '../constants/prop-types';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import { Omit } from 'recompose';
+import { Omit } from '@material-ui/core';
 
 export interface TimePickerModalProps extends
   BasePickerProps,

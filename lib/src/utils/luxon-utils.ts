@@ -97,8 +97,8 @@ export default class LuxonUtils implements Utils<DateTime> {
     return date.setLocale(this.locale).toFormat(format);
   }
 
-  formatNumber(number: number) {
-    return String(number);
+  formatNumber(number: string) {
+    return number;
   }
 
   getHours(value: DateTime) {

@@ -24,7 +24,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props
     theme, utils, ampm,
   } = props;
 
-  const changeOpenView = view => () => onOpenViewChange(view);
+  const changeOpenView = (view: DateTimePickerView) => () => onOpenViewChange(view);
 
   const rtl = theme.direction === 'rtl';
   const hourMinuteClassName = rtl

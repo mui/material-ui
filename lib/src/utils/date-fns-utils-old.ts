@@ -100,8 +100,8 @@ export default class DateFnsUtils implements Utils<Date> {
 
   endOfDay = endOfDay
 
-  formatNumber(num: number) {
-    return num.toString();
+  formatNumber(num) {
+    return num
   }
 
   getHours = getHours

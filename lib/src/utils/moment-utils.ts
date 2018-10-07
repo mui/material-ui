@@ -17,7 +17,7 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     this.locale = locale;
   }
 
-  parse(value, format) {
+  parse(value: string, format: string) {
     return this.moment(value, format, true);
   }
 
@@ -33,31 +33,31 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return date.parsingFlags().nullInput;
   }
 
-  getDiff(date, comparing) {
+  getDiff(date: Moment, comparing: Moment) {
     return date.diff(comparing);
   }
 
-  isAfter(date, value) {
+  isAfter(date: Moment, value: Moment) {
     return date.isAfter(value);
   }
 
-  isBefore(date, value) {
+  isBefore(date: Moment, value: Moment) {
     return date.isBefore(value);
   }
 
-  isAfterDay(date, value) {
+  isAfterDay(date: Moment, value: Moment) {
     return date.isAfter(value, 'day');
   }
 
-  isBeforeDay(date, value) {
+  isBeforeDay(date: Moment, value: Moment) {
     return date.isBefore(value, 'day');
   }
 
-  isBeforeYear(date, value) {
+  isBeforeYear(date: Moment, value: Moment) {
     return date.isBefore(value, 'year');
   }
 
-  isAfterYear(date, value) {
+  isAfterYear(date: Moment, value: Moment) {
     return date.isAfter(value, 'year');
   }
 
@@ -69,11 +69,11 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return date.clone().endOf('day');
   }
 
-  format(date, formatString) {
+  format(date: Moment, formatString: string) {
     return date.format(formatString);
   }
 
-  formatNumber(num) {
+  formatNumber(num: string) {
     return num;
   }
 
@@ -210,7 +210,7 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return date.format('D');
   }
 
-  getHourText(date, ampm) {
+  getHourText(date: Moment, ampm: boolean) {
     return date.format(ampm ? 'hh' : 'HH');
   }
 

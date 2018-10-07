@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Icon from '@material-ui/core/Icon';
 import DateTimePickerView from '../../constants/DateTimePickerView';
+import { Theme } from '@material-ui/core';
 
 const viewToTabIndex = (openView: DateTimePickerView) => {
   if (openView === DateTimePickerView.DATE || openView === DateTimePickerView.YEAR) {
@@ -42,7 +43,7 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = (props) =>
   } = props;
 
   const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
-  const handleChange = (e, value: DateTimePickerView) => {
+  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
     }
@@ -73,7 +74,7 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = (props) =>
   timeIcon: PropTypes.node.isRequired,
 };
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   tabs: {
     color: theme.palette.common.white,
     backgroundColor: theme.palette.type === 'light'

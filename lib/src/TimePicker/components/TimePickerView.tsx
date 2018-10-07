@@ -40,7 +40,7 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
       case ClockType.HOURS:
         return {
           value: utils.getHours(date),
-          children: getHourNumbers({ date, ampm, utils }),
+          children: getHourNumbers({ date, ampm: Boolean(ampm), utils }),
           onChange: this.handleHourChange,
         };
 
@@ -65,21 +65,21 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
     }
   }
 
-  handleHourChange = (hours, isFinish) => {
+  handleHourChange = (hours: number, isFinish?: boolean) => {
     const { date, utils } = this.props;
     const updatedTime = utils.setHours(date, hours);
 
     this.props.onHourChange(updatedTime, isFinish);
   };
 
-  handleMinutesChange = (minutes, isFinish) => {
+  handleMinutesChange = (minutes: number, isFinish?: boolean) => {
     const { date, utils } = this.props;
     const updatedTime = utils.setMinutes(date, minutes);
 
     this.props.onMinutesChange(updatedTime, isFinish);
   };
 
-  handleSecondsChange = (seconds, isFinish) => {
+  handleSecondsChange = (seconds: number, isFinish?: boolean) => {
     const { date, utils } = this.props;
     const updatedTime = utils.setSeconds(date, seconds);
 

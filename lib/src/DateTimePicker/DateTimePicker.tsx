@@ -89,7 +89,7 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
     meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
-  onChange = (time, isFinish = true, nextView) => {
+  onChange = (time: MaterialUiPickersDate, isFinish = true, nextView: DateTimePickerView) => {
     this.handleChange(time);
 
     if (isFinish && this.props.autoSubmit) {
@@ -97,36 +97,36 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
     }
   }
 
-  setMeridiemMode = mode => () => {
+  setMeridiemMode = (mode: MeridiemMode) => () => {
     this.setState(
       { meridiemMode: mode },
       () => this.handleChange(this.props.date, false),
     );
   }
 
-  handleViewChange = (view) => {
+  handleViewChange = (view: DateTimePickerView) => {
     this.setState({ openView: view });
   }
 
-  handleChange = (time, isFinish = false) => {
+  handleChange = (time: MaterialUiPickersDate, isFinish = false) => {
     const withMeridiem = convertToMeridiem(
       time,
       this.state.meridiemMode,
-      this.props.ampm,
+      Boolean(this.props.ampm),
       this.props.utils,
     );
     this.props.onChange(withMeridiem, isFinish);
   }
 
-  handleYearChange = (date) => {
+  handleYearChange = (date: MaterialUiPickersDate) => {
     this.onChange(date, false, DateTimePickerView.DATE);
   }
 
-  handleDayChange = (date, isFinish) => {
+  handleDayChange = (date: MaterialUiPickersDate, isFinish?: boolean) => {
     this.onChange(date, isFinish, DateTimePickerView.HOUR);
   }
 
-  handleHourChange = (time, isFinish) => {
+  handleHourChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.onChange(time, isFinish, DateTimePickerView.MINUTES);
   }
 
@@ -198,8 +198,8 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
             <Calendar
               allowKeyboardControl={allowKeyboardControl}
               date={date}
-              minDate={minDate}
-              maxDate={maxDate}
+              minDate={minDate!}
+              maxDate={maxDate!}
               onChange={this.handleDayChange}
               disablePast={disablePast}
               disableFuture={disableFuture}

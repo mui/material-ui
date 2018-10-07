@@ -1,4 +1,16 @@
-/* eslint-disable import/prefer-default-export */
+import { MaterialUiPickersDate } from "../typings/date";
+import { Utils } from "../typings/utils";
+import { DateType } from "../constants/prop-types";
+
+interface FindClosestDateParams {
+  date: MaterialUiPickersDate;
+  utils: Utils<MaterialUiPickersDate>;
+  minDate: DateType;
+  maxDate: DateType;
+  disableFuture: boolean;
+  disablePast: boolean;
+  shouldDisableDate: (date: MaterialUiPickersDate) => boolean;
+}
 export const findClosestEnabledDate = ({
   date,
   utils,
@@ -7,7 +19,7 @@ export const findClosestEnabledDate = ({
   disableFuture,
   disablePast,
   shouldDisableDate,
-}) => {
+}: FindClosestDateParams) => {
   const today = utils.startOfDay(utils.date());
 
   minDate = minDate && utils.date(minDate);
