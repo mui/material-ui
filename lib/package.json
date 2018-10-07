@@ -45,6 +45,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "classnames": "^2.2.5",
+    "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
     "react-transition-group": "^2.5.0"
