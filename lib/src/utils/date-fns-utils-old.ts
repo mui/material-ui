@@ -34,7 +34,7 @@ export default class DateFnsUtils implements Utils<Date> {
     this.locale = locale;
   }
 
-  date(value) {
+  date(value?: any) {
     if (typeof value === 'undefined') {
       return new Date();
     }
@@ -46,7 +46,7 @@ export default class DateFnsUtils implements Utils<Date> {
     return new Date(value);
   }
 
-  parse(value, formatString) {
+  parse(value: string, formatString: string) {
     if (value === '') {
       return null;
     }
@@ -54,11 +54,11 @@ export default class DateFnsUtils implements Utils<Date> {
     return dateFnsParse(value, formatString, new Date());
   }
 
-  format(date, formatString) {
+  format(date: Date, formatString: string) {
     return format(date, formatString, { locale: this.locale });
   }
 
-  isEqual(date, comparing) {
+  isEqual(date: Date, comparing: Date) {
     if (date === null && comparing === null) {
       return true;
     }
@@ -72,7 +72,7 @@ export default class DateFnsUtils implements Utils<Date> {
 
   getDiff = differenceInMilliseconds
 
-  isNull(date) {
+  isNull(date: Date) {
     return date === null;
   }
 
@@ -80,19 +80,19 @@ export default class DateFnsUtils implements Utils<Date> {
 
   isBefore = isBefore
 
-  isAfterDay(date, value) {
+  isAfterDay(date: Date, value: Date) {
     return isAfter(date, endOfDay(value));
   }
 
-  isBeforeDay(date, value) {
+  isBeforeDay(date: Date, value: Date) {
     return isBefore(date, startOfDay(value));
   }
 
-  isBeforeYear(date, value) {
+  isBeforeYear(date: Date, value: Date) {
     return isBefore(date, startOfYear(value));
   }
 
-  isAfterYear(date, value) {
+  isAfterYear(date: Date, value: Date) {
     return isAfter(date, endOfYear(value));
   }
 
@@ -100,15 +100,15 @@ export default class DateFnsUtils implements Utils<Date> {
 
   endOfDay = endOfDay
 
-  formatNumber(num) {
-    return num;
+  formatNumber(num: number) {
+    return num.toString();
   }
 
   getHours = getHours
 
   setHours = setHours
 
-  getMinutes(date) {
+  getMinutes(date: Date) {
     return date.getMinutes();
   }
 
@@ -118,23 +118,23 @@ export default class DateFnsUtils implements Utils<Date> {
 
   setSeconds = setSeconds
 
-  getMonth(date) {
+  getMonth(date: Date) {
     return date.getMonth();
   }
 
   isSameDay = isSameDay;
 
-  getMeridiemText(ampm) {
+  getMeridiemText(ampm: 'am' | 'pm') {
     return ampm === 'am' ? 'AM' : 'PM';
   }
 
   getStartOfMonth = startOfMonth
 
-  getNextMonth(date) {
+  getNextMonth(date: Date) {
     return addMonths(date, 1);
   }
 
-  getPreviousMonth(date) {
+  getPreviousMonth(date: Date) {
     return addMonths(date, -1);
   }
 
@@ -142,32 +142,33 @@ export default class DateFnsUtils implements Utils<Date> {
 
   setYear = setYear;
 
-  mergeDateAndTime(date, time) {
+  mergeDateAndTime(date: Date, time: Date) {
     return this.setMinutes(this.setHours(date, this.getHours(time)), this.getMinutes(time));
   }
 
   getWeekdays() {
     const now = new Date();
-    return eachDayOfInterval(
-      {
-        start: startOfWeek(now, { locale: this.locale }),
-        end: endOfWeek(now, { locale: this.locale }),
-      },
-      { locale: this.locale },
-    ).map(day => format(day, 'dd', { locale: this.locale }));
+    return eachDayOfInterval({
+      start: startOfWeek(now, { locale: this.locale }),
+      end: endOfWeek(now, { locale: this.locale }),
+    }, {
+      locale: this.locale
+    }).map(day => format(day, 'dd', { locale: this.locale }));
   }
 
-  getWeekArray(date) {
+  getWeekArray(date: Date) {
     const start = startOfWeek(startOfMonth(date), { locale: this.locale });
     const end = endOfWeek(endOfMonth(date), { locale: this.locale });
 
-    const nestedWeeks = [];
     let count = 0;
     let current = start;
+    const nestedWeeks = [];
+
     while (isBefore(current, end)) {
       const weekNumber = Math.floor(count / 7);
       nestedWeeks[weekNumber] = nestedWeeks[weekNumber] || [];
       nestedWeeks[weekNumber].push(current);
+
       current = addDays(current, 1);
       count += 1;
     }
@@ -175,7 +176,7 @@ export default class DateFnsUtils implements Utils<Date> {
     return nestedWeeks;
   }
 
-  getYearRange(start, end) {
+  getYearRange(start: Date, end: Date) {
     const startDate = startOfYear(new Date(start));
     const endDate = endOfYear(new Date(end));
     const years = [];
@@ -190,23 +191,23 @@ export default class DateFnsUtils implements Utils<Date> {
   }
 
   // displaying methpds
-  getCalendarHeaderText(date) {
+  getCalendarHeaderText(date: Date) {
     return format(date, 'MMMM YYYY', { locale: this.locale });
   }
 
-  getYearText(date) {
+  getYearText(date: Date) {
     return format(date, 'YYYY', { locale: this.locale });
   }
 
-  getDatePickerHeaderText(date) {
+  getDatePickerHeaderText(date: Date) {
     return format(date, 'ddd, MMM D', { locale: this.locale });
   }
 
-  getDateTimePickerHeaderText(date) {
+  getDateTimePickerHeaderText(date: Date) {
     return format(date, 'MMM D', { locale: this.locale });
   }
 
-  getDayText(date) {
+  getDayText(date: Date) {
     return format(date, 'D', { locale: this.locale });
   }
 
@@ -214,11 +215,11 @@ export default class DateFnsUtils implements Utils<Date> {
     return format(date, ampm ? 'hh' : 'HH', { locale: this.locale });
   }
 
-  getMinuteText(date) {
+  getMinuteText(date: Date) {
     return format(date, 'mm', { locale: this.locale });
   }
 
-  getSecondText(date) {
+  getSecondText(date: Date) {
     return format(date, 'ss', { locale: this.locale });
   }
 

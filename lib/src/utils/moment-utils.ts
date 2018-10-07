@@ -25,11 +25,11 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return this.moment(value);
   }
 
-  isValid(date) {
+  isValid(date: Moment) {
     return date.isValid();
   }
 
-  isNull(date) {
+  isNull(date: Moment) {
     return date.parsingFlags().nullInput;
   }
 
@@ -61,11 +61,11 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return date.isAfter(value, 'year');
   }
 
-  startOfDay(date) {
+  startOfDay(date: Moment) {
     return date.clone().startOf('day');
   }
 
-  endOfDay(date) {
+  endOfDay(date: Moment) {
     return date.clone().endOf('day');
   }
 
@@ -77,69 +77,69 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return num;
   }
 
-  getHours(date) {
+  getHours(date: Moment) {
     return date.get('hours');
   }
 
-  addDays(date, count) {
+  addDays(date: Moment, count: number) {
     return count < 0
       ? date.clone().subtract(Math.abs(count), 'days')
       : date.clone().add(count, 'days');
   }
 
-  setHours(date, value) {
-    return date.clone().hours(value);
+  setHours(date: Moment, count: number) {
+    return date.clone().hours(count);
   }
 
-  getMinutes(date) {
+  getMinutes(date: Moment) {
     return date.get('minutes');
   }
 
-  setMinutes(date, value) {
-    return date.clone().minutes(value);
+  setMinutes(date: Moment, count: number) {
+    return date.clone().minutes(count);
   }
 
-  getSeconds(date) {
+  getSeconds(date: Moment) {
     return date.get('seconds');
   }
 
-  setSeconds(date, value) {
-    return date.clone().seconds(value);
+  setSeconds(date: Moment, count: number) {
+    return date.clone().seconds(count);
   }
 
-  getMonth(date) {
+  getMonth(date: Moment) {
     return date.get('month');
   }
 
-  isSameDay(date, comparing) {
+  isSameDay(date: Moment, comparing: Moment) {
     return date.isSame(comparing, 'day');
   }
 
-  getMeridiemText(ampm) {
+  getMeridiemText(ampm: 'am' | 'pm') {
     return ampm === 'am' ? 'AM' : 'PM';
   }
 
-  getStartOfMonth(date) {
+  getStartOfMonth(date: Moment) {
     return date.clone().startOf('month');
   }
 
-  getNextMonth(date) {
+  getNextMonth(date: Moment) {
     return date.clone().add(1, 'month');
   }
 
-  getPreviousMonth(date) {
+  getPreviousMonth(date: Moment) {
     return date.clone().subtract(1, 'month');
   }
 
-  getYear(date) {
+  getYear(date: Moment) {
     return date.get('year');
   }
 
-  setYear(date, year) {
+  setYear(date: Moment, year: number) {
     return date.clone().set('year', year);
   }
 
-  mergeDateAndTime(date, time) {
+  mergeDateAndTime(date: Moment, time: Moment) {
     return this.setMinutes(this.setHours(date, this.getHours(time)), this.getMinutes(time));
   }
 
@@ -147,7 +147,7 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek => this.moment().weekday(dayOfWeek).format('dd'));
   }
 
-  isEqual(value, comparing) {
+  isEqual(value: Moment, comparing: Moment) {
     if (value === null && comparing === null) {
       return true;
     }
@@ -155,7 +155,7 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return this.moment(value).isSame(comparing);
   }
 
-  getWeekArray(date) {
+  getWeekArray(date: Moment) {
     const start = date.clone().startOf('month').startOf('week');
     const end = date.clone().endOf('month').endOf('week');
 
@@ -175,7 +175,7 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return nestedWeeks;
   }
 
-  getYearRange(start, end) {
+  getYearRange(start: Moment, end: Moment) {
     const startDate = this.moment(start).startOf('year');
     const endDate = this.moment(end).endOf('year');
     const years: Moment[] = [];
@@ -190,23 +190,23 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
   }
 
   // displaying methods
-  getCalendarHeaderText(date) {
+  getCalendarHeaderText(date: Moment) {
     return date.format('MMMM YYYY');
   }
 
-  getYearText(date) {
+  getYearText(date: Moment) {
     return date.format('YYYY');
   }
 
-  getDatePickerHeaderText(date) {
+  getDatePickerHeaderText(date: Moment) {
     return date.format('ddd, MMM D');
   }
 
-  getDateTimePickerHeaderText(date) {
+  getDateTimePickerHeaderText(date: Moment) {
     return date.format('MMM D');
   }
 
-  getDayText(date) {
+  getDayText(date: Moment) {
     return date.format('D');
   }
 
@@ -214,11 +214,11 @@ export default class MomentUtils implements Utils<defaultMoment.Moment> {
     return date.format(ampm ? 'hh' : 'HH');
   }
 
-  getMinuteText(date) {
+  getMinuteText(date: Moment) {
     return date.format('mm');
   }
 
-  getSecondText(date) {
+  getSecondText(date: Moment) {
     return date.format('ss');
   }
 
