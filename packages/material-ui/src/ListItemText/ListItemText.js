@@ -74,7 +74,6 @@ function ListItemText(props, context) {
   if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
       <Typography
-        variant="body1"
         className={classNames(classes.secondary, {
           [classes.textDense]: dense,
         })}
