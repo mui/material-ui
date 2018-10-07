@@ -28,9 +28,12 @@ export const styles = theme => ({
 });
 
 class SpeedDialAction extends React.Component {
-  state = {
-    tooltipOpen: false,
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      tooltipOpen: props.tooltipOpen,
+    };
+  }
 
   static getDerivedStateFromProps = (props, state) => {
     if (!props.open && state.tooltipOpen) {
