@@ -22,6 +22,8 @@ This context is used by the following components:
  - Input
  - InputLabel
 
+⚠️ Only one input can be used within a FormControl.
+
 ## Props
 
 | Name | Type | Default | Description |

@@ -147,6 +147,7 @@ class Textarea extends React.Component {
       rowsMax,
       textareaRef,
       value,
+      style,
       ...other
     } = this.props;
 
@@ -179,7 +180,7 @@ class Textarea extends React.Component {
           value={value}
           onChange={this.handleChange}
           ref={this.handleRefInput}
-          style={{ height: this.state.height }}
+          style={{ height: this.state.height, ...style }}
           {...other}
         />
       </div>

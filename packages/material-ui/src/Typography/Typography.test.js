@@ -42,9 +42,9 @@ describe('<Typography />', () => {
     assert.strictEqual(wrapper.props()['data-test'], 'hello');
   });
 
-  it('should render body1 root by default', () => {
+  it('should render body2 root by default', () => {
     const wrapper = shallow(<Typography theme={v2Theme}>Hello</Typography>);
-    assert.strictEqual(wrapper.hasClass(classes.body1), true);
+    assert.strictEqual(wrapper.hasClass(classes.body2), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -54,7 +54,7 @@ describe('<Typography />', () => {
         Hello
       </Typography>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.body1), true);
+    assert.strictEqual(wrapper.hasClass(classes.body2), true);
     assert.strictEqual(wrapper.hasClass('woofTypography'), true);
   });
 
@@ -155,7 +155,7 @@ describe('<Typography />', () => {
      * tests if a warning is issued from the `warning` module when mounting {component}
      */
     const testMount = (component, expectDeprecation) => {
-      const expectedWarning = expectDeprecation ? 'Deprecation Warning: Material-UI:' : undefined;
+      const expectedWarning = expectDeprecation ? 'Material-UI:' : undefined;
       warning.resetHistory();
 
       const theme = createMuiTheme({

@@ -244,7 +244,6 @@ const pages = [
   },
   {
     pathname: '/versions',
-    displayNav: false,
   },
   {
     pathname: '/',
@@ -288,6 +287,7 @@ function withRoot(Component) {
 
     getChildContext() {
       const { router } = this.props;
+      const { userLanguage } = this.state;
 
       let pathname = router.pathname;
       if (pathname !== '/') {
@@ -300,11 +300,15 @@ function withRoot(Component) {
       return {
         pages,
         activePage: findActivePage(pages, { ...router, pathname }),
+        userLanguage,
       };
     }
 
     componentDidMount() {
-      this.setState({ userLanguage: acceptLanguage.get(navigator.language) || 'en' });
+      this.setState({
+        userLanguage:
+          this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en',
+      });
     }
 
     render() {
@@ -335,6 +339,7 @@ function withRoot(Component) {
   WithRoot.childContextTypes = {
     pages: PropTypes.array,
     activePage: PropTypes.object,
+    userLanguage: PropTypes.string,
   };
 
   WithRoot.getInitialProps = ctx => {

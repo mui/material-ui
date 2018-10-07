@@ -85,6 +85,9 @@ jobs:
           name: Lint
           command: yarn lint
       - run:
+          name: Lint JSON
+          command: yarn jsonlint
+      - run:
           name: Tests TypeScript definitions
           command: yarn typescript
       - run:
