@@ -3,11 +3,17 @@ import * as PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
-import ModalWrapper from '../wrappers/ModalWrapper';
-import DateTimePicker from './DateTimePicker';
-import BasePicker from '../_shared/BasePicker';
+import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import DateTimePicker, { BaseDateTimePickerProps, DateTimePickerProps } from './DateTimePicker';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import { Omit, WithStyles } from '@material-ui/core';
 
-export const DateTimePickerModal = (props) => {
+export interface DateTimePickerModalProps extends
+  BasePickerProps,
+  BaseDateTimePickerProps,
+  Omit<ModalWrapperProps, 'onChange' | 'value'> {}
+
+export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = (props) => {
   const {
     value,
     format,
@@ -51,7 +57,7 @@ export const DateTimePickerModal = (props) => {
         }) => (
           <ModalWrapper
             ref={forwardedRef}
-            dialogContentClassName={classes.dialogContent}
+            // dialogContentClassName={classes.dialogContent}
             disableFuture={disableFuture}
             disablePast={disablePast}
             maxDate={maxDate}
@@ -93,7 +99,7 @@ export const DateTimePickerModal = (props) => {
   );
 };
 
-DateTimePickerModal.propTypes = {
+(DateTimePickerModal as any).propTypes = {
   classes: PropTypes.object.isRequired,
   /** DateTimepicker value */
   value: DomainPropTypes.date,
@@ -143,7 +149,7 @@ DateTimePickerModal.propTypes = {
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
-DateTimePickerModal.defaultProps = {
+(DateTimePickerModal as any).defaultProps = {
   value: new Date(),
   format: undefined,
   autoOk: false,
@@ -173,5 +179,8 @@ const styles = {
   },
 };
 
-const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
-export default React.forwardRef((props, ref) => <EnhancedWrapper {...props} forwardedRef={ref} />);
+// const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
+
+export default React.forwardRef((props: DateTimePickerModalProps, ref) =>
+  <DateTimePickerModal {...props} forwardedRef={ref} />
+);

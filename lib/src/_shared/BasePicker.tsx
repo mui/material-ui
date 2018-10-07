@@ -31,7 +31,7 @@ export interface BasePickerProps {
   initialFocusedDate?: DateType;
 }
 
-export interface OuterBasePickerProps extends BasePickerProps {
+export interface OuterBasePickerProps extends BasePickerProps, WithUtilsProps {
   children: (options: InnerBasePickerProps) => React.ReactNode;
 }
 

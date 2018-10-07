@@ -52,7 +52,7 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = (props) => {
           <ModalWrapper
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format || utils.datePickerFormat}
+            format={format || utils.dateFormat}
             labelFunc={labelFunc}
             maxDate={maxDate}
             minDate={minDate}

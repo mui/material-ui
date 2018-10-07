@@ -1,41 +1,49 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { createStyles } from '@material-ui/core';
+
+export type SlideDirection = 'right' | 'left'
+interface SlideTransitionProps extends WithStyles<typeof styles> {
+  transKey: React.Key;
+  className?: string;
+  slideDirection: SlideDirection;
+  children: React.ReactChild;
+}
 
 const animationDuration = 350;
 
-const transitionFactory = props => child => React.cloneElement(child, props);
-
-const SlideTransition = ({
+const SlideTransition: React.SFC<SlideTransitionProps> = ({
   classes, className, children, transKey, slideDirection,
 }) => (
   <TransitionGroup
     className={classnames(classes.transitionContainer, className)}
-    childFactory={transitionFactory({
-      classNames: {
+  >
+    <CSSTransition
+      key={transKey}
+      mountOnEnter
+      unmountOnExit
+      timeout={animationDuration}
+      children={children}
+      classNames= {{
         enter: classes[`slideEnter-${slideDirection}`],
         enterActive: classes.slideEnterActive,
         exit: classes.slideExit,
         exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
-      },
-    })
-    }
-  >
-    <CSSTransition key={transKey} mountOnEnter unmountOnExit timeout={animationDuration}>
-      {children}
-    </CSSTransition>
+      }}
+    />
   </TransitionGroup>
 );
 
-SlideTransition.propTypes = {
+(SlideTransition as any).propTypes = {
   classes: PropTypes.shape({}).isRequired,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
   transKey: PropTypes.string.isRequired,
+  innerRef: PropTypes.any
 };
 
 SlideTransition.defaultProps = {
@@ -48,7 +56,7 @@ const styles = (theme) => {
     easing: 'cubic-bezier(0.35, 0.8, 0.4, 1)',
   });
 
-  return {
+  return createStyles({
     transitionContainer: {
       display: 'block',
       position: 'relative',
@@ -84,7 +92,7 @@ const styles = (theme) => {
       transform: 'translate(100%)',
       transition: slideTransition,
     },
-  };
+  })
 };
 
 export default withStyles(styles, {

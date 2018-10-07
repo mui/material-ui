@@ -5,11 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import SlideTransition from './SlideTransition';
+import SlideTransition, { SlideDirection } from './SlideTransition';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { createStyles } from '@material-ui/core';
 
-export type SlideDirection = 'right' | 'left'
 export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
   currentMonth: object;
   onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
@@ -17,7 +16,7 @@ export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof s
   rightArrowIcon?: React.ReactNode;
   disablePrevMonth?: boolean;
   disableNextMonth?: boolean;
-  slideDirection?: SlideDirection;
+  slideDirection: SlideDirection;
 }
 
 export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({

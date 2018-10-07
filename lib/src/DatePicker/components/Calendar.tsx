@@ -5,12 +5,12 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import EventListener from 'react-event-listener';
 
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
-import CalendarHeader, { SlideDirection } from './CalendarHeader';
+import CalendarHeader from './CalendarHeader';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
 import DomainPropTypes, { DateType } from '../../constants/prop-types';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import SlideTransition from './SlideTransition';
+import SlideTransition, { SlideDirection } from './SlideTransition';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 

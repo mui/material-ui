@@ -42,7 +42,7 @@ export const TimePickerModal: React.SFC<TimePickerModalProps> = (props) => {
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
             isAccepted={isAccepted}
-            format={pick12hOr24hFormat(utils.timePicker12hFormat, utils.timePicker24hFormat)}
+            format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
             {...other}
           >
             <TimePicker

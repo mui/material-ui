@@ -1,8 +1,9 @@
-export class Utils<TDate> {
-  locale: any;
-  constructor (options?: { locale: any, moment: any });
+export interface Utils<TDate> {
+  locale?: any;
+  moment?: any;
+  // constructor (options?: { locale?: any, moment?: any });
 
-  date(value?: any): TDate;
+  date(value?: any): TDate | null;
   parse(value: string, format: string): TDate | null;
 
   isNull(value: TDate): boolean;
@@ -42,7 +43,7 @@ export class Utils<TDate> {
   getPreviousMonth(value: TDate): TDate;
 
   getWeekdays(): string[];
-  getWeekArray(date: TDate): TDate[];
+  getWeekArray(date: TDate): TDate[][];
   getYearRange(start: TDate, end: TDate): TDate[];
 
   // displaying methods
@@ -56,11 +57,11 @@ export class Utils<TDate> {
   getSecondText(date: TDate): string;
   getYearText(date: TDate): string;
 
-  dateTimePicker12hFormat: string;
-  dateTimePicker24hFormat: string;
+  dateTime12hFormat: string;
+  dateTime24hFormat: string;
 
-  timePicker12hFormat: string;
-  timePicker24hFormat: string;
+  time12hFormat: string;
+  time24hFormat: string;
 
-  datePickerFormat: string;
+  dateFormat: string;
 }

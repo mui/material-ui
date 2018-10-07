@@ -56,7 +56,7 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = (props) => {
           <InlineWrapper
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format || utils.datePickerFormat}
+            format={format || utils.dateFormat}
             labelFunc={labelFunc}
             maxDate={maxDate}
             minDate={minDate}

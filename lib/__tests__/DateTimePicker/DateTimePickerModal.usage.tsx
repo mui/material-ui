@@ -4,19 +4,19 @@ import { IconButton, Icon } from '@material-ui/core';
 import InputAdornment  from '@material-ui/core/InputAdornment';
 import DateTimePickerWrapper  from '../../src/DateTimePicker';
 import * as classNames from 'classnames'
-import { Moment } from 'moment'
 import * as PropTypes from 'prop-types'
+import * as moment from 'moment'
 import { DayComponent } from '../../src/DatePicker/components/Calendar'
 import { utilsToUse } from '../test-utils';
 import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
-export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
+export default class BasicUsage extends Component {
   state = {
     selectedDate: new Date(),
   }
 
-  handleChange = (date: Moment | Date) => {
-    this.setState({ selectedDate: date as Date });
+  handleChange = (date: Date) => {
+    this.setState({ selectedDate: date });
   }
 
   render() {
@@ -58,19 +58,19 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
 }
 
 
-class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
+class CustomElements extends Component<{ classes: any }> {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   }
   state = {
-    selectedDate: new Date(),
+    selectedDate: moment()
   }
 
-  handleDateChange = (date: Moment | Date) => {
-    this.setState({ selectedDate: (date as Moment).toDate() });
+  handleDateChange = (date: moment.Moment) => {
+    this.setState({ selectedDate: date });
   }
 
-  renderCustomDayForDateTime = (day: Moment, selectedDate: Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {
+  renderCustomDayForDateTime = (day: moment.Moment, selectedDate: moment.Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {
     const { classes } = this.props;
 
     const dayClassName = classNames({

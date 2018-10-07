@@ -1,30 +1,37 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import withTheme from '@material-ui/core/styles/withTheme';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Icon from '@material-ui/core/Icon';
-import * as viewType from '../../constants/date-picker-view';
+import DateTimePickerView from '../../constants/DateTimePickerView';
 
-const viewToTabIndex = (openView) => {
-  if (openView === viewType.DATE || openView === viewType.YEAR) {
+const viewToTabIndex = (openView: DateTimePickerView) => {
+  if (openView === DateTimePickerView.DATE || openView === DateTimePickerView.YEAR) {
     return 'date';
   }
 
   return 'time';
 };
 
-const tabIndexToView = (tab) => {
+const tabIndexToView = (tab: DateTimePickerView) => {
   if (tab === 'date') {
-    return viewType.DATE;
+    return DateTimePickerView.DATE;
   }
 
-  return viewType.HOUR;
+  return DateTimePickerView.HOUR;
 };
 
-export const DateTimePickerTabs = (props) => {
+export interface DateTimePickerTabsProps extends WithStyles<typeof styles, true> {
+  view: DateTimePickerView;
+  onChange: (view: DateTimePickerView) => void;
+  dateRangeIcon?: React.ReactNode;
+  timeIcon?: React.ReactNode;
+}
+
+export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = (props) => {
   const {
     view,
     onChange,
@@ -35,7 +42,7 @@ export const DateTimePickerTabs = (props) => {
   } = props;
 
   const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
-  const handleChange = (e, value) => {
+  const handleChange = (e, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
     }
@@ -57,7 +64,7 @@ export const DateTimePickerTabs = (props) => {
   );
 };
 
-DateTimePickerTabs.propTypes = {
+(DateTimePickerTabs as any).propTypes = {
   view: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,

@@ -1,8 +1,18 @@
-import defaultMoment from 'moment';
+import * as defaultMoment from 'moment';
+import { Utils } from '../typings/utils';
 
-export default class MomentUtils {
-  constructor({ locale, moment } = {}) {
-    /* eslint-disable-next-line */
+type Opts = {
+  locale?: string;
+  moment?: typeof defaultMoment;
+}
+
+type Moment = defaultMoment.Moment
+
+export default class MomentUtils implements Utils<defaultMoment.Moment> {
+  moment: typeof defaultMoment;
+  locale?: string;
+
+  constructor({ locale, moment }: Opts = {}) {
     this.moment = moment || defaultMoment
     this.locale = locale;
   }
@@ -11,8 +21,8 @@ export default class MomentUtils {
     return this.moment(value, format, true);
   }
 
-  date(value, formatString) {
-    return this.moment(value, formatString);
+  date(value?: Moment) {
+    return this.moment(value);
   }
 
   isValid(date) {
@@ -149,13 +159,15 @@ export default class MomentUtils {
     const start = date.clone().startOf('month').startOf('week');
     const end = date.clone().endOf('month').endOf('week');
 
-    const nestedWeeks = [];
     let count = 0;
     let current = start;
+    const nestedWeeks: Moment[][] = [];
+
     while (current.isBefore(end)) {
       const weekNumber = Math.floor(count / 7);
       nestedWeeks[weekNumber] = nestedWeeks[weekNumber] || [];
       nestedWeeks[weekNumber].push(current);
+
       current = current.clone().add(1, 'day');
       count += 1;
     }
@@ -166,7 +178,7 @@ export default class MomentUtils {
   getYearRange(start, end) {
     const startDate = this.moment(start).startOf('year');
     const endDate = this.moment(end).endOf('year');
-    const years = [];
+    const years: Moment[] = [];
 
     let current = startDate;
     while (current.isBefore(endDate)) {

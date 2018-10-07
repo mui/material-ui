@@ -36,7 +36,7 @@ export const TimePickerInline: React.SFC<TimePickerInlineProps> = (props) => {
             onChange={handleTextFieldChange}
             isAccepted={isAccepted}
             handleAccept={handleAccept}
-            format={pick12hOr24hFormat(utils.timePicker12hFormat, utils.timePicker24hFormat)}
+            format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
             {...other}
           >
             <TimePicker

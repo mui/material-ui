@@ -2,11 +2,17 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper from '../wrappers/InlineWrapper';
-import DateTimePicker from './DateTimePicker';
-import BasePicker from '../_shared/BasePicker';
+import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
+import DateTimePicker, { BaseDateTimePickerProps } from './DateTimePicker';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import { Omit } from '@material-ui/core';
 
-export const DateTimePickerInline = (props) => {
+export interface DateTimePickerInlineProps extends
+  BasePickerProps,
+  BaseDateTimePickerProps,
+  Omit<InlineWrapperProps, 'onChange' | 'value'> {}
+
+export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = (props) => {
   const {
     value,
     format,
@@ -84,7 +90,7 @@ export const DateTimePickerInline = (props) => {
   );
 };
 
-DateTimePickerInline.propTypes = {
+(DateTimePickerInline as any).propTypes = {
   value: DomainPropTypes.date,
   format: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -109,7 +115,7 @@ DateTimePickerInline.propTypes = {
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
-DateTimePickerInline.defaultProps = {
+(DateTimePickerInline as any).defaultProps = {
   value: new Date(),
   format: undefined,
   autoOk: false,
@@ -133,6 +139,6 @@ DateTimePickerInline.defaultProps = {
   allowKeyboardControl: true,
 };
 
-export default React.forwardRef(
-  (props, ref) => <DateTimePickerInline {...props} forwardedRef={ref} />,
+export default React.forwardRef((props: DateTimePickerInlineProps, ref) =>
+  <DateTimePickerInline {...props} forwardedRef={ref} />,
 );

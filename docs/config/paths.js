@@ -17,9 +17,9 @@ function ensureSlash(path, needsSlash) {
     return path.substr(path, path.length - 1);
   } else if (!hasSlash && needsSlash) {
     return `${path}/`;
-  } else {
+  } 
     return path;
-  }
+  
 }
 
 const getPublicUrl = appPackageJson =>
@@ -47,7 +47,7 @@ module.exports = {
   appIndexJs: resolveApp('src/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
-  libSrc: resolveApp('../lib/src'),
+  libSrc: resolveApp('../lib/build/tsc/src'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),

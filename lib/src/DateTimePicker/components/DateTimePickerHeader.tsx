@@ -1,12 +1,24 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
-import withUtils from '../../_shared/WithUtils';
-import * as viewType from '../../constants/date-picker-view';
+import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import { MaterialUiPickersDate } from '../../typings/date';
+import DateTimePickerView from '../../constants/DateTimePickerView';
+import { createStyles } from '@material-ui/core';
 
-export const DateTimePickerHeader = (props) => {
+export type MeridiemMode = 'am' | 'pm';
+export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+  date: MaterialUiPickersDate;
+  meridiemMode: MeridiemMode;
+  openView: DateTimePickerView;
+  onOpenViewChange: (view: DateTimePickerView) => void;
+  setMeridiemMode: (mode: MeridiemMode) => void;
+  ampm?: boolean;
+}
+
+export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props) => {
   const {
     date, classes, openView, meridiemMode, onOpenViewChange, setMeridiemMode,
     theme, utils, ampm,
@@ -24,15 +36,15 @@ export const DateTimePickerHeader = (props) => {
       <div className={classes.dateHeader}>
         <ToolbarButton
           variant="subheading"
-          onClick={changeOpenView(viewType.YEAR)}
-          selected={openView === viewType.YEAR}
+          onClick={changeOpenView(DateTimePickerView.YEAR)}
+          selected={openView === DateTimePickerView.YEAR}
           label={utils.getYearText(date)}
         />
 
         <ToolbarButton
           variant="display1"
-          onClick={changeOpenView(viewType.DATE)}
-          selected={openView === viewType.DATE}
+          onClick={changeOpenView(DateTimePickerView.DATE)}
+          selected={openView === DateTimePickerView.DATE}
           label={utils.getDateTimePickerHeaderText(date)}
         />
       </div>
@@ -41,9 +53,9 @@ export const DateTimePickerHeader = (props) => {
         <div className={hourMinuteClassName}>
           <ToolbarButton
             variant="display2"
-            onClick={changeOpenView(viewType.HOUR)}
-            selected={openView === viewType.HOUR}
-            label={utils.getHourText(date, ampm)}
+            onClick={changeOpenView(DateTimePickerView.HOUR)}
+            selected={openView === DateTimePickerView.HOUR}
+            label={utils.getHourText(date, ampm!)}
           />
 
           <ToolbarButton
@@ -55,8 +67,8 @@ export const DateTimePickerHeader = (props) => {
 
           <ToolbarButton
             variant="display2"
-            onClick={changeOpenView(viewType.MINUTES)}
-            selected={openView === viewType.MINUTES}
+            onClick={changeOpenView(DateTimePickerView.MINUTES)}
+            selected={openView === DateTimePickerView.MINUTES}
             label={utils.getMinuteText(date)}
           />
         </div>
@@ -67,16 +79,17 @@ export const DateTimePickerHeader = (props) => {
               <ToolbarButton
                 className={classes.ampmLabel}
                 selected={meridiemMode === 'am'}
-                type="subheading"
+                variant="subheading"
                 label={utils.getMeridiemText('am')}
-                onClick={setMeridiemMode('am')}
+                onClick={() => setMeridiemMode('am')}
               />
+
               <ToolbarButton
                 className={classes.ampmLabel}
                 selected={meridiemMode === 'pm'}
-                type="subheading"
+                variant="subheading"
                 label={utils.getMeridiemText('pm')}
-                onClick={setMeridiemMode('pm')}
+                onClick={() => setMeridiemMode('pm')}
               />
             </div>
           )
@@ -86,7 +99,7 @@ export const DateTimePickerHeader = (props) => {
   );
 };
 
-DateTimePickerHeader.propTypes = {
+(DateTimePickerHeader as any).propTypes = {
   date: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
@@ -96,13 +109,14 @@ DateTimePickerHeader.propTypes = {
   setMeridiemMode: PropTypes.func.isRequired,
   utils: PropTypes.object.isRequired,
   ampm: PropTypes.bool,
+  innerRef: PropTypes.any
 };
 
 DateTimePickerHeader.defaultProps = {
   ampm: true,
 };
 
-const styles = () => ({
+const styles = () => createStyles({
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',

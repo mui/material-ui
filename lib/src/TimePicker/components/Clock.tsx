@@ -134,7 +134,7 @@ const styles = theme => createStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    margin: `${theme.spacing.unit * 4} 0 ${theme.spacing.unit}`,
+    margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit}px`,
   },
   clock: {
     backgroundColor: 'rgba(0,0,0,.07)',
