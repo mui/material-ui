@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import RootRef from '../RootRef';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import exactProp from '../utils/exactProp';
 import Grow from '../Grow';
 import Popper from '../Popper';
 
@@ -436,8 +435,6 @@ Tooltip.propTypes = {
    */
   TransitionProps: PropTypes.object,
 };
-
-Tooltip.propTypes = exactProp(Tooltip.propTypes);
 
 Tooltip.defaultProps = {
   disableFocusListener: false,
