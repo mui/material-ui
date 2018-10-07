@@ -1,5 +1,90 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.2.0
+###### *Oct 7, 2018*
+
+Big thanks to the 17 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 💅 Update the Typography implementation to better follow the spec (#12916) @eps1lon.
+- 📝 Start translating the documentation in Chinese @mbrookes.
+- 📝 Fix many SEO issues.
+- And many more bug fixes 🐛 and documentation improvements.
+
+### `@material-ui/core@v3.2.0`
+
+- [TextField] Ensure labelWidth is set (#13077) @evanstern
+
+#### Deprecations
+
+- [Typography] Add typography v2 variants (#12916) @eps1lon
+
+This is a backward compatible change.
+To learn more about the upgrade path, follow https://material-ui.com/style/typography/#migration-to-typography-v2.
+
+- [Button] Deprecate flat and raised variant naming (#13113) @eps1lon
+
+This change updates the variant wording to match the one used in the material design specification.
+
+```diff
+-<Button variant="flat" />
++<Button variant="text" />
+```
+
+```diff
+-<Button variant="raised" />
++<Button variant="contained" />
+```
+
+You can suppress the warnings with the environment variable `MUI_SUPPRESS_DEPRECATION_WARNINGS` set to a truthy value.
+
+#### Changes
+
+- [styles] Remove react-jss dependency (#12993) @oliviertassinari
+- [TextField] Fix ClassKey inference for outlined and filled variants (#13060) @eps1lon
+- [Select] Document the filled and outlined variants (#13071) @JulienUsson
+- [Typography] Support incomplete headlineMapping property (#13078) @oliviertassinari
+- [Stepper] Expose connector index to <StepConnector /> (#13079) @dannycochran
+- [ListItemIcon] Add wrapper <div> element to children (#13067) @izyb
+- [TextField] Fix of Uncaught TypeError: r.inputRef.focus is not a function (#13091) @MustD
+- [InputAdornment] Add missing "variant" prop to types (#13107) @cmfcmf
+- [Textarea] Merge style with calculated height (#13125) @daniel-rabe
+- [Typography] Small improvements (#13129) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.19`
+
+- [SpeedDial] Improve hover intent between Dial and Actions (#13018) @eps1lon
+- [Slider] Fix thumb outline not matching spec (#12967) @eps1lon
+- [SpeedDial] Fix navigation between SpeedDialActions (#12725) @eps1lon
+- [Slider] Lowest value for vertical should be at the bottom (#13090) @eps1lon
+
+### Docs
+
+- [docs] Fix more SEO issues (#13050) @oliviertassinari
+- [docs] Fix even more 301 redirections (#13051) @oliviertassinari
+- [docs] Use typography v1 in examples (#13073) @mikhailsidorov
+- [docs] Add SFR Presse to the Showcase (#13092) @RyudoSynbios
+- [docs] Mark Text fields variants as supported (#13089) @KaRkY
+- [docs] Add internationalization (#13066) @mbrookes
+- [docs] Remove language code for default language for CrowdIn (#13093) @mbrookes
+- [docs] Update SwipeableTextMobileStepper in demos with AutoPlay (#13095) @JayathmaChathurangani
+- [docs] Fix broken link (#13096) @Hocdoc
+- [docs] Use the InputBase component for the AppBar demo (#13102) @oliviertassinari
+- [docs] Adds DropDownMenu to migration guide (#13110) @mxmcg
+- [docs] Warn about the number of inputs allowed in a FormControl (#13108) @matthewdordal
+- [docs] Repurpose page edit button as Chinese l10n call-to-action (#13115) @mbrookes
+- [docs] Fix a IE11 rendering issue (#13118) @oliviertassinari
+- [docs] Link the related projects where it's relevant (#13124) @oliviertassinari
+- [docs] Fix 404 edit button of the versions page (#13127) @oliviertassinari
+- [docs] Add a translation badge to readme, and update URLs (#13128) @mbrookes
+
+### Core
+
+- [core] Add integrity hashes to yarn.lock (#13055) @eps1lon
+- [test] Fail if coverage can't be push (#13084) @eps1lon
+- [core] Remove eslint-spellcheck (#13120) @oliviertassinari
+- [test] Add jsonlint to CI (#13126) @mbrookes
+
 ## 3.1.2
 ###### *Sep 30, 2018*
 
