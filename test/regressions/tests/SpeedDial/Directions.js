@@ -39,13 +39,7 @@ const styles = {
   directionLeft: {},
 };
 
-const actions = [
-  { icon: <Avatar>A</Avatar>, name: 'Tooltip' },
-  { icon: <Avatar>B</Avatar>, name: 'Tooltip' },
-  { icon: <Avatar>C</Avatar>, name: 'Tooltip' },
-];
-
-function SampleSpeedDial({ classes, ...props }) {
+function SimpleSpeedDial(props) {
   const tooltipPlacement = {
     up: 'left',
     right: 'top',
@@ -56,14 +50,14 @@ function SampleSpeedDial({ classes, ...props }) {
 
   return (
     <SpeedDial icon={<SpeedDialIcon />} open {...props}>
-      {actions.map((action, i) => {
+      {['A', 'B', 'C'].map((name, i) => {
         return (
           <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
+            key={name}
+            icon={<Avatar>{name}</Avatar>}
             tooltipOpen
             tooltipPlacement={`${tooltipPlacement[props.direction]}${secondaryPlacement[i]}`}
-            tooltipTitle={action.name}
+            tooltipTitle={'Tooltip'}
           />
         );
       })}
@@ -71,7 +65,7 @@ function SampleSpeedDial({ classes, ...props }) {
   );
 }
 
-function SpeedDials({ classes }) {
+function Directions({ classes }) {
   const speedDialClassName = direction =>
     classNames(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
@@ -79,7 +73,7 @@ function SpeedDials({ classes }) {
     <div className={classes.root}>
       {['up', 'right', 'down', 'left'].map(direction => {
         return (
-          <SampleSpeedDial
+          <SimpleSpeedDial
             key={direction}
             ariaLabel={direction}
             className={speedDialClassName(direction)}
@@ -91,8 +85,8 @@ function SpeedDials({ classes }) {
   );
 }
 
-SpeedDials.propTypes = {
+Directions.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SpeedDials);
+export default withStyles(styles)(Directions);
