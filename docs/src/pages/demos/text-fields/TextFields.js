@@ -256,12 +256,23 @@ class TextFields extends React.Component {
         />
         <TextField
           id="standard-name-with-character-limit"
-          label="Controlled Character Limit"
+          label="Character Count"
           className={classes.textField}
           value={this.state.name}
           onChange={this.handleControlChange('name')}
           margin="dense"
           characterLimit={15}
+          characterCount={this.state.name.length}
+        />
+        <TextField
+          id="standard-name-with-character-limit"
+          label="Value Count"
+          className={classes.textField}
+          value={this.state.name}
+          onChange={this.handleControlChange('name')}
+          margin="dense"
+          characterLimit={15}
+          helperText="Helper text"
         />
       </form>
     );

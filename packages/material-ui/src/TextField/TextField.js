@@ -91,6 +91,7 @@ class TextField extends React.Component {
       type,
       value,
       variant,
+      characterCount,
       characterLimit,
       ...other
     } = this.props;
@@ -109,6 +110,20 @@ class TextField extends React.Component {
 
       InputMore.labelWidth = this.labelNode ? this.labelNode.offsetWidth : 0;
     }
+
+    let count = 0;
+    if (characterCount) {
+      count = characterCount;
+    } else if (value) {
+      count = value.length;
+    } else {
+      count = 0;
+    }
+
+    const helperTextStyle = {
+      display: 'flex',
+      justifyContent: 'space-between',
+    };
 
     const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
     const InputComponent = variantComponent[variant];
@@ -158,16 +173,18 @@ class TextField extends React.Component {
         ) : (
           InputElement
         )}
-        {characterLimit && value && (
-          <Typography variant="caption" align="right">
-            {value.length}/{characterLimit}
-          </Typography>
-        )}
-        {helperText && (
-          <FormHelperText id={helperTextId} {...FormHelperTextProps}>
-            {helperText}
-          </FormHelperText>
-        )}
+        <div style={helperTextStyle}>
+          {helperText && (
+            <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+              {helperText}
+            </FormHelperText>
+          )}
+          {characterLimit && (
+            <Typography variant="caption" align="right">
+              {count}/{characterLimit}
+            </Typography>
+          )}
+        </div>
       </FormControl>
     );
   }
@@ -185,6 +202,10 @@ TextField.propTypes = {
    * If `true`, the input will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
+  /**
+   * character limit
+   */
+  characterCount: PropTypes.number,
   /**
    * character limit
    */
