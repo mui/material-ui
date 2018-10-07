@@ -16,36 +16,36 @@ function Types(props) {
   return (
     <div className={classes.root}>
       <Typography component="h2" variant="h1" gutterBottom>
-        H1
+        h1. Heading
       </Typography>
       <Typography variant="h2" gutterBottom>
-        H2
+        h2. Heading
       </Typography>
       <Typography variant="h3" gutterBottom>
-        H3
+        h3. Heading
       </Typography>
       <Typography variant="h4" gutterBottom>
-        H4
+        h4. Heading
       </Typography>
       <Typography variant="h5" gutterBottom>
-        H5
+        h5. Heading
       </Typography>
       <Typography variant="h6" gutterBottom>
-        H6
+        h6. Heading
       </Typography>
       <Typography variant="subtitle1" gutterBottom>
-        subtitle 1
+        subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
       </Typography>
       <Typography variant="subtitle2" gutterBottom>
-        subtitle 2
+        subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+        body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
         unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
         dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
       <Typography variant="body2" gutterBottom>
-        Body 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+        body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
         unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
         dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>

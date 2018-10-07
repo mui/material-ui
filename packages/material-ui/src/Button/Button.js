@@ -13,7 +13,6 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    lineHeight: '1.4em', // Improve readability for multiline button.
     boxSizing: 'border-box',
     minWidth: 64,
     minHeight: 36,

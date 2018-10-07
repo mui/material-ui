@@ -120,7 +120,6 @@ function StepLabel(props) {
       ) : null}
       <span className={classes.labelContainer}>
         <Typography
-          variant="body1"
           component="span"
           className={classNames(classes.label, {
             [classes.alternativeLabel]: alternativeLabel,

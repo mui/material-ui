@@ -16,8 +16,8 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: 11, // To use 10px in v4.0.0
+    paddingBottom: 11, // To use 10px in v4.0.0
     '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
     },
