@@ -125,12 +125,7 @@ function BottomAppBar(props) {
               Material-UI
             </Typography>
           </div>
-          <Button
-            variant="fab"
-            color="secondary"
-            aria-label="Add"
-            className={classes.fabButton}
-          >
+          <Button variant="fab" color="secondary" aria-label="Add" className={classes.fabButton}>
             <AddIcon />
           </Button>
           <div>
