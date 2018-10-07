@@ -253,7 +253,11 @@ class Tooltip extends React.Component {
       disableFocusListener,
       disableHoverListener,
       disableTouchListener,
+      enterDelay,
+      enterTouchDelay,
       id,
+      leaveDelay,
+      leaveTouchDelay,
       open: openProp,
       placement,
       PopperProps,
@@ -261,6 +265,7 @@ class Tooltip extends React.Component {
       title,
       TransitionComponent,
       TransitionProps,
+      ...other
     } = this.props;
 
     let open = this.isControlled ? openProp : this.state.open;
@@ -273,6 +278,7 @@ class Tooltip extends React.Component {
     const childrenProps = {
       'aria-describedby': open ? id || this.defaultId : null,
       title: !open && typeof title === 'string' ? title : null,
+      ...other,
     };
 
     if (!disableTouchListener) {
