@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
@@ -38,7 +39,9 @@ const styles = theme => ({
   fabButton: {
     position: 'absolute',
     top: -30,
-    left: '44%',
+    left: 0,
+    right: 0,
+    margin: '0 auto',
   },
 });
 
@@ -93,10 +96,8 @@ function BottomAppBar(props) {
         <Typography className={classes.text} variant="h5" gutterBottom>
           Inbox
         </Typography>
-        <Typography className={classes.text} variant="subtitle1" gutterBottom>
-          Today
-        </Typography>
         <List>
+          <ListSubheader>Today</ListSubheader>
           {messages.map(({ id, primary, secondary }) => (
             <ListItem key={id} button>
               <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" />
