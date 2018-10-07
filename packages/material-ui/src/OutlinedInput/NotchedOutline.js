@@ -80,7 +80,7 @@ function NotchedOutline(props) {
   } = props;
 
   const align = theme.direction === 'rtl' ? 'right' : 'left';
-  const labelWidth = labelWidthProp * 0.75 + 8;
+  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
 
   return (
     <fieldset

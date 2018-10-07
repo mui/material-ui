@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { _rewriteUrlForNextExport } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
@@ -100,12 +101,12 @@ function AppDrawer(props, context) {
       <div className={classes.toolbarIe11}>
         <div className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose}>
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               Material-UI
             </Typography>
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link className={classes.anchor} href="/versions">
+            <Link className={classes.anchor} href={_rewriteUrlForNextExport('/versions')}>
               <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
             </Link>
           ) : null}

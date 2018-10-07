@@ -7,6 +7,9 @@ import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import acceptLanguage from 'accept-language';
+
+acceptLanguage.languages(['en', 'zh']);
 
 if (process.browser) {
   loadCSS(
@@ -241,7 +244,6 @@ const pages = [
   },
   {
     pathname: '/versions',
-    displayNav: false,
   },
   {
     pathname: '/',
@@ -279,29 +281,48 @@ function withRoot(Component) {
       this.redux = initRedux(props.reduxServerState || {});
     }
 
+    state = {
+      userLanguage: 'en',
+    };
+
     getChildContext() {
       const { router } = this.props;
+      const { userLanguage } = this.state;
 
       let pathname = router.pathname;
       if (pathname !== '/') {
         // The leading / is only added to support static hosting (resolve /index.html).
         // We remove it to normalize the pathname.
+        // See `_rewriteUrlForNextExport` on Next.js side.
         pathname = pathname.replace(/\/$/, '');
       }
 
       return {
         pages,
         activePage: findActivePage(pages, { ...router, pathname }),
+        userLanguage,
       };
+    }
+
+    componentDidMount() {
+      this.setState({
+        userLanguage:
+          this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en',
+      });
     }
 
     render() {
       const { pageContext, ...other } = this.props;
+      const { userLanguage } = this.state;
+
       return (
         <React.StrictMode>
           <Provider store={this.redux}>
             <AppWrapper pageContext={pageContext}>
-              <Component initialProps={other} />
+              <Component
+                initialProps={other}
+                lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+              />
             </AppWrapper>
           </Provider>
         </React.StrictMode>
@@ -318,6 +339,7 @@ function withRoot(Component) {
   WithRoot.childContextTypes = {
     pages: PropTypes.array,
     activePage: PropTypes.object,
+    userLanguage: PropTypes.string,
   };
 
   WithRoot.getInitialProps = ctx => {

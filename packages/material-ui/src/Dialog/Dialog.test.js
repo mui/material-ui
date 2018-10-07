@@ -30,11 +30,7 @@ describe('<Dialog />', () => {
         foo
       </Dialog>,
     );
-    assert.strictEqual(
-      wrapper.find(Transition).length,
-      1,
-      'should include element given in TransitionComponent',
-    );
+    assert.strictEqual(wrapper.find(Transition).length, 1);
   });
 
   it('should put Modal specific props on the root Modal node', () => {
@@ -69,11 +65,7 @@ describe('<Dialog />', () => {
         foo
       </Dialog>,
     );
-    assert.strictEqual(
-      wrapper.prop('data-my-prop'),
-      'woofDialog',
-      'custom prop should be woofDialog',
-    );
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofDialog');
   });
 
   it('should render with the user classes on the root node', () => {
@@ -95,28 +87,24 @@ describe('<Dialog />', () => {
     const paper = fade.childAt(0);
     assert.strictEqual(paper.length === 1 && paper.type(), Paper);
 
-    assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the dialog class');
+    assert.strictEqual(paper.hasClass(classes.paper), true);
   });
 
   it('should not be open by default', () => {
     const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, false, 'should pass show=false to the Modal');
-    assert.strictEqual(wrapper.find(Fade).props().in, false, 'should pass in=false to the Fade');
+    assert.strictEqual(wrapper.props().open, false);
+    assert.strictEqual(wrapper.find(Fade).props().in, false);
   });
 
   it('should be open by default', () => {
     const wrapper = shallow(<Dialog open>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, true, 'should pass show=true to the Modal');
-    assert.strictEqual(wrapper.find(Fade).props().in, true, 'should pass in=true to the Fade');
+    assert.strictEqual(wrapper.props().open, true);
+    assert.strictEqual(wrapper.find(Fade).props().in, true);
   });
 
   it('should fade down and make the transition appear on first mount', () => {
     const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(
-      wrapper.find(Fade).props().appear,
-      true,
-      'should pass appear=true to the Fade',
-    );
+    assert.strictEqual(wrapper.find(Fade).props().appear, true);
   });
 
   describe('prop: classes', () => {

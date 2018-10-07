@@ -7,7 +7,7 @@ title: FormControl API
 
 # FormControl
 
-<p class="description">The API documentation of the FormControl React component.</p>
+<p class="description">The API documentation of the FormControl React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import FormControl from '@material-ui/core/FormControl';
@@ -21,6 +21,8 @@ This context is used by the following components:
  - FormHelperText
  - Input
  - InputLabel
+
+⚠️ Only one input can be used within a FormControl.
 
 ## Props
 
@@ -51,16 +53,16 @@ This property accepts the following keys:
 | <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/FormControl/FormControl.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiFormControl`.
 
 ## Demos
 
-- [Selection Controls](/demos/selection-controls)
-- [Text Fields](/demos/text-fields)
+- [Selection Controls](/demos/selection-controls/)
+- [Text Fields](/demos/text-fields/)
 

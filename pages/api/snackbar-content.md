@@ -7,7 +7,7 @@ title: SnackbarContent API
 
 # SnackbarContent
 
-<p class="description">The API documentation of the SnackbarContent React component.</p>
+<p class="description">The API documentation of the SnackbarContent React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import SnackbarContent from '@material-ui/core/SnackbarContent';
@@ -23,7 +23,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">message</span> | <span class="prop-type">node |   | The message to display. |
 
-Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS API
 
@@ -37,20 +37,20 @@ This property accepts the following keys:
 | <span class="prop-name">message</span> | Styles applied to the message wrapper element.
 | <span class="prop-name">action</span> | Styles applied to the action wrapper element if `action` is provided.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSnackbarContent`.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [Paper](/api/paper/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Snackbars](/demos/snackbars)
+- [Snackbars](/demos/snackbars/)
 

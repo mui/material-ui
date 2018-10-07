@@ -7,7 +7,7 @@ title: Divider API
 
 # Divider
 
-<p class="description">The API documentation of the Divider React component.</p>
+<p class="description">The API documentation of the Divider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Divider from '@material-ui/core/Divider';
@@ -40,16 +40,16 @@ This property accepts the following keys:
 | <span class="prop-name">inset</span> | Styles applied to the root element if `inset={true}`.
 | <span class="prop-name">light</span> | Styles applied to the root element if `light={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Divider/Divider.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiDivider`.
 
 ## Demos
 
-- [Dividers](/demos/dividers)
-- [Lists](/demos/lists)
+- [Dividers](/demos/dividers/)
+- [Lists](/demos/lists/)
 

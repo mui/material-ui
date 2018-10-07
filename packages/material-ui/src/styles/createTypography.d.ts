@@ -3,17 +3,26 @@ import { Overwrite, Omit } from '..';
 import { CSSProperties } from './withStyles';
 
 export type ThemeStyle =
-  | 'display1'
-  | 'display2'
-  | 'display3'
-  | 'display4'
-  | 'headline'
-  | 'title'
-  | 'subheading'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'subtitle1'
+  | 'subtitle2'
   | 'body1'
   | 'body2'
   | 'caption'
-  | 'button';
+  | 'button'
+  | 'overline'
+  | 'display4' // deprecated
+  | 'display3'
+  | 'display2'
+  | 'display1'
+  | 'headline'
+  | 'title'
+  | 'subheading';
 
 export interface FontStyle
   extends Required<{
@@ -27,6 +36,8 @@ export interface FontStyle
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
   allVariants?: CSSProperties;
+  suppressDeprecationWarnings?: boolean;
+  useNextVariants?: boolean;
 }
 
 export type TypographyStyle = Required<

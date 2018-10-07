@@ -43,11 +43,7 @@ describe('<GridListTile />', () => {
       const children = <img src={tileData.img} alt="foo" />;
       const wrapper = shallow(<GridListTile>{children}</GridListTile>);
 
-      assert.strictEqual(
-        wrapper.containsMatchingElement(children),
-        true,
-        'should contain the children',
-      );
+      assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
 
     it('should not change non image child', () => {
@@ -62,7 +58,7 @@ describe('<GridListTile />', () => {
       const children = <img src={tileData.img} alt="foo" />;
       const wrapper = shallow(<GridListTile className="foo">{children}</GridListTile>);
 
-      assert.strictEqual(wrapper.hasClass('foo'), true, 'should contain the className');
+      assert.strictEqual(wrapper.hasClass('foo'), true);
     });
   });
 

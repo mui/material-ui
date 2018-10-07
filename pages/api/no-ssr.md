@@ -7,7 +7,7 @@ title: NoSsr API
 
 # NoSsr
 
-<p class="description">The API documentation of the NoSsr React component.</p>
+<p class="description">The API documentation of the NoSsr React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import NoSsr from '@material-ui/core/NoSsr';
@@ -33,5 +33,5 @@ Any other properties supplied will be spread to the root element (native element
 
 ## Demos
 
-- [No Ssr](/utils/no-ssr)
+- [No Ssr](/utils/no-ssr/)
 

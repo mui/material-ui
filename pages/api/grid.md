@@ -7,7 +7,7 @@ title: Grid API
 
 # Grid
 
-<p class="description">The API documentation of the Grid React component.</p>
+<p class="description">The API documentation of the Grid React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Grid from '@material-ui/core/Grid';
@@ -89,15 +89,15 @@ This property accepts the following keys:
 | <span class="prop-name">grid-xs-11</span> | 
 | <span class="prop-name">grid-xs-12</span> | 
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Grid/Grid.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiGrid`.
 
 ## Demos
 
-- [Grid](/layout/grid)
+- [Grid](/layout/grid/)
 

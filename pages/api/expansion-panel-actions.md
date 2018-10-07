@@ -7,7 +7,7 @@ title: ExpansionPanelActions API
 
 # ExpansionPanelActions
 
-<p class="description">The API documentation of the ExpansionPanelActions React component.</p>
+<p class="description">The API documentation of the ExpansionPanelActions React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
@@ -35,15 +35,15 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">action</span> | Styles applied to the children.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiExpansionPanelActions`.
 
 ## Demos
 
-- [Expansion Panels](/demos/expansion-panels)
+- [Expansion Panels](/demos/expansion-panels/)
 

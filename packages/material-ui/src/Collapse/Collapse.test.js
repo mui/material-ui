@@ -35,7 +35,7 @@ describe('<Collapse />', () => {
     const children = <h1>Hello</h1>;
     const wrapper = shallow(<Collapse {...props}>{children}</Collapse>);
     const child = new ReactWrapper(wrapper.props().children('entered'));
-    assert.strictEqual(child.childAt(0).is('div'), true, 'should be a div');
+    assert.strictEqual(child.childAt(0).name(), 'div');
     assert.strictEqual(
       child
         .childAt(0)
@@ -43,7 +43,6 @@ describe('<Collapse />', () => {
         .children()
         .type(),
       'h1',
-      'should wrap the children',
     );
   });
 

@@ -7,7 +7,7 @@ title: Chip API
 
 # Chip
 
-<p class="description">The API documentation of the Chip React component.</p>
+<p class="description">The API documentation of the Chip React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Chip from '@material-ui/core/Chip';
@@ -67,15 +67,15 @@ This property accepts the following keys:
 | <span class="prop-name">deleteIconOutlinedColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
 | <span class="prop-name">deleteIconOutlinedColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Chip/Chip.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiChip`.
 
 ## Demos
 
-- [Chips](/demos/chips)
+- [Chips](/demos/chips/)
 

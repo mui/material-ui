@@ -7,13 +7,13 @@ title: IconButton API
 
 # IconButton
 
-<p class="description">The API documentation of the IconButton React component.</p>
+<p class="description">The API documentation of the IconButton React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import IconButton from '@material-ui/core/IconButton';
 ```
 
-Refer to the [Icons](/style/icons) section of the documentation
+Refer to the [Icons](/style/icons/) section of the documentation
 regarding the available icon options.
 
 ## Props
@@ -26,7 +26,7 @@ regarding the available icon options.
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool |   | If `true`, the ripple will be disabled. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -43,21 +43,21 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">label</span> | Styles applied to the children container element.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/IconButton/IconButton.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiIconButton`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Buttons](/demos/buttons)
-- [Grid List](/demos/grid-list)
+- [Buttons](/demos/buttons/)
+- [Grid List](/demos/grid-list/)
 

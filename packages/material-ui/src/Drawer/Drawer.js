@@ -96,7 +96,7 @@ export const styles = theme => ({
 });
 
 /**
- * The properties of the [Modal](/api/modal) component are available
+ * The properties of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 class Drawer extends React.Component {
@@ -213,7 +213,7 @@ Drawer.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Properties applied to the [`Modal`](/api/modal) element.
+   * Properties applied to the [`Modal`](/api/modal/) element.
    */
   ModalProps: PropTypes.object,
   /**
@@ -227,11 +227,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the [`Slide`](/api/slide) element.
+   * Properties applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

@@ -7,7 +7,7 @@ title: TableCell API
 
 # TableCell
 
-<p class="description">The API documentation of the TableCell React component.</p>
+<p class="description">The API documentation of the TableCell React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import TableCell from '@material-ui/core/TableCell';
@@ -47,15 +47,15 @@ This property accepts the following keys:
 | <span class="prop-name">paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
 | <span class="prop-name">paddingNone</span> | Styles applied to the root element if `padding="none"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TableCell/TableCell.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTableCell`.
 
 ## Demos
 
-- [Tables](/demos/tables)
+- [Tables](/demos/tables/)
 

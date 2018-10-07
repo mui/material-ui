@@ -7,7 +7,7 @@ title: MobileStepper API
 
 # MobileStepper
 
-<p class="description">The API documentation of the MobileStepper React component.</p>
+<p class="description">The API documentation of the MobileStepper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import MobileStepper from '@material-ui/core/MobileStepper';
@@ -28,7 +28,7 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 | <span class="prop-name required">steps *</span> | <span class="prop-type">number |   | The total steps. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br> | <span class="prop-default">'dots'</span> | The variant to use. |
 
-Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
 ## CSS API
 
@@ -47,20 +47,20 @@ This property accepts the following keys:
 | <span class="prop-name">dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
 | <span class="prop-name">progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/MobileStepper/MobileStepper.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiMobileStepper`.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [Paper](/api/paper/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Steppers](/demos/steppers)
+- [Steppers](/demos/steppers/)
 

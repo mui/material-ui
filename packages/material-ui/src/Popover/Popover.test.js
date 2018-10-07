@@ -55,11 +55,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().open, false, 'should not be open');
+      assert.strictEqual(wrapper.props().open, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.props().open, true, 'should be open');
+      assert.strictEqual(wrapper.props().open, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.props().open, false, 'should not be open');
+      assert.strictEqual(wrapper.props().open, false);
     });
 
     describe('getOffsetTop', () => {
@@ -161,11 +161,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.childAt(0).props().in, true, 'should be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, false);
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -217,9 +217,9 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
+      assert.strictEqual(wrapper.hasClass('test-class'), true);
       const paper = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the popover class');
+      assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
     it('should have a elevation prop passed down', () => {

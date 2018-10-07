@@ -24,8 +24,8 @@ describe('<MenuItem />', () => {
   it('should render a button ListItem with with ripple', () => {
     const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.type(), ListItem);
-    assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
-    assert.strictEqual(wrapper.props().disableRipple, undefined, 'should have a ripple');
+    assert.strictEqual(wrapper.props().button, true);
+    assert.strictEqual(wrapper.props().disableRipple, undefined);
   });
 
   it('should render with the user and root classes', () => {
@@ -36,17 +36,17 @@ describe('<MenuItem />', () => {
 
   it('should render with the selected class', () => {
     const wrapper = shallow(<MenuItem selected />);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
   });
 
   it('should have a default role of menuitem', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.props().role, 'menuitem', 'should have the menuitem role');
+    assert.strictEqual(wrapper.props().role, 'menuitem');
   });
 
   it('should have a role of option', () => {
     const wrapper = shallow(<MenuItem role="option" aria-selected={false} />);
-    assert.strictEqual(wrapper.props().role, 'option', 'should have the option role');
+    assert.strictEqual(wrapper.props().role, 'option');
   });
 
   it('should have a tabIndex of -1 by default', () => {

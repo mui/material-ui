@@ -7,7 +7,7 @@ title: LinearProgress API
 
 # LinearProgress
 
-<p class="description">The API documentation of the LinearProgress React component.</p>
+<p class="description">The API documentation of the LinearProgress React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -57,15 +57,15 @@ This property accepts the following keys:
 | <span class="prop-name">bar2Determinate</span> | Styles applied to the bar2 element if `variant="determinate"`.
 | <span class="prop-name">bar2Buffer</span> | Styles applied to the bar2 element if `variant="buffer"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/LinearProgress/LinearProgress.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiLinearProgress`.
 
 ## Demos
 
-- [Progress](/demos/progress)
+- [Progress](/demos/progress/)
 

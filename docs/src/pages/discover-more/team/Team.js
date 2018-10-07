@@ -123,13 +123,13 @@ function Team(props) {
               </Grid>
               <Grid item>
                 <div className={classes.details}>
-                  <Typography variant="headline">{member.name}</Typography>
-                  <Typography variant="subheading" color="textSecondary">
+                  <Typography component="h2" variant="h5">
+                    {member.name}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
                     {member.flag}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {member.city}
-                  </Typography>
+                  <Typography color="textSecondary">{member.city}</Typography>
                   <div className={classes.controls}>
                     {member.github && (
                       <IconButton

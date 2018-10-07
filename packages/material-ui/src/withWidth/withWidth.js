@@ -136,7 +136,7 @@ const withWidth = (options = {}) => Component => {
      * the screen width of the client browser screen width.
      *
      * For instance, you could be using the user-agent or the client-hints.
-     * http://caniuse.com/#search=client%20hint
+     * https://caniuse.com/#search=client%20hint
      */
     initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     /**

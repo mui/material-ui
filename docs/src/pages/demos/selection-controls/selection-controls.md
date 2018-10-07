@@ -81,7 +81,7 @@ However, we encourage you to use a [Checkbox](#checkboxes) instead.
 
 ### Customized Switches
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}

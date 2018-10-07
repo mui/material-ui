@@ -92,6 +92,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: '27px 12px 10px',
+      boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     },
     /* Styles applied to the `input` element. */
     input: {

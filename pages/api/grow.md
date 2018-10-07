@@ -7,14 +7,14 @@ title: Grow API
 
 # Grow
 
-<p class="description">The API documentation of the Grow React component.</p>
+<p class="description">The API documentation of the Grow React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Grow from '@material-ui/core/Grow';
 ```
 
-The Grow transition is used by the [Tooltip](/demos/tooltips) and
-[Popover](/utils/popover) components.
+The Grow transition is used by the [Tooltip](/demos/tooltips/) and
+[Popover](/utils/popover/) components.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
@@ -30,10 +30,10 @@ Any other properties supplied will be spread to the root element ([Transition](h
 ## Inheritance
 
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Popover](/utils/popover)
-- [Transitions](/utils/transitions)
+- [Popover](/utils/popover/)
+- [Transitions](/utils/transitions/)
 

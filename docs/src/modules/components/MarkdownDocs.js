@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { _rewriteUrlForNextExport } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
@@ -63,13 +64,24 @@ function MarkdownDocs(props, context) {
 ${headers.components
       .map(
         component =>
-          `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
-            component,
-          )})`,
+          `- [&lt;${component} /&gt;](${
+            section === 'lab' ? '/lab/api' : '/api'
+          }/${_rewriteUrlForNextExport(kebabCase(component))})`,
       )
       .join('\n')}
         `);
   }
+
+  const button =
+    context.userLanguage === 'zh' ? (
+      <Button component="a" href="https://translate.material-ui.com/project/material-ui-docs">
+        {'将此页面翻译成中文'}
+      </Button>
+    ) : (
+      <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
+        {'Edit this page'}
+      </Button>
+    );
 
   return (
     <AppFrame>
@@ -79,11 +91,7 @@ ${headers.components
       />
       <AppTableOfContents contents={contents} disableAd={disableAd} />
       <AppContent className={classes.root}>
-        <div className={classes.header}>
-          <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
-            {'Edit this page'}
-          </Button>
-        </div>
+        <div className={classes.header}>{button}</div>
         {contents.map((content, index) => {
           const match = content.match(demoRegexp);
 
@@ -131,6 +139,7 @@ MarkdownDocs.contextTypes = {
   activePage: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+  userLanguage: PropTypes.string,
 };
 
 export default withStyles(styles)(MarkdownDocs);

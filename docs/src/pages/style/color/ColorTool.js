@@ -164,7 +164,7 @@ class ColorTool extends React.Component {
 
       return (
         <Grid item xs={12} sm={6} md={4}>
-          <Typography gutterBottom variant="title">
+          <Typography gutterBottom variant="h6">
             {capitalize(intent)}
           </Typography>
           <Input

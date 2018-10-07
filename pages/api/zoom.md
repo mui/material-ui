@@ -7,7 +7,7 @@ title: Zoom API
 
 # Zoom
 
-<p class="description">The API documentation of the Zoom React component.</p>
+<p class="description">The API documentation of the Zoom React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Zoom from '@material-ui/core/Zoom';
@@ -30,10 +30,10 @@ Any other properties supplied will be spread to the root element ([Transition](h
 ## Inheritance
 
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Buttons](/demos/buttons)
-- [Transitions](/utils/transitions)
+- [Buttons](/demos/buttons/)
+- [Transitions](/utils/transitions/)
 

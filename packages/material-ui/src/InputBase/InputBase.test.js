@@ -33,8 +33,8 @@ describe('<InputBase />', () => {
     const wrapper = shallow(<InputBase />);
     const input = wrapper.find('input');
     assert.strictEqual(input.name(), 'input');
-    assert.strictEqual(input.props().type, 'text', 'should pass the text type prop');
-    assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+    assert.strictEqual(input.props().type, 'text');
+    assert.strictEqual(input.hasClass(classes.input), true);
     assert.strictEqual(input.props().required, undefined);
   });
 
@@ -60,8 +60,8 @@ describe('<InputBase />', () => {
       const wrapper = shallow(<InputBase disabled />);
       const input = wrapper.find('input');
       assert.strictEqual(input.name(), 'input');
-      assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-      assert.strictEqual(input.hasClass(classes.disabled), true, 'should have the disabled class');
+      assert.strictEqual(input.hasClass(classes.input), true);
+      assert.strictEqual(input.hasClass(classes.disabled), true);
     });
 
     it('should reset the focused state', () => {
@@ -99,14 +99,10 @@ describe('<InputBase />', () => {
   it('should disabled the underline', () => {
     const wrapper = shallow(<InputBase disableUnderline />);
     const input = wrapper.find('input');
-    assert.strictEqual(wrapper.hasClass(classes.inkbar), false, 'should not have the inkbar class');
+    assert.strictEqual(wrapper.hasClass(classes.inkbar), false);
     assert.strictEqual(input.name(), 'input');
-    assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(
-      input.hasClass(classes.underline),
-      false,
-      'should not have the underline class',
-    );
+    assert.strictEqual(input.hasClass(classes.input), true);
+    assert.strictEqual(input.hasClass(classes.underline), false);
   });
 
   it('should fire event callbacks', () => {
@@ -129,7 +125,7 @@ describe('<InputBase />', () => {
     it('should considered [] as controlled', () => {
       const wrapper = shallow(<InputBase value={[]} />);
       const instance = wrapper.instance();
-      assert.strictEqual(instance.isControlled, true, 'isControlled should return true');
+      assert.strictEqual(instance.isControlled, true);
     });
 
     ['', 0].forEach(value => {
@@ -148,29 +144,25 @@ describe('<InputBase />', () => {
 
         it('should check that the component is controlled', () => {
           const instance = wrapper.instance();
-          assert.strictEqual(instance.isControlled, true, 'isControlled should return true');
+          assert.strictEqual(instance.isControlled, true);
         });
 
         // don't test number because zero is a empty state, whereas '' is not
         if (typeof value !== 'number') {
           it('should have called the handleEmpty callback', () => {
-            assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty cb');
+            assert.strictEqual(handleEmpty.callCount, 1);
           });
 
           it('should fire the onFilled callback when dirtied', () => {
             assert.strictEqual(handleFilled.callCount, 0);
             wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
-            assert.strictEqual(handleFilled.callCount, 1, 'should have called the onFilled cb');
+            assert.strictEqual(handleFilled.callCount, 1);
           });
 
           it('should fire the onEmpty callback when dirtied', () => {
-            assert.strictEqual(
-              handleEmpty.callCount,
-              1,
-              'should have called the onEmpty cb once already',
-            );
+            assert.strictEqual(handleEmpty.callCount, 1);
             wrapper.setProps({ value });
-            assert.strictEqual(handleEmpty.callCount, 2, 'should have called the onEmpty cb again');
+            assert.strictEqual(handleEmpty.callCount, 2);
           });
         }
       });
@@ -223,22 +215,22 @@ describe('<InputBase />', () => {
 
     it('should check that the component is uncontrolled', () => {
       const instance = wrapper.instance();
-      assert.strictEqual(instance.isControlled, false, 'isControlled should return false');
+      assert.strictEqual(instance.isControlled, false);
     });
 
     it('should fire the onFilled callback when dirtied', () => {
-      assert.strictEqual(handleFilled.callCount, 1, 'should not have called the onFilled cb yet');
+      assert.strictEqual(handleFilled.callCount, 1);
       wrapper.instance().inputRef.value = 'hello';
       wrapper.find('input').simulate('change');
-      assert.strictEqual(handleFilled.callCount, 2, 'should have called the onFilled cb');
+      assert.strictEqual(handleFilled.callCount, 2);
     });
 
     it('should fire the onEmpty callback when cleaned', () => {
       // Because of shallow() this hasn't fired since there is no mounting
-      assert.strictEqual(handleEmpty.callCount, 0, 'should not have called the onEmpty cb yet');
+      assert.strictEqual(handleEmpty.callCount, 0);
       wrapper.instance().inputRef.value = '';
       wrapper.find('input').simulate('change');
-      assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty cb');
+      assert.strictEqual(handleEmpty.callCount, 1);
     });
   });
 
@@ -282,12 +274,8 @@ describe('<InputBase />', () => {
 
         wrapper.instance().inputRef.value = 'hello';
         wrapper.find('input').simulate('change');
-        assert.strictEqual(handleFilled.callCount, 1, 'should have called the onFilled props cb');
-        assert.strictEqual(
-          muiFormControl.onFilled.callCount,
-          1,
-          'should have called the onFilled muiFormControl cb',
-        );
+        assert.strictEqual(handleFilled.callCount, 1);
+        assert.strictEqual(muiFormControl.onFilled.callCount, 1);
       });
 
       it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
@@ -298,12 +286,8 @@ describe('<InputBase />', () => {
 
         wrapper.instance().inputRef.value = '';
         wrapper.find('input').simulate('change');
-        assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty props cb');
-        assert.strictEqual(
-          muiFormControl.onEmpty.callCount,
-          1,
-          'should have called the onEmpty muiFormControl cb',
-        );
+        assert.strictEqual(handleEmpty.callCount, 1);
+        assert.strictEqual(muiFormControl.onEmpty.callCount, 1);
       });
 
       it('should fire the onFocus muiFormControl', () => {

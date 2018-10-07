@@ -33,10 +33,10 @@ function HomeFooter(props) {
 
   return (
     <footer className={classes.root}>
-      <Typography variant="title" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Quick Links
       </Typography>
-      <Typography variant="subheading" component="div">
+      <Typography variant="subtitle1" component="div">
         <Grid container>
           <Grid item xs={12} sm={6}>
             <ul className={classes.list}>
@@ -56,10 +56,10 @@ function HomeFooter(props) {
           <Grid item xs={12} sm={6}>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="/discover-more/community">Community</Link>
+                <Link href="/style/icons">Icons</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/discover-more/roadmap">Roadmap</Link>
+                <Link href="/style/color">Color</Link>
               </li>
               <li className={classes.listItem}>
                 <Link href="/discover-more/team">Team</Link>

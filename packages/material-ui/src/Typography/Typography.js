@@ -1,8 +1,10 @@
 import React from 'react';
+import warning from 'warning';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import typographyMigration from '../styles/typographyMigration';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -32,6 +34,24 @@ export const styles = theme => ({
   caption: theme.typography.caption,
   /* Styles applied to the root element if `variant="button"`. */
   button: theme.typography.button,
+  /* Styles applied to the root element if `variant="h1"`. */
+  h1: theme.typography.h1,
+  /* Styles applied to the root element if `variant="h2"`. */
+  h2: theme.typography.h2,
+  /* Styles applied to the root element if `variant="h3"`. */
+  h3: theme.typography.h3,
+  /* Styles applied to the root element if `variant="h4"`. */
+  h4: theme.typography.h4,
+  /* Styles applied to the root element if `variant="h5"`. */
+  h5: theme.typography.h5,
+  /* Styles applied to the root element if `variant="h6"`. */
+  h6: theme.typography.h6,
+  /* Styles applied to the root element if `variant="subtitle1"`. */
+  subtitle1: theme.typography.subtitle1,
+  /* Styles applied to the root element if `variant="subtitle2"`. */
+  subtitle2: theme.typography.subtitle2,
+  /* Styles applied to the root element if `variant="overline"`. */
+  overline: theme.typography.overline,
   /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
   srOnly: {
     position: 'absolute',
@@ -95,6 +115,82 @@ export const styles = theme => ({
   },
 });
 
+function nextVariantMapping(variant) {
+  const nextVariant = {
+    display4: 'h1',
+    display3: 'h2',
+    display2: 'h3',
+    display1: 'h4',
+    headline: 'h5',
+    title: 'h6',
+    subheading: 'subtitle1',
+  }[variant];
+
+  // already v2
+  if (!nextVariant) {
+    return variant;
+  }
+  return nextVariant;
+}
+
+function getVariant(theme, props, variantProp) {
+  const typography = theme.typography;
+
+  let variant = variantProp;
+
+  if (!variant) {
+    variant = typography.useNextVariants ? 'body2' : 'body1';
+  }
+
+  warning(
+    typography.suppressDeprecationWarnings ||
+      (props.internalDeprecatedVariant && typography.useNextVariants) ||
+      !typographyMigration.deprecatedVariants.includes(variant),
+    'Material-UI: You are using the deprecated typography variant ' +
+      `${variant} that will be removed in the next major release. ${
+        typographyMigration.migrationGuideMessage
+      }`,
+  );
+
+  // complete v2 switch
+  if (typography.useNextVariants) {
+    return nextVariantMapping(variant);
+  }
+
+  // v1 => restyle warnings
+  warning(
+    typography.suppressDeprecationWarnings ||
+      !typographyMigration.restyledVariants.includes(variant),
+    'Material-UI: You are using the typography variant ' +
+      `${variant} which will be restyled in the next major release. ${
+        typographyMigration.migrationGuideMessage
+      }`,
+  );
+
+  return variant;
+}
+
+const defaultHeadlineMapping = {
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  subtitle1: 'h6',
+  subtitle2: 'h6',
+  body1: 'p',
+  body2: 'p',
+  // deprecated
+  display4: 'h1',
+  display3: 'h1',
+  display2: 'h1',
+  display1: 'h1',
+  headline: 'h1',
+  title: 'h2',
+  subheading: 'h3',
+};
+
 function Typography(props) {
   const {
     align,
@@ -104,12 +200,15 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
+    internalDeprecatedVariant,
     noWrap,
     paragraph,
-    variant,
+    theme,
+    variant: variantProp,
     ...other
   } = props;
 
+  const variant = getVariant(theme, props, variantProp);
   const className = classNames(
     classes.root,
     {
@@ -123,7 +222,10 @@ function Typography(props) {
     classNameProp,
   );
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variant]) || 'span';
+  const Component =
+    componentProp ||
+    (paragraph ? 'p' : headlineMapping[variant] || defaultHeadlineMapping[variant]) ||
+    'span';
 
   return <Component className={className} {...other} />;
 }
@@ -170,10 +272,20 @@ Typography.propTypes = {
   gutterBottom: PropTypes.bool,
   /**
    * We are empirically mapping the variant property to a range of different DOM element types.
-   * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
+   * For instance, subtitle1 to `<h6>`.
+   * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
+   * The default mapping is the following:
    */
   headlineMapping: PropTypes.object,
+  /**
+   * A deprecated variant is used from an internal component. Users don't need
+   * a deprecation warning here if they switched to the v2 theme. They already
+   * get the mapping that will be applied in the next major release.
+   *
+   * @internal
+   */
+  internalDeprecatedVariant: PropTypes.bool,
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
@@ -184,8 +296,25 @@ Typography.propTypes = {
   paragraph: PropTypes.bool,
   /**
    * Applies the theme typography styles.
+   * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
    */
   variant: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'subtitle2',
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    'overline',
+    'srOnly',
+    'inherit',
+    // deprecated
     'display4',
     'display3',
     'display2',
@@ -193,12 +322,6 @@ Typography.propTypes = {
     'headline',
     'title',
     'subheading',
-    'body2',
-    'body1',
-    'caption',
-    'button',
-    'srOnly',
-    'inherit',
   ]),
 };
 
@@ -206,20 +329,9 @@ Typography.defaultProps = {
   align: 'inherit',
   color: 'default',
   gutterBottom: false,
-  headlineMapping: {
-    display4: 'h1',
-    display3: 'h1',
-    display2: 'h1',
-    display1: 'h1',
-    headline: 'h1',
-    title: 'h2',
-    subheading: 'h3',
-    body2: 'aside',
-    body1: 'p',
-  },
+  headlineMapping: defaultHeadlineMapping,
   noWrap: false,
   paragraph: false,
-  variant: 'body1',
 };
 
-export default withStyles(styles, { name: 'MuiTypography' })(Typography);
+export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

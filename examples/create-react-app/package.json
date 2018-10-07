@@ -1,6 +1,6 @@
 {
   "name": "create-react-app",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
