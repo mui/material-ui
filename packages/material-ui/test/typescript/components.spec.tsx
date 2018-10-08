@@ -125,7 +125,7 @@ const ButtonTest = () => (
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="raised">Raised</Button>
+    <Button variant="contained">Contained</Button>
     <Button variant="fab" color="primary" aria-label="add">
       <FakeIcon />
     </Button>

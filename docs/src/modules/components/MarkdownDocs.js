@@ -35,7 +35,7 @@ const styles = theme => ({
 });
 
 const demoRegexp = /^"demo": "(.*)"/;
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 
 function MarkdownDocs(props, context) {
   const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;

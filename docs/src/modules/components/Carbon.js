@@ -16,7 +16,7 @@ const styles = theme => ({
         display: 'block',
       },
       '& .carbon-text': {
-        ...theme.typography.body1,
+        ...theme.typography.body2,
         display: 'block',
         margin: `${theme.spacing.unit}px 0`,
       },

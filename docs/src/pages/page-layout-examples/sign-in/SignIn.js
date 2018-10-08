@@ -56,7 +56,9 @@ function SignIn(props) {
           <Avatar className={classes.avatar}>
             <LockIcon />
           </Avatar>
-          <Typography variant="h5">Sign in</Typography>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
@@ -78,7 +80,7 @@ function SignIn(props) {
             <Button
               type="submit"
               fullWidth
-              variant="raised"
+              variant="contained"
               color="primary"
               className={classes.submit}
             >
