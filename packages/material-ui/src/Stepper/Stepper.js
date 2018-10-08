@@ -64,26 +64,20 @@ function Stepper(props) {
     };
 
     function getStepState(active, idx) {
-      if (active === idx) return { active: true };
-      if (!nonLinear && active > idx) return { completed: true };
-      if (!nonLinear && active < idx) return { disabled: true };
-      return {};
+      const stepState = { active: false, completed: false, disabled: false };
+
+      if (active === idx) stepState.active = true;
+      else if (!nonLinear && active > idx) stepState.completed = true;
+      else if (!nonLinear && active < idx) stepState.disabled = true;
+
+      return stepState;
     }
 
-    const state = {
-      active: false,
-      completed: false,
-      disabled: false,
-      ...getStepState(activeStep, index),
-    };
-    
-    /* State forwarded to alternativeLabel connector if applicable */
-    const prevStepState = {
-      active: false,
-      completed: false,
-      disabled: false,
-      ...((!controlProps.last && getStepState(activeStep, index + 1)) || {}),
-    };
+    const state = getStepState(activeStep, index);
+    /* State forwarded to alternativeLabel connector, if applicable */
+    if (alternativeLabel && !controlProps.last) {
+      controlProps.nextStepState = getStepState(activeStep, index + 1);
+    }
 
     return [
       !alternativeLabel &&
@@ -94,7 +88,7 @@ function Stepper(props) {
           index,
           ...state,
         }),
-      React.cloneElement(step, { ...controlProps, ...step.props, ...state, prevStepState }),
+      React.cloneElement(step, { ...controlProps, ...step.props, ...state }),
     ];
   });
 

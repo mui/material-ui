@@ -41,8 +41,8 @@ function Step(props) {
     disabled,
     index,
     last,
+    nextStepState,
     orientation,
-    prevStepState,
     ...other
   } = props;
 
@@ -85,7 +85,7 @@ function Step(props) {
       {connector &&
         alternativeLabel &&
         !last &&
-        React.cloneElement(connector, { orientation, alternativeLabel, ...prevStepState })}
+        React.cloneElement(connector, { orientation, alternativeLabel, ...nextStepState })}
     </div>
   );
 }
@@ -139,6 +139,11 @@ Step.propTypes = {
   /**
    * @ignore
    */
+  nextStepState: PropTypes.object,
+  /**
+   * @ignore
+   * Passed down from Stepper if alternativeLabel is also set.
+   */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
@@ -146,6 +151,7 @@ Step.defaultProps = {
   active: false,
   completed: false,
   disabled: false,
+  nextStepState: {},
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);
