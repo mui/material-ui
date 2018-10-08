@@ -100,7 +100,7 @@ export default class DateFnsUtils implements Utils<Date> {
 
   endOfDay = endOfDay
 
-  formatNumber(num) {
+  formatNumber(num: string) {
     return num
   }
 
@@ -162,7 +162,7 @@ export default class DateFnsUtils implements Utils<Date> {
 
     let count = 0;
     let current = start;
-    const nestedWeeks = [];
+    const nestedWeeks: Date[][] = [];
 
     while (isBefore(current, end)) {
       const weekNumber = Math.floor(count / 7);

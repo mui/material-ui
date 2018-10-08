@@ -43,6 +43,7 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.1.0",
     "@babel/runtime": "^7.0.0",
     "@types/enzyme": "^3.1.14",
     "classnames": "^2.2.5",
@@ -64,8 +65,8 @@
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "rollup --config",
-    "build:lib": "cross-env NODE_ENV=cjs babel ./src --out-dir ./build",
-    "build": "npm run build:bundle && npm run build:lib && npm run build:copy",
+    "build:typescript": "tsc",
+    "build": "npm run build:bundle && npm run build:typescript && npm run build:copy",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*",
@@ -120,9 +121,11 @@
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-size-snapshot": "^0.6.0",
+    "rollup-plugin-typescript": "^1.0.0",
     "rollup-plugin-uglify": "^4.0.0",
     "size-limit": "^0.18.5",
     "ts-jest": "^23.10.4",
+    "ts-lib": "0.0.5",
     "typescript": "^3.1.1"
   },
   "jest": {

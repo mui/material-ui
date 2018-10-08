@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as keycode from 'keycode';
+import keycode from 'keycode';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';

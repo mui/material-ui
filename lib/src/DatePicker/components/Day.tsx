@@ -3,7 +3,8 @@ import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import IconButton from '@material-ui/core/IconButton';
-import { createStyles, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
+import createStyles from '@material-ui/core/styles/createStyles';
 
 export interface DayProps extends WithStyles<typeof styles> {
   children: React.ReactNode;

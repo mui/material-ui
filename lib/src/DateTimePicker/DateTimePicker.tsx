@@ -15,8 +15,8 @@ import DateTimePickerView from '../constants/DateTimePickerView';
 import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
-import { createStyles } from '@material-ui/core';
 import { Omit } from '@material-ui/core';
+import createStyles from '@material-ui/core/styles/createStyles';
 
 
 export interface BaseDateTimePickerProps extends Omit<BaseDatePickerProps, 'openToYearSelection'>{

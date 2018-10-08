@@ -6,7 +6,7 @@ import ToolbarButton from '../../_shared/ToolbarButton';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import DateTimePickerView from '../../constants/DateTimePickerView';
-import { createStyles } from '@material-ui/core';
+import createStyles from '@material-ui/core/styles/createStyles';
 
 export type MeridiemMode = 'am' | 'pm';
 export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {

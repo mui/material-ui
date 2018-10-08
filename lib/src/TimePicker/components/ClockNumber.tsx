@@ -3,7 +3,8 @@ import * as PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
+import createStyles from '@material-ui/core/styles/createStyles';
 
 const positions = {
   0: [0, 40],

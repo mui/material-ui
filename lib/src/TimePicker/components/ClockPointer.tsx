@@ -3,7 +3,8 @@ import * as PropTypes from 'prop-types';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import classnames from 'classnames';
 import ClockType from '../../constants/ClockType';
-import { createStyles, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
+import createStyles from '@material-ui/core/styles/createStyles';
 
 export interface ClockPointerProps extends WithStyles<typeof styles> {
   value: number;

@@ -10,8 +10,9 @@ import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
 import TimePickerView from './components/TimePickerView';
 import { MaterialUiPickersDate } from '../typings/date';
 import ClockType from '../constants/ClockType'
-import { createStyles, WithStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
+import createStyles from '@material-ui/core/styles/createStyles';
 
 export interface BaseTimePickerProps {
   ampm?: boolean;

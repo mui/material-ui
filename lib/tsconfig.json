@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build/tsc",
+    "outDir": "build",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -11,8 +11,10 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "declaration": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "rootDir": "./src"
   },
   "include": ["src/**/*"]
 }
