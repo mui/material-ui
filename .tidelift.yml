@@ -1,0 +1,11 @@
+ci:
+  platform:
+    npm:
+      # Don't run unmainted test on nomnom, it's only used by build tools, not in Material-UI.
+      nomnom:
+        tests:
+          unmaintained: skip
+      # Don't run vulnerabity test on os-locale, it's only used by yargs in build tools, not in Material-UI.
+      os-locale:
+        tests:
+          vulnerable: skip
