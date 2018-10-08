@@ -14,7 +14,15 @@ export const styles = {
 };
 
 function DialogContentText(props) {
-  return <Typography component="p" variant="subheading" color="textSecondary" {...props} />;
+  return (
+    <Typography
+      component="p"
+      internalDeprecatedVariant
+      variant="subheading"
+      color="textSecondary"
+      {...props}
+    />
+  );
 }
 
 DialogContentText.propTypes = {
