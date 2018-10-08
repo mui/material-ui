@@ -64,6 +64,7 @@ const styles = (theme: Theme) => createStyles({
     margin: '0 2px',
     color: theme.palette.text.primary,
     fontWeight: theme.typography.fontWeightMedium,
+    padding: 0,
   },
   hidden: {
     opacity: 0,
