@@ -137,7 +137,7 @@ function Pricing(props) {
       <main className={classes.layout}>
         {/* Hero unit */}
         <div className={classes.heroContent}>
-          <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
             Pricing
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">

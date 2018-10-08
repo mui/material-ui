@@ -165,7 +165,7 @@ function Blog(props) {
             <Grid container>
               <Grid item md={6}>
                 <div className={classes.mainFeaturedPostContent}>
-                  <Typography variant="h3" color="inherit" gutterBottom>
+                  <Typography component="h1" variant="h3" color="inherit" gutterBottom>
                     Title of a longer featured blog post
                   </Typography>
                   <Typography variant="h5" color="inherit" paragraph>

@@ -60,7 +60,7 @@ class Index extends React.Component<WithStyles<typeof styles>, State> {
         <Typography variant="subtitle1" gutterBottom>
           example project
         </Typography>
-        <Button variant="raised" color="secondary" onClick={this.handleClick}>
+        <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
       </div>
