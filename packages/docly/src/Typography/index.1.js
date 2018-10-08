@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Typography from '../material-core/Typography';
+import Typography from '@material-ui/core/Typography';
 // TODO: decide whether to extend or make our own Typography component:
 // import Typography from './mui-typography';
 
