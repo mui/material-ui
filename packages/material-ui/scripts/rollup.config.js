@@ -7,7 +7,6 @@ import { uglify } from 'rollup-plugin-uglify';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 const input = './src/index.js';
-const name = 'material-ui';
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -26,7 +25,12 @@ const commonjsOptions = {
 export default [
   {
     input,
-    output: { file: `build/umd/${name}.development.js`, format: 'umd', name, globals },
+    output: {
+      file: 'build/umd/material-ui.development.js',
+      format: 'umd',
+      name: 'MaterialUI',
+      globals,
+    },
     external: Object.keys(globals),
     plugins: [
       nodeResolve(),
@@ -38,7 +42,12 @@ export default [
   },
   {
     input,
-    output: { file: `build/umd/${name}.production.min.js`, format: 'umd', name, globals },
+    output: {
+      file: 'build/umd/material-ui.production.min.js',
+      format: 'umd',
+      name: 'MaterialUI',
+      globals,
+    },
     external: Object.keys(globals),
     plugins: [
       nodeResolve(),
