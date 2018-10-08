@@ -233,4 +233,13 @@ describe('<Tooltip />', () => {
       );
     });
   });
+
+  it('should forward properties to the child element', () => {
+    const wrapper = shallow(
+      <Tooltip className="foo" {...defaultProps}>
+        <h1>H1</h1>
+      </Tooltip>,
+    );
+    assert.strictEqual(wrapper.find('h1').props().className, 'foo');
+  });
 });

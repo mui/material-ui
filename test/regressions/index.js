@@ -2,7 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TestViewer from './TestViewer';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 // Get all the tests specifically written for preventing regressions.
 const requireRegression = require.context('./tests', true, /js$/);
@@ -123,9 +130,11 @@ tests.forEach(test => {
 
   suite.createTest(test.name, () => {
     ReactDOM.render(
-      <TestViewer>
-        <TestCase />
-      </TestViewer>,
+      <MuiThemeProvider theme={theme}>
+        <TestViewer>
+          <TestCase />
+        </TestViewer>
+      </MuiThemeProvider>,
       rootEl,
     );
   });

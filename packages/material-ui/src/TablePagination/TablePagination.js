@@ -14,6 +14,7 @@ import TablePaginationActions from '../TablePaginationActions';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
     // Increase the specificity to override TableCell.
     '&:last-child': {
@@ -109,7 +110,7 @@ class TablePagination extends React.Component {
         <Toolbar className={classes.toolbar}>
           <div className={classes.spacer} />
           {rowsPerPageOptions.length > 1 && (
-            <Typography variant="caption" className={classes.caption}>
+            <Typography color="inherit" variant="caption" className={classes.caption}>
               {labelRowsPerPage}
             </Typography>
           )}
@@ -136,7 +137,7 @@ class TablePagination extends React.Component {
               ))}
             </Select>
           )}
-          <Typography variant="caption" className={classes.caption}>
+          <Typography color="inherit" variant="caption" className={classes.caption}>
             {labelDisplayedRows({
               from: count === 0 ? 0 : page * rowsPerPage + 1,
               to: Math.min(count, (page + 1) * rowsPerPage),

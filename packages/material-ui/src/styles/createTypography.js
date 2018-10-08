@@ -78,8 +78,8 @@ export default function createTypography(palette, typography) {
     subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
     subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
     body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
-    body2Next: buildVariant(fontWeightRegular, 14, 1.42, 0.15),
-    buttonNext: buildVariant(fontWeightMedium, 14, 2.57, 0.4, caseAllCaps),
+    body2Next: buildVariant(fontWeightRegular, 14, 1.5, 0.15),
+    buttonNext: buildVariant(fontWeightMedium, 14, 1.5, 0.4, caseAllCaps),
     captionNext: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
     overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps),
   };
