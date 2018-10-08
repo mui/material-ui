@@ -115,6 +115,7 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
       Boolean(this.props.ampm),
       this.props.utils,
     );
+
     this.props.onChange(withMeridiem, isFinish);
   }
 
@@ -144,7 +145,6 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
       dateRangeIcon,
       timeIcon,
       renderDay,
-      utils,
       ampm,
       shouldDisableDate,
       animateYearScrolling,
@@ -170,15 +170,14 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
         />
 
         {
-          showTabs
-            && (
+          showTabs && (
             <DateTimePickerTabs
               view={openView}
               onChange={this.handleViewChange}
               dateRangeIcon={dateRangeIcon}
               timeIcon={timeIcon}
             />
-            )
+          )
         }
 
         <Container className={classes.viewContainer} {...ViewContainerComponentProps}>

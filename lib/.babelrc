@@ -5,7 +5,7 @@
   ],
   "plugins": [
     ["@babel/proposal-class-properties", { "loose": true }],
-    ["transform-react-remove-prop-types", { mode: "unsafe-wrap" }]
+    ["transform-react-remove-prop-types", { "mode": "unsafe-wrap" }]
   ],
   "env": {
     "test": {

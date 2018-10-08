@@ -211,7 +211,7 @@ export default class DateFnsUtils implements Utils<Date> {
     return format(date, 'D', { locale: this.locale });
   }
 
-  getHourText(date, ampm) {
+  getHourText(date: Date, ampm: boolean) {
     return format(date, ampm ? 'hh' : 'HH', { locale: this.locale });
   }
 

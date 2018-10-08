@@ -5,8 +5,8 @@ export default class LuxonUtils implements Utils<DateTime> {
   locale: string;
   parse = DateTime.fromFormat;
 
-  constructor({ locale = 'en' }) {
-    this.locale = locale;
+  constructor({ locale }: { locale?: string } = {}) {
+    this.locale = locale || 'en';
   }
 
   date(value?: any) {

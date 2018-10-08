@@ -13,7 +13,7 @@ type Subtract<T, K> = Omit<T, keyof K>;
 const WithUtils = () => <P extends WithUtilsProps>(Component: React.ComponentType<P>) => {
   const withUtils: React.SFC<Subtract<P, WithUtilsProps>> = (props) => (
     <MuiPickersContextConsumer>
-      {utils => <Component utils={utils} {...props} />}
+      {utils => <Component utils={utils}{...props} />}
     </MuiPickersContextConsumer>
   );
 

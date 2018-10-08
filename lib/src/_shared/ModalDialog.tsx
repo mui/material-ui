@@ -133,6 +133,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
   </Dialog>
 );
 
+ModalDialog.displayName = 'ModalDialog';
 (ModalDialog as any).propTypes = {
   children: PropTypes.node.isRequired,
   onKeyDown: PropTypes.func.isRequired,

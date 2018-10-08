@@ -14,7 +14,7 @@ export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<ty
   meridiemMode: MeridiemMode;
   openView: DateTimePickerView;
   onOpenViewChange: (view: DateTimePickerView) => void;
-  setMeridiemMode: (mode: MeridiemMode) => void;
+  setMeridiemMode: (mode: MeridiemMode) => () => void;
   ampm?: boolean;
 }
 
@@ -81,7 +81,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props
                 selected={meridiemMode === 'am'}
                 variant="subheading"
                 label={utils.getMeridiemText('am')}
-                onClick={() => setMeridiemMode('am')}
+                onClick={setMeridiemMode('am')}
               />
 
               <ToolbarButton
@@ -89,7 +89,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props
                 selected={meridiemMode === 'pm'}
                 variant="subheading"
                 label={utils.getMeridiemText('pm')}
-                onClick={() => setMeridiemMode('pm')}
+                onClick={setMeridiemMode('pm')}
               />
             </div>
           )
