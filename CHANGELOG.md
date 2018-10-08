@@ -7,7 +7,7 @@ Big thanks to the 18 contributors who made this release possible!
 
 Here are some highlights ✨:
 - 💅 Update the Typography implementation to better follow the specification (#12916) @eps1lon.
-- 📝 Start translating the documentation in Chinese @mbrookes.
+- 📝 Enable [translating the documentation into Chinese](https://translate.material-ui.com) @mbrookes.
 - 📝 Fix many SEO issues of the docs.
 - And many more bug fixes 🐛 and documentation improvements.
 
