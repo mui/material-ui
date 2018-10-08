@@ -29,6 +29,11 @@ describe('<SpeedDialAction />', () => {
     wrapper.unmount();
   });
 
+  it('initializes its state from props', () => {
+    const wrapper = shallow(<SpeedDialAction {...defaultProps} open tooltipOpen />);
+    assert.strictEqual(wrapper.state().tooltipOpen, true);
+  });
+
   it('should render a Tooltip', () => {
     const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
     assert.strictEqual(wrapper.type(), Tooltip);
