@@ -56,27 +56,25 @@ function Stepper(props) {
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
-      index,
       orientation,
       last: index + 1 === childrenArray.length,
       alternativeLabel,
       connector: connectorProp,
     };
 
-    function getStepState(active, idx) {
-      const stepState = { active: false, completed: false, disabled: false };
+    const state = {
+      index,
+      active: false,
+      completed: false,
+      disabled: false,
+    };
 
-      if (active === idx) stepState.active = true;
-      else if (!nonLinear && active > idx) stepState.completed = true;
-      else if (!nonLinear && active < idx) stepState.disabled = true;
-
-      return stepState;
-    }
-
-    const state = getStepState(activeStep, index);
-    /* State forwarded to alternativeLabel connector, if applicable */
-    if (alternativeLabel && !controlProps.last) {
-      controlProps.nextStepState = getStepState(activeStep, index + 1);
+    if (activeStep === index) {
+      state.active = true;
+    } else if (!nonLinear && activeStep > index) {
+      state.completed = true;
+    } else if (!nonLinear && activeStep < index) {
+      state.disabled = true;
     }
 
     return [
@@ -85,7 +83,6 @@ function Stepper(props) {
         index > 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
-          index,
           ...state,
         }),
       React.cloneElement(step, { ...controlProps, ...step.props, ...state }),

@@ -75,7 +75,6 @@ function StepLabel(props) {
     disabled,
     error,
     icon,
-    last,
     optional,
     orientation,
     StepIconComponent: StepIconComponentProp,
@@ -180,10 +179,6 @@ StepLabel.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
-   */
-  last: PropTypes.bool,
-  /**
    * The optional node to display.
    */
   optional: PropTypes.node,
@@ -207,7 +202,6 @@ StepLabel.defaultProps = {
   completed: false,
   disabled: false,
   error: false,
-  last: false,
   orientation: 'horizontal',
 };
 

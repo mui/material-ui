@@ -2,7 +2,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
 import Step from './Step';
-import StepConnector from '../StepConnector';
 
 describe('<Step />', () => {
   let shallow;
@@ -92,46 +91,6 @@ describe('<Step />', () => {
         </Step>,
       );
       assert.strictEqual(wrapper.find('.hello-world').length, 1);
-    });
-  });
-
-  describe('step connector', () => {
-    it('should not exist when non-alternativeLabel Step', () => {
-      const wrapper = shallow(
-        <Step
-          label="Step One"
-          alternativeLabel={false}
-          orientation="horizontal"
-          connector={<StepConnector />}
-        />,
-      );
-      assert.strictEqual(wrapper.find(StepConnector).exists(), false);
-    });
-
-    it('should exist when alternativeLabel Step', () => {
-      const wrapper = shallow(
-        <Step
-          label="Step One"
-          alternativeLabel
-          orientation="horizontal"
-          connector={<StepConnector />}
-        />,
-      );
-      assert.strictEqual(wrapper.find(StepConnector).exists(), true);
-    });
-
-    it('should pass active prop to connector when next step is active', () => {
-      const wrapper = shallow(
-        <Step
-          label="Step One"
-          alternativeLabel
-          orientation="horizontal"
-          connector={<StepConnector />}
-          nextStepState={{ active: true }}
-        />,
-      );
-
-      assert.strictEqual(wrapper.find(StepConnector).props().active, true);
     });
   });
 });
