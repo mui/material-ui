@@ -105,7 +105,7 @@ describe('<Step />', () => {
           connector={<StepConnector />}
         />,
       );
-      assert.strictEqual(wrapper.children().length, 0);
+      assert.strictEqual(wrapper.find(StepConnector).exists(), false);
     });
 
     it('should exist when alternativeLabel Step', () => {
@@ -117,7 +117,7 @@ describe('<Step />', () => {
           connector={<StepConnector />}
         />,
       );
-      assert.strictEqual(wrapper.children().length, 1);
+      assert.strictEqual(wrapper.find(StepConnector).exists(), true);
     });
 
     it('should pass active prop to connector when next step is active', () => {
@@ -131,13 +131,7 @@ describe('<Step />', () => {
         />,
       );
 
-      assert.strictEqual(
-        wrapper
-          .children()
-          .first()
-          .props().active,
-        true,
-      );
+      assert.strictEqual(wrapper.find(StepConnector).props().active, true);
     });
   });
 });
