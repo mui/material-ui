@@ -32,6 +32,12 @@ const styles = theme => ({
     overflowY: 'auto',
     position: 'relative',
   },
+  list: {
+    marginBottom: theme.spacing.unit * 2,
+  },
+  subHeader: {
+    backgroundColor: '#fff',
+  },
   toolbar: {
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -96,8 +102,8 @@ function BottomAppBar(props) {
         <Typography className={classes.text} variant="h5" gutterBottom>
           Inbox
         </Typography>
-        <List>
-          <ListSubheader>Today</ListSubheader>
+        <List className={classes.list}>
+          <ListSubheader className={classes.subHeader}>Today</ListSubheader>
           {messages.map(({ id, primary, secondary }) => (
             <ListItem key={id} button>
               <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" />
