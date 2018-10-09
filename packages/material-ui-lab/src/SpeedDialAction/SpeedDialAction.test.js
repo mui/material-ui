@@ -58,6 +58,13 @@ describe('<SpeedDialAction />', () => {
     assert.strictEqual(buttonWrapper.hasClass(classes.buttonClosed), true);
   });
 
+  it('passes the className to the Button', () => {
+    const className = 'my-speeddialaction';
+    const wrapper = shallow(<SpeedDialAction {...defaultProps} className={className} />);
+    const buttonWrapper = wrapper.childAt(0);
+    assert.strictEqual(buttonWrapper.hasClass(className), true);
+  });
+
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
