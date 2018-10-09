@@ -29,11 +29,12 @@ class SimpleSelect extends React.Component {
   state = {
     age: '',
     name: 'hai',
+    labelWidth: 0,
   };
 
   componentDidMount() {
     this.setState({
-      labelRef: ReactDOM.findDOMNode(this.InputLabelRef),
+      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
     });
   }
 
@@ -236,7 +237,7 @@ class SimpleSelect extends React.Component {
             onChange={this.handleChange}
             input={
               <OutlinedInput
-                labelWidth={this.state.labelRef ? this.state.labelRef.offsetWidth : 0}
+                labelWidth={this.state.labelWidth}
                 name="age"
                 id="outlined-age-simple"
               />
