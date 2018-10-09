@@ -12,6 +12,7 @@ export const styles = theme => ({
     width: 62,
     position: 'relative',
     flexShrink: 0,
+    zIndex: 0, // Reset the stacking context.
     // For correct alignment with the text.
     verticalAlign: 'middle',
   },
