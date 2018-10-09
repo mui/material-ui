@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import DatePicker from 'material-ui-pickers/DatePicker';
 import moment from 'moment';
 import 'moment/locale/fr';
 import 'moment/locale/ru';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import { Icon, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 
 moment.locale('fr');
 

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import jMoment from 'moment-jalaali';
 import { Typography } from '@material-ui/core';
-import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import { TimePicker, DateTimePicker, DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 import JalaliUtils from 'material-ui-pickers-jalali-utils';
 
 jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });

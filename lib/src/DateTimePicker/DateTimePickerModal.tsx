@@ -2,14 +2,11 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { Omit, WithStyles } from '@material-ui/core';
+import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
-import DateTimePicker, {
-  BaseDateTimePickerProps,
-  DateTimePickerProps,
-} from './DateTimePicker';
+import DateTimePicker, { BaseDateTimePickerProps } from './DateTimePicker';
 
 export interface DateTimePickerModalProps
   extends BasePickerProps,
@@ -24,7 +21,6 @@ export const DateTimePickerModal: React.SFC<
     format,
     autoOk,
     openTo,
-    classes,
     minDate,
     maxDate,
     initialFocusedDate,
@@ -61,7 +57,6 @@ export const DateTimePickerModal: React.SFC<
       }) => (
         <ModalWrapper
           ref={forwardedRef}
-          // dialogContentClassName={classes.dialogContent}
           disableFuture={disableFuture}
           disablePast={disablePast}
           maxDate={maxDate}
@@ -106,8 +101,7 @@ export const DateTimePickerModal: React.SFC<
 };
 
 (DateTimePickerModal as any).propTypes = {
-  classes: PropTypes.object.isRequired,
-  /** DateTimepicker value */
+  /** Date-time picker value */
   value: DomainPropTypes.date,
   /** Date format string for input */
   format: PropTypes.string,
@@ -178,14 +172,6 @@ export const DateTimePickerModal: React.SFC<
   forwardedRef: undefined,
   allowKeyboardControl: true,
 };
-
-const styles = {
-  dialogContent: {
-    width: 310,
-  },
-};
-
-// const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
 
 export default React.forwardRef((props: DateTimePickerModalProps, ref) => (
   <DateTimePickerModal {...props} forwardedRef={ref} />

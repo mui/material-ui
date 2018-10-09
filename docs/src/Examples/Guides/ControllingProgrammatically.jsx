@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { InlineDatePicker } from 'material-ui-pickers/DatePicker';
+import { InlineDatePicker } from 'material-ui-pickers';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
@@ -32,11 +32,14 @@ class ControllingProgrammaticallyExample extends PureComponent {
         <div className="picker">
           <InlineDatePicker
             clearable
-            ref={(node) => { console.log(node); this.picker = node; }}
             label="Open me from button"
             format="d MMM yyyy"
             value={selectedDate}
             onChange={this.handleDateChange}
+            ref={(node) => {
+              console.log(node); // check console to view the api of wrapper
+              this.picker = node;
+            }}
           />
         </div>
       </div>
