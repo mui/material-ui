@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - "8"
 
+before_install:
+  - cd lib
+
 env:
   - CMD='test:date-fns'
   - CMD='test:luxon'
@@ -10,7 +13,5 @@ env:
   - CMD='build:analyze'
   - CMD='lint'
 
-before_install:
-  - cd lib
-
 script: npm run $CMD
+after_script: npx codecov
