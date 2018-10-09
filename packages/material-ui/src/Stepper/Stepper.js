@@ -57,7 +57,6 @@ function Stepper(props) {
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
       orientation,
-      first: index === 0,
       alternativeLabel,
       connector: connectorProp,
     };
@@ -80,7 +79,7 @@ function Stepper(props) {
     return [
       !alternativeLabel &&
         connector &&
-        !controlProps.first &&
+        index !== 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
           ...state,

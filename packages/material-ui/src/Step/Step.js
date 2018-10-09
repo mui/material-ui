@@ -40,7 +40,6 @@ function Step(props) {
     connector,
     disabled,
     index,
-    first,
     orientation,
     ...other
   } = props;
@@ -59,7 +58,7 @@ function Step(props) {
     <div className={className} {...other}>
       {connector &&
         alternativeLabel &&
-        !first &&
+        index !== 0 &&
         React.cloneElement(connector, {
           orientation,
           alternativeLabel,
@@ -135,10 +134,6 @@ Step.propTypes = {
   /**
    * @ignore
    * Used internally for numbering.
-   */
-  first: PropTypes.bool,
-  /**
-   * @ignore
    */
   index: PropTypes.number,
   /**

@@ -101,7 +101,7 @@ describe('<Stepper />', () => {
       assert.strictEqual(wrapper.find('.child-2').props().active, true);
     });
 
-    it('passes last down correctly when rendering children containing arrays', () => {
+    it('passes index down correctly when rendering children containing arrays', () => {
       const wrapper = shallow(
         <Stepper linear={false}>
           <div />
@@ -110,9 +110,9 @@ describe('<Stepper />', () => {
       );
 
       const steps = wrapper.children().find('div');
-      assert.strictEqual(steps.at(0).props().last, false);
-      assert.strictEqual(steps.at(1).props().last, false);
-      assert.strictEqual(steps.at(2).props().last, true);
+      assert.strictEqual(steps.at(0).props().index, 0);
+      assert.strictEqual(steps.at(1).props().index, 1);
+      assert.strictEqual(steps.at(2).props().index, 2);
     });
   });
 
