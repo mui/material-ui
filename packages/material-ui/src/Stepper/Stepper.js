@@ -57,7 +57,6 @@ function Stepper(props) {
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
       orientation,
-      last: index + 1 === childrenArray.length,
       first: index === 0,
       alternativeLabel,
       connector: connectorProp,
