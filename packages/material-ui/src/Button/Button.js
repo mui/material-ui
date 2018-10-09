@@ -7,7 +7,7 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import { capitalize, getEnv } from '../utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -227,13 +227,13 @@ function Button(props) {
   } = props;
 
   warning(
-    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'flat',
+    getEnv('MUI_SUPPRESS_DEPRECATION_WARNINGS') || variant !== 'flat',
     'Material-UI: The `flat` Button variant will be removed in ' +
       'the next major release. `text` is equivalent and should be used instead.',
   );
 
   warning(
-    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'raised',
+    getEnv('MUI_SUPPRESS_DEPRECATION_WARNINGS') || variant !== 'raised',
     'Material-UI: The `raised` Button variant will be removed in ' +
       'the next major release. `contained` is equivalent and should be used instead.',
   );

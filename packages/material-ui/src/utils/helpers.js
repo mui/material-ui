@@ -64,3 +64,10 @@ export function createChainedFunction(...funcs) {
     () => {},
   );
 }
+
+/**
+ * guarded getter for process.env.*
+ */
+export function getEnv(name) {
+  return typeof process !== 'undefined' && process.env ? process.env[name] : undefined;
+}
