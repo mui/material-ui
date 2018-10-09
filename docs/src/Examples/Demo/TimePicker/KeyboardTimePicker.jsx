@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { TimePicker } from 'material-ui-pickers';
+import TimePicker from 'material-ui-pickers/TimePicker';
 
 export default class BasicUsage extends PureComponent {
   state = {

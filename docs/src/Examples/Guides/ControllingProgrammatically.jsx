@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
-import DatePicker from 'material-ui-pickers/DatePicker/DatePickerInline';
+import { InlineDatePicker } from 'material-ui-pickers/DatePicker';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 
@@ -30,7 +30,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
         <Button onClick={this.openPicker}> Open picker </Button>
 
         <div className="picker">
-          <DatePicker
+          <InlineDatePicker
             clearable
             ref={(node) => { console.log(node); this.picker = node; }}
             label="Open me from button"

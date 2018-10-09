@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { DatePicker } from 'material-ui-pickers';
+import DatePicker from 'material-ui-pickers/DatePicker';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
 import lightBlue from '@material-ui/core/colors/lightBlue';
