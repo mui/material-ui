@@ -29,7 +29,14 @@ const styles = theme => ({
       borderColor: theme.palette.primary.main,
     },
   },
-  line: {},
+  connectorDisabled: {
+    '& $line': {
+      borderColor: theme.palette.grey[100],
+    },
+  },
+  line: {
+    transition: theme.transitions.create('border-color'),
+  },
 });
 
 function getSteps() {
@@ -86,6 +93,7 @@ class CustomizedStepper extends React.Component {
               classes={{
                 active: classes.connectorActive,
                 completed: classes.connectorCompleted,
+                disabled: classes.connectorDisabled,
                 line: classes.line,
               }}
             />

@@ -58,6 +58,7 @@ function Stepper(props) {
     const controlProps = {
       orientation,
       last: index + 1 === childrenArray.length,
+      first: index === 0,
       alternativeLabel,
       connector: connectorProp,
     };
@@ -80,7 +81,7 @@ function Stepper(props) {
     return [
       !alternativeLabel &&
         connector &&
-        index > 0 &&
+        !controlProps.first &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
           ...state,

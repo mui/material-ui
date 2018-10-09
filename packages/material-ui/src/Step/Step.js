@@ -40,7 +40,7 @@ function Step(props) {
     connector,
     disabled,
     index,
-    last,
+    first,
     orientation,
     ...other
   } = props;
@@ -57,6 +57,17 @@ function Step(props) {
 
   return (
     <div className={className} {...other}>
+      {connector &&
+        alternativeLabel &&
+        !first &&
+        React.cloneElement(connector, {
+          orientation,
+          alternativeLabel,
+          index,
+          active,
+          completed,
+          disabled,
+        })}
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return null;
@@ -80,17 +91,6 @@ function Step(props) {
           ...child.props,
         });
       })}
-      {connector &&
-        alternativeLabel &&
-        !last &&
-        React.cloneElement(connector, {
-          orientation,
-          alternativeLabel,
-          index,
-          active,
-          completed,
-          disabled,
-        })}
     </div>
   );
 }
@@ -136,11 +136,11 @@ Step.propTypes = {
    * @ignore
    * Used internally for numbering.
    */
-  index: PropTypes.number,
+  first: PropTypes.bool,
   /**
    * @ignore
    */
-  last: PropTypes.bool,
+  index: PropTypes.number,
   /**
    * @ignore
    */
