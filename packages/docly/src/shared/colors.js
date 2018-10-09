@@ -1,13 +1,13 @@
-/*******************************************************************************
+/** *****************************************************************************
  * Mindoktor Palette
- ******************************************************************************/
+ ***************************************************************************** */
 
-export const colors = {
+const colors = {
   /* Primary colors */
-  doclyRed100: "#FFF2F2", // Disabled
-  doclyRed500: "#E52427", // Logo, links, primary CTA’s
-  doclyRed800: "#BF0B0E", // Hover color for links, primary CTA’s
-  doclyRedA500: "#FF383B", // Pictogram highlight, Links on “black” background
+  doclyRed100: '#FFF2F2', // Disabled
+  doclyRed500: '#E52427', // Logo, links, primary CTA’s
+  doclyRed800: '#BF0B0E', // Hover color for links, primary CTA’s
+  doclyRedA500: '#FF383B', // Pictogram highlight, Links on “black” background
 
   // Text
   doclyText: '#00151E', // Primary text, background
