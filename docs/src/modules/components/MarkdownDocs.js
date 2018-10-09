@@ -97,7 +97,6 @@ ${headers.components
 
           if (match && demos) {
             const demoOptions = JSON.parse(`{${content}}`);
-
             const name = demoOptions.demo;
             warning(demos && demos[name], `Missing demo: ${name}.`);
             return (
