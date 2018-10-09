@@ -8,7 +8,7 @@ before_install:
 env:
   - CMD='test:date-fns'
   - CMD='test:luxon'
-  - CMD='test:moment && npx codecov'
+  - CMD='test:moment'
   - CMD='test:typescript'
   - CMD='build:analyze'
   - CMD='lint'
