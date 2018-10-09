@@ -7,6 +7,7 @@ module.exports = {
   resolve: {
     modules: [path.join(__dirname, '../'), 'node_modules'],
     alias: {
+      '@docly/web': path.resolve(__dirname, '../packages/docly/src'),
       '@material-ui/core': path.resolve(__dirname, '../packages/material-ui/src'),
       '@material-ui/docs': path.resolve(__dirname, '../packages/material-ui-docs/src'),
       '@material-ui/icons': path.resolve(__dirname, '../packages/material-ui-icons/src'),

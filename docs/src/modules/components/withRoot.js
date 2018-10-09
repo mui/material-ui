@@ -185,12 +185,6 @@ const pages = [
     ],
   },
   {
-    pathname: '/page-layout-examples',
-  },
-  {
-    pathname: '/premium-themes',
-  },
-  {
     pathname: '/lab',
     children: [
       {
@@ -207,39 +201,6 @@ const pages = [
         pathname: '/lab/toggle-button',
       },
       findPages[2].children[1],
-    ],
-  },
-  {
-    pathname: '/discover-more',
-    children: [
-      {
-        pathname: '/discover-more/showcase',
-      },
-      {
-        pathname: '/discover-more/related-projects',
-      },
-      {
-        pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/backers',
-        title: 'Sponsors & Backers',
-      },
-      {
-        pathname: '/discover-more/vision',
-      },
-      {
-        pathname: '/discover-more/team',
-      },
-      {
-        pathname: '/discover-more/community',
-      },
-      {
-        pathname: '/discover-more/changelog',
-      },
-      {
-        pathname: '/discover-more/governance',
-      },
     ],
   },
   {

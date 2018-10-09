@@ -55,6 +55,7 @@ module.exports = {
           {
             root: ['./'],
             alias: {
+              '@docly/web': './packages/docly/src',
               '@material-ui/core': './packages/material-ui/src',
               '@material-ui/icons': './packages/material-ui-icons/src',
             },
@@ -81,6 +82,7 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             alias: {
+              '@docly/web': './packages/docly/src',
               '@material-ui/core': './packages/material-ui/src',
               '@material-ui/docs': './packages/material-ui-docs/src',
               '@material-ui/icons': './packages/material-ui-icons/src',
@@ -102,6 +104,7 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             alias: {
+              '@docly/web': './packages/docly/src',
               '@material-ui/core': './packages/material-ui/src',
               '@material-ui/docs': './packages/material-ui-docs/src',
               '@material-ui/icons': './packages/material-ui-icons/src',
@@ -173,6 +176,7 @@ module.exports = {
           {
             root: ['./'],
             alias: {
+              '@docly/web': './packages/docly/src',
               '@material-ui/core': './packages/material-ui/src',
               '@material-ui/icons': './packages/material-ui-icons/src',
             },
