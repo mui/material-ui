@@ -49,7 +49,7 @@ const getInitialDate = ({
   return utils.isValid(date) ? date : utils.date();
 };
 
-class BasePicker extends React.Component<
+export class BasePicker extends React.Component<
   OuterBasePickerProps & WithUtilsProps
 > {
   public state = {
