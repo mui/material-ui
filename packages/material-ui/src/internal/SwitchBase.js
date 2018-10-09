@@ -247,11 +247,7 @@ SwitchBase.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 SwitchBase.contextTypes = {

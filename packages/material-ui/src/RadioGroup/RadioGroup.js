@@ -100,11 +100,7 @@ RadioGroup.propTypes = {
   /**
    * Value of the selected radio button.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 export default RadioGroup;
