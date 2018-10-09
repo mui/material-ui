@@ -6,10 +6,9 @@ before_install:
   - cd lib
 
 env:
-  - CMD='UTILS=date-fns npm run test'
-  - CMD='UTILS=moment npm run test'
-  - CMD='UTILS=luxon npm run test'
-  - CMD='npx codecov'
+  - CMD='UTILS=date-fns npm run test:date-fns'
+  - CMD='UTILS=moment npm run test:luxon'
+  - CMD='UTILS=luxon npm run test:moment && codecov'
   - CMD='npm run test:typescript'
   - CMD='npm run build'
   - CMD='npx size-limit'

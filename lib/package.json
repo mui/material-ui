@@ -61,6 +61,9 @@
   ],
   "scripts": {
     "test": "jest",
+    "test:date-fns": "UTILS=date-fns npm run test",
+    "test:moment": "UTILS=moment npm run test",
+    "test:luxon": "UTILS=date-fns npm run test",
     "test:typescript": "tsc -p __tests__/tsc-usage/tsconfig.json",
     "start": "rollup --config --watch",
     "prebuild": "rimraf build",
