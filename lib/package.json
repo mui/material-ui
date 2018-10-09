@@ -135,7 +135,7 @@
     "collectCoverage": true,
     "transform": {
       "^.+\\.tsx?$": "ts-jest",
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.js?$": "babel-jest"
     },
     "moduleFileExtensions": [
       "ts",
@@ -147,7 +147,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "./__tests__/tsconfig.json"
+        "tsConfig": "./__tests__/tsconfig.test.json"
       }
     }
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import keycode from 'keycode';
+import * as keycode_ from 'keycode';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import EventListener from 'react-event-listener';
 
@@ -15,8 +15,12 @@ import { MaterialUiPickersDate } from '../../typings/date';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { Theme } from '@material-ui/core';
 
-export type DayComponent = React.ReactElement<IconButtonProps>;
+// Workaround to work with synthetic imports both for jest and rollup
+// https://github.com/rollup/rollup/issues/670
+// https://github.com/kulshekhar/ts-jest/issues/146
+const keycode = keycode_
 
+export type DayComponent = React.ReactElement<IconButtonProps>;
 export type RenderDay = (
   day: MaterialUiPickersDate,
   selectedDate: MaterialUiPickersDate,
