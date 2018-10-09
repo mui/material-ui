@@ -1,18 +1,23 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import { Theme } from '@material-ui/core';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import SlideTransition, { SlideDirection } from './SlideTransition';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { Theme } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
+import SlideTransition, { SlideDirection } from './SlideTransition';
 
-export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+export interface CalendarHeaderProps
+  extends WithUtilsProps,
+    WithStyles<typeof styles, true> {
   currentMonth: object;
-  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
+  onMonthChange: (
+    date: MaterialUiPickersDate,
+    direction: SlideDirection
+  ) => void;
   leftArrowIcon?: React.ReactNode;
   rightArrowIcon?: React.ReactNode;
   disablePrevMonth?: boolean;
@@ -34,8 +39,10 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 }) => {
   const rtl = theme.direction === 'rtl';
 
-  const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth), 'left');
-  const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(currentMonth), 'right');
+  const selectNextMonth = () =>
+    onMonthChange(utils.getNextMonth(currentMonth), 'left');
+  const selectPreviousMonth = () =>
+    onMonthChange(utils.getPreviousMonth(currentMonth), 'right');
 
   return (
     <div>
@@ -53,10 +60,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           transKey={currentMonth.toString()}
           className={classes.transitionContainer}
         >
-          <Typography
-            align="center"
-            variant="body1"
-          >
+          <Typography align="center" variant="body1">
             {utils.getCalendarHeaderText(currentMonth)}
           </Typography>
         </SlideTransition>
@@ -71,17 +75,15 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
       </div>
 
       <div className={classes.daysHeader}>
-        {
-          utils.getWeekdays().map((day, index) => (
-            <Typography
-              key={index} // eslint-disable-line react/no-array-index-key
-              variant="caption"
-              className={classes.dayLabel}
-            >
-              {day}
-            </Typography>
-          ))
-        }
+        {utils.getWeekdays().map((day, index) => (
+          <Typography
+            key={index} // eslint-disable-line react/no-array-index-key
+            variant="caption"
+            className={classes.dayLabel}
+          >
+            {day}
+          </Typography>
+        ))}
       </div>
     </div>
   );
@@ -98,7 +100,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   disableNextMonth: PropTypes.bool,
   utils: PropTypes.object.isRequired,
   slideDirection: PropTypes.oneOf(['right', 'left']).isRequired,
-  innerRef: PropTypes.any
+  innerRef: PropTypes.any,
 };
 
 CalendarHeader.defaultProps = {
@@ -108,44 +110,47 @@ CalendarHeader.defaultProps = {
   disableNextMonth: false,
 };
 
-const styles = (theme: Theme) => createStyles({
-  switchHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: theme.spacing.unit / 2,
-    marginBottom: theme.spacing.unit,
-  },
-  transitionContainer: {
-    width: '100%',
-    height: 20,
-  },
-  iconButton: {
-    zIndex: 2,
-    backgroundColor: theme.palette.background.paper,
-    '& > *': { // label
+const styles = (theme: Theme) =>
+  createStyles({
+    switchHeader: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: theme.spacing.unit / 2,
+      marginBottom: theme.spacing.unit,
+    },
+    transitionContainer: {
+      width: '100%',
+      height: 20,
+    },
+    iconButton: {
+      zIndex: 2,
       backgroundColor: theme.palette.background.paper,
-      '& > *': { // icon
-        zIndex: 1,
-        overflow: 'visible',
+      '& > *': {
+        // label
+        backgroundColor: theme.palette.background.paper,
+        '& > *': {
+          // icon
+          zIndex: 1,
+          overflow: 'visible',
+        },
       },
     },
-  },
-  daysHeader: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxHeight: 16,
-  },
-  dayLabel: {
-    width: 36,
-    margin: '0 2px',
-    textAlign: 'center',
-    color: theme.palette.text.hint,
-  },
-});
+    daysHeader: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      maxHeight: 16,
+    },
+    dayLabel: {
+      width: 36,
+      margin: '0 2px',
+      textAlign: 'center',
+      color: theme.palette.text.hint,
+    },
+  });
 
 export default withStyles(styles, {
   withTheme: true,
-  name: 'MuiPickersCalendarHeader'
+  name: 'MuiPickersCalendarHeader',
 })(withUtils()(CalendarHeader));

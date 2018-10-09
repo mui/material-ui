@@ -1,53 +1,56 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
+import { Omit } from '@material-ui/core';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import DomainPropTypes from '../constants/prop-types';
 import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
 import TimePicker, { BaseTimePickerProps } from './TimePicker';
-import DomainPropTypes from '../constants/prop-types';
-import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import { Omit } from '@material-ui/core';
 
-export interface TimePickerInlineProps extends
-  BasePickerProps,
-  BaseTimePickerProps,
-  Omit<InlineWrapperProps, 'onChange' | 'value'>
-{ }
+export interface TimePickerInlineProps
+  extends BasePickerProps,
+    BaseTimePickerProps,
+    Omit<InlineWrapperProps, 'onChange' | 'value'> {}
 
-export const TimePickerInline: React.SFC<TimePickerInlineProps> = (props) => {
+export const TimePickerInline: React.SFC<TimePickerInlineProps> = props => {
   const {
-    value, format, onChange, ampm, forwardedRef, seconds, ...other
+    value,
+    format,
+    onChange,
+    ampm,
+    forwardedRef,
+    seconds,
+    ...other
   } = props;
 
   return (
     <BasePicker {...props} autoOk>
-      {
-        ({
-          date,
-          utils,
-          handleChange,
-          handleTextFieldChange,
-          isAccepted,
-          pick12hOr24hFormat,
-          handleAccept,
-        }) => (
-          <InlineWrapper
-            innerRef={forwardedRef}
-            value={value}
-            onChange={handleTextFieldChange}
-            isAccepted={isAccepted}
-            handleAccept={handleAccept}
-            format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
-            {...other}
-          >
-            <TimePicker
-              date={date}
-              onChange={handleChange}
-              ampm={ampm}
-              seconds={seconds}
-            />
-          </InlineWrapper>
-        )
-      }
+      {({
+        date,
+        utils,
+        handleChange,
+        handleTextFieldChange,
+        isAccepted,
+        pick12hOr24hFormat,
+        handleAccept,
+      }) => (
+        <InlineWrapper
+          innerRef={forwardedRef}
+          value={value}
+          onChange={handleTextFieldChange}
+          isAccepted={isAccepted}
+          handleAccept={handleAccept}
+          format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
+          {...other}
+        >
+          <TimePicker
+            date={date}
+            onChange={handleChange}
+            ampm={ampm}
+            seconds={seconds}
+          />
+        </InlineWrapper>
+      )}
     </BasePicker>
   );
 };

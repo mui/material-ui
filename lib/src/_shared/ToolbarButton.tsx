@@ -1,9 +1,9 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import { Theme } from '@material-ui/core';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import classnames from 'classnames';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 interface ToolbarButtonProps extends WithStyles<typeof styles> {
   selected: boolean;
@@ -12,7 +12,11 @@ interface ToolbarButtonProps extends WithStyles<typeof styles> {
 }
 
 const ToolbarButton: React.SFC<TypographyProps & ToolbarButtonProps> = ({
-  classes, selected, label, className, ...other
+  classes,
+  selected,
+  label,
+  className,
+  ...other
 }) => (
   <Typography
     className={classnames(classes.toolbarBtn, className, {
@@ -20,7 +24,7 @@ const ToolbarButton: React.SFC<TypographyProps & ToolbarButtonProps> = ({
     })}
     {...other}
   >
-    { label }
+    {label}
   </Typography>
 );
 
@@ -29,7 +33,7 @@ const ToolbarButton: React.SFC<TypographyProps & ToolbarButtonProps> = ({
   label: PropTypes.string.isRequired,
   classes: PropTypes.any.isRequired,
   className: PropTypes.string,
-  innerRef: PropTypes.any
+  innerRef: PropTypes.any,
 };
 
 ToolbarButton.defaultProps = {
@@ -46,4 +50,6 @@ const styles = (theme: Theme) => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(ToolbarButton);
+export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(
+  ToolbarButton
+);

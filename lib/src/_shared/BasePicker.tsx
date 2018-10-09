@@ -1,8 +1,8 @@
 import * as React from 'react';
-import withUtils, { WithUtilsProps } from './WithUtils';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { Utils } from '../typings/utils';
+import withUtils, { WithUtilsProps } from './WithUtils';
 
 export interface InnerBasePickerProps {
   utils: Utils<MaterialUiPickersDate>;
@@ -13,10 +13,13 @@ export interface InnerBasePickerProps {
   handleSetTodayDate: () => void;
   handleDismiss: () => void;
   changeDate: (date: MaterialUiPickersDate, callback?: any) => void;
-  handleChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void
+  handleChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   handleTextFieldChange: (date: MaterialUiPickersDate | null) => void;
   handleAcceptedChange: (isAccepted: boolean, callback?: any) => void;
-  pick12hOr24hFormat: (default12hFormat: string, default24hFormat: string) => string;
+  pick12hOr24hFormat: (
+    default12hFormat: string,
+    default24hFormat: string
+  ) => string;
 }
 
 export interface BasePickerProps {
@@ -35,37 +38,46 @@ export interface OuterBasePickerProps extends BasePickerProps, WithUtilsProps {
   children: (options: InnerBasePickerProps) => React.ReactNode;
 }
 
-const getInitialDate = ({ utils, value, initialFocusedDate }: OuterBasePickerProps) => {
+const getInitialDate = ({
+  utils,
+  value,
+  initialFocusedDate,
+}: OuterBasePickerProps) => {
   const initialDate = value || initialFocusedDate || utils.date();
   const date = utils.date(initialDate);
 
   return utils.isValid(date) ? date : utils.date();
 };
 
-class BasePicker extends React.Component<OuterBasePickerProps & WithUtilsProps> {
-  state = {
+class BasePicker extends React.Component<
+  OuterBasePickerProps & WithUtilsProps
+> {
+  public state = {
     date: getInitialDate(this.props),
     isAccepted: false,
   };
 
-  componentDidUpdate(prevProps: OuterBasePickerProps) {
+  public componentDidUpdate(prevProps: OuterBasePickerProps) {
     const { utils, value } = this.props;
     if (prevProps.value !== value || prevProps.utils.locale !== utils.locale) {
       this.changeDate(getInitialDate(this.props));
     }
   }
 
-  changeDate = (date: MaterialUiPickersDate, callback?: any) => this.setState({ date }, callback);
+  public changeDate = (date: MaterialUiPickersDate, callback?: any) =>
+    this.setState({ date }, callback);
 
-  handleAcceptedChange = (isAccepted: boolean, callback?: any) => this.setState({ isAccepted }, callback);
+  public handleAcceptedChange = (isAccepted: boolean, callback?: any) =>
+    this.setState({ isAccepted }, callback);
 
-  handleClear = () => this.props.onChange(null);
+  public handleClear = () => this.props.onChange(null);
 
-  handleAccept = () => this.props.onChange(this.state.date);
+  public handleAccept = () => this.props.onChange(this.state.date);
 
-  handleSetTodayDate = () => this.handleChange(this.props.utils.date(), false);
+  public handleSetTodayDate = () =>
+    this.handleChange(this.props.utils.date(), false);
 
-  handleTextFieldChange = (date: MaterialUiPickersDate) => {
+  public handleTextFieldChange = (date: MaterialUiPickersDate) => {
     const { onChange } = this.props;
     if (date === null) {
       onChange(null);
@@ -74,7 +86,10 @@ class BasePicker extends React.Component<OuterBasePickerProps & WithUtilsProps> 
     }
   };
 
-  pick12hOr24hFormat = (default12hFormat: string, default24hFormat: string): string => {
+  public pick12hOr24hFormat = (
+    default12hFormat: string,
+    default24hFormat: string
+  ): string => {
     const { format, ampm } = this.props;
     if (format) {
       return format;
@@ -83,7 +98,7 @@ class BasePicker extends React.Component<OuterBasePickerProps & WithUtilsProps> 
     return ampm ? default12hFormat : default24hFormat;
   };
 
-  handleChange = (newDate: MaterialUiPickersDate, isFinish = true) => {
+  public handleChange = (newDate: MaterialUiPickersDate, isFinish = true) => {
     const { autoOk, onChange } = this.props;
 
     this.changeDate(newDate, () => {
@@ -95,11 +110,11 @@ class BasePicker extends React.Component<OuterBasePickerProps & WithUtilsProps> 
     });
   };
 
-  handleDismiss = () => {
-    this.setState({ date: getInitialDate(this.props) })
-  }
+  public handleDismiss = () => {
+    this.setState({ date: getInitialDate(this.props) });
+  };
 
-  render() {
+  public render() {
     return this.props.children({
       ...this.state,
       utils: this.props.utils,

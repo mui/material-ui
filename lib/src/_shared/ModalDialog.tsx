@@ -1,13 +1,13 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classnames from 'classnames';
-import EventListener from 'react-event-listener';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { Omit, WithStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import { Omit, WithStyles } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import classnames from 'classnames';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import EventListener from 'react-event-listener';
 
 const dialogWidth = 310;
 const dialogHeight = 405;
@@ -45,7 +45,7 @@ const styles = {
   },
 };
 
-export type DialogBaseProps = Omit<DialogProps, "onKeyDown">
+export type DialogBaseProps = Omit<DialogProps, 'onKeyDown'>;
 export interface ModalDialogProps extends DialogBaseProps {
   onAccept: () => void;
   onDismiss: () => void;
@@ -61,7 +61,9 @@ export interface ModalDialogProps extends DialogBaseProps {
   showTodayButton?: boolean;
 }
 
-export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
+export const ModalDialog: React.SFC<
+  ModalDialogProps & WithStyles<typeof styles>
+> = ({
   children,
   classes,
   onKeyDown,
@@ -78,55 +80,46 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
   showTodayButton,
   ...other
 }) => (
-  <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
+  <Dialog
+    onClose={onDismiss}
+    classes={{ paper: classes.dialogRoot }}
+    {...other}
+  >
     <EventListener target="window" onKeyDown={onKeyDown} />
 
-    <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
-      { children }
+    <DialogContent
+      className={classnames(classes.dialog, dialogContentClassName)}
+    >
+      {children}
     </DialogContent>
 
     <DialogActions
       classes={{
-        root: (clearable || showTodayButton)  ? classes.dialogActions : undefined,
+        root: clearable || showTodayButton ? classes.dialogActions : undefined,
         action: classnames(classes.dialogAction, {
           [classes.clearableDialogAction]: clearable,
           [classes.todayDialogAction]: !clearable && showTodayButton,
         }),
       }}
     >
-      {
-        clearable && (
-          <Button
-            color="primary"
-            onClick={onClear}
-          >
-            {clearLabel}
-          </Button>
-        )
-      }
+      {clearable && (
+        <Button color="primary" onClick={onClear}>
+          {clearLabel}
+        </Button>
+      )}
 
-      {
-        !clearable && showTodayButton && (
-          <Button
-            color="primary"
-            onClick={onSetToday}
-          >
+      {!clearable &&
+        showTodayButton && (
+          <Button color="primary" onClick={onSetToday}>
             {todayLabel}
           </Button>
-        )
-      }
+        )}
 
-      <Button
-        color="primary"
-        onClick={onDismiss}
-      >
+      <Button color="primary" onClick={onDismiss}>
         {cancelLabel}
       </Button>
 
-      <Button
-        color="primary"
-        onClick={onAccept}
-      >
+      <Button color="primary" onClick={onAccept}>
         {okLabel}
       </Button>
     </DialogActions>

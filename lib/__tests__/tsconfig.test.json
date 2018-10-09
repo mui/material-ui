@@ -3,9 +3,7 @@
   "compilerOptions": {
     "module": "es6",
     "allowSyntheticDefaultImports": true,
-    // "esModuleInterop": true
+    "typeRoots": ["../node_modules/@types"]
   },
-  "include": [
-    "./**/*.test.tsx"
-  ]
+  "include": ["./**/*.test.tsx"]
 }

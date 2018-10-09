@@ -1,19 +1,24 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
+import { Omit, WithStyles } from '@material-ui/core';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
-import DateTimePicker, { BaseDateTimePickerProps, DateTimePickerProps } from './DateTimePicker';
-import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import { Omit, WithStyles } from '@material-ui/core';
-
-export interface DateTimePickerModalProps extends
-  BasePickerProps,
+import DateTimePicker, {
   BaseDateTimePickerProps,
-  Omit<ModalWrapperProps, 'onChange' | 'value'> {}
+  DateTimePickerProps,
+} from './DateTimePicker';
 
-export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = (props) => {
+export interface DateTimePickerModalProps
+  extends BasePickerProps,
+    BaseDateTimePickerProps,
+    Omit<ModalWrapperProps, 'onChange' | 'value'> {}
+
+export const DateTimePickerModal: React.SFC<
+  DateTimePickerModalProps
+> = props => {
   const {
     value,
     format,
@@ -42,59 +47,60 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = (props) 
 
   return (
     <BasePicker {...props}>
-      {
-        ({
-          date,
-          utils,
-          handleAccept,
-          handleChange,
-          handleClear,
-          handleDismiss,
-          handleSetTodayDate,
-          handleTextFieldChange,
-          isAccepted,
-          pick12hOr24hFormat,
-        }) => (
-          <ModalWrapper
-            ref={forwardedRef}
-            // dialogContentClassName={classes.dialogContent}
+      {({
+        date,
+        utils,
+        handleAccept,
+        handleChange,
+        handleClear,
+        handleDismiss,
+        handleSetTodayDate,
+        handleTextFieldChange,
+        isAccepted,
+        pick12hOr24hFormat,
+      }) => (
+        <ModalWrapper
+          ref={forwardedRef}
+          // dialogContentClassName={classes.dialogContent}
+          disableFuture={disableFuture}
+          disablePast={disablePast}
+          maxDate={maxDate}
+          minDate={minDate}
+          onAccept={handleAccept}
+          onChange={handleTextFieldChange}
+          onClear={handleClear}
+          onDismiss={handleDismiss}
+          onSetToday={handleSetTodayDate}
+          value={value}
+          isAccepted={isAccepted}
+          format={pick12hOr24hFormat(
+            utils.dateTime12hFormat,
+            utils.dateTime24hFormat
+          )}
+          {...other}
+        >
+          <DateTimePicker
+            allowKeyboardControl={allowKeyboardControl}
+            ampm={ampm}
+            animateYearScrolling={animateYearScrolling}
+            autoSubmit={autoSubmit}
+            date={date}
+            dateRangeIcon={dateRangeIcon}
             disableFuture={disableFuture}
             disablePast={disablePast}
+            leftArrowIcon={leftArrowIcon}
             maxDate={maxDate}
             minDate={minDate}
-            onAccept={handleAccept}
-            onChange={handleTextFieldChange}
-            onClear={handleClear}
-            onDismiss={handleDismiss}
-            onSetToday={handleSetTodayDate}
-            value={value}
-            isAccepted={isAccepted}
-            format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
-            {...other}
-          >
-            <DateTimePicker
-              allowKeyboardControl={allowKeyboardControl}
-              ampm={ampm}
-              animateYearScrolling={animateYearScrolling}
-              autoSubmit={autoSubmit}
-              date={date}
-              dateRangeIcon={dateRangeIcon}
-              disableFuture={disableFuture}
-              disablePast={disablePast}
-              leftArrowIcon={leftArrowIcon}
-              maxDate={maxDate}
-              minDate={minDate}
-              onChange={handleChange}
-              openTo={openTo}
-              renderDay={renderDay}
-              rightArrowIcon={rightArrowIcon}
-              shouldDisableDate={shouldDisableDate}
-              showTabs={showTabs}
-              timeIcon={timeIcon}
-            />
-          </ModalWrapper>
-        )
-      }
+            onChange={handleChange}
+            openTo={openTo}
+            renderDay={renderDay}
+            rightArrowIcon={rightArrowIcon}
+            shouldDisableDate={shouldDisableDate}
+            showTabs={showTabs}
+            timeIcon={timeIcon}
+          />
+        </ModalWrapper>
+      )}
     </BasePicker>
   );
 };
@@ -134,7 +140,7 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = (props) 
   /**
    * Custom renderer for day
    * [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]
-  */
+   */
   renderDay: PropTypes.func,
   /** 12h/24h view for hour selection clock */
   ampm: PropTypes.bool,
@@ -181,6 +187,6 @@ const styles = {
 
 // const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
 
-export default React.forwardRef((props: DateTimePickerModalProps, ref) =>
+export default React.forwardRef((props: DateTimePickerModalProps, ref) => (
   <DateTimePickerModal {...props} forwardedRef={ref} />
-);
+));

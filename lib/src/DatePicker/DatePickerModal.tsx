@@ -1,18 +1,18 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
+import { Omit } from '@material-ui/core';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
-import DomainPropTypes from '../constants/prop-types';
-import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import { Omit } from '@material-ui/core';
 
-export interface DatePickerModalProps extends
-  BasePickerProps,
-  BaseDatePickerProps,
-  Omit<ModalWrapperProps, 'onChange' | 'value'> {}
+export interface DatePickerModalProps
+  extends BasePickerProps,
+    BaseDatePickerProps,
+    Omit<ModalWrapperProps, 'onChange' | 'value'> {}
 
-export const DatePickerModal: React.SFC<DatePickerModalProps> = (props) => {
+export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
   const {
     allowKeyboardControl,
     animateYearScrolling,
@@ -37,53 +37,51 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = (props) => {
 
   return (
     <BasePicker {...props}>
-      {
-        ({
-          date,
-          utils,
-          handleAccept,
-          handleChange,
-          handleClear,
-          handleDismiss,
-          handleSetTodayDate,
-          handleTextFieldChange,
-          isAccepted,
-        }) => (
-          <ModalWrapper
+      {({
+        date,
+        utils,
+        handleAccept,
+        handleChange,
+        handleClear,
+        handleDismiss,
+        handleSetTodayDate,
+        handleTextFieldChange,
+        isAccepted,
+      }) => (
+        <ModalWrapper
+          disableFuture={disableFuture}
+          disablePast={disablePast}
+          format={format || utils.dateFormat}
+          labelFunc={labelFunc}
+          maxDate={maxDate}
+          minDate={minDate}
+          onAccept={handleAccept}
+          onChange={handleTextFieldChange}
+          onClear={handleClear}
+          onDismiss={handleDismiss}
+          onSetToday={handleSetTodayDate}
+          ref={forwardedRef}
+          value={value}
+          isAccepted={isAccepted}
+          {...other}
+        >
+          <DatePicker
+            date={date}
+            allowKeyboardControl={allowKeyboardControl}
+            animateYearScrolling={animateYearScrolling}
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format || utils.dateFormat}
-            labelFunc={labelFunc}
+            leftArrowIcon={leftArrowIcon}
             maxDate={maxDate}
             minDate={minDate}
-            onAccept={handleAccept}
-            onChange={handleTextFieldChange}
-            onClear={handleClear}
-            onDismiss={handleDismiss}
-            onSetToday={handleSetTodayDate}
-            ref={forwardedRef}
-            value={value}
-            isAccepted={isAccepted}
-            {...other}
-          >
-            <DatePicker
-              date={date}
-              allowKeyboardControl={allowKeyboardControl}
-              animateYearScrolling={animateYearScrolling}
-              disableFuture={disableFuture}
-              disablePast={disablePast}
-              leftArrowIcon={leftArrowIcon}
-              maxDate={maxDate}
-              minDate={minDate}
-              onChange={handleChange}
-              openToYearSelection={openToYearSelection}
-              renderDay={renderDay}
-              rightArrowIcon={rightArrowIcon}
-              shouldDisableDate={shouldDisableDate}
-            />
-          </ModalWrapper>
-        )
-      }
+            onChange={handleChange}
+            openToYearSelection={openToYearSelection}
+            renderDay={renderDay}
+            rightArrowIcon={rightArrowIcon}
+            shouldDisableDate={shouldDisableDate}
+          />
+        </ModalWrapper>
+      )}
     </BasePicker>
   );
 };
@@ -111,17 +109,19 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = (props) => {
   animateYearScrolling: PropTypes.bool,
   /** Open datepicker from year selection */
   openToYearSelection: PropTypes.bool,
-  /** Allow to specify dynamic label for text field
+  /**
+   * Allow to specify dynamic label for text field
    * [(date: Date, invalidLabel: string) => string]
-  */
+   */
   labelFunc: PropTypes.func,
   /** Left arrow icon */
   leftArrowIcon: PropTypes.node,
   /** Right arrow icon */
   rightArrowIcon: PropTypes.node,
-  /** Custom renderer for day
+  /**
+   * Custom renderer for day
    * [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]
-  */
+   */
   renderDay: PropTypes.func,
   /** Disable specific date [(date: Date) => boolean] */
   shouldDisableDate: PropTypes.func,

@@ -1,15 +1,17 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import { MaterialUiPickersDate } from '../../typings/date';
 import DateTimePickerView from '../../constants/DateTimePickerView';
-import createStyles from '@material-ui/core/styles/createStyles';
+import { MaterialUiPickersDate } from '../../typings/date';
 
 export type MeridiemMode = 'am' | 'pm';
-export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+export interface DateTimePickerHeaderProps
+  extends WithUtilsProps,
+    WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
   openView: DateTimePickerView;
@@ -18,13 +20,23 @@ export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<ty
   ampm?: boolean;
 }
 
-export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props) => {
+export const DateTimePickerHeader: React.SFC<
+  DateTimePickerHeaderProps
+> = props => {
   const {
-    date, classes, openView, meridiemMode, onOpenViewChange, setMeridiemMode,
-    theme, utils, ampm,
+    date,
+    classes,
+    openView,
+    meridiemMode,
+    onOpenViewChange,
+    setMeridiemMode,
+    theme,
+    utils,
+    ampm,
   } = props;
 
-  const changeOpenView = (view: DateTimePickerView) => () => onOpenViewChange(view);
+  const changeOpenView = (view: DateTimePickerView) => () =>
+    onOpenViewChange(view);
 
   const rtl = theme.direction === 'rtl';
   const hourMinuteClassName = rtl
@@ -73,27 +85,25 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props
           />
         </div>
 
-        {
-          ampm && (
-            <div className={classes.ampmSelection}>
-              <ToolbarButton
-                className={classes.ampmLabel}
-                selected={meridiemMode === 'am'}
-                variant="subheading"
-                label={utils.getMeridiemText('am')}
-                onClick={setMeridiemMode('am')}
-              />
+        {ampm && (
+          <div className={classes.ampmSelection}>
+            <ToolbarButton
+              className={classes.ampmLabel}
+              selected={meridiemMode === 'am'}
+              variant="subheading"
+              label={utils.getMeridiemText('am')}
+              onClick={setMeridiemMode('am')}
+            />
 
-              <ToolbarButton
-                className={classes.ampmLabel}
-                selected={meridiemMode === 'pm'}
-                variant="subheading"
-                label={utils.getMeridiemText('pm')}
-                onClick={setMeridiemMode('pm')}
-              />
-            </div>
-          )
-        }
+            <ToolbarButton
+              className={classes.ampmLabel}
+              selected={meridiemMode === 'pm'}
+              variant="subheading"
+              label={utils.getMeridiemText('pm')}
+              onClick={setMeridiemMode('pm')}
+            />
+          </div>
+        )}
       </div>
     </PickerToolbar>
   );
@@ -109,52 +119,55 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = (props
   setMeridiemMode: PropTypes.func.isRequired,
   utils: PropTypes.object.isRequired,
   ampm: PropTypes.bool,
-  innerRef: PropTypes.any
+  innerRef: PropTypes.any,
 };
 
 DateTimePickerHeader.defaultProps = {
   ampm: true,
 };
 
-const styles = () => createStyles({
-  toolbar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: 16,
-    paddingRight: 16,
-    justifyContent: 'space-around',
-  },
-  separator: {
-    margin: '0 4px 0 2px',
-    cursor: 'default',
-  },
-  ampmSelection: {
-    marginLeft: 10,
-    marginRight: -10,
-  },
-  ampmLabel: {
-    fontSize: 18,
-  },
-  hourMinuteLabel: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  hourMinuteLabelReverse: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    flexDirection: 'row-reverse',
-  },
-  dateHeader: {
-    height: 65,
-  },
-  timeHeader: {
-    height: 65,
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-});
+const styles = () =>
+  createStyles({
+    toolbar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingLeft: 16,
+      paddingRight: 16,
+      justifyContent: 'space-around',
+    },
+    separator: {
+      margin: '0 4px 0 2px',
+      cursor: 'default',
+    },
+    ampmSelection: {
+      marginLeft: 10,
+      marginRight: -10,
+    },
+    ampmLabel: {
+      fontSize: 18,
+    },
+    hourMinuteLabel: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+    },
+    hourMinuteLabelReverse: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+      flexDirection: 'row-reverse',
+    },
+    dateHeader: {
+      height: 65,
+    },
+    timeHeader: {
+      height: 65,
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+    },
+  });
 
-export default withStyles(styles, { withTheme: true })(withUtils()(DateTimePickerHeader));
+export default withStyles(styles, { withTheme: true })(
+  withUtils()(DateTimePickerHeader)
+);

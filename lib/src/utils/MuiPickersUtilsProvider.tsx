@@ -1,5 +1,5 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 const { Consumer, Provider } = React.createContext(null as any);
 export const MuiPickersContextConsumer = Consumer;
@@ -11,8 +11,10 @@ export interface MuiPickersUtilsProviderProps {
   moment?: any;
 }
 
-export default class MuiPickersUtilsProvider extends React.Component<MuiPickersUtilsProviderProps> {
-  static propTypes = {
+export default class MuiPickersUtilsProvider extends React.Component<
+  MuiPickersUtilsProviderProps
+> {
+  public static propTypes = {
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     children: PropTypes.oneOfType([
@@ -20,24 +22,28 @@ export default class MuiPickersUtilsProvider extends React.Component<MuiPickersU
       PropTypes.arrayOf(PropTypes.element.isRequired),
     ]).isRequired,
     moment: PropTypes.func,
-  }
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     locale: undefined,
     moment: undefined,
-  }
+  };
 
-  state = {
-    utils: null,
-  }
-
-  static getDerivedStateFromProps({ utils: Utils, locale, moment }: MuiPickersUtilsProviderProps) {
+  public static getDerivedStateFromProps({
+    utils: Utils,
+    locale,
+    moment,
+  }: MuiPickersUtilsProviderProps) {
     return {
       utils: new Utils({ locale, moment }),
     };
   }
 
-  render() {
+  public state = {
+    utils: null,
+  };
+
+  public render() {
     return <Provider value={this.state.utils} children={this.props.children} />;
   }
 }

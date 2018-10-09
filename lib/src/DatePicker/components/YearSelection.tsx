@@ -1,14 +1,16 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import DomainPropTypes, { DateType } from '../../constants/prop-types';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import { findDOMNode } from 'react-dom';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import Year from './Year';
+import DomainPropTypes, { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
+import Year from './Year';
 
-export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
+export interface YearSelectionProps
+  extends WithUtilsProps,
+    WithStyles<typeof styles> {
   date: MaterialUiPickersDate;
   minDate?: DateType;
   maxDate?: DateType;
@@ -19,7 +21,7 @@ export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof st
 }
 
 export class YearSelection extends React.PureComponent<YearSelectionProps> {
-  static propTypes = {
+  public static propTypes = {
     date: PropTypes.shape({}).isRequired,
     minDate: DomainPropTypes.date.isRequired,
     maxDate: DomainPropTypes.date.isRequired,
@@ -30,76 +32,82 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
     animateYearScrolling: PropTypes.bool,
     utils: PropTypes.object.isRequired,
     innerRef: PropTypes.any,
-  }
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     animateYearScrolling: false,
-  }
+  };
 
-  selectedYearRef?: React.ReactInstance = undefined;
+  public selectedYearRef?: React.ReactInstance = undefined;
 
-  getSelectedYearRef = (ref?: React.ReactInstance) => {
+  public getSelectedYearRef = (ref?: React.ReactInstance) => {
     this.selectedYearRef = ref;
-  }
+  };
 
-  scrollToCurrentYear = (domNode: React.ReactInstance) => {
+  public scrollToCurrentYear = (domNode: React.ReactInstance) => {
     const { animateYearScrolling } = this.props;
     const currentYearElement = findDOMNode(domNode) as Element;
 
     if (currentYearElement && currentYearElement.scrollIntoView) {
       if (animateYearScrolling) {
-        setTimeout(() => currentYearElement.scrollIntoView({ behavior: 'smooth' }), 100);
+        setTimeout(
+          () => currentYearElement.scrollIntoView({ behavior: 'smooth' }),
+          100
+        );
       } else {
         currentYearElement.scrollIntoView();
       }
     }
-  }
+  };
 
-  componentDidMount = () => {
+  public componentDidMount = () => {
     if (this.selectedYearRef) {
       this.scrollToCurrentYear(this.selectedYearRef);
     }
-  }
+  };
 
-  onYearSelect = (year: number) => {
+  public onYearSelect = (year: number) => {
     const { date, onChange, utils } = this.props;
 
     const newDate = utils.setYear(date, year);
     onChange(newDate);
-  }
+  };
 
-  render() {
+  public render() {
     const {
-      minDate, maxDate, date, classes, disablePast, disableFuture, utils,
+      minDate,
+      maxDate,
+      date,
+      classes,
+      disablePast,
+      disableFuture,
+      utils,
     } = this.props;
     const currentYear = utils.getYear(date);
 
     return (
       <div className={classes.container}>
-        {
-          utils.getYearRange(minDate, maxDate)
-            .map((year) => {
-              const yearNumber = utils.getYear(year);
-              const selected = yearNumber === currentYear;
+        {utils.getYearRange(minDate, maxDate).map(year => {
+          const yearNumber = utils.getYear(year);
+          const selected = yearNumber === currentYear;
 
-              return (
-                <Year
-                  key={utils.getYearText(year)}
-                  selected={selected}
-                  value={yearNumber}
-                  onSelect={this.onYearSelect}
-                  // @ts-ignore
-                  ref={selected ? this.getSelectedYearRef : undefined}
-                  disabled={(
-                    (disablePast && utils.isBeforeYear(year, utils.date()))
-                    || (disableFuture && utils.isAfterYear(year, utils.date()))
-                  )}
-                >
-                  {utils.getYearText(year)}
-                </Year>
-              );
-            })
-        }
+          return (
+            <Year
+              key={utils.getYearText(year)}
+              selected={selected}
+              value={yearNumber}
+              onSelect={this.onYearSelect}
+              // @ts-ignore
+              ref={selected ? this.getSelectedYearRef : undefined}
+              disabled={
+                (disablePast && utils.isBeforeYear(year, utils.date())) ||
+                (disableFuture && utils.isAfterYear(year, utils.date()))
+              }
+            >
+              {utils.getYearText(year)}
+            </Year>
+          );
+        })}
       </div>
     );
   }
@@ -111,7 +119,7 @@ const styles = createStyles({
     overflowY: 'auto',
     justifyContent: 'center',
   },
-})
+});
 
 export default withStyles(styles, { name: 'MuiPickersYearSelection' })(
   withUtils()(YearSelection as React.ComponentType<YearSelectionProps>)

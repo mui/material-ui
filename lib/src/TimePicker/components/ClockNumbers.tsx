@@ -1,12 +1,16 @@
 import * as React from 'react';
-import ClockNumber from './ClockNumber';
-import { Utils } from '../../typings/utils';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { Utils } from '../../typings/utils';
+import ClockNumber from './ClockNumber';
 
 export const getHourNumbers = ({
-  ampm, utils, date
+  ampm,
+  utils,
+  date,
 }: {
-  ampm: boolean, utils: Utils<MaterialUiPickersDate>, date: MaterialUiPickersDate
+  ampm: boolean;
+  utils: Utils<MaterialUiPickersDate>;
+  date: MaterialUiPickersDate;
 }) => {
   const currentHours = utils.getHours(date);
 
@@ -46,7 +50,13 @@ export const getHourNumbers = ({
   return hourNumbers;
 };
 
-export const getMinutesNumbers = ({ value, utils }: { value: number, utils: Utils<MaterialUiPickersDate>}) => {
+export const getMinutesNumbers = ({
+  value,
+  utils,
+}: {
+  value: number;
+  utils: Utils<MaterialUiPickersDate>;
+}) => {
   const f = utils.formatNumber;
 
   return [

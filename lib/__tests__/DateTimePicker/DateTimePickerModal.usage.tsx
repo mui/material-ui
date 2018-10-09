@@ -1,25 +1,25 @@
-import * as React from 'react'
-import { Component } from 'react';
-import { IconButton, Icon } from '@material-ui/core';
-import InputAdornment  from '@material-ui/core/InputAdornment';
-import DateTimePickerWrapper  from '../../src/DateTimePicker';
-import * as classNames from 'classnames'
-import * as PropTypes from 'prop-types'
-import * as moment from 'moment'
-import { DayComponent } from '../../src/DatePicker/components/Calendar'
+// tslint:disable max-classes-per-file
+import { Icon, IconButton } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import * as classNames from 'classnames';
+import * as moment from 'moment';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import { DayComponent } from '../../src/DatePicker/components/Calendar';
+import DateTimePickerWrapper from '../../src/DateTimePicker';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
 import { utilsToUse } from '../test-utils';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
-export default class BasicUsage extends Component {
-  state = {
+export default class BasicUsage extends React.Component {
+  public state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleChange = (date: Date) => {
+  public handleChange = (date: Date) => {
     this.setState({ selectedDate: date });
-  }
+  };
 
-  render() {
+  public render() {
     const { selectedDate } = this.state;
 
     return (
@@ -47,7 +47,9 @@ export default class BasicUsage extends Component {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton><Icon>add_alarm</Icon></IconButton>
+                <IconButton>
+                  <Icon>add_alarm</Icon>
+                </IconButton>
               </InputAdornment>
             ),
           }}
@@ -57,20 +59,24 @@ export default class BasicUsage extends Component {
   }
 }
 
-
-class CustomElements extends Component<{ classes: any }> {
-  static propTypes = {
+class CustomElements extends React.Component<{ classes: any }> {
+  public static propTypes = {
     classes: PropTypes.object.isRequired,
-  }
-  state = {
-    selectedDate: moment()
-  }
+  };
+  public state = {
+    selectedDate: moment(),
+  };
 
-  handleDateChange = (date: moment.Moment) => {
+  public handleDateChange = (date: moment.Moment) => {
     this.setState({ selectedDate: date });
-  }
+  };
 
-  renderCustomDayForDateTime = (day: moment.Moment, selectedDate: moment.Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {
+  public renderCustomDayForDateTime = (
+    day: moment.Moment,
+    selectedDate: moment.Moment,
+    dayInCurrentMonth: boolean,
+    dayComponent: DayComponent
+  ) => {
     const { classes } = this.props;
 
     const dayClassName = classNames({
@@ -83,9 +89,9 @@ class CustomElements extends Component<{ classes: any }> {
         <div className={dayClassName} />
       </div>
     );
-  }
+  };
 
-  render() {
+  public render() {
     const { selectedDate } = this.state;
 
     return (

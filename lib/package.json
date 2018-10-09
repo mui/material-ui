@@ -50,7 +50,8 @@
     "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "tslint": "^5.11.0"
   },
   "size-limit": [
     {
@@ -60,7 +61,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "typescript": "tsc -p tsconfig.json",
+    "test:typescript": "tsc --noEmit __tests__/**.usage.tsx",
     "start": "rollup --config --watch",
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
@@ -101,18 +102,16 @@
     "date-fns": "2.0.0-alpha.16",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "^5.6.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
     "fs-extra": "^7.0.0",
     "full-icu": "^1.2.1",
     "glob": "^7.1.2",
+    "husky": "^1.1.1",
     "jest": "^22.0.1",
+    "lint-staged": "^7.3.0",
     "luxon": "^1.4.0",
     "moment": "^2.22.1",
     "np": "^2.20.1",
+    "prettier": "^1.14.3",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -126,7 +125,19 @@
     "size-limit": "^0.18.5",
     "ts-jest": "^23.10.4",
     "ts-lib": "0.0.5",
+    "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",

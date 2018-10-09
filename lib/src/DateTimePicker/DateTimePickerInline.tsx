@@ -1,18 +1,20 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
+import { Omit } from '@material-ui/core';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
 import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
 import DateTimePicker, { BaseDateTimePickerProps } from './DateTimePicker';
-import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import { Omit } from '@material-ui/core';
 
-export interface DateTimePickerInlineProps extends
-  BasePickerProps,
-  BaseDateTimePickerProps,
-  Omit<InlineWrapperProps, 'onChange' | 'value'> {}
+export interface DateTimePickerInlineProps
+  extends BasePickerProps,
+    BaseDateTimePickerProps,
+    Omit<InlineWrapperProps, 'onChange' | 'value'> {}
 
-export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = (props) => {
+export const DateTimePickerInline: React.SFC<
+  DateTimePickerInlineProps
+> = props => {
   const {
     value,
     format,
@@ -40,52 +42,53 @@ export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = (props
 
   return (
     <BasePicker {...props} autoOk>
-      {
-        ({
-          date,
-          utils,
-          handleChange,
-          handleTextFieldChange,
-          isAccepted,
-          pick12hOr24hFormat,
-          handleAccept,
-        }) => (
-          <InlineWrapper
-            innerRef={forwardedRef}
+      {({
+        date,
+        utils,
+        handleChange,
+        handleTextFieldChange,
+        isAccepted,
+        pick12hOr24hFormat,
+        handleAccept,
+      }) => (
+        <InlineWrapper
+          innerRef={forwardedRef}
+          disableFuture={disableFuture}
+          disablePast={disablePast}
+          maxDate={maxDate}
+          minDate={minDate}
+          onChange={handleTextFieldChange}
+          value={value}
+          isAccepted={isAccepted}
+          handleAccept={handleAccept}
+          format={pick12hOr24hFormat(
+            utils.dateTime12hFormat,
+            utils.dateTime24hFormat
+          )}
+          {...other}
+        >
+          <DateTimePicker
+            allowKeyboardControl={allowKeyboardControl}
+            ampm={ampm}
+            animateYearScrolling={animateYearScrolling}
+            autoSubmit={autoSubmit}
+            date={date}
+            dateRangeIcon={dateRangeIcon}
             disableFuture={disableFuture}
             disablePast={disablePast}
+            leftArrowIcon={leftArrowIcon}
             maxDate={maxDate}
             minDate={minDate}
-            onChange={handleTextFieldChange}
-            value={value}
-            isAccepted={isAccepted}
-            handleAccept={handleAccept}
-            format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
-            {...other}
-          >
-            <DateTimePicker
-              allowKeyboardControl={allowKeyboardControl}
-              ampm={ampm}
-              animateYearScrolling={animateYearScrolling}
-              autoSubmit={autoSubmit}
-              date={date}
-              dateRangeIcon={dateRangeIcon}
-              disableFuture={disableFuture}
-              disablePast={disablePast}
-              leftArrowIcon={leftArrowIcon}
-              maxDate={maxDate}
-              minDate={minDate}
-              onChange={handleChange}
-              openTo={openTo}
-              renderDay={renderDay}
-              rightArrowIcon={rightArrowIcon}
-              shouldDisableDate={shouldDisableDate}
-              showTabs={showTabs}
-              timeIcon={timeIcon}
-            />
-          </InlineWrapper>
-        )
-      }
+            onChange={handleChange}
+            openTo={openTo}
+            renderDay={renderDay}
+            rightArrowIcon={rightArrowIcon}
+            shouldDisableDate={shouldDisableDate}
+            showTabs={showTabs}
+            timeIcon={timeIcon}
+          />
+        </InlineWrapper>
+      )}
     </BasePicker>
   );
 };
@@ -139,6 +142,6 @@ export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = (props
   allowKeyboardControl: true,
 };
 
-export default React.forwardRef((props: DateTimePickerInlineProps, ref) =>
-  <DateTimePickerInline {...props} forwardedRef={ref} />,
-);
+export default React.forwardRef((props: DateTimePickerInlineProps, ref) => (
+  <DateTimePickerInline {...props} forwardedRef={ref} />
+));

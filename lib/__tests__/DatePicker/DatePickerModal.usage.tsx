@@ -1,25 +1,27 @@
-import * as React from 'react'
-import * as PropTypes from 'prop-types';
-import { Fragment, Component } from 'react';
-import DatePickerWrapper  from '../../src/DatePicker';
-import { IconButton } from '@material-ui/core'
+// tslint:disable max-classes-per-file
+import { IconButton } from '@material-ui/core';
 import * as classNames from 'classnames';
-import { Moment } from 'moment'
-import { DayComponent } from '../../src/DatePicker/components/Calendar'
+import { Moment } from 'moment';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import DatePickerWrapper from '../../src/DatePicker';
+import { DayComponent } from '../../src/DatePicker/components/Calendar';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
 import { utilsToUse } from '../test-utils';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
 // initially from the docs site
-export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
-  state = {
+export default class BasicUsage extends React.Component<
+  {},
+  { selectedDate: Date }
+> {
+  public state = {
     selectedDate: new Date(),
-
-  }
-  handleChange = (date: Moment | Date) => {
+  };
+  public handleChange = (date: Moment | Date) => {
     this.setState({ selectedDate: date as Date });
-  }
+  };
 
-  render() {
+  public render() {
     const { selectedDate } = this.state;
 
     return (
@@ -37,39 +39,55 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
   }
 }
 
-class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
-  static propTypes = {
+class CustomElements extends React.Component<
+  { classes: any },
+  { selectedDate: Date }
+> {
+  public static propTypes = {
     classes: PropTypes.object.isRequired,
-  }
-  state = {
+  };
+  public state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleDateChange = (date: Moment | Date) => {
+  public handleDateChange = (date: Moment | Date) => {
     this.setState({ selectedDate: (date as Moment).toDate() });
-  }
+  };
 
-  formatWeekSelectLabel = (date: Moment, invalidLabel: string) => {
+  public formatWeekSelectLabel = (date: Moment, invalidLabel: string) => {
     if (date === null) {
       return '';
     }
 
-    return date && date.isValid() 
-      ? `Week of ${date.clone().startOf('week').format('MMM Do')}`
+    return date && date.isValid()
+      ? `Week of ${date
+          .clone()
+          .startOf('week')
+          .format('MMM Do')}`
       : invalidLabel;
-  }
+  };
 
-  renderWrappedDefaultDay = (day: Moment, selectedDate: Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {
+  public renderWrappedDefaultDay = (
+    day: Moment,
+    selectedDate: Moment,
+    dayInCurrentMonth: boolean,
+    dayComponent: DayComponent
+  ) => {
     const { classes } = this.props;
 
-    const startDate = selectedDate.clone().day(0).startOf('day');
-    const endDate = selectedDate.clone().day(6).endOf('day');
+    const startDate = selectedDate
+      .clone()
+      .day(0)
+      .startOf('day');
+    const endDate = selectedDate
+      .clone()
+      .day(6)
+      .endOf('day');
 
-    const dayIsBetween = (
+    const dayIsBetween =
       day.isSame(startDate) ||
       day.isSame(endDate) ||
-      (day.isAfter(startDate) && day.isBefore(endDate))
-    );
+      (day.isAfter(startDate) && day.isBefore(endDate));
 
     const firstDay = day.isSame(startDate, 'day');
     const lastDay = day.isSame(endDate, 'day');
@@ -88,24 +106,24 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { day.format('DD')} </span>
+          <span> {day.format('DD')} </span>
         </IconButton>
       </div>
     );
-  }
+  };
 
-  render() {
+  public render() {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <React.Fragment>
         <DatePickerWrapper
           value={selectedDate}
           onChange={this.handleDateChange}
           renderDay={this.renderWrappedDefaultDay}
           labelFunc={this.formatWeekSelectLabel}
         />
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

@@ -1,6 +1,6 @@
-import { MaterialUiPickersDate } from "../typings/date";
-import { MeridiemMode } from "../DateTimePicker/components/DateTimePickerHeader";
-import { Utils } from "../typings/utils";
+import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
+import { MaterialUiPickersDate } from '../typings/date';
+import { Utils } from '../typings/utils';
 
 const center = {
   x: 260 / 2,
@@ -28,7 +28,6 @@ const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
   deg %= 360;
 
   const value = Math.floor(deg / step) || 0;
-  // eslint-disable-next-line no-restricted-properties
   const delta = Math.pow(x, 2) + Math.pow(y, 2);
   const distance = Math.sqrt(delta);
 
@@ -36,7 +35,7 @@ const getAngleValue = (step: number, offsetX: number, offsetY: number) => {
 };
 
 export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
-  // eslint-disable-next-line
+  // tslint:disable-next-line
   let { value, distance } = getAngleValue(30, offsetX, offsetY);
   value = value || 12;
 
@@ -67,9 +66,10 @@ export const convertToMeridiem = (
   if (ampm) {
     const currentMeridiem = utils.getHours(time) >= 12 ? 'pm' : 'am';
     if (currentMeridiem !== meridiem) {
-      const hours = meridiem === 'am'
-        ? utils.getHours(time) - 12
-        : utils.getHours(time) + 12;
+      const hours =
+        meridiem === 'am'
+          ? utils.getHours(time) - 12
+          : utils.getHours(time) + 12;
 
       return utils.setHours(time, hours);
     }

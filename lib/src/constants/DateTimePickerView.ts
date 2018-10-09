@@ -8,4 +8,4 @@ enum DateTimePickerView {
   MINUTES = 'minutes',
 }
 
-export default DateTimePickerView
+export default DateTimePickerView;

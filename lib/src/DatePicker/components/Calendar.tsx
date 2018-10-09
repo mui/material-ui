@@ -1,34 +1,36 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import * as keycode_ from 'keycode';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import * as keycode_ from 'keycode';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import EventListener from 'react-event-listener';
 
+import { Theme } from '@material-ui/core';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
+import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import DomainPropTypes, { DateType } from '../../constants/prop-types';
+import { MaterialUiPickersDate } from '../../typings/date';
 import CalendarHeader from './CalendarHeader';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
-import DomainPropTypes, { DateType } from '../../constants/prop-types';
-import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-import { MaterialUiPickersDate } from '../../typings/date';
-import { IconButtonProps } from '@material-ui/core/IconButton';
-import { Theme } from '@material-ui/core';
 
 // Workaround to work with synthetic imports both for jest and rollup
 // https://github.com/rollup/rollup/issues/670
 // https://github.com/kulshekhar/ts-jest/issues/146
-const keycode = keycode_
+const keycode = keycode_;
 
 export type DayComponent = React.ReactElement<IconButtonProps>;
 export type RenderDay = (
   day: MaterialUiPickersDate,
   selectedDate: MaterialUiPickersDate,
   dayInCurrentMonth: boolean,
-  dayComponent: DayComponent,
+  dayComponent: DayComponent
 ) => JSX.Element;
 
-export interface CalendarProps extends WithUtilsProps, WithStyles<typeof styles, true> {
+export interface CalendarProps
+  extends WithUtilsProps,
+    WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   minDate: DateType;
   maxDate: DateType;
@@ -49,7 +51,7 @@ export interface CalendarState {
 }
 
 export class Calendar extends React.Component<CalendarProps, CalendarState> {
-  static propTypes = {
+  public static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -64,10 +66,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     shouldDisableDate: PropTypes.func,
     utils: PropTypes.object.isRequired,
     allowKeyboardControl: PropTypes.bool,
-    innerRef: PropTypes.any
+    innerRef: PropTypes.any,
   };
 
-  static defaultProps = {
+  public static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     disablePast: false,
@@ -79,12 +81,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     shouldDisableDate: () => false,
   };
 
-  state: CalendarState = {
-    slideDirection: 'left',
-    currentMonth: this.props.utils.getStartOfMonth(this.props.date),
-  };
-
-  static getDerivedStateFromProps(nextProps: CalendarProps, state: CalendarState) {
+  public static getDerivedStateFromProps(
+    nextProps: CalendarProps,
+    state: CalendarState
+  ) {
     if (!nextProps.utils.isEqual(nextProps.date, state.lastDate)) {
       return {
         lastDate: nextProps.date,
@@ -95,85 +95,101 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     return null;
   }
 
-  componentDidMount() {
+  public state: CalendarState = {
+    slideDirection: 'left',
+    currentMonth: this.props.utils.getStartOfMonth(this.props.date),
+  };
+
+  public componentDidMount() {
     const {
-      date, minDate, maxDate, utils, disableFuture, disablePast,
+      date,
+      minDate,
+      maxDate,
+      utils,
+      disableFuture,
+      disablePast,
     } = this.props;
 
     if (this.shouldDisableDate(date)) {
-      this.onDateSelect(findClosestEnabledDate({
-        date,
-        utils,
-        minDate,
-        maxDate,
-        disablePast: Boolean(disablePast),
-        disableFuture: Boolean(disablePast),
-        shouldDisableDate: this.shouldDisableDate,
-      }), false);
+      this.onDateSelect(
+        findClosestEnabledDate({
+          date,
+          utils,
+          minDate,
+          maxDate,
+          disablePast: Boolean(disablePast),
+          disableFuture: Boolean(disablePast),
+          shouldDisableDate: this.shouldDisableDate,
+        }),
+        false
+      );
     }
   }
 
-  onDateSelect = (day: MaterialUiPickersDate, isFinish = true) => {
+  public onDateSelect = (day: MaterialUiPickersDate, isFinish = true) => {
     const { date, utils } = this.props;
 
     this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
   };
 
-  handleChangeMonth = (newMonth: MaterialUiPickersDate, slideDirection: SlideDirection) => {
+  public handleChangeMonth = (
+    newMonth: MaterialUiPickersDate,
+    slideDirection: SlideDirection
+  ) => {
     this.setState({ currentMonth: newMonth, slideDirection });
   };
 
-  validateMinMaxDate = (day: MaterialUiPickersDate) => {
+  public validateMinMaxDate = (day: MaterialUiPickersDate) => {
     const { minDate, maxDate, utils } = this.props;
 
     return (
-      (minDate && utils.isBeforeDay(day, utils.date(minDate)))
-      || (maxDate && utils.isAfterDay(day, utils.date(maxDate)))
+      (minDate && utils.isBeforeDay(day, utils.date(minDate))) ||
+      (maxDate && utils.isAfterDay(day, utils.date(maxDate)))
     );
   };
 
-  shouldDisablePrevMonth = () => {
+  public shouldDisablePrevMonth = () => {
     const { utils, disablePast, minDate } = this.props;
     const now = utils.date();
     return !utils.isBefore(
-      utils.getStartOfMonth(disablePast && utils.isAfter(now, minDate)
-        ? now
-        : utils.date(minDate)),
-      this.state.currentMonth,
+      utils.getStartOfMonth(
+        disablePast && utils.isAfter(now, minDate) ? now : utils.date(minDate)
+      ),
+      this.state.currentMonth
     );
   };
 
-  shouldDisableNextMonth = () => {
+  public shouldDisableNextMonth = () => {
     const { utils, disableFuture, maxDate } = this.props;
     const now = utils.date();
     return !utils.isAfter(
-      utils.getStartOfMonth(disableFuture && utils.isBefore(now, maxDate)
-        ? now
-        : utils.date(maxDate)),
-      this.state.currentMonth,
+      utils.getStartOfMonth(
+        disableFuture && utils.isBefore(now, maxDate)
+          ? now
+          : utils.date(maxDate)
+      ),
+      this.state.currentMonth
     );
   };
 
-  shouldDisableDate = (day: MaterialUiPickersDate) => {
-    const {
-      disablePast, disableFuture, shouldDisableDate, utils,
-    } = this.props;
+  public shouldDisableDate = (day: MaterialUiPickersDate) => {
+    const { disablePast, disableFuture, shouldDisableDate, utils } = this.props;
 
     return Boolean(
-      (disableFuture && utils.isAfterDay(day, utils.date()))
-      || (disablePast && utils.isBeforeDay(day, utils.date()))
-      || this.validateMinMaxDate(day)
-      || shouldDisableDate && shouldDisableDate(day)
+      (disableFuture && utils.isAfterDay(day, utils.date())) ||
+        (disablePast && utils.isBeforeDay(day, utils.date())) ||
+        this.validateMinMaxDate(day) ||
+        (shouldDisableDate && shouldDisableDate(day))
     );
   };
 
-  moveToDay = (day: MaterialUiPickersDate) => {
+  public moveToDay = (day: MaterialUiPickersDate) => {
     if (day && !this.shouldDisableDate(day)) {
       this.onDateSelect(day, false);
     }
-  }
+  };
 
-  handleKeyDown = (event: KeyboardEvent) => {
+  public handleKeyDown = (event: KeyboardEvent) => {
     const { theme, date, utils } = this.props;
 
     switch (keycode(event)) {
@@ -202,7 +218,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     event.preventDefault();
   };
 
-  renderWeeks = () => {
+  public renderWeeks = () => {
     const { utils } = this.props;
     const { currentMonth } = this.state;
     const weeks = utils.getWeekArray(currentMonth);
@@ -215,16 +231,16 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         {this.renderDays(week)}
       </div>
     ));
-  }
+  };
 
-  renderDays = (week: MaterialUiPickersDate[]) => {
+  public renderDays = (week: MaterialUiPickersDate[]) => {
     const { date, renderDay, utils } = this.props;
 
     const selectedDate = utils.startOfDay(date);
     const currentMonthNumber = utils.getMonth(this.state.currentMonth);
     const now = utils.date();
 
-    return week.map((day) => {
+    return week.map(day => {
       const disabled = this.shouldDisableDate(day);
       const dayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
@@ -240,7 +256,12 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       );
 
       if (renderDay) {
-        dayComponent = renderDay(day, selectedDate, dayInCurrentMonth, dayComponent);
+        dayComponent = renderDay(
+          day,
+          selectedDate,
+          dayInCurrentMonth,
+          dayComponent
+        );
       }
 
       return (
@@ -257,16 +278,15 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     });
   };
 
-  render() {
+  public render() {
     const { currentMonth, slideDirection } = this.state;
     const { classes, utils, allowKeyboardControl } = this.props;
 
     return (
       <React.Fragment>
-        {
-          allowKeyboardControl
-            && <EventListener target="window" onKeyDown={this.handleKeyDown} />
-        }
+        {allowKeyboardControl && (
+          <EventListener target="window" onKeyDown={this.handleKeyDown} />
+        )}
 
         <CalendarHeader
           slideDirection={slideDirection}

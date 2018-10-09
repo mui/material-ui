@@ -18,7 +18,7 @@ jobs:
       script: npx codecov
 
     - stage: typescript
-      script: npm run typescript
+      script: npm run test:typescript
 
     - stage: build
       script: npm run build && size-limit

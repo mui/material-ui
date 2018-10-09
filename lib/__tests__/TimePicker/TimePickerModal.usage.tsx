@@ -1,20 +1,24 @@
-import * as React from 'react'
-import TimePickerWrapper  from '../../src/TimePicker';
-import { Moment } from 'moment'
+// tslint:disable max-classes-per-file
+import { Moment } from 'moment';
+import * as React from 'react';
+import TimePickerWrapper from '../../src/TimePicker';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
 import { utilsToUse } from '../test-utils';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
 // initially from the docs site
-export default class BasicUsage extends React.Component<{}, {selectedDate: Date}> {
-  state = {
+export default class BasicUsage extends React.Component<
+  {},
+  { selectedDate: Date }
+> {
+  public state = {
     selectedDate: new Date(),
-  }
+  };
 
-  handleChange = (date: Moment | Date) => {
-    this.setState({ selectedDate: (date as Date) });
-  }
+  public handleChange = (date: Moment | Date) => {
+    this.setState({ selectedDate: date as Date });
+  };
 
-  render() {
+  public render() {
     const { selectedDate } = this.state;
 
     return (
@@ -26,7 +30,7 @@ export default class BasicUsage extends React.Component<{}, {selectedDate: Date}
           value={selectedDate}
           onChange={this.handleChange}
           DialogProps={{
-            contentEditable: true
+            contentEditable: true,
           }}
         />
       </MuiUtilsProvider>

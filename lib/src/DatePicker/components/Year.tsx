@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
-import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
+import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import classnames from 'classnames';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 export interface YearProps extends WithStyles<typeof styles> {
   children: React.ReactNode;
@@ -15,28 +15,33 @@ export interface YearProps extends WithStyles<typeof styles> {
 }
 
 export class Year extends React.PureComponent<YearProps> {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     selected: PropTypes.bool,
     value: PropTypes.any.isRequired,
-    innerRef: PropTypes.any
-  }
+    innerRef: PropTypes.any,
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     selected: false,
     disabled: false,
-  }
+  };
 
-  handleClick = () => {
+  public handleClick = () => {
     this.props.onSelect(this.props.value);
-  }
+  };
 
-  render() {
+  public render() {
     const {
-      classes, selected, disabled, value, children, ...other
+      classes,
+      selected,
+      disabled,
+      value,
+      children,
+      ...other
     } = this.props;
 
     return (
@@ -60,27 +65,30 @@ export class Year extends React.PureComponent<YearProps> {
   }
 }
 
-const styles = (theme: Theme) => createStyles({
-  root: {
-    height: theme.spacing.unit * 5,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    outline: 'none',
-    '&:focus': {
-      color: theme.palette.primary.main,
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      height: theme.spacing.unit * 5,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      cursor: 'pointer',
+      outline: 'none',
+      '&:focus': {
+        color: theme.palette.primary.main,
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+    },
+    selected: {
+      margin: '10px 0',
       fontWeight: theme.typography.fontWeightMedium,
     },
-  },
-  selected: {
-    margin: '10px 0',
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  disabled: {
-    pointerEvents: 'none',
-    color: theme.palette.text.hint,
-  },
-});
+    disabled: {
+      pointerEvents: 'none',
+      color: theme.palette.text.hint,
+    },
+  });
 
-export default withStyles(styles, { name: 'MuiPickersYear' })(Year as React.ComponentClass<YearProps>);
+export default withStyles(styles, { name: 'MuiPickersYear' })(
+  Year as React.ComponentClass<YearProps>
+);

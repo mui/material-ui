@@ -1,22 +1,21 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
-import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
-import DatePicker, { BaseDatePickerProps } from './DatePicker';
-import DomainPropTypes from '../constants/prop-types';
-import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import Calendar from './components/Calendar';
 import { Omit } from '@material-ui/core';
+import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
+import DomainPropTypes from '../constants/prop-types';
+import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
+import Calendar from './components/Calendar';
+import DatePicker, { BaseDatePickerProps } from './DatePicker';
 
-export interface DatePickerInlineProps extends
-  Omit<BasePickerProps, 'ampm'>,
-  BaseDatePickerProps,
-  Omit<InlineWrapperProps, 'onChange' | 'value' | 'utils' | 'onlyCalendar' > {
-    onlyCalendar?: boolean
-  }
+export interface DatePickerInlineProps
+  extends Omit<BasePickerProps, 'ampm'>,
+    BaseDatePickerProps,
+    Omit<InlineWrapperProps, 'onChange' | 'value' | 'utils' | 'onlyCalendar'> {
+  onlyCalendar?: boolean;
+}
 
-
-export const DatePickerInline: React.SFC<DatePickerInlineProps> = (props) => {
+export const DatePickerInline: React.SFC<DatePickerInlineProps> = props => {
   const {
     allowKeyboardControl,
     animateYearScrolling,
@@ -44,47 +43,45 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = (props) => {
 
   return (
     <BasePicker {...props} autoOk>
-      {
-        ({
-          date,
-          utils,
-          isAccepted,
-          handleChange,
-          handleTextFieldChange,
-          handleAccept,
-        }) => (
-          <InlineWrapper
+      {({
+        date,
+        utils,
+        isAccepted,
+        handleChange,
+        handleTextFieldChange,
+        handleAccept,
+      }) => (
+        <InlineWrapper
+          disableFuture={disableFuture}
+          disablePast={disablePast}
+          format={format || utils.dateFormat}
+          labelFunc={labelFunc}
+          maxDate={maxDate}
+          minDate={minDate}
+          onChange={handleTextFieldChange}
+          innerRef={forwardedRef}
+          value={value}
+          isAccepted={isAccepted}
+          handleAccept={handleAccept}
+          {...other}
+        >
+          <ComponentToShow
+            date={date}
+            allowKeyboardControl={allowKeyboardControl}
+            animateYearScrolling={animateYearScrolling}
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format || utils.dateFormat}
-            labelFunc={labelFunc}
+            leftArrowIcon={leftArrowIcon}
             maxDate={maxDate}
             minDate={minDate}
-            onChange={handleTextFieldChange}
-            innerRef={forwardedRef}
-            value={value}
-            isAccepted={isAccepted}
-            handleAccept={handleAccept}
-            {...other}
-          >
-            <ComponentToShow
-              date={date}
-              allowKeyboardControl={allowKeyboardControl}
-              animateYearScrolling={animateYearScrolling}
-              disableFuture={disableFuture}
-              disablePast={disablePast}
-              leftArrowIcon={leftArrowIcon}
-              maxDate={maxDate}
-              minDate={minDate}
-              onChange={handleChange}
-              openToYearSelection={openToYearSelection}
-              renderDay={renderDay}
-              rightArrowIcon={rightArrowIcon}
-              shouldDisableDate={shouldDisableDate}
-            />
-          </InlineWrapper>
-        )
-      }
+            onChange={handleChange}
+            openToYearSelection={openToYearSelection}
+            renderDay={renderDay}
+            rightArrowIcon={rightArrowIcon}
+            shouldDisableDate={shouldDisableDate}
+          />
+        </InlineWrapper>
+      )}
     </BasePicker>
   );
 };

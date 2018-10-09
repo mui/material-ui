@@ -1,41 +1,48 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 export interface DayWrapperProps {
   children: React.ReactNode;
-  dayInCurrentMonth?: boolean,
+  dayInCurrentMonth?: boolean;
   disabled?: boolean;
   onSelect: (value: any) => void;
   value: any;
 }
 
 class DayWrapper extends React.PureComponent<DayWrapperProps> {
-  static propTypes = {
+  public static propTypes = {
     children: PropTypes.node.isRequired,
     dayInCurrentMonth: PropTypes.bool,
     disabled: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     value: PropTypes.any.isRequired,
-  }
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     dayInCurrentMonth: true,
     disabled: false,
-  }
+  };
 
-  handleClick = () => {
+  public handleClick = () => {
     this.props.onSelect(this.props.value);
-  }
+  };
 
-  render() {
+  public render() {
     const {
-      children, value, dayInCurrentMonth, disabled, onSelect, ...other
+      children,
+      value,
+      dayInCurrentMonth,
+      disabled,
+      onSelect,
+      ...other
     } = this.props;
 
     return (
       <div
         onClick={dayInCurrentMonth && !disabled ? this.handleClick : undefined}
-        onKeyPress={dayInCurrentMonth && !disabled ? this.handleClick : undefined}
+        onKeyPress={
+          dayInCurrentMonth && !disabled ? this.handleClick : undefined
+        }
         role="presentation"
         {...other}
       >

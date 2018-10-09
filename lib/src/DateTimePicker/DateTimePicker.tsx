@@ -1,25 +1,27 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
-import View from './components/DateTimePickerView';
-import YearSelection from '../DatePicker/components/YearSelection';
-import Calendar from '../DatePicker/components/Calendar';
-import TimePickerView from '../TimePicker/components/TimePickerView';
-import DateTimePickerTabs from './components/DateTimePickerTabs';
-import DatetimePickerHeader, { MeridiemMode } from './components/DateTimePickerHeader';
 import { convertToMeridiem } from '../_helpers/time-utils';
+import Calendar from '../DatePicker/components/Calendar';
+import YearSelection from '../DatePicker/components/YearSelection';
+import TimePickerView from '../TimePicker/components/TimePickerView';
+import DatetimePickerHeader, {
+  MeridiemMode,
+} from './components/DateTimePickerHeader';
+import DateTimePickerTabs from './components/DateTimePickerTabs';
+import View from './components/DateTimePickerView';
 
-import DomainPropTypes from '../constants/prop-types';
-import DateTimePickerView from '../constants/DateTimePickerView';
-import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
-import { BaseDatePickerProps } from '../DatePicker/DatePicker';
-import { MaterialUiPickersDate } from '../typings/date';
 import { Omit } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
+import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
+import DateTimePickerView from '../constants/DateTimePickerView';
+import DomainPropTypes from '../constants/prop-types';
+import { BaseDatePickerProps } from '../DatePicker/DatePicker';
+import { MaterialUiPickersDate } from '../typings/date';
 
-
-export interface BaseDateTimePickerProps extends Omit<BaseDatePickerProps, 'openToYearSelection'>{
+export interface BaseDateTimePickerProps
+  extends Omit<BaseDatePickerProps, 'openToYearSelection'> {
   autoSubmit?: boolean;
   showTabs?: boolean;
   ampm?: boolean;
@@ -29,9 +31,16 @@ export interface BaseDateTimePickerProps extends Omit<BaseDatePickerProps, 'open
   ViewContainerComponent?: string | React.ComponentType<any>;
 }
 
-export interface DateTimePickerProps extends BaseDateTimePickerProps, WithStyles<typeof styles>, WithUtilsProps {
+export interface DateTimePickerProps
+  extends BaseDateTimePickerProps,
+    WithStyles<typeof styles>,
+    WithUtilsProps {
   date: MaterialUiPickersDate;
-  onChange: (date: MaterialUiPickersDate, isFinished: boolean, view?: DateTimePickerView) => void;
+  onChange: (
+    date: MaterialUiPickersDate,
+    isFinished: boolean,
+    view?: DateTimePickerView
+  ) => void;
 }
 
 interface DateTimePickerState {
@@ -39,8 +48,11 @@ interface DateTimePickerState {
   meridiemMode: MeridiemMode;
 }
 
-export class DateTimePicker extends React.Component<DateTimePickerProps, DateTimePickerState> {
-  static propTypes = {
+export class DateTimePicker extends React.Component<
+  DateTimePickerProps,
+  DateTimePickerState
+> {
+  public static propTypes = {
     allowKeyboardControl: PropTypes.bool,
     ampm: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
@@ -56,18 +68,23 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
     maxDate: DomainPropTypes.date.isRequired,
     minDate: DomainPropTypes.date.isRequired,
     onChange: PropTypes.func.isRequired,
-    openTo: PropTypes.oneOf(Object.keys(DateTimePickerView).map(key => DateTimePickerView[key])).isRequired,
+    openTo: PropTypes.oneOf(
+      Object.keys(DateTimePickerView).map(key => DateTimePickerView[key])
+    ).isRequired,
     renderDay: PropTypes.func,
     rightArrowIcon: PropTypes.node,
     shouldDisableDate: PropTypes.func,
     showTabs: PropTypes.bool,
     timeIcon: PropTypes.node,
     utils: PropTypes.object.isRequired,
-    ViewContainerComponent:
-      PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
-  }
+    ViewContainerComponent: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+      PropTypes.object,
+    ]),
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     allowKeyboardControl: false,
     ampm: true,
     animateYearScrolling: false,
@@ -82,56 +99,66 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
     showTabs: true,
     timeIcon: undefined,
     ViewContainerComponent: 'div',
-  }
+  };
 
-  state: DateTimePickerState = {
+  public state: DateTimePickerState = {
     openView: this.props.openTo!,
-    meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
-  }
+    meridiemMode:
+      this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
+  };
 
-  onChange = (time: MaterialUiPickersDate, isFinish = true, nextView: DateTimePickerView) => {
+  public onChange = (
+    time: MaterialUiPickersDate,
+    isFinish = true,
+    nextView: DateTimePickerView
+  ) => {
     this.handleChange(time);
 
     if (isFinish && this.props.autoSubmit) {
       this.handleViewChange(nextView);
     }
-  }
+  };
 
-  setMeridiemMode = (mode: MeridiemMode) => () => {
-    this.setState(
-      { meridiemMode: mode },
-      () => this.handleChange(this.props.date, false),
+  public setMeridiemMode = (mode: MeridiemMode) => () => {
+    this.setState({ meridiemMode: mode }, () =>
+      this.handleChange(this.props.date, false)
     );
-  }
+  };
 
-  handleViewChange = (view: DateTimePickerView) => {
+  public handleViewChange = (view: DateTimePickerView) => {
     this.setState({ openView: view });
-  }
+  };
 
-  handleChange = (time: MaterialUiPickersDate, isFinish = false) => {
+  public handleChange = (time: MaterialUiPickersDate, isFinish = false) => {
     const withMeridiem = convertToMeridiem(
       time,
       this.state.meridiemMode,
       Boolean(this.props.ampm),
-      this.props.utils,
+      this.props.utils
     );
 
     this.props.onChange(withMeridiem, isFinish);
-  }
+  };
 
-  handleYearChange = (date: MaterialUiPickersDate) => {
+  public handleYearChange = (date: MaterialUiPickersDate) => {
     this.onChange(date, false, DateTimePickerView.DATE);
-  }
+  };
 
-  handleDayChange = (date: MaterialUiPickersDate, isFinish?: boolean) => {
+  public handleDayChange = (
+    date: MaterialUiPickersDate,
+    isFinish?: boolean
+  ) => {
     this.onChange(date, isFinish, DateTimePickerView.HOUR);
-  }
+  };
 
-  handleHourChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
+  public handleHourChange = (
+    time: MaterialUiPickersDate,
+    isFinish?: boolean
+  ) => {
     this.onChange(time, isFinish, DateTimePickerView.MINUTES);
-  }
+  };
 
-  render() {
+  public render() {
     const { openView, meridiemMode } = this.state;
     const {
       date,
@@ -153,10 +180,11 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
       ViewContainerComponent,
     } = this.props;
 
-    const Container = ViewContainerComponent!
-    const ViewContainerComponentProps = typeof ViewContainerComponent === 'string'
-      ? {}
-      : { openView, onChange: this.onChange };
+    const Container = ViewContainerComponent!;
+    const ViewContainerComponentProps =
+      typeof ViewContainerComponent === 'string'
+        ? {}
+        : { openView, onChange: this.onChange };
 
     return (
       <React.Fragment>
@@ -169,18 +197,19 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
           ampm={ampm}
         />
 
-        {
-          showTabs && (
-            <DateTimePickerTabs
-              view={openView}
-              onChange={this.handleViewChange}
-              dateRangeIcon={dateRangeIcon}
-              timeIcon={timeIcon}
-            />
-          )
-        }
+        {showTabs && (
+          <DateTimePickerTabs
+            view={openView}
+            onChange={this.handleViewChange}
+            dateRangeIcon={dateRangeIcon}
+            timeIcon={timeIcon}
+          />
+        )}
 
-        <Container className={classes.viewContainer} {...ViewContainerComponentProps}>
+        <Container
+          className={classes.viewContainer}
+          {...ViewContainerComponentProps}
+        >
           <View selected={openView === DateTimePickerView.YEAR}>
             <YearSelection
               date={date}
@@ -209,7 +238,12 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
             />
           </View>
 
-          <View selected={openView === DateTimePickerView.HOUR || openView === DateTimePickerView.MINUTES}>
+          <View
+            selected={
+              openView === DateTimePickerView.HOUR ||
+              openView === DateTimePickerView.MINUTES
+            }
+          >
             <TimePickerView
               date={date}
               type={openView as any} // here type is actually the same but 2 enums not equal
@@ -230,8 +264,8 @@ const styles = createStyles({
     minHeight: 300,
     position: 'relative',
   },
-})
+});
 
 export default withStyles(styles, {
-  name: "MuiPickersDateTimePicker"
+  name: 'MuiPickersDateTimePicker',
 })(withUtils()(DateTimePicker as React.ComponentType<DateTimePickerProps>));

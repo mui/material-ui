@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import classnames from 'classnames';
-import ClockType from '../../constants/ClockType';
 import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import classnames from 'classnames';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import ClockType from '../../constants/ClockType';
 
 export interface ClockPointerProps extends WithStyles<typeof styles> {
   value: number;
@@ -14,21 +14,20 @@ export interface ClockPointerProps extends WithStyles<typeof styles> {
 }
 
 export class ClockPointer extends React.Component<ClockPointerProps> {
-  static propTypes = {
+  public static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
     isInner: PropTypes.bool.isRequired,
     innerRef: PropTypes.any,
-    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
-  }
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key]))
+      .isRequired,
+  };
 
-  state = {
-    toAnimateTransform: false,
-    previousType: undefined, // eslint-disable-line
-  }
-
-  static getDerivedStateFromProps = (nextProps: ClockPointerProps, state: ClockPointer["state"]) => {
+  public static getDerivedStateFromProps = (
+    nextProps: ClockPointerProps,
+    state: ClockPointer['state']
+  ) => {
     if (nextProps.type !== state.previousType) {
       return {
         toAnimateTransform: true,
@@ -40,9 +39,14 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
       toAnimateTransform: false,
       previousType: nextProps.type,
     };
-  }
+  };
 
-  getAngleStyle = () => {
+  public state = {
+    toAnimateTransform: false,
+    previousType: undefined, // eslint-disable-line
+  };
+
+  public getAngleStyle = () => {
     const { value, isInner, type } = this.props;
 
     const max = type === ClockType.HOURS ? 12 : 60;
@@ -56,9 +60,9 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
       height: isInner ? '26%' : '40%',
       transform: `rotateZ(${angle}deg)`,
     };
-  }
+  };
 
-  render() {
+  public render() {
     const { classes, hasSelected } = this.props;
 
     return (
@@ -68,41 +72,45 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
           [classes.animateTransform]: this.state.toAnimateTransform,
         })}
       >
-        <div className={classnames(classes.thumb, { [classes.noPoint]: hasSelected })} />
+        <div
+          className={classnames(classes.thumb, {
+            [classes.noPoint]: hasSelected,
+          })}
+        />
       </div>
     );
   }
 }
 
-const styles = (theme: Theme) => createStyles({
-  pointer: {
-    width: 2,
-    backgroundColor: theme.palette.primary.main,
-    position: 'absolute',
-    left: 'calc(50% - 1px)',
-    bottom: '50%',
-    transformOrigin: 'center bottom 0px',
-  },
-  animateTransform: {
-    transition: theme.transitions.create(['transform', 'height']),
-  },
-  thumb: {
-    width: 4,
-    height: 4,
-    backgroundColor: theme.palette.common.white,
-    borderRadius: '100%',
-    position: 'absolute',
-    top: -21,
-    left: -15,
-    border: `14px solid ${theme.palette.primary.main}`,
-    boxSizing: 'content-box',
-  },
-  noPoint: {
-    backgroundColor: theme.palette.primary.main,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    pointer: {
+      width: 2,
+      backgroundColor: theme.palette.primary.main,
+      position: 'absolute',
+      left: 'calc(50% - 1px)',
+      bottom: '50%',
+      transformOrigin: 'center bottom 0px',
+    },
+    animateTransform: {
+      transition: theme.transitions.create(['transform', 'height']),
+    },
+    thumb: {
+      width: 4,
+      height: 4,
+      backgroundColor: theme.palette.common.white,
+      borderRadius: '100%',
+      position: 'absolute',
+      top: -21,
+      left: -15,
+      border: `14px solid ${theme.palette.primary.main}`,
+      boxSizing: 'content-box',
+    },
+    noPoint: {
+      backgroundColor: theme.palette.primary.main,
+    },
+  });
 
 export default withStyles(styles, {
-  name: 'MuiPickersClockPointer'
+  name: 'MuiPickersClockPointer',
 })(ClockPointer as React.ComponentType<ClockPointerProps>);
-

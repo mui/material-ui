@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import classnames from 'classnames';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-export type SlideDirection = 'right' | 'left'
+export type SlideDirection = 'right' | 'left';
 interface SlideTransitionProps extends WithStyles<typeof styles> {
   transKey: React.Key;
   className?: string;
@@ -17,7 +17,11 @@ interface SlideTransitionProps extends WithStyles<typeof styles> {
 const animationDuration = 350;
 
 const SlideTransition: React.SFC<SlideTransitionProps> = ({
-  classes, className, children, transKey, slideDirection,
+  classes,
+  className,
+  children,
+  transKey,
+  slideDirection,
 }) => (
   <TransitionGroup
     className={classnames(classes.transitionContainer, className)}
@@ -28,7 +32,7 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
       unmountOnExit
       timeout={animationDuration}
       children={children}
-      classNames= {{
+      classNames={{
         enter: classes[`slideEnter-${slideDirection}`],
         enterActive: classes.slideEnterActive,
         exit: classes.slideExit,
@@ -44,7 +48,7 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
   className: PropTypes.string,
   slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
   transKey: PropTypes.string.isRequired,
-  innerRef: PropTypes.any
+  innerRef: PropTypes.any,
 };
 
 SlideTransition.defaultProps = {
@@ -93,7 +97,7 @@ const styles = (theme: Theme) => {
       transform: 'translate(100%)',
       transition: slideTransition,
     },
-  })
+  });
 };
 
 export default withStyles(styles, {

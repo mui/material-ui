@@ -1,13 +1,13 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
-import Calendar, { RenderDay } from './components/Calendar';
-import YearSelection from './components/YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import DomainPropTypes, { DateType } from '../constants/prop-types';
 import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
+import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import Calendar, { RenderDay } from './components/Calendar';
+import YearSelection from './components/YearSelection';
 
 export interface BaseDatePickerProps {
   minDate?: DateType;
@@ -29,8 +29,10 @@ export interface DatePickerProps extends BaseDatePickerProps {
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
 
-export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsProps> {
-  static propTypes = {
+export class DatePicker extends React.PureComponent<
+  DatePickerProps & WithUtilsProps
+> {
+  public static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -46,10 +48,10 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
     utils: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
     allowKeyboardControl: PropTypes.bool,
-    initialFocusedDate: DomainPropTypes.date
-  }
+    initialFocusedDate: DomainPropTypes.date,
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     disablePast: false,
@@ -62,11 +64,11 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
     rightArrowIcon: undefined,
     renderDay: undefined,
     shouldDisableDate: undefined,
-  }
+  };
 
-  state = {
+  public state = {
     showYearSelection: Boolean(this.props.openToYearSelection),
-  }
+  };
 
   get date() {
     return this.props.utils.startOfDay(this.props.date);
@@ -80,20 +82,20 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
     return this.props.utils.date(this.props.maxDate);
   }
 
-  handleYearSelect = (date: MaterialUiPickersDate) => {
+  public handleYearSelect = (date: MaterialUiPickersDate) => {
     this.props.onChange(date, false);
     this.openCalendar();
-  }
+  };
 
-  openYearSelection = () => {
+  public openYearSelection = () => {
     this.setState({ showYearSelection: true });
-  }
+  };
 
-  openCalendar = () => {
+  public openCalendar = () => {
     this.setState({ showYearSelection: false });
-  }
+  };
 
-  render() {
+  public render() {
     const { showYearSelection } = this.state;
     const {
       disablePast,
@@ -126,39 +128,38 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
           />
         </PickerToolbar>
 
-        { this.props.children }
+        {this.props.children}
 
-        {
-          showYearSelection
-            ? (
-              <YearSelection
-                date={this.date}
-                onChange={this.handleYearSelect}
-                minDate={this.minDate}
-                maxDate={this.maxDate}
-                disablePast={disablePast}
-                disableFuture={disableFuture}
-                animateYearScrolling={animateYearScrolling}
-              />
-            ) : (
-              <Calendar
-                date={this.date}
-                onChange={onChange}
-                disablePast={disablePast}
-                disableFuture={disableFuture}
-                minDate={this.minDate}
-                maxDate={this.maxDate}
-                leftArrowIcon={leftArrowIcon}
-                rightArrowIcon={rightArrowIcon}
-                renderDay={renderDay}
-                shouldDisableDate={shouldDisableDate}
-                allowKeyboardControl={allowKeyboardControl}
-              />
-            )
-        }
+        {showYearSelection ? (
+          <YearSelection
+            date={this.date}
+            onChange={this.handleYearSelect}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
+            disablePast={disablePast}
+            disableFuture={disableFuture}
+            animateYearScrolling={animateYearScrolling}
+          />
+        ) : (
+          <Calendar
+            date={this.date}
+            onChange={onChange}
+            disablePast={disablePast}
+            disableFuture={disableFuture}
+            minDate={this.minDate}
+            maxDate={this.maxDate}
+            leftArrowIcon={leftArrowIcon}
+            rightArrowIcon={rightArrowIcon}
+            renderDay={renderDay}
+            shouldDisableDate={shouldDisableDate}
+            allowKeyboardControl={allowKeyboardControl}
+          />
+        )}
       </>
     );
   }
 }
 
-export default withUtils()(DatePicker as React.ComponentType<DatePickerProps & WithUtilsProps>);
+export default withUtils()(DatePicker as React.ComponentType<
+  DatePickerProps & WithUtilsProps
+>);

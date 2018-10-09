@@ -1,16 +1,16 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import * as keycode_ from 'keycode';
-import ModalDialog from '../_shared/ModalDialog';
-import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
-import DomainPropTypes from '../constants/prop-types';
-import { DialogProps } from '@material-ui/core/Dialog';
 import { Omit } from '@material-ui/core';
+import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
+import * as keycode_ from 'keycode';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
+import ModalDialog from '../_shared/ModalDialog';
+import DomainPropTypes from '../constants/prop-types';
 
 // Workaround to work with synthetic imports both for jest and rollup
 // https://github.com/rollup/rollup/issues/670
 // https://github.com/kulshekhar/ts-jest/issues/146
-const keycode = keycode_
+const keycode = keycode_;
 
 export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   onAccept?: () => void;
@@ -26,12 +26,14 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   todayLabel?: React.ReactNode;
   showTodayButton?: boolean;
   container?: React.ReactNode;
-  DialogProps?: Partial<Omit<DialogProps, 'classes'>>;
+  DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
   isAccepted?: boolean;
 }
 
-export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
-  static propTypes = {
+export default class ModalWrapper extends React.PureComponent<
+  ModalWrapperProps
+> {
+  public static propTypes = {
     /** "OK" label message */
     okLabel: PropTypes.node,
     /** "Cancel" label message */
@@ -45,7 +47,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     /**
      * If true today button will be displayed
      * <b>Note*</b> that clear button has higher priority
-    */
+     */
     showTodayButton: PropTypes.bool,
     /** On open callback [(e: Event) => void] */
     onOpen: PropTypes.func,
@@ -64,9 +66,9 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     children: PropTypes.node.isRequired,
     dialogContentClassName: PropTypes.string,
     isAccepted: PropTypes.bool.isRequired,
-  }
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     dialogContentClassName: '',
     invalidLabel: undefined,
     value: new Date(),
@@ -85,13 +87,9 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     onClose: undefined,
     onSetToday: undefined,
     DialogProps: undefined,
-  }
+  };
 
-  state = {
-    open: false,
-  }
-
-  static getDerivedStateFromProps(nextProps: ModalWrapperProps) {
+  public static getDerivedStateFromProps(nextProps: ModalWrapperProps) {
     // only if accept = true close the dialog
     if (nextProps.isAccepted) {
       return {
@@ -102,7 +100,11 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     return null;
   }
 
-  handleKeyDown = (event: KeyboardEvent) => {
+  public state = {
+    open: false,
+  };
+
+  public handleKeyDown = (event: KeyboardEvent) => {
     switch (keycode(event)) {
       case 'enter':
         this.handleAccept();
@@ -116,48 +118,48 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     event.preventDefault();
   };
 
-  handleSetTodayDate = () => {
+  public handleSetTodayDate = () => {
     if (this.props.onSetToday) {
       this.props.onSetToday();
     }
-  }
+  };
 
-  open = () => {
+  public open = () => {
     this.setState({ open: true });
     if (this.props.onOpen) {
       this.props.onOpen();
     }
-  }
+  };
 
-  close = () => {
+  public close = () => {
     this.setState({ open: false });
     if (this.props.onClose) {
       this.props.onClose();
     }
-  }
+  };
 
-  handleAccept = () => {
+  public handleAccept = () => {
     this.close();
     if (this.props.onAccept) {
       this.props.onAccept();
     }
-  }
+  };
 
-  handleDismiss = () => {
+  public handleDismiss = () => {
     this.close();
     if (this.props.onDismiss) {
       this.props.onDismiss();
     }
-  }
+  };
 
-  handleClear = () => {
+  public handleClear = () => {
     this.close();
     if (this.props.onClear) {
       this.props.onClear();
     }
-  }
+  };
 
-  render() {
+  public render() {
     const {
       value,
       format,

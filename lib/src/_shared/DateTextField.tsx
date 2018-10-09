@@ -1,21 +1,25 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
+import { Omit } from '@material-ui/core';
+import { InputProps as InputPropsType } from '@material-ui/core/Input';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
+import { MaterialUiPickersDate } from '../typings/date';
 import MaskedInput from './MaskedInput';
 import withUtils, { WithUtilsProps } from './WithUtils';
-import { Omit } from '@material-ui/core';
-import { MaterialUiPickersDate } from '../typings/date';
-import { InputProps } from '@material-ui/core/Input';
 
 const getDisplayDate = ({
-  utils, value, format, invalidLabel, emptyLabel, labelFunc,
+  utils,
+  value,
+  format,
+  invalidLabel,
+  emptyLabel,
+  labelFunc,
 }: DateTextFieldProps) => {
-
   const isEmpty = value === null;
   const date = utils.date(value);
 
@@ -27,12 +31,13 @@ const getDisplayDate = ({
     return emptyLabel;
   }
 
-  return utils.isValid(date)
-    ? utils.format(date, format)
-    : invalidLabel;
+  return utils.isValid(date) ? utils.format(date, format) : invalidLabel;
 };
 
-const getError = (value: MaterialUiPickersDate, props: DateTextFieldProps): React.ReactNode => {
+const getError = (
+  value: MaterialUiPickersDate,
+  props: DateTextFieldProps
+): React.ReactNode => {
   const {
     utils,
     maxDate,
@@ -54,15 +59,15 @@ const getError = (value: MaterialUiPickersDate, props: DateTextFieldProps): Reac
   }
 
   if (
-    (maxDate && utils.isAfter(value, utils.endOfDay(utils.date(maxDate))))
-    || (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
+    (maxDate && utils.isAfter(value, utils.endOfDay(utils.date(maxDate)))) ||
+    (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(value, utils.startOfDay(utils.date(minDate))))
-    || (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
+    (minDate && utils.isBefore(value, utils.startOfDay(utils.date(minDate)))) ||
+    (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
   ) {
     return minDateMessage;
   }
@@ -70,7 +75,9 @@ const getError = (value: MaterialUiPickersDate, props: DateTextFieldProps): Reac
   return '';
 };
 
-export interface DateTextFieldProps extends WithUtilsProps, Omit<TextFieldProps, 'onError' | 'onChange' | 'value'> {
+export interface DateTextFieldProps
+  extends WithUtilsProps,
+    Omit<TextFieldProps, 'onError' | 'onChange' | 'value'> {
   value: DateType;
   minDate?: DateType;
   minDateMessage?: React.ReactNode;
@@ -93,20 +100,14 @@ export interface DateTextFieldProps extends WithUtilsProps, Omit<TextFieldProps,
   clearable?: boolean;
   TextFieldComponent?: React.ComponentType<TextFieldProps>;
   InputAdornmentProps?: object;
-  adornmentPosition?: "start" | "end";
+  adornmentPosition?: 'start' | 'end';
   onClick?: (e: React.SyntheticEvent) => void;
   onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
   onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 export class DateTextField extends React.PureComponent<DateTextFieldProps> {
-  static updateState = (props: DateTextFieldProps) => ({
-    value: props.value,
-    displayValue: getDisplayDate(props),
-    error: getError(props.utils.date(props.value), props),
-  });
-
-  static propTypes = {
+  public static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
@@ -152,16 +153,17 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     InputAdornmentProps: PropTypes.object,
     /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
-    /** Callback firing when date that applied in the keyboard is invalid
+    /**
+     * Callback firing when date that applied in the keyboard is invalid
      *  [(error: string) => void]
-    */
+     */
     onError: PropTypes.func,
     /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
     pipe: PropTypes.func,
-  }
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     disabled: false,
     invalidLabel: 'Unknown',
     emptyLabel: '',
@@ -189,32 +191,31 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     InputAdornmentProps: {},
     adornmentPosition: 'end',
     pipe: undefined,
-  }
+  };
+  public static updateState = (props: DateTextFieldProps) => ({
+    value: props.value,
+    displayValue: getDisplayDate(props),
+    error: getError(props.utils.date(props.value), props),
+  });
 
-  state = DateTextField.updateState(this.props)
+  public state = DateTextField.updateState(this.props);
 
-  componentDidUpdate(prevProps: DateTextFieldProps) {
+  public componentDidUpdate(prevProps: DateTextFieldProps) {
     if (
-      !this.props.utils.isEqual(this.props.value, prevProps.value)
-      || prevProps.format !== this.props.format
-      || prevProps.maxDate !== this.props.maxDate
-      || prevProps.minDate !== this.props.minDate
-      || prevProps.emptyLabel !== this.props.emptyLabel
-      || prevProps.utils !== this.props.utils
+      !this.props.utils.isEqual(this.props.value, prevProps.value) ||
+      prevProps.format !== this.props.format ||
+      prevProps.maxDate !== this.props.maxDate ||
+      prevProps.minDate !== this.props.minDate ||
+      prevProps.emptyLabel !== this.props.emptyLabel ||
+      prevProps.utils !== this.props.utils
     ) {
       /* eslint-disable-next-line react/no-did-update-set-state */
       this.setState(DateTextField.updateState(this.props));
     }
   }
 
-  commitUpdates = (value: string) => {
-    const {
-      clearable,
-      onClear,
-      utils,
-      format,
-      onError,
-    } = this.props;
+  public commitUpdates = (value: string) => {
+    const { clearable, onClear, utils, format, onError } = this.props;
 
     if (value === '') {
       if (this.props.value === null) {
@@ -230,22 +231,25 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     const newValue = utils.parse(value, format);
     const error = getError(newValue, this.props);
 
-    this.setState({
-      error,
-      displayValue: value,
-      value: error ? newValue : oldValue,
-    }, () => {
-      if (!error && !utils.isEqual(newValue, oldValue)) {
-        this.props.onChange(newValue);
-      }
+    this.setState(
+      {
+        error,
+        displayValue: value,
+        value: error ? newValue : oldValue,
+      },
+      () => {
+        if (!error && !utils.isEqual(newValue, oldValue)) {
+          this.props.onChange(newValue);
+        }
 
-      if (error && onError) {
-        onError(newValue, error);
+        if (error && onError) {
+          onError(newValue, error);
+        }
       }
-    });
-  }
+    );
+  };
 
-  handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+  public handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this.props.keyboard) {
       e.preventDefault();
       e.stopPropagation();
@@ -257,7 +261,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     }
   };
 
-  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  public handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { utils, format, onInputChange } = this.props;
     const parsedValue = utils.parse(e.target.value, format);
 
@@ -269,18 +273,18 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       displayValue: e.target.value,
       error: getError(parsedValue, this.props),
     });
-  }
+  };
 
-  handleFocus = (e: React.SyntheticEvent) => {
+  public handleFocus = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     e.preventDefault();
 
     if (!this.props.keyboard) {
       this.openPicker(e);
     }
-  }
+  };
 
-  handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  public handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       if (!this.props.disableOpenOnEnter) {
         this.openPicker(e);
@@ -289,17 +293,17 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
         this.commitUpdates(e.target.value);
       }
     }
-  }
+  };
 
-  openPicker = (e: React.SyntheticEvent) => {
+  public openPicker = (e: React.SyntheticEvent) => {
     const { disabled, onClick } = this.props;
 
     if (!disabled) {
       onClick!(e);
     }
-  }
+  };
 
-  render() {
+  public render() {
     const {
       adornmentPosition,
       clearable,
@@ -344,25 +348,18 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
 
     if (keyboard) {
       localInputProps[`${adornmentPosition}Adornment`] = (
-        <InputAdornment
-          position={adornmentPosition!}
-          {...InputAdornmentProps}
-        >
-          <IconButton
-            disabled={disabled}
-            onClick={this.openPicker}
-          >
-            <Icon>
-              {' '}
-              {keyboardIcon}
-              {' '}
-            </Icon>
+        <InputAdornment position={adornmentPosition!} {...InputAdornmentProps}>
+          <IconButton disabled={disabled} onClick={this.openPicker}>
+            <Icon> {keyboardIcon} </Icon>
           </IconButton>
         </InputAdornment>
       );
     }
 
-    const Component = TextFieldComponent!
+    const Component = TextFieldComponent!;
+    const inputProps = { ...localInputProps, ...InputProps } as Partial<
+      InputPropsType
+    >;
     return (
       <Component
         onClick={this.handleFocus}
@@ -375,7 +372,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
         {...other}
         onError={undefined}
         onChange={this.handleChange}
-        InputProps={{ ...localInputProps, ...InputProps } as InputProps}
+        InputProps={inputProps}
       />
     );
   }

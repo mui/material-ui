@@ -29,12 +29,54 @@ import { Utils } from '../typings/utils';
 
 // date-fns < 2.0.0-alpha.8
 export default class DateFnsUtils implements Utils<Date> {
-  locale?: Locale;
+  public locale?: Locale;
+
+  public addDays = addDays;
+
+  public isValid = isValid;
+
+  public getDiff = differenceInMilliseconds;
+
+  public isAfter = isAfter;
+
+  public isBefore = isBefore;
+
+  public startOfDay = startOfDay;
+
+  public endOfDay = endOfDay;
+
+  public getHours = getHours;
+
+  public setHours = setHours;
+
+  public setMinutes = setMinutes;
+
+  public getSeconds = getSeconds;
+
+  public setSeconds = setSeconds;
+
+  public isSameDay = isSameDay;
+
+  public getStartOfMonth = startOfMonth;
+
+  public getYear = getYear;
+
+  public setYear = setYear;
+
+  public dateTime12hFormat = 'MMMM Do hh:mm a';
+
+  public dateTime24hFormat = 'MMMM Do HH:mm';
+
+  public time12hFormat = 'hh:mm A';
+
+  public time24hFormat = 'HH:mm';
+
+  public dateFormat = 'MMMM Do';
   constructor({ locale }: { locale?: Locale } = {}) {
     this.locale = locale;
   }
 
-  date(value?: any) {
+  public date(value?: any) {
     if (typeof value === 'undefined') {
       return new Date();
     }
@@ -46,7 +88,7 @@ export default class DateFnsUtils implements Utils<Date> {
     return new Date(value);
   }
 
-  parse(value: string, formatString: string) {
+  public parse(value: string, formatString: string) {
     if (value === '') {
       return null;
     }
@@ -54,11 +96,11 @@ export default class DateFnsUtils implements Utils<Date> {
     return dateFnsParse(value, formatString, new Date());
   }
 
-  format(date: Date, formatString: string) {
+  public format(date: Date, formatString: string) {
     return format(date, formatString, { locale: this.locale });
   }
 
-  isEqual(date: Date, comparing: Date) {
+  public isEqual(date: Date, comparing: Date) {
     if (date === null && comparing === null) {
       return true;
     }
@@ -66,97 +108,71 @@ export default class DateFnsUtils implements Utils<Date> {
     return isEqual(date, comparing);
   }
 
-  addDays = addDays
-
-  isValid = isValid
-
-  getDiff = differenceInMilliseconds
-
-  isNull(date: Date) {
+  public isNull(date: Date) {
     return date === null;
   }
 
-  isAfter = isAfter
-
-  isBefore = isBefore
-
-  isAfterDay(date: Date, value: Date) {
+  public isAfterDay(date: Date, value: Date) {
     return isAfter(date, endOfDay(value));
   }
 
-  isBeforeDay(date: Date, value: Date) {
+  public isBeforeDay(date: Date, value: Date) {
     return isBefore(date, startOfDay(value));
   }
 
-  isBeforeYear(date: Date, value: Date) {
+  public isBeforeYear(date: Date, value: Date) {
     return isBefore(date, startOfYear(value));
   }
 
-  isAfterYear(date: Date, value: Date) {
+  public isAfterYear(date: Date, value: Date) {
     return isAfter(date, endOfYear(value));
   }
 
-  startOfDay = startOfDay
-
-  endOfDay = endOfDay
-
-  formatNumber(num: string) {
-    return num
+  public formatNumber(num: string) {
+    return num;
   }
 
-  getHours = getHours
-
-  setHours = setHours
-
-  getMinutes(date: Date) {
+  public getMinutes(date: Date) {
     return date.getMinutes();
   }
 
-  setMinutes = setMinutes
-
-  getSeconds = getSeconds
-
-  setSeconds = setSeconds
-
-  getMonth(date: Date) {
+  public getMonth(date: Date) {
     return date.getMonth();
   }
 
-  isSameDay = isSameDay;
-
-  getMeridiemText(ampm: 'am' | 'pm') {
+  public getMeridiemText(ampm: 'am' | 'pm') {
     return ampm === 'am' ? 'AM' : 'PM';
   }
 
-  getStartOfMonth = startOfMonth
-
-  getNextMonth(date: Date) {
+  public getNextMonth(date: Date) {
     return addMonths(date, 1);
   }
 
-  getPreviousMonth(date: Date) {
+  public getPreviousMonth(date: Date) {
     return addMonths(date, -1);
   }
 
-  getYear = getYear;
-
-  setYear = setYear;
-
-  mergeDateAndTime(date: Date, time: Date) {
-    return this.setMinutes(this.setHours(date, this.getHours(time)), this.getMinutes(time));
+  public mergeDateAndTime(date: Date, time: Date) {
+    return this.setMinutes(
+      this.setHours(date, this.getHours(time)),
+      this.getMinutes(time)
+    );
   }
 
-  getWeekdays() {
+  public getWeekdays() {
     const now = new Date();
-    return eachDayOfInterval({
-      start: startOfWeek(now, { locale: this.locale }),
-      end: endOfWeek(now, { locale: this.locale }),
-    }, {
-      locale: this.locale
-    }).map(day => format(day, 'dd', { locale: this.locale }));
+    return eachDayOfInterval(
+      {
+        start: startOfWeek(now, { locale: this.locale }),
+        end: endOfWeek(now, { locale: this.locale }),
+      },
+      {
+        locale: this.locale,
+      }
+    ).map(day => format(day, 'dd', { locale: this.locale }));
   }
 
-  getWeekArray(date: Date) {
+  public getWeekArray(date: Date) {
     const start = startOfWeek(startOfMonth(date), { locale: this.locale });
     const end = endOfWeek(endOfMonth(date), { locale: this.locale });
 
@@ -176,7 +192,7 @@ export default class DateFnsUtils implements Utils<Date> {
     return nestedWeeks;
   }
 
-  getYearRange(start: Date, end: Date) {
+  public getYearRange(start: Date, end: Date) {
     const startDate = startOfYear(new Date(start));
     const endDate = endOfYear(new Date(end));
     const years = [];
@@ -191,45 +207,35 @@ export default class DateFnsUtils implements Utils<Date> {
   }
 
   // displaying methpds
-  getCalendarHeaderText(date: Date) {
+  public getCalendarHeaderText(date: Date) {
     return format(date, 'MMMM YYYY', { locale: this.locale });
   }
 
-  getYearText(date: Date) {
+  public getYearText(date: Date) {
     return format(date, 'YYYY', { locale: this.locale });
   }
 
-  getDatePickerHeaderText(date: Date) {
+  public getDatePickerHeaderText(date: Date) {
     return format(date, 'ddd, MMM D', { locale: this.locale });
   }
 
-  getDateTimePickerHeaderText(date: Date) {
+  public getDateTimePickerHeaderText(date: Date) {
     return format(date, 'MMM D', { locale: this.locale });
   }
 
-  getDayText(date: Date) {
+  public getDayText(date: Date) {
     return format(date, 'D', { locale: this.locale });
   }
 
-  getHourText(date: Date, ampm: boolean) {
+  public getHourText(date: Date, ampm: boolean) {
     return format(date, ampm ? 'hh' : 'HH', { locale: this.locale });
   }
 
-  getMinuteText(date: Date) {
+  public getMinuteText(date: Date) {
     return format(date, 'mm', { locale: this.locale });
   }
 
-  getSecondText(date: Date) {
+  public getSecondText(date: Date) {
     return format(date, 'ss', { locale: this.locale });
   }
-
-  dateTime12hFormat = 'MMMM Do hh:mm a';
-
-  dateTime24hFormat = 'MMMM Do HH:mm';
-
-  time12hFormat = 'hh:mm A';
-
-  time24hFormat = 'HH:mm';
-
-  dateFormat = 'MMMM Do';
 }

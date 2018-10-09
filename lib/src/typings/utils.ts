@@ -1,6 +1,14 @@
 export interface Utils<TDate> {
   locale?: any;
   moment?: any;
+
+  dateTime12hFormat: string;
+  dateTime24hFormat: string;
+
+  time12hFormat: string;
+  time24hFormat: string;
+
+  dateFormat: string;
   // constructor (options?: { locale?: any, moment?: any });
 
   date(value?: any): TDate | null;
@@ -10,7 +18,7 @@ export interface Utils<TDate> {
   isValid(value: TDate): boolean;
   getDiff(value: TDate, comparing: TDate): number;
   isEqual(value: TDate, comparing: TDate): boolean;
-  isSameDay(value: TDate, comparing: TDate): boolean
+  isSameDay(value: TDate, comparing: TDate): boolean;
 
   isAfter(value: TDate, comparing: TDate): boolean;
   isAfterDay(value: TDate, comparing: TDate): boolean;
@@ -25,14 +33,14 @@ export interface Utils<TDate> {
   endOfDay(value: TDate): TDate;
 
   format(value: TDate, formatString: string): string;
-  formatNumber(number: string): string;
+  formatNumber(numberToFormat: string): string;
 
   getHours(value: TDate): number;
   setHours(value: TDate, count: number): TDate;
   getMinutes(value: TDate): number;
-  setMinutes(value: TDate, count: number): TDate
+  setMinutes(value: TDate, count: number): TDate;
   getSeconds(value: TDate): number;
-  setSeconds(value: TDate, count: number): TDate
+  setSeconds(value: TDate, count: number): TDate;
   getMonth(value: TDate): number;
   getYear(value: TDate): number;
   setYear(value: TDate, count: number): TDate;
@@ -56,12 +64,4 @@ export interface Utils<TDate> {
   getMinuteText(date: TDate): string;
   getSecondText(date: TDate): string;
   getYearText(date: TDate): string;
-
-  dateTime12hFormat: string;
-  dateTime24hFormat: string;
-
-  time12hFormat: string;
-  time24hFormat: string;
-
-  dateFormat: string;
 }

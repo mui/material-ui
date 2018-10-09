@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classnames from 'classnames';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import classnames from 'classnames';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 const positions = {
   0: [0, 40],
@@ -41,31 +41,29 @@ export interface ClockNumberProps extends WithStyles<typeof styles> {
 }
 
 export class ClockNumber extends React.Component<ClockNumberProps> {
-  static propTypes = {
+  public static propTypes = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
     isInner: PropTypes.bool,
-    innerRef: PropTypes.any
-  }
+    innerRef: PropTypes.any,
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     isInner: false,
-  }
+  };
 
-  getTransformStyle = (index: number) => {
+  public getTransformStyle = (index: number) => {
     const position = positions[index];
 
     return {
       transform: `translate(${position[0]}px, ${position[1]}px`,
     };
-  }
+  };
 
-  render() {
-    const {
-      selected, label, index, classes, isInner,
-    } = this.props;
+  public render() {
+    const { selected, label, index, classes, isInner } = this.props;
 
     const className = classnames(classes.clockNumber, {
       [classes.selected]: selected,
@@ -78,7 +76,7 @@ export class ClockNumber extends React.Component<ClockNumberProps> {
         className={className}
         style={this.getTransformStyle(index)}
       >
-        { label }
+        {label}
       </Typography>
     );
   }
@@ -98,16 +96,17 @@ const styles = (theme: Theme) => {
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: '50%',
-      color: theme.palette.type === 'light'
-        ? theme.palette.text.primary
-        : theme.palette.text.hint,
+      color:
+        theme.palette.type === 'light'
+          ? theme.palette.text.primary
+          : theme.palette.text.hint,
     },
     selected: {
       color: theme.palette.common.white,
     },
-  })
+  });
 };
 
 export default withStyles(styles, {
-  name: 'MuiPickersClockNumber'
+  name: 'MuiPickersClockNumber',
 })(ClockNumber as React.ComponentType<ClockNumberProps>);

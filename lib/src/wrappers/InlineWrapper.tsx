@@ -1,8 +1,10 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import * as keycode_ from 'keycode';
-import Popover, { PopoverProps } from '@material-ui/core/Popover';
+import Popover, {
+  PopoverProps as PopoverPropsType,
+} from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import * as keycode_ from 'keycode';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import EventListener from 'react-event-listener';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
@@ -10,19 +12,21 @@ import DomainPropTypes from '../constants/prop-types';
 // Workaround to work with synthetic imports both for jest and rollup
 // https://github.com/rollup/rollup/issues/670
 // https://github.com/kulshekhar/ts-jest/issues/146
-const keycode = keycode_
+const keycode = keycode_;
 
 export interface InlineWrapperProps extends Partial<DateTextFieldProps> {
   onOpen?: () => void;
   onClose?: () => void;
   handleAccept: () => void;
-  PopoverProps?: Partial<PopoverProps>;
+  PopoverProps?: Partial<PopoverPropsType>;
   isAccepted: boolean;
   onlyCalendar: boolean;
 }
 
-export class InlineWrapper extends React.PureComponent<InlineWrapperProps & WithStyles<typeof styles>>{
-  static propTypes = {
+export class InlineWrapper extends React.PureComponent<
+  InlineWrapperProps & WithStyles<typeof styles>
+> {
+  public static propTypes = {
     /** Show only calendar for datepicker in popover mode */
     onlyCalendar: PropTypes.bool,
     /** Picker value */
@@ -42,10 +46,10 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
     children: PropTypes.node.isRequired,
     keyboard: PropTypes.bool,
     classes: PropTypes.object.isRequired,
-    innerRef: PropTypes.any
-  }
+    innerRef: PropTypes.any,
+  };
 
-  static defaultProps = {
+  public static defaultProps = {
     value: new Date(),
     labelFunc: undefined,
     onlyCalendar: false,
@@ -56,13 +60,9 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
     PopoverProps: undefined,
     isAccepted: false,
     keyboard: undefined,
-  }
+  };
 
-  state = {
-    anchorEl: null,
-  }
-
-  static getDerivedStateFromProps(nextProps: InlineWrapperProps) {
+  public static getDerivedStateFromProps(nextProps: InlineWrapperProps) {
     // only if accept = true close the popover
     if (nextProps.isAccepted) {
       return {
@@ -73,21 +73,25 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
     return null;
   }
 
-  open = (e: React.SyntheticEvent) => {
+  public state = {
+    anchorEl: null,
+  };
+
+  public open = (e: React.SyntheticEvent) => {
     this.setState({ anchorEl: e.currentTarget });
     if (this.props.onOpen) {
       this.props.onOpen();
     }
-  }
+  };
 
-  close = () => {
+  public close = () => {
     this.setState({ anchorEl: null });
     if (this.props.onClose) {
       this.props.onClose();
     }
-  }
+  };
 
-  handleKeyDown = (event: Event) => {
+  public handleKeyDown = (event: Event) => {
     switch (keycode(event)) {
       case 'enter': {
         this.props.handleAccept();
@@ -101,9 +105,9 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
 
     // if event was handled prevent other side effects
     event.preventDefault();
-  }
+  };
 
-  render() {
+  public render() {
     const {
       value,
       format,
@@ -123,7 +127,9 @@ export class InlineWrapper extends React.PureComponent<InlineWrapperProps & With
 
     return (
       <React.Fragment>
-        { isOpen && <EventListener target="window" onKeyDown={this.handleKeyDown} /> }
+        {isOpen && (
+          <EventListener target="window" onKeyDown={this.handleKeyDown} />
+        )}
 
         <DateTextField
           value={value}
