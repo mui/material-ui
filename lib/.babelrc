@@ -1,11 +1,12 @@
 {
   "presets": [
     ["@babel/env", { "loose": true }],
-    "@babel/react"
+    "@babel/react",
+    "@babel/typescript"
   ],
   "plugins": [
     ["@babel/proposal-class-properties", { "loose": true }],
-    ["transform-react-remove-prop-types", { mode: "unsafe-wrap" }]
+    ["transform-react-remove-prop-types", { "mode": "unsafe-wrap" }]
   ],
   "env": {
     "test": {

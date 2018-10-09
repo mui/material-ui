@@ -1,18 +1,20 @@
 {
   "compilerOptions": {
+    "outDir": "build",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "sourceMap": true,
+    "sourceMap": false,
     "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noEmit": true,
-    "experimentalDecorators": true
+    "rootDir": "./src"
   },
-  "include": ["src/**/*", "__tests__/**/*.tsx"]
+  "include": ["src/**/*"]
 }

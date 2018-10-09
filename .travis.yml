@@ -2,26 +2,16 @@ language: node_js
 node_js:
   - "8"
 
-env:
-  - UTILS=date-fns
-  - UTILS=moment
-  - UTILS=luxon
-
 before_install:
   - cd lib
 
-script: npm run test && npx codecov
+env:
+  - CMD='test:date-fns'
+  - CMD='test:luxon'
+  - CMD='test:moment'
+  - CMD='test:typescript'
+  - CMD='build:analyze'
+  - CMD='lint'
 
-jobs:
-  include:
-    - stage: codecov
-      script: npx codecov
-
-    - stage: typescript
-      script: npm run typescript
-
-    - stage: build
-      script: npm run build && size-limit
-
-    - stage: lint
-      script: npm run lint
+script: npm run $CMD
+after_script: npx codecov

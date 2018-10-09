@@ -43,11 +43,15 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.1.0",
     "@babel/runtime": "^7.0.0",
+    "@types/enzyme": "^3.1.14",
     "classnames": "^2.2.5",
+    "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "tslint": "^5.11.0"
   },
   "size-limit": [
     {
@@ -57,17 +61,20 @@
   ],
   "scripts": {
     "test": "jest",
-    "typescript": "tsc -p tsconfig.json",
+    "test:date-fns": "UTILS=date-fns npm run test",
+    "test:luxon": "UTILS=date-fns npm run test",
+    "test:moment": "UTILS=moment npm run test",
+    "test:typescript": "tsc -p __tests__/tsc-usage/tsconfig.json",
     "start": "rollup --config --watch",
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "rollup --config",
-    "build:lib": "cross-env NODE_ENV=cjs babel ./src --out-dir ./build",
-    "build": "npm run build:bundle && npm run build:lib && npm run build:copy",
+    "build:typescript": "tsc",
+    "build": "npm run build:bundle && npm run build:typescript && npm run build:copy",
+    "build:analyze": "npm run build && npx size-limit",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
-    "lint": "eslint ./src/**/*.js*",
-    "lint-fix": "npm run lint -- --fix",
+    "lint": "tslint ./src/**/*.js*",
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mHave you installed one of peer libraries?\\u001b[22m\\u001b[39m\\n > date-fns \\n > luxon \\n > moment')\""
   },
   "devDependencies": {
@@ -85,8 +92,9 @@
     "@types/moment": "^2.13.0",
     "@types/prop-types": "^15.5.6",
     "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.8",
     "@types/react-event-listener": "^0.4.5",
-    "@types/recompose": "^0.26.5",
+    "@types/react-text-mask": "^5.4.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
@@ -97,18 +105,16 @@
     "date-fns": "2.0.0-alpha.16",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "^5.6.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
     "fs-extra": "^7.0.0",
     "full-icu": "^1.2.1",
     "glob": "^7.1.2",
+    "husky": "^1.1.1",
     "jest": "^22.0.1",
+    "lint-staged": "^7.3.0",
     "luxon": "^1.4.0",
     "moment": "^2.22.1",
     "np": "^2.20.1",
+    "prettier": "^1.14.3",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -117,14 +123,46 @@
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-size-snapshot": "^0.6.0",
+    "rollup-plugin-typescript": "^1.0.0",
     "rollup-plugin-uglify": "^4.0.0",
     "size-limit": "^0.18.5",
+    "ts-jest": "^23.10.4",
+    "ts-lib": "0.0.5",
+    "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
-    "testRegex": "__tests__/.*\\.test\\.js$",
+    "testRegex": "./__tests__/.*\\.test\\.(js|tsx)$",
     "testURL": "http://localhost/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.js?$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./__tests__/tsconfig.test.json"
+      }
+    }
   }
 }

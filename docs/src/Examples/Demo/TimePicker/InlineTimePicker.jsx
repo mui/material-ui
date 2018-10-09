@@ -1,5 +1,5 @@
 import React, { Fragment, PureComponent } from 'react';
-import { InlineTimePicker } from 'material-ui-pickers/TimePicker';
+import { InlineTimePicker } from 'material-ui-pickers';
 
 export default class InlineTimePickerDemo extends PureComponent {
   state = {
