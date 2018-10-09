@@ -8,7 +8,7 @@ before_install:
 env:
   - CMD='npm run test:date-fns'
   - CMD='npm run test:luxon'
-  - CMD='npm run test:moment && codecov'
+  - CMD='npm run test:moment && npx codecov'
   - CMD='npm run test:typescript'
   - CMD='npm run build'
   - CMD='npx size-limit'
