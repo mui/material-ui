@@ -61,7 +61,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "test:typescript": "tsc --noEmit __tests__/**.usage.tsx",
+    "test:typescript": "tsc -p __tests__/tsc-usage/tsconfig.json",
     "start": "rollup --config --watch",
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
