@@ -4,7 +4,9 @@ import CheckCircle from '../internal/svg-icons/CheckCircle';
 import { createShallow, createMount } from '../test-utils';
 import Paper from '../Paper';
 import Step from '../Step';
+import StepLabel from '../StepLabel';
 import StepConnector from '../StepConnector';
+import StepContent from '../StepContent';
 import Stepper from './Stepper';
 
 describe('<Stepper />', () => {
@@ -211,5 +213,34 @@ describe('<Stepper />', () => {
     assert.strictEqual(wrapper.find('.child-0').props().active, true);
     assert.strictEqual(wrapper.find('.child-1').props().active, true);
     assert.strictEqual(wrapper.find('.child-2').props().active, false);
+  });
+
+  it('should hide the last connector', () => {
+    const wrapper = mount(
+      <Stepper orientation="vertical">
+        <Step>
+          <StepLabel>one</StepLabel>
+          <StepContent />
+        </Step>
+        <Step>
+          <StepLabel>two</StepLabel>
+          <StepContent />
+        </Step>
+      </Stepper>,
+    );
+    assert.strictEqual(
+      wrapper
+        .find(StepContent)
+        .at(0)
+        .props().last,
+      false,
+    );
+    assert.strictEqual(
+      wrapper
+        .find(StepContent)
+        .at(1)
+        .props().last,
+      true,
+    );
   });
 });

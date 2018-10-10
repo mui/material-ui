@@ -40,6 +40,7 @@ function Step(props) {
     connector,
     disabled,
     index,
+    last,
     orientation,
     ...other
   } = props;
@@ -85,6 +86,7 @@ function Step(props) {
           alternativeLabel,
           completed,
           disabled,
+          last,
           icon: index + 1,
           orientation,
           ...child.props,
@@ -136,6 +138,10 @@ Step.propTypes = {
    * Used internally for numbering.
    */
   index: PropTypes.number,
+  /**
+   * @ignore
+   */
+  last: PropTypes.bool,
   /**
    * @ignore
    */
