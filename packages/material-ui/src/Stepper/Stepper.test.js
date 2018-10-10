@@ -199,4 +199,17 @@ describe('<Stepper />', () => {
     );
     assert.strictEqual(wrapper.find(Step).length, 1);
   });
+
+  it('should be able to force a state', () => {
+    const wrapper = shallow(
+      <Stepper>
+        <Step className="child-0" />
+        <Step className="child-1" active />
+        <Step className="child-2" />
+      </Stepper>,
+    );
+    assert.strictEqual(wrapper.find('.child-0').props().active, true);
+    assert.strictEqual(wrapper.find('.child-1').props().active, true);
+    assert.strictEqual(wrapper.find('.child-2').props().active, false);
+  });
 });
