@@ -1,0 +1,42 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+export function «componentName»(props) {
+  const { checked: checkedProp, label, onChange, size, ...other } = props;
+  // tslint:disable-next-line: ban-ts-ignore
+  // @ts-ignore
+
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(event);
+    }
+    setChecked((event.target as HTMLInputElement).checked);
+  };
+
+  // tslint:disable-next-line: ban-ts-ignore
+  // @ts-ignore
+  React.useEffect(() => {
+    setChecked(checkedProp);
+  }, [checkedProp]);
+
+  const control = <Mui«componentName» checked={checked} onChange={handleChange} size={size} />;
+
+  return <FormControlLabel control={control} label={label} {...other} />;
+}
+
+«componentName».defaultProps = {
+«& defaultProps»
+};
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

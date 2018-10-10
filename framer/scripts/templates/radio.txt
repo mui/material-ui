@@ -1,0 +1,29 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+
+interface Props {
+«& tsInterface»
+}
+
+export function «componentName»(props) {
+  const { label, ...other } = props;
+
+  return (
+    <FormControlLabel control={<MuiRadio />} label={label} {...other} />
+  );
+}
+
+«componentName».defaultProps = {
+«& defaultProps»
+};
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

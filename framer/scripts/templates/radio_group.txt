@@ -1,0 +1,36 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiFormLabel from '@material-ui/core/FormLabel';
+import { Radio } from './Radio';
+
+export function RadioGroup(props) {
+  const { label, labels, ...other } = props;
+
+  return (
+    <div style={{ margin: 16 }}>
+      <MuiFormLabel component="legend">{label}</MuiFormLabel>
+      <MuiRadioGroup defaultValue={labels[0]} style={{ marginTop: '8px' }} {...other}>
+        {labels.map(radioLabel => {
+          return <Radio key={radioLabel} value={radioLabel} label={radioLabel} />;
+        })}
+      </MuiRadioGroup>
+    </div>
+  );
+}
+
+«componentName».defaultProps = {
+«& defaultProps»
+};
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

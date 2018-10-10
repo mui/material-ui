@@ -1,0 +1,33 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+const style: React.CSSProperties = {
+«& style»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const { width, height, ...other } = props;
+  return (
+    <div style={style}>
+      <Mui«componentName» {...other} />
+    </div>
+  )
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

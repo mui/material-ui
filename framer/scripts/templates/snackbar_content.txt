@@ -1,0 +1,30 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import MuiButton from '@material-ui/core/Button';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const { height, label, width, ...other } = props;
+  const action = label !== '' ? <MuiButton color="secondary" size="small">{label}</MuiButton> : undefined;
+
+  return <MuiSnackbarContent action={action} {...other} />;
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

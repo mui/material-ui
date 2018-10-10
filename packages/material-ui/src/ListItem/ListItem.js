@@ -99,7 +99,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     component: componentProp,
     ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
-    dense,
+    dense = false,
     disabled = false,
     disableGutters = false,
     divider = false,
