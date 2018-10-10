@@ -23,6 +23,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/WithWidth'), 'utf8')
 `,
         },
+        'pages/layout/breakpoints/RenderPropsWithWidth.js': {
+          js: require('docs/src/pages/layout/breakpoints/RenderPropsWithWidth').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/RenderPropsWithWidth'), 'utf8')
+`,
+        },
       }}
     />
   );
