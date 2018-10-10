@@ -84,7 +84,7 @@ function Stepper(props) {
           key: index, // eslint-disable-line react/no-array-index-key
           ...state,
         }),
-      React.cloneElement(step, { ...controlProps, ...step.props, ...state }),
+      React.cloneElement(step, { ...controlProps, ...state, ...step.props }),
     ];
   });
 
