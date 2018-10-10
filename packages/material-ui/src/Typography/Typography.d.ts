@@ -30,6 +30,7 @@ export type TypographyClassKey =
   | 'body2'
   | 'caption'
   | 'button'
+  | 'overline'
   | 'srOnly'
   | 'alignLeft'
   | 'alignCenter'
