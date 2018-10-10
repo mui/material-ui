@@ -5,7 +5,7 @@ import toRenderProps from 'recompose/toRenderProps';
 
 const WithWidth = toRenderProps(withWidth());
 
-function WithWidthDemo() {
+function RenderPropsWithWidth() {
   return (
     <WithWidth>
       {({ width }) => <Typography variant="subtitle1">Current width: {width}</Typography>}
@@ -13,4 +13,4 @@ function WithWidthDemo() {
   );
 }
 
-export default WithWidthDemo;
+export default RenderPropsWithWidth;
