@@ -1,12 +1,12 @@
 ---
-title: Checkbox, Radio, Switch React component
+title: 复选、单选、开关 React 组件
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Selection Controls
+# 选择控制
 
-<p class="description">Selection controls allow the user to select options.</p>
+<p class="description">选择控件允许用户选择选项。</p>
 
-[Selection controls](https://material.io/design/components/selection-controls.html) allow users to complete tasks that involve making choices such as selecting options, or switching settings on or off. Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
+[选择控件](https://material.io/design/components/selection-controls.html) 允许用户完成涉及选择选项, 或打开或关闭设置等选项的任务。 Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
 
 Three types of selection controls are covered in this section:
 

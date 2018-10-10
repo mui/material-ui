@@ -8,8 +8,8 @@ components: ClickAwayListener
 
 ## Simple menu
 
-For instance, if you need to hide a menu when people click anywhere else on your page:
+例如，如果你需要以单击其他区域来隐藏你的菜单时：
 
 {{"demo": "pages/utils/click-away-listener/ClickAway.js"}}
 
-You can find a more advanced demo on the [menu documentation section](/demos/menus/#menulist-composition).
+你可以在 [Munu 的文档](/demos/menus/#menulist-composition)找到更高级的应用。

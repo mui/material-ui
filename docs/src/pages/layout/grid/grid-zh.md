@@ -1,5 +1,5 @@
 ---
-title: Grid React component
+title: 网格
 components: Grid
 ---
 # Grid
@@ -34,9 +34,9 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 {{"demo": "pages/layout/grid/FullWidthGrid.js"}}
 
-## Interactive
+## 交互式
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+下面是一个交互式演示，可让您探索不同设置的可视结果：
 
 {{"demo": "pages/layout/grid/InteractiveGrid.js"}}
 
@@ -68,7 +68,7 @@ The following demo doesn't follow the Material Design specification, but illustr
 
 {{"demo": "pages/layout/grid/ComplexGrid.js"}}
 
-## Limitations
+## 局限性
 
 ### Negative margin
 

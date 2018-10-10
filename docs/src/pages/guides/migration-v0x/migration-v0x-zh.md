@@ -76,7 +76,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 
 4. After that, you are free to migrate one component instance at the time.
 
-## Components
+## 组件
 
 ### 自动补全
 
@@ -162,6 +162,16 @@ This will apply a change such as the following:
 
 -<FontIcon>home</FontIcon>
 +<Icon>home</Icon>
+```
+
+### Circular Progress
+
+```diff
+-import CircularProgress from 'material-ui/CircularProgress';
++import CircularProgress from '@material-ui/core/CircularProgress';
+
+-<CircularProgress mode="indeterminate" />
++<CircularProgress variant="indeterminate" />
 ```
 
 ### Drop Down Menu

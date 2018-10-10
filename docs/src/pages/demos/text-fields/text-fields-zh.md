@@ -1,5 +1,5 @@
 ---
-title: Text Field React component
+title: 文本框 React 组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 # Text Fields
@@ -10,87 +10,87 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## TextField
 
-The `TextField` wrapper component is a complete form control including a label, input and help text.
+` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
-## Outlined
+## 轮廓
 
 边框样式的`文本框`
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
 
-## Filled
+## 填充
 
 填充样式的`文本框`
 
 {{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
 
-## Components
+## 组件
 
-`TextField`是由这些基本组件组合而成( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`InputLabel`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), 和 [`FormHelperText`](/api/form-helper-text/) ) 您可以利用这一点，完成自己需要的组合来自定义自己的表单输入。
+`TextField` 是由较小的组件组成的 ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) 你可以利用这一点来自定义你的表单输入.
 
 您可能注意到了， `TextField`组件相对于原生的 HTML input 组件中缺少了一些属性。 这是故意为之的， 该组件只负责处理最常用的一些属性，如果有需求，需要由用户自己使用下面 Demo 中演示的基础组件。 但是同时, 为了避免过于模版化，您仍然可以使用 `inputProps` (和 `inputProps`, `InputLabelProps` 属性) 来控制原生组件的属性。
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
-## Inputs
+## 输入
 
 {{"demo": "pages/demos/text-fields/Inputs.js"}}
 
-## Layout
+## 布局
 
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter other styles to meet the specification.
+`TextField`, `FormControl` 允许指定`margin`来改变输入的垂直间距。 使用`none` (默认), 将不会在`FormControl`添加margins, 而 `dense`和`normal`也会改变其他样式以符合规范.
 
 {{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
-## Input Adornments
+## 修饰输入
 
-`Input` allows the provision of `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
+`Input` 允许提供`InputAdornment`. 这些可用于向输入添加前缀、后缀或动作. 例如, 您可以使用图标按钮来隐藏或显示密码.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
-## Filled Input Adornments
+## 修饰填充
 
 {{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
 
-## Outlined Input Adornments
+## 修饰轮廓
 
 {{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
-## Formatted inputs
+## 格式化输入
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+您可以使用第三方库来格式化输入.您必须使用` inputComponent `属性提供`<input>` 元素的自定义实现.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask)和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
-## Customized inputs
+## 自定义输入
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-## With icon
+## 使用图标
 
-Icons can be specified as prepended or appended.
+图标可以指定为预置或追加。
 
 {{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
 
-## Limitations
+## 局限性
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+输入标签 "shrink" 状态并不总是正确的。 输入标签应在输入显示内容时立即收缩。 在某些情况下, 我们无法确定 "shrink" 状态 (数字输入、日期时间输入、条带输入)。 您可能会注意到重叠。
 
-![shrink](/static/images/text-fields/shrink.png)
+![缩小](/static/images/text-fields/shrink.png)
 
-To workaround the issue, you can force the "shrink" state of the label.
+若要解决此问题, 您可以强制标签的 "shrink" 状态。
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-or
+或
 
 ```jsx
 <InputLabel shrink>Count</InputLabel>

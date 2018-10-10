@@ -1,6 +1,6 @@
 ---
 title: React 卡片组件
-components: 卡片, 卡片操作区域, 卡片操作, 卡片内容, 卡片标题, 卡片媒体, 折叠, 纸张
+components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 # 卡片
 

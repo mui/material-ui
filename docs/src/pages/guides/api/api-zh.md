@@ -90,18 +90,18 @@ There are two options to design the API for the variations of a component: with 
     
     ```tsx
     type Props = {
-    raised: boolean;
+    contained: boolean;
     fab: boolean;
     };
     ```
     
-    This API enabled the shorthand notation: `<Button>`, `<Button raised />`, `<Button fab />`.
+    This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
     
     ```tsx
     type Props = {
-    variant: 'flat' | 'raised' | 'fab';
+    variant: 'text' | 'contained' | 'fab';
     }
     ```
     

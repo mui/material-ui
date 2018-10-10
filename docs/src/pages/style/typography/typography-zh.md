@@ -51,7 +51,7 @@ In some situations you might not be able to use the `Typography` component. Hope
 
 ## Migration to typography v2
 
-The material design specification changed concerning variant names and styles. To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but will log deprecation warnings. We will remove the old variants with our next major release.
+The material design specification changed concerning variant names and styles. To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but we log deprecation warnings. We will remove the old typography variants in the next major release v4.0.0 (Q1 2019).
 
 ### Strategies
 
@@ -65,9 +65,11 @@ const theme = createMuiTheme({
 });
 ```
 
+or set `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.
+
 This will use new variants instead of old variants according to the following mapping:
 
-```json
+```sh
 display4 => h1
 display3 => h2
 display2 => h3
@@ -79,12 +81,4 @@ body2 => body1
 body1 (default) => body2 (default)
 ```
 
-Please note that this will still log deprecation warnings if you use one of the variants. We recommend you replace those old variants with the recommended variants to be prepared for the next major release.
-
-See [Themes](/customization/themes/) for more information about how to use a global theme.
-
-### Deprecation warnings for v4.0.0
-
-Deprecation warnings are logged when: - `NODE_ENV` is not strictly equal to `production` - Regardless of whether you directly use the `Typography` component with a deprecated variant or another component has a `Typography` component with a deprecated variant - You override the style of a deprecated variant with `createMuiTheme` - You override the style of a restyled variant without `useNextVariants` with `createMuiTheme` - Variants are considered deprecated if: - They will be removed in the next major release. This includes: display4, display3, display2, display1, headline, title, subheading - They will be restyled and `useNextVariants` is falsy. This includes: body2, body1, caption, button
-
-In some cases the deprecation warnings can break your test suite which might be inconvenient. In those cases you can set the environment variable `MUI_SUPPRESS_DEPRECATION_WARNINGS` to a truthy value. Passing `suppressDeprecationWarnings: true` to the typography options in `createMuiTheme` is equivalent.
+Please note that this will log deprecation warnings if you use one of the old variants. We recommend you replace those old variants with the recommended variants to be prepared for the next major release. See [Themes](/customization/themes/) for more information about how to use a global theme.

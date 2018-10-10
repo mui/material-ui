@@ -1,69 +1,69 @@
 ---
-title: Snackbar React component
+title: React 消息条(Snackbar) 组件
 components: Snackbar, SnackbarContent
 ---
-# Snackbars
+# 消息条(Snackbar)
 
-<p class="description">Snackbars provide brief messages about app processes through a message - typically at the bottom of the screen</p>
+<p class="description">消息条(Snackbar)通过一条消息来提供有关应用进程的简短信息-通常在屏幕底部</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.
+[消息条(Snackbar)](https://material.io/design/components/snackbars.html) 通知用户应用程序已执行或将执行的进程。 它们会从屏幕底部短暂出现。 它们不应中断用户体验, 也不要求用户的操作来关闭。
 
-Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
+消息条(Snackbar)包含与执行的操作直接相关的单行文本。 它们可能包含文本操作, 但没有图标。您可以使用它们来显示通知。
 
-#### Frequency
+#### 频率
 
-Only one snackbar may be displayed at a time.
+一次只能显示一个消息条(Snackbar)。
 
-## Simple
+## 基本消息条（Snackbar)
 
-A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
+一个旨在重现Google Keep消息条行为的基本消息条(Snackbar)。
 
 {{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
-## Message Length
+## 消息长度
 
-Some snackbars with varying message length.
+不同消息长度的消息条(Snackbar)。
 
 {{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
 
-## Positioned
+## 定位消息条(Snackbar)
 
-There may be circumstances when the placement of the snackbar needs to be more flexible.
+在很多情况下消息条(Snackbar)的位置需要更灵活些。
 
 {{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
 
-## Transitions
+## 过渡动画
 
-### Control Direction
+### 控制方向
 
-Change the direction of the transition. Slide is the default transition.
+控制过渡动画的方向。幻灯片效果是默认的过渡动画。
 
 {{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
 
-### Change Transition
+### 更改过渡动画
 
-Use a different transition all together.
+同时使用不同的过渡动画。
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 
-### Don't block the floating action button
+### 不要遮住其他浮动的操作按钮。
 
-Move the floating action button vertically to accommodate the snackbar height.
+当出现消息条(Snackbar)时底部的浮动按钮自动上升一个消息条高度。
 
 {{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
 
-### Consecutive Snackbars
+### 连续的消息条(Snackbar)
 
-Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
+按照[Google的指引](https://material.io/design/components/snackbars.html#snackbars-toasts-usage),当第一个消息条(Snackbar)还在显示时如果第二条消息条(Snackbar)被触发的话, 第一条消息条(Snackbar)应该在第二条消息条(Snackbar)开始上浮出现时往下方收缩消失.
 
 {{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
 
-## Customized Snackbars
+## 自定义的消息条(Snackbar)
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
+如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Snackbar)的主要颜色的示例
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
-## Advanced use cases
+## 高级用例
 
-For more advanced use cases you might be able to take advantage of: - [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other
+如果需要有更高级的用法可以考虑使用: - [notistack](https://github.com/iamhosseindhv/notistack) 一个可以一个个重叠显示的高度自定义的消息条(Snackbar)组件。

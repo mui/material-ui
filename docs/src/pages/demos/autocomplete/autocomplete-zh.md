@@ -1,5 +1,5 @@
 ---
-title: 自动补全组件
+title: 自动补全React组件
 components: TextField, Paper, MenuItem, Popper
 ---
 # 自动补全
@@ -12,7 +12,7 @@ Material-UI不提供任何高级 API 来解决此问题。 我们鼓励人们依
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-在下面的示例中, 我们演示如何使用 [缩减](https://github.com/paypal/downshift)。
+在下面的示例中, 我们演示如何使用 [downshift](https://github.com/paypal/downshift)。
 
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
@@ -20,7 +20,7 @@ Material-UI不提供任何高级 API 来解决此问题。 我们鼓励人们依
 
 ![stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-在下面的示例中, 我们演示如何使用 [react-autosuggest](https://github.com/moroshko/react-autosuggest)。 它还使用 [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight)突出显示逻辑。
+在下面的示例中, 我们演示如何使用 [react-autosuggest](https://github.com/moroshko/react-autosuggest)。 它还使用 [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight)来完成突出显示的逻辑。
 
 {{"demo": "pages/demos/autocomplete/IntegrationAutosuggest.js"}}
 

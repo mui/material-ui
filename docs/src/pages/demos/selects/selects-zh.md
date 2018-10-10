@@ -1,41 +1,41 @@
 ---
-title: Select React component
+title: React 选择器组件
 components: Select, NativeSelect
 ---
-# Selects
+# 选择器
 
-<p class="description">Select components are used for collecting user provided information from a list of options.</p>
+<p class="description">选择器组件用于从选项列表中去获得用户所提供的信息。</p>
 
-## Simple Select
+## 简单选择器
 
-Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
+菜单位于其所点击的元素上, 使得当前选定的菜单项显示在点击元素上。
 
 {{"demo": "pages/demos/selects/SimpleSelect.js"}}
 
-## Native Select
+## 原生的选择器
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+由于可以使用平台的原生选择器在移动设备上改进用户体验，我们允许这种模式。
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
-## Multiple Select
+## 多选
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+`Select`组件可以处理多个选择，可以使用`multiple` 属性启用
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+与单项选择一样，您可以通过访问` onChange `属性中的回调` event.target.value `来提取新值。它总是一个数组。
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
-## With a Dialog
+## 与对话框组件使用
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+虽然Material Design的规范不鼓励，但您可以在对话框组件中使用选择。
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
 ## Text Fields
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).
+` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/demos/text-fields/#textfield)的示例
 
-## Controlled open Select
+## 受控的选择器
 
 {{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}

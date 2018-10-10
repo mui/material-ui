@@ -1,10 +1,10 @@
 ---
-title: Popper React component
+title: 弹出器 React 组件
 components: Popper
 ---
 # Popper
 
-<p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
+<p class="description">弹出器可以用来在其他元素之上显示一些内容。它和 react-popper 的功能是类似的。</p>
 
 Things to know when using the `Popper` component:
 

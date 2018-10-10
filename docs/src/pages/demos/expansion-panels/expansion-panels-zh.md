@@ -1,25 +1,25 @@
 ---
-title: Expansion Panel React component
+title: 扩展面板 React 组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
-# Expansion Panel
+# 拓展面板
 
-<p class="description">Expansion panels contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">扩展面板包含创建流程，允许轻量编辑元素。</p>
 
-[An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+[扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以连接到更大的表面， 比如卡片。
 
-## Simple Expansion Panel
+## 简单的扩展面板
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
 
-## Secondary heading and Columns
+## 次要标题和列
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+可以使用多列来构造内容，并且可以将辅助文本添加到面板以帮助用户。
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
-## Controlled Accordion
+## 受控手风琴
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+扩展默认面板行为以使用 ExpansionPanel </ code>组件创建手风琴。</p>
 
-{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
+<p>{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}</p>

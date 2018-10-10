@@ -60,7 +60,7 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 
 ```jsx
 import ReactDOMServer from 'react-dom/server'
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import {
   MuiThemeProvider,

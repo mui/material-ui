@@ -1,22 +1,22 @@
-# Supported Components
+# 支持组件
 
-<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
+<p class="description">以下是Material Design组件和功能的列表. 当前由Material-UI支持的那些被高亮显示✓.</p>
 
 While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, or every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
-If you wish to add support for a component or feature not highlighted here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one to discuss the approach before submitting a pull request.
+如果您希望在此处添加对组件或功能未高亮显示的支持, 请搜索相关的 [ GitHub 问题 ](https://github.com/mui-org/material-ui/issues), 或创建一个新的问题 来讨论该方法, 然后再提交pull请求。
 
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - [Bottom](https://material.io/design/components/app-bars-bottom.html)
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
-  - **[Flat & raised buttons](https://material.io/design/components/buttons.html) ✓**
+  - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - [Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons)
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - Transitions: 
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~ **([Lab](/lab/about/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -72,9 +72,9 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Sliders](https://material.io/design/components/sliders.html) ~ **([Lab](/lab/about/)) 
+- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/lab/about/)) 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
-  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**

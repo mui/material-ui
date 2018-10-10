@@ -8,18 +8,18 @@ components: Avatar
 
 ## 图片头像
 
-可以通过将标准` img ` props ` src `或` srcSet `传递到组件中来创建图像头像。
+可以通过将标准` img ` 的属性` src `或` srcSet `传递到组件中来创建图像头像。
 
-{{"演示": "pages/demos/avatars/ImageAvatars.js"}}
+{{"demo": "pages/demos/avatars/ImageAvatars.js"}}
 
 ## 图标头像
 
 通过将图标作为` children `传递来创建图标头像。
 
-{{"演示": "pages/demos/avatars/IconAvatars.js"}}
+{{"demo": "pages/demos/avatars/IconAvatars.js"}}
 
 ## 字母头像
 
 可以通过将字符串作为` children `传递来创建包含简单字符的头像。
 
-{{"演示": "pages/demos/avatars/LetterAvatars.js"}}
+{{"demo": "pages/demos/avatars/LetterAvatars.js"}}

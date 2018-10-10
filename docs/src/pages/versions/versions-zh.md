@@ -14,9 +14,9 @@
 
 {{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
 
-## Versioning strategy
+## 版本控制策略
 
-We recognize that you need **stability** from the Material-UI library. Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+我们认识到您需要来自Material-UI库的**稳定性**. 稳定性确保可重用组件和库、教程、工具和学习教程不会意外过时. 稳定性对于Material-UI蓬勃发展的生态系统至关重要.
 
 This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
 

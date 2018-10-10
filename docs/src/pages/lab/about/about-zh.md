@@ -1,16 +1,16 @@
-# About The Lab
+# 关于Lab
 
-<p class="description">This package hosts the incubator components that are not yet ready to move to the core.</p>
+<p class="description">这个包还在开发中, 尚未准备好添加到核心库中</p>
 
 ## 安装
 
-Install the package in your project directory with:
+在你的项目中直接用以下命令安装:
 
 ```sh
 npm install @material-ui/lab
 ```
 
-If you are not already using Material-UI in your project, you can add it with:
+如果你尚未在你的项目中使用Material-UI, 你可以按如下方式安装:
 
 ```sh
 // with npm

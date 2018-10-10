@@ -1,8 +1,8 @@
 # CSS in JS
 
-<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+<p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
 
-Material-UI aims to provide strong foundations for building dynamic UIs. For the sake of simplicity, **we expose our styling solution to users**. You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
+Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见, ** 我们向用户公开我们的样式解决方案 **。 You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
 
 ## Material-UI's styling solution
 
@@ -262,7 +262,7 @@ class MyComponent extends React.Component {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-transform-decorators/) like so:
+此外, 还可以像这样使用 [修饰器](https://babeljs.io/docs/en/babel-plugin-proposal-decorators):
 
 ```jsx
 import { withStyles } from '@material-ui/core/styles';

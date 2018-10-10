@@ -1,25 +1,25 @@
 ---
 components: Icon, SvgIcon
 ---
-# Icons
+# 图标
 
-<p class="description">Guidance and suggestions for using icons with Material-UI.</p>
+<p class="description">在Material-UI中使用图标的建议和指导。</p>
 
-A [system icon](https://material.io/design/iconography/system-icons.html) or UI icon, symbolizes a command, file, device, or directory. System icons are also used to represent common actions like trash, print, and save, and are commonly found in app bars, toolbars, buttons, and lists. Google has provided a set of [Material icons](https://material.io/tools/icons/?style=baseline) that follow these guidelines.
+一个[系统图标](https://material.io/design/iconography/system-icons.html)或UI图标，可以用来代表一个命令、文件、或者目录。 系统图标还常在app bar、工具栏、按钮、和列表中用来表示一些常见操作，如删除、打印、和保存。 Google在该规范下提供了一套[Material icons](https://material.io/tools/icons/?style=baseline)。
 
-Material-UI provides two components to render system icons: `SvgIcon` for rendering SVG paths, and `Icon` for rendering font icons.
+Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径来渲染，`Icon` 用字体来渲染。
 
-## SVG Icons
+## SVG 图标
 
-The `SvgIcon` component takes an SVG `path` element as its child and converts it to a React component that displays the path, and allows the icon to be styled and respond to mouse events. SVG elements should be scaled for a 24x24px viewport.
+`SvgIcon` 将SVG `path` 作为子组件，将它转换为展示路径的React组件，并且可以定制图标样式和相应鼠标事件。 SVG 元素应该为一个 24x24px 的视图。
 
-The resulting icon can be used as is, or included as a child for other Material-UI components that use icons. By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
+生成的图标可以当作另一个Material-UI组件的子组件来使用。 图标默认继承当前的文本颜色。 或者，你可以使用以下主题色之一来设置颜色属性：`primary`, `secondary`, `action`, `error` & `disabled`。
 
 {{"demo": "pages/style/icons/SvgIcons.js"}}
 
 ### SVG Material icons
 
-It's interesting to have the building blocks needed to implement custom icons, but what about presets? We provide a separate NPM package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
+It's interesting to have the building blocks needed to implement custom icons, but what about presets? We provide a separate npm package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 
 <a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
   <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
@@ -56,7 +56,7 @@ Note: Importing named exports in this way will result in the code for *every ico
 
 Looking for even more SVG icons? There are a lot of projects out there, but [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 official and community provided icons. [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
 
-## Font Icons
+## 字体图标
 
 The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
@@ -72,7 +72,7 @@ To use an icon simply wrap the icon name (font ligature) with the `Icon` compone
 <Icon>star</Icon>
 ```
 
-By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
+图标默认继承当前的文本颜色。 或者，你可以使用以下主题色之一来设置颜色属性：`primary`, `secondary`, `action`, `error` & `disabled`。
 
 ### Font Material icons
 

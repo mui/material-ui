@@ -1,5 +1,5 @@
 ---
-title: Circular Progress, Linear Progress React component
+title: 环形、线装进度 React 组件
 components: CircularProgress, LinearProgress
 ---
 # 进度
@@ -12,65 +12,65 @@ components: CircularProgress, LinearProgress
 
 **未确定**指示器可视化一个不确定的操作等待时间。
 
-#### Progress as a group
+#### 进度指示器组
 
-When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+当显示一系列过程的进度时，表示全部的过程而不是每个单独活动的进度。
 
-## Circular
+## 环形
 
-[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
+[圆形进度指示器](https://material.io/design/components/progress-indicators.html#circular-progress-indicators)支持确定过程和不确定过程。
 
-- **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
-- **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
+- **确定的** 环形指示器填充不可见区域，以颜色环形追踪，作为指示器从0至360度移动。
+- **不确定** 环形指示器在沿着不可见轨道移动时，随之变大变小。
 
-### Circular Indeterminate
+### 不确定环形
 
 {{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
 
-### Interactive Integration
+### 交互集成
 
 {{"demo": "pages/demos/progress/CircularIntegration.js"}}
 
-### Circular Determinate
+### 确定环形
 
 {{"demo": "pages/demos/progress/CircularDeterminate.js"}}
 
-### Circular Static
+### 静态环形
 
 {{"demo": "pages/demos/progress/CircularStatic.js"}}
 
-## Linear
+## 线状
 
-[Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
+[线状进度](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) 指示器.
 
-### Linear Indeterminate
+### 不确定线状
 
 {{"demo": "pages/demos/progress/LinearIndeterminate.js"}}
 
-### Linear Determinate
+### 确定线状
 
 {{"demo": "pages/demos/progress/LinearDeterminate.js"}}
 
-### Linear Buffer
+### 缓冲线状
 
 {{"demo": "pages/demos/progress/LinearBuffer.js"}}
 
-### Linear Query
+### 查询线状
 
 {{"demo": "pages/demos/progress/LinearQuery.js"}}
 
-## Non-standard ranges
+## 非标准范围
 
-The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
+进度组件接受一个 0 - 100 范围的值。 作为默认的最小/最大值，这简化了屏幕阅读用户的使用。 但是有时，你可能会使用值超出这个范围的数据源。 这里告诉您如何轻松的将一个任意范围的值转换为0 - 100区间的值。
 
 ```jsx
-// MIN = Minimum expected value
-// MAX = Maximium expected value
+// MIN = 最小值
+// MAX = 最大值
 
-// Function to normalise the values (MIN / MAX could be integrated)
+// 正常化值的函数（MIN / MAX 可相互协调）
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
 
-// Example component that utilizes the `normalise` function at the point of render.
+// 在 render 函数中，利用`正常化`函数的示例组件
 function Progress(props) {
   return (
     <React.Fragment>
@@ -81,16 +81,16 @@ function Progress(props) {
 }
 ```
 
-## Delaying appearance
+## 延迟展现
 
-There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time. The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second. After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
+关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase`组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
 
-## Limitations
+## 局限性
 
-Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
+在特别慢的加载时，可能丢失stroke dash动画或看到环形进度的半径随机的情况。 为了不阻塞主渲染进程，应该在web worker中或批处理中执行密集操作的处理器。
 
-![heavy load](/static/images/progress/heavy-load.gif)
+![慢加载](/static/images/progress/heavy-load.gif)
 
-See https://github.com/mui-org/material-ui/issues/10327
+见 https://github.com/mui-org/material-ui/issues/10327

@@ -19,7 +19,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 - Horizontal
 - Vertical
-- Linear
+- 线状
 - Non-linear
 
 ## Horizontal Linear

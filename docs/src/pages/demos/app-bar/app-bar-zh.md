@@ -1,6 +1,6 @@
 ---
 title: 应用栏React组件
-components: 应用栏, 工具栏, 菜单
+components: AppBar, Toolbar, Menu
 ---
 # 应用栏
 
@@ -37,3 +37,7 @@ components: 应用栏, 工具栏, 菜单
 ## Dense (仅限桌面)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
+
+## 底部应用栏
+
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}

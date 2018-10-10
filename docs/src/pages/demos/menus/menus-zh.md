@@ -1,59 +1,59 @@
 ---
-title: Menu React component
+title: React 菜单组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
-# Menus
+# 菜单
 
-<p class="description">Menus display a list of choices on temporary surfaces.</p>
+<p class="description">菜单显示在临时出现的所点击位置上的选项列表。</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
+[菜单](https://material.io/design/components/menus.html)通过一个临时出现的界面来显示选项列表。通常当用户与按钮，操作或其他控件交互时出现。
 
-## Simple Menu
+## 基本菜单
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make all menu items are completely visible.
+默认情况下, 基本菜单会在锚点元素上打开 (此选项可通过props更改)。当靠近屏幕边缘时, 简单菜单会垂直调整以使所有菜单项完全可见。
 
-Choosing an option should immediately ideally commit the option and close the menu.
+选择一个选项后, 最好立即提交该选项并关闭菜单。
 
-**Disambiguation**: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user’s current context.
+**解疑**: 与基本菜单相比, 基本对话框可以显示与列表项可用选项相关的其他详细信息, 或者提供与主要任务相关的导航类的或垂直的操作。 虽然它们可以显示相同的内容, 但基本菜单比基本对话框更可取, 因为基本菜单对用户当前上下文的破坏性较小。
 
 {{"demo": "pages/demos/menus/SimpleMenu.js"}}
 
-## Selected menus
+## 选择菜单
 
-If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)).
+如果用于项目选择, 则在打开时, 基本菜单会尝试将当前选定的菜单项与定位元素垂直对齐。 使用` selected `属性将菜单项设置为当前选中（从[ListItem](/api/list-item/))。
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
-If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
+如果基本菜单中的文本一行无法显示完，则使用基本对话框来代替。基本对话框可以有不同高度的行。
 
-## Max height menus
+## 限高菜单
 
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+如果菜单的最大高度仍无法显示所有菜单项，则菜单可以在内部滚动。
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 
-## MenuList composition
+## MenuList 组件
 
-The `Menu` component uses the `Popover` component internally. However, you might want to use a different positioning strategy, or not blocking the scroll. For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+`Menu`组件内部使用`Popver`组件 但是，您可能想药使用不同的定位策略，或者你不想禁止滚动。 为了满足这些需求，我们公开了一个`MenuList`组件，让你可以像下面例子中这样组合`Popper`来编写自己的菜单组件。
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+`MenuList`组件的主要职责是处理焦点。
 
 {{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
-## Customized MenuItem
+## 定制菜单项
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+`MenuItem`实际上是在`ListItem`之上增加了一些样式的封装。 所以你可以靠`MenuItem`来使用相同的列表组合特性：
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-## Change Transition
+## 更改过渡动画
 
-Use a different transition altogether.
+使用不同的过渡动画。
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
 ## Render Props
 
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single menu.
+这是[render props](https://reactjs.org/docs/render-props.html) 的例子。保持跟踪单个菜单的本地状态。
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}

@@ -12,7 +12,7 @@ Each breakpoint matches with a *fixed* screen width:
 - **lg**, large: 1280px or larger
 - **xl**, extra-large: 1920px or larger
 
-These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
+这些值可以自定义。 You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/layout/grid/) and [Hidden](/layout/hidden/) components.
 
@@ -28,11 +28,42 @@ In the following demo, we change the background color (red, blue & green) based 
 
 Sometimes, using CSS isn't enough. You might want to change the React rendering tree based on the breakpoint value, in JavaScript. We provide a `withWidth()` higher-order component for this use case.
 
+```js
+import withWidth from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  return <div>{`Current width: ${props.width}`}</div>;
+}
+
+export default withWidth()(MyComponent);
+```
+
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
 ⚠️ `withWidth()` server-side rendering support is limited.
+
+### Render Props
+
+In some cases, you could have property name collisions using higher-order components. To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
+
+```js
+import Typography from '@material-ui/core/Typography';
+import toRenderProps from 'recompose/toRenderProps';
+
+const WithWidth = toRenderProps(withWidth());
+
+export default function MyComponent() {
+  return (
+    <WithWidth>
+      {({ width }) => <div>{`Current width: ${width}`}</div>}
+    </WithWidth>
+  );
+}
+```
+
+{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
 
 ## API
 

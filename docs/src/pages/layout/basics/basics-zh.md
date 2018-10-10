@@ -1,28 +1,28 @@
-# Basics
+# 基础
 
-<p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
+<p class="description">Material Design布局鼓励通过统一的元素和间隔来实现跨平台、环境、屏幕尺寸的一致性。</p>
 
-## Responsive UI
+## 响应式UI
 
-[Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size. We provide the following helpers to make the UI responsive:
+Material Design中的[响应式布局](https://material.io/design/layout/responsive-layout-grid.html)可适配任何可能的屏幕尺寸。 我们提供以下工具以实现响应式UI：
 
-- [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+- [Grid](/layout/grid/): Grid（栅格）组件能确保不同布局间的视觉一致性，同时在广泛的不同设计中保持灵活性。
 
-- [Hidden](/layout/hidden/): The hidden component can be used to change the visibility of the elements.
+- [Hidden](/layout/hidden/)： Hidden（隐藏）组件可用于改变元素的可见状态。
 
-- [Breakpoints](/layout/breakpoints/): We provide a low-level API for using the breakpoints in a wide variery of context.
+- [Breakpoints](/layout/breakpoints/)： 在广泛的不同上下文中，我们提供了底层的API来使用断点（breakpoints）。
 
 ## z-index
 
-Several Material-UI components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content. We utilize a default z-index scale in Material-UI that's been designed to properly layer drawers, modals, snackbars, tooltips, and more.
+一些Material-UI组件利用`z-index`这个CSS属性，通过提供编排内容的第三轴，来控制布局。 我们在Material-UI中使用一套默认的z-index刻度，被设计用于layer drawer、snackbars、tooltips等控件。
 
-[These values](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+[这些值](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
 
-- mobile stepper: 1000
-- app bar: 1100
-- drawer: 1200
-- modal: 1300
-- snackbar: 1400
-- tooltip: 1500
+- 移动设备起步: 1000
+- 应用栏：1100
+- drawer（抽屉）：1200
+- modal（浮层）：1300
+- snackbar：1400
+- tooltip（提示）：1500
 
-These values can always be customized. You will find them in the theme under the [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) key. We don’t encourage customization of individual values; should you change one, you likely need to change them all.
+这些值可以自定义。 你可在theme（主题）的[`zIndex`](/customization/default-theme/?expend-path=$.zIndex)键中找到它们。 我们不建议自定义不同的值，如果你修改了其中一项，你很可能需要修改全部。
