@@ -29,6 +29,11 @@ describe('<SpeedDialAction />', () => {
     wrapper.unmount();
   });
 
+  it('initializes its state from props', () => {
+    const wrapper = shallow(<SpeedDialAction {...defaultProps} open tooltipOpen />);
+    assert.strictEqual(wrapper.state().tooltipOpen, true);
+  });
+
   it('should render a Tooltip', () => {
     const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
     assert.strictEqual(wrapper.type(), Tooltip);
@@ -51,6 +56,13 @@ describe('<SpeedDialAction />', () => {
     const buttonWrapper = wrapper.childAt(0);
     assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
     assert.strictEqual(buttonWrapper.hasClass(classes.buttonClosed), true);
+  });
+
+  it('passes the className to the Button', () => {
+    const className = 'my-speeddialaction';
+    const wrapper = shallow(<SpeedDialAction {...defaultProps} className={className} />);
+    const buttonWrapper = wrapper.childAt(0);
+    assert.strictEqual(buttonWrapper.hasClass(className), true);
   });
 
   describe('prop: onClick', () => {
