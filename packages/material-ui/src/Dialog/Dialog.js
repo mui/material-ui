@@ -19,7 +19,7 @@ export const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `scroll="bodyr"`. */
+  /* Styles applied to the root element if `scroll="body"`. */
   scrollBody: {
     overflowY: 'auto',
     overflowX: 'hidden',
