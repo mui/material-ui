@@ -14,7 +14,7 @@ function typographyV1Theme(theme) {
   return createMuiTheme({
     ...theme,
     typography: {
-      suppressDeprecationWarnings: true,
+      ...theme.typography,
       useNextVariants: false,
     },
   });

@@ -2,9 +2,9 @@
 
 <p class="description">Install Material-UI, the world's most popular React UI framework.</p>
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UI is available as an [NPM package](https://www.npmjs.com/package/@material-ui/core).
 
-## npm
+## NPM
 
 To install and save in your `package.json` dependencies, run:
 

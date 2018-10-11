@@ -39,7 +39,7 @@ if (args.length < 4) {
 
 const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme();
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 

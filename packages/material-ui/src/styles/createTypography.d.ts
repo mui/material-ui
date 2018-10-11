@@ -36,7 +36,6 @@ export interface FontStyle
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
   allVariants?: CSSProperties;
-  suppressDeprecationWarnings?: boolean;
   useNextVariants?: boolean;
 }
 
