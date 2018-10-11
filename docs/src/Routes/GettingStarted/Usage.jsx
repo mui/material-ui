@@ -8,29 +8,29 @@ const sandBoxId = '74mqv6qq90';
 
 const Usage = ({ classes }) => (
   <div>
-    <Typography variant="display2" gutterBottom> Usage </Typography>
+    <Typography variant="h3" gutterBottom> Usage </Typography>
 
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       Material-UI-pickers rely only on material-ui controls and the date-management lib
       you have choose. Please note that all components are controlled, thats means that its required
       to pass <span className="inline-code"> value </span> and <span className="inline-code"> onChange </span> props.
     </Typography>
 
     <Typography
-      variant="display1"
+      variant="h4"
       className={classes.quickStartHeader}
       gutterBottom
     >
       Quick Start
     </Typography>
 
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       Here is a quick example you to get started
     </Typography>
 
     <Code withMargin text={quickStartCode} />
 
-    <Typography variant="display1" gutterBottom>
+    <Typography variant="h4" gutterBottom>
       Interactive example
     </Typography>
 

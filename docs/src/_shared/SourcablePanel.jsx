@@ -39,7 +39,7 @@ class SourcablePanel extends PureComponent {
 
     return (
       <React.Fragment>
-        <Typography variant="display1" className={classes.exampleTitle}>
+        <Typography variant="h4" className={classes.exampleTitle}>
           { title }
         </Typography>
 

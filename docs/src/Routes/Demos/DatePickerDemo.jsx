@@ -5,13 +5,13 @@ import { Typography } from '@material-ui/core';
 
 const DatePickerDemoDemo = () => (
   <div>
-    <Typography variant="display2" gutterBottom>
+    <Typography variant="h3" gutterBottom>
       Date picker
     </Typography>
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       Date pickers use a dialog window to select a single date.
     </Typography>
-    <Typography variant="body1">
+    <Typography variant="body2">
       The selected day is indicated by a filled circle.
       The current day is indicated by a different color and type weight.
     </Typography>
@@ -35,7 +35,7 @@ const DatePickerDemoDemo = () => (
       title="Custom day element"
       sourceFile="Demo/DatePicker/CustomElementsDatePicker.jsx"
       description={
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body2" gutterBottom>
           Customization performing by overriding render method for Day component.
           <a href="https://codesandbox.io/s/mozqv539lp"> Here </a> example with moment-js
         </Typography>
