@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Fade from '../Fade';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 
@@ -18,6 +19,13 @@ export const styles = {
   },
   checked: {},
   disabled: {},
+  icon: {
+    gridColumn: 1,
+    gridRow: 1,
+  },
+  icons: {
+    display: 'grid',
+  },
   input: {
     cursor: 'inherit',
     position: 'absolute',
@@ -87,6 +95,7 @@ class SwitchBase extends React.Component {
       classes,
       className: classNameProp,
       disabled: disabledProp,
+      disableFade,
       icon,
       id,
       inputProps,
@@ -133,7 +142,21 @@ class SwitchBase extends React.Component {
         onBlur={this.handleBlur}
         {...other}
       >
-        {checked ? checkedIcon : icon}
+        {!disableFade && (
+          <span className={classes.icons}>
+            <Fade in={!checked} timeout={200}>
+              {React.cloneElement(icon, {
+                className: classes.icon,
+              })}
+            </Fade>
+            <Fade in={checked} timeout={200}>
+              {React.cloneElement(checkedIcon, {
+                className: classes.icon,
+              })}
+            </Fade>
+          </span>
+        )}
+        {disableFade && (checked ? checkedIcon : icon)}
         <input
           autoFocus={autoFocus}
           checked={checked}
@@ -187,6 +210,10 @@ SwitchBase.propTypes = {
    * If `true`, the switch will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the icon fade transition will be disabled.
+   */
+  disableFade: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
    */
