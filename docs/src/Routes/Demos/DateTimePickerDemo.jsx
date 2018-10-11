@@ -5,13 +5,13 @@ import { Typography } from '@material-ui/core';
 
 const DateTimePickerDemo = () => (
   <div>
-    <Typography variant="display2" gutterBottom>
+    <Typography variant="h3" gutterBottom>
       Date & time picker
     </Typography>
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       This component is not from material design guidelines.
     </Typography>
-    <Typography variant="body1">
+    <Typography variant="body2">
       Its a combination of date & time picker and allows
       that uses the modal to select both date and time with one control.
     </Typography>
@@ -30,7 +30,7 @@ const DateTimePickerDemo = () => (
       title="Customization"
       sourceFile="Demo/DateTimePicker/CustomDateTimePicker.jsx"
       description={
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body2" gutterBottom>
           Applied mostly all customization, that available for date & time pickers
         </Typography>
       }

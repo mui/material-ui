@@ -8,14 +8,14 @@ import utilsInterfaceCode from '!raw-loader!material-ui-pickers/typings/utils.d.
 
 const FormatCustomization = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Format customization </Typography>
+    <Typography variant="h3" gutterBottom> Format customization </Typography>
 
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       For localization purpose may be needed to change displaying values in the pickers modal,
       because default formats can be not idiomatic for some localizations. There utils can help you.
     </Typography>
 
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       It`s possible to override any of displaying date values by inheritance
       of utils passed to MuiPickersProvider.
     </Typography>
@@ -24,17 +24,17 @@ const FormatCustomization = () => (
       title="Patched french picker"
       sourceFile="Guides/OverrideFormatPicker.jsx"
       description={
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body2" gutterBottom>
           You can use ES6 class syntax or override values with a help of .prototype property
         </Typography>
       }
     />
 
-    <Typography variant="display1" gutterBottom>
+    <Typography variant="h4" gutterBottom>
       Utils interface
     </Typography>
 
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       Where TDate - date object passed from state (moment, native Date or Luxon`s DateTime)
     </Typography>
 

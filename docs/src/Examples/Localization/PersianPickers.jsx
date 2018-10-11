@@ -22,7 +22,7 @@ export default class BasicUsage extends Component {
     return (
       <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             Date picker
           </Typography>
 
@@ -39,7 +39,7 @@ export default class BasicUsage extends Component {
         </div>
 
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             Time picker
           </Typography>
 
@@ -55,7 +55,7 @@ export default class BasicUsage extends Component {
         </div>
 
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             DateTime picker
           </Typography>
 

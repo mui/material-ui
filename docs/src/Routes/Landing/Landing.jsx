@@ -30,10 +30,10 @@ class Demo extends Component {
             src={MuiLogo}
           />
 
-          <Typography variant="display1" color="inherit" className="title text-light" gutterBottom>
+          <Typography variant="h4" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
           </Typography>
-          <Typography variant="headline" align="center" color="inherit" gutterBottom className="text-light">
+          <Typography variant="h5" align="center" color="inherit" gutterBottom className="text-light">
             Accessible, customizable, delightful date & time pickers for @material-ui/core
           </Typography>
 
@@ -45,7 +45,7 @@ class Demo extends Component {
         </Toolbar>
 
         <div id="content" className={classes.content}>
-          <Typography variant="display1" align="center" gutterBottom>
+          <Typography variant="h4" align="center" gutterBottom>
             Support material-ui-pickers
           </Typography>
 

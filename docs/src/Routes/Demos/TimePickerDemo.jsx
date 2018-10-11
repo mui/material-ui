@@ -5,13 +5,13 @@ import { Typography } from '@material-ui/core';
 
 const DatePickerDemoDemo = () => (
   <div>
-    <Typography variant="display2" gutterBottom>
+    <Typography variant="h3" gutterBottom>
       Time picker
     </Typography>
-    <Typography variant="body1" gutterBottom>
+    <Typography variant="body2" gutterBottom>
       Time pickers use a dialog to select a single time (in the hours:minutes format).
     </Typography>
-    <Typography variant="body1">
+    <Typography variant="body2">
       The selected time is indicated by the filled circle at the end of the clock hand.
     </Typography>
 
@@ -19,7 +19,7 @@ const DatePickerDemoDemo = () => (
       title="Basic usage"
       sourceFile="Demo/TimePicker/TimePickerBasic.jsx"
       description={
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body2" gutterBottom>
           A time picker should adjusts to a user’s preferred time setting,
           i.e. the 12-hour or 24-hour format.
         </Typography>
@@ -30,7 +30,7 @@ const DatePickerDemoDemo = () => (
       title="Seconds input"
       sourceFile="Demo/TimePicker/SecondsTimePicker.jsx"
       description={
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body2" gutterBottom>
           Seconds input can be used for selection of precise time point
         </Typography>
       }
