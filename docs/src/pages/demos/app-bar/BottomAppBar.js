@@ -100,12 +100,6 @@ const messages = [
   },
 ];
 
-// const images = [
-//   '/static/images/adeel.jpg',
-//   '/static/images/uxceo-128.jpg',
-//   '/static/images/remy.jpg',
-// ];
-
 function BottomAppBar(props) {
   const { classes } = props;
   return (
