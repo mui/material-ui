@@ -18,8 +18,7 @@ function assertIsChecked(wrapper) {
   const input = wrapper.find('input');
   assert.strictEqual(input.instance().checked, true);
 
-  const label = iconButton.childAt(0);
-  const icon = label.childAt(0);
+  const icon = wrapper.find('Transition[in=true]').childAt(0);
   assert.strictEqual(icon.name(), 'h2');
 }
 
@@ -35,8 +34,7 @@ function assertIsNotChecked(wrapper) {
   const input = wrapper.find('input');
   assert.strictEqual(input.instance().checked, false);
 
-  const label = iconButton.childAt(0);
-  const icon = label.childAt(0);
+  const icon = wrapper.find('Transition[in=true]').childAt(0);
   assert.strictEqual(icon.name(), 'h1');
 }
 
@@ -69,7 +67,14 @@ describe('<SwitchBase />', () => {
 
   it('should render an icon and input inside the button by default', () => {
     const wrapper = shallow(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.childAt(0).name(), 'h1');
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(0)
+        .name(),
+      'h1',
+    );
     assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true);
   });
 
@@ -114,6 +119,12 @@ describe('<SwitchBase />', () => {
     Object.keys(props).forEach(n => {
       assert.strictEqual(input.props()[n], props[n]);
     });
+  });
+
+  it('should disable the fade animation when disableFade={true}', () => {
+    const wrapper = shallow(<SwitchBase {...defaultProps} disableFade />);
+    assert.strictEqual(wrapper.find('Transition').length, 0);
+    assert.strictEqual(wrapper.childAt(0).name(), 'h1');
   });
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
@@ -239,7 +250,14 @@ describe('<SwitchBase />', () => {
   describe('prop: icon', () => {
     it('should render an Icon', () => {
       const wrapper = shallow(<SwitchBase {...defaultProps} icon={<Icon>heart</Icon>} />);
-      assert.strictEqual(wrapper.childAt(0).is(Icon), true);
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .childAt(0)
+          .is(Icon),
+        true,
+      );
     });
   });
 

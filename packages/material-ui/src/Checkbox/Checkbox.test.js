@@ -38,7 +38,7 @@ describe('<Checkbox />', () => {
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       const wrapper = mount(<Checkbox indeterminate />);
-      assert.strictEqual(wrapper.find(IndeterminateCheckBoxIcon).length, 1);
+      assert.strictEqual(wrapper.find(IndeterminateCheckBoxIcon).length, 2);
     });
   });
 });
