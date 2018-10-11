@@ -114,6 +114,7 @@ function Switch(props) {
           disabled: classes.disabled,
         }}
         checkedIcon={<span className={classNames(classes.icon, classes.iconChecked)} />}
+        disableFade
         {...other}
       />
       <span className={classes.bar} />
