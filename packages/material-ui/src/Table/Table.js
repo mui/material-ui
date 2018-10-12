@@ -33,7 +33,7 @@ class Table extends React.Component {
 
 Table.propTypes = {
   /**
-   * The content of the table, normally `TableHeader` and `TableBody`.
+   * The content of the table, normally `TableHead` and `TableBody`.
    */
   children: PropTypes.node.isRequired,
   /**
