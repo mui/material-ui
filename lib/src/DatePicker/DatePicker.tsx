@@ -114,14 +114,14 @@ export class DatePicker extends React.PureComponent<
       <>
         <PickerToolbar>
           <ToolbarButton
-            variant="subheading"
+            variant="subtitle1"
             onClick={this.openYearSelection}
             selected={showYearSelection}
             label={utils.getYearText(this.date)}
           />
 
           <ToolbarButton
-            variant="display1"
+            variant="h4"
             onClick={this.openCalendar}
             selected={!showYearSelection}
             label={utils.getDatePickerHeaderText(this.date)}

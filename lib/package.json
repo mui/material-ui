@@ -84,7 +84,7 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "@material-ui/core": "^3.1.1",
+    "@material-ui/core": "^3.2.0",
     "@types/classnames": "^2.2.6",
     "@types/jest": "^22.2.3",
     "@types/jss": "^9.5.6",

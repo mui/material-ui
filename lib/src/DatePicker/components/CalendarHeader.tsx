@@ -60,7 +60,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           transKey={currentMonth.toString()}
           className={classes.transitionContainer}
         >
-          <Typography align="center" variant="body1">
+          <Typography align="center" variant="body2">
             {utils.getCalendarHeaderText(currentMonth)}
           </Typography>
         </SlideTransition>
