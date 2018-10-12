@@ -38,3 +38,7 @@ A primary searchbar.
 ## Dense (desktop only)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
+
+## Bottom App Bar
+
+{{"demo": "pages/demos/app-bar/BottomAppBar.js"}}
