@@ -22,7 +22,7 @@ Shown below is a sample link markup used to load the Roboto font from a CDN.
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-## Install with NPM
+## Install with npm
 
 You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing the below command in your terminal:
 
@@ -58,8 +58,8 @@ Hopefully, you might be able to take advantage of the [`typography`](/customizat
 ## Migration to typography v2
 
 The material design specification changed concerning variant names and styles.
-To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but will log deprecation warnings.
-We will remove the old variants with our next major release v4.0.0 (Q1 2019).
+To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but we log deprecation warnings.
+We will remove the old typography variants in the next major release v4.0.0 (Q1 2019).
 
 ### Strategies
 
@@ -74,11 +74,11 @@ const theme = createMuiTheme({
 });
 ```
 
-or set `window.__MUI_USE_NEW_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.
+or set `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.
 
 This will use new variants instead of old variants according to the following mapping:
 
-```
+```sh
 display4 => h1
 display3 => h2
 display2 => h3
@@ -90,8 +90,6 @@ body2 => body1
 body1 (default) => body2 (default)
 ```
 
-Please note that this will still log deprecation warnings if you use one of the old variants.
+Please note that this will log deprecation warnings if you use one of the old variants.
 We recommend you replace those old variants with the recommended variants to be prepared
-for the next major release.
-
-See [Themes](/customization/themes/) for more information about how to use a global theme.
+for the next major release. See [Themes](/customization/themes/) for more information about how to use a global theme.

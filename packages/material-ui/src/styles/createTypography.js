@@ -26,7 +26,7 @@ export default function createTypography(palette, typography) {
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
     // eslint-disable-next-line no-underscore-dangle
-    useNextVariants = false || global.__MUI_USE_NEW_TYPOGRAPHY_VARIANTS__,
+    useNextVariants = Boolean(global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__),
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
@@ -180,15 +180,15 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       ...oldVariants,
+      ...nextVariants,
       ...(useNextVariants
         ? {
-            ...nextVariants,
             body1: nextVariants.body1Next,
             body2: nextVariants.body2Next,
             button: nextVariants.buttonNext,
             caption: nextVariants.captionNext,
           }
-        : nextVariants),
+        : {}),
       useNextVariants,
     },
     other,

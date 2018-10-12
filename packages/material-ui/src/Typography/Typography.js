@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import chainPropType from '../utils/chainPropType';
+import chainPropTypes from '../utils/chainPropTypes';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -268,7 +268,7 @@ Typography.propTypes = {
    * Applies the theme typography styles.
    * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
    */
-  variant: chainPropType(
+  variant: chainPropTypes(
     PropTypes.oneOf([
       'h1',
       'h2',

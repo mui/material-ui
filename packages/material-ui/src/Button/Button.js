@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import chainPropType from '../utils/chainPropType';
+import chainPropTypes from '../utils/chainPropTypes';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
@@ -334,10 +334,11 @@ Button.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The variant to use. __WARNING__: `flat` and `raised` are deprecated.
+   * The variant to use.
+   * __WARNING__: `flat` and `raised` are deprecated.
    * Instead use `text` and `contained` respectively.
    */
-  variant: chainPropType(
+  variant: chainPropTypes(
     PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab']),
     props => {
       if (props.variant === 'flat') {

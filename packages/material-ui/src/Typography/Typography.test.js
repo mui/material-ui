@@ -102,13 +102,13 @@ describe('<Typography />', () => {
 
     beforeEach(() => {
       // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEW_TYPOGRAPHY_VARIANTS__ = false;
+      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = false;
       consoleErrorMock.spy();
     });
 
     afterEach(() => {
       // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEW_TYPOGRAPHY_VARIANTS__ = true;
+      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
       consoleErrorMock.reset();
     });
 
