@@ -1,37 +1,45 @@
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
+import { mock } from 'sinon';
 import chainPropType from './chainPropType';
 
 describe('chainPropType', () => {
-  const props = {};
   const propName = 'children';
+  const props = { [propName]: 'some string' };
   const componentName = 'ComponentName';
   const location = 'prop';
-  const propFullName = null;
+  let warning;
+
+  beforeEach(() => {
+    warning = mock(console).expects('error');
+  });
+
+  afterEach(() => {
+    warning.restore();
+  });
 
   it('should have the right shape', () => {
     assert.strictEqual(typeof chainPropType, 'function');
   });
 
-  it('should return null for supported properties', () => {
-    const result = chainPropType(PropTypes.string, () => null)(
+  it('should not warn for supported types', () => {
+    PropTypes.checkPropTypes(
+      { [propName]: chainPropType(PropTypes.string, () => null) },
       props,
-      propName,
-      componentName,
       location,
-      propFullName,
+      componentName,
     );
-    assert.strictEqual(result, null);
+    assert.strictEqual(warning.called, false);
   });
 
-  it('should return an error for unsupported properties', () => {
-    const result = chainPropType(PropTypes.string, () => new Error('something is wrong'))(
+  it('should warn for unsupported properties', () => {
+    PropTypes.checkPropTypes(
+      { [propName]: chainPropType(PropTypes.string, () => new Error('something is wrong')) },
       props,
-      propName,
-      componentName,
       location,
-      propFullName,
+      componentName,
     );
-    assert.match(result.message, /something is wrong/);
+    assert.strictEqual(warning.calledOnce, true);
+    assert.match(warning.firstCall.args[0], /something is wrong/);
   });
 });
