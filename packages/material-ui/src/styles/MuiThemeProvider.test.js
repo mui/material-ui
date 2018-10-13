@@ -82,11 +82,11 @@ describe('<MuiThemeProvider />', () => {
       );
 
       assert.notStrictEqual(markup.match('Hello World'), null);
-      assert.strictEqual(sheetsRegistry.registry.length, 3);
+      assert.strictEqual(sheetsRegistry.registry.length, 2);
       assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
-      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-30');
+      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiButtonBase-root-27');
       assert.deepEqual(
-        sheetsRegistry.registry[1].classes,
+        sheetsRegistry.registry[0].classes,
         {
           disabled: 'MuiButtonBase-disabled-28',
           focusVisible: 'MuiButtonBase-focusVisible-29',
@@ -94,7 +94,7 @@ describe('<MuiThemeProvider />', () => {
         },
         'the class names should be deterministic',
       );
-      assert.strictEqual(sheetsRegistry.registry[2].classes.root, 'MuiButton-root-1');
+      assert.strictEqual(sheetsRegistry.registry[1].classes.root, 'MuiButton-root-1');
     });
   });
 

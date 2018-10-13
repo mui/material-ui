@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
+import NoSsr from '../NoSsr';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
@@ -269,14 +270,13 @@ class ButtonBase extends React.Component {
       classNameProp,
     );
 
-    const buttonProps = {};
-
     let ComponentProp = component;
 
     if (ComponentProp === 'button' && other.href) {
       ComponentProp = 'a';
     }
 
+    const buttonProps = {};
     if (ComponentProp === 'button') {
       buttonProps.type = type || 'button';
       buttonProps.disabled = disabled;
@@ -286,6 +286,7 @@ class ButtonBase extends React.Component {
 
     return (
       <ComponentProp
+        className={className}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onKeyDown={this.handleKeyDown}
@@ -296,15 +297,17 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        tabIndex={disabled ? '-1' : tabIndex}
-        className={className}
         ref={buttonRef}
+        tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
         {...other}
       >
         {children}
         {!disableRipple && !disabled ? (
-          <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
+          <NoSsr>
+            {/* TouchRipple is only needed client side, x2 boost on the server. */}
+            <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
+          </NoSsr>
         ) : null}
       </ComponentProp>
     );
