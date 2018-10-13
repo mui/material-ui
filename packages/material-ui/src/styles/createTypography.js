@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
 import typographyMigration from './typographyMigration';
+import { getEnv } from '../utils/helpers';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -27,7 +28,7 @@ export default function createTypography(palette, typography) {
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
-    suppressDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
+    suppressDeprecationWarnings = getEnv('MUI_SUPPRESS_DEPRECATION_WARNINGS'),
     useNextVariants = false,
     // Apply the CSS properties to all the variants.
     allVariants,

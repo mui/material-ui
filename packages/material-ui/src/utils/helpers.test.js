@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { capitalize, contains, find } from './helpers';
+import { capitalize, contains, find, getEnv } from './helpers';
 
 describe('utils/helpers.js', () => {
   describe('capitalize', () => {
@@ -31,6 +31,12 @@ describe('utils/helpers.js', () => {
       const failPred = { cat: 'meow' };
       assert.strictEqual(contains(obj, pred), true);
       assert.strictEqual(contains(obj, failPred), false);
+    });
+  });
+
+  describe('getEnv', () => {
+    it('returns variables defined in process.env', () => {
+      assert.strictEqual(getEnv('NODE_ENV'), process.env.NODE_ENV);
     });
   });
 });
