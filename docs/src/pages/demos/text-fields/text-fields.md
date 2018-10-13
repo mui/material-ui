@@ -32,7 +32,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 `TextField` is composed of smaller components (
 [`FormControl`](/api/form-control/),
 [`Input`](/api/input/),
-[`InputLabel`](/api/filled-input/),
+[`FilledInput`](/api/filled-input/),
 [`InputLabel`](/api/input-label/),
 [`OutlinedInput`](/api/outlined-input/),
 and [`FormHelperText`](/api/form-helper-text/)
