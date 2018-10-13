@@ -80,6 +80,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the label container element if `label` is provided. */
   labelContainer: {
+    width: '100%',
     paddingTop: 6,
     paddingBottom: 6,
     paddingLeft: 12,
