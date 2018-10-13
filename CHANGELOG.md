@@ -35,8 +35,6 @@ This change updates the variant wording to match the one used in the Material De
 +<Button variant="contained" />
 ```
 
-You can suppress the warnings with the environment variable `MUI_SUPPRESS_DEPRECATION_WARNINGS` set to a truthy value.
-
 #### Changes
 
 - [TextField] Ensure labelWidth is set (#13077) @evanstern

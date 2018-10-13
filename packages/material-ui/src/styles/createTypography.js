@@ -1,6 +1,5 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
-import typographyMigration from './typographyMigration';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -9,7 +8,6 @@ function round(value) {
 const caseAllCaps = {
   textTransform: 'uppercase',
 };
-
 const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
@@ -27,27 +25,18 @@ export default function createTypography(palette, typography) {
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
-    suppressDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
-    useNextVariants = false,
+    // eslint-disable-next-line no-underscore-dangle
+    useNextVariants = Boolean(global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__),
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   warning(
-    !Object.keys(other).some(variant => typographyMigration.deprecatedVariants.includes(variant)),
-    'Material-UI: You are passing a deprecated variant to ' +
-      `createTypography. ${typographyMigration.migrationGuideMessage}`,
-  );
-
-  warning(
-    useNextVariants ||
-      !Object.keys(other).some(variant => typographyMigration.restyledVariants.includes(variant)),
-    'Material-UI: You are passing a variant to createTypography ' +
-      'that will be restyled in the next major release, without indicating that you ' +
-      `are using typography v2 (set \`useNextVariants\` to true. ${
-        typographyMigration.migrationGuideMessage
-      }`,
+    useNextVariants,
+    'Material-UI: you are using the deprecated typography variants ' +
+      'that will be removed in the next major release.' +
+      '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
   );
 
   const coef = fontSize / 14;
@@ -191,16 +180,15 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       ...oldVariants,
+      ...nextVariants,
       ...(useNextVariants
         ? {
-            ...nextVariants,
             body1: nextVariants.body1Next,
             body2: nextVariants.body2Next,
             button: nextVariants.buttonNext,
             caption: nextVariants.captionNext,
           }
-        : nextVariants),
-      suppressDeprecationWarnings,
+        : {}),
       useNextVariants,
     },
     other,

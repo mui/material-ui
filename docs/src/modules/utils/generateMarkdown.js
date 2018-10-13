@@ -2,6 +2,7 @@
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
+import { parse as docgenParse } from 'react-docgen';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
 
@@ -23,15 +24,34 @@ function generateHeader(reactAPI) {
 }
 
 function getDeprecatedInfo(type) {
-  const deprecatedPropType = 'deprecated(PropTypes.';
-
-  const indexStart = type.raw.indexOf(deprecatedPropType);
+  const marker = 'deprecated(PropTypes.';
+  const indexStart = type.raw.indexOf(marker);
 
   if (indexStart !== -1) {
     return {
-      propTypes: type.raw.substring(indexStart + deprecatedPropType.length, type.raw.indexOf(',')),
+      propTypes: type.raw.substring(indexStart + marker.length, type.raw.indexOf(',')),
       explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
     };
+  }
+
+  return false;
+}
+
+function getChained(type) {
+  const marker = 'chainPropTypes';
+  const indexStart = type.raw.indexOf(marker);
+
+  if (indexStart !== -1) {
+    const parsed = docgenParse(`
+      import PropTypes from 'prop-types';
+      const Foo = () => <div />
+      Foo.propTypes = {
+        bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
+      }
+      export default Foo
+    `);
+
+    return parsed.props.bar.type;
   }
 
   return false;
@@ -50,7 +70,6 @@ function generatePropDescription(description, type) {
 
   if (type.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
-
     if (deprecatedInfo) {
       deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
     }
@@ -123,11 +142,15 @@ function generatePropType(type) {
   switch (type.name) {
     case 'custom': {
       const deprecatedInfo = getDeprecatedInfo(type);
-
       if (deprecatedInfo !== false) {
         return generatePropType({
           name: deprecatedInfo.propTypes,
         });
+      }
+
+      const chained = getChained(type);
+      if (chained !== false) {
+        return generatePropType(chained);
       }
 
       return type.raw;

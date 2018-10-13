@@ -3,7 +3,7 @@
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import * as reactDocgen from 'react-docgen';
+import { parse as docgenParse } from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
@@ -39,7 +39,7 @@ if (args.length < 4) {
 
 const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme();
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
@@ -123,7 +123,7 @@ function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = reactDocgen.parse(src);
+    reactAPI = docgenParse(src);
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;
@@ -134,7 +134,7 @@ function buildDocs(options) {
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Snackbar') {
+  // if (reactAPI.name !== 'Button') {
   //   return;
   // }
 

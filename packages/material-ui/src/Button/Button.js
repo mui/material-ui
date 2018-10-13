@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
+import chainPropTypes from '../utils/chainPropTypes';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
@@ -226,18 +226,6 @@ function Button(props) {
     ...other
   } = props;
 
-  warning(
-    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'flat',
-    'Material-UI: The `flat` Button variant will be removed in ' +
-      'the next major release. `text` is equivalent and should be used instead.',
-  );
-
-  warning(
-    process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS || variant !== 'raised',
-    'Material-UI: The `raised` Button variant will be removed in ' +
-      'the next major release. `contained` is equivalent and should be used instead.',
-  );
-
   const fab = variant === 'fab' || variant === 'extendedFab';
   const contained = variant === 'contained' || variant === 'raised';
   const text = variant === 'text' || variant === 'flat' || variant === 'outlined';
@@ -346,18 +334,29 @@ Button.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The variant to use. __WARNING__: `flat` and `raised` are deprecated. Instead use
-   * `text` and `contained` respectively.
+   * The variant to use.
+   * __WARNING__: `flat` and `raised` are deprecated.
+   * Instead use `text` and `contained` respectively.
    */
-  variant: PropTypes.oneOf([
-    'text',
-    'flat',
-    'outlined',
-    'contained',
-    'raised',
-    'fab',
-    'extendedFab',
-  ]),
+  variant: chainPropTypes(
+    PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab']),
+    props => {
+      if (props.variant === 'flat') {
+        return new Error(
+          'The `flat` variant will be removed in the next major release. ' +
+            '`text` is equivalent and should be used instead.',
+        );
+      }
+      if (props.variant === 'raised') {
+        return new Error(
+          'The `raised` variant will be removed in the next major release. ' +
+            '`contained` is equivalent and should be used instead.',
+        );
+      }
+
+      return null;
+    },
+  ),
 };
 
 Button.defaultProps = {
