@@ -45,6 +45,16 @@ renderer.heading = (text, level) => {
   );
 };
 
+renderer.link = (href, title, text) => {
+  let more = '';
+
+  if (href.indexOf('https://material.io/') !== -1) {
+    more = ' target="_blank" rel="noopener nofollow"';
+  }
+
+  return `<a href="${href}"${more}>${text}</a>`;
+};
+
 const markedOptions = {
   gfm: true,
   tables: true,
