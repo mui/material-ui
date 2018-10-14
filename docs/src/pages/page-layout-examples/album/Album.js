@@ -82,7 +82,7 @@ function Album(props) {
         {/* Hero unit */}
         <div className={classes.heroUnit}>
           <div className={classes.heroContent}>
-            <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Album layout
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
