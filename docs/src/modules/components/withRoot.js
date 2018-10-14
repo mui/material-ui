@@ -244,6 +244,7 @@ const pages = [
   },
   {
     pathname: '/versions',
+    displayNav: false,
   },
   {
     pathname: '/',
