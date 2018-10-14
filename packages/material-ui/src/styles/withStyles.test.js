@@ -98,7 +98,7 @@ describe('withStyles', () => {
       });
     });
 
-    describe('cache', () => {
+    describe('classes memoization', () => {
       it('should recycle with no classes property', () => {
         const wrapper = mount(<StyledComponent1 />);
         const classes1 = wrapper.find(Empty).props().classes;

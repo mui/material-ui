@@ -68,19 +68,9 @@ describe('<MuiThemeProvider />', () => {
       return;
     }
 
-    it('should be able to extract the styles', () => {
-      const theme = createMuiTheme();
-      const sheetsRegistry = new SheetsRegistry();
-      const generateClassName = createGenerateClassName();
+    const theme = createMuiTheme();
 
-      const markup = ReactDOMServer.renderToString(
-        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-          <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
-            <Button>Hello World</Button>
-          </MuiThemeProvider>
-        </JssProvider>,
-      );
-
+    function assertRendering(markup, sheetsRegistry) {
       assert.notStrictEqual(markup.match('Hello World'), null);
       assert.strictEqual(sheetsRegistry.registry.length, 2);
       assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
@@ -95,6 +85,46 @@ describe('<MuiThemeProvider />', () => {
         'the class names should be deterministic',
       );
       assert.strictEqual(sheetsRegistry.registry[1].classes.root, 'MuiButton-root-1');
+    }
+
+    it('should be able to extract the styles', () => {
+      const sheetsRegistry = new SheetsRegistry();
+      const generateClassName = createGenerateClassName();
+
+      const markup = ReactDOMServer.renderToString(
+        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+            <Button>Hello World</Button>
+          </MuiThemeProvider>
+        </JssProvider>,
+      );
+
+      assertRendering(markup, sheetsRegistry);
+    });
+
+    it('should be able to cache the sheets between two requests', () => {
+      const generateClassName = createGenerateClassName();
+      const sheetsCache = new Map();
+
+      const sheetsRegistry1 = new SheetsRegistry();
+      const markup1 = ReactDOMServer.renderToString(
+        <JssProvider registry={sheetsRegistry1} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+            <Button>Hello World</Button>
+          </MuiThemeProvider>
+        </JssProvider>,
+      );
+      assertRendering(markup1, sheetsRegistry1);
+
+      const sheetsRegistry2 = new SheetsRegistry();
+      const markup2 = ReactDOMServer.renderToString(
+        <JssProvider registry={sheetsRegistry2} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+            <Button>Hello World</Button>
+          </MuiThemeProvider>
+        </JssProvider>,
+      );
+      assertRendering(markup2, sheetsRegistry2);
     });
   });
 
@@ -188,6 +218,25 @@ describe('<MuiThemeProvider />', () => {
 
       wrapper.setProps({ disableStylesGeneration: false });
       assert.strictEqual(optionsSpy.args[1][0].disableStylesGeneration, false);
+    });
+  });
+
+  describe('prop: sheetsCache', () => {
+    it('should provide the property down the context', () => {
+      const { optionsSpy, OptionsSpy } = getOptionsSpy();
+
+      const theme = createMuiTheme();
+      const sheetsCache = new Map();
+      mount(
+        <MuiThemeProvider theme={theme} sheetsCache={sheetsCache}>
+          <OptionsSpy>
+            <div>Foo</div>
+          </OptionsSpy>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(optionsSpy.callCount, 1);
+      assert.strictEqual(optionsSpy.args[0][0].sheetsCache, sheetsCache);
     });
   });
 });

@@ -22,6 +22,7 @@
   "dependencies": {
     "benchmark": "^2.1.4",
     "emotion": "^9.2.12",
+    "emotion-server": "^9.2.12",
     "nodemod": "^1.5.19",
     "react-emotion": "^9.2.12",
     "styled-components": "^3.4.10"
