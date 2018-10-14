@@ -11,6 +11,7 @@ export const styles = theme => ({
   root: {
     display: 'block',
     textAlign: 'inherit',
+    width: '100%',
     '&:hover $focusHighlight': {
       opacity: theme.palette.action.hoverOpacity,
     },

@@ -29,7 +29,14 @@ class SimpleSelect extends React.Component {
   state = {
     age: '',
     name: 'hai',
+    labelWidth: 0,
   };
+
+  componentDidMount() {
+    this.setState({
+      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
+    });
+  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -219,7 +226,7 @@ class SimpleSelect extends React.Component {
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {
-              this.labelRef = ReactDOM.findDOMNode(ref);
+              this.InputLabelRef = ref;
             }}
             htmlFor="outlined-age-simple"
           >
@@ -230,7 +237,7 @@ class SimpleSelect extends React.Component {
             onChange={this.handleChange}
             input={
               <OutlinedInput
-                labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
+                labelWidth={this.state.labelWidth}
                 name="age"
                 id="outlined-age-simple"
               />

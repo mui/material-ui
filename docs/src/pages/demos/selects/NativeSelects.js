@@ -29,7 +29,14 @@ class NativeSelects extends React.Component {
   state = {
     age: '',
     name: 'hai',
+    labelWidth: 0,
   };
+
+  componentDidMount() {
+    this.setState({
+      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
+    });
+  }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -185,7 +192,7 @@ class NativeSelects extends React.Component {
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {
-              this.labelRef = ReactDOM.findDOMNode(ref);
+              this.InputLabelRef = ref;
             }}
             htmlFor="outlined-age-native-simple"
           >
@@ -198,7 +205,7 @@ class NativeSelects extends React.Component {
             input={
               <OutlinedInput
                 name="age"
-                labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
+                labelWidth={this.state.labelWidth}
                 id="outlined-age-native-simple"
               />
             }

@@ -28,9 +28,12 @@ export const styles = theme => ({
 });
 
 class SpeedDialAction extends React.Component {
-  state = {
-    tooltipOpen: false,
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      tooltipOpen: props.tooltipOpen,
+    };
+  }
 
   static getDerivedStateFromProps = (props, state) => {
     if (!props.open && state.tooltipOpen) {
@@ -62,7 +65,7 @@ class SpeedDialAction extends React.Component {
     const {
       ButtonProps,
       classes,
-      className: classNameProp,
+      className,
       delay,
       icon,
       id,
@@ -104,7 +107,7 @@ class SpeedDialAction extends React.Component {
         <Button
           variant="fab"
           mini
-          className={classNames(classes.button, !open && classes.buttonClosed)}
+          className={classNames(className, classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
           tabIndex={-1}
           role="menuitem"
@@ -128,6 +131,10 @@ SpeedDialAction.propTypes = {
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
    */

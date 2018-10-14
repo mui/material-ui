@@ -633,7 +633,10 @@ describe('<ButtonBase />', () => {
       wrapper.setProps({
         children: 'bar',
       });
-      assert.strictEqual(rerender.updates.length, 1);
+      assert.strictEqual(
+        rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
+        1,
+      );
     });
   });
 });

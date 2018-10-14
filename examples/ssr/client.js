@@ -31,6 +31,9 @@ const theme = createMuiTheme({
     accent: red,
     type: 'light',
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 // Create a new class name generator.

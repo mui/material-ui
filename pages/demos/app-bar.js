@@ -51,6 +51,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/app-bar/PrimarySearchAppBar'), 'utf8')
 `,
         },
+        'pages/demos/app-bar/BottomAppBar.js': {
+          js: require('docs/src/pages/demos/app-bar/BottomAppBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/BottomAppBar'), 'utf8')
+`,
+        },
       }}
     />
   );

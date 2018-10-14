@@ -9,7 +9,7 @@ import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
 
-acceptLanguage.languages(['en', 'zh']);
+acceptLanguage.languages(['en']);
 
 if (process.browser) {
   loadCSS(
@@ -305,10 +305,14 @@ function withRoot(Component) {
     }
 
     componentDidMount() {
-      this.setState({
-        userLanguage:
-          this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en',
-      });
+      const userLanguage =
+        this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en';
+
+      if (this.state.userLanguage !== userLanguage) {
+        this.setState({
+          userLanguage,
+        });
+      }
     }
 
     render() {
@@ -337,8 +341,8 @@ function withRoot(Component) {
   };
 
   WithRoot.childContextTypes = {
-    pages: PropTypes.array,
     activePage: PropTypes.object,
+    pages: PropTypes.array,
     userLanguage: PropTypes.string,
   };
 

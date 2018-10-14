@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 function AddressForm() {
   return (
     <React.Fragment>
-      <Typography variant="title" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
       <Grid container spacing={24}>

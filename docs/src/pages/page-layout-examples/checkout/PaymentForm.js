@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 function PaymentForm() {
   return (
     <React.Fragment>
-      <Typography variant="title" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
       <Grid container spacing={24}>
