@@ -9,6 +9,7 @@ import { pageToTitle } from './helpers';
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
+const TRANSLATIONS = ['zh'];
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
@@ -341,7 +342,10 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 function generateDemos(reactAPI) {
   const pagesMarkdown = reactAPI.pagesMarkdown.reduce((accumulator, page) => {
-    if (page.components.includes(reactAPI.name)) {
+    if (
+      !TRANSLATIONS.includes(page.filename.slice(-5, -3)) &&
+      page.components.includes(reactAPI.name)
+    ) {
       accumulator.push(page);
     }
 
