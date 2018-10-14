@@ -2,7 +2,7 @@ import warning from 'warning';
 import getDisplayName from '../utils/getDisplayName';
 
 function mergeClasses(options = {}) {
-  const { baseClasses, newClasses, Component, noBase = false } = options;
+  const { baseClasses, newClasses, Component } = options;
 
   if (!newClasses) {
     return baseClasses;
@@ -12,7 +12,7 @@ function mergeClasses(options = {}) {
     ...baseClasses,
     ...Object.keys(newClasses).reduce((accumulator, key) => {
       warning(
-        baseClasses[key] || noBase || !newClasses[key],
+        baseClasses[key] || !newClasses[key],
         [
           `Material-UI: the key \`${key}\` ` +
             `provided to the classes property is not implemented in ${getDisplayName(Component)}.`,

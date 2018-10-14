@@ -7,6 +7,7 @@ import { create } from 'jss';
 import ns from './reactJssContext';
 import jssPreset from './jssPreset';
 import mergeClasses from './mergeClasses';
+import multiKeyStore from './multiKeyStore';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
@@ -57,7 +58,7 @@ function getDefaultTheme() {
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const { withTheme = false, flip = null, name, ...styleSheetOptions } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
-  const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
+  const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
 
   indexCounter += 1;
   stylesCreator.options.index = indexCounter;
@@ -67,34 +68,22 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     [
       'Material-UI: you might have a memory leak.',
       'The indexCounter is not supposed to grow that much.',
-    ].join(' '),
+    ].join('\n'),
   );
 
   class WithStyles extends React.Component {
-    disableStylesGeneration = false;
-
-    jss = null;
-
-    sheetOptions = null;
-
-    sheetsManager = sheetsManager;
-
-    stylesCreatorSaved = null;
-
-    theme = null;
-
-    unsubscribeId = null;
-
     constructor(props, context) {
       super(props, context);
       this.jss = context[ns.jss] || jss;
+      this.sheetsManager = sheetsManager;
+      this.unsubscribeId = null;
 
       const { muiThemeProviderOptions } = context;
       if (muiThemeProviderOptions) {
         if (muiThemeProviderOptions.sheetsManager) {
           this.sheetsManager = muiThemeProviderOptions.sheetsManager;
         }
-
+        this.sheetsCache = muiThemeProviderOptions.sheetsCache;
         this.disableStylesGeneration = muiThemeProviderOptions.disableStylesGeneration;
       }
 
@@ -160,19 +149,23 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }
 
     getClasses() {
+      if (this.disableStylesGeneration) {
+        return this.props.classes || {};
+      }
+
       // Tracks if either the rendered classes or classes prop has changed,
       // requiring the generation of a new finalized classes object.
       let generate = false;
 
-      if (!this.disableStylesGeneration) {
-        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
-        const sheetsManagerTheme = sheetManager.get(this.theme);
-        if (sheetsManagerTheme.sheet.classes !== this.cacheClasses.lastJSS) {
-          this.cacheClasses.lastJSS = sheetsManagerTheme.sheet.classes;
-          generate = true;
-        }
+      const sheetManager = multiKeyStore.get(
+        this.sheetsManager,
+        this.stylesCreatorSaved,
+        this.theme,
+      );
+      if (sheetManager.sheet.classes !== this.cacheClasses.lastJSS) {
+        this.cacheClasses.lastJSS = sheetManager.sheet.classes;
+        generate = true;
       }
-
       if (this.props.classes !== this.cacheClasses.lastProp) {
         this.cacheClasses.lastProp = this.props.classes;
         generate = true;
@@ -183,7 +176,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
           baseClasses: this.cacheClasses.lastJSS,
           newClasses: this.props.classes,
           Component,
-          noBase: this.disableStylesGeneration,
         });
       }
 
@@ -196,51 +188,33 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       }
 
       const stylesCreatorSaved = this.stylesCreatorSaved;
-      let sheetManager = this.sheetsManager.get(stylesCreatorSaved);
+      let sheetManager = multiKeyStore.get(this.sheetsManager, stylesCreatorSaved, theme);
 
       if (!sheetManager) {
-        sheetManager = new Map();
-        this.sheetsManager.set(stylesCreatorSaved, sheetManager);
-      }
-
-      let sheetManagerTheme = sheetManager.get(theme);
-
-      if (!sheetManagerTheme) {
-        sheetManagerTheme = {
+        sheetManager = {
           refs: 0,
           sheet: null,
         };
-        sheetManager.set(theme, sheetManagerTheme);
+        multiKeyStore.set(this.sheetsManager, stylesCreatorSaved, theme, sheetManager);
       }
 
-      if (sheetManagerTheme.refs === 0) {
-        const styles = stylesCreatorSaved.create(theme, name);
-        let meta = name;
+      if (sheetManager.refs === 0) {
+        let sheet;
 
-        if (process.env.NODE_ENV !== 'production' && !meta) {
-          meta = getDisplayName(Component);
-          warning(
-            typeof meta === 'string',
-            [
-              'Material-UI: the component displayName is invalid. It needs to be a string.',
-              `Please fix the following component: ${Component}.`,
-            ].join('\n'),
-          );
+        if (this.sheetsCache) {
+          sheet = multiKeyStore.get(this.sheetsCache, stylesCreatorSaved, theme);
         }
 
-        const sheet = this.jss.createStyleSheet(styles, {
-          meta,
-          classNamePrefix: meta,
-          flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
-          link: false,
-          ...this.sheetOptions,
-          ...stylesCreatorSaved.options,
-          name,
-          ...styleSheetOptions,
-        });
+        if (!sheet) {
+          sheet = this.createSheet(theme);
+          sheet.attach();
 
-        sheetManagerTheme.sheet = sheet;
-        sheet.attach();
+          if (this.sheetsCache) {
+            multiKeyStore.set(this.sheetsCache, stylesCreatorSaved, theme, sheet);
+          }
+        }
+
+        sheetManager.sheet = sheet;
 
         const sheetsRegistry = this.context[ns.sheetsRegistry];
         if (sheetsRegistry) {
@@ -248,7 +222,36 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         }
       }
 
-      sheetManagerTheme.refs += 1;
+      sheetManager.refs += 1;
+    }
+
+    createSheet(theme) {
+      const styles = this.stylesCreatorSaved.create(theme, name);
+      let meta = name;
+
+      if (process.env.NODE_ENV !== 'production' && !meta) {
+        meta = getDisplayName(Component);
+        warning(
+          typeof meta === 'string',
+          [
+            'Material-UI: the component displayName is invalid. It needs to be a string.',
+            `Please fix the following component: ${Component}.`,
+          ].join('\n'),
+        );
+      }
+
+      const sheet = this.jss.createStyleSheet(styles, {
+        meta,
+        classNamePrefix: meta,
+        flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
+        link: false,
+        ...this.sheetOptions,
+        ...this.stylesCreatorSaved.options,
+        name,
+        ...styleSheetOptions,
+      });
+
+      return sheet;
     }
 
     detach(theme) {
@@ -256,18 +259,16 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         return;
       }
 
-      const stylesCreatorSaved = this.stylesCreatorSaved;
-      const sheetManager = this.sheetsManager.get(stylesCreatorSaved);
-      const sheetManagerTheme = sheetManager.get(theme);
+      const sheetManager = multiKeyStore.get(this.sheetsManager, this.stylesCreatorSaved, theme);
+      sheetManager.refs -= 1;
 
-      sheetManagerTheme.refs -= 1;
+      if (sheetManager.refs === 0) {
+        multiKeyStore.delete(this.sheetsManager, this.stylesCreatorSaved, theme);
 
-      if (sheetManagerTheme.refs === 0) {
-        sheetManager.delete(theme);
-        this.jss.removeStyleSheet(sheetManagerTheme.sheet);
+        this.jss.removeStyleSheet(sheetManager.sheet);
         const sheetsRegistry = this.context[ns.sheetsRegistry];
         if (sheetsRegistry) {
-          sheetsRegistry.remove(sheetManagerTheme.sheet);
+          sheetsRegistry.remove(sheetManager.sheet);
         }
       }
     }
