@@ -1,5 +1,64 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.2.1
+###### *Oct 14, 2018*
+
+Big thanks to the 19 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🐛 A simpler Typography upgrade story
+- 🚀 Work on the performance server-side (x10) (#13233, #13236)
+- And many more bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.2.1`
+
+- [DialogContentText] Fix typography deprecation warning with useNextVariants (#13148) @eps1lon
+- [SnackbarContent] Fix invalid dom (#13151) @eps1lon
+- [Autocomplete] Fix the Portal Downshift demo (#13166) @oliviertassinari
+- [SwitchBase] Fix type declarations (#13172) @eps1lon
+- [Switch] Fix stacking context (#13122) @skenbo0916
+- [Radio][Switch] Accept number & bool as value (#13173) @rassek96
+- [Collapse] Show overflow content once entered (#13117) @skenbo0916
+- [Stepper] Forward state properties to StepConnector (#13130) @jmaloon
+- [Typography] Add missing classkey for overline variant (#13187) @eps1lon
+- [Stepper] Prevent overriding Step's props (#13188) @nikhilem
+- [Stepper] We were too greedy, revert (#13192) @oliviertassinari
+- [withWidth] Document the render prop (#13074) @JulienUsson
+- [TextField] Fix/core/input label/declarations and refactor (#13200) @eps1lon
+- [CardActionArea] Fix overflow issue (#13213) @mdsadiq
+- [Typography] Improve the upgrade story (#13214) @oliviertassinari
+- [Snackbar] Remove non supported property `anchorOrigin.vertical=enter` (#13238) @iamhosseindhv
+- [Tabs] Fix IE 11 styling (#13230) @pography
+
+### `@material-ui/lab@v3.0.0-alpha.20`
+
+- [SpeedDialAction] Fix className prop being ignored (#13161) @eps1lon
+- [SpeedDial] Add missing class keys (#13228) @msenevir
+
+### Docs
+
+- [docs] Use typography v2 in examples (#13112) @eps1lon
+- [docs] Add formik-material-ui (#13149) @cliedeman
+- [examples] Fix codesandbox throwing Invalid comparator (#13153) @eps1lon
+- [docs] Keep working on the SEO issues (#13158) @oliviertassinari
+- [docs] Fix select outlined example (#13168) @RichardLindhout
+- [Grid] Refactor prop order for clarity (#13204) @dijonkitchen
+- [docs] Fix typo in Dialog (#13209) @rassek96
+- [Tabs] Remove the href form simple tab example (#13205) @menomanabdulla
+- [docs] Add demo for a bottom app bar (#13030) @adeelibr
+- [docs] Fix a typo in the content that Table normally takes (#13219) @eddiemonge
+- [docs] Change `filled-input` link text to `FilledInput` (#13223) @G-Rath
+- [docs] Add Onepixel to the showcase (#13227) @oliviertassinari
+- [docs] Fix API generation for i18n (#13237) @mbrookes
+- [docs] Keep SEO juice for the other pages (#13240) @oliviertassinari
+
+### Core
+
+- [test] Add visual regression test for SpeedDIal (#13140) @eps1lon
+- [test] Tidelift - skip checking nomnom & os-locale (#13157) @mbrookes
+- [core] Benchmark Material-UI (#13233) @oliviertassinari
+- [core] Introduce JSS caching (#13236) @oliviertassinari
+
 ## 3.2.0
 ###### *Oct 8, 2018*
 
