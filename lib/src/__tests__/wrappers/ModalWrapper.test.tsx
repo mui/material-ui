@@ -1,5 +1,5 @@
 import { ShallowWrapper } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import { ModalDialog } from '../../_shared/ModalDialog';
 import ModalWrapper, { ModalWrapperProps } from '../../wrappers/ModalWrapper';
 import { shallow } from '../test-utils';

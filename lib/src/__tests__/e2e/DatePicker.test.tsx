@@ -1,5 +1,5 @@
 import { ReactWrapper } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import DatePicker, { DatePickerProps } from '../../DatePicker/DatePicker';
 import { mount, utilsToUse } from '../test-utils';
 

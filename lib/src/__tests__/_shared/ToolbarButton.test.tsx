@@ -1,5 +1,5 @@
 import { ShallowWrapper } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import ToolbarButton, { ToolbarButtonProps } from '../../_shared/ToolbarButton';
 import { shallow } from '../test-utils';
 

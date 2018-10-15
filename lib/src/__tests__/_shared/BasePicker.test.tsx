@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import { BasePicker } from '../../_shared/BasePicker';
 import { utilsToUse } from '../test-utils';

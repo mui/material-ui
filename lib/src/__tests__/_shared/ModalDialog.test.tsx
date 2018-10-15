@@ -1,6 +1,6 @@
 import { WithStyles } from '@material-ui/core';
 import { ShallowWrapper } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import {
   ModalDialog,
   ModalDialogProps,

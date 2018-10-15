@@ -1,6 +1,6 @@
 import { PopoverProps } from '@material-ui/core/Popover';
 import { ReactWrapper } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import DatePickerInline, {
   DatePickerInlineProps,
 } from '../../DatePicker/DatePickerInline';
