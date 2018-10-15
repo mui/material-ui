@@ -7,7 +7,11 @@ import { create } from 'jss';
 import ns from './reactJssContext';
 import jssPreset from './jssPreset';
 import mergeClasses from './mergeClasses';
-import multiKeyStore from './multiKeyStore';
+import {
+  set as multiKeyStoreSet,
+  get as multiKeyStoreGet,
+  remove as multiKeyStoreRemove,
+} from './multiKeyStore';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
@@ -157,7 +161,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       // requiring the generation of a new finalized classes object.
       let generate = false;
 
-      const sheetManager = multiKeyStore.get(
+      const sheetManager = multiKeyStoreGet(
         this.sheetsManager,
         this.stylesCreatorSaved,
         this.theme,
@@ -188,21 +192,21 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       }
 
       const stylesCreatorSaved = this.stylesCreatorSaved;
-      let sheetManager = multiKeyStore.get(this.sheetsManager, stylesCreatorSaved, theme);
+      let sheetManager = multiKeyStoreGet(this.sheetsManager, stylesCreatorSaved, theme);
 
       if (!sheetManager) {
         sheetManager = {
           refs: 0,
           sheet: null,
         };
-        multiKeyStore.set(this.sheetsManager, stylesCreatorSaved, theme, sheetManager);
+        multiKeyStoreSet(this.sheetsManager, stylesCreatorSaved, theme, sheetManager);
       }
 
       if (sheetManager.refs === 0) {
         let sheet;
 
         if (this.sheetsCache) {
-          sheet = multiKeyStore.get(this.sheetsCache, stylesCreatorSaved, theme);
+          sheet = multiKeyStoreGet(this.sheetsCache, stylesCreatorSaved, theme);
         }
 
         if (!sheet) {
@@ -210,7 +214,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
           sheet.attach();
 
           if (this.sheetsCache) {
-            multiKeyStore.set(this.sheetsCache, stylesCreatorSaved, theme, sheet);
+            multiKeyStoreSet(this.sheetsCache, stylesCreatorSaved, theme, sheet);
           }
         }
 
@@ -259,11 +263,11 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         return;
       }
 
-      const sheetManager = multiKeyStore.get(this.sheetsManager, this.stylesCreatorSaved, theme);
+      const sheetManager = multiKeyStoreGet(this.sheetsManager, this.stylesCreatorSaved, theme);
       sheetManager.refs -= 1;
 
       if (sheetManager.refs === 0) {
-        multiKeyStore.delete(this.sheetsManager, this.stylesCreatorSaved, theme);
+        multiKeyStoreRemove(this.sheetsManager, this.stylesCreatorSaved, theme);
 
         this.jss.removeStyleSheet(sheetManager.sheet);
         const sheetsRegistry = this.context[ns.sheetsRegistry];
