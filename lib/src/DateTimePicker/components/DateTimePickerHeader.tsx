@@ -5,7 +5,9 @@ import * as React from 'react';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import DateTimePickerView from '../../constants/DateTimePickerView';
+import DateTimePickerView, {
+  DateTimePickerViewType,
+} from '../../constants/DateTimePickerView';
 import { MaterialUiPickersDate } from '../../typings/date';
 
 export type MeridiemMode = 'am' | 'pm';
@@ -14,7 +16,7 @@ export interface DateTimePickerHeaderProps
     WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
-  openView: DateTimePickerView;
+  openView: DateTimePickerViewType;
   onOpenViewChange: (view: DateTimePickerView) => void;
   setMeridiemMode: (mode: MeridiemMode) => () => void;
   ampm?: boolean;

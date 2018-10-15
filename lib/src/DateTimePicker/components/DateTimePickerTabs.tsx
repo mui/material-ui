@@ -7,9 +7,11 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import DateTimePickerView from '../../constants/DateTimePickerView';
+import DateTimePickerView, {
+  DateTimePickerViewType,
+} from '../../constants/DateTimePickerView';
 
-const viewToTabIndex = (openView: DateTimePickerView) => {
+const viewToTabIndex = (openView: DateTimePickerViewType) => {
   if (
     openView === DateTimePickerView.DATE ||
     openView === DateTimePickerView.YEAR
@@ -30,7 +32,7 @@ const tabIndexToView = (tab: DateTimePickerView) => {
 
 export interface DateTimePickerTabsProps
   extends WithStyles<typeof styles, true> {
-  view: DateTimePickerView;
+  view: DateTimePickerViewType;
   onChange: (view: DateTimePickerView) => void;
   dateRangeIcon?: React.ReactNode;
   timeIcon?: React.ReactNode;
