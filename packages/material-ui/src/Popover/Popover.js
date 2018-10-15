@@ -87,9 +87,15 @@ class Popover extends React.Component {
 
   handleGetOffsetLeft = getOffsetLeft;
 
-  handleResize = debounce(() => {
-    this.setPositioningStyles(this.paperRef);
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.setPositioningStyles(this.paperRef);
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   componentDidMount() {
     if (this.props.action) {

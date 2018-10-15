@@ -7,7 +7,7 @@ import ReactDOMServer from 'react-dom/server';
 import styledEmotion from 'react-emotion';
 import { renderStylesToString } from 'emotion-server';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase/ButtonBase';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 const theme = createMuiTheme();
 

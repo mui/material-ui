@@ -27,13 +27,15 @@ export default function createTypography(palette, typography) {
     htmlFontSize = 16,
     // eslint-disable-next-line no-underscore-dangle
     useNextVariants = Boolean(global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__),
+    // Private option to prevent noise in the console from the default theme.
+    suppressWarning = false,
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   warning(
-    useNextVariants,
+    useNextVariants || suppressWarning,
     'Material-UI: you are using the deprecated typography variants ' +
       'that will be removed in the next major release.' +
       '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
