@@ -28,7 +28,7 @@ let createRippleHandler = (instance, eventName, action, cb) => event => {
 };
 
 /* istanbul ignore if */
-if (!process.browser) {
+if (typeof window === 'undefined') {
   createRippleHandler = () => () => {};
 }
 
