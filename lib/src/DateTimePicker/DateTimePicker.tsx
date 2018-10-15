@@ -15,7 +15,9 @@ import View from './components/DateTimePickerView';
 import { Omit } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
-import DateTimePickerView from '../constants/DateTimePickerView';
+import DateTimePickerView, {
+  DateTimePickerViewType,
+} from '../constants/DateTimePickerView';
 import DomainPropTypes from '../constants/prop-types';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
@@ -25,7 +27,7 @@ export interface BaseDateTimePickerProps
   autoSubmit?: boolean;
   showTabs?: boolean;
   ampm?: boolean;
-  openTo?: DateTimePickerView;
+  openTo?: DateTimePickerViewType;
   dateRangeIcon?: React.ReactNode;
   timeIcon?: React.ReactNode;
   ViewContainerComponent?: string | React.ComponentType<any>;
@@ -44,7 +46,7 @@ export interface DateTimePickerProps
 }
 
 interface DateTimePickerState {
-  openView: DateTimePickerView;
+  openView: DateTimePickerViewType;
   meridiemMode: MeridiemMode;
 }
 

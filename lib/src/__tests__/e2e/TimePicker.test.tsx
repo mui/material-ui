@@ -1,17 +1,20 @@
+import { ReactWrapper } from 'enzyme';
 import React from 'react';
+import TimePicker, { TimePickerProps } from '../../TimePicker/TimePicker';
 import { mount, utilsToUse } from '../test-utils';
-import TimePicker from '../../TimePicker/TimePicker';
 
 describe('e2e - TimePicker', () => {
-  let component;
+  let component: ReactWrapper<TimePickerProps>;
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
-    component = mount(<TimePicker
-      date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
-      onChange={onChangeMock}
-    />);
+    component = mount(
+      <TimePicker
+        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        onChange={onChangeMock}
+      />
+    );
   });
 
   it('Should renders', () => {
@@ -45,23 +48,26 @@ describe('e2e - TimePicker', () => {
     component.setState({ openView: 'minutes' });
     component.find('Clock div[role="menu"]').simulate('touchMove', {
       buttons: 1,
-      changedTouches: [{
-        clientX: 20,
-        clientY: 15,
-      }],
+      changedTouches: [
+        {
+          clientX: 20,
+          clientY: 15,
+        },
+      ],
     });
 
     expect(onChangeMock).toHaveBeenCalled();
 
     component.find('Clock div[role="menu"]').simulate('touchEnd', {
       buttons: 1,
-      changedTouches: [{
-        clientX: 20,
-        clientY: 15,
-      }],
+      changedTouches: [
+        {
+          clientX: 20,
+          clientY: 15,
+        },
+      ],
     });
 
     expect(onChangeMock).toHaveBeenCalled();
   });
 });
-
