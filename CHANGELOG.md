@@ -1,5 +1,20 @@
 ### [Versions](https://material-ui.com/versions/)
 
+###### *Oct 16, 2018*
+
+Big thanks to the 3 contributors who made this release possible!
+This is a quick patch after important regressions.
+
+### `@material-ui/core@v3.2.2`
+
+- [ButtonBase] Fix process is not defined (#13252) @eps1lon
+
+### Core
+
+- [core] Fix deprecated variant (#13254) @oliviertassinari
+- [core] Add a real life benchmark (#13244) @oliviertassinari
+- [core] Only use debounce client-side (#13255) @oliviertassinari
+
 ## 3.2.1
 ###### *Oct 14, 2018*
 
