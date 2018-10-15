@@ -85,8 +85,6 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/core": "^3.2.1",
-    "@types/babel-core": "^6.25.5",
-    "@types/babel__core": "^7.0.1",
     "@types/classnames": "^2.2.6",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^5.0.4",
