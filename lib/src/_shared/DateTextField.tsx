@@ -5,8 +5,8 @@ import TextField, { StandardTextFieldProps } from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { Omit } from '@material-ui/core';
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
+import { ExtendMui } from '../_helpers/types';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import MaskedInput from './MaskedInput';
@@ -77,7 +77,7 @@ const getError = (
 
 export interface DateTextFieldProps
   extends WithUtilsProps,
-    Omit<StandardTextFieldProps, 'onError' | 'onChange' | 'value'> {
+    ExtendMui<StandardTextFieldProps, 'onError' | 'onChange' | 'value'> {
   value: DateType;
   minDate?: DateType;
   minDateMessage?: React.ReactNode;

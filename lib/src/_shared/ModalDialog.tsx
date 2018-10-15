@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
+import { ExtendMui } from '../_helpers/types';
 
 const dialogWidth = 310;
 const dialogHeight = 405;
@@ -45,7 +46,7 @@ export const styles = {
   },
 };
 
-export type DialogBaseProps = Omit<DialogProps, 'onKeyDown'>;
+export interface DialogBaseProps extends ExtendMui<DialogProps, 'onKeyDown'> {}
 export interface ModalDialogProps extends DialogBaseProps {
   onAccept: () => void;
   onDismiss: () => void;

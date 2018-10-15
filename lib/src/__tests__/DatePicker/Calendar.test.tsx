@@ -8,7 +8,11 @@ describe('Calendar', () => {
 
   beforeEach(() => {
     component = shallowRender(props => (
-      <Calendar date={utilsToUse.date('01-01-2017')} {...props} />
+      <Calendar
+        date={utilsToUse.date('01-01-2017')}
+        onChange={jest.fn()}
+        {...props}
+      />
     ));
   });
 
