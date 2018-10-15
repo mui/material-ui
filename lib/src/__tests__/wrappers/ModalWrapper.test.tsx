@@ -1,8 +1,8 @@
 import { ShallowWrapper } from 'enzyme';
 import React from 'react';
+import { ModalDialog } from '../../_shared/ModalDialog';
 import ModalWrapper, { ModalWrapperProps } from '../../wrappers/ModalWrapper';
 import { shallow } from '../test-utils';
-import { ModalDialog } from '../../_shared/ModalDialog';
 
 describe('ModalWrapper', () => {
   let component: ShallowWrapper<ModalWrapperProps>;
