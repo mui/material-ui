@@ -37,7 +37,7 @@ export const styles = {
 class SwitchBase extends React.Component {
   constructor(props) {
     super();
-    this.isControlled = props.checked != null;
+    this.isControlled = props.checked !== null;
     this.state = {};
     if (!this.isControlled) {
       // not controlled, use internal state
