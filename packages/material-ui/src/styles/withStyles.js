@@ -48,7 +48,11 @@ function getDefaultTheme() {
     return defaultTheme;
   }
 
-  defaultTheme = createMuiTheme();
+  defaultTheme = createMuiTheme({
+    typography: {
+      suppressWarning: true,
+    },
+  });
   return defaultTheme;
 }
 

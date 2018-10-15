@@ -43,10 +43,6 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  handleResize = debounce(() => {
-    this.syncHeightWithShadow();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
   constructor(props) {
     super();
     this.isControlled = props.value != null;
@@ -56,6 +52,12 @@ class Textarea extends React.Component {
     this.state = {
       height: Number(props.rows) * ROWS_HEIGHT,
     };
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.syncHeightWithShadow();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
   }
 
   componentDidMount() {
