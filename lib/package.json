@@ -149,7 +149,7 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/__tests__/setup.js",
-    "testRegex": "<rootDir>/src/__tests__/.*\\.test\\.(js|tsx)$",
+    "testRegex": "./src/__tests__/.*\\.test\\.(js|tsx)$",
     "testURL": "http://localhost/",
     "collectCoverage": true,
     "transform": {
