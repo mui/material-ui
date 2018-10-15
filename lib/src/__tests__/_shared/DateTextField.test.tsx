@@ -1,11 +1,11 @@
 import { createMount } from '@material-ui/core/test-utils';
+import { ShallowWrapper } from 'enzyme';
 import React from 'react';
-import { DateTextField } from '../../_shared/DateTextField';
+import { DateTextField, DateTextFieldProps } from '../../_shared/DateTextField';
 import { shallow, utilsToUse } from '../test-utils';
-import mockOnChange from './mockOnChange';
 
 describe('DateTextField', () => {
-  let component;
+  let component: ShallowWrapper<DateTextFieldProps>;
 
   beforeEach(() => {
     component = shallow(
@@ -14,7 +14,7 @@ describe('DateTextField', () => {
         utils={utilsToUse}
         format="dd/MM/yyyy"
         classes={{}}
-        onChange={mockOnChange}
+        onChange={jest.fn()}
       />
     );
   });
@@ -31,7 +31,7 @@ describe('DateTextField', () => {
 });
 
 describe('DateTextField keyboard mode', () => {
-  let component;
+  let component: ShallowWrapper<DateTextFieldProps>;
 
   beforeEach(() => {
     component = shallow(
@@ -43,7 +43,7 @@ describe('DateTextField keyboard mode', () => {
         keyboard
         clearable
         onClear={jest.fn()}
-        onChange={mockOnChange}
+        onChange={jest.fn()}
       />
     );
   });
@@ -55,7 +55,7 @@ describe('DateTextField keyboard mode', () => {
       stopPropagation: jest.fn(),
     });
 
-    expect(component.instance().props.onClear).toHaveBeenCalled();
+    expect((component.instance().props as any).onClear).toHaveBeenCalled();
   });
 
   it('Should disable the IconButton and TextField when disabled and keyboard are true', () => {
@@ -63,15 +63,15 @@ describe('DateTextField keyboard mode', () => {
 
     expect(component.find('TextField').props().disabled).toBe(true);
     expect(
-      component.find('TextField').props().InputProps.endAdornment.props.children
-        .props.disabled
+      (component.find('TextField').props() as any).InputProps.endAdornment.props
+        .children.props.disabled
     ).toBe(true);
   });
 });
 
 describe('DateTextField with custom TextField', () => {
   it('Should handle a component function', () => {
-    function CustomTextField(props) {
+    function CustomTextField(props: any) {
       return <li {...props} />;
     }
 
@@ -82,7 +82,7 @@ describe('DateTextField with custom TextField', () => {
         classes={{}}
         TextFieldComponent={CustomTextField}
         format="dd/MM/yyyy"
-        onChange={mockOnChange}
+        onChange={jest.fn()}
       />
     );
 
@@ -99,7 +99,7 @@ describe('DateTextField with custom TextField', () => {
         classes={{}}
         TextFieldComponent="li"
         format="dd/MM/yyyy"
-        onChange={mockOnChange}
+        onChange={jest.fn()}
       />
     );
 
@@ -111,14 +111,13 @@ describe('DateTextField with custom TextField', () => {
     const mount = createMount();
     expect(() => {
       mount(
-        // @ts-ignore
         <DateTextField
           classes={{}}
           value={utilsToUse.date()}
           utils={utilsToUse}
           TextFieldComponent={<div /> as any}
           format="dd/MM/yyyy"
-          onChange={mockOnChange}
+          onChange={jest.fn()}
         />
       );
     }).toThrow();

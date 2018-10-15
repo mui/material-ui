@@ -11,7 +11,7 @@ import EventListener from 'react-event-listener';
 
 const dialogWidth = 310;
 const dialogHeight = 405;
-const styles = {
+export const styles = {
   dialogRoot: {
     minWidth: dialogWidth,
     minHeight: dialogHeight,

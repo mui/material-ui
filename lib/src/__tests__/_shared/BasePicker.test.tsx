@@ -2,16 +2,15 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BasePicker } from '../../_shared/BasePicker';
 import { utilsToUse } from '../test-utils';
-import mockOnChange from './mockOnChange';
 
-const renderComponent = Component => {
+const renderComponent = (Component: React.ComponentType<any>) => {
   const div = (global as any).document.createElement('div');
 
   render(<Component />, div);
 };
 
 const getRenderFuncMock = () => jest.fn(() => null);
-const getFirstParamFromMock = mock => mock.mock.calls[0][0];
+const getFirstParamFromMock = (mock: any) => mock.mock.calls[0][0];
 
 describe('BasePicker', () => {
   describe('initialDate', () => {
@@ -20,7 +19,7 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker value={value} utils={utilsToUse} onChange={mockOnChange}>
+        <BasePicker value={value} utils={utilsToUse} onChange={jest.fn()}>
           {renderFuncMock}
         </BasePicker>
       ));
@@ -39,7 +38,7 @@ describe('BasePicker', () => {
           value={value}
           initialFocusedDate={initialFocusedDate}
           utils={utilsToUse}
-          onChange={mockOnChange}
+          onChange={jest.fn()}
         >
           {renderFuncMock}
         </BasePicker>
@@ -57,7 +56,7 @@ describe('BasePicker', () => {
         <BasePicker
           initialFocusedDate={initialFocusedDate}
           utils={utilsToUse}
-          onChange={mockOnChange}
+          onChange={jest.fn()}
           value={null}
         >
           {renderFuncMock}
@@ -74,7 +73,7 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker utils={utilsToUse} onChange={mockOnChange} value={null}>
+        <BasePicker utils={utilsToUse} onChange={jest.fn()} value={null}>
           {renderFuncMock}
         </BasePicker>
       ));

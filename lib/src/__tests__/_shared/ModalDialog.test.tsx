@@ -1,24 +1,32 @@
+import { WithStyles } from '@material-ui/core';
+import { ShallowWrapper } from 'enzyme';
 import React from 'react';
-import { ModalDialog } from '../../_shared/ModalDialog';
+import {
+  ModalDialog,
+  ModalDialogProps,
+  styles,
+} from '../../_shared/ModalDialog';
 import { shallow } from '../test-utils';
 
-const initialProps = {
+const initialProps: ModalDialogProps & WithStyles<typeof styles> = {
   onAccept: jest.fn(),
   onDismiss: jest.fn(),
   onClear: jest.fn(),
+  onKeyDown: jest.fn(),
   okLabel: 'OK',
+  open: false,
   cancelLabel: 'Cancel',
   clearLabel: 'Clear',
   clearable: false,
   todayLabel: 'Today',
   showTodayButton: false,
   onSetToday: jest.fn(),
-  classes: {},
   children: 'Test',
+  classes: {} as any,
 };
 
 describe('ModalDialog', () => {
-  let component;
+  let component: ShallowWrapper<ModalDialogProps>;
   const props = { ...initialProps };
 
   beforeEach(() => {
@@ -70,7 +78,7 @@ describe('ModalDialog', () => {
 });
 
 describe('ModalDialog with Clear Button', () => {
-  let component;
+  let component: ShallowWrapper<ModalDialogProps>;
   const props = {
     ...initialProps,
     clearable: true,
@@ -90,7 +98,7 @@ describe('ModalDialog with Clear Button', () => {
 });
 
 describe('ModalDialog with Today Button', () => {
-  let component;
+  let component: ShallowWrapper<ModalDialogProps>;
   const props = {
     ...initialProps,
     showTodayButton: true,

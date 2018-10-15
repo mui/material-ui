@@ -1,11 +1,4 @@
-// {
-//   "extends": "./tsconfig.json",
-//   "compilerOptions": {
-//     "module": "commonjs"
-//   },
-//   "exclude": ["./src/__tests__/**/*"]
-// }
-
+// cannot use `extends` here - rollup-plugin-typescript does not resolve it
 {
   "compilerOptions": {
     "outDir": "build",

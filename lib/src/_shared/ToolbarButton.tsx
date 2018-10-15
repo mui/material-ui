@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-interface ToolbarButtonProps extends WithStyles<typeof styles> {
+export interface ToolbarButtonProps extends WithStyles<typeof styles> {
   selected: boolean;
   label: string;
   className?: string | null;

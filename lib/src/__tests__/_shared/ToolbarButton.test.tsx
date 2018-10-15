@@ -1,12 +1,13 @@
+import { ShallowWrapper } from 'enzyme';
 import React from 'react';
-import ToolbarButton from '../../_shared/ToolbarButton';
+import ToolbarButton, { ToolbarButtonProps } from '../../_shared/ToolbarButton';
 import { shallow } from '../test-utils';
 
 describe('ToolbarButton', () => {
-  let component;
+  let component: ShallowWrapper<ToolbarButtonProps>;
 
   beforeEach(() => {
-    component = shallow(<ToolbarButton />);
+    component = shallow(<ToolbarButton selected={true} label="foo" />);
   });
 
   it('Should renders', () => {

@@ -3,7 +3,7 @@ import { utilsToUse } from '../test-utils';
 
 describe('findClosestEnabledDate', () => {
   const day18thText = utilsToUse.getDayText(utilsToUse.date('2018-08-18'));
-  const only18th = date => utilsToUse.getDayText(date) !== day18thText;
+  const only18th = (date: any) => utilsToUse.getDayText(date) !== day18thText;
   it('Should return null if all dates are disabled', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),

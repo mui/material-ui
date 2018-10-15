@@ -1,12 +1,20 @@
+import { ShallowWrapper } from 'enzyme';
 import React from 'react';
-import MaskedInput from '../../_shared/MaskedInput';
+import MaskedInput, { CustomMaskedInputProps } from '../../_shared/MaskedInput';
 import { shallow } from '../test-utils';
 
 describe('ToolbarButton', () => {
-  let component;
+  let component: ShallowWrapper<CustomMaskedInputProps>;
 
   beforeEach(() => {
-    component = shallow(<MaskedInput mask={[]} />);
+    component = shallow(
+      <MaskedInput
+        mask={[]}
+        inputRef={() => {
+          return;
+        }}
+      />
+    );
   });
 
   it('Should renders', () => {
