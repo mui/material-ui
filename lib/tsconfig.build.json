@@ -1,7 +1,29 @@
+// {
+//   "extends": "./tsconfig.json",
+//   "compilerOptions": {
+//     "module": "commonjs"
+//   },
+//   "exclude": ["./src/__tests__/**/*"]
+// }
+
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs"
+    "outDir": "build",
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "sourceMap": false,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "rootDir": "./src"
   },
+  "include": ["src/**/*"],
   "exclude": ["./src/__tests__/**/*"]
 }
