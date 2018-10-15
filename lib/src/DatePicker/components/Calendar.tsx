@@ -51,7 +51,7 @@ export interface CalendarState {
 }
 
 export class Calendar extends React.Component<CalendarProps, CalendarState> {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -329,4 +329,4 @@ const styles = (theme: Theme) => ({
 export default withStyles(styles, {
   name: 'MuiPickersCalendar',
   withTheme: true,
-})(withUtils()(Calendar as React.ComponentType<CalendarProps>));
+})(withUtils()(Calendar));

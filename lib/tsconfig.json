@@ -2,7 +2,8 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "module": "es6"
+    "module": "es6",
+    "noEmit": true
   },
   "exclude": []
 }

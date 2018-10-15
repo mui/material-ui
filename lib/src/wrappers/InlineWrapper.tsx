@@ -26,7 +26,7 @@ export interface InlineWrapperProps extends Partial<DateTextFieldProps> {
 export class InlineWrapper extends React.PureComponent<
   InlineWrapperProps & WithStyles<typeof styles>
 > {
-  public static propTypes = {
+  public static propTypes: any = {
     /** Show only calendar for datepicker in popover mode */
     onlyCalendar: PropTypes.bool,
     /** Picker value */

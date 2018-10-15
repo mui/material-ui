@@ -7,6 +7,6 @@ const date = PropTypes.oneOfType([
   PropTypes.instanceOf(Date),
 ]);
 
-export type DateType = object | string | number | Date | null;
+export type DateType = object | string | number | Date | null | undefined;
 
 export default { date };

@@ -60,7 +60,7 @@ export default class BasicUsage extends React.Component {
 }
 
 class CustomElements extends React.Component<{ classes: any }> {
-  public static propTypes = {
+  public static propTypes: any = {
     classes: PropTypes.object.isRequired,
   };
   public state = {

@@ -8,9 +8,7 @@ export interface WithUtilsProps {
   utils: Utils<MaterialUiPickersDate>;
 }
 
-type Subtract<T, K> = Omit<T, keyof K>;
-
-const checkUtils = (utils: Utils<any> | null) => {
+const checkUtils = (utils: Utils<MaterialUiPickersDate> | null | undefined) => {
   if (!utils) {
     // tslint:disable-next-line
     throw new Error(
@@ -22,7 +20,7 @@ const checkUtils = (utils: Utils<any> | null) => {
 const WithUtils = () => <P extends WithUtilsProps>(
   Component: React.ComponentType<P>
 ) => {
-  const withUtils: React.SFC<Subtract<P, WithUtilsProps>> = props => (
+  const withUtils: React.SFC<Omit<P, keyof WithUtilsProps>> = props => (
     <MuiPickersContextConsumer>
       {utils => {
         checkUtils(utils);

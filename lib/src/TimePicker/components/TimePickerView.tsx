@@ -17,7 +17,7 @@ interface TimePickerViewProps extends WithUtilsProps {
 }
 
 export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.object.isRequired,
     onHourChange: PropTypes.func.isRequired,
     onMinutesChange: PropTypes.func.isRequired,
@@ -93,6 +93,4 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
   }
 }
 
-export default withUtils()(TimePickerView as React.ComponentType<
-  TimePickerViewProps
->);
+export default withUtils()(TimePickerView);

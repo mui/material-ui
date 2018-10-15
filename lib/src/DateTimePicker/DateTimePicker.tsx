@@ -52,7 +52,7 @@ export class DateTimePicker extends React.Component<
   DateTimePickerProps,
   DateTimePickerState
 > {
-  public static propTypes = {
+  public static propTypes: any = {
     allowKeyboardControl: PropTypes.bool,
     ampm: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
@@ -268,4 +268,4 @@ const styles = createStyles({
 
 export default withStyles(styles, {
   name: 'MuiPickersDateTimePicker',
-})(withUtils()(DateTimePicker as React.ComponentType<DateTimePickerProps>));
+})(withUtils()(DateTimePicker));

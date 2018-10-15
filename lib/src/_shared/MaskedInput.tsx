@@ -8,7 +8,7 @@ export interface CustomMaskedInputProps extends MaskedInputProps {
 }
 
 export default class Input extends React.PureComponent<CustomMaskedInputProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     mask: PropTypes.any,
     inputRef: PropTypes.func.isRequired,
   };

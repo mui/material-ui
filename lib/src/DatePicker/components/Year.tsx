@@ -15,7 +15,7 @@ export interface YearProps extends WithStyles<typeof styles> {
 }
 
 export class Year extends React.PureComponent<YearProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
@@ -89,6 +89,4 @@ const styles = (theme: Theme) =>
     },
   });
 
-export default withStyles(styles, { name: 'MuiPickersYear' })(
-  Year as React.ComponentClass<YearProps>
-);
+export default withStyles(styles, { name: 'MuiPickersYear' })(Year);

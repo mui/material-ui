@@ -109,7 +109,7 @@ export interface DateTextFieldProps
 }
 
 export class DateTextField extends React.PureComponent<DateTextFieldProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,

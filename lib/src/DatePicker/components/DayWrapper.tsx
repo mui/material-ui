@@ -10,7 +10,7 @@ export interface DayWrapperProps {
 }
 
 class DayWrapper extends React.PureComponent<DayWrapperProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     children: PropTypes.node.isRequired,
     dayInCurrentMonth: PropTypes.bool,
     disabled: PropTypes.bool,

@@ -1,12 +1,13 @@
 import * as enzyme from 'enzyme';
 import * as React from 'react';
 import { WithUtilsProps } from '../_shared/WithUtils';
+import { MaterialUiPickersDate } from '../typings/date';
 import { Utils } from '../typings/utils';
 import DateFnsUtils from '../utils/date-fns-utils';
 import LuxonUtils from '../utils/luxon-utils';
 import MomentUtils from '../utils/moment-utils';
 
-const getUtilToUse = (): Utils<any> => {
+const getUtilToUse = (): Utils<MaterialUiPickersDate> => {
   switch (process.env.UTILS) {
     case 'moment':
       return new MomentUtils();

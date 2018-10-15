@@ -15,13 +15,13 @@ export interface YearSelectionProps
   minDate?: DateType;
   maxDate?: DateType;
   onChange: (date: MaterialUiPickersDate) => void;
-  disablePast?: boolean;
-  disableFuture?: boolean;
-  animateYearScrolling?: boolean;
+  disablePast?: boolean | null | undefined;
+  disableFuture?: boolean | null | undefined;
+  animateYearScrolling?: boolean | null | undefined;
 }
 
 export class YearSelection extends React.PureComponent<YearSelectionProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.shape({}).isRequired,
     minDate: DomainPropTypes.date.isRequired,
     maxDate: DomainPropTypes.date.isRequired,
@@ -122,5 +122,5 @@ const styles = createStyles({
 });
 
 export default withStyles(styles, { name: 'MuiPickersYearSelection' })(
-  withUtils()(YearSelection as React.ComponentType<YearSelectionProps>)
+  withUtils()(YearSelection)
 );

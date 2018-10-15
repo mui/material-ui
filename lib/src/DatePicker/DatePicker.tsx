@@ -32,7 +32,7 @@ export interface DatePickerProps extends BaseDatePickerProps {
 export class DatePicker extends React.PureComponent<
   DatePickerProps & WithUtilsProps
 > {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -160,6 +160,4 @@ export class DatePicker extends React.PureComponent<
   }
 }
 
-export default withUtils()(DatePicker as React.ComponentType<
-  DatePickerProps & WithUtilsProps
->);
+export default withUtils()(DatePicker);

@@ -13,7 +13,7 @@ describe('DateTextField', () => {
         value={utilsToUse.date()}
         utils={utilsToUse}
         format="dd/MM/yyyy"
-        classes={{}}
+        classes={{} as any}
         onChange={jest.fn()}
       />
     );

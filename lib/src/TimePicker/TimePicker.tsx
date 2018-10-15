@@ -33,7 +33,7 @@ interface TimePickerState {
 }
 
 export class TimePicker extends React.Component<TimePickerProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
@@ -292,4 +292,4 @@ const styles = () =>
 export default withStyles(styles, {
   withTheme: true,
   name: 'MuiPickersTimePicker',
-})(withUtils()(TimePicker as React.ComponentType<TimePickerProps>));
+})(withUtils()(TimePicker));

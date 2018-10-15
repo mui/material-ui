@@ -41,7 +41,7 @@ export interface ClockNumberProps extends WithStyles<typeof styles> {
 }
 
 export class ClockNumber extends React.Component<ClockNumberProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,

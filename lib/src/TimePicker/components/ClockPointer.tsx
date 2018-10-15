@@ -14,7 +14,7 @@ export interface ClockPointerProps extends WithStyles<typeof styles> {
 }
 
 export class ClockPointer extends React.Component<ClockPointerProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
