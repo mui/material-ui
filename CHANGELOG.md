@@ -1,5 +1,6 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.2.2
 ###### *Oct 16, 2018*
 
 Big thanks to the 3 contributors who made this release possible!
