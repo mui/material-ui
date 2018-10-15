@@ -56,7 +56,7 @@ export class Year extends React.PureComponent<YearProps> {
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
         color={selected ? 'primary' : 'default'}
-        variant={selected ? 'headline' : 'subheading'}
+        variant={selected ? 'h5' : 'subtitle1'}
         {...other}
       >
         {children}
