@@ -2,9 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BasePicker } from '../../src/_shared/BasePicker';
 import { utilsToUse } from '../test-utils';
+import mockOnChange from './mockOnChange';
 
 const renderComponent = Component => {
-  const div = global.document.createElement('div');
+  const div = (global as any).document.createElement('div');
 
   render(<Component />, div);
 };
@@ -19,7 +20,7 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker value={value} utils={utilsToUse}>
+        <BasePicker value={value} utils={utilsToUse} onChange={mockOnChange}>
           {renderFuncMock}
         </BasePicker>
       ));
@@ -38,6 +39,7 @@ describe('BasePicker', () => {
           value={value}
           initialFocusedDate={initialFocusedDate}
           utils={utilsToUse}
+          onChange={mockOnChange}
         >
           {renderFuncMock}
         </BasePicker>
@@ -52,7 +54,12 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker initialFocusedDate={initialFocusedDate} utils={utilsToUse}>
+        <BasePicker
+          initialFocusedDate={initialFocusedDate}
+          utils={utilsToUse}
+          onChange={mockOnChange}
+          value={null}
+        >
           {renderFuncMock}
         </BasePicker>
       ));
@@ -67,7 +74,9 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker utils={utilsToUse}>{renderFuncMock}</BasePicker>
+        <BasePicker utils={utilsToUse} onChange={mockOnChange} value={null}>
+          {renderFuncMock}
+        </BasePicker>
       ));
       const renderCallParam = getFirstParamFromMock(renderFuncMock);
       // fuzzy match on same day since utils.date() calls could be off by a couple of

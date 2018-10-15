@@ -98,7 +98,9 @@ export interface DateTextFieldProps
   keyboardIcon?: React.ReactNode;
   invalidDateMessage?: React.ReactNode;
   clearable?: boolean;
-  TextFieldComponent?: React.ComponentType<StandardTextFieldProps>;
+  TextFieldComponent?:
+    | React.ComponentType<StandardTextFieldProps>
+    | React.ReactType<React.HTMLAttributes<any>>;
   InputAdornmentProps?: object;
   adornmentPosition?: 'start' | 'end';
   onClick?: (e: React.SyntheticEvent) => void;

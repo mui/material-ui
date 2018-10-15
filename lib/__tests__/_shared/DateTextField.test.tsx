@@ -2,6 +2,7 @@ import { createMount } from '@material-ui/core/test-utils';
 import React from 'react';
 import { DateTextField } from '../../src/_shared/DateTextField';
 import { shallow, utilsToUse } from '../test-utils';
+import mockOnChange from './mockOnChange';
 
 describe('DateTextField', () => {
   let component;
@@ -10,8 +11,10 @@ describe('DateTextField', () => {
     component = shallow(
       <DateTextField
         value={utilsToUse.date()}
+        utils={utilsToUse}
         format="dd/MM/yyyy"
         classes={{}}
+        onChange={mockOnChange}
       />
     );
   });
@@ -34,11 +37,13 @@ describe('DateTextField keyboard mode', () => {
     component = shallow(
       <DateTextField
         value={utilsToUse.date()}
+        utils={utilsToUse}
         format="dd/MM/yyyy"
         classes={{}}
         keyboard
         clearable
         onClear={jest.fn()}
+        onChange={mockOnChange}
       />
     );
   });
@@ -73,14 +78,16 @@ describe('DateTextField with custom TextField', () => {
     const component = shallow(
       <DateTextField
         value={utilsToUse.date()}
+        utils={utilsToUse}
         classes={{}}
         TextFieldComponent={CustomTextField}
         format="dd/MM/yyyy"
+        onChange={mockOnChange}
       />
     );
 
     // Check InputProps to make sure DateTextField is passing props to the custom component
-    expect(component.props('InputProps')).toBeTruthy();
+    expect(component.props().InputProps).toBeTruthy();
     expect(component.find('li')).toBeTruthy();
   });
 
@@ -88,26 +95,30 @@ describe('DateTextField with custom TextField', () => {
     const component = shallow(
       <DateTextField
         value={utilsToUse.date()}
+        utils={utilsToUse}
         classes={{}}
         TextFieldComponent="li"
         format="dd/MM/yyyy"
+        onChange={mockOnChange}
       />
     );
 
-    expect(component.props('InputProps')).toBeTruthy();
+    expect(component.props().InputProps).toBeTruthy();
     expect(component.find('li')).toBeTruthy();
   });
 
-  it('Should not handle a node', () => {
+  it('Should not handle an element', () => {
     const mount = createMount();
     expect(() => {
       mount(
+        // @ts-ignore
         <DateTextField
           classes={{}}
           value={utilsToUse.date()}
           utils={utilsToUse}
-          TextFieldComponent={<div />}
+          TextFieldComponent={<div /> as any}
           format="dd/MM/yyyy"
+          onChange={mockOnChange}
         />
       );
     }).toThrow();

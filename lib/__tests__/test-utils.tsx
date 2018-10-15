@@ -21,8 +21,9 @@ const getUtilToUse = (): Utils<any> => {
 
 export const utilsToUse = getUtilToUse();
 
-const getComponentWithUtils = (element: React.ReactElement<any>) =>
-  React.cloneElement(element, { utils: utilsToUse });
+const getComponentWithUtils = <P extends WithUtilsProps>(
+  element: React.ReactElement<P>
+) => React.cloneElement(element, { utils: utilsToUse } as any);
 
 export const shallow = <P extends WithUtilsProps>(
   element: React.ReactElement<P>
