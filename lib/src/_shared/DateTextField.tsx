@@ -1,7 +1,7 @@
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import TextField, { StandardTextFieldProps } from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -77,7 +77,7 @@ const getError = (
 
 export interface DateTextFieldProps
   extends WithUtilsProps,
-    Omit<TextFieldProps, 'onError' | 'onChange' | 'value'> {
+    Omit<StandardTextFieldProps, 'onError' | 'onChange' | 'value'> {
   value: DateType;
   minDate?: DateType;
   minDateMessage?: React.ReactNode;
@@ -98,7 +98,7 @@ export interface DateTextFieldProps
   keyboardIcon?: React.ReactNode;
   invalidDateMessage?: React.ReactNode;
   clearable?: boolean;
-  TextFieldComponent?: React.ComponentType<TextFieldProps>;
+  TextFieldComponent?: React.ComponentType<StandardTextFieldProps>;
   InputAdornmentProps?: object;
   adornmentPosition?: 'start' | 'end';
   onClick?: (e: React.SyntheticEvent) => void;
