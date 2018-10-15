@@ -47,3 +47,7 @@ Statistics        Avg      Stdev        Max
     others - 0
   Throughput:    11.61MB/s
 ```
+
+## Ressources
+
+- [Bombardier](https://github.com/codesenberg/bombardier)
