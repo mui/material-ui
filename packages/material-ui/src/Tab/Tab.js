@@ -81,6 +81,7 @@ export const styles = theme => ({
   /* Styles applied to the label container element if `label` is provided. */
   labelContainer: {
     width: '100%', // Fix an IE 11 issue
+    textAlign: 'center',
     boxSizing: 'border-box',
     paddingTop: 6,
     paddingBottom: 6,
