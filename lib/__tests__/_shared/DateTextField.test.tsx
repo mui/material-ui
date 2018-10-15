@@ -1,17 +1,19 @@
-import React from 'react';
 import { createMount } from '@material-ui/core/test-utils';
-import { shallow, utilsToUse } from '../test-utils';
+import React from 'react';
 import { DateTextField } from '../../src/_shared/DateTextField';
+import { shallow, utilsToUse } from '../test-utils';
 
 describe('DateTextField', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DateTextField
-      value={utilsToUse.date()}
-      format="dd/MM/yyyy"
-      classes={{}}
-    />);
+    component = shallow(
+      <DateTextField
+        value={utilsToUse.date()}
+        format="dd/MM/yyyy"
+        classes={{}}
+      />
+    );
   });
 
   it('Should renders', () => {
@@ -29,14 +31,16 @@ describe('DateTextField keyboard mode', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DateTextField
-      value={utilsToUse.date()}
-      format="dd/MM/yyyy"
-      classes={{}}
-      keyboard
-      clearable
-      onClear={jest.fn()}
-    />);
+    component = shallow(
+      <DateTextField
+        value={utilsToUse.date()}
+        format="dd/MM/yyyy"
+        classes={{}}
+        keyboard
+        clearable
+        onClear={jest.fn()}
+      />
+    );
   });
 
   it('Should dispatch onClear if value is empty', () => {
@@ -53,24 +57,27 @@ describe('DateTextField keyboard mode', () => {
     component.setProps({ disabled: true });
 
     expect(component.find('TextField').props().disabled).toBe(true);
-    expect(component.find('TextField').props().InputProps.endAdornment.props.children.props.disabled).toBe(true);
+    expect(
+      component.find('TextField').props().InputProps.endAdornment.props.children
+        .props.disabled
+    ).toBe(true);
   });
 });
 
 describe('DateTextField with custom TextField', () => {
   it('Should handle a component function', () => {
     function CustomTextField(props) {
-      return (
-        <li {...props} />
-      );
+      return <li {...props} />;
     }
 
-    const component = shallow(<DateTextField
-      value={utilsToUse.date()}
-      classes={{}}
-      TextFieldComponent={CustomTextField}
-      format="dd/MM/yyyy"
-    />);
+    const component = shallow(
+      <DateTextField
+        value={utilsToUse.date()}
+        classes={{}}
+        TextFieldComponent={CustomTextField}
+        format="dd/MM/yyyy"
+      />
+    );
 
     // Check InputProps to make sure DateTextField is passing props to the custom component
     expect(component.props('InputProps')).toBeTruthy();
@@ -78,12 +85,14 @@ describe('DateTextField with custom TextField', () => {
   });
 
   it('Should handle a component string', () => {
-    const component = shallow(<DateTextField
-      value={utilsToUse.date()}
-      classes={{}}
-      TextFieldComponent="li"
-      format="dd/MM/yyyy"
-    />);
+    const component = shallow(
+      <DateTextField
+        value={utilsToUse.date()}
+        classes={{}}
+        TextFieldComponent="li"
+        format="dd/MM/yyyy"
+      />
+    );
 
     expect(component.props('InputProps')).toBeTruthy();
     expect(component.find('li')).toBeTruthy();
@@ -92,13 +101,15 @@ describe('DateTextField with custom TextField', () => {
   it('Should not handle a node', () => {
     const mount = createMount();
     expect(() => {
-      mount(<DateTextField
-        classes={{}}
-        value={utilsToUse.date()}
-        utils={utilsToUse}
-        TextFieldComponent={<div />}
-        format="dd/MM/yyyy"
-      />);
+      mount(
+        <DateTextField
+          classes={{}}
+          value={utilsToUse.date()}
+          utils={utilsToUse}
+          TextFieldComponent={<div />}
+          format="dd/MM/yyyy"
+        />
+      );
     }).toThrow();
   });
 });

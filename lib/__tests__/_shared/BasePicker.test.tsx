@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { BasePicker } from '../../src/_shared/BasePicker';
 import { utilsToUse } from '../test-utils';
 
-const renderComponent = (Component) => {
+const renderComponent = Component => {
   const div = global.document.createElement('div');
 
   render(<Component />, div);
@@ -19,10 +19,7 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker
-          value={value}
-          utils={utilsToUse}
-        >
+        <BasePicker value={value} utils={utilsToUse}>
           {renderFuncMock}
         </BasePicker>
       ));
@@ -55,26 +52,29 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker
-          initialFocusedDate={initialFocusedDate}
-          utils={utilsToUse}
-        >
+        <BasePicker initialFocusedDate={initialFocusedDate} utils={utilsToUse}>
           {renderFuncMock}
         </BasePicker>
       ));
 
       const renderCallParam = getFirstParamFromMock(renderFuncMock);
-      expect(utilsToUse.isEqual(renderCallParam.date, initialFocusedDate)).toBe(true);
+      expect(utilsToUse.isEqual(renderCallParam.date, initialFocusedDate)).toBe(
+        true
+      );
     });
 
     it('passes utils.date() as date if value and initialFocusedDate are not provided', () => {
       const renderFuncMock = getRenderFuncMock();
 
-      renderComponent(() => <BasePicker utils={utilsToUse}>{renderFuncMock}</BasePicker>);
+      renderComponent(() => (
+        <BasePicker utils={utilsToUse}>{renderFuncMock}</BasePicker>
+      ));
       const renderCallParam = getFirstParamFromMock(renderFuncMock);
       // fuzzy match on same day since utils.date() calls could be off by a couple of
       // milliseconds
-      expect(utilsToUse.isSameDay(renderCallParam.date, utilsToUse.date())).toBe(true);
+      expect(
+        utilsToUse.isSameDay(renderCallParam.date, utilsToUse.date())
+      ).toBe(true);
     });
   });
 });

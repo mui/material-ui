@@ -1,5 +1,5 @@
-import { utilsToUse } from '../test-utils';
 import { findClosestEnabledDate } from '../../src/_helpers/date-utils';
+import { utilsToUse } from '../test-utils';
 
 describe('findClosestEnabledDate', () => {
   const day18thText = utilsToUse.getDayText(utilsToUse.date('2018-08-18'));
@@ -28,7 +28,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2000-01-01'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2000-01-01'))).toBe(
+      true
+    );
   });
   it('Should return next 18th going from 10th', () => {
     const result = findClosestEnabledDate({
@@ -41,7 +43,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-08-18'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-08-18'))).toBe(
+      true
+    );
   });
   it('Should return previous 18th going from 1st', () => {
     const result = findClosestEnabledDate({
@@ -54,7 +58,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(
+      true
+    );
   });
   it('Should return future 18th if disablePast', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
@@ -70,7 +76,9 @@ describe('findClosestEnabledDate', () => {
 
     expect(utilsToUse.getDayText(result)).toBe(day18thText);
     expect(utilsToUse.isBefore(result, today)).toBe(false);
-    expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, 31))).toBe(true);
+    expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, 31))).toBe(
+      true
+    );
   });
   it('Should return past Saturday if disableFuture', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
@@ -86,7 +94,9 @@ describe('findClosestEnabledDate', () => {
 
     expect(utilsToUse.getDayText(result)).toBe(day18thText);
     expect(utilsToUse.isBefore(result, today)).toBe(true);
-    expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, -31))).toBe(false);
+    expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, -31))).toBe(
+      false
+    );
   });
   it('Should return now if disablePast+disableFuture and now is valid', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
@@ -109,7 +119,7 @@ describe('findClosestEnabledDate', () => {
       minDate: '1900-01-01',
       maxDate: '2100-01-01',
       utils: utilsToUse,
-      shouldDisableDate: (date) => utilsToUse.isSameDay(date, today),
+      shouldDisableDate: date => utilsToUse.isSameDay(date, today),
       disableFuture: true,
       disablePast: true,
     });
@@ -127,7 +137,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-08-18'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-08-18'))).toBe(
+      true
+    );
   });
   it('Should return next 18th after minDate', () => {
     const result = findClosestEnabledDate({
@@ -140,7 +152,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-08-18'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-08-18'))).toBe(
+      true
+    );
   });
   it('Should return maxDate if it is before the date and valid', () => {
     const result = findClosestEnabledDate({
@@ -153,7 +167,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(
+      true
+    );
   });
   it('Should return previous 18th before maxDate', () => {
     const result = findClosestEnabledDate({
@@ -166,7 +182,9 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(true);
+    expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(
+      true
+    );
   });
   it('Should return null if minDate is after maxDate', () => {
     const result = findClosestEnabledDate({
