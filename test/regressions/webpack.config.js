@@ -16,7 +16,4 @@ module.exports = Object.assign({}, webpackBaseConfig, {
       },
     ]),
   }),
-  node: {
-    process: false,
-  },
 });
