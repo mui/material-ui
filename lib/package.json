@@ -74,7 +74,7 @@
     "build:analyze": "npm run build && npx size-limit",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
-    "lint": "tslint ./src/**/*.js*",
+    "lint": "tslint --project tsconfig.json",
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mHave you installed one of peer libraries?\\u001b[22m\\u001b[39m\\n > date-fns \\n > luxon \\n > moment')\""
   },
   "devDependencies": {
@@ -148,8 +148,8 @@
     ]
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
-    "testRegex": "./__tests__/.*\\.test\\.(js|tsx)$",
+    "setupTestFrameworkScriptFile": "<rootDir>/src/__tests__/setup.js",
+    "testRegex": "<rootDir>/src/__tests__/.*\\.test\\.(js|tsx)$",
     "testURL": "http://localhost/",
     "collectCoverage": true,
     "transform": {
@@ -166,7 +166,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "./__tests__/tsconfig.test.json"
+        "tsConfig": "./tsconfig.json"
       }
     }
   }

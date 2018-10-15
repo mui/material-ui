@@ -1,8 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "module": "es6",
-    "typeRoots": ["../node_modules/@types"]
-  },
-  "include": ["./**/*.ts*"]
-}
