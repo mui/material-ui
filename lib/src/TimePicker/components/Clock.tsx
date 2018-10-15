@@ -5,11 +5,11 @@ import * as React from 'react';
 import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
-import ClockType from '../../constants/ClockType';
+import ClockType, { ClockTypeType } from '../../constants/ClockType';
 import ClockPointer from './ClockPointer';
 
 export interface ClockProps extends WithStyles<typeof styles> {
-  type: ClockType;
+  type: ClockTypeType;
   value: number;
   onChange: (value: number, isFinish?: boolean) => void;
   ampm?: boolean;

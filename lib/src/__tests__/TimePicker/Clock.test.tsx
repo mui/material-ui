@@ -1,6 +1,7 @@
+import { ShallowWrapper } from 'enzyme';
 import React from 'react';
+import { Clock, ClockProps } from '../../TimePicker/components/Clock';
 import { shallow } from '../test-utils';
-import { Clock } from '../../TimePicker/components/Clock';
 
 const mouseClockEvent = {
   preventDefault: jest.fn(),
@@ -13,12 +14,20 @@ const mouseClockEvent = {
 };
 
 describe('Clock', () => {
-  let component;
+  let component: ShallowWrapper<ClockProps>;
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
     onChangeMock.mockReset();
-    component = shallow(<Clock type="minutes" onChange={onChangeMock} classes={{}} children={null} />);
+    component = shallow(
+      <Clock
+        type="minutes"
+        onChange={onChangeMock}
+        classes={{} as any}
+        children={null}
+        value={12}
+      />
+    );
   });
 
   it('Should renders', () => {
@@ -33,28 +42,27 @@ describe('Clock', () => {
   });
 
   it('Should set isMoving = false on mouse up', () => {
-    component.instance().isMoving = true;
+    (component.instance() as Clock).isMoving = true;
     component.find('[role="menu"]').simulate('mouseUp', mouseClockEvent);
 
-    expect(component.instance().isMoving).toBeFalsy();
+    expect((component.instance() as Clock).isMoving).toBeFalsy();
   });
 
   it('Should set time on touch move', () => {
-    component.find('[role="menu"]')
-      .simulate('touchMove', {
-        preventDefault: jest.fn(),
-        stopPropagation: jest.fn(),
-        changedTouches: [{ clientX: 10, clientY: 15 }],
-        target: {
-          getBoundingClientRect: () => ({ left: 0, top: 0 }),
-        },
-      });
+    component.find('[role="menu"]').simulate('touchMove', {
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn(),
+      changedTouches: [{ clientX: 10, clientY: 15 }],
+      target: {
+        getBoundingClientRect: () => ({ left: 0, top: 0 }),
+      },
+    });
 
     expect(onChangeMock).toHaveBeenCalledWith(52, false);
   });
 
   it('Should set isMoving = false on touch end', () => {
     component.find('[role="menu"]').simulate('touchEnd');
-    expect(component.instance().isMoving).toBeFalsy();
+    expect((component.instance() as Clock).isMoving).toBeFalsy();
   });
 });

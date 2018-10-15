@@ -3,13 +3,13 @@ import * as React from 'react';
 import Clock from './Clock';
 
 import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
-import ClockType from '../../constants/ClockType';
+import ClockType, { ClockTypeType } from '../../constants/ClockType';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 
-interface TimePickerViewProps extends WithUtilsProps {
+export interface TimePickerViewProps extends WithUtilsProps {
   date: MaterialUiPickersDate;
-  type: ClockType;
+  type: ClockTypeType;
   ampm?: boolean;
   onHourChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   onMinutesChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
