@@ -8,7 +8,7 @@ function round(value) {
 const caseAllCaps = {
   textTransform: 'uppercase',
 };
-const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
+const defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
  * @see @link{https://material.io/design/typography/the-type-system.html}
@@ -16,7 +16,7 @@ const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
  */
 export default function createTypography(palette, typography) {
   const {
-    fontFamily = defaultFontFamiliy,
+    fontFamily = defaultFontFamily,
     // The default font size of the Material Specification.
     fontSize = 14, // px
     fontWeightLight = 300,
@@ -52,7 +52,7 @@ export default function createTypography(palette, typography) {
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
-    ...(fontFamily === defaultFontFamiliy
+    ...(fontFamily === defaultFontFamily
       ? { letterSpacing: `${round(letterSpacing / size)}em` }
       : {}),
     ...casing,
