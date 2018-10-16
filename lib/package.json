@@ -43,6 +43,7 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "classnames": "^2.2.6",
     "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
@@ -65,7 +66,7 @@
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "rollup --config",
-    "build:typescript": "tsc --project tsconfig.build.json",
+    "build:typescript": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "build": "npm run build:bundle && npm run build:typescript && npm run build:copy",
     "build:analyze": "npm run build && npx size-limit",
     "release": "np --no-publish --any-branch",
@@ -81,7 +82,6 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
     "@material-ui/core": "^3.2.1",
     "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.14",
