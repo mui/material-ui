@@ -1,7 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import {
-  DateTimePickerModal,
+import DateTimePickerModal, {
   DateTimePickerModalProps,
 } from '../../DateTimePicker/DateTimePickerModal';
 import { mount, utilsToUse } from '../test-utils';

@@ -1,6 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import { DatePicker, DatePickerProps } from '../../DatePicker/DatePicker';
+import DatePicker, { DatePickerProps } from '../../DatePicker/DatePicker';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DatePicker', () => {
@@ -14,11 +14,9 @@ describe('e2e - DatePicker', () => {
         animateYearScrolling={false}
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        utils={utilsToUse}
       />
     );
   });
-
   it('Should renders', () => {
     expect(component).toBeTruthy();
   });
