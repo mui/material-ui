@@ -10,7 +10,7 @@ import { ExtendMui } from '../_helpers/types';
 export interface PickerToolbarProps
   extends ExtendMui<ToolbarProps>,
     WithStyles<typeof styles> {
-  children?: React.ReactNodeArray;
+  children: React.ReactNodeArray;
 }
 
 const PickerToolbar: React.SFC<PickerToolbarProps> = ({

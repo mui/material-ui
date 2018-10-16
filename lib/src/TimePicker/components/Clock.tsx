@@ -13,6 +13,7 @@ export interface ClockProps extends WithStyles<typeof styles> {
   value: number;
   onChange: (value: number, isFinish?: boolean) => void;
   ampm?: boolean;
+  children: Array<React.ReactElement<any>>;
 }
 
 export class Clock extends React.Component<ClockProps> {

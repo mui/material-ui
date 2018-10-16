@@ -103,7 +103,7 @@ export interface DateTextFieldProps
     | React.ReactType<React.HTMLAttributes<any>>;
   InputAdornmentProps?: object;
   adornmentPosition?: 'start' | 'end';
-  onClick?: (e: React.SyntheticEvent) => void;
+  onClick: (e: React.SyntheticEvent) => void;
   onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
   onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }

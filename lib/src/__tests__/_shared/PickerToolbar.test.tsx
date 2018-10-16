@@ -7,7 +7,7 @@ describe('PickerToolbar', () => {
   let component: ShallowWrapper<PickerToolbarProps>;
 
   beforeEach(() => {
-    component = shallow(<PickerToolbar />);
+    component = shallow(<PickerToolbar children={['foo']} />);
   });
 
   it('Should renders', () => {

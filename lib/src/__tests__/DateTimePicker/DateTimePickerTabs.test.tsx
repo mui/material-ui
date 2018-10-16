@@ -5,6 +5,7 @@ import {
   DateTimePickerTabsProps,
 } from '../../DateTimePicker/components/DateTimePickerTabs';
 import { shallow } from '../test-utils';
+import { DateTimePicker } from '../../DateTimePicker/DateTimePicker';
 
 describe('DateTimePickerTabs', () => {
   let component: ShallowWrapper<DateTimePickerTabsProps>;
@@ -16,6 +17,8 @@ describe('DateTimePickerTabs', () => {
         classes={{} as any}
         view="date"
         onChange={jest.fn()}
+        dateRangeIcon="foo"
+        timeIcon="bar"
       />
     );
   });

@@ -34,8 +34,8 @@ export interface DateTimePickerTabsProps
   extends WithStyles<typeof styles, true> {
   view: DateTimePickerViewType;
   onChange: (view: DateTimePickerView) => void;
-  dateRangeIcon?: React.ReactNode;
-  timeIcon?: React.ReactNode;
+  dateRangeIcon: React.ReactNode;
+  timeIcon: React.ReactNode;
 }
 
 export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {

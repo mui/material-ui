@@ -24,8 +24,8 @@ describe('Clock', () => {
         type="minutes"
         onChange={onChangeMock}
         classes={{} as any}
-        children={null}
         value={12}
+        children={[<div key="foo">foo</div>]}
       />
     );
   });
