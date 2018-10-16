@@ -45,14 +45,7 @@ class CheckboxList extends React.Component {
       <div className={classes.root}>
         <List>
           {[0, 1, 2, 3].map(value => (
-            <ListItem
-              key={value}
-              role={undefined}
-              dense
-              button
-              onClick={this.handleToggle(value)}
-              className={classes.listItem}
-            >
+            <ListItem key={value} role={undefined} dense button onClick={this.handleToggle(value)}>
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
                 tabIndex={-1}
