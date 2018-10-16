@@ -27,6 +27,10 @@ import * as startOfWeek from 'date-fns/startOfWeek';
 import * as startOfYear from 'date-fns/startOfYear';
 import { Utils } from '../typings/utils';
 
+// Locale is not exported from date-fns, so we need to workaround that https://github.com/date-fns/date-fns/issues/932
+import * as SampleLocale from 'date-fns/locale/en-US';
+type Locale = typeof SampleLocale;
+
 export default class DateFnsUtils implements Utils<Date> {
   public locale?: Locale;
 
