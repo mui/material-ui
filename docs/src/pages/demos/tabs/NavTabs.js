@@ -1,49 +1,49 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Tabs from '@material-ui/core/Tabs'
-import { withStyles } from '@material-ui/core/styles'
-import { withRouter } from 'next/router'
-import recompose from 'modules/recompose'
-import LayoutBody from 'web/modules/components/LayoutBody'
-import Tab from 'web/modules/components/Tab'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Tabs from '@material-ui/core/Tabs';
+import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'next/router';
+import recompose from 'modules/recompose';
+import LayoutBody from 'web/modules/components/LayoutBody';
+import Tab from 'web/modules/components/Tab';
 
 const styles = theme => ({
   root: {
     borderBottom: `1px solid ${theme.palette.grey[300]}`,
     marginBottom: theme.spacing.unit * 3,
   },
-})
+});
 
 class NavTabs extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       route: this.props.router.route,
-    }
+    };
   }
 
-  state = {}
+  state = {};
 
   componentWillUnmount() {
-    clearTimeout(this.timeout)
+    clearTimeout(this.timeout);
   }
 
   handleChange = (event, route) => {
     this.setState({
       route,
-    })
+    });
 
-    clearTimeout(this.timeout)
+    clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.props.routes.Router.pushRoute(route)
-    }, 250)
-  }
+      this.props.routes.Router.pushRoute(route);
+    }, 250);
+  };
 
-  timeout = null
+  timeout = null;
 
   render() {
-    const { classes, centered, navRoutes, Link } = this.props
+    const { classes, centered, navRoutes, Link } = this.props;
 
     return (
       <div className={classes.root}>
@@ -68,7 +68,7 @@ class NavTabs extends React.Component {
           </Tabs>
         </LayoutBody>
       </div>
-    )
+    );
   }
 }
 
@@ -85,11 +85,11 @@ const LinkTab = props => (
         event.shiftKey ||
         (event.nativeEvent && event.nativeEvent.which === 2)
       ) {
-        return
+        return;
       }
 
-      event.preventDefault()
-      props.onClick(event)
+      event.preventDefault();
+      props.onClick(event);
     }}
     {...props}
   />
@@ -103,7 +103,7 @@ NavTabs.propTypes = {
     PropTypes.shape({
       label: PropTypes.node.isRequired,
       route: PropTypes.string.isRequired,
-    })
+    }),
   ),
   router: PropTypes.shape({
     route: PropTypes.string.isRequired,
@@ -115,5 +115,5 @@ NavTabs.propTypes = {
 
 export default recompose.compose(
   withStyles(styles),
-  withRouter
+  withRouter,
 )(NavTabs);
