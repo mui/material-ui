@@ -1,119 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@material-ui/core/Tabs';
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'next/router';
-import recompose from 'modules/recompose';
-import LayoutBody from 'web/modules/components/LayoutBody';
-import Tab from 'web/modules/components/Tab';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 const styles = theme => ({
   root: {
-    borderBottom: `1px solid ${theme.palette.grey[300]}`,
-    marginBottom: theme.spacing.unit * 3,
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
   },
 });
 
 class NavTabs extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      route: this.props.router.route,
-    };
-  }
-
-  state = {};
-
-  componentWillUnmount() {
-    clearTimeout(this.timeout);
-  }
-
-  handleChange = (event, route) => {
-    this.setState({
-      route,
-    });
-
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      this.props.routes.Router.pushRoute(route);
-    }, 250);
+  state = {
+    value: 0,
   };
 
-  timeout = null;
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
 
   render() {
-    const { classes, centered, navRoutes, Link } = this.props;
+    const { classes } = this.props;
+    const { value } = this.state;
 
     return (
       <div className={classes.root}>
-        <LayoutBody>
-          <Tabs
-            centered={centered}
-            fullWidth
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            scrollable={!centered}
-            scrollButtons="off"
-            value={this.state.route}
-          >
-            {navRoutes.map(routeInfo => (
-              <Tab
-                component={LinkTab}
-                value={routeInfo.route}
-                key={routeInfo.route}
-                label={routeInfo.label}
-              />
-            ))}
+        <AppBar position="static">
+          <Tabs fullWidth value={value} onChange={this.handleChange}>
+            <LinkTab label="Page One" href="page1" />
+            <LinkTab label="Page Two" href="page2" />
+            <LinkTab label="Page Three" href="page3" />
           </Tabs>
-        </LayoutBody>
+        </AppBar>
+        {value === 0 && <TabContainer>Page One</TabContainer>}
+        {value === 1 && <TabContainer>Page Two</TabContainer>}
+        {value === 2 && <TabContainer>Page Three</TabContainer>}
       </div>
     );
   }
 }
 
-const LinkTab = props => (
-  <Link
-    variant="naked"
-    route={routeInfo.route}
-    onClick={event => {
-      // ignore click for new tab / new window behavior
-      // The logic was taken from https://github.com/zeit/next.js/blob/0989ecc2237f2f1edecea2f08ad55978d28c8c54/lib/link.js#L45
-      if (
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        (event.nativeEvent && event.nativeEvent.which === 2)
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-      props.onClick(event);
-    }}
-    {...props}
-  />
-);
+const LinkTab = props => <Tab {...props} component="a" onClick={e => e.preventDefault()} />;
 
 NavTabs.propTypes = {
-  centered: PropTypes.bool,
   classes: PropTypes.object.isRequired,
-  Link: PropTypes.any.isRequired,
-  navRoutes: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.node.isRequired,
-      route: PropTypes.string.isRequired,
-    }),
-  ),
-  router: PropTypes.shape({
-    route: PropTypes.string.isRequired,
-  }),
-  routes: PropTypes.shape({
-    Router: PropTypes.object.isRequired,
-  }).isRequired,
 };
 
-export default recompose.compose(
-  withStyles(styles),
-  withRouter,
-)(NavTabs);
+export default withStyles(styles)(NavTabs);

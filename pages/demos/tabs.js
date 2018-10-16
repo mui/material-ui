@@ -79,6 +79,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tabs/DisabledTabs'), 'utf8')
 `,
         },
+        'pages/demos/tabs/NavTabs.js': {
+          js: require('docs/src/pages/demos/tabs/NavTabs').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tabs/NavTabs'), 'utf8')
+`,
+        },
         'pages/demos/tabs/CustomizedTabs.js': {
           js: require('docs/src/pages/demos/tabs/CustomizedTabs').default,
           raw: preval`

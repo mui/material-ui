@@ -82,4 +82,3 @@ By default tabs use a `button` element, but you can provide your own custom tag 
 If you have read the [overrides documentation page](/customization/overrides/)
 but aren't confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
 
-{{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
