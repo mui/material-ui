@@ -16,7 +16,7 @@ const styles = theme => ({
         display: 'block',
       },
       '&& .cf-text': {
-        ...theme.typography.body1,
+        ...theme.typography.body2,
         display: 'block',
         margin: `${theme.spacing.unit}px 0`,
         '& strong': {

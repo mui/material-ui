@@ -9,7 +9,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-jss": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

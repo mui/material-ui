@@ -1,6 +1,5 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
-import typographyMigration from './typographyMigration';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -9,8 +8,7 @@ function round(value) {
 const caseAllCaps = {
   textTransform: 'uppercase',
 };
-
-const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
+const defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
  * @see @link{https://material.io/design/typography/the-type-system.html}
@@ -18,7 +16,7 @@ const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
  */
 export default function createTypography(palette, typography) {
   const {
-    fontFamily = defaultFontFamiliy,
+    fontFamily = defaultFontFamily,
     // The default font size of the Material Specification.
     fontSize = 14, // px
     fontWeightLight = 300,
@@ -27,31 +25,23 @@ export default function createTypography(palette, typography) {
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
-    suppressDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
-    useNextVariants = false,
+    // eslint-disable-next-line no-underscore-dangle
+    useNextVariants = Boolean(global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__),
+    // Private option to prevent noise in the console from the default theme.
+    suppressWarning = false,
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
   warning(
-    !Object.keys(other).some(variant => typographyMigration.deprecatedVariants.includes(variant)),
-    'Deprecation Warning: Material-UI: You are passing a deprecated variant to ' +
-      `createTypography. ${typographyMigration.migrationGuideMessage}`,
-  );
-
-  warning(
-    useNextVariants ||
-      !Object.keys(other).some(variant => typographyMigration.restyledVariants.includes(variant)),
-    'Deprecation Warning: Material-UI: You are passing a variant to createTypography ' +
-      'that will be restyled in the next major release, without indicating that you ' +
-      `are using typography v2 (set \`useNextVariants\` to true. ${
-        typographyMigration.migrationGuideMessage
-      }`,
+    useNextVariants || suppressWarning,
+    'Material-UI: you are using the deprecated typography variants ' +
+      'that will be removed in the next major release.' +
+      '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
   );
 
   const coef = fontSize / 14;
-  const letterSpacingToEm = (tracking, spSize) => `${(tracking / spSize) * coef}em`;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
     color: palette.text.primary,
@@ -62,8 +52,8 @@ export default function createTypography(palette, typography) {
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
-    ...(fontFamily === defaultFontFamiliy
-      ? { letterSpacing: letterSpacingToEm(letterSpacing, size) }
+    ...(fontFamily === defaultFontFamily
+      ? { letterSpacing: `${round(letterSpacing / size)}em` }
       : {}),
     ...casing,
     ...allVariants,
@@ -78,11 +68,11 @@ export default function createTypography(palette, typography) {
     h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
     subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
     subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
-    body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.5),
-    body2Next: buildVariant(fontWeightRegular, 14, 1.42, 0.25),
-    buttonNext: buildVariant(fontWeightMedium, 14, 2.57, 0.75, caseAllCaps),
+    body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
+    body2Next: buildVariant(fontWeightRegular, 14, 1.5, 0.15),
+    buttonNext: buildVariant(fontWeightMedium, 14, 1.5, 0.4, caseAllCaps),
     captionNext: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
-    overline: buildVariant(fontWeightRegular, 12, 2.66, 1.5, caseAllCaps),
+    overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps),
   };
 
   // To remove in v4
@@ -192,16 +182,15 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       ...oldVariants,
+      ...nextVariants,
       ...(useNextVariants
         ? {
-            ...nextVariants,
             body1: nextVariants.body1Next,
             body2: nextVariants.body2Next,
             button: nextVariants.buttonNext,
             caption: nextVariants.captionNext,
           }
-        : nextVariants),
-      suppressDeprecationWarnings,
+        : {}),
       useNextVariants,
     },
     other,

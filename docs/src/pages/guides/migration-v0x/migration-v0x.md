@@ -175,6 +175,16 @@ This will apply a change such as the following:
 +<CircularProgress variant='indeterminate'><h5>Loading&hellip</h5></CircularProgress>
 ```
 
+### Drop Down Menu
+
+```diff
+-import DropDownMenu from 'material-ui/DropDownMenu';
++import Select from '@material-ui/core/Select';
+
+-<DropDownMenu></DropDownMenu>
++<Select value={this.state.value}></Select>
+```
+
 ### To be continued…
 
 Have you successfully migrated your app, and wish to help the community?

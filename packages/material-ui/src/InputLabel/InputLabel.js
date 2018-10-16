@@ -78,9 +78,9 @@ function InputLabel(props, context) {
     className: classNameProp,
     disableAnimation,
     FormLabelClasses,
-    margin: marginProp,
+    margin,
     shrink: shrinkProp,
-    variant: variantProp,
+    variant,
     ...other
   } = props;
 

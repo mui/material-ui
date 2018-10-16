@@ -70,7 +70,7 @@ are aimed to [increase the sustainability of our organization](https://medium.co
 
 In addition to their participation as a committer, Core Team members have the following privileges.
 - Ability to [publish a release](https://github.com/mui-org/material-ui/releases).
-- Access to Material-UI's [Twitter](https://twitter.com/i/notifications) and Medium account.
+- Access to Material-UI's [Twitter](https://twitter.com/MaterialUI) and Medium account.
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
 - Admin access to various tools and services ([npm](https://www.npmjs.com/package/@material-ui/core),
 [CircleCi](https://circleci.com/gh/mui-org/material-ui),

@@ -41,6 +41,13 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ⚠️ `withWidth()` server-side rendering support is limited.
 
+### Render Props
+
+In some cases, you could have property name collisions using higher-order components.
+To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
+
+{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
+
 ## API
 
 ### `withWidth([options]) => higher-order component`

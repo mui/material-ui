@@ -35,21 +35,23 @@ const withWidth = (options = {}) => Component => {
   } = options;
 
   class WithWidth extends React.Component {
-    handleResize = debounce(() => {
-      const width = this.getWidth();
-      if (width !== this.state.width) {
-        this.setState({
-          width,
-        });
-      }
-    }, resizeInterval);
-
     constructor(props) {
       super(props);
 
       this.state = {
         width: noSSR ? this.getWidth() : undefined,
       };
+
+      if (typeof window !== 'undefined') {
+        this.handleResize = debounce(() => {
+          const width2 = this.getWidth();
+          if (width2 !== this.state.width) {
+            this.setState({
+              width: width2,
+            });
+          }
+        }, resizeInterval);
+      }
     }
 
     componentDidMount() {

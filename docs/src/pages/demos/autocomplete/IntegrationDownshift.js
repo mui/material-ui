@@ -311,9 +311,12 @@ function IntegrationDownshift(props) {
                 popperNode = node;
               },
             })}
-            <div {...getMenuProps()}>
-              <Popper disablePortal open={isOpen} anchorEl={popperNode}>
-                <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
+            <Popper open={isOpen} anchorEl={popperNode}>
+              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                <Paper
+                  square
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                >
                   {getSuggestions(inputValue).map((suggestion, index) =>
                     renderSuggestion({
                       suggestion,
@@ -324,8 +327,8 @@ function IntegrationDownshift(props) {
                     }),
                   )}
                 </Paper>
-              </Popper>
-            </div>
+              </div>
+            </Popper>
           </div>
         )}
       </Downshift>

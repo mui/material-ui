@@ -18,16 +18,22 @@ const styles = {
  * It has been moved into the core in order to minimize the bundle size.
  */
 class ScrollbarSize extends React.Component {
-  handleResize = debounce(() => {
-    const { onChange } = this.props;
+  constructor() {
+    super();
 
-    const prevHeight = this.scrollbarHeight;
-    const prevWidth = this.scrollbarWidth;
-    this.setMeasurements();
-    if (prevHeight !== this.scrollbarHeight || prevWidth !== this.scrollbarWidth) {
-      onChange({ scrollbarHeight: this.scrollbarHeight, scrollbarWidth: this.scrollbarWidth });
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        const { onChange } = this.props;
+
+        const prevHeight = this.scrollbarHeight;
+        const prevWidth = this.scrollbarWidth;
+        this.setMeasurements();
+        if (prevHeight !== this.scrollbarHeight || prevWidth !== this.scrollbarWidth) {
+          onChange({ scrollbarHeight: this.scrollbarHeight, scrollbarWidth: this.scrollbarWidth });
+        }
+      }, 166); // Corresponds to 10 frames at 60 Hz.
     }
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  }
 
   componentDidMount() {
     this.setMeasurements();
