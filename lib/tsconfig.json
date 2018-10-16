@@ -3,7 +3,8 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "module": "es6",
-    "noEmit": true
+    "noEmit": true,
+    "sourceMap": true
   },
   "exclude": []
 }

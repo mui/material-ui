@@ -1,6 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import TimePicker, { TimePickerProps } from '../../TimePicker/TimePicker';
+import { TimePicker, TimePickerProps } from '../../TimePicker/TimePicker';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - TimePicker', () => {
@@ -13,6 +13,9 @@ describe('e2e - TimePicker', () => {
       <TimePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
+        utils={utilsToUse}
+        theme={{} as any}
+        classes={{} as any}
       />
     );
   });
