@@ -2,7 +2,7 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
 
-## Submitting a Pull Request
+## Submitting a pull request
 
 Material-UI is a community project, so pull requests are always welcome, but before working on a large change, it is best to open an issue first to discuss it with the maintainers.
 
@@ -16,12 +16,31 @@ When migrating a component to master, or submitting a new component, please add 
 
 ### Branch Structure
 
-All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)). At any given time, `master` represents the latest development version of the library.
+All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)).
+At any given time, `master` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
 #### `master` is unsafe
 
-We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with.
+We will do our best to keep `master` in good shape, with tests passing at all times.
+But in order to move fast, we will make API changes that your application might not be compatible with.
+
+### How to increase the chance of being accepted?
+
+We will only accept a pull request that passes all our tests. Make sure the following is true:
+- The branch is not behind master.
+- If a feature was added:
+   - If this was already achievable with the core library explained why this
+      needs to be added to the core.
+   - Added tests.
+   - If this is a common use case considered adding an example to the documentation
+- If a bug was fixed added test cases that fail without the fix.
+- The code is formatted (run `yarn prettier`).
+- The code is linted (run `yarn lint`).
+- If documentation was changed in the source `yarn docs:api` was run.
+- If prop types were changed the TypeScript declarations were updated.
+- If TypeScript declarations were changed `yarn typescript` passed.
+- The title of this PR follows the pattern `[Component] Imperative commit message`.
 
 ## Getting started
 
