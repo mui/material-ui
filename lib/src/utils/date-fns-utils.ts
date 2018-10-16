@@ -30,38 +30,6 @@ import { Utils } from '../typings/utils';
 export default class DateFnsUtils implements Utils<Date> {
   public locale?: Locale;
 
-  public addDays = addDays;
-
-  public isValid = isValid;
-
-  public getDiff = differenceInMilliseconds;
-
-  public isAfter = isAfter;
-
-  public isBefore = isBefore;
-
-  public startOfDay = startOfDay;
-
-  public endOfDay = endOfDay;
-
-  public getHours = getHours;
-
-  public setHours = setHours;
-
-  public setMinutes = setMinutes;
-
-  public getSeconds = getSeconds;
-
-  public setSeconds = setSeconds;
-
-  public isSameDay = isSameDay;
-
-  public getStartOfMonth = startOfMonth;
-
-  public getYear = getYear;
-
-  public setYear = setYear;
-
   public dateTime12hFormat = 'MMMM do hh:mm aaaa';
 
   public dateTime24hFormat = 'MMMM do HH:mm';
@@ -71,8 +39,76 @@ export default class DateFnsUtils implements Utils<Date> {
   public time24hFormat = 'HH:mm';
 
   public dateFormat = 'MMMM do';
+
   constructor({ locale }: { locale?: Locale } = {}) {
     this.locale = locale;
+  }
+
+  // Note: date-fns input types are more lenient than this adapter, so we need to expose our more
+  //  strict signature and delegate to the more lenient sigtature.  Otherwise, we have downstream type errors upon usage.
+
+  public addDays(value: Date, count: number) {
+    return addDays(value, count);
+  }
+
+  public isValid(value: Date) {
+    return isValid(value);
+  }
+
+  public getDiff(value: Date, comparing: Date) {
+    return differenceInMilliseconds(value, comparing);
+  }
+
+  public isAfter(value: Date, comparing: Date) {
+    return isAfter(value, comparing);
+  }
+
+  public isBefore(value: Date, comparing: Date) {
+    return isBefore(value, comparing);
+  }
+
+  public startOfDay(value: Date) {
+    return startOfDay(value);
+  }
+
+  public endOfDay(value: Date) {
+    return endOfDay(value);
+  }
+
+  public getHours(value: Date) {
+    return getHours(value);
+  }
+
+  public setHours(value: Date, count: number) {
+    return setHours(value, count);
+  }
+
+  public setMinutes(value: Date, count: number) {
+    return setMinutes(value, count);
+  }
+
+  public getSeconds(value: Date) {
+    return getSeconds(value);
+  }
+
+  public setSeconds(value: Date, count: number) {
+    return setSeconds(value, count);
+  }
+
+  public isSameDay(value: Date, comparing: Date) {
+    return isSameDay(value, comparing);
+  }
+
+  public getStartOfMonth(value: Date) {
+    return startOfMonth(value);
+  }
+
+  public getYear(value: Date) {
+    return getYear(value);
+  }
+
+  public setYear(value: Date, count: number) {
+    return setYear(value, count);
   }
 
   public date(value?: any) {
