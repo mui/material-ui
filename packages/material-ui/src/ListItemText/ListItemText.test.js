@@ -27,19 +27,19 @@ describe('<ListItemText />', () => {
 
   it('should render with inset class', () => {
     const wrapper = shallow(<ListItemText inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the inset class');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with no children', () => {
     const wrapper = shallow(<ListItemText />);
-    assert.strictEqual(wrapper.children().length, 0, 'should have no children');
+    assert.strictEqual(wrapper.children().length, 0);
   });
 
   describe('prop: primary', () => {
     it('should render primary text', () => {
       const wrapper = shallow(<ListItemText primary="This is the primary text" />);
-      assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
+      assert.strictEqual(wrapper.children().length, 1);
       assert.strictEqual(wrapper.childAt(0).type(), Typography);
       assert.strictEqual(wrapper.childAt(0).props().variant, 'subheading');
       assert.strictEqual(
@@ -55,13 +55,18 @@ describe('<ListItemText />', () => {
     it('should use the primary node', () => {
       const primary = <span />;
       const wrapper = shallow(<ListItemText primary={primary} />);
-      assert.strictEqual(wrapper.contains(primary), true, 'should find the node');
+      assert.strictEqual(wrapper.contains(primary), true);
     });
 
     it('should use the children prop as primary node', () => {
       const primary = <span />;
       const wrapper = shallow(<ListItemText>{primary}</ListItemText>);
-      assert.strictEqual(wrapper.contains(primary), true, 'should find the node');
+      assert.strictEqual(wrapper.contains(primary), true);
+    });
+
+    it('should read 0 as primary', () => {
+      const wrapper = shallow(<ListItemText primary={0} />);
+      assert.strictEqual(wrapper.childAt(0).type(), Typography);
     });
   });
 
@@ -70,26 +75,25 @@ describe('<ListItemText />', () => {
       const wrapper = shallow(<ListItemText secondary="This is the secondary text" />);
       assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
       assert.strictEqual(wrapper.childAt(0).type(), Typography);
-      assert.strictEqual(wrapper.childAt(0).props().variant, 'body1');
-      assert.strictEqual(
-        wrapper.childAt(0).props().color,
-        'textSecondary',
-        'should have the text secondary property',
-      );
+      assert.strictEqual(wrapper.childAt(0).props().color, 'textSecondary');
       assert.strictEqual(
         wrapper
           .childAt(0)
           .children()
           .equals('This is the secondary text'),
         true,
-        'should have the secondary text',
       );
     });
 
     it('should use the secondary node', () => {
       const secondary = <span />;
       const wrapper = shallow(<ListItemText secondary={secondary} />);
-      assert.strictEqual(wrapper.contains(secondary), true, 'should find the node');
+      assert.strictEqual(wrapper.contains(secondary), true);
+    });
+
+    it('should read 0 as secondary', () => {
+      const wrapper = shallow(<ListItemText secondary={0} />);
+      assert.strictEqual(wrapper.childAt(0).type(), Typography);
     });
   });
 
@@ -99,7 +103,7 @@ describe('<ListItemText />', () => {
         <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
       );
 
-      assert.strictEqual(wrapper.children().length, 2, 'should have 2 children');
+      assert.strictEqual(wrapper.children().length, 2);
       assert.strictEqual(wrapper.childAt(0).type(), Typography);
       assert.strictEqual(wrapper.childAt(0).props().variant, 'subheading');
       assert.strictEqual(
@@ -108,11 +112,9 @@ describe('<ListItemText />', () => {
           .children()
           .equals('This is the primary text'),
         true,
-        'should have the primary text',
       );
 
       assert.strictEqual(wrapper.childAt(1).type(), Typography);
-      assert.strictEqual(wrapper.childAt(1).props().variant, 'body1');
       assert.strictEqual(wrapper.childAt(1).props().color, 'textSecondary');
       assert.strictEqual(
         wrapper
@@ -140,7 +142,7 @@ describe('<ListItemText />', () => {
       <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
     );
 
-    assert.strictEqual(wrapper.children().length, 2, 'should have 2 children');
+    assert.strictEqual(wrapper.children().length, 2);
     assert.strictEqual(wrapper.childAt(0).type(), Typography);
     assert.strictEqual(wrapper.childAt(0).props().variant, 'subheading');
     assert.strictEqual(
@@ -149,11 +151,9 @@ describe('<ListItemText />', () => {
         .children()
         .equals('This is the primary text'),
       true,
-      'should have the primary text',
     );
 
     assert.strictEqual(wrapper.childAt(1).type(), Typography);
-    assert.strictEqual(wrapper.childAt(1).props().variant, 'body1');
     assert.strictEqual(wrapper.childAt(1).props().color, 'textSecondary');
     assert.strictEqual(
       wrapper
@@ -161,7 +161,6 @@ describe('<ListItemText />', () => {
         .children()
         .equals('This is the secondary text'),
       true,
-      'should have the secondary text',
     );
   });
 
@@ -184,7 +183,6 @@ describe('<ListItemText />', () => {
         .props()
         .className.includes('GeneralText'),
       true,
-      'should have the primary text class',
     );
     assert.strictEqual(
       wrapper
@@ -192,7 +190,37 @@ describe('<ListItemText />', () => {
         .props()
         .className.includes('SecondaryText'),
       true,
-      'should have the secondary text class',
     );
+  });
+
+  it('should not re-wrap the <Typography> element', () => {
+    const primary = <Typography>This is the primary text</Typography>;
+    const secondary = <Typography>This is the secondary text</Typography>;
+    const wrapper = shallow(<ListItemText primary={primary} secondary={secondary} />);
+    assert.strictEqual(wrapper.childAt(0).props().children, primary.props.children);
+    assert.strictEqual(wrapper.childAt(1).props().children, secondary.props.children);
+  });
+
+  it('should pass primaryTypographyProps to primary Typography component', () => {
+    const wrapper = shallow(
+      <ListItemText
+        primary="This is the primary text"
+        primaryTypographyProps={{ color: 'inherit' }}
+      />,
+    );
+
+    assert.strictEqual(wrapper.childAt(0).props().color, 'inherit');
+  });
+
+  it('should pass secondaryTypographyProps to secondary Typography component', () => {
+    const wrapper = shallow(
+      <ListItemText
+        primary="This is the primary text"
+        secondary="This is the secondary text"
+        secondaryTypographyProps={{ color: 'inherit' }}
+      />,
+    );
+
+    assert.strictEqual(wrapper.childAt(1).props().color, 'inherit');
   });
 });

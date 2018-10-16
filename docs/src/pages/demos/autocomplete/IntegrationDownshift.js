@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import deburr from 'lodash/deburr';
 import keycode from 'keycode';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
@@ -54,6 +56,7 @@ function renderInput(inputProps) {
         inputRef: ref,
         classes: {
           root: classes.inputRoot,
+          input: classes.inputInput,
         },
         ...InputProps,
       }}
@@ -88,20 +91,23 @@ renderSuggestion.propTypes = {
   suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
 
-function getSuggestions(inputValue) {
+function getSuggestions(value) {
+  const inputValue = deburr(value.trim()).toLowerCase();
+  const inputLength = inputValue.length;
   let count = 0;
 
-  return suggestions.filter(suggestion => {
-    const keep =
-      (!inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) &&
-      count < 5;
+  return inputLength === 0
+    ? []
+    : suggestions.filter(suggestion => {
+        const keep =
+          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
 
-    if (keep) {
-      count += 1;
-    }
+        if (keep) {
+          count += 1;
+        }
 
-    return keep;
-  });
+        return keep;
+      });
 }
 
 class DownshiftMultiple extends React.Component {
@@ -137,10 +143,11 @@ class DownshiftMultiple extends React.Component {
   };
 
   handleDelete = item => () => {
-    const selectedItem = [...this.state.selectedItem];
-    selectedItem.splice(selectedItem.indexOf(item), 1);
-
-    this.setState({ selectedItem });
+    this.setState(state => {
+      const selectedItem = [...state.selectedItem];
+      selectedItem.splice(selectedItem.indexOf(item), 1);
+      return { selectedItem };
+    });
   };
 
   render() {
@@ -148,7 +155,12 @@ class DownshiftMultiple extends React.Component {
     const { inputValue, selectedItem } = this.state;
 
     return (
-      <Downshift inputValue={inputValue} onChange={this.handleChange} selectedItem={selectedItem}>
+      <Downshift
+        id="downshift-multiple"
+        inputValue={inputValue}
+        onChange={this.handleChange}
+        selectedItem={selectedItem}
+      >
         {({
           getInputProps,
           getItemProps,
@@ -174,8 +186,8 @@ class DownshiftMultiple extends React.Component {
                 onChange: this.handleInputChange,
                 onKeyDown: this.handleKeyDown,
                 placeholder: 'Select multiple countries',
-                id: 'integration-downshift-multiple',
               }),
+              label: 'Label',
             })}
             {isOpen ? (
               <Paper className={classes.paper} square>
@@ -223,41 +235,103 @@ const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
   },
+  inputInput: {
+    width: 'auto',
+    flexGrow: 1,
+  },
+  divider: {
+    height: theme.spacing.unit * 2,
+  },
 });
+
+let popperNode;
 
 function IntegrationDownshift(props) {
   const { classes } = props;
 
   return (
     <div className={classes.root}>
-      <Downshift>
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+      <Downshift id="downshift-simple">
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
           <div className={classes.container}>
             {renderInput({
               fullWidth: true,
               classes,
               InputProps: getInputProps({
                 placeholder: 'Search a country (start with a)',
-                id: 'integration-downshift-simple',
               }),
             })}
-            {isOpen ? (
-              <Paper className={classes.paper} square>
-                {getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
-            ) : null}
+            <div {...getMenuProps()}>
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
           </div>
         )}
       </Downshift>
+      <div className={classes.divider} />
       <DownshiftMultiple classes={classes} />
+      <div className={classes.divider} />
+      <Downshift id="downshift-popper">
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                placeholder: 'With Popper',
+              }),
+              ref: node => {
+                popperNode = node;
+              },
+            })}
+            <Popper open={isOpen} anchorEl={popperNode}>
+              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                <Paper
+                  square
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                >
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              </div>
+            </Popper>
+          </div>
+        )}
+      </Downshift>
     </div>
   );
 }

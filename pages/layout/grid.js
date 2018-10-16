@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/layout/grid/grid.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./grid${props.lang}.md`)}
       demos={{
         'pages/layout/grid/SpacingGrid.js': {
           js: require('docs/src/pages/layout/grid/SpacingGrid').default,
@@ -48,6 +49,20 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/layout/grid/CSSGrid'), 'utf8')
+`,
+        },
+        'pages/layout/grid/NestedGrid.js': {
+          js: require('docs/src/pages/layout/grid/NestedGrid').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/NestedGrid'), 'utf8')
+`,
+        },
+        'pages/layout/grid/ComplexGrid.js': {
+          js: require('docs/src/pages/layout/grid/ComplexGrid').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/ComplexGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/AutoGridNoWrap.js': {

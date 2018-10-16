@@ -1,6 +1,6 @@
 # Composition
 
-Material-UI tries to make composition as easy as possible.
+<p class="description">Material-UI tries to make composition as easy as possible.</p>
 
 ## Wrapping components
 

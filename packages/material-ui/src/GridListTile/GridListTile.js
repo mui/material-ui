@@ -2,26 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     boxSizing: 'border-box',
     flexShrink: 0,
   },
+  /* Styles applied to the `div` element that wraps the children. */
   tile: {
     position: 'relative',
-    display: 'block', // In case it's not renderd with a div.
+    display: 'block', // In case it's not rendered with a div.
     height: '100%',
     overflow: 'hidden',
   },
+  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
   imgFullHeight: {
     height: '100%',
     transform: 'translateX(-50%)',
     position: 'relative',
     left: '50%',
   },
+  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
   imgFullWidth: {
     width: '100%',
     position: 'relative',
@@ -31,6 +35,16 @@ export const styles = {
 };
 
 class GridListTile extends React.Component {
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.fit();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
+
   componentDidMount() {
     this.ensureImageCover();
   }
@@ -43,20 +57,10 @@ class GridListTile extends React.Component {
     this.handleResize.clear();
   }
 
-  imgElement = null;
-
-  handleResize = debounce(() => {
-    this.fit();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
   fit = () => {
     const imgElement = this.imgElement;
 
-    if (!imgElement) {
-      return;
-    }
-
-    if (!imgElement.complete) {
+    if (!imgElement || !imgElement.complete) {
       return;
     }
 
@@ -94,9 +98,12 @@ class GridListTile extends React.Component {
         <EventListener target="window" onResize={this.handleResize} />
         <div className={classes.tile}>
           {React.Children.map(children, child => {
-            if (child && child.type === 'img') {
+            if (!React.isValidElement(child)) {
+              return null;
+            }
+
+            if (child.type === 'img') {
               return React.cloneElement(child, {
-                key: 'img',
                 ref: node => {
                   this.imgElement = node;
                 },
@@ -135,7 +142,7 @@ GridListTile.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Height of the tile in number of grid cells.
    */

@@ -24,29 +24,40 @@ describe('<Chip />', () => {
   });
 
   describe('text only', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woofChip">
-          Text Chip
-        </Chip>,
-      );
-    });
-
     it('should render a div containing a span', () => {
+      const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
-    });
-
-    it('should merge user classes & spread custom props to the root node', () => {
+      assert.strictEqual(wrapper.childAt(0).name(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
+      assert.strictEqual(wrapper.props().tabIndex, -1);
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), false);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorSecondary), false);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), false);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), false);
     });
 
-    it('should have a tabIndex prop with value -1', () => {
-      assert.strictEqual(wrapper.props().tabIndex, -1);
+    it('should render with the root and the primary class', () => {
+      const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" color="primary" />);
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+    });
+
+    it('should render with the root and the secondary class', () => {
+      const wrapper = shallow(
+        <Chip className="my-Chip" data-my-prop="woofChip" color="secondary" />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
     });
   });
 
@@ -56,22 +67,18 @@ describe('<Chip />', () => {
 
     before(() => {
       handleClick = () => {};
-      wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick}>
-          Text Chip
-        </Chip>,
-      );
+      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} />);
     });
 
     it('should render a div containing a span', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.childAt(0).name(), 'span');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
       assert.strictEqual(wrapper.props().onClick, handleClick);
     });
 
@@ -82,11 +89,60 @@ describe('<Chip />', () => {
     it('should apply user value of tabIndex', () => {
       wrapper = shallow(
         // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-        <Chip onClick={() => {}} tabIndex={5}>
-          {'Text Chip'}
-        </Chip>,
+        <Chip onClick={() => {}} tabIndex={5} />,
       );
       assert.strictEqual(wrapper.props().tabIndex, 5);
+    });
+
+    it('should render with the root and clickable class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+    });
+
+    it('should render with the root and clickable primary class', () => {
+      wrapper = shallow(
+        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} color="primary" />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
+    });
+
+    it('should render with the root and outlined clickable primary class', () => {
+      wrapper = shallow(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woofChip"
+          onClick={handleClick}
+          color="primary"
+          variant="outlined"
+        />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.outlined), true);
+      assert.strictEqual(wrapper.hasClass(classes.outlinedPrimary), true);
+    });
+
+    it('should render with the root and clickable secondary class', () => {
+      wrapper = shallow(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woofChip"
+          onClick={handleClick}
+          color="secondary"
+        />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorSecondary), true);
     });
   });
 
@@ -111,9 +167,9 @@ describe('<Chip />', () => {
 
     it('should render a div containing an Avatar, span and svg', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
-      assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
-      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(0).type(), Avatar);
+      assert.strictEqual(wrapper.childAt(1).name(), 'span');
+      assert.strictEqual(wrapper.childAt(2).name(), 'pure(Cancel)');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -137,7 +193,7 @@ describe('<Chip />', () => {
       wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
+      assert.strictEqual(onDeleteSpy.callCount, 1);
     });
 
     it('should stop propagation in onDeleteRequest', () => {
@@ -146,11 +202,68 @@ describe('<Chip />', () => {
       wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
-      assert.strictEqual(
-        stopPropagationSpy.callCount,
-        1,
-        'should have called the stopPropagation handler',
+      assert.strictEqual(stopPropagationSpy.callCount, 1);
+    });
+
+    it('should render with the root, deletable classes', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+    });
+
+    it('should render with the root, deletable and avatar primary classes', () => {
+      wrapper = shallow(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="primary"
+        />,
       );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), true);
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorPrimary), true);
+    });
+
+    it('should render with the root, deletable and avatar secondary classes', () => {
+      wrapper = shallow(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="secondary"
+        />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), true);
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorSecondary), true);
     });
   });
 
@@ -170,6 +283,64 @@ describe('<Chip />', () => {
       const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
       assert.strictEqual(wrapper.find(CancelIcon).length, 1);
     });
+
+    it(
+      'should render a default icon with the root, deletable, deleteIcon' +
+        ' and deleteIconOutlinedColorSecondary classes',
+      () => {
+        const wrapper = shallow(
+          <Chip
+            label="Custom delete icon Chip"
+            onDelete={() => {}}
+            variant="outlined"
+            color="secondary"
+          />,
+        );
+        assert.strictEqual(wrapper.hasClass(classes.root), true);
+        assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+
+        const iconWrapper = wrapper.find(CancelIcon);
+        assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+        assert.strictEqual(iconWrapper.hasClass(classes.deleteIconOutlinedColorSecondary), true);
+      },
+    );
+
+    it('should render a default icon with the root, deletable and deleteIcon classes', () => {
+      const wrapper = shallow(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+    });
+
+    it('should render default icon with the root, deletable and deleteIcon primary class', () => {
+      const wrapper = shallow(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="primary" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), true);
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorPrimary), true);
+    });
+
+    it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
+      const wrapper = shallow(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="secondary" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), true);
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorSecondary), true);
+    });
   });
 
   describe('reacts to keyboard chip', () => {
@@ -180,27 +351,19 @@ describe('<Chip />', () => {
       it('should call onKeyDown when a key is pressed', () => {
         const anyKeydownEvent = { keycode: keycode('p') };
         const onKeyDownSpy = spy();
-        wrapper = mount(
-          <Chip classes={{}} onKeyDown={onKeyDownSpy}>
-            Text Chip
-          </Chip>,
-        );
-        wrapper.find('div').simulate('keydown', anyKeydownEvent);
-        assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
-        assert.strictEqual(
-          onKeyDownSpy.args[0][0].keyCode,
-          anyKeydownEvent.keyCode,
-          'should have same keyCode',
-        );
+        wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
+        wrapper.find('div').simulate('keyDown', anyKeydownEvent);
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+        assert.strictEqual(onKeyDownSpy.args[0][0].keyCode, anyKeydownEvent.keyCode);
       });
     });
 
     describe('escape', () => {
       it('should unfocus when a esc key is pressed', () => {
-        const wrapper2 = mount(<ChipNaked classes={{}}>Text Chip</ChipNaked>);
+        const wrapper2 = mount(<ChipNaked classes={{}} />);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
-        wrapper2.find('div').simulate('keydown', {
+        wrapper2.find('div').simulate('keyUp', {
           preventDefault: () => {},
           keyCode: keycode('esc'),
         });
@@ -212,11 +375,7 @@ describe('<Chip />', () => {
       let onClickSpy;
       before(() => {
         onClickSpy = spy();
-        wrapper = mount(
-          <ChipNaked classes={{}} onClick={onClickSpy}>
-            Text Chip
-          </ChipNaked>,
-        );
+        wrapper = mount(<ChipNaked classes={{}} onClick={onClickSpy} />);
       });
 
       afterEach(() => {
@@ -225,48 +384,61 @@ describe('<Chip />', () => {
 
       it('should call onClick when `space` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const spaceKeydownEvent = {
+        const spaceKeyDown = {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('space'),
         };
-        wrapper.find('div').simulate('keydown', spaceKeydownEvent);
-        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
-        assert.strictEqual(onClickSpy.args[0][0].keyCode, spaceKeydownEvent.keyCode);
+        wrapper.find('div').simulate('keyDown', spaceKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.callCount, 0);
+
+        const spaceKeyUp = {
+          keyCode: keycode('space'),
+        };
+        wrapper.find('div').simulate('keyUp', spaceKeyUp);
+        assert.strictEqual(onClickSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.args[0][0].keyCode, spaceKeyUp.keyCode);
       });
 
       it('should call onClick when `enter` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const enterKeydownEvent = {
+        const enterKeyDown = {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('enter'),
         };
-        wrapper.find('div').simulate('keydown', enterKeydownEvent);
-        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
-        assert.strictEqual(onClickSpy.args[0][0].keyCode, enterKeydownEvent.keyCode);
+        wrapper.find('div').simulate('keyDown', enterKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.callCount, 0);
+
+        const enterKeyUp = {
+          keyCode: keycode('enter'),
+        };
+        wrapper.find('div').simulate('keyUp', enterKeyUp);
+        assert.strictEqual(onClickSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.args[0][0].keyCode, enterKeyUp.keyCode);
       });
     });
 
     describe('onDelete is defined and `backspace` is pressed', () => {
       it('should call onDelete', () => {
-        const onDeleteSpy = spy();
-        const wrapper2 = mount(
-          <ChipNaked classes={{}} onDelete={onDeleteSpy}>
-            Text Chip
-          </ChipNaked>,
-        );
-
         const preventDefaultSpy = spy();
-        const backspaceKeydownEvent = {
+        const onDeleteSpy = spy();
+        const wrapper2 = mount(<ChipNaked classes={{}} onDelete={onDeleteSpy} />);
+
+        const backspaceKeyDown = {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('backspace'),
         };
-        wrapper2.find('div').simulate('keydown', backspaceKeydownEvent);
+        wrapper2.find('div').simulate('keyDown', backspaceKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onDeleteSpy.callCount, 0);
 
-        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called onClick');
-        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeydownEvent.keyCode);
+        const backspaceKeyUp = {
+          keyCode: keycode('backspace'),
+        };
+        wrapper2.find('div').simulate('keyUp', backspaceKeyUp);
+        assert.strictEqual(onDeleteSpy.callCount, 1);
+        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
       });
     });
 
@@ -274,11 +446,13 @@ describe('<Chip />', () => {
       let onClickSpy;
       let onDeleteSpy;
       let onKeyDownSpy;
+      let onKeyUpSpy;
 
       before(() => {
         onClickSpy = spy();
         onDeleteSpy = spy();
         onKeyDownSpy = spy();
+        onKeyUpSpy = spy();
 
         wrapper = mount(
           <Chip
@@ -286,6 +460,7 @@ describe('<Chip />', () => {
             onClick={onClickSpy}
             onDelete={onDeleteSpy}
             onKeyDown={onKeyDownSpy}
+            onKeyUp={onKeyUpSpy}
             label={<input className="child-input" />}
           />,
         );
@@ -297,24 +472,42 @@ describe('<Chip />', () => {
       });
 
       it('should not call onDelete for child event', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('backspace') });
-        assert.strictEqual(onDeleteSpy.notCalled, true);
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('backspace') });
+        assert.strictEqual(onDeleteSpy.callCount, 0);
       });
 
       it('should not call onClick for child event when `space` is pressed', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('space') });
-        assert.strictEqual(onClickSpy.notCalled, true);
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('space') });
+        assert.strictEqual(onClickSpy.callCount, 0);
       });
 
       it('should not call onClick for child event when `enter` is pressed', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('enter') });
-        assert.strictEqual(onClickSpy.notCalled, true);
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('enter') });
+        assert.strictEqual(onClickSpy.callCount, 0);
       });
 
-      it('should not call onKeyDown for child event', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('p') });
-        assert.strictEqual(onKeyDownSpy.notCalled, true);
+      it('should call handlers for child event', () => {
+        onKeyDownSpy.resetHistory();
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('p') });
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+
+        onKeyUpSpy.resetHistory();
+        wrapper.find('.child-input').simulate('keyUp', { keyCode: keycode('p') });
+        assert.strictEqual(onKeyUpSpy.callCount, 1);
       });
+    });
+  });
+
+  describe('prop: icon', () => {
+    it('should render the icon', () => {
+      const wrapper = shallow(<Chip icon={<span />} />);
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .first()
+          .hasClass(classes.icon),
+        true,
+      );
     });
   });
 });

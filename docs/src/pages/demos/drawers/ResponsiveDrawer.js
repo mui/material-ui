@@ -17,7 +17,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: 440,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -56,7 +56,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   render() {
@@ -78,13 +78,13 @@ class ResponsiveDrawer extends React.Component {
           <Toolbar>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
+              aria-label="Open drawer"
               onClick={this.handleDrawerToggle}
               className={classes.navIconHide}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               Responsive drawer
             </Typography>
           </Toolbar>

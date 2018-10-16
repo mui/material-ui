@@ -78,7 +78,7 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
-export default function createPalette(palette: Object) {
+export default function createPalette(palette) {
   const {
     primary = {
       light: indigo[300],
@@ -125,10 +125,20 @@ export default function createPalette(palette: Object) {
     return contrastText;
   }
 
-  function augmentColor(color, mainShade, lightShade, darkShade) {
+  function augmentColor(color, mainShade = 500, lightShade = 300, darkShade = 700) {
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
     }
+
+    if (process.env.NODE_ENV !== 'production' && !color.main) {
+      throw new Error(
+        [
+          'Material-UI: the color provided to augmentColor(color) is invalid.',
+          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
+        ].join('\n'),
+      );
+    }
+
     addLightOrDark(color, 'light', lightShade, tonalOffset);
     addLightOrDark(color, 'dark', darkShade, tonalOffset);
     if (!color.contrastText) {
@@ -136,9 +146,9 @@ export default function createPalette(palette: Object) {
     }
   }
 
-  augmentColor(primary, 500, 300, 700);
+  augmentColor(primary);
   augmentColor(secondary, 'A400', 'A200', 'A700');
-  augmentColor(error, 500, 300, 700);
+  augmentColor(error);
 
   const types = { dark, light };
 

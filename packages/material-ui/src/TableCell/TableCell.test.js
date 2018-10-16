@@ -66,25 +66,25 @@ describe('<TableCell />', () => {
 
   it('should render a th with the head class when in the context of a table head', () => {
     const wrapper = shallow(<TableCell />);
-    wrapper.setContext({ table: { head: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'head' } });
     assert.strictEqual(wrapper.name(), 'th');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
-    assert.strictEqual(wrapper.props().scope, 'col', 'should have the correct scope attribute');
+    assert.strictEqual(wrapper.hasClass(classes.head), true);
+    assert.strictEqual(wrapper.props().scope, 'col');
   });
 
   it('should render specified scope attribute even when in the context of a table head', () => {
     const wrapper = shallow(<TableCell scope="row" />);
-    wrapper.setContext({ table: { head: true } });
-    assert.strictEqual(wrapper.props().scope, 'row', 'should have the specified scope attribute');
+    wrapper.setContext({ tablelvl2: { variant: 'head' } });
+    assert.strictEqual(wrapper.props().scope, 'row');
   });
 
   it('should render a th with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableCell />);
-    wrapper.setContext({ table: { footer: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'footer' } });
     assert.strictEqual(wrapper.name(), 'td');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
+    assert.strictEqual(wrapper.hasClass(classes.footer), true);
   });
 
   it('should render a div when custom component prop is used', () => {
@@ -95,40 +95,40 @@ describe('<TableCell />', () => {
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableCell />);
-    wrapper.setContext({ table: { footer: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'footer' } });
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
+    assert.strictEqual(wrapper.hasClass(classes.footer), true);
   });
 
   it('should render with the head class when variant is head, overriding context', () => {
     const wrapper = shallow(<TableCell variant="head" />);
-    wrapper.setContext({ table: { footer: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'footer' } });
     assert.strictEqual(wrapper.hasClass(classes.head), true);
-    assert.strictEqual(wrapper.props().scope, undefined, 'should have the correct scope attribute');
+    assert.strictEqual(wrapper.props().scope, undefined);
   });
 
   it('should render without head class when variant is body, overriding context', () => {
     const wrapper = shallow(<TableCell variant="body" />);
-    wrapper.setContext({ table: { head: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'head' } });
     assert.strictEqual(wrapper.hasClass(classes.head), false);
   });
 
   it('should render without footer class when variant is body, overriding context', () => {
     const wrapper = shallow(<TableCell variant="body" />);
-    wrapper.setContext({ table: { footer: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'footer' } });
     assert.strictEqual(wrapper.hasClass(classes.footer), false);
   });
 
   it('should render with the footer class when variant is footer, overriding context', () => {
     const wrapper = shallow(<TableCell variant="footer" />);
-    wrapper.setContext({ table: { head: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'head' } });
     assert.strictEqual(wrapper.hasClass(classes.footer), true);
   });
 
   it('should render with the numeric class', () => {
     const wrapper = shallow(<TableCell numeric />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.numeric), true, 'should have the numeric class');
+    assert.strictEqual(wrapper.hasClass(classes.numeric), true);
   });
 
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {

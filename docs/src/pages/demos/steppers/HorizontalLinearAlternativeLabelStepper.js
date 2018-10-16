@@ -43,17 +43,15 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   };
 
   handleNext = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep + 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep + 1,
+    }));
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleReset = () => {
@@ -81,9 +79,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
         <div>
           {this.state.activeStep === steps.length ? (
             <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
-              </Typography>
+              <Typography className={classes.instructions}>All steps completed</Typography>
               <Button onClick={this.handleReset}>Reset</Button>
             </div>
           ) : (
@@ -97,7 +93,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
                 >
                   Back
                 </Button>
-                <Button variant="raised" color="primary" onClick={this.handleNext}>
+                <Button variant="contained" color="primary" onClick={this.handleNext}>
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
               </div>

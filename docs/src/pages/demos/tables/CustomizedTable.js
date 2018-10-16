@@ -40,7 +40,7 @@ function createData(name, calories, fat, carbs, protein) {
   return { id, name, calories, fat, carbs, protein };
 }
 
-const data = [
+const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
   createData('Eclair', 262, 16.0, 24, 6.0),
@@ -64,16 +64,16 @@ function CustomizedTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(n => {
+          {rows.map(row => {
             return (
-              <TableRow className={classes.row} key={n.id}>
+              <TableRow className={classes.row} key={row.id}>
                 <CustomTableCell component="th" scope="row">
-                  {n.name}
+                  {row.name}
                 </CustomTableCell>
-                <CustomTableCell numeric>{n.calories}</CustomTableCell>
-                <CustomTableCell numeric>{n.fat}</CustomTableCell>
-                <CustomTableCell numeric>{n.carbs}</CustomTableCell>
-                <CustomTableCell numeric>{n.protein}</CustomTableCell>
+                <CustomTableCell numeric>{row.calories}</CustomTableCell>
+                <CustomTableCell numeric>{row.fat}</CustomTableCell>
+                <CustomTableCell numeric>{row.carbs}</CustomTableCell>
+                <CustomTableCell numeric>{row.protein}</CustomTableCell>
               </TableRow>
             );
           })}

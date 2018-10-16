@@ -4,25 +4,29 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    width: theme.spacing.unit * 5,
-    height: theme.spacing.unit * 5,
+    width: 40,
+    height: 40,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(20),
     borderRadius: '50%',
     overflow: 'hidden',
     userSelect: 'none',
   },
+  /* Styles applied to the root element if there are children and not `src` or `srcSet` */
+  /* Styles applied to the root element if `color="default"`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   },
+  /* Styles applied to the img element if either `src` or `srcSet` is defined. */
   img: {
     width: '100%',
     height: '100%',
@@ -56,18 +60,7 @@ function Avatar(props) {
   );
   let children = null;
 
-  if (childrenProp) {
-    if (
-      childrenClassNameProp &&
-      typeof childrenProp !== 'string' &&
-      React.isValidElement(childrenProp)
-    ) {
-      const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-      children = React.cloneElement(childrenProp, { className: childrenClassName });
-    } else {
-      children = childrenProp;
-    }
-  } else if (src || srcSet) {
+  if (src || srcSet) {
     children = (
       <img
         alt={alt}
@@ -78,6 +71,11 @@ function Avatar(props) {
         {...imgProps}
       />
     );
+  } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+    const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
+    children = React.cloneElement(childrenProp, { className: childrenClassName });
+  } else {
+    children = childrenProp;
   }
 
   return (
@@ -120,9 +118,9 @@ Avatar.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the `img` element when the component
+   * Attributes applied to the `img` element if the component
    * is used to display an image.
    */
   imgProps: PropTypes.object,

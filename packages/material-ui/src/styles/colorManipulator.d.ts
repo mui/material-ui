@@ -6,6 +6,7 @@ export interface ColorObject {
 
 export function recomposeColor(color: ColorObject): string;
 export function convertHexToRGB(hex: string): string;
+export function rgbToHex(color: string): string;
 export function decomposeColor(color: string): ColorObject;
 export function getContrastRatio(foreground: string, background: string): number;
 export function getLuminance(color: string): number;

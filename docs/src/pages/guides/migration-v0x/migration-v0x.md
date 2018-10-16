@@ -1,5 +1,7 @@
 # Migration From v0.x
 
+<p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
+
 ## FAQ
 
 ### Woah - the API is way different! Does that mean 1.0 is completely different, I’ll have to learn the basics all over again, and migrating will be practically impossible?
@@ -10,16 +12,16 @@ We have been making lower-level components, abstracting less complexity.
 
 ### What motivated such a large change?
 
-Material-UI was started [3 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
-- New styling solution using CSS-in-JS (better [customization](/customization/overrides) power, better performance)
-- New [theme handling](/customization/themes) (nesting, self-supporting, etc.)
+- New styling solution using CSS-in-JS (better [customization](/customization/overrides/) power, better performance)
+- New [theme handling](/customization/themes/) (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
-- Way better [test coverage](/guides/testing) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
-- Full [server-side rendering](/guides/server-rendering) support
-- Wide range of [supported browsers](/getting-started/supported-platforms)
+- Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
+- Full [server-side rendering](/guides/server-rendering/) support
+- Wide range of [supported browsers](/getting-started/supported-platforms/)
 
 ### Where should I start in a migration?
 
@@ -63,7 +65,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
   function App() {
     return (
       <MuiThemeProvider theme={theme}>
-        <V0ThemeProvider muiTheme={themeV0}>
+        <V0MuiThemeProvider muiTheme={themeV0}>
           {/*Components*/}
         </V0MuiThemeProvider>
       </MuiThemeProvider>
@@ -89,7 +91,7 @@ In the future, we will look into providing a simple component to solve the simpl
 Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
 
 This will apply a change such as the following:
-```
+
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
 +import AddIcon from '@material-ui/icons/Add';
@@ -114,8 +116,65 @@ This will apply a change such as the following:
 +import Button from '@material-ui/core/Button';
 
 -<RaisedButton />
-+<Button variant="raised" />
++<Button variant="contained" />
 ```
+
+### Subheader
+
+```diff
+-import Subheader from 'material-ui/Subheader';
++import ListSubheader from '@material-ui/core/ListSubheader';
+
+-<Subheader>Sub Heading</Subheader>
++<ListSubheader>Sub Heading</ListSubheader>
+```
+
+### Toggle
+
+```diff
+-import Toggle from 'material-ui/Toggle';
++import Switch from '@material-ui/core/Switch';
+
+-<Toggle
+-  toggled={this.state.checkedA}
+-  onToggle={this.handleToggle}
+-/>
++<Switch
++  checked={this.state.checkedA}
++  onChange={this.handleSwitch}
++/>
+```
+
+### Menu Item
+
+```diff
+-import MenuItem from 'material-ui/MenuItem';
++import MenuItem from '@material-ui/core/MenuItem';
+
+-<MenuItem primaryText="Profile" />
++<MenuItem>Profile</MenuItem>
+```
+
+### Font Icon
+
+```diff
+-import FontIcon from 'material-ui/FontIcon';
++import Icon from '@material-ui/core/Icon';
+
+-<FontIcon>home</FontIcon>
++<Icon>home</Icon>
+```
+
+### Drop Down Menu
+
+```diff
+-import DropDownMenu from 'material-ui/DropDownMenu';
++import Select from '@material-ui/core/Select';
+
+-<DropDownMenu></DropDownMenu>
++<Select value={this.state.value}></Select>
+```
+
 
 ### To be continued…
 

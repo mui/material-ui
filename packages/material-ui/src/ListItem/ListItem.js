@@ -6,6 +6,7 @@ import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => ({
+  /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -15,29 +16,40 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
+    paddingTop: 11, // To use 10px in v4.0.0
+    paddingBottom: 11, // To use 10px in v4.0.0
+    '&$selected, &$selected:hover': {
+      backgroundColor: theme.palette.action.selected,
+    },
   },
+  /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
   container: {
     position: 'relative',
   },
+  // TODO: Sanity check this - why is focusVisibleClassName prop apparently applied to a div?
+  /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
   focusVisible: {
     backgroundColor: theme.palette.action.hover,
   },
-  default: {
-    paddingTop: 12,
-    paddingBottom: 12,
-  },
+  /* Legacy styles applied to the root element. Use `root` instead. */
+  default: {},
+  /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
   dense: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingTop: 8,
+    paddingBottom: 8,
   },
+  /* Styles applied to the inner `component` element if `disabled={true}`. */
   disabled: {
     opacity: 0.5,
   },
+  /* Styles applied to the inner `component` element if `divider={true}`. */
   divider: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   },
+  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
   gutters: theme.mixins.gutters(),
+  /* Styles applied to the inner `component` element if `button={true}`. */
   button: {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -51,11 +63,14 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positionned.
-    paddingRight: theme.spacing.unit * 4,
+    paddingRight: 32,
   },
+  /* Styles applied to the root element if `selected={true}`. */
+  selected: {},
 });
 
 class ListItem extends React.Component {
@@ -79,6 +94,7 @@ class ListItem extends React.Component {
       disableGutters,
       divider,
       focusVisibleClassName,
+      selected,
       ...other
     } = this.props;
 
@@ -90,13 +106,15 @@ class ListItem extends React.Component {
 
     const className = classNames(
       classes.root,
-      isDense || hasAvatar ? classes.dense : classes.default,
+      classes.default,
       {
+        [classes.dense]: isDense || hasAvatar,
         [classes.gutters]: !disableGutters,
         [classes.divider]: divider,
         [classes.disabled]: disabled,
         [classes.button]: button,
         [classes.secondaryAction]: hasSecondaryAction,
+        [classes.selected]: selected,
       },
       classNameProp,
     );
@@ -164,11 +182,11 @@ ListItem.propTypes = {
    * Either a string to use a DOM element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The container component used when a `ListItemSecondaryAction` is rendered.
    */
-  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the container element when the component
    * is used to display a `ListItemSecondaryAction`.
@@ -179,7 +197,7 @@ ListItem.propTypes = {
    */
   dense: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the list item will be disabled.
    */
   disabled: PropTypes.bool,
   /**
@@ -194,6 +212,10 @@ ListItem.propTypes = {
    * @ignore
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * Use to apply selected styling.
+   */
+  selected: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
@@ -203,6 +225,7 @@ ListItem.defaultProps = {
   disabled: false,
   disableGutters: false,
   divider: false,
+  selected: false,
 };
 
 ListItem.contextTypes = {

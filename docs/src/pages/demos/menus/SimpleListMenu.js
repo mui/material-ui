@@ -28,8 +28,6 @@ class SimpleListMenu extends React.Component {
     selectedIndex: 1,
   };
 
-  button = undefined;
-
   handleClickListItem = event => {
     this.setState({ anchorEl: event.currentTarget });
   };

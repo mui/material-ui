@@ -22,8 +22,6 @@ class LinearDeterminate extends React.Component {
     clearInterval(this.timer);
   }
 
-  timer = null;
-
   progress = () => {
     const { completed } = this.state;
     if (completed === 100) {

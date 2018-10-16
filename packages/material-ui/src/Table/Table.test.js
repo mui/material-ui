@@ -25,7 +25,7 @@ describe('<Table />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<Table data-my-prop="woofTable">foo</Table>);
     assert.strictEqual(
-      wrapper.prop('data-my-prop'),
+      wrapper.props()['data-my-prop'],
       'woofTable',
       'custom prop should be woofTable',
     );
@@ -45,6 +45,8 @@ describe('<Table />', () => {
 
   it('should define table in the child context', () => {
     const wrapper = shallow(<Table>foo</Table>);
-    assert.deepStrictEqual(wrapper.instance().getChildContext().table, {});
+    assert.deepStrictEqual(wrapper.instance().getChildContext().table, {
+      padding: 'default',
+    });
   });
 });

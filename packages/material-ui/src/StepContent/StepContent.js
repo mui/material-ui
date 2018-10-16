@@ -6,18 +6,21 @@ import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
-    marginTop: theme.spacing.unit,
+    marginTop: 8,
     marginLeft: 12, // half icon
-    paddingLeft: theme.spacing.unit + 12, // margin + half icon
-    paddingRight: theme.spacing.unit,
+    paddingLeft: 8 + 12, // margin + half icon
+    paddingRight: 8,
     borderLeft: `1px solid ${
       theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
     }`,
   },
+  /* Styles applied to the root element if `last={true}` (controlled by `Step`). */
   last: {
     borderLeft: 'none',
   },
+  /* Styles applied to the Transition component. */
   transition: {},
 });
 
@@ -33,7 +36,7 @@ function StepContent(props) {
     optional,
     orientation,
     TransitionComponent,
-    transitionDuration,
+    transitionDuration: transitionDurationProp,
     TransitionProps,
     ...other
   } = props;
@@ -42,6 +45,12 @@ function StepContent(props) {
     orientation === 'vertical',
     'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
   );
+
+  let transitionDuration = transitionDurationProp;
+
+  if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+    transitionDuration = undefined;
+  }
 
   return (
     <div className={classNames(classes.root, { [classes.last]: last }, className)} {...other}>

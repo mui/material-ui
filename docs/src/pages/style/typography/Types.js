@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import withTheme from '@material-ui/core/styles/withTheme';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -10,54 +10,60 @@ const styles = {
   },
 };
 
-function Types() {
+function Types(props) {
+  const { classes } = props;
+
   return (
-    <div style={styles.root}>
-      <Typography variant="display4" gutterBottom>
-        Display 4
+    <div className={classes.root}>
+      <Typography component="h2" variant="h1" gutterBottom>
+        h1. Heading
       </Typography>
-      <Typography variant="display3" gutterBottom>
-        Display 3
+      <Typography variant="h2" gutterBottom>
+        h2. Heading
       </Typography>
-      <Typography variant="display2" gutterBottom>
-        Display 2
+      <Typography variant="h3" gutterBottom>
+        h3. Heading
       </Typography>
-      <Typography variant="display1" gutterBottom>
-        Display 1
+      <Typography variant="h4" gutterBottom>
+        h4. Heading
       </Typography>
-      <Typography variant="headline" gutterBottom>
-        Headline
+      <Typography variant="h5" gutterBottom>
+        h5. Heading
       </Typography>
-      <Typography variant="title" gutterBottom>
-        Title
+      <Typography variant="h6" gutterBottom>
+        h6. Heading
       </Typography>
-      <Typography variant="subheading" gutterBottom>
-        Subheading
+      <Typography variant="subtitle1" gutterBottom>
+        subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+      </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
       <Typography variant="body2" gutterBottom>
-        Body 2
-      </Typography>
-      <Typography variant="body1" gutterBottom align="right">
-        Body 1
-      </Typography>
-      <Typography variant="caption" gutterBottom align="center">
-        Caption
-      </Typography>
-      <Typography gutterBottom noWrap>
-        {`
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        `}
+        body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
       <Typography variant="button" gutterBottom>
-        Button
+        button text
+      </Typography>
+      <Typography variant="caption" gutterBottom>
+        caption text
+      </Typography>
+      <Typography variant="overline" gutterBottom>
+        overline text
       </Typography>
     </div>
   );
 }
 
 Types.propTypes = {
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default withTheme()(Types);
+export default withStyles(styles)(Types);

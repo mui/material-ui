@@ -1,119 +1,89 @@
-/* eslint-disable react/no-multi-comp, no-underscore-dangle */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventListener from 'react-event-listener';
-import debounce from 'debounce';
 import warning from 'warning';
 import classNames from 'classnames';
-import { Manager, Popper, Target } from 'react-popper';
-import { capitalize } from '../utils/helpers';
 import RootRef from '../RootRef';
-import Portal from '../Portal';
-import common from '../colors/common';
 import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
+import Grow from '../Grow';
+import Popper from '../Popper';
 
 export const styles = theme => ({
+  /* Styles applied to the Popper component. */
   popper: {
     zIndex: theme.zIndex.tooltip,
-    pointerEvents: 'none',
-    '&$open': {
-      pointerEvents: 'auto',
-    },
+    opacity: 0.9,
   },
-  open: {},
+  /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
     backgroundColor: theme.palette.grey[700],
-    borderRadius: 2,
-    color: common.white,
+    borderRadius: theme.shape.borderRadius,
+    color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
-    opacity: 0,
-    transform: 'scale(0)',
-    transition: theme.transitions.create(['opacity', 'transform'], {
-      duration: theme.transitions.duration.shortest,
-      easing: theme.transitions.easing.easeIn,
-    }),
-    minHeight: 0,
-    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit}px`,
+    padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
-    '&$open': {
-      opacity: 0.9,
-      transform: 'scale(1)',
-      transition: theme.transitions.create(['opacity', 'transform'], {
-        duration: theme.transitions.duration.shortest,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
+    maxWidth: 300,
   },
+  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${theme.typography.round(16 / 14)}em`,
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {
     transformOrigin: 'right center',
-    margin: `0 ${theme.spacing.unit * 3}px`,
+    margin: '0 24px ',
     [theme.breakpoints.up('sm')]: {
       margin: '0 14px',
     },
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
   tooltipPlacementRight: {
     transformOrigin: 'left center',
-    margin: `0 ${theme.spacing.unit * 3}px`,
+    margin: '0 24px',
     [theme.breakpoints.up('sm')]: {
       margin: '0 14px',
     },
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
   tooltipPlacementTop: {
     transformOrigin: 'center bottom',
-    margin: `${theme.spacing.unit * 3}px 0`,
+    margin: '24px 0',
     [theme.breakpoints.up('sm')]: {
       margin: '14px 0',
     },
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
   tooltipPlacementBottom: {
     transformOrigin: 'center top',
-    margin: `${theme.spacing.unit * 3}px 0`,
+    margin: '24px 0',
     [theme.breakpoints.up('sm')]: {
       margin: '14px 0',
     },
   },
 });
 
-function flipPlacement(placement) {
-  switch (placement) {
-    case 'bottom-end':
-      return 'bottom-start';
-    case 'bottom-start':
-      return 'bottom-end';
-    case 'top-end':
-      return 'top-start';
-    case 'top-start':
-      return 'top-end';
-    default:
-      return placement;
-  }
-}
-
 class Tooltip extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  ignoreNonTouchEvents = false;
 
+  constructor(props) {
+    super();
     this.isControlled = props.open != null;
+    this.state = {
+      open: null,
+    };
+
     if (!this.isControlled) {
       // not controlled, use internal state
       this.state.open = false;
     }
   }
 
-  state = {};
-
   componentDidMount() {
     warning(
-      !this.children ||
-        !this.children.disabled ||
-        !this.children.tagName.toLowerCase() === 'button',
+      !this.childrenRef.disabled || !this.childrenRef.tagName.toLowerCase() === 'button',
       [
         'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
         'A disabled element does not fire events.',
@@ -122,38 +92,50 @@ class Tooltip extends React.Component {
         'Place a `div` container on top of the element.',
       ].join('\n'),
     );
+
+    // Fallback to this default id when possible.
+    // Use the random value for client side rendering only.
+    // We can't use it server side.
+    this.defaultId = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
+
+    // Rerender with this.defaultId and this.childrenRef.
+    if (this.props.open) {
+      this.forceUpdate();
+    }
   }
 
   componentWillUnmount() {
+    clearTimeout(this.closeTimer);
     clearTimeout(this.enterTimer);
+    clearTimeout(this.focusTimer);
     clearTimeout(this.leaveTimer);
     clearTimeout(this.touchTimer);
-    clearTimeout(this.closeTimer);
-    this.handleResize.clear();
   }
 
-  enterTimer = null;
-  leaveTimer = null;
-  touchTimer = null;
-  closeTimer = null;
-  isControlled = null;
-  popper = null;
-  children = null;
-  ignoreNonTouchEvents = false;
+  onRootRef = ref => {
+    this.childrenRef = ref;
+  };
 
-  handleResize = debounce(() => {
-    if (this.popper) {
-      this.popper._popper.scheduleUpdate();
+  handleFocus = event => {
+    event.persist();
+    // The autoFocus of React might trigger the event before the componentDidMount.
+    // We need to account for this eventuality.
+    this.focusTimer = setTimeout(() => {
+      // We need to make sure the focus hasn't moved since the event was triggered.
+      if (this.childrenRef === document.activeElement) {
+        this.handleEnter(event);
+      }
+    }, 0);
+
+    const childrenProps = this.props.children.props;
+    if (childrenProps.onFocus) {
+      childrenProps.onFocus(event);
     }
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  };
 
   handleEnter = event => {
     const { children, enterDelay } = this.props;
     const childrenProps = children.props;
-
-    if (event.type === 'focus' && childrenProps.onFocus) {
-      childrenProps.onFocus(event);
-    }
 
     if (event.type === 'mouseover' && childrenProps.onMouseOver) {
       childrenProps.onMouseOver(event);
@@ -162,6 +144,11 @@ class Tooltip extends React.Component {
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
       return;
     }
+
+    // Remove the title ahead of time.
+    // We don't want to wait for the next render commit.
+    // We would risk displaying two tooltips at the same time (native + this one).
+    this.childrenRef.setAttribute('title', '');
 
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
@@ -176,12 +163,15 @@ class Tooltip extends React.Component {
   };
 
   handleOpen = event => {
-    if (!this.isControlled) {
+    // The mouseover event will trigger for every nested element in the tooltip.
+    // We can skip rerendering when the tooltip is already open.
+    // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
+    if (!this.isControlled && !this.state.open) {
       this.setState({ open: true });
     }
 
     if (this.props.onOpen) {
-      this.props.onOpen(event, true);
+      this.props.onOpen(event);
     }
   };
 
@@ -215,7 +205,7 @@ class Tooltip extends React.Component {
     }
 
     if (this.props.onClose) {
-      this.props.onClose(event, false);
+      this.props.onClose(event);
     }
 
     clearTimeout(this.closeTimer);
@@ -227,10 +217,9 @@ class Tooltip extends React.Component {
   handleTouchStart = event => {
     this.ignoreNonTouchEvents = true;
     const { children, enterTouchDelay } = this.props;
-    const childrenProps = children.props;
 
-    if (childrenProps.onTouchStart) {
-      childrenProps.onTouchStart(event);
+    if (children.props.onTouchStart) {
+      children.props.onTouchStart(event);
     }
 
     clearTimeout(this.leaveTimer);
@@ -244,10 +233,9 @@ class Tooltip extends React.Component {
 
   handleTouchEnd = event => {
     const { children, leaveTouchDelay } = this.props;
-    const childrenProps = children.props;
 
-    if (childrenProps.onTouchEnd) {
-      childrenProps.onTouchEnd(event);
+    if (children.props.onTouchEnd) {
+      children.props.onTouchEnd(event);
     }
 
     clearTimeout(this.touchTimer);
@@ -262,7 +250,6 @@ class Tooltip extends React.Component {
     const {
       children,
       classes,
-      className,
       disableFocusListener,
       disableHoverListener,
       disableTouchListener,
@@ -274,21 +261,27 @@ class Tooltip extends React.Component {
       onClose,
       onOpen,
       open: openProp,
-      placement: placementProp,
-      PopperProps: { className: PopperClassName, ...PopperProps } = {},
+      placement,
+      PopperProps,
       theme,
       title,
+      TransitionComponent,
+      TransitionProps,
       ...other
     } = this.props;
 
-    const placement = theme.direction === 'rtl' ? flipPlacement(placementProp) : placementProp;
     let open = this.isControlled ? openProp : this.state.open;
-    const childrenProps = { 'aria-describedby': id };
 
     // There is no point at displaying an empty tooltip.
     if (title === '') {
       open = false;
     }
+
+    const childrenProps = {
+      'aria-describedby': open ? id || this.defaultId : null,
+      title: !open && typeof title === 'string' ? title : null,
+      ...other,
+    };
 
     if (!disableTouchListener) {
       childrenProps.onTouchStart = this.handleTouchStart;
@@ -301,75 +294,51 @@ class Tooltip extends React.Component {
     }
 
     if (!disableFocusListener) {
-      childrenProps.onFocus = this.handleEnter;
+      childrenProps.onFocus = this.handleFocus;
       childrenProps.onBlur = this.handleLeave;
     }
 
     warning(
       !children.props.title,
       [
-        'Material-UI: you have been providing a `title` property to the child of <Tooltip />.',
+        'Material-UI: you have provided a `title` property to the child of <Tooltip />.',
         `Remove this title property \`${children.props.title}\` or the Tooltip component.`,
       ].join('\n'),
     );
 
     return (
-      <Manager tag={false} {...other}>
-        <EventListener target="window" onResize={this.handleResize} />
-        <Target>
-          {({ targetProps }) => (
-            <RootRef
-              rootRef={node => {
-                this.children = node;
-                targetProps.ref(this.children);
-              }}
+      <React.Fragment>
+        <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
+        <Popper
+          className={classes.popper}
+          placement={placement}
+          anchorEl={this.childrenRef}
+          open={open}
+          id={childrenProps['aria-describedby']}
+          transition
+          {...PopperProps}
+        >
+          {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
+            <TransitionComponent
+              timeout={theme.transitions.duration.shorter}
+              {...TransitionPropsInner}
+              {...TransitionProps}
             >
-              {React.cloneElement(children, childrenProps)}
-            </RootRef>
+              <div
+                className={classNames(
+                  classes.tooltip,
+                  {
+                    [classes.touch]: this.ignoreNonTouchEvents,
+                  },
+                  classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
+                )}
+              >
+                {title}
+              </div>
+            </TransitionComponent>
           )}
-        </Target>
-        <Portal>
-          <Popper
-            placement={placement}
-            eventsEnabled={open}
-            className={classNames(classes.popper, { [classes.open]: open }, PopperClassName)}
-            ref={node => {
-              this.popper = node;
-            }}
-            {...PopperProps}
-          >
-            {({ popperProps, restProps }) => {
-              const actualPlacement = (popperProps['data-placement'] || placement).split('-')[0];
-              return (
-                <div
-                  {...popperProps}
-                  {...restProps}
-                  style={{
-                    ...popperProps.style,
-                    top: popperProps.style.top || 0,
-                    left: popperProps.style.left || 0,
-                    ...restProps.style,
-                  }}
-                >
-                  <div
-                    id={id}
-                    role="tooltip"
-                    aria-hidden={!open}
-                    className={classNames(
-                      classes.tooltip,
-                      { [classes.open]: open },
-                      { [classes.touch]: this.ignoreNonTouchEvents },
-                      classes[`tooltipPlacement${capitalize(actualPlacement)}`],
-                    )}
-                  >
-                    {title}
-                  </div>
-                </div>
-              );
-            }}
-          </Popper>
-        </Portal>
-      </Manager>
+        </Popper>
+      </React.Fragment>
     );
   }
 }
@@ -384,10 +353,6 @@ Tooltip.propTypes = {
    * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * Do not respond to focus events.
    */
@@ -411,7 +376,8 @@ Tooltip.propTypes = {
   enterTouchDelay: PropTypes.number,
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
-   * By providing this property, we can use aria-describedby to solve the accessibility issue.
+   * This property is used with aria-describedby to solve the accessibility issue.
+   * If you don't provide this property. It fallback to a random generated id.
    */
   id: PropTypes.string,
   /**
@@ -440,7 +406,7 @@ Tooltip.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Tooltip placement
+   * Tooltip placement.
    */
   placement: PropTypes.oneOf([
     'bottom-end',
@@ -457,7 +423,7 @@ Tooltip.propTypes = {
     'top',
   ]),
   /**
-   * Properties applied to the `Popper` element.
+   * Properties applied to the [`Popper`](/api/popper/) element.
    */
   PopperProps: PropTypes.object,
   /**
@@ -468,6 +434,14 @@ Tooltip.propTypes = {
    * Tooltip title. Zero-length titles string are never displayed.
    */
   title: PropTypes.node.isRequired,
+  /**
+   * Transition component.
+   */
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Tooltip.defaultProps = {
@@ -479,6 +453,7 @@ Tooltip.defaultProps = {
   leaveDelay: 0,
   leaveTouchDelay: 1500,
   placement: 'bottom',
+  TransitionComponent: Grow,
 };
 
 export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);

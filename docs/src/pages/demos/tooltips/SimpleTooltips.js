@@ -22,18 +22,16 @@ function SimpleTooltips(props) {
   const { classes } = props;
   return (
     <div>
-      <Tooltip id="tooltip-icon" title="Delete">
+      <Tooltip title="Delete">
         <IconButton aria-label="Delete">
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip id="tooltip-fab" title="Add">
+      <Tooltip title="Add">
         <Button variant="fab" color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
         </Button>
       </Tooltip>
-      <br />
-      <br />
       <Tooltip title="FAB 'position: absolute;'">
         <Button variant="fab" color="secondary" className={classes.absolute}>
           <AddIcon />

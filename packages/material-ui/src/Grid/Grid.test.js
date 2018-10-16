@@ -8,20 +8,14 @@ describe('<Grid />', () => {
   let classes;
 
   before(() => {
-    const shallowInner = createShallow({ dive: true });
-    // Render deeper to bypass the GridWrapper.
-    shallow = node => {
-      return shallowInner(node)
-        .find('Grid')
-        .shallow({ context: shallowInner.context });
-    };
+    shallow = createShallow({ dive: true });
     classes = getClasses(<Grid />);
   });
 
   it('should render', () => {
     const wrapper = shallow(<Grid className="woofGrid" />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woofGrid'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofGrid'), true);
   });
 
   describe('prop: container', () => {
@@ -48,12 +42,17 @@ describe('<Grid />', () => {
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
       const wrapper = shallow(<Grid item xs />);
-      assert.strictEqual(wrapper.hasClass(classes['grid-xs']), true);
+      assert.strictEqual(wrapper.hasClass(classes['grid-xs-true']), true);
     });
 
     it('should apply the flex size class', () => {
       const wrapper = shallow(<Grid item xs={3} />);
       assert.strictEqual(wrapper.hasClass(classes['grid-xs-3']), true);
+    });
+
+    it('should apply the flex auto class', () => {
+      const wrapper = shallow(<Grid item xs="auto" />);
+      assert.strictEqual(wrapper.hasClass(classes['grid-xs-auto']), true);
     });
   });
 
@@ -75,6 +74,13 @@ describe('<Grid />', () => {
     it('should apply the align-content class', () => {
       const wrapper = shallow(<Grid alignContent="center" container />);
       assert.strictEqual(wrapper.hasClass(classes['align-content-xs-center']), true);
+    });
+  });
+
+  describe('prop: justify', () => {
+    it('should apply the justify class', () => {
+      const wrapper = shallow(<Grid justify="space-evenly" container />);
+      assert.strictEqual(wrapper.hasClass(classes['justify-xs-space-evenly']), true);
     });
   });
 

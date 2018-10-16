@@ -1,6 +1,6 @@
 import css from 'dom-helpers/style';
-import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
 import { ariaHidden, hideSiblings, showSiblings } from './manageAriaHidden';
 
@@ -64,7 +64,7 @@ function removeContainerStyle(data, container) {
  * @ignore - do not document.
  *
  * Proper state managment for containers and the modals in those containers.
- * Simplified, but inspired by react-overlay's ModalManager class
+ * Simplified, but inspired by react-overlay's ModalManager class.
  * Used by the Modal to ensure proper styling of containers.
  */
 class ModalManager {

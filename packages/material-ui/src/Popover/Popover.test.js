@@ -55,11 +55,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().open, false, 'should not be open');
+      assert.strictEqual(wrapper.props().open, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.props().open, true, 'should be open');
+      assert.strictEqual(wrapper.props().open, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.props().open, false, 'should not be open');
+      assert.strictEqual(wrapper.props().open, false);
     });
 
     describe('getOffsetTop', () => {
@@ -161,11 +161,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.childAt(0).props().in, true, 'should be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, false);
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -217,9 +217,9 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
+      assert.strictEqual(wrapper.hasClass('test-class'), true);
       const paper = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the popover class');
+      assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
     it('should have a elevation prop passed down', () => {
@@ -657,7 +657,7 @@ describe('<Popover />', () => {
 
         instance.getTransformOriginValue = stub().returns(true);
 
-        element = { clientHeight: 0, clientWidth: 0 };
+        element = { offsetHeight: 0, offsetWidth: 0 };
       });
 
       after(() => {
@@ -791,7 +791,7 @@ describe('<Popover />', () => {
 
   describe('prop: getContentAnchorEl', () => {
     it('should position accordingly', () => {
-      const element = { scrollTop: 5 };
+      const element = { scrollTop: 5, contains: () => true };
       const child = { offsetTop: 40, clientHeight: 20, parentNode: element };
       const wrapper = shallow(
         <Popover {...defaultProps} getContentAnchorEl={() => child}>
@@ -824,6 +824,27 @@ describe('<Popover />', () => {
         'Should be a function.',
       );
       popoverActions.updatePosition();
+    });
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should apply the auto property if supported', () => {
+      const wrapper = shallow(
+        <Popover {...defaultProps}>
+          <div />
+        </Popover>,
+      );
+      assert.strictEqual(wrapper.find(Grow).props().timeout, 'auto');
+    });
+
+    it('should not apply the auto property if not supported', () => {
+      const TransitionComponent = props => <div {...props} />;
+      const wrapper = shallow(
+        <Popover {...defaultProps} TransitionComponent={TransitionComponent}>
+          <div />
+        </Popover>,
+      );
+      assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
     });
   });
 });

@@ -14,13 +14,6 @@ const styles = {
     },
   },
   checked: {},
-  size: {
-    width: 40,
-    height: 40,
-  },
-  sizeIcon: {
-    fontSize: 20,
-  },
 };
 
 class RadioButtons extends React.Component {
@@ -77,9 +70,8 @@ class RadioButtons extends React.Component {
           color="default"
           name="radio-button-demo"
           aria-label="E"
-          className={classes.size}
-          icon={<RadioButtonUncheckedIcon className={classes.sizeIcon} />}
-          checkedIcon={<RadioButtonCheckedIcon className={classes.sizeIcon} />}
+          icon={<RadioButtonUncheckedIcon fontSize="small" />}
+          checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
         />
       </div>
     );

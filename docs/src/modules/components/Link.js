@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -29,29 +31,6 @@ const styles = theme => ({
   },
 });
 
-class OnClick extends React.Component {
-  handleClick = event => {
-    if (this.props.onClick) {
-      this.props.onClick(event);
-    }
-
-    if (this.props.onCustomClick) {
-      this.props.onCustomClick(event);
-    }
-  };
-
-  render() {
-    const { component: ComponentProp, onCustomClick, ...props } = this.props;
-    return <ComponentProp {...props} onClick={this.handleClick} />;
-  }
-}
-
-OnClick.propTypes = {
-  component: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  onCustomClick: PropTypes.func,
-};
-
 function Link(props) {
   const {
     activeClassName,
@@ -68,7 +47,13 @@ function Link(props) {
   } = props;
 
   let ComponentRoot;
-  const className = classNames(classes.root, classes[variant], classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes[variant]]: variant !== 'inherit',
+    },
+    classNameProp,
+  );
   let RootProps;
   let children = childrenProp;
 
@@ -86,16 +71,15 @@ function Link(props) {
       passHref: true,
     };
     children = (
-      <OnClick
-        component="a"
+      <a
         className={classNames(className, {
           [activeClassName]: router.pathname === href && activeClassName,
         })}
-        onCustomClick={onClick}
+        onClick={onClick}
         {...other}
       >
         {children}
-      </OnClick>
+      </a>
     );
   } else {
     ComponentRoot = 'a';
@@ -125,7 +109,10 @@ Link.propTypes = {
   router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button']),
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button', 'inherit']),
 };
 
-export default compose(withRouter, withStyles(styles))(Link);
+export default compose(
+  withRouter,
+  withStyles(styles),
+)(Link);

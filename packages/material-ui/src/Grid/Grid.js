@@ -17,33 +17,41 @@ import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 
 const GUTTERS = [0, 8, 16, 24, 32, 40];
-const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function generateGrid(globalStyles, theme, breakpoint) {
-  // For the auto layouting
-  const styles = {
-    [`grid-${breakpoint}`]: {
-      flexBasis: 0,
-      flexGrow: 1,
-      maxWidth: '100%',
-    },
-  };
+  const styles = {};
 
   GRID_SIZES.forEach(size => {
-    if (typeof size === 'boolean') {
-      // Skip the first one as handle above.
+    const key = `grid-${breakpoint}-${size}`;
+
+    if (size === true) {
+      // For the auto layouting
+      styles[key] = {
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+      };
       return;
     }
 
-    // Only keep 6 significant numbers.
-    const width = `${Math.round(size / 12 * 10e6) / 10e4}%`;
+    if (size === 'auto') {
+      styles[key] = {
+        flexBasis: 'auto',
+        flexGrow: 0,
+        maxWidth: 'none',
+      };
+      return;
+    }
 
-    /* eslint-disable max-len */
+    // Keep 7 significant numbers.
+    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    /* eslint-enable max-len */
-    styles[`grid-${breakpoint}-${size}`] = {
+    styles[key] = {
       flexBasis: width,
+      flexGrow: 0,
       maxWidth: width,
     };
   });
@@ -84,72 +92,97 @@ function generateGutter(theme, breakpoint) {
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
 export const styles = theme => ({
+  /* Styles applied to the root element if `container={true}`. */
   container: {
     boxSizing: 'border-box',
     display: 'flex',
     flexWrap: 'wrap',
     width: '100%',
   },
+  /* Styles applied to the root element if `item={true}`. */
   item: {
     boxSizing: 'border-box',
     margin: '0', // For instance, it's useful when used with a `figure` element.
   },
+  /* Styles applied to the root element if `zeroMinWidth={true}`. */
   zeroMinWidth: {
     minWidth: 0,
   },
+  /* Styles applied to the root element if `direction="column"`. */
   'direction-xs-column': {
     flexDirection: 'column',
   },
+  /* Styles applied to the root element if `direction="column-reverse"`. */
   'direction-xs-column-reverse': {
     flexDirection: 'column-reverse',
   },
+  /* Styles applied to the root element if `direction="rwo-reverse"`. */
   'direction-xs-row-reverse': {
     flexDirection: 'row-reverse',
   },
+  /* Styles applied to the root element if `wrap="nowrap"`. */
   'wrap-xs-nowrap': {
     flexWrap: 'nowrap',
   },
+  /* Styles applied to the root element if `wrap="reverse"`. */
   'wrap-xs-wrap-reverse': {
     flexWrap: 'wrap-reverse',
   },
+  /* Styles applied to the root element if `alignItems="center"`. */
   'align-items-xs-center': {
     alignItems: 'center',
   },
+  /* Styles applied to the root element if `alignItems="flex-start"`. */
   'align-items-xs-flex-start': {
     alignItems: 'flex-start',
   },
+  /* Styles applied to the root element if `alignItems="flex-end"`. */
   'align-items-xs-flex-end': {
     alignItems: 'flex-end',
   },
+  /* Styles applied to the root element if `alignItems="baseline"`. */
   'align-items-xs-baseline': {
     alignItems: 'baseline',
   },
+  /* Styles applied to the root element if `alignContent="center"`. */
   'align-content-xs-center': {
     alignContent: 'center',
   },
+  /* Styles applied to the root element if `alignContent="flex-start"`. */
   'align-content-xs-flex-start': {
     alignContent: 'flex-start',
   },
+  /* Styles applied to the root element if `alignContent="flex-end"`. */
   'align-content-xs-flex-end': {
     alignContent: 'flex-end',
   },
+  /* Styles applied to the root element if `alignContent="space-between"`. */
   'align-content-xs-space-between': {
     alignContent: 'space-between',
   },
+  /* Styles applied to the root element if `alignContent="space-around"`. */
   'align-content-xs-space-around': {
     alignContent: 'space-around',
   },
+  /* Styles applied to the root element if `justify="center"`. */
   'justify-xs-center': {
     justifyContent: 'center',
   },
+  /* Styles applied to the root element if `justify="flex-end"`. */
   'justify-xs-flex-end': {
     justifyContent: 'flex-end',
   },
+  /* Styles applied to the root element if `justify="space-between"`. */
   'justify-xs-space-between': {
     justifyContent: 'space-between',
   },
+  /* Styles applied to the root element if `justify="space-around"`. */
   'justify-xs-space-around': {
     justifyContent: 'space-around',
+  },
+  /* Styles applied to the root element if `justify="space-evenly"`. */
+  'justify-xs-space-evenly': {
+    justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
   ...breakpointKeys.reduce((accumulator, key) => {
@@ -194,16 +227,11 @@ function Grid(props) {
       [classes[`align-content-xs-${String(alignContent)}`]]:
         alignContent !== Grid.defaultProps.alignContent,
       [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
-      [classes['grid-xs']]: xs === true,
-      [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
-      [classes['grid-sm']]: sm === true,
-      [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
-      [classes['grid-md']]: md === true,
-      [classes[`grid-md-${String(md)}`]]: md && md !== true,
-      [classes['grid-lg']]: lg === true,
-      [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
-      [classes['grid-xl']]: xl === true,
-      [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
+      [classes[`grid-xs-${String(xs)}`]]: xs !== false,
+      [classes[`grid-sm-${String(sm)}`]]: sm !== false,
+      [classes[`grid-md-${String(md)}`]]: md !== false,
+      [classes[`grid-lg-${String(lg)}`]]: lg !== false,
+      [classes[`grid-xl-${String(xl)}`]]: xl !== false,
     },
     classNameProp,
   );
@@ -246,7 +274,7 @@ Grid.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -266,22 +294,29 @@ Grid.propTypes = {
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-  justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
+  justify: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  lg: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  md: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  sm: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
@@ -296,12 +331,12 @@ Grid.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xl: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xs: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.
@@ -327,17 +362,12 @@ Grid.defaultProps = {
   zeroMinWidth: false,
 };
 
-// Add a wrapper component to generate some helper messages in the development
-// environment.
-/* eslint-disable react/no-multi-comp */
-// eslint-disable-next-line import/no-mutable-exports
-let GridWrapper = Grid;
+const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
 
 if (process.env.NODE_ENV !== 'production') {
-  GridWrapper = props => <Grid {...props} />;
-
   const requireProp = requirePropFactory('Grid');
-  GridWrapper.propTypes = {
+  StyledGrid.propTypes = {
+    ...StyledGrid.propTypes,
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
@@ -352,4 +382,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+export default StyledGrid;

@@ -1,42 +1,62 @@
 ---
+title: Button React component
 components: Button, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
 
-[Buttons](https://material.io/design/components/buttons.html) communicate the action that will occur when the user touches them.
+<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
-Material buttons trigger an ink reaction on press.
-They may display text, imagery, or both.
-Flat buttons and raised buttons are the most commonly used types.
+[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+- Dialogs
+- Modal windows
+- Forms
+- Cards
+- Toolbars
 
-## Flat Buttons
+## Text Buttons
 
-Flat buttons are text-only buttons.
-They may be used in dialogs, toolbars, or inline.
-They do not lift, but fill with color on press.
+[Text buttons](https://material.io/design/components/buttons.html#text-button)
+are typically used for less-pronounced actions, including those located:
 
-{{"demo": "pages/demos/buttons/FlatButtons.js"}}
+- In dialogs
+- In cards
+
+In cards, text buttons help maintain an emphasis on card content.
+
+{{"demo": "pages/demos/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
-Outlined buttons are text-only buttons with medium emphasis.
-They behave like flat buttons but have an outline and are typically used for actions that are important, but
-aren’t the primary action in an app.
+
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button)
+are medium-emphasis buttons. They contain actions that are important,
+but aren’t the primary action in an app.
+
+### Alternatives
+
+Outlined buttons are also a lower emphasis alternative to contained buttons,
+or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## Raised Buttons
+## Contained Buttons
 
-Raised buttons are rectangular-shaped buttons.
-They may be used inline. They lift and display ink reactions on press.
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
+are high-emphasis, distinguished by their use of elevation and fill.
+They contain actions that are primary to your app.
 
-{{"demo": "pages/demos/buttons/RaisedButtons.js"}}
+The last example of this demo show how to use an upload button.
+
+{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
 ## Floating Action Buttons
 
-A floating action button represents the primary action in an application.
-Shaped like a circled icon floating above the UI, it has an ink wash upon focus and lifts upon selection.
-When pressed, it may contain more related actions.
+A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
+(FAB) performs the primary, or most common, action on a screen.
+It appears in front of all screen content, typically as a circular shape with an icon in its center.
+FABs come in three types: regular, mini, and extended.
+
+Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
 Only one floating action button is recommended per screen to represent the most common action.
 
@@ -53,12 +73,6 @@ animation to finish before the new one enters.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
-## Sizes
-
-Fancy larger or smaller buttons? Use the `size` or the `mini` property.
-
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
-
 ## Icon Buttons
 
 Icon buttons are commonly found in app bars and toolbars.
@@ -68,6 +82,12 @@ deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
+## Sizes
+
+Fancy larger or smaller buttons? Use the `size` or the `mini` property.
+
+{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+
 ### Buttons with icons and label
 
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
@@ -76,7 +96,7 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 
 ## Customized Buttons
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in,
 here are examples of how you can change the main color of a Button using classes,
 and using a theme; and of a Bootstrap style Button.
@@ -85,7 +105,7 @@ and using a theme; and of a Bootstrap style Button.
 
 ## Complex Buttons
 
-The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
+The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower level component to build custom interactions.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}
@@ -119,4 +139,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it [here](/guides/composition#component-property).*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it [here](/guides/composition/#component-property).*

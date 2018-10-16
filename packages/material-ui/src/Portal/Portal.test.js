@@ -38,6 +38,17 @@ describe('<Portal />', () => {
     assert.strictEqual(wrapper.find(MenuItem).length, 2);
   });
 
+  describe('prop: disablePortal', () => {
+    it('should work as expected', () => {
+      const wrapper = mount(
+        <Portal disablePortal>
+          <h1 className="woofPortal">Foo</h1>
+        </Portal>,
+      );
+      assert.strictEqual(wrapper.children().length, 1, 'should have one children');
+    });
+  });
+
   describe('mount', () => {
     let cleanUp;
 
@@ -134,11 +145,11 @@ describe('<Portal />', () => {
           return (
             <div>
               <div
-                ref={node => {
-                  this.container = node;
+                ref={ref => {
+                  this.containerRef = ref;
                 }}
               />
-              <Portal container={() => this.container}>
+              <Portal container={() => this.containerRef}>
                 <div id="test1" />
               </Portal>
             </div>
@@ -184,8 +195,8 @@ describe('<Portal />', () => {
           return (
             <div>
               <div
-                ref={node => {
-                  this.container = node;
+                ref={ref => {
+                  this.containerRef = ref;
                 }}
               />
               <Portal container={this.state.container}>
@@ -199,7 +210,7 @@ describe('<Portal />', () => {
       const wrapper = mount(<ContainerTest />);
 
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY');
-      wrapper.setState({ container: wrapper.instance().container });
+      wrapper.setState({ container: wrapper.instance().containerRef });
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
     });
 

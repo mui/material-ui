@@ -1,10 +1,11 @@
 import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
+import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
+import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
-import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
 import { ComponentsProps } from './props';
@@ -12,31 +13,33 @@ import { ComponentsProps } from './props';
 export type Direction = 'ltr' | 'rtl';
 
 export interface ThemeOptions {
-  direction?: Direction;
-  palette?: PaletteOptions;
-  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  mixins?: MixinsOptions;
+  shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
-  shadows?: Shadows;
-  transitions?: TransitionsOptions;
-  spacing?: SpacingOptions;
-  zIndex?: ZIndexOptions;
+  direction?: Direction;
+  mixins?: MixinsOptions;
   overrides?: Overrides;
+  palette?: PaletteOptions;
   props?: ComponentsProps;
+  shadows?: Shadows;
+  spacing?: SpacingOptions;
+  transitions?: TransitionsOptions;
+  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
+  zIndex?: ZIndexOptions;
 }
 
 export interface Theme {
-  direction: Direction;
-  palette: Palette;
-  typography: Typography;
-  mixins: Mixins;
+  shape: Shape;
   breakpoints: Breakpoints;
-  shadows: Shadows;
-  transitions: Transitions;
-  spacing: Spacing;
-  zIndex: ZIndex;
+  direction: Direction;
+  mixins: Mixins;
   overrides?: Overrides;
+  palette: Palette;
   props?: ComponentsProps;
+  shadows: Shadows;
+  spacing: Spacing;
+  transitions: Transitions;
+  typography: Typography;
+  zIndex: ZIndex;
 }
 
 export default function createMuiTheme(options?: ThemeOptions): Theme;

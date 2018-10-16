@@ -13,12 +13,13 @@ const styles = {
 
 function SimpleAppBar(props) {
   const { classes } = props;
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <Typography variant="title" color="inherit">
-            Title
+          <Typography variant="h6" color="inherit">
+            Photos
           </Typography>
         </Toolbar>
       </AppBar>

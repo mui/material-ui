@@ -11,25 +11,31 @@ import exactProp from '../utils/exactProp';
  * This component should preferably be used at **the root of your component tree**.
  */
 class MuiThemeProvider extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  broadcast = createBroadcast();
 
+  // We are not using the React state in order to avoid unnecessary rerender.
+  constructor(props, context) {
+    super();
     // Get the outer theme from the context, can be null
     this.outerTheme = themeListener.initial(context);
     // Propagate the theme so it can be accessed by the children
-    this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
+    this.broadcast.setState(this.mergeOuterLocalTheme(props.theme));
   }
 
   getChildContext() {
-    const { sheetsManager, disableStylesGeneration } = this.props;
+    const { disableStylesGeneration, sheetsCache, sheetsManager } = this.props;
     const muiThemeProviderOptions = this.context.muiThemeProviderOptions || {};
-
-    if (sheetsManager !== undefined) {
-      muiThemeProviderOptions.sheetsManager = sheetsManager;
-    }
 
     if (disableStylesGeneration !== undefined) {
       muiThemeProviderOptions.disableStylesGeneration = disableStylesGeneration;
+    }
+
+    if (sheetsCache !== undefined) {
+      muiThemeProviderOptions.sheetsCache = sheetsCache;
+    }
+
+    if (sheetsManager !== undefined) {
+      muiThemeProviderOptions.sheetsManager = sheetsManager;
     }
 
     return {
@@ -60,11 +66,6 @@ class MuiThemeProvider extends React.Component {
     }
   }
 
-  broadcast = createBroadcast();
-  unsubscribeId = null;
-  // We are not using the React state in order to avoid unnecessary rerender.
-  outerTheme = null;
-
   // Simple merge between the outer theme and the local theme
   mergeOuterLocalTheme(localTheme) {
     // To support composition of theme.
@@ -75,7 +76,6 @@ class MuiThemeProvider extends React.Component {
           'Material-UI: you are providing a theme function property ' +
             'to the MuiThemeProvider component:',
           '<MuiThemeProvider theme={outerTheme => outerTheme} />',
-          '',
           'However, no outer theme is present.',
           'Make sure a theme is already injected higher in the React tree ' +
             'or provide a theme object.',
@@ -120,6 +120,12 @@ MuiThemeProvider.propTypes = {
    */
   disableStylesGeneration: PropTypes.bool,
   /**
+   * @ignore
+   *
+   * In beta.
+   */
+  sheetsCache: PropTypes.object,
+  /**
    * The sheetsManager is used to deduplicate style sheet injection in the page.
    * It's deduplicating using the (theme, styles) couple.
    * On the server, you should provide a new instance for each request.
@@ -131,7 +137,7 @@ MuiThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-MuiThemeProvider.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
+MuiThemeProvider.propTypes = exactProp(MuiThemeProvider.propTypes);
 
 MuiThemeProvider.childContextTypes = {
   ...themeListener.contextTypes,

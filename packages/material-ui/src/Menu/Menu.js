@@ -19,9 +19,10 @@ const LTR_ORIGIN = {
 };
 
 export const styles = {
+  /* Styles applied to the `Paper` component. */
   paper: {
     // specZ: The maximum height of a simple menu should be one or more rows less than the view
-    // height. This ensures a tappable area outside of the simple menu with which to dismiss
+    // height. This ensures a tapable area outside of the simple menu with which to dismiss
     // the menu.
     maxHeight: 'calc(100% - 96px)',
     // Add iOS momentum scrolling.
@@ -31,39 +32,39 @@ export const styles = {
 
 class Menu extends React.Component {
   componentDidMount() {
-    if (this.props.open) {
+    if (this.props.open && this.props.disableAutoFocusItem !== true) {
       this.focus();
     }
   }
 
   getContentAnchorEl = () => {
-    if (!this.menuList || !this.menuList.selectedItem) {
-      return ReactDOM.findDOMNode(this.menuList).firstChild;
+    if (!this.menuListRef || !this.menuListRef.selectedItemRef) {
+      return ReactDOM.findDOMNode(this.menuListRef).firstChild;
     }
 
-    return ReactDOM.findDOMNode(this.menuList.selectedItem);
+    return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
   };
 
-  menuList = undefined;
-
   focus = () => {
-    if (this.menuList && this.menuList.selectedItem) {
-      ReactDOM.findDOMNode(this.menuList.selectedItem).focus();
+    if (this.menuListRef && this.menuListRef.selectedItemRef) {
+      ReactDOM.findDOMNode(this.menuListRef.selectedItemRef).focus();
       return;
     }
 
-    const menuList = ReactDOM.findDOMNode(this.menuList);
+    const menuList = ReactDOM.findDOMNode(this.menuListRef);
     if (menuList && menuList.firstChild) {
       menuList.firstChild.focus();
     }
   };
 
   handleEnter = element => {
-    const { theme } = this.props;
-    const menuList = ReactDOM.findDOMNode(this.menuList);
+    const { disableAutoFocusItem, theme } = this.props;
+    const menuList = ReactDOM.findDOMNode(this.menuListRef);
 
     // Focus so the scroll computation of the Popover works as expected.
-    this.focus();
+    if (disableAutoFocusItem !== true) {
+      this.focus();
+    }
 
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
@@ -92,6 +93,7 @@ class Menu extends React.Component {
     const {
       children,
       classes,
+      disableAutoFocusItem,
       MenuListProps,
       onEnter,
       PaperProps = {},
@@ -118,11 +120,10 @@ class Menu extends React.Component {
       >
         <MenuList
           data-mui-test="Menu"
-          role="menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
-          ref={node => {
-            this.menuList = node;
+          ref={ref => {
+            this.menuListRef = ref;
           }}
         >
           {children}
@@ -136,7 +137,7 @@ Menu.propTypes = {
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl: PropTypes.object,
+  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
    * Menu contents, normally `MenuItem`s.
    */
@@ -147,7 +148,11 @@ Menu.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * Properties applied to the `MenuList` element.
+   * If `true`, the selected / first menu item will not be auto focused.
+   */
+  disableAutoFocusItem: PropTypes.bool,
+  /**
+   * Properties applied to the [`MenuList`](/api/menu-list/) element.
    */
   MenuListProps: PropTypes.object,
   /**
@@ -189,7 +194,7 @@ Menu.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` property applied to the `Popover` element.
+   * `classes` property applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**
@@ -207,6 +212,7 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
+  disableAutoFocusItem: false,
   transitionDuration: 'auto',
 };
 

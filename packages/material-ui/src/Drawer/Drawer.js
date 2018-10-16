@@ -26,14 +26,16 @@ export function getAnchor(props) {
 }
 
 export const styles = theme => ({
+  /* Styles applied to the root element if `variant="permanent or persistent"`. */
   docked: {
     flex: '0 0 auto',
   },
+  /* Styles applied to the `Paper` component. */
   paper: {
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
+    height: '100%',
     flex: '1 0 auto',
     zIndex: theme.zIndex.drawer,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
@@ -45,62 +47,72 @@ export const styles = theme => ({
     // :focus-ring CSS pseudo-class will help.
     outline: 'none',
   },
+  /* Styles applied to the `Paper` component if `anchor="left"`. */
   paperAnchorLeft: {
     left: 0,
     right: 'auto',
   },
+  /* Styles applied to the `Paper` component if `anchor="right"`. */
   paperAnchorRight: {
     left: 'auto',
     right: 0,
   },
+  /* Styles applied to the `Paper` component if `anchor="top"`. */
   paperAnchorTop: {
     top: 0,
     left: 0,
     bottom: 'auto',
     right: 0,
     height: 'auto',
-    maxHeight: '100vh',
+    maxHeight: '100%',
   },
+  /* Styles applied to the `Paper` component if `anchor="bottom"`. */
   paperAnchorBottom: {
     top: 'auto',
     left: 0,
     bottom: 0,
     right: 0,
     height: 'auto',
-    maxHeight: '100vh',
+    maxHeight: '100%',
   },
+  /* Styles applied to the `Paper` component if `anchor="left"` & `variant` is not "temporary". */
   paperAnchorDockedLeft: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
+  /* Styles applied to the `Paper` component if `anchor="top"` & `variant` is not "temporary". */
   paperAnchorDockedTop: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
+  /* Styles applied to the `Paper` component if `anchor="right"` & `variant` is not "temporary". */
   paperAnchorDockedRight: {
     borderLeft: `1px solid ${theme.palette.divider}`,
   },
+  /* Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary". */
   paperAnchorDockedBottom: {
     borderTop: `1px solid ${theme.palette.divider}`,
   },
-  modal: {}, // Just here so people can override the style.
+  /* Styles applied to the `Modal` component. */
+  modal: {},
 });
 
 /**
- * The properties of the [Modal](/api/modal) component are available
+ * The properties of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 class Drawer extends React.Component {
+  // Let's assume that the Drawer will always be rendered on user space.
+  // We use this state is order to skip the appear transition during the
+  // initial mount of the component.
+  mounted = false;
+
   componentDidMount() {
     this.mounted = true;
   }
 
-  // Let's assume that the Drawer will always be rendered on user space.
-  // We use that state is order to skip the appear transition during the
-  // initial mount of the component.
-  mounted = false;
-
   render() {
     const {
       anchor: anchorProp,
+      BackdropProps,
       children,
       classes,
       className,
@@ -162,6 +174,7 @@ class Drawer extends React.Component {
     return (
       <Modal
         BackdropProps={{
+          ...BackdropProps,
           ...BackdropPropsProp,
           transitionDuration,
         }}
@@ -200,7 +213,7 @@ Drawer.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Properties applied to the `Modal` element.
+   * Properties applied to the [`Modal`](/api/modal/) element.
    */
   ModalProps: PropTypes.object,
   /**
@@ -214,11 +227,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the `Paper` element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the `Slide` element.
+   * Properties applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**
@@ -234,7 +247,7 @@ Drawer.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * The variant of drawer.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };

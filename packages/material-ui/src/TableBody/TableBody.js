@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-const styles = {
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'table-row-group',
   },
@@ -13,8 +14,8 @@ class TableBody extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
-      table: {
-        body: true,
+      tablelvl2: {
+        variant: 'body',
       },
     };
   }
@@ -44,7 +45,7 @@ TableBody.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
 };
 
 TableBody.defaultProps = {
@@ -52,7 +53,7 @@ TableBody.defaultProps = {
 };
 
 TableBody.childContextTypes = {
-  table: PropTypes.object,
+  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);

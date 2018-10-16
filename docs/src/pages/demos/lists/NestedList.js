@@ -26,10 +26,12 @@ const styles = theme => ({
 });
 
 class NestedList extends React.Component {
-  state = { open: true };
+  state = {
+    open: true,
+  };
 
   handleClick = () => {
-    this.setState({ open: !this.state.open });
+    this.setState(state => ({ open: !state.open }));
   };
 
   render() {

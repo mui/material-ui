@@ -1,10 +1,13 @@
 ---
+title: Divider React component
 components: Divider
 ---
 
 # Dividers
 
-[Dividers](https://material.io/design/components/dividers.html) group and separate content within lists and page layouts. The divider is a thin rule, lightweight yet sufficient to distinguish content visually and spatially.
+<p class="description">A divider is a thin line that groups content in lists and layouts.</p>
+
+[Dividers](https://material.io/design/components/dividers.html) separate content into clear groups.
 
 ## List Dividers
 

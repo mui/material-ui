@@ -1,32 +1,36 @@
-/* eslint-disable react/no-danger */
+/* eslint-disable react/prop-types, react/no-danger */
 
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { JssProvider } from 'react-jss';
-import getPageContext from './src/getPageContext';
+const React = require('react');
+const { renderToString } = require('react-dom/server');
+const JssProvider = require('react-jss/lib/JssProvider').default;
+const getPageContext = require('./src/getPageContext').default;
 
-exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
+function replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) {
   // Get the context of the page to collected side effects.
-  const pageContext = getPageContext();
+  const muiPageContext = getPageContext();
 
   const bodyHTML = renderToString(
-    <JssProvider
-      registry={pageContext.sheetsRegistry}
-      generateClassName={pageContext.generateClassName}
-    >
-      {React.cloneElement(bodyComponent, {
-        pageContext,
-      })}
-    </JssProvider>,
+    <JssProvider registry={muiPageContext.sheetsRegistry}>{bodyComponent}</JssProvider>,
   );
 
   replaceBodyHTMLString(bodyHTML);
   setHeadComponents([
     <style
       type="text/css"
-      id="server-side-jss"
-      key="server-side-jss"
-      dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+      id="jss-server-side"
+      key="jss-server-side"
+      dangerouslySetInnerHTML={{ __html: muiPageContext.sheetsRegistry.toString() }}
     />,
   ]);
-};
+}
+
+exports.replaceRenderer = replaceRenderer;
+
+// It's not ready yet: https://github.com/gatsbyjs/gatsby/issues/8237.
+//
+// const withRoot = require('./src/withRoot').default;
+// const WithRoot = withRoot(props => props.children);
+
+// exports.wrapRootElement = ({ element }) => {
+//   return <WithRoot>{element}</WithRoot>;
+// };

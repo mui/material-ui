@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -29,6 +31,14 @@ function BottomNavigation(props) {
     if (!React.isValidElement(child)) {
       return null;
     }
+
+    warning(
+      child.type !== React.Fragment,
+      [
+        "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
+        'Consider providing an array instead.',
+      ].join('\n'),
+    );
 
     const childValue = child.props.value === undefined ? childIndex : child.props.value;
     return React.cloneElement(child, {

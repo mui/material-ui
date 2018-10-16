@@ -14,7 +14,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: 440,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -43,7 +43,7 @@ function ClippedDrawer(props) {
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="title" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap>
             Clipped drawer
           </Typography>
         </Toolbar>

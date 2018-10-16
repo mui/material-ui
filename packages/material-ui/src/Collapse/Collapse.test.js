@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { assert } from 'chai';
@@ -37,7 +35,7 @@ describe('<Collapse />', () => {
     const children = <h1>Hello</h1>;
     const wrapper = shallow(<Collapse {...props}>{children}</Collapse>);
     const child = new ReactWrapper(wrapper.props().children('entered'));
-    assert.strictEqual(child.childAt(0).is('div'), true, 'should be a div');
+    assert.strictEqual(child.childAt(0).name(), 'div');
     assert.strictEqual(
       child
         .childAt(0)
@@ -45,7 +43,6 @@ describe('<Collapse />', () => {
         .children()
         .type(),
       'h1',
-      'should wrap the children',
     );
   });
 
@@ -164,7 +161,7 @@ describe('<Collapse />', () => {
         });
 
         it('no wrapper', () => {
-          instance.wrapper = false;
+          instance.wrapperRef = false;
           instance.handleEntering(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -174,7 +171,7 @@ describe('<Collapse />', () => {
 
         it('has wrapper', () => {
           const clientHeightMock = 10;
-          instance.wrapper = { clientHeight: clientHeightMock };
+          instance.wrapperRef = { clientHeight: clientHeightMock };
           instance.handleEntering(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -232,7 +229,7 @@ describe('<Collapse />', () => {
     describe('handleExit()', () => {
       it('should set height to the wrapper height', () => {
         const element = { style: { height: 'auto' } };
-        instance.wrapper = { clientHeight: 666 };
+        instance.wrapperRef = { clientHeight: 666 };
         instance.handleExit(element);
         assert.strictEqual(element.style.height, '666px', 'should have 666px height');
       });
@@ -278,7 +275,7 @@ describe('<Collapse />', () => {
         });
 
         it('no wrapper', () => {
-          instance.wrapper = false;
+          instance.wrapperRef = false;
           instance.handleExiting(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -288,7 +285,7 @@ describe('<Collapse />', () => {
 
         it('has wrapper', () => {
           const clientHeightMock = 10;
-          instance.wrapper = { clientHeight: clientHeightMock };
+          instance.wrapperRef = { clientHeight: clientHeightMock };
           instance.handleExiting(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -381,7 +378,7 @@ describe('<Collapse />', () => {
     });
 
     it('instance should have a wrapper property', () => {
-      assert.notStrictEqual(mountInstance.wrapper, undefined);
+      assert.notStrictEqual(mountInstance.wrapperRef, undefined);
     });
   });
 

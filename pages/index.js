@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import Head from 'next/head';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
+import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
+import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
+import Head from 'docs/src/modules/components/Head';
 
 const styles = theme => ({
   root: {
@@ -86,59 +88,80 @@ class HomePage extends React.Component {
     const classes = this.props.classes;
 
     return (
-      <div className={classes.root}>
-        <Head>
-          <title>Material-UI</title>
-        </Head>
-        <div className={classes.hero}>
-          <div className={classes.content}>
-            <img
-              src="/static/images/material-ui-logo.svg"
-              alt="Material-UI Logo"
-              className={classes.logo}
-            />
-            <div className={classes.text}>
-              <Typography
-                variant="display2"
-                align="center"
-                component="h1"
-                color="inherit"
-                gutterBottom
-                className={classes.title}
-              >
-                {'MATERIAL-UI'}
-              </Typography>
-              <Typography
-                variant="headline"
-                component="h2"
-                color="inherit"
-                gutterBottom
-                className={classes.headline}
-              >
-                {"React components that implement Google's Material Design."}
-              </Typography>
-              <Button
-                component={buttonProps => (
-                  <Link
-                    variant="button"
-                    prefetch
-                    href="/getting-started/installation"
-                    {...buttonProps}
-                  />
-                )}
-                className={classes.button}
-                variant="outlined"
-                color="primary"
-              >
-                {'Get Started'}
-              </Button>
+      <AppFrame>
+        <div className={classes.root}>
+          <Head />
+          <Tidelift />
+          <div className={classes.hero}>
+            <div className={classes.content}>
+              <img
+                src="/static/images/material-ui-logo.svg"
+                alt="Material-UI Logo"
+                className={classes.logo}
+              />
+              <div className={classes.text}>
+                <Typography
+                  variant="h3"
+                  align="center"
+                  component="h1"
+                  color="inherit"
+                  gutterBottom
+                  className={classes.title}
+                >
+                  {'MATERIAL-UI'}
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  color="inherit"
+                  gutterBottom
+                  className={classes.headline}
+                >
+                  {"React components that implement Google's Material Design."}
+                </Typography>
+                <Button
+                  component={buttonProps => (
+                    <Link
+                      variant="button"
+                      prefetch
+                      href="/getting-started/installation"
+                      {...buttonProps}
+                    />
+                  )}
+                  className={classes.button}
+                  variant="outlined"
+                  color="primary"
+                >
+                  {'Get Started'}
+                </Button>
+              </div>
             </div>
           </div>
+          <HomeSteps />
+          <HomeBackers />
+          <HomeFooter />
         </div>
-        <HomeSteps />
-        <HomeBackers />
-        <HomeFooter />
-      </div>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com",
+  "logo": "https://material-ui.com/static/brand.png",
+  "sameAs": [
+    "https://twitter.com/materialUI",
+    "https://github.com/mui-org/material-ui",
+    "https://opencollective.com/material-ui"
+  ]
+}
+          `,
+          }}
+        />
+      </AppFrame>
     );
   }
 }
@@ -147,4 +170,7 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(withRoot, withStyles(styles))(HomePage);
+export default compose(
+  withRoot,
+  withStyles(styles),
+)(HomePage);

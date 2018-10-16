@@ -2,24 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '../internal/svg-icons/Add';
 
-const styles = theme => ({
+export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     height: 24,
   },
+  /* Styles applied to the icon component. */
   icon: {
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
     }),
   },
+  /* Styles applied to the icon component if `open={true}`. */
   iconOpen: {
     transform: 'rotate(45deg)',
   },
-  // Style applied to the icon if there is an openIcon, when the SpeedDial is open
+  /* Styles applied to the icon when and `openIcon` is provided & if `open={true}`. */
   iconWithOpenIconOpen: {
     opacity: 0,
   },
+  /* Styles applied to the `openIcon` if provided. */
   openIcon: {
     position: 'absolute',
     transition: theme.transitions.create(['transform', 'opacity'], {
@@ -28,6 +32,7 @@ const styles = theme => ({
     opacity: 0,
     transform: 'rotate(-45deg)',
   },
+  /* Styles applied to the `openIcon` if provided & if `open={true}` */
   openIconOpen: {
     transform: 'rotate(0deg)',
     opacity: 1,
@@ -81,4 +86,4 @@ SpeedDialIcon.propTypes = {
 
 SpeedDialIcon.muiName = 'SpeedDialIcon';
 
-export default withStyles(styles)(SpeedDialIcon);
+export default withStyles(styles, { name: 'MuiSpeedDialIcon' })(SpeedDialIcon);

@@ -88,12 +88,12 @@ describe('<CardHeader />', () => {
     it('should render the avatar inside the first child', () => {
       const container = wrapper.childAt(0);
 
-      assert.strictEqual(container.is('div'), true);
+      assert.strictEqual(container.name(), 'div');
       assert.strictEqual(container.hasClass(classes.avatar), true);
       assert.strictEqual(container.childAt(0).equals(avatar), true);
     });
 
-    it('should render the title as body2 text inside the second child', () => {
+    it('should render the title text inside the second child', () => {
       const container = wrapper.childAt(1);
       assert.strictEqual(
         container.hasClass(classes.content),

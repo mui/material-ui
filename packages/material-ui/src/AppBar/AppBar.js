@@ -12,6 +12,7 @@ export const styles = theme => {
     theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 
   return {
+    /* Styles applied to the root element. */
     root: {
       display: 'flex',
       flexDirection: 'column',
@@ -20,35 +21,46 @@ export const styles = theme => {
       zIndex: theme.zIndex.appBar,
       flexShrink: 0,
     },
+    /* Styles applied to the root element if `position="fixed"`. */
     positionFixed: {
       position: 'fixed',
       top: 0,
       left: 'auto',
       right: 0,
     },
+    /* Styles applied to the root element if `position="absolute"`. */
     positionAbsolute: {
       position: 'absolute',
       top: 0,
       left: 'auto',
       right: 0,
     },
+    /* Styles applied to the root element if `position="sticky"`. */
     positionSticky: {
       position: 'sticky',
       top: 0,
       left: 'auto',
       right: 0,
     },
+    /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
     },
+    /* Styles applied to the root element if `position="relative"`. */
+    positionRelative: {
+      position: 'relative',
+    },
+    /* Styles applied to the root element if `color="default"`. */
     colorDefault: {
       backgroundColor: backgroundColorDefault,
       color: theme.palette.getContrastText(backgroundColorDefault),
     },
+    /* Styles applied to the root element if `color="primary"`. */
     colorPrimary: {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
     },
+    /* Styles applied to the root element if `color="secondary"`. */
     colorSecondary: {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
@@ -99,7 +111,7 @@ AppBar.propTypes = {
    * [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    */
-  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static']),
+  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static', 'relative']),
 };
 
 AppBar.defaultProps = {

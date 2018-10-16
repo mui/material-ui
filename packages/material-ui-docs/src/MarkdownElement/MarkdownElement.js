@@ -18,17 +18,21 @@ marked.Lexer.prototype.lex = function lex(src) {
 
 const renderer = new marked.Renderer();
 
+export function textToHash(text) {
+  return text
+    .toLowerCase()
+    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
+    .replace(/\W/g, '-');
+}
+
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.
-  // It's reducing the risk of duplicated id and it's less elements in the DOM.
+  // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
   if (level >= 4) {
     return `<h${level}>${text}</h${level}>`;
   }
 
-  const escapedText = text
-    .toLowerCase()
-    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/[^\w]+/g, '-');
+  const escapedText = textToHash(text);
 
   return (
     `
@@ -41,7 +45,17 @@ renderer.heading = (text, level) => {
   );
 };
 
-marked.setOptions({
+renderer.link = (href, title, text) => {
+  let more = '';
+
+  if (href.indexOf('https://material.io/') !== -1) {
+    more = ' target="_blank" rel="noopener nofollow"';
+  }
+
+  return `<a href="${href}"${more}>${text}</a>`;
+};
+
+const markedOptions = {
   gfm: true,
   tables: true,
   breaks: false,
@@ -49,8 +63,6 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
-  // prism uses the following class prefix.
-  langPrefix: 'language-',
   highlight(code, lang) {
     let language;
     switch (lang) {
@@ -60,6 +72,11 @@ marked.setOptions({
 
       case 'css':
         language = prism.languages.css;
+        break;
+
+      case 'ts':
+      case 'tsx':
+        language = prism.languages.typescript;
         break;
 
       case 'js':
@@ -72,7 +89,7 @@ marked.setOptions({
     return prism.highlight(code, language);
   },
   renderer,
-});
+};
 
 const styles = theme => ({
   root: {
@@ -80,14 +97,14 @@ const styles = theme => ({
     fontSize: 16,
     color: theme.palette.text.primary,
     '& .anchor-link': {
-      marginTop: -theme.spacing.unit * 12, // Offset for the anchor.
+      marginTop: -96, // Offset for the anchor.
       position: 'absolute',
     },
     '& pre, & pre[class*="language-"]': {
-      margin: `${theme.spacing.unit * 3}px 0`,
+      margin: '24px 0',
       padding: '12px 18px',
       backgroundColor: theme.palette.background.paper,
-      borderRadius: 3,
+      borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     },
@@ -105,24 +122,24 @@ const styles = theme => ({
       lineHeight: 1.6,
     },
     '& h1': {
-      ...theme.typography.display2,
-      color: theme.palette.text.secondary,
-      margin: '0.7em 0',
+      ...theme.typography.h2,
+      margin: '32px 0 16px',
+    },
+    '& .description': {
+      ...theme.typography.h5,
+      margin: '0 0 40px',
     },
     '& h2': {
-      ...theme.typography.display1,
-      color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      ...theme.typography.h4,
+      margin: '32px 0 24px',
     },
     '& h3': {
-      ...theme.typography.headline,
-      color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      ...theme.typography.h5,
+      margin: '32px 0 24px',
     },
     '& h4': {
-      ...theme.typography.title,
-      color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      ...theme.typography.h6,
+      margin: '24px 0 16px',
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
@@ -142,7 +159,7 @@ const styles = theme => ({
       '&:hover .anchor-link-style': {
         display: 'inline-block',
         opacity: 1,
-        padding: `0 ${theme.spacing.unit}px`,
+        padding: '0 8px',
         color: theme.palette.text.hint,
         '&:hover': {
           color: theme.palette.text.secondary,
@@ -192,16 +209,14 @@ const styles = theme => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${
-        theme.spacing.unit
-      }px`,
+      padding: '8px 16px 8px 8px',
       textAlign: 'left',
     },
     '& td:last-child': {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: 24,
     },
     '& td compact': {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: 24,
     },
     '& td code': {
       fontSize: 13,
@@ -211,11 +226,11 @@ const styles = theme => ({
       whiteSpace: 'pre',
       borderBottom: `1px solid ${theme.palette.divider}`,
       fontWeight: theme.typography.fontWeightMedium,
-      padding: `0 ${theme.spacing.unit * 2}px 0 ${theme.spacing.unit}px`,
+      padding: '0 16px 0 8px',
       textAlign: 'left',
     },
     '& th:last-child': {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: 24,
     },
     '& tr': {
       height: 48,
@@ -229,8 +244,8 @@ const styles = theme => ({
     '& blockquote': {
       borderLeft: `5px solid ${theme.palette.text.hint}`,
       backgroundColor: theme.palette.background.paper,
-      padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 3}px`,
-      margin: `${theme.spacing.unit * 3}px 0`,
+      padding: '4px 24px',
+      margin: '24px 0',
     },
     '& a, & a code': {
       // Style taken from the Link component
@@ -253,7 +268,7 @@ function MarkdownElement(props) {
   return (
     <div
       className={classNames(classes.root, 'markdown-body', className)}
-      dangerouslySetInnerHTML={{ __html: marked(text) }}
+      dangerouslySetInnerHTML={{ __html: marked(text, markedOptions) }}
       {...other}
     />
   );

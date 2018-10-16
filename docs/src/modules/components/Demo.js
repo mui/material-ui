@@ -6,7 +6,7 @@ import copy from 'clipboard-copy';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
-import ModeEditIcon from '@material-ui/icons/ModeEdit';
+import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -40,13 +40,10 @@ function getDemo(props) {
       'demo.js': props.raw,
       'index.js': `
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import Demo from './demo';
 
-const rootElement = document.querySelector('#root');
-if (rootElement) {
-  render(<Demo />, rootElement);
-}
+ReactDOM.render(<Demo />, document.querySelector('#root'));
       `,
       'index.html': `
 <body>
@@ -65,7 +62,6 @@ const styles = theme => ({
     marginBottom: 40,
     marginLeft: -theme.spacing.unit * 2,
     marginRight: -theme.spacing.unit * 2,
-    clear: 'both',
     [theme.breakpoints.up('sm')]: {
       padding: `0 ${theme.spacing.unit}px`,
       marginLeft: 0,
@@ -73,6 +69,7 @@ const styles = theme => ({
     },
   },
   demo: theme.mixins.gutters({
+    borderRadius: theme.shape.borderRadius,
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     display: 'flex',
@@ -97,7 +94,6 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       flip: false,
-      zIndex: 10,
       position: 'absolute',
       top: 0,
       right: theme.spacing.unit,
@@ -133,9 +129,9 @@ class Demo extends React.Component {
   };
 
   handleClickCodeOpen = () => {
-    this.setState({
-      codeOpen: !this.state.codeOpen,
-    });
+    this.setState(state => ({
+      codeOpen: !state.codeOpen,
+    }));
   };
 
   handleClickCodeSandbox = () => {
@@ -207,37 +203,22 @@ class Demo extends React.Component {
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              <Tooltip id={`demo-github-${index}`} title="See the source on GitHub" placement="top">
-                <IconButton
-                  href={githubLocation}
-                  target="_blank"
-                  aria-labelledby={`demo-github-${index}`}
-                >
+              <Tooltip title="See the source on GitHub" placement="top">
+                <IconButton href={githubLocation} target="_blank" aria-label="GitHub">
                   <Github />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (
-                <Tooltip
-                  id={`demo-codesandbox-${index}`}
-                  title="Edit in CodeSandbox"
-                  placement="top"
-                >
-                  <IconButton
-                    onClick={this.handleClickCodeSandbox}
-                    aria-labelledby={`demo-codesandbox-${index}`}
-                  >
-                    <ModeEditIcon />
+                <Tooltip title="Edit in CodeSandbox" placement="top">
+                  <IconButton onClick={this.handleClickCodeSandbox} aria-label="CodeSandbox">
+                    <EditIcon />
                   </IconButton>
                 </Tooltip>
               )}
-              <Tooltip
-                id={`demo-source-${index}`}
-                title={codeOpen ? 'Hide the source' : 'Show the source'}
-                placement="top"
-              >
+              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
                   onClick={this.handleClickCodeOpen}
-                  aria-labelledby={`demo-source-${index}`}
+                  aria-label={`Source of demo n°${index}`}
                 >
                   <CodeIcon />
                 </IconButton>
@@ -257,9 +238,11 @@ class Demo extends React.Component {
                 onClose={this.handleCloseMore}
                 getContentAnchorEl={null}
                 anchorOrigin={{
+                  vertical: 'top',
                   horizontal: 'right',
                 }}
                 transformOrigin={{
+                  vertical: 'top',
                   horizontal: 'right',
                 }}
               >

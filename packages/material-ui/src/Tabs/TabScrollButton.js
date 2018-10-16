@@ -6,12 +6,13 @@ import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
-export const styles = theme => ({
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     color: 'inherit',
-    flex: `0 0 ${theme.spacing.unit * 7}px`,
+    flex: '0 0 56px',
   },
-});
+};
 
 /**
  * @ignore - internal component.

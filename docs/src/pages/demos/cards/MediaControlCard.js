@@ -23,7 +23,6 @@ const styles = theme => ({
   },
   cover: {
     width: 151,
-    height: 151,
   },
   controls: {
     display: 'flex',
@@ -41,34 +40,34 @@ function MediaControlCard(props) {
   const { classes, theme } = props;
 
   return (
-    <div>
-      <Card className={classes.card}>
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography variant="headline">Live From Space</Typography>
-            <Typography variant="subheading" color="textSecondary">
-              Mac Miller
-            </Typography>
-          </CardContent>
-          <div className={classes.controls}>
-            <IconButton aria-label="Previous">
-              {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-            </IconButton>
-            <IconButton aria-label="Play/pause">
-              <PlayArrowIcon className={classes.playIcon} />
-            </IconButton>
-            <IconButton aria-label="Next">
-              {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-            </IconButton>
-          </div>
+    <Card className={classes.card}>
+      <div className={classes.details}>
+        <CardContent className={classes.content}>
+          <Typography component="h5" variant="h5">
+            Live From Space
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            Mac Miller
+          </Typography>
+        </CardContent>
+        <div className={classes.controls}>
+          <IconButton aria-label="Previous">
+            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+          </IconButton>
+          <IconButton aria-label="Play/pause">
+            <PlayArrowIcon className={classes.playIcon} />
+          </IconButton>
+          <IconButton aria-label="Next">
+            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+          </IconButton>
         </div>
-        <CardMedia
-          className={classes.cover}
-          image="/static/images/cards/live-from-space.jpg"
-          title="Live from space album cover"
-        />
-      </Card>
-    </div>
+      </div>
+      <CardMedia
+        className={classes.cover}
+        image="/static/images/cards/live-from-space.jpg"
+        title="Live from space album cover"
+      />
+    </Card>
   );
 }
 

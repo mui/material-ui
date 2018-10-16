@@ -2,36 +2,47 @@ import { Palette } from './createPalette';
 import { Overwrite, Omit } from '..';
 import { CSSProperties } from './withStyles';
 
-export type TextStyle =
-  | 'display1'
-  | 'display2'
-  | 'display3'
-  | 'display4'
-  | 'headline'
-  | 'title'
-  | 'subheading'
+export type ThemeStyle =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'subtitle1'
+  | 'subtitle2'
   | 'body1'
   | 'body2'
-  | 'caption';
+  | 'caption'
+  | 'button'
+  | 'overline'
+  | 'display4' // deprecated
+  | 'display3'
+  | 'display2'
+  | 'display1'
+  | 'headline'
+  | 'title'
+  | 'subheading';
 
-export type Style = TextStyle | 'button';
-
-export interface FontStyle extends Required<{
-  fontFamily: CSSProperties['fontFamily'];
-  fontSize: number;
-  fontWeightLight: CSSProperties['fontWeight'];
-  fontWeightRegular: CSSProperties['fontWeight'];
-  fontWeightMedium: CSSProperties['fontWeight'];
-}> {}
+export interface FontStyle
+  extends Required<{
+      fontFamily: CSSProperties['fontFamily'];
+      fontSize: number;
+      fontWeightLight: CSSProperties['fontWeight'];
+      fontWeightRegular: CSSProperties['fontWeight'];
+      fontWeightMedium: CSSProperties['fontWeight'];
+    }> {}
 
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
+  allVariants?: CSSProperties;
+  useNextVariants?: boolean;
 }
 
-export type TypographyStyle =
-  & Required<Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>>
-  & Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>
-  ;
+export type TypographyStyle = Required<
+  Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>
+> &
+  Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>;
 
 export interface TypographyStyleOptions extends Partial<TypographyStyle> {}
 
@@ -39,9 +50,13 @@ export interface TypographyUtils {
   pxToRem: (px: number) => string;
 }
 
-export type Typography = Record<Style, TypographyStyle> & FontStyle & TypographyUtils;
+export interface Typography
+  extends Record<ThemeStyle, TypographyStyle>,
+    FontStyle,
+    TypographyUtils {}
 
-export type TypographyOptions = Partial<Record<Style, TypographyStyleOptions> & FontStyleOptions>;
+export interface TypographyOptions
+  extends Partial<Record<ThemeStyle, TypographyStyleOptions> & FontStyleOptions> {}
 
 export default function createTypography(
   palette: Palette,

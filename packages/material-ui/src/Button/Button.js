@@ -6,19 +6,20 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
+import chainPropTypes from '../utils/chainPropTypes';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    lineHeight: '1.4em', // Improve readability for multiline button.
     boxSizing: 'border-box',
-    minWidth: theme.spacing.unit * 11,
+    minWidth: 64,
     minHeight: 36,
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-    borderRadius: 2,
+    padding: '8px 16px',
+    borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
@@ -36,13 +37,17 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the span element that wraps the children. */
   label: {
-    width: '100%',
+    width: '100%', // assure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
-  flatPrimary: {
+  /* Styles applied to the root element if `variant="text"`. */
+  text: {},
+  /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
+  textPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
@@ -52,7 +57,8 @@ export const styles = theme => ({
       },
     },
   },
-  flatSecondary: {
+  /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
+  textSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
@@ -62,16 +68,40 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  flat: {},
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  flatPrimary: {},
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  flatSecondary: {},
+  /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
-    borderRadius: 4,
   },
-  colorInherit: {
-    color: 'inherit',
+  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  outlinedPrimary: {
+    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
   },
-  raised: {
+  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  outlinedSecondary: {
+    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary.main}`,
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="[contained | fab]"`. */
+  contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
@@ -97,7 +127,8 @@ export const styles = theme => ({
       },
     },
   },
-  raisedPrimary: {
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="primary"`. */
+  containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
     '&:hover': {
@@ -108,7 +139,8 @@ export const styles = theme => ({
       },
     },
   },
-  raisedSecondary: {
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="secondary"`. */
+  containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
     '&:hover': {
@@ -119,36 +151,60 @@ export const styles = theme => ({
       },
     },
   },
-  focusVisible: {},
-  disabled: {},
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  raised: {}, // legacy
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  raisedPrimary: {}, // legacy
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  raisedSecondary: {}, // legacy
+  /* Styles applied to the root element if `variant="[fab | extendedFab]"`. */
   fab: {
     borderRadius: '50%',
     padding: 0,
     minWidth: 0,
     width: 56,
-    fontSize: 24,
     height: 56,
     boxShadow: theme.shadows[6],
     '&:active': {
       boxShadow: theme.shadows[12],
     },
   },
+  /* Styles applied to the root element if `variant="extendedFab"`. */
+  extendedFab: {
+    borderRadius: 48 / 2,
+    padding: '0 16px',
+    width: 'auto',
+    minWidth: 48,
+    height: 48,
+  },
+  /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
+  focusVisible: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to the root element if `color="inherit"`. */
+  colorInherit: {
+    color: 'inherit',
+  },
+  /* Styles applied to the root element if `size="mini"` & `variant="[fab | extendedFab]"`. */
   mini: {
     width: 40,
     height: 40,
   },
+  /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: `${theme.spacing.unit - 1}px ${theme.spacing.unit}px`,
-    minWidth: theme.spacing.unit * 8,
+    padding: '7px 8px',
+    minWidth: 64,
     minHeight: 32,
     fontSize: theme.typography.pxToRem(13),
   },
+  /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
-    minWidth: theme.spacing.unit * 14,
+    padding: '8px 24px',
+    minWidth: 112,
     minHeight: 40,
     fontSize: theme.typography.pxToRem(15),
   },
+  /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
   },
@@ -162,32 +218,42 @@ function Button(props) {
     color,
     disabled,
     disableFocusRipple,
-    fullWidth,
     focusVisibleClassName,
+    fullWidth,
     mini,
     size,
     variant,
     ...other
   } = props;
 
-  const fab = variant === 'fab';
-  const raised = variant === 'raised';
-  const flat = !raised && !fab;
+  const fab = variant === 'fab' || variant === 'extendedFab';
+  const contained = variant === 'contained' || variant === 'raised';
+  const text = variant === 'text' || variant === 'flat' || variant === 'outlined';
   const className = classNames(
     classes.root,
     {
-      [classes.raised]: raised || fab,
       [classes.fab]: fab,
       [classes.mini]: fab && mini,
-      [classes.colorInherit]: color === 'inherit',
-      [classes.flatPrimary]: flat && color === 'primary',
-      [classes.flatSecondary]: flat && color === 'secondary',
-      [classes.raisedPrimary]: !flat && color === 'primary',
-      [classes.raisedSecondary]: !flat && color === 'secondary',
+      [classes.extendedFab]: variant === 'extendedFab',
+      [classes.text]: text,
+      [classes.textPrimary]: text && color === 'primary',
+      [classes.textSecondary]: text && color === 'secondary',
+      [classes.flat]: variant === 'text' || variant === 'flat',
+      [classes.flatPrimary]: (variant === 'text' || variant === 'flat') && color === 'primary',
+      [classes.flatSecondary]: (variant === 'text' || variant === 'flat') && color === 'secondary',
+      [classes.contained]: contained || fab,
+      [classes.containedPrimary]: (contained || fab) && color === 'primary',
+      [classes.containedSecondary]: (contained || fab) && color === 'secondary',
+      [classes.raised]: contained || fab,
+      [classes.raisedPrimary]: (contained || fab) && color === 'primary',
+      [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
+      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
+      [classes.colorInherit]: color === 'inherit',
     },
     classNameProp,
   );
@@ -227,7 +293,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the button will be disabled.
    */
@@ -268,9 +334,29 @@ Button.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The type of button.
+   * The variant to use.
+   * __WARNING__: `flat` and `raised` are deprecated.
+   * Instead use `text` and `contained` respectively.
    */
-  variant: PropTypes.oneOf(['flat', 'outlined', 'raised', 'fab']),
+  variant: chainPropTypes(
+    PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab']),
+    props => {
+      if (props.variant === 'flat') {
+        return new Error(
+          'The `flat` variant will be removed in the next major release. ' +
+            '`text` is equivalent and should be used instead.',
+        );
+      }
+      if (props.variant === 'raised') {
+        return new Error(
+          'The `raised` variant will be removed in the next major release. ' +
+            '`contained` is equivalent and should be used instead.',
+        );
+      }
+
+      return null;
+    },
+  ),
 };
 
 Button.defaultProps = {
@@ -282,7 +368,7 @@ Button.defaultProps = {
   mini: false,
   size: 'medium',
   type: 'button',
-  variant: 'flat',
+  variant: 'text',
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

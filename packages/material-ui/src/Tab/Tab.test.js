@@ -79,7 +79,7 @@ describe('<Tab />', () => {
     it('should render with text wrapping', () => {
       const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
       const instance = wrapper.instance();
-      instance.label = { getClientRects: stub().returns({ length: 2 }) };
+      instance.labelRef = { getClientRects: stub().returns({ length: 2 }) };
       instance.checkTextWrap();
       wrapper.update();
       const label = wrapper
@@ -91,7 +91,7 @@ describe('<Tab />', () => {
         true,
         'should have labelWrapped class',
       );
-      assert.strictEqual(wrapper.state().wrappedText, true, 'wrappedText state should be true');
+      assert.strictEqual(wrapper.state().labelWrapped, true, 'labelWrapped state should be true');
     });
   });
 
@@ -146,6 +146,6 @@ describe('<Tab />', () => {
     const instance = mount(
       <TabNaked textColor="inherit" label="foo" classes={classes} />,
     ).instance();
-    assert.isDefined(instance.label, 'should be defined');
+    assert.isDefined(instance.labelRef, 'should be defined');
   });
 });

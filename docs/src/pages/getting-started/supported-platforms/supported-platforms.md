@@ -1,5 +1,7 @@
 # Supported Platforms
 
+<p class="description">Learn about the platforms, from modern to old, that are supported by Material-UI.</p>
+
 ## Browser
 
 Material-UI supports the latest, stable releases of all major browsers and platforms.
@@ -8,7 +10,7 @@ You don't need to provide any JavaScript polyfill as we manage unsupported brows
 
 | IE    | Edge   | Firefox | Chrome | Safari |
 |:------|:-------|:--------|:-------|:-------|
-| 11    | >= 14  | >= 45   | >= 49  | >= 10  |
+| 11    | >= 14  | >= 52   | >= 49  | >= 10  |
 
 ## Server
 

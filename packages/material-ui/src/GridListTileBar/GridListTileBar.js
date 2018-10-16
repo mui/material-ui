@@ -4,25 +4,30 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'absolute',
     left: 0,
     right: 0,
     height: 48,
-    background: 'rgba(0, 0, 0, 0.4)',
+    background: 'rgba(0, 0, 0, 0.5)',
     display: 'flex',
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
   },
+  /* Styles applied to the root element if `titlePosition="bottom"`. */
   titlePositionBottom: {
     bottom: 0,
   },
+  /* Styles applied to the root element if `titlePosition="top"`. */
   titlePositionTop: {
     top: 0,
   },
+  /* Styles applied to the root element if a `subtitle` is provided. */
   rootSubtitle: {
     height: 68,
   },
+  /* Styles applied to the title and subtitle container element. */
   titleWrap: {
     flexGrow: 1,
     marginLeft: theme.mixins.gutters().paddingLeft,
@@ -30,12 +35,15 @@ export const styles = theme => ({
     color: theme.palette.common.white,
     overflow: 'hidden',
   },
+  /* Styles applied to the container element if `actionPosition="left"`. */
   titleWrapActionPosLeft: {
     marginLeft: 0,
   },
+  /* Styles applied to the container element if `actionPosition="right"`. */
   titleWrapActionPosRight: {
     marginRight: 0,
   },
+  /* Styles applied to the title container element. */
   title: {
     fontSize: theme.typography.pxToRem(16),
     lineHeight: '24px',
@@ -43,6 +51,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
   },
+  /* Styles applied to the subtitle container element. */
   subtitle: {
     fontSize: theme.typography.pxToRem(12),
     lineHeight: 1,
@@ -50,7 +59,9 @@ export const styles = theme => ({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
   },
+  /* Styles applied to the actionIcon if supplied. */
   actionIcon: {},
+  /* Styles applied to the actionIcon if `actionPosition="left". */
   actionIconActionPosLeft: {
     order: -1,
   },

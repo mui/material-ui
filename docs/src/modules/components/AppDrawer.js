@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { _rewriteUrlForNextExport } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,7 +15,7 @@ import { pageToTitle } from 'docs/src/modules/utils/helpers';
 
 const styles = theme => ({
   paper: {
-    width: 250,
+    width: 240,
     backgroundColor: theme.palette.background.paper,
   },
   title: {
@@ -62,7 +63,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitle(page);
-    const openImmediately = activePage.pathname.indexOf(page.pathname) === 0;
+    const openImmediately = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
       <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
@@ -100,12 +101,12 @@ function AppDrawer(props, context) {
       <div className={classes.toolbarIe11}>
         <div className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose}>
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               Material-UI
             </Typography>
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link className={classes.anchor} href="/versions">
+            <Link className={classes.anchor} href={_rewriteUrlForNextExport('/versions')}>
               <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
             </Link>
           ) : null}
@@ -117,8 +118,8 @@ function AppDrawer(props, context) {
   );
 
   return (
-    <div className={className}>
-      <Hidden lgUp={!disablePermanent}>
+    <nav className={className}>
+      <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
@@ -148,7 +149,7 @@ function AppDrawer(props, context) {
           </Drawer>
         </Hidden>
       )}
-    </div>
+    </nav>
   );
 }
 

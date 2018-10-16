@@ -1,10 +1,13 @@
 ---
+title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
 
 # Selection Controls
 
-[Selection controls](https://material.io/design/components/selection-controls.html) allow the user to select options.
+<p class="description">Selection controls allow the user to select options.</p>
+
+[Selection controls](https://material.io/design/components/selection-controls.html) allow users to complete tasks that involve making choices such as selecting options, or switching settings on or off. Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
 
 Three types of selection controls are covered in this section:
 
@@ -78,7 +81,7 @@ However, we encourage you to use a [Checkbox](#checkboxes) instead.
 
 ### Customized Switches
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}

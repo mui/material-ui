@@ -2,8 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import FormGroup from '../FormGroup';
-import { find } from '../utils/helpers';
+import { createChainedFunction, find } from '../utils/helpers';
 
 class RadioGroup extends React.Component {
   radios = [];
@@ -41,14 +42,21 @@ class RadioGroup extends React.Component {
     this.radios = [];
 
     return (
-      <FormGroup data-mui-test="RadioGroup" role="radiogroup" {...other}>
-        {React.Children.map(children, (child, index) => {
+      <FormGroup role="radiogroup" {...other}>
+        {React.Children.map(children, child => {
           if (!React.isValidElement(child)) {
             return null;
           }
 
+          warning(
+            child.type !== React.Fragment,
+            [
+              "Material-UI: the RadioGroup component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+
           return React.cloneElement(child, {
-            key: index,
             name,
             inputRef: node => {
               if (node) {
@@ -56,7 +64,7 @@ class RadioGroup extends React.Component {
               }
             },
             checked: value === child.props.value,
-            onChange: this.handleRadioChange,
+            onChange: createChainedFunction(child.props.onChange, this.handleRadioChange),
           });
         })}
       </FormGroup>
@@ -92,7 +100,7 @@ RadioGroup.propTypes = {
   /**
    * Value of the selected radio button.
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 export default RadioGroup;

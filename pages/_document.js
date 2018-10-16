@@ -1,12 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import CleanCSS from 'clean-css';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import config from 'docs/src/config';
-
-const cleanCSS = new CleanCSS();
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -15,7 +10,16 @@ const cleanCSS = new CleanCSS();
 // 4% slower but 12% smaller output than doing it in a single step.
 //
 // It's using .browserslistrc
-const prefixer = postcss([autoprefixer]);
+let prefixer;
+let cleanCSS;
+if (process.env.NODE_ENV === 'production') {
+  const postcss = require('postcss');
+  const autoprefixer = require('autoprefixer');
+  const CleanCSS = require('clean-css');
+
+  prefixer = postcss([autoprefixer]);
+  cleanCSS = new CleanCSS();
+}
 
 class MyDocument extends Document {
   render() {
@@ -24,17 +28,10 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <meta
-            name="description"
-            content="React Components that Implement Google's Material Design."
-          />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
-            content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
-            }
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {/*
             manifest.json provides metadata used when your web app is added to the
@@ -43,42 +40,30 @@ class MyDocument extends Document {
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="canonical" href={canonical} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+          {/*
+            Preconnect allows the browser to setup early connections before an HTTP request
+            is actually sent to the server.
+            This includes DNS lookups, TLS negotiations, TCP handshakes.
+          */}
+          <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <style id="insertion-point-jss" />
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:site" content="@MaterialUI" />
-          <meta name="twitter:title" content="Material-UI" />
-          <meta
-            name="twitter:description"
-            content="React Components that Implement Google's Material Design."
-          />
-          <meta name="twitter:image" content="https://material-ui.com/static/brand.png" />
-          {/* Facebook */}
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="Material-UI" />
-          <meta
-            property="og:description"
-            content="React Components that Implement Google's Material Design."
-          />
-          <meta property="og:image" content="https://material-ui.com/static/brand.png" />
-          <meta property="og:locale" content="en_US" />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link rel="canonical" href={canonical} />
         </Head>
         <body>
           <Main />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
+          <script async src="https://www.google-analytics.com/analytics.js" />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};
-gtag('js', new Date());
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', '${config.google.id}', 'material-ui.com');
               `,
             }}
           />

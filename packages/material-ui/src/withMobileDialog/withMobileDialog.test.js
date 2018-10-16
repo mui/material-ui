@@ -1,26 +1,20 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
-import Paper from '../Paper';
-import type { Breakpoint } from '../styles/createBreakpoints';
+import { createShallow } from '../test-utils';
 import Dialog from '../Dialog';
 import withMobileDialog from './withMobileDialog';
 
 describe('withMobileDialog', () => {
   let shallow;
-  let classes;
   const defaultProps = {
     open: false,
   };
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Dialog' });
-    classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
+    shallow = createShallow({ dive: true });
   });
 
-  function isFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
+  function isFullScreen(breakpoints, width) {
     breakpoints.forEach(breakpoint => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
@@ -29,12 +23,18 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), true);
+        assert.strictEqual(
+          wrapper
+            .find('WithMobileDialog')
+            .shallow()
+            .props().fullScreen,
+          true,
+        );
       });
     });
   }
 
-  function isNotFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
+  function isNotFullScreen(breakpoints, width) {
     breakpoints.forEach(breakpoint => {
       it(`is not for width: ${width} > ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
@@ -43,7 +43,13 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+        assert.strictEqual(
+          wrapper
+            .find('WithMobileDialog')
+            .shallow()
+            .props().fullScreen,
+          false,
+        );
       });
     });
   }

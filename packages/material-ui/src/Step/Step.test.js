@@ -82,5 +82,15 @@ describe('<Step />', () => {
       const childWrapper = wrapper.find('.hello-world');
       assert.strictEqual(childWrapper.props().active, false);
     });
+
+    it('should handle invalid children', () => {
+      const wrapper = shallow(
+        <Step label="Step One" index={1} orientation="horizontal">
+          <h1 className="hello-world">Hello World</h1>
+          {null}
+        </Step>,
+      );
+      assert.strictEqual(wrapper.find('.hello-world').length, 1);
+    });
   });
 });

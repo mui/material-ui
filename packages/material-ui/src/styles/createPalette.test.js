@@ -1,10 +1,8 @@
-// @flow
-
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import createPalette, { dark, light } from './createPalette';
 import { indigo, pink, deepOrange, green, red } from '../colors';
-import { lighten, darken } from '../styles/colorManipulator';
+import { lighten, darken } from './colorManipulator';
+import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {
   before(() => {
@@ -360,5 +358,14 @@ describe('createPalette()', () => {
       consoleErrorMock.args()[0][0],
       /Material-UI: the palette type `foo` is not supported/,
     );
+  });
+
+  describe('augmentColor', () => {
+    it('should throw when the input is invalid', () => {
+      const palette = createPalette({});
+      assert.throws(() => {
+        palette.augmentColor({});
+      }, /The color object needs to have a/);
+    });
   });
 });

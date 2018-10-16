@@ -13,13 +13,9 @@ function getTheme(uiTheme) {
     nprogress: {
       color: uiTheme.paletteType === 'light' ? '#000' : '#fff',
     },
-    palette: {
-      primary: blue,
-      secondary: {
-        // Darken so we reach the AA contrast ratio level.
-        main: darken(pink.A400, 0.08),
-      },
-      type: uiTheme.paletteType,
+    palette: { ...uiTheme.paletteColors, type: uiTheme.paletteType },
+    typography: {
+      useNextVariants: true,
     },
   });
 
@@ -34,11 +30,20 @@ function getTheme(uiTheme) {
 const theme = getTheme({
   direction: 'ltr',
   paletteType: 'light',
+  paletteColors: {
+    primary: blue,
+    secondary: {
+      // Darken so we reach the AA contrast ratio level.
+      main: darken(pink.A400, 0.08),
+    },
+  },
 });
 
 // Configure JSS
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-jss.options.insertionPoint = 'insertion-point-jss';
+const jss = create({
+  insertionPoint: 'insertion-point-jss',
+  plugins: [...jssPreset().plugins, rtl()],
+});
 
 function createPageContext() {
   return {

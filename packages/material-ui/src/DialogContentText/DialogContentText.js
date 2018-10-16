@@ -2,28 +2,26 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
-    color: theme.palette.text.secondary,
+    // Should use variant="body1" in v4.0.0
+    lineHeight: 1.5,
   },
-});
+};
 
 function DialogContentText(props) {
-  const { children, classes, className, ...other } = props;
-
   return (
     <Typography
       component="p"
+      internalDeprecatedVariant
       variant="subheading"
-      className={classNames(classes.root, className)}
-      {...other}
-    >
-      {children}
-    </Typography>
+      color="textSecondary"
+      {...props}
+    />
   );
 }
 
@@ -37,10 +35,6 @@ DialogContentText.propTypes = {
    * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiDialogContentText' })(DialogContentText);

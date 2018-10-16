@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-prop-types */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -46,7 +48,7 @@ CssBaseline.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-CssBaseline.propTypes = exactProp(CssBaseline.propTypes, 'CssBaseline');
+CssBaseline.propTypes = exactProp(CssBaseline.propTypes);
 
 CssBaseline.defaultProps = {
   children: null,

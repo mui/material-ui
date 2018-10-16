@@ -5,12 +5,14 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     width: 36,
     height: 36,
     fontSize: theme.typography.pxToRem(18),
     marginRight: 4,
   },
+  /* Styles applied to the children – typically the `Avatar` component. */
   icon: {
     width: 20,
     height: 20,
@@ -19,7 +21,7 @@ export const styles = theme => ({
 });
 
 /**
- * It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
+ * This is a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
 function ListItemAvatar(props, context) {
   const { children, classes, className: classNameProp, ...other } = props;
@@ -49,7 +51,7 @@ function ListItemAvatar(props, context) {
 
 ListItemAvatar.propTypes = {
   /**
-   * The content of the component, normally `Avatar`.
+   * The content of the component – normally `Avatar`.
    */
   children: PropTypes.element.isRequired,
   /**

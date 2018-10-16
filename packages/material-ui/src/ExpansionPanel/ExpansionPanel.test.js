@@ -33,7 +33,7 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(collapse.props()['aria-hidden'], 'true');
 
     wrapper.setProps({ expanded: true });
-    assert.strictEqual(wrapper.state().expanded, false, 'should not change the expanded state');
+    assert.strictEqual(wrapper.state().expanded, false);
   });
 
   it('should handle defaultExpanded prop', () => {
@@ -43,13 +43,13 @@ describe('<ExpansionPanel />', () => {
       false,
       'should have isControlled state false',
     );
-    assert.strictEqual(wrapper.state().expanded, true, 'should set expanded state');
-    assert.strictEqual(wrapper.hasClass(classes.expanded), true, 'should have the expanded class');
+    assert.strictEqual(wrapper.state().expanded, true);
+    assert.strictEqual(wrapper.hasClass(classes.expanded), true);
   });
 
   it('should render the custom className and the root class', () => {
     const wrapper = shallow(<ExpansionPanel className="test-class-name">foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass('test-class-name'), true, 'should pass the test className');
+    assert.strictEqual(wrapper.hasClass('test-class-name'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -71,7 +71,7 @@ describe('<ExpansionPanel />', () => {
     const wrapper = shallow(<ExpansionPanel expanded>foo</ExpansionPanel>);
     assert.strictEqual(wrapper.state().expanded, undefined);
     assert.strictEqual(wrapper.hasClass(classes.expanded), true);
-    assert.strictEqual(wrapper.instance().isControlled, true, 'should set isControlled prop');
+    assert.strictEqual(wrapper.instance().isControlled, true);
 
     wrapper.setProps({ expanded: false });
     assert.strictEqual(wrapper.hasClass(classes.expanded), false);
@@ -86,7 +86,7 @@ describe('<ExpansionPanel />', () => {
     );
     assert.strictEqual(wrapper.type(), ExpansionPanel);
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
+    assert.strictEqual(handleChange.callCount, 1);
   });
 
   it('when controlled should call the onChange', () => {
@@ -97,7 +97,7 @@ describe('<ExpansionPanel />', () => {
       </ExpansionPanel>,
     );
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
+    assert.strictEqual(handleChange.callCount, 1);
     assert.strictEqual(handleChange.args[0][1], false);
   });
 
@@ -115,7 +115,7 @@ describe('<ExpansionPanel />', () => {
 
   it('when disabled should have the disabled class', () => {
     const wrapper = shallow(<ExpansionPanel disabled>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
+    assert.strictEqual(wrapper.hasClass(classes.disabled), true);
   });
 
   describe('prop: children', () => {

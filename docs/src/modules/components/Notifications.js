@@ -1,9 +1,10 @@
 /* eslint-disable react/no-danger */
 
+import 'isomorphic-fetch';
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import 'isomorphic-fetch';
+import sleep from 'modules/waterfall/sleep';
 
 function getLastSeenNotification() {
   const seen = document.cookie.replace(
@@ -13,18 +14,12 @@ function getLastSeenNotification() {
   return seen === '' ? 0 : parseInt(seen, 10);
 }
 
-function pause(timeout) {
-  return new Promise(accept => {
-    setTimeout(accept, timeout);
-  });
-}
-
 let messages = null;
 
 async function getMessages() {
   try {
     if (!messages) {
-      await pause(1e3); // Soften the pressure on the main thread.
+      await sleep(1e3); // Soften the pressure on the main thread.
       const result = await fetch(
         'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json',
       );
@@ -38,22 +33,24 @@ async function getMessages() {
 }
 
 class Notifications extends React.Component {
+  mounted = false;
+
   state = {
     open: false,
     message: {},
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     this.mounted = true;
+
+    // Prevent search engines from indexing the notification.
+    if (/glebot/.test(navigator.userAgent)) {
+      return;
+    }
+
     await getMessages();
     this.handleMessage();
-  };
-
-  componentWillUnmout() {
-    this.mounted = false;
   }
-
-  mounted = false;
 
   handleMessage = () => {
     const lastSeen = getLastSeenNotification();
@@ -67,6 +64,10 @@ class Notifications extends React.Component {
     this.setState({ open: false });
     document.cookie = `lastSeenNotification=${this.state.message.id};path=/;max-age=31536000`;
   };
+
+  componentWillUnmout() {
+    this.mounted = false;
+  }
 
   render() {
     const { message, open } = this.state;

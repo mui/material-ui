@@ -8,11 +8,15 @@ import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
   },
+  /* Styles applied to the root element if `checked={true}`. */
   checked: {},
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
       color: theme.palette.primary.main,
@@ -21,6 +25,7 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
     '&$checked': {
       color: theme.palette.secondary.main,
@@ -84,13 +89,13 @@ Radio.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Callback fired when the state is changed.
    *
@@ -106,7 +111,7 @@ Radio.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 Radio.defaultProps = {

@@ -4,7 +4,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import Checkbox from '../Checkbox';
 import FormControlLabel from './FormControlLabel';
 
-describe('FormControlLabel', () => {
+describe('<FormControlLabel />', () => {
   let shallow;
   let mount;
   let classes;
@@ -23,12 +23,12 @@ describe('FormControlLabel', () => {
     const wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
     const label = wrapper.childAt(1);
     assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(label.childAt(0).text(), 'Pizza', 'should be the label text');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
+    assert.strictEqual(label.childAt(0).text(), 'Pizza');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   describe('prop: disabled', () => {
-    it('should disable everything', () => {
+    it('should disable everything 1', () => {
       const wrapper = shallow(<FormControlLabel label="Pizza" disabled control={<div />} />);
       const label = wrapper.childAt(1);
       assert.strictEqual(
@@ -41,7 +41,7 @@ describe('FormControlLabel', () => {
       assert.strictEqual(label.hasClass(classes.disabled), true);
     });
 
-    it('should disable everything', () => {
+    it('should disable everything 2', () => {
       const wrapper = shallow(<FormControlLabel label="Pizza" control={<div disabled />} />);
       const label = wrapper.childAt(1);
       assert.strictEqual(
@@ -52,6 +52,15 @@ describe('FormControlLabel', () => {
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
       assert.strictEqual(label.hasClass(classes.disabled), true);
+    });
+  });
+
+  describe('prop: labelPlacement', () => {
+    it('should disable have the `start` class', () => {
+      const wrapper = shallow(
+        <FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.labelPlacementStart), true);
     });
   });
 
@@ -104,5 +113,17 @@ describe('FormControlLabel', () => {
         assert.strictEqual(wrapper.hasClass(classes.disabled), false);
       });
     });
+  });
+
+  it('should not inject extra properties', () => {
+    // eslint-disable-next-line react/prop-types
+    const Control = ({ inputRef, ...props }) => <div name="name" {...props} />;
+    const wrapper = mount(<FormControlLabel label="Pizza" control={<Control />} />);
+    assert.strictEqual(wrapper.find('div').props().name, 'name');
+  });
+
+  it('should forward some properties', () => {
+    const wrapper = mount(<FormControlLabel value="value" label="Pizza" control={<div />} />);
+    assert.strictEqual(wrapper.find('div').props().value, 'value');
   });
 });

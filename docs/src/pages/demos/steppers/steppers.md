@@ -1,14 +1,14 @@
 ---
+title: Stepper React component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
 # Steppers
 
-[Steppers](https://material.io/archive/guidelines/components/steppers.html) convey progress through numbered steps.
+<p class="description">Steppers convey progress through numbered steps.</p>
 
-> Steppers display progress through a sequence of logical and numbered steps. They may also be used for navigation.
->
-> Steppers may display a transient feedback message after a step is saved.
+[Steppers](https://material.io/archive/guidelines/components/steppers.html) display progress through a sequence of logical and numbered steps. They may also be used for navigation.
+Steppers may display a transient feedback message after a step is saved.
 
 **Types of Steps**
 
@@ -61,6 +61,12 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 ## Vertical Stepper
 
 {{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}
+
+## Customized Stepper
+
+This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
+
+{{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 
 ## Mobile Stepper
 

@@ -19,7 +19,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   appFrame: {
-    height: 430,
+    height: 440,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -106,7 +106,7 @@ class PermanentDrawer extends React.Component {
             className={classNames(classes.appBar, classes[`appBar-${anchor}`])}
           >
             <Toolbar>
-              <Typography variant="title" color="inherit" noWrap>
+              <Typography variant="h6" color="inherit" noWrap>
                 Permanent drawer
               </Typography>
             </Toolbar>

@@ -2,58 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
+import warning from 'warning';
 import Menu from '../Menu/Menu';
-import { isFilled } from '../Input/Input';
+import { isFilled } from '../InputBase/utils';
+import { setRef } from '../utils/reactHelpers';
 
 /**
  * @ignore - internal component.
  */
 class SelectInput extends React.Component {
-  state = {
-    open: false,
-  };
+  ignoreNextBlur = false;
+
+  constructor(props) {
+    super();
+    this.isOpenControlled = props.open !== undefined;
+    this.state = {
+      menuMinWidth: null,
+      open: false,
+    };
+  }
 
   componentDidMount() {
     if (this.isOpenControlled && this.props.open) {
       // Focus the display node so the focus is restored on this element once
       // the menu is closed.
-      this.displayNode.focus();
-      // Rerender with the resolve `displayNode` reference.
+      this.displayRef.focus();
+      // Rerender with the resolve `displayRef` reference.
       this.forceUpdate();
     }
 
     if (this.props.autoFocus) {
-      this.displayNode.focus();
+      this.displayRef.focus();
     }
   }
 
-  shouldComponentUpdate() {
-    this.updateDisplayWidth();
-
-    return true;
-  }
-
-  ignoreNextBlur = false;
-  displayNode = null;
-  displayWidth = null;
-  isOpenControlled = this.props.open !== undefined;
-
-  updateDisplayWidth = () => {
-    // Perfom the layout computation outside of the render method.
-    if (this.displayNode) {
-      this.displayWidth = this.displayNode.clientWidth;
-    }
-  };
-
-  update = this.isOpenControlled
-    ? ({ event, open }) => {
-        if (open) {
-          this.props.onOpen(event);
-        } else {
-          this.props.onClose(event);
-        }
+  update = ({ event, open }) => {
+    if (this.isOpenControlled) {
+      if (open) {
+        this.props.onOpen(event);
+      } else {
+        this.props.onClose(event);
       }
-    : ({ open }) => this.setState({ open });
+      return;
+    }
+
+    this.setState({
+      // Perfom the layout computation outside of the render method.
+      menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
+      open,
+    });
+  };
 
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
@@ -83,11 +81,6 @@ class SelectInput extends React.Component {
 
     if (onChange) {
       let value;
-      let target;
-
-      if (event.target) {
-        target = event.target;
-      }
 
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
@@ -102,8 +95,7 @@ class SelectInput extends React.Component {
       }
 
       event.persist();
-      event.target = { ...target, value, name };
-
+      event.target = { value, name };
       onChange(event, child);
     }
   };
@@ -117,6 +109,9 @@ class SelectInput extends React.Component {
     }
 
     if (this.props.onBlur) {
+      const { value, name } = this.props;
+      event.persist();
+      event.target = { value, name };
       this.props.onBlur(event);
     }
   };
@@ -137,21 +132,27 @@ class SelectInput extends React.Component {
     }
   };
 
-  handleDisplayRef = node => {
-    this.displayNode = node;
-    this.updateDisplayWidth();
+  handleDisplayRef = ref => {
+    this.displayRef = ref;
   };
 
-  handleSelectRef = node => {
-    if (!this.props.inputRef) {
+  handleInputRef = ref => {
+    const { inputRef } = this.props;
+
+    if (!inputRef) {
       return;
     }
 
-    this.props.inputRef({
-      node,
+    const nodeProxy = {
+      node: ref,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
-    });
+      focus: () => {
+        this.displayRef.focus();
+      },
+    };
+
+    setRef(inputRef, nodeProxy);
   };
 
   render() {
@@ -175,13 +176,17 @@ class SelectInput extends React.Component {
       open: openProp,
       readOnly,
       renderValue,
+      required,
       SelectDisplayProps,
       tabIndex: tabIndexProp,
       type = 'hidden',
       value,
+      variant,
       ...other
     } = this.props;
-    const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
+    const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
+
+    delete other['aria-invalid'];
 
     let display;
     let displaySingle = '';
@@ -201,6 +206,15 @@ class SelectInput extends React.Component {
       if (!React.isValidElement(child)) {
         return null;
       }
+
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the Select component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
+
       let selected;
 
       if (multiple) {
@@ -235,7 +249,12 @@ class SelectInput extends React.Component {
       display = multiple ? displayMultiple.join(', ') : displaySingle;
     }
 
-    const MenuMinWidth = this.displayNode && !autoWidth ? this.displayWidth : undefined;
+    // Avoid performing a layout computation in the render method.
+    let menuMinWidth = this.state.menuMinWidth;
+
+    if (!autoWidth && this.isOpenControlled && this.displayRef) {
+      menuMinWidth = this.displayRef.clientWidth;
+    }
 
     let tabIndex;
     if (typeof tabIndexProp !== 'undefined') {
@@ -252,6 +271,8 @@ class SelectInput extends React.Component {
             classes.selectMenu,
             {
               [classes.disabled]: disabled,
+              [classes.filled]: variant === 'filled',
+              [classes.outlined]: variant === 'outlined',
             },
             className,
           )}
@@ -270,20 +291,19 @@ class SelectInput extends React.Component {
         >
           {/* So the vertical align positioning algorithm quicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
-          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203' }} />}
+          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
         <input
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
-          readOnly={readOnly}
-          ref={this.handleSelectRef}
+          ref={this.handleInputRef}
           type={type}
           {...other}
         />
         <IconComponent className={classes.icon} />
         <Menu
           id={`menu-${name || ''}`}
-          anchorEl={this.displayNode}
+          anchorEl={this.displayRef}
           open={open}
           onClose={this.handleClose}
           {...MenuProps}
@@ -294,7 +314,7 @@ class SelectInput extends React.Component {
           PaperProps={{
             ...MenuProps.PaperProps,
             style: {
-              minWidth: MenuMinWidth,
+              minWidth: menuMinWidth,
               ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
             },
           }}
@@ -341,13 +361,13 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Use that property to pass a ref callback to the native select element.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the `Menu` element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -404,6 +424,10 @@ SelectInput.propTypes = {
    */
   renderValue: PropTypes.func,
   /**
+   * @ignore
+   */
+  required: PropTypes.bool,
+  /**
    * Properties applied to the clickable div element.
    */
   SelectDisplayProps: PropTypes.object,
@@ -421,8 +445,13 @@ SelectInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]).isRequired,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 export default SelectInput;

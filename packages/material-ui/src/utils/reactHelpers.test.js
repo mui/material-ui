@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
-import { isMuiComponent, isMuiElement } from './reactHelpers';
-import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '../';
+import { spy } from 'sinon';
+import { isMuiElement, setRef } from './reactHelpers';
+import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '..';
 
 describe('utils/reactHelpers.js', () => {
   describe('isMuiElement', () => {
@@ -27,16 +28,36 @@ describe('utils/reactHelpers.js', () => {
     });
   });
 
-  describe('isMuiComponent', () => {
-    it('should match static muiName property', () => {
-      [
-        [Input, 'Input'],
-        [ListItemAvatar, 'ListItemAvatar'],
-        [ListItemSecondaryAction, 'ListItemSecondaryAction'],
-        [SvgIcon, 'SvgIcon'],
-      ].forEach(([Component, muiName]) => {
-        assert.strictEqual(isMuiComponent(Component, [muiName]), true);
-      });
+  describe('setRef', () => {
+    it('can handle callback refs', () => {
+      const ref = spy();
+      const instance = 'proxy';
+
+      setRef(ref, instance);
+
+      assert.strictEqual(ref.called, true);
+      assert.strictEqual(ref.firstCall.args[0], instance);
+    });
+
+    it('can handle ref objects', () => {
+      const ref = React.createRef();
+      const instance = 'proxy';
+
+      setRef(ref, instance);
+
+      assert.strictEqual(ref.current, instance);
+    });
+
+    it('ignores falsy refs without errors', () => {
+      const instance = 'proxy';
+
+      // all no-ops
+      setRef(undefined, instance);
+      setRef(null, instance);
+    });
+
+    it('throws on legacy string refs', () => {
+      assert.throws(() => setRef('stringRef1', 'proxy'));
     });
   });
 });

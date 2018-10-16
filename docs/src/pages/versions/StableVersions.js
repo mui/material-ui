@@ -1,6 +1,10 @@
+/* eslint-disable react/no-did-mount-set-state */
+
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
+import orderBy from 'lodash/orderBy';
+import sortedUniqBy from 'lodash/sortedUniqBy';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,22 +18,17 @@ const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases
 
 const styles = {
   root: {
+    height: 410,
+    overflow: 'auto',
     width: '100%',
   },
 };
-
-function pause(timeout) {
-  return new Promise(accept => {
-    setTimeout(accept, timeout);
-  });
-}
 
 let cacheBranches = null;
 
 async function getBranches() {
   try {
     if (!cacheBranches) {
-      await pause(1e3); // Soften the pressure on the main thread.
       const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches');
       cacheBranches = await result.json();
     }
@@ -43,42 +42,55 @@ async function getBranches() {
 
 class StableVersions extends React.Component {
   state = {
-    versions: [],
+    docs: [],
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const branches = await getBranches();
-    const versions = branches.map(n => n.name);
-    versions.reverse().pop(); // most recent first & remove 'latest'
-    versions.push('v0.20.1');
-
-    this.setState({ versions });
-  };
+    let docs = branches.map(n => n.name);
+    docs = docs.filter(version => version !== 'latest');
+    docs = docs.map(version => ({
+      version,
+      // Replace dot with dashes for Netlify branch subdomains
+      url: `https://${version.replace(/\./g, '-')}.material-ui.com`,
+    }));
+    // Current version.
+    docs.push({
+      version: `v${process.env.LIB_VERSION}`,
+      url: document.location.origin,
+    });
+    // Legacy documentation.
+    docs.push({
+      version: 'v0.20.1',
+      url: 'https://v0.material-ui.com',
+    });
+    docs = orderBy(docs, 'version', 'desc');
+    docs = sortedUniqBy(docs, 'version');
+    // The latest version is always using the naked domain.
+    docs[0].url = 'https://material-ui.com';
+    this.setState({ docs });
+  }
 
   render() {
     const { classes } = this.props;
-    const { versions } = this.state;
+    const { docs } = this.state;
 
     return (
       <Paper className={classes.root}>
         <Table>
           <TableBody>
-            {versions.map((version, index) => {
-              // Replace dot with dashes for Netlify branch subdomains
-              let url = `https://${version.replace(/\./g, '-')}.material-ui.com`;
-              if (index === 0) {
-                url = 'https://material-ui.com';
-              } else if (version.startsWith('v0')) {
-                url = 'https://v0.material-ui.com';
-              }
+            {docs.map(doc => {
               return (
-                <TableRow key={version}>
+                <TableRow key={doc.version}>
                   <TableCell padding="dense">
-                    <Typography>{version}</Typography>
+                    <Typography>
+                      {doc.version}
+                      {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
+                    </Typography>
                   </TableCell>
                   <TableCell padding="dense">
                     <Typography
-                      component={props2 => <Link {...props2} variant="secondary" href={url} />}
+                      component={props2 => <Link {...props2} variant="secondary" href={doc.url} />}
                     >
                       Documentation
                     </Typography>
@@ -89,7 +101,7 @@ class StableVersions extends React.Component {
                         <Link
                           {...props2}
                           variant="secondary"
-                          href={`${GITHUB_RELEASE_BASE_URL}${version}`}
+                          href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
                         />
                       )}
                     >

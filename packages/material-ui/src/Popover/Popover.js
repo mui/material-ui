@@ -4,10 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
-import contains from 'dom-helpers/query/contains';
-import ownerDocument from 'dom-helpers/ownerDocument';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
@@ -67,6 +66,7 @@ function getAnchorEl(anchorEl) {
 }
 
 export const styles = {
+  /* Styles applied to the `Paper` component. */
   paper: {
     position: 'absolute',
     overflowY: 'auto',
@@ -83,6 +83,20 @@ export const styles = {
 };
 
 class Popover extends React.Component {
+  handleGetOffsetTop = getOffsetTop;
+
+  handleGetOffsetLeft = getOffsetLeft;
+
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.setPositioningStyles(this.paperRef);
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
+
   componentDidMount() {
     if (this.props.action) {
       this.props.action({
@@ -114,8 +128,8 @@ class Popover extends React.Component {
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
     const elemRect = {
-      width: element.clientWidth,
-      height: element.clientHeight,
+      width: element.offsetWidth,
+      height: element.offsetHeight,
     };
 
     // Get the transform origin point on the element itself
@@ -198,8 +212,7 @@ class Popover extends React.Component {
     }
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
-    const anchorElement =
-      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
+    const anchorElement = getAnchorEl(anchorEl) || ownerDocument(this.paperRef).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -217,7 +230,7 @@ class Popover extends React.Component {
     if (getContentAnchorEl && anchorReference === 'anchorEl') {
       const contentAnchorEl = getContentAnchorEl(element);
 
-      if (contentAnchorEl && contains(element, contentAnchorEl)) {
+      if (contentAnchorEl && element.contains(contentAnchorEl)) {
         const scrollTop = getScrollParent(element, contentAnchorEl);
         contentAnchorOffset =
           contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
@@ -230,7 +243,8 @@ class Popover extends React.Component {
           'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
           'when also providing the `getContentAnchorEl` property to the popover component.',
           'Only use one of the two properties.',
-          'Set `getContentAnchorEl` to null or left `anchorOrigin.vertical` unchanged.',
+          'Set `getContentAnchorEl` to `null | undefined`' +
+            ' or leave `anchorOrigin.vertical` unchanged.',
         ].join('\n'),
       );
     }
@@ -248,12 +262,6 @@ class Popover extends React.Component {
     };
   }
 
-  transitionEl = undefined;
-
-  handleGetOffsetTop = getOffsetTop;
-
-  handleGetOffsetLeft = getOffsetLeft;
-
   handleEnter = element => {
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -261,11 +269,6 @@ class Popover extends React.Component {
 
     this.setPositioningStyles(element);
   };
-
-  handleResize = debounce(() => {
-    const element = ReactDOM.findDOMNode(this.transitionEl);
-    this.setPositioningStyles(element);
-  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   render() {
     const {
@@ -280,6 +283,7 @@ class Popover extends React.Component {
       elevation,
       getContentAnchorEl,
       marginThreshold,
+      ModalClasses,
       onEnter,
       onEntered,
       onEntering,
@@ -291,10 +295,16 @@ class Popover extends React.Component {
       role,
       transformOrigin,
       TransitionComponent,
-      transitionDuration,
+      transitionDuration: transitionDurationProp,
       TransitionProps,
       ...other
     } = this.props;
+
+    let transitionDuration = transitionDurationProp;
+
+    if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+      transitionDuration = undefined;
+    }
 
     // If the container prop is provided, use that
     // If the anchorEl prop is provided, use its parent body element as the container
@@ -303,7 +313,13 @@ class Popover extends React.Component {
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
     return (
-      <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
+      <Modal
+        classes={ModalClasses}
+        container={container}
+        open={open}
+        BackdropProps={{ invisible: true }}
+        {...other}
+      >
         <TransitionComponent
           appear
           in={open}
@@ -314,15 +330,16 @@ class Popover extends React.Component {
           onExited={onExited}
           onExiting={onExiting}
           role={role}
-          ref={node => {
-            this.transitionEl = node;
-          }}
+          timeout={transitionDuration}
           {...TransitionProps}
         >
           <Paper
             className={classes.paper}
             data-mui-test="Popover"
             elevation={elevation}
+            ref={ref => {
+              this.paperRef = ReactDOM.findDOMNode(ref);
+            }}
             {...PaperProps}
           >
             <EventListener target="window" onResize={this.handleResize} />
@@ -362,8 +379,9 @@ Popover.propTypes = {
     horizontal: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.oneOf(['left', 'center', 'right']),
-    ]),
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+    ]).isRequired,
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+      .isRequired,
   }),
   /**
    * This is the position that may be used
@@ -372,8 +390,8 @@ Popover.propTypes = {
    * the application's client area.
    */
   anchorPosition: PropTypes.shape({
-    top: PropTypes.number,
-    left: PropTypes.number,
+    left: PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired,
   }),
   /*
    * This determines which anchor prop to refer to to set
@@ -414,6 +432,10 @@ Popover.propTypes = {
    */
   marginThreshold: PropTypes.number,
   /**
+   * `classes` property applied to the [`Modal`](/api/modal/) element.
+   */
+  ModalClasses: PropTypes.object,
+  /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
@@ -448,7 +470,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the `Paper` element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
@@ -467,13 +489,14 @@ Popover.propTypes = {
     horizontal: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.oneOf(['left', 'center', 'right']),
-    ]),
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+    ]).isRequired,
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+      .isRequired,
   }),
   /**
    * Transition component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */

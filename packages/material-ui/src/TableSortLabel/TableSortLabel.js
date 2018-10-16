@@ -9,6 +9,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     cursor: 'pointer',
     display: 'inline-flex',
@@ -22,12 +23,14 @@ export const styles = theme => ({
       color: theme.palette.text.primary,
     },
   },
+  /* Styles applied to the root element if `active={true}`. */
   active: {
     color: theme.palette.text.primary,
     '& $icon': {
       opacity: 1,
     },
   },
+  /* Styles applied to the icon component. */
   icon: {
     height: 16,
     marginRight: 4,
@@ -39,9 +42,11 @@ export const styles = theme => ({
     userSelect: 'none',
     width: 16,
   },
+  /* Styles applied to the icon component if `direction="desc"`. */
   iconDirectionDesc: {
     transform: 'rotate(0deg)',
   },
+  /* Styles applied to the icon component if `direction="asc"`. */
   iconDirectionAsc: {
     transform: 'rotate(180deg)',
   },
@@ -51,7 +56,16 @@ export const styles = theme => ({
  * A button based label for placing inside `TableCell` for column sorting.
  */
 function TableSortLabel(props) {
-  const { active, classes, className, children, direction, ...other } = props;
+  const {
+    active,
+    children,
+    classes,
+    className,
+    direction,
+    hideSortIcon,
+    IconComponent,
+    ...other
+  } = props;
 
   return (
     <ButtonBase
@@ -61,9 +75,11 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      <ArrowDownwardIcon
-        className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
-      />
+      {hideSortIcon && !active ? null : (
+        <IconComponent
+          className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+        />
+      )}
     </ButtonBase>
   );
 }
@@ -90,11 +106,21 @@ TableSortLabel.propTypes = {
    * The current sort direction.
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
+  /**
+   * Hide sort icon when active is false.
+   */
+  hideSortIcon: PropTypes.bool,
+  /**
+   * Sort icon to use.
+   */
+  IconComponent: PropTypes.func,
 };
 
 TableSortLabel.defaultProps = {
   active: false,
   direction: 'desc',
+  hideSortIcon: false,
+  IconComponent: ArrowDownwardIcon,
 };
 
 export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);

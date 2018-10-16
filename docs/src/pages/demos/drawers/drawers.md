@@ -1,11 +1,15 @@
 ---
+title: Drawer React component
 components: Drawer, SwipeableDrawer
 ---
 
 # Drawer
 
-The [Drawer](https://material.io/design/components/navigation-drawer.html) slides in from the side.
-It is a common pattern found in Google apps and follows the keylines and metrics for lists.
+<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+
+[Navigation drawers](https://material.io/design/components/navigation-drawer.html) provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+
+[Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
 
 ## Temporary drawer
 

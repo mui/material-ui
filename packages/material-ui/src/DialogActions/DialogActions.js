@@ -5,19 +5,20 @@ import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Button'; // So we don't have any override priority issue.
 
-export const styles = theme => ({
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     flex: '0 0 auto',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
+    margin: '8px 4px',
   },
+  /* Styles applied to the children. */
   action: {
-    margin: `0 ${theme.spacing.unit / 2}px`,
-    minWidth: 64,
+    margin: '0 4px',
   },
-});
+};
 
 function DialogActions(props) {
   const { disableActionSpacing, children, classes, className, ...other } = props;

@@ -19,6 +19,8 @@ import {
   Collapse,
   Dialog,
   DialogTitle,
+  DialogContent,
+  DialogContentText,
   Divider,
   Drawer,
   ExpansionPanel,
@@ -35,6 +37,7 @@ import {
   IconButton,
   Input,
   InputAdornment,
+  InputLabel,
   LinearProgress,
   List,
   ListItem,
@@ -46,6 +49,7 @@ import {
   MenuItem,
   MobileStepper,
   Paper,
+  Popover,
   Select,
   Snackbar,
   SnackbarContent,
@@ -65,10 +69,15 @@ import {
   Tooltip,
   Typography,
   withMobileDialog,
+} from '@material-ui/core';
+import {
+  withStyles,
+  StyleRulesCallback,
   WithStyles,
-} from '../../src';
-import { withStyles, StyleRulesCallback } from '../../src/styles';
-import { DialogProps } from '../../src/Dialog';
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
+import { DialogProps } from '@material-ui/core/Dialog';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -79,7 +88,7 @@ const AppBarTest = () => (
       <IconButton color="inherit" aria-label="Menu">
         <FakeIcon />
       </IconButton>
-      <Typography variant="title" color="inherit">
+      <Typography variant="h6" color="inherit">
         Title
       </Typography>
       <Button color="inherit">Login</Button>
@@ -101,7 +110,7 @@ const BottomNavigationTest = () => {
   const value = 123;
 
   return (
-    <BottomNavigation value={value} onChange={event => log(event)} showLabels>
+    <BottomNavigation value={value} onChange={log} showLabels>
       <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -116,7 +125,7 @@ const ButtonTest = () => (
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="raised">Raised</Button>
+    <Button variant="contained">Contained</Button>
     <Button variant="fab" color="primary" aria-label="add">
       <FakeIcon />
     </Button>
@@ -152,12 +161,13 @@ const CardTest = () => (
   <Card>
     <CardContent>
       <Typography variant="body1">Word of the Day</Typography>
-      <Typography variant="headline" component="h2">
+      <Typography variant="h5" component="h2">
         be-nev-o-lent
       </Typography>
       <Typography variant="body1">adjective</Typography>
       <Typography component="p">
-        well meaning and kindly.<br />
+        well meaning and kindly.
+        <br />
         {'"a benevolent smile"'}
       </Typography>
     </CardContent>
@@ -229,12 +239,8 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={event => log(event)} />
-    <Chip
-      avatar={<Avatar src={'image.bmp'} />}
-      label="Deletable Chip"
-      onDelete={event => log(event)}
-    />
+    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={log} />
+    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={log} />
     <Chip
       avatar={
         <Avatar>
@@ -242,8 +248,8 @@ const ChipsTest = () => (
         </Avatar>
       }
       label="Clickable Deletable Chip"
-      onClick={event => log(event)}
-      onDelete={event => log(event)}
+      onClick={log}
+      onDelete={log}
     />
   </div>
 );
@@ -251,12 +257,12 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={event => log(event)} open>
+    <Dialog onClose={log} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
           {emails.map(email => (
-            <ListItem button onClick={event => log(event)} key={email}>
+            <ListItem button onClick={log} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
@@ -265,7 +271,7 @@ const DialogTest = () => {
               <ListItemText primary={email} />
             </ListItem>
           ))}
-          <ListItem button onClick={event => log(event)}>
+          <ListItem button onClick={log}>
             <ListItemAvatar>
               <Avatar>
                 <FakeIcon />
@@ -281,6 +287,11 @@ const DialogTest = () => {
           </ListItem>
         </List>
       </div>
+      <DialogContent>
+        <DialogContentText variant="body2" color="primary">
+          Some text
+        </DialogContentText>
+      </DialogContent>
     </Dialog>
   );
 };
@@ -301,42 +312,25 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer
-        variant="persistent"
-        open={open.left}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-      >
+      <Drawer variant="persistent" open={open.left} onClose={log} onClick={log}>
         List
       </Drawer>
       <Drawer
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
+        onClose={log}
+        onClick={log}
         ModalProps={{
           hideBackdrop: true,
         }}
       >
         List
       </Drawer>
-      <Drawer
-        anchor="bottom"
-        variant="temporary"
-        open={open.bottom}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-      >
+      <Drawer anchor="bottom" variant="temporary" open={open.bottom} onClose={log} onClick={log}>
         List
       </Drawer>
-      <Drawer
-        variant="persistent"
-        anchor="right"
-        open={open.right}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-      >
+      <Drawer variant="persistent" anchor="right" open={open.right} onClose={log} onClick={log}>
         List
       </Drawer>
     </div>
@@ -352,42 +346,31 @@ const SwipeableDrawerTest = () => {
   };
   return (
     <div>
-      <SwipeableDrawer
-        open={open.left}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
-      >
+      <SwipeableDrawer open={open.left} onClose={log} onClick={log} onOpen={log}>
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
+        onClose={log}
+        onClick={log}
+        onOpen={log}
         ModalProps={{
           hideBackdrop: true,
         }}
       >
         List
       </SwipeableDrawer>
-      <SwipeableDrawer
-        anchor="bottom"
-        open={open.bottom}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
-      >
+      <SwipeableDrawer anchor="bottom" open={open.bottom} onClose={log} onClick={log} onOpen={log}>
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
+        onClose={log}
+        onClick={log}
+        onOpen={log}
       >
         List
       </SwipeableDrawer>
@@ -397,7 +380,7 @@ const SwipeableDrawerTest = () => {
 
 const ExpansionPanelTest = () => (
   <div>
-    <ExpansionPanel onChange={(event, expanded) => log(event, expanded)} expanded disabled>
+    <ExpansionPanel onChange={log} expanded disabled>
       <ExpansionPanelSummary />
       <ExpansionPanelDetails />
     </ExpansionPanel>
@@ -433,17 +416,18 @@ const GridTest = () => (
 );
 
 const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={event => log(event)}>
-    <GridListTile cols={1} rows={4} onClick={event => log(event)}>
+  <GridList cellHeight={160} cols={3} onClick={log}>
+    <GridListTile cols={1} rows={4} onClick={log}>
       <img src="img.png" alt="alt text" />
-    </GridListTile>,
+    </GridListTile>
+    ,
   </GridList>
 );
 
 const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map(value => (
-      <ListItem dense button key={value} onClick={event => log(event)}>
+      <ListItem dense button selected={false} key={value} onClick={log}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -468,9 +452,15 @@ const MenuTest = () => {
   ];
 
   return (
-    <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={event => log(event)}>
+    <Menu
+      id="lock-menu"
+      anchorEl={anchorEl}
+      open={true}
+      onClose={log}
+      PopoverClasses={{ paper: 'foo' }}
+    >
       {options.map((option, index) => (
-        <MenuItem key={option} selected={false} onClick={event => log(event)}>
+        <MenuItem key={option} selected={false} onClick={log}>
           {option}
         </MenuItem>
       ))}
@@ -480,7 +470,7 @@ const MenuTest = () => {
 
 const PaperTest = () => (
   <Paper elevation={4}>
-    <Typography variant="headline" component="h3">
+    <Typography variant="h5" component="h3">
       This is a sheet of paper.
     </Typography>
     <Typography variant="body1" component="p">
@@ -567,7 +557,7 @@ const SwitchTest = () => {
 
 const SnackbarTest = () => (
   <div>
-    <Button onClick={event => log(event)}>Open simple snackbar</Button>
+    <Button onClick={log}>Open simple snackbar</Button>
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
@@ -575,7 +565,7 @@ const SnackbarTest = () => (
       }}
       open={true}
       autoHideDuration={6e3}
-      onClose={event => log(event)}
+      onClose={log}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
@@ -584,10 +574,10 @@ const SnackbarTest = () => (
       }
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button key="undo" color="secondary" size="small" onClick={event => log(event)}>
+        <Button key="undo" color="secondary" size="small" onClick={log}>
           UNDO
         </Button>,
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={event => log(event)}>
+        <IconButton key="close" aria-label="Close" color="inherit" onClick={log}>
           <FakeIcon />
         </IconButton>,
       ]}
@@ -663,16 +653,16 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styles: StyleRulesCallback<'paper'> = theme => {
+  const styles = (theme: Theme) => {
     const backgroundColor: string = theme.palette.secondary.light;
-    return {
+    return createStyles({
       paper: {
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         backgroundColor,
         overflowX: 'auto',
       },
-    };
+    });
   };
 
   let id = 0;
@@ -689,7 +679,7 @@ const TableTest = () => {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  function BasicTable(props: WithStyles<'paper'>) {
+  function BasicTable(props: WithStyles<typeof styles>) {
     const classes = props.classes;
 
     return (
@@ -720,11 +710,12 @@ const TableTest = () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-               count={5}
-               rowsPerPage={2}
-               page={1}
-               onChangePage={() => {}}
-               onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}/>
+                count={5}
+                rowsPerPage={2}
+                page={1}
+                onChangePage={() => {}}
+                onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}
+              />
             </TableRow>
           </TableFooter>
         </Table>
@@ -751,7 +742,7 @@ const TabsTest = () => {
     },
   });
 
-  class BasicTabs extends React.Component<WithStyles<ClassKey>> {
+  class BasicTabs extends React.Component<WithStyles<typeof styles>> {
     state = {
       value: 0,
     };
@@ -794,7 +785,18 @@ const TextFieldTest = () => (
       onChange={event => log({ name: event.currentTarget.value })}
     />
     <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
-    <TextField type="number" InputProps={{ inputProps: { min: '0', max: '10', step: '1' } }} />
+    <TextField
+      type="number"
+      inputProps={{
+        min: '0',
+        max: '10',
+        step: '1',
+        style: {
+          // just a long css property to test autocompletion
+          WebkitAnimationIterationCount: 0,
+        },
+      }}
+    />
   </div>
 );
 
@@ -854,3 +856,19 @@ const TransitionTest = () => (
 );
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
+
+const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'bar' }} />;
+
+const InputLabelTest = () => (
+  <InputLabel
+    FormLabelClasses={{
+      root: 'foo',
+      asterisk: 'foo',
+      disabled: 'foo',
+      error: 'foo',
+      filled: 'foo',
+      focused: 'foo',
+      required: 'foo',
+    }}
+  />
+);

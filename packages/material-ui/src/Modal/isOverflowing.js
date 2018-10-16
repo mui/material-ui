@@ -1,12 +1,12 @@
 import isWindow from 'dom-helpers/query/isWindow';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
 export function isBody(node) {
   return node && node.tagName.toLowerCase() === 'body';
 }
 
-// Do we have a scroll bar?
+// Do we have a vertical scroll bar?
 export default function isOverflowing(container) {
   const doc = ownerDocument(container);
   const win = ownerWindow(doc);

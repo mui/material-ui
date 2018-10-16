@@ -24,7 +24,7 @@ function GridIntegration(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subheading" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom>
         Current width: {props.width}
       </Typography>
       <Grid container spacing={24}>
@@ -63,4 +63,7 @@ GridIntegration.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styles), withWidth())(GridIntegration);
+export default compose(
+  withStyles(styles),
+  withWidth(),
+)(GridIntegration);

@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
 import Menu from '../Menu';
+import Portal from '../Portal';
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
@@ -151,7 +152,7 @@ describe('<SelectInput />', () => {
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.state().open, true);
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       portalLayer.querySelectorAll('li')[1].click();
@@ -174,6 +175,21 @@ describe('<SelectInput />', () => {
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
+    it('should pass "name" as part of the event.target for onBlur', () => {
+      const handleBlur = spy();
+      wrapper.setProps({ onBlur: handleBlur, name: 'blur-testing' });
+
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(instance.ignoreNextBlur, true);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 0);
+      assert.strictEqual(instance.ignoreNextBlur, false);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 1);
+      assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
+    });
+
     ['space', 'up', 'down'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
         wrapper
@@ -189,7 +205,7 @@ describe('<SelectInput />', () => {
       assert.strictEqual(wrapper.state().open, true);
 
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
@@ -243,16 +259,20 @@ describe('<SelectInput />', () => {
   describe('prop: autoWidth', () => {
     it('should take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} />);
-      wrapper.instance().displayNode = { clientWidth: 14 };
-      wrapper.setProps({});
+      const instance = wrapper.instance();
+      instance.displayRef = { clientWidth: 14 };
+      instance.update({ open: true });
+      wrapper.update();
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
     });
 
     it('should not take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} autoWidth />);
-      wrapper.instance().displayNode = { clientWidth: 14 };
-      wrapper.setProps({});
-      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, undefined);
+      const instance = wrapper.instance();
+      instance.displayRef = { clientWidth: 14 };
+      instance.update({ open: true });
+      wrapper.update();
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, null);
     });
   });
 
@@ -302,7 +322,7 @@ describe('<SelectInput />', () => {
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
         const portalLayer = wrapper
-          .find('Portal')
+          .find(Portal)
           .instance()
           .getMountNode();
 
@@ -325,6 +345,28 @@ describe('<SelectInput />', () => {
         mount(<SelectInput {...defaultProps} autoFocus />);
         assert.strictEqual(document.activeElement.className, `${defaultProps.classes.select}`);
       });
+    });
+  });
+
+  describe('prop: inputRef', () => {
+    it('should be able to return the input node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<SelectInput {...defaultProps} inputRef={ref} />);
+      assert.strictEqual(ref.current.node.tagName, 'INPUT');
+    });
+
+    it('should be able to return the input focus proxy function', () => {
+      const ref = React.createRef();
+      mount(<SelectInput {...defaultProps} inputRef={ref} />);
+      assert.strictEqual(typeof ref.current.focus, 'function');
+    });
+
+    it('should be able to hit proxy function', () => {
+      const ref = React.createRef();
+      const onFocus = spy();
+      mount(<SelectInput {...defaultProps} inputRef={ref} onFocus={onFocus} />);
+      ref.current.focus();
+      assert.strictEqual(onFocus.called, true);
     });
   });
 });

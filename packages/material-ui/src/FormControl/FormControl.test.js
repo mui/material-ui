@@ -1,5 +1,4 @@
 import React from 'react';
-import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Input from '../Input';
@@ -223,38 +222,23 @@ describe('<FormControl />', () => {
 
       describe('handleFocus', () => {
         it('should set the focused state', () => {
-          assert.strictEqual(wrapper.state('focused'), false);
+          assert.strictEqual(wrapper.state().focused, false);
           muiFormControlContext.onFocus();
-          assert.strictEqual(wrapper.state('focused'), true);
+          assert.strictEqual(wrapper.state().focused, true);
           muiFormControlContext.onFocus();
-          assert.strictEqual(wrapper.state('focused'), true);
-        });
-
-        it('should be able to use a onFocus property', () => {
-          const handleFocus = spy();
-          wrapper.setProps({ onFocus: handleFocus });
-          muiFormControlContext.onFocus();
-          assert.strictEqual(handleFocus.callCount, 1);
+          assert.strictEqual(wrapper.state().focused, true);
         });
       });
 
       describe('handleBlur', () => {
         it('should clear the focused state', () => {
-          assert.strictEqual(wrapper.state('focused'), false);
+          assert.strictEqual(wrapper.state().focused, false);
           muiFormControlContext.onFocus();
-          assert.strictEqual(wrapper.state('focused'), true);
+          assert.strictEqual(wrapper.state().focused, true);
           muiFormControlContext.onBlur();
-          assert.strictEqual(wrapper.state('focused'), false);
+          assert.strictEqual(wrapper.state().focused, false);
           muiFormControlContext.onBlur();
-          assert.strictEqual(wrapper.state('focused'), false);
-        });
-
-        it('should be able to use a onBlur property', () => {
-          const handleBlur = spy();
-          wrapper.setProps({ onBlur: handleBlur });
-          muiFormControlContext.onFocus();
-          muiFormControlContext.onBlur({});
-          assert.strictEqual(handleBlur.callCount, 1);
+          assert.strictEqual(wrapper.state().focused, false);
         });
       });
     });

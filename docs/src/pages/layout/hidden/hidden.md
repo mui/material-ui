@@ -1,13 +1,16 @@
 ---
+title: Hidden React component
 components: Hidden
 ---
 
 # Hidden
 
+<p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
+
 All elements are visible unless **they are explicitly hidden**.
-To ease integration with our [responsive breakpoints](/layout/basics),
+To ease integration with our [responsive breakpoints](/layout/basics/),
 this component can be used to hide any content,
-or you can use it in conjunction with our [`Grid`](/layout/grid) component.
+or you can use it in conjunction with our [`Grid`](/layout/grid/) component.
 
 ## How it works
 
@@ -29,7 +32,7 @@ mdDown      |                     hide | show
 
 ### js
 
-By default, the `js` implementation is used, responsively hiding content based on using the `withWidth()` higher-order component that watches screen size.
+By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/layout/breakpoints/#withwidth-) higher-order component that watches screen size.
 This has the benefit of not rendering any content at all unless the breakpoint is met.
 
 ### css

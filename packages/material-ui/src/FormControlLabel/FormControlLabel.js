@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -16,12 +17,20 @@ export const styles = theme => ({
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     marginLeft: -14,
-    marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
+    marginRight: 16, // used for row presentation of radio/checkbox
     '&$disabled': {
       cursor: 'default',
     },
   },
+  /* Styles applied to the root element if `labelPlacement="start"`. */
+  labelPlacementStart: {
+    flexDirection: 'row-reverse',
+    marginLeft: 16, // used for row presentation of radio/checkbox
+    marginRight: -14,
+  },
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the label's Typography component. */
   label: {
     '&$disabled': {
       color: theme.palette.text.disabled,
@@ -42,45 +51,44 @@ function FormControlLabel(props, context) {
     disabled: disabledProp,
     inputRef,
     label,
+    labelPlacement,
     name,
     onChange,
     value,
     ...other
   } = props;
-
   const { muiFormControl } = context;
+
   let disabled = disabledProp;
-
-  if (typeof control.props.disabled !== 'undefined') {
-    if (typeof disabled === 'undefined') {
-      disabled = control.props.disabled;
-    }
+  if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {
+    disabled = control.props.disabled;
+  }
+  if (typeof disabled === 'undefined' && muiFormControl) {
+    disabled = muiFormControl.disabled;
   }
 
-  if (muiFormControl) {
-    if (typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
+  const controlProps = {
+    disabled,
+  };
+  ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach(key => {
+    if (typeof control.props[key] === 'undefined' && typeof props[key] !== 'undefined') {
+      controlProps[key] = props[key];
     }
-  }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.disabled]: disabled,
-    },
-    classNameProp,
-  );
+  });
 
   return (
-    <label className={className} {...other}>
-      {React.cloneElement(control, {
-        disabled,
-        checked: typeof control.props.checked === 'undefined' ? checked : control.props.checked,
-        name: control.props.name || name,
-        onChange: control.props.onChange || onChange,
-        value: control.props.value || value,
-        inputRef: control.props.inputRef || inputRef,
-      })}
+    <label
+      className={classNames(
+        classes.root,
+        {
+          [classes.labelPlacementStart]: labelPlacement === 'start',
+          [classes.disabled]: disabled,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
+      {React.cloneElement(control, controlProps)}
       <Typography
         component="span"
         className={classNames(classes.label, { [classes.disabled]: disabled })}
@@ -116,11 +124,15 @@ FormControlLabel.propTypes = {
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The text to be used in an enclosing label element.
    */
   label: PropTypes.node,
+  /**
+   * The position of the label.
+   */
+  labelPlacement: PropTypes.oneOf(['end', 'start']),
   /*
    * @ignore
    */
@@ -137,6 +149,10 @@ FormControlLabel.propTypes = {
    * The value of the component.
    */
   value: PropTypes.string,
+};
+
+FormControlLabel.defaultProps = {
+  labelPlacement: 'end',
 };
 
 FormControlLabel.contextTypes = {

@@ -3,25 +3,29 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
     margin: 0,
     padding: 0,
     position: 'relative',
   },
+  /* Styles applied to the root element if `disablePadding={false}`. */
   padding: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingTop: 8,
+    paddingBottom: 8,
   },
+  /* Styles applied to the root element if `dense={true}` & `disablePadding={false}`. */
   dense: {
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
+    paddingTop: 4,
+    paddingBottom: 4,
   },
+  /* Styles applied to the root element if a `subheader` is provided. */
   subheader: {
     paddingTop: 0,
   },
-});
+};
 
 class List extends React.Component {
   getChildContext() {
@@ -78,7 +82,7 @@ List.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the

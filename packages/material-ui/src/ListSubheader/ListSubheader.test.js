@@ -35,7 +35,7 @@ describe('<ListSubheader />', () => {
 
   it('should display inset class', () => {
     const wrapper = shallow(<ListSubheader inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -48,6 +48,18 @@ describe('<ListSubheader />', () => {
     it('should not display sticky class', () => {
       const wrapper = shallow(<ListSubheader disableSticky />);
       assert.strictEqual(wrapper.hasClass(classes.sticky), false);
+    });
+  });
+
+  describe('prop: disableGutters', () => {
+    it('should not display gutters class', () => {
+      const wrapper = shallow(<ListSubheader disableGutters />);
+      assert.strictEqual(wrapper.hasClass(classes.gutters), false);
+    });
+
+    it('should display gutters class', () => {
+      const wrapper = shallow(<ListSubheader />);
+      assert.strictEqual(wrapper.hasClass(classes.gutters), true);
     });
   });
 });

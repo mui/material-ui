@@ -6,17 +6,19 @@ import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Button'; // So we don't have any override priority issue.
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     alignItems: 'center',
     boxSizing: 'border-box',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
+    padding: '8px 4px',
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 1.5}px`,
+      padding: '8px 12px',
     },
   },
+  /* Styles applied to the children. */
   action: {
-    margin: `0 ${theme.spacing.unit / 2}px`,
+    margin: '0 4px',
   },
 });
 

@@ -10,13 +10,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
-import LightbulbOutline from '@material-ui/icons/LightbulbOutline';
-import LightbublFull from '@material-ui/docs/svgIcons/LightbublFull';
+import ColorsIcon from '@material-ui/icons/InvertColors';
+import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
+import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
-import Github from '@material-ui/docs/svgIcons/GitHub';
+import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -38,9 +41,6 @@ Router.onRouteChangeError = () => {
 const styles = theme => ({
   root: {
     display: 'flex',
-    alignItems: 'stretch',
-    minHeight: '100vh',
-    width: '100%',
   },
   grow: {
     flex: '1 1 auto',
@@ -60,12 +60,12 @@ const styles = theme => ({
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 250px)',
+      width: 'calc(100% - 240px)',
     },
   },
   drawer: {
     [theme.breakpoints.up('lg')]: {
-      width: 250,
+      width: 240,
     },
   },
   navIconHide: {
@@ -132,41 +132,48 @@ class AppFrame extends React.Component {
     return (
       <div className={classes.root}>
         <NProgressBar />
+        <CssBaseline />
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={navIconClassName}
             >
               <MenuIcon />
             </IconButton>
             {title !== null && (
-              <Typography className={classes.title} variant="title" color="inherit" noWrap>
+              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                 {title}
               </Typography>
             )}
             <div className={classes.grow} />
             <AppSearch />
-            <Tooltip id="appbar-theme" title="Toggle light/dark theme" enterDelay={300}>
+            <Tooltip title="Edit docs colors" enterDelay={300}>
+              <IconButton
+                color="inherit"
+                aria-label="Edit docs colors"
+                component={Link}
+                href="/style/color/#color-tool"
+              >
+                <ColorsIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 color="inherit"
                 onClick={this.handleTogglePaletteType}
-                aria-labelledby="appbar-theme"
+                aria-label="Toggle light/dark theme"
               >
-                {uiTheme.paletteType === 'light' ? <LightbulbOutline /> : <LightbublFull />}
+                {uiTheme.paletteType === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
               </IconButton>
             </Tooltip>
-            <Tooltip
-              id="appbar-direction"
-              title="Toggle right-to-left/left-to-right"
-              enterDelay={300}
-            >
+            <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
               <IconButton
                 color="inherit"
                 onClick={this.handleToggleDirection}
-                aria-labelledby="appbar-direction"
+                aria-label="Toggle right-to-left/left-to-right"
               >
                 {uiTheme.direction === 'rtl' ? (
                   <FormatTextdirectionLToR />
@@ -175,14 +182,14 @@ class AppFrame extends React.Component {
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip id="appbar-github" title="GitHub repository" enterDelay={300}>
+            <Tooltip title="GitHub repository" enterDelay={300}>
               <IconButton
                 component="a"
                 color="inherit"
                 href="https://github.com/mui-org/material-ui"
-                aria-labelledby="appbar-github"
+                aria-label="GitHub repository"
               >
-                <Github />
+                <GithubIcon />
               </IconButton>
             </Tooltip>
           </Toolbar>
@@ -215,9 +222,7 @@ AppFrame.contextTypes = {
 };
 
 export default compose(
-  withStyles(styles, {
-    name: 'AppFrame',
-  }),
+  withStyles(styles),
   connect(state => ({
     uiTheme: state.theme,
   })),

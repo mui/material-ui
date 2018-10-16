@@ -27,29 +27,15 @@ const styles = theme => ({
   },
 });
 
-class TestViewer extends React.Component {
-  getChildContext() {
-    return {
-      url: {
-        pathname: '/',
-      },
-    };
-  }
+function TestViewer(props) {
+  const { children, classes } = props;
 
-  render() {
-    const { children, classes } = this.props;
-
-    return <div className={classes.root}>{children}</div>;
-  }
+  return <div className={classes.root}>{children}</div>;
 }
 
 TestViewer.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-};
-
-TestViewer.childContextTypes = {
-  url: PropTypes.object,
 };
 
 export default withStyles(styles)(TestViewer);

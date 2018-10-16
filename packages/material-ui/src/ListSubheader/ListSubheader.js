@@ -5,7 +5,8 @@ import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
-  root: theme.mixins.gutters({
+  /* Styles applied to the root element. */
+  root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
     listStyle: 'none',
@@ -13,16 +14,22 @@ export const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(14),
-  }),
+  },
+  /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     color: theme.palette.primary.main,
   },
+  /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
   },
+  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  gutters: theme.mixins.gutters(),
+  /* Styles applied to the root element if `inset={true}`. */
   inset: {
-    paddingLeft: theme.spacing.unit * 9,
+    paddingLeft: 72,
   },
+  /* Styles applied to the root element if `disableSticky={false}`. */
   sticky: {
     position: 'sticky',
     top: 0,
@@ -32,7 +39,16 @@ export const styles = theme => ({
 });
 
 function ListSubheader(props) {
-  const { classes, className, color, component: Component, disableSticky, inset, ...other } = props;
+  const {
+    classes,
+    className,
+    color,
+    component: Component,
+    disableGutters,
+    disableSticky,
+    inset,
+    ...other
+  } = props;
 
   return (
     <Component
@@ -42,6 +58,7 @@ function ListSubheader(props) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.inset]: inset,
           [classes.sticky]: !disableSticky,
+          [classes.gutters]: !disableGutters,
         },
         className,
       )}
@@ -72,7 +89,11 @@ ListSubheader.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
+   * If `true`, the List Subheader will not have gutters.
+   */
+  disableGutters: PropTypes.bool,
   /**
    * If `true`, the List Subheader will not stick to the top during scroll.
    */
@@ -86,6 +107,7 @@ ListSubheader.propTypes = {
 ListSubheader.defaultProps = {
   color: 'default',
   component: 'li',
+  disableGutters: false,
   disableSticky: false,
   inset: false,
 };

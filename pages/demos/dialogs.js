@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/dialogs/dialogs.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./dialogs${props.lang}.md`)}
       demos={{
         'pages/demos/dialogs/SimpleDialog.js': {
           js: require('docs/src/pages/demos/dialogs/SimpleDialog').default,
@@ -55,6 +56,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ResponsiveDialog'), 'utf8')
+`,
+        },
+        'pages/demos/dialogs/ScrollDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/ScrollDialog').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ScrollDialog'), 'utf8')
 `,
         },
       }}

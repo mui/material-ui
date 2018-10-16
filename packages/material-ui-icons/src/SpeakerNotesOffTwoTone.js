@@ -1,0 +1,6 @@
+import React from 'react';
+import createSvgIcon from './utils/createSvgIcon';
+
+export default createSvgIcon(
+  <React.Fragment><path fill="none" d="M0 0h24v24H0V0z" /><path d="M6 11V9L4 7v10.17L5.17 16H13l-5-5H6zm2 3H6v-2h2v2zM20 4H6.66L10 7.34V6h8v2h-7.34l1 1H18v2h-4.34l5 5H20z" opacity=".3" /><path d="M20 4v12h-1.34l1.91 1.91C21.39 17.66 22 16.9 22 16V4c0-1.1-.9-2-2-2H4.66l2 2H20zM6 12h2v2H6z" /><path d="M18 11V9h-6.34l2 2zM18 8V6h-8v1.34l.66.66zM1.41 1.59L0 3l2 2.01V22l4-4h9l5.73 5.73 1.41-1.41L1.41 1.59zM5.17 16L4 17.17V7l2 2v2h2l5 5H5.17z" /></React.Fragment>
+, 'SpeakerNotesOffTwoTone');

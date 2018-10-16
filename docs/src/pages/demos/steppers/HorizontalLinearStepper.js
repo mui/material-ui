@@ -38,10 +38,6 @@ function getStepContent(step) {
 }
 
 class HorizontalLinearStepper extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object,
-  };
-
   state = {
     activeStep: 0,
     skipped: new Set(),
@@ -50,10 +46,6 @@ class HorizontalLinearStepper extends React.Component {
   isStepOptional = step => {
     return step === 1;
   };
-
-  isStepSkipped(step) {
-    return this.state.skipped.has(step);
-  }
 
   handleNext = () => {
     const { activeStep } = this.state;
@@ -69,10 +61,9 @@ class HorizontalLinearStepper extends React.Component {
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleSkip = () => {
@@ -82,11 +73,14 @@ class HorizontalLinearStepper extends React.Component {
       // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
-    const skipped = new Set(this.state.skipped.values());
-    skipped.add(activeStep);
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-      skipped,
+
+    this.setState(state => {
+      const skipped = new Set(state.skipped.values());
+      skipped.add(activeStep);
+      return {
+        activeStep: state.activeStep + 1,
+        skipped,
+      };
     });
   };
 
@@ -95,6 +89,10 @@ class HorizontalLinearStepper extends React.Component {
       activeStep: 0,
     });
   };
+
+  isStepSkipped(step) {
+    return this.state.skipped.has(step);
+  }
 
   render() {
     const { classes } = this.props;
@@ -143,7 +141,7 @@ class HorizontalLinearStepper extends React.Component {
                 </Button>
                 {this.isStepOptional(activeStep) && (
                   <Button
-                    variant="raised"
+                    variant="contained"
                     color="primary"
                     onClick={this.handleSkip}
                     className={classes.button}
@@ -152,7 +150,7 @@ class HorizontalLinearStepper extends React.Component {
                   </Button>
                 )}
                 <Button
-                  variant="raised"
+                  variant="contained"
                   color="primary"
                   onClick={this.handleNext}
                   className={classes.button}
@@ -167,5 +165,9 @@ class HorizontalLinearStepper extends React.Component {
     );
   }
 }
+
+HorizontalLinearStepper.propTypes = {
+  classes: PropTypes.object,
+};
 
 export default withStyles(styles)(HorizontalLinearStepper);

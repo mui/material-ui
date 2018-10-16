@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/menus/menus.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./menus${props.lang}.md`)}
       demos={{
         'pages/demos/menus/SimpleMenu.js': {
           js: require('docs/src/pages/demos/menus/SimpleMenu').default,
@@ -48,6 +49,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/FadeMenu'), 'utf8')
+`,
+        },
+        'pages/demos/menus/RenderPropsMenu.js': {
+          js: require('docs/src/pages/demos/menus/RenderPropsMenu').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/RenderPropsMenu'), 'utf8')
 `,
         },
       }}

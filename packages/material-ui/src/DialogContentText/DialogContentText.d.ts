@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { StandardProps } from '..';
+import { TypographyProps } from '../Typography';
 
 export interface DialogContentTextProps
-  extends StandardProps<React.HTMLAttributes<HTMLParagraphElement>, DialogContentTextClassKey> {}
+  extends StandardProps<TypographyProps, DialogContentTextClassKey> {}
 
 export type DialogContentTextClassKey = 'root';
 

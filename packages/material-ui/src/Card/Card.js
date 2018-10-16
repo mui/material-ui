@@ -7,6 +7,7 @@ import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     overflow: 'hidden',
   },
@@ -16,7 +17,7 @@ function Card(props) {
   const { classes, className, raised, ...other } = props;
 
   return (
-    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 2} {...other} />
+    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 1} {...other} />
   );
 }
 

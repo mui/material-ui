@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
@@ -26,6 +27,7 @@ export const styles = theme => {
   };
 
   return {
+    /* Styles applied to the root element. */
     root: {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
@@ -58,8 +60,9 @@ export const styles = theme => {
         },
       },
     },
+    /* Styles applied to the root element if `expanded={true}`. */
     expanded: {
-      margin: `${theme.spacing.unit * 2}px 0`,
+      margin: '16px 0',
       '&:first-child': {
         marginTop: 0,
       },
@@ -70,6 +73,7 @@ export const styles = theme => {
         opacity: 0,
       },
     },
+    /* Styles applied to the root element if `disabled={true}`. */
     disabled: {
       backgroundColor: theme.palette.action.disabledBackground,
     },
@@ -77,19 +81,15 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
+  constructor(props) {
+    super();
     this.isControlled = props.expanded != null;
+    this.state = {};
     if (!this.isControlled) {
       // not controlled, use internal state
       this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
     }
   }
-
-  state = {};
-
-  isControlled = null;
 
   handleChange = event => {
     const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
@@ -132,6 +132,14 @@ class ExpansionPanel extends React.Component {
       if (!React.isValidElement(child)) {
         return null;
       }
+
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the ExpansionPanel component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
 
       if (isMuiElement(child, ['ExpansionPanelSummary'])) {
         summary = React.cloneElement(child, {
@@ -177,7 +185,7 @@ ExpansionPanel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the `Collapse` element.
+   * Properties applied to the [`Collapse`](/api/collapse/) element.
    */
   CollapseProps: PropTypes.object,
   /**

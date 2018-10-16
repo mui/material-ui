@@ -3,7 +3,7 @@
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import * as reactDocgen from 'react-docgen';
+import { parse as docgenParse } from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
@@ -39,7 +39,39 @@ if (args.length < 4) {
 
 const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme();
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
+
+const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
+
+function getInheritance(src) {
+  const inheritedComponent = src.match(inheritedComponentRegexp);
+
+  if (!inheritedComponent) {
+    return null;
+  }
+
+  const component = inheritedComponent[1];
+  let pathname;
+
+  switch (component) {
+    case 'Transition':
+      pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
+      break;
+
+    case 'EventListener':
+      pathname = 'https://github.com/oliviertassinari/react-event-listener';
+      break;
+
+    default:
+      pathname = `/api/${kebabCase(component)}`;
+      break;
+  }
+
+  return {
+    component,
+    pathname,
+  };
+}
 
 function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
@@ -51,9 +83,11 @@ function buildDocs(options) {
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
+  const name = path.parse(componentObject.filename).name;
   const styles = {
     classes: [],
     name: null,
+    descriptions: {},
   };
 
   if (component.styles && component.default.options) {
@@ -62,27 +96,52 @@ function buildDocs(options) {
       className => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;
+
+    let styleSrc = src;
+    // Exception for Select where the classes are imported from NativeSelect
+    if (name === 'Select') {
+      styleSrc = readFileSync(
+        componentObject.filename.replace('Select/Select', 'NativeSelect/NativeSelect'),
+        'utf8',
+      );
+    }
+
+    /**
+     * Collect classes comments from the source
+     */
+    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
+    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
+    // Extract the styles section from the source
+    const stylesSrc = stylesRegexp.exec(styleSrc);
+    if (stylesSrc) {
+      // Extract individual classes and descriptions
+      stylesSrc[0].replace(styleRegexp, (match, desc, key) => {
+        styles.descriptions[key] = desc;
+      });
+    }
   }
 
   let reactAPI;
   try {
-    reactAPI = reactDocgen.parse(src);
+    reactAPI = docgenParse(src);
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;
   }
 
-  reactAPI.name = path.parse(componentObject.filename).name;
+  reactAPI.name = name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Select') {
+  // if (reactAPI.name !== 'Button') {
   //   return;
   // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
+  reactAPI.inheritance = getInheritance(src);
+
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);
@@ -113,7 +172,7 @@ export default withRoot(Page);
 `,
     );
 
-    console.log('Built markdown docs for', componentObject.filename);
+    console.log('Built markdown docs for', reactAPI.name);
   });
 }
 

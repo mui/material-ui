@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
@@ -29,10 +27,12 @@ describe('<Toolbar />', () => {
   it('should disable the gutters', () => {
     const wrapper = shallow(<Toolbar disableGutters>foo</Toolbar>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.hasClass(classes.gutters),
-      false,
-      'should not have the gutters class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.gutters), false);
+  });
+
+  it('should condense itself', () => {
+    const wrapper = shallow(<Toolbar variant="dense">foo</Toolbar>);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.dense), true);
   });
 });

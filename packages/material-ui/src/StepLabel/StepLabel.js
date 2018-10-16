@@ -6,6 +6,7 @@ import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -16,13 +17,11 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
+  /* Styles applied to the root element if `orientation="horiizontal". */
   horizontal: {},
+  /* Styles applied to the root element if `orientation="vertical". */
   vertical: {},
-  active: {},
-  completed: {},
-  alternativeLabel: {},
-  error: {},
-  disabled: {},
+  /* Styles applied to the `Typography` component which wraps `children`. */
   label: {
     color: theme.palette.text.secondary,
     '&$active': {
@@ -35,18 +34,31 @@ export const styles = theme => ({
     },
     '&$alternativeLabel': {
       textAlign: 'center',
-      marginTop: theme.spacing.unit * 2,
+      marginTop: 16,
     },
     '&$error': {
       color: theme.palette.error.main,
     },
   },
+  /* Styles applied to the `Typography` component if `active={true}`. */
+  active: {},
+  /* Styles applied to the `Typography` component if `completed={true}`. */
+  completed: {},
+  /* Styles applied to the root element and `Typography` component if `error={true}`. */
+  error: {},
+  /* Styles applied to the root element and `Typography` component if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to the `icon` container element. */
   iconContainer: {
-    paddingRight: theme.spacing.unit,
+    display: 'flex',
+    paddingRight: 8,
     '&$alternativeLabel': {
       paddingRight: 0,
     },
   },
+  /* Styles applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
+  alternativeLabel: {},
+  /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {
     width: '100%',
   },
@@ -66,9 +78,16 @@ function StepLabel(props) {
     last,
     optional,
     orientation,
+    StepIconComponent: StepIconComponentProp,
     StepIconProps,
     ...other
   } = props;
+
+  let StepIconComponent = StepIconComponentProp;
+
+  if (icon && !StepIconComponent) {
+    StepIconComponent = StepIcon;
+  }
 
   return (
     <span
@@ -84,13 +103,13 @@ function StepLabel(props) {
       )}
       {...other}
     >
-      {icon && (
+      {icon || StepIconComponent ? (
         <span
           className={classNames(classes.iconContainer, {
             [classes.alternativeLabel]: alternativeLabel,
           })}
         >
-          <StepIcon
+          <StepIconComponent
             completed={completed}
             active={active}
             error={error}
@@ -98,10 +117,9 @@ function StepLabel(props) {
             {...StepIconProps}
           />
         </span>
-      )}
+      ) : null}
       <span className={classes.labelContainer}>
         <Typography
-          variant="body1"
           component="span"
           className={classNames(classes.label, {
             [classes.alternativeLabel]: alternativeLabel,
@@ -173,7 +191,11 @@ StepLabel.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * Properties applied to the `StepIcon` element.
+   * The component to render in place of the [`StepIcon`](/api/step-icon/).
+   */
+  StepIconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
+   * Properties applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
 };

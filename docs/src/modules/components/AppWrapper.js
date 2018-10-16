@@ -4,12 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import AppFrame from 'docs/src/modules/components/AppFrame';
-import GoogleTag from 'docs/src/modules/components/GoogleTag';
+import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -28,29 +26,6 @@ function uiThemeSideEffect(uiTheme) {
 }
 
 class AppWrapper extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.pageContext === 'undefined') {
-      return {
-        prevProps: nextProps,
-        pageContext: nextProps.pageContext || getPageContext(),
-      };
-    }
-
-    const { prevProps } = prevState;
-
-    if (
-      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
-      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
-    ) {
-      return {
-        prevProps: nextProps,
-        pageContext: updatePageContext(nextProps.uiTheme),
-      };
-    }
-
-    return null;
-  }
-
   state = {};
 
   componentDidMount() {
@@ -75,6 +50,30 @@ class AppWrapper extends React.Component {
     uiThemeSideEffect(this.props.uiTheme);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.pageContext === 'undefined') {
+      return {
+        prevProps: nextProps,
+        pageContext: nextProps.pageContext || getPageContext(),
+      };
+    }
+
+    const { prevProps } = prevState;
+
+    if (
+      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
+      nextProps.uiTheme.paletteColors !== prevProps.uiTheme.paletteColors ||
+      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
+    ) {
+      return {
+        prevProps: nextProps,
+        pageContext: updatePageContext(nextProps.uiTheme),
+      };
+    }
+
+    return null;
+  }
+
   render() {
     const { children } = this.props;
     const { pageContext } = this.state;
@@ -86,9 +85,8 @@ class AppWrapper extends React.Component {
         generateClassName={pageContext.generateClassName}
       >
         <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
-          <CssBaseline />
-          <AppFrame>{children}</AppFrame>
-          <GoogleTag />
+          {children}
+          <GoogleAnalytics />
         </MuiThemeProvider>
       </JssProvider>
     );
@@ -97,6 +95,7 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   uiTheme: PropTypes.object.isRequired,
 };

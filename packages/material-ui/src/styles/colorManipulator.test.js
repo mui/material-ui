@@ -3,6 +3,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
   recomposeColor,
   convertHexToRGB,
+  rgbToHex,
   darken,
   decomposeColor,
   emphasize,
@@ -70,6 +71,16 @@ describe('utils/colorManipulator', () => {
 
     it('converts a long hex color to an rgb color` ', () => {
       assert.strictEqual(convertHexToRGB('#A94FD3'), 'rgb(169, 79, 211)');
+    });
+  });
+
+  describe('rgbToHex', () => {
+    it('converts an rgb color to a hex color` ', () => {
+      assert.strictEqual(rgbToHex('rgb(169, 79, 211)'), '#a94fd3');
+    });
+
+    it('passes a hex value through` ', () => {
+      assert.strictEqual(rgbToHex('#A94FD3'), '#A94FD3');
     });
   });
 

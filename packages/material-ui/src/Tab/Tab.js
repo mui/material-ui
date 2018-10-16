@@ -6,24 +6,30 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
+import unsupportedProp from '../utils/unsupportedProp';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
     maxWidth: 264,
     position: 'relative',
     minWidth: 72,
     padding: 0,
-    height: 48,
-    flex: 'none',
+    minHeight: 48,
+    flexShrink: 0,
     overflow: 'hidden',
+    whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
     },
   },
+  /* Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: {
-    height: 72,
+    minHeight: 72,
   },
+  /* Styles applied to the root element if `textColor="inherit"`. */
   textColorInherit: {
     color: 'inherit',
     opacity: 0.7,
@@ -34,6 +40,7 @@ export const styles = theme => ({
       opacity: 0.4,
     },
   },
+  /* Styles applied to the root element if `textColor="primary"`. */
   textColorPrimary: {
     color: theme.palette.text.secondary,
     '&$selected': {
@@ -43,6 +50,7 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
+  /* Styles applied to the root element if `textColor="secondary"`. */
   textColorSecondary: {
     color: theme.palette.text.secondary,
     '&$selected': {
@@ -52,11 +60,17 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
+  /* Styles applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: {},
+  /* Styles applied to the root element if `disabled={true}` (controlled by the Tabs component). */
   disabled: {},
+  /* Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
   fullWidth: {
+    flexShrink: 1,
     flexGrow: 1,
+    maxWidth: 'none',
   },
+  /* Styles applied to the `icon` and `label`'s wrapper element. */
   wrapper: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -64,23 +78,22 @@ export const styles = theme => ({
     width: '100%',
     flexDirection: 'column',
   },
+  /* Styles applied to the label container element if `label` is provided. */
   labelContainer: {
+    width: '100%', // Fix an IE 11 issue
+    boxSizing: 'border-box',
     paddingTop: 6,
     paddingBottom: 6,
     paddingLeft: 12,
     paddingRight: 12,
     [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing.unit * 3,
-      paddingRight: theme.spacing.unit * 3,
+      paddingLeft: 24,
+      paddingRight: 24,
     },
   },
-  label: {
-    fontSize: theme.typography.pxToRem(14),
-    whiteSpace: 'normal',
-    [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.pxToRem(13),
-    },
-  },
+  /* Styles applied to the label wrapper element if `label` is provided. */
+  label: {},
+  /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
   labelWrapped: {
     [theme.breakpoints.down('sm')]: {
       fontSize: theme.typography.pxToRem(12),
@@ -90,7 +103,7 @@ export const styles = theme => ({
 
 class Tab extends React.Component {
   state = {
-    wrappedText: false,
+    labelWrapped: false,
   };
 
   componentDidMount() {
@@ -98,7 +111,7 @@ class Tab extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.wrappedText === prevState.wrappedText) {
+    if (this.state.labelWrapped === prevState.labelWrapped) {
       /**
        * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
        * font size still only requires one line.  This check will prevent an infinite render loop
@@ -120,13 +133,11 @@ class Tab extends React.Component {
     }
   };
 
-  label = undefined;
-
   checkTextWrap = () => {
-    if (this.label) {
-      const wrappedText = this.label.getClientRects().length > 1;
-      if (this.state.wrappedText !== wrappedText) {
-        this.setState({ wrappedText });
+    if (this.labelRef) {
+      const labelWrapped = this.labelRef.getClientRects().length > 1;
+      if (this.state.labelWrapped !== labelWrapped) {
+        this.setState({ labelWrapped });
       }
     }
   };
@@ -154,10 +165,10 @@ class Tab extends React.Component {
         <span className={classes.labelContainer}>
           <span
             className={classNames(classes.label, {
-              [classes.labelWrapped]: this.state.wrappedText,
+              [classes.labelWrapped]: this.state.labelWrapped,
             })}
-            ref={node => {
-              this.label = node;
+            ref={ref => {
+              this.labelRef = ref;
             }}
           >
             {labelProp}
@@ -199,6 +210,11 @@ class Tab extends React.Component {
 }
 
 Tab.propTypes = {
+  /**
+   * This property isn't supported.
+   * Use the `component` property if you need to change the children structure.
+   */
+  children: unsupportedProp,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.

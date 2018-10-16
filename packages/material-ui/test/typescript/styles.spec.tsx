@@ -1,28 +1,29 @@
 import * as React from 'react';
 import {
+  createStyles,
   withStyles,
-  WithStyles,
   createMuiTheme,
   MuiThemeProvider,
   Theme,
   withTheme,
   StyleRules,
-} from '../../src/styles';
-import Button from '../../src/Button/Button';
-import { StyleRulesCallback, StyledComponentProps } from '../../src/styles/withStyles';
-import blue from '../../src/colors/blue';
-import { WithTheme } from '../../src/styles/withTheme';
-import { StandardProps } from '../../src';
-import { TypographyStyle } from '../../src/styles/createTypography';
+  StyleRulesCallback,
+  StyledComponentProps,
+  WithStyles,
+} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button/Button';
+import blue from '@material-ui/core/colors/blue';
+import { WithTheme } from '@material-ui/core/styles/withTheme';
+import { PropsOf, StandardProps } from '@material-ui/core';
+import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
-type ComponentClassNames = 'root';
-interface ComponentProps {
+interface ComponentProps extends WithStyles<typeof styles> {
   text: string;
 }
 
 // Example 1
-const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
+const styles = ({ palette, spacing }: Theme) => ({
   root: {
     padding: spacing.unit,
     backgroundColor: palette.background.default,
@@ -30,34 +31,32 @@ const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) => (
+const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<ComponentClassNames>> = ({
-  classes,
-  text,
-}) => <div className={classes.root}>{text}</div>;
+const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({ classes, text }) => (
+  <div className={classes.root}>{text}</div>
+);
 
 const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
 
 // Example 3
-const styleRule: StyleRules<ComponentClassNames> = {
+const styleRule = createStyles({
   root: {
     display: 'flex',
     alignItems: 'stretch',
     height: '100vh',
     width: '100%',
   },
-};
+});
 
-const ComponentWithChildren: React.SFC<WithStyles<ComponentClassNames>> = ({
-  classes,
-  children,
-}) => <div className={classes.root}>{children}</div>;
+const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({ classes, children }) => (
+  <div className={classes.root}>{children}</div>
+);
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -71,19 +70,21 @@ const stylesAsPojo = {
 
 const AnotherStyledSFC = withStyles({
   root: { backgroundColor: 'hotpink' },
-})(({ classes }) => <div className={classes.root}>Stylish!</div>);
+})(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
 // Overriding styles
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: blue,
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
     common: {
       white: '#ffffff',
     },
   },
   typography: {
-    display4: {
+    h1: {
       fontSize: 24,
     },
     fontSize: 18,
@@ -116,7 +117,7 @@ const theme = createMuiTheme({
         color: 'white',
         height: 48,
         padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
       },
     },
   },
@@ -161,26 +162,59 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}</div>);
+const ComponentWithTheme = withTheme()(({ theme }: WithTheme) => <div>{theme.spacing.unit}</div>);
 
 <ComponentWithTheme />;
 
 // withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<'root'>;
+type AllTheProps = WithTheme & WithStyles<typeof styles>;
 
-const AllTheComposition = withTheme()(
-  withStyles(styles)(({ theme, classes }: AllTheProps) => (
-    <div className={classes.root}>{theme.palette.text.primary}</div>
-  )),
-);
+const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => (
+  <div className={classes.root}>{theme.palette.text.primary}</div>
+));
+
+// missing prop theme
+<StyledComponent />; // $ExpectError
+
+const AllTheComposition = withTheme()(StyledComponent);
 
 <AllTheComposition />;
 
+{
+  const Foo = withTheme()(
+    class extends React.Component<WithTheme> {
+      render() {
+        return null;
+      }
+    },
+  );
+
+  <Foo />;
+}
+
+declare const themed: boolean;
+{
+  // Test that withTheme: true guarantees the presence of the theme
+  const Foo = withStyles({}, { withTheme: true })(
+    class extends React.Component<WithTheme> {
+      render() {
+        return <div style={{ margin: this.props.theme.spacing.unit }} />;
+      }
+    },
+  );
+  <Foo />;
+
+  const Bar = withStyles({}, { withTheme: true })(({ theme }: WithStyles<string, true>) => (
+    <div style={{ margin: theme.spacing.unit }} />
+  ));
+  <Bar />;
+}
+
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
-//@withStyles(styles)
+// @withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<ComponentProps & WithStyles<'root'>> {
+  class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
     render() {
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
@@ -192,23 +226,53 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles<'listItem' | 'guttered'>(theme => ({
-  guttered: theme.mixins.gutters({
-    '&:hover': {
-      textDecoration: 'none',
+withStyles(theme =>
+  createStyles({
+    guttered: theme.mixins.gutters({
+      '&:hover': {
+        textDecoration: 'none',
+      },
+    }),
+    listItem: {
+      '&:hover $listItemIcon': {
+        visibility: 'inherit',
+      },
     },
   }),
-  listItem: {
-    '&:hover $listItemIcon': {
-      visibility: 'inherit',
-    },
-  },
-}));
+);
 
 {
-  type ListItemContentClassKey = 'root' | 'iiiinset' | 'row';
-  const styles = withStyles<ListItemContentClassKey>(
-    theme => ({
+  // allow top level media queries
+  // https://github.com/mui-org/material-ui/issues/12277
+
+  // typescript thinks `content` is the CSS property not a classname
+  const ambiguousStyles = createStyles({
+    content: {
+      minHeight: '100vh',
+    },
+    '@media (min-width: 960px)': {
+      // $ExpectError
+      content: {
+        display: 'flex',
+      },
+    },
+  });
+
+  const styles = createStyles({
+    contentClass: {
+      minHeight: '100vh',
+    },
+    '@media (min-width: 960px)': {
+      contentClass: {
+        display: 'flex',
+      },
+    },
+  });
+}
+
+{
+  const styles = (theme: Theme) =>
+    createStyles({
       // Styled similar to ListItemText
       root: {
         '&:first-child': {
@@ -228,32 +292,30 @@ withStyles<'listItem' | 'guttered'>(theme => ({
         display: 'flex',
         flexDirection: 'row',
       },
-    }),
-    { name: 'ui-ListItemContent' },
-  );
+    });
 
-  interface ListItemContentProps extends StyledComponentProps<ListItemContentClassKey> {
+  interface ListItemContentProps extends WithStyles<typeof styles> {
+    children?: React.ReactElement<any>;
     inset?: boolean;
     row?: boolean;
   }
 
-  const ListItemContent = styles<ListItemContentProps>(props => {
-    const { children, classes, inset, row } = props;
-    return (
-      <div className="foo" color="textSecondary">
+  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })(
+    ({ children, classes, inset, row }: ListItemContentProps) => (
+      <div className={classes.root} color="textSecondary">
         {children}
       </div>
-    );
-  });
+    ),
+  );
 }
 
 {
-  interface FooProps extends StyledComponentProps<'x' | 'y'> {
+  interface FooProps extends WithStyles<'x' | 'y'> {
     a: number;
     b: boolean;
   }
 
-  const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);
+  const ListItemContent = withStyles({ x: {}, y: {} })((props: FooProps) => <div />);
 }
 
 {
@@ -261,30 +323,26 @@ withStyles<'listItem' | 'guttered'>(theme => ({
   // The real test here is with "strictFunctionTypes": false,
   // but we don't have a way currently to test under varying
   // TypeScript configurations.
-  interface IStyle {
-    content: any;
-  }
 
-  interface IComponentProps {
+  interface ComponentProps extends WithStyles<typeof styles> {
     caption: string;
   }
 
-  type ComponentProps = IComponentProps & WithStyles<'content'>;
-
-  const decorate = withStyles((theme): IStyle => ({
-    content: {
-      margin: 4,
-    },
-  }));
+  const styles = (theme: Theme) =>
+    createStyles({
+      content: {
+        margin: 4,
+      },
+    });
 
   const Component = (props: ComponentProps) => {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
   };
 
-  const StyledComponent = decorate(Component);
+  const StyledComponent = withStyles(styles)(Component);
 
   class App extends React.Component {
-    public render() {
+    render() {
       return (
         <div className="App">
           <StyledComponent caption="Developer" />
@@ -298,33 +356,96 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
 {
   // https://github.com/mui-org/material-ui/issues/11191
-  const decorate = withStyles<classList>(theme => ({
-    main: {},
-  }));
+  const styles = (theme: Theme) =>
+    createStyles({
+      main: {},
+    });
 
-  type classList = 'main';
-
-  interface IProps {
+  interface Props extends WithStyles<typeof styles> {
     someProp?: string;
   }
 
-  class SomeComponent extends React.PureComponent<IProps & WithStyles<classList>> {
+  class SomeComponent extends React.PureComponent<Props> {
     render() {
       return <div />;
     }
   }
 
-  const DecoratedSomeComponent = decorate(SomeComponent); // note that I don't specify a generic type here
+  const DecoratedSomeComponent = withStyles(styles)(SomeComponent);
 
   <DecoratedSomeComponent someProp="hello world" />;
 }
 
-{ // https://github.com/mui-org/material-ui/issues/11312
-  withStyles(styles, { name: "MyComponent", index: 0 })(() => <div/>);
+{
+  // https://github.com/mui-org/material-ui/issues/11312
+  withStyles(styles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
-{ // https://github.com/mui-org/material-ui/issues/11164
+{
+  // https://github.com/mui-org/material-ui/issues/11164
   const style: StyleRulesCallback = theme => ({
-    text: theme.typography.body2
+    text: theme.typography.body2,
   });
+}
+
+{
+  // can't provide own `classes` type
+  interface Props {
+    classes: number;
+  }
+
+  class Component extends React.Component<Props & WithStyles<typeof styles>> {}
+  // $ExpectError
+  const StyledComponent = withStyles(styles)(Component);
+
+  // implicit SFC
+  withStyles(styles)((props: Props) => null); // $ExpectError
+  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
+  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
+  withStyles(styles)(
+    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null, // $ExpectError
+  );
+
+  // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
+  // which is not helpful
+  const StatelessComponent: React.SFC<Props> = props => null;
+  const StatelessComponentWithStyles: React.SFC<Props & WithStyles<typeof styles>> = props => null;
+  withStyles(styles)(StatelessComponent); // $ExpectError
+  withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
+}
+
+{
+  // https://github.com/mui-org/material-ui/issues/12670
+  interface Props {
+    nonDefaulted: string;
+    defaulted: number;
+  }
+
+  class MyButton extends React.Component<Props & WithStyles<typeof styles>> {
+    static defaultProps = {
+      defaulted: 0,
+    };
+
+    render() {
+      const { classes, nonDefaulted, defaulted } = this.props;
+      return (
+        <Button className={classes.btn}>
+          {defaulted}, {nonDefaulted}
+        </Button>
+      );
+    }
+  }
+
+  const styles = () =>
+    createStyles({
+      btn: {
+        color: 'red',
+      },
+    });
+
+  const StyledMyButton = withStyles(styles)(MyButton);
+
+  const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
+  // Property 'nonDefaulted' is missing in type '{}'
+  const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
 }

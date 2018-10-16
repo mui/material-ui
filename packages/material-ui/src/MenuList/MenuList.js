@@ -4,14 +4,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
-import contains from 'dom-helpers/query/contains';
-import activeElement from 'dom-helpers/activeElement';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import warning from 'warning';
+import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 
 class MenuList extends React.Component {
   state = {
-    currentTabIndex: undefined,
+    currentTabIndex: null,
   };
 
   componentDidMount() {
@@ -26,16 +25,12 @@ class MenuList extends React.Component {
     this.setState({ currentTabIndex: index });
   }
 
-  list = undefined;
-  selectedItem = undefined;
-  blurTimer = undefined;
-
   handleBlur = event => {
     this.blurTimer = setTimeout(() => {
-      if (this.list) {
-        const list = ReactDOM.findDOMNode(this.list);
-        const currentFocus = activeElement(ownerDocument(list));
-        if (!contains(list, currentFocus)) {
+      if (this.listRef) {
+        const list = this.listRef;
+        const currentFocus = ownerDocument(list).activeElement;
+        if (!list.contains(currentFocus)) {
           this.resetTabIndex();
         }
       }
@@ -47,16 +42,16 @@ class MenuList extends React.Component {
   };
 
   handleKeyDown = event => {
-    const list = ReactDOM.findDOMNode(this.list);
+    const list = this.listRef;
     const key = keycode(event);
-    const currentFocus = activeElement(ownerDocument(list));
+    const currentFocus = ownerDocument(list).activeElement;
 
     if (
       (key === 'up' || key === 'down') &&
-      (!currentFocus || (currentFocus && !contains(list, currentFocus)))
+      (!currentFocus || (currentFocus && !list.contains(currentFocus)))
     ) {
-      if (this.selectedItem) {
-        ReactDOM.findDOMNode(this.selectedItem).focus();
+      if (this.selectedItemRef) {
+        this.selectedItemRef.focus();
       } else {
         list.firstChild.focus();
       }
@@ -78,7 +73,7 @@ class MenuList extends React.Component {
   };
 
   handleItemFocus = event => {
-    const list = ReactDOM.findDOMNode(this.list);
+    const list = this.listRef;
     if (list) {
       for (let i = 0; i < list.children.length; i += 1) {
         if (list.children[i] === event.currentTarget) {
@@ -91,7 +86,7 @@ class MenuList extends React.Component {
 
   focus() {
     const { currentTabIndex } = this.state;
-    const list = ReactDOM.findDOMNode(this.list);
+    const list = this.listRef;
     if (!list || !list.children || !list.firstChild) {
       return;
     }
@@ -104,17 +99,22 @@ class MenuList extends React.Component {
   }
 
   resetTabIndex() {
-    const list = ReactDOM.findDOMNode(this.list);
-    const currentFocus = activeElement(ownerDocument(list));
-    const items = [...list.children];
+    const list = this.listRef;
+    const currentFocus = ownerDocument(list).activeElement;
+
+    const items = [];
+    for (let i = 0; i < list.children.length; i += 1) {
+      items.push(list.children[i]);
+    }
+
     const currentFocusIndex = items.indexOf(currentFocus);
 
     if (currentFocusIndex !== -1) {
       return this.setTabIndex(currentFocusIndex);
     }
 
-    if (this.selectedItem) {
-      return this.setTabIndex(items.indexOf(ReactDOM.findDOMNode(this.selectedItem)));
+    if (this.selectedItemRef) {
+      return this.setTabIndex(items.indexOf(this.selectedItemRef));
     }
 
     return this.setTabIndex(0);
@@ -125,10 +125,9 @@ class MenuList extends React.Component {
 
     return (
       <List
-        data-mui-test="MenuList"
         role="menu"
-        ref={node => {
-          this.list = node;
+        ref={ref => {
+          this.listRef = ReactDOM.findDOMNode(ref);
         }}
         className={className}
         onKeyDown={this.handleKeyDown}
@@ -140,11 +139,19 @@ class MenuList extends React.Component {
             return null;
           }
 
+          warning(
+            child.type !== React.Fragment,
+            [
+              "Material-UI: the MenuList component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+
           return React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? 0 : -1,
             ref: child.props.selected
-              ? node => {
-                  this.selectedItem = node;
+              ? ref => {
+                  this.selectedItemRef = ReactDOM.findDOMNode(ref);
                 }
               : undefined,
             onFocus: this.handleItemFocus,

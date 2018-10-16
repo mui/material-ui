@@ -1,9 +1,11 @@
 # Mui-Org Governance
 
+<p class="description">Material-UI is an open source project that depends on contributions from the community.</p>
+
 ## Overview
 
-Mui-Org houses projects related to [Material-UI](http://www.material-ui.com/), a set of [React](https://reactjs.org/) components
-that implement [Google's Material Design](https://material.io/guidelines/material-design/introduction.html)
+Mui-Org houses projects related to [Material-UI](https://material-ui.com/), a set of [React](https://reactjs.org/) components
+that implement [Google's Material Design](https://material.io/design/introduction/)
 specification. Our mission is to create a customizable Material Design implementation
 for anyone to use. We value an open, collaborative, and diverse community where anyone can join in
 discussions, learn from one another, and contribute to the project. This document describes how
@@ -16,8 +18,8 @@ we govern ourselves, how decisions are made, and how someone could engage with t
 Users are members of the community that are using Material-UI or one of Mui-Org's projects. Anyone
 can be a user and we encourage users to participate in the community as much as possible in the
 following ways.
-- Evangelize Material-UI by [linking to our website](http://www.material-ui.com/),
-[following us on twitter](https://twitter.com/i/notifications), or just talking about us with your
+- Evangelize Material-UI by [linking to our website](https://material-ui.com/),
+[following us on twitter](https://twitter.com/MaterialUI), or just talking about us with your
 friends.
 - Tell us what we're doing well or where we can improve.
 - Give us moral support. A "Thank You" always brightens our day!
@@ -68,7 +70,7 @@ are aimed to [increase the sustainability of our organization](https://medium.co
 
 In addition to their participation as a committer, Core Team members have the following privileges.
 - Ability to [publish a release](https://github.com/mui-org/material-ui/releases).
-- Access to Material-UI's [Twitter](https://twitter.com/i/notifications) and Medium account.
+- Access to Material-UI's [Twitter](https://twitter.com/MaterialUI) and Medium account.
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
 - Admin access to various tools and services ([npm](https://www.npmjs.com/package/@material-ui/core),
 [CircleCi](https://circleci.com/gh/mui-org/material-ui),

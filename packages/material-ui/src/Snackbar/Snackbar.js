@@ -10,7 +10,7 @@ import Slide from '../Slide';
 import SnackbarContent from '../SnackbarContent';
 
 export const styles = theme => {
-  const gutter = theme.spacing.unit * 3;
+  const gutter = 24;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
   const right = { justifyContent: 'flex-end' };
@@ -26,6 +26,7 @@ export const styles = theme => {
   };
 
   return {
+    /* Styles applied to the root element. */
     root: {
       zIndex: theme.zIndex.snackbar,
       position: 'fixed',
@@ -35,18 +36,21 @@ export const styles = theme => {
       justifyContent: 'center',
       alignItems: 'center',
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
     anchorOriginTopCenter: {
       ...top,
       [theme.breakpoints.up('md')]: {
         ...center,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
     anchorOriginBottomCenter: {
       ...bottom,
       [theme.breakpoints.up('md')]: {
         ...center,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
     anchorOriginTopRight: {
       ...top,
       ...right,
@@ -56,6 +60,7 @@ export const styles = theme => {
         ...rightSpace,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
     anchorOriginBottomRight: {
       ...bottom,
       ...right,
@@ -65,6 +70,7 @@ export const styles = theme => {
         ...rightSpace,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
     anchorOriginTopLeft: {
       ...top,
       ...left,
@@ -74,6 +80,7 @@ export const styles = theme => {
         ...leftSpace,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
     anchorOriginBottomLeft: {
       ...bottom,
       ...left,
@@ -86,23 +93,12 @@ export const styles = theme => {
   };
 };
 
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'production' && !React.createContext) {
+  throw new Error('Material-UI: react@16.3.0 or greater is required.');
+}
+
 class Snackbar extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.exited === 'undefined') {
-      return {
-        exited: !nextProps.open,
-      };
-    }
-
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    return null;
-  }
-
   state = {};
 
   componentDidMount() {
@@ -125,23 +121,42 @@ class Snackbar extends React.Component {
     clearTimeout(this.timerAutoHide);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.exited === 'undefined') {
+      return {
+        exited: !nextProps.open,
+      };
+    }
+
+    if (nextProps.open) {
+      return {
+        exited: false,
+      };
+    }
+
+    return null;
+  }
+
   // Timer that controls delay before snackbar auto hides
-  setAutoHideTimer(autoHideDuration = null) {
-    if (!this.props.onClose || this.props.autoHideDuration == null) {
+  setAutoHideTimer(autoHideDuration) {
+    const autoHideDurationBefore =
+      autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+
+    if (!this.props.onClose || autoHideDurationBefore == null) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (!this.props.onClose || this.props.autoHideDuration == null) {
+      const autoHideDurationAfter =
+        autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+      if (!this.props.onClose || autoHideDurationAfter == null) {
         return;
       }
 
       this.props.onClose(null, 'timeout');
-    }, autoHideDuration || this.props.autoHideDuration || 0);
+    }, autoHideDurationBefore);
   }
-
-  timerAutoHide = null;
 
   handleMouseEnter = event => {
     if (this.props.onMouseEnter) {
@@ -173,11 +188,11 @@ class Snackbar extends React.Component {
   // or when the window is shown back.
   handleResume = () => {
     if (this.props.autoHideDuration != null) {
-      if (this.props.resumeHideDuration !== undefined) {
+      if (this.props.resumeHideDuration != null) {
         this.setAutoHideTimer(this.props.resumeHideDuration);
         return;
       }
-      this.setAutoHideTimer((this.props.autoHideDuration || 0) * 0.5);
+      this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
     }
   };
 
@@ -193,6 +208,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      ClickAwayListenerProps,
       ContentProps,
       disableWindowBlurListener,
       message,
@@ -219,7 +235,7 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <ClickAwayListener onClickAway={this.handleClickAway}>
+      <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
         <div
           className={classNames(
             classes.root,
@@ -265,11 +281,8 @@ Snackbar.propTypes = {
    * The anchor of the `Snackbar`.
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
-    ]),
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+    vertical: PropTypes.oneOf(['top', 'bottom']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
@@ -293,7 +306,11 @@ Snackbar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the `SnackbarContent` element.
+   * Properties applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps: PropTypes.object,
+  /**
+   * Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -368,7 +385,7 @@ Snackbar.propTypes = {
   /**
    * Transition component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

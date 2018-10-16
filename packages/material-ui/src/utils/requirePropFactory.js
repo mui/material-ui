@@ -1,13 +1,10 @@
-// @flow weak
+function requirePropFactory(componentNameInError) {
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV === 'production') {
+    return () => null;
+  }
 
-const requirePropFactory = (componentNameInError: string) => {
-  const requireProp = (requiredProp: string) => (
-    props: Object,
-    propName: string,
-    componentName?: string,
-    location?: string,
-    propFullName?: string,
-  ) => {
+  const requireProp = requiredProp => (props, propName, componentName, location, propFullName) => {
     const propFullNameSafe = propFullName || propName;
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
@@ -20,6 +17,6 @@ const requirePropFactory = (componentNameInError: string) => {
     return null;
   };
   return requireProp;
-};
+}
 
 export default requirePropFactory;

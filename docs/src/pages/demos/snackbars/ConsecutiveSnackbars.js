@@ -8,18 +8,17 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
+    padding: theme.spacing.unit / 2,
   },
 });
 
 class ConsecutiveSnackbars extends React.Component {
+  queue = [];
+
   state = {
     open: false,
     messageInfo: {},
   };
-
-  queue = [];
 
   handleClick = message => () => {
     this.queue.push({

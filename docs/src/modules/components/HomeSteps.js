@@ -6,11 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import NoSSR from '@material-ui/docs/NoSSR';
+import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
@@ -87,10 +87,10 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
-          <Typography variant="title">Installation</Typography>
+          <Typography variant="h6">Installation</Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {`
             Install Material-UI's source files via npm.
             We take care of injecting the CSS needed.
@@ -104,7 +104,7 @@ function HomeSteps(props) {
   \`\`\`
                 `}
           />
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {'or use a CDN.'}
           </Typography>
           <MarkdownElement
@@ -115,7 +115,7 @@ function HomeSteps(props) {
   \`\`\`
                 `}
           />
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {'Load the default Roboto font.'}
           </Typography>
           <MarkdownElement
@@ -139,10 +139,10 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <BuildIcon className={classes.stepIcon} />
-          <Typography variant="title">Usage</Typography>
+          <Typography variant="h6">Usage</Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {'Material-UI components work in isolation. They are self-supporting.'}
           </Typography>
           <MarkdownElement
@@ -153,7 +153,7 @@ function HomeSteps(props) {
   import Button from '@material-ui/core/Button';
 
   const App = () => (
-    <Button variant="raised" color="primary">
+    <Button variant="contained" color="primary">
       Hello World
     </Button>
   );
@@ -173,17 +173,17 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
-          <Typography variant="title">Premium Themes</Typography>
+          <Typography variant="h6">Premium Themes</Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {`Take Material-UI to the next level with premium themes from
               our official marketplace—all built on Material-UI.`}
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
-            <NoSSR>
+            <NoSsr>
               <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
-            </NoSSR>
+            </NoSsr>
           </Link>
         </div>
         <Divider className={classes.divider} />

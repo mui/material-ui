@@ -1,10 +1,13 @@
 ---
+title: Tabs React component
 components: Tabs, Tab
 ---
 
 # Tabs
 
-[Tabs](https://material.io/design/components/tabs.html) make it easy to explore and switch between different views.
+<p class="description">Tabs make it easy to explore and switch between different views.</p>
+
+[Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
 ## Simple Tabs
 
@@ -70,7 +73,7 @@ Tab labels may be either all icons or all text.
 
 ## Customized Tabs
 
-If you have read the [overrides documentation page](/customization/overrides)
+If you have read the [overrides documentation page](/customization/overrides/)
 but aren't confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}

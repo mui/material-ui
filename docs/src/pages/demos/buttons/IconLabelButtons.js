@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import Delete from '@material-ui/icons/Delete';
-import FileUpload from '@material-ui/icons/FileUpload';
-import KeyboardVoice from '@material-ui/icons/KeyboardVoice';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import KeyboardVoiceICon from '@material-ui/icons/KeyboardVoice';
 import Icon from '@material-ui/core/Icon';
-import Save from '@material-ui/icons/Save';
+import SaveIcon from '@material-ui/icons/Save';
 
 const styles = theme => ({
   button: {
@@ -28,24 +28,24 @@ function IconLabelButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button className={classes.button} variant="raised" color="secondary">
+      <Button variant="contained" color="secondary" className={classes.button}>
         Delete
-        <Delete className={classes.rightIcon} />
+        <DeleteIcon className={classes.rightIcon} />
       </Button>
-      <Button className={classes.button} variant="raised" color="primary">
+      <Button variant="contained" color="primary" className={classes.button}>
         Send
         <Icon className={classes.rightIcon}>send</Icon>
       </Button>
-      <Button className={classes.button} variant="raised" color="default">
+      <Button variant="contained" color="default" className={classes.button}>
         Upload
-        <FileUpload className={classes.rightIcon} />
+        <CloudUploadIcon className={classes.rightIcon} />
       </Button>
-      <Button className={classes.button} variant="raised" disabled color="secondary">
-        <KeyboardVoice className={classes.leftIcon} />
+      <Button variant="contained" disabled color="secondary" className={classes.button}>
+        <KeyboardVoiceICon className={classes.leftIcon} />
         Talk
       </Button>
-      <Button className={classes.button} variant="raised" size="small">
-        <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
+      <Button variant="contained" size="small" className={classes.button}>
+        <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>
     </div>

@@ -1,32 +1,35 @@
 ---
+title: List React component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
 # Lists
 
-[Lists](https://material.io/design/components/lists.html) present multiple line items vertically as a single continuous element.
+<p class="description">Lists are continuous, vertical indexes of text or images.</p>
 
-Lists are made up of a continuous column of rows. Each row contains a tile. Primary actions fill the tile, and supplemental actions are represented by icons and text.
+[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-Lists are best suited for similar data types.
-
-### Simple List
+## Simple List
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-### Folder List
+## Folder List
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
-### Inset List
+## Inset List
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
 
-### Nested List
+## Nested List
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-### Pinned Subheader List
+## Selected ListItem
+
+{{"demo": "pages/demos/lists/SelectedListItem.js"}}
+
+## Pinned Subheader List
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 

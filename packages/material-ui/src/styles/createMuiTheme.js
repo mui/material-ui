@@ -1,23 +1,23 @@
-// @flow
-
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import isPlainObject from 'is-plain-object';
 import warning from 'warning';
-import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
-import createPalette from './createPalette';
 import createMixins from './createMixins';
+import createPalette from './createPalette';
+import createTypography from './createTypography';
 import shadows from './shadows';
+import shape from './shape';
+import spacing from './spacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
-import spacing from './spacing';
 
-function createMuiTheme(options: Object = {}) {
+function createMuiTheme(options = {}) {
   const {
-    palette: paletteInput = {},
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},
-    typography: typographyInput = {},
+    palette: paletteInput = {},
     shadows: shadowsInput,
+    typography: typographyInput = {},
     ...other
   } = options;
 
@@ -35,11 +35,15 @@ function createMuiTheme(options: Object = {}) {
     typography: createTypography(palette, typographyInput),
     ...deepmerge(
       {
-        transitions,
+        shape,
         spacing,
+        transitions,
         zIndex,
       },
       other,
+      {
+        isMergeableObject: isPlainObject,
+      },
     ),
   };
 

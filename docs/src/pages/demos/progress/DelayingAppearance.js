@@ -30,12 +30,10 @@ class DelayingAppearance extends React.Component {
     clearTimeout(this.timer);
   }
 
-  timer = null;
-
   handleClickLoading = () => {
-    this.setState({
-      loading: !this.state.loading,
-    });
+    this.setState(state => ({
+      loading: !state.loading,
+    }));
   };
 
   handleClickQuery = () => {

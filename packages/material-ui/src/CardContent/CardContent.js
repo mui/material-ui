@@ -4,11 +4,12 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: theme.mixins.gutters({
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: 16,
+    paddingBottom: 16,
     '&:last-child': {
-      paddingBottom: theme.spacing.unit * 3,
+      paddingBottom: 24,
     },
   }),
 });
@@ -33,7 +34,7 @@ CardContent.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
 };
 
 CardContent.defaultProps = {

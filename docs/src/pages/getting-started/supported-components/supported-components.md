@@ -1,7 +1,6 @@
 # Supported Components
 
-The following is a list of Material Design components & features.
-Those currently supported by Material-UI are **highlighted ✓**.
+<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
 
 While we strive to follow the guidelines where practical (applying
 common sense where guidelines contradict - a more common occurrence than
@@ -11,7 +10,7 @@ allow developers to create compelling user interfaces and experiences.
 
 If you wish to add support for a component or feature not highlighted
 here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one
-to discuss the approach before submitting a PR.
+to discuss the approach before submitting a pull request.
 
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
@@ -24,7 +23,7 @@ to discuss the approach before submitting a PR.
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions:
     - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~
-     **([Lab](/lab/about))
+     **([Lab](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -80,10 +79,11 @@ to discuss the approach before submitting a PR.
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- [Sliders](https://material.io/design/components/sliders.html)
-  - [Continuous](https://material.io/design/components/sliders.html#continuous-slider)
-  - [Discrete](https://material.io/design/components/sliders.html#discrete-slider)
-- **[Snackbars](https://material.io/archive/guidelines/components/snackbars-toasts.html) ✓** (*Legacy Material v1*)
+- **[Sliders](https://material.io/design/components/sliders.html) ~
+     **([Lab](/lab/about/))
+  - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
@@ -96,8 +96,9 @@ to discuss the approach before submitting a PR.
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields](https://material.io/design/components/text-fields.html) ✓**
-  - [Filled](https://material.io/design/components/text-fields.html#filled-text-field)
-  - [Outline](https://material.io/design/components/text-fields.html#outlined-text-field)
+  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
+  - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/design/components/text-fields.html#input-types):
     - **Single-line ✓**
     - **Multi-line ✓**

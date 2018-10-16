@@ -1,12 +1,10 @@
-// @flow
-
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { renderToString } from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
 import { createMount } from '../test-utils';
 import createMuiTheme from './createMuiTheme';
 import Button from '../Button';
@@ -16,7 +14,7 @@ import MuiThemeProvider from './MuiThemeProvider';
 
 function getThemeSpy() {
   const themeSpy = spy();
-  const ThemeSpy = (props: Object) => {
+  const ThemeSpy = props => {
     themeSpy(props.theme);
     return props.children;
   };
@@ -70,12 +68,30 @@ describe('<MuiThemeProvider />', () => {
       return;
     }
 
+    const theme = createMuiTheme();
+
+    function assertRendering(markup, sheetsRegistry) {
+      assert.notStrictEqual(markup.match('Hello World'), null);
+      assert.strictEqual(sheetsRegistry.registry.length, 2);
+      assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
+      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiButtonBase-root-27');
+      assert.deepEqual(
+        sheetsRegistry.registry[0].classes,
+        {
+          disabled: 'MuiButtonBase-disabled-28',
+          focusVisible: 'MuiButtonBase-focusVisible-29',
+          root: 'MuiButtonBase-root-27',
+        },
+        'the class names should be deterministic',
+      );
+      assert.strictEqual(sheetsRegistry.registry[1].classes.root, 'MuiButton-root-1');
+    }
+
     it('should be able to extract the styles', () => {
-      const theme = createMuiTheme();
       const sheetsRegistry = new SheetsRegistry();
       const generateClassName = createGenerateClassName();
 
-      const markup = renderToString(
+      const markup = ReactDOMServer.renderToString(
         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>
@@ -83,20 +99,32 @@ describe('<MuiThemeProvider />', () => {
         </JssProvider>,
       );
 
-      assert.notStrictEqual(markup.match('Hello World'), null);
-      assert.strictEqual(sheetsRegistry.registry.length, 3);
-      assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
-      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-20');
-      assert.deepEqual(
-        sheetsRegistry.registry[1].classes,
-        {
-          disabled: 'MuiButtonBase-disabled-18',
-          focusVisible: 'MuiButtonBase-focusVisible-19',
-          root: 'MuiButtonBase-root-17',
-        },
-        'the class names should be deterministic',
+      assertRendering(markup, sheetsRegistry);
+    });
+
+    it('should be able to cache the sheets between two requests', () => {
+      const generateClassName = createGenerateClassName();
+      const sheetsCache = new Map();
+
+      const sheetsRegistry1 = new SheetsRegistry();
+      const markup1 = ReactDOMServer.renderToString(
+        <JssProvider registry={sheetsRegistry1} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+            <Button>Hello World</Button>
+          </MuiThemeProvider>
+        </JssProvider>,
       );
-      assert.strictEqual(sheetsRegistry.registry[2].classes.root, 'MuiButton-root-1');
+      assertRendering(markup1, sheetsRegistry1);
+
+      const sheetsRegistry2 = new SheetsRegistry();
+      const markup2 = ReactDOMServer.renderToString(
+        <JssProvider registry={sheetsRegistry2} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+            <Button>Hello World</Button>
+          </MuiThemeProvider>
+        </JssProvider>,
+      );
+      assertRendering(markup2, sheetsRegistry2);
     });
   });
 
@@ -190,6 +218,25 @@ describe('<MuiThemeProvider />', () => {
 
       wrapper.setProps({ disableStylesGeneration: false });
       assert.strictEqual(optionsSpy.args[1][0].disableStylesGeneration, false);
+    });
+  });
+
+  describe('prop: sheetsCache', () => {
+    it('should provide the property down the context', () => {
+      const { optionsSpy, OptionsSpy } = getOptionsSpy();
+
+      const theme = createMuiTheme();
+      const sheetsCache = new Map();
+      mount(
+        <MuiThemeProvider theme={theme} sheetsCache={sheetsCache}>
+          <OptionsSpy>
+            <div>Foo</div>
+          </OptionsSpy>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(optionsSpy.callCount, 1);
+      assert.strictEqual(optionsSpy.args[0][0].sheetsCache, sheetsCache);
     });
   });
 });

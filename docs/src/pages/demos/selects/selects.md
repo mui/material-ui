@@ -1,8 +1,11 @@
 ---
-components: Select
+title: Select React component
+components: Select, NativeSelect
 ---
 
 # Selects
+
+<p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
 ## Simple Select
 
@@ -34,7 +37,7 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 ## Text Fields
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields#textfield).
+The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).
 
 ## Controlled open Select
 

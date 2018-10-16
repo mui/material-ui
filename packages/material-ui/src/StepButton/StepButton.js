@@ -8,20 +8,25 @@ import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     width: '100%',
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
-    margin: `${-theme.spacing.unit * 3}px ${-theme.spacing.unit * 2}px`,
+    padding: '24px 16px',
+    margin: '-24px -16px',
     boxSizing: 'content-box',
   },
+  /* Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: {},
+  /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
-    justifyContent: 'left',
+    justifyContent: 'flex-start',
   },
+  /* Styles applied to the `ButtonBase` touch-ripple. */
   touchRipple: {
     color: 'rgba(0, 0, 0, 0.3)',
   },
-});
+};
 
 function StepButton(props) {
   const {
@@ -58,13 +63,7 @@ function StepButton(props) {
     <ButtonBase
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
-      className={classNames(
-        classes.root,
-        {
-          [classes.vertical]: orientation === 'vertical',
-        },
-        classNameProp,
-      )}
+      className={classNames(classes.root, classes[orientation], classNameProp)}
       {...other}
     >
       {child}

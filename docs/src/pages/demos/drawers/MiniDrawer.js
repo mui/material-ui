@@ -19,7 +19,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: 440,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -106,13 +106,13 @@ class MiniDrawer extends React.Component {
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               Mini variant drawer
             </Typography>
           </Toolbar>

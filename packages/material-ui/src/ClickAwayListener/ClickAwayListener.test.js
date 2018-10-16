@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
@@ -173,5 +171,21 @@ describe('<ClickAwayListener />', () => {
 
       assert.strictEqual(handleClickAway.callCount, 0);
     });
+  });
+
+  it('should handle null child', () => {
+    const Child = () => null;
+    const handleClickAway = spy();
+    wrapper = mount(
+      <ClickAwayListener onClickAway={handleClickAway}>
+        <Child />
+      </ClickAwayListener>,
+    );
+
+    const event = document.createEvent('MouseEvents');
+    event.initEvent('mouseup', true, true);
+    window.document.body.dispatchEvent(event);
+
+    assert.strictEqual(handleClickAway.callCount, 0);
   });
 });

@@ -19,11 +19,13 @@ const styles = theme => ({
     paddingBottom: 0,
   },
   button: {
+    letterSpacing: 0,
     justifyContent: 'flex-start',
     textTransform: 'none',
     width: '100%',
   },
   buttonLeaf: {
+    letterSpacing: 0,
     justifyContent: 'flex-start',
     textTransform: 'none',
     width: '100%',
@@ -57,7 +59,7 @@ class AppDrawerNavItem extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({ open: !this.state.open });
+    this.setState(state => ({ open: !state.open }));
   };
 
   render() {

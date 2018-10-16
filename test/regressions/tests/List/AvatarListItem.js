@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Icon from '@material-ui/core/Icon';

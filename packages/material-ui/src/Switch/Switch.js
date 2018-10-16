@@ -6,14 +6,17 @@ import { capitalize } from '../utils/helpers';
 import SwitchBase from '../internal/SwitchBase';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
     width: 62,
     position: 'relative',
     flexShrink: 0,
+    zIndex: 0, // Reset the stacking context.
     // For correct alignment with the text.
     verticalAlign: 'middle',
   },
+  /* Styles used to create the `icon` passed to the internal `SwitchBase` component `icon` prop. */
   icon: {
     boxShadow: theme.shadows[1],
     backgroundColor: 'currentColor',
@@ -21,22 +24,28 @@ export const styles = theme => ({
     height: 20,
     borderRadius: '50%',
   },
+  /* Styles applied the icon element component if `checked={true}`. */
   iconChecked: {
     boxShadow: theme.shadows[2],
   },
+  /* Styles applied to the internal `SwitchBase` component's `root` class. */
   switchBase: {
-    zIndex: 1,
+    padding: 0,
+    height: 48,
+    width: 48,
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
+  /* Styles applied to the internal `SwitchBase` component's `checked` class. */
   checked: {
     transform: 'translateX(14px)',
     '& + $bar': {
       opacity: 0.5,
     },
   },
+  /* Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
       color: theme.palette.primary.main,
@@ -45,6 +54,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
   colorSecondary: {
     '&$checked': {
       color: theme.palette.secondary.main,
@@ -53,6 +63,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the internal SwitchBase component's disabled class. */
   disabled: {
     '& + $bar': {
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
@@ -68,10 +79,12 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the bar element. */
   bar: {
-    borderRadius: 7,
+    borderRadius: 14 / 2,
     display: 'block',
     position: 'absolute',
+    zIndex: -1,
     width: 34,
     height: 14,
     top: '50%',
@@ -93,6 +106,7 @@ function Switch(props) {
   return (
     <span className={classNames(classes.root, className)}>
       <SwitchBase
+        type="checkbox"
         icon={<span className={classes.icon} />}
         classes={{
           root: classNames(classes.switchBase, classes[`color${capitalize(color)}`]),
@@ -150,13 +164,13 @@ Switch.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Callback fired when the state is changed.
    *
@@ -172,7 +186,7 @@ Switch.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 Switch.defaultProps = {

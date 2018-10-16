@@ -1,12 +1,20 @@
 import React from 'react';
 import { assert } from 'chai';
-import { useFakeTimers } from 'sinon';
+import { useFakeTimers, spy } from 'sinon';
+import EventListener from 'react-event-listener';
 import { createMount, createShallow } from '../test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createBreakpoints from '../styles/createBreakpoints';
 import createMuiTheme from '../styles/createMuiTheme';
 
 const Empty = () => <div />;
+// eslint-disable-next-line react/prefer-stateless-function
+class EmptyClass extends React.Component {
+  render() {
+    return <div />;
+  }
+}
+const EmptyClassWithWidth = withWidth()(EmptyClass);
 const EmptyWithWidth = withWidth()(Empty);
 
 const breakpoints = createBreakpoints({});
@@ -28,22 +36,29 @@ describe('withWidth', () => {
   describe('server side rendering', () => {
     it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
-      assert.strictEqual(wrapper.type(), null, 'should render nothing');
+      assert.strictEqual(wrapper.type(), null);
     });
   });
 
   describe('prop: width', () => {
     it('should be able to override it', () => {
       const wrapper = mount(<EmptyWithWidth width="xl" />);
-
       assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
+    });
+  });
+
+  describe('prop: innerRef', () => {
+    it('should provide a ref on the inner component', () => {
+      const handleRef = spy();
+
+      mount(<EmptyClassWithWidth innerRef={handleRef} />);
+      assert.strictEqual(handleRef.callCount, 1);
     });
   });
 
   describe('browser', () => {
     it('should provide the right width to the child element', () => {
       const wrapper = mount(<EmptyWithWidth />);
-
       assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
@@ -78,11 +93,14 @@ describe('withWidth', () => {
     it('should work as expected', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       const instance = wrapper.instance();
-      const updateWidth = instance.updateWidth.bind(instance);
+      const getWidth = instance.getWidth.bind(instance);
 
       breakpoints.keys.forEach(key => {
-        updateWidth(breakpoints.values[key]);
-        assert.strictEqual(wrapper.state().width, key, 'should return the matching width');
+        assert.strictEqual(
+          getWidth(breakpoints.values[key]),
+          key,
+          'should return the matching width',
+        );
       });
     });
   });
@@ -101,7 +119,7 @@ describe('withWidth', () => {
     it('should handle resize event', () => {
       const wrapper = shallow(<EmptyWithWidth width="sm" />);
       assert.strictEqual(wrapper.state().width, undefined);
-      wrapper.simulate('resize');
+      wrapper.find(EventListener).simulate('resize');
       clock.tick(166);
       assert.strictEqual(wrapper.state().width, TEST_ENV_WIDTH);
     });
@@ -114,11 +132,40 @@ describe('withWidth', () => {
       // First mount on the server
       const wrapper1 = shallow(element);
       assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
-      const wrapper2 = mount(element);
 
       // Second mount on the client
+      const wrapper2 = mount(element);
       assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
-      assert.strictEqual(TEST_ENV_WIDTH !== 'lg', true);
+    });
+  });
+
+  describe('option: initialWidth', () => {
+    it('should work as expected', () => {
+      const EmptyWithWidth2 = withWidth({ initialWidth: 'lg' })(Empty);
+      const element = <EmptyWithWidth2 />;
+
+      // First mount on the server
+      const wrapper1 = shallow(element);
+      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+
+      // Second mount on the client
+      const wrapper2 = mount(element);
+      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
+    });
+  });
+
+  describe('theme prop: MuiWithWidth.initialWidth', () => {
+    it('should use theme prop', () => {
+      const EmptyWithWidth2 = withWidth()(Empty);
+      const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
+      const element = <EmptyWithWidth2 theme={theme} />;
+      // First mount on the server
+      const wrapper1 = shallow(element);
+      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+
+      // Second mount on the client
+      const wrapper2 = mount(element);
+      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
 
@@ -134,6 +181,14 @@ describe('withWidth', () => {
       const theme = createMuiTheme();
       const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
       assert.strictEqual(wrapper.find(Empty).props().theme, theme);
+    });
+  });
+
+  describe('option: noSSR', () => {
+    it('should work as expected', () => {
+      const EmptyWithWidth2 = withWidth({ noSSR: true })(Empty);
+      const wrapper = shallow(<EmptyWithWidth2 />);
+      assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
 });

@@ -11,40 +11,89 @@ import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
 export const styles = theme => ({
-  root: {
+  /* Styles applied to the root element. */
+  root: {},
+  /* Styles applied to the root element if `scroll="paper"`. */
+  scrollPaper: {
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  /* Styles applied to the root element if `scroll="body"`. */
+  scrollBody: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
+  /* Styles applied to the `Paper` component. */
   paper: {
     display: 'flex',
-    margin: theme.spacing.unit * 4,
     flexDirection: 'column',
-    flex: '0 1 auto',
+    margin: 48,
     position: 'relative',
-    maxHeight: '90vh',
     overflowY: 'auto', // Fix IE11 issue, to remove at some point.
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
   },
+  /* Styles applied to the `Paper` component if `scroll="paper"`. */
+  paperScrollPaper: {
+    flex: '0 1 auto',
+    maxHeight: 'calc(100% - 96px)',
+  },
+  /* Styles applied to the `Paper` component if `scroll="body"`. */
+  paperScrollBody: {
+    margin: '48px auto',
+  },
+  /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 360),
+    '&$paperScrollBody': {
+      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 360) + 48 * 2)]: {
+        margin: 48,
+      },
+    },
   },
+  /* Styles applied to the `Paper` component if `maxWidth="sm"`. */
   paperWidthSm: {
     maxWidth: theme.breakpoints.values.sm,
+    '&$paperScrollBody': {
+      [theme.breakpoints.down(theme.breakpoints.values.sm + 48 * 2)]: {
+        margin: 48,
+      },
+    },
   },
+  /* Styles applied to the `Paper` component if `maxWidth="md"`. */
   paperWidthMd: {
     maxWidth: theme.breakpoints.values.md,
+    '&$paperScrollBody': {
+      [theme.breakpoints.down(theme.breakpoints.values.md + 48 * 2)]: {
+        margin: 48,
+      },
+    },
   },
+  /* Styles applied to the `Paper` component if `maxWidth="lg"`. */
+  paperWidthLg: {
+    maxWidth: theme.breakpoints.values.lg,
+    '&$paperScrollBody': {
+      [theme.breakpoints.down(theme.breakpoints.values.lg + 48 * 2)]: {
+        margin: 48,
+      },
+    },
+  },
+  /* Styles applied to the `Paper` component if `fullWidth={true}`. */
   paperFullWidth: {
     width: '100%',
   },
+  /* Styles applied to the `Paper` component if `fullScreen={true}`. */
   paperFullScreen: {
     margin: 0,
     width: '100%',
     maxWidth: '100%',
     height: '100%',
-    maxHeight: '100%',
+    maxHeight: 'none',
     borderRadius: 0,
+    '&$paperScrollBody': {
+      margin: 0,
+    },
   },
 });
 
@@ -73,6 +122,7 @@ function Dialog(props) {
     onExiting,
     open,
     PaperProps,
+    scroll,
     TransitionComponent,
     transitionDuration,
     TransitionProps,
@@ -81,7 +131,7 @@ function Dialog(props) {
 
   return (
     <Modal
-      className={classNames(classes.root, className)}
+      className={classNames(classes.root, classes[`scroll${capitalize(scroll)}`], className)}
       BackdropProps={{
         transitionDuration,
         ...BackdropProps,
@@ -108,9 +158,8 @@ function Dialog(props) {
         {...TransitionProps}
       >
         <Paper
-          data-mui-test="Dialog"
           elevation={24}
-          className={classNames(classes.paper, {
+          className={classNames(classes.paper, classes[`paperScroll${capitalize(scroll)}`], {
             [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
             [classes.paperFullScreen]: fullScreen,
             [classes.paperFullWidth]: fullWidth,
@@ -164,7 +213,7 @@ Dialog.propTypes = {
    * on the desktop where you might need some coherent different width size across your
    * application. Set to `false` to disable `maxWidth`.
    */
-  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', false]),
+  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', false]),
   /**
    * Callback fired when the backdrop is clicked.
    */
@@ -209,13 +258,17 @@ Dialog.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the `Paper` element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
+   * Determine the container for scrolling the dialog.
+   */
+  scroll: PropTypes.oneOf(['body', 'paper']),
+  /**
    * Transition component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -236,6 +289,7 @@ Dialog.defaultProps = {
   fullScreen: false,
   fullWidth: false,
   maxWidth: 'sm',
+  scroll: 'paper',
   TransitionComponent: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };

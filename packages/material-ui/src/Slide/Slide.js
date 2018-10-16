@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import Transition from 'react-transition-group/Transition';
 import ownerWindow from '../utils/ownerWindow';
 import withTheme from '../styles/withTheme';
@@ -45,9 +45,13 @@ function getTranslateValue(props, node) {
 
   if (direction === 'left') {
     return `translateX(100vw) translateX(-${rect.left - offsetX}px)`;
-  } else if (direction === 'right') {
+  }
+
+  if (direction === 'right') {
     return `translateX(-${rect.left + rect.width + GUTTER - offsetX}px)`;
-  } else if (direction === 'up') {
+  }
+
+  if (direction === 'up') {
     return `translateY(100vh) translateY(-${rect.top - offsetY}px)`;
   }
 
@@ -65,11 +69,32 @@ export function setTranslateValue(props, node) {
 }
 
 /**
- * The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+ * The Slide transition is used by the [Snackbar](/demos/snackbars/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Slide extends React.Component {
+  mounted = false;
+
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        // Skip configuration where the position is screen size invariant.
+        if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
+          return;
+        }
+
+        if (this.transitionRef) {
+          setTranslateValue(this.props, this.transitionRef);
+        }
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
+
   componentDidMount() {
+    this.mounted = true;
+
     // state.mounted handle SSR, once the component is mounted, we need
     // to properly hide it.
     if (!this.props.in) {
@@ -77,8 +102,6 @@ class Slide extends React.Component {
       // otherwise component will be shown when in=false.
       this.updatePosition();
     }
-
-    this.mounted = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -92,29 +115,6 @@ class Slide extends React.Component {
   componentWillUnmount() {
     this.handleResize.clear();
   }
-
-  mounted = false;
-  transition = null;
-
-  updatePosition() {
-    const node = ReactDOM.findDOMNode(this.transition);
-    if (node) {
-      node.style.visibility = 'inherit';
-      setTranslateValue(this.props, node);
-    }
-  }
-
-  handleResize = debounce(() => {
-    // Skip configuration where the position is screen size invariant.
-    if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
-      return;
-    }
-
-    const node = ReactDOM.findDOMNode(this.transition);
-    if (node) {
-      setTranslateValue(this.props, node);
-    }
-  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   handleEnter = node => {
     setTranslateValue(this.props, node);
@@ -177,6 +177,13 @@ class Slide extends React.Component {
     }
   };
 
+  updatePosition() {
+    if (this.transitionRef) {
+      this.transitionRef.style.visibility = 'inherit';
+      setTranslateValue(this.props, this.transitionRef);
+    }
+  }
+
   render() {
     const {
       children,
@@ -213,8 +220,8 @@ class Slide extends React.Component {
           onExited={this.handleExited}
           appear
           style={style}
-          ref={node => {
-            this.transition = node;
+          ref={ref => {
+            this.transitionRef = ReactDOM.findDOMNode(ref);
           }}
           {...other}
         >

@@ -1409,8 +1409,8 @@ declare module "material-ui/Snackbar/Snackbar" {
   } from "material-ui/internal/transition";
 
   declare type Origin = {
-    horizontal?: "left" | "center" | "right" | number,
-    vertical?: "top" | "center" | "bottom" | number
+    horizontal: "left" | "center" | "right" | number,
+    vertical: "top" | "center" | "bottom" | number
   };
 
   declare module.exports: React$ComponentType<{

@@ -1,12 +1,14 @@
 # Minimizing Bundle Size
 
+<p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
+
 ## Bundle size matters
 
 The bundle size of Material-UI is taken very seriously, so
 [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression.
 The size of the bundle is checked at each commit:
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30). (styling, theming, etc.: ~20 kB gzipped)
+- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30).
+- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24). (styling, theming, etc.: ~18 kB gzipped)
 
 ## How to reduce the bundle size?
 
@@ -21,7 +23,7 @@ You have couple of options to overcome this situation:
 You can import directly from `material-ui/` to avoid pulling in unused modules. For instance, instead of:
 
 ```js
-import { Button, TextField } from 'material-ui';
+import { Button, TextField } from '@material-ui/core';
 ```
 
 use:
@@ -40,7 +42,7 @@ For example, the `Tabs` component is a public module while `TabIndicator` is pri
 Another option is to keep using the shortened import like the following, but still have the size of the bundle optimized thanks to a **Babel plugin**:
 
 ```js
-import { Button, TextField } from 'material-ui';
+import { Button, TextField } from '@material-ui/core';
 ```
 
 Pick one of the following plugins:
@@ -53,7 +55,7 @@ Pick one of the following plugins:
 
 ## ECMAScript
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms).
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
 We also publish a second version of the components to target **evergreen browsers**.
 You can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core/es/).
@@ -63,6 +65,6 @@ Older browsers will require more JavaScript features to be transpiled,
 which increases the size of the bundle.
 No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the
 necessary features. If you need support for other browsers, consider using
-[`@babel/polyfill`](https://npmjs.com/package/@babel/polyfill).
+[`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
-⚠️ In order to minimize duplication of code is users' bundles, we **strongly discourage** library authors from using the `/es` folder.
+⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.

@@ -16,6 +16,7 @@ function NativeSelectInput(props) {
     name,
     onChange,
     value,
+    variant,
     ...other
   } = props;
 
@@ -25,6 +26,8 @@ function NativeSelectInput(props) {
         className={classNames(
           classes.select,
           {
+            [classes.filled]: variant === 'filled',
+            [classes.outlined]: variant === 'outlined',
             [classes.disabled]: disabled,
           },
           className,
@@ -65,11 +68,11 @@ NativeSelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Use that property to pass a ref callback to the native select element.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Name attribute of the `select` or hidden `input` element.
    */
@@ -84,7 +87,11 @@ NativeSelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 export default NativeSelectInput;

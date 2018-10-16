@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { WithTheme } from '../styles/withTheme';
-import { ConsistentWith, Overwrite } from '..';
+import { Omit, PropInjector, PropsOf } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
-import * as JSS from 'jss'
+import * as JSS from 'jss';
 
 export interface CSSProperties extends CSS.Properties<number | string> {
   // Allow pseudo selectors and media queries
@@ -29,7 +28,8 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions<ClassKey extends string = string> extends JSS.CreateStyleSheetOptions<ClassKey> {
+export interface WithStylesOptions<ClassKey extends string = string>
+  extends JSS.CreateStyleSheetOptions<ClassKey> {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -37,20 +37,27 @@ export interface WithStylesOptions<ClassKey extends string = string> extends JSS
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export interface WithStyles<ClassKey extends string = string> extends Partial<WithTheme> {
-  classes: ClassNameMap<ClassKey>;
-}
+export type WithStyles<
+  T extends string | StyleRules | StyleRulesCallback = string,
+  IncludeTheme extends boolean | undefined = false
+> = (IncludeTheme extends true ? { theme: Theme } : {}) & {
+  classes: ClassNameMap<
+    T extends string
+      ? T
+      : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
+  >;
+  innerRef?: React.Ref<any> | React.RefObject<any>;
+};
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<ClassKey extends string>(
-  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
-  options?: WithStylesOptions<ClassKey>,
-): {
-  <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
-    component: React.ComponentType<P & WithStyles<ClassKey>>,
-  ): React.ComponentType<Overwrite<P, StyledComponentProps<ClassKey>>>;
-};
+export default function withStyles<
+  ClassKey extends string,
+  Options extends WithStylesOptions<ClassKey> = {}
+>(
+  style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
+  options?: Options,
+): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

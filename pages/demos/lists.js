@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/lists/lists.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./lists${props.lang}.md`)}
       demos={{
         'pages/demos/lists/SimpleList.js': {
           js: require('docs/src/pages/demos/lists/SimpleList').default,
@@ -34,6 +35,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/NestedList'), 'utf8')
+`,
+        },
+        'pages/demos/lists/SelectedListItem.js': {
+          js: require('docs/src/pages/demos/lists/SelectedListItem').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/SelectedListItem'), 'utf8')
 `,
         },
         'pages/demos/lists/PinnedSubheaderList.js': {

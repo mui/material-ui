@@ -6,9 +6,10 @@ export interface InputAdornmentProps
   component?: React.ReactType<InputAdornmentProps>;
   disableTypography?: boolean;
   position: 'start' | 'end';
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd';
+export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd' | 'filled';
 
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 

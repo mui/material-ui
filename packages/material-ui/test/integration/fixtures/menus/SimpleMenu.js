@@ -20,7 +20,7 @@ class SimpleMenu extends React.Component {
 
   render() {
     return (
-      <div data-mui-test="SimpleMenu">
+      <div>
         <Menu id="simple-menu" open={this.state.open} onClose={this.handleClose} {...this.props}>
           {options.map((label, index) => {
             return (

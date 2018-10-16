@@ -24,7 +24,6 @@ const styles = theme => ({
   bootstrapRoot: {
     boxShadow: 'none',
     textTransform: 'none',
-    borderRadius: 4,
     fontSize: 16,
     padding: '6px 12px',
     border: '1px solid',
@@ -61,6 +60,9 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 function CustomizedInputs(props) {
@@ -69,19 +71,19 @@ function CustomizedInputs(props) {
   return (
     <div className={classes.container}>
       <Button
-        variant="raised"
+        variant="contained"
         color="primary"
         className={classNames(classes.margin, classes.cssRoot)}
       >
         Custom CSS
       </Button>
       <MuiThemeProvider theme={theme}>
-        <Button variant="raised" color="primary" className={classes.margin}>
+        <Button variant="contained" color="primary" className={classes.margin}>
           MuiThemeProvider
         </Button>
       </MuiThemeProvider>
       <Button
-        variant="raised"
+        variant="contained"
         color="primary"
         disableRipple
         className={classNames(classes.margin, classes.bootstrapRoot)}

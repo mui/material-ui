@@ -1,13 +1,22 @@
 // @inheritedComponent FormControl
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
 import Input from '../Input';
+import FilledInput from '../FilledInput';
+import OutlinedInput from '../OutlinedInput';
 import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+
+const variantComponent = {
+  standard: Input,
+  filled: FilledInput,
+  outlined: OutlinedInput,
+};
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -17,12 +26,12 @@ import Select from '../Select';
  *
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
- * - [FormControl](/api/form-control)
- * - [InputLabel](/api/input-label)
- * - [Input](/api/input)
- * - [FormHelperText](/api/form-helper-text)
+ * - [FormControl](/api/form-control/)
+ * - [InputLabel](/api/input-label/)
+ * - [Input](/api/input/)
+ * - [FormHelperText](/api/form-helper-text/)
  *
- * If you wish to alter the properties applied to the native input, you can do as follow:
+ * If you wish to alter the properties applied to the native input, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {
@@ -34,101 +43,127 @@ import Select from '../Select';
  *
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
- * - using the upper case props for passing values direct to the components.
- * - using the underlying components directly as shown in the demos.
+ * - using the upper case props for passing values directly to the components
+ * - using the underlying components directly as shown in the demos
  */
-function TextField(props) {
-  const {
-    autoComplete,
-    autoFocus,
-    children,
-    className,
-    defaultValue,
-    disabled,
-    error,
-    FormHelperTextProps,
-    fullWidth,
-    helperText,
-    id,
-    InputLabelProps,
-    inputProps,
-    InputProps,
-    inputRef,
-    label,
-    multiline,
-    name,
-    onBlur,
-    onChange,
-    onFocus,
-    placeholder,
-    required,
-    rows,
-    rowsMax,
-    select,
-    SelectProps,
-    type,
-    value,
-    ...other
-  } = props;
+class TextField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.labelRef = React.createRef();
+  }
 
-  warning(
-    !select || Boolean(children),
-    'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
-  );
+  componentDidMount() {
+    if (this.props.variant === 'outlined') {
+      this.labelNode = ReactDOM.findDOMNode(this.labelRef.current);
+      this.forceUpdate();
+    }
+  }
 
-  const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
-  const InputElement = (
-    <Input
-      autoComplete={autoComplete}
-      autoFocus={autoFocus}
-      defaultValue={defaultValue}
-      disabled={disabled}
-      fullWidth={fullWidth}
-      multiline={multiline}
-      name={name}
-      rows={rows}
-      rowsMax={rowsMax}
-      type={type}
-      value={value}
-      id={id}
-      inputRef={inputRef}
-      onBlur={onBlur}
-      onChange={onChange}
-      onFocus={onFocus}
-      placeholder={placeholder}
-      inputProps={inputProps}
-      {...InputProps}
-    />
-  );
+  render() {
+    const {
+      autoComplete,
+      autoFocus,
+      children,
+      className,
+      defaultValue,
+      error,
+      FormHelperTextProps,
+      fullWidth,
+      helperText,
+      id,
+      InputLabelProps,
+      inputProps,
+      InputProps,
+      inputRef,
+      label,
+      multiline,
+      name,
+      onBlur,
+      onChange,
+      onFocus,
+      placeholder,
+      required,
+      rows,
+      rowsMax,
+      select,
+      SelectProps,
+      type,
+      value,
+      variant,
+      ...other
+    } = this.props;
 
-  return (
-    <FormControl
-      aria-describedby={helperTextId}
-      className={className}
-      error={error}
-      fullWidth={fullWidth}
-      required={required}
-      {...other}
-    >
-      {label && (
-        <InputLabel htmlFor={id} {...InputLabelProps}>
-          {label}
-        </InputLabel>
-      )}
-      {select ? (
-        <Select value={value} input={InputElement} {...SelectProps}>
-          {children}
-        </Select>
-      ) : (
-        InputElement
-      )}
-      {helperText && (
-        <FormHelperText id={helperTextId} {...FormHelperTextProps}>
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
-  );
+    warning(
+      !select || Boolean(children),
+      'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+    );
+
+    const InputMore = {};
+
+    if (variant === 'outlined') {
+      if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
+        InputMore.notched = InputLabelProps.shrink;
+      }
+
+      InputMore.labelWidth = (this.labelNode && this.labelNode.offsetWidth) || 0;
+    }
+
+    const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+    const InputComponent = variantComponent[variant];
+    const InputElement = (
+      <InputComponent
+        autoComplete={autoComplete}
+        autoFocus={autoFocus}
+        defaultValue={defaultValue}
+        fullWidth={fullWidth}
+        multiline={multiline}
+        name={name}
+        rows={rows}
+        rowsMax={rowsMax}
+        type={type}
+        value={value}
+        id={id}
+        inputRef={inputRef}
+        onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
+        placeholder={placeholder}
+        inputProps={inputProps}
+        {...InputMore}
+        {...InputProps}
+      />
+    );
+
+    return (
+      <FormControl
+        aria-describedby={helperTextId}
+        className={className}
+        error={error}
+        fullWidth={fullWidth}
+        required={required}
+        variant={variant}
+        {...other}
+      >
+        {label && (
+          <InputLabel htmlFor={id} ref={this.labelRef} {...InputLabelProps}>
+            {label}
+          </InputLabel>
+        )}
+        {select ? (
+          <Select value={value} input={InputElement} {...SelectProps}>
+            {children}
+          </Select>
+        ) : (
+          InputElement
+        )}
+        {helperText && (
+          <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    );
+  }
 }
 
 TextField.propTypes = {
@@ -164,7 +199,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the `FormHelperText` element.
+   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -181,7 +216,7 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the `InputLabel` element.
+   * Properties applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
@@ -189,13 +224,13 @@ TextField.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
-   * Properties applied to the native `input` element.
+   * Attributes applied to the native `input` element.
    */
   inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The label content.
    */
@@ -232,7 +267,7 @@ TextField.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the label is displayed as required.
+   * If `true`, the label is displayed as required and the input will be required.
    */
   required: PropTypes.bool,
   /**
@@ -249,7 +284,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the `Select` element.
+   * Properties applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**
@@ -262,13 +297,19 @@ TextField.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 TextField.defaultProps = {
   required: false,
   select: false,
+  variant: 'standard',
 };
 
 export default TextField;

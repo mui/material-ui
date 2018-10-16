@@ -6,6 +6,7 @@ import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'table-cell',
     verticalAlign: 'inherit',
@@ -18,40 +19,46 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
     textAlign: 'left',
-    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 7}px ${theme.spacing.unit /
-      2}px ${theme.spacing.unit * 3}px`,
+    padding: '4px 56px 4px 24px',
     '&:last-child': {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: 24,
     },
   },
+  /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
   head: {
     color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightMedium,
   },
+  /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
   body: {
     color: theme.palette.text.primary,
     fontSize: theme.typography.pxToRem(13),
     fontWeight: theme.typography.fontWeightRegular,
   },
+  /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
   footer: {
     borderBottom: 0,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
   },
+  /* Styles applied to the root element if `numeric={true}`. */
   numeric: {
     textAlign: 'right',
     flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
   },
+  /* Styles applied to the root element if `padding="dense"`. */
   paddingDense: {
-    paddingRight: theme.spacing.unit * 3,
+    paddingRight: 24,
   },
+  /* Styles applied to the root element if `padding="checkbox"`. */
   paddingCheckbox: {
     padding: '0 12px',
     '&:last-child': {
       paddingRight: 12,
     },
   },
+  /* Styles applied to the root element if `padding="none"`. */
   paddingNone: {
     padding: 0,
     '&:last-child': {
@@ -68,30 +75,34 @@ function TableCell(props, context) {
     component,
     sortDirection,
     numeric,
-    padding,
+    padding: paddingProp,
     scope: scopeProp,
     variant,
     ...other
   } = props;
-  const { table } = context;
+
+  const { table, tablelvl2 } = context;
   let Component;
   if (component) {
     Component = component;
   } else {
-    Component = table && table.head ? 'th' : 'td';
+    Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
   }
 
   let scope = scopeProp;
-  if (!scope && table && table.head) {
+  if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
     scope = 'col';
   }
+  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
 
   const className = classNames(
     classes.root,
     {
-      [classes.head]: variant ? variant === 'head' : table && table.head,
-      [classes.body]: variant ? variant === 'body' : table && table.body,
-      [classes.footer]: variant ? variant === 'footer' : table && table.footer,
+      [classes.head]: variant ? variant === 'head' : tablelvl2 && tablelvl2.variant === 'head',
+      [classes.body]: variant ? variant === 'body' : tablelvl2 && tablelvl2.variant === 'body',
+      [classes.footer]: variant
+        ? variant === 'footer'
+        : tablelvl2 && tablelvl2.variant === 'footer',
       [classes.numeric]: numeric,
       [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
     },
@@ -128,13 +139,14 @@ TableCell.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, content will align to the right.
    */
   numeric: PropTypes.bool,
   /**
    * Sets the padding applied to the cell.
+   * By default, the Table parent component set the value.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
   /**
@@ -154,11 +166,11 @@ TableCell.propTypes = {
 
 TableCell.defaultProps = {
   numeric: false,
-  padding: 'default',
 };
 
 TableCell.contextTypes = {
-  table: PropTypes.object.isRequired,
+  table: PropTypes.object,
+  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

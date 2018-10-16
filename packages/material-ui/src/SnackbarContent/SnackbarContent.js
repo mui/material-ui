@@ -13,32 +13,34 @@ export const styles = theme => {
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
   return {
+    /* Styles applied to the root element. */
     root: {
-      pointerEvents: 'initial',
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
-      padding: `6px ${theme.spacing.unit * 3}px`,
+      padding: '6px 24px',
       [theme.breakpoints.up('md')]: {
         minWidth: 288,
         maxWidth: 568,
-        borderRadius: 2,
+        borderRadius: theme.shape.borderRadius,
       },
       [theme.breakpoints.down('sm')]: {
         flexGrow: 1,
       },
     },
+    /* Styles applied to the message wrapper element. */
     message: {
-      padding: `${theme.spacing.unit}px 0`,
+      padding: '8px 0',
     },
+    /* Styles applied to the action wrapper element if `action` is provided. */
     action: {
       display: 'flex',
       alignItems: 'center',
       marginLeft: 'auto',
-      paddingLeft: theme.spacing.unit * 3,
-      marginRight: -theme.spacing.unit,
+      paddingLeft: 24,
+      marginRight: -8,
     },
   };
 };
@@ -51,6 +53,7 @@ function SnackbarContent(props) {
       component={Typography}
       headlineMapping={{
         body1: 'div',
+        body2: 'div',
       }}
       role="alertdialog"
       square

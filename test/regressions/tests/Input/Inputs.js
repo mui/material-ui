@@ -23,8 +23,6 @@ class Inputs extends React.Component {
     this.focusInput.focus();
   }
 
-  focusInput = null;
-
   render() {
     const { classes } = this.props;
 

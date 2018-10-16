@@ -13,10 +13,10 @@ describe('<Card />', () => {
     classes = getClasses(<Card />);
   });
 
-  it('should render Paper with the root class & with 2dp', () => {
+  it('should render Paper with the root class', () => {
     const wrapper = shallow(<Card />);
     assert.strictEqual(wrapper.type(), Paper);
-    assert.strictEqual(wrapper.props().elevation, 2);
+    assert.strictEqual(wrapper.props().elevation, 1);
   });
 
   it('should have the root and custom class', () => {

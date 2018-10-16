@@ -1,10 +1,11 @@
 ---
+title: Avatar React component
 components: Avatar
 ---
 
 # Avatars
 
-Avatars are found throughout material design with uses in everything from tables to dialog menus.
+<p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
 
 ## Image avatars
 

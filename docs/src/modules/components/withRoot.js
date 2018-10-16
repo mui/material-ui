@@ -7,6 +7,9 @@ import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import acceptLanguage from 'accept-language';
+
+acceptLanguage.languages(['en']);
 
 if (process.browser) {
   loadCSS(
@@ -52,17 +55,17 @@ const pages = [
     pathname: '/style',
     children: [
       {
-        pathname: '/style/css-baseline',
-        title: 'CSS Baseline',
+        pathname: '/style/icons',
       },
       {
         pathname: '/style/color',
       },
       {
-        pathname: '/style/icons',
+        pathname: '/style/typography',
       },
       {
-        pathname: '/style/typography',
+        pathname: '/style/css-baseline',
+        title: 'CSS Baseline',
       },
     ],
   },
@@ -76,11 +79,10 @@ const pages = [
         pathname: '/layout/grid',
       },
       {
-        pathname: '/layout/hidden',
+        pathname: '/layout/breakpoints',
       },
       {
-        pathname: '/layout/css-in-js',
-        title: 'CSS in JS',
+        pathname: '/layout/hidden',
       },
     ],
   },
@@ -88,16 +90,26 @@ const pages = [
     pathname: '/utils',
     children: [
       {
-        pathname: '/utils/modals',
+        pathname: '/utils/modal',
       },
       {
-        pathname: '/utils/popovers',
+        pathname: '/utils/transitions',
+      },
+      {
+        pathname: '/utils/popover',
+      },
+      {
+        pathname: '/utils/popper',
       },
       {
         pathname: '/utils/portal',
       },
       {
-        pathname: '/utils/transitions',
+        pathname: '/utils/no-ssr',
+        title: 'No SSR',
+      },
+      {
+        pathname: '/utils/click-away-listener',
       },
     ],
   },
@@ -113,18 +125,18 @@ const pages = [
     pathname: '/customization',
     children: [
       {
-        pathname: '/customization/overrides',
-      },
-      {
         pathname: '/customization/themes',
       },
       {
-        pathname: '/customization/default-theme',
-        title: 'Default Theme',
+        pathname: '/customization/overrides',
       },
       {
         pathname: '/customization/css-in-js',
         title: 'CSS in JS',
+      },
+      {
+        pathname: '/customization/default-theme',
+        title: 'Default Theme',
       },
     ],
   },
@@ -136,45 +148,47 @@ const pages = [
         title: 'API Design Approach',
       },
       {
-        pathname: '/guides/minimizing-bundle-size',
+        pathname: '/guides/typescript',
+        title: 'TypeScript',
       },
       {
         pathname: '/guides/interoperability',
         title: 'Style Library Interoperability',
       },
       {
-        pathname: '/guides/migration-v0x',
-        title: 'Migration From v0.x',
-      },
-      {
-        pathname: '/guides/server-rendering',
+        pathname: '/guides/minimizing-bundle-size',
       },
       {
         pathname: '/guides/composition',
       },
       {
-        pathname: '/guides/testing',
+        pathname: '/guides/server-rendering',
       },
       {
-        pathname: '/guides/typescript',
-        title: 'TypeScript',
+        pathname: '/guides/migration-v0x',
+        title: 'Migration From v0.x',
+      },
+      {
+        pathname: '/guides/testing',
       },
       {
         pathname: '/guides/flow',
       },
       {
-        pathname: '/guides/csp',
-        title: 'Content Security Policy',
-      },
-      {
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
+      },
+      {
+        pathname: '/guides/csp',
+        title: 'Content Security Policy',
       },
     ],
   },
   {
+    pathname: '/page-layout-examples',
+  },
+  {
     pathname: '/premium-themes',
-    title: 'Premium Themes',
   },
   {
     pathname: '/lab',
@@ -184,7 +198,13 @@ const pages = [
         title: 'About The Lab',
       },
       {
+        pathname: '/lab/slider',
+      },
+      {
         pathname: '/lab/speed-dial',
+      },
+      {
+        pathname: '/lab/toggle-button',
       },
       findPages[2].children[1],
     ],
@@ -193,29 +213,32 @@ const pages = [
     pathname: '/discover-more',
     children: [
       {
-        pathname: '/discover-more/vision',
+        pathname: '/discover-more/showcase',
+      },
+      {
+        pathname: '/discover-more/related-projects',
       },
       {
         pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/governance',
-      },
-      {
-        pathname: '/discover-more/team',
       },
       {
         pathname: '/discover-more/backers',
         title: 'Sponsors & Backers',
       },
       {
+        pathname: '/discover-more/vision',
+      },
+      {
+        pathname: '/discover-more/team',
+      },
+      {
         pathname: '/discover-more/community',
       },
       {
-        pathname: '/discover-more/showcase',
+        pathname: '/discover-more/changelog',
       },
       {
-        pathname: '/discover-more/related-projects',
+        pathname: '/discover-more/governance',
       },
     ],
   },
@@ -233,7 +256,7 @@ const pages = [
 function findActivePage(currentPages, router) {
   const activePage = find(currentPages, page => {
     if (page.children) {
-      return router.pathname.indexOf(page.pathname) === 0;
+      return router.pathname.indexOf(`${page.pathname}/`) === 0;
     }
 
     // Should be an exact match if no children
@@ -254,38 +277,57 @@ function findActivePage(currentPages, router) {
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    constructor(props, context) {
-      super(props, context);
-
-      this.redux = initRedux(this.props.reduxServerState || {});
+    constructor(props) {
+      super();
+      this.redux = initRedux(props.reduxServerState || {});
     }
+
+    state = {
+      userLanguage: 'en',
+    };
 
     getChildContext() {
       const { router } = this.props;
+      const { userLanguage } = this.state;
 
       let pathname = router.pathname;
       if (pathname !== '/') {
         // The leading / is only added to support static hosting (resolve /index.html).
         // We remove it to normalize the pathname.
+        // See `_rewriteUrlForNextExport` on Next.js side.
         pathname = pathname.replace(/\/$/, '');
       }
 
       return {
         pages,
         activePage: findActivePage(pages, { ...router, pathname }),
+        userLanguage,
       };
     }
 
-    redux = null;
+    componentDidMount() {
+      const userLanguage =
+        this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en';
+
+      if (this.state.userLanguage !== userLanguage) {
+        this.setState({
+          userLanguage,
+        });
+      }
+    }
 
     render() {
       const { pageContext, ...other } = this.props;
+      const { userLanguage } = this.state;
 
       return (
         <React.StrictMode>
           <Provider store={this.redux}>
             <AppWrapper pageContext={pageContext}>
-              <Component initialProps={other} />
+              <Component
+                initialProps={other}
+                lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+              />
             </AppWrapper>
           </Provider>
         </React.StrictMode>
@@ -300,8 +342,9 @@ function withRoot(Component) {
   };
 
   WithRoot.childContextTypes = {
-    pages: PropTypes.array,
     activePage: PropTypes.object,
+    pages: PropTypes.array,
+    userLanguage: PropTypes.string,
   };
 
   WithRoot.getInitialProps = ctx => {

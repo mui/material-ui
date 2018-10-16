@@ -46,21 +46,9 @@ class HorizontalNonLinearStepper extends React.Component {
     completed: {},
   };
 
-  completedSteps() {
-    return Object.keys(this.state.completed).length;
-  }
-
   totalSteps = () => {
     return getSteps().length;
   };
-
-  isLastStep() {
-    return this.state.activeStep === this.totalSteps() - 1;
-  }
-
-  allStepsCompleted() {
-    return this.completedSteps() === this.totalSteps();
-  }
 
   handleNext = () => {
     let activeStep;
@@ -79,10 +67,9 @@ class HorizontalNonLinearStepper extends React.Component {
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleStep = step => () => {
@@ -106,6 +93,18 @@ class HorizontalNonLinearStepper extends React.Component {
       completed: {},
     });
   };
+
+  completedSteps() {
+    return Object.keys(this.state.completed).length;
+  }
+
+  isLastStep() {
+    return this.state.activeStep === this.totalSteps() - 1;
+  }
+
+  allStepsCompleted() {
+    return this.completedSteps() === this.totalSteps();
+  }
 
   render() {
     const { classes } = this.props;
@@ -148,7 +147,7 @@ class HorizontalNonLinearStepper extends React.Component {
                   Back
                 </Button>
                 <Button
-                  variant="raised"
+                  variant="contained"
                   color="primary"
                   onClick={this.handleNext}
                   className={classes.button}
@@ -161,7 +160,7 @@ class HorizontalNonLinearStepper extends React.Component {
                       Step {activeStep + 1} already completed
                     </Typography>
                   ) : (
-                    <Button variant="raised" color="primary" onClick={this.handleComplete}>
+                    <Button variant="contained" color="primary" onClick={this.handleComplete}>
                       {this.completedSteps() === this.totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                     </Button>
                   ))}

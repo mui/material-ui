@@ -31,20 +31,10 @@ import ExpansionPanel, {
 import GridList, { GridListTile } from '@material-ui/core/GridList';
 import { CircularProgress } from '@material-ui/core/Progress';
 import { LinearProgress as MuiLinearProgress } from '@material-ui/core/Progress';
-import {
-  FormLabel,
-  FormControl,
-  FormGroup,
-  FormHelperText,
-} from '@material-ui/core/Form';
+import { FormLabel, FormControl, FormGroup, FormHelperText } from '@material-ui/core/Form';
 import Fade from '@material-ui/core/transitions/Fade';
 import Stepper, { Step, StepButton, StepContent } from '@material-ui/core/Stepper';
-import Table, {
-  TableBody,
-  TableCell,
-  TablePagination,
-  TableRow,
-} from '@material-ui/core/Table';
+import Table, { TableBody, TableCell, TablePagination, TableRow } from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/Table/TableHead';
 import Input, { InputLabel } from '@material-ui/core/Input';
 import Grow from '@material-ui/core/transitions/Grow';

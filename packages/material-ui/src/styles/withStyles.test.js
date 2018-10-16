@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
@@ -14,7 +12,7 @@ import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Empty extends React.Component<{ classes: Object, theme?: Object }> {
+class Empty extends React.Component {
   render() {
     return <div />;
   }
@@ -100,7 +98,7 @@ describe('withStyles', () => {
       });
     });
 
-    describe('cache', () => {
+    describe('classes memoization', () => {
       it('should recycle with no classes property', () => {
         const wrapper = mount(<StyledComponent1 />);
         const classes1 = wrapper.find(Empty).props().classes;
@@ -171,6 +169,28 @@ describe('withStyles', () => {
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);
+    });
+
+    it('should support theme.props', () => {
+      const styles = { root: { display: 'flex' } };
+      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(Empty);
+
+      const wrapper = mount(
+        <MuiThemeProvider
+          theme={createMuiTheme({
+            props: {
+              MuiFoo: {
+                foo: 'bar',
+              },
+            },
+          })}
+        >
+          <StyledComponent foo={undefined} />
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(wrapper.find(Empty).props().foo, 'bar');
+      wrapper.unmount();
     });
 
     it('should work when depending on a theme', () => {

@@ -20,10 +20,8 @@ class SimplePortal extends React.Component {
   };
 
   handleClick = () => {
-    this.setState({ show: !this.state.show });
+    this.setState(state => ({ show: !state.show }));
   };
-
-  container = null;
 
   render() {
     const { classes } = this.props;
@@ -41,8 +39,8 @@ class SimplePortal extends React.Component {
         </div>
         <div
           className={classes.alert}
-          ref={node => {
-            this.container = node;
+          ref={ref => {
+            this.container = ref;
           }}
         />
       </div>

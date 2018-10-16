@@ -1,25 +1,28 @@
 import * as React from 'react';
-import { Grid } from '..';
-import { Theme } from '../styles';
-import withStyles, { WithStyles } from '../styles/withStyles';
-import withWidth, { WithWidthProps } from '../withWidth';
+import { Grid } from '@material-ui/core';
+import { Theme, createStyles } from '@material-ui/core/styles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 
-const styles = (theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.common.black,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: theme.palette.common.black,
+    },
+  });
 
-interface IHelloProps {
+interface HelloProps extends WithWidth, WithStyles<typeof styles> {
   name?: string;
 }
 
-export class Hello extends React.Component<IHelloProps & WithWidthProps & WithStyles<'root'>> {
-  public static defaultProps = {
+export class Hello extends React.Component<HelloProps> {
+  static defaultProps = {
     name: 'Alex',
   };
 
-  public render() {
+  render() {
     return (
       <Grid
         className={this.props.classes.root}
@@ -35,9 +38,11 @@ const Decorated = withWidth()(withStyles(styles)(Hello));
 
 <Decorated name="Bob" />;
 
-const WidthSFC = withWidth()<{
-  // shouldn't need to specify width here; it's a given
+interface SFCProps extends WithWidth {
   name: string;
-}>(({ width, name }) => <div style={{ width }}>hello, {name}</div>);
+}
+const WidthSFC = withWidth()(({ width, name }: SFCProps) => (
+  <div style={{ width }}>hello, {name}</div>
+));
 
 <WidthSFC name="Hortense" />;

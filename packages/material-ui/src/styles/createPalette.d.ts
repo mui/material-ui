@@ -1,25 +1,28 @@
 import { Color, PaletteType } from '..';
 import { CommonColors } from '../colors/common';
 
-interface TypeText {
+export interface TypeText {
   primary: string;
   secondary: string;
   disabled: string;
   hint: string;
 }
 
-interface TypeAction {
+export interface TypeAction {
   active: string;
   hover: string;
+  hoverOpacity: number;
   selected: string;
   disabled: string;
   disabledBackground: string;
 }
 
-interface TypeBackground {
+export interface TypeBackground {
   default: string;
   paper: string;
 }
+
+export type TypeDivider = string;
 
 export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;
 
@@ -40,6 +43,7 @@ export interface PaletteColor {
 export interface TypeObject {
   text: TypeText;
   action: TypeAction;
+  divider: TypeDivider;
   background: TypeBackground;
 }
 
@@ -56,7 +60,7 @@ export interface Palette {
   error: PaletteColor;
   grey: Color;
   text: TypeText;
-  divider: string;
+  divider: TypeDivider;
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (background: string) => string;
@@ -68,15 +72,17 @@ export interface Palette {
   ) => void;
 }
 
-type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
-type ColorPartial = Partial<Color>;
+export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
+export type ColorPartial = Partial<Color>;
 
 export interface PaletteOptions {
-  common?: Partial<CommonColors>;
-  type?: PaletteType;
   primary?: PaletteColorOptions;
   secondary?: PaletteColorOptions;
   error?: PaletteColorOptions;
+  type?: PaletteType;
+  tonalOffset?: number;
+  contrastThreshold?: number;
+  common?: Partial<CommonColors>;
   grey?: ColorPartial;
   text?: Partial<TypeText>;
   divider?: string;
@@ -84,7 +90,5 @@ export interface PaletteOptions {
   background?: Partial<TypeBackground>;
   getContrastText?: (background: string) => string;
 }
-
-//export type PaletteOptions = DeepPartial<Palette>;
 
 export default function createPalette(palette: PaletteOptions): Palette;

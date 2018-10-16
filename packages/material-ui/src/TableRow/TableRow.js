@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     color: 'inherit',
     display: 'table-row',
@@ -24,11 +25,15 @@ export const styles = theme => ({
           : 'rgba(255, 255, 255, 0.14)',
     },
   },
+  /* Styles applied to the root element if `selected={true}`. */
   selected: {},
+  /* Styles applied to the root element if `hover={true}`. */
   hover: {},
+  /* Styles applied to the root element if table variant = 'head'. */
   head: {
     height: 56,
   },
+  /* Styles applied to the root element if table variant = 'footer'. */
   footer: {
     height: 56,
   },
@@ -47,15 +52,15 @@ function TableRow(props, context) {
     selected,
     ...other
   } = props;
-  const { table } = context;
+  const { tablelvl2 } = context;
 
   const className = classNames(
     classes.root,
     {
-      [classes.head]: table && table.head,
-      [classes.footer]: table && table.footer,
-      [classes.hover]: table && hover,
-      [classes.selected]: table && selected,
+      [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
+      [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
+      [classes.hover]: hover,
+      [classes.selected]: selected,
     },
     classNameProp,
   );
@@ -81,7 +86,7 @@ TableRow.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the table row will shade on hover.
    */
@@ -99,7 +104,7 @@ TableRow.defaultProps = {
 };
 
 TableRow.contextTypes = {
-  table: PropTypes.object,
+  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

@@ -4,15 +4,17 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
-const RADIUS = 12;
+const RADIUS = 11;
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'relative',
     display: 'inline-flex',
     // For correct alignment with the text.
     verticalAlign: 'middle',
   },
+  /* Styles applied to the badge `span` element. */
   badge: {
     display: 'flex',
     flexDirection: 'row',
@@ -25,7 +27,7 @@ export const styles = theme => ({
     right: -RADIUS,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeight,
-    fontSize: theme.typography.pxToRem(RADIUS),
+    fontSize: theme.typography.pxToRem(12),
     width: RADIUS * 2,
     height: RADIUS * 2,
     borderRadius: '50%',
@@ -33,14 +35,17 @@ export const styles = theme => ({
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
   },
+  /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
   },
+  /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
   },
+  /* Styles applied to the root element if `color="error"`. */
   colorError: {
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
@@ -96,7 +101,7 @@ Badge.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
 };
 
 Badge.defaultProps = {

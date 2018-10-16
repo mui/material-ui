@@ -7,22 +7,26 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from '../StepConnector';
 
-export const styles = theme => ({
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
-    padding: theme.spacing.unit * 3,
+    padding: 24,
   },
+  /* Styles applied to the root element if `orientation="horizontal"`. */
   horizontal: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     flexDirection: 'column',
   },
+  /* Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: {
     alignItems: 'flex-start',
   },
-});
+};
 
 function Stepper(props) {
   const {
@@ -52,32 +56,36 @@ function Stepper(props) {
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
-      index,
+      alternativeLabel,
+      connector: connectorProp,
+      last: index + 1 === childrenArray.length,
       orientation,
+    };
+
+    const state = {
+      index,
       active: false,
       completed: false,
       disabled: false,
-      last: index + 1 === childrenArray.length,
-      alternativeLabel,
-      connector: connectorProp,
     };
 
     if (activeStep === index) {
-      controlProps.active = true;
+      state.active = true;
     } else if (!nonLinear && activeStep > index) {
-      controlProps.completed = true;
+      state.completed = true;
     } else if (!nonLinear && activeStep < index) {
-      controlProps.disabled = true;
+      state.disabled = true;
     }
 
     return [
       !alternativeLabel &&
         connector &&
-        index > 0 &&
+        index !== 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
+          ...state,
         }),
-      React.cloneElement(step, { ...controlProps, ...step.props }),
+      React.cloneElement(step, { ...controlProps, ...state, ...step.props }),
     ];
   });
 

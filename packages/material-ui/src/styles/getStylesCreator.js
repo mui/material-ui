@@ -9,6 +9,14 @@ function arrayMerge(destination, source) {
 function getStylesCreator(stylesOrCreator) {
   const themingEnabled = typeof stylesOrCreator === 'function';
 
+  warning(
+    typeof stylesOrCreator === 'object' || themingEnabled,
+    [
+      'Material-UI: the first argument provided to withStyles() is invalid.',
+      'You need to provide a function generating the styles or a styles object.',
+    ].join('\n'),
+  );
+
   function create(theme, name) {
     const styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
 

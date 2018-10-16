@@ -1,7 +1,6 @@
 # API Design Approach
 
-We have learned a great deal regarding how Material-UI is used,
-and the 1.x.x rewrite allowed us to completely rethink the component API.
+<p class="description">We have learned a great deal regarding how Material-UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 
@@ -34,23 +33,23 @@ You can take advantage of the spread behavior:
 ```jsx
 <MenuItem disableRipple />
 ```
-The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item) > [`ListItem`](/api/list-item) > [`ButtonBase`](/api/button-base).
+The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
 
 ### Native properties
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides#overriding-with-class-names).
+We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides/#overriding-with-class-names).
 
 ### CSS Classes
 
-All the components accept a [`classes`](/customization/overrides#overriding-with-classes) property to customize the styles.
+All the components accept a [`classes`](/customization/overrides/#overriding-with-classes) property to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
 - The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class 
+- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class
 applied by the `rounded` property.
-- The variants applied by and enum property **are** prefixed, e.g. the `colorPrimary` class
+- The variants applied by an enum property **are** prefixed, e.g. the `colorPrimary` class
 applied by the `color="primary"` property.
 - A variant has **one level of specificity**.
 The `color` and `variant` properties are considered a variant.
@@ -82,7 +81,7 @@ Nested components inside a component have:
 - their own `xxxComponent` property for performing component injection.
 - their own `xxxRef` property when user might need to perform imperative actions,
   for instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
-  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq#how-can-i-access-the-dom-element-)
+  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element-)
 
 ### Property naming
 
@@ -102,7 +101,7 @@ however, the `open` / `onClose` / `onOpen` combination is used for display relat
 
 ### boolean vs enum
 
-There are a couple of way to the variants of a component: with a *boolean*; or with an *enum*.
+There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*.
 For example, let's take a button that has different types. Each option has its pros and cons:
 
 - Option 1 *boolean*:
@@ -113,10 +112,10 @@ For example, let's take a button that has different types. Each option has its p
     fab: boolean;
   };
   ```
-  
+
    This API enabled the shorthand notation:
    `<Button>`, `<Button raised />`, `<Button fab />`.
-   
+
 - Option 2 *enum*:
 
   ```tsx
@@ -124,10 +123,10 @@ For example, let's take a button that has different types. Each option has its p
     variant: 'flat' | 'raised' | 'fab';
   }
   ```
-  
+
   This API is more verbose:
-  `<Button>`, `<Button variant="raised">`, `<Button variant="fab">`.
-  
+  `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+
    However it prevents an invalid combination from being used,
    bounds the number of properties exposed,
    and can easily support new values in the future.

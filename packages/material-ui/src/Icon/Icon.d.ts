@@ -4,6 +4,8 @@ import { StandardProps, PropTypes } from '..';
 export interface IconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, IconClassKey> {
   color?: PropTypes.Color | 'action' | 'disabled' | 'error';
+  component?: React.ReactType<IconProps>;
+  fontSize?: 'inherit' | 'default' | 'small' | 'large';
 }
 
 export type IconClassKey =
@@ -12,7 +14,10 @@ export type IconClassKey =
   | 'colorAction'
   | 'colorDisabled'
   | 'colorError'
-  | 'colorPrimary';
+  | 'colorPrimary'
+  | 'fontSizeInherit'
+  | 'fontSizeSmall'
+  | 'fontSizeLarge';
 
 declare const Icon: React.ComponentType<IconProps>;
 

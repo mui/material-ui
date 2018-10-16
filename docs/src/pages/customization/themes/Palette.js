@@ -13,10 +13,8 @@ const theme = createMuiTheme({
 function Palette() {
   return (
     <MuiThemeProvider theme={theme}>
-      <div>
-        <Button color="primary">Primary</Button>
-        <Button color="secondary">Secondary</Button>
-      </div>
+      <Button color="primary">Primary</Button>
+      <Button color="secondary">Secondary</Button>
     </MuiThemeProvider>
   );
 }

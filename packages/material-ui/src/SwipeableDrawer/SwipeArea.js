@@ -6,25 +6,26 @@ import { capitalize } from '../utils/helpers';
 import { isHorizontal } from '../Drawer/Drawer';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'fixed',
     top: 0,
     left: 0,
-    height: '100vh',
+    bottom: 0,
     zIndex: theme.zIndex.drawer - 1,
   },
-  discoveryAnchorLeft: {
+  anchorLeft: {
     right: 'auto',
   },
-  discoveryAnchorRight: {
+  anchorRight: {
     left: 'auto',
     right: 0,
   },
-  discoveryAnchorTop: {
+  anchorTop: {
     bottom: 'auto',
     right: 0,
   },
-  discoveryAnchorBottom: {
+  anchorBottom: {
     top: 'auto',
     bottom: 0,
     right: 0,
@@ -35,13 +36,13 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function SwipeArea(props) {
-  const { anchor, classes, swipeAreaWidth, ...other } = props;
+  const { anchor, classes, width, ...other } = props;
 
   return (
     <div
-      className={classNames(classes.root, classes[`discoveryAnchor${capitalize(anchor)}`])}
+      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`])}
       style={{
-        [isHorizontal(props) ? 'width' : 'height']: swipeAreaWidth,
+        [isHorizontal(props) ? 'width' : 'height']: width,
       }}
       {...other}
     />
@@ -61,7 +62,7 @@ SwipeArea.propTypes = {
    * The width of the left most (or right most) area in pixels where the
    * drawer can be swiped open from.
    */
-  swipeAreaWidth: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(SwipeArea);
