@@ -45,6 +45,13 @@ function SimpleTabs(props) {
         </Tabs>
       </Paper>
       <Paper>
+        <Tabs onChange={noop} value={2} textColor="secondary" fullWidth>
+          <LinkTab label="Item One" />
+          <LinkTab label="Item Two" />
+          <LinkTab label="Item Three" />
+        </Tabs>
+      </Paper>
+      <Paper>
         <Tabs onChange={noop} value={0} textColor="secondary" fullWidth>
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
@@ -61,6 +68,8 @@ function SimpleTabs(props) {
     </div>
   );
 }
+
+const LinkTab = props => <Tab component="a" {...props} />;
 
 SimpleTabs.propTypes = {
   classes: PropTypes.object.isRequired,
