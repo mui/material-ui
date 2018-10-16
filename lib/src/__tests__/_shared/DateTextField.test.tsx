@@ -2,8 +2,8 @@ import { createMount } from '@material-ui/core/test-utils';
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { DateTextField, DateTextFieldProps } from '../../_shared/DateTextField';
-import { shallow, utilsToUse } from '../test-utils';
 import { DateTimePicker } from '../../DateTimePicker/DateTimePicker';
+import { shallow, utilsToUse } from '../test-utils';
 
 describe('DateTextField', () => {
   let component: ShallowWrapper<DateTextFieldProps>;

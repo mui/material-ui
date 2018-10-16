@@ -4,8 +4,8 @@ import {
   DateTimePickerTabs,
   DateTimePickerTabsProps,
 } from '../../DateTimePicker/components/DateTimePickerTabs';
-import { shallow } from '../test-utils';
 import { DateTimePicker } from '../../DateTimePicker/DateTimePicker';
+import { shallow } from '../test-utils';
 
 describe('DateTimePickerTabs', () => {
   let component: ShallowWrapper<DateTimePickerTabsProps>;
