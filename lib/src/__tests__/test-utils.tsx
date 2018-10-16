@@ -1,4 +1,5 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import * as enzyme from 'enzyme';
 import * as React from 'react';
 import { WithUtilsProps } from '../_shared/WithUtils';
@@ -6,7 +7,6 @@ import DateFnsUtils from '../utils/date-fns-utils';
 import LuxonUtils from '../utils/luxon-utils';
 import MomentUtils from '../utils/moment-utils';
 import MuiPickersUtilsProvider from '../utils/MuiPickersUtilsProvider';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const theme = createMuiTheme({
   typography: {
