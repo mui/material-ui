@@ -1,12 +1,18 @@
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import * as enzyme from 'enzyme';
 import * as React from 'react';
 import { WithUtilsProps } from '../_shared/WithUtils';
-import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
 import DateFnsUtils from '../utils/date-fns-utils';
 import LuxonUtils from '../utils/luxon-utils';
 import MomentUtils from '../utils/moment-utils';
 import MuiPickersUtilsProvider from '../utils/MuiPickersUtilsProvider';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 const getUtilClass = () => {
   switch (process.env.UTILS) {
@@ -51,7 +57,7 @@ export const mount = <P extends WithUtilsProps>(
 ) =>
   enzyme.mount(
     <MuiPickersUtilsProvider utils={UtilClassToUse}>
-      {element}
+      <MuiThemeProvider theme={theme}>{element}</MuiThemeProvider>
     </MuiPickersUtilsProvider>
   );
 
