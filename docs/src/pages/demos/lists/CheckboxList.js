@@ -51,7 +51,6 @@ class CheckboxList extends React.Component {
               dense
               button
               onClick={this.handleToggle(value)}
-              className={classes.listItem}
             >
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
