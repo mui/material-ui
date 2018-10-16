@@ -87,6 +87,7 @@ export default class ModalWrapper extends React.PureComponent<
     onClose: undefined,
     onSetToday: undefined,
     DialogProps: undefined,
+    isAccepted: false,
   };
 
   public static getDerivedStateFromProps(nextProps: ModalWrapperProps) {

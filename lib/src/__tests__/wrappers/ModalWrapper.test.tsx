@@ -16,7 +16,9 @@ describe('ModalWrapper', () => {
         onDismiss={jest.fn()}
         onAccept={jest.fn()}
         onClear={jest.fn()}
-      />
+      >
+        <div>foo</div>
+      </ModalWrapper>
     );
   });
 

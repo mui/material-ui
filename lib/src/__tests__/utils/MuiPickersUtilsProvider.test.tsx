@@ -11,7 +11,7 @@ describe('MuiPickersUtilsProvider', () => {
   beforeEach(() => {
     component = shallow(
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        foo
+        <div />
       </MuiPickersUtilsProvider>
     );
   });
