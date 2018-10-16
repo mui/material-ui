@@ -2,11 +2,11 @@
 
 <p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
 
-1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
-1. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
-1. [Material Design variations](#4-material-design-variations) such as with the button component
-1. [Global theme variation](#5-global-theme-variation)
+1. [Specific variation for a one-time situation](#1--specific-variation-for-a-one-time-situation)
+1. [Dynamic variation for a one-time situation](#2--dynamic-variation-for-a-one-time-situation)
+1. [Specific variation of a component](#3--specific-variation-of-a-component) re-used in different contexts
+1. [Material Design variations](#4--material-design-variations) such as with the button component
+1. [Global theme variation](#5--global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 

@@ -150,7 +150,7 @@ class HomePage extends React.Component {
   "@context": "http://schema.org",
   "@type": "Organization",
   "name": "Material-UI",
-  "url": "https://material-ui.com",
+  "url": "https://material-ui.com/",
   "logo": "https://material-ui.com/static/brand.png",
   "sameAs": [
     "https://twitter.com/materialUI",
