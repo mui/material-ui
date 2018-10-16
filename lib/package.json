@@ -43,15 +43,11 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
-    "@babel/preset-typescript": "^7.1.0",
-    "@babel/runtime": "^7.1.2",
-    "@types/enzyme": "^3.1.14",
     "classnames": "^2.2.6",
     "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
-    "react-transition-group": "^2.5.0",
-    "tslint": "^5.11.0"
+    "react-transition-group": "^2.5.0"
   },
   "size-limit": [
     {
@@ -84,8 +80,11 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@babel/runtime": "^7.1.2",
     "@material-ui/core": "^3.2.1",
     "@types/classnames": "^2.2.6",
+    "@types/enzyme": "^3.1.14",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^5.0.4",
     "@types/glob": "^7.1.1",
@@ -133,6 +132,7 @@
     "size-limit": "^0.20.1",
     "ts-jest": "^23.10.4",
     "ts-lib": "0.0.5",
+    "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.3"
   },
