@@ -171,8 +171,8 @@ This will apply a change such as the following:
 -import CircularProgress from 'material-ui/CircularProgress';
 +import CircularProgress from '@material-ui/core/CircularProgress';
 
--<CircularProgress mode='indeterminate'><h5>Loading&hellip</h5></CircularProgress>
-+<CircularProgress variant='indeterminate'><h5>Loading&hellip</h5></CircularProgress>
+-<CircularProgress mode="indeterminate"><h5>Loading&hellip</h5></CircularProgress>
++<CircularProgress variant="indeterminate"><h5>Loading&hellip</h5></CircularProgress>
 ```
 
 ### Drop Down Menu
