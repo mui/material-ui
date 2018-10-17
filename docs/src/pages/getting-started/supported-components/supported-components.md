@@ -17,7 +17,7 @@ to discuss the approach before submitting a pull request.
   - [Bottom](https://material.io/design/components/app-bars-bottom.html)
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
-  - **[Flat & raised buttons](https://material.io/design/components/buttons.html) ✓**
+  - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - [Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons)
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
