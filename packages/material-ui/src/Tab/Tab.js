@@ -20,6 +20,7 @@ export const styles = theme => ({
     flexShrink: 0,
     overflow: 'hidden',
     whiteSpace: 'normal',
+    textAlign: 'center',
     [theme.breakpoints.up('md')]: {
       fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
