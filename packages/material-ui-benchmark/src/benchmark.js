@@ -47,13 +47,6 @@ const JssButton = withStyles({
     textDecoration: 'none',
     // So we take precedent over the style of a native <a /> element.
     color: 'inherit',
-    '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
-    },
-    '&$disabled': {
-      pointerEvents: 'none', // Disable link interactions
-      cursor: 'default',
-    },
   },
 })(NakedButton);
 
@@ -111,26 +104,12 @@ const EmotionButton = styledEmotion('button')({
 const sheetsCache = new Map();
 
 suite
-  .add('ButtonBase cache instances', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme}>
-        <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
-    );
+  .add('StyledButton', () => {
+    const sheet = new ServerStyleSheet();
+    ReactDOMServer.renderToString(sheet.collectStyles(<StyledButton>Material-UI</StyledButton>));
   })
-  .add('ButtonBase cache requests', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
-        <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
-    );
-  })
-  .add('ButtonBase no cache', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
-        <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
-    );
+  .add('EmotionButton', () => {
+    renderStylesToString(ReactDOMServer.renderToString(<EmotionButton>Material-UI</EmotionButton>));
   })
   .add('JssButton cache requests', () => {
     ReactDOMServer.renderToString(
@@ -160,6 +139,27 @@ suite
       </MuiThemeProvider>,
     );
   })
+  .add('ButtonBase cache instances', () => {
+    ReactDOMServer.renderToString(
+      <MuiThemeProvider theme={theme}>
+        <ButtonBase>Material-UI</ButtonBase>
+      </MuiThemeProvider>,
+    );
+  })
+  .add('ButtonBase cache requests', () => {
+    ReactDOMServer.renderToString(
+      <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+        <ButtonBase>Material-UI</ButtonBase>
+      </MuiThemeProvider>,
+    );
+  })
+  .add('ButtonBase no cache', () => {
+    ReactDOMServer.renderToString(
+      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+        <ButtonBase>Material-UI</ButtonBase>
+      </MuiThemeProvider>,
+    );
+  })
   .add('HocButton', () => {
     ReactDOMServer.renderToString(
       <MuiThemeProvider theme={theme}>
@@ -173,13 +173,6 @@ suite
         <NakedButton />
       </MuiThemeProvider>,
     );
-  })
-  .add('StyledButton', () => {
-    const sheet = new ServerStyleSheet();
-    ReactDOMServer.renderToString(sheet.collectStyles(<StyledButton>Material-UI</StyledButton>));
-  })
-  .add('EmotionButton', () => {
-    renderStylesToString(ReactDOMServer.renderToString(<EmotionButton>Material-UI</EmotionButton>));
   })
   .add('ButtonBase cache', () => {
     ReactDOMServer.renderToString(
