@@ -67,6 +67,12 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
+  'drawerHeader-left': {
+    justifyContent: 'flex-end',
+  },
+  'drawerHeader-right': {
+    justifyContent: 'flex-start',
+  },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
@@ -117,7 +123,7 @@ class PersistentDrawer extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
     const { anchor, open } = this.state;
 
     const drawer = (
@@ -129,11 +135,14 @@ class PersistentDrawer extends React.Component {
           paper: classes.drawerPaper,
         }}
       >
-        <div
-          className={classes.drawerHeader}
-          style={{ justifyContent: (anchor === 'left' ? 'flex-end' : 'flex-start') }}>
+        <div className={classNames(classes.drawerHeader, classes[`drawerHeader-${anchor}`])}>
           <IconButton onClick={this.handleDrawerClose}>
-            {anchor === 'left' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {(theme.direction === 'ltr' && anchor === 'left') ||
+            (theme.direction === 'rtl' && anchor === 'right') ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
@@ -194,7 +203,7 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <div className={classes.drawerHeader} />
-            <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+            <Typography>You think water moves fast? You should see ice.</Typography>
           </main>
           {after}
         </div>
