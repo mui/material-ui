@@ -2,9 +2,9 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
 
-## Submitting a Pull Request
+## Submitting a pull request
 
-Material-UI is a community project, so pull requests are always welcome, but before working on a large change, it is best to open an issue first to discuss it with the maintainers.
+Material-UI is a community project, so pull requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
 
 When in doubt, keep your pull requests small. To give a PR the best chance of getting accepted, don't bundle more than one feature or bug fix per pull request. It's always best to create two smaller PRs than one big one.
 
@@ -16,12 +16,31 @@ When migrating a component to master, or submitting a new component, please add 
 
 ### Branch Structure
 
-All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)). At any given time, `master` represents the latest development version of the library.
+All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)).
+At any given time, `master` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
 #### `master` is unsafe
 
-We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with.
+We will do our best to keep `master` in good shape, with tests passing at all times.
+However, in order to move fast, we will make API changes that your application might not be compatible with.
+
+### How to increase the chance of being accepted?
+
+We will only accept a pull request for which all tests pass. Make sure the following is true:
+- The branch is not behind master.
+- If a feature is being added:
+   - If the result was already achievable with the core library, explain why this
+      feature needs to be added to the core.
+   - It includes relevant tests.
+   - If this is a common use case, considered adding an example to the documentation.
+- If a bug is being fixed, test cases that fail without the fix are included.
+- The code is formatted (run `yarn prettier`).
+- The code is linted (run `yarn lint`).
+- If API documentation is being changed in the source, `yarn docs:api` was run.
+- If prop types were changed, the TypeScript declarations were updated.
+- If TypeScript declarations were changed, `yarn typescript` passed.
+- The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
 ## Getting started
 
