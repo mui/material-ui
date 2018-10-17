@@ -25,11 +25,21 @@ export interface InputBaseProps
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
+  renderPrefix?: (state: {
+    disabled?: boolean;
+    error?: boolean;
+    margin?: 'dense';
+    required?: boolean;
+    filled?: boolean;
+    startAdornment?: React.ReactNode;
+    focused: boolean;
+  }) => React.ReactNode;
   rows?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
   value?: Array<string | number | boolean> | string | number | boolean;
+  onFilled?: () => void;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the
