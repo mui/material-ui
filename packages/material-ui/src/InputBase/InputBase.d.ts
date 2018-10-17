@@ -19,21 +19,23 @@ export interface InputBaseProps
   inputComponent?: React.ReactType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
   inputRef?: React.Ref<any> | React.RefObject<any>;
-  margin?: 'dense';
+  margin?: 'dense' | 'none';
   multiline?: boolean;
   name?: string;
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
-  renderPrefix?: (state: {
-    disabled?: boolean;
-    error?: boolean;
-    margin?: 'dense';
-    required?: boolean;
-    filled?: boolean;
-    startAdornment?: React.ReactNode;
-    focused: boolean;
-  }) => React.ReactNode;
+  renderPrefix?: (
+    state: {
+      disabled?: boolean;
+      error?: boolean;
+      filled?: boolean;
+      focused?: boolean;
+      margin?: 'dense' | 'none' | 'normal';
+      required?: boolean;
+      startAdornment?: React.ReactNode;
+    },
+  ) => React.ReactNode;
   rows?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
@@ -49,8 +51,8 @@ export interface InputBaseProps
    * So these can just be inherited from the native `<div>`.
    */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
 export interface InputBaseComponentProps extends InputBaseProps {
