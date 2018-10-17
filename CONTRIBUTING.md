@@ -23,24 +23,24 @@ Patches or hotfix releases are prepared on an independent branch.
 #### `master` is unsafe
 
 We will do our best to keep `master` in good shape, with tests passing at all times.
-But in order to move fast, we will make API changes that your application might not be compatible with.
+However, in order to move fast, we will make API changes that your application might not be compatible with.
 
 ### How to increase the chance of being accepted?
 
-We will only accept a pull request that passes all our tests. Make sure the following is true:
+We will only accept a pull request for which all tests pass. Make sure the following is true:
 - The branch is not behind master.
-- If a feature was added:
-   - If this was already achievable with the core library explained why this
-      needs to be added to the core.
-   - Added tests.
-   - If this is a common use case considered adding an example to the documentation
-- If a bug was fixed added test cases that fail without the fix.
+- If a feature is being added:
+   - If the result was already achievable with the core library, explain why this
+      feature needs to be added to the core.
+   - It includes relevant tests.
+   - If this is a common use case, considered adding an example to the documentation.
+- If a bug is being fixed, test cases that fail without the fix are included.
 - The code is formatted (run `yarn prettier`).
 - The code is linted (run `yarn lint`).
-- If documentation was changed in the source `yarn docs:api` was run.
-- If prop types were changed the TypeScript declarations were updated.
-- If TypeScript declarations were changed `yarn typescript` passed.
-- The title of this PR follows the pattern `[Component] Imperative commit message`.
+- If API documentation is being changed in the source, `yarn docs:api` was run.
+- If prop types were changed, the TypeScript declarations were updated.
+- If TypeScript declarations were changed, `yarn typescript` passed.
+- The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
 ## Getting started
 
