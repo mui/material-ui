@@ -13,7 +13,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 
 ### 2. Theme
 
-Set the direction on your custom theme:
+Set the direction in your custom theme:
 ```js
 const theme = createMuiTheme({
   direction: 'rtl',
@@ -22,17 +22,19 @@ const theme = createMuiTheme({
 
 ### 3. jss-rtl
 
-You need a JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
 npm install jss-rtl
 ```
-Even though you installed the plugin in your project our components **require** loading it to the jss instance as described below.
-Internally, we are using this JSS plugin when `direction: 'rtl'` is set on the theme.
+Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below.
+Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
 
-The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more about how this plugin is working. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
+The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more about how this plugin works.
+Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
-Once you have created a new JSS instance with the plugin, you need to make it available to all components in the component tree. JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
+Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree.
+JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
 
 ```jsx
 import { create } from 'jss';
