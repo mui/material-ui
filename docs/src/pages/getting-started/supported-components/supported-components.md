@@ -22,8 +22,7 @@ to discuss the approach before submitting a pull request.
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions:
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~
-     **([Lab](/lab/about/))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
