@@ -8,34 +8,33 @@ function mergeClasses(options = {}) {
     return baseClasses;
   }
 
-  return {
-    ...baseClasses,
-    ...Object.keys(newClasses).reduce((accumulator, key) => {
-      warning(
-        baseClasses[key] || !newClasses[key],
-        [
-          `Material-UI: the key \`${key}\` ` +
-            `provided to the classes property is not implemented in ${getDisplayName(Component)}.`,
-          `You can only override one of the following: ${Object.keys(baseClasses).join(',')}`,
-        ].join('\n'),
-      );
+  const nextClasses = { ...baseClasses };
 
-      warning(
-        !newClasses[key] || typeof newClasses[key] === 'string',
-        [
-          `Material-UI: the key \`${key}\` ` +
-            `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
-          `You need to provide a non empty string instead of: ${newClasses[key]}.`,
-        ].join('\n'),
-      );
+  Object.keys(newClasses).forEach(key => {
+    warning(
+      baseClasses[key] || !newClasses[key],
+      [
+        `Material-UI: the key \`${key}\` ` +
+          `provided to the classes property is not implemented in ${getDisplayName(Component)}.`,
+        `You can only override one of the following: ${Object.keys(baseClasses).join(',')}.`,
+      ].join('\n'),
+    );
 
-      if (newClasses[key]) {
-        accumulator[key] = `${baseClasses[key]} ${newClasses[key]}`;
-      }
+    warning(
+      !newClasses[key] || typeof newClasses[key] === 'string',
+      [
+        `Material-UI: the key \`${key}\` ` +
+          `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
+        `You need to provide a non empty string instead of: ${newClasses[key]}.`,
+      ].join('\n'),
+    );
 
-      return accumulator;
-    }, {}),
-  };
+    if (newClasses[key]) {
+      nextClasses[key] = `${baseClasses[key]} ${newClasses[key]}`;
+    }
+  });
+
+  return nextClasses;
 }
 
 export default mergeClasses;
