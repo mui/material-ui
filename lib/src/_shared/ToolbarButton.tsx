@@ -4,7 +4,7 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { ExtendMui } from '../_helpers/types';
+import { ExtendMui } from '../typings/extendMui';
 
 export interface ToolbarButtonProps
   extends ExtendMui<TypographyProps>,

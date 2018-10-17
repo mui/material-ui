@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
-import { ExtendMui } from '../_helpers/types';
+import { ExtendMui } from '../typings/extendMui';
 
 const dialogWidth = 310;
 const dialogHeight = 405;
