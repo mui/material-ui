@@ -4,9 +4,9 @@ import * as React from 'react';
 import DatePickerInline, {
   DatePickerInlineProps,
 } from '../../DatePicker/DatePickerInline';
-import { mount } from '../test-utils';
+import { mount, utilsToUse } from '../test-utils';
 
-describe('e2e - InlineDatePicker', () => {
+describe('e2e - DatePickerInline', () => {
   let component: ReactWrapper<DatePickerInlineProps>;
   const onChangeMock = jest.fn();
   const onCloseMock = jest.fn();
@@ -15,15 +15,12 @@ describe('e2e - InlineDatePicker', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     component = mount(
-      // date={utilsToUse.date('2018-01-01T00:00:00.000Z')} no such prop
       <DatePickerInline
         animateYearScrolling={false}
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
-        value={null}
-        handleAccept={jest.fn()}
-        isAccepted={true}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
   });
@@ -65,15 +62,12 @@ describe('e2e - InlineDatePicker', () => {
 describe('e2e - InlineDatePicker onlyCalendar', () => {
   it('Should not render toolbar', () => {
     const component = mount(
-      // date={utilsToUse.date('2018-01-01T00:00:00.000Z')} no such prop
       <DatePickerInline
         onlyCalendar
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={jest.fn()}
-        value={null}
         onClose={jest.fn()}
         onOpen={jest.fn()}
-        handleAccept={jest.fn()}
-        isAccepted={true}
       />
     );
 
