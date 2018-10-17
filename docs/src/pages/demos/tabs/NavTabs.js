@@ -18,6 +18,10 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+function LinkTab(props) {
+  return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
+}
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -54,8 +58,6 @@ class NavTabs extends React.Component {
     );
   }
 }
-
-const LinkTab = props => <Tab {...props} component="a" onClick={e => e.preventDefault()} />;
 
 NavTabs.propTypes = {
   classes: PropTypes.object.isRequired,
