@@ -1,6 +1,6 @@
 import { Omit } from '@material-ui/core';
 import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
-import * as keycode_ from 'keycode';
+import keycode_ from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';

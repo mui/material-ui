@@ -1,6 +1,6 @@
 // tslint:disable max-classes-per-file
 import { IconButton } from '@material-ui/core';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import { Moment } from 'moment';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';

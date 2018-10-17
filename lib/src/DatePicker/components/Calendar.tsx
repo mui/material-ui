@@ -1,5 +1,5 @@
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import * as keycode_ from 'keycode';
+import keycode_ from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
