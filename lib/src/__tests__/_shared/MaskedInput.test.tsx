@@ -3,7 +3,7 @@ import * as React from 'react';
 import MaskedInput, { CustomMaskedInputProps } from '../../_shared/MaskedInput';
 import { shallow } from '../test-utils';
 
-describe('ToolbarButton', () => {
+describe('MaskedInput', () => {
   let component: ShallowWrapper<CustomMaskedInputProps>;
 
   beforeEach(() => {
