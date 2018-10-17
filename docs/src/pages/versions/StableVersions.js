@@ -90,7 +90,9 @@ class StableVersions extends React.Component {
                   </TableCell>
                   <TableCell padding="dense">
                     <Typography
-                      component={props2 => <Link {...props2} variant="secondary" href={doc.url} />}
+                      component={props2 => (
+                        <Link {...props2} variant="secondary" rel="nofollow" href={doc.url} />
+                      )}
                     >
                       Documentation
                     </Typography>
