@@ -12,7 +12,7 @@ const checkUtils = (utils: Utils<MaterialUiPickersDate> | null | undefined) => {
   if (!utils) {
     // tslint:disable-next-line
     throw new Error(
-      'Can not find utils in context. You likely forgot to wrap your component tree in MuiPickersUtilsProvider or mixed imports from core module and paths.'
+      'Can not find utils in context. You either a) forgot to wrap your component tree in MuiPickersUtilsProvider; or b) mixed named and direct file imports.  Recommendation: use named imports from the module index.'
     );
   }
 };
