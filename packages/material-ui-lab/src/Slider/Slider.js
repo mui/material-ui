@@ -212,6 +212,9 @@ class Slider extends React.Component {
   }
 
   componentWillUnmount() {
+    // Guarding for **broken** shallow rendering method that call componentDidMount
+    // but doesn't handle refs correctly.
+    // To remove once the shallow rendering has been fixed.
     if (this.containerRef) {
       this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
     }
