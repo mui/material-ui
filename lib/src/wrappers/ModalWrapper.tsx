@@ -1,16 +1,11 @@
 import { Omit } from '@material-ui/core';
 import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
-import * as keycode_ from 'keycode';
+import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
 import DomainPropTypes from '../constants/prop-types';
-
-// Workaround to work with synthetic imports both for jest and rollup
-// https://github.com/rollup/rollup/issues/670
-// https://github.com/kulshekhar/ts-jest/issues/146
-const keycode = keycode_;
 
 export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   onAccept?: () => void;

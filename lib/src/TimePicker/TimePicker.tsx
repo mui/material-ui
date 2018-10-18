@@ -8,7 +8,7 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import withUtils, { WithUtilsProps } from '../_shared/WithUtils';
+import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import ClockType from '../constants/ClockType';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 import { MaterialUiPickersDate } from '../typings/date';

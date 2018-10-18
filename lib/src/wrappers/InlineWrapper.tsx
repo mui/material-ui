@@ -2,17 +2,12 @@ import Popover, {
   PopoverProps as PopoverPropsType,
 } from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import * as keycode_ from 'keycode';
+import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
-
-// Workaround to work with synthetic imports both for jest and rollup
-// https://github.com/rollup/rollup/issues/670
-// https://github.com/kulshekhar/ts-jest/issues/146
-const keycode = keycode_;
 
 export interface InlineWrapperProps extends Partial<DateTextFieldProps> {
   onOpen?: () => void;

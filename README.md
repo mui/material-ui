@@ -26,10 +26,10 @@ npm i luxon
 Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes a utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
 
 ```jsx
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
-import LuxonUtils from 'material-ui-pickers/utils/luxon-utils';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import MomentUtils from 'material-ui-pickers/moment-utils';
+import DateFnsUtils from 'material-ui-pickers/date-fns-utils';
+import LuxonUtils from 'material-ui-pickers/luxon-utils';
+import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 
 function App() {
   return (

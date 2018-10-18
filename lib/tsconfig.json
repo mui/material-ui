@@ -11,6 +11,7 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "declaration": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,

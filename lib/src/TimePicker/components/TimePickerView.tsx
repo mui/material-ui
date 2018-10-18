@@ -2,7 +2,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import Clock from './Clock';
 
-import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import ClockType from '../../constants/ClockType';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';

@@ -2,7 +2,7 @@ import { Omit } from '@material-ui/core';
 import * as React from 'react';
 import { MaterialUiPickersDate } from '../typings/date';
 import { Utils } from '../typings/utils';
-import { MuiPickersContextConsumer } from '../utils/MuiPickersUtilsProvider';
+import { MuiPickersContextConsumer } from '../MuiPickersUtilsProvider';
 
 export interface WithUtilsProps {
   utils: Utils<MaterialUiPickersDate>;
@@ -19,10 +19,10 @@ const checkUtils = (utils: Utils<any> | null) => {
   }
 };
 
-const WithUtils = () => <P extends WithUtilsProps>(
+export const withUtils = () => <P extends WithUtilsProps>(
   Component: React.ComponentType<P>
 ) => {
-  const withUtils: React.SFC<Subtract<P, WithUtilsProps>> = props => (
+  const WithUtils: React.SFC<Subtract<P, WithUtilsProps>> = props => (
     <MuiPickersContextConsumer>
       {utils => {
         checkUtils(utils);
@@ -31,10 +31,8 @@ const WithUtils = () => <P extends WithUtilsProps>(
     </MuiPickersContextConsumer>
   );
 
-  withUtils.displayName = `WithUtils(${Component.displayName ||
+  WithUtils.displayName = `WithUtils(${Component.displayName ||
     Component.name})`;
 
-  return withUtils;
+  return WithUtils;
 };
-
-export default WithUtils;

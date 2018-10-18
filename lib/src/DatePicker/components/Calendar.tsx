@@ -1,5 +1,5 @@
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import * as keycode_ from 'keycode';
+import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
@@ -7,18 +7,13 @@ import EventListener from 'react-event-listener';
 import { Theme } from '@material-ui/core';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
-import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import DomainPropTypes, { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import CalendarHeader from './CalendarHeader';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-
-// Workaround to work with synthetic imports both for jest and rollup
-// https://github.com/rollup/rollup/issues/670
-// https://github.com/kulshekhar/ts-jest/issues/146
-const keycode = keycode_;
 
 export type DayComponent = React.ReactElement<IconButtonProps>;
 export type RenderDay = (
