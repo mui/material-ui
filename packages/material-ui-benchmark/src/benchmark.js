@@ -12,11 +12,12 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 const theme = createMuiTheme();
 
 const suite = new Benchmark.Suite('ssr', {
-  minSamples: 100,
   onError: event => {
     console.log(event.target.error);
   },
 });
+
+Benchmark.options.minSamples = 100;
 
 global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
