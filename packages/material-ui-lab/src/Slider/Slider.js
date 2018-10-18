@@ -212,7 +212,9 @@ class Slider extends React.Component {
   }
 
   componentWillUnmount() {
-    this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
+    if (this.containerRef) {
+      this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
+    }
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
     clearTimeout(this.jumpAnimationTimeoutId);
