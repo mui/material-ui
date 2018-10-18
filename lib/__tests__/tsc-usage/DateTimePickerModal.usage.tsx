@@ -1,8 +1,8 @@
 // tslint:disable max-classes-per-file
 import { Icon, IconButton } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import * as classNames from 'classnames';
-import * as moment from 'moment';
+import classNames from 'classnames';
+import moment from 'moment';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { DayComponent } from '../../src/DatePicker/components/Calendar';
