@@ -18,14 +18,14 @@ export const styles = {
     height: '100%',
     overflow: 'hidden',
   },
-  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
   imgFullHeight: {
     height: '100%',
     transform: 'translateX(-50%)',
     position: 'relative',
     left: '50%',
   },
-  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
   imgFullWidth: {
     width: '100%',
     position: 'relative',
