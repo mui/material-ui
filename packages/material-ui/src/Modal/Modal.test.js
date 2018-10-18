@@ -274,7 +274,9 @@ describe('<Modal />', () => {
       topModalStub.returns(false);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
 
-      instance.handleDocumentKeyDown(undefined);
+      instance.handleDocumentKeyDown({
+        keyCode: keycode('esc'),
+      });
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
@@ -286,7 +288,7 @@ describe('<Modal />', () => {
       event = { keyCode: keycode('j') }; // Not 'esc'
 
       instance.handleDocumentKeyDown(event);
-      assert.strictEqual(topModalStub.callCount, 1);
+      assert.strictEqual(topModalStub.callCount, 0);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
@@ -347,6 +349,16 @@ describe('<Modal />', () => {
         </Modal>,
       );
       assert.strictEqual(wrapper.contains(children), false);
+    });
+
+    it('should mount', () => {
+      mount(
+        <Modal keepMounted open={false}>
+          <div />
+        </Modal>,
+      );
+      const modalNode = document.querySelector('[data-mui-test="Modal"]');
+      assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
   });
 

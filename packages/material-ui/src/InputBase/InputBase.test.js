@@ -84,7 +84,7 @@ describe('<InputBase />', () => {
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
-    // IE11 bug
+    // IE 11 bug
     it('should not respond the focus event when disabled', () => {
       const wrapper = shallow(<InputBase disabled />);
       const instance = wrapper.instance();
