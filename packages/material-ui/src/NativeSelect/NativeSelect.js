@@ -37,7 +37,7 @@ export const styles = theme => ({
       color: 'transparent',
       textShadow: '0 0 0 #000',
     },
-    // Remove IE11 arrow
+    // Remove IE 11 arrow
     '&::-ms-expand': {
       display: 'none',
     },

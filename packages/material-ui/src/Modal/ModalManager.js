@@ -2,7 +2,7 @@ import css from 'dom-helpers/style';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
-import { ariaHidden, hideSiblings, showSiblings } from './manageAriaHidden';
+import { ariaHidden, ariaHiddenSiblings } from './manageAriaHidden';
 
 function findIndexOf(data, callback) {
   let idx = -1;
@@ -93,8 +93,12 @@ class ModalManager {
     modalIdx = this.modals.length;
     this.modals.push(modal);
 
+    // If the modal we are adding is already in the DOM.
+    if (modal.modalRef) {
+      ariaHidden(modal.modalRef, false);
+    }
     if (this.hideSiblingNodes) {
-      hideSiblings(container, modal.mountNode);
+      ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, true);
     }
 
     const containerIdx = this.containers.indexOf(container);
@@ -139,14 +143,18 @@ class ModalManager {
         removeContainerStyle(data, container);
       }
 
+      // In case the modal wasn't in the DOM yet.
+      if (modal.modalRef) {
+        ariaHidden(modal.modalRef, true);
+      }
       if (this.hideSiblingNodes) {
-        showSiblings(container, modal.mountNode);
+        ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, false);
       }
       this.containers.splice(containerIdx, 1);
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
       // Otherwise make sure the next top modal is visible to a screan reader.
-      ariaHidden(false, data.modals[data.modals.length - 1].mountNode);
+      ariaHidden(data.modals[data.modals.length - 1].modalRef, false);
     }
 
     return modalIdx;

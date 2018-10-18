@@ -17,7 +17,7 @@ describe('<Select> integration', () => {
 
   describe('with Dialog', () => {
     it('should focus the selected item', done => {
-      const wrapper = mount(<SelectAndDialog open />);
+      const wrapper = mount(<SelectAndDialog />);
       const portalLayer = wrapper
         .find(Portal)
         .instance()
