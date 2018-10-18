@@ -4,9 +4,9 @@ import * as React from 'react';
 
 import { Moment } from 'moment';
 import DatePickerWrapper from '../../src/DatePicker';
-import DateFnsUtils from '../../src/utils/date-fns-utils';
-import MomentUtils from '../../src/utils/moment-utils';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
+import DateFnsUtils from '../../src/date-fns-utils';
+import MomentUtils from '../../src/moment-utils';
+import MuiUtilsProvider from '../../src/MuiPickersUtilsProvider';
 
 class PatchedDateFnsUtils extends DateFnsUtils {
   public getDatePickerHeaderText(date: Date) {

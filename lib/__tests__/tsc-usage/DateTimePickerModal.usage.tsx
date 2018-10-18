@@ -7,7 +7,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { DayComponent } from '../../src/DatePicker/components/Calendar';
 import DateTimePickerWrapper from '../../src/DateTimePicker';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
+import MuiUtilsProvider from '../../src/MuiPickersUtilsProvider';
 import { utilsToUse } from '../test-utils';
 
 export default class BasicUsage extends React.Component {

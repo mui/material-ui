@@ -2,7 +2,7 @@
 import { Moment } from 'moment';
 import * as React from 'react';
 import TimePickerWrapper from '../../src/TimePicker';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
+import MuiUtilsProvider from '../../src/MuiPickersUtilsProvider';
 import { utilsToUse } from '../test-utils';
 
 // initially from the docs site

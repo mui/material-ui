@@ -6,7 +6,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import DatePickerWrapper from '../../src/DatePicker';
 import { DayComponent } from '../../src/DatePicker/components/Calendar';
-import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider';
+import MuiUtilsProvider from '../../src/MuiPickersUtilsProvider';
 import { utilsToUse } from '../test-utils';
 
 // initially from the docs site
