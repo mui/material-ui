@@ -63,15 +63,11 @@ class Modal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.open && this.props.open) {
-      // check for focus
-      this.lastFocus = ownerDocument(this.mountNode).activeElement;
-    }
-
-    if (prevProps.open && !this.props.open && !getHasTransition(this.props)) {
-      // Otherwise handleExited will call this.
+    if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
+      // check for focus
+      this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
   }
@@ -136,8 +132,6 @@ class Modal extends React.Component {
     this.modalRef.scrollTop = 0;
   };
 
-  handleDisplay = () => {};
-
   handleClose = () => {
     this.props.manager.remove(this);
 
@@ -150,7 +144,6 @@ class Modal extends React.Component {
 
   handleExited = () => {
     this.setState({ exited: true });
-    this.handleClose();
   };
 
   handleBackdropClick = event => {
