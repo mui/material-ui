@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
-import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import DateTimePickerView from '../../constants/DateTimePickerView';
 import { MaterialUiPickersDate } from '../../typings/date';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { Utils } from '../typings/utils';
-import withUtils, { WithUtilsProps } from './WithUtils';
+import { withUtils, WithUtilsProps } from './WithUtils';
 
 export interface InnerBasePickerProps {
   utils: Utils<MaterialUiPickersDate>;

@@ -1,4 +1,4 @@
-import * as defaultMoment from 'moment';
+import defaultMoment from 'moment';
 import { Utils } from '../typings/utils';
 
 interface Opts {

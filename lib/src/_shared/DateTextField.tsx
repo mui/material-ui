@@ -10,7 +10,7 @@ import { InputProps as InputPropsType } from '@material-ui/core/Input';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import MaskedInput from './MaskedInput';
-import withUtils, { WithUtilsProps } from './WithUtils';
+import { withUtils, WithUtilsProps } from './WithUtils';
 
 const getDisplayDate = ({
   utils,

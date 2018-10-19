@@ -3,7 +3,7 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
-import withUtils, { WithUtilsProps } from '../../_shared/WithUtils';
+import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import DomainPropTypes, { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import Year from './Year';
