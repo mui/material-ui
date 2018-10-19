@@ -39,15 +39,15 @@ export const shallowRender = (
 };
 
 jest.doMock('../src/_shared/WithUtils', () => {
-  const WithUtils = () => (Component: React.ComponentType<WithUtilsProps>) => {
-    const withUtils: React.SFC<any> = props => (
+  const withUtils = () => (Component: React.ComponentType<WithUtilsProps>) => {
+    const WithUtils: React.SFC<any> = props => (
       <Component utils={utilsToUse} {...props} />
     );
-    withUtils.displayName = `WithUtils(${Component.displayName ||
+    WithUtils.displayName = `WithUtils(${Component.displayName ||
       Component.name})`;
 
-    return withUtils;
+    return WithUtils;
   };
 
-  return { default: WithUtils };
+  return { withUtils };
 });
