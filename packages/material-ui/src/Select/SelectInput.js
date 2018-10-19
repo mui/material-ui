@@ -226,7 +226,7 @@ class SelectInput extends React.Component {
         }
 
         selected = value.indexOf(child.props.value) !== -1;
-        if (computeDisplay && (selected || (child.props.value === '' && value.length === 0))) {
+        if (selected && computeDisplay) {
           displayMultiple.push(child.props.children);
         }
       } else {
