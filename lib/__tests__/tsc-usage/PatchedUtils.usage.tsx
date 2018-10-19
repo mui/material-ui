@@ -1,5 +1,5 @@
 // tslint:disable max-classes-per-file
-import * as format from 'date-fns/format';
+import format from 'date-fns/format';
 import * as React from 'react';
 
 import { Moment } from 'moment';
