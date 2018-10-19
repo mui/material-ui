@@ -35,6 +35,16 @@ Sometimes, using CSS isn't enough.
 You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
 We provide a `withWidth()` higher-order component for this use case.
 
+```js
+import withWidth from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  return <div>{`Current width: ${props.width}`}</div>;
+}
+
+export default withWidth()(MyComponent);
+```
+
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
@@ -45,6 +55,21 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 In some cases, you could have property name collisions using higher-order components.
 To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
+
+```js
+import Typography from '@material-ui/core/Typography';
+import toRenderProps from 'recompose/toRenderProps';
+
+const WithWidth = toRenderProps(withWidth());
+
+export default function MyComponent() {
+  return (
+    <WithWidth>
+      {({ width }) => <div>{`Current width: ${width}`}</div>}
+    </WithWidth>
+  );
+}
+```
 
 {{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
 
