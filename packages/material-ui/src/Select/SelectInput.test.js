@@ -121,6 +121,17 @@ describe('<SelectInput />', () => {
       );
       assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), 'Ten');
     });
+
+    it('should display the selected item, when using multiple, even its value is empty', () => {
+      const wrapper = shallow(
+        <SelectInput {...defaultProps} value={[]} multiple displayEmpty>
+          <MenuItem value="">Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </SelectInput>,
+      );
+      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), 'Ten');
+    });
   });
 
   describe('prop: renderValue', () => {
