@@ -122,7 +122,7 @@ describe('<SelectInput />', () => {
       assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), 'Ten');
     });
 
-    it('should display the selected item even its value is empty, when used with multiple', () => {
+    it('should display the selected item even if its value is empty, when used with multiple', () => {
       const wrapper = shallow(
         <SelectInput {...defaultProps} value={[]} multiple displayEmpty>
           <MenuItem value="">Ten</MenuItem>
