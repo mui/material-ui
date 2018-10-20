@@ -161,7 +161,7 @@ Then, you can add Material-UI to any project you want to try your changes:
 
 ```shell
 # From the root folder of any project
-yarn add file:/path/to/material-ui/folder
+yarn add file:<path-to-material-ui-project>/packages/material-ui/build
 ```
 
 Now, every time you import `material-ui` in your project, it is going to use your local distribution.
