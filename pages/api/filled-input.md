@@ -56,7 +56,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">underline</span> | Styles applied to the root element.
+| <span class="prop-name">underline</span> | Styles applied to the root element if `disableUnderline={false}`.
 | <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
