@@ -112,7 +112,7 @@ class ListItem extends React.Component {
         [classes.gutters]: !disableGutters,
         [classes.divider]: divider,
         [classes.disabled]: disabled,
-        [classes.button]: button,
+        [classes.button]: button || other.href,
         [classes.secondaryAction]: hasSecondaryAction,
         [classes.selected]: selected,
       },
@@ -122,8 +122,13 @@ class ListItem extends React.Component {
     const componentProps = { className, disabled, ...other };
     let Component = componentProp || 'li';
 
-    if (button) {
-      componentProps.component = componentProp || 'div';
+    if (button || other.href) {
+      if (componentProp) {
+        componentProps.component = componentProp;
+      } else {
+        componentProps.component = other.href ? 'a' : 'div';
+      }
+
       componentProps.focusVisibleClassName = classNames(
         classes.focusVisible,
         focusVisibleClassName,

@@ -85,6 +85,18 @@ describe('<ListItem />', () => {
     });
   });
 
+  describe('prop: href', () => {
+    it('should render an anchor', () => {
+      const wrapper = shallow(<ListItem href="#" />);
+      assert.strictEqual(wrapper.props().component, 'a');
+    });
+
+    it('should use the button class', () => {
+      const wrapper = shallow(<ListItem href="#" />);
+      assert.strictEqual(wrapper.hasClass(classes.button), true);
+    });
+  });
+
   describe('context: dense', () => {
     it('should forward the context', () => {
       const wrapper = shallow(<ListItem />);
