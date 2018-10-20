@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +21,8 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginRight: drawerWidth,
   },
   drawer: {
     width: drawerWidth,
@@ -30,14 +31,15 @@ const styles = theme => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
-  toolbar: theme.mixins.toolbar,
 });
 
-function ClippedDrawer(props) {
+function PermanentDrawerRight(props) {
   const { classes } = props;
 
   return (
@@ -46,36 +48,10 @@ function ClippedDrawer(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Clipped drawer
+            Permanent drawer
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.toolbar} />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Typography paragraph>
@@ -102,12 +78,40 @@ function ClippedDrawer(props) {
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </main>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor="right"
+      >
+        <div className={classes.toolbar} />
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
     </div>
   );
 }
 
-ClippedDrawer.propTypes = {
+PermanentDrawerRight.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ClippedDrawer);
+export default withStyles(styles)(PermanentDrawerRight);

@@ -9294,6 +9294,11 @@ react-event-listener@^0.6.0, react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
+react-frame-component@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-4.0.2.tgz#408f137ab4ba14cd13a5844b86ac972903dda021"
+  integrity sha512-846zt81ijEC0ul6sBWzxkI5EGIE39ft9EaNzQUcszV/WWWDnldFJ+tKU7Et2GhZ4OHT/cy1GHcjsLLsdiOXhBg==
+
 react-input-autosize@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"

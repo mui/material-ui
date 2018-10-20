@@ -131,6 +131,7 @@
     "react-autosuggest": "^9.3.2",
     "react-docgen": "^3.0.0-beta10",
     "react-dom": "^16.4.0",
+    "react-frame-component": "^4.0.2",
     "react-inspector": "^2.2.2",
     "react-jss": "^8.1.0",
     "react-markdown": "^4.0.0",

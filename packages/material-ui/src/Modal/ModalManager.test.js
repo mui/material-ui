@@ -121,6 +121,43 @@ describe('ModalManager', () => {
     });
   });
 
+  describe('multi container', () => {
+    let container3;
+    let container4;
+
+    beforeEach(() => {
+      container3 = document.createElement('div');
+      document.body.appendChild(container3);
+      container3.appendChild(document.createElement('div'));
+
+      container4 = document.createElement('div');
+      document.body.appendChild(container4);
+      container4.appendChild(document.createElement('div'));
+    });
+
+    it('should work will multiple containers', () => {
+      modalManager = new ModalManager();
+      const modal1 = {};
+      const modal2 = {};
+      modalManager.add(modal1, container3);
+      assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), 'true');
+
+      modalManager.add(modal2, container4);
+      assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), 'true');
+
+      modalManager.remove(modal2);
+      assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), null);
+
+      modalManager.remove(modal1);
+      assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), null);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(container3);
+      document.body.removeChild(container4);
+    });
+  });
+
   describe('container aria-hidden', () => {
     let modalRef1;
     let container2;
