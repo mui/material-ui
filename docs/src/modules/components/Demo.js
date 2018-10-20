@@ -15,6 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import { getDependencies } from 'docs/src/modules/utils/helpers';
+import DemoFrame from 'docs/src/modules/components/DemoFrame';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -266,7 +267,13 @@ class Demo extends React.Component {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
         >
-          <DemoComponent />
+          {demoOptions.iframe ? (
+            <DemoFrame>
+              <DemoComponent />
+            </DemoFrame>
+          ) : (
+            <DemoComponent />
+          )}
         </div>
       </div>
     );

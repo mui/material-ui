@@ -41,4 +41,4 @@ A primary searchbar.
 
 ## Bottom App Bar
 
-{{"demo": "pages/demos/app-bar/BottomAppBar.js"}}
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}

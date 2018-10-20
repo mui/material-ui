@@ -57,7 +57,6 @@ const blacklistSuite = [
 ];
 
 const blacklistFilename = [
-  'docs-demos-drawers/tileData.png', // no component
   'docs-demos-grid-list/tileData.png', // no component
   'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-demos-steppers/TextMobileStepper.png', // external img
