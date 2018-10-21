@@ -19,7 +19,10 @@ export const styles = theme => ({
     '&$selected': {},
   },
   /* Styles applied to the inner `component` element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
