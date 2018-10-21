@@ -1,5 +1,63 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.3.0
+###### *Oct 21, 2018*
+
+Big thanks to the 26 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🐛 Fix some important issues with the Modal (#13082, #13310) @J-Kallunki.
+- 📝 First translations of the documentation in Chinese (#13094) @mbrookes.
+- 📦 Make the Drawer demos usable outside of the box (#13314).
+- And many more bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.3.0`
+
+- [FormHelperText] Error styles should override disabled styles (#13217) @matthewdordal
+- [InputBase] Add 'renderPrefix' and 'onFilled' signatures (#13282) @zheeeng
+- [Drawer] Fix right chevron in persistent demo (#13275) @fabriziocucci
+- [Tabs] Center text within tabs (#13258) @pelotom
+- [ModalManager] Fix aria-hidden of modal current node (#13082) @J-Kallunki
+- [Modal] Restore the focus as fast as possible (#13310) @oliviertassinari
+- [Select] Add a multiple placeholder demo (#13309) @rfbotto
+- [ListItem] Document how you can render a link (#13069) @JulienUsson
+- [Select] Fix NativeSelect's height in FF and Edge (#13326) @pinguinjkeke
+- [FormControl] Added zIndex of 0 to root style (#13327) @drkohlipk
+- [withStyle] Improve the dangerouslyUseGlobalCSS option (#13330) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.21`
+
+- [Slider] Fix Jest unmount issue (#13295) @mdartic
+
+### Docs
+
+- [docs] Adds documentation for Circular Progress component (#13266) @mxmcg
+- [docs] Remove usage of non-existent `listItem` jss class (#13269, #13268) @G-Rath
+- [examples] Extend the .gitignore files (#13270) @phiilu
+- [docs] Remove/annotate deprecated button variants (#13280) @eps1lon
+- [docs] Update RTL guide to be more clear (#13181) @wenduzer
+- [docs] Add checklist to PR template (#13225) @eps1lon
+- [docs] Fix markdown formatting (#13284) @rutsky
+- [docs] Fix typo (#13287) @NMinhNguyen
+- [docs] Fixes typos & formatting in GridListTile and GridListTileBar documentation (#13298) @rassek96
+- [docs] Reverse show password logic (#13301) @ShunnyBunny
+- [docs] Some improvements (#13308) @programistka
+- [docs] Clarify on how to use the local distribution in the CONTRIBUTING file (#13312) @nicolasiensen
+- [docs] Refactor CheckboxesGroup to support IE11 (#13316) @simjes
+- [docs] Set the infrastructure for a full page demo (#13314) @oliviertassinari
+- [docs] Fix typos & formatting in filled-input (#13317) @dskiba
+- [docs] Remove usage of non-existent `margin` jss class (#13318) @G-Rath
+- [docs] Fix ad display (#13321) @oliviertassinari
+- [docs] New Crowdin translations (#13094) @mbrookes
+
+### Core
+
+- [core] Fix defaultFontFamily misspelled in createTypography (#13260) @TheBear44
+- [core] Misc of improvements (#13271) @oliviertassinari
+- [core] Upgrade the dev dependencies (#13286) @oliviertassinari
+- [core] Disable the jss vendor plugin server side (#13285) @oliviertassinari
+- [core] Work toward preventing Googlebot regressions (#13323) @oliviertassinari
+
 ## 3.2.2
 ###### *Oct 16, 2018*
 
