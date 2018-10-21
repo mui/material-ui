@@ -31,24 +31,8 @@ export default function createGenerateClassName(options = {}) {
       ].join(''),
     );
 
-    // Code branch the whole block at the expense of more code.
-    if (dangerouslyUseGlobalCSS) {
-      if (styleSheet) {
-        if (styleSheet.options.name) {
-          return `${styleSheet.options.name}-${rule.key}`;
-        }
-
-        if (styleSheet.options.classNamePrefix && process.env.NODE_ENV !== 'production') {
-          const prefix = safePrefix(styleSheet.options.classNamePrefix);
-          return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
-        }
-      }
-
-      if (process.env.NODE_ENV === 'production') {
-        return `${productionPrefix}${seed}${ruleCounter}`;
-      }
-
-      return `${rule.key}-${seed}${ruleCounter}`;
+    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
+      return `${styleSheet.options.name}-${rule.key}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
@@ -57,7 +41,6 @@ export default function createGenerateClassName(options = {}) {
 
     if (styleSheet && styleSheet.options.classNamePrefix) {
       const prefix = safePrefix(styleSheet.options.classNamePrefix);
-
       return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
     }
 

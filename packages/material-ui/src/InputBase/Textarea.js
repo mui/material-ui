@@ -234,4 +234,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles)(Textarea);
+export default withStyles(styles, { name: 'MuiTextarea' })(Textarea);
