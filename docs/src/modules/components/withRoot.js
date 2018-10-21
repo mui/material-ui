@@ -9,7 +9,7 @@ import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
 
-acceptLanguage.languages(['en']);
+acceptLanguage.languages(['en', 'zh']);
 
 if (process.browser) {
   loadCSS(
