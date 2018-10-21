@@ -70,6 +70,8 @@ This component uses a customized `StepConnector` element that changes border col
 
 ## Breadcrumbs
 
+The `Stepper` can be repurposed to implement navigation breadcrumbs. 
+
 {{"demo": "pages/demos/steppers/Breadcrumbs.js"}}
 
 ## Mobile Stepper
