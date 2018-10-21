@@ -18,6 +18,7 @@ export const styles = {
     margin: 0,
     border: 0,
     verticalAlign: 'top', // Fix alignment issue on Safari.
+    zIndex: 0,
   },
   /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {
