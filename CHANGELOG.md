@@ -29,6 +29,10 @@ Here are some highlights ✨:
 
 - [Slider] Fix Jest unmount issue (#13295) @mdartic
 
+### `@material-ui/docs@v3.0.0-alpha.7`
+
+- [withStyle] Improve the dangerouslyUseGlobalCSS option (#13330) @oliviertassinari
+
 ### Docs
 
 - [docs] Adds documentation for Circular Progress component (#13266) @mxmcg
