@@ -29,6 +29,7 @@ function MenuItem(props) {
     classes,
     className: classNameProp,
     component,
+    disableGutters,
     selected,
     role,
     ...other
@@ -53,6 +54,7 @@ function MenuItem(props) {
       classes={classNames({
         gutters: classes.gutters,
       })}
+      disableGutters={disableGutters}
       {...other}
     />
   );
@@ -78,6 +80,10 @@ MenuItem.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: PropTypes.bool,
+  /**
    * @ignore
    */
   role: PropTypes.string,
@@ -89,6 +95,7 @@ MenuItem.propTypes = {
 
 MenuItem.defaultProps = {
   component: 'li',
+  disableGutters: false,
   role: 'menuitem',
 };
 
