@@ -1,6 +1,6 @@
 files:
   - source: /docs/src/pages/**/*.md
     ignore:
-      - blog/blog-post.*.md
-      - '*-zh.md'
+      - '**/blog/blog-post.*.md'
+      - '**/*-zh.md'
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
