@@ -94,7 +94,6 @@ class ListItem extends React.Component {
       disableGutters,
       divider,
       focusVisibleClassName,
-      href,
       selected,
       ...other
     } = this.props;
@@ -113,18 +112,18 @@ class ListItem extends React.Component {
         [classes.gutters]: !disableGutters,
         [classes.divider]: divider,
         [classes.disabled]: disabled,
-        [classes.button]: button || href,
+        [classes.button]: button,
         [classes.secondaryAction]: hasSecondaryAction,
         [classes.selected]: selected,
       },
       classNameProp,
     );
 
-    const componentProps = { className, disabled, href, ...other };
+    const componentProps = { className, disabled, ...other };
     let Component = componentProp || 'li';
 
-    if (button || href) {
-      componentProps.component = componentProp || (href ? 'a' : 'div');
+    if (button) {
+      componentProps.component = componentProp || 'div';
       componentProps.focusVisibleClassName = classNames(
         classes.focusVisible,
         focusVisibleClassName,
@@ -213,11 +212,6 @@ ListItem.propTypes = {
    * @ignore
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * The URL to link to when the button is clicked.
-   * If defined, an `a` element will be used as the root node.
-   */
-  href: PropTypes.string,
   /**
    * Use to apply selected styling.
    */
