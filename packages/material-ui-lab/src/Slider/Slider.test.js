@@ -136,8 +136,8 @@ describe('<Slider />', () => {
     });
 
     it('should render thumb in initial state', () => {
-      const button = wrapper.find('button');
-      assert.strictEqual(button.props().style.left, '0%');
+      const thumb = wrapper.find('div').filterWhere(n => n.hasClass(classes.thumbWrapper));
+      assert.strictEqual(thumb.props().style.transform, 'translateX(0%)');
     });
 
     it('should render tracks in initial state', () => {
@@ -145,8 +145,8 @@ describe('<Slider />', () => {
       const trackBefore = tracks.at(0);
       const trackAfter = tracks.at(1);
 
-      assert.strictEqual(trackBefore.props().style.width, '0%');
-      assert.strictEqual(trackAfter.props().style.width, 'calc(100% - 5px)');
+      assert.strictEqual(trackBefore.props().style.transform, 'translateY(-50%) scaleX(0)');
+      assert.strictEqual(trackAfter.props().style.transform, 'translateY(-50%) scaleX(1)');
     });
 
     it('after change value should change position of thumb', () => {
@@ -154,8 +154,8 @@ describe('<Slider />', () => {
 
       clock.tick(transitionComplexDuration);
 
-      const button = wrapper.find('button');
-      assert.strictEqual(button.props().style.left, '50%');
+      const thumb = wrapper.find('div').filterWhere(n => n.hasClass(classes.thumbWrapper));
+      assert.strictEqual(thumb.props().style.transform, 'translateX(50%)');
     });
 
     it('should render tracks in new state', () => {
@@ -163,8 +163,8 @@ describe('<Slider />', () => {
       const trackBefore = tracks.at(0);
       const trackAfter = tracks.at(1);
 
-      assert.strictEqual(trackBefore.props().style.width, '50%');
-      assert.strictEqual(trackAfter.props().style.width, 'calc(100% - 5px)');
+      assert.strictEqual(trackBefore.props().style.transform, 'translateY(-50%) scaleX(0.5)');
+      assert.strictEqual(trackAfter.props().style.transform, 'translateY(-50%) scaleX(0.5)');
     });
   });
 });

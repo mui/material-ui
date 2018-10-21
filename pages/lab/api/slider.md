@@ -47,6 +47,7 @@ This property accepts the following keys:
 | <span class="prop-name">track</span> | Styles applied to the track elements.
 | <span class="prop-name">trackBefore</span> | Styles applied to the track element before the thumb.
 | <span class="prop-name">trackAfter</span> | Styles applied to the track element after the thumb.
+| <span class="prop-name">thumbWrapper</span> | Styles applied to the thumb wrapper element.
 | <span class="prop-name">thumb</span> | Styles applied to the thumb element.
 | <span class="prop-name">thumbIconWrapper</span> | Class applied to the thumb element if custom thumb icon provided.
 | <span class="prop-name">thumbIcon</span> | 
@@ -55,6 +56,7 @@ This property accepts the following keys:
 | <span class="prop-name">focused</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `focused`.
 | <span class="prop-name">activated</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `activated`.
 | <span class="prop-name">vertical</span> | Class applied to the root, track and container to trigger JSS nested styles if `vertical`.
+| <span class="prop-name">rtl</span> | Class applied to the root, track and container to trigger JSS nested styles if `rtl`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/Slider/Slider.js)
