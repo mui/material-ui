@@ -68,6 +68,10 @@ This component uses a customized `StepConnector` element that changes border col
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 
+## Breadcrumbs
+
+{{"demo": "pages/demos/steppers/Breadcrumbs.js"}}
+
 ## Mobile Stepper
 
 This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
