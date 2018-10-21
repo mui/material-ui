@@ -16,16 +16,31 @@ export const styles = theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    paddingLeft: 16,
-    paddingRight: 16,
     '&$selected': {},
   },
+  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  gutters: theme.mixins.gutters(),
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
 
 function MenuItem(props) {
-  const { classes, className, component, selected, role, ...other } = props;
+  const {
+    classes,
+    className: classNameProp,
+    component,
+    selected,
+    role,
+    ...other
+  } = props;
+
+  const className = classNames(
+    classes.root,
+    {
+      [classes.selected]: selected,
+    },
+    classNameProp,
+  );
 
   return (
     <ListItem
@@ -33,8 +48,11 @@ function MenuItem(props) {
       role={role}
       tabIndex={-1}
       selected={selected}
-      className={classNames(classes.root, { [classes.selected]: selected }, className)}
+      className={className}
       component={component}
+      classes={classNames({
+        gutters: classes.gutters,
+      })}
       {...other}
     />
   );
