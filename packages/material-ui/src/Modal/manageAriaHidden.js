@@ -15,9 +15,6 @@ function siblings(container, mount, currentNode, callback) {
 }
 
 export function ariaHidden(node, show) {
-  if(!node) {
-    return;
-  }
   if (show) {
     node.setAttribute('aria-hidden', 'true');
   } else {
