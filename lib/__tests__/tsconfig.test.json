@@ -1,9 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "module": "es6",
-    "allowSyntheticDefaultImports": true,
-    "typeRoots": ["../node_modules/@types"]
-  },
-  "include": ["./**/*.test.tsx"]
-}

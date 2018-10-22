@@ -28,7 +28,7 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
 export default class ModalWrapper extends React.PureComponent<
   ModalWrapperProps
 > {
-  public static propTypes = {
+  public static propTypes: any = {
     /** "OK" label message */
     okLabel: PropTypes.node,
     /** "Cancel" label message */
@@ -82,6 +82,7 @@ export default class ModalWrapper extends React.PureComponent<
     onClose: undefined,
     onSetToday: undefined,
     DialogProps: undefined,
+    isAccepted: false,
   };
 
   public static getDerivedStateFromProps(nextProps: ModalWrapperProps) {

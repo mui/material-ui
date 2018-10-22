@@ -11,7 +11,15 @@ import DatePicker, { BaseDatePickerProps } from './DatePicker';
 export interface DatePickerInlineProps
   extends Omit<BasePickerProps, 'ampm'>,
     BaseDatePickerProps,
-    Omit<InlineWrapperProps, 'onChange' | 'value' | 'utils' | 'onlyCalendar'> {
+    Omit<
+      InlineWrapperProps,
+      | 'isAccepted'
+      | 'handleAccept'
+      | 'onChange'
+      | 'value'
+      | 'utils'
+      | 'onlyCalendar'
+    > {
   onlyCalendar?: boolean;
 }
 

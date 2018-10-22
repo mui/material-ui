@@ -4,7 +4,7 @@ import { MaterialUiPickersDate } from '../typings/date';
 import { Utils } from '../typings/utils';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
-export interface InnerBasePickerProps {
+export interface BasePickerRenderArgs {
   utils: Utils<MaterialUiPickersDate>;
   date: MaterialUiPickersDate;
   isAccepted: boolean;
@@ -35,7 +35,7 @@ export interface BasePickerProps {
 }
 
 export interface OuterBasePickerProps extends BasePickerProps, WithUtilsProps {
-  children: (options: InnerBasePickerProps) => React.ReactNode;
+  children: (options: BasePickerRenderArgs) => React.ReactNode;
 }
 
 const getInitialDate = ({
