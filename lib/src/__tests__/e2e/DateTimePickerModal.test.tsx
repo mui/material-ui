@@ -7,6 +7,7 @@ import { mount, utilsToUse } from '../test-utils';
 
 const format =
   process.env.UTILS === 'luxon' ? 'MM/dd/yyyy hh:mm' : 'MM/DD/YYYY HH:mm';
+
 describe('e2e - DateTimePickerModal', () => {
   let component: ReactWrapper<DateTimePickerModalProps>;
   const onChangeMock = jest.fn();
@@ -31,13 +32,14 @@ describe('e2e - DateTimePickerModal', () => {
   });
 
   it('Should update state when passing new value from outside', () => {
-    component.setProps({ value: '2019-01-01T00:00:00.000Z' });
+    component.setProps({ value: '2018-01-01T00:00:00.000Z' });
     component.update(); // make additional react tick to update text field
 
     const expectedString = utilsToUse.format(
-      utilsToUse.date('2019-01-01T00:00:00.000Z'),
+      utilsToUse.date('2018-01-01T00:00:00.000Z'),
       format
     );
+
     expect(component.find('input').props().value).toBe(expectedString);
   });
 

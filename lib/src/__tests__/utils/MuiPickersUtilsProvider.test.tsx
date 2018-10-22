@@ -1,9 +1,9 @@
 import { shallow, ShallowWrapper } from 'enzyme'; // required to use just shallow here because utils prop override
 import * as React from 'react';
-import DateFnsUtils from '../../utils/date-fns-utils';
+import DateFnsUtils from '../../date-fns-utils';
 import MuiPickersUtilsProvider, {
   MuiPickersUtilsProviderProps,
-} from '../../utils/MuiPickersUtilsProvider';
+} from '../../MuiPickersUtilsProvider';
 
 describe('MuiPickersUtilsProvider', () => {
   let component: ShallowWrapper<MuiPickersUtilsProviderProps>;
