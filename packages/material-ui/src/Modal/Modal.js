@@ -203,7 +203,7 @@ class Modal extends React.Component {
           [
             'Material-UI: the modal content node does not accept focus.',
             'For the benefit of assistive technologies, ' +
-              'the tabIndex of the node is being set to "-1".',
+            'the tabIndex of the node is being set to "-1".',
           ].join('\n'),
         );
         this.dialogRef.setAttribute('tabIndex', -1);
@@ -232,6 +232,14 @@ class Modal extends React.Component {
   isTopModal() {
     return this.props.manager.isTopModal(this);
   }
+
+  handlePortalRef = (ref) => {
+    this.mountNode = ref ? ref.getMountNode() : ref;
+  };
+
+  handleModalRef = (ref) => {
+    this.modalRef = ref;
+  };
 
   render() {
     const {
@@ -281,18 +289,14 @@ class Modal extends React.Component {
 
     return (
       <Portal
-        ref={ref => {
-          this.mountNode = ref ? ref.getMountNode() : ref;
-        }}
+        ref={this.handlePortalRef}
         container={container}
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
         <div
           data-mui-test="Modal"
-          ref={ref => {
-            this.modalRef = ref;
-          }}
+          ref={this.handleModalRef}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
