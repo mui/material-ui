@@ -228,16 +228,15 @@ function Button(props) {
 
   const fab = variant === 'fab' || variant === 'extendedFab';
   const contained = variant === 'contained' || variant === 'raised';
-  const text = variant === 'text' || variant === 'flat' || variant === 'outlined';
   const className = classNames(
     classes.root,
     {
       [classes.fab]: fab,
       [classes.mini]: fab && mini,
       [classes.extendedFab]: variant === 'extendedFab',
-      [classes.text]: text,
-      [classes.textPrimary]: text && color === 'primary',
-      [classes.textSecondary]: text && color === 'secondary',
+      [classes.text]: variant === 'text',
+      [classes.textPrimary]: variant === 'text' && color === 'primary',
+      [classes.textSecondary]: variant === 'text' && color === 'secondary',
       [classes.flat]: variant === 'text' || variant === 'flat',
       [classes.flatPrimary]: (variant === 'text' || variant === 'flat') && color === 'primary',
       [classes.flatSecondary]: (variant === 'text' || variant === 'flat') && color === 'secondary',
