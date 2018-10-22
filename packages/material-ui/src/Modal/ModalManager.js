@@ -49,12 +49,12 @@ function setContainerStyle(data, container) {
   });
 }
 
-function removeContainerStyle(data, container) {
+function removeContainerStyle(data) {
   Object.keys(data.style).forEach(key => {
-    container.style[key] = data.style[key];
+    data.container.style[key] = data.style[key];
   });
 
-  const fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
+  const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
   for (let i = 0; i < fixedNodes.length; i += 1) {
     fixedNodes[i].style.paddingRight = `${data.prevPaddings[i]}px`;
   }
@@ -76,10 +76,11 @@ class ModalManager {
 
     // this.modals[modalIdx] = modal
     this.modals = [];
-    // this.containers[containerIdx] = container
-    this.containers = [];
     // this.data[containerIdx] = {
     //   modals: [],
+    //   container,
+    //   overflowing,
+    //   prevPaddings,
     // }
     this.data = [];
   }
@@ -101,7 +102,7 @@ class ModalManager {
       ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, true);
     }
 
-    const containerIdx = this.containers.indexOf(container);
+    const containerIdx = findIndexOf(this.data, item => item.container === container);
     if (containerIdx !== -1) {
       this.data[containerIdx].modals.push(modal);
       return modalIdx;
@@ -109,6 +110,7 @@ class ModalManager {
 
     const data = {
       modals: [modal],
+      container,
       overflowing: isOverflowing(container),
       prevPaddings: [],
     };
@@ -117,7 +119,6 @@ class ModalManager {
       setContainerStyle(data, container);
     }
 
-    this.containers.push(container);
     this.data.push(data);
 
     return modalIdx;
@@ -132,7 +133,6 @@ class ModalManager {
 
     const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
     const data = this.data[containerIdx];
-    const container = this.containers[containerIdx];
 
     data.modals.splice(data.modals.indexOf(modal), 1);
     this.modals.splice(modalIdx, 1);
@@ -140,7 +140,7 @@ class ModalManager {
     // If that was the last modal in a container, clean up the container.
     if (data.modals.length === 0) {
       if (this.handleContainerOverflow) {
-        removeContainerStyle(data, container);
+        removeContainerStyle(data);
       }
 
       // In case the modal wasn't in the DOM yet.
@@ -148,9 +148,8 @@ class ModalManager {
         ariaHidden(modal.modalRef, true);
       }
       if (this.hideSiblingNodes) {
-        ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, false);
+        ariaHiddenSiblings(data.container, modal.mountNode, modal.modalRef, false);
       }
-      this.containers.splice(containerIdx, 1);
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
       // Otherwise make sure the next top modal is visible to a screan reader.

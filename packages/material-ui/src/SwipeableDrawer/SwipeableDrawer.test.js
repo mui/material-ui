@@ -258,7 +258,7 @@ describe('<SwipeableDrawer />', () => {
           wrapper.setProps({ disableDiscovery: true });
 
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          if (['left', 'right'].includes(params.anchor)) {
+          if (['left', 'right'].indexOf(params.anchor) !== -1) {
             fireBodyMouseEvent('touchmove', {
               touches: [
                 {

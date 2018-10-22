@@ -78,7 +78,7 @@ const styles = theme => {
   };
 };
 
-const GlobalStyles = withStyles(styles, { flip: false })(() => null);
+const GlobalStyles = withStyles(styles, { flip: false, name: 'MuiNProgressBar' })(() => null);
 
 /**
  * Elegant and ready to use wrapper on top of https://github.com/rstacruz/nprogress/.
