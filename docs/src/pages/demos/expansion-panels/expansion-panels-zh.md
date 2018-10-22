@@ -20,6 +20,6 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 受控手风琴
 
-扩展默认面板行为以使用 ExpansionPanel </ code>组件创建手风琴。</p>
+扩展默认面板行为以使用<code> ExpansionPanel </code>组件创建手风琴。</p>
 
-<p>{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}</p>
+{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
