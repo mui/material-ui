@@ -1,6 +1,10 @@
 [
   {
-    "id": 25,
-    "text": "Material-UI v3.3.0 is out 🎉. Please see <a style=\"color: white;\" target=\"_blank\" href=\"https://github.com/mui-org/material-ui/releases/tag/v3.3.0\">the release notes</a>."
+    "id": 26,
+    "text": "Material-UI v3.3.1 is out 🎉. Please see <a style=\"color: white;\" target=\"_blank\" href=\"https://github.com/mui-org/material-ui/releases/tag/v3.3.1\">the release notes</a>."
+  },
+  {
+    "id": 27,
+    "text": "You can <a style=\"color: white;\" target=\"_blank\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about Material-UI and React ecosystem."
   }
 ]
