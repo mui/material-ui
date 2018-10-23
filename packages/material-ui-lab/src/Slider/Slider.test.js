@@ -1,5 +1,5 @@
 import React from 'react';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Slider from './Slider';
