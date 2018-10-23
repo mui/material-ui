@@ -87,10 +87,6 @@ export const styles = theme => {
       zIndex: 1,
       left: 0,
       transformOrigin: 'left bottom',
-      '&$rtl': {
-        // left gets rewritten to right which is actually what we want
-        transformOrigin: 'left bottom',
-      },
     },
     /* Styles applied to the track element after the thumb. */
     trackAfter: {
@@ -111,30 +107,17 @@ export const styles = theme => {
         transition: 'none',
         willChange: 'transform',
       },
-      '&$rtl': {
-        position: 'relative',
-        left: '100%',
-      },
       '&$vertical': {
-        position: 'relative',
-        bottom: 12,
+        bottom: 0,
         height: '100%',
-      },
-      '&$vertical$disabled': {
-        bottom: 9,
-      },
-      '&$vertical$rtl': {
-        position: 'relative',
-        left: 'unset',
-        right: 12,
-      },
-      '&$vertical$rtl$disabled': {
-        right: 9,
       },
     },
     /* Styles applied to the thumb element. */
     thumb: {
+      // Opt out of rtl flip as positioning here only is for centering
+      flip: false,
       position: 'absolute',
+      left: 0,
       transform: 'translate(-50%, -50%)',
       width: 12,
       height: 12,
@@ -156,9 +139,6 @@ export const styles = theme => {
       '&$jumped': {
         boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
       },
-      '&$vertical': {
-        transform: 'translate(-50%, +50%)',
-      },
     },
     /* Class applied to the thumb element if custom thumb icon provided. */
     thumbIconWrapper: {
@@ -178,8 +158,6 @@ export const styles = theme => {
     activated: {},
     /* Class applied to the root, track and container to trigger JSS nested styles if `vertical`. */
     vertical: {},
-    /* Class applied to the root, track and container to trigger JSS nested styles if `rtl`. */
-    rtl: {},
   };
 };
 
