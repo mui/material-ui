@@ -82,9 +82,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
+    color: theme.palette.primary.main,
     border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.primary.main}`,
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
     '&$disabled': {
       border: `1px solid ${theme.palette.action.disabled}`,
@@ -92,9 +98,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
+    color: theme.palette.secondary.main,
     border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.secondary.main}`,
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
     '&$disabled': {
       border: `1px solid ${theme.palette.action.disabled}`,
@@ -228,7 +240,7 @@ function Button(props) {
 
   const fab = variant === 'fab' || variant === 'extendedFab';
   const contained = variant === 'contained' || variant === 'raised';
-  const text = variant === 'text' || variant === 'flat' || variant === 'outlined';
+  const text = variant === 'text' || variant === 'flat';
   const className = classNames(
     classes.root,
     {
