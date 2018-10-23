@@ -1,5 +1,25 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.3.1
+###### *Oct 24, 2018*
+
+Big thanks to the 8 contributors who made this release possible!
+
+This is a quick patch after an important regression with the Modal component.
+
+### `@material-ui/core@v3.3.1`
+
+- [Modal] Fix modalRef is null (#13351) @TomiCake
+- [Modal] Add a failling test case (#13350) @universalmind303
+- [Button] Fix styles classes isolation (#13352) @MECarmody
+- [Chip] Control clickable property (#13056) @vilvaathibanpb
+
+### Docs
+
+- [docs] Add material-ui-popup-state examples (#13044) @jedwards1211
+- [docs] Recommend yarn link to test local distribution (#13348) @nicolasiensen
+- [docs] Move the favicon to the root (#13362) @oliviertassinari
+
 ## 3.3.0
 ###### *Oct 21, 2018*
 
