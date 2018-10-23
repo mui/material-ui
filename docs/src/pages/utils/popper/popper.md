@@ -47,3 +47,12 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single popper.
 
 {{"demo": "pages/utils/popper/RenderPropsPopper.js"}}
+
+## Advanced use cases
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper
+state for you in most cases.
+
+{{"demo": "pages/utils/popper/PopperPopupState.js"}}
