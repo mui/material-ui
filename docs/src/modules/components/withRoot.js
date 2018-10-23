@@ -102,9 +102,6 @@ const pages = [
         pathname: '/utils/popper',
       },
       {
-        pathname: '/utils/popup-state',
-      },
-      {
         pathname: '/utils/portal',
       },
       {

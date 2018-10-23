@@ -16,11 +16,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/utils/popper/SimplePopper'), 'utf8')
 `,
         },
-        'pages/utils/popup-state/PopperPopupState.js': {
-          js: require('docs/src/pages/utils/popup-state/PopperPopupState').default,
+        'pages/utils/popper/PopperPopupState.js': {
+          js: require('docs/src/pages/utils/popper/PopperPopupState').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popup-state/PopperPopupState'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/utils/popper/PopperPopupState'), 'utf8')
 `,
         },
         'pages/utils/popper/PositionedPopper.js': {

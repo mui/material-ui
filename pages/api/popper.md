@@ -37,5 +37,4 @@ Any other properties supplied will be spread to the root element (native element
 - [Autocomplete](/demos/autocomplete/)
 - [Menus](/demos/menus/)
 - [Popper](/utils/popper/)
-- [Popup State](/utils/popup-state/)
 
