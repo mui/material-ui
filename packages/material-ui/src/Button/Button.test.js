@@ -149,10 +149,10 @@ describe('<Button />', () => {
         </Button>,
       );
       assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.text), true);
       assert.strictEqual(wrapper.hasClass(classes.flat), true);
+      assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
       assert.strictEqual(wrapper.hasClass(classes.flatSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.text), false);
-      assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
     });
   });
 
