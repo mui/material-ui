@@ -188,6 +188,14 @@ class Modal extends React.Component {
     }
   };
 
+  handlePortalRef = ref => {
+    this.mountNode = ref ? ref.getMountNode() : ref;
+  };
+
+  handleModalRef = ref => {
+    this.modalRef = ref;
+  };
+
   autoFocus() {
     // We might render an empty child.
     if (this.props.disableAutoFocus || !this.dialogRef) {
@@ -281,18 +289,14 @@ class Modal extends React.Component {
 
     return (
       <Portal
-        ref={ref => {
-          this.mountNode = ref ? ref.getMountNode() : ref;
-        }}
+        ref={this.handlePortalRef}
         container={container}
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
         <div
           data-mui-test="Modal"
-          ref={ref => {
-            this.modalRef = ref;
-          }}
+          ref={this.handleModalRef}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
