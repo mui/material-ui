@@ -185,10 +185,10 @@ const pages = [
     ],
   },
   {
-    pathname: '/page-layout-examples',
+    pathname: '/premium-themes',
   },
   {
-    pathname: '/premium-themes',
+    pathname: '/page-layout-examples',
   },
   {
     pathname: '/lab',
