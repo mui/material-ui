@@ -6,9 +6,9 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
-import { ExtendMui } from '../typings/extendMui';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { ExtendMui } from '../typings/extendMui';
 import MaskedInput from './MaskedInput';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
