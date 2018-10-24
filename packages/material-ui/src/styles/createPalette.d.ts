@@ -64,12 +64,15 @@ export interface Palette {
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (background: string) => string;
-  augmentColor: (
-    color: SimplePaletteColorOptions,
-    mainShade: number | string,
-    lightShade: number | string,
-    darkShade: number | string,
-  ) => void;
+  augmentColor: {
+    (
+      color: Partial<Color>,
+      mainShade?: number | string,
+      lightShade?: number | string,
+      darkShade?: number | string,
+    ): void;
+    (color: PaletteColorOptions): void;
+  };
 }
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
