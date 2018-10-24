@@ -196,6 +196,10 @@ class Modal extends React.Component {
     this.modalRef = ref;
   };
 
+  onRootRef = ref => {
+    this.dialogRef = ref;
+  };
+
   autoFocus() {
     // We might render an empty child.
     if (this.props.disableAutoFocus || !this.dialogRef) {
@@ -305,13 +309,7 @@ class Modal extends React.Component {
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RootRef
-            rootRef={ref => {
-              this.dialogRef = ref;
-            }}
-          >
-            {React.cloneElement(children, childProps)}
-          </RootRef>
+          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
         </div>
       </Portal>
     );
