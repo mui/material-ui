@@ -38,7 +38,7 @@ class Demo extends Component {
           </Typography>
 
           <Link to="/installation">
-            <Button variant="raised" className={classes.getStarted} onClick={this.scrollToContent}>
+            <Button variant="contained" className={classes.getStarted} onClick={this.scrollToContent}>
               Get Started
             </Button>
           </Link>
@@ -58,7 +58,7 @@ class Demo extends Component {
           <Typography
             align="center"
             className={classes.sponsorHeader}
-            variant="headline"
+            variant="h5"
             gutterBottom
           >
             Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a> ❤️

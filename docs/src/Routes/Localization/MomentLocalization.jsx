@@ -6,11 +6,11 @@ import { Typography } from '@material-ui/core';
 
 const MomentLocalization = () => (
   <div>
-    <Typography variant="h3" gutterBottom> Localization moment </Typography>
-    <Typography variant="body2" gutterBottom>
+    <Typography variant="h2" gutterBottom> Localization moment </Typography>
+    <Typography variant="body1" gutterBottom>
       Moment localization relying on the global moment object used.
     </Typography>
-    <Typography variant="body2" gutterBottom>
+    <Typography variant="body1" gutterBottom>
       It is possible to pass configured global moment with selected locale, default timezone, etc.
       Also pass selected locale as string to the provider
       to make pickers rerenders automatically on locale change.
@@ -19,7 +19,7 @@ const MomentLocalization = () => (
       title="Localized example"
       sourceFile="Localization/MomentLocalizationExample.jsx"
       description={(
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="body1" gutterBottom>
           Note that pickers would be rerender automatically on locale change
         </Typography>
       )}

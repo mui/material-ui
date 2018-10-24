@@ -14,17 +14,17 @@ npm i -s luxon`;
 
 const Installation = () => (
   <div>
-    <Typography variant="h3" gutterBottom> Installation </Typography>
-    <Typography variant="body2" gutterBottom> Available as <a className="link" href="https://www.npmjs.com/package/material-ui-pickers"> npm package </a> </Typography>
+    <Typography variant="h2" gutterBottom> Installation </Typography>
+    <Typography variant="body1" gutterBottom> Available as <a className="link" href="https://www.npmjs.com/package/material-ui-pickers"> npm package </a> </Typography>
 
     <Code withMargin text="npm i -s material-ui-pickers" />
 
     <Typography variant="h4" gutterBottom> Peer Library </Typography>
-    <Typography variant="body2" gutterBottom>
+    <Typography variant="body1" gutterBottom>
       Material-ui-pickers was designed to use that date management library that you need.
     </Typography>
 
-    <Typography variant="body2" gutterBottom>
+    <Typography variant="body1" gutterBottom>
       We are providing interfaces for <a className="link" href="https://momentjs.com/">moment</a>
       &nbsp;, <a className="link" href="https://date-fns.org/">date-fns 2</a> and
       <a className="link" href="https://moment.github.io/luxon/"> luxon</a>.
@@ -34,7 +34,7 @@ const Installation = () => (
       because it is much more lightweight and will be correctly tree-shaken from the bundle.
     </Typography>
 
-    <Typography variant="body2" gutterBottom>
+    <Typography variant="body1" gutterBottom>
       Note, that we support only 2.0.0-alpha.16 version of date-fns for now (see
       &nbsp;<a className="link" href="https://github.com/dmtrKovalenko/material-ui-pickers/issues/414#issuecomment-389523267">#414</a>
       ).
@@ -48,7 +48,7 @@ const Installation = () => (
 
     <Code withMargin text={muiPickerProviderCode} />
     <Typography variant="h4" gutterBottom> Font Icons </Typography>
-    <Typography variant="body2">
+    <Typography variant="body1">
       We are using material-ui-icons icon font to display icons.
       In order if you can override with a help of corresponding props. Just add this to your html
     </Typography>

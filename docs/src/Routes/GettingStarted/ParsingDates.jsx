@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 
 const ParsingDates = () => (
   <div>
-    <Typography variant="h3" gutterBottom> Parsing dates </Typography>
+    <Typography variant="h2" gutterBottom> Parsing dates </Typography>
 
     <Typography gutterBottom>
       Material-UI pickers rely on the date management library when the date should be parsed.
