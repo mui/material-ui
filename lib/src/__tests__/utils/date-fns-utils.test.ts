@@ -1,5 +1,5 @@
 import ruLocale from 'date-fns/locale/ru';
-import DateFnsUtils from '../../date-fns-utils';
+import DateFnsUtils from '../../utils/date-fns-utils';
 
 describe('DateFnsUtils', () => {
   const enUtils = new DateFnsUtils();

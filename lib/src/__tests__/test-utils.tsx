@@ -3,10 +3,10 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import * as enzyme from 'enzyme';
 import * as React from 'react';
 import { WithUtilsProps } from '../_shared/WithUtils';
-import DateFnsUtils from '../date-fns-utils';
-import LuxonUtils from '../luxon-utils';
-import MomentUtils from '../moment-utils';
 import MuiPickersUtilsProvider from '../MuiPickersUtilsProvider';
+import DateFnsUtils from '../utils/date-fns-utils';
+import LuxonUtils from '../utils/luxon-utils';
+import MomentUtils from '../utils/moment-utils';
 
 const theme = createMuiTheme({
   typography: {

@@ -1,4 +1,4 @@
-import LuxonUtils from '../../luxon-utils';
+import LuxonUtils from '../../utils/luxon-utils';
 
 const checkForFullICU = () => {
   try {
