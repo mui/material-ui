@@ -8,6 +8,7 @@ import { BottomNavigationClassKey } from '../BottomNavigation';
 import { BottomNavigationActionClassKey } from '../BottomNavigationAction';
 import { ButtonClassKey } from '../Button';
 import { ButtonBaseClassKey } from '../ButtonBase';
+import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { CardClassKey } from '../Card';
 import { CardActionAreaClassKey } from '../CardActionArea';
 import { CardActionsClassKey } from '../CardActions';
@@ -36,6 +37,7 @@ import { FormControlLabelClassKey } from '../FormControlLabel';
 import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
+import { GridClassKey } from '../Grid';
 import { GridListClassKey } from '../GridList';
 import { GridListTileClassKey } from '../GridListTile';
 import { GridListTileBarClassKey } from '../GridListTileBar';
@@ -45,6 +47,7 @@ import { InputClassKey } from '../Input';
 import { InputAdornmentClassKey } from '../InputAdornment';
 import { InputBaseClassKey } from '../InputBase';
 import { InputLabelClassKey } from '../InputLabel';
+import { SwitchBaseClassKey } from '../internal/SwitchBase';
 import { LinearProgressClassKey } from '../LinearProgress';
 import { ListClassKey } from '../List';
 import { ListItemClassKey } from '../ListItem';
@@ -129,6 +132,7 @@ export interface ComponentNameToClassKey {
   MuiFormGroup: FormGroupClassKey;
   MuiFormHelperText: FormHelperTextClassKey;
   MuiFormLabel: FormLabelClassKey;
+  MuiGrid: GridClassKey;
   MuiGridList: GridListClassKey;
   MuiGridListTile: GridListTileClassKey;
   MuiGridListTileBar: GridListTileBarClassKey;
@@ -167,6 +171,7 @@ export interface ComponentNameToClassKey {
   MuiStepper: StepperClasskey;
   MuiSvgIcon: SvgIconClassKey;
   MuiSwitch: SwitchClassKey;
+  MuiSwitchBase: SwitchBaseClassKey;
   MuiTab: TabClassKey;
   MuiTable: TableClassKey;
   MuiTableBody: TableBodyClassKey;
@@ -179,5 +184,6 @@ export interface ComponentNameToClassKey {
   MuiTabs: TabsClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
+  MuiTouchRipple: TouchRippleClassKey;
   MuiTypography: TypographyClassKey;
 }
