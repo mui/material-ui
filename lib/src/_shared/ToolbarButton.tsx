@@ -4,14 +4,16 @@ import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { ExtendMui } from '../typings/extendMui';
 
-interface ToolbarButtonProps extends WithStyles<typeof styles> {
+export interface ToolbarButtonProps
+  extends ExtendMui<TypographyProps>,
+    WithStyles<typeof styles> {
   selected: boolean;
   label: string;
-  className?: string | null;
 }
 
-const ToolbarButton: React.SFC<TypographyProps & ToolbarButtonProps> = ({
+const ToolbarButton: React.SFC<ToolbarButtonProps> = ({
   classes,
   selected,
   label,

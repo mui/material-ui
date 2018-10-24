@@ -8,4 +8,6 @@ enum DateTimePickerView {
   MINUTES = 'minutes',
 }
 
+export type DateTimePickerViewType = 'year' | 'date' | 'hours' | 'minutes';
+
 export default DateTimePickerView;

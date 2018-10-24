@@ -1,9 +1,9 @@
-import * as React from 'react';
 import * as enzyme from 'enzyme';
-import DateFnsUtils from '../src/date-fns-utils';
-import MomentUtils from '../src/moment-utils';
-import LuxonUtils from '../src/luxon-utils';
+import * as React from 'react';
 import { WithUtilsProps } from '../src/_shared/WithUtils';
+import DateFnsUtils from '../src/date-fns-utils';
+import LuxonUtils from '../src/luxon-utils';
+import MomentUtils from '../src/moment-utils';
 import { Utils } from '../src/typings/utils';
 
 const getUtilToUse = (): Utils<any> => {

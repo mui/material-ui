@@ -1,21 +1,10 @@
+// rollup-plugin-typescript does not resolve `extends`, so tsconfig.build.json is the base and we just alter it for IDE and testing.
 {
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "build",
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "sourceMap": false,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "rootDir": "./src"
+    "module": "es6",
+    "noEmit": true,
+    "sourceMap": true
   },
-  "include": ["src/**/*"]
+  "exclude": []
 }

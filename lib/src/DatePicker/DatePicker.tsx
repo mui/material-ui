@@ -32,7 +32,7 @@ export interface DatePickerProps extends BaseDatePickerProps {
 export class DatePicker extends React.PureComponent<
   DatePickerProps & WithUtilsProps
 > {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -114,14 +114,14 @@ export class DatePicker extends React.PureComponent<
       <>
         <PickerToolbar>
           <ToolbarButton
-            variant="subheading"
+            variant="subtitle1"
             onClick={this.openYearSelection}
             selected={showYearSelection}
             label={utils.getYearText(this.date)}
           />
 
           <ToolbarButton
-            variant="display1"
+            variant="h4"
             onClick={this.openCalendar}
             selected={!showYearSelection}
             label={utils.getDatePickerHeaderText(this.date)}
@@ -160,6 +160,4 @@ export class DatePicker extends React.PureComponent<
   }
 }
 
-export default withUtils()(DatePicker as React.ComponentType<
-  DatePickerProps & WithUtilsProps
->);
+export default withUtils()(DatePicker);

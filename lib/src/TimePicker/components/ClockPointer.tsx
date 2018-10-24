@@ -4,17 +4,17 @@ import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import ClockType from '../../constants/ClockType';
+import ClockType, { ClockTypeType } from '../../constants/ClockType';
 
 export interface ClockPointerProps extends WithStyles<typeof styles> {
   value: number;
   hasSelected: boolean;
   isInner: boolean;
-  type: ClockType;
+  type: ClockTypeType;
 }
 
 export class ClockPointer extends React.Component<ClockPointerProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,

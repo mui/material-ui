@@ -41,7 +41,7 @@ export interface ClockNumberProps extends WithStyles<typeof styles> {
 }
 
 export class ClockNumber extends React.Component<ClockNumberProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
@@ -71,7 +71,7 @@ export class ClockNumber extends React.Component<ClockNumberProps> {
 
     return (
       <Typography
-        variant={isInner ? 'body1' : 'subheading'}
+        variant={isInner ? 'body2' : 'subtitle1'}
         component="span"
         className={className}
         style={this.getTransformStyle(index)}

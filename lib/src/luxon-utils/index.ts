@@ -256,7 +256,7 @@ export default class LuxonUtils implements Utils<DateTime> {
     return date.toFormat('yyyy');
   }
 
-  public isNull(date: DateTime) {
+  public isNull(date: DateTime | null) {
     return date === null;
   }
 }

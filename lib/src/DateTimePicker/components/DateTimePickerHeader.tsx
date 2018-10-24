@@ -5,7 +5,9 @@ import * as React from 'react';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import DateTimePickerView from '../../constants/DateTimePickerView';
+import DateTimePickerView, {
+  DateTimePickerViewType,
+} from '../../constants/DateTimePickerView';
 import { MaterialUiPickersDate } from '../../typings/date';
 
 export type MeridiemMode = 'am' | 'pm';
@@ -14,7 +16,7 @@ export interface DateTimePickerHeaderProps
     WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
-  openView: DateTimePickerView;
+  openView: DateTimePickerViewType;
   onOpenViewChange: (view: DateTimePickerView) => void;
   setMeridiemMode: (mode: MeridiemMode) => () => void;
   ampm?: boolean;
@@ -47,14 +49,14 @@ export const DateTimePickerHeader: React.SFC<
     <PickerToolbar className={classes.toolbar}>
       <div className={classes.dateHeader}>
         <ToolbarButton
-          variant="subheading"
+          variant="subtitle1"
           onClick={changeOpenView(DateTimePickerView.YEAR)}
           selected={openView === DateTimePickerView.YEAR}
           label={utils.getYearText(date)}
         />
 
         <ToolbarButton
-          variant="display1"
+          variant="h4"
           onClick={changeOpenView(DateTimePickerView.DATE)}
           selected={openView === DateTimePickerView.DATE}
           label={utils.getDateTimePickerHeaderText(date)}
@@ -64,21 +66,21 @@ export const DateTimePickerHeader: React.SFC<
       <div className={classes.timeHeader}>
         <div className={hourMinuteClassName}>
           <ToolbarButton
-            variant="display2"
+            variant="h3"
             onClick={changeOpenView(DateTimePickerView.HOUR)}
             selected={openView === DateTimePickerView.HOUR}
             label={utils.getHourText(date, ampm!)}
           />
 
           <ToolbarButton
-            variant="display2"
+            variant="h3"
             label=":"
             selected={false}
             className={classes.separator}
           />
 
           <ToolbarButton
-            variant="display2"
+            variant="h3"
             onClick={changeOpenView(DateTimePickerView.MINUTES)}
             selected={openView === DateTimePickerView.MINUTES}
             label={utils.getMinuteText(date)}
@@ -90,7 +92,7 @@ export const DateTimePickerHeader: React.SFC<
             <ToolbarButton
               className={classes.ampmLabel}
               selected={meridiemMode === 'am'}
-              variant="subheading"
+              variant="subtitle1"
               label={utils.getMeridiemText('am')}
               onClick={setMeridiemMode('am')}
             />
@@ -98,7 +100,7 @@ export const DateTimePickerHeader: React.SFC<
             <ToolbarButton
               className={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
-              variant="subheading"
+              variant="subtitle1"
               label={utils.getMeridiemText('pm')}
               onClick={setMeridiemMode('pm')}
             />

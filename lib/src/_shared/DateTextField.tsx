@@ -1,14 +1,14 @@
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import TextField, { StandardTextFieldProps } from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { Omit } from '@material-ui/core';
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { ExtendMui } from '../typings/extendMui';
 import MaskedInput from './MaskedInput';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
@@ -77,7 +77,7 @@ const getError = (
 
 export interface DateTextFieldProps
   extends WithUtilsProps,
-    Omit<TextFieldProps, 'onError' | 'onChange' | 'value'> {
+    ExtendMui<StandardTextFieldProps, 'onError' | 'onChange' | 'value'> {
   value: DateType;
   minDate?: DateType;
   minDateMessage?: React.ReactNode;
@@ -98,16 +98,18 @@ export interface DateTextFieldProps
   keyboardIcon?: React.ReactNode;
   invalidDateMessage?: React.ReactNode;
   clearable?: boolean;
-  TextFieldComponent?: React.ComponentType<TextFieldProps>;
+  TextFieldComponent?:
+    | React.ComponentType<StandardTextFieldProps>
+    | React.ReactType<React.HTMLAttributes<any>>;
   InputAdornmentProps?: object;
   adornmentPosition?: 'start' | 'end';
-  onClick?: (e: React.SyntheticEvent) => void;
+  onClick: (e: React.SyntheticEvent) => void;
   onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
   onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 export class DateTextField extends React.PureComponent<DateTextFieldProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,

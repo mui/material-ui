@@ -3,13 +3,13 @@ import * as React from 'react';
 import Clock from './Clock';
 
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import ClockType from '../../constants/ClockType';
+import ClockType, { ClockTypeType } from '../../constants/ClockType';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 
-interface TimePickerViewProps extends WithUtilsProps {
+export interface TimePickerViewProps extends WithUtilsProps {
   date: MaterialUiPickersDate;
-  type: ClockType;
+  type: ClockTypeType;
   ampm?: boolean;
   onHourChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   onMinutesChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
@@ -17,7 +17,7 @@ interface TimePickerViewProps extends WithUtilsProps {
 }
 
 export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     date: PropTypes.object.isRequired,
     onHourChange: PropTypes.func.isRequired,
     onMinutesChange: PropTypes.func.isRequired,
@@ -93,6 +93,4 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
   }
 }
 
-export default withUtils()(TimePickerView as React.ComponentType<
-  TimePickerViewProps
->);
+export default withUtils()(TimePickerView);
