@@ -1,5 +1,5 @@
 import defaultMoment from 'moment';
-import { Utils } from '../typings/utils';
+import { Utils } from '../../typings/utils';
 
 interface Opts {
   locale?: string;

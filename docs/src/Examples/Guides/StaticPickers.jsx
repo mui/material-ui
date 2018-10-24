@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import BasePicker from 'material-ui-pickers/_shared/BasePicker';
 import Calendar from 'material-ui-pickers/DatePicker/components/Calendar';
 import TimePickerView from 'material-ui-pickers/TimePicker/components/TimePickerView';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 
 /* eslint-disable no-unused-vars */

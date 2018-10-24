@@ -25,7 +25,7 @@ import startOfDay from 'date-fns/startOfDay';
 import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
 import startOfYear from 'date-fns/startOfYear';
-import { Utils } from '../typings/utils';
+import { Utils } from '../../typings/utils';
 
 // Locale is not exported from date-fns, so we need to workaround that https://github.com/date-fns/date-fns/issues/932
 import SampleLocale from 'date-fns/locale/en-US';

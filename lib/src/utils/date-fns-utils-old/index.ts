@@ -25,7 +25,7 @@ import startOfDay from 'date-fns/startOfDay';
 import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
 import startOfYear from 'date-fns/startOfYear';
-import { Utils } from '../typings/utils';
+import { Utils } from '../../typings/utils';
 
 // date-fns < 2.0.0-alpha.8
 export default class DateFnsUtils implements Utils<Date> {

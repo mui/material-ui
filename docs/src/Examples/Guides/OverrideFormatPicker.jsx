@@ -2,7 +2,7 @@ import format from 'date-fns/format';
 import frLocale from 'date-fns/locale/fr';
 import { DatePicker } from 'material-ui-pickers';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import React, { PureComponent } from 'react';
 
 class LocalizedUtils extends DateFnsUtils {

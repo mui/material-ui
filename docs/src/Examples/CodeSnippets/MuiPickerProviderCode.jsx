@@ -1,5 +1,5 @@
 /* eslint-disable */
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 // pick utils
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';

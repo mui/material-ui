@@ -1,4 +1,4 @@
-import { InlineDatePicker } from 'material-ui-pickers/DatePicker';
+import { InlineDatePicker } from 'material-ui-pickers';
 import React, { Fragment, PureComponent } from 'react';
 
 export default class InlineDatePickerDemo extends PureComponent {

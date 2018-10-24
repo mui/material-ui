@@ -1,5 +1,5 @@
 import { DateTime, Info } from 'luxon';
-import { Utils } from '../typings/utils';
+import { Utils } from '../../typings/utils';
 
 export default class LuxonUtils implements Utils<DateTime> {
   public locale: string;
