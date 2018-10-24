@@ -18,7 +18,7 @@ export const styles = theme => ({
     whiteSpace: 'nowrap',
     '&$selected': {},
   },
-  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
     paddingLeft: 16,
     paddingRight: 16,
@@ -28,36 +28,24 @@ export const styles = theme => ({
 });
 
 function MenuItem(props) {
-  const {
-    classes,
-    className: classNameProp,
-    component,
-    disableGutters,
-    selected,
-    role,
-    ...other
-  } = props;
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.selected]: selected,
-    },
-    classNameProp,
-  );
+  const { classes, className, component, disableGutters, role, selected, ...other } = props;
 
   return (
     <ListItem
       button
       role={role}
       tabIndex={-1}
-      selected={selected}
-      className={className}
       component={component}
-      classes={classNames({
-        gutters: classes.gutters,
-      })}
+      selected={selected}
       disableGutters={disableGutters}
+      className={classNames(
+        classes.root,
+        {
+          [classes.selected]: selected,
+          [classes.gutters]: !disableGutters,
+        },
+        className,
+      )}
       {...other}
     />
   );
