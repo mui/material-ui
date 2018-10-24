@@ -84,6 +84,7 @@ export const ModalDialog: React.SFC<
   <Dialog
     onClose={onDismiss}
     classes={{ paper: classes.dialogRoot }}
+    role="dialog"
     {...other}
   >
     <EventListener target="window" onKeyDown={onKeyDown} />
