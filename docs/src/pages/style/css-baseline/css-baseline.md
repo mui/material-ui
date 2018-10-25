@@ -29,6 +29,7 @@ export default MyApp;
 ### Page
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
 It's using [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) for standard devices and a white background for print devices.

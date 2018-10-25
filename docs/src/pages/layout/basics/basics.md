@@ -9,10 +9,8 @@ We provide the following helpers to make the UI responsive:
 
 - [Grid](/layout/grid/):
 The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-
 - [Hidden](/layout/hidden/):
 The hidden component can be used to change the visibility of the elements.
-
 - [Breakpoints](/layout/breakpoints/):
 We provide a low-level API for using the breakpoints in a wide variery of context.
 
