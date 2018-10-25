@@ -30,7 +30,7 @@ class ClickAwayListener extends React.Component {
       return;
     }
 
-    // IE11 support, which trigger the handleClickAway even after the unbind
+    // IE 11 support, which trigger the handleClickAway even after the unbind
     if (!this.mounted) {
       return;
     }

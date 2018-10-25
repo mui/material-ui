@@ -108,19 +108,19 @@ For example, let's take a button that has different types. Each option has its p
 
   ```tsx
   type Props = {
-    raised: boolean;
+    contained: boolean;
     fab: boolean;
   };
   ```
 
    This API enabled the shorthand notation:
-   `<Button>`, `<Button raised />`, `<Button fab />`.
+   `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
 
   ```tsx
   type Props = {
-    variant: 'flat' | 'raised' | 'fab';
+    variant: 'text' | 'contained' | 'fab';
   }
   ```
 

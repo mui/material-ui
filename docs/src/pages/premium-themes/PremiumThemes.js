@@ -25,22 +25,6 @@ const styles = {
 
 const themes = [
   {
-    name: 'Material Dashboard',
-    description: 'Material Dashboard React is a Free Material-UI Admin.',
-    src: '/static/images/themes/creative-tim-dashboard.jpg',
-    price: 'FREE',
-    category: 'Admin & Dashboard',
-    href: 'https://www.creative-tim.com/product/material-dashboard-react?partner=104080',
-  },
-  {
-    name: 'Material Kit',
-    description: 'A Badass Material-UI Kit based on Material Design.',
-    src: '/static/images/themes/creative-tim-kit.jpg',
-    price: 'FREE',
-    category: 'Components',
-    href: 'https://www.creative-tim.com/product/material-kit-react?partner=104080',
-  },
-  {
     name: 'Material Dashboard Pro',
     description: 'Material Dashboard Pro React is a Premium Material-UI Admin.',
     src: '/static/images/themes/creative-tim-dashboard.jpg',
@@ -56,6 +40,22 @@ const themes = [
     category: 'Components',
     href: 'https://www.creative-tim.com/product/material-kit-pro-react?partner=104080',
   },
+  {
+    name: 'Material Dashboard',
+    description: 'Material Dashboard React is a Free Material-UI Admin.',
+    src: '/static/images/themes/creative-tim-dashboard.jpg',
+    price: 'FREE',
+    category: 'Admin & Dashboard',
+    href: 'https://www.creative-tim.com/product/material-dashboard-react?partner=104080',
+  },
+  {
+    name: 'Material Kit',
+    description: 'A Badass Material-UI Kit based on Material Design.',
+    src: '/static/images/themes/creative-tim-kit.jpg',
+    price: 'FREE',
+    category: 'Components',
+    href: 'https://www.creative-tim.com/product/material-kit-react?partner=104080',
+  },
 ];
 
 function PremiumThemes(props) {
@@ -63,11 +63,12 @@ function PremiumThemes(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid key={theme.name} item xs={12} sm={6}>
+        <Grid key={theme.name} item xs={12} md={6}>
           <Card className={classes.card}>
             <CardMedia
               component="a"
               href={theme.href}
+              rel="noopener nofollow"
               className={classes.media}
               image={theme.src}
               title={theme.name}
@@ -89,7 +90,13 @@ function PremiumThemes(props) {
               <Typography component="p">{theme.description}</Typography>
             </CardContent>
             <CardActions>
-              <Button component="a" href={theme.href} size="small" color="primary">
+              <Button
+                component="a"
+                rel="noopener nofollow"
+                href={theme.href}
+                size="small"
+                color="primary"
+              >
                 Learn More
               </Button>
             </CardActions>

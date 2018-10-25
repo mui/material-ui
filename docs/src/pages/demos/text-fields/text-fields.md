@@ -32,7 +32,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 `TextField` is composed of smaller components (
 [`FormControl`](/api/form-control/),
 [`Input`](/api/input/),
-[`InputLabel`](/api/filled-input/),
+[`FilledInput`](/api/filled-input/),
 [`InputLabel`](/api/input-label/),
 [`OutlinedInput`](/api/outlined-input/),
 and [`FormHelperText`](/api/form-helper-text/)
@@ -110,3 +110,10 @@ or
 ```jsx
 <InputLabel shrink>Count</InputLabel>
 ```
+
+## Advanced use cases
+
+For more advanced use cases you might be able to take advantage of:
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.

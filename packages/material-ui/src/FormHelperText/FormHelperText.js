@@ -15,11 +15,11 @@ export const styles = theme => ({
     lineHeight: '1em',
     minHeight: '1em',
     margin: 0,
-    '&$error': {
-      color: theme.palette.error.main,
-    },
     '&$disabled': {
       color: theme.palette.text.disabled,
+    },
+    '&$error': {
+      color: theme.palette.error.main,
     },
   },
   /* Styles applied to the root element if `error={true}`. */

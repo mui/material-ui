@@ -22,7 +22,15 @@ export interface SpeedDialProps
   TransitionProps?: TransitionProps;
 }
 
-export type SpeedDialClassKey = 'root' | 'actions' | 'actionsClosed';
+export type SpeedDialClassKey =
+  | 'root'
+  | 'actions'
+  | 'actionsClosed'
+  | 'fab'
+  | 'directionUp'
+  | 'directionDown'
+  | 'directionLeft'
+  | 'directionRight';
 
 declare const SpeedDial: React.ComponentType<SpeedDialProps>;
 

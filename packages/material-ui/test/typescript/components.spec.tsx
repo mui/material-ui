@@ -125,7 +125,7 @@ const ButtonTest = () => (
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="raised">Raised</Button>
+    <Button variant="contained">Contained</Button>
     <Button variant="fab" color="primary" aria-label="add">
       <FakeIcon />
     </Button>
@@ -687,7 +687,7 @@ const TableTest = () => {
         <Table>
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
               <TableCell numeric>Fat (g)</TableCell>
               <TableCell numeric>Carbs (g)</TableCell>

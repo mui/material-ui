@@ -29,7 +29,7 @@ Optionally, you can set the icon color using one of the theme color properties: 
 ### SVG Material icons
 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
-We provide a separate NPM package,
+We provide a separate npm package,
 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons),
 that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 

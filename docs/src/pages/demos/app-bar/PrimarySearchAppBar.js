@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
+import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -124,8 +124,8 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
       </Menu>
     );
 
@@ -139,7 +139,7 @@ class PrimarySearchAppBar extends React.Component {
       >
         <MenuItem>
           <IconButton color="inherit">
-            <Badge className={classes.margin} badgeContent={4} color="secondary">
+            <Badge badgeContent={4} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
@@ -147,7 +147,7 @@ class PrimarySearchAppBar extends React.Component {
         </MenuItem>
         <MenuItem>
           <IconButton color="inherit">
-            <Badge className={classes.margin} badgeContent={11} color="secondary">
+            <Badge badgeContent={11} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -176,9 +176,8 @@ class PrimarySearchAppBar extends React.Component {
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <Input
+              <InputBase
                 placeholder="Search…"
-                disableUnderline
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -188,12 +187,12 @@ class PrimarySearchAppBar extends React.Component {
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={4} color="secondary">
+                <Badge badgeContent={4} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
               <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={17} color="secondary">
+                <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>

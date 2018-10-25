@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import {
   MuiThemeProvider,
@@ -41,6 +41,9 @@ function handleRender(req, res) {
       primary: green,
       accent: red,
       type: 'light',
+    },
+    typography: {
+      useNextVariants: true,
     },
   });
 

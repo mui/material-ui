@@ -1,11 +1,9 @@
-import PropTypes from 'prop-types';
-
 // Same value used by react-jss
 export const CHANNEL = '__THEMING__';
 
 const themeListener = {
   contextTypes: {
-    [CHANNEL]: PropTypes.object,
+    [CHANNEL]: () => {},
   },
   initial: context => {
     if (!context[CHANNEL]) {

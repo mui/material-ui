@@ -6,6 +6,7 @@ export interface InputAdornmentProps
   component?: React.ReactType<InputAdornmentProps>;
   disableTypography?: boolean;
   position: 'start' | 'end';
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd' | 'filled';

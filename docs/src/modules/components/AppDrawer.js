@@ -16,7 +16,6 @@ import { pageToTitle } from 'docs/src/modules/utils/helpers';
 const styles = theme => ({
   paper: {
     width: 240,
-    backgroundColor: theme.palette.background.paper,
   },
   title: {
     color: theme.palette.text.secondary,

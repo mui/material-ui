@@ -247,11 +247,11 @@ SwitchBase.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 SwitchBase.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiSwitchBase' })(SwitchBase);
+export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(SwitchBase);

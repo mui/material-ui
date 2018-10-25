@@ -56,14 +56,14 @@ function Stepper(props) {
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
-      index,
-      orientation,
-      last: index + 1 === childrenArray.length,
       alternativeLabel,
       connector: connectorProp,
+      last: index + 1 === childrenArray.length,
+      orientation,
     };
 
     const state = {
+      index,
       active: false,
       completed: false,
       disabled: false,
@@ -80,13 +80,12 @@ function Stepper(props) {
     return [
       !alternativeLabel &&
         connector &&
-        index > 0 &&
+        index !== 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
-          index,
           ...state,
         }),
-      React.cloneElement(step, { ...controlProps, ...step.props, ...state }),
+      React.cloneElement(step, { ...controlProps, ...state, ...step.props }),
     ];
   });
 

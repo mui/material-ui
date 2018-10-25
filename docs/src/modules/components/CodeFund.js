@@ -7,23 +7,23 @@ const styles = theme => ({
       padding: theme.spacing.unit,
       backgroundColor: theme.palette.background.paper,
       borderRadius: theme.shape.borderRadius,
-      '&& .cf-wrapper': {
+      '& .cf-wrapper.cf-wrapper': {
         padding: 0,
         backgroundColor: 'transparent',
       },
-      '&& .cf-img-wrapper': {
+      '& .cf-img-wrapper.cf-img-wrapper': {
         float: 'none',
         display: 'block',
       },
-      '&& .cf-text': {
-        ...theme.typography.body1,
+      '& .cf-text.cf-text': {
+        ...theme.typography.body2,
         display: 'block',
         margin: `${theme.spacing.unit}px 0`,
         '& strong': {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
-      '&& .cf-powered-by': {
+      '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
         marginTop: 0,
       },

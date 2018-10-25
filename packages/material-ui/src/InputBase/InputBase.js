@@ -76,7 +76,7 @@ export const styles = theme => {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      width: '100%', // Fix IE11 width issue
+      width: '100%', // Fix IE 11 width issue
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -222,7 +222,7 @@ class InputBase extends React.Component {
   }
 
   handleFocus = event => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
+    // Fix a bug with IE 11 where the focus/blur events are triggered
     // while the input is disabled.
     if (
       formControlState({ props: this.props, context: this.context, states: ['disabled'] }).disabled

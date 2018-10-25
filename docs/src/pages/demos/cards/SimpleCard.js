@@ -17,7 +17,6 @@ const styles = {
     transform: 'scale(0.8)',
   },
   title: {
-    marginBottom: 16,
     fontSize: 14,
   },
   pos: {
@@ -32,7 +31,7 @@ function SimpleCard(props) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary">
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
           Word of the Day
         </Typography>
         <Typography variant="h5" component="h2">

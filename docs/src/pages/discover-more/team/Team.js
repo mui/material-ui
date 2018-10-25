@@ -129,9 +129,7 @@ function Team(props) {
                   <Typography variant="subtitle1" color="textSecondary">
                     {member.flag}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {member.city}
-                  </Typography>
+                  <Typography color="textSecondary">{member.city}</Typography>
                   <div className={classes.controls}>
                     {member.github && (
                       <IconButton

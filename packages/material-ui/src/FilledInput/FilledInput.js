@@ -31,13 +31,13 @@ export const styles = theme => {
         backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
       },
     },
-    /* Styles applied to the root element. */
+    /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary[light ? 'dark' : 'light']}`,
         left: 0,
         bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+        // Doing the other way around crash on IE 11 "''" https://github.com/cssinjs/jss/issues/242
         content: '""',
         position: 'absolute',
         right: 0,
@@ -59,7 +59,7 @@ export const styles = theme => {
         borderBottom: `1px solid ${bottomLineColor}`,
         left: 0,
         bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+        // Doing the other way around crash on IE 11 "''" https://github.com/cssinjs/jss/issues/242
         content: '"\\00a0"',
         position: 'absolute',
         right: 0,

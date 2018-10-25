@@ -54,7 +54,6 @@ module.exports = function setKarmaConfig(config) {
         new webpack.DefinePlugin({
           'process.env': {
             NODE_ENV: JSON.stringify('test'),
-            MUI_SUPPRESS_DEPRECATION_WARNINGS: JSON.stringify('true'),
           },
         }),
       ],
@@ -96,7 +95,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Sierra',
           browser: 'Chrome',
-          browser_version: '49.0',
+          browser_version: '45.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',

@@ -22,7 +22,7 @@ export function textToHash(text) {
   return text
     .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/[^\w]+/g, '-');
+    .replace(/\W/g, '-');
 }
 
 renderer.heading = (text, level) => {
@@ -32,10 +32,7 @@ renderer.heading = (text, level) => {
     return `<h${level}>${text}</h${level}>`;
   }
 
-  const escapedText = text
-    .toLowerCase()
-    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/[^\w]+/g, '-');
+  const escapedText = textToHash(text);
 
   return (
     `
@@ -46,6 +43,16 @@ renderer.heading = (text, level) => {
       </a></h${level}>
   `
   );
+};
+
+renderer.link = (href, title, text) => {
+  let more = '';
+
+  if (href.indexOf('https://material.io/') !== -1) {
+    more = ' target="_blank" rel="noopener nofollow"';
+  }
+
+  return `<a href="${href}"${more}>${text}</a>`;
 };
 
 const markedOptions = {

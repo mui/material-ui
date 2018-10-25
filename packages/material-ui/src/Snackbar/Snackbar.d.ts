@@ -6,7 +6,7 @@ import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
-  vertical: 'top' | 'center' | 'bottom';
+  vertical: 'top' | 'bottom';
 }
 
 export interface SnackbarProps

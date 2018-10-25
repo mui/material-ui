@@ -20,6 +20,7 @@ export const styles = theme => ({
     flexShrink: 0,
     overflow: 'hidden',
     whiteSpace: 'normal',
+    textAlign: 'center',
     [theme.breakpoints.up('md')]: {
       fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
@@ -80,6 +81,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the label container element if `label` is provided. */
   labelContainer: {
+    width: '100%', // Fix an IE 11 issue
+    boxSizing: 'border-box',
     paddingTop: 6,
     paddingBottom: 6,
     paddingLeft: 12,

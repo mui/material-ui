@@ -5,8 +5,7 @@ import jssDefaultUnit from 'jss-default-unit';
 import jssVendorPrefixer from 'jss-vendor-prefixer';
 import jssPropsSort from 'jss-props-sort';
 
-// Subset of jss-preset-default with only the plugins the Material-UI
-// components are using.
+// Subset of jss-preset-default with only the plugins the Material-UI components are using.
 function jssPreset() {
   return {
     plugins: [
@@ -14,7 +13,10 @@ function jssPreset() {
       jssNested(),
       jssCamelCase(),
       jssDefaultUnit(),
-      jssVendorPrefixer(),
+      // Disable the vendor prefixer server-side, it does nothing.
+      // This way, we can get a performance boost.
+      // In the documentation, we are using `autoprefixer` to solve this problem.
+      typeof window === 'undefined' ? null : jssVendorPrefixer(),
       jssPropsSort(),
     ],
   };

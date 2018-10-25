@@ -19,7 +19,7 @@ export const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `scroll="bodyr"`. */
+  /* Styles applied to the root element if `scroll="body"`. */
   scrollBody: {
     overflowY: 'auto',
     overflowX: 'hidden',
@@ -30,7 +30,7 @@ export const styles = theme => ({
     flexDirection: 'column',
     margin: 48,
     position: 'relative',
-    overflowY: 'auto', // Fix IE11 issue, to remove at some point.
+    overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
   },
