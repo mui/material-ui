@@ -68,7 +68,6 @@ class Modal extends React.Component {
     } else if (!prevProps.open && this.props.open) {
       // check for focus
       this.lastFocus = ownerDocument(this.mountNode).activeElement;
-      this.handleOpen();
     }
   }
 
@@ -116,12 +115,7 @@ class Modal extends React.Component {
     }
 
     if (this.props.open) {
-      this.handleOpened();
-    } else {
-      const doc = ownerDocument(this.mountNode);
-      const container = getContainer(this.props.container, doc.body);
-      this.props.manager.add(this, container);
-      this.props.manager.remove(this);
+      this.handleOpen();
     }
   };
 
