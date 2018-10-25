@@ -159,13 +159,13 @@ describe('<Button />', () => {
   it('should render an outlined button', () => {
     const wrapper = shallow(<Button variant="outlined">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true);
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       false,
       'should not have the contained class',
     );
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.raised), false);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
   });
@@ -177,9 +177,10 @@ describe('<Button />', () => {
       </Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(wrapper.hasClass(classes.textPrimary), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlinedPrimary), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
+    assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.contained), false);
     assert.strictEqual(wrapper.hasClass(classes.raised), false);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
@@ -192,9 +193,10 @@ describe('<Button />', () => {
       </Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlinedSecondary), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
+    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
     assert.strictEqual(wrapper.hasClass(classes.contained), false);
     assert.strictEqual(wrapper.hasClass(classes.raised), false);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);

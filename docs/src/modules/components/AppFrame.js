@@ -222,8 +222,8 @@ AppFrame.contextTypes = {
 };
 
 export default compose(
-  withStyles(styles),
   connect(state => ({
     uiTheme: state.theme,
   })),
+  withStyles(styles),
 )(AppFrame);

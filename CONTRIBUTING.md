@@ -157,11 +157,18 @@ cd packages/material-ui
 yarn build
 ```
 
-Then, you can add Material-UI to any project you want to try your changes:
+Then, you create a link to your local distribution:
+
+```shell
+cd build
+yarn link
+```
+
+Next, you link your local distribution of Material-UI to any project you want to try your changes:
 
 ```shell
 # From the root folder of any project
-yarn add file:<path-to-material-ui-project>/packages/material-ui/build
+yarn link "@material-ui/core"
 ```
 
 Now, every time you import `material-ui` in your project, it is going to use your local distribution.

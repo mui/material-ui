@@ -188,6 +188,18 @@ class Modal extends React.Component {
     }
   };
 
+  handlePortalRef = ref => {
+    this.mountNode = ref ? ref.getMountNode() : ref;
+  };
+
+  handleModalRef = ref => {
+    this.modalRef = ref;
+  };
+
+  onRootRef = ref => {
+    this.dialogRef = ref;
+  };
+
   autoFocus() {
     // We might render an empty child.
     if (this.props.disableAutoFocus || !this.dialogRef) {
@@ -281,18 +293,14 @@ class Modal extends React.Component {
 
     return (
       <Portal
-        ref={ref => {
-          this.mountNode = ref ? ref.getMountNode() : ref;
-        }}
+        ref={this.handlePortalRef}
         container={container}
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
         <div
           data-mui-test="Modal"
-          ref={ref => {
-            this.modalRef = ref;
-          }}
+          ref={this.handleModalRef}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
@@ -301,13 +309,7 @@ class Modal extends React.Component {
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RootRef
-            rootRef={ref => {
-              this.dialogRef = ref;
-            }}
-          >
-            {React.cloneElement(children, childProps)}
-          </RootRef>
+          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
         </div>
       </Portal>
     );

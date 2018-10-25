@@ -687,7 +687,7 @@ const TableTest = () => {
         <Table>
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
               <TableCell numeric>Fat (g)</TableCell>
               <TableCell numeric>Carbs (g)</TableCell>
