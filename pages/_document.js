@@ -56,8 +56,9 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          <NextScript />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.google-analytics.com/analytics.js" />
+          <script defer src="https://www.google-analytics.com/analytics.js" />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
@@ -67,8 +68,7 @@ ga('create', '${config.google.id}', 'material-ui.com');
               `,
             }}
           />
-          <NextScript />
-          <script async src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
+          <script defer src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );

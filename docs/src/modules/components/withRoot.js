@@ -1,3 +1,7 @@
+// Use the same helper than Babel to avoid bundle bloat.
+import 'core-js/modules/es6.array.find-index';
+import 'core-js/modules/es6.set';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
