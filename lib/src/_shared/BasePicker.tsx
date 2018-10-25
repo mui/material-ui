@@ -58,8 +58,12 @@ export class BasePicker extends React.Component<
   };
 
   public componentDidUpdate(prevProps: OuterBasePickerProps) {
-    const { utils, value } = this.props;
-    if (prevProps.value !== value || prevProps.utils.locale !== utils.locale) {
+    const { utils, value, initialFocusedDate } = this.props;
+    if (
+      prevProps.value !== value ||
+      prevProps.utils.locale !== utils.locale ||
+      prevProps.initialFocusedDate !== initialFocusedDate
+    ) {
       this.changeDate(getInitialDate(this.props));
     }
   }
