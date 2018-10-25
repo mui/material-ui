@@ -50,6 +50,8 @@ keeps track of the local state for a single popper.
 
 ## Advanced use cases
 
+For more advanced use cases you might be able to take advantage of:
+
 ### PopupState helper
 
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper

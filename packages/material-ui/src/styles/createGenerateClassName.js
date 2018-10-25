@@ -32,7 +32,7 @@ export default function createGenerateClassName(options = {}) {
     );
 
     if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
-      return `${styleSheet.options.name}-${rule.key}`;
+      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
