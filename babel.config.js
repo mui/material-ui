@@ -70,7 +70,6 @@ module.exports = {
       ],
     },
     'docs-development': {
-      presets: [['@babel/preset-env', { useBuiltIns: 'usage' }]],
       plugins: [
         'babel-plugin-preval',
         [
@@ -92,7 +91,6 @@ module.exports = {
       ],
     },
     'docs-production': {
-      presets: [['@babel/preset-env', { useBuiltIns: 'usage' }]],
       plugins: [
         'babel-plugin-preval',
         [
