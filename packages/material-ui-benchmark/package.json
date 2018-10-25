@@ -14,6 +14,7 @@
   "scripts": {
     "test": "exit 0",
     "benchmark": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/benchmark.js",
+    "build": "echo \"Nothing to build in @material-ui/benchmark\"",
     "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js"
   },
   "devDependencies": {},
