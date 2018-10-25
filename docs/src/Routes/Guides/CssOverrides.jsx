@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 
 const CssOverrides = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Override stylesheet </Typography>
+    <Typography variant="h2" gutterBottom> Override stylesheet </Typography>
 
     <Typography variant="body1" gutterBottom>
       Default pickers appearance built based on material-ui theme provided.

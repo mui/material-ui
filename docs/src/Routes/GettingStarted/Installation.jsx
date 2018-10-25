@@ -14,12 +14,12 @@ npm i -s luxon`;
 
 const Installation = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Installation </Typography>
+    <Typography variant="h2" gutterBottom> Installation </Typography>
     <Typography variant="body1" gutterBottom> Available as <a className="link" href="https://www.npmjs.com/package/material-ui-pickers"> npm package </a> </Typography>
 
     <Code withMargin text="npm i -s material-ui-pickers" />
 
-    <Typography variant="display1" gutterBottom> Peer Library </Typography>
+    <Typography variant="h4" gutterBottom> Peer Library </Typography>
     <Typography variant="body1" gutterBottom>
       Material-ui-pickers was designed to use that date management library that you need.
     </Typography>
@@ -47,7 +47,7 @@ const Installation = () => (
     </Typography>
 
     <Code withMargin text={muiPickerProviderCode} />
-    <Typography variant="display1" gutterBottom> Font Icons </Typography>
+    <Typography variant="h4" gutterBottom> Font Icons </Typography>
     <Typography variant="body1">
       We are using material-ui-icons icon font to display icons.
       In order if you can override with a help of corresponding props. Just add this to your html

@@ -10,7 +10,7 @@ const DrawerMenu = ({ classes }) => (
   <div className={classes.drawerRoot}>
     <Toolbar className={classes.drawerToolbar}>
       <Link to="/">
-        <Typography variant="subheading" className={classes.headerLink}>
+        <Typography variant="subtitle1" className={classes.headerLink}>
           Material-UI pickers
         </Typography>
       </Link>

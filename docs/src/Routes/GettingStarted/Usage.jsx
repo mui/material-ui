@@ -8,7 +8,7 @@ const sandBoxId = '74mqv6qq90';
 
 const Usage = ({ classes }) => (
   <div>
-    <Typography variant="display2" gutterBottom> Usage </Typography>
+    <Typography variant="h2" gutterBottom> Usage </Typography>
 
     <Typography variant="body1" gutterBottom>
       Material-UI-pickers rely only on material-ui controls and the date-management lib
@@ -17,7 +17,7 @@ const Usage = ({ classes }) => (
     </Typography>
 
     <Typography
-      variant="display1"
+      variant="h4"
       className={classes.quickStartHeader}
       gutterBottom
     >
@@ -30,7 +30,7 @@ const Usage = ({ classes }) => (
 
     <Code withMargin text={quickStartCode} />
 
-    <Typography variant="display1" gutterBottom>
+    <Typography variant="h4" gutterBottom>
       Interactive example
     </Typography>
 

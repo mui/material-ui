@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 
 const DateFnsLocalization = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Localization date-fns </Typography>
+    <Typography variant="h2" gutterBottom> Localization date-fns </Typography>
     <Typography variant="body1" gutterBottom>
       Date-fns localization simply performs by passing date-fns locale object
       to the MuiPickerUtilsProvider

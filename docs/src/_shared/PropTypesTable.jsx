@@ -85,7 +85,7 @@ class PropTypesTable extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <Typography variant="display1" gutterBottom> Component API </Typography>
+        <Typography variant="h4" gutterBottom> Component API </Typography>
         <Typography variant="body1" gutterBottom>
           <strong> Note: </strong> Any prop not recognized by the pickers
           and their sub-components are passed down to material-ui&nbsp;

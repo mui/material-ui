@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 
 const MomentLocalization = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Localization moment </Typography>
+    <Typography variant="h2" gutterBottom> Localization moment </Typography>
     <Typography variant="body1" gutterBottom>
       Moment localization relying on the global moment object used.
     </Typography>

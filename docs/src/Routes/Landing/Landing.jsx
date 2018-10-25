@@ -30,22 +30,22 @@ class Demo extends Component {
             src={MuiLogo}
           />
 
-          <Typography variant="display1" color="inherit" className="title text-light" gutterBottom>
+          <Typography variant="h4" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
           </Typography>
-          <Typography variant="headline" align="center" color="inherit" gutterBottom className="text-light">
-            Date and Time pickers for material-ui v1
+          <Typography variant="h5" align="center" color="inherit" gutterBottom className="text-light">
+            Accessible, customizable, delightful date & time pickers for @material-ui/core
           </Typography>
 
           <Link to="/installation">
-            <Button variant="raised" className={classes.getStarted} onClick={this.scrollToContent}>
+            <Button variant="contained" className={classes.getStarted} onClick={this.scrollToContent}>
               Get Started
             </Button>
           </Link>
         </Toolbar>
 
         <div id="content" className={classes.content}>
-          <Typography variant="display1" align="center" gutterBottom>
+          <Typography variant="h4" align="center" gutterBottom>
             Support material-ui-pickers
           </Typography>
 
@@ -58,7 +58,7 @@ class Demo extends Component {
           <Typography
             align="center"
             className={classes.sponsorHeader}
-            variant="headline"
+            variant="h5"
             gutterBottom
           >
             Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a> ❤️

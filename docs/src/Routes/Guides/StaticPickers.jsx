@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 
 const StaticPickers = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Static pickers </Typography>
+    <Typography variant="h2" gutterBottom> Static pickers </Typography>
 
     <Typography variant="body1" gutterBottom>
       Somewhere its required to use some internal control for calendar or some timeinput.

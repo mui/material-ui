@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 
 const DateTimePickerDemo = () => (
   <div>
-    <Typography variant="display2" gutterBottom>
+    <Typography variant="h2" gutterBottom>
       Date & time picker
     </Typography>
     <Typography variant="body1" gutterBottom>

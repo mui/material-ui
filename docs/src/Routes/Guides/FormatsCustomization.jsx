@@ -8,7 +8,7 @@ import utilsInterfaceCode from '!raw-loader!material-ui-pickers/typings/utils.d.
 
 const FormatCustomization = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Format customization </Typography>
+    <Typography variant="h2" gutterBottom> Format customization </Typography>
 
     <Typography variant="body1" gutterBottom>
       For localization purpose may be needed to change displaying values in the pickers modal,
@@ -30,7 +30,7 @@ const FormatCustomization = () => (
       }
     />
 
-    <Typography variant="display1" gutterBottom>
+    <Typography variant="h4" gutterBottom>
       Utils interface
     </Typography>
 

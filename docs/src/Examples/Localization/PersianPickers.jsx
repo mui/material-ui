@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import jMoment from 'moment-jalaali';
 import { Typography } from '@material-ui/core';
-import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import { TimePicker, DateTimePicker, DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 import JalaliUtils from 'material-ui-pickers-jalali-utils';
 
 jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
@@ -23,7 +22,7 @@ export default class BasicUsage extends Component {
     return (
       <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             Date picker
           </Typography>
 
@@ -40,7 +39,7 @@ export default class BasicUsage extends Component {
         </div>
 
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             Time picker
           </Typography>
 
@@ -56,7 +55,7 @@ export default class BasicUsage extends Component {
         </div>
 
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
+          <Typography variant="h5" align="center" gutterBottom>
             DateTime picker
           </Typography>
 

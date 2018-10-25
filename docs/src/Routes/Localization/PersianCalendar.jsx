@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 
 const PersianCalendar = () => (
   <div>
-    <Typography variant="display2" gutterBottom> Setting Up Persian Calendar System </Typography>
+    <Typography variant="h2" gutterBottom> Persian Calendar System </Typography>
 
     <Typography variant="body1" gutterBottom>
       <p key="persian-desc">
