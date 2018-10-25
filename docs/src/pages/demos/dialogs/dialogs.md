@@ -17,6 +17,7 @@ Simple dialogs can provide additional details or actions about a list item.
 For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
 
 Touch mechanics:
+
 - Choosing an option immediately commits the option and closes the menu
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
@@ -28,6 +29,7 @@ Alerts are urgent interruptions, requiring acknowledgement, that inform the user
 
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:
+
 - Asking a question (e.g. "Delete this conversation?")
 - Making a statement related to the action buttons
 
@@ -78,6 +80,7 @@ Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `D
 ## Scrolling long content
 
 When dialogs become too long for the user’s viewport or device, they scroll.
+
 - `scroll=paper` the content of the dialog scrolls within the paper element.
 - `scroll=body` the content of the dialog scrolls within the body element.
 

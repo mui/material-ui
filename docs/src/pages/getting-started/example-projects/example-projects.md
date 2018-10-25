@@ -3,6 +3,7 @@
 <p class="description">Are you looking for an example project to get started?</p>
 
 We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
