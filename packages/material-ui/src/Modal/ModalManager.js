@@ -153,7 +153,12 @@ class ModalManager {
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
       // Otherwise make sure the next top modal is visible to a screan reader.
-      ariaHidden(data.modals[data.modals.length - 1].modalRef, false);
+      const nextTop = data.modals[data.modals.length - 1];
+      // as soon as a modal is adding its modalRef is undefined. it can't set 
+      // aria-hidden because the dom element doesn't exist either
+      if (nextTop.modalRef !== undefined) {
+        ariaHidden(nextTop.modalRef, false);
+      }
     }
 
     return modalIdx;
