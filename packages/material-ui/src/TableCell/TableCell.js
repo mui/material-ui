@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import { fade, lighten } from '../styles/colorManipulator';
+import { darken, fade, lighten } from '../styles/colorManipulator';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -16,7 +16,7 @@ export const styles = theme => ({
     ${
       theme.palette.type === 'light'
         ? lighten(fade(theme.palette.divider, 1), 0.88)
-        : theme.palette.divider
+        : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
     padding: '4px 56px 4px 24px',
