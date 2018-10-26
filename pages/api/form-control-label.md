@@ -28,8 +28,7 @@ Use this component if you want to display an extra label.
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |   | The text to be used in an enclosing label element. |
 | <span class="prop-name">labelPlacement</span> | <span class="prop-type">enum:&nbsp;'end'&nbsp;&#124;<br>&nbsp;'start'<br></span> | <span class="prop-default">'end'</span> | The position of the label. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |   |  |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback.
- You can pull out the new value by accessing `event.target.checked`.<br>*checked:* The `checked` value of the switch |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.<br>*checked:* The `checked` value of the switch |
 | <span class="prop-name">value</span> | <span class="prop-type">string</span> |   | The value of the component. |
 
 Any other properties supplied will be spread to the root element (native element).

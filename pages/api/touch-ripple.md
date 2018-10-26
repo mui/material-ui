@@ -10,7 +10,7 @@ title: TouchRipple API
 <p class="description">The API documentation of the TouchRipple React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import TouchRipple from '@material-ui/core/TouchRipple';
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 ```
 
 

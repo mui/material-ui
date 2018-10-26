@@ -29,8 +29,7 @@ import Select from '@material-ui/core/Select';
 | <span class="prop-name">MenuProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Menu`](/api/menu/) element. |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, `value` must be an array and the menu will support multiple selections. You can only use it when the `native` property is `false` (default). |
 | <span class="prop-name">native</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will be using a native `select` element. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object, child?: object) => void`<br>*event:* The event source of the callback.
- You can pull out the new value by accessing `event.target.value`.<br>*child:* The react element that was selected when `native` is `false` (default). |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object, child?: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>*child:* The react element that was selected when `native` is `false` (default). |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be closed. Use in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">onOpen</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be opened. Use in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> |   | Control `select` open state. You can only use it when the `native` property is `false` (default). |
@@ -46,13 +45,16 @@ Any other properties supplied will be spread to the root element ([Input](/api/i
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-- `root`
-- `select`
-- `filled`
-- `outlined`
-- `selectMenu`
-- `disabled`
-- `icon`
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the `Input` component `root` class.
+| <span class="prop-name">select</span> | Styles applied to the `Input` component `select` class.
+| <span class="prop-name">filled</span> | Styles applied to the `Input` component if `variant="filled"`.
+| <span class="prop-name">outlined</span> | Styles applied to the `Input` component if `variant="outlined"`.
+| <span class="prop-name">selectMenu</span> | Styles applied to the `Input` component `selectMenu` class.
+| <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
+| <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Select/Select.js)
