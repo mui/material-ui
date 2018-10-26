@@ -10,7 +10,7 @@ title: TableRow API
 <p class="description">The API documentation of the TableRow React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import TableRow from '@material-ui/core/TableRow';
+import TableRow from '\packages\material-ui\src\TableRow\TableRow';
 ```
 
 Will automatically set dynamic row height
@@ -20,11 +20,11 @@ based on the material table element parent (head, body, etc).
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |   | Should be valid &lt;tr> children such as `TableCell`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'tr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">hover</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the table row will shade on hover. |
-| <span class="prop-name">selected</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the table row will have the selected shading. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | Should be valid &lt;tr> children such as `TableCell`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'tr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">hover</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will shade on hover. |
+| <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will have the selected shading. |
 
 Any other properties supplied will be spread to the root element (native element).
 

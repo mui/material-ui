@@ -10,7 +10,7 @@ title: Card API
 <p class="description">The API documentation of the Card React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Card from '@material-ui/core/Card';
+import Card from '\packages\material-ui\src\Card\Card';
 ```
 
 
@@ -19,8 +19,8 @@ import Card from '@material-ui/core/Card';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">raised</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the card will use raised styling. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">raised</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the card will use raised styling. |
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 

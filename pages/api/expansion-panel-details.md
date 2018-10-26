@@ -10,7 +10,7 @@ title: ExpansionPanelDetails API
 <p class="description">The API documentation of the ExpansionPanelDetails React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelDetails from '\packages\material-ui\src\ExpansionPanelDetails\ExpansionPanelDetails';
 ```
 
 
@@ -19,8 +19,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node |   | The content of the expansion panel details. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the expansion panel details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 
 Any other properties supplied will be spread to the root element (native element).
 

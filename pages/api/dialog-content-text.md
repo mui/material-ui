@@ -10,7 +10,7 @@ title: DialogContentText API
 <p class="description">The API documentation of the DialogContentText React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContentText from '\packages\material-ui\src\DialogContentText\DialogContentText';
 ```
 
 
@@ -19,8 +19,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |   | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 
 Any other properties supplied will be spread to the root element ([Typography](/api/typography/)).
 

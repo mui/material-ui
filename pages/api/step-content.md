@@ -10,7 +10,7 @@ title: StepContent API
 <p class="description">The API documentation of the StepContent React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import StepContent from '@material-ui/core/StepContent';
+import StepContent from '\packages\material-ui\src\StepContent\StepContent';
 ```
 
 
@@ -19,11 +19,11 @@ import StepContent from '@material-ui/core/StepContent';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |   | Step content. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">func | <span class="prop-default">Collapse</span> | Collapse component. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | Adjust the duration of the content expand transition. Passed as a property to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |   | Properties applied to the `Transition` element. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | Step content. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">func</span> | <span class="prop-default">Collapse</span> | Collapse component. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br></span> | <span class="prop-default">'auto'</span> | Adjust the duration of the content expand transition. Passed as a property to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Transition` element. |
 
 Any other properties supplied will be spread to the root element (native element).
 
