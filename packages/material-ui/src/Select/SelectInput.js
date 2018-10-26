@@ -281,7 +281,7 @@ class SelectInput extends React.Component {
           aria-pressed={open ? 'true' : 'false'}
           tabIndex={tabIndex}
           role="button"
-          aria-owns={open ? `menu-${name || ''}` : null}
+          aria-owns={open ? `menu-${name || ''}` : undefined}
           aria-haspopup="true"
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}

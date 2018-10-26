@@ -53,7 +53,7 @@ class MenuListComposition extends React.Component {
             buttonRef={node => {
               this.anchorEl = node;
             }}
-            aria-owns={open ? 'menu-list-grow' : null}
+            aria-owns={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             onClick={this.handleToggle}
           >
