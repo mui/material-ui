@@ -45,5 +45,17 @@ describe('<NestedMenu> integration', () => {
       const secondMenu = document.getElementById('second-menu');
       assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('li')[0]);
     });
+
+    it('should open the first menu again', () => {
+      wrapper.setState({ firstMenuOpen: true, secondMenuOpen: false });
+      const firstMenu = document.getElementById('first-menu');
+      assert.strictEqual(document.activeElement, firstMenu.querySelectorAll('li')[0]);
+    });
+
+    it('should be able to open second menu again', () => {
+      wrapper.setState({ firstMenuOpen: false, secondMenuOpen: true });
+      const secondMenu = document.getElementById('second-menu');
+      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('li')[0]);
+    });
   });
 });

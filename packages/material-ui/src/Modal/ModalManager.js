@@ -156,7 +156,8 @@ class ModalManager {
       const nextTop = data.modals[data.modals.length - 1];
       // as soon as a modal is adding its modalRef is undefined. it can't set
       // aria-hidden because the dom element doesn't exist either
-      if (nextTop.modalRef !== undefined) {
+      // when modal was unmounted before modalRef gets null
+      if (nextTop.modalRef) {
         ariaHidden(nextTop.modalRef, false);
       }
     }

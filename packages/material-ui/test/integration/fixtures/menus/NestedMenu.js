@@ -25,10 +25,20 @@ class NestedMenu extends React.Component {
 
     return (
       <div>
-        <Menu id="second-menu" open={secondMenuOpen} onClose={this.handleClose}>
+        <Menu
+          id="second-menu"
+          open={secondMenuOpen}
+          onClose={this.handleClose}
+          transitionDuration={0}
+        >
           <MenuItem onClick={this.handleMenuItemClick2}>Second Menu</MenuItem>
         </Menu>
-        <Menu id="first-menu" open={firstMenuOpen} onClose={this.handleClose}>
+        <Menu
+          id="first-menu"
+          open={firstMenuOpen}
+          onClose={this.handleClose}
+          transitionDuration={0}
+        >
           <MenuItem onClick={this.handleMenuItemClick}>Profile 1</MenuItem>
           <MenuItem onClick={this.handleClose}>My account</MenuItem>
           <MenuItem onClick={this.handleClose}>Logout</MenuItem>
