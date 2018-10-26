@@ -47,7 +47,8 @@
     "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "tslib": "^1.9.3"
   },
   "size-limit": [
     {
