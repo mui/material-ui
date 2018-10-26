@@ -16,7 +16,7 @@ export const styles = theme => ({
     ${
       theme.palette.type === 'light'
         ? lighten(fade(theme.palette.divider, 1), 0.88)
-        : darken(fade(theme.palette.divider, 1), 0.8)
+        : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
     padding: '4px 56px 4px 24px',
