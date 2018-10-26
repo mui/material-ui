@@ -227,7 +227,7 @@ class Demo extends React.Component {
               </Tooltip>
               <IconButton
                 onClick={this.handleClickMore}
-                aria-owns={anchorEl ? 'demo-menu-more' : null}
+                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
                 aria-haspopup="true"
                 aria-label="See more"
               >
