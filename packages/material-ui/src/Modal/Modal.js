@@ -67,7 +67,6 @@ class Modal extends React.Component {
     if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
-      // check for focus
       this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
