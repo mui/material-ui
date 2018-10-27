@@ -4,28 +4,41 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   '@global': {
     '#cf_ad': {
-      padding: theme.spacing.unit,
+      overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
+        .spacing.unit + 130}px`,
       borderRadius: theme.shape.borderRadius,
+      margin: '0 !important', // Reset
+      maxWidth: 'none !important', // Reset
+      '& img': {
+        verticalAlign: 'middle',
+      },
+      '& a': {
+        textDecoration: 'none',
+      },
       '& .cf-wrapper.cf-wrapper': {
-        padding: 0,
-        backgroundColor: 'transparent',
+        padding: 0, // Reset
+        overflow: 'visible', // Reset
+        backgroundColor: 'transparent', // Reset
       },
       '& .cf-img-wrapper.cf-img-wrapper': {
-        float: 'none',
-        display: 'block',
+        float: 'left',
+        marginLeft: -130,
+        marginRight: theme.spacing.unit,
       },
       '& .cf-text.cf-text': {
         ...theme.typography.body2,
         display: 'block',
-        margin: `${theme.spacing.unit}px 0`,
         '& strong': {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
       '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
-        marginTop: 0,
+        color: theme.palette.text.secondary,
+        display: 'block',
+        marginTop: 0, // Reset
       },
     },
   },
@@ -43,8 +56,8 @@ class CodeFund extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div id="code-fund-script-slot" />
-        <div id="codefund_ad" />
+        <span id="code-fund-script-slot" />
+        <span id="codefund_ad" />
       </React.Fragment>
     );
   }
