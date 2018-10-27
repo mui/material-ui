@@ -256,6 +256,7 @@ class Tooltip extends React.Component {
       enterDelay,
       enterTouchDelay,
       id,
+      interactive,
       leaveDelay,
       leaveTouchDelay,
       onClose,
@@ -267,7 +268,6 @@ class Tooltip extends React.Component {
       title,
       TransitionComponent,
       TransitionProps,
-      interactive,
       ...other
     } = this.props;
 
@@ -324,9 +324,9 @@ class Tooltip extends React.Component {
           placement={placement}
           anchorEl={this.childrenRef}
           open={open}
-          {...interactiveWrapperListeners}
           id={childrenProps['aria-describedby']}
           transition
+          {...interactiveWrapperListeners}
           {...PopperProps}
         >
           {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
@@ -466,6 +466,7 @@ Tooltip.defaultProps = {
   disableTouchListener: false,
   enterDelay: 0,
   enterTouchDelay: 1000,
+  interactive: false,
   leaveDelay: 0,
   leaveTouchDelay: 1500,
   placement: 'bottom',
