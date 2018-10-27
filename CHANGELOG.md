@@ -3,7 +3,7 @@
 ## 3.3.2
 ###### *Oct 27, 2018*
 
-Big thanks to the 16 contributors who made this release possible!
+Big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 - 🐛 Fix some important issues with the Modal (#13378, #13389) @TomiCake.
