@@ -24,6 +24,11 @@ export const styles = theme => ({
     overflowY: 'auto',
     overflowX: 'hidden',
   },
+  container: {
+    height: '100%',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
+  },
   /* Styles applied to the `Paper` component. */
   paper: {
     display: 'flex',
@@ -31,8 +36,6 @@ export const styles = theme => ({
     margin: 48,
     position: 'relative',
     overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
   },
   /* Styles applied to the `Paper` component if `scroll="paper"`. */
   paperScrollPaper: {
@@ -100,77 +103,101 @@ export const styles = theme => ({
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-function Dialog(props) {
-  const {
-    BackdropProps,
-    children,
-    classes,
-    className,
-    disableBackdropClick,
-    disableEscapeKeyDown,
-    fullScreen,
-    fullWidth,
-    maxWidth,
-    onBackdropClick,
-    onClose,
-    onEnter,
-    onEntered,
-    onEntering,
-    onEscapeKeyDown,
-    onExit,
-    onExited,
-    onExiting,
-    open,
-    PaperProps,
-    scroll,
-    TransitionComponent,
-    transitionDuration,
-    TransitionProps,
-    ...other
-  } = props;
+class Dialog extends React.Component {
+  handleBackdropClick = event => {
+    if (event.target !== event.currentTarget) {
+      return;
+    }
 
-  return (
-    <Modal
-      className={classNames(classes.root, classes[`scroll${capitalize(scroll)}`], className)}
-      BackdropProps={{
-        transitionDuration,
-        ...BackdropProps,
-      }}
-      disableBackdropClick={disableBackdropClick}
-      disableEscapeKeyDown={disableEscapeKeyDown}
-      onBackdropClick={onBackdropClick}
-      onEscapeKeyDown={onEscapeKeyDown}
-      onClose={onClose}
-      open={open}
-      role="dialog"
-      {...other}
-    >
-      <TransitionComponent
-        appear
-        in={open}
-        timeout={transitionDuration}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
-        {...TransitionProps}
+    if (this.props.onBackdropClick) {
+      this.props.onBackdropClick(event);
+    }
+
+    if (!this.props.disableBackdropClick && this.props.onClose) {
+      this.props.onClose(event, 'backdropClick');
+    }
+  };
+
+  render() {
+    const {
+      BackdropProps,
+      children,
+      classes,
+      className,
+      disableBackdropClick,
+      disableEscapeKeyDown,
+      fullScreen,
+      fullWidth,
+      maxWidth,
+      onBackdropClick,
+      onClose,
+      onEnter,
+      onEntered,
+      onEntering,
+      onEscapeKeyDown,
+      onExit,
+      onExited,
+      onExiting,
+      open,
+      PaperProps,
+      scroll,
+      TransitionComponent,
+      transitionDuration,
+      TransitionProps,
+      ...other
+    } = this.props;
+
+    const Div = 'div';
+
+    return (
+      <Modal
+        className={classNames(classes.root, className)}
+        BackdropProps={{
+          transitionDuration,
+          ...BackdropProps,
+        }}
+        disableBackdropClick={disableBackdropClick}
+        disableEscapeKeyDown={disableEscapeKeyDown}
+        onBackdropClick={onBackdropClick}
+        onEscapeKeyDown={onEscapeKeyDown}
+        onClose={onClose}
+        open={open}
+        role="dialog"
+        {...other}
       >
-        <Paper
-          elevation={24}
-          className={classNames(classes.paper, classes[`paperScroll${capitalize(scroll)}`], {
-            [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
-            [classes.paperFullScreen]: fullScreen,
-            [classes.paperFullWidth]: fullWidth,
-          })}
-          {...PaperProps}
+        <TransitionComponent
+          appear
+          in={open}
+          timeout={transitionDuration}
+          onEnter={onEnter}
+          onEntering={onEntering}
+          onEntered={onEntered}
+          onExit={onExit}
+          onExiting={onExiting}
+          onExited={onExited}
+          {...TransitionProps}
         >
-          {children}
-        </Paper>
-      </TransitionComponent>
-    </Modal>
-  );
+          <Div
+            className={classNames(classes[`scroll${capitalize(scroll)}`], classes.container)}
+            onClick={this.handleBackdropClick}
+            role="dialog"
+          >
+            <Paper
+              elevation={24}
+              className={classNames(classes.paper, classes[`paperScroll${capitalize(scroll)}`], {
+                [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
+                [classes.paperFullScreen]: fullScreen,
+                [classes.paperFullWidth]: fullWidth,
+              })}
+              {...PaperProps}
+            >
+              {children}
+            </Paper>
+          </Div>
+        </TransitionComponent>
+      </Modal>
+    );
+  }
 }
 
 Dialog.propTypes = {
