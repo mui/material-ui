@@ -45,35 +45,6 @@ Here are some highlights ✨:
 - [core] Update overrides type declarations (#13379) @eps1lon
 - [core] Misc of improvements (#13381) @oliviertassinari
 
-### Docs
-
-- [docs] Adds documentation for Circular Progress component (#13266) @mxmcg
-- [docs] Remove usage of non-existent `listItem` jss class (#13269, #13268) @G-Rath
-- [examples] Extend the .gitignore files (#13270) @phiilu
-- [docs] Remove/annotate deprecated button variants (#13280) @eps1lon
-- [docs] Update RTL guide to be more clear (#13181) @wenduzer
-- [docs] Add checklist to PR template (#13225) @eps1lon
-- [docs] Fix markdown formatting (#13284) @rutsky
-- [docs] Fix typo (#13287) @NMinhNguyen
-- [docs] Fixes typos & formatting in GridListTile and GridListTileBar documentation (#13298) @rassek96
-- [docs] Reverse show password logic (#13301) @ShunnyBunny
-- [docs] Some improvements (#13308) @programistka
-- [docs] Clarify on how to use the local distribution in the CONTRIBUTING file (#13312) @nicolasiensen
-- [docs] Refactor CheckboxesGroup to support IE11 (#13316) @simjes
-- [docs] Set the infrastructure for a full page demo (#13314) @oliviertassinari
-- [docs] Fix typos & formatting in filled-input (#13317) @dskiba
-- [docs] Remove usage of non-existent `margin` jss class (#13318) @G-Rath
-- [docs] Fix ad display (#13321) @oliviertassinari
-- [docs] New Crowdin translations (#13094) @mbrookes
-
-### Core
-
-- [core] Fix defaultFontFamily misspelled in createTypography (#13260) @TheBear44
-- [core] Misc of improvements (#13271) @oliviertassinari
-- [core] Upgrade the dev dependencies (#13286) @oliviertassinari
-- [core] Disable the jss vendor plugin server side (#13285) @oliviertassinari
-- [core] Work toward preventing Googlebot regressions (#13323) @oliviertassinari
-
 ## 3.3.1
 ###### *Oct 24, 2018*
 
