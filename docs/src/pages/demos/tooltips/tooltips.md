@@ -61,3 +61,9 @@ By default disabled elements like `Button` do not trigger user interactions so a
 The `Tooltip` wraps long text by default to make it readable.
 
 {{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+
+## Interactive
+
+A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+
+{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
