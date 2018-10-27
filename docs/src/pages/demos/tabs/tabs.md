@@ -69,6 +69,7 @@ Left and right scroll buttons will never be presented.  All scrolling must be in
 Tab labels may be either all icons or all text.
 
 {{"demo": "pages/demos/tabs/IconTabs.js"}}
+
 {{"demo": "pages/demos/tabs/IconLabelTabs.js"}}
 
 ## Nav Tabs

@@ -11,7 +11,11 @@ import Carbon from 'docs/src/modules/components/Carbon';
 const styles = theme => ({
   root: {
     position: 'relative',
-    minHeight: 180,
+    minHeight: 110,
+    maxWidth: 350,
+    display: 'block',
+    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 3,
   },
   info: {
     ...theme.typography.caption,
@@ -22,7 +26,7 @@ const styles = theme => ({
     right: 0,
   },
   paper: {
-    padding: 8,
+    padding: theme.spacing.unit,
   },
 });
 
@@ -89,11 +93,11 @@ class Ad extends React.Component {
     const { adblock, disable } = this.state;
 
     if (disable) {
-      return getAdblock(classes);
+      return <span className={classes.root}>{getAdblock(classes)}</span>;
     }
 
     return (
-      <div className={classes.root}>
+      <span className={classes.root}>
         {this.random >= 0.5 ? <CodeFund /> : <Carbon />}
         {adblock === true ? getAdblock(classes) : null}
         {adblock === false ? (
@@ -105,7 +109,7 @@ class Ad extends React.Component {
             <span className={classes.info}>i</span>
           </Tooltip>
         ) : null}
-      </div>
+      </span>
     );
   }
 }
