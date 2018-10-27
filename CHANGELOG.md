@@ -1,5 +1,79 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.3.2
+###### *Oct 27, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🐛 Fix some important issues with the Modal (#13378, #13389) @TomiCake.
+- 🐛 Fix a Dialog scroll issue (#13409) @Ang-YC.
+- 📝 Full IE 11 support (#13375, #13324) @eps1lon.
+- And many more bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.3.2`
+
+- [Stepper] Fix visual issue on IE 11 (#13375) @oliviertassinari
+- [Modal] Reuse the same reference (#13378) @oliviertassinari
+- [MenuItem] Add disableGutters property (#13329) @adeelibr
+- [FormControl] Issue 13246 revert (#13380) @drkohlipk
+- [theme] Correct augmentColor TypeScript definition (#13376) @sveyret
+- [Table] Change divider color in dark theme (#13395) @Krijovnick
+- [TablePagination] Better color inheritance (#13393) @markselby9
+- [Modal] Fix aria and focus logic (#13389) @TomiCake
+- [Tooltip] Allow to interact with the tooltip (#13305) @jantimon
+- [Dialog] Fix unable to drag scrollbar when scroll="body" (#13409) @Ang-YC
+
+### `@material-ui/lab@v3.0.0-alpha.22`
+
+- [Slider] Improve performance of slider (#13325) @Pajn
+
+### Docs
+
+- [docs] Fix some issue with i18n (#13342) @GFwer
+- [docs] Add polyfill for IE 11 (#13324) @eps1lon
+- [docs] Correct title attribute for Paella recipe card (#13398) @vixmorrigan-redseven
+- [docs] CONTRIBUTING is not read by default (#13400) @eps1lon
+- [docs] Add missing </span> for prop-type (#13401) @mvsmal
+- [docs] aria-owns accepts 'string | undefined' but we feed it 'null' (#13396) @Primajin
+- [docs] Let user know where <Icon /> coming from (#13405) @bekicot
+- [docs] Update Workbox to v3.6.3 (#13392) @msiadak
+- [docs] Better i18n capability (#13410) @oliviertassinari
+
+### Core
+
+- [core] Update overrides type declarations (#13379) @eps1lon
+- [core] Misc of improvements (#13381) @oliviertassinari
+
+### Docs
+
+- [docs] Adds documentation for Circular Progress component (#13266) @mxmcg
+- [docs] Remove usage of non-existent `listItem` jss class (#13269, #13268) @G-Rath
+- [examples] Extend the .gitignore files (#13270) @phiilu
+- [docs] Remove/annotate deprecated button variants (#13280) @eps1lon
+- [docs] Update RTL guide to be more clear (#13181) @wenduzer
+- [docs] Add checklist to PR template (#13225) @eps1lon
+- [docs] Fix markdown formatting (#13284) @rutsky
+- [docs] Fix typo (#13287) @NMinhNguyen
+- [docs] Fixes typos & formatting in GridListTile and GridListTileBar documentation (#13298) @rassek96
+- [docs] Reverse show password logic (#13301) @ShunnyBunny
+- [docs] Some improvements (#13308) @programistka
+- [docs] Clarify on how to use the local distribution in the CONTRIBUTING file (#13312) @nicolasiensen
+- [docs] Refactor CheckboxesGroup to support IE11 (#13316) @simjes
+- [docs] Set the infrastructure for a full page demo (#13314) @oliviertassinari
+- [docs] Fix typos & formatting in filled-input (#13317) @dskiba
+- [docs] Remove usage of non-existent `margin` jss class (#13318) @G-Rath
+- [docs] Fix ad display (#13321) @oliviertassinari
+- [docs] New Crowdin translations (#13094) @mbrookes
+
+### Core
+
+- [core] Fix defaultFontFamily misspelled in createTypography (#13260) @TheBear44
+- [core] Misc of improvements (#13271) @oliviertassinari
+- [core] Upgrade the dev dependencies (#13286) @oliviertassinari
+- [core] Disable the jss vendor plugin server side (#13285) @oliviertassinari
+- [core] Work toward preventing Googlebot regressions (#13323) @oliviertassinari
+
 ## 3.3.1
 ###### *Oct 24, 2018*
 
