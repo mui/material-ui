@@ -96,6 +96,8 @@ class name using the Icon component's `className` property.
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
 for example:
 ```jsx
+import Icon from '@material-ui/core/Icon';
+
 <Icon>star</Icon>
 ```
 
