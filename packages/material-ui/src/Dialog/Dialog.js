@@ -24,6 +24,7 @@ export const styles = theme => ({
     overflowY: 'auto',
     overflowX: 'hidden',
   },
+  /* Styles applied to the container element. */
   container: {
     height: '100%',
     // We disable the focus ring for mouse, touch and keyboard users.
