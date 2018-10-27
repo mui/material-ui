@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 // @inheritedComponent Modal
 
 import React from 'react';
@@ -148,8 +150,6 @@ class Dialog extends React.Component {
       ...other
     } = this.props;
 
-    const Div = 'div';
-
     return (
       <Modal
         className={classNames(classes.root, className)}
@@ -178,10 +178,10 @@ class Dialog extends React.Component {
           onExited={onExited}
           {...TransitionProps}
         >
-          <Div
-            className={classNames(classes[`scroll${capitalize(scroll)}`], classes.container)}
+          <div
+            className={classNames(classes.container, classes[`scroll${capitalize(scroll)}`])}
             onClick={this.handleBackdropClick}
-            role="dialog"
+            role="document"
           >
             <Paper
               elevation={24}
@@ -194,7 +194,7 @@ class Dialog extends React.Component {
             >
               {children}
             </Paper>
-          </Div>
+          </div>
         </TransitionComponent>
       </Modal>
     );

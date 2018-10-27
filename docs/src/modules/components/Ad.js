@@ -27,18 +27,21 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing.unit,
+    display: 'block',
   },
 });
 
 function getAdblock(classes) {
   return (
-    <Paper elevation={0} className={classes.paper}>
-      <Typography gutterBottom>Like Material-UI?</Typography>
-      <Typography gutterBottom>
+    <Paper component="span" elevation={0} className={classes.paper}>
+      <Typography component="span" gutterBottom>
+        Like Material-UI?
+      </Typography>
+      <Typography component="span" gutterBottom>
         {`If you don't mind tech-related ads, and want to support Open Source,
             please whitelist Material-UI in your ad blocker.`}
       </Typography>
-      <Typography>
+      <Typography component="span">
         Thank you!{' '}
         <span role="img" aria-label="Love">
           ❤️

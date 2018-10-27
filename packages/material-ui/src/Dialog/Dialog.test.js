@@ -125,7 +125,7 @@ describe('<Dialog />', () => {
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find('div');
       assert.strictEqual(
-        backdrop.prop('onClick'),
+        backdrop.props().onClick,
         handler,
         'should attach the handleBackdropClick handler',
       );
