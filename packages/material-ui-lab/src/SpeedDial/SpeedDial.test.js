@@ -277,7 +277,7 @@ describe('<SpeedDial />', () => {
 
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
-      assert.strictEqual(wrapper.prop('open'), true);
+      assert.strictEqual(wrapper.props().open, true);
     });
 
     describe('first item selection', () => {

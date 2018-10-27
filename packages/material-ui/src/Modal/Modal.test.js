@@ -82,14 +82,10 @@ describe('<Modal />', () => {
 
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find(Backdrop);
-      assert.strictEqual(
-        backdrop.prop('onClick'),
-        handler,
-        'should attach the handleBackdropClick handler',
-      );
+      assert.strictEqual(backdrop.props().onClick, handler);
 
       handler({});
-      assert.strictEqual(onClose.callCount, 1, 'should fire the onClose callback');
+      assert.strictEqual(onClose.callCount, 1);
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
@@ -99,7 +95,7 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
+      assert.strictEqual(onClose.callCount, 0);
     });
 
     it('should call through to the user specified onBackdropClick callback', () => {
@@ -109,7 +105,7 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+      assert.strictEqual(onBackdropClick.callCount, 1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
@@ -126,11 +122,7 @@ describe('<Modal />', () => {
           /* another dom node */
         },
       });
-      assert.strictEqual(
-        onBackdropClick.callCount,
-        0,
-        'should not fire the onBackdropClick callback',
-      );
+      assert.strictEqual(onBackdropClick.callCount, 0);
     });
   });
 

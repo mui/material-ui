@@ -232,7 +232,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         8,
         'should be 8 elevation by default',
       );
@@ -241,7 +241,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         16,
         'should be 16 elevation',
       );
