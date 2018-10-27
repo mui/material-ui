@@ -37,18 +37,17 @@ class AppWrapper extends React.Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    if ('serviceWorker' in navigator && this.props.isStaticExport) {
+    if (
+      'serviceWorker' in navigator &&
+      process.env.NODE_ENV === 'production' &&
+      window.location.host.indexOf('material-ui.com') <= 0
+    ) {
       navigator.serviceWorker.register('/sw.js');
     }
   }
 
   componentDidUpdate() {
     uiThemeSideEffect(this.props.uiTheme);
-  }
-
-  static async getInitialProps({ req }) {
-    const isStaticExport = typeof window === 'undefined' && !req;
-    return { isStaticExport };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -96,7 +95,6 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  isStaticExport: PropTypes.bool,
   // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   uiTheme: PropTypes.object.isRequired,
