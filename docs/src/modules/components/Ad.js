@@ -4,14 +4,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
-import withWidth from '@material-ui/core/withWidth';
 import CodeFund from 'docs/src/modules/components/CodeFund';
 import Carbon from 'docs/src/modules/components/Carbon';
 
 const styles = theme => ({
   root: {
     position: 'relative',
-    minHeight: 110,
+    minHeight: 116,
     maxWidth: 350,
     display: 'block',
     marginTop: theme.spacing.unit * 4,
@@ -60,7 +59,7 @@ class Ad extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.width === 'xs' || this.state.disable) {
+    if (this.state.disable) {
       return;
     }
     this.checkAdblock();
@@ -84,7 +83,7 @@ class Ad extends React.Component {
       }, 500);
     }
 
-    if (attempt > 10 && this.state.adblock !== true) {
+    if (attempt > 6 && this.state.adblock !== true) {
       this.setState({
         adblock: true,
       });
@@ -119,7 +118,6 @@ class Ad extends React.Component {
 
 Ad.propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
 };
 
-export default withWidth()(withStyles(styles)(Ad));
+export default withStyles(styles)(Ad);

@@ -34,7 +34,9 @@ const styles = theme => ({
   },
 });
 
-function Tidelift({ classes }) {
+function Tidelift(props) {
+  const { classes } = props;
+
   return (
     <Link
       className={classes.root}
