@@ -29,6 +29,11 @@ export const styles = theme => ({
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: {
     minHeight: 72,
+    paddingTop: 12,
+    paddingBottom: 3,
+    // paddingBottom supposed to be 12px
+    // -3px for line-height of the label
+    // -6px for label padding
   },
   /* Styles applied to the root element if `textColor="inherit"`. */
   textColorInherit: {
