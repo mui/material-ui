@@ -10,7 +10,7 @@ import { uglify } from 'rollup-plugin-uglify';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import pkg from './package.json';
 
-const tsconfig = path.join(__dirname, 'tsconfig.build.json');
+const tsconfig = path.resolve(__dirname, '..', '..', 'tsconfig.build.json');
 console.info(`Using tsconfig: ${tsconfig}`);
 
 // treat as externals not relative and not absolute paths
@@ -35,39 +35,8 @@ const commonjsOptions = {
   include: 'node_modules/**',
 };
 
-const createUtilsConfigs = ({ name, input }) => {
-  const utilsPkg = {
-    name,
-    main: 'index.js',
-    module: 'index.esm.js',
-    typings: 'index.d.ts',
-  };
-
-  fs.writeFileSync(
-    `build/utils/${name}/package.json`,
-    JSON.stringify(utilsPkg, null, 2)
-  );
-
-  return {
-    input: `src/utils/${name}/index.ts`,
-    external,
-    output: {
-      file: `build/utils/${name}/index.esm.js`,
-      format: 'esm',
-    },
-    plugins: [
-      nodeResolve({ extensions }),
-      typescriptPlugin({ typescript, tsconfig }),
-    ],
-  };
-};
 
 export default [
-  createUtilsConfigs({ name: 'date-fns-utils' }),
-  createUtilsConfigs({ name: 'date-fns-utils-old' }),
-  createUtilsConfigs({ name: 'moment-utils' }),
-  createUtilsConfigs({ name: 'luxon-utils' }),
-
   {
     input,
     external,

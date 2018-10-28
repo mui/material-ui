@@ -1,8 +1,9 @@
 import { DateTime, Info } from 'luxon';
-import { Utils } from '../../typings/utils';
+import { IUtils } from './IUtils';
 
-export default class LuxonUtils implements Utils<DateTime> {
+export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
+
   public parse = DateTime.fromFormat;
 
   public dateTime12hFormat = 'ff';

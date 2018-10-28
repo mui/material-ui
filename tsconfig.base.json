@@ -14,9 +14,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["./src/__tests__/**/*"]
+    "suppressImplicitAnyIndexErrors": true
+  }
 }

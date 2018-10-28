@@ -1,4 +1,4 @@
-export interface Utils<TDate> {
+export interface IUtils<TDate> {
   locale?: any;
   moment?: any;
 

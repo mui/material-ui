@@ -1,0 +1,34 @@
+{
+  "name": "date-io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rollup.config.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "optionalDependencies": {
+    "moment": "^2.19.2",
+    "date-fns": "2.0.0-alpha.16",
+    "luxon": "^1.0.0"
+  },
+  "devDependencies": {
+    "moment": "^2.19.2",
+    "date-fns": "2.0.0-alpha.16",
+    "luxon": "^1.0.0",
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/date-fns": "^2.6.0",
+    "@types/luxon": "^1.4.0",
+    "@types/moment": "^2.13.0",
+    "typescript": "^3.1.3"
+  }
+}

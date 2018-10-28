@@ -1,5 +1,5 @@
 import defaultMoment from 'moment';
-import { Utils } from '../../typings/utils';
+import { IUtils } from './IUtils';
 
 interface Opts {
   locale?: string;
@@ -8,7 +8,7 @@ interface Opts {
 
 type Moment = defaultMoment.Moment;
 
-export default class MomentUtils implements Utils<defaultMoment.Moment> {
+export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
   public locale?: string;
 
