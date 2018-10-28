@@ -16,10 +16,10 @@ function InteractiveTooltips(props) {
   return (
     <div>
       <Tooltip title="Add" interactive>
-        <Button className={classes.button}>Interacative</Button>
+        <Button className={classes.button}>Interactive</Button>
       </Tooltip>
       <Tooltip title="Add">
-        <Button className={classes.button}>Non Interacative</Button>
+        <Button className={classes.button}>Non Interactive</Button>
       </Tooltip>
     </div>
   );
