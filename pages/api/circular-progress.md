@@ -10,7 +10,7 @@ title: CircularProgress API
 <p class="description">The API documentation of the CircularProgress React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '\packages\material-ui\src\CircularProgress\CircularProgress';
 ```
 
 ## ARIA
@@ -25,6 +25,7 @@ attribute to `true` on that region until it has finished loading.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'inherit'<br></span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">shrinkAnimation</span> | <span class="prop-type">bool</span> | <span class="prop-default">true</span> | If `true`, the shrink animation is applied. This only works if variant is `indeterminate` |
 | <span class="prop-name">size</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;string<br></span> | <span class="prop-default">40</span> | The size of the circle. |
 | <span class="prop-name">thickness</span> | <span class="prop-type">number</span> | <span class="prop-default">3.6</span> | The thickness of the circle. |
 | <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The value of the progress indicator for the determinate and static variants. Value between 0 and 100. |
@@ -49,6 +50,7 @@ This property accepts the following keys:
 | <span class="prop-name">circle</span> | Styles applied to the `circle` svg path.
 | <span class="prop-name">circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
 | <span class="prop-name">circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
+| <span class="prop-name">disableShrinkAnimation</span> | Styles applied to the `circle` svg path if `shrinkAnimation={false}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/CircularProgress/CircularProgress.js)
