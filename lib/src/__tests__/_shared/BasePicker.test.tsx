@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { BasePicker } from '../../_shared/BasePicker';
-import { utilsToUse } from '../test-utils';
+import { shallow, utilsToUse } from '../test-utils';
 
 const renderComponent = (Component: React.ComponentType<any>) => {
   const div = (global as any).document.createElement('div');
@@ -67,6 +67,26 @@ describe('BasePicker', () => {
       expect(utilsToUse.isEqual(renderCallParam.date, initialFocusedDate)).toBe(
         true
       );
+    });
+
+    it('passes updated initialFocusedDate as date if value is not provided and initialFocusedDate has changed', () => {
+      const initialFocusedDate = utilsToUse.date('2018-01-01');
+      const newInitialFocusedDate = utilsToUse.date('2018-02-01');
+      const renderFuncMock = getRenderFuncMock();
+
+      const component = shallow(
+        <BasePicker
+          initialFocusedDate={initialFocusedDate}
+          utils={utilsToUse}
+          onChange={jest.fn()}
+          value={null}
+        >
+          {renderFuncMock}
+        </BasePicker>
+      );
+
+      component.setProps({ initialFocusedDate: newInitialFocusedDate });
+      expect(component.state('date')).toEqual(newInitialFocusedDate);
     });
 
     it('passes utils.date() as date if value and initialFocusedDate are not provided', () => {

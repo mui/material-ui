@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-rc.18",
+  "version": "1.0.0",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
@@ -47,7 +47,8 @@
     "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
     "react-text-mask": "=5.4.1",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "tslib": "^1.9.3"
   },
   "size-limit": [
     {
@@ -73,6 +74,7 @@
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mHave you installed one of peer libraries?\\u001b[22m\\u001b[39m\\n > date-fns \\n > luxon \\n > moment')\""
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
     "@material-ui/core": "^3.2.1",
     "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.14",
@@ -110,6 +112,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-size-snapshot": "^0.7.0",
