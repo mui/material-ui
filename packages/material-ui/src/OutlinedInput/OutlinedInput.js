@@ -15,6 +15,16 @@ export const styles = theme => {
       '&:hover:not($disabled):not($focused):not($error) $notchedOutline': {
         borderColor: theme.palette.text.primary,
       },
+      '&$focused $notchedOutline': {
+        borderColor: theme.palette.primary.main,
+        borderWidth: 2,
+      },
+      '&$error $notchedOutline': {
+        borderColor: theme.palette.error.main,
+      },
+      '&$disabled $notchedOutline': {
+        borderColor: theme.palette.action.disabled,
+      },
     },
     /* Styles applied to the root element if the component is focused. */
     focused: {},
@@ -69,9 +79,6 @@ function OutlinedInput(props) {
       renderPrefix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
-          disabled={state.disabled}
-          error={state.error}
-          focused={state.focused}
           labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
