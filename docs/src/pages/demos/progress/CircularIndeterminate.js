@@ -16,6 +16,7 @@ function CircularIndeterminate(props) {
     <div>
       <CircularProgress className={classes.progress} />
       <CircularProgress className={classes.progress} size={50} />
+      <CircularProgress className={classes.progress} shrinkAnimation={false} />
       <CircularProgress className={classes.progress} color="secondary" />
       <CircularProgress className={classes.progress} style={{ color: purple[500] }} thickness={7} />
     </div>

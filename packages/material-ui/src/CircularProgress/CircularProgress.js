@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import chainPropTypes from '../utils/chainPropTypes';
 
 const SIZE = 44;
 
@@ -82,6 +83,10 @@ export const styles = theme => ({
       strokeDashoffset: '-120px',
     },
   },
+  /* Styles applied to the `circle` svg path if `shrinkAnimation={false}`. */
+  disableShrinkAnimation: {
+    animation: 'none',
+  },
 });
 
 /**
@@ -92,7 +97,18 @@ export const styles = theme => ({
  * attribute to `true` on that region until it has finished loading.
  */
 function CircularProgress(props) {
-  const { classes, className, color, size, style, thickness, value, variant, ...other } = props;
+  const {
+    classes,
+    className,
+    color,
+    size,
+    style,
+    thickness,
+    value,
+    variant,
+    shrinkAnimation,
+    ...other
+  } = props;
 
   const circleStyle = {};
   const rootStyle = {};
@@ -135,6 +151,8 @@ function CircularProgress(props) {
           className={classNames(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
+            [classes.disableShrinkAnimation]:
+              variant === 'indeterminate' && shrinkAnimation === false,
           })}
           style={circleStyle}
           cx={SIZE}
@@ -163,6 +181,19 @@ CircularProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
+   * If `true`, the shrink animation is applied. This only works if variant is `indeterminate`
+   */
+  shrinkAnimation: chainPropTypes(PropTypes.bool, props => {
+    if (props.shrinkAnimation === false && props.variant !== 'indeterminate') {
+      return new Error(
+        'You have provided a `shrinkAnimation` property ' +
+          'with a variant other than `indeterminate`. This will have no effect.',
+      );
+    }
+
+    return null;
+  }),
+  /**
    * The size of the circle.
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -188,6 +219,7 @@ CircularProgress.propTypes = {
 
 CircularProgress.defaultProps = {
   color: 'primary',
+  shrinkAnimation: true,
   size: 40,
   thickness: 3.6,
   value: 0,
