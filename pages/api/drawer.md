@@ -42,6 +42,7 @@ This property accepts the following keys:
 
 | Name | Description |
 |:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">docked</span> | Styles applied to the root element if `variant="permanent or persistent"`.
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 | <span class="prop-name">paperAnchorLeft</span> | Styles applied to the `Paper` component if `anchor="left"`.
