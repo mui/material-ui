@@ -1,3 +1,4 @@
+/* eslint-disable */
 const commonjsGlobal =
   typeof window !== 'undefined'
     ? window
