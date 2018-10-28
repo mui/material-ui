@@ -12,6 +12,14 @@ export const styles = theme => ({
   root: {
     transformOrigin: 'top left',
   },
+  /* Styles applied to the root element if `focused={true}`. */
+  focused: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to the root element if `error={true}`. */
+  error: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
@@ -111,7 +119,18 @@ function InputLabel(props, context) {
   );
 
   return (
-    <FormLabel data-shrink={shrink} className={className} classes={FormLabelClasses} {...other}>
+    <FormLabel
+      data-shrink={shrink}
+      className={className}
+      classes={{
+        focused: classes.focused,
+        disabled: classes.disabled,
+        error: classes.error,
+        required: classes.required,
+        ...FormLabelClasses,
+      }}
+      {...other}
+    >
       {children}
     </FormLabel>
   );
