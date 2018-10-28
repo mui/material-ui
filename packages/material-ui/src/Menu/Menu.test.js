@@ -162,7 +162,7 @@ describe('<Menu />', () => {
       selectedItemFocusSpy.resetHistory();
     });
 
-    it('should call props.onEnter with element if exists', () => {
+    it('should call props.onEntering with element if exists', () => {
       const onEnteringSpy = spy();
       wrapper.setProps({ onEntering: onEnteringSpy });
       instance.handleEntering(elementForHandleEnter);
