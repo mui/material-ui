@@ -1,3 +1,7 @@
+// Use the same helper than Babel to avoid bundle bloat.
+import 'core-js/modules/es6.array.find-index';
+import 'core-js/modules/es6.set';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
@@ -5,6 +9,7 @@ import { withRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
+import url from 'url';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
@@ -267,8 +272,8 @@ function withRoot(Component) {
     }
 
     componentDidMount() {
-      const userLanguage =
-        this.props.router.query.lang || acceptLanguage.get(navigator.language) || 'en';
+      const URL = url.parse(document.location.href, true);
+      const userLanguage = URL.query.lang || acceptLanguage.get(navigator.language) || 'en';
 
       if (this.state.userLanguage !== userLanguage) {
         this.setState({

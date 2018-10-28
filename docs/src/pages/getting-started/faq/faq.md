@@ -13,6 +13,7 @@ For Material-UI to work, the `classNames` values of all components on a page mus
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** between them.
 
 You could end up accidentally using two class name generators in a variety of scenarios:
+
 - You accidentally **bundle** two versions of Material-UI. You might have a dependency not correctly setting Material-UI as a peer dependency.
 - You are using `JssProvider` for a **subset** of your React Tree.
 - You are using a bundler and it is splitting code in a way results in multiple class name generator instances to be created.
@@ -107,6 +108,7 @@ page](/customization/themes/) to learn about theme customization.
 ## Material-UI is awesome. How can I support the project?
 
 There are many ways to support Material-UI:
+
 - Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).

@@ -36,7 +36,7 @@ class MouseOverPopover extends React.Component {
     return (
       <div>
         <Typography
-          aria-owns={open ? 'mouse-over-popover' : null}
+          aria-owns={open ? 'mouse-over-popover' : undefined}
           aria-haspopup="true"
           onMouseEnter={this.handlePopoverOpen}
           onMouseLeave={this.handlePopoverClose}

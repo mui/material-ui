@@ -188,6 +188,7 @@ Need inspiration? The Material Design team has built an awesome [palette configu
 
 You can make the theme dark by setting `type` to `dark`.
 While it's only a single property value change, internally it modifies the value of the following keys:
+
 - `palette.text`
 - `palette.divider`
 - `palette.background`

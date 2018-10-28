@@ -256,6 +256,7 @@ class Tooltip extends React.Component {
       enterDelay,
       enterTouchDelay,
       id,
+      interactive,
       leaveDelay,
       leaveTouchDelay,
       onClose,
@@ -298,6 +299,15 @@ class Tooltip extends React.Component {
       childrenProps.onBlur = this.handleLeave;
     }
 
+    const interactiveWrapperListeners = interactive
+      ? {
+          onMouseOver: childrenProps.onMouseOver,
+          onMouseLeave: childrenProps.onMouseLeave,
+          onFocus: childrenProps.onFocus,
+          onBlur: childrenProps.onBlur,
+        }
+      : {};
+
     warning(
       !children.props.title,
       [
@@ -316,6 +326,7 @@ class Tooltip extends React.Component {
           open={open}
           id={childrenProps['aria-describedby']}
           transition
+          {...interactiveWrapperListeners}
           {...PopperProps}
         >
           {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
@@ -380,6 +391,11 @@ Tooltip.propTypes = {
    * If you don't provide this property. It fallback to a random generated id.
    */
   id: PropTypes.string,
+  /**
+   * Makes a tooltip interactive, i.e. will not close when the user
+   * hovers over the tooltip before the `leaveDelay` is expired.
+   */
+  interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This property won't impact the leave touch delay (`leaveTouchDelay`).
@@ -450,6 +466,7 @@ Tooltip.defaultProps = {
   disableTouchListener: false,
   enterDelay: 0,
   enterTouchDelay: 1000,
+  interactive: false,
   leaveDelay: 0,
   leaveTouchDelay: 1500,
   placement: 'bottom',

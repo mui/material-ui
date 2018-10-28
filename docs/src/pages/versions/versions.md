@@ -36,6 +36,7 @@ No developer assistance is expected during update.
 We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
 
 In general, you can expect the following release cycle:
+
 - A **major** release every 6 months.
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for urgent bugfix).
@@ -61,6 +62,7 @@ We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Lon
 Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
 To make these transitions as easy as possible, we make two commitments to you:
+
 - We work hard to minimize the number of breaking changes and to provide migration tools when possible.
 - We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
 

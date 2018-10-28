@@ -11,6 +11,7 @@ import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import Backdrop from '../Backdrop';
+import { ariaHidden } from './manageAriaHidden';
 
 function getContainer(container, defaultContainer) {
   container = typeof container === 'function' ? container() : container;
@@ -66,7 +67,6 @@ class Modal extends React.Component {
     if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
-      // check for focus
       this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
@@ -118,10 +118,7 @@ class Modal extends React.Component {
     if (this.props.open) {
       this.handleOpened();
     } else {
-      const doc = ownerDocument(this.mountNode);
-      const container = getContainer(this.props.container, doc.body);
-      this.props.manager.add(this, container);
-      this.props.manager.remove(this);
+      ariaHidden(this.modalRef, true);
     }
   };
 

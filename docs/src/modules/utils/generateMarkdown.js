@@ -243,7 +243,7 @@ function generateProps(reactAPI) {
 
     textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
       prop.type,
-    )} | ${defaultValue} | ${description} |\n`;
+    )}</span> | ${defaultValue} | ${description} |\n`;
 
     return textProps;
   }, text);

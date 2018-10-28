@@ -57,7 +57,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleEnter = element => {
+  handleEntering = element => {
     const { disableAutoFocusItem, theme } = this.props;
     const menuList = ReactDOM.findDOMNode(this.menuListRef);
 
@@ -74,8 +74,8 @@ class Menu extends React.Component {
       menuList.style.width = `calc(100% + ${size})`;
     }
 
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
+    if (this.props.onEntering) {
+      this.props.onEntering(element);
     }
   };
 
@@ -95,7 +95,7 @@ class Menu extends React.Component {
       classes,
       disableAutoFocusItem,
       MenuListProps,
-      onEnter,
+      onEntering,
       PaperProps = {},
       PopoverClasses,
       theme,
@@ -106,7 +106,7 @@ class Menu extends React.Component {
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
-        onEnter={this.handleEnter}
+        onEntering={this.handleEntering}
         anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         PaperProps={{

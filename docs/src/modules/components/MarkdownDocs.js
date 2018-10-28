@@ -4,6 +4,7 @@ import { _rewriteUrlForNextExport } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
+import Portal from '@material-ui/core/Portal';
 import Button from '@material-ui/core/Button';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
@@ -11,6 +12,7 @@ import AppContent from 'docs/src/modules/components/AppContent';
 import Demo from 'docs/src/modules/components/Demo';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import Ad from 'docs/src/modules/components/Ad';
 import {
   getHeaders,
   getContents,
@@ -87,16 +89,28 @@ ${headers.components
     <AppFrame>
       <Head
         title={`${headers.title || getTitle(markdown)} - Material-UI`}
-        description={getDescription(markdown)}
+        description={headers.description || getDescription(markdown)}
       />
-      <AppTableOfContents contents={contents} disableAd={disableAd} />
+      {disableAd ? null : (
+        <Portal container={() => document.querySelector('.description')}>
+          <Ad />
+        </Portal>
+      )}
+      <AppTableOfContents contents={contents} />
       <AppContent className={classes.root}>
         <div className={classes.header}>{button}</div>
         {contents.map((content, index) => {
           const match = content.match(demoRegexp);
 
           if (match && demos) {
-            const demoOptions = JSON.parse(`{${content}}`);
+            let demoOptions;
+            try {
+              demoOptions = JSON.parse(`{${content}}`);
+            } catch (err) {
+              console.error(err); // eslint-disable-line no-console
+              return null;
+            }
+
             const name = demoOptions.demo;
             warning(demos && demos[name], `Missing demo: ${name}.`);
             return (

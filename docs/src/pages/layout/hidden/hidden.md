@@ -56,8 +56,9 @@ Using any breakpoint `down` property, the given *children* will be hidden *at or
 Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
 
 The `only` property can be used in two ways:
- - list a single breakpoint
- - list an array of breakpoints
+
+- list a single breakpoint
+- list an array of breakpoints
 
 {{"demo": "pages/layout/hidden/BreakpointOnly.js"}}
 

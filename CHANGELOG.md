@@ -1,5 +1,50 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.3.2
+###### *Oct 27, 2018*
+
+Big thanks to the 17 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🐛 Fix some important issues with the Modal (#13378, #13389) @TomiCake.
+- 🐛 Fix a Dialog scroll issue (#13409) @Ang-YC.
+- 📝 Full IE 11 support (#13375, #13324) @eps1lon.
+- And many more bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.3.2`
+
+- [Stepper] Fix visual issue on IE 11 (#13375) @oliviertassinari
+- [Modal] Reuse the same reference (#13378) @oliviertassinari
+- [MenuItem] Add disableGutters property (#13329) @adeelibr
+- [FormControl] Issue 13246 revert (#13380) @drkohlipk
+- [theme] Correct augmentColor TypeScript definition (#13376) @sveyret
+- [Table] Change divider color in dark theme (#13395) @Krijovnick
+- [TablePagination] Better color inheritance (#13393) @markselby9
+- [Modal] Fix aria and focus logic (#13389) @TomiCake
+- [Tooltip] Allow to interact with the tooltip (#13305) @jantimon
+- [Dialog] Fix unable to drag scrollbar when scroll="body" (#13409) @Ang-YC
+
+### `@material-ui/lab@v3.0.0-alpha.22`
+
+- [Slider] Improve performance of slider (#13325) @Pajn
+
+### Docs
+
+- [docs] Fix some issue with i18n (#13342) @GFwer
+- [docs] Add polyfill for IE 11 (#13324) @eps1lon
+- [docs] Correct title attribute for Paella recipe card (#13398) @vixmorrigan-redseven
+- [docs] CONTRIBUTING is not read by default (#13400) @eps1lon
+- [docs] Add missing </span> for prop-type (#13401) @mvsmal
+- [docs] aria-owns accepts 'string | undefined' but we feed it 'null' (#13396) @Primajin
+- [docs] Let user know where <Icon /> coming from (#13405) @bekicot
+- [docs] Update Workbox to v3.6.3 (#13392) @msiadak
+- [docs] Better i18n capability (#13410) @oliviertassinari
+
+### Core
+
+- [core] Update overrides type declarations (#13379) @eps1lon
+- [core] Misc of improvements (#13381) @oliviertassinari
+
 ## 3.3.1
 ###### *Oct 24, 2018*
 

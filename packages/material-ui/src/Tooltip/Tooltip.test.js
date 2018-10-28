@@ -234,6 +234,27 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: interactive', () => {
+    it('should keep the overlay open if the popper element is hovered', () => {
+      const wrapper = mount(
+        <Tooltip title="Hello World" interactive leaveDelay={111}>
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+      const tooltipNaked = wrapper.find(TooltipNaked);
+      const children = wrapper.childAt(0).childAt(0);
+      children.simulate('mouseOver', { type: 'mouseOver' });
+      clock.tick(0);
+      assert.strictEqual(tooltipNaked.state().open, true);
+      const popper = wrapper.find(Popper);
+      children.simulate('mouseLeave', { type: 'mouseleave' });
+      assert.strictEqual(tooltipNaked.state().open, true);
+      popper.simulate('mouseOver', { type: 'mouseover' });
+      clock.tick(111);
+      assert.strictEqual(tooltipNaked.state().open, true);
+    });
+  });
+
   it('should forward properties to the child element', () => {
     const wrapper = shallow(
       <Tooltip className="foo" {...defaultProps}>

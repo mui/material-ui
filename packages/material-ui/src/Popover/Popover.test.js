@@ -232,7 +232,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         8,
         'should be 8 elevation by default',
       );
@@ -241,7 +241,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         16,
         'should be 16 elevation',
       );
@@ -260,18 +260,18 @@ describe('<Popover />', () => {
       },
     };
 
-    describe('handleEnter(element)', () => {
+    describe('handleEntering(element)', () => {
       let wrapper;
-      let handleEnter;
+      let handleEntering;
 
       before(() => {
-        handleEnter = spy();
+        handleEntering = spy();
         wrapper = shallow(
-          <Popover {...defaultProps} onEnter={handleEnter}>
+          <Popover {...defaultProps} onEntering={handleEntering}>
             <div />
           </Popover>,
         );
-        wrapper.instance().handleEnter(element);
+        wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the enter phase', () => {

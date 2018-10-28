@@ -56,6 +56,7 @@ Material-UI focuses exclusively on the React library, although, given that Preac
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
+
 - Having fewer constraints, we can make trade-offs specific to our target framework.
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
@@ -69,6 +70,7 @@ They list 3rd-party framework integration projects in the github [README](https:
 Our very first release was using LESS, but seeing the limitation of this solution,
 we quickly started looking into alternatives. Our first migration was towards using an inline-style solution.
 This was promising:
+
 - It allowed us to remove the dependency on the LESS toolchain for our users.
 We removed one important friction in the installation process. (**simpler**)
 - We were able to change the theme at runtime, nest different themes, and have dynamic styles. (**more powerful**)
@@ -99,12 +101,14 @@ The only goal of MDC-Web is to be a Material Design implementation for the web p
 ### Tests
 
 Both projects invest a lot in tests. At the time of writing, both projects have over 99% test coverage:
+
 - Material-UI has 1200+ unit tests running on Chrome 49, Firefox 45, Safari 10 and Edge 14.
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
 Still, there is one thing that sets Material-UI apart and it's key:
 We have [hundreds of visual regression tests](https://www.argos-ci.com/mui-org/material-ui) when MDC-web doesn't have any.
 With visual regression tests, you don't have to make any trade-off:
+
 - You can spend less time making sure every contribution doesn't introduce unexpected regressions.
 The **less** time you spend on a single contribution, the **more** contributions you can accept.
 - You can merge new contributions without digging much. Effectively, you are not waiting for users to report regressions. It's **efficient** and **improves the library quality**.

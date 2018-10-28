@@ -32,6 +32,6 @@ describe('<Card />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<Card data-my-prop="woofCard" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woofCard', 'custom prop should be woofCard');
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofCard');
   });
 });
