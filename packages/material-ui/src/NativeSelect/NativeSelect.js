@@ -33,11 +33,6 @@ export const styles = theme => ({
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
       borderRadius: 0, // Reset Chrome style
     },
-    // Remove Firefox focus border
-    '&:-moz-focusring': {
-      color: 'transparent',
-      textShadow: '0 0 0 #000',
-    },
     // Remove IE 11 arrow
     '&::-ms-expand': {
       display: 'none',
