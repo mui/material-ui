@@ -1,0 +1,27 @@
+{
+  "name": "material-ui-pickers",
+  "version": "1.0.0",
+  "description": "Material-ui pickers root package",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "postinstall": "lerna link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmtrKovalenko/material-ui-pickers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
+  },
+  "homepage": "https://github.com/dmtrKovalenko/material-ui-pickers#readme",
+  "devDependencies": {
+    "lerna": "^3.4.3"
+  }
+}

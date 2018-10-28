@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
-  "main": "dist/material-ui-pickers.cjs.js",
-  "module": "dist/material-ui-pickers.esm.js",
+  "main": "build/dist/material-ui-pickers.cjs.js",
+  "module": "build/dist/material-ui-pickers.esm.js",
   "types": "index.d.ts",
   "keywords": [
     "material-ui",
