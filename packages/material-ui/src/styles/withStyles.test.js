@@ -277,4 +277,43 @@ describe('withStyles', () => {
       assert.notStrictEqual(classes1, classes2, 'should generate new classes');
     });
   });
+
+  describe('options', () => {
+    let jss;
+    let generateClassName;
+    let sheetsRegistry;
+
+    beforeEach(() => {
+      jss = create(jssPreset());
+      generateClassName = createGenerateClassName();
+      sheetsRegistry = new SheetsRegistry();
+    });
+
+    it('should use the displayName', () => {
+      // Uglified
+      const a = () => <div />;
+      const StyledComponent1 = withStyles({ root: { padding: 1 } })(a);
+      const fooo = () => <div />;
+      const StyledComponent2 = withStyles({ root: { padding: 1 } })(fooo);
+      const AppFrame = () => <div />;
+      AppFrame.displayName = 'AppLayout';
+      const StyledComponent3 = withStyles({ root: { padding: 1 } })(AppFrame);
+
+      mount(
+        <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+          <div>
+            <StyledComponent1 />
+            <StyledComponent2 />
+            <StyledComponent3 />
+          </div>
+        </JssProvider>,
+      );
+      assert.strictEqual(sheetsRegistry.registry[0].options.classNamePrefix, 'a');
+      assert.strictEqual(sheetsRegistry.registry[0].options.name, undefined);
+      assert.strictEqual(sheetsRegistry.registry[1].options.classNamePrefix, 'fooo');
+      assert.strictEqual(sheetsRegistry.registry[1].options.name, undefined);
+      assert.strictEqual(sheetsRegistry.registry[2].options.classNamePrefix, 'AppLayout');
+      assert.strictEqual(sheetsRegistry.registry[2].options.name, 'AppLayout');
+    });
+  });
 });

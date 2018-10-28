@@ -4,5 +4,8 @@
 /static/images/*
   Cache-Control: public, max-age=7200
 
+/favicon.ico
+  Content-Type: image/x-icon
+
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

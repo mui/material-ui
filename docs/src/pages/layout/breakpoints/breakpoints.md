@@ -6,6 +6,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 Each breakpoint matches with a *fixed* screen width:
+
 - **xs**, extra-small: 0px or larger
 - **sm**, small: 600px or larger
 - **md**, medium: 960px or larger
@@ -87,6 +88,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 ```
 
 Some implementation details that might be interesting to being aware of:
+
 - It forwards *non React static* properties so this HOC is more "transparent".
 For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 

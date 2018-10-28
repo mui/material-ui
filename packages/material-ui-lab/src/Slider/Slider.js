@@ -14,14 +14,12 @@ export const styles = theme => {
     easing: theme.transitions.easing.easeOut,
   };
 
-  const trackTransitions = theme.transitions.create(['width', 'height'], commonTransitionsOptions);
-  const thumbCommonTransitions = theme.transitions.create(
-    ['width', 'height', 'left', 'right', 'bottom', 'box-shadow'],
+  const trackTransitions = theme.transitions.create(
+    ['width', 'height', 'transform'],
     commonTransitionsOptions,
   );
-  // no transition on the position
-  const thumbActivatedTransitions = theme.transitions.create(
-    ['width', 'height', 'box-shadow'],
+  const thumbTransitions = theme.transitions.create(
+    ['transform', 'box-shadow'],
     commonTransitionsOptions,
   );
 
@@ -63,10 +61,13 @@ export const styles = theme => {
       position: 'absolute',
       transform: 'translate(0, -50%)',
       top: '50%',
+      width: '100%',
       height: 2,
       backgroundColor: colors.primary,
+      transition: trackTransitions,
       '&$activated': {
         transition: 'none',
+        willChange: 'transform',
       },
       '&$disabled': {
         backgroundColor: colors.disabled,
@@ -78,39 +79,56 @@ export const styles = theme => {
         top: 'initial',
         bottom: 0,
         width: 2,
+        height: '100%',
       },
     },
     /* Styles applied to the track element before the thumb. */
     trackBefore: {
       zIndex: 1,
       left: 0,
-      transition: trackTransitions,
+      transformOrigin: 'left bottom',
     },
     /* Styles applied to the track element after the thumb. */
     trackAfter: {
       right: 0,
       opacity: 0.24,
-      transition: trackTransitions,
+      transformOrigin: 'right top',
+      '&$vertical': {
+        top: 0,
+      },
+    },
+    /* Styles applied to the thumb wrapper element. */
+    thumbWrapper: {
+      position: 'relative',
+      zIndex: 2,
+      pointerEvents: 'none',
+      transition: thumbTransitions,
+      '&$activated': {
+        transition: 'none',
+        willChange: 'transform',
+      },
       '&$vertical': {
         bottom: 0,
+        height: '100%',
       },
     },
     /* Styles applied to the thumb element. */
     thumb: {
+      // Opt out of rtl flip as positioning here only is for centering
+      flip: false,
       position: 'absolute',
-      zIndex: 2,
+      left: 0,
       transform: 'translate(-50%, -50%)',
       width: 12,
       height: 12,
       borderRadius: '50%',
-      transition: thumbCommonTransitions,
       backgroundColor: colors.primary,
+      transition: thumbTransitions,
       '&$focused, &:hover': {
         boxShadow: `0px 0px 0px ${pressedOutlineRadius}px ${colors.thumbOutline}`,
       },
       '&$activated': {
         boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
-        transition: thumbActivatedTransitions,
       },
       '&$disabled': {
         cursor: 'no-drop',
@@ -120,9 +138,6 @@ export const styles = theme => {
       },
       '&$jumped': {
         boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
-      },
-      '&$vertical': {
-        transform: 'translate(-50%, +50%)',
       },
     },
     /* Class applied to the thumb element if custom thumb icon provided. */
@@ -358,27 +373,23 @@ class Slider extends React.Component {
     }
   }
 
-  calculateTrackAfterStyles(percent) {
-    const { currentState } = this.state;
-
-    switch (currentState) {
-      case 'activated':
-        return `calc(100% - ${percent === 0 ? 7 : 5}px)`;
-      case 'disabled':
-        return `calc(${100 - percent}% - 6px)`;
-      default:
-        return 'calc(100% - 5px)';
-    }
-  }
-
-  calculateTrackBeforeStyles(percent) {
+  calculateTrackPartStyles(percent) {
+    const { theme, vertical } = this.props;
     const { currentState } = this.state;
 
     switch (currentState) {
       case 'disabled':
-        return `calc(${percent}% - 6px)`;
+        return {
+          [vertical ? 'height' : 'width']: `calc(${percent}% - 6px)`,
+        };
       default:
-        return `${percent}%`;
+        return {
+          transform: `${
+            vertical
+              ? `translateX(${theme.direction === 'rtl' ? '' : '-'}50%) scaleY`
+              : 'translateY(-50%) scaleX'
+          }(${percent / 100})`,
+        };
     }
   }
 
@@ -423,6 +434,7 @@ class Slider extends React.Component {
       [classes.focused]: !disabled && currentState === 'focused',
       [classes.activated]: !disabled && currentState === 'activated',
       [classes.vertical]: vertical,
+      [classes.rtl]: theme.direction === 'rtl',
     };
 
     const className = classNames(
@@ -441,12 +453,13 @@ class Slider extends React.Component {
     const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
     const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
 
-    const trackProperty = vertical ? 'height' : 'width';
-    const horizontalMinimumPosition = theme.direction === 'ltr' ? 'left' : 'right';
-    const thumbProperty = vertical ? 'bottom' : horizontalMinimumPosition;
-    const inlineTrackBeforeStyles = { [trackProperty]: this.calculateTrackBeforeStyles(percent) };
-    const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
-    const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
+    const thumbTransformFunction = vertical ? 'translateY' : 'translateX';
+    const thumbDirectionInverted = vertical || theme.direction === 'rtl';
+    const inlineTrackBeforeStyles = this.calculateTrackPartStyles(percent);
+    const inlineTrackAfterStyles = this.calculateTrackPartStyles(100 - percent);
+    const inlineThumbStyles = {
+      transform: `${thumbTransformFunction}(${thumbDirectionInverted ? 100 - percent : percent}%)`,
+    };
 
     /** Start Thumb Icon Logic Here */
     const ThumbIcon = thumbIcon
@@ -457,6 +470,7 @@ class Slider extends React.Component {
       : null;
     /** End Thumb Icon Logic Here */
 
+    const thumbWrapperClasses = classNames(classes.thumbWrapper, commonClasses);
     const thumbClasses = classNames(
       classes.thumb,
       {
@@ -484,18 +498,19 @@ class Slider extends React.Component {
       >
         <div className={containerClasses}>
           <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
-          <ButtonBase
-            className={thumbClasses}
-            disableRipple
-            style={inlineThumbStyles}
-            onBlur={this.handleBlur}
-            onKeyDown={this.handleKeyDown}
-            onTouchStartCapture={this.handleTouchStart}
-            onTouchMove={this.handleMouseMove}
-            onFocusVisible={this.handleFocus}
-          >
-            {ThumbIcon}
-          </ButtonBase>
+          <div className={thumbWrapperClasses} style={inlineThumbStyles}>
+            <ButtonBase
+              className={thumbClasses}
+              disableRipple
+              onBlur={this.handleBlur}
+              onKeyDown={this.handleKeyDown}
+              onTouchStartCapture={this.handleTouchStart}
+              onTouchMove={this.handleMouseMove}
+              onFocusVisible={this.handleFocus}
+            >
+              {ThumbIcon}
+            </ButtonBase>
+          </div>
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
         </div>
       </Component>

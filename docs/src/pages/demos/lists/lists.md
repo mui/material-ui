@@ -13,6 +13,22 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
+The last item of the previous demo shows how you can render a link:
+
+```jsx
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
+//...
+
+<ListItemLink href="#simple-list">
+  <ListItemText primary="Spam" />
+</ListItemLink>
+```
+
+You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+
 ## Folder List
 
 {{"demo": "pages/demos/lists/FolderList.js"}}

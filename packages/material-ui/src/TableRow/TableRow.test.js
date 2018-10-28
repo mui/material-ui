@@ -24,11 +24,7 @@ describe('<TableRow />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<TableRow data-my-prop="woofTableRow" />);
-    assert.strictEqual(
-      wrapper.prop('data-my-prop'),
-      'woofTableRow',
-      'custom prop should be woofTableRow',
-    );
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofTableRow');
   });
 
   it('should render with the user and root classes', () => {

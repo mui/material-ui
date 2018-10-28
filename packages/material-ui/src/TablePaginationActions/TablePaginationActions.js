@@ -34,6 +34,7 @@ class TablePaginationActions extends React.Component {
         <IconButton
           onClick={this.handleBackButtonClick}
           disabled={page === 0}
+          color="inherit"
           {...backIconButtonProps}
         >
           {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
@@ -41,6 +42,7 @@ class TablePaginationActions extends React.Component {
         <IconButton
           onClick={this.handleNextButtonClick}
           disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+          color="inherit"
           {...nextIconButtonProps}
         >
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}

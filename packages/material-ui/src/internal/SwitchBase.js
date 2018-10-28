@@ -254,4 +254,4 @@ SwitchBase.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiSwitchBase' })(SwitchBase);
+export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(SwitchBase);

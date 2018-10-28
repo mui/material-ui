@@ -186,7 +186,8 @@ class Demo extends React.Component {
     addHiddenInput(form, 'project[title]', demo.title);
     addHiddenInput(form, 'project[description]', demo.description);
     addHiddenInput(form, 'project[dependencies]', JSON.stringify(demo.dependencies));
-    Object.entries(demo.files).forEach(([key, value]) => {
+    Object.keys(demo.files).forEach(key => {
+      const value = demo.files[key];
       addHiddenInput(form, `project[files][${key}]`, value);
     });
     document.body.appendChild(form);
@@ -226,7 +227,7 @@ class Demo extends React.Component {
               </Tooltip>
               <IconButton
                 onClick={this.handleClickMore}
-                aria-owns={anchorEl ? 'demo-menu-more' : null}
+                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
                 aria-haspopup="true"
                 aria-label="See more"
               >

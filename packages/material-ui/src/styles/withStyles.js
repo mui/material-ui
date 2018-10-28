@@ -234,6 +234,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       let meta = name;
 
       if (process.env.NODE_ENV !== 'production' && !meta) {
+        // Provide a better DX outside production.
         meta = getDisplayName(Component);
         warning(
           typeof meta === 'string',
@@ -251,7 +252,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         link: false,
         ...this.sheetOptions,
         ...this.stylesCreatorSaved.options,
-        name,
+        name: name || Component.displayName,
         ...styleSheetOptions,
       });
 

@@ -11,6 +11,7 @@ import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import Backdrop from '../Backdrop';
+import { ariaHidden } from './manageAriaHidden';
 
 function getContainer(container, defaultContainer) {
   container = typeof container === 'function' ? container() : container;
@@ -66,7 +67,6 @@ class Modal extends React.Component {
     if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
-      // check for focus
       this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
@@ -118,10 +118,7 @@ class Modal extends React.Component {
     if (this.props.open) {
       this.handleOpened();
     } else {
-      const doc = ownerDocument(this.mountNode);
-      const container = getContainer(this.props.container, doc.body);
-      this.props.manager.add(this, container);
-      this.props.manager.remove(this);
+      ariaHidden(this.modalRef, true);
     }
   };
 
@@ -186,6 +183,18 @@ class Modal extends React.Component {
     if (!this.dialogRef.contains(currentActiveElement)) {
       this.dialogRef.focus();
     }
+  };
+
+  handlePortalRef = ref => {
+    this.mountNode = ref ? ref.getMountNode() : ref;
+  };
+
+  handleModalRef = ref => {
+    this.modalRef = ref;
+  };
+
+  onRootRef = ref => {
+    this.dialogRef = ref;
   };
 
   autoFocus() {
@@ -281,18 +290,14 @@ class Modal extends React.Component {
 
     return (
       <Portal
-        ref={ref => {
-          this.mountNode = ref ? ref.getMountNode() : ref;
-        }}
+        ref={this.handlePortalRef}
         container={container}
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
         <div
           data-mui-test="Modal"
-          ref={ref => {
-            this.modalRef = ref;
-          }}
+          ref={this.handleModalRef}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
@@ -301,13 +306,7 @@ class Modal extends React.Component {
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RootRef
-            rootRef={ref => {
-              this.dialogRef = ref;
-            }}
-          >
-            {React.cloneElement(children, childProps)}
-          </RootRef>
+          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
         </div>
       </Portal>
     );

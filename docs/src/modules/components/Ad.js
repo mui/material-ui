@@ -11,7 +11,11 @@ import Carbon from 'docs/src/modules/components/Carbon';
 const styles = theme => ({
   root: {
     position: 'relative',
-    minHeight: 180,
+    minHeight: 110,
+    maxWidth: 350,
+    display: 'block',
+    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 3,
   },
   info: {
     ...theme.typography.caption,
@@ -22,19 +26,41 @@ const styles = theme => ({
     right: 0,
   },
   paper: {
-    padding: 8,
+    padding: theme.spacing.unit,
+    display: 'block',
   },
 });
+
+function getAdblock(classes) {
+  return (
+    <Paper component="span" elevation={0} className={classes.paper}>
+      <Typography component="span" gutterBottom>
+        Like Material-UI?
+      </Typography>
+      <Typography component="span" gutterBottom>
+        {`If you don't mind tech-related ads, and want to support Open Source,
+            please whitelist Material-UI in your ad blocker.`}
+      </Typography>
+      <Typography component="span">
+        Thank you!{' '}
+        <span role="img" aria-label="Love">
+          ❤️
+        </span>
+      </Typography>
+    </Paper>
+  );
+}
 
 class Ad extends React.Component {
   random = Math.random();
 
   state = {
-    adblock: process.env.NODE_ENV === 'production' ? null : true,
+    disable: process.env.NODE_ENV !== 'production',
+    adblock: null,
   };
 
   componentDidMount() {
-    if (this.props.width === 'xs' || this.state.adblock) {
+    if (this.props.width === 'xs' || this.state.disable) {
       return;
     }
     this.checkAdblock();
@@ -52,13 +78,13 @@ class Ad extends React.Component {
       return;
     }
 
-    if (attempt < 20) {
+    if (attempt < 30) {
       this.timerAdblock = setTimeout(() => {
         this.checkAdblock(attempt + 1);
       }, 500);
     }
 
-    if (attempt > 6) {
+    if (attempt > 10 && this.state.adblock !== true) {
       this.setState({
         adblock: true,
       });
@@ -67,30 +93,17 @@ class Ad extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { adblock } = this.state;
+    const { adblock, disable } = this.state;
 
-    if (adblock) {
-      return (
-        <Paper elevation={0} className={classes.paper}>
-          <Typography gutterBottom>Like Material-UI?</Typography>
-          <Typography gutterBottom>
-            {`If you don't mind tech-related ads, and want to support Open Source,
-            please whitelist Material-UI in your ad blocker.`}
-          </Typography>
-          <Typography>
-            Thank you!{' '}
-            <span role="img" aria-label="Love">
-              ❤️
-            </span>
-          </Typography>
-        </Paper>
-      );
+    if (disable) {
+      return <span className={classes.root}>{getAdblock(classes)}</span>;
     }
 
     return (
-      <div className={classes.root}>
+      <span className={classes.root}>
         {this.random >= 0.5 ? <CodeFund /> : <Carbon />}
-        {adblock === false && (
+        {adblock === true ? getAdblock(classes) : null}
+        {adblock === false ? (
           <Tooltip
             id="ad-info"
             title="This ad is designed to support Open Source."
@@ -98,8 +111,8 @@ class Ad extends React.Component {
           >
             <span className={classes.info}>i</span>
           </Tooltip>
-        )}
-      </div>
+        ) : null}
+      </span>
     );
   }
 }

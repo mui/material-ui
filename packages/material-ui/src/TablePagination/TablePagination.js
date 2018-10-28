@@ -39,7 +39,6 @@ export const styles = theme => ({
   selectRoot: {
     marginRight: 32,
     marginLeft: 8,
-    color: theme.palette.text.secondary,
   },
   /* Styles applied to the Select component `select` class. */
   select: {
@@ -52,6 +51,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `InputBase` component. */
   input: {
+    color: 'inherit',
     fontSize: 'inherit',
     flexShrink: 0,
   },
@@ -60,7 +60,6 @@ export const styles = theme => ({
   /* Styles applied to the internal `TablePaginationActions` component. */
   actions: {
     flexShrink: 0,
-    color: theme.palette.text.secondary,
     marginLeft: 20,
   },
 });
