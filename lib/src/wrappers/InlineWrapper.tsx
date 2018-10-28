@@ -9,11 +9,14 @@ import EventListener from 'react-event-listener';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
-export interface InlineWrapperProps extends Partial<DateTextFieldProps> {
+export interface OuterInlineWrapperProps extends Partial<DateTextFieldProps> {
   onOpen?: () => void;
   onClose?: () => void;
-  handleAccept: () => void;
   PopoverProps?: Partial<PopoverPropsType>;
+}
+
+export interface InlineWrapperProps extends OuterInlineWrapperProps {
+  handleAccept: () => void;
   isAccepted: boolean;
   onlyCalendar: boolean;
 }

@@ -4,13 +4,15 @@ import * as React from 'react';
 import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
+import InlineWrapper, {
+  OuterInlineWrapperProps,
+} from '../wrappers/InlineWrapper';
 import TimePicker, { BaseTimePickerProps } from './TimePicker';
 
 export interface TimePickerInlineProps
   extends BasePickerProps,
     BaseTimePickerProps,
-    Omit<InlineWrapperProps, 'onChange' | 'value'> {}
+    Omit<OuterInlineWrapperProps, 'onChange' | 'value'> {}
 
 export const TimePickerInline: React.SFC<TimePickerInlineProps> = props => {
   const {

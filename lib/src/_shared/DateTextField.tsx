@@ -1,11 +1,16 @@
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField, { StandardTextFieldProps } from '@material-ui/core/TextField';
+import TextField, {
+  BaseTextFieldProps,
+  StandardTextFieldProps,
+} from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
+import { FilledInputProps } from '@material-ui/core/FilledInput';
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
+import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { ExtendMui } from '../typings/extendMui';
@@ -77,7 +82,14 @@ const getError = (
 
 export interface DateTextFieldProps
   extends WithUtilsProps,
-    ExtendMui<StandardTextFieldProps, 'onError' | 'onChange' | 'value'> {
+    ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
+  // Properly extend different variants from mui textfield
+  variant?: 'outlined' | 'standard' | 'filled';
+  InputProps?: Partial<InputPropsType | OutlinedInputProps | FilledInputProps>;
+  inputProps?:
+    | InputPropsType['inputProps']
+    | OutlinedInputProps['inputProps']
+    | FilledInputProps['inputProps'];
   value: DateType;
   minDate?: DateType;
   minDateMessage?: React.ReactNode;
@@ -359,9 +371,11 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     }
 
     const Component = TextFieldComponent!;
-    const inputProps = { ...localInputProps, ...InputProps } as Partial<
-      InputPropsType
-    >;
+    const inputProps = {
+      ...localInputProps,
+      ...InputProps,
+    } as Partial<InputPropsType>;
+
     return (
       <Component
         onClick={this.handleFocus}

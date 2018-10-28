@@ -4,13 +4,15 @@ import * as React from 'react';
 import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
+import InlineWrapper, {
+  OuterInlineWrapperProps,
+} from '../wrappers/InlineWrapper';
 import DateTimePicker, { BaseDateTimePickerProps } from './DateTimePicker';
 
 export interface DateTimePickerInlineProps
   extends BasePickerProps,
     BaseDateTimePickerProps,
-    Omit<InlineWrapperProps, 'onChange' | 'value'> {}
+    Omit<OuterInlineWrapperProps, 'onChange' | 'value'> {}
 
 export const DateTimePickerInline: React.SFC<
   DateTimePickerInlineProps

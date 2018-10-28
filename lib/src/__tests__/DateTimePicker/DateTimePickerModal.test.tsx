@@ -11,7 +11,7 @@ describe('DateTimePickerModal', () => {
 
   beforeEach(() => {
     component = shallow(
-      <DateTimePickerModal value={null} onChange={jest.fn()} />
+      <DateTimePickerModal variant="filled" value={null} onChange={jest.fn()} />
     );
   });
 
