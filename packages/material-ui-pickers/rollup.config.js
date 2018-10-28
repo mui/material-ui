@@ -10,7 +10,7 @@ import { uglify } from 'rollup-plugin-uglify';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import pkg from './package.json';
 
-const tsconfig = path.resolve(__dirname, '..', '..', 'tsconfig.build.json');
+const tsconfig = path.join(__dirname, 'tsconfig.json');
 console.info(`Using tsconfig: ${tsconfig}`);
 
 // treat as externals not relative and not absolute paths

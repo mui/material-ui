@@ -5,7 +5,9 @@
     "module": "es6",
     "noEmit": true,
     "sourceMap": true,
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "declaration": true
   },
   "include": ["src/**/*"],
   "exclude": ["./src/__tests__/**/*"]

@@ -6,6 +6,7 @@ import typescriptPlugin from 'rollup-plugin-typescript';
 import typescript from 'typescript';
 
 const extensions = ['.ts', '.tsx'];
+const external = id => !id.startsWith('.') && !id.startsWith('/');
 const tsconfig = path.join(__dirname, 'tsconfig.json');
 
 const createUtilsConfigs = ({ name, input }) => {
@@ -16,27 +17,33 @@ const createUtilsConfigs = ({ name, input }) => {
     typings: 'index.d.ts',
   };
 
-  // fs.writeFileSync(
-  //   `build/${name}/package.json`,
-  //   JSON.stringify(utilsPkg, null, 2)
-  // );
+  fs.writeFileSync(
+    `build/${name}/package.json`,
+    JSON.stringify(utilsPkg, null, 2)
+  );
 
-  return {
+  const createConfig = (format, fileName) => ({
     input: `src/${name}.ts`,
+    external,
     output: {
-      file: `build/${name}/index.esm.js`,
-      format: 'esm',
+      file: `build/${name}/${fileName}`,
+      format: format,
     },
     plugins: [
       nodeResolve({ extensions }),
       typescriptPlugin({ typescript, tsconfig }),
     ],
-  };
+  });
+
+  return [
+    createConfig('esm', 'index.esm.js'),
+    createConfig('cjs', 'index.js')
+  ];
 };
 
 export default [
-  createUtilsConfigs({ name: 'date-fns-utils' }),
-  createUtilsConfigs({ name: 'date-fns-utils-old' }),
-  createUtilsConfigs({ name: 'moment-utils' }),
-  createUtilsConfigs({ name: 'luxon-utils' }),
+  ...createUtilsConfigs({ name: 'date-fns-utils' }),
+  ...createUtilsConfigs({ name: 'date-fns-utils-old' }),
+  ...createUtilsConfigs({ name: 'moment-utils' }),
+  ...createUtilsConfigs({ name: 'luxon-utils' }),
 ];
