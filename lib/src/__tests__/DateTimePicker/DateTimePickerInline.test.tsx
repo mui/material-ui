@@ -19,7 +19,7 @@ describe('DatePickerModal', () => {
   let component: ShallowWrapper<DateTimePickerInlineProps>;
 
   beforeEach(() => {
-    component = shallow(<InlineDateTimePicker {...props} />);
+    component = shallow(<InlineDateTimePicker variant="outlined" {...props} />);
   });
 
   it('Should renders', () => {
