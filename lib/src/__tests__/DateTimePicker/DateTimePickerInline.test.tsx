@@ -1,9 +1,9 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import {
-  DatePickerModal,
-  DatePickerModalProps,
-} from '../../DatePicker/DatePickerModal';
+  DateTimePickerInlineProps,
+  InlineDateTimePicker,
+} from '../../DateTimePicker';
 import { shallow, utilsToUse } from '../test-utils';
 
 const spy = jest.fn();
@@ -16,10 +16,10 @@ const props = {
 };
 
 describe('DatePickerModal', () => {
-  let component: ShallowWrapper<DatePickerModalProps>;
+  let component: ShallowWrapper<DateTimePickerInlineProps>;
 
   beforeEach(() => {
-    component = shallow(<DatePickerModal {...props} />);
+    component = shallow(<InlineDateTimePicker {...props} />);
   });
 
   it('Should renders', () => {

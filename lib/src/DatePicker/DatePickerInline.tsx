@@ -4,22 +4,17 @@ import * as React from 'react';
 import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper, { InlineWrapperProps } from '../wrappers/InlineWrapper';
+import InlineWrapper, {
+  InlineWrapperProps,
+  OuterInlineWrapperProps,
+} from '../wrappers/InlineWrapper';
 import Calendar from './components/Calendar';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
 
 export interface DatePickerInlineProps
   extends Omit<BasePickerProps, 'ampm'>,
     BaseDatePickerProps,
-    Omit<
-      InlineWrapperProps,
-      | 'isAccepted'
-      | 'handleAccept'
-      | 'onChange'
-      | 'value'
-      | 'utils'
-      | 'onlyCalendar'
-    > {
+    Omit<OuterInlineWrapperProps, 'onChange' | 'value'> {
   onlyCalendar?: boolean;
 }
 
