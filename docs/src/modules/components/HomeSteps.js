@@ -79,9 +79,7 @@ const styles = theme => ({
   },
 });
 
-function HomeSteps(props) {
-  const classes = props.classes;
-
+function HomeSteps({ classes }) {
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>

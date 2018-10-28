@@ -3,9 +3,7 @@ import NextHead from 'next/head';
 import { _rewriteUrlForNextExport, withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
-function Head(props) {
-  const { title, router, description } = props;
-
+function Head({ title, router, description }) {
   return (
     <NextHead>
       <title>{title}</title>

@@ -28,9 +28,7 @@ const styleSheet = theme => ({
   },
 });
 
-function HomeFooter(props) {
-  const { classes } = props;
-
+function HomeFooter({ classes }) {
   return (
     <footer className={classes.root}>
       <Typography variant="h6" gutterBottom>

@@ -17,8 +17,7 @@ const styles = theme => ({
   },
 });
 
-function AppTheme(props) {
-  const { children, classes, description, hideCredit, title } = props;
+function AppTheme({ children, classes, description, hideCredit, title }) {
   return (
     <React.Fragment>
       <Head title={title} description={description} />

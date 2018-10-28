@@ -16,9 +16,7 @@ const styles = theme => ({
   },
 });
 
-function HomeBackers(props) {
-  const classes = props.classes;
-
+function HomeBackers({ classes }) {
   return (
     <div className={classes.root}>
       <NoSsr>

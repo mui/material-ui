@@ -20,9 +20,9 @@ if (process.browser && !global.__INSERTION_POINT__) {
   }
 }
 
-function uiThemeSideEffect(uiTheme) {
-  setPrismTheme(uiTheme.paletteType === 'light' ? lightTheme : darkTheme);
-  document.body.dir = uiTheme.direction;
+function uiThemeSideEffect({ paletteType, direction }) {
+  setPrismTheme(paletteType === 'light' ? lightTheme : darkTheme);
+  document.body.dir = direction;
 }
 
 class AppWrapper extends React.Component {
