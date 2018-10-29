@@ -18,15 +18,15 @@ const createUtilsConfigs = ({ name, input }) => {
   };
 
   fs.writeFileSync(
-    `build/${name}/package.json`,
+    `./${name}/package.json`,
     JSON.stringify(utilsPkg, null, 2)
   );
 
   const createConfig = (format, fileName) => ({
-    input: `./${name}/index.ts`,
+    input: `src/${name}/index.ts`,
     external,
     output: {
-      file: `build/${name}/${fileName}`,
+      file: `./${name}/${fileName}`,
       format: format,
     },
     plugins: [

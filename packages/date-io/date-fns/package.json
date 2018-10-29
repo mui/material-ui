@@ -1,0 +1,6 @@
+{
+  "name": "date-fns",
+  "main": "index.js",
+  "module": "index.esm.js",
+  "typings": "index.d.ts"
+}

@@ -5,6 +5,6 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "declarationDir": "./build"
+    "declarationDir": "."
   }
 }

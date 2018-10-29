@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
-import Utils from 'material-ui-pickers/utils/date-fns-utils';
+import Utils from 'date-io/date-fns';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 
 import { create } from 'jss';

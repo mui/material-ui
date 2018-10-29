@@ -1,6 +1,6 @@
+import { IUtils } from 'date-io/IUtils';
 import * as React from 'react';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { Utils } from '../../typings/utils';
 import ClockNumber from './ClockNumber';
 
 export const getHourNumbers = ({
@@ -9,7 +9,7 @@ export const getHourNumbers = ({
   date,
 }: {
   ampm: boolean;
-  utils: Utils<MaterialUiPickersDate>;
+  utils: IUtils<MaterialUiPickersDate>;
   date: MaterialUiPickersDate;
 }) => {
   const currentHours = utils.getHours(date);
@@ -55,7 +55,7 @@ export const getMinutesNumbers = ({
   utils,
 }: {
   value: number;
-  utils: Utils<MaterialUiPickersDate>;
+  utils: IUtils<MaterialUiPickersDate>;
 }) => {
   const f = utils.formatNumber;
 

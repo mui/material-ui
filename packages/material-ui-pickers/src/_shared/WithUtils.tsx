@@ -1,14 +1,16 @@
 import { Omit } from '@material-ui/core';
+import { IUtils } from 'date-io/IUtils';
 import * as React from 'react';
 import { MuiPickersContextConsumer } from '../MuiPickersUtilsProvider';
 import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
 
 export interface WithUtilsProps {
-  utils: Utils<MaterialUiPickersDate>;
+  utils: IUtils<MaterialUiPickersDate>;
 }
 
-const checkUtils = (utils: Utils<MaterialUiPickersDate> | null | undefined) => {
+const checkUtils = (
+  utils: IUtils<MaterialUiPickersDate> | null | undefined
+) => {
   if (!utils) {
     // tslint:disable-next-line
     throw new Error(

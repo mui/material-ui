@@ -2,7 +2,6 @@
   "name": "date-io",
   "version": "1.0.0",
   "description": "",
-  "main": "rollup.config.js",
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },

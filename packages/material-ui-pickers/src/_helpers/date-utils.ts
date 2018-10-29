@@ -1,10 +1,10 @@
+import { IUtils } from 'date-io/IUtils';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
 
 interface FindClosestDateParams {
   date: MaterialUiPickersDate;
-  utils: Utils<MaterialUiPickersDate>;
+  utils: IUtils<MaterialUiPickersDate>;
   minDate: DateType;
   maxDate: DateType;
   disableFuture: boolean;

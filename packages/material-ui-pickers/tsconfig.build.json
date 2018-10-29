@@ -3,10 +3,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "es6",
-    "outDir": "build",
-    "declaration": true,
+    "noEmit": true,
+    "sourceMap": true,
     "jsx": "react"
   },
   "include": ["src/**/*"],
-  "exclude": ["./src/__tests__/**/*", "build"]
+  "exclude": ["./src/__tests__/**/*"]
 }

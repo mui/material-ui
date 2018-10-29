@@ -31,7 +31,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.5",
     "style-loader": "0.19.0",
-    "material-ui-pickers": "^1.0.1"
+    "material-ui-pickers": "^1.0.1",
+    "date-io": "^1.0.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"
