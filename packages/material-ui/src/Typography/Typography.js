@@ -200,6 +200,8 @@ function Typography(props) {
   return <Component className={className} {...other} />;
 }
 
+let warnOnce = false;
+
 Typography.propTypes = {
   /**
    * Set the text-align on the component.
@@ -304,16 +306,29 @@ Typography.propTypes = {
         'title',
         'subheading',
       ];
+
+      const message =
+        'You are using a deprecated typography variant: ' +
+        `\`${props.variant}\` that will be removed in the next major release.` +
+        '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2';
+
       if (
         props.theme.typography.useNextVariants &&
         !props.internalDeprecatedVariant &&
         deprecatedVariants.indexOf(props.variant) !== -1
       ) {
-        return new Error(
-          'You are using a deprecated typography variant: ' +
-            `\`${props.variant}\` that will be removed in the next major release.` +
-            '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
-        );
+        return new Error(message);
+      }
+
+      if (
+        !props.theme.typography.useNextVariants &&
+        !props.internalDeprecatedVariant &&
+        deprecatedVariants.indexOf(props.variant) !== -1 &&
+        !props.theme.suppressWarning &&
+        !warnOnce
+      ) {
+        warnOnce = true;
+        return new Error(message);
       }
 
       return null;

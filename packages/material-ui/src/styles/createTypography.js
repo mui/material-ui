@@ -1,5 +1,4 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
-import warning from 'warning';
 import ponyfillGlobal from '../utils/ponyfillGlobal';
 
 function round(value) {
@@ -34,13 +33,6 @@ export default function createTypography(palette, typography) {
     allVariants,
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
-
-  warning(
-    useNextVariants || suppressWarning,
-    'Material-UI: you are using the deprecated typography variants ' +
-      'that will be removed in the next major release.' +
-      '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
-  );
 
   const coef = fontSize / 14;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
@@ -193,6 +185,7 @@ export default function createTypography(palette, typography) {
           }
         : {}),
       useNextVariants,
+      suppressWarning,
     },
     other,
     {
