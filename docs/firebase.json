@@ -1,13 +1,21 @@
 {
   "hosting": {
     "public": "build",
-    "headers": [{ 
-      "source":"/service-worker.js", 
-      "headers": [{ "key": "Cache-Control", "value": "no-cache" }] 
-    }],
-    "rewrites": [{
-      "source": "**",
-      "destination": "/index.html"
-    }]
+    "headers": [
+      {
+        "source": "/service-worker.js",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
+        "source": "/index.html",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
