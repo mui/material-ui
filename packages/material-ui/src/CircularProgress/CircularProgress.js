@@ -83,8 +83,8 @@ export const styles = theme => ({
       strokeDashoffset: '-120px',
     },
   },
-  /* Styles applied to the `circle` svg path if `disableShrinkAnimation={true}`. */
-  disableShrinkAnimation: {
+  /* Styles applied to the `circle` svg path if `disableShrink={true}`. */
+  circleDisableShrink: {
     animation: 'none',
   },
 });
@@ -101,7 +101,7 @@ function CircularProgress(props) {
     classes,
     className,
     color,
-    disableShrinkAnimation,
+    disableShrink,
     size,
     style,
     thickness,
@@ -151,7 +151,7 @@ function CircularProgress(props) {
           className={classNames(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
-            [classes.disableShrinkAnimation]: variant === 'indeterminate' && disableShrinkAnimation,
+            [classes.circleDisableShrink]: disableShrink,
           })}
           style={circleStyle}
           cx={SIZE}
@@ -180,12 +180,14 @@ CircularProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
-   * If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`
+   * If `true`, the shrink animation is disabled.
+   * This only works if variant is `indeterminate`.
    */
-  disableShrinkAnimation: chainPropTypes(PropTypes.bool, props => {
-    if (props.disableShrinkAnimation && props.variant !== 'indeterminate') {
+  disableShrink: chainPropTypes(PropTypes.bool, props => {
+    /* istanbul ignore if */
+    if (props.disableShrink && props.variant !== 'indeterminate') {
       return new Error(
-        'You have provided the `disableShrinkAnimation` property ' +
+        'Material-UI: you have provided the `disableShrink` property ' +
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }
@@ -218,7 +220,7 @@ CircularProgress.propTypes = {
 
 CircularProgress.defaultProps = {
   color: 'primary',
-  disableShrinkAnimation: false,
+  disableShrink: false,
   size: 40,
   thickness: 3.6,
   value: 0,
