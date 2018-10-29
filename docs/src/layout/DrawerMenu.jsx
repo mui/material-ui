@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Divider, Toolbar, Typography, withStyles } from '@material-ui/core';
 
 import NavigationMenu from './NavigationMenu';
-import { version } from '../../../lib/package.json';
+// import { version } from '../../../lib/package.json';
 
 const DrawerMenu = ({ classes }) => (
   <div className={classes.drawerRoot}>
@@ -20,7 +20,7 @@ const DrawerMenu = ({ classes }) => (
         rel="noopener noreferrer"
         href="https://github.com/dmtrKovalenko/material-ui-pickers/releases"
       >
-        <Typography variant="caption" className={classes.headerLink}> v{version} </Typography>
+        <Typography variant="caption" className={classes.headerLink}> v1.0.1 </Typography>
       </a>
     </Toolbar>
 

@@ -26,4 +26,4 @@ patreonAPIClient('/campaigns/1559688/pledges')
 
       return user.attributes;
     }))
-  .then(users => fse.writeFile(path.resolve(__dirname, '..', 'patrons.json'), JSON.stringify(users)));
+  .then(users => fse.writeFile(path.resolve(__dirname, '..', 'src', 'patrons.json'), JSON.stringify(users)));

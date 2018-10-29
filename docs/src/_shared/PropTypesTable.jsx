@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Table, Typography, withStyles, Paper, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import PropTypesDoc from '../../prop-types.json';
+import PropTypesDoc from '../prop-types.json';
 
 const functionSignatureRegex = /\[(.{1,256})\]/;
 class PropTypesTable extends React.PureComponent {

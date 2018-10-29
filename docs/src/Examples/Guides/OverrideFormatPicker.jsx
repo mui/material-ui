@@ -1,7 +1,7 @@
 import format from "date-fns/format";
 import frLocale from "date-fns/locale/fr";
 import { DatePicker } from "material-ui-pickers";
-import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
+import DateFnsUtils from "date-io/date-fns";
 import { MuiPickersUtilsProvider } from "material-ui-pickers";
 import React, { PureComponent } from "react";
 

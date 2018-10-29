@@ -660,9 +660,7 @@
         {
           "name": "getDerivedStateFromProps",
           "docblock": null,
-          "modifiers": [
-            "static"
-          ],
+          "modifiers": ["static"],
           "params": [
             {
               "name": "nextProps",
@@ -3002,9 +3000,7 @@
         {
           "name": "getDerivedStateFromProps",
           "docblock": null,
-          "modifiers": [
-            "static"
-          ],
+          "modifiers": ["static"],
           "params": [
             {
               "name": "nextProps",
@@ -3299,9 +3295,7 @@
         {
           "name": "updateState",
           "docblock": null,
-          "modifiers": [
-            "static"
-          ],
+          "modifiers": ["static"],
           "params": [
             {
               "name": "props",
@@ -3966,9 +3960,7 @@
         {
           "name": "getDerivedStateFromProps",
           "docblock": null,
-          "modifiers": [
-            "static"
-          ],
+          "modifiers": ["static"],
           "params": [
             {
               "name": "{ utils: Utils, locale, moment }",
@@ -4045,9 +4037,7 @@
         {
           "name": "getDerivedStateFromProps",
           "docblock": null,
-          "modifiers": [
-            "static"
-          ],
+          "modifiers": ["static"],
           "params": [
             {
               "name": "nextProps",
@@ -4213,9 +4203,7 @@
         {
           "name": "getDerivedStateFromProps",
           "docblock": null,
-          "modifiers": [
-            "static"
-          ],
+          "modifiers": ["static"],
           "params": [
             {
               "name": "nextProps",
