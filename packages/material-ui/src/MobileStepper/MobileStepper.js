@@ -48,6 +48,7 @@ export const styles = theme => ({
     width: 8,
     height: 8,
     margin: '0 2px',
+    cursor: 'pointer'
   },
   /* Styles applied to a dot if `variant="dots"` and this is the active step. */
   dotActive: {
@@ -67,6 +68,7 @@ function MobileStepper(props) {
     className: classNameProp,
     LinearProgressProps,
     nextButton,
+    onDotClick,
     position,
     steps,
     variant,
@@ -89,7 +91,12 @@ function MobileStepper(props) {
               [classes.dotActive]: step === activeStep,
             });
             // eslint-disable-next-line react/no-array-index-key
-            return <div key={step} className={dotClassName} />;
+            return <div
+              key={step}
+              role="radio"
+              tabIndex={step}
+              className={dotClassName}
+              onClick={() => { onDotClick(step) }} />;
           })}
         </div>
       )}
@@ -134,6 +141,10 @@ MobileStepper.propTypes = {
    */
   nextButton: PropTypes.node,
   /**
+   * Set the function to call when a dot is clicked on.
+   */
+  onDotClick: PropTypes.func,
+  /**
    * Set the positioning type.
    */
   position: PropTypes.oneOf(['bottom', 'top', 'static']),
@@ -149,6 +160,7 @@ MobileStepper.propTypes = {
 
 MobileStepper.defaultProps = {
   activeStep: 0,
+  onDotClick: () => {},
   position: 'bottom',
   variant: 'dots',
 };

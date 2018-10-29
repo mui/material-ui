@@ -18,6 +18,10 @@ class ProgressMobileStepper extends React.Component {
     activeStep: 0,
   };
 
+  handleChange = step => {
+    this.setState({ activeStep: step });
+  };
+
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
@@ -40,6 +44,7 @@ class ProgressMobileStepper extends React.Component {
         position="static"
         activeStep={this.state.activeStep}
         className={classes.root}
+        onDotClick={this.handleChange}
         nextButton={
           <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
             Next
