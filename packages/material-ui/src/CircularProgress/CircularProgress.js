@@ -83,7 +83,7 @@ export const styles = theme => ({
       strokeDashoffset: '-120px',
     },
   },
-  /* Styles applied to the `circle` svg path if `shrinkAnimation={false}`. */
+  /* Styles applied to the `circle` svg path if `disableShrinkAnimation={true}`. */
   disableShrinkAnimation: {
     animation: 'none',
   },
@@ -101,12 +101,12 @@ function CircularProgress(props) {
     classes,
     className,
     color,
+    disableShrinkAnimation,
     size,
     style,
     thickness,
     value,
     variant,
-    shrinkAnimation,
     ...other
   } = props;
 
@@ -151,8 +151,7 @@ function CircularProgress(props) {
           className={classNames(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
-            [classes.disableShrinkAnimation]:
-              variant === 'indeterminate' && shrinkAnimation === false,
+            [classes.disableShrinkAnimation]: variant === 'indeterminate' && disableShrinkAnimation,
           })}
           style={circleStyle}
           cx={SIZE}
@@ -181,12 +180,12 @@ CircularProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
-   * If `true`, the shrink animation is applied. This only works if variant is `indeterminate`
+   * If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`
    */
-  shrinkAnimation: chainPropTypes(PropTypes.bool, props => {
-    if (props.shrinkAnimation === false && props.variant !== 'indeterminate') {
+  disableShrinkAnimation: chainPropTypes(PropTypes.bool, props => {
+    if (props.disableShrinkAnimation && props.variant !== 'indeterminate') {
       return new Error(
-        'You have provided a `shrinkAnimation` property ' +
+        'You have provided the `disableShrinkAnimation` property ' +
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }
@@ -219,7 +218,7 @@ CircularProgress.propTypes = {
 
 CircularProgress.defaultProps = {
   color: 'primary',
-  shrinkAnimation: true,
+  disableShrinkAnimation: false,
   size: 40,
   thickness: 3.6,
   value: 0,

@@ -111,8 +111,8 @@ describe('<CircularProgress />', () => {
     });
   });
 
-  describe('prop: shrinkAnimation ', () => {
-    it('should default to true', () => {
+  describe('prop: disableShrinkAnimation ', () => {
+    it('should default to false', () => {
       const wrapper = shallow(<CircularProgress variant="indeterminate" />);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
@@ -125,8 +125,10 @@ describe('<CircularProgress />', () => {
       );
     });
 
-    it('should render without disableShrinkAnimation class when set to true', () => {
-      const wrapper = shallow(<CircularProgress variant="indeterminate" shrinkAnimation />);
+    it('should render without disableShrinkAnimation class when set to false', () => {
+      const wrapper = shallow(
+        <CircularProgress variant="indeterminate" disableShrinkAnimation={false} />,
+      );
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const circle = svg.childAt(0);
@@ -138,8 +140,8 @@ describe('<CircularProgress />', () => {
       );
     });
 
-    it('should render with disableShrinkAnimation class when set to false', () => {
-      const wrapper = shallow(<CircularProgress variant="indeterminate" shrinkAnimation={false} />);
+    it('should render with disableShrinkAnimation class when set to true', () => {
+      const wrapper = shallow(<CircularProgress variant="indeterminate" disableShrinkAnimation />);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const circle = svg.childAt(0);
