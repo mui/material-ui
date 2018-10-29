@@ -7,13 +7,13 @@ import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { setRef } from '../utils/reactHelpers';
 
-const areEqualValues = (a, b) => {
+function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {
     return a === b;
   }
 
   return String(a) === String(b);
-};
+}
 
 /**
  * @ignore - internal component.
@@ -456,12 +456,7 @@ SelectInput.propTypes = {
     PropTypes.bool,
     PropTypes.object,
     PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.bool,
-        PropTypes.object,
-      ]),
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
     ),
   ]).isRequired,
   /**

@@ -174,12 +174,7 @@ Select.propTypes = {
     PropTypes.bool,
     PropTypes.object,
     PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.bool,
-        PropTypes.object,
-      ]),
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
     ),
   ]),
   /**

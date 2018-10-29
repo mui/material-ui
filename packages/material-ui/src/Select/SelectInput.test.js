@@ -61,38 +61,36 @@ describe('<SelectInput />', () => {
     );
   });
 
-  it('should select the option based on the value', () => {
-    const wrapper = shallow(<SelectInput {...defaultProps} />);
-    assert.deepEqual(
-      wrapper.find(MenuItem).map(m => m.prop('selected')), [true, false, false],
-    );
-  });
-
-  describe('when the value matches an option but they are different types', () => {
-    it('should select the option based on the value', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} value="10" />);
-      assert.deepEqual(
-        wrapper.find(MenuItem).map(m => m.prop('selected')), [true, false, false],
-      );
+  describe('prop: value', () => {
+    it('should select the option based on the number value', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} value={20} />);
+      assert.deepEqual(wrapper.find(MenuItem).map(m => m.props().selected), [false, true, false]);
     });
-  });
 
-  describe('when the value is an object', () => {
-    it('should select only the option that matches', () => {
+    it('should select the option based on the string value', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} value="20" />);
+      assert.deepEqual(wrapper.find(MenuItem).map(m => m.props().selected), [false, true, false]);
+    });
+
+    it('should select only the option that matches the object', () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
 
       const wrapper = shallow(
         <SelectInput {...defaultProps} value={obj1}>
-          <MenuItem key={1} value={obj1}>1</MenuItem>
-          <MenuItem key={2} value={obj2}>2</MenuItem>
+          <MenuItem key={1} value={obj1}>
+            1
+          </MenuItem>
+          <MenuItem key={2} value={obj2}>
+            2
+          </MenuItem>
         </SelectInput>,
       );
 
-      assert.deepEqual(
-        wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected),
-        [true, false],
-      );
+      assert.deepEqual(wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected), [
+        true,
+        false,
+      ]);
     });
   });
 
@@ -346,16 +344,23 @@ describe('<SelectInput />', () => {
 
         const wrapper = shallow(
           <SelectInput {...defaultProps} value={[obj1, obj3]} multiple>
-            <MenuItem key={1} value={obj1}>1</MenuItem>
-            <MenuItem key={2} value={obj2}>2</MenuItem>
-            <MenuItem key={3} value={obj3}>3</MenuItem>
+            <MenuItem key={1} value={obj1}>
+              1
+            </MenuItem>
+            <MenuItem key={2} value={obj2}>
+              2
+            </MenuItem>
+            <MenuItem key={3} value={obj3}>
+              3
+            </MenuItem>
           </SelectInput>,
         );
 
-        assert.deepEqual(
-          wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected),
-          [true, false, true],
-        );
+        assert.deepEqual(wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected), [
+          true,
+          false,
+          true,
+        ]);
       });
     });
 
