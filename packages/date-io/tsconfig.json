@@ -3,12 +3,12 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "es6",
-    "noEmit": true,
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": ".",
+    "noEmit": true,
     "esModuleInterop": true,
     "declaration": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["./src/__tests__/**/*"]
+  "include": ["./**/*.ts"],
+  "exclude": ["./__tests__/**/*", "build"]
 }

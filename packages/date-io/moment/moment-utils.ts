@@ -1,5 +1,5 @@
 import defaultMoment from 'moment';
-import { IUtils } from './IUtils';
+import { IUtils } from '../IUtils';
 
 interface Opts {
   locale?: string;

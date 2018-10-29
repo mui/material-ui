@@ -23,7 +23,7 @@ const createUtilsConfigs = ({ name, input }) => {
   );
 
   const createConfig = (format, fileName) => ({
-    input: `src/${name}.ts`,
+    input: `./${name}/index.ts`,
     external,
     output: {
       file: `build/${name}/${fileName}`,
@@ -42,8 +42,8 @@ const createUtilsConfigs = ({ name, input }) => {
 };
 
 export default [
-  ...createUtilsConfigs({ name: 'date-fns-utils' }),
-  ...createUtilsConfigs({ name: 'date-fns-utils-old' }),
-  ...createUtilsConfigs({ name: 'moment-utils' }),
-  ...createUtilsConfigs({ name: 'luxon-utils' }),
+  ...createUtilsConfigs({ name: 'date-fns' }),
+  ...createUtilsConfigs({ name: 'date-fns-old' }),
+  ...createUtilsConfigs({ name: 'moment' }),
+  ...createUtilsConfigs({ name: 'luxon' }),
 ];
