@@ -41,13 +41,15 @@ class CustomIconSlider extends React.Component {
           value={value}
           aria-labelledby="slider-image"
           onChange={this.handleChange}
-          thumb={
-            <img
-              alt="slider thumb icon"
-              src="/static/images/misc/circle.png"
-              className={classes.thumbIcon}
-            />
-          }
+          thumbProps={{
+            icon: (
+              <img
+                alt="slider thumb icon"
+                src="/static/images/misc/circle.png"
+                className={classes.thumbIcon}
+              />
+            ),
+          }}
         />
         <Typography id="slider-icon">Icon thumb</Typography>
         <Slider
@@ -56,9 +58,11 @@ class CustomIconSlider extends React.Component {
           onChange={this.handleChange}
           classes={{
             container: classes.slider,
-            thumbIconWrapper: classes.thumbIconWrapper,
           }}
-          thumb={<LensIcon style={{ color: '#2196f3' }} />}
+          thumbProps={{
+            className: classes.thumbIconWrapper,
+            icon: <LensIcon style={{ color: '#2196f3' }} />,
+          }}
         />
       </div>
     );

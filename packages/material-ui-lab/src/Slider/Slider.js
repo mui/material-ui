@@ -1,244 +1,48 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import classNames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import keycode from 'keycode';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import clamp from '../utils/clamp';
+import { calculatePercent, preventPageScrolling } from './dom';
+import { percentToValue, getVisualStateClasses, roundToStep } from './shared';
+import SliderThumb from '../SliderThumb';
+import SliderTrack from '../SliderTrack';
 
-export const styles = theme => {
-  const commonTransitionsOptions = {
-    duration: theme.transitions.duration.shortest,
-    easing: theme.transitions.easing.easeOut,
-  };
-
-  const trackTransitions = theme.transitions.create(
-    ['width', 'height', 'transform'],
-    commonTransitionsOptions,
-  );
-  const thumbTransitions = theme.transitions.create(
-    ['transform', 'box-shadow'],
-    commonTransitionsOptions,
-  );
-
-  const colors = {
-    primary: theme.palette.primary.main,
-    disabled: theme.palette.grey[400],
-    thumbOutline: fade(theme.palette.primary.main, 0.16),
-  };
-
-  /**
-   * radius of the box-shadow when pressed
-   * hover should have a diameter equal to the pressed radius
-   */
-  const pressedOutlineRadius = 9;
-
-  return {
-    /* Styles applied to the root element. */
-    root: {
-      position: 'relative',
-      width: '100%',
-      cursor: 'pointer',
-      WebkitTapHighlightColor: 'transparent',
-      '&$disabled': {
-        cursor: 'no-drop',
-      },
-      '&$vertical': {
-        height: '100%',
-      },
+export const styles = {
+  /* Styles applied to the root element. */
+  root: {
+    position: 'relative',
+    width: '100%',
+    cursor: 'pointer',
+    WebkitTapHighlightColor: 'transparent',
+    '&$disabled': {
+      cursor: 'no-drop',
     },
-    /* Styles applied to the container element. */
-    container: {
-      position: 'relative',
-      '&$vertical': {
-        height: '100%',
-      },
+    '&$vertical': {
+      height: '100%',
     },
-    /* Styles applied to the track elements. */
-    track: {
-      position: 'absolute',
-      transform: 'translate(0, -50%)',
-      top: '50%',
-      width: '100%',
-      height: 2,
-      backgroundColor: colors.primary,
-      transition: trackTransitions,
-      '&$activated': {
-        transition: 'none',
-        willChange: 'transform',
-      },
-      '&$disabled': {
-        backgroundColor: colors.disabled,
-        boxShadow: 'none',
-      },
-      '&$vertical': {
-        transform: 'translate(-50%, 0)',
-        left: '50%',
-        top: 'initial',
-        bottom: 0,
-        width: 2,
-        height: '100%',
-      },
+  },
+  /* Styles applied to the container element. */
+  container: {
+    position: 'relative',
+    '&$vertical': {
+      height: '100%',
     },
-    /* Styles applied to the track element before the thumb. */
-    trackBefore: {
-      zIndex: 1,
-      left: 0,
-      transformOrigin: 'left bottom',
-    },
-    /* Styles applied to the track element after the thumb. */
-    trackAfter: {
-      right: 0,
-      opacity: 0.24,
-      transformOrigin: 'right top',
-      '&$vertical': {
-        top: 0,
-      },
-    },
-    /* Styles applied to the thumb wrapper element. */
-    thumbWrapper: {
-      position: 'relative',
-      zIndex: 2,
-      transition: thumbTransitions,
-      '&$activated': {
-        transition: 'none',
-        willChange: 'transform',
-      },
-      '&$vertical': {
-        bottom: 0,
-        height: '100%',
-      },
-    },
-    /* Styles applied to the thumb element. */
-    thumb: {
-      // Opt out of rtl flip as positioning here only is for centering
-      flip: false,
-      position: 'absolute',
-      left: 0,
-      transform: 'translate(-50%, -50%)',
-      width: 12,
-      height: 12,
-      borderRadius: '50%',
-      backgroundColor: colors.primary,
-      transition: thumbTransitions,
-      '&$focused, &:hover': {
-        boxShadow: `0px 0px 0px ${pressedOutlineRadius}px ${colors.thumbOutline}`,
-      },
-      '&$activated': {
-        boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
-      },
-      '&$disabled': {
-        cursor: 'no-drop',
-        width: 9,
-        height: 9,
-        backgroundColor: colors.disabled,
-      },
-      '&$jumped': {
-        boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
-      },
-    },
-    /* Class applied to the thumb element if custom thumb icon provided. */
-    thumbIconWrapper: {
-      backgroundColor: 'transparent',
-    },
-    thumbIcon: {
-      height: 'inherit',
-      width: 'inherit',
-    },
-    /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
-    disabled: {},
-    /* Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`. */
-    jumped: {},
-    /* Class applied to the track and thumb elements to trigger JSS nested styles if `focused`. */
-    focused: {},
-    /* Class applied to the track and thumb elements to trigger JSS nested styles if `activated`. */
-    activated: {},
-    /* Class applied to the root, track and container to trigger JSS nested styles if `vertical`. */
-    vertical: {},
-  };
+  },
+  /* Class applied to the track and thumb elements to trigger JSS nested styles if `activated`. */
+  activated: {},
+  /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
+  disabled: {},
+  /* Class applied to the track and thumb elements to trigger JSS nested styles if `focused`. */
+  focused: {},
+  /* Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`. */
+  jumped: {},
+  /* Class applied to the root, track and container to trigger JSS nested styles if `vertical`. */
+  vertical: {},
 };
 
-function percentToValue(percent, min, max) {
-  return ((max - min) * percent) / 100 + min;
-}
-
-function roundToStep(number, step) {
-  return Math.round(number / step) * step;
-}
-
-function getOffset(node) {
-  const { pageYOffset, pageXOffset } = global;
-  const { left, bottom } = node.getBoundingClientRect();
-
-  return {
-    bottom: bottom + pageYOffset,
-    left: left + pageXOffset,
-  };
-}
-
-function getMousePosition(event) {
-  if (event.changedTouches && event.changedTouches[0]) {
-    return {
-      x: event.changedTouches[0].pageX,
-      y: event.changedTouches[0].pageY,
-    };
-  }
-
-  return {
-    x: event.pageX,
-    y: event.pageY,
-  };
-}
-
-function calculatePercent(node, event, isVertical, isRtl) {
-  const { width, height } = node.getBoundingClientRect();
-  const { bottom, left } = getOffset(node);
-  const { x, y } = getMousePosition(event);
-
-  const value = isVertical ? bottom - y : x - left;
-  const onePercent = (isVertical ? height : width) / 100;
-
-  return isRtl && !isVertical ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
-}
-
-function preventPageScrolling(event) {
-  event.preventDefault();
-}
-
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
-
 class Slider extends React.Component {
-  state = {
-    currentState: 'initial',
-  };
-
-  jumpAnimationTimeoutId = -1;
-
-  componentDidMount() {
-    if (this.containerRef) {
-      this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
-  }
-
-  componentWillUnmount() {
-    // Guarding for **broken** shallow rendering method that call componentDidMount
-    // but doesn't handle refs correctly.
-    // To remove once the shallow rendering has been fixed.
-    if (this.containerRef) {
-      this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
-    document.body.removeEventListener('mouseenter', this.handleMouseEnter);
-    document.body.removeEventListener('mouseleave', this.handleMouseLeave);
-    document.body.removeEventListener('mousemove', this.handleMouseMove);
-    document.body.removeEventListener('mouseup', this.handleMouseUp);
-    clearTimeout(this.jumpAnimationTimeoutId);
-  }
-
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.disabled) {
       return { currentState: 'disabled' };
@@ -250,6 +54,56 @@ class Slider extends React.Component {
 
     return null;
   }
+
+  containerRef = React.createRef();
+
+  jumpAnimationTimeoutId = -1;
+
+  state = {
+    currentState: 'normal',
+  };
+
+  componentDidMount() {
+    if (this.containerRef.current) {
+      this.containerRef.current.addEventListener('touchstart', preventPageScrolling, {
+        passive: false,
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    // Guarding for **broken** shallow rendering method that call componentDidMount
+    // but doesn't handle refs correctly.
+    // To remove once the shallow rendering has been fixed.
+    if (this.containerRef.current) {
+      this.containerRef.current.removeEventListener('touchstart', preventPageScrolling, {
+        passive: false,
+      });
+    }
+    document.body.removeEventListener('mouseenter', this.handleMouseEnter);
+    document.body.removeEventListener('mouseleave', this.handleMouseLeave);
+    document.body.removeEventListener('mousemove', this.handleMouseMove);
+    document.body.removeEventListener('mouseup', this.handleMouseUp);
+    clearTimeout(this.jumpAnimationTimeoutId);
+  }
+
+  handleBlur = () => {
+    this.setState({ currentState: 'normal' });
+  };
+
+  handleClick = event => {
+    const { vertical } = this.props;
+    const percent = calculatePercent(this.containerRef.current, event, vertical, this.isReverted());
+    const value = percentToValue(percent, this.props);
+
+    this.emitChange(event, value, () => {
+      this.playJumpAnimation();
+    });
+  };
+
+  handleFocus = () => {
+    this.setState({ currentState: 'focused' });
+  };
 
   handleKeyDown = event => {
     const { min, max, value: currentValue } = this.props;
@@ -288,24 +142,6 @@ class Slider extends React.Component {
     value = clamp(value, min, max);
 
     this.emitChange(event, value);
-  };
-
-  handleFocus = () => {
-    this.setState({ currentState: 'focused' });
-  };
-
-  handleBlur = () => {
-    this.setState({ currentState: 'normal' });
-  };
-
-  handleClick = event => {
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
-    const value = percentToValue(percent, min, max);
-
-    this.emitChange(event, value, () => {
-      this.playJumpAnimation();
-    });
   };
 
   handleMouseEnter = event => {
@@ -347,16 +183,16 @@ class Slider extends React.Component {
     }
   };
 
-  handleMouseUp = event => {
-    this.handleDragEnd(event);
-  };
-
   handleMouseMove = event => {
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
-    const value = percentToValue(percent, min, max);
+    const { vertical } = this.props;
+    const percent = calculatePercent(this.containerRef.current, event, vertical, this.isReverted());
+    const value = percentToValue(percent, this.props);
 
     this.emitChange(event, value);
+  };
+
+  handleMouseUp = event => {
+    this.handleDragEnd(event);
   };
 
   handleDragEnd(event) {
@@ -396,24 +232,8 @@ class Slider extends React.Component {
     }
   }
 
-  calculateTrackPartStyles(percent) {
-    const { theme, vertical } = this.props;
-    const { currentState } = this.state;
-
-    switch (currentState) {
-      case 'disabled':
-        return {
-          [vertical ? 'height' : 'width']: `calc(${percent}% - 6px)`,
-        };
-      default:
-        return {
-          transform: `${
-            vertical
-              ? `translateX(${theme.direction === 'rtl' ? '' : '-'}50%) scaleY`
-              : 'translateY(-50%) scaleX'
-          }(${percent / 100})`,
-        };
-    }
+  isReverted() {
+    return this.props.theme.direction === 'rtl';
   }
 
   playJumpAnimation() {
@@ -425,82 +245,35 @@ class Slider extends React.Component {
     });
   }
 
-  isReverted() {
-    return this.props.theme.direction === 'rtl';
-  }
-
   render() {
-    const { currentState } = this.state;
     const {
-      className: classNameProp,
-      classes,
       component: Component,
-      thumb: thumbIcon,
+      rail: Rail,
+      track: Track,
+      thumb: Thumb,
+      classes,
+      className: classNameProp,
       disabled,
-      max,
       min,
-      onChange,
-      onDragEnd,
-      onDragStart,
-      step,
+      max,
       theme,
+      thumbProps,
+      trackProps,
       value,
       vertical,
       ...other
     } = this.props;
-
-    const percent = clamp(((value - min) * 100) / (max - min));
-
-    const commonClasses = {
-      [classes.disabled]: disabled,
-      [classes.jumped]: !disabled && currentState === 'jumped',
-      [classes.focused]: !disabled && currentState === 'focused',
-      [classes.activated]: !disabled && currentState === 'activated',
-      [classes.vertical]: vertical,
-      [classes.rtl]: theme.direction === 'rtl',
-    };
+    const { currentState } = this.state;
 
     const className = classNames(
       classes.root,
-      {
-        [classes.vertical]: vertical,
-        [classes.disabled]: disabled,
-      },
+      getVisualStateClasses({ classes, disabled, state: currentState, vertical }),
       classNameProp,
     );
 
-    const containerClasses = classNames(classes.container, {
+    const containerClassName = classNames(classes.container, {
       [classes.vertical]: vertical,
     });
-
-    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
-    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
-
-    const thumbTransformFunction = vertical ? 'translateY' : 'translateX';
-    const thumbDirectionInverted = vertical || theme.direction === 'rtl';
-    const inlineTrackBeforeStyles = this.calculateTrackPartStyles(percent);
-    const inlineTrackAfterStyles = this.calculateTrackPartStyles(100 - percent);
-    const inlineThumbStyles = {
-      transform: `${thumbTransformFunction}(${thumbDirectionInverted ? 100 - percent : percent}%)`,
-    };
-
-    /** Start Thumb Icon Logic Here */
-    const ThumbIcon = thumbIcon
-      ? React.cloneElement(thumbIcon, {
-          ...thumbIcon.props,
-          className: classNames(thumbIcon.props.className, classes.thumbIcon),
-        })
-      : null;
-    /** End Thumb Icon Logic Here */
-
-    const thumbWrapperClasses = classNames(classes.thumbWrapper, commonClasses);
-    const thumbClasses = classNames(
-      classes.thumb,
-      {
-        [classes.thumbIconWrapper]: thumbIcon,
-      },
-      commonClasses,
-    );
 
     return (
       <Component
@@ -514,27 +287,31 @@ class Slider extends React.Component {
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
         onTouchMove={this.handleMouseMove}
-        ref={ref => {
-          this.containerRef = ReactDOM.findDOMNode(ref);
-        }}
+        ref={this.containerRef}
         {...other}
       >
-        <div className={containerClasses}>
-          <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
-          <div className={thumbWrapperClasses} style={inlineThumbStyles}>
-            <ButtonBase
-              className={thumbClasses}
-              disableRipple
-              onBlur={this.handleBlur}
-              onKeyDown={this.handleKeyDown}
-              onTouchStartCapture={this.handleTouchStart}
-              onTouchMove={this.handleMouseMove}
-              onFocusVisible={this.handleFocus}
-            >
-              {ThumbIcon}
-            </ButtonBase>
-          </div>
-          <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
+        <div className={containerClassName}>
+          <Track
+            disabled={disabled}
+            min={min}
+            max={max}
+            state={currentState}
+            value={value}
+            vertical={vertical}
+            {...trackProps}
+          />
+          <Thumb
+            onBlur={this.handleBlur}
+            onFocusVisible={this.handleFocus}
+            onKeyDown={this.handleKeyDown}
+            disabled={disabled}
+            min={min}
+            max={max}
+            state={currentState}
+            value={value}
+            vertical={vertical}
+            {...thumbProps}
+          />
         </div>
       </Component>
     );
@@ -591,10 +368,21 @@ Slider.propTypes = {
    */
   theme: PropTypes.object.isRequired,
   /**
-   * The component used for the slider icon.
-   * This is optional, if provided should be a react element.
+   * The component used for the slider thumb
    */
-  thumb: PropTypes.element,
+  thumb: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  /**
+   * props spread into the thumb component
+   */
+  thumbProps: PropTypes.object,
+  /**
+   * The component used for the slider track
+   */
+  track: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  /**
+   * props spread into the track component
+   */
+  trackProps: PropTypes.object,
   /**
    * The value of the slider.
    */
@@ -606,9 +394,12 @@ Slider.propTypes = {
 };
 
 Slider.defaultProps = {
+  component: 'div',
   min: 0,
   max: 100,
-  component: 'div',
+  thumb: SliderThumb,
+  track: SliderTrack,
+  vertical: false,
 };
 
 export default withStyles(styles, { name: 'MuiSlider', withTheme: true })(Slider);

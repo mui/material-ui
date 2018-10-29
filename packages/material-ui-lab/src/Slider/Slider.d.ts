@@ -1,34 +1,24 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
-import { TransitionProps } from 'react-transition-group/Transition';
-import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';
+import { SharedClassKey, SharedProps } from './shared';
 
 export interface SliderProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange'> {
+  component?: React.ReactType<React.HTMLAttributes<{}>>;
   disabled?: boolean;
-  vertical?: boolean;
   max?: number;
   min?: number;
-  step?: number;
-  value?: number;
   onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
   onDragEnd?: (event: React.ChangeEvent<{}>) => void;
   onDragStart?: (event: React.ChangeEvent<{}>) => void;
+  step?: number;
+  thumb?: React.Component<SharedClassKey>;
+  track?: React.Component<SharedClassKey>;
+  value: number;
+  vertical?: boolean;
 }
 
-export type SliderClassKey =
-  | 'root'
-  | 'container'
-  | 'track'
-  | 'trackBefore'
-  | 'trackAfter'
-  | 'thumb'
-  | 'focused'
-  | 'activated'
-  | 'disabled'
-  | 'vertical'
-  | 'jumped';
+export type SliderClassKey = 'root' | 'container' | SharedClassKey;
 
 declare const Slider: React.ComponentType<SliderProps>;
 

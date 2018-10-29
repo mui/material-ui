@@ -148,19 +148,6 @@ describe('<Slider />', () => {
       wrapper = mount(<Slider onChange={handleChange} disabled value={0} />);
     });
 
-    it('should render thumb with the disabled classes', () => {
-      const button = wrapper.find('button');
-
-      assert.strictEqual(button.hasClass(classes.thumb), true);
-      assert.strictEqual(button.hasClass(classes.disabled), true);
-    });
-
-    it('should render tracks with the disabled classes', () => {
-      const tracks = wrapper.find('div').filterWhere(n => n.hasClass(classes.track));
-
-      assert.strictEqual(tracks.everyWhere(n => n.hasClass(classes.disabled)), true);
-    });
-
     it("should not call 'onChange' handler", () => {
       wrapper.simulate('click');
 
