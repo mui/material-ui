@@ -1,7 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
-import config from 'docs/src/config';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -20,6 +19,8 @@ if (process.env.NODE_ENV === 'production') {
   prefixer = postcss([autoprefixer]);
   cleanCSS = new CleanCSS();
 }
+
+const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
 
 class MyDocument extends Document {
   render() {
@@ -64,7 +65,7 @@ class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', '${config.google.id}', 'material-ui.com');
+window.ga('create', '${GOOGLE_ID}', 'auto');
               `,
             }}
           />
