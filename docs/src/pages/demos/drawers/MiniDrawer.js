@@ -50,6 +50,7 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    whiteSpace: 'nowrap',
   },
   drawerOpen: {
     width: drawerWidth,
@@ -64,13 +65,10 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing.unit * 7,
+    width: theme.spacing.unit * 7 + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9,
+      width: theme.spacing.unit * 9 + 1,
     },
-  },
-  drawerPaper: {
-    whiteSpace: 'nowrap',
   },
   toolbar: {
     display: 'flex',
@@ -133,7 +131,7 @@ class MiniDrawer extends React.Component {
             [classes.drawerClose]: !this.state.open,
           })}
           classes={{
-            paper: classNames(classes.drawerPaper, {
+            paper: classNames({
               [classes.drawerOpen]: this.state.open,
               [classes.drawerClose]: !this.state.open,
             }),
