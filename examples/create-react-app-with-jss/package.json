@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-with-jss",
-  "version": "3.0.0",
+  "version": "3.2.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
@@ -9,7 +9,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-jss": "latest",
-    "react-scripts": "^2.0.4"
+    "react-scripts": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
