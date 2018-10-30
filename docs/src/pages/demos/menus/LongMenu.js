@@ -53,7 +53,6 @@ class LongMenu extends React.Component {
         <Menu
           id="long-menu"
           anchorEl={anchorEl}
-          anchorReference={anchorEl}
           open={open}
           onClose={this.handleClose}
           PaperProps={{
