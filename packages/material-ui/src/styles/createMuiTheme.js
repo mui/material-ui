@@ -7,7 +7,7 @@ import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
-import spacing from './spacing';
+import spacing as defaultSpacing from './spacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
@@ -17,6 +17,7 @@ function createMuiTheme(options = {}) {
     mixins: mixinsInput = {},
     palette: paletteInput = {},
     shadows: shadowsInput,
+    spacing: defaultSpacing,
     typography: typographyInput = {},
     ...other
   } = options;
