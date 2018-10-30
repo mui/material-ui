@@ -190,6 +190,7 @@ SpeedDialAction.defaultProps = {
   delay: 0,
   open: false,
   tooltipPlacement: 'left',
+  tooltipOpen: false,
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);
