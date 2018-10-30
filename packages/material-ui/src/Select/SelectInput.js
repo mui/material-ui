@@ -7,6 +7,14 @@ import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { setRef } from '../utils/reactHelpers';
 
+function areEqualValues(a, b) {
+  if (typeof b === 'object' && b !== null) {
+    return a === b;
+  }
+
+  return String(a) === String(b);
+}
+
 /**
  * @ignore - internal component.
  */
@@ -225,12 +233,12 @@ class SelectInput extends React.Component {
           );
         }
 
-        selected = value.indexOf(child.props.value) !== -1;
+        selected = value.some(v => areEqualValues(v, child.props.value));
         if (selected && computeDisplay) {
           displayMultiple.push(child.props.children);
         }
       } else {
-        selected = value === child.props.value;
+        selected = areEqualValues(value, child.props.value);
         if (selected && computeDisplay) {
           displaySingle = child.props.children;
         }
@@ -446,7 +454,10 @@ SelectInput.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]).isRequired,
   /**
    * The variant to use.
