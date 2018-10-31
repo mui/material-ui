@@ -1,5 +1,5 @@
+import { IUtils } from '@date-io/core/IUtils';
 import { Omit } from '@material-ui/core';
-import { IUtils } from 'date-io/IUtils';
 import * as React from 'react';
 import { MuiPickersContextConsumer } from '../MuiPickersUtilsProvider';
 import { MaterialUiPickersDate } from '../typings/date';

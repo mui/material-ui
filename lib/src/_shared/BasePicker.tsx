@@ -1,4 +1,4 @@
-import { IUtils } from 'date-io/IUtils';
+import { IUtils } from '@date-io/core/IUtils';
 import * as React from 'react';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';

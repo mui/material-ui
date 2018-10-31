@@ -1,4 +1,4 @@
-import { IUtils } from 'date-io/IUtils';
+import { IUtils } from '@date-io/core/IUtils';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 import { MaterialUiPickersDate } from '../typings/date';
 

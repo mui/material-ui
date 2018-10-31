@@ -1,4 +1,4 @@
-import { IUtils } from 'date-io/IUtils';
+import { IUtils } from '@date-io/core/IUtils';
 import * as React from 'react';
 import { MaterialUiPickersDate } from '../../typings/date';
 import ClockNumber from './ClockNumber';
