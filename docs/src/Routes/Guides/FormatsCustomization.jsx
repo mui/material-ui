@@ -4,7 +4,7 @@ import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from '@material-ui/core';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-// import utilsInterfaceCode from '!raw-loader!../../../lib/typings/utils.d.ts';
+import utilsInterfaceCode from '!raw-loader!@date-io/core/IUtils.d.ts';
 
 const FormatCustomization = () => (
   <div>
@@ -38,7 +38,7 @@ const FormatCustomization = () => (
       Where TDate - date object passed from state (moment, native Date or Luxon`s DateTime)
     </Typography>
 
-    <Code language="ts" text={'utilsInterfaceCode'} />
+    <Code language="ts" text={utilsInterfaceCode} />
   </div>
 );
 

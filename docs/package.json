@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@date-io/core": "0.0.1",
     "@date-io/date-fns": "0.0.1",
     "@date-io/luxon": "0.0.1",
     "@date-io/moment": "0.0.1",
