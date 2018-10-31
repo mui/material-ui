@@ -263,6 +263,51 @@ describe('<ButtonBase />', () => {
     });
   });
 
+  describe('focus inside shadowRoot', () => {
+    let wrapper;
+    let instance;
+    let button;
+    let clock;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+      const rootElement = document.createElement('div');
+      rootElement.tabIndex = 0;
+      rootElement.attachShadow({ mode: 'open' });
+      wrapper = mount(
+        <ButtonBaseNaked theme={{}} classes={{}} id="test-button">
+          Hello
+        </ButtonBaseNaked>,
+      );
+      instance = wrapper.instance();
+      button = document.getElementById('test-button');
+      if (!button) {
+        throw new Error('missing button');
+      }
+
+      wrapper.simulate('focus');
+      rootElement.focus();
+
+      // Mock activeElement value in shadow root due to lack of support in jsdom@12.0.0
+      // https://github.com/jsdom/jsdom/issues/2343
+      rootElement.shadowRoot.activeElement = button;
+
+      const event = new window.Event('keyup');
+      event.which = keycode('tab');
+      window.dispatchEvent(event);
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('should set focus state for shadowRoot children', () => {
+      assert.strictEqual(wrapper.state().focusVisible, false);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
+      assert.strictEqual(wrapper.state().focusVisible, true);
+    });
+  });
+
   describe('mounted tab press listener', () => {
     let wrapper;
     let instance;
