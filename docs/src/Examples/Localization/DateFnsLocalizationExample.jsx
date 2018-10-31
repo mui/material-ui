@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import DateFnsUtils from 'date-io/date-fns';
+import DateFnsUtils from '@date-io/date-fns';
 import { Icon, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 
