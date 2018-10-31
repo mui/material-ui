@@ -62,7 +62,13 @@ function getScrollParent(parent, child) {
 }
 
 function getAnchorEl(anchorEl) {
-  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+  if (typeof anchorEl === 'function') {
+    return anchorEl();
+  }
+  if (typeof anchorEl === 'object' && anchorEl && anchorEl.current) {
+    return anchorEl.current;
+  }
+  return anchorEl;
 }
 
 export const styles = {
