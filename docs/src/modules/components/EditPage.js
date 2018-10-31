@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import Context from './context';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 function EditPage(props) {
   const { markdownLocation, sourceCodeRootUrl } = props;
 
   return (
-    <Context.Consumer>
+    <PageContext.Consumer>
       {({ userLanguage }) => {
         if (userLanguage === 'zh') {
           return (
@@ -23,7 +23,7 @@ function EditPage(props) {
           </Button>
         );
       }}
-    </Context.Consumer>
+    </PageContext.Consumer>
   );
 }
 

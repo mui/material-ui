@@ -34,69 +34,63 @@ const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 
 function MarkdownDocs(props) {
-  const { classes, demos, disableAd, markdown, markdownLocation } = props;
+  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
   const headers = getHeaders(markdown);
 
   return (
-    <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocation}>
-      {contents => {
-        return (
-          <AppFrame>
-            <Head
-              title={`${headers.title || getTitle(markdown)} - Material-UI`}
-              description={headers.description || getDescription(markdown)}
-            />
-            {disableAd ? null : (
-              <Portal container={() => document.querySelector('.description')}>
-                <Ad />
-              </Portal>
-            )}
-            <AppTableOfContents contents={contents} />
-            <AppContent className={classes.root}>
-              <div className={classes.header}>
-                <EditPage
-                  markdownLocation={markdownLocation}
-                  sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-                />
-              </div>
-              {contents.map((content, index) => {
-                const match = content.match(demoRegexp);
+    <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
+      {({ contents, markdownLocation }) => (
+        <AppFrame>
+          <Head
+            title={`${headers.title || getTitle(markdown)} - Material-UI`}
+            description={headers.description || getDescription(markdown)}
+          />
+          <AppTableOfContents contents={contents} />
+          {disableAd ? null : (
+            <Portal container={() => document.querySelector('.description')}>
+              <Ad />
+            </Portal>
+          )}
+          <AppContent className={classes.root}>
+            <div className={classes.header}>
+              <EditPage
+                markdownLocation={markdownLocation}
+                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+              />
+            </div>
+            {contents.map((content, index) => {
+              const match = content.match(demoRegexp);
 
-                if (match && demos) {
-                  let demoOptions;
-                  try {
-                    demoOptions = JSON.parse(`{${content}}`);
-                  } catch (err) {
-                    console.error(err); // eslint-disable-line no-console
-                    return null;
-                  }
-
-                  const name = demoOptions.demo;
-                  warning(demos && demos[name], `Missing demo: ${name}.`);
-                  return (
-                    <Demo
-                      key={content}
-                      js={demos[name].js}
-                      raw={demos[name].raw}
-                      index={index}
-                      demoOptions={demoOptions}
-                      githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-                    />
-                  );
+              if (match && demos) {
+                let demoOptions;
+                try {
+                  demoOptions = JSON.parse(`{${content}}`);
+                } catch (err) {
+                  console.error(err); // eslint-disable-line no-console
+                  return null;
                 }
 
+                const name = demoOptions.demo;
+                warning(demos && demos[name], `Missing demo: ${name}.`);
                 return (
-                  <MarkdownElement
-                    className={classes.markdownElement}
+                  <Demo
                     key={content}
-                    text={content}
+                    js={demos[name].js}
+                    raw={demos[name].raw}
+                    index={index}
+                    demoOptions={demoOptions}
+                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
                   />
                 );
-              })}
-            </AppContent>
-          </AppFrame>
-        );
-      }}
+              }
+
+              return (
+                <MarkdownElement className={classes.markdownElement} key={content} text={content} />
+              );
+            })}
+          </AppContent>
+        </AppFrame>
+      )}
     </MarkdownDocsContents>
   );
 }

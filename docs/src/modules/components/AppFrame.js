@@ -109,13 +109,13 @@ class AppFrame extends React.Component {
   render() {
     const { children, classes, uiTheme } = this.props;
 
-    let disablePermanent = false;
-    let navIconClassName = '';
-    let appBarClassName = classes.appBar;
-
     return (
       <PageTitle>
         {title => {
+          let disablePermanent = false;
+          let navIconClassName = '';
+          let appBarClassName = classes.appBar;
+
           if (title === null) {
             // home route, don't shift app bar or dock drawer
             disablePermanent = true;

@@ -13,7 +13,7 @@ import url from 'url';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
-import Context from './context';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 acceptLanguage.languages(['en', 'zh']);
 
@@ -319,7 +319,7 @@ function withRoot(Component) {
 
       return (
         <React.StrictMode>
-          <Context.Provider value={{ activePage, pages, userLanguage }}>
+          <PageContext.Provider value={{ activePage, pages, userLanguage }}>
             <Provider store={this.redux}>
               <AppWrapper pageContext={pageContext}>
                 <Component
@@ -328,7 +328,7 @@ function withRoot(Component) {
                 />
               </AppWrapper>
             </Provider>
-          </Context.Provider>
+          </PageContext.Provider>
         </React.StrictMode>
       );
     }

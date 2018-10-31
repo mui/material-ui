@@ -3,7 +3,7 @@ import kebabCase from 'lodash/kebabCase';
 import { _rewriteUrlForNextExport } from 'next/router';
 import PropTypes from 'prop-types';
 import { getHeaders, getContents } from 'docs/src/modules/utils/parseMarkdown';
-import Context from './context';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 function MarkdownDocsContents(props) {
   const { children, markdownLocation: markdownLocationProp, markdown } = props;
@@ -11,7 +11,7 @@ function MarkdownDocsContents(props) {
   const headers = getHeaders(markdown);
 
   return (
-    <Context.Consumer>
+    <PageContext.Consumer>
       {({ activePage }) => {
         let markdownLocation = markdownLocationProp || activePage.pathname;
 
@@ -43,9 +43,9 @@ ${headers.components
         `);
         }
 
-        return children(contents);
+        return children({ contents, markdownLocation });
       }}
-    </Context.Consumer>
+    </PageContext.Consumer>
   );
 }
 

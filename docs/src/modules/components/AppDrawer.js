@@ -12,7 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import Context from './context';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const styles = theme => ({
   paper: {
@@ -97,30 +97,28 @@ function AppDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
 
   const drawer = (
-    <Context.Consumer>
-      {({ activePage, pages }) => {
-        return (
-          <div className={classes.nav}>
-            <div className={classes.toolbarIe11}>
-              <div className={classes.toolbar}>
-                <Link className={classes.title} href="/" onClick={onClose}>
-                  <Typography variant="h6" color="inherit">
-                    Material-UI
-                  </Typography>
+    <PageContext.Consumer>
+      {({ activePage, pages }) => (
+        <div className={classes.nav}>
+          <div className={classes.toolbarIe11}>
+            <div className={classes.toolbar}>
+              <Link className={classes.title} href="/" onClick={onClose}>
+                <Typography variant="h6" color="inherit">
+                  Material-UI
+                </Typography>
+              </Link>
+              {process.env.LIB_VERSION ? (
+                <Link className={classes.anchor} href={_rewriteUrlForNextExport('/versions')}>
+                  <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
                 </Link>
-                {process.env.LIB_VERSION ? (
-                  <Link className={classes.anchor} href={_rewriteUrlForNextExport('/versions')}>
-                    <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
-                  </Link>
-                ) : null}
-              </div>
+              ) : null}
             </div>
-            <Divider />
-            {renderNavItems({ props, pages, activePage, depth: 0 })}
           </div>
-        );
-      }}
-    </Context.Consumer>
+          <Divider />
+          {renderNavItems({ props, pages, activePage, depth: 0 })}
+        </div>
+      )}
+    </PageContext.Consumer>
   );
 
   return (
