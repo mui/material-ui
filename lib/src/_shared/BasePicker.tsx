@@ -1,11 +1,11 @@
+import { IUtils } from '@date-io/core/IUtils';
 import * as React from 'react';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
 export interface BasePickerRenderArgs {
-  utils: Utils<MaterialUiPickersDate>;
+  utils: IUtils<MaterialUiPickersDate>;
   date: MaterialUiPickersDate;
   isAccepted: boolean;
   handleClear: () => void;

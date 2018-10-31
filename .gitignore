@@ -1,5 +1,5 @@
 # dependencies
-*/node_modules
+node_modules
 
 # build
 dist
@@ -23,7 +23,7 @@ coverage
 .eslintcache
 
 # dotenv environment variables file
-.env
+.env.local
 
 # webstorm
 .idea/

@@ -6,11 +6,11 @@ import { Typography } from '@material-ui/core';
 import muiPickerProviderCode from '!raw-loader!Examples/CodeSnippets/MuiPickerProviderCode';
 
 const installLibCode =
-`npm i -s date-fns@2.0.0-alpha.16
+`npm i @date-io/date-fns date-fns@2.0.0-alpha.16
 // or
-npm i -s moment
+npm i @date-io/moment moment
 // or
-npm i -s luxon`;
+npm i -s @date-io/luxon luxon`;
 
 const Installation = () => (
   <div>
