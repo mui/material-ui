@@ -306,6 +306,20 @@ class Slider extends React.Component {
     });
   };
 
+  handleMouseEnter = event => {
+    if (event.buttons === 0) {
+      this.endInteraction();
+    }
+  }
+
+  handleMouseLeave = event => {
+    const { min, max, vertical } = this.props;
+    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
+    const value = percentToValue(percent, min, max);
+
+    this.emitChange(event, value);
+  }
+
   handleTouchStart = event => {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
@@ -321,6 +335,8 @@ class Slider extends React.Component {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
 
+    document.body.addEventListener('mouseenter', this.handleMouseEnter);
+    document.body.addEventListener('mouseleave', this.handleMouseLeave);
     document.body.addEventListener('mousemove', this.handleMouseMove);
     document.body.addEventListener('mouseup', this.handleMouseUp);
 
@@ -330,15 +346,7 @@ class Slider extends React.Component {
   };
 
   handleMouseUp = event => {
-    this.setState({ currentState: 'normal' });
-
-    document.body.removeEventListener('mousemove', this.handleMouseMove);
-    document.body.removeEventListener('mouseup', this.handleMouseUp);
-    document.body.removeEventListener('touchend', this.handleMouseUp);
-
-    if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragEnd(event);
-    }
+    this.endInteraction(event);
   };
 
   handleMouseMove = event => {
@@ -348,6 +356,20 @@ class Slider extends React.Component {
 
     this.emitChange(event, value);
   };
+
+  endInteraction(event) {
+    this.setState({ currentState: 'normal' });
+
+    document.body.removeEventListener('mouseenter', this.handleMouseEnter);
+    document.body.removeEventListener('mouseleave', this.handleMouseLeave);
+    document.body.removeEventListener('mousemove', this.handleMouseMove);
+    document.body.removeEventListener('mouseup', this.handleMouseUp);
+    document.body.removeEventListener('touchend', this.handleMouseUp);
+
+    if (typeof this.props.onDragEnd === 'function') {
+      this.props.onDragEnd(event);
+    }
+  }
 
   emitChange(event, rawValue, callback) {
     const { step, value: previousValue, onChange, disabled } = this.props;
