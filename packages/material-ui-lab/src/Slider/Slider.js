@@ -312,7 +312,7 @@ class Slider extends React.Component {
     if (event.buttons === 0) {
       this.endInteraction();
     }
-  }
+  };
 
   handleMouseLeave = event => {
     // If the mouse moves off the window then move the slider to the extremity in the
@@ -322,7 +322,7 @@ class Slider extends React.Component {
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value);
-  }
+  };
 
   handleTouchStart = event => {
     event.preventDefault();
