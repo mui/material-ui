@@ -87,7 +87,7 @@ Depending on the package you want to build just run `yarn workspace @material-ui
 
 ### Coding style
 
-Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.
+Please follow the coding style of the project. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules can be run manually with the following command `yarn lint`.
 
 You can also run `yarn prettier` to reformat the code.
 
@@ -123,7 +123,7 @@ In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons
 
 #### 3. Edit the Next.js page.
 
-The Next.js page is saved under the following page.
+The Next.js page is saved in the following file.
 There is a direct mapping between the filename in the repository and the pathname in the documentation.
 
 ```
@@ -147,7 +147,7 @@ In case you missed something, [we have a real example that can be used as a summ
 
 ## How do I use my local distribution of material-ui in any project?
 
-Sometimes it is good to test your changes in a real case scenario, in order to do that you can install your local distribution of Material-UI in any project.
+Sometimes it is good to test your changes in a real world scenario, in order to do that you can install your local distribution of Material-UI in any project with [yarn link](https://yarnpkg.com/lang/en/docs/cli/link/).
 
 First, you have to build your local distribution of Material-UI:
 
