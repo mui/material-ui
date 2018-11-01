@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import keycode from 'keycode';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Menu from '../Menu';
 import Portal from '../Portal';
 import MenuItem from '../MenuItem';

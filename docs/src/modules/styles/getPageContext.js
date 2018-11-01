@@ -41,8 +41,8 @@ const theme = getTheme({
 
 // Configure JSS
 const jss = create({
-  insertionPoint: 'insertion-point-jss',
   plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint: 'insertion-point-jss',
 });
 
 function createPageContext() {

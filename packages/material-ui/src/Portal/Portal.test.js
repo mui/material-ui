@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createRender } from '../test-utils';
+import { createMount, createRender } from '@material-ui/core/test-utils';
 import Portal from './Portal';
 import Select from '../Select';
 import MenuItem from '../MenuItem';

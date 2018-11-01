@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import ReactDOM from 'react-dom';
-import { createMount, unwrap } from '../test-utils';
+import { createMount, unwrap } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';

@@ -46,6 +46,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/overrides/InlineStyle'), 'utf8')
 `,
         },
+        'pages/customization/overrides/DynamicCSS.js': {
+          js: require('docs/src/pages/customization/overrides/DynamicCSS').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/overrides/DynamicCSS'), 'utf8')
+`,
+        },
         'pages/customization/overrides/DynamicClassName.js': {
           js: require('docs/src/pages/customization/overrides/DynamicClassName').default,
           raw: preval`

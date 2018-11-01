@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Slide from '../Slide';
 import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';

@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 

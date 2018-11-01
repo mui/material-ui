@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {

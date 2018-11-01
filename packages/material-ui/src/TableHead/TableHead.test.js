@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, getClasses } from '../test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import TableHead from './TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 

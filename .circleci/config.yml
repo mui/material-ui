@@ -182,14 +182,20 @@ jobs:
       - *restore_yarn_cache
       - *install_js
       - run:
-          name: Can we generate the material-ui build?
+          name: Can we generate the @material-ui/core build?
           command: cd packages/material-ui && yarn build
+      - run:
+          name: Can we generate the @material-ui/styles build?
+          command: cd packages/material-ui-styles && yarn build
+      - run:
+          name: Can we generate the @material-ui/utils build?
+          command: cd packages/material-ui-utils && yarn build
       - run:
           name: Can we build the docs?
           command: yarn docs:build
       - run:
           name: Is the size acceptable?
-          command: yarn size
+          command: yarn lerna bootstrap && yarn size
   test_browser:
     <<: *defaults
     steps:
