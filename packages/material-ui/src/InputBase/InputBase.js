@@ -335,13 +335,15 @@ class InputBase extends React.Component {
       states: ['disabled', 'error', 'margin', 'required', 'filled'],
     });
 
+    const focused = muiFormControl ? muiFormControl.focused : this.state.focused;
+
     const className = classNames(
       classes.root,
       {
         [classes.disabled]: fcs.disabled,
         [classes.error]: fcs.error,
         [classes.fullWidth]: fullWidth,
-        [classes.focused]: this.state.focused,
+        [classes.focused]: focused,
         [classes.formControl]: muiFormControl,
         [classes.marginDense]: fcs.margin === 'dense',
         [classes.multiline]: multiline,
@@ -405,7 +407,7 @@ class InputBase extends React.Component {
           ? renderPrefix({
               ...fcs,
               startAdornment,
-              focused: this.state.focused,
+              focused,
             })
           : null}
         {startAdornment}
