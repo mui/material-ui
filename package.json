@@ -112,7 +112,7 @@
     "jsdom": "^12.0.0",
     "jsonlint": "^1.6.3",
     "jss-rtl": "^0.2.1",
-    "karma": "^3.0.0",
+    "karma": "3.0.0",
     "karma-browserstack-launcher": "^1.3.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
