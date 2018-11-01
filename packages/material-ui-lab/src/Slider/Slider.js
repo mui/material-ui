@@ -307,12 +307,16 @@ class Slider extends React.Component {
   };
 
   handleMouseEnter = event => {
+    // If the slider was being interacted with but the mouse went off the window
+    // and then re-entered while unclicked then end the interaction.
     if (event.buttons === 0) {
       this.endInteraction();
     }
   }
 
   handleMouseLeave = event => {
+    // If the mouse moves off the window then move the slider to the extremity in the
+    // direction of the window edge.
     const { min, max, vertical } = this.props;
     const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
     const value = percentToValue(percent, min, max);
