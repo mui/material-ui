@@ -87,7 +87,7 @@ Depending on the package you want to build just run `yarn workspace @material-ui
 
 ### Coding style
 
-Please follow the coding style of the project. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with the following npm script `yarn lint`.
+Please follow the coding style of the project. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules can be run manually with the following command `yarn lint`.
 
 You can also run `yarn prettier` to reformat the code.
 
