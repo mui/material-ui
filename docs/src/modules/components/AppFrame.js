@@ -23,7 +23,7 @@ import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import PageTitle from 'docs/src/modules/components/PageTitle';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 Router.onRouteChangeStart = () => {
@@ -109,101 +109,104 @@ class AppFrame extends React.Component {
   render() {
     const { children, classes, uiTheme } = this.props;
 
-    if (!this.context.activePage) {
-      throw new Error('Missing activePage.');
-    }
-
-    const title =
-      this.context.activePage.title !== false ? pageToTitle(this.context.activePage) : null;
-
-    let disablePermanent = false;
-    let navIconClassName = '';
-    let appBarClassName = classes.appBar;
-
-    if (title === null) {
-      // home route, don't shift app bar or dock drawer
-      disablePermanent = true;
-      appBarClassName += ` ${classes.appBarHome}`;
-    } else {
-      navIconClassName = classes.navIconHide;
-      appBarClassName += ` ${classes.appBarShift}`;
-    }
-
     return (
-      <div className={classes.root}>
-        <NProgressBar />
-        <CssBaseline />
-        <AppBar className={appBarClassName}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={navIconClassName}
-            >
-              <MenuIcon />
-            </IconButton>
-            {title !== null && (
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                {title}
-              </Typography>
-            )}
-            <div className={classes.grow} />
-            <AppSearch />
-            <Tooltip title="Edit docs colors" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                aria-label="Edit docs colors"
-                component={Link}
-                href="/style/color/#color-tool"
-              >
-                <ColorsIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                onClick={this.handleTogglePaletteType}
-                aria-label="Toggle light/dark theme"
-              >
-                {uiTheme.paletteType === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                onClick={this.handleToggleDirection}
-                aria-label="Toggle right-to-left/left-to-right"
-              >
-                {uiTheme.direction === 'rtl' ? (
-                  <FormatTextdirectionLToR />
-                ) : (
-                  <FormatTextdirectionRToL />
-                )}
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="GitHub repository" enterDelay={300}>
-              <IconButton
-                component="a"
-                color="inherit"
-                href="https://github.com/mui-org/material-ui"
-                aria-label="GitHub repository"
-              >
-                <GithubIcon />
-              </IconButton>
-            </Tooltip>
-          </Toolbar>
-        </AppBar>
-        <Notifications />
-        <AppDrawer
-          className={classes.drawer}
-          disablePermanent={disablePermanent}
-          onClose={this.handleDrawerClose}
-          onOpen={this.handleDrawerOpen}
-          mobileOpen={this.state.mobileOpen}
-        />
-        {children}
-      </div>
+      <PageTitle>
+        {title => {
+          let disablePermanent = false;
+          let navIconClassName = '';
+          let appBarClassName = classes.appBar;
+
+          if (title === null) {
+            // home route, don't shift app bar or dock drawer
+            disablePermanent = true;
+            appBarClassName += ` ${classes.appBarHome}`;
+          } else {
+            navIconClassName = classes.navIconHide;
+            appBarClassName += ` ${classes.appBarShift}`;
+          }
+
+          return (
+            <div className={classes.root}>
+              <NProgressBar />
+              <CssBaseline />
+              <AppBar className={appBarClassName}>
+                <Toolbar>
+                  <IconButton
+                    color="inherit"
+                    aria-label="Open drawer"
+                    onClick={this.handleDrawerOpen}
+                    className={navIconClassName}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  {title !== null && (
+                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                      {title}
+                    </Typography>
+                  )}
+                  <div className={classes.grow} />
+                  <AppSearch />
+                  <Tooltip title="Edit docs colors" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      aria-label="Edit docs colors"
+                      component={Link}
+                      href="/style/color/#color-tool"
+                    >
+                      <ColorsIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Toggle light/dark theme" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      onClick={this.handleTogglePaletteType}
+                      aria-label="Toggle light/dark theme"
+                    >
+                      {uiTheme.paletteType === 'light' ? (
+                        <LightbulbOutlineIcon />
+                      ) : (
+                        <LightbulbFullIcon />
+                      )}
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      onClick={this.handleToggleDirection}
+                      aria-label="Toggle right-to-left/left-to-right"
+                    >
+                      {uiTheme.direction === 'rtl' ? (
+                        <FormatTextdirectionLToR />
+                      ) : (
+                        <FormatTextdirectionRToL />
+                      )}
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="GitHub repository" enterDelay={300}>
+                    <IconButton
+                      component="a"
+                      color="inherit"
+                      href="https://github.com/mui-org/material-ui"
+                      aria-label="GitHub repository"
+                    >
+                      <GithubIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Toolbar>
+              </AppBar>
+              <Notifications />
+              <AppDrawer
+                className={classes.drawer}
+                disablePermanent={disablePermanent}
+                onClose={this.handleDrawerClose}
+                onOpen={this.handleDrawerOpen}
+                mobileOpen={this.state.mobileOpen}
+              />
+              {children}
+            </div>
+          );
+        }}
+      </PageTitle>
     );
   }
 }
@@ -213,12 +216,6 @@ AppFrame.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   uiTheme: PropTypes.object.isRequired,
-};
-
-AppFrame.contextTypes = {
-  activePage: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default compose(

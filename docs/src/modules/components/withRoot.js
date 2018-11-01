@@ -13,6 +13,7 @@ import url from 'url';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 acceptLanguage.languages(['en', 'zh']);
 
@@ -291,25 +292,6 @@ function withRoot(Component) {
       userLanguage: 'en',
     };
 
-    getChildContext() {
-      const { router } = this.props;
-      const { userLanguage } = this.state;
-
-      let pathname = router.pathname;
-      if (pathname !== '/') {
-        // The leading / is only added to support static hosting (resolve /index.html).
-        // We remove it to normalize the pathname.
-        // See `_rewriteUrlForNextExport` on Next.js side.
-        pathname = pathname.replace(/\/$/, '');
-      }
-
-      return {
-        pages,
-        activePage: findActivePage(pages, { ...router, pathname }),
-        userLanguage,
-      };
-    }
-
     componentDidMount() {
       const URL = url.parse(document.location.href, true);
       const userLanguage = URL.query.lang || acceptLanguage.get(navigator.language) || 'en';
@@ -323,18 +305,30 @@ function withRoot(Component) {
 
     render() {
       const { pageContext, ...other } = this.props;
+      const { router } = this.props;
       const { userLanguage } = this.state;
+
+      let pathname = router.pathname;
+      if (pathname !== '/') {
+        // The leading / is only added to support static hosting (resolve /index.html).
+        // We remove it to normalize the pathname.
+        // See `_rewriteUrlForNextExport` on Next.js side.
+        pathname = pathname.replace(/\/$/, '');
+      }
+      const activePage = findActivePage(pages, { ...router, pathname });
 
       return (
         <React.StrictMode>
-          <Provider store={this.redux}>
-            <AppWrapper pageContext={pageContext}>
-              <Component
-                initialProps={other}
-                lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
-              />
-            </AppWrapper>
-          </Provider>
+          <PageContext.Provider value={{ activePage, pages, userLanguage }}>
+            <Provider store={this.redux}>
+              <AppWrapper pageContext={pageContext}>
+                <Component
+                  initialProps={other}
+                  lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+                />
+              </AppWrapper>
+            </Provider>
+          </PageContext.Provider>
         </React.StrictMode>
       );
     }
@@ -344,12 +338,6 @@ function withRoot(Component) {
     pageContext: PropTypes.object,
     reduxServerState: PropTypes.object,
     router: PropTypes.object.isRequired,
-  };
-
-  WithRoot.childContextTypes = {
-    activePage: PropTypes.object,
-    pages: PropTypes.array,
-    userLanguage: PropTypes.string,
   };
 
   WithRoot.getInitialProps = ctx => {
