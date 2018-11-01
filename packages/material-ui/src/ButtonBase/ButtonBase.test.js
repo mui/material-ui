@@ -268,29 +268,41 @@ describe('<ButtonBase />', () => {
     let instance;
     let button;
     let clock;
+    let rootElement;
+
+    // Only run on HeadlessChrome which has native shadowRoot support.
+    // And jsdom which has limited support for shadowRoot (^12.0.0).
+    if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
 
     beforeEach(() => {
       clock = useFakeTimers();
-      const rootElement = document.createElement('div');
+      rootElement = document.createElement('div');
       rootElement.tabIndex = 0;
+      document.body.appendChild(rootElement);
       rootElement.attachShadow({ mode: 'open' });
       wrapper = mount(
         <ButtonBaseNaked theme={{}} classes={{}} id="test-button">
           Hello
         </ButtonBaseNaked>,
+        { attachTo: rootElement.shadowRoot },
       );
       instance = wrapper.instance();
-      button = document.getElementById('test-button');
+      button = rootElement.shadowRoot.getElementById('test-button');
       if (!button) {
         throw new Error('missing button');
       }
 
-      wrapper.simulate('focus');
-      rootElement.focus();
+      button.focus();
 
-      // Mock activeElement value in shadow root due to lack of support in jsdom@12.0.0
-      // https://github.com/jsdom/jsdom/issues/2343
-      rootElement.shadowRoot.activeElement = button;
+      if (document.activeElement !== rootElement) {
+        // Mock activeElement value and simulate host-retargeting in shadow root for
+        // jsdom@12.0.0 (https://github.com/jsdom/jsdom/issues/2343)
+        rootElement.focus();
+        rootElement.shadowRoot.activeElement = button;
+        wrapper.simulate('focus');
+      }
 
       const event = new window.Event('keyup');
       event.which = keycode('tab');
@@ -299,6 +311,7 @@ describe('<ButtonBase />', () => {
 
     afterEach(() => {
       clock.restore();
+      document.body.removeChild(rootElement);
     });
 
     it('should set focus state for shadowRoot children', () => {
