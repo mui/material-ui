@@ -312,7 +312,7 @@ class Slider extends React.Component {
     // If the slider was being interacted with but the mouse went off the window
     // and then re-entered while unclicked then end the interaction.
     if (event.buttons === 0) {
-      this.handleDragEnd();
+      this.handleDragEnd(event);
     }
   };
 
