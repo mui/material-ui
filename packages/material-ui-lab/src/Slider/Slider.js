@@ -232,6 +232,8 @@ class Slider extends React.Component {
     if (this.containerRef) {
       this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
     }
+    document.body.removeEventListener('mouseenter', this.handleMouseEnter);
+    document.body.removeEventListener('mouseleave', this.handleMouseLeave);
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
     clearTimeout(this.jumpAnimationTimeoutId);
@@ -310,7 +312,7 @@ class Slider extends React.Component {
     // If the slider was being interacted with but the mouse went off the window
     // and then re-entered while unclicked then end the interaction.
     if (event.buttons === 0) {
-      this.endInteraction();
+      this.handleDragEnd();
     }
   };
 
@@ -350,7 +352,7 @@ class Slider extends React.Component {
   };
 
   handleMouseUp = event => {
-    this.endInteraction(event);
+    this.handleDragEnd(event);
   };
 
   handleMouseMove = event => {
@@ -361,7 +363,7 @@ class Slider extends React.Component {
     this.emitChange(event, value);
   };
 
-  endInteraction(event) {
+  handleDragEnd(event) {
     this.setState({ currentState: 'normal' });
 
     document.body.removeEventListener('mouseenter', this.handleMouseEnter);
