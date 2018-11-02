@@ -45,22 +45,20 @@ const rows = [
 ].map((row, id) => createRow(id, ...row));
 
 const invoiceSubtotal = subtotal(rows);
-
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-function ColSpanTable(props) {
+function SpanningTable(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell key="th_desc">Desc</TableCell>
-            <TableCell key="th_qty">Qty.</TableCell>
-            <TableCell key="th_unit">@</TableCell>
-            <TableCell key="th_price">Price</TableCell>
+            <TableCell>Desc</TableCell>
+            <TableCell numeric>Qty.</TableCell>
+            <TableCell numeric>@</TableCell>
+            <TableCell numeric>Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,24 +66,25 @@ function ColSpanTable(props) {
             return (
               <TableRow key={row.id}>
                 <TableCell>{row.desc}</TableCell>
-                <TableCell>{row.qty}</TableCell>
-                <TableCell>{row.unit}</TableCell>
-                <TableCell>{ccyFormat(row.price)}</TableCell>
+                <TableCell numeric>{row.qty}</TableCell>
+                <TableCell numeric>{row.unit}</TableCell>
+                <TableCell numeric>{ccyFormat(row.price)}</TableCell>
               </TableRow>
             );
           })}
-          <TableRow key="subtotal">
-            <TableCell colSpan={3}>Subtotal</TableCell>
-            <TableCell>{ccyFormat(invoiceSubtotal)}</TableCell>
+          <TableRow>
+            <TableCell rowSpan={3} />
+            <TableCell colSpan={2}>Subtotal</TableCell>
+            <TableCell numeric>{ccyFormat(invoiceSubtotal)}</TableCell>
           </TableRow>
-          <TableRow key="tax">
-            <TableCell colSpan={2}>Tax</TableCell>
-            <TableCell>{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-            <TableCell>{ccyFormat(invoiceTaxes)}</TableCell>
+          <TableRow>
+            <TableCell>Tax</TableCell>
+            <TableCell numeric>{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+            <TableCell numeric>{ccyFormat(invoiceTaxes)}</TableCell>
           </TableRow>
-          <TableRow key="total">
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell>{ccyFormat(invoiceTotal)}</TableCell>
+          <TableRow>
+            <TableCell colSpan={2}>Total</TableCell>
+            <TableCell numeric>{ccyFormat(invoiceTotal)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -93,8 +92,8 @@ function ColSpanTable(props) {
   );
 }
 
-ColSpanTable.propTypes = {
+SpanningTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ColSpanTable);
+export default withStyles(styles)(SpanningTable);

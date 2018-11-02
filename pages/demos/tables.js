@@ -16,25 +16,18 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/SimpleTable'), 'utf8')
 `,
         },
-        'pages/demos/tables/RowSpanTable.js': {
-          js: require('docs/src/pages/demos/tables/RowSpanTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/RowSpanTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/ColSpanTable.js': {
-          js: require('docs/src/pages/demos/tables/ColSpanTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/ColSpanTable'), 'utf8')
-`,
-        },
         'pages/demos/tables/EnhancedTable.js': {
           js: require('docs/src/pages/demos/tables/EnhancedTable').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/EnhancedTable'), 'utf8')
+`,
+        },
+        'pages/demos/tables/SpanningTable.js': {
+          js: require('docs/src/pages/demos/tables/SpanningTable').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/SpanningTable'), 'utf8')
 `,
         },
         'pages/demos/tables/CustomPaginationActionsTable.js': {
