@@ -33,16 +33,7 @@ module.exports = {
         fs: 'empty',
       },
       module: Object.assign({}, config.module, {
-        rules: [
-          {
-            test: /\.js$/,
-            include: /material-ui-popup-state/,
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-            },
-          },
-        ].concat(config.module.rules, [
+        rules: config.module.rules.concat([
           {
             test: /\.(css|md)$/,
             loader: 'emit-file-loader',
