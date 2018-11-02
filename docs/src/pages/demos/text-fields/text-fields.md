@@ -111,7 +111,7 @@ or
 <InputLabel shrink>Count</InputLabel>
 ```
 
-## Advanced use cases
+## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
 

@@ -52,7 +52,7 @@ You can customize the look and feel of the table by overriding the styles of the
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
-## Advanced use cases
+## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
 
