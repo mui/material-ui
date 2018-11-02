@@ -264,17 +264,17 @@ describe('<ButtonBase />', () => {
   });
 
   describe('focus inside shadowRoot', () => {
-    let wrapper;
-    let instance;
-    let button;
-    let clock;
-    let rootElement;
-
     // Only run on HeadlessChrome which has native shadowRoot support.
     // And jsdom which has limited support for shadowRoot (^12.0.0).
     if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
       return;
     }
+
+    let wrapper;
+    let instance;
+    let button;
+    let clock;
+    let rootElement;
 
     beforeEach(() => {
       clock = useFakeTimers();
@@ -311,6 +311,7 @@ describe('<ButtonBase />', () => {
 
     afterEach(() => {
       clock.restore();
+      ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
       document.body.removeChild(rootElement);
     });
 
