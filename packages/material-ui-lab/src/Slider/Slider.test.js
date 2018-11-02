@@ -59,12 +59,7 @@ describe('<Slider />', () => {
     it('should move to the end', () => {
       const handleChange = spy();
 
-      const wrapper = mount(
-        <Slider
-          onChange={handleChange}
-          value={50}
-        />,
-      );
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
 
       wrapper.simulate('mousedown');
       document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
@@ -77,12 +72,7 @@ describe('<Slider />', () => {
     it('should update if mouse is still clicked', () => {
       const handleChange = spy();
 
-      const wrapper = mount(
-        <Slider
-          onChange={handleChange}
-          value={50}
-        />,
-      );
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
 
       wrapper.simulate('mousedown');
       document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
@@ -98,12 +88,7 @@ describe('<Slider />', () => {
     it('should not update if mouse is not clicked', () => {
       const handleChange = spy();
 
-      const wrapper = mount(
-        <Slider
-          onChange={handleChange}
-          value={50}
-        />,
-      );
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
 
       wrapper.simulate('mousedown');
       document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
