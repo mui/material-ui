@@ -54,8 +54,8 @@
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0"
   },
   "dependencies": {},
   "devDependencies": {
