@@ -51,6 +51,12 @@ You can use the same list composition features with the `MenuItem` component:
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
+## Typography
+
+Using `Typography` in `MenuItem` allows for better control of wrapping
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
 ## Change Transition
 
 Use a different transition altogether.

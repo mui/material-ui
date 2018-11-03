@@ -65,6 +65,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/RenderPropsMenu'), 'utf8')
 `,
         },
+        'pages/demos/menus/TypographyMenu.js': {
+          js: require('docs/src/pages/demos/menus/TypographyMenu').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/TypographyMenu'), 'utf8')
+`,
+        },
       }}
     />
   );
