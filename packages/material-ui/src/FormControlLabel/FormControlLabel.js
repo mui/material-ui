@@ -28,6 +28,16 @@ export const styles = theme => ({
     marginLeft: 16, // used for row presentation of radio/checkbox
     marginRight: -14,
   },
+  /* Styles applied to the root element if `labelPlacement="top"`. */
+  labelPlacementTop: {
+    flexDirection: 'column-reverse',
+    marginLeft: 16,
+  },
+  /* Styles applied to the root element if `labelPlacement="bottom"`. */
+  labelPlacementBottom: {
+    flexDirection: 'column',
+    marginLeft: 16,
+  },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the label's Typography component. */
@@ -82,6 +92,8 @@ function FormControlLabel(props, context) {
         classes.root,
         {
           [classes.labelPlacementStart]: labelPlacement === 'start',
+          [classes.labelPlacementTop]: labelPlacement === 'top',
+          [classes.labelPlacementBottom]: labelPlacement === 'bottom',
           [classes.disabled]: disabled,
         },
         classNameProp,
@@ -132,7 +144,7 @@ FormControlLabel.propTypes = {
   /**
    * The position of the label.
    */
-  labelPlacement: PropTypes.oneOf(['end', 'start']),
+  labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
   /*
    * @ignore
    */
