@@ -12,9 +12,6 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
-  flex: {
-    flex: 1,
-  },
   formControl: {
     margin: theme.spacing.unit * 3,
   },
@@ -94,84 +91,6 @@ class RadioButtonsGroup extends React.Component {
           </RadioGroup>
           <FormHelperText>labelPlacement start</FormHelperText>
         </FormControl>
-        <div className={classes.flex}>
-          <FormControl component="fieldset" className={classes.formControl}>
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup
-              aria-label="gender"
-              name="gender3"
-              className={classes.group}
-              value={this.state.value}
-              onChange={this.handleChange}
-              row
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio color="primary" />}
-                label="Female"
-                labelPlacement="top"
-              />
-              <FormControlLabel
-                value="male"
-                control={<Radio color="primary" />}
-                label="Male"
-                labelPlacement="top"
-              />
-              <FormControlLabel
-                value="other"
-                control={<Radio color="primary" />}
-                label="Other"
-                labelPlacement="top"
-              />
-              <FormControlLabel
-                value="disabled"
-                disabled
-                control={<Radio />}
-                label="(Disabled option)"
-                labelPlacement="top"
-              />
-            </RadioGroup>
-            <FormHelperText>labelPlacement top</FormHelperText>
-          </FormControl>
-          <FormControl component="fieldset" className={classes.formControl}>
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup
-              aria-label="gender"
-              name="gender4"
-              className={classes.group}
-              value={this.state.value}
-              onChange={this.handleChange}
-              row
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio color="primary" />}
-                label="Female"
-                labelPlacement="bottom"
-              />
-              <FormControlLabel
-                value="male"
-                control={<Radio color="primary" />}
-                label="Male"
-                labelPlacement="bottom"
-              />
-              <FormControlLabel
-                value="other"
-                control={<Radio color="primary" />}
-                label="Other"
-                labelPlacement="bottom"
-              />
-              <FormControlLabel
-                value="disabled"
-                disabled
-                control={<Radio />}
-                label="(Disabled option)"
-                labelPlacement="bottom"
-              />
-            </RadioGroup>
-            <FormHelperText>labelPlacement bottom</FormHelperText>
-          </FormControl>
-        </div>
       </div>
     );
   }

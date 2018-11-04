@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
+import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -91,9 +92,7 @@ function FormControlLabel(props, context) {
       className={classNames(
         classes.root,
         {
-          [classes.labelPlacementStart]: labelPlacement === 'start',
-          [classes.labelPlacementTop]: labelPlacement === 'top',
-          [classes.labelPlacementBottom]: labelPlacement === 'bottom',
+          [classes[`labelPlacement${capitalize(labelPlacement)}`]]: labelPlacement !== 'end',
           [classes.disabled]: disabled,
         },
         classNameProp,
