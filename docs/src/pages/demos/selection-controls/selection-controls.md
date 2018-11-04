@@ -85,3 +85,9 @@ If you have been reading the [overrides documentation page](/customization/overr
 but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
+
+## Label placement
+
+You can change the placement of the label:
+
+{{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}

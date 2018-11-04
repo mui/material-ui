@@ -56,11 +56,25 @@ describe('<FormControlLabel />', () => {
   });
 
   describe('prop: labelPlacement', () => {
-    it('should disable have the `start` class', () => {
+    it('should have the `start` class', () => {
       const wrapper = shallow(
         <FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />,
       );
       assert.strictEqual(wrapper.hasClass(classes.labelPlacementStart), true);
+    });
+
+    it('should have the `top` class', () => {
+      const wrapper = shallow(
+        <FormControlLabel label="Pizza" labelPlacement="top" control={<div />} />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.labelPlacementTop), true);
+    });
+
+    it('should have the `bottom` class', () => {
+      const wrapper = shallow(
+        <FormControlLabel label="Pizza" labelPlacement="bottom" control={<div />} />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.labelPlacementBottom), true);
     });
   });
 
