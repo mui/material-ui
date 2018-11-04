@@ -27,6 +27,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [react-media-material-ui](https://github.com/jcoreio/react-media-material-ui) Easily use breakpoints from your Material-UI theme with [react-media](https://github.com/ReactTraining/react-media).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [Wertarbyte](https://mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
+- [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) Component will help your users create powerful filter criterias.
 
 ## Complementary Projects
 
