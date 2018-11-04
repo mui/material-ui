@@ -51,12 +51,6 @@ You can use the same list composition features with the `MenuItem` component:
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-## Typography
-
-Using `Typography` in `MenuItem` allows for better control of wrapping
-
-{{"demo": "pages/demos/menus/TypographyMenu.js"}}
-
 ## Change Transition
 
 Use a different transition altogether.
@@ -69,6 +63,13 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single menu.
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
+
+## Limitations
+
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` to work in combination with a flexbox layout.
+You can use the `Typography` component to workaround the issue:
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
 ## Complementary projects
 

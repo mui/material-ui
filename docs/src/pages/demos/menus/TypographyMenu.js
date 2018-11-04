@@ -10,24 +10,11 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 
-const styles = theme => ({
+const styles = {
   root: {
-    width: '170px',
+    width: 230,
   },
-  menuItem: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& $itemText, & $icon': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-  itemText: {
-    padding: '0 16px',
-    flex: '1 1 auto',
-  },
-  icon: {},
-});
+};
 
 function TypographyMenu(props) {
   const { classes } = props;
@@ -35,28 +22,24 @@ function TypographyMenu(props) {
   return (
     <Paper className={classes.root}>
       <MenuList>
-        <MenuItem className={classes.menuItem}>
-          <ListItemIcon className={classes.icon}>
+        <MenuItem>
+          <ListItemIcon>
             <SendIcon />
           </ListItemIcon>
-          <Typography classes={{ root: classes.itemText }} variant="subtitle1">
-            Sent mail
-          </Typography>
+          <Typography variant="inherit">A short message</Typography>
         </MenuItem>
-        <MenuItem className={classes.menuItem}>
-          <ListItemIcon className={classes.icon}>
-            <DraftsIcon />
-          </ListItemIcon>
-          <Typography classes={{ root: classes.itemText }} variant="subtitle1">
-            Drafts
-          </Typography>
-        </MenuItem>
-        <MenuItem className={classes.menuItem}>
-          <ListItemIcon className={classes.icon}>
+        <MenuItem>
+          <ListItemIcon>
             <PriorityHighIcon />
           </ListItemIcon>
-          <Typography classes={{ root: classes.itemText }} variant="subtitle1" noWrap>
-            Important
+          <Typography variant="inherit">A very long text that overflows</Typography>
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <Typography variant="inherit" noWrap>
+            A very long text that overflows
           </Typography>
         </MenuItem>
       </MenuList>
