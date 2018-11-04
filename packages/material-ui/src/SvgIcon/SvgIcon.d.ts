@@ -7,6 +7,7 @@ export interface SvgIconProps
   component?: React.ReactType<SvgIconProps>;
   fontSize?: 'inherit' | 'default' | 'small' | 'large';
   nativeColor?: string;
+  shapeRendering?: string;
   titleAccess?: string;
   viewBox?: string;
 }
