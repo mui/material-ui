@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
-import MergeWithListContext from './MergeWithListContext';
+import MergeListContext from './MergeListContext';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -83,7 +83,7 @@ function ListItem(props) {
     component: componentProp,
     ContainerComponent,
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
-    dense,
+    dense: denseProp,
     disabled,
     disableGutters,
     divider,
@@ -93,8 +93,8 @@ function ListItem(props) {
   } = props;
 
   return (
-    <MergeWithListContext dense={dense}>
-      {({ dense: isDense }) => {
+    <MergeListContext dense={denseProp}>
+      {({ dense }) => {
         const children = React.Children.toArray(childrenProp);
         const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
         const hasSecondaryAction =
@@ -105,7 +105,7 @@ function ListItem(props) {
           classes.root,
           classes.default,
           {
-            [classes.dense]: isDense || hasAvatar,
+            [classes.dense]: dense || hasAvatar,
             [classes.gutters]: !disableGutters,
             [classes.divider]: divider,
             [classes.disabled]: disabled,
@@ -154,7 +154,7 @@ function ListItem(props) {
 
         return <Component {...componentProps}>{children}</Component>;
       }}
-    </MergeWithListContext>
+    </MergeListContext>
   );
 }
 

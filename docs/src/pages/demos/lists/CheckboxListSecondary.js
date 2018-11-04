@@ -42,9 +42,9 @@ class CheckboxListSecondary extends React.Component {
 
     return (
       <div className={classes.root}>
-        <List>
+        <List dense>
           {[0, 1, 2, 3].map(value => (
-            <ListItem key={value} dense button>
+            <ListItem key={value} button>
               <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" />
               <ListItemText primary={`Line item ${value + 1}`} />
               <ListItemSecondaryAction>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
-import { ListContext } from '../List';
+import ListContext from '../List/ListContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -25,7 +25,7 @@ export const styles = theme => ({
  * This is a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
 function ListItemAvatar(props) {
-  const { children, classes, className: classNameProp, ...other } = props;
+  const { children, classes, className, ...other } = props;
 
   return (
     <ListContext.Consumer>
@@ -42,7 +42,7 @@ function ListItemAvatar(props) {
         return React.cloneElement(children, {
           className: classNames(
             { [classes.root]: context.dense },
-            classNameProp,
+            className,
             children.props.className,
           ),
           childrenClassName: classNames(

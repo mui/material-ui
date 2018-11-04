@@ -1,38 +1,40 @@
 import React from 'react';
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, getClasses } from '../test-utils';
+import { createMount, getClasses } from '../test-utils';
 import Avatar from '../Avatar';
 import ListItemAvatar from './ListItemAvatar';
+import ListContext from '../List/ListContext';
 
 describe('<ListItemAvatar />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(
       <ListItemAvatar className="foo">
         <Avatar className="bar" />
       </ListItemAvatar>,
-      { context: { dense: true } },
     );
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(
-      <ListItemAvatar className="foo">
-        <Avatar className="bar" />
-      </ListItemAvatar>,
-      {
-        context: {
-          dense: true,
-        },
-      },
+    const wrapper = mount(
+      <ListContext.Provider value={{ dense: true }}>
+        <ListItemAvatar className="foo">
+          <Avatar className="bar" />
+        </ListItemAvatar>
+      </ListContext.Provider>,
     );
-    assert.strictEqual(wrapper.hasClass('foo'), true);
-    assert.strictEqual(wrapper.hasClass('bar'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const avatar = wrapper.find(Avatar);
+    assert.strictEqual(avatar.hasClass('foo'), true);
+    assert.strictEqual(avatar.hasClass('bar'), true);
+    assert.strictEqual(avatar.hasClass(classes.root), true);
   });
 
   describe('List', () => {
@@ -45,22 +47,19 @@ describe('<ListItemAvatar />', () => {
     });
 
     it('should render an Avatar', () => {
-      const wrapper = shallow(
-        <ListItemAvatar>
-          <Avatar />
-        </ListItemAvatar>,
-        {
-          context: {
-            dense: true,
-          },
-        },
+      const wrapper = mount(
+        <ListContext.Provider value={{ dense: true }}>
+          <ListItemAvatar>
+            <Avatar />
+          </ListItemAvatar>
+        </ListContext.Provider>,
       );
-      assert.strictEqual(wrapper.type(), Avatar);
+      assert.strictEqual(wrapper.type(), ListItemAvatar);
       assert.strictEqual(consoleErrorMock.callCount(), 0);
     });
 
     it('should warn in a wrong context', () => {
-      shallow(
+      mount(
         <ListItemAvatar>
           <Avatar />
         </ListItemAvatar>,

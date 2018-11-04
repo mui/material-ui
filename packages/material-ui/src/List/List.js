@@ -32,25 +32,27 @@ function List(props) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     component: Component,
     dense,
     disablePadding,
     subheader,
     ...other
   } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.dense]: dense && !disablePadding,
-      [classes.padding]: !disablePadding,
-      [classes.subheader]: subheader,
-    },
-    classNameProp,
-  );
 
   return (
-    <Component className={className} {...other}>
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.dense]: dense && !disablePadding,
+          [classes.padding]: !disablePadding,
+          [classes.subheader]: subheader,
+        },
+        className,
+      )}
+      {...other}
+    >
       <ListContext.Provider value={{ dense }}>
         {subheader}
         {children}
