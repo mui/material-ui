@@ -64,6 +64,13 @@ keeps track of the local state for a single menu.
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
 
+## Limitations
+
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` to work in combination with a flexbox layout.
+You can use the `Typography` component to workaround the issue:
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
