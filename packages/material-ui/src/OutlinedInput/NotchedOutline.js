@@ -38,12 +38,6 @@ export const styles = theme => {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
-      // Firefox workaround. Firefox will only obscure the
-      // rendered height of the legend and, unlike other browsers,
-      // will not push fieldset contents.
-      '@supports (-moz-appearance:none)': {
-        height: 2,
-      },
     },
   };
 };
