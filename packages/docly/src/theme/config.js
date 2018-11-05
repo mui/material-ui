@@ -40,8 +40,19 @@ const fontFamily = [
 // subhead: called 'subheading'
 
 const config = {
+  // Docly: add mobile-first media queries
+  // instead of theme.breakpoints.up('md')
+  mq,
+
   breakpoints: {
+    keys: Object.keys(breakpoints),
     values: breakpoints,
+  },
+  mixins: {
+    toolbar: {
+      minHeight: 60,
+      [mq.sm]: { minHeight: 80 },
+    },
   },
   palette: {
     primary: {
@@ -88,16 +99,43 @@ const config = {
   },
   spacing: {
     unit: 8,
+
+    // Docly: max content width
+    maxWidth: 1440,
+    // Docly: article width
+    articleWidth: 890,
+    // Docly: responsive spacing constants
+    xt: 'var(--spacing-xt)',
+    t: 'var(--spacing-t)',
+    xs: 'var(--spacing-xs)',
+    s: 'var(--spacing-s)',
+    m: 'var(--spacing-m)',
+    l: 'var(--spacing-l)',
+    xl: 'var(--spacing-xl)',
+    xxl: 'var(--spacing-xxl)',
   },
   shape: {
-    borderRadius: 999,
+    borderRadius: 2,
+  },
+  // theme component overrides
+  overrides: {
+    MuiButton: {
+      root: {
+        // rounded corners for all buttons
+        borderRadius: '999px',
+      },
+    },
   },
 
   typography: {
+    // https://material-ui.com/style/typography/#migration-to-typography-v2
+    useNextVariants: true,
+
     fontFamily,
     fontSize: 16,
 
-    display1: {
+    // docly: display1
+    h1: {
       lineHeight: 1.2,
       fontWeight: fontWeights.bold,
       fontSize: 36,
@@ -106,7 +144,8 @@ const config = {
       [mq.lg]: { fontSize: 72 },
     },
 
-    display2: {
+    // docly: display2
+    h2: {
       fontSize: 36,
       fontWeight: fontWeights.bold,
       lineHeight: 1.2,
@@ -115,7 +154,8 @@ const config = {
       [mq.lg]: { fontSize: 50 },
     },
 
-    display3: {
+    // docly: display3
+    h3: {
       fontSize: 36,
       fontWeight: fontWeights.semiBold,
       lineHeight: 1.2,
@@ -124,7 +164,9 @@ const config = {
     },
 
     // same as display3 (for now)
-    display4: {
+    // mui: display1
+    // docly: title1
+    h4: {
       fontSize: 36,
       fontWeight: fontWeights.semiBold,
       lineHeight: 1.2,
@@ -132,7 +174,10 @@ const config = {
       [mq.lg]: { fontSize: 38 },
     },
 
-    title: {
+    // mui: headline
+    // material: h5
+    // docly: title2
+    h5: {
       fontSize: 27,
       fontWeight: fontWeights.semiBold,
       lineHeight: 1.2,
@@ -141,16 +186,9 @@ const config = {
       [mq.lg]: { fontSize: 29 },
     },
 
-    title1: {
-      fontSize: 27,
-      fontWeight: fontWeights.semiBold,
-      lineHeight: 1.2,
-      [mq.sm]: { fontSize: 28 },
-      [mq.md]: { fontSize: 29 },
-      [mq.lg]: { fontSize: 29 },
-    },
-
-    title2: {
+    // docly: subhead/subheading
+    // material: h6
+    h6: {
       fontSize: 22,
       fontWeight: fontWeights.medium,
       lineHeight: 1.2,
@@ -158,19 +196,23 @@ const config = {
       [mq.lg]: { fontSize: 26 },
     },
 
-    subheading: {
+    // docly: intro
+    // material: subtitle1
+    subtitle1: {
+      fontSize: 21,
+      fontWeight: fontWeights.regular,
+      lineHeight: 1.5,
+      [mq.md]: { fontSize: 22 },
+    },
+
+    // docly: subhead | subheading
+    // mui: subheading
+    // material: subtitle2
+    subtitle2: {
       fontSize: 18,
       fontWeight: fontWeights.medium,
       lineHeight: 1.2,
       [mq.md]: { fontSize: 20 },
-    },
-
-    intro: {
-      fontSize: 21,
-      fontWeight: fontWeights.regular,
-      lineHeight: 1.5,
-      [mq.sm]: { fontWeight: fontWeights.semiBold },
-      [mq.md]: { fontSize: 22 },
     },
 
     body1: {
@@ -180,6 +222,7 @@ const config = {
       [mq.lg]: { fontSize: 19 },
     },
 
+    // body2 is default in new material + m-ui
     body2: {
       fontSize: 16,
       fontWeight: fontWeights.regular,
@@ -187,10 +230,18 @@ const config = {
       [mq.lg]: { fontSize: 17 },
     },
 
-    body3: {
+    // docly: body3
+    // material: caption
+    caption: {
       fontSize: 13,
       fontWeight: fontWeights.semiBold,
       lineHeight: 1.5,
+    },
+
+    button: {
+      fontSize: 16,
+      textTransform: 'inherit',
+      fontWeight: fontWeights.semiBold,
     },
   },
 };
