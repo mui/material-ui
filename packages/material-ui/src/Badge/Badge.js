@@ -57,7 +57,7 @@ function Badge(props) {
     badgeContent,
     children,
     classes,
-    className: classNameProp,
+    className,
     color,
     component: ComponentProp,
     ...other
@@ -68,7 +68,7 @@ function Badge(props) {
   });
 
   return (
-    <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
+    <ComponentProp className={classNames(classes.root, className)} {...other}>
       {children}
       <span className={badgeClassName}>{badgeContent}</span>
     </ComponentProp>

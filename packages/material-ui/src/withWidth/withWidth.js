@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import getDisplayName from '../utils/getDisplayName';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -152,7 +152,7 @@ const withWidth = (options = {}) => Component => {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    WithWidth.displayName = wrapDisplayName(Component, 'WithWidth');
+    WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithWidth, Component);
