@@ -46,10 +46,16 @@ const styles = theme => ({
 
 class CodeFund extends React.Component {
   componentDidMount() {
+    const scriptSlot = document.querySelector('#code-fund-script-slot');
+
+    // Concurrence issues
+    if (!scriptSlot) {
+      return;
+    }
+
     const script = document.createElement('script');
     script.setAttribute('async', '');
     script.src = '//codefund.io/scripts/71fdcb01-40be-4590-af75-cd1bd4773c2a/embed.js';
-    const scriptSlot = document.querySelector('#code-fund-script-slot');
     scriptSlot.appendChild(script);
   }
 
