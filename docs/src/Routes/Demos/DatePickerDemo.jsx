@@ -42,7 +42,7 @@ const DatePickerDemoDemo = () => (
       }
     />
 
-    <PropTypesTable src="DatePicker/DatePickerModal.jsx" />
+    <PropTypesTable src="DatePicker/DatePickerModal.tsx" />
   </div>
 );
 

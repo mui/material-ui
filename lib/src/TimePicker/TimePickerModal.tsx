@@ -63,17 +63,11 @@ export const TimePickerModal: React.SFC<TimePickerModalProps> = props => {
 };
 
 (TimePickerModal as any).propTypes = {
-  /** DateTimepicker value */
   value: DomainPropTypes.date,
-  /** Date format string for input */
   format: PropTypes.string,
-  /** Callback firing when date accepted [(date: Date) => void] */
   onChange: PropTypes.func.isRequired,
-  /** Auto accept date on minute selection */
   autoOk: PropTypes.bool,
-  /** 12h/24h view for hour selection clock */
   ampm: PropTypes.bool,
-  /** Show the seconds view */
   seconds: PropTypes.bool,
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
