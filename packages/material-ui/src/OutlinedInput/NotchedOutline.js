@@ -5,7 +5,6 @@ import { withStyles } from '../styles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => {
-  const light = theme.palette.type === 'light';
   const align = theme.direction === 'rtl' ? 'right' : 'left';
 
   return {
@@ -22,7 +21,6 @@ export const styles = theme => {
       borderRadius: theme.shape.borderRadius,
       borderStyle: 'solid',
       borderWidth: 1,
-      borderColor: light ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
       // Match the Input Label
       transition: theme.transitions.create([`padding-${align}`, 'border-color', 'border-width'], {
         duration: theme.transitions.duration.shorter,
