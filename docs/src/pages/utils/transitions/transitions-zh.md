@@ -52,7 +52,7 @@ export default Main() {
 
 ## 滑动
 
-从屏幕的边缘滑入。`direction` 属性控制动画开始时，元素从哪个方向出现。
+从屏幕的边缘滑入。`direction` 属性控制动画开始时，元素往哪个方向过渡。
 
 The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
 

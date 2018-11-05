@@ -64,6 +64,8 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
-## 高级用例
+## Complementary projects
 
-如果需要有更高级的用法可以考虑使用: - [notistack](https://github.com/iamhosseindhv/notistack) 一个可以一个个重叠显示的高度自定义的消息条(Snackbar)组件。
+For more advanced use cases you might be able to take advantage of:
+
+- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other.

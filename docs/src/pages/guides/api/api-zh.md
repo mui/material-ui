@@ -1,52 +1,52 @@
-# API Design Approach
+# API设计方法
 
-<p class="description">We have learned a great deal regarding how Material-UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">我们已经学习了很多关于如何使用Material-UI的知识，而v1重写允许我们完全重新思考组件API。</p>
 
-> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+> API设计很难，因为你可以让它看起来很简单，但它实际上看似复杂，或者说它实际上很简单但看起来很复杂。
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions. We are providing low-level components to maximize composition capabilities.
+正如Sebastian Markbage 指出</ 0>，没有抽象优于错误的抽象。 我们提供低级组件以最大化组合功能。</p> 
 
-## Composition
+## 构成
 
-You may have noticed some inconsistency in the API regarding composing components. To provide some transparency, we have been using the following rules when designing the API:
+您可能已经注意到API中有关组合组件的一些不一致之处。 为了提供一些透明度，我们在设计API时一直使用以下规则：
 
-1. Using the `children` property is the idiomatic way to do composition with React.
-2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
-3. API consistency matters.
+1. 使用` children `属性是使用React进行合成的惯用方法。
+2. 有时我们只需要有限的子组成，例如当我们不需要允许子顺序排列时。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab `采用`icon</ 0>和<code>label`属性。
+3. API一致性很重要。
 
-## Rules
+## 规则
 
-Aside from the above composition trade-off, we enforce the following rules:
+除了上述构成权衡之外，我们还执行以下规则：
 
-### Spread
+### 传播
 
-Undocumented properties supplied are spread to the root element; for instance, the `className` property is applied to the root.
+提供的未记录的属性传播到根元素; 例如，` className `属性应用于根。
 
-Now, let's say you want to disable the ripples on the `MenuItem`. You can take advantage of the spread behavior:
+现在，假设您要禁用` MenuItem `上的涟漪。 您可以利用传播行为：
 
 ```jsx
 <MenuItem disableRipple />
 ```
 
-The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+` disableRipple `属性将以这种方式流动：[` MenuItem `](/api/menu-item/)> [` ListItem `](/api/list-item/)> [` ButtonBase `](/api/button-base/)。
 
-### Native properties
+### 原生属性
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides/#overriding-with-class-names).
+我们避免记录DOM支持的本机属性，如[` className `](/customization/overrides/#overriding-with-class-names)。
 
-### CSS Classes
+### CSS classes
 
-All the components accept a [`classes`](/customization/overrides/#overriding-with-classes) property to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+所有组件都接受[`classes`](/customization/overrides/#overriding-with-classes)属性来自定义样式。 类设计回答了两个约束： 使类结构尽可能简单，同时足以实现Material Design规范。
 
-- The class applied to the root element is always called `root`.
-- All the default styles are grouped in a single class.
-- The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` property.
-- The variants applied by an enum property **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` property.
-- A variant has **one level of specificity**. The `color` and `variant` properties are considered a variant. The lower the style specificity is, the simpler it is to override.
-- We increase the specificity for a variant modifier. We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
+- 应用于根元素的类始终称为` root `。
+- 所有默认样式都分组在一个类中。
+- 应用于非根元素的类以元素的名称为前缀，例如， Dialog组件中的` paperWidthXs `。
+- 由布尔属性应用的variants **不是** 前缀，例如 `rounded` 类由 `rounded` 属性应用
+- 由 enum 属性应用的variants ** 是 ** 前缀, 例如 ` colorPrimary ` 类 应用的 ` color = "primary" ` 属性。
+- Variant具有 ** 一个特定级别 **。 `color`和`variant`属性被视为variant。 样式特异性越低, 它就越容易覆盖。
+- 我们增加了variant修饰符的特异性。 我们已经 ** 必须这样做 ** 为伪类 (`:hover `, `:focus ` 等)。 它允许更多的控制，但代价是更多的样板。 希望它也更直观。
 
 ```js
 const styles = {
@@ -60,33 +60,33 @@ const styles = {
 };
 ```
 
-### Nested components
+### 嵌套的组件
 
-Nested components inside a component have:
+组件内的嵌套组件具有:
 
-- their own flattened properties when these are key to the top level component abstraction, for instance and `id` property for the `Input` component.
-- their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
-- their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` property when user might need to perform imperative actions, for instance, exposing a `inputRef` property to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element-)
+- 当它们是顶级组件抽象的关键时，它们自己的扁平属性， 例如，`input`组件的` id `属性。
+- 当用户可能需要调整内部render方法的子组件时，他们自己的` xxxProps `属性，例如，在内部使用`input`的组件上公开` inputProps `和` InputProps `属性。
+- 他们自己的` xxxComponent `属性，用于执行组件注入。
+- 当用户可能需要执行命令性操作时，他们自己的` xxxRef `属性， 例如，公开` inputRef `属性以访问`input`组件上的native `input`。 这有助于回答问题[“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element-)
 
-### Property naming
+### 属性名称
 
-The name of a boolean property should be chosen based on the **default value**. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`. This choice allows the shorthand notation:
+应根据 ** 默认值 ** 选择布尔属性的名称。 例如, 输入元素上的 ` disabled ` 特性 (如果提供) 默认为 ` true `。 此选项允许速记符号:
 
 ```diff
 -<Input enabled={false} />
 +<Input disabled />
 ```
 
-### Controlled components
+### 受控组件
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+大多数受控组件通过 ` value ` 和 ` onChange ` 属性进行控制, 但是, ` onChange `/` onClose `/` onOpen ` 组合用于显示相关状态。
 
-### boolean vs enum
+### 布尔值 vs 枚举
 
-There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*. For example, let's take a button that has different types. Each option has its pros and cons:
+为组件的变体设计API有两种选择：使用* boolean*; 或者使用* enum *。 例如, 让我们取一个具有不同类型的按钮。 每个选项都有其优点和缺点:
 
-- Option 1 *boolean*:
+- 选项 1 * 布尔值(boolean) *:
     
     ```tsx
     type Props = {
@@ -95,9 +95,9 @@ There are two options to design the API for the variations of a component: with 
     };
     ```
     
-    This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+    此 API 启用了简写表示法: `<Button>`、` <Button contained /> `、` <Button fab /> `。
 
-- Option 2 *enum*:
+- 选项2 *枚举(enum)*
     
     ```tsx
     type Props = {
@@ -105,13 +105,13 @@ There are two options to design the API for the variations of a component: with 
     }
     ```
     
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+    这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
     
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+    但是它可以防止使用无效组合， 限制暴露的属性数量， 并且可以在将来轻松支持新的价值观。
 
-The Material-UI components use a combination of the two approaches according to the following rules:
+Material-UI组件根据以下规则使用两种方法的组合：
 
-- A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possbility that additional degrees of freedom may be required in the future.
+- 当需要** 2 **自由度时，使用*布尔*。
+- 当需要**> 2 **自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
 
-Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+回到上一个按钮示例; 因为它需要3个自由度，所以我们使用* enum *。

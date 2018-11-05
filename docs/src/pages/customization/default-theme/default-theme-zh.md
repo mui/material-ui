@@ -1,10 +1,10 @@
-# Default Theme
+# 默认主题
 
-<p class="description">Here's what the theme object looks like with the default values.</p>
+<p class="description">以下是theme（主题）对象在默认值情况下的样子。</p>
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
 
-The theme normalizes implementation by providing default values for palette, dark and light types, typography, breakpoints, shadows, transitions, etc.
+主题通过为调色板、深色和浅色类型、排版、断点、阴影、过渡等提供默认值来实现其用途。
 
 Tip: you can play with the theme object in your console too. **We expose a global `theme` variable on all the pages**.
 

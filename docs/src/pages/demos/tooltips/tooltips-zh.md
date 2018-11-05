@@ -1,24 +1,24 @@
 ---
-title: 工具提示 React 组件
+title: 文字提示 React 组件
 components: Tooltip
 ---
-# 工具提示
+# 文字提示
 
-<p class="description">工具提示会显示有意义的文本，当用户鼠标悬浮, 焦点或者轻触一个元素时。</p>
+<p class="description">当用户鼠标悬浮，聚焦或者轻触一个元素时，文字提示会显示有意义的文本。</p>
 
 当它触发时， [Tooltips](https://material.io/design/components/tooltips.html) 会显示一个标识一个元素的文本标签，比如对该功能的描述。
 
-## 简单的工具提示
+## 简单的文字提示
 
 {{"demo": "pages/demos/tooltips/SimpleTooltips.js"}}
 
-## 定位的工具提示
+## 文字提示的定位
 
-`工具提示` 有 12 个 **位置** 选择。 它们没有方向箭头；相反， 他们依赖从源头发出的运动来改变方向。
+`文字提示` 有 12 个 **位置** 可供选择。 它们没有方向箭头；相反的，它们依靠从源头发出的运动来传达自己的方向。
 
 {{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
 
-## 受控的工具提示
+## 控制文字提示
 
 你可以使用 `open`， `onOpen` 和`onClose` 属性来控制工具提示的行为。
 
@@ -26,36 +26,42 @@ components: Tooltip
 
 ## 触发器
 
-你可以定义各种类型的事件让一个工具提示显示。
+你可以定义各种类型的事件让一个文字提示显示。
 
 {{"demo": "pages/demos/tooltips/TriggersTooltips.js"}}
 
 ## 过渡动画
 
-使用不同的转换。
+使用不同的过渡动画。
 
 {{"demo": "pages/demos/tooltips/TransitionsTooltips.js"}}
 
-## Showing and hiding
+## 显示和隐藏
 
-当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 可以通过` enterDelay `和` leaveDelay `属性来控制显示及隐藏文字提示的延迟，如上面的控制文字提示演示中所示。
 
-On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
+在移动设备上，当用户长按元素并在延迟1500ms后，将显示文字提示。 您可以使用`disableTouchListener`属性禁用此功能。
 
 {{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
 
-## Disabled Elements
+## 对于 disabled 的元素
 
-By default disabled elements like `Button` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accomodate disabled elements, add a simple wrapper element like a `span`.
+默认情况下，` Button `等distabled的元素不会触发用户交互，因此` Tooltip `不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如` span `。
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
-## Customized Tooltips
+## 自定义文字提示
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
-## Variable Width
+## 可变的容器宽度
 
-The `Tooltip` wraps long text by default to make it readable.
+`Tooltip` 为了保证较好的阅读星，会自动将较长的文字折行。
 
 {{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+
+## 交互式
+
+A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+
+{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}

@@ -6,11 +6,9 @@
 
 Material Design中的[响应式布局](https://material.io/design/layout/responsive-layout-grid.html)可适配任何可能的屏幕尺寸。 我们提供以下工具以实现响应式UI：
 
-- [Grid](/layout/grid/): Grid（栅格）组件能确保不同布局间的视觉一致性，同时在广泛的不同设计中保持灵活性。
-
-- [Hidden](/layout/hidden/)： Hidden（隐藏）组件可用于改变元素的可见状态。
-
-- [Breakpoints](/layout/breakpoints/)： 在广泛的不同上下文中，我们提供了底层的API来使用断点（breakpoints）。
+- [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+- [Hidden](/layout/hidden/): The hidden component can be used to change the visibility of the elements.
+- [Breakpoints](/layout/breakpoints/): We provide a low-level API for using the breakpoints in a wide variery of context.
 
 ## z-index
 

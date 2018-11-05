@@ -6,70 +6,76 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 <p class="description">选择控件允许用户选择选项。</p>
 
-[选择控件](https://material.io/design/components/selection-controls.html) 允许用户完成涉及选择选项, 或打开或关闭设置等选项的任务。 Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
+[选择控件](https://material.io/design/components/selection-controls.html) 允许用户完成涉及选择选项, 或打开或关闭设置等选项的任务。 选择控件一般用于让用户作出选择，或者在设置或者对话框上声明偏好。
 
-Three types of selection controls are covered in this section:
+这里将覆盖三种不同种类的选择控件：
 
-- **[Checkboxes](#checkboxes)** allow the selection of multiple options from a set.
-- **[Radio Buttons](#radio-buttons)** allow the selection of a single option from a set.
-- **[Switches](#switches)** allow a selection to be turned on or off.
+- **[复选框](#checkboxes)**允许从一组中选择多个选项。
+- **[单选按钮](#radio-buttons)** 允许从一组中选择一个选项。
+- **[开关控件](#switches)** 允许打开或关闭选项。
 
-## Checkboxes
+## 复选框
 
-[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
+[ 复选框 ](https://material.io/design/components/selection-controls.html#checkboxes) 允许用户从集合中选择一个或多个项。 复选框可用于打开或关闭选项。
 
-If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.
+如果列表中有多个选择项, 则可以使用复选框替代开关控件来节省空间。 如果只有单个选择项, 请避免使用复选框, 改用开关控件。
 
 {{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
 
-`Checkbox` can also be used with a label description thanks to the `FormControlLabel` component.
+通过 `FormControlLabel` 组件, `复选框` 也可与标签描述一起使用。
 
 {{"demo": "pages/demos/selection-controls/CheckboxLabels.js"}}
 
-## Checkboxes with FormGroup
+## 使用FromGroup控制多个Checkbox
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+`FormGroup`提供相对简单的 API 对选择控件进行分组。
 
 {{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
-## Radio Buttons
+## 单选按钮
 
-[Radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
+[ 单选按钮](https://material.io/design/components/selection-controls.html#radio-buttons)允许用户从集合中选择一个或多个项。 当用户需要查看所有可用选项时, 请使用单选按钮。 如果可用选项可以折叠，请考虑使用占用空间更少的下拉菜单。
 
-Radio buttons should have the most commonly used option selected by default.
+单选按钮在一般默认选中最常用的选项。
 
-`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
+`RadioGroup `适用于一组` Radio `，它提供相对简单的 API 并且能够使用键盘对该RadioGroup进行控制。
 
 {{"demo": "pages/demos/selection-controls/RadioButtonsGroup.js"}}
 
-### Standalone Radio Buttons
+### 独立的单选按钮
 
-`Radio` can also be used standalone, without the wrapper.
+`Radio` 也可以单独使用，无需额外包装。
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
-## Switches
+## 开关控件
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
+[Switch](https://material.io/design/components/selection-controls.html#switches) 可以切换某一项设置的开关状态，它非常适合在手机上更改设置。
 
-The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+开关控制的选项，以及它当前所处的状态都应该从相应的描述标签中明确说明。
 
 {{"demo": "pages/demos/selection-controls/Switches.js"}}
 
-### Switches with FormControlLabel
+### 多个 Switch 和 FormControlLabel 的使用
 
-`Switch` can also be used with a label description thanks to the `FormControlLabel` component.
+通过使用` FormControlLabel ` 组件, ` Switch ` 也可与标签描述一起使用。
 
 {{"demo": "pages/demos/selection-controls/SwitchLabels.js"}}
 
-### Switches with FormGroup
+### 多个 Switch 情况下使用 FormGroup
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. However, we encourage you to use a [Checkbox](#checkboxes) instead.
+`FormGroup `可以提供相对简单的 API 对选项组进行控制，但是我们更鼓励在这种情况下使用[CheckBox](#checkboxes)
 
 {{"demo": "pages/demos/selection-controls/SwitchesGroup.js"}}
 
-### Customized Switches
+### 自定义 Switch
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
+如果您有阅读[覆盖样式文档](/customization/overrides/)，但你还没有完全掌握方法，可以查看以下这个更改一个输入的主要颜色的示例，包括如何更改 Switch 的样式和自定义出一个 iOS 风格的 Switch
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
+
+## Label placement
+
+You can change the placement of the label:
+
+{{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
