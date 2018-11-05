@@ -92,31 +92,48 @@ export interface DateTextFieldProps
     | FilledInputProps['inputProps'];
   value: DateType;
   minDate?: DateType;
+  /** Error message, shown if date is less then minimal date */
   minDateMessage?: React.ReactNode;
   disablePast?: boolean;
   disableFuture?: boolean;
   maxDate?: DateType;
+  /** Error message, shown if date is more then maximal date */
   maxDateMessage?: React.ReactNode;
+  /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
   mask?: any;
   pipe?: any;
   onChange: (date: MaterialUiPickersDate) => void;
   onClear?: () => void;
+  /** On/off manual keyboard input mode */
   keyboard?: boolean;
+  /** Format string */
   format: string;
+  /** Message displaying in text field, if date is invalid (doesn't work in keyboard mode) */
   invalidLabel?: string;
+  /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
   emptyLabel?: string;
+  /** Do not open picker on enter keypress */
   disableOpenOnEnter?: boolean;
+  /** Dynamic label generation function [(date: Date, invalidLabel: string) => string] */
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
+  /** Icon displayed for open picker button in keyboard mode */
   keyboardIcon?: React.ReactNode;
+  /** Message, appearing when date cannot be parsed */
   invalidDateMessage?: React.ReactNode;
+  /** If true clear button will be displayed */
   clearable?: boolean;
+  /** Component that should replace the default Material-UI TextField */
   TextFieldComponent?:
     | React.ComponentType<StandardTextFieldProps>
     | React.ReactType<React.HTMLAttributes<any>>;
+  /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: object;
+  /** Specifies position of keyboard button adornment */
   adornmentPosition?: 'start' | 'end';
   onClick: (e: React.SyntheticEvent) => void;
+  /* Callback firing when date that applied in the keyboard is invalid **/
   onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
+  /* Callback firing on change input in keyboard mode **/
   onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
@@ -141,38 +158,20 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     utils: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
     InputProps: PropTypes.shape({}),
-    /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
     mask: PropTypes.any,
-    /** Error message, shown if date is less then minimal date */
     minDateMessage: PropTypes.node,
-    /** Error message, shown if date is more then maximal date */
     maxDateMessage: PropTypes.node,
-    /** Message displaying in text field, if date is invalid (doesn't work in keyboard mode) */
     invalidLabel: PropTypes.string,
-    /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
     emptyLabel: PropTypes.string,
-    /** Dynamic label generation function [(date: Date, invalidLabel: string) => string] */
     labelFunc: PropTypes.func,
-    /** On/off manual keyboard input mode */
     keyboard: PropTypes.bool,
-    /** Icon displayed for open picker button in keyboard mode */
     keyboardIcon: PropTypes.node,
-    /** enables/disable automatic opening of the picker when the user clicks enter */
     disableOpenOnEnter: PropTypes.bool,
-    /** Message, appearing when date cannot be parsed */
     invalidDateMessage: PropTypes.node,
-    /** Component that should replace the default Material-UI TextField */
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    /** Props to pass to keyboard input adornment */
     InputAdornmentProps: PropTypes.object,
-    /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
-    /**
-     * Callback firing when date that applied in the keyboard is invalid
-     *  [(error: string) => void]
-     */
     onError: PropTypes.func,
-    /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
     pipe: PropTypes.func,
   };

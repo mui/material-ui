@@ -27,15 +27,15 @@
     "prop-types": "^15.6.2",
     "raw-loader": "^0.5.1",
     "react": "^16.5.2",
-    "react-dev-utils": "^5.0.2",
     "react-docgen": "^2.21.0",
+    "react-docgen-typescript": "^1.12.0",
     "react-dom": "^16.5.2",
     "react-jss": "^8.6.1",
     "react-markdown": "^2.5.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.5",
-    "style-loader": "0.19.0"
+    "typescript": "^3.1.6"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"
@@ -43,7 +43,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "docs:generate": "react-docgen ../lib/src --out prop-types.json --resolver findAllComponentDefinitions --pretty",
+    "docs:generate": "react-docgen-typescript ../lib/src --out prop-types.json --resolver findAllComponentDefinitions --pretty",
     "backers:generate": "node scripts/generate-backers",
     "deploy": "npm run docs:generate && npm run backers:generate && npm run build && firebase deploy"
   },

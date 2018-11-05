@@ -12,13 +12,23 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   onDismiss?: () => void;
   onClear?: () => void;
   onSetToday?: () => void;
+  /** On open callback */
   onOpen?: () => void;
+  /** On close callback */
   onClose?: () => void;
   dialogContentClassName?: string;
+  /** "OK" label message */
   okLabel?: React.ReactNode;
+  /** "Cancel" label message */
   cancelLabel?: React.ReactNode;
+  /** "Clear" label message */
   clearLabel?: React.ReactNode;
+  /** "Today" label message */
   todayLabel?: React.ReactNode;
+  /**
+   * If true today button will be displayed
+   * <b>Note*</b> that clear button has higher priority
+   */
   showTodayButton?: boolean;
   container?: React.ReactNode;
   DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
@@ -29,24 +39,13 @@ export default class ModalWrapper extends React.PureComponent<
   ModalWrapperProps
 > {
   public static propTypes: any = {
-    /** "OK" label message */
     okLabel: PropTypes.node,
-    /** "Cancel" label message */
     cancelLabel: PropTypes.node,
-    /** "Clear" label message */
     clearLabel: PropTypes.node,
-    /** If true clear button will be displayed */
     clearable: PropTypes.bool,
-    /** "Today" label message */
     todayLabel: PropTypes.string,
-    /**
-     * If true today button will be displayed
-     * <b>Note*</b> that clear button has higher priority
-     */
     showTodayButton: PropTypes.bool,
-    /** On open callback [(e: Event) => void] */
     onOpen: PropTypes.func,
-    /** On close callback [(e: Event) => void] */
     format: PropTypes.string,
     /** Dialog props passed to material-ui Dialog */
     DialogProps: PropTypes.object,

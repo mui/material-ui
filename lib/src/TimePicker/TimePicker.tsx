@@ -15,7 +15,9 @@ import { MaterialUiPickersDate } from '../typings/date';
 import TimePickerView from './components/TimePickerView';
 
 export interface BaseTimePickerProps {
+  /** 12h/24h view for hour selection clock */
   ampm?: boolean;
+  /** Show the seconds view */
   seconds?: boolean;
 }
 
