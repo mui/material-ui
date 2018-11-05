@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount } from '../test-utils';
+import { getClasses, createMount, findOutermostIntrinsic } from '../test-utils';
 import Typography from '../Typography';
 import ListItemText from './ListItemText';
 
@@ -19,45 +19,41 @@ describe('<ListItemText />', () => {
 
   it('should render a div', () => {
     const wrapper = mount(<ListItemText />);
-    const listItemText = wrapper.childAt(0).childAt(0);
+    const listItemText = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItemText.name(), 'div');
     assert.strictEqual(listItemText.hasClass(classes.root), true);
   });
 
   it('should render with the user and root classes', () => {
     const wrapper = mount(<ListItemText className="woofListItemText" />);
-    const listItemText = wrapper.childAt(0).childAt(0);
+    const listItemText = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItemText.hasClass('woofListItemText'), true);
     assert.strictEqual(listItemText.hasClass(classes.root), true);
   });
 
   it('should render with inset class', () => {
     const wrapper = mount(<ListItemText inset />);
-    const listItemText = wrapper.childAt(0).childAt(0);
+    const listItemText = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItemText.hasClass(classes.inset), true);
     assert.strictEqual(listItemText.hasClass(classes.root), true);
   });
 
   it('should render with no children', () => {
     const wrapper = mount(<ListItemText />);
-    const listItemText = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(listItemText.children().length, 0);
+    const listItemText = findOutermostIntrinsic(wrapper);
+    // wrapper.find('div > *').exists()
+    // https://github.com/airbnb/enzyme/issues/1154
+    assert.strictEqual(listItemText.children().exists(), false);
   });
 
   describe('prop: primary', () => {
     it('should render primary text', () => {
       const wrapper = mount(<ListItemText primary="This is the primary text" />);
-      const listItemText = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(listItemText.children().length, 1);
-      assert.strictEqual(listItemText.childAt(0).type(), Typography);
-      assert.strictEqual(listItemText.childAt(0).props().variant, 'subheading');
-      assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .children()
-          .text(),
-        'This is the primary text',
-      );
+      const listItemText = findOutermostIntrinsic(wrapper);
+      const typography = listItemText.find(Typography);
+      assert.strictEqual(typography.exists(), true);
+      assert.strictEqual(typography.props().variant, 'subheading');
+      assert.strictEqual(wrapper.text(), 'This is the primary text');
     });
 
     it('should use the primary node', () => {
@@ -74,25 +70,19 @@ describe('<ListItemText />', () => {
 
     it('should read 0 as primary', () => {
       const wrapper = mount(<ListItemText primary={0} />);
-      const listItemText = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(listItemText.childAt(0).type(), Typography);
+      const listItemText = findOutermostIntrinsic(wrapper);
+      assert.strictEqual(listItemText.find(Typography).exists(), true);
     });
   });
 
   describe('prop: secondary', () => {
     it('should render secondary text', () => {
       const wrapper = mount(<ListItemText secondary="This is the secondary text" />);
-      const listItemText = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(listItemText.children().length, 1, 'should have 1 child');
-      assert.strictEqual(listItemText.childAt(0).type(), Typography);
-      assert.strictEqual(listItemText.childAt(0).props().color, 'textSecondary');
-      assert.strictEqual(
-        listItemText
-          .childAt(0)
-          .children()
-          .text(),
-        'This is the secondary text',
-      );
+      const listItemText = findOutermostIntrinsic(wrapper);
+      const typography = listItemText.find(Typography);
+      assert.strictEqual(typography.exists(), true);
+      assert.strictEqual(typography.props().color, 'textSecondary');
+      assert.strictEqual(listItemText.text(), 'This is the secondary text');
     });
 
     it('should use the secondary node', () => {
@@ -103,8 +93,8 @@ describe('<ListItemText />', () => {
 
     it('should read 0 as secondary', () => {
       const wrapper = mount(<ListItemText secondary={0} />);
-      const listItemText = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(listItemText.childAt(0).type(), Typography);
+      const listItemText = findOutermostIntrinsic(wrapper);
+      assert.strictEqual(listItemText.find(Typography).exists(), true);
     });
   });
 
@@ -113,27 +103,18 @@ describe('<ListItemText />', () => {
       const wrapper = mount(
         <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
       );
-      const listItemText = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(listItemText.children().length, 2);
-      assert.strictEqual(listItemText.childAt(0).type(), Typography);
-      assert.strictEqual(listItemText.childAt(0).props().variant, 'subheading');
-      assert.strictEqual(
-        listItemText
-          .childAt(0)
-          .children()
-          .text(),
-        'This is the primary text',
-      );
+      const listItemText = findOutermostIntrinsic(wrapper);
 
-      assert.strictEqual(listItemText.childAt(1).type(), Typography);
-      assert.strictEqual(listItemText.childAt(1).props().color, 'textSecondary');
-      assert.strictEqual(
-        listItemText
-          .childAt(1)
-          .children()
-          .text(),
-        'This is the secondary text',
-      );
+      const texts = listItemText.find(Typography);
+      assert.strictEqual(texts.length, 2);
+
+      const primaryText = texts.first();
+      assert.strictEqual(primaryText.props().variant, 'subheading');
+      assert.strictEqual(primaryText.text(), 'This is the primary text');
+
+      const secondaryText = texts.last();
+      assert.strictEqual(secondaryText.props().color, 'textSecondary');
+      assert.strictEqual(secondaryText.text(), 'This is the secondary text');
     });
 
     it('should render JSX children', () => {
@@ -142,37 +123,10 @@ describe('<ListItemText />', () => {
       const wrapper = mount(
         <ListItemText primary={primaryChild} secondary={secondaryChild} disableTypography />,
       );
-      const listItemText = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(listItemText.childAt(0).equals(primaryChild), true);
-      assert.strictEqual(listItemText.childAt(1).equals(secondaryChild), true);
+      const texts = wrapper.find('div > p');
+      assert.strictEqual(texts.first().equals(primaryChild), true);
+      assert.strictEqual(texts.last().equals(secondaryChild), true);
     });
-  });
-
-  it('should render primary and secondary text', () => {
-    const wrapper = mount(
-      <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
-    );
-    const listItemText = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(listItemText.children().length, 2);
-    assert.strictEqual(listItemText.childAt(0).type(), Typography);
-    assert.strictEqual(listItemText.childAt(0).props().variant, 'subheading');
-    assert.strictEqual(
-      listItemText
-        .childAt(0)
-        .children()
-        .text(),
-      'This is the primary text',
-    );
-
-    assert.strictEqual(listItemText.childAt(1).type(), Typography);
-    assert.strictEqual(listItemText.childAt(1).props().color, 'textSecondary');
-    assert.strictEqual(
-      listItemText
-        .childAt(1)
-        .children()
-        .text(),
-      'This is the secondary text',
-    );
   });
 
   it('should render primary and secondary text with customisable classes', () => {
@@ -187,18 +141,18 @@ describe('<ListItemText />', () => {
         classes={textClasses}
       />,
     );
-    const listItemText = wrapper.childAt(0).childAt(0);
+    const texts = wrapper.find(Typography);
 
     assert.strictEqual(
-      listItemText
-        .childAt(0)
+      texts
+        .first()
         .props()
         .className.includes('GeneralText'),
       true,
     );
     assert.strictEqual(
-      listItemText
-        .childAt(1)
+      texts
+        .last()
         .props()
         .className.includes('SecondaryText'),
       true,
@@ -209,9 +163,10 @@ describe('<ListItemText />', () => {
     const primary = <Typography>This is the primary text</Typography>;
     const secondary = <Typography>This is the secondary text</Typography>;
     const wrapper = mount(<ListItemText primary={primary} secondary={secondary} />);
-    const listItemText = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(listItemText.childAt(0).props().children, primary.props.children);
-    assert.strictEqual(listItemText.childAt(1).props().children, secondary.props.children);
+    const texts = findOutermostIntrinsic(wrapper).find(Typography);
+    assert.strictEqual(texts.length, 2);
+    assert.strictEqual(texts.first().props().children, primary.props.children);
+    assert.strictEqual(texts.last().props().children, secondary.props.children);
   });
 
   it('should pass primaryTypographyProps to primary Typography component', () => {
@@ -221,8 +176,8 @@ describe('<ListItemText />', () => {
         primaryTypographyProps={{ color: 'inherit' }}
       />,
     );
-    const listItemText = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(listItemText.childAt(0).props().color, 'inherit');
+    const listItemText = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(listItemText.find(Typography).props().color, 'inherit');
   });
 
   it('should pass secondaryTypographyProps to secondary Typography component', () => {
@@ -233,7 +188,13 @@ describe('<ListItemText />', () => {
         secondaryTypographyProps={{ color: 'inherit' }}
       />,
     );
-    const listItemText = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(listItemText.childAt(1).props().color, 'inherit');
+    const listItemText = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(
+      listItemText
+        .find(Typography)
+        .last()
+        .props().color,
+      'inherit',
+    );
   });
 });

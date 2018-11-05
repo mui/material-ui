@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount } from '../test-utils';
+import { getClasses, createMount, findOutermostIntrinsic } from '../test-utils';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';
@@ -8,7 +8,6 @@ import ListItemAvatar from '../ListItemAvatar';
 import Avatar from '../Avatar';
 import ButtonBase from '../ButtonBase';
 import ListContext from '../List/ListContext';
-import MergeListContext from './MergeListContext';
 
 describe('<ListItem />', () => {
   let mount;
@@ -25,19 +24,19 @@ describe('<ListItem />', () => {
 
   it('should render a div', () => {
     const wrapper = mount(<ListItem component="div" />);
-    const listItem = wrapper.find(MergeListContext).childAt(0);
-    assert.strictEqual(listItem.name(), 'div');
+    const listItem = wrapper.getDOMNode();
+    assert.strictEqual(listItem.nodeName, 'DIV');
   });
 
   it('should render a li', () => {
     const wrapper = mount(<ListItem />);
-    const listItem = wrapper.find(MergeListContext).childAt(0);
-    assert.strictEqual(listItem.name(), 'li');
+    const listItem = wrapper.getDOMNode();
+    assert.strictEqual(listItem.nodeName, 'LI');
   });
 
   it('should render with the user, root and gutters classes', () => {
     const wrapper = mount(<ListItem className="woofListItem" />);
-    const listItem = wrapper.find(MergeListContext).childAt(0);
+    const listItem = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItem.hasClass('woofListItem'), true);
     assert.strictEqual(listItem.hasClass(classes.root), true);
     assert.strictEqual(listItem.hasClass(classes.gutters), true);
@@ -45,13 +44,13 @@ describe('<ListItem />', () => {
 
   it('should render with the selected class', () => {
     const wrapper = mount(<ListItem selected />);
-    const listItem = wrapper.find(MergeListContext).childAt(0);
+    const listItem = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItem.hasClass(classes.selected), true);
   });
 
   it('should disable the gutters', () => {
     const wrapper = mount(<ListItem disableGutters />);
-    const listItem = wrapper.find(MergeListContext).childAt(0);
+    const listItem = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItem.hasClass(classes.root), true);
     assert.strictEqual(listItem.hasClass(classes.gutters), false);
   });
@@ -66,29 +65,26 @@ describe('<ListItem />', () => {
         </ListItem>
       </ListContext.Provider>,
     );
-    const listItem = wrapper.find(MergeListContext).childAt(0);
+    const listItem = findOutermostIntrinsic(wrapper);
     assert.strictEqual(listItem.hasClass(classes.dense), true);
   });
 
   describe('prop: button', () => {
     it('should render a div', () => {
       const wrapper = mount(<ListItem button />);
-      const listItem = wrapper.find(MergeListContext).childAt(0);
-      assert.strictEqual(listItem.props().component, 'div');
+      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
     });
   });
 
   describe('prop: component', () => {
     it('should change the component', () => {
       const wrapper = mount(<ListItem button component="a" />);
-      const listItem = wrapper.find(MergeListContext).childAt(0);
-      assert.strictEqual(listItem.props().component, 'a');
+      assert.strictEqual(wrapper.getDOMNode().nodeName, 'A');
     });
 
     it('should change the component', () => {
       const wrapper = mount(<ListItem button component="li" />);
-      const listItem = wrapper.find(MergeListContext).childAt(0);
-      assert.strictEqual(listItem.props().component, 'li');
+      assert.strictEqual(wrapper.getDOMNode().nodeName, 'LI');
     });
   });
 
@@ -118,10 +114,9 @@ describe('<ListItem />', () => {
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = wrapper.find(MergeListContext).childAt(0);
+      const listItem = findOutermostIntrinsic(wrapper);
       assert.strictEqual(listItem.hasClass(classes.container), true);
-      assert.strictEqual(listItem.type(), 'li');
-      assert.strictEqual(listItem.childAt(0).type(), 'div');
+      assert.strictEqual(wrapper.find('li > div').exists(), true);
     });
 
     it('should accept a component property', () => {
@@ -131,22 +126,20 @@ describe('<ListItem />', () => {
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = wrapper.find(MergeListContext).childAt(0);
+      const listItem = findOutermostIntrinsic(wrapper);
       assert.strictEqual(listItem.hasClass(classes.container), true);
-      assert.strictEqual(listItem.type(), 'li');
-      assert.strictEqual(listItem.childAt(0).type(), 'span');
+      assert.strictEqual(wrapper.find('li > span').exists(), true);
     });
 
-    it('should accet a button property', () => {
+    it('should accept a button property', () => {
       const wrapper = mount(
         <ListItem button>
           <ListItemText primary="primary" />
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = wrapper.find(MergeListContext).childAt(0);
+      const listItem = findOutermostIntrinsic(wrapper);
       assert.strictEqual(listItem.hasClass(classes.container), true);
-      assert.strictEqual(listItem.type(), 'li');
       assert.strictEqual(listItem.childAt(0).type(), ButtonBase);
     });
 
@@ -157,10 +150,9 @@ describe('<ListItem />', () => {
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = wrapper.find(MergeListContext).childAt(0);
+      const listItem = wrapper.find('div').first();
       assert.strictEqual(listItem.hasClass(classes.container), true);
-      assert.strictEqual(listItem.type(), 'div');
-      assert.strictEqual(listItem.childAt(0).type(), 'div');
+      assert.strictEqual(wrapper.find('div > div').exists(), true);
     });
 
     it('should allow customization of the wrapper', () => {
@@ -170,7 +162,7 @@ describe('<ListItem />', () => {
           <ListItemSecondaryAction />
         </ListItem>,
       );
-      const listItem = wrapper.find(MergeListContext).childAt(0);
+      const listItem = findOutermostIntrinsic(wrapper);
       assert.strictEqual(listItem.hasClass(classes.container), true);
       assert.strictEqual(listItem.hasClass('bubu'), true);
     });
@@ -179,7 +171,7 @@ describe('<ListItem />', () => {
   describe('prop: focusVisibleClassName', () => {
     it('should merge the class names', () => {
       const wrapper = mount(<ListItem button focusVisibleClassName="focusVisibleClassName" />);
-      const listItem = wrapper.find(MergeListContext).childAt(0);
+      const listItem = wrapper.find(ButtonBase);
       assert.strictEqual(listItem.props().component, 'div');
       assert.strictEqual(
         listItem.props().focusVisibleClassName,
