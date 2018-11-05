@@ -29,6 +29,7 @@
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd && yarn build:copy-files",
     "release": "yarn build && npm publish build",
+    "sync-package-json": "node ./scripts/sync-package-json.js",
     "postinstall": "yarn copy-material-core"
   },
   "peerDependencies": {
