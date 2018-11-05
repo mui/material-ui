@@ -84,7 +84,7 @@ describe('<ListItem />', () => {
 
     it('should change the component', () => {
       const wrapper = mount(<ListItem button component="li" />);
-      assert.strictEqual(wrapper.find(ButtonBase).props().component, 'li');
+      assert.strictEqual(wrapper.getDOMNode().nodeName, 'LI');
     });
   });
 
