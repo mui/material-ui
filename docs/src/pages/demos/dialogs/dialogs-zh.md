@@ -14,7 +14,10 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 基本对话框可以提供有关列表项的详细信息或操作。 例如, 它们可以显示头像、图标、解释或交互操作 (如添加帐户)。
 
-触摸操作机制： -选择一个选项，可立即提交选项并关闭菜单 -在对话框外触摸或按下“返回”，将取消操作并关闭对话框。
+Touch mechanics:
+
+- Choosing an option immediately commits the option and closes the menu
+- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
 {{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
@@ -22,14 +25,17 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 警报是一种紧急中断的行为，用以通知用户某一情况并需要确认,。
 
-大多数警报不需要标题。 他们通过以下其中一种方式的一两句话来得出一个决定: -问一个问题 (例如 "确认删除此对话？") -发表一个和动作按钮相关的声明
+Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+
+- Asking a question (e.g. "Delete this conversation?")
+- Making a statement related to the action buttons
 
 仅对高风险情况使用带标题栏警报,，例如连接可能丢失。 用户应该仅根据标题和按钮文本，就能理解要做出的选择。
 
 如果需要标题请:
 
-- 使用明确的问题或声明，并在内容区域对其做出解释, 例如 "擦除 USB 存储？"。
-- 避免道歉、模棱两可或问题, 例如 "警告！" 或 "你确定吗？“
+- Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
+- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
 {{"demo": "pages/demos/dialogs/AlertDialog.js"}}
 
@@ -67,7 +73,10 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 长内容滚动
 
-当对话框根据用户不同的设备和视图大小变得很长时，可以让他们进行滚动。 - `scroll=paper` 可以使对话框的内容在paper元素中滚动。 - `scroll=body`可以使对话框的内容在body元素内滚动。
+When dialogs become too long for the user’s viewport or device, they scroll.
+
+- `scroll=paper` the content of the dialog scrolls within the paper element.
+- `scroll=body` the content of the dialog scrolls within the body element.
 
 请尝试下面的例子来加深理解：
 

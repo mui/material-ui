@@ -3,43 +3,43 @@ components: Typography
 ---
 # Typography
 
-<p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
+<p class="description">使用Typography可以尽可能清晰、高效地呈现您的设计和内容。</p>
 
-Too many type sizes and styles at once can spoil any layout. A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
+Too many type sizes and styles at once can spoil any layout. [版式比例](https://material.io/design/typography/#type-scale)是一组有限的类型大小, 与布局网格一起工作很好。
 
-## General
+## 常规
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started.
+*Roboto*字体将**不** 由Material-UI 自动加载。 开发人员负责加载应用程序中使用的所有字体。 Roboto字体有几个简单的方法来开始。
 
-## Roboto Font CDN
+## Roboto 字体 CDN
 
-Shown below is a sample link markup used to load the Roboto font from a CDN.
+下面显示的是用于从 CDN 加载Roboto字体的示例链接标记。
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-## Install with npm
+## 通过 npm 安装
 
-You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing the below command in your terminal:
+通过在终端中键入以下命令, 可以 [安装](https://www.npmjs.com/package/typeface-roboto):
 
 `npm install typeface-roboto --save`
 
-Then, you can import it in your entry-point.
+然后, 您可以将其导入到您的入口点。
 
 ```js
 import 'typeface-roboto';
 ```
 
-For more info check out the [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) project.
+有关详细信息, 请查看 [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) 项目。
 
-⚠️ Be careful when using this approach. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400 and 500 font weights.
+⚠️使用这种方法时要小心。 确保您的包不急于加载所有字体变体 (100/300/400/500/700/900, 斜体/常规, SVG/woff)。 内联所有字体文件可以显着增加捆绑包的大小。 Material-UI默认排版配置仅依赖于300,400和500字体权重。
 
-## Component
+## 组件
 
 {{"demo": "pages/style/typography/Types.js"}}
 
-### Deprecated variants
+### 弃用的变体
 
 {{"demo": "pages/style/typography/DeprecatedTypes.js"}}
 
@@ -49,13 +49,14 @@ In some situations you might not be able to use the `Typography` component. Hope
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
 
-## Migration to typography v2
+## 迁移到typography v2
 
-The material design specification changed concerning variant names and styles. To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but we log deprecation warnings. We will remove the old typography variants in the next major release v4.0.0 (Q1 2019).
+Material design规范因变体名称和样式而发生变化。 为了实现平滑过渡，我们保留旧变体和重新设计的变体以实现向后兼容性，但我们记录了弃用警告。 我们将在下一个主要版本v4.0.0（2019年第一季度）中删除旧的排版变体。
 
-### Strategies
+### 策略
 
-To make an immediate switch to typography v2 you can simply pass `useNextVariants: true` when calling `createMuiTheme`:
+要立即切换到排版v2，您只需传递` useNextVariants：true </ code>
+调用<code>createMuiTheme `：
 
 ```js
 const theme = createMuiTheme({
@@ -65,9 +66,9 @@ const theme = createMuiTheme({
 });
 ```
 
-or set `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.
+或者设置 `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;`如果你不使用主题。
 
-This will use new variants instead of old variants according to the following mapping:
+根据以下映射，这将使用新variants而不是旧的variants：
 
 ```sh
 display4 => h1
@@ -81,4 +82,4 @@ body2 => body1
 body1 (default) => body2 (default)
 ```
 
-Please note that this will log deprecation warnings if you use one of the old variants. We recommend you replace those old variants with the recommended variants to be prepared for the next major release. See [Themes](/customization/themes/) for more information about how to use a global theme.
+请注意，如果您使用其中一个旧版本，则会记录弃用警告。 我们建议您使用建议的variants替换那些旧的variants 为下一个主要版本。 有关如何使用全局主题的更多信息，请参见[主题](/customization/themes/)。

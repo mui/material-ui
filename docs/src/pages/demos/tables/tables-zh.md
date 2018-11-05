@@ -8,7 +8,11 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 [数据表格](https://material.io/design/components/data-tables.html)以一种一目了然地方式显示信息，这便于用户发现某些模式和要义。 表格可以被内嵌在主要内容中，如卡片。
 
-数据表可以包括: - 对应的数据可视化展现 - 导航 - 用于查询和操作数据的工具
+Data tables can include:
+
+- A corresponding visualization
+- Navigation
+- Tools to query and manipulate data
 
 在包含工具时, 应将它们直接放在表格的上方或下方。
 
@@ -34,18 +38,29 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## 自定义表格分页行为
+## Spanning Table
 
-`TablePagination` 组件的 `Action` 属性允许实现自定义行为。
+A simple example with spanning rows & columns.
+
+{{"demo": "pages/demos/tables/SpanningTable.js"}}
+
+## Custom Table Pagination Action
+
+The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## 自定义表格
+## Customized Tables
 
-您可以通过覆盖 `TableCell` 组件的样式来自定义表格的外观.
+You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
-## 高级用例
+## Complementary projects
 
-对于更高级的情况，您也许可以利用: - [ dx-react-grid-material-ui ](https://devexpress.github.io/devextreme-reactive/react/grid/) 添加 Material-UI 的数据表格,具有分页，排序功能,过滤,分组和编辑功能([自定义许可](https://js.devexpress.com/licensing/))。 - [mui-datatables](https://github.com/gregnb/mui-datatables) Material-UI 的响应式数据表格,包括过滤,排序,搜索等功能. - [material-table](https://github.com/mbrn/material-table) DataTable 基于 Table 组件, 具有搜索,过滤,排序等附加功能。 - [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) 虚拟化 Material-UI 的表格.
+For more advanced use cases you might be able to take advantage of:
+
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
+- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.

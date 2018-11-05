@@ -4,11 +4,11 @@ components: Hidden
 ---
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
+<p class="description">使用我们的Hidden组件快速并响应式地切换元素的显隐。</p>
 
-All elements are visible unless **they are explicitly hidden**. To ease integration with our [responsive breakpoints](/layout/basics/), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/layout/grid/) component.
+除非**明确隐藏**，否则所有元素都可见。 为了简化与[响应式断点](/layout/basics/)的集成， 此组件可用于隐藏任何内容， 或者您可以将它与我们的[ ` 栅格 ` ](/layout/grid/)组件结合使用。
 
-## How it works
+## 工作方式
 
 Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`. Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior. The ranges are inclusive of the specified breakpoints.
 
@@ -48,7 +48,10 @@ Using any breakpoint `down` property, the given *children* will be hidden *at or
 
 Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
 
-The `only` property can be used in two ways: - list a single breakpoint - list an array of breakpoints
+The `only` property can be used in two ways:
+
+- list a single breakpoint
+- list an array of breakpoints
 
 {{"demo": "pages/layout/hidden/BreakpointOnly.js"}}
 
