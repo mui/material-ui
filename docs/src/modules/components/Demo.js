@@ -13,9 +13,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
+import JSLogo from '@material-ui/docs/svgIcons/JSLogo';
+import TSLogo from '@material-ui/docs/svgIcons/TSLogo';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import { getDependencies } from 'docs/src/modules/utils/helpers';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
+import getDemo from 'docs/src/modules/utils/demoConfig';
+import TSCodeBadge from 'docs/src/modules/components/TSCodeBadge';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -30,31 +33,6 @@ function addHiddenInput(form, name, value) {
   input.name = name;
   input.value = value;
   form.appendChild(input);
-}
-
-function getDemo(props) {
-  return {
-    title: 'Material demo',
-    description: props.githubLocation,
-    dependencies: getDependencies(props.raw),
-    files: {
-      'demo.js': props.raw,
-      'index.js': `
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Demo from './demo';
-
-ReactDOM.render(<Demo />, document.querySelector('#root'));
-      `,
-      'index.html': `
-<body>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <div id="root"></div>
-</body>
-      `,
-    },
-  };
 }
 
 const styles = theme => ({
@@ -106,6 +84,7 @@ const styles = theme => ({
     margin: 0,
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+      paddingTop: theme.spacing.unit * 6,
     },
     '& pre': {
       overflow: 'auto',
@@ -118,8 +97,17 @@ const styles = theme => ({
 class Demo extends React.Component {
   state = {
     anchorEl: null,
+    codeLanguage: 'JS',
     codeOpen: false,
   };
+
+  getTSTooltip() {
+    if (this.hasTSVersion()) {
+      const { outdatedTS } = this.props;
+      return `Source in TypeScript${outdatedTS ? ' (outdated)' : ''}`;
+    }
+    return 'No code in TypeScript available';
+  }
 
   handleClickMore = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -136,7 +124,8 @@ class Demo extends React.Component {
   };
 
   handleClickCodeSandbox = () => {
-    const demo = getDemo(this.props);
+    const { codeLanguage } = this.state;
+    const demo = getDemo(this.props, codeLanguage);
     const parameters = compress({
       files: {
         'package.json': {
@@ -144,17 +133,14 @@ class Demo extends React.Component {
             title: demo.title,
             description: demo.description,
             dependencies: demo.dependencies,
+            devDependencies: demo.devDependencies,
+            main: `index.${codeLanguage === 'TS' ? 'tsx' : 'js'}`,
           },
         },
-        'demo.js': {
-          content: demo.files['demo.js'],
-        },
-        'index.js': {
-          content: demo.files['index.js'],
-        },
-        'index.html': {
-          content: demo.files['index.html'],
-        },
+        ...Object.keys(demo.files).reduce((files, name) => {
+          files[name] = { content: demo.files[name] };
+          return files;
+        }, {}),
       },
     });
 
@@ -169,15 +155,21 @@ class Demo extends React.Component {
   };
 
   handleClickCopy = async () => {
+    const { raw: rawJS, rawTS } = this.props;
+    const { codeLanguage } = this.state;
+
+    const raw = codeLanguage === 'TS' ? rawTS : rawJS;
+
     try {
-      await copy(this.props.raw);
+      await copy(raw);
     } finally {
       this.handleCloseMore();
     }
   };
 
   handleClickStackBlitz = () => {
-    const demo = getDemo(this.props);
+    const { codeLanguage } = this.state;
+    const demo = getDemo(this.props, codeLanguage);
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -186,6 +178,7 @@ class Demo extends React.Component {
     addHiddenInput(form, 'project[title]', demo.title);
     addHiddenInput(form, 'project[description]', demo.description);
     addHiddenInput(form, 'project[dependencies]', JSON.stringify(demo.dependencies));
+    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demo.devDependencies));
     Object.keys(demo.files).forEach(key => {
       const value = demo.files[key];
       addHiddenInput(form, `project[files][${key}]`, value);
@@ -196,16 +189,76 @@ class Demo extends React.Component {
     this.handleCloseMore();
   };
 
+  handleCodeLanguageClick = event => {
+    const { name } = this.props;
+    const { value: codeLanguage } = event.currentTarget;
+    const { ga = () => {} } = window;
+
+    ga('send', 'event', 'Demo', 'codeLanguageClick', name, codeLanguage);
+    this.setState({
+      codeLanguage,
+      codeOpen: true,
+    });
+  };
+
+  hasTSVersion() {
+    return Boolean(this.props.rawTS);
+  }
+
   render() {
-    const { classes, demoOptions, githubLocation, index, js: DemoComponent, raw } = this.props;
-    const { anchorEl, codeOpen } = this.state;
+    const {
+      classes,
+      demoOptions,
+      enableCodeLanguageSwitch,
+      githubLocation: githubLocationJS,
+      index,
+      js: DemoComponent,
+      outdatedTS,
+      rawJS,
+      rawTS,
+    } = this.props;
+    const { anchorEl, codeLanguage, codeOpen } = this.state;
     const category = demoOptions.demo;
+
+    const hasTSVersion = this.hasTSVersion();
+    const tsTooltip = this.getTSTooltip();
+
+    const githubLocation =
+      codeLanguage === 'TS' ? githubLocationJS.replace(/\.jsx?$/, '.tsx') : githubLocationJS;
+    const raw = codeLanguage === 'TS' && hasTSVersion ? rawTS : rawJS;
 
     return (
       <div className={classes.root}>
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
+              {enableCodeLanguageSwitch && (
+                <>
+                  <Tooltip title="Display source in JavaScript" placement="top">
+                    <IconButton
+                      aria-label="Display source in JavaScript"
+                      onClick={this.handleCodeLanguageClick}
+                      value="JS"
+                    >
+                      <JSLogo />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title={tsTooltip} placement="top">
+                    <span>
+                      <IconButton
+                        aria-label={tsTooltip}
+                        disabled={!hasTSVersion}
+                        onClick={this.handleCodeLanguageClick}
+                        value="TS"
+                      >
+                        <TSCodeBadge outdatedTS={outdatedTS}>
+                          <TSLogo color={hasTSVersion ? 'official' : 'inherit'} />
+                        </TSCodeBadge>
+                      </IconButton>
+                    </span>
+                  </Tooltip>
+                </>
+              )}
               <Tooltip title="See the source on GitHub" placement="top">
                 <IconButton
                   data-ga-event-category={category}
@@ -275,7 +328,7 @@ class Demo extends React.Component {
                     data-ga-event-action="stackblitz"
                     onClick={this.handleClickStackBlitz}
                   >
-                    Edit in StackBlitz
+                    Edit in StackBlitz (JS only)
                   </MenuItem>
                 )}
               </Menu>
@@ -310,10 +363,14 @@ class Demo extends React.Component {
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
+  enableCodeLanguageSwitch: PropTypes.bool,
   githubLocation: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  raw: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  outdatedTS: PropTypes.bool,
+  rawJS: PropTypes.string.isRequired,
+  rawTS: PropTypes.string,
 };
 
 export default withStyles(styles)(Demo);

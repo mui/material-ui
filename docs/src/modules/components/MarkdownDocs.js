@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
@@ -34,7 +36,14 @@ const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 
 function MarkdownDocs(props) {
-  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
+  const {
+    classes,
+    demos,
+    disableAd,
+    enableCodeLanguageSwitch,
+    markdown,
+    markdownLocation: markdownLocationProp,
+  } = props;
   const headers = getHeaders(markdown);
 
   return (
@@ -72,14 +81,21 @@ function MarkdownDocs(props) {
 
                 const name = demoOptions.demo;
                 warning(demos && demos[name], `Missing demo: ${name}.`);
+
+                const { outdatedTS, raw: rawJS, rawTS } = demos[name];
+
                 return (
                   <Demo
                     key={content}
                     js={demos[name].js}
-                    raw={demos[name].raw}
+                    enableCodeLanguageSwitch={enableCodeLanguageSwitch}
+                    outdatedTS={outdatedTS}
+                    rawJS={rawJS}
+                    rawTS={rawTS}
                     index={index}
                     demoOptions={demoOptions}
                     githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                    name={name}
                   />
                 );
               }
@@ -99,6 +115,7 @@ MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
+  enableCodeLanguageSwitch: PropTypes.bool,
   markdown: PropTypes.string.isRequired,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
@@ -109,4 +126,9 @@ MarkdownDocs.defaultProps = {
   disableAd: false,
 };
 
-export default withStyles(styles)(MarkdownDocs);
+export default compose(
+  withStyles(styles),
+  connect(state => ({
+    codeLanguage: state.codeLanguage,
+  })),
+)(MarkdownDocs);

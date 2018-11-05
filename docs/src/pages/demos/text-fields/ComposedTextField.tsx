@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ComponentClass } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -9,18 +9,25 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    formControl: {
+      margin: theme.spacing.unit,
+    },
+  });
 
-class ComposedTextField extends React.Component {
-  labelRef = null;
+export interface Props extends WithStyles<typeof styles> {}
+
+interface State {
+  name: string;
+}
+
+class ComposedTextField extends React.Component<Props, State> {
+  labelRef: HTMLElement | null = null;
 
   state = {
     name: 'Composed TextField',
@@ -30,7 +37,7 @@ class ComposedTextField extends React.Component {
     this.forceUpdate();
   }
 
-  handleChange = event => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ name: event.target.value });
   };
 
@@ -61,7 +68,7 @@ class ComposedTextField extends React.Component {
         <FormControl className={classes.formControl} variant="outlined">
           <InputLabel
             ref={ref => {
-              this.labelRef = ReactDOM.findDOMNode(ref);
+              this.labelRef = ReactDOM.findDOMNode(ref!) as HTMLLabelElement | null;
             }}
             htmlFor="component-outlined"
           >
@@ -83,8 +90,8 @@ class ComposedTextField extends React.Component {
   }
 }
 
-ComposedTextField.propTypes = {
+(ComposedTextField as ComponentClass<Props>).propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(ComposedTextField);
