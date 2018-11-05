@@ -5,7 +5,7 @@
       "description": "Picker value",
       "name": "value",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": true,
@@ -16,7 +16,7 @@
       "description": "onChange callback",
       "name": "onChange",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": true,
@@ -27,7 +27,7 @@
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -38,7 +38,7 @@
       "description": "Control 12h or 24h view mode for clock",
       "name": "ampm",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -49,7 +49,7 @@
       "description": "Format string",
       "name": "format",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -60,7 +60,7 @@
       "description": "Dynamic formatter of text field label",
       "name": "labelFunc",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -71,7 +71,7 @@
       "description": "Do not open picker on enter keypress",
       "name": "disableOpenOnEnter",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -82,7 +82,7 @@
       "description": "Date that will be initially highlighted",
       "name": "initialFocusedDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -93,7 +93,7 @@
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -104,7 +104,7 @@
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -115,7 +115,7 @@
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -126,7 +126,7 @@
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -137,7 +137,7 @@
       "description": "To animate scrolling to current year (with scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -148,7 +148,7 @@
       "description": "Open datepicker from year selection",
       "name": "openToYearSelection",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -159,7 +159,7 @@
       "description": "Left arrow icon",
       "name": "leftArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -170,7 +170,7 @@
       "description": "Right arrow icon",
       "name": "rightArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -181,7 +181,7 @@
       "description": "Custom renderer for day",
       "name": "renderDay",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -194,7 +194,7 @@
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -205,7 +205,7 @@
       "description": "Disable specific date",
       "name": "shouldDisableDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -216,7 +216,7 @@
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -227,7 +227,7 @@
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -238,7 +238,7 @@
       "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
       "name": "mask",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -249,7 +249,7 @@
       "description": "On/off manual keyboard input mode",
       "name": "keyboard",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -260,7 +260,7 @@
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -271,7 +271,7 @@
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -282,7 +282,7 @@
       "description": "Icon displayed for open picker button in keyboard mode",
       "name": "keyboardIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -293,7 +293,7 @@
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -304,7 +304,7 @@
       "description": "If true clear button will be displayed",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -315,7 +315,7 @@
       "description": "Component that should replace the default Material-UI TextField",
       "name": "TextFieldComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -328,7 +328,7 @@
       "description": "Props to pass to keyboard input adornment",
       "name": "InputAdornmentProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -339,7 +339,7 @@
       "description": "Specifies position of keyboard button adornment",
       "name": "adornmentPosition",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -350,7 +350,7 @@
       "description": "On open callback",
       "name": "onOpen",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -361,7 +361,7 @@
       "description": "On close callback",
       "name": "onClose",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -372,7 +372,7 @@
       "description": "\"OK\" label message",
       "name": "okLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -383,7 +383,7 @@
       "description": "\"Cancel\" label message",
       "name": "cancelLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -394,7 +394,7 @@
       "description": "\"Clear\" label message",
       "name": "clearLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -405,7 +405,7 @@
       "description": "\"Today\" label message",
       "name": "todayLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -416,7 +416,7 @@
       "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -429,7 +429,7 @@
       "description": "Picker value",
       "name": "value",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": true,
@@ -440,7 +440,7 @@
       "description": "onChange callback",
       "name": "onChange",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": true,
@@ -451,7 +451,7 @@
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -462,7 +462,7 @@
       "description": "Control 12h or 24h view mode for clock",
       "name": "ampm",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -473,7 +473,7 @@
       "description": "Format string",
       "name": "format",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -484,7 +484,7 @@
       "description": "Dynamic formatter of text field label",
       "name": "labelFunc",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -495,7 +495,7 @@
       "description": "Do not open picker on enter keypress",
       "name": "disableOpenOnEnter",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -506,7 +506,7 @@
       "description": "Date that will be initially highlighted",
       "name": "initialFocusedDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -517,7 +517,7 @@
       "description": "Show the seconds view",
       "name": "seconds",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/TimePicker/TimePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePicker.tsx",
         "name": "BaseTimePickerProps"
       },
       "required": false,
@@ -528,7 +528,7 @@
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -539,7 +539,7 @@
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -550,7 +550,7 @@
       "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
       "name": "mask",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -561,7 +561,7 @@
       "description": "On/off manual keyboard input mode",
       "name": "keyboard",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -572,7 +572,7 @@
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -583,7 +583,7 @@
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -594,7 +594,7 @@
       "description": "Icon displayed for open picker button in keyboard mode",
       "name": "keyboardIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -605,7 +605,7 @@
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -616,7 +616,7 @@
       "description": "If true clear button will be displayed",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -627,7 +627,7 @@
       "description": "Component that should replace the default Material-UI TextField",
       "name": "TextFieldComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -640,7 +640,7 @@
       "description": "Props to pass to keyboard input adornment",
       "name": "InputAdornmentProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -651,7 +651,7 @@
       "description": "Specifies position of keyboard button adornment",
       "name": "adornmentPosition",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -662,7 +662,7 @@
       "description": "On open callback",
       "name": "onOpen",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -673,7 +673,7 @@
       "description": "On close callback",
       "name": "onClose",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -684,7 +684,7 @@
       "description": "\"OK\" label message",
       "name": "okLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -695,7 +695,7 @@
       "description": "\"Cancel\" label message",
       "name": "cancelLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -706,7 +706,7 @@
       "description": "\"Clear\" label message",
       "name": "clearLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -717,7 +717,7 @@
       "description": "\"Today\" label message",
       "name": "todayLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -728,7 +728,7 @@
       "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -741,7 +741,7 @@
       "description": "Picker value",
       "name": "value",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": true,
@@ -752,7 +752,7 @@
       "description": "onChange callback",
       "name": "onChange",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": true,
@@ -763,7 +763,7 @@
       "description": "Auto accept date on selection",
       "name": "autoOk",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -774,7 +774,7 @@
       "description": "Control 12h or 24h view mode for clock",
       "name": "ampm",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -785,7 +785,7 @@
       "description": "Format string",
       "name": "format",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -796,7 +796,7 @@
       "description": "Dynamic formatter of text field label",
       "name": "labelFunc",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -807,7 +807,7 @@
       "description": "Do not open picker on enter keypress",
       "name": "disableOpenOnEnter",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -818,7 +818,7 @@
       "description": "Date that will be initially highlighted",
       "name": "initialFocusedDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/BasePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
         "name": "BasePickerProps"
       },
       "required": false,
@@ -829,7 +829,7 @@
       "description": "Min selectable date",
       "name": "minDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -840,7 +840,7 @@
       "description": "Max selectable date",
       "name": "maxDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -851,7 +851,7 @@
       "description": "Disable past dates",
       "name": "disablePast",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -862,7 +862,7 @@
       "description": "Disable future dates",
       "name": "disableFuture",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -873,7 +873,7 @@
       "description": "To animate scrolling to current year (with scrollIntoView)",
       "name": "animateYearScrolling",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -884,7 +884,7 @@
       "description": "Left arrow icon",
       "name": "leftArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -895,7 +895,7 @@
       "description": "Right arrow icon",
       "name": "rightArrowIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -906,7 +906,7 @@
       "description": "Custom renderer for day",
       "name": "renderDay",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -919,7 +919,7 @@
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -930,7 +930,7 @@
       "description": "Disable specific date",
       "name": "shouldDisableDate",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
         "name": "BaseDatePickerProps"
       },
       "required": false,
@@ -941,7 +941,7 @@
       "description": "Error message, shown if date is less then minimal date",
       "name": "minDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -952,7 +952,7 @@
       "description": "Error message, shown if date is more then maximal date",
       "name": "maxDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -963,7 +963,7 @@
       "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
       "name": "mask",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -974,7 +974,7 @@
       "description": "On/off manual keyboard input mode",
       "name": "keyboard",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -985,7 +985,7 @@
       "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
       "name": "invalidLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -996,7 +996,7 @@
       "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
       "name": "emptyLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1007,7 +1007,7 @@
       "description": "Icon displayed for open picker button in keyboard mode",
       "name": "keyboardIcon",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1018,7 +1018,7 @@
       "description": "Message, appearing when date cannot be parsed",
       "name": "invalidDateMessage",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1029,7 +1029,7 @@
       "description": "If true clear button will be displayed",
       "name": "clearable",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1040,7 +1040,7 @@
       "description": "Component that should replace the default Material-UI TextField",
       "name": "TextFieldComponent",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1053,7 +1053,7 @@
       "description": "Props to pass to keyboard input adornment",
       "name": "InputAdornmentProps",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1064,7 +1064,7 @@
       "description": "Specifies position of keyboard button adornment",
       "name": "adornmentPosition",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
         "name": "DateTextFieldProps"
       },
       "required": false,
@@ -1075,7 +1075,7 @@
       "description": "On open callback",
       "name": "onOpen",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -1086,7 +1086,7 @@
       "description": "On close callback",
       "name": "onClose",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -1097,7 +1097,7 @@
       "description": "\"OK\" label message",
       "name": "okLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -1108,7 +1108,7 @@
       "description": "\"Cancel\" label message",
       "name": "cancelLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -1119,7 +1119,7 @@
       "description": "\"Clear\" label message",
       "name": "clearLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -1130,7 +1130,7 @@
       "description": "\"Today\" label message",
       "name": "todayLabel",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,
@@ -1141,7 +1141,7 @@
       "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
       "name": "showTodayButton",
       "parent": {
-        "fileName": "material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/wrappers/ModalWrapper.tsx",
         "name": "ModalWrapperProps"
       },
       "required": false,

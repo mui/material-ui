@@ -3,7 +3,7 @@ const path = require('path');
 const parser = require('react-docgen-typescript').withDefaultConfig({ skipPropsWithoutDoc: true })
 
 const doc = {}
-const srcPath = path.resolve('lib', 'src')
+const srcPath = path.resolve(__dirname, '..', '..', 'lib', 'src')
 const files = [
   'DatePicker/DatePickerModal.tsx',
   'TimePicker/TimePickerModal.tsx',
@@ -22,4 +22,4 @@ files.forEach(filePart => {
     }, {})
 })
 
-fs.writeFileSync(path.resolve('docs', 'src', 'prop-types.json'), JSON.stringify(doc))
+fs.writeFileSync(path.resolve(__dirname, '..', 'src', 'prop-types.json'), JSON.stringify(doc))
