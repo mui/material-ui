@@ -47,10 +47,8 @@ class GoogleAnalytics extends React.Component {
     bindEvents();
     // Wait for the title to be updated.
     setTimeout(() => {
-      window.ga('send', {
-        hitType: 'pageview',
-        page: window.location.pathname,
-      });
+      window.ga('set', { page: window.location.pathname });
+      window.ga('send', { hitType: 'pageview' });
     });
   }
 
