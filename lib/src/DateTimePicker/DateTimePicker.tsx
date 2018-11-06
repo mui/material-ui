@@ -1,4 +1,3 @@
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -13,7 +12,6 @@ import DateTimePickerTabs from './components/DateTimePickerTabs';
 import View from './components/DateTimePickerView';
 
 import { Omit } from '@material-ui/core';
-import createStyles from '@material-ui/core/styles/createStyles';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import DateTimePickerView, {
   DateTimePickerViewType,
@@ -35,7 +33,6 @@ export interface BaseDateTimePickerProps
 
 export interface DateTimePickerProps
   extends BaseDateTimePickerProps,
-    WithStyles<typeof styles>,
     WithUtilsProps {
   date: MaterialUiPickersDate;
   onChange: (
@@ -59,7 +56,6 @@ export class DateTimePicker extends React.Component<
     ampm: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
     autoSubmit: PropTypes.bool,
-    classes: PropTypes.object.isRequired,
     date: PropTypes.object.isRequired,
     initialFocusedDate: PropTypes.any,
     innerRef: PropTypes.any,
@@ -177,7 +173,6 @@ export class DateTimePicker extends React.Component<
       ampm,
       shouldDisableDate,
       animateYearScrolling,
-      classes,
       allowKeyboardControl,
       ViewContainerComponent,
     } = this.props;
@@ -208,10 +203,7 @@ export class DateTimePicker extends React.Component<
           />
         )}
 
-        <Container
-          className={classes.viewContainer}
-          {...ViewContainerComponentProps}
-        >
+        <Container {...ViewContainerComponentProps}>
           <View selected={openView === DateTimePickerView.YEAR}>
             <YearSelection
               date={date}
@@ -261,13 +253,4 @@ export class DateTimePicker extends React.Component<
   }
 }
 
-const styles = createStyles({
-  viewContainer: {
-    minHeight: 300,
-    position: 'relative',
-  },
-});
-
-export default withStyles(styles, {
-  name: 'MuiPickersDateTimePicker',
-})(withUtils()(DateTimePicker));
+export default withUtils()(DateTimePicker);
