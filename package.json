@@ -9,6 +9,11 @@
   },
   "scripts": {
     "start": "lerna run start --parallel",
+    "bump:patch": "lerna exec -- npm version patch",
+    "bump:minor": "lerna exec -- npm version minor",
+    "release": "lerna run release --scope material-ui-pickers && lerna run deploy --scope docs",
+    "release:patch": "npm run bump:patch && npm run release",
+    "release:minor": "npm run bump:minor && npm run release",
     "postinstall": "lerna link"
   },
   "repository": {
