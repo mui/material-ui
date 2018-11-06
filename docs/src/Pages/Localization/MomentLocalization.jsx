@@ -2,13 +2,10 @@ import React from 'react';
 import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from '@material-ui/core';
 
-// eslint-disable-next-line
-
 const MomentLocalization = () => (
   <div>
     <Typography variant="h2" gutterBottom>
-      {' '}
-      Localization moment{' '}
+      Localization moment
     </Typography>
     <Typography variant="body1" gutterBottom>
       Moment localization relying on the global moment object used.

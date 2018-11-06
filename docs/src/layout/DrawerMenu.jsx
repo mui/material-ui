@@ -21,8 +21,7 @@ const DrawerMenu = ({ classes }) => (
         href="https://github.com/dmtrKovalenko/material-ui-pickers/releases"
       >
         <Typography variant="caption" className={classes.headerLink}>
-          {' '}
-          {version}{' '}
+          {version}
         </Typography>
       </a>
     </Toolbar>
