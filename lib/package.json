@@ -140,7 +140,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "./tsconfig.json"
+        "tsConfig": "./src/__tests__/tsconfig.json"
       }
     }
   }
