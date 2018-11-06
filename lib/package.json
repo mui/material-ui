@@ -18,6 +18,7 @@
     "react-component",
     "material design"
   ],
+  "sideEffects": false,
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"

@@ -87,7 +87,7 @@ export class DatePicker extends React.PureComponent<
   };
 
   get date() {
-    return this.props.utils.startOfDay(this.props.date);
+    return this.props.date;
   }
 
   get minDate() {

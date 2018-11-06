@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+export default `import React, { PureComponent } from 'react';
 import Paper from '@material-ui/core/Paper';
 
 // Make sure that for using static pickers you use path imports
@@ -55,4 +55,4 @@ class StaticPickers extends PureComponent {
   }
 }
 
-export default StaticPickers;
+export default StaticPickers;`;
