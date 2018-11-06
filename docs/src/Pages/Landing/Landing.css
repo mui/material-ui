@@ -10,7 +10,7 @@ main {
   margin-top: 55px;
 }
 
-@media(min-width: 600px) {
+@media (min-width: 600px) {
   main {
     margin-top: 64px;
   }
@@ -19,7 +19,7 @@ main {
 .material-ui-logo {
   width: 100%;
   height: 40vw;
-  max-height: 230px
+  max-height: 230px;
 }
 
 .picker {
@@ -31,9 +31,8 @@ main {
   margin: 10px 40px 40px;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .picker {
     flex-basis: 100%;
   }
 }
-

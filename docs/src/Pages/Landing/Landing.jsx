@@ -8,7 +8,7 @@ import MuiLogo from '../../assets/mui-logo.svg';
 class Demo extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-  }
+  };
 
   scrollToContent = () => {
     const contentEl = document.getElementById('content');
@@ -16,7 +16,7 @@ class Demo extends Component {
       behavior: 'smooth',
       block: 'start',
     });
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -30,15 +30,31 @@ class Demo extends Component {
             src={MuiLogo}
           />
 
-          <Typography variant="h4" color="inherit" className="title text-light" gutterBottom>
+          <Typography
+            variant="h4"
+            color="inherit"
+            className="title text-light"
+            gutterBottom
+          >
             Material-UI Pickers
           </Typography>
-          <Typography variant="h5" align="center" color="inherit" gutterBottom className="text-light">
-            Accessible, customizable, delightful date & time pickers for @material-ui/core
+          <Typography
+            variant="h5"
+            align="center"
+            color="inherit"
+            gutterBottom
+            className="text-light"
+          >
+            Accessible, customizable, delightful date & time pickers for
+            @material-ui/core
           </Typography>
 
           <Link to="/installation">
-            <Button variant="contained" className={classes.getStarted} onClick={this.scrollToContent}>
+            <Button
+              variant="contained"
+              className={classes.getStarted}
+              onClick={this.scrollToContent}
+            >
               Get Started
             </Button>
           </Link>
@@ -50,9 +66,9 @@ class Demo extends Component {
           </Typography>
 
           <Typography align="center" gutterBottom>
-            Material-UI-pickers is a MIT licensed open source project.
-            We are intent on code quality and project maintain.
-            Entirely thanks to our awesome bakers.
+            Material-UI-pickers is a MIT licensed open source project. We are
+            intent on code quality and project maintain. Entirely thanks to our
+            awesome bakers.
           </Typography>
 
           <Typography
@@ -61,7 +77,12 @@ class Demo extends Component {
             variant="h5"
             gutterBottom
           >
-            Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a> ❤️
+            Our awesome sponsors via{' '}
+            <a className="link" href="https://www.patreon.com/user?u=9897423">
+              {' '}
+              patreon{' '}
+            </a>{' '}
+            ❤️
           </Typography>
           <PatreonSponsors />
         </div>

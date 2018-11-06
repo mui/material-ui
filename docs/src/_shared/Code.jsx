@@ -108,8 +108,9 @@ const styles = theme => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 5}px ${theme.spacing.unit}px ${theme
-        .spacing.unit * 3}px`,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 5}px ${
+        theme.spacing.unit
+      }px ${theme.spacing.unit * 3}px`,
       textAlign: 'left',
     },
     '& td:last-child': {
@@ -160,11 +161,9 @@ const styles = theme => ({
   },
 });
 
-const Code = (props) => {
-  const {
-    classes, language, text, withMargin,
-  } = props;
+const Code = ({ classes, language, text, withMargin }) => {
   const hightlightedCode = prism.highlight(text, prism.languages[language]);
+
   return (
     <div className={classnames(classes.root, { [classes.margin]: withMargin })}>
       <pre>

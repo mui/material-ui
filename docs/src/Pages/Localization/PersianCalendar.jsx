@@ -5,22 +5,32 @@ import { Typography } from '@material-ui/core';
 
 const PersianCalendar = () => (
   <div>
-    <Typography variant="h2" gutterBottom> Persian Calendar System </Typography>
+    <Typography variant="h2" gutterBottom>
+      {' '}
+      Persian Calendar System{' '}
+    </Typography>
 
     <Typography variant="body1" gutterBottom>
       <p key="persian-desc">
         Make sure you have read the
-        <a href="https://material-ui-next.com/guides/right-to-left/"> right to left section </a>
+        <a href="https://material-ui-next.com/guides/right-to-left/">
+          {' '}
+          right to left section{' '}
+        </a>
         of the material-ui documentation page before proceeding.
       </p>
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      You will also need to install the <code> material-ui-pickers-jalali-utils </code>
+      You will also need to install the{' '}
+      <code> material-ui-pickers-jalali-utils </code>
       package from npm.
     </Typography>
 
-    <Code language="markup" text="npm install material-ui-pickers-jalali-utils" />
+    <Code
+      language="markup"
+      text="npm install material-ui-pickers-jalali-utils"
+    />
 
     <SourcablePanel
       title="Samples"
@@ -28,13 +38,14 @@ const PersianCalendar = () => (
       description={
         <div>
           <Typography variant="body1" gutterBottom>
-            You can use the examples below. It is recommended that you change the font.
+            You can use the examples below. It is recommended that you change
+            the font.
           </Typography>
 
           <Typography variant="body1" gutterBottom>
-            Also, to make sure the example is fully functional,
-            don&apos;t forget to change the direction of the page to
-            Right to Left from the top right corner.
+            Also, to make sure the example is fully functional, don&apos;t
+            forget to change the direction of the page to Right to Left from the
+            top right corner.
           </Typography>
         </div>
       }
@@ -43,4 +54,3 @@ const PersianCalendar = () => (
 );
 
 export default PersianCalendar;
-
