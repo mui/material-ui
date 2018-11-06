@@ -5,7 +5,6 @@ import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
 import InlineWrapper, {
-  InlineWrapperProps,
   OuterInlineWrapperProps,
 } from '../wrappers/InlineWrapper';
 import Calendar from './components/Calendar';

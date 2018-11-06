@@ -11,9 +11,7 @@ describe('DateTimePickerView', () => {
 
   beforeEach(() => {
     component = shallow(
-      <DateTimePickerView classes={{} as any} selected={true}>
-        foo
-      </DateTimePickerView>
+      <DateTimePickerView selected={true}>foo</DateTimePickerView>
     );
   });
 
