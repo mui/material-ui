@@ -12,4 +12,3 @@ export default () => (
     <Route path="/demo/datetimepicker" component={DateTimePickerDemo} />
   </Switch>
 );
-

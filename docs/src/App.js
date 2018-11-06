@@ -14,7 +14,7 @@ import enLocale from 'date-fns/locale/en-US';
 
 import { setPrismTheme } from './utils/prism';
 import Layout from './layout/Layout';
-import Routes from './Routes/Routes';
+import Routes from './Pages/Routes';
 
 // /* eslint-disable import/first */
 // import moment from 'moment';
@@ -31,32 +31,33 @@ export default class App extends Component {
     direction: 'ltr',
     locale: 'en',
     localeObj: enLocale,
-  }
+  };
 
   componentWillMount = () => {
     setPrismTheme(this.state.type);
-  }
+  };
 
-  getMuiTheme = () => createMuiTheme({
-    direction: this.state.direction,
-    palette: {
-      type: this.state.type, // Switching the dark mode on is a single property value change.
-    },
-  })
+  getMuiTheme = () =>
+    createMuiTheme({
+      direction: this.state.direction,
+      palette: {
+        type: this.state.type, // Switching the dark mode on is a single property value change.
+      },
+    });
 
   toggleDirection = () => {
     const direction = this.state.direction === 'ltr' ? 'rtl' : 'ltr';
 
     document.body.dir = direction;
     this.setState({ direction });
-  }
+  };
 
   toggleThemeType = () => {
     const type = this.state.type === 'light' ? 'dark' : 'light';
 
     setPrismTheme(type);
     this.setState({ type });
-  }
+  };
 
   toggleFrench = () => {
     if (this.state.locale === 'en') {
@@ -64,16 +65,13 @@ export default class App extends Component {
     } else {
       this.setState({ locale: 'en', localeObj: enLocale });
     }
-  }
+  };
 
   render() {
     return (
       <JssProvider jss={jss}>
         <MuiThemeProvider theme={this.getMuiTheme()}>
-          <MuiPickersUtilsProvider
-            utils={Utils}
-            locale={this.state.localeObj}
-          >
+          <MuiPickersUtilsProvider utils={Utils} locale={this.state.localeObj}>
             <Layout
               toggleDirection={this.toggleDirection}
               toggleThemeType={this.toggleThemeType}

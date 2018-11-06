@@ -12,8 +12,8 @@ const DatePickerDemoDemo = () => (
       Date pickers use a dialog window to select a single date.
     </Typography>
     <Typography variant="body1">
-      The selected day is indicated by a filled circle.
-      The current day is indicated by a different color and type weight.
+      The selected day is indicated by a filled circle. The current day is
+      indicated by a different color and type weight.
     </Typography>
 
     <SourcablePanel
@@ -36,8 +36,10 @@ const DatePickerDemoDemo = () => (
       sourceFile="Demo/DatePicker/CustomElementsDatePicker.jsx"
       description={
         <Typography variant="body1" gutterBottom>
-          Customization performing by overriding render method for Day component.
-          <a href="https://codesandbox.io/s/mozqv539lp"> Here </a> example with moment-js
+          Customization performing by overriding render method for Day
+          component.
+          <a href="https://codesandbox.io/s/mozqv539lp"> Here </a> example with
+          moment-js
         </Typography>
       }
     />
@@ -47,4 +49,3 @@ const DatePickerDemoDemo = () => (
 );
 
 export default DatePickerDemoDemo;
-

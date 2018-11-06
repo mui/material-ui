@@ -26,8 +26,10 @@ export default () => (
     <Route path="/localization/persian" component={PersianCalendar} />
     <Route path="/guides/css-overrides" component={CssOverrides} />
     <Route path="/guides/formats" component={FormatCustomization} />
-    <Route path="/guides/controlling-programmatically" component={ControllingProgrammatically} />
+    <Route
+      path="/guides/controlling-programmatically"
+      component={ControllingProgrammatically}
+    />
     <Route path="/guides/static-pickers" component={StaticPickers} />
   </Switch>
 );
-
