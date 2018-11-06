@@ -1,0 +1,47 @@
+{
+  "name": "material-ui-pickers",
+  "version": "1.0.0",
+  "description": "Material-ui pickers root package",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "lerna run start --parallel",
+    "bump:patch": "lerna exec -- npm version patch",
+    "bump:minor": "lerna exec -- npm version minor",
+    "release": "lerna run release --scope material-ui-pickers && lerna run deploy --scope docs",
+    "release:patch": "npm run bump:patch && npm run release",
+    "release:minor": "npm run bump:minor && npm run release",
+    "postinstall": "lerna link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmtrKovalenko/material-ui-pickers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
+  },
+  "homepage": "https://github.com/dmtrKovalenko/material-ui-pickers#readme",
+  "devDependencies": {
+    "husky": "^1.1.2",
+    "lerna": "^3.4.3",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

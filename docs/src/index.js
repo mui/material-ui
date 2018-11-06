@@ -7,6 +7,8 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+
 const history = createBrowserHistory();
 history.listen(() => window.scrollTo(0, 0));
 
@@ -15,7 +17,7 @@ const doRender = () => {
     <Router history={history}>
       <App />
     </Router>,
-    document.getElementById('root'),
+    document.getElementById('root')
   );
 };
 

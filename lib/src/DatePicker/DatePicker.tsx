@@ -6,22 +6,38 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import Calendar, { RenderDay } from './components/Calendar';
+import Calendar, { DayComponent } from './components/Calendar';
 import YearSelection from './components/YearSelection';
 
 export interface BaseDatePickerProps {
+  /** Min selectable date */
   minDate?: DateType;
+  /** Max selectable date */
   maxDate?: DateType;
-  initialFocusedDate?: DateType;
+  /** Disable past dates */
   disablePast?: boolean;
+  /** Disable future dates */
   disableFuture?: boolean;
+  /** To animate scrolling to current year (with scrollIntoView) */
   animateYearScrolling?: boolean;
+  /** Open datepicker from year selection */
   openToYearSelection?: boolean;
+  /** Left arrow icon */
   leftArrowIcon?: React.ReactNode;
+  /** Right arrow icon */
   rightArrowIcon?: React.ReactNode;
-  renderDay?: RenderDay;
+  /** Custom renderer for day */
+  renderDay?: (
+    day: MaterialUiPickersDate,
+    selectedDate: MaterialUiPickersDate,
+    dayInCurrentMonth: boolean,
+    dayComponent: DayComponent
+  ) => JSX.Element;
+  /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl?: boolean;
+  /** Disable specific date */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+  initialFocusedDate?: DateType;
 }
 
 export interface DatePickerProps extends BaseDatePickerProps {
@@ -71,7 +87,7 @@ export class DatePicker extends React.PureComponent<
   };
 
   get date() {
-    return this.props.utils.startOfDay(this.props.date);
+    return this.props.date;
   }
 
   get minDate() {

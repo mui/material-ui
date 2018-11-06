@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import { withRouter } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Icon, withStyles, Tooltip } from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Icon,
+  withStyles,
+  Tooltip,
+} from '@material-ui/core';
 
 import Github from '_shared/GithubIcon';
 import DrawerMenu from './DrawerMenu';
@@ -18,7 +25,7 @@ class Layout extends Component {
     theme: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     children: PropTypes.element.isRequired,
-  }
+  };
 
   state = {
     drawerOpen: false,
@@ -34,11 +41,16 @@ class Layout extends Component {
       behavior: 'smooth',
       block: 'start',
     });
-  }
+  };
 
   render() {
     const {
-      classes, toggleThemeType, toggleDirection, toggleFrench, theme, location,
+      classes,
+      toggleThemeType,
+      toggleDirection,
+      toggleFrench,
+      theme,
+      location,
     } = this.props;
     const isLanding = location.pathname === '/';
 
@@ -46,7 +58,9 @@ class Layout extends Component {
       <React.Fragment>
         <AppBar
           position="fixed"
-          className={classnames(classes.appBar, { [classes.landingAppBar]: isLanding })}
+          className={classnames(classes.appBar, {
+            [classes.landingAppBar]: isLanding,
+          })}
         >
           <Toolbar>
             <IconButton
@@ -60,7 +74,10 @@ class Layout extends Component {
 
             <div className={classes.flex} />
 
-            <Tooltip title="Toggle English/French locale for pickers" enterDelay={300}>
+            <Tooltip
+              title="Toggle English/French locale for pickers"
+              enterDelay={300}
+            >
               <IconButton color="inherit" onClick={toggleFrench}>
                 <Icon>language</Icon>
               </IconButton>
@@ -106,6 +123,7 @@ class Layout extends Component {
             <DrawerMenu />
           </Drawer>
         </Hidden>
+
         <Hidden smDown implementation="css">
           <Drawer
             variant={isLanding ? 'temporary' : 'permanent'}
@@ -119,8 +137,16 @@ class Layout extends Component {
           </Drawer>
         </Hidden>
 
-        <main className={classnames(classes.main, { [classes.landingMain]: isLanding })}>
-          <div className={classnames(classes.content, { [classes.landingMain]: isLanding })}>
+        <main
+          className={classnames(classes.main, {
+            [classes.landingMain]: isLanding,
+          })}
+        >
+          <div
+            className={classnames(classes.content, {
+              [classes.landingMain]: isLanding,
+            })}
+          >
             {this.props.children}
           </div>
         </main>

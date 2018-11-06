@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import 'moment/locale/fr';
 import 'moment/locale/ru';
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import MomentUtils from '@date-io/moment';
 import { Icon, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 

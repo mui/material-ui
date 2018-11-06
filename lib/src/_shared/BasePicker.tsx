@@ -1,11 +1,11 @@
+import { IUtils } from '@date-io/core/IUtils';
 import * as React from 'react';
 import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
 export interface BasePickerRenderArgs {
-  utils: Utils<MaterialUiPickersDate>;
+  utils: IUtils<MaterialUiPickersDate>;
   date: MaterialUiPickersDate;
   isAccepted: boolean;
   handleClear: () => void;
@@ -23,15 +23,23 @@ export interface BasePickerRenderArgs {
 }
 
 export interface BasePickerProps {
+  /** Picker value */
   value: DateType;
+  /** onChange callback */
   onChange: (date: MaterialUiPickersDate) => void;
+  /** Auto accept date on selection */
   autoOk?: boolean;
+  /** Control 12h or 24h view mode for clock */
   ampm?: boolean;
+  /** Format string */
   format?: string;
+  /** Dynamic formatter of text field label */
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
+  /** Do not open picker on enter keypress */
   disableOpenOnEnter?: boolean;
-  forwardedRef?: any;
+  /** Date that will be initially highlighted */
   initialFocusedDate?: DateType;
+  forwardedRef?: any;
 }
 
 export interface OuterBasePickerProps extends BasePickerProps, WithUtilsProps {

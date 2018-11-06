@@ -87,45 +87,22 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
 };
 
 (DatePickerModal as any).propTypes = {
-  /** Datepicker value */
   value: DomainPropTypes.date,
-  /** Min selectable date */
   minDate: DomainPropTypes.date,
-  /** Max selectable date */
   maxDate: DomainPropTypes.date,
-  /** Initial focused date when calendar opens, if no value is provided */
   initialFocusedDate: DomainPropTypes.date,
-  /** Date format string for input */
   format: PropTypes.string,
-  /** Callback firing when date accepted [(date: Date) => void] */
   onChange: PropTypes.func.isRequired,
-  /** Auto accept date on selection */
   autoOk: PropTypes.bool,
-  /** Disable past dates */
   disablePast: PropTypes.bool,
-  /** Disable future dates */
   disableFuture: PropTypes.bool,
-  /** To animate scrolling to current year (with scrollIntoView) */
   animateYearScrolling: PropTypes.bool,
-  /** Open datepicker from year selection */
   openToYearSelection: PropTypes.bool,
-  /**
-   * Allow to specify dynamic label for text field
-   * [(date: Date, invalidLabel: string) => string]
-   */
   labelFunc: PropTypes.func,
-  /** Left arrow icon */
   leftArrowIcon: PropTypes.node,
-  /** Right arrow icon */
   rightArrowIcon: PropTypes.node,
-  /**
-   * Custom renderer for day
-   * [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]
-   */
   renderDay: PropTypes.func,
-  /** Disable specific date [(date: Date) => boolean] */
   shouldDisableDate: PropTypes.func,
-  /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };

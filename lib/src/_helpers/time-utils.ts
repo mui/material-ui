@@ -1,6 +1,6 @@
+import { IUtils } from '@date-io/core/IUtils';
 import { MeridiemMode } from '../DateTimePicker/components/DateTimePickerHeader';
 import { MaterialUiPickersDate } from '../typings/date';
-import { Utils } from '../typings/utils';
 
 const center = {
   x: 260 / 2,
@@ -61,7 +61,7 @@ export const convertToMeridiem = (
   time: MaterialUiPickersDate,
   meridiem: MeridiemMode,
   ampm: boolean,
-  utils: Utils<MaterialUiPickersDate>
+  utils: IUtils<MaterialUiPickersDate>
 ) => {
   if (ampm) {
     const currentMeridiem = utils.getHours(time) >= 12 ? 'pm' : 'am';
