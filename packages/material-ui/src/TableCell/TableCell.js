@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
+import { TableContext, Tablelvl2Context } from '../Table';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -67,7 +68,7 @@ export const styles = theme => ({
   },
 });
 
-function TableCell(props, context) {
+function TableCell(props) {
   const {
     children,
     classes,
@@ -81,43 +82,58 @@ function TableCell(props, context) {
     ...other
   } = props;
 
-  const { table, tablelvl2 } = context;
-  let Component;
-  if (component) {
-    Component = component;
-  } else {
-    Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
-  }
-
-  let scope = scopeProp;
-  if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
-    scope = 'col';
-  }
-  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.head]: variant ? variant === 'head' : tablelvl2 && tablelvl2.variant === 'head',
-      [classes.body]: variant ? variant === 'body' : tablelvl2 && tablelvl2.variant === 'body',
-      [classes.footer]: variant
-        ? variant === 'footer'
-        : tablelvl2 && tablelvl2.variant === 'footer',
-      [classes.numeric]: numeric,
-      [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
-    },
-    classNameProp,
-  );
-
-  let ariaSort = null;
-  if (sortDirection) {
-    ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
-  }
-
   return (
-    <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
-      {children}
-    </Component>
+    <TableContext.Consumer>
+      {table => {
+        return (
+          <Tablelvl2Context.Consumer>
+            {tablelvl2 => {
+              let Component;
+              if (component) {
+                Component = component;
+              } else {
+                Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
+              }
+
+              let scope = scopeProp;
+              if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
+                scope = 'col';
+              }
+              const padding = paddingProp || (table && table.padding ? table.padding : 'default');
+
+              const className = classNames(
+                classes.root,
+                {
+                  [classes.head]: variant
+                    ? variant === 'head'
+                    : tablelvl2 && tablelvl2.variant === 'head',
+                  [classes.body]: variant
+                    ? variant === 'body'
+                    : tablelvl2 && tablelvl2.variant === 'body',
+                  [classes.footer]: variant
+                    ? variant === 'footer'
+                    : tablelvl2 && tablelvl2.variant === 'footer',
+                  [classes.numeric]: numeric,
+                  [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
+                },
+                classNameProp,
+              );
+
+              let ariaSort = null;
+              if (sortDirection) {
+                ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
+              }
+
+              return (
+                <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
+                  {children}
+                </Component>
+              );
+            }}
+          </Tablelvl2Context.Consumer>
+        );
+      }}
+    </TableContext.Consumer>
   );
 }
 
@@ -169,11 +185,6 @@ TableCell.propTypes = {
 
 TableCell.defaultProps = {
   numeric: false,
-};
-
-TableCell.contextTypes = {
-  table: PropTypes.object,
-  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

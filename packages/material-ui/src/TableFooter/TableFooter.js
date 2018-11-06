@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { Tablelvl2Context } from '../Table';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -10,21 +11,15 @@ export const styles = {
   },
 };
 
-class TableFooter extends React.Component {
-  getChildContext() {
-    // eslint-disable-line class-methods-use-this
-    return {
-      tablelvl2: {
-        variant: 'footer',
-      },
-    };
-  }
+function TableFooter(props) {
+  const { classes, className, component: Component, ...other } = props;
+  const childContext = { variant: 'footer' };
 
-  render() {
-    const { classes, className, component: Component, ...other } = this.props;
-
-    return <Component className={classNames(classes.root, className)} {...other} />;
-  }
+  return (
+    <Tablelvl2Context.Provider value={childContext}>
+      <Component className={classNames(classes.root, className)} {...other} />
+    </Tablelvl2Context.Provider>
+  );
 }
 
 TableFooter.propTypes = {
@@ -50,10 +45,6 @@ TableFooter.propTypes = {
 
 TableFooter.defaultProps = {
   component: 'tfoot',
-};
-
-TableFooter.childContextTypes = {
-  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableFooter' })(TableFooter);
