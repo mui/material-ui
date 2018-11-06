@@ -96,14 +96,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   };
 
   public componentDidMount() {
-    const {
-      date,
-      minDate,
-      maxDate,
-      utils,
-      disableFuture,
-      disablePast,
-    } = this.props;
+    const { date, minDate, maxDate, utils, disablePast } = this.props;
 
     if (this.shouldDisableDate(date)) {
       this.onDateSelect(
@@ -275,7 +268,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
   public render() {
     const { currentMonth, slideDirection } = this.state;
-    const { classes, utils, allowKeyboardControl } = this.props;
+    const { classes, allowKeyboardControl } = this.props;
 
     return (
       <React.Fragment>
