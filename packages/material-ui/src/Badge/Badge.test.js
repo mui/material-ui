@@ -118,4 +118,63 @@ describe('<Badge />', () => {
     assert.strictEqual(wrapper.contains(testChildren), true);
     assert.strictEqual(wrapper.props().style.backgroundColor, style.backgroundColor);
   });
+
+  describe('prop: hide', () => {
+    it('should default to false', () => {
+      const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .at(1)
+          .hasClass(classes.shown),
+        true,
+      );
+    });
+
+    it('should render with shown class when set to false', () => {
+      const wrapper = shallow(
+        <Badge badgeContent={10} hide={false}>
+          {testChildren}
+        </Badge>,
+      );
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .at(1)
+          .hasClass(classes.shown),
+        true,
+      );
+
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .at(1)
+          .hasClass(classes.hidden),
+        false,
+      );
+    });
+
+    it('should render with shown class when set to true', () => {
+      const wrapper = shallow(
+        <Badge badgeContent={10} hide>
+          {testChildren}
+        </Badge>,
+      );
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .at(1)
+          .hasClass(classes.shown),
+        false,
+      );
+
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .at(1)
+          .hasClass(classes.hidden),
+        true,
+      );
+    });
+  });
 });

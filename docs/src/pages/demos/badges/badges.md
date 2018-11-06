@@ -16,3 +16,7 @@ Examples of badges containing text, using primary and secondary colors. The badg
 ## Customized Badge
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}
+
+## Badge Visibility
+
+{{"demo": "pages/demos/badges/BadgeVisibility.js"}}
