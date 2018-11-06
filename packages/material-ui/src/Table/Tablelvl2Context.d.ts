@@ -1,5 +1,9 @@
 import { Context } from 'react';
 
-declare const Tablelvl2Context: Context<'head' | 'body' | 'footer' | undefined>;
+interface Tablelvl2ContextProps {
+  variant: 'head' | 'body' | 'footer';
+}
+
+declare const Tablelvl2Context: Context<Tablelvl2ContextProps | undefined>;
 
 export default Tablelvl2Context;
