@@ -14,8 +14,8 @@ If you are not already using Material-UI in your project, you can add it with:
 
 ```sh
 // with npm
-npm install @material-ui/core
+npm install @material-ui/lab
 
 // with yarn
-yarn add @material-ui/core
+yarn add @material-ui/lab
 ```
