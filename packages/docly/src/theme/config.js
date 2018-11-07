@@ -119,10 +119,15 @@ const config = {
   },
   // theme component overrides
   overrides: {
+    // rounded corners for buttons
     MuiButton: {
-      root: {
-        // rounded corners for all buttons
-        borderRadius: '999px',
+      outlined: {
+        borderRadius: 99,
+      },
+      contained: {
+        // no shadow for default buttons
+        boxShadow: 'none',
+        borderRadius: 99,
       },
     },
   },
