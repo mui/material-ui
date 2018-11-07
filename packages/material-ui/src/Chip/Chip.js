@@ -153,6 +153,10 @@ export const styles = theme => {
       width: 19,
       height: 19,
     },
+    /* Styles applied to the `avatar` element if `variant="outlined"` */
+    avatarOutlined: {
+      marginLeft: -1,
+    },
     /* Styles applied to the `icon` element. */
     icon: {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
@@ -341,6 +345,7 @@ class Chip extends React.Component {
       avatar = React.cloneElement(avatarProp, {
         className: classNames(classes.avatar, avatarProp.props.className, {
           [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
+          [classes.avatarOutlined]: variant === 'outlined',
         }),
         childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
       });
