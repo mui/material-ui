@@ -10,7 +10,7 @@ title: Badge API
 <p class="description">The API documentation of the Badge React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Badge from '\packages\material-ui\src\Badge\Badge';
+import Badge from '@material-ui/core/Badge';
 ```
 
 
