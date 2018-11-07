@@ -113,6 +113,9 @@ export const styles = theme => {
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
+      '& $avatar': {
+        marginLeft: -1,
+      },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
@@ -152,10 +155,6 @@ export const styles = theme => {
     avatarChildren: {
       width: 19,
       height: 19,
-    },
-    /* Styles applied to the `avatar` element if `variant="outlined"` */
-    avatarOutlined: {
-      marginLeft: -1,
     },
     /* Styles applied to the `icon` element. */
     icon: {
@@ -345,7 +344,6 @@ class Chip extends React.Component {
       avatar = React.cloneElement(avatarProp, {
         className: classNames(classes.avatar, avatarProp.props.className, {
           [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
-          [classes.avatarOutlined]: variant === 'outlined',
         }),
         childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
       });

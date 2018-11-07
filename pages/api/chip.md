@@ -57,7 +57,6 @@ This property accepts the following keys:
 | <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`
 | <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`
 | <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
-| <span class="prop-name">avatarOutlined</span> | Styles applied to the `avatar` element if `variant="outlined"`
 | <span class="prop-name">icon</span> | Styles applied to the `icon` element.
 | <span class="prop-name">iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`
 | <span class="prop-name">iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`
