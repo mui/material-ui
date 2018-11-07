@@ -55,8 +55,8 @@ export const styles = theme => ({
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
   },
-  /* Styles applied to the badge `span` element if `hide={true}`. */
-  hidden: {
+  /* Styles applied to the badge `span` element if `invisible={true}`. */
+  invisible: {
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.leavingScreen,
@@ -73,7 +73,7 @@ function Badge(props) {
     className,
     color,
     component: ComponentProp,
-    hide,
+    invisible,
     ...other
   } = props;
 
@@ -82,8 +82,7 @@ function Badge(props) {
     {
       [classes[`color${capitalize(color)}`]]: color !== 'default',
     },
-    { [classes.shown]: !hide },
-    { [classes.hidden]: hide },
+    { [classes.invisible]: invisible },
   );
 
   return (
@@ -122,15 +121,15 @@ Badge.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * If `true`, the badge will be hidden.
+   * If `true`, the badge will be invisible.
    */
-  hide: PropTypes.bool,
+  invisible: PropTypes.bool,
 };
 
 Badge.defaultProps = {
   color: 'default',
   component: 'span',
-  hide: false,
+  invisible: false,
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

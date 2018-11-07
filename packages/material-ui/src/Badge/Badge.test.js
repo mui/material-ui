@@ -119,21 +119,21 @@ describe('<Badge />', () => {
     assert.strictEqual(wrapper.props().style.backgroundColor, style.backgroundColor);
   });
 
-  describe('prop: hide', () => {
+  describe('prop: invisible', () => {
     it('should default to false', () => {
       const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
       assert.strictEqual(
         wrapper
           .find('span')
           .at(1)
-          .hasClass(classes.hidden),
+          .hasClass(classes.invisible),
         false,
       );
     });
 
-    it('should render without the hidden class when set to false', () => {
+    it('should render without the invisible class when set to false', () => {
       const wrapper = shallow(
-        <Badge badgeContent={10} hide={false}>
+        <Badge badgeContent={10} invisible={false}>
           {testChildren}
         </Badge>,
       );
@@ -142,14 +142,14 @@ describe('<Badge />', () => {
         wrapper
           .find('span')
           .at(1)
-          .hasClass(classes.hidden),
+          .hasClass(classes.invisible),
         false,
       );
     });
 
-    it('should render with the hidden class when set to true', () => {
+    it('should render with the invisible class when set to true', () => {
       const wrapper = shallow(
-        <Badge badgeContent={10} hide>
+        <Badge badgeContent={10} invisible>
           {testChildren}
         </Badge>,
       );
@@ -158,7 +158,7 @@ describe('<Badge />', () => {
         wrapper
           .find('span')
           .at(1)
-          .hasClass(classes.hidden),
+          .hasClass(classes.invisible),
         true,
       );
     });

@@ -7,10 +7,10 @@ export interface BadgeProps
   children: React.ReactNode;
   color?: PropTypes.Color | 'error';
   component?: React.ReactType<BadgeProps>;
-  hide?: boolean;
+  invisible?: boolean;
 }
 
-export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorSecondary' | 'hidden';
+export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorSecondary' | 'invisible';
 
 declare const Badge: React.ComponentType<BadgeProps>;
 
