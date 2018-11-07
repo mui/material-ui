@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { Tablelvl2Context } from '../Table';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

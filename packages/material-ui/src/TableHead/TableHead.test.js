@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createMount, getClasses } from '../test-utils';
 import TableHead from './TableHead';
-import { Tablelvl2Context } from '../Table';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableHead />', () => {
   let mount;

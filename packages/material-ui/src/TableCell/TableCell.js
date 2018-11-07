@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
-import { TableContext, Tablelvl2Context } from '../Table';
+import TableContext from '../Table/TableContext';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
