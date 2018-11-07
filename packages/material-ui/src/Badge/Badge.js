@@ -77,13 +77,10 @@ function Badge(props) {
     ...other
   } = props;
 
-  const badgeClassName = classNames(
-    classes.badge,
-    {
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-    },
-    { [classes.invisible]: invisible },
-  );
+  const badgeClassName = classNames(classes.badge, {
+    [classes[`color${capitalize(color)}`]]: color !== 'default',
+    [classes.invisible]: invisible,
+  });
 
   return (
     <ComponentProp className={classNames(classes.root, className)} {...other}>
