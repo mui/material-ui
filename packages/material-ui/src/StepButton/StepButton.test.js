@@ -32,7 +32,7 @@ describe('<StepButton />', () => {
 
   it('should render an ButtonBase with a StepLabel', () => {
     const wrapper = shallow(<StepButton {...defaultProps}>Step One</StepButton>);
-    assert.ok(wrapper.is(ButtonBase), 'should be an ButtonBase');
+    assert.strictEqual(wrapper.type(), ButtonBase);
     const stepLabel = wrapper.find(StepLabel);
     assert.strictEqual(stepLabel.length, 1);
     assert.strictEqual(stepLabel.props().children, 'Step One');

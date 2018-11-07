@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/drawers/drawers.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./drawers${props.lang}.md`)}
       demos={{
         'pages/demos/drawers/TemporaryDrawer.js': {
           js: require('docs/src/pages/demos/drawers/TemporaryDrawer').default,
@@ -22,18 +23,39 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer'), 'utf8')
 `,
         },
-        'pages/demos/drawers/PermanentDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/PermanentDrawer').default,
+        'pages/demos/drawers/PermanentDrawerLeft.js': {
+          js: require('docs/src/pages/demos/drawers/PermanentDrawerLeft').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PermanentDrawer'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PermanentDrawerLeft'), 'utf8')
 `,
         },
-        'pages/demos/drawers/PersistentDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/PersistentDrawer').default,
+        'pages/demos/drawers/PermanentDrawerRight.js': {
+          js: require('docs/src/pages/demos/drawers/PermanentDrawerRight').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PersistentDrawer'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PermanentDrawerRight'), 'utf8')
+`,
+        },
+        'pages/demos/drawers/ClippedDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/ClippedDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ClippedDrawer'), 'utf8')
+`,
+        },
+        'pages/demos/drawers/PersistentDrawerLeft.js': {
+          js: require('docs/src/pages/demos/drawers/PersistentDrawerLeft').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PersistentDrawerLeft'), 'utf8')
+`,
+        },
+        'pages/demos/drawers/PersistentDrawerRight.js': {
+          js: require('docs/src/pages/demos/drawers/PersistentDrawerRight').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PersistentDrawerRight'), 'utf8')
 `,
         },
         'pages/demos/drawers/MiniDrawer.js': {
@@ -48,13 +70,6 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drawers/ResponsiveDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/ClippedDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/ClippedDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ClippedDrawer'), 'utf8')
 `,
         },
       }}

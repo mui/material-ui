@@ -10,6 +10,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 [Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
 
 Data tables can include:
+
 - A corresponding visualization
 - Navigation
 - Tools to query and manipulate data
@@ -38,6 +39,12 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
+## Spanning Table
+
+A simple example with spanning rows & columns.
+
+{{"demo": "pages/demos/tables/SpanningTable.js"}}
+
 ## Custom Table Pagination Action
 
 The `Action` property of the `TablePagination` component allows the implementation of
@@ -50,3 +57,12 @@ custom actions.
 You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
+- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.

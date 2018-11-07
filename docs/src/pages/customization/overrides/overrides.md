@@ -2,11 +2,11 @@
 
 <p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
 
-1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
-1. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
-1. [Material Design variations](#4-material-design-variations) such as with the button component
-1. [Global theme variation](#5-global-theme-variation)
+1. [Specific variation for a one-time situation](#1--specific-variation-for-a-one-time-situation)
+1. [Dynamic variation for a one-time situation](#2--dynamic-variation-for-a-one-time-situation)
+1. [Specific variation of a component](#3--specific-variation-of-a-component) re-used in different contexts
+1. [Material Design variations](#4--material-design-variations) such as with the button component
+1. [Global theme variation](#5--global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 
@@ -178,7 +178,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 ## 4. Material Design variations
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
+The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (formerly "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (formerly "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
 

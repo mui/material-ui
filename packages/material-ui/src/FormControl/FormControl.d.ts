@@ -11,6 +11,7 @@ export interface FormControlProps
   onBlur?: React.EventHandler<any>;
   onFocus?: React.EventHandler<any>;
   required?: boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';

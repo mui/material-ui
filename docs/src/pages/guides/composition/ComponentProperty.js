@@ -73,9 +73,7 @@ function ComponentProperty(props) {
         <div className={classes.root}>
           <Route>
             {({ location }) => (
-              <Typography gutterBottom type="title">
-                Current route: {location.pathname}
-              </Typography>
+              <Typography gutterBottom>Current route: {location.pathname}</Typography>
             )}
           </Route>
           <div className={classes.lists}>

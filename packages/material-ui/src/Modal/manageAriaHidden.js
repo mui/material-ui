@@ -4,19 +4,17 @@ function isHidable(node) {
   return node.nodeType === 1 && BLACKLIST.indexOf(node.tagName.toLowerCase()) === -1;
 }
 
-function siblings(container, mount, callback) {
-  mount = [].concat(mount); // eslint-disable-line no-param-reassign
+function siblings(container, mount, currentNode, callback) {
+  const blacklist = [mount, currentNode]; // eslint-disable-line no-param-reassign
+
   [].forEach.call(container.children, node => {
-    if (mount.indexOf(node) === -1 && isHidable(node)) {
+    if (blacklist.indexOf(node) === -1 && isHidable(node)) {
       callback(node);
     }
   });
 }
 
-export function ariaHidden(show, node) {
-  if (!node) {
-    return;
-  }
+export function ariaHidden(node, show) {
   if (show) {
     node.setAttribute('aria-hidden', 'true');
   } else {
@@ -24,10 +22,6 @@ export function ariaHidden(show, node) {
   }
 }
 
-export function hideSiblings(container, mountNode) {
-  siblings(container, mountNode, node => ariaHidden(true, node));
-}
-
-export function showSiblings(container, mountNode) {
-  siblings(container, mountNode, node => ariaHidden(false, node));
+export function ariaHiddenSiblings(container, mountNode, currentNode, show) {
+  siblings(container, mountNode, currentNode, node => ariaHidden(node, show));
 }

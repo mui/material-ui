@@ -1,3 +1,14 @@
+const bpmr = require('babel-plugin-module-resolver');
+
+function resolvePath(sourcePath, currentFile, opts) {
+  if (sourcePath === 'markdown') {
+    const base = currentFile.substring(__dirname.length).slice(0, -3);
+    return `${__dirname}/docs/src/${base}/`;
+  }
+
+  return bpmr.resolvePath(sourcePath, currentFile, opts);
+}
+
 let defaultPresets;
 
 // We release a ES version of Material-UI.
@@ -73,6 +84,8 @@ module.exports = {
               modules: './modules',
               pages: './pages',
             },
+            transformFunctions: ['require', 'require.context'],
+            resolvePath,
           },
         ],
       ],
@@ -92,6 +105,8 @@ module.exports = {
               modules: './modules',
               pages: './pages',
             },
+            transformFunctions: ['require', 'require.context'],
+            resolvePath,
           },
         ],
         'transform-react-constant-elements',

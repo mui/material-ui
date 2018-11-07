@@ -22,7 +22,7 @@ class NoSsr extends React.Component {
     this.mounted = true;
 
     if (this.props.defer) {
-      // Wondering why we use two raf? Check this video out:
+      // Wondering why we use two RAFs? Check this video out:
       // https://www.youtube.com/watch?v=cCOL7MC4Pl0
       requestAnimationFrame(() => {
         // The browser should be about to render the DOM that React commited at this point.

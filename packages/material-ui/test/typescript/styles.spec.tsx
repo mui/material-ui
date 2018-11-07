@@ -84,7 +84,7 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    display4: {
+    h1: {
       fontSize: 24,
     },
     fontSize: 18,
@@ -246,12 +246,12 @@ withStyles(theme =>
   // https://github.com/mui-org/material-ui/issues/12277
 
   // typescript thinks `content` is the CSS property not a classname
-  // $ExpectError
   const ambiguousStyles = createStyles({
     content: {
       minHeight: '100vh',
     },
     '@media (min-width: 960px)': {
+      // $ExpectError
       content: {
         display: 'flex',
       },

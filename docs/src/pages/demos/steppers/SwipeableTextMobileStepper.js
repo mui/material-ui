@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
   {
@@ -89,20 +92,20 @@ class SwipeableTextMobileStepper extends React.Component {
         <Paper square elevation={0} className={classes.header}>
           <Typography>{tutorialSteps[activeStep].label}</Typography>
         </Paper>
-        <SwipeableViews
+        <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
           onChangeIndex={this.handleStepChange}
           enableMouseEvents
         >
           {tutorialSteps.map((step, index) => (
-            <div>
+            <div key={step.label}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <img key={step.label} className={classes.img} src={step.imgPath} alt={step.label} />
+                <img className={classes.img} src={step.imgPath} alt={step.label} />
               ) : null}
             </div>
           ))}
-        </SwipeableViews>
+        </AutoPlaySwipeableViews>
         <MobileStepper
           steps={maxSteps}
           position="static"

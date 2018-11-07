@@ -18,6 +18,7 @@ export const styles = theme => ({
   /* Styles applied to the container element when the transition has entered. */
   entered: {
     height: 'auto',
+    overflow: 'visible',
   },
   /* Styles applied to the outer wrapper element. */
   wrapper: {

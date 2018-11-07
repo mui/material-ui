@@ -8,6 +8,7 @@ components: Grow, Popover
 <p class="description">A Popover can be used to display some content on top of another.</p>
 
 Things to know when using the `Popover` component:
+
 - The component is built on top of the [`Modal`](/utils/modal/) component.
 - The scroll and click away are blocked unlike with the [`Popper`](/utils/popper/) component.
 
@@ -37,3 +38,14 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single popover.
 
 {{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover
+state for you in most cases.
+
+{{"demo": "pages/utils/popover/PopoverPopupState.js"}}

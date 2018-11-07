@@ -7,12 +7,6 @@ const styles = {
   root: {
     flexGrow: 1,
   },
-  colorPrimary: {
-    backgroundColor: '#B2DFDB',
-  },
-  barColorPrimary: {
-    backgroundColor: '#00695C',
-  },
 };
 
 function LinearIndeterminate(props) {
@@ -22,10 +16,6 @@ function LinearIndeterminate(props) {
       <LinearProgress />
       <br />
       <LinearProgress color="secondary" />
-      <br />
-      <LinearProgress
-        classes={{ colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary }}
-      />
     </div>
   );
 }

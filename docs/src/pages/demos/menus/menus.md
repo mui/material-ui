@@ -63,3 +63,20 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single menu.
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
+
+## Limitations
+
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout.
+You can use the `Typography` component to workaround this issue:
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+
+{{"demo": "pages/demos/menus/MenuPopupState.js"}}

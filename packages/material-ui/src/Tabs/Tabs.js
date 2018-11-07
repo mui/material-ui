@@ -57,16 +57,20 @@ export const styles = theme => ({
 });
 
 class Tabs extends React.Component {
-  valueToIndex = new Map();
+  constructor() {
+    super();
 
-  handleResize = debounce(() => {
-    this.updateIndicatorState(this.props);
-    this.updateScrollButtonState();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.updateIndicatorState(this.props);
+        this.updateScrollButtonState();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
 
-  handleTabsScroll = debounce(() => {
-    this.updateScrollButtonState();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+      this.handleTabsScroll = debounce(() => {
+        this.updateScrollButtonState();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   state = {
     indicatorStyle: {},

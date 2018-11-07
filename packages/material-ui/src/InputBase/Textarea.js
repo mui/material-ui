@@ -43,10 +43,6 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  handleResize = debounce(() => {
-    this.syncHeightWithShadow();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
   constructor(props) {
     super();
     this.isControlled = props.value != null;
@@ -56,6 +52,12 @@ class Textarea extends React.Component {
     this.state = {
       height: Number(props.rows) * ROWS_HEIGHT,
     };
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.syncHeightWithShadow();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
   }
 
   componentDidMount() {
@@ -147,6 +149,7 @@ class Textarea extends React.Component {
       rowsMax,
       textareaRef,
       value,
+      style,
       ...other
     } = this.props;
 
@@ -179,7 +182,7 @@ class Textarea extends React.Component {
           value={value}
           onChange={this.handleChange}
           ref={this.handleRefInput}
-          style={{ height: this.state.height }}
+          style={{ height: this.state.height, ...style }}
           {...other}
         />
       </div>
@@ -231,4 +234,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles)(Textarea);
+export default withStyles(styles, { name: 'MuiPrivateTextarea' })(Textarea);

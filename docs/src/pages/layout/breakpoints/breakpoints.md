@@ -6,6 +6,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 Each breakpoint matches with a *fixed* screen width:
+
 - **xs**, extra-small: 0px or larger
 - **sm**, small: 600px or larger
 - **md**, medium: 960px or larger
@@ -35,11 +36,43 @@ Sometimes, using CSS isn't enough.
 You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
 We provide a `withWidth()` higher-order component for this use case.
 
+```js
+import withWidth from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  return <div>{`Current width: ${props.width}`}</div>;
+}
+
+export default withWidth()(MyComponent);
+```
+
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
 ⚠️ `withWidth()` server-side rendering support is limited.
+
+### Render Props
+
+In some cases, you could have property name collisions using higher-order components.
+To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
+
+```js
+import Typography from '@material-ui/core/Typography';
+import toRenderProps from 'recompose/toRenderProps';
+
+const WithWidth = toRenderProps(withWidth());
+
+export default function MyComponent() {
+  return (
+    <WithWidth>
+      {({ width }) => <div>{`Current width: ${width}`}</div>}
+    </WithWidth>
+  );
+}
+```
+
+{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
 
 ## API
 
@@ -55,6 +88,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 ```
 
 Some implementation details that might be interesting to being aware of:
+
 - It forwards *non React static* properties so this HOC is more "transparent".
 For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 

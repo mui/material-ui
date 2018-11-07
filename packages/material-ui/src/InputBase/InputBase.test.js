@@ -84,7 +84,7 @@ describe('<InputBase />', () => {
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
-    // IE11 bug
+    // IE 11 bug
     it('should not respond the focus event when disabled', () => {
       const wrapper = shallow(<InputBase disabled />);
       const instance = wrapper.instance();
@@ -366,6 +366,18 @@ describe('<InputBase />', () => {
         setFormControlContext({ required: true });
         const input = wrapper.find('input');
         assert.strictEqual(input.props().required, true);
+      });
+    });
+
+    describe('focused', () => {
+      it('prioritizes context focus', () => {
+        wrapper.setState({ focused: true });
+
+        setFormControlContext({ focused: false });
+        assert.strictEqual(wrapper.hasClass(classes.focused), false);
+
+        setFormControlContext({ focused: true });
+        assert.strictEqual(wrapper.hasClass(classes.focused), true);
       });
     });
   });

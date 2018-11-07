@@ -22,7 +22,7 @@ export function textToHash(text) {
   return text
     .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/[^\w]+/g, '-');
+    .replace(/\W/g, '-');
 }
 
 renderer.heading = (text, level) => {
@@ -32,10 +32,7 @@ renderer.heading = (text, level) => {
     return `<h${level}>${text}</h${level}>`;
   }
 
-  const escapedText = text
-    .toLowerCase()
-    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/[^\w]+/g, '-');
+  const escapedText = textToHash(text);
 
   return (
     `
@@ -46,6 +43,16 @@ renderer.heading = (text, level) => {
       </a></h${level}>
   `
   );
+};
+
+renderer.link = (href, title, text) => {
+  let more = '';
+
+  if (href.indexOf('https://material.io/') !== -1) {
+    more = ' target="_blank" rel="noopener nofollow"';
+  }
+
+  return `<a href="${href}"${more}>${text}</a>`;
 };
 
 const markedOptions = {
@@ -115,27 +122,23 @@ const styles = theme => ({
       lineHeight: 1.6,
     },
     '& h1': {
-      ...theme.typography.display2,
-      color: theme.palette.text.secondary,
+      ...theme.typography.h2,
       margin: '32px 0 16px',
     },
     '& .description': {
-      ...theme.typography.headline,
+      ...theme.typography.h5,
       margin: '0 0 40px',
     },
     '& h2': {
-      ...theme.typography.display1,
-      color: theme.palette.text.secondary,
+      ...theme.typography.h4,
       margin: '32px 0 24px',
     },
     '& h3': {
-      ...theme.typography.headline,
-      color: theme.palette.text.secondary,
+      ...theme.typography.h5,
       margin: '32px 0 24px',
     },
     '& h4': {
-      ...theme.typography.title,
-      color: theme.palette.text.secondary,
+      ...theme.typography.h6,
       margin: '24px 0 16px',
     },
     '& p, & ul, & ol': {

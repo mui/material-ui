@@ -11,6 +11,7 @@ export interface TooltipProps
   enterDelay?: number;
   enterTouchDelay?: number;
   id?: string;
+  interactive?: boolean;
   leaveDelay?: number;
   leaveTouchDelay?: number;
   onClose?: (event: React.ChangeEvent<{}>) => void;

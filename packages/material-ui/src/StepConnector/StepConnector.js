@@ -19,8 +19,8 @@ export const styles = theme => ({
   alternativeLabel: {
     position: 'absolute',
     top: 8 + 4,
-    left: 'calc(50% + 20px)',
-    right: 'calc(-50% + 20px)',
+    left: 'calc(-50% + 20px)',
+    right: 'calc(50% + 20px)',
   },
   /* Styles applied to the root element if `active={true}`. */
   active: {},
@@ -54,6 +54,7 @@ function StepConnector(props) {
     className: classNameProp,
     completed,
     disabled,
+    index,
     orientation,
     ...other
   } = props;
@@ -110,6 +111,10 @@ StepConnector.propTypes = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  index: PropTypes.number,
   /**
    * @ignore
    */

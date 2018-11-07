@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/tabs/tabs.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./tabs${props.lang}.md`)}
       demos={{
         'pages/demos/tabs/SimpleTabs.js': {
           js: require('docs/src/pages/demos/tabs/SimpleTabs').default,
@@ -76,6 +77,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tabs/DisabledTabs'), 'utf8')
+`,
+        },
+        'pages/demos/tabs/NavTabs.js': {
+          js: require('docs/src/pages/demos/tabs/NavTabs').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tabs/NavTabs'), 'utf8')
 `,
         },
         'pages/demos/tabs/CustomizedTabs.js': {

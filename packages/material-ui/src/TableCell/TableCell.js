@@ -16,7 +16,7 @@ export const styles = theme => ({
     ${
       theme.palette.type === 'light'
         ? lighten(fade(theme.palette.divider, 1), 0.88)
-        : darken(fade(theme.palette.divider, 1), 0.8)
+        : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
     padding: '4px 56px 4px 24px',
@@ -142,6 +142,9 @@ TableCell.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, content will align to the right.
+   *
+   * Monetary or generally number fields should be right aligned as that allows
+   * you to add them up quickly in your head without having to worry about decimals.
    */
   numeric: PropTypes.bool,
   /**

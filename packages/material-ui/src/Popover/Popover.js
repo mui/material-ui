@@ -87,9 +87,15 @@ class Popover extends React.Component {
 
   handleGetOffsetLeft = getOffsetLeft;
 
-  handleResize = debounce(() => {
-    this.setPositioningStyles(this.paperRef);
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.setPositioningStyles(this.paperRef);
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   componentDidMount() {
     if (this.props.action) {
@@ -104,16 +110,14 @@ class Popover extends React.Component {
   };
 
   setPositioningStyles = element => {
-    if (element && element.style) {
-      const positioning = this.getPositioningStyle(element);
-      if (positioning.top !== null) {
-        element.style.top = positioning.top;
-      }
-      if (positioning.left !== null) {
-        element.style.left = positioning.left;
-      }
-      element.style.transformOrigin = positioning.transformOrigin;
+    const positioning = this.getPositioningStyle(element);
+    if (positioning.top !== null) {
+      element.style.top = positioning.top;
     }
+    if (positioning.left !== null) {
+      element.style.left = positioning.left;
+    }
+    element.style.transformOrigin = positioning.transformOrigin;
   };
 
   getPositioningStyle = element => {
@@ -256,9 +260,9 @@ class Popover extends React.Component {
     };
   }
 
-  handleEnter = element => {
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
+  handleEntering = element => {
+    if (this.props.onEntering) {
+      this.props.onEntering(element);
     }
 
     this.setPositioningStyles(element);
@@ -317,9 +321,9 @@ class Popover extends React.Component {
         <TransitionComponent
           appear
           in={open}
-          onEnter={this.handleEnter}
+          onEnter={onEnter}
           onEntered={onEntered}
-          onEntering={onEntering}
+          onEntering={this.handleEntering}
           onExit={onExit}
           onExited={onExited}
           onExiting={onExiting}

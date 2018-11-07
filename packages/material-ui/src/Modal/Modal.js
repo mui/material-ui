@@ -11,6 +11,7 @@ import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import Backdrop from '../Backdrop';
+import { ariaHidden } from './manageAriaHidden';
 
 function getContainer(container, defaultContainer) {
   container = typeof container === 'function' ? container() : container;
@@ -63,14 +64,10 @@ class Modal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.open && this.props.open) {
-      this.checkForFocus();
-    }
-
-    if (prevProps.open && !this.props.open && !getHasTransition(this.props)) {
-      // Otherwise handleExited will call this.
+    if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
+      this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
   }
@@ -100,17 +97,6 @@ class Modal extends React.Component {
     return null;
   }
 
-  handleRendered = () => {
-    this.autoFocus();
-
-    // Fix a bug on Chrome where the scroll isn't initially 0.
-    this.modalRef.scrollTop = 0;
-
-    if (this.props.onRendered) {
-      this.props.onRendered();
-    }
-  };
-
   handleOpen = () => {
     const doc = ownerDocument(this.mountNode);
     const container = getContainer(this.props.container, doc.body);
@@ -118,19 +104,43 @@ class Modal extends React.Component {
     this.props.manager.add(this, container);
     doc.addEventListener('keydown', this.handleDocumentKeyDown);
     doc.addEventListener('focus', this.enforceFocus, true);
+
+    if (this.dialogRef) {
+      this.handleOpened();
+    }
+  };
+
+  handleRendered = () => {
+    if (this.props.onRendered) {
+      this.props.onRendered();
+    }
+
+    if (this.props.open) {
+      this.handleOpened();
+    } else {
+      ariaHidden(this.modalRef, true);
+    }
+  };
+
+  handleOpened = () => {
+    this.autoFocus();
+
+    // Fix a bug on Chrome where the scroll isn't initially 0.
+    this.modalRef.scrollTop = 0;
   };
 
   handleClose = () => {
     this.props.manager.remove(this);
+
     const doc = ownerDocument(this.mountNode);
     doc.removeEventListener('keydown', this.handleDocumentKeyDown);
     doc.removeEventListener('focus', this.enforceFocus, true);
+
     this.restoreLastFocus();
   };
 
   handleExited = () => {
     this.setState({ exited: true });
-    this.handleClose();
   };
 
   handleBackdropClick = event => {
@@ -148,12 +158,8 @@ class Modal extends React.Component {
   };
 
   handleDocumentKeyDown = event => {
-    if (!this.isTopModal() || keycode(event) !== 'esc') {
-      return;
-    }
-
     // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
+    if (keycode(event) !== 'esc' || !this.isTopModal() || event.defaultPrevented) {
       return;
     }
 
@@ -166,32 +172,40 @@ class Modal extends React.Component {
     }
   };
 
-  checkForFocus = () => {
-    this.lastFocus = ownerDocument(this.mountNode).activeElement;
-  };
-
   enforceFocus = () => {
-    if (this.props.disableEnforceFocus || !this.mounted || !this.isTopModal()) {
+    // The Modal might not already be mounted.
+    if (!this.isTopModal() || this.props.disableEnforceFocus || !this.mounted || !this.dialogRef) {
       return;
     }
 
     const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogRef && !this.dialogRef.contains(currentActiveElement)) {
+    if (!this.dialogRef.contains(currentActiveElement)) {
       this.dialogRef.focus();
     }
   };
 
+  handlePortalRef = ref => {
+    this.mountNode = ref ? ref.getMountNode() : ref;
+  };
+
+  handleModalRef = ref => {
+    this.modalRef = ref;
+  };
+
+  onRootRef = ref => {
+    this.dialogRef = ref;
+  };
+
   autoFocus() {
-    if (this.props.disableAutoFocus) {
+    // We might render an empty child.
+    if (this.props.disableAutoFocus || !this.dialogRef) {
       return;
     }
 
     const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogRef && !this.dialogRef.contains(currentActiveElement)) {
-      this.lastFocus = currentActiveElement;
-
+    if (!this.dialogRef.contains(currentActiveElement)) {
       if (!this.dialogRef.hasAttribute('tabIndex')) {
         warning(
           false,
@@ -204,25 +218,24 @@ class Modal extends React.Component {
         this.dialogRef.setAttribute('tabIndex', -1);
       }
 
+      this.lastFocus = currentActiveElement;
       this.dialogRef.focus();
     }
   }
 
   restoreLastFocus() {
-    if (this.props.disableRestoreFocus) {
+    if (this.props.disableRestoreFocus || !this.lastFocus) {
       return;
     }
 
-    if (this.lastFocus) {
-      // Not all elements in IE11 have a focus method.
-      // Because IE11 market share is low, we accept the restore focus being broken
-      // and we silent the issue.
-      if (this.lastFocus.focus) {
-        this.lastFocus.focus();
-      }
-
-      this.lastFocus = null;
+    // Not all elements in IE 11 have a focus method.
+    // Because IE 11 market share is low, we accept the restore focus being broken
+    // and we silent the issue.
+    if (this.lastFocus.focus) {
+      this.lastFocus.focus();
     }
+
+    this.lastFocus = null;
   }
 
   isTopModal() {
@@ -255,11 +268,12 @@ class Modal extends React.Component {
     } = this.props;
     const { exited } = this.state;
     const hasTransition = getHasTransition(this.props);
-    const childProps = {};
 
     if (!keepMounted && !open && (!hasTransition || exited)) {
       return null;
     }
+
+    const childProps = {};
 
     // It's a Transition like component
     if (hasTransition) {
@@ -276,18 +290,14 @@ class Modal extends React.Component {
 
     return (
       <Portal
-        ref={ref => {
-          this.mountNode = ref ? ref.getMountNode() : ref;
-        }}
+        ref={this.handlePortalRef}
         container={container}
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
         <div
           data-mui-test="Modal"
-          ref={ref => {
-            this.modalRef = ref;
-          }}
+          ref={this.handleModalRef}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
@@ -296,13 +306,7 @@ class Modal extends React.Component {
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RootRef
-            rootRef={ref => {
-              this.dialogRef = ref;
-            }}
-          >
-            {React.cloneElement(children, childProps)}
-          </RootRef>
+          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
         </div>
       </Portal>
     );
@@ -414,6 +418,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  BackdropComponent: Backdrop,
   disableAutoFocus: false,
   disableBackdropClick: false,
   disableEnforceFocus: false,
@@ -424,7 +429,6 @@ Modal.defaultProps = {
   keepMounted: false,
   // Modals don't open on the server so this won't conflict with concurrent requests.
   manager: new ModalManager(),
-  BackdropComponent: Backdrop,
 };
 
 export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);

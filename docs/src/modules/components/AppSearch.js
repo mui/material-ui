@@ -88,10 +88,10 @@ const styles = theme => ({
         background: 'transparent',
       },
       '& .algolia-docsearch-suggestion--title': {
-        ...theme.typography.title,
+        ...theme.typography.h6,
       },
       '& .algolia-docsearch-suggestion--text': {
-        ...theme.typography.body1,
+        ...theme.typography.body2,
       },
       '& .ds-dropdown-menu': {
         boxShadow: theme.shadows[1],
@@ -163,7 +163,7 @@ class AppSearch extends React.Component {
     }
 
     return (
-      <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'block' : 'none' }}>
+      <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'flex' : 'none' }}>
         <EventListener target="window" onKeyDown={this.handleKeyDown} />
         <div className={classes.search}>
           <SearchIcon />

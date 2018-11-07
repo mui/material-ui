@@ -20,6 +20,7 @@
 [![Dependencies](https://img.shields.io/david/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui?path=packages/material-ui)
 [![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui?type=dev)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](http://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg)](https://translate.material-ui.com/project/material-ui-docs)
 
 </div>
 
@@ -90,7 +91,7 @@ import Button from '@material-ui/core/Button';
 
 function App() {
   return (
-    <Button variant="raised" color="primary">
+    <Button variant="contained" color="primary">
       Hello World
     </Button>
   );

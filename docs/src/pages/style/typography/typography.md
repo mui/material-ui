@@ -31,7 +31,7 @@ You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing th
 Then, you can import it in your entry-point.
 
 ```js
-import 'typeface-roboto'
+import 'typeface-roboto';
 ```
 For more info check out the [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) project.
 
@@ -44,9 +44,52 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 
 {{"demo": "pages/style/typography/Types.js"}}
 
+### Deprecated variants
+
+{{"demo": "pages/style/typography/DeprecatedTypes.js"}}
+
 ## Theme
 
 In some situations you might not be able to use the `Typography` component.
 Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
+
+## Migration to typography v2
+
+The material design specification changed concerning variant names and styles.
+To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but we log deprecation warnings.
+We will remove the old typography variants in the next major release v4.0.0 (Q1 2019).
+
+### Strategies
+
+To make an immediate switch to typography v2 you can simply pass `useNextVariants: true` when
+calling `createMuiTheme`:
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
+```
+
+or set `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.
+
+This will use new variants instead of old variants according to the following mapping:
+
+```sh
+display4 => h1
+display3 => h2
+display2 => h3
+display1 => h4
+headline => h5
+title => h6
+subheading => subtitle1
+body2 => body1
+body1 (default) => body2 (default)
+```
+
+Please note that this will log deprecation warnings if you use one of the old variants.
+We recommend you replace those old variants with the recommended variants to be prepared
+for the next major release. See [Themes](/customization/themes/) for more information about how to use a global theme.

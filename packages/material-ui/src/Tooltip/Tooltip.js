@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import RootRef from '../RootRef';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import exactProp from '../utils/exactProp';
 import Grow from '../Grow';
 import Popper from '../Popper';
 
@@ -254,7 +253,14 @@ class Tooltip extends React.Component {
       disableFocusListener,
       disableHoverListener,
       disableTouchListener,
+      enterDelay,
+      enterTouchDelay,
       id,
+      interactive,
+      leaveDelay,
+      leaveTouchDelay,
+      onClose,
+      onOpen,
       open: openProp,
       placement,
       PopperProps,
@@ -262,6 +268,7 @@ class Tooltip extends React.Component {
       title,
       TransitionComponent,
       TransitionProps,
+      ...other
     } = this.props;
 
     let open = this.isControlled ? openProp : this.state.open;
@@ -274,6 +281,7 @@ class Tooltip extends React.Component {
     const childrenProps = {
       'aria-describedby': open ? id || this.defaultId : null,
       title: !open && typeof title === 'string' ? title : null,
+      ...other,
     };
 
     if (!disableTouchListener) {
@@ -290,6 +298,15 @@ class Tooltip extends React.Component {
       childrenProps.onFocus = this.handleFocus;
       childrenProps.onBlur = this.handleLeave;
     }
+
+    const interactiveWrapperListeners = interactive
+      ? {
+          onMouseOver: childrenProps.onMouseOver,
+          onMouseLeave: childrenProps.onMouseLeave,
+          onFocus: childrenProps.onFocus,
+          onBlur: childrenProps.onBlur,
+        }
+      : {};
 
     warning(
       !children.props.title,
@@ -309,6 +326,7 @@ class Tooltip extends React.Component {
           open={open}
           id={childrenProps['aria-describedby']}
           transition
+          {...interactiveWrapperListeners}
           {...PopperProps}
         >
           {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
@@ -374,6 +392,11 @@ Tooltip.propTypes = {
    */
   id: PropTypes.string,
   /**
+   * Makes a tooltip interactive, i.e. will not close when the user
+   * hovers over the tooltip before the `leaveDelay` is expired.
+   */
+  interactive: PropTypes.bool,
+  /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This property won't impact the leave touch delay (`leaveTouchDelay`).
    */
@@ -437,14 +460,13 @@ Tooltip.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-Tooltip.propTypes = exactProp(Tooltip.propTypes);
-
 Tooltip.defaultProps = {
   disableFocusListener: false,
   disableHoverListener: false,
   disableTouchListener: false,
   enterDelay: 0,
   enterTouchDelay: 1000,
+  interactive: false,
   leaveDelay: 0,
   leaveTouchDelay: 1500,
   placement: 'bottom',

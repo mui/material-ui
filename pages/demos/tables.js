@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/tables/tables.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./tables${props.lang}.md`)}
       demos={{
         'pages/demos/tables/SimpleTable.js': {
           js: require('docs/src/pages/demos/tables/SimpleTable').default,
@@ -20,6 +21,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/EnhancedTable'), 'utf8')
+`,
+        },
+        'pages/demos/tables/SpanningTable.js': {
+          js: require('docs/src/pages/demos/tables/SpanningTable').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/SpanningTable'), 'utf8')
 `,
         },
         'pages/demos/tables/CustomPaginationActionsTable.js': {

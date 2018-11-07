@@ -15,6 +15,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import { getDependencies } from 'docs/src/modules/utils/helpers';
+import DemoFrame from 'docs/src/modules/components/DemoFrame';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -185,7 +186,8 @@ class Demo extends React.Component {
     addHiddenInput(form, 'project[title]', demo.title);
     addHiddenInput(form, 'project[description]', demo.description);
     addHiddenInput(form, 'project[dependencies]', JSON.stringify(demo.dependencies));
-    Object.entries(demo.files).forEach(([key, value]) => {
+    Object.keys(demo.files).forEach(key => {
+      const value = demo.files[key];
       addHiddenInput(form, `project[files][${key}]`, value);
     });
     document.body.appendChild(form);
@@ -197,6 +199,7 @@ class Demo extends React.Component {
   render() {
     const { classes, demoOptions, githubLocation, index, js: DemoComponent, raw } = this.props;
     const { anchorEl, codeOpen } = this.state;
+    const category = demoOptions.demo;
 
     return (
       <div className={classes.root}>
@@ -204,19 +207,32 @@ class Demo extends React.Component {
           <div>
             <div className={classes.header}>
               <Tooltip title="See the source on GitHub" placement="top">
-                <IconButton href={githubLocation} target="_blank" aria-label="GitHub">
+                <IconButton
+                  ga-event-category={category}
+                  ga-event-action="github"
+                  href={githubLocation}
+                  target="_blank"
+                  aria-label="GitHub"
+                >
                   <Github />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (
                 <Tooltip title="Edit in CodeSandbox" placement="top">
-                  <IconButton onClick={this.handleClickCodeSandbox} aria-label="CodeSandbox">
+                  <IconButton
+                    ga-event-category={category}
+                    ga-event-action="codesandbox"
+                    onClick={this.handleClickCodeSandbox}
+                    aria-label="CodeSandbox"
+                  >
                     <EditIcon />
                   </IconButton>
                 </Tooltip>
               )}
               <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
+                  ga-event-category={category}
+                  ga-event-action="expand"
                   onClick={this.handleClickCodeOpen}
                   aria-label={`Source of demo n°${index}`}
                 >
@@ -225,7 +241,7 @@ class Demo extends React.Component {
               </Tooltip>
               <IconButton
                 onClick={this.handleClickMore}
-                aria-owns={anchorEl ? 'demo-menu-more' : null}
+                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
                 aria-haspopup="true"
                 aria-label="See more"
               >
@@ -246,9 +262,21 @@ class Demo extends React.Component {
                   horizontal: 'right',
                 }}
               >
-                <MenuItem onClick={this.handleClickCopy}>Copy the source</MenuItem>
+                <MenuItem
+                  ga-event-category={category}
+                  ga-event-action="copy"
+                  onClick={this.handleClickCopy}
+                >
+                  Copy the source
+                </MenuItem>
                 {demoOptions.hideEditButton ? null : (
-                  <MenuItem onClick={this.handleClickStackBlitz}>Edit in StackBlitz</MenuItem>
+                  <MenuItem
+                    ga-event-category={category}
+                    ga-event-action="stackblitz"
+                    onClick={this.handleClickStackBlitz}
+                  >
+                    Edit in StackBlitz
+                  </MenuItem>
                 )}
               </Menu>
             </div>
@@ -266,7 +294,13 @@ class Demo extends React.Component {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
         >
-          <DemoComponent />
+          {demoOptions.iframe ? (
+            <DemoFrame>
+              <DemoComponent />
+            </DemoFrame>
+          ) : (
+            <DemoComponent />
+          )}
         </div>
       </div>
     );

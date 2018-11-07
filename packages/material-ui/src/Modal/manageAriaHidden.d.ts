@@ -1,3 +1,7 @@
-export function ariaHidden(show: boolean, node: Node): never;
-export function hideSiblings(container: Element, mountNode: Node): never;
-export function showSiblings(container: Element, mountNode: Node): never;
+export function ariaHidden(node: Node, show: boolean): never;
+export function ariaHiddenSiblings(
+  container: Element,
+  mountNode: Node,
+  currentNode: Node,
+  show: boolean,
+): never;

@@ -16,7 +16,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(24),
     padding: 12,
     borderRadius: '50%',
-    overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
+    overflow: 'visible', // Explicitly set the default value to solve a bug on IE 11.
     color: theme.palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,

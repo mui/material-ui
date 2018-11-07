@@ -69,7 +69,14 @@ Left and right scroll buttons will never be presented.  All scrolling must be in
 Tab labels may be either all icons or all text.
 
 {{"demo": "pages/demos/tabs/IconTabs.js"}}
+
 {{"demo": "pages/demos/tabs/IconLabelTabs.js"}}
+
+## Nav Tabs
+
+By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+
+{{"demo": "pages/demos/tabs/NavTabs.js"}}
 
 ## Customized Tabs
 

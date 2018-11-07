@@ -50,6 +50,7 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the `icon` container element. */
   iconContainer: {
+    flexShrink: 0, // Fix IE 11 issue
     display: 'flex',
     paddingRight: 8,
     '&$alternativeLabel': {
@@ -120,7 +121,6 @@ function StepLabel(props) {
       ) : null}
       <span className={classes.labelContainer}>
         <Typography
-          variant="body1"
           component="span"
           className={classNames(classes.label, {
             [classes.alternativeLabel]: alternativeLabel,
