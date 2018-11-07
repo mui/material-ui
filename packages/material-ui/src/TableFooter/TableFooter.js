@@ -13,10 +13,9 @@ export const styles = {
 
 function TableFooter(props) {
   const { classes, className, component: Component, ...other } = props;
-  const childContext = { variant: 'footer' };
 
   return (
-    <Tablelvl2Context.Provider value={childContext}>
+    <Tablelvl2Context.Provider value={{ variant: 'footer' }}>
       <Component className={classNames(classes.root, className)} {...other} />
     </Tablelvl2Context.Provider>
   );

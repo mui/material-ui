@@ -17,10 +17,9 @@ export const styles = theme => ({
 
 function Table(props) {
   const { classes, className, component: Component, padding, ...other } = props;
-  const childContext = { padding };
 
   return (
-    <TableContext.Provider value={childContext}>
+    <TableContext.Provider value={{ padding }}>
       <Component className={classNames(classes.root, className)} {...other} />
     </TableContext.Provider>
   );

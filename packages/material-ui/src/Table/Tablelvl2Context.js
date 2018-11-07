@@ -3,6 +3,6 @@ import React from 'react';
 /**
  * @ignore - internal component.
  */
-const TableContext = React.createContext();
+const Tablelvl2Context = React.createContext();
 
-export default TableContext;
+export default Tablelvl2Context;

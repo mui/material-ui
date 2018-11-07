@@ -85,55 +85,53 @@ function TableCell(props) {
 
   return (
     <TableContext.Consumer>
-      {table => {
-        return (
-          <Tablelvl2Context.Consumer>
-            {tablelvl2 => {
-              let Component;
-              if (component) {
-                Component = component;
-              } else {
-                Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
-              }
+      {table => (
+        <Tablelvl2Context.Consumer>
+          {tablelvl2 => {
+            let Component;
+            if (component) {
+              Component = component;
+            } else {
+              Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
+            }
 
-              let scope = scopeProp;
-              if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
-                scope = 'col';
-              }
-              const padding = paddingProp || (table && table.padding ? table.padding : 'default');
+            let scope = scopeProp;
+            if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
+              scope = 'col';
+            }
+            const padding = paddingProp || (table && table.padding ? table.padding : 'default');
 
-              const className = classNames(
-                classes.root,
-                {
-                  [classes.head]: variant
-                    ? variant === 'head'
-                    : tablelvl2 && tablelvl2.variant === 'head',
-                  [classes.body]: variant
-                    ? variant === 'body'
-                    : tablelvl2 && tablelvl2.variant === 'body',
-                  [classes.footer]: variant
-                    ? variant === 'footer'
-                    : tablelvl2 && tablelvl2.variant === 'footer',
-                  [classes.numeric]: numeric,
-                  [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
-                },
-                classNameProp,
-              );
+            const className = classNames(
+              classes.root,
+              {
+                [classes.head]: variant
+                  ? variant === 'head'
+                  : tablelvl2 && tablelvl2.variant === 'head',
+                [classes.body]: variant
+                  ? variant === 'body'
+                  : tablelvl2 && tablelvl2.variant === 'body',
+                [classes.footer]: variant
+                  ? variant === 'footer'
+                  : tablelvl2 && tablelvl2.variant === 'footer',
+                [classes.numeric]: numeric,
+                [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
+              },
+              classNameProp,
+            );
 
-              let ariaSort = null;
-              if (sortDirection) {
-                ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
-              }
+            let ariaSort = null;
+            if (sortDirection) {
+              ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
+            }
 
-              return (
-                <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
-                  {children}
-                </Component>
-              );
-            }}
-          </Tablelvl2Context.Consumer>
-        );
-      }}
+            return (
+              <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
+                {children}
+              </Component>
+            );
+          }}
+        </Tablelvl2Context.Consumer>
+      )}
     </TableContext.Consumer>
   );
 }

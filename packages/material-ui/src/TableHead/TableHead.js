@@ -13,10 +13,9 @@ export const styles = {
 
 function TableHead(props) {
   const { classes, className, component: Component, ...other } = props;
-  const childContext = { variant: 'head' };
 
   return (
-    <Tablelvl2Context.Provider value={childContext}>
+    <Tablelvl2Context.Provider value={{ variant: 'head' }}>
       <Component className={classNames(classes.root, className)} {...other} />
     </Tablelvl2Context.Provider>
   );
