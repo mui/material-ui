@@ -7,10 +7,6 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export const styles = theme => ({
-  /* Styles applied to the root (`Tooltip`) component. */
-  root: {
-    position: 'relative',
-  },
   /* Styles applied to the `Button` component. */
   button: {
     margin: 8,
@@ -32,9 +28,12 @@ export const styles = theme => ({
 });
 
 class SpeedDialAction extends React.Component {
-  state = {
-    tooltipOpen: false,
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      tooltipOpen: props.tooltipOpen,
+    };
+  }
 
   static getDerivedStateFromProps = (props, state) => {
     if (!props.open && state.tooltipOpen) {
@@ -66,11 +65,12 @@ class SpeedDialAction extends React.Component {
     const {
       ButtonProps,
       classes,
-      className: classNameProp,
+      className,
       delay,
       icon,
       id,
       onClick,
+      onKeyDown,
       open,
       tooltipTitle,
       tooltipPlacement,
@@ -97,7 +97,6 @@ class SpeedDialAction extends React.Component {
     return (
       <Tooltip
         id={id}
-        className={classNames(classes.root, classNameProp)}
         title={tooltipTitle}
         placement={tooltipPlacement}
         onClose={this.handleTooltipClose}
@@ -108,10 +107,11 @@ class SpeedDialAction extends React.Component {
         <Button
           variant="fab"
           mini
-          className={classNames(classes.button, !open && classes.buttonClosed)}
+          className={classNames(className, classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
           tabIndex={-1}
           role="menuitem"
+          onKeyDown={onKeyDown}
           {...ButtonProps}
           {...clickProp}
         >
@@ -124,7 +124,7 @@ class SpeedDialAction extends React.Component {
 
 SpeedDialAction.propTypes = {
   /**
-   * Properties applied to the [`Button`](/api/button) component.
+   * Properties applied to the [`Button`](/api/button/) component.
    */
   ButtonProps: PropTypes.object,
   /**
@@ -183,13 +183,14 @@ SpeedDialAction.propTypes = {
   /**
    * Label to display in the tooltip.
    */
-  tooltipTitle: PropTypes.node,
+  tooltipTitle: PropTypes.node.isRequired,
 };
 
 SpeedDialAction.defaultProps = {
   delay: 0,
   open: false,
   tooltipPlacement: 'left',
+  tooltipOpen: false,
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);

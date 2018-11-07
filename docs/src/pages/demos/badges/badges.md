@@ -13,6 +13,12 @@ Examples of badges containing text, using primary and secondary colors. The badg
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
+## Badge visibility
+
+The visibility of badges can be controlled using the `invisible` property.
+
+{{"demo": "pages/demos/badges/BadgeVisibility.js"}}
+
 ## Customized Badge
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

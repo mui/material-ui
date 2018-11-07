@@ -56,6 +56,7 @@ function renderInput(inputProps) {
         inputRef: ref,
         classes: {
           root: classes.inputRoot,
+          input: classes.inputInput,
         },
         ...InputProps,
       }}
@@ -234,6 +235,10 @@ const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
   },
+  inputInput: {
+    width: 'auto',
+    flexGrow: 1,
+  },
   divider: {
     height: theme.spacing.unit * 2,
   },
@@ -306,9 +311,12 @@ function IntegrationDownshift(props) {
                 popperNode = node;
               },
             })}
-            <div {...getMenuProps()}>
-              <Popper disablePortal open={isOpen} anchorEl={popperNode}>
-                <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
+            <Popper open={isOpen} anchorEl={popperNode}>
+              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                <Paper
+                  square
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                >
                   {getSuggestions(inputValue).map((suggestion, index) =>
                     renderSuggestion({
                       suggestion,
@@ -319,8 +327,8 @@ function IntegrationDownshift(props) {
                     }),
                   )}
                 </Paper>
-              </Popper>
-            </div>
+              </div>
+            </Popper>
           </div>
         )}
       </Downshift>

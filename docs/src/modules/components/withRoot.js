@@ -1,3 +1,7 @@
+// Use the same helper than Babel to avoid bundle bloat.
+import 'core-js/modules/es6.array.find-index';
+import 'core-js/modules/es6.set';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
@@ -5,8 +9,13 @@ import { withRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
+import url from 'url';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import acceptLanguage from 'accept-language';
+import PageContext from 'docs/src/modules/components/PageContext';
+
+acceptLanguage.languages(['en', 'zh']);
 
 if (process.browser) {
   loadCSS(
@@ -182,10 +191,10 @@ const pages = [
     ],
   },
   {
-    pathname: '/page-layout-examples',
+    pathname: '/premium-themes',
   },
   {
-    pathname: '/premium-themes',
+    pathname: '/page-layout-examples',
   },
   {
     pathname: '/lab',
@@ -279,31 +288,47 @@ function withRoot(Component) {
       this.redux = initRedux(props.reduxServerState || {});
     }
 
-    getChildContext() {
+    state = {
+      userLanguage: 'en',
+    };
+
+    componentDidMount() {
+      const URL = url.parse(document.location.href, true);
+      const userLanguage = URL.query.lang || acceptLanguage.get(navigator.language) || 'en';
+
+      if (this.state.userLanguage !== userLanguage) {
+        this.setState({
+          userLanguage,
+        });
+      }
+    }
+
+    render() {
+      const { pageContext, ...other } = this.props;
       const { router } = this.props;
+      const { userLanguage } = this.state;
 
       let pathname = router.pathname;
       if (pathname !== '/') {
         // The leading / is only added to support static hosting (resolve /index.html).
         // We remove it to normalize the pathname.
+        // See `_rewriteUrlForNextExport` on Next.js side.
         pathname = pathname.replace(/\/$/, '');
       }
+      const activePage = findActivePage(pages, { ...router, pathname });
 
-      return {
-        pages,
-        activePage: findActivePage(pages, { ...router, pathname }),
-      };
-    }
-
-    render() {
-      const { pageContext, ...other } = this.props;
       return (
         <React.StrictMode>
-          <Provider store={this.redux}>
-            <AppWrapper pageContext={pageContext}>
-              <Component initialProps={other} />
-            </AppWrapper>
-          </Provider>
+          <PageContext.Provider value={{ activePage, pages, userLanguage }}>
+            <Provider store={this.redux}>
+              <AppWrapper pageContext={pageContext}>
+                <Component
+                  initialProps={other}
+                  lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+                />
+              </AppWrapper>
+            </Provider>
+          </PageContext.Provider>
         </React.StrictMode>
       );
     }
@@ -313,11 +338,6 @@ function withRoot(Component) {
     pageContext: PropTypes.object,
     reduxServerState: PropTypes.object,
     router: PropTypes.object.isRequired,
-  };
-
-  WithRoot.childContextTypes = {
-    pages: PropTypes.array,
-    activePage: PropTypes.object,
   };
 
   WithRoot.getInitialProps = ctx => {

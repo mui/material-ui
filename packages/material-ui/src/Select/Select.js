@@ -113,7 +113,7 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -172,7 +172,10 @@ Select.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
   /**
    * The variant to use.

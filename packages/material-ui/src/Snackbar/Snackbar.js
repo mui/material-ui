@@ -282,7 +282,7 @@ Snackbar.propTypes = {
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['top', 'center', 'bottom']).isRequired,
+    vertical: PropTypes.oneOf(['top', 'bottom']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
@@ -310,7 +310,7 @@ Snackbar.propTypes = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
+   * Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**

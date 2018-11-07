@@ -105,9 +105,38 @@ describe('<CircularProgress />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const style = svg.childAt(0).props().style;
-      assert.strictEqual(style.strokeDasharray, '126.920', 'should have strokeDasharray set');
-      assert.strictEqual(style.strokeDashoffset, '11.423px', 'should have strokeDashoffset set');
+      assert.strictEqual(style.strokeDasharray, '126.920');
+      assert.strictEqual(style.strokeDashoffset, '11.423px');
       assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
+    });
+  });
+
+  describe('prop: disableShrink ', () => {
+    it('should default to false', () => {
+      const wrapper = shallow(<CircularProgress variant="indeterminate" />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      const circle = svg.childAt(0);
+      assert.strictEqual(circle.name(), 'circle');
+      assert.strictEqual(circle.hasClass(classes.circleDisableShrink), false);
+    });
+
+    it('should render without disableShrink class when set to false', () => {
+      const wrapper = shallow(<CircularProgress variant="indeterminate" disableShrink={false} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      const circle = svg.childAt(0);
+      assert.strictEqual(circle.name(), 'circle');
+      assert.strictEqual(circle.hasClass(classes.circleDisableShrink), false);
+    });
+
+    it('should render with disableShrink class when set to true', () => {
+      const wrapper = shallow(<CircularProgress variant="indeterminate" disableShrink />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      const circle = svg.childAt(0);
+      assert.strictEqual(circle.name(), 'circle');
+      assert.strictEqual(circle.hasClass(classes.circleDisableShrink), true);
     });
   });
 });

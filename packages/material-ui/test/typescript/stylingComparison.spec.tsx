@@ -44,8 +44,8 @@ const DecoratedNoProps = withStyles(styles)(
   },
 );
 
-const sfcElem = <DecoratedSFC text="Hello, World!" variant="title" color="secondary" />;
-const classElem = <DecoratedClass text="Hello, World!" variant="title" color="secondary" />;
+const sfcElem = <DecoratedSFC text="Hello, World!" variant="h6" color="secondary" />;
+const classElem = <DecoratedClass text="Hello, World!" variant="h6" color="secondary" />;
 const noPropsElem = <DecoratedNoProps />;
 
 interface Book {

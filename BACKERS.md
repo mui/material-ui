@@ -3,6 +3,7 @@
 <p class="description">Support Material-UI’s development through donations.</p>
 
 Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome backers. If you'd like to join them, please consider:
+
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
 
@@ -25,7 +26,9 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600"></object>
+<p style="overflow: auto;">
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600">Gold Sponsors</object>
+</p>
 
 ## Silver Sponsors
 
@@ -35,7 +38,9 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsors.svg?avatarHeight=70&width=600"></object>
+<p style="overflow: auto;">
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsors.svg?avatarHeight=70&width=600">Silver Sponsors</object>
+</p>
 
 ## Bronze Sponsors
 
@@ -45,7 +50,9 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsors.svg?avatarHeight=60&width=600"></object>
+<p style="overflow: auto;">
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsors.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
+</p>
 
 ## Backers
 
@@ -61,11 +68,13 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
 | Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
 | Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
-| Antonio Seveso | Umar Ali |
+| Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600"></object>
+<p style="overflow: auto;">
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600">Backers</object>
+</p>
 
 ## Why?
 

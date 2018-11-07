@@ -1,6 +1,7 @@
 import { StandardProps } from '..';
 
-export interface ListItemIconProps extends StandardProps<{}, ListItemIconClassKey> {
+export interface ListItemIconProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemIconClassKey> {
   children: React.ReactElement<any>;
 }
 

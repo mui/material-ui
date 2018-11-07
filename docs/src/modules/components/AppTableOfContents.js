@@ -9,16 +9,11 @@ import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
-import Ad from 'docs/src/modules/components/Ad';
 
 const renderer = new marked.Renderer();
 
 let itemsServer = null;
 renderer.heading = (text, level) => {
-  if (level === 1 || level > 3) {
-    return;
-  }
-
   if (level === 2) {
     itemsServer.push({
       text,
@@ -26,9 +21,7 @@ renderer.heading = (text, level) => {
       hash: textToHash(text),
       children: [],
     });
-  }
-
-  if (level === 3) {
+  } else if (level === 3) {
     itemsServer[itemsServer.length - 1].children.push({
       text,
       level,
@@ -133,15 +126,14 @@ class AppTableOfContents extends React.Component {
   };
 
   render() {
-    const { classes, disableAd } = this.props;
+    const { classes } = this.props;
     const { active } = this.state;
 
     return (
       <nav className={classes.root}>
-        {disableAd ? null : <Ad />}
         {itemsServer.length > 0 ? (
           <React.Fragment>
-            <Typography variant="body2" gutterBottom className={classes.contents}>
+            <Typography gutterBottom className={classes.contents}>
               Contents
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />
@@ -190,7 +182,6 @@ class AppTableOfContents extends React.Component {
 AppTableOfContents.propTypes = {
   classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
-  disableAd: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(AppTableOfContents);

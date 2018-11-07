@@ -6,6 +6,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 Each breakpoint matches with a *fixed* screen width:
+
 - **xs**, extra-small: 0px or larger
 - **sm**, small: 600px or larger
 - **md**, medium: 960px or larger
@@ -13,17 +14,17 @@ Each breakpoint matches with a *fixed* screen width:
 - **xl**, extra-large: 1920px or larger
 
 These values can always be customized.
-You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme?expend-path=$.breakpoints.values) object.
+You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
-for controlling the layout of your application through the [Grid](/layout/grid) and
-[Hidden](/layout/hidden) components.
+for controlling the layout of your application through the [Grid](/layout/grid/) and
+[Hidden](/layout/hidden/) components.
 
 ## Media Queries
 
 CSS media queries is the idiomatic approach to make your UI responsive.
-We provide some [CSS-in-JS](/customization/css-in-js) helpers to do so.
+We provide some [CSS-in-JS](/customization/css-in-js/) helpers to do so.
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
 
@@ -35,11 +36,43 @@ Sometimes, using CSS isn't enough.
 You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
 We provide a `withWidth()` higher-order component for this use case.
 
+```js
+import withWidth from '@material-ui/core/withWidth';
+
+function MyComponent(props) {
+  return <div>{`Current width: ${props.width}`}</div>;
+}
+
+export default withWidth()(MyComponent);
+```
+
 In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
 ⚠️ `withWidth()` server-side rendering support is limited.
+
+### Render Props
+
+In some cases, you could have property name collisions using higher-order components.
+To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
+
+```js
+import Typography from '@material-ui/core/Typography';
+import toRenderProps from 'recompose/toRenderProps';
+
+const WithWidth = toRenderProps(withWidth());
+
+export default function MyComponent() {
+  return (
+    <WithWidth>
+      {({ width }) => <div>{`Current width: ${width}`}</div>}
+    </WithWidth>
+  );
+}
+```
+
+{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
 
 ## API
 
@@ -55,6 +88,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 ```
 
 Some implementation details that might be interesting to being aware of:
+
 - It forwards *non React static* properties so this HOC is more "transparent".
 For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
@@ -73,7 +107,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   In some situation, you might want to use an heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the client-hints.
-  http://caniuse.com/#search=client%20hint, we also can set the initial width
+  https://caniuse.com/#search=client%20hint, we also can set the initial width
   globally using [`custom properties`](/customization/themes/#properties) on the theme.
   In order to set the initialWidth we need to pass a custom property with this shape:
 

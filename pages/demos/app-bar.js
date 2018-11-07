@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/app-bar/app-bar.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./app-bar${props.lang}.md`)}
       demos={{
         'pages/demos/app-bar/SimpleAppBar.js': {
           js: require('docs/src/pages/demos/app-bar/SimpleAppBar').default,
@@ -48,6 +49,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/app-bar/PrimarySearchAppBar'), 'utf8')
+`,
+        },
+        'pages/demos/app-bar/BottomAppBar.js': {
+          js: require('docs/src/pages/demos/app-bar/BottomAppBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/BottomAppBar'), 'utf8')
 `,
         },
       }}

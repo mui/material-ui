@@ -28,7 +28,7 @@ function BreakpointUp(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subheading">Current width: {props.width}</Typography>
+      <Typography variant="subtitle1">Current width: {props.width}</Typography>
       <div className={classes.container}>
         <Hidden xsUp>
           <Paper className={classes.paper}>xsUp</Paper>

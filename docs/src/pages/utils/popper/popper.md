@@ -10,9 +10,9 @@ components: Popper
 Things to know when using the `Popper` component:
 
 - Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
-- The children is [`Portal`](/utils/portal) to the body of the document to avoid rendering problems.
+- The children is [`Portal`](/utils/portal/) to the body of the document to avoid rendering problems.
 You can disable this behavior with `disablePortal`.
-- The scroll and click away aren't blocked like with the [`Popover`](/utils/popover) component.
+- The scroll and click away aren't blocked like with the [`Popover`](/utils/popover/) component.
 The placement of the popper updates with the available area in the viewport.
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
@@ -47,3 +47,14 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single popper.
 
 {{"demo": "pages/utils/popper/RenderPropsPopper.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper
+state for you in most cases.
+
+{{"demo": "pages/utils/popper/PopperPopupState.js"}}

@@ -17,6 +17,10 @@ const styles = theme => ({
   },
 });
 
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
 function SimpleList(props) {
   const { classes } = props;
   return (
@@ -40,9 +44,9 @@ function SimpleList(props) {
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
-        <ListItem button component="a" href="#simple-list">
+        <ListItemLink href="#simple-list">
           <ListItemText primary="Spam" />
-        </ListItem>
+        </ListItemLink>
       </List>
     </div>
   );

@@ -92,6 +92,9 @@ const styles = theme => ({
   tableContainer: {
     height: 320,
   },
+  h5: {
+    marginBottom: theme.spacing.unit * 2,
+  },
 });
 
 class Dashboard extends React.Component {
@@ -111,69 +114,73 @@ class Dashboard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <React.Fragment>
+      <div className={classes.root}>
         <CssBaseline />
-        <div className={classes.root}>
-          <AppBar
-            position="absolute"
-            className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-          >
-            <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(
-                  classes.menuButton,
-                  this.state.open && classes.menuButtonHidden,
-                )}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="title" color="inherit" noWrap className={classes.title}>
-                Dashboard
-              </Typography>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            }}
-            open={this.state.open}
-          >
-            <div className={classes.toolbarIcon}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </div>
-            <Divider />
-            <List>{mainListItems}</List>
-            <Divider />
-            <List>{secondaryListItems}</List>
-          </Drawer>
-          <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            <Typography variant="display1" gutterBottom>
-              Orders
+        <AppBar
+          position="absolute"
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+        >
+          <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(
+                classes.menuButton,
+                this.state.open && classes.menuButtonHidden,
+              )}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              Dashboard
             </Typography>
-            <Typography component="div" className={classes.chartContainer}>
-              <SimpleLineChart />
-            </Typography>
-            <Typography variant="display1" gutterBottom>
-              Products
-            </Typography>
-            <div className={classes.tableContainer}>
-              <SimpleTable />
-            </div>
-          </main>
-        </div>
-      </React.Fragment>
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+          }}
+          open={this.state.open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={this.handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List>{mainListItems}</List>
+          <Divider />
+          <List>{secondaryListItems}</List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Typography variant="h4" gutterBottom component="h2">
+            Orders
+          </Typography>
+          <Typography component="div" className={classes.chartContainer}>
+            <SimpleLineChart />
+          </Typography>
+          <Typography variant="h4" gutterBottom component="h2">
+            Products
+          </Typography>
+          <div className={classes.tableContainer}>
+            <SimpleTable />
+          </div>
+        </main>
+      </div>
     );
   }
 }

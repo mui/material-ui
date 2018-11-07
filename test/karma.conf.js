@@ -27,8 +27,8 @@ module.exports = function setKarmaConfig(config) {
       },
     ],
     plugins: [
-      'karma-chrome-launcher',
       'karma-mocha',
+      'karma-chrome-launcher',
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-mocha-reporter',
@@ -95,7 +95,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Sierra',
           browser: 'Chrome',
-          browser_version: '49.0',
+          browser_version: '45.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',

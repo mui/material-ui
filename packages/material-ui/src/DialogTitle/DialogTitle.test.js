@@ -20,7 +20,7 @@ describe('<DialogTitle />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<DialogTitle data-my-prop="woofDialogTitle">foo</DialogTitle>);
     assert.strictEqual(
-      wrapper.prop('data-my-prop'),
+      wrapper.props()['data-my-prop'],
       'woofDialogTitle',
       'custom prop should be woofDialogTitle',
     );

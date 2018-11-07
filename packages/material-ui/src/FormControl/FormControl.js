@@ -44,8 +44,17 @@ export const styles = {
  *  - FormHelperText
  *  - Input
  *  - InputLabel
+ *
+ * ⚠️ Only one input can be used within a FormControl.
  */
 class FormControl extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    if (props.disabled && state.focused) {
+      return { focused: false };
+    }
+    return null;
+  }
+
   constructor(props) {
     super();
 

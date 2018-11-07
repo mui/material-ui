@@ -2,6 +2,7 @@
 /.next
 /coverage
 /docs/export
+/examples/create-react-app*/src/serviceWorker.js
 /examples/create-react-app-with-flow/flow
 /examples/create-react-app-with-flow/flow-typed
 /examples/gatsby/public

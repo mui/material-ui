@@ -76,7 +76,7 @@ export const styles = theme => {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      width: '100%', // Fix IE11 width issue
+      width: '100%', // Fix IE 11 width issue
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -154,47 +154,21 @@ export function formControlState({ props, states, context }) {
  * It contains a load of style reset and some state logic.
  */
 class InputBase extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    // The blur won't fire when the disabled state is set on a focused input.
+    // We need to book keep the focused state manually.
+    if (props.disabled && state.focused) {
+      return { focused: false };
+    }
+    return null;
+  }
+
   constructor(props, context) {
     super(props, context);
     this.isControlled = props.value != null;
     if (this.isControlled) {
       this.checkDirty(props);
     }
-
-    const componentWillReceiveProps = (nextProps, nextContext) => {
-      // The blur won't fire when the disabled state is set on a focused input.
-      // We need to book keep the focused state manually.
-      if (
-        !formControlState({ props: this.props, context: this.context, states: ['disabled'] })
-          .disabled &&
-        formControlState({ props: nextProps, context: nextContext, states: ['disabled'] }).disabled
-      ) {
-        this.setState({
-          focused: false,
-        });
-      }
-    };
-
-    const componentWillUpdate = (nextProps, nextState, nextContext) => {
-      // Book keep the focused state.
-      if (
-        !formControlState({ props: this.props, context: this.context, states: ['disabled'] })
-          .disabled &&
-        formControlState({ props: nextProps, context: nextContext, states: ['disabled'] }).disabled
-      ) {
-        const { muiFormControl } = this.context;
-        if (muiFormControl && muiFormControl.onBlur) {
-          muiFormControl.onBlur();
-        }
-      }
-    };
-
-    /* eslint-disable no-underscore-dangle */
-    this.componentWillReceiveProps = componentWillReceiveProps;
-    this.componentWillReceiveProps.__suppressDeprecationWarning = true;
-    this.componentWillUpdate = componentWillUpdate;
-    this.componentWillUpdate.__suppressDeprecationWarning = true;
-    /* eslint-enable no-underscore-dangle */
   }
 
   state = {
@@ -215,14 +189,21 @@ class InputBase extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    // Book keep the focused state.
+    if (!prevProps.disabled && this.props.disabled) {
+      const { muiFormControl } = this.context;
+      if (muiFormControl && muiFormControl.onBlur) {
+        muiFormControl.onBlur();
+      }
+    }
     if (this.isControlled) {
       this.checkDirty(this.props);
     } // else performed in the onChange
   }
 
   handleFocus = event => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
+    // Fix a bug with IE 11 where the focus/blur events are triggered
     // while the input is disabled.
     if (
       formControlState({ props: this.props, context: this.context, states: ['disabled'] }).disabled
@@ -354,13 +335,15 @@ class InputBase extends React.Component {
       states: ['disabled', 'error', 'margin', 'required', 'filled'],
     });
 
+    const focused = muiFormControl ? muiFormControl.focused : this.state.focused;
+
     const className = classNames(
       classes.root,
       {
         [classes.disabled]: fcs.disabled,
         [classes.error]: fcs.error,
         [classes.fullWidth]: fullWidth,
-        [classes.focused]: this.state.focused,
+        [classes.focused]: focused,
         [classes.formControl]: muiFormControl,
         [classes.marginDense]: fcs.margin === 'dense',
         [classes.multiline]: multiline,
@@ -424,7 +407,7 @@ class InputBase extends React.Component {
           ? renderPrefix({
               ...fcs,
               startAdornment,
-              focused: this.state.focused,
+              focused,
             })
           : null}
         {startAdornment}

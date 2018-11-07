@@ -4,12 +4,12 @@ import Button from '@material-ui/core/Button';
 export default function MaterialV1Buttons() {
   return (
     <div>
-      <Button variant="flat">Text</Button>
+      <Button variant="flat">Flat</Button>
       <Button variant="flat" color="primary">
-        Text
+        Flat
       </Button>
       <Button variant="flat" color="secondary">
-        Text
+        Flat
       </Button>
       <Button variant="raised">Raised</Button>
       <Button variant="raised" color="primary">

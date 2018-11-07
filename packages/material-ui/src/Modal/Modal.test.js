@@ -82,14 +82,10 @@ describe('<Modal />', () => {
 
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find(Backdrop);
-      assert.strictEqual(
-        backdrop.prop('onClick'),
-        handler,
-        'should attach the handleBackdropClick handler',
-      );
+      assert.strictEqual(backdrop.props().onClick, handler);
 
       handler({});
-      assert.strictEqual(onClose.callCount, 1, 'should fire the onClose callback');
+      assert.strictEqual(onClose.callCount, 1);
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
@@ -99,7 +95,7 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
+      assert.strictEqual(onClose.callCount, 0);
     });
 
     it('should call through to the user specified onBackdropClick callback', () => {
@@ -109,7 +105,7 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+      assert.strictEqual(onBackdropClick.callCount, 1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
@@ -126,11 +122,7 @@ describe('<Modal />', () => {
           /* another dom node */
         },
       });
-      assert.strictEqual(
-        onBackdropClick.callCount,
-        0,
-        'should not fire the onBackdropClick callback',
-      );
+      assert.strictEqual(onBackdropClick.callCount, 0);
     });
   });
 
@@ -178,9 +170,9 @@ describe('<Modal />', () => {
         'div',
         'should have the element in the DOM',
       );
-      assert.strictEqual(heading.tagName.toLowerCase(), 'h1', 'should have the element in the DOM');
-      assert.strictEqual(portalLayer.contains(container), true, 'should be in the portal');
-      assert.strictEqual(portalLayer.contains(heading), true, 'should be in the portal');
+      assert.strictEqual(heading.tagName.toLowerCase(), 'h1');
+      assert.strictEqual(portalLayer.contains(container), true);
+      assert.strictEqual(portalLayer.contains(heading), true);
 
       const container2 = document.getElementById('container');
 
@@ -193,7 +185,7 @@ describe('<Modal />', () => {
         'document',
         'should add the document role',
       );
-      assert.strictEqual(container2.getAttribute('tabindex'), '-1', 'should add a -1 tab-index');
+      assert.strictEqual(container2.getAttribute('tabindex'), '-1');
     });
   });
 
@@ -214,16 +206,9 @@ describe('<Modal />', () => {
         throw new Error('missing modal');
       }
 
-      assert.strictEqual(
-        modal.children.length,
-        2,
-        'should have 2 children, the backdrop and the test container',
-      );
-      assert.ok(
-        modal.children[0],
-        'this is the backdrop, so no assertions about implementation details',
-      );
-      assert.strictEqual(modal.children[1], container, 'should be the container');
+      assert.strictEqual(modal.children.length, 2);
+      assert.strictEqual(modal.children[0] != null, true);
+      assert.strictEqual(modal.children[1], container);
     });
   });
 
@@ -243,8 +228,8 @@ describe('<Modal />', () => {
         throw new Error('missing modal');
       }
 
-      assert.strictEqual(modal.children.length, 1, 'should have 1 child, the test container');
-      assert.strictEqual(modal.children[0], container, 'should be the container');
+      assert.strictEqual(modal.children.length, 1);
+      assert.strictEqual(modal.children[0], container);
     });
   });
 
@@ -281,7 +266,9 @@ describe('<Modal />', () => {
       topModalStub.returns(false);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
 
-      instance.handleDocumentKeyDown(undefined);
+      instance.handleDocumentKeyDown({
+        keyCode: keycode('esc'),
+      });
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
@@ -293,7 +280,7 @@ describe('<Modal />', () => {
       event = { keyCode: keycode('j') }; // Not 'esc'
 
       instance.handleDocumentKeyDown(event);
-      assert.strictEqual(topModalStub.callCount, 1);
+      assert.strictEqual(topModalStub.callCount, 0);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
@@ -354,6 +341,16 @@ describe('<Modal />', () => {
         </Modal>,
       );
       assert.strictEqual(wrapper.contains(children), false);
+    });
+
+    it('should mount', () => {
+      mount(
+        <Modal keepMounted open={false}>
+          <div />
+        </Modal>,
+      );
+      const modalNode = document.querySelector('[data-mui-test="Modal"]');
+      assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
   });
 
@@ -491,7 +488,7 @@ describe('<Modal />', () => {
           <Dialog />
         </Modal>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(consoleErrorMock.args()[0][0], /the modal content node does not accept focus/);
     });
 

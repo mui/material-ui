@@ -14,6 +14,7 @@ import TablePaginationActions from '../TablePaginationActions';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
     // Increase the specificity to override TableCell.
     '&:last-child': {
@@ -38,7 +39,6 @@ export const styles = theme => ({
   selectRoot: {
     marginRight: 32,
     marginLeft: 8,
-    color: theme.palette.text.secondary,
   },
   /* Styles applied to the Select component `select` class. */
   select: {
@@ -51,6 +51,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `InputBase` component. */
   input: {
+    color: 'inherit',
     fontSize: 'inherit',
     flexShrink: 0,
   },
@@ -59,7 +60,6 @@ export const styles = theme => ({
   /* Styles applied to the internal `TablePaginationActions` component. */
   actions: {
     flexShrink: 0,
-    color: theme.palette.text.secondary,
     marginLeft: 20,
   },
 });
@@ -109,7 +109,7 @@ class TablePagination extends React.Component {
         <Toolbar className={classes.toolbar}>
           <div className={classes.spacer} />
           {rowsPerPageOptions.length > 1 && (
-            <Typography variant="caption" className={classes.caption}>
+            <Typography color="inherit" variant="caption" className={classes.caption}>
               {labelRowsPerPage}
             </Typography>
           )}
@@ -136,7 +136,7 @@ class TablePagination extends React.Component {
               ))}
             </Select>
           )}
-          <Typography variant="caption" className={classes.caption}>
+          <Typography color="inherit" variant="caption" className={classes.caption}>
             {labelDisplayedRows({
               from: count === 0 ? 0 : page * rowsPerPage + 1,
               to: Math.min(count, (page + 1) * rowsPerPage),
@@ -166,7 +166,7 @@ TablePagination.propTypes = {
    */
   ActionsComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the back arrow [`IconButton`](/api/icon-button) component.
+   * Properties applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -197,7 +197,7 @@ TablePagination.propTypes = {
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Properties applied to the next arrow [`IconButton`](/api/icon-button) element.
+   * Properties applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -227,7 +227,7 @@ TablePagination.propTypes = {
    */
   rowsPerPageOptions: PropTypes.array,
   /**
-   * Properties applied to the rows per page [`Select`](/api/select) element.
+   * Properties applied to the rows per page [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
 };

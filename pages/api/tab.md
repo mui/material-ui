@@ -7,7 +7,7 @@ title: Tab API
 
 # Tab
 
-<p class="description">The API documentation of the Tab React component.</p>
+<p class="description">The API documentation of the Tab React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Tab from '@material-ui/core/Tab';
@@ -19,14 +19,14 @@ import Tab from '@material-ui/core/Tab';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp |   | This property isn't supported. Use the `component` property if you need to change the children structure. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the tab will be disabled. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node |   | The icon element. |
-| <span class="prop-name">label</span> | <span class="prop-type">node |   | The label element. |
-| <span class="prop-name">value</span> | <span class="prop-type">any |   | You can provide your own value. Otherwise, we fallback to the child position index. |
+| <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp</span> |   | This property isn't supported. Use the `component` property if you need to change the children structure. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tab will be disabled. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |   | The icon element. |
+| <span class="prop-name">label</span> | <span class="prop-type">node</span> |   | The label element. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |   | You can provide your own value. Otherwise, we fallback to the child position index. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
 ## CSS API
 
@@ -49,20 +49,20 @@ This property accepts the following keys:
 | <span class="prop-name">label</span> | Styles applied to the label wrapper element if `label` is provided.
 | <span class="prop-name">labelWrapped</span> | Styles applied to the label wrapper element if `label` is provided and the text is wrapped.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tab/Tab.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTab`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base) component are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [ButtonBase](/api/button-base/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Tabs](/demos/tabs)
+- [Tabs](/demos/tabs/)
 

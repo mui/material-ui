@@ -65,4 +65,4 @@ SwipeArea.propTypes = {
   width: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles)(SwipeArea);
+export default withStyles(styles, { name: 'MuiPrivateSwipeArea' })(SwipeArea);

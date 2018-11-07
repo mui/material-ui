@@ -1,18 +1,26 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/utils/popover/popover.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./popover${props.lang}.md`)}
       demos={{
         'pages/utils/popover/SimplePopover.js': {
           js: require('docs/src/pages/utils/popover/SimplePopover').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/utils/popover/SimplePopover'), 'utf8')
+`,
+        },
+        'pages/utils/popover/PopoverPopupState.js': {
+          js: require('docs/src/pages/utils/popover/PopoverPopupState.js').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popover/PopoverPopupState'), 'utf8')
 `,
         },
         'pages/utils/popover/AnchorPlayground.js': {

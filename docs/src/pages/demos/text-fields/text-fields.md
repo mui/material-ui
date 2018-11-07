@@ -30,12 +30,12 @@ The `TextField` wrapper component is a complete form control including a label, 
 ## Components
 
 `TextField` is composed of smaller components (
-[`FormControl`](/api/form-control),
-[`Input`](/api/input),
-[`InputLabel`](/api/filled-input),
-[`InputLabel`](/api/input-label),
-[`OutlinedInput`](/api/outlined-input),
-and [`FormHelperText`](/api/form-helper-text)
+[`FormControl`](/api/form-control/),
+[`Input`](/api/input/),
+[`FilledInput`](/api/filled-input/),
+[`InputLabel`](/api/input-label/),
+[`OutlinedInput`](/api/outlined-input/),
+and [`FormHelperText`](/api/form-helper-text/)
 ) that you can leverage directly to significantly customize your form inputs.
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
@@ -83,7 +83,7 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 ## Customized inputs
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
@@ -110,3 +110,11 @@ or
 ```jsx
 <InputLabel shrink>Count</InputLabel>
 ```
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.

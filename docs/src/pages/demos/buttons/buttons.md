@@ -8,6 +8,7 @@ components: Button, IconButton, ButtonBase, Zoom
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
 [Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+
 - Dialogs
 - Modal windows
 - Forms
@@ -96,7 +97,7 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 
 ## Customized Buttons
 
-If you have been reading the [overrides documentation page](/customization/overrides)
+If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in,
 here are examples of how you can change the main color of a Button using classes,
 and using a theme; and of a Bootstrap style Button.
@@ -139,4 +140,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it [here](/guides/composition#component-property).*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it [here](/guides/composition/#component-property).*

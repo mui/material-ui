@@ -16,5 +16,5 @@
       "@material-ui/lab": ["./material-ui-lab/src"],
       "@material-ui/lab/*": ["./material-ui-lab/src/*"]
     }
-  },
+  }
 }

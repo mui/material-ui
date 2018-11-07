@@ -32,7 +32,7 @@ export default [
       nodeResolve(),
       babel(babelOptions),
       commonjs(commonjsOptions),
-      nodeGlobals(),
+      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
   },
@@ -44,7 +44,7 @@ export default [
       nodeResolve(),
       babel(babelOptions),
       commonjs(commonjsOptions),
-      nodeGlobals(),
+      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot(),
       uglify(),

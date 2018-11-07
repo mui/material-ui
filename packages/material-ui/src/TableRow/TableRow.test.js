@@ -24,11 +24,7 @@ describe('<TableRow />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<TableRow data-my-prop="woofTableRow" />);
-    assert.strictEqual(
-      wrapper.prop('data-my-prop'),
-      'woofTableRow',
-      'custom prop should be woofTableRow',
-    );
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofTableRow');
   });
 
   it('should render with the user and root classes', () => {
@@ -47,13 +43,13 @@ describe('<TableRow />', () => {
     const wrapper = shallow(<TableRow />);
     wrapper.setContext({ tablelvl2: { variant: 'head' } });
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
+    assert.strictEqual(wrapper.hasClass(classes.head), true);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableRow />);
     wrapper.setContext({ tablelvl2: { variant: 'footer' } });
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
+    assert.strictEqual(wrapper.hasClass(classes.footer), true);
   });
 });

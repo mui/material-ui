@@ -55,11 +55,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().open, false, 'should not be open');
+      assert.strictEqual(wrapper.props().open, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.props().open, true, 'should be open');
+      assert.strictEqual(wrapper.props().open, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.props().open, false, 'should not be open');
+      assert.strictEqual(wrapper.props().open, false);
     });
 
     describe('getOffsetTop', () => {
@@ -161,11 +161,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.childAt(0).props().in, true, 'should be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
+      assert.strictEqual(wrapper.childAt(0).props().in, false);
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -217,9 +217,9 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
+      assert.strictEqual(wrapper.hasClass('test-class'), true);
       const paper = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the popover class');
+      assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
     it('should have a elevation prop passed down', () => {
@@ -232,7 +232,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         8,
         'should be 8 elevation by default',
       );
@@ -241,7 +241,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         16,
         'should be 16 elevation',
       );
@@ -260,18 +260,18 @@ describe('<Popover />', () => {
       },
     };
 
-    describe('handleEnter(element)', () => {
+    describe('handleEntering(element)', () => {
       let wrapper;
-      let handleEnter;
+      let handleEntering;
 
       before(() => {
-        handleEnter = spy();
+        handleEntering = spy();
         wrapper = shallow(
-          <Popover {...defaultProps} onEnter={handleEnter}>
+          <Popover {...defaultProps} onEntering={handleEntering}>
             <div />
           </Popover>,
         );
-        wrapper.instance().handleEnter(element);
+        wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the enter phase', () => {

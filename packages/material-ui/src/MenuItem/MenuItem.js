@@ -14,27 +14,37 @@ export const styles = theme => ({
     boxSizing: 'content-box',
     width: 'auto',
     overflow: 'hidden',
-    textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    '&$selected': {},
+  },
+  /* Styles applied to the root element if `disableGutters={false}`. */
+  gutters: {
     paddingLeft: 16,
     paddingRight: 16,
-    '&$selected': {},
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
 
 function MenuItem(props) {
-  const { classes, className, component, selected, role, ...other } = props;
+  const { classes, className, component, disableGutters, role, selected, ...other } = props;
 
   return (
     <ListItem
       button
       role={role}
       tabIndex={-1}
-      selected={selected}
-      className={classNames(classes.root, { [classes.selected]: selected }, className)}
       component={component}
+      selected={selected}
+      disableGutters={disableGutters}
+      className={classNames(
+        classes.root,
+        {
+          [classes.selected]: selected,
+          [classes.gutters]: !disableGutters,
+        },
+        className,
+      )}
       {...other}
     />
   );
@@ -60,6 +70,10 @@ MenuItem.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: PropTypes.bool,
+  /**
    * @ignore
    */
   role: PropTypes.string,
@@ -71,6 +85,7 @@ MenuItem.propTypes = {
 
 MenuItem.defaultProps = {
   component: 'li',
+  disableGutters: false,
   role: 'menuitem',
 };
 

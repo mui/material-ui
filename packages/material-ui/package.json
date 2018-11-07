@@ -2,7 +2,7 @@
   "name": "@material-ui/core",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.1.1",
+  "version": "3.4.0",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "http://material-ui.com/",
+  "homepage": "https://material-ui.com/",
   "scripts": {
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore *.test.js",
@@ -34,7 +34,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0",
+    "@babel/runtime": "7.1.2",
     "@types/jss": "^9.5.6",
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",
@@ -43,7 +43,7 @@
     "debounce": "^1.1.0",
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
-    "hoist-non-react-statics": "^2.5.0",
+    "hoist-non-react-statics": "^3.0.0",
     "is-plain-object": "^2.0.4",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
@@ -57,7 +57,6 @@
     "popper.js": "^1.14.1",
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.6.2",
-    "react-jss": "^8.1.0",
     "react-transition-group": "^2.2.1",
     "recompose": "0.28.0 - 0.30.0",
     "warning": "^4.0.1"

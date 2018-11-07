@@ -9,6 +9,7 @@ Therefore, Material-UI will be not only be an implementation of the Material Des
 We will focus on providing all the low-level tools needed to build a rich user-interface with React. Once we implement the Material design specification (which is a bar set quite high), you should be able to take advantage of it for you own business with any style customization needed. We want to see companies succeeding using Material-UI in a way that matches their brand, close to the material philosophy or not. We don't want them to feel that their UI simply looks like another Google product.
 
 From a developer's point of view, we want Material-UI to:
+
 - Deliver on fully encapsulated / composable React components.
 - Be themeable / customizable.
 - Be cross browser compatible and accessible.

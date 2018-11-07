@@ -72,17 +72,15 @@ class Checkout extends React.Component {
   };
 
   handleNext = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep + 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep + 1,
+    }));
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleReset = () => {
@@ -100,14 +98,14 @@ class Checkout extends React.Component {
         <CssBaseline />
         <AppBar position="absolute" color="default" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               Company name
             </Typography>
           </Toolbar>
         </AppBar>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <Typography variant="display1" align="center">
+            <Typography component="h1" variant="h4" align="center">
               Checkout
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
@@ -120,10 +118,10 @@ class Checkout extends React.Component {
             <React.Fragment>
               {activeStep === steps.length ? (
                 <React.Fragment>
-                  <Typography variant="headline" gutterBottom>
+                  <Typography variant="h5" gutterBottom>
                     Thank you for your order.
                   </Typography>
-                  <Typography variant="subheading">
+                  <Typography variant="subtitle1">
                     Your order number is #2001539. We have emailed your order confirmation, and will
                     send you an update when your order has shipped.
                   </Typography>

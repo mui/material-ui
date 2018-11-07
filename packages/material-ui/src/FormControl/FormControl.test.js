@@ -78,6 +78,15 @@ describe('<FormControl />', () => {
     });
   });
 
+  describe('prop: disabled', () => {
+    it('will be unfocused if it gets disabled', () => {
+      const wrapper = shallow(<FormControl />);
+      wrapper.setState({ focused: true });
+      wrapper.setProps({ disabled: true });
+      assert.strictEqual(wrapper.state().focused, false);
+    });
+  });
+
   describe('input', () => {
     it('should be filled with a value', () => {
       const wrapper = shallow(

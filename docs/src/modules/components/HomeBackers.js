@@ -29,7 +29,7 @@ function HomeBackers(props) {
 
 Material-UI is an MIT-licensed open source project.
 It's an independent project with ongoing development made possible entirely
-thanks to the support of these awesome [backers](/discover-more/backers).
+thanks to the support of these awesome [backers](/discover-more/backers/).
 
 ### Gold Sponsors
 
@@ -44,11 +44,13 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-![gold-sponsors](https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600)
+<p style="max-width: 80vw; overflow: auto;">
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600">Gold Sponsors</object>
+</p>
 
 ### There is more!
 
-See the full list of [our backers](/discover-more/backers).
+See the full list of [our backers](/discover-more/backers/).
 
 `}
         />

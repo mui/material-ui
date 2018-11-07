@@ -87,10 +87,10 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
-          <Typography variant="title">Installation</Typography>
+          <Typography variant="h6">Installation</Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {`
             Install Material-UI's source files via npm.
             We take care of injecting the CSS needed.
@@ -104,7 +104,7 @@ function HomeSteps(props) {
   \`\`\`
                 `}
           />
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {'or use a CDN.'}
           </Typography>
           <MarkdownElement
@@ -115,7 +115,7 @@ function HomeSteps(props) {
   \`\`\`
                 `}
           />
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {'Load the default Roboto font.'}
           </Typography>
           <MarkdownElement
@@ -139,10 +139,10 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <BuildIcon className={classes.stepIcon} />
-          <Typography variant="title">Usage</Typography>
+          <Typography variant="h6">Usage</Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {'Material-UI components work in isolation. They are self-supporting.'}
           </Typography>
           <MarkdownElement
@@ -173,10 +173,10 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
-          <Typography variant="title">Premium Themes</Typography>
+          <Typography variant="h6">Premium Themes</Typography>
         </div>
         <div className={classes.stepBody}>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             {`Take Material-UI to the next level with premium themes from
               our official marketplace—all built on Material-UI.`}
           </Typography>

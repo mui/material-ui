@@ -7,7 +7,7 @@ title: Divider API
 
 # Divider
 
-<p class="description">The API documentation of the Divider React component.</p>
+<p class="description">The API documentation of the Divider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
 import Divider from '@material-ui/core/Divider';
@@ -19,11 +19,11 @@ import Divider from '@material-ui/core/Divider';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">absolute</span> | <span class="prop-type">bool | <span class="prop-default">false</span> |  |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'hr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">inset</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the divider will be indented. |
-| <span class="prop-name">light</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
+| <span class="prop-name">absolute</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> |  |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'hr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">inset</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the divider will be indented. |
+| <span class="prop-name">light</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -40,16 +40,16 @@ This property accepts the following keys:
 | <span class="prop-name">inset</span> | Styles applied to the root element if `inset={true}`.
 | <span class="prop-name">light</span> | Styles applied to the root element if `light={true}`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Divider/Divider.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiDivider`.
 
 ## Demos
 
-- [Dividers](/demos/dividers)
-- [Lists](/demos/lists)
+- [Dividers](/demos/dividers/)
+- [Lists](/demos/lists/)
 

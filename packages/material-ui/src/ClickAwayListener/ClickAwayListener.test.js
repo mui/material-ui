@@ -155,7 +155,7 @@ describe('<ClickAwayListener />', () => {
     });
   });
 
-  describe('IE11 issue', () => {
+  describe('IE 11 issue', () => {
     it('should not call the hook if the event is triggered after being unmounted', () => {
       const handleClickAway = spy();
       wrapper = mount(

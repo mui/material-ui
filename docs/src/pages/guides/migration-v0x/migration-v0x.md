@@ -16,12 +16,12 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
-- New styling solution using CSS-in-JS (better [customization](/customization/overrides) power, better performance)
-- New [theme handling](/customization/themes) (nesting, self-supporting, etc.)
+- New styling solution using CSS-in-JS (better [customization](/customization/overrides/) power, better performance)
+- New [theme handling](/customization/themes/) (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
-- Way better [test coverage](/guides/testing) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
-- Full [server-side rendering](/guides/server-rendering) support
-- Wide range of [supported browsers](/getting-started/supported-platforms)
+- Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
+- Full [server-side rendering](/guides/server-rendering/) support
+- Wide range of [supported browsers](/getting-started/supported-platforms/)
 
 ### Where should I start in a migration?
 
@@ -163,6 +163,26 @@ This will apply a change such as the following:
 
 -<FontIcon>home</FontIcon>
 +<Icon>home</Icon>
+```
+
+### Circular Progress
+
+```diff
+-import CircularProgress from 'material-ui/CircularProgress';
++import CircularProgress from '@material-ui/core/CircularProgress';
+
+-<CircularProgress mode="indeterminate" />
++<CircularProgress variant="indeterminate" />
+```
+
+### Drop Down Menu
+
+```diff
+-import DropDownMenu from 'material-ui/DropDownMenu';
++import Select from '@material-ui/core/Select';
+
+-<DropDownMenu></DropDownMenu>
++<Select value={this.state.value}></Select>
 ```
 
 ### To be continued…

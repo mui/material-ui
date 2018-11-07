@@ -29,28 +29,31 @@ Optionally, you can set the icon color using one of the theme color properties: 
 ### SVG Material icons
 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
-We provide a separate NPM package,
+We provide a separate npm package,
 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons),
 that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 
 <a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
-  <img src="/static/images/icons/icons.png" style="width: 566px" />
+  <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
 </a>
 
 #### Usage
 
 You can use [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
 When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
+
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) is exposed as `@material-ui/icons/DeleteForever`
 
 For *"themed"* icons, append the theme name to the icon name. For instance with the
+
 - The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/DeleteOutlined`
 - The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/DeleteRounded`
 - The Two Tone [`delete`](https://material.io/tools/icons/?icon=delete&style=twotone) icon is exposed as `@material-ui/icons/DeleteTwoTone`
 - The Sharp [`delete`](https://material.io/tools/icons/?icon=delete&style=sharp) icon is exposed as `@material-ui/icons/DeleteSharp`
 
 There are three exceptions to this rule:
+
 - [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`
 - [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) is exposed as `@material-ui/icons/FourK`
 - [`360`](https://material.io/tools/icons/?icon=360&style=baseline) is exposed as `@material-ui/icons/ThreeSixty`
@@ -93,6 +96,8 @@ class name using the Icon component's `className` property.
 To use an icon simply wrap the icon name (font ligature) with the `Icon` component,
 for example:
 ```jsx
+import Icon from '@material-ui/core/Icon';
+
 <Icon>star</Icon>
 ```
 

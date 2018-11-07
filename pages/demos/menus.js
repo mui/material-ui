@@ -1,18 +1,26 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/menus/menus.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./menus${props.lang}.md`)}
       demos={{
         'pages/demos/menus/SimpleMenu.js': {
           js: require('docs/src/pages/demos/menus/SimpleMenu').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/SimpleMenu'), 'utf8')
+`,
+        },
+        'pages/demos/menus/MenuPopupState.js': {
+          js: require('docs/src/pages/demos/menus/MenuPopupState.js').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/MenuPopupState'), 'utf8')
 `,
         },
         'pages/demos/menus/SimpleListMenu.js': {
@@ -55,6 +63,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/RenderPropsMenu'), 'utf8')
+`,
+        },
+        'pages/demos/menus/TypographyMenu.js': {
+          js: require('docs/src/pages/demos/menus/TypographyMenu').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/TypographyMenu'), 'utf8')
 `,
         },
       }}

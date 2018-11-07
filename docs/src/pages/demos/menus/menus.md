@@ -22,7 +22,7 @@ Choosing an option should immediately ideally commit the option and close the me
 ## Selected menus
 
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element.
-The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item)).
+The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)).
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
@@ -63,3 +63,20 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single menu.
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
+
+## Limitations
+
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout.
+You can use the `Typography` component to workaround this issue:
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+
+{{"demo": "pages/demos/menus/MenuPopupState.js"}}

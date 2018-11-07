@@ -57,6 +57,7 @@ we need to make sure they will behave as expected with a **real DOM**.
 To solve that problem we use [karma](https://github.com/karma-runner/karma),
 which is almost a drop in replacement of [jsdom](https://github.com/tmpvar/jsdom).
 Our tests run on different browsers to increase the coverage:
+
 - [PhantomJS](https://github.com/ariya/phantomjs) - Scriptable Headless WebKit
 - Firefox, Chrome and Safari thanks to [BrowserStack](https://www.browserstack.com)
 
@@ -119,5 +120,6 @@ Stick to test assertions such as `assert.strictEqual` and `assert.ok`. This help
 We should try to use as many demos from the documentation as possible;
 however, we can't replace one with the other as they address different needs.
 With the regression tests:
+
 - You might need to test a more complex situation, e.g. a stress test of the grid
 - You might need to test a simpler situation, e.g. a static progress bar

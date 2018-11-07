@@ -12,6 +12,14 @@ export const styles = theme => ({
   root: {
     transformOrigin: 'top left',
   },
+  /* Styles applied to the root element if `focused={true}`. */
+  focused: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to the root element if `error={true}`. */
+  error: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
@@ -44,6 +52,7 @@ export const styles = theme => ({
     // the input field is drawn last and hides the label with an opaque background color.
     // zIndex: 1 will raise the label above opaque background-colors of input.
     zIndex: 1,
+    pointerEvents: 'none',
     transform: 'translate(12px, 22px) scale(1)',
     '&$marginDense': {
       transform: 'translate(12px, 19px) scale(1)',
@@ -59,6 +68,7 @@ export const styles = theme => ({
   outlined: {
     // see comment above on filled.zIndex
     zIndex: 1,
+    pointerEvents: 'none',
     transform: 'translate(14px, 22px) scale(1)',
     '&$marginDense': {
       transform: 'translate(14px, 17.5px) scale(1)',
@@ -76,9 +86,9 @@ function InputLabel(props, context) {
     className: classNameProp,
     disableAnimation,
     FormLabelClasses,
-    margin: marginProp,
+    margin,
     shrink: shrinkProp,
-    variant: variantProp,
+    variant,
     ...other
   } = props;
 
@@ -109,7 +119,18 @@ function InputLabel(props, context) {
   );
 
   return (
-    <FormLabel data-shrink={shrink} className={className} classes={FormLabelClasses} {...other}>
+    <FormLabel
+      data-shrink={shrink}
+      className={className}
+      classes={{
+        focused: classes.focused,
+        disabled: classes.disabled,
+        error: classes.error,
+        required: classes.required,
+        ...FormLabelClasses,
+      }}
+      {...other}
+    >
       {children}
     </FormLabel>
   );
@@ -146,7 +167,7 @@ InputLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * `classes` property applied to the [`FormLabel`](/api/form-label) element.
+   * `classes` property applied to the [`FormLabel`](/api/form-label/) element.
    */
   FormLabelClasses: PropTypes.object,
   /**
