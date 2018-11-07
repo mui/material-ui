@@ -72,7 +72,7 @@ class ChipsPlayground extends React.Component {
         iconToCode = '';
         break;
       default:
-        iconToCode = 'icon={<FaceIcon />}';
+        iconToCode = 'icon={<FaceIcon />} ';
         iconToPlayground = <FaceIcon />;
         break;
     }

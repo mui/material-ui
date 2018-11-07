@@ -142,6 +142,9 @@ TableCell.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, content will align to the right.
+   *
+   * Monetary or generally number fields should be right aligned as that allows
+   * you to add them up quickly in your head without having to worry about decimals.
    */
   numeric: PropTypes.bool,
   /**

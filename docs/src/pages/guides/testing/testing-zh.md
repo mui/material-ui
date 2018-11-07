@@ -36,19 +36,19 @@ The `createRender()` function is ideal for this. This is just an alias for the e
 
 Generate an enhanced shallow function with the needed context. 有关 `shallow`函数的更多详细信息, 请参考[enzyme API 文档 ](https://airbnb.io/enzyme/docs/api/shallow.html),
 
-#### Arguments
+#### 参数
 
-1. `options` (*Object* [optional]) 
+1. `选项` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
     - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
     - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
     - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
-#### Returns
+#### 返回结果
 
 `shallow` (*shallow*): A shallow function.
 
-#### Examples
+#### 例子
 
 ```jsx
 import { createShallow } from '@material-ui/core/test-utils';
@@ -70,17 +70,17 @@ describe('<MyComponent />', () => {
 
 Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
 
-#### Arguments
+#### 参数
 
-1. `options` (*Object* [optional]) 
+1. `选项` (*Object* [optional]) 
     - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
     - The other keys are forwarded to the options argument of `enzyme.mount()`.
 
-#### Returns
+#### 返回结果
 
 `mount` (*mount*): A mount function.
 
-#### Examples
+#### 例子
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
@@ -106,17 +106,17 @@ describe('<MyComponent />', () => {
 
 Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
 
-#### Arguments
+#### 参数
 
-1. `options` (*Object* [optional]) 
+1. `选项` (*Object* [optional]) 
     - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
     - The other keys are forwarded to the options argument of `enzyme.render()`.
 
-#### Returns
+#### 返回结果
 
 `render` (*Function*): A render to string function.
 
-#### Examples
+#### 例子
 
 ```jsx
 import { createRender } from '@material-ui/core/test-utils';

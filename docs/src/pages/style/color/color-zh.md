@@ -2,23 +2,23 @@
 
 <p class="description">通过颜色传达意义。 开箱即用，您可以访问Material Design规范中的所有颜色。</p>
 
-material design中的 [ 颜色 ](https://material.io/design/color/) 灵感源自与静音环境、深阴影和明亮亮点并列的粗色调。
+Material Design 中的 [ 颜色 ](https://material.io/design/color/) 灵感源自与静音环境、深阴影和明亮亮点并列的粗色调。
 
 ## 颜色系统
 
 Material Design 颜色系统可用于创建反映您的品牌或风格的颜色主题。
 
-### Important Terms
+### 重要的术语
 
-#### "Palette"
+#### "调色板"
 
 调色板是颜色的集合, 即色调和它们的阴影. Material-UI 提供Material Design 指南中的所有颜色.
 
-#### "Hue" & "Shade"
+#### “色彩”和“阴影”
 
 调色板中的单一颜色由色相如 "red" 和阴影如 "500"组成。 "rad 50" 是红色的最浅的阴影 (* 粉红色! *), 而 "red 900" 是最暗的。 此外, 大多数色调都带有强调色调, 以 ` A ` 为前缀。
 
-### Examples
+### 例子
 
 Material Design调色板包括主要和强调颜色, 可用于插图或开发您的品牌颜色. 他们被设计成彼此和谐地工作.
 
@@ -59,15 +59,15 @@ Only the `main` shades need be provided (unless you wish to further customise `l
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
 
-### Official color tool
+### 官方色彩工具
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/). This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
+Material Design 团队提供了一款令人赞叹的调色板配置工具：[material.io/tools/color](https://material.io/tools/color/)。 它会帮助你为你的 UI 建立自己的色彩集合，同时也会帮助测量每个颜色组合的可访问性。
 
 <a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
-  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
+  <img src="/static/images/color/colorTool.png" alt="官方色彩工具" style="width: 574px" />
 </a>
 
-The output can be fed into `createMuiTheme()` function:
+它的输出可以使用在` createMuiTheme() ` 函数：
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -90,13 +90,13 @@ const theme = createMuiTheme({
 });
 ```
 
-### Tools by the community
+### 社区工具
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 是一款使用 Material Design 创建 Material-UI 主题的在线工具。
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 
 ## 调色板
 
-This color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. 他们被设计成彼此和谐地工作.
+Material Design 调色板包括主要色彩和强调颜色，可用于插图或开发您的品牌颜色. 他们被设计成彼此和谐地工作.
 
 {{"demo": "pages/style/color/Color.js", "hideHeader": true}}

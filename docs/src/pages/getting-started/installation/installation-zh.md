@@ -1,6 +1,6 @@
 # 安装
 
-<p class="description">安装Material-UI, 这个世界上最受欢迎的React UI框架.</p>
+<p class="description">安装Material-UI——这个世界上最受欢迎的React UI框架.</p>
 
 Material-UI 可作为 [npm](https://www.npmjs.com/package/@material-ui/core) 包使用。
 
@@ -16,7 +16,7 @@ npm install @material-ui/core
 
 ## Roboto 字体
 
-Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)字体 因此, 请务必遵循这些说明. 例如，通过Google Web Fonts:
+Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)字体 因此，请务必遵循这些说明。 例如，通过Google Web Fonts引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
@@ -24,7 +24,7 @@ Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)
 
 ## 字体图标
 
-为了使用字体`Icon` 组件, 你必须添加[Material icons](https://material.io/tools/icons/)字体. 这是如何去做的 [一些说明](/style/icons/#font-icons) 例如，通过Google Web Fonts:
+为了使用字体`Icon` 组件, 你必须添加[Material icons](https://material.io/tools/icons/)字体. 这是如何去做的 [一些说明](/style/icons/#font-icons) 例如，通过Google Web Fonts引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -42,7 +42,7 @@ npm install @material-ui/icons
 
 您可以使用最少的前端基础架构开始使用Material-UI，这对于原型设计很有用 我们不鼓励在生产中使用这种方法, 客户端必须下载整个库, 而不管实际使用哪些组件, 影响性能和带宽利用率。
 
-#### UMD releases
+#### UMD 版本
 
 我们提供两个通用模块定义 (UMD) 文件:
 

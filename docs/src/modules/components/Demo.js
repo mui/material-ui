@@ -199,6 +199,7 @@ class Demo extends React.Component {
   render() {
     const { classes, demoOptions, githubLocation, index, js: DemoComponent, raw } = this.props;
     const { anchorEl, codeOpen } = this.state;
+    const category = demoOptions.demo;
 
     return (
       <div className={classes.root}>
@@ -206,19 +207,32 @@ class Demo extends React.Component {
           <div>
             <div className={classes.header}>
               <Tooltip title="See the source on GitHub" placement="top">
-                <IconButton href={githubLocation} target="_blank" aria-label="GitHub">
+                <IconButton
+                  ga-event-category={category}
+                  ga-event-action="github"
+                  href={githubLocation}
+                  target="_blank"
+                  aria-label="GitHub"
+                >
                   <Github />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (
                 <Tooltip title="Edit in CodeSandbox" placement="top">
-                  <IconButton onClick={this.handleClickCodeSandbox} aria-label="CodeSandbox">
+                  <IconButton
+                    ga-event-category={category}
+                    ga-event-action="codesandbox"
+                    onClick={this.handleClickCodeSandbox}
+                    aria-label="CodeSandbox"
+                  >
                     <EditIcon />
                   </IconButton>
                 </Tooltip>
               )}
               <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
+                  ga-event-category={category}
+                  ga-event-action="expand"
                   onClick={this.handleClickCodeOpen}
                   aria-label={`Source of demo n°${index}`}
                 >
@@ -248,9 +262,21 @@ class Demo extends React.Component {
                   horizontal: 'right',
                 }}
               >
-                <MenuItem onClick={this.handleClickCopy}>Copy the source</MenuItem>
+                <MenuItem
+                  ga-event-category={category}
+                  ga-event-action="copy"
+                  onClick={this.handleClickCopy}
+                >
+                  Copy the source
+                </MenuItem>
                 {demoOptions.hideEditButton ? null : (
-                  <MenuItem onClick={this.handleClickStackBlitz}>Edit in StackBlitz</MenuItem>
+                  <MenuItem
+                    ga-event-category={category}
+                    ga-event-action="stackblitz"
+                    onClick={this.handleClickStackBlitz}
+                  >
+                    Edit in StackBlitz
+                  </MenuItem>
                 )}
               </Menu>
             </div>

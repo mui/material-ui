@@ -39,7 +39,7 @@ keeps track of the local state for a single popover.
 
 {{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
 
-## Advanced use cases
+## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
 

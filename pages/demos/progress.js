@@ -72,6 +72,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/DelayingAppearance'), 'utf8')
 `,
         },
+        'pages/demos/progress/CustomizedProgress.js': {
+          js: require('docs/src/pages/demos/progress/CustomizedProgress').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/CustomizedProgress'), 'utf8')
+`,
+        },
+        'pages/demos/progress/CircularUnderLoad.js': {
+          js: require('docs/src/pages/demos/progress/CircularUnderLoad').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularUnderLoad'), 'utf8')
+`,
+        },
       }}
     />
   );

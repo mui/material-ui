@@ -1,5 +1,57 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.4.0
+###### *Nov 5, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+- ⚛️ Fix some React 16.6.0 warnings in StrictMode (#13498, #13477) @eps1lon.
+- 💅 Improve the customization of the outlined input (#13428) @oliviertassinari.
+- And many more bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.4.0`
+
+- [Autocomplete] Fix react-select input overflow (#13413) @sayfulloev
+- [Drawer] Add a root style rule for consistency (#13418) @KirankumarAmbati
+- [Menu] Fix position regression (#13419) @oliviertassinari
+- [Menu] Add a visual regression test (#13420) @oliviertassinari
+- [Select] Fix focused text colour (#13423) @joshwooding
+- [Tabs] Fix misaligned tab (#13421) @Ang-YC
+- [OutlinedInput] Improve customization (#13428) @oliviertassinari
+- [CircularProgress] Introduce disableShrink property (#13430) @joshwooding
+- [Select] Improve the value comparison function (#13408) @nicolasiensen
+- [InputLabel] Fix InputLabelClassKey (#13445) @eps1lon
+- [createMixins] Use theme spacing unit in gutters (#13452) @zsalzbank
+- [ButtonBase] Update focusVisible ponyfill for shadowRoots (#13483) @jaipe
+- [Table] Add rowspan and colspan examples (#13490) @josgraha
+- [FormControlLabel] Add top and bottom `labelPlacement` property variants (#13499) @JulienMalige
+- [List] Use stable context API (#13498) @eps1lon
+- [SvgIcon] Add shapeRendering property description (#13509) @joshwooding
+
+### `@material-ui/lab@v3.0.0-alpha.23`
+
+- [Slider] Fix hover state not being registered (#13437) @eps1lon
+- [SpeedDial] Add default value to tooltipOpen property (#13458) @joshwooding
+
+### Docs
+
+- [examples] Fix Next.js warning "no title in _document.js" (#13415) @iamhosseindhv
+- [docs] Update misspelled "Interactive" in Tooltip Demo (#13427) @imjaroiswebdev
+- [docs] Fix the scroll functionality of the mini drawer demo (#13460) @nicolasiensen
+- [examples] Update create-react-app examples (#13453) @eps1lon
+- [docs] Add Google Analytics events (#13451) @goldins
+- [docs] Use stable context API (#13477) @eps1lon
+- [docs] Update CONTRIBUTING.md (#13478) @josgraha
+- [docs] Fix material-ui-popup-state IE 11 issue (#13474) @jedwards1211
+- [docs] Add Typography example for MenuItem (#13500) @joshwooding
+- [docs] Reword flexbox limitation (#13508) @joshwooding
+
+### Core
+
+- [core] Ponyfill global (#13426) @TrySound
+- [core] Upgrade dev dependencies (#13429) @oliviertassinari
+
 ## 3.3.2
 ###### *Oct 27, 2018*
 

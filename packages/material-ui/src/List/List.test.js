@@ -61,13 +61,13 @@ describe('<List />', () => {
     it('should forward the context', () => {
       const wrapper1 = shallow(<List />);
       assert.strictEqual(
-        wrapper1.instance().getChildContext().dense,
+        wrapper1.hasClass(classes.dense),
         false,
         'dense should be false by default',
       );
 
       const wrapper2 = shallow(<List dense />);
-      assert.strictEqual(wrapper2.instance().getChildContext().dense, true);
+      assert.strictEqual(wrapper2.hasClass(classes.dense), true);
     });
   });
 });

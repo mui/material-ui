@@ -101,7 +101,6 @@ export const styles = theme => {
     thumbWrapper: {
       position: 'relative',
       zIndex: 2,
-      pointerEvents: 'none',
       transition: thumbTransitions,
       '&$activated': {
         transition: 'none',

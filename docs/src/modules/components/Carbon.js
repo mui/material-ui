@@ -35,11 +35,17 @@ const styles = theme => ({
 
 class Carbon extends React.Component {
   componentDidMount() {
+    const scriptSlot = document.querySelector('#carbon-ad');
+
+    // Concurrence issues
+    if (!scriptSlot) {
+      return;
+    }
+
     const script = document.createElement('script');
     script.setAttribute('async', '');
     script.src = '//cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
     script.id = '_carbonads_js';
-    const scriptSlot = document.querySelector('#carbon-ad');
     scriptSlot.appendChild(script);
   }
 

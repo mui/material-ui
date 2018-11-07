@@ -1,16 +1,16 @@
 ---
-title: 弹出器 React 组件
+title: React Paper 组件
 components: Popper
 ---
 # Popper
 
-<p class="description">弹出器可以用来在其他元素之上显示一些内容。它和 react-popper 的功能是类似的。</p>
+<p class="description">Popper 可以用来在其他元素之上显示一些内容。它是 react-popper 的替代品。</p>
 
-Things to know when using the `Popper` component:
+使用 `Popper` 组件时需要知道的事：
 
-- Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
-- The children is [`Portal`](/utils/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
-- The scroll and click away aren't blocked like with the [`Popover`](/utils/popover/) component. The placement of the popper updates with the available area in the viewport.
+- Popper 使用第三方库[Popper.js](https://github.com/FezVrasta/popper.js) 来定位。
+- 子级元素是使用 [`Portal`](/utils/portal/) 组件，以避免在文档中出现问题。 您可以使用 `disablePortal` 禁用此行为。
+- 和 [`Popver`](/utils/popover/) 不同，滚动和单击不会被阻止。 Popper组件会随着可视窗口中的可使用区域更新其位置。
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
 ## Simple Popper
@@ -42,3 +42,13 @@ Highlight part of the text to see the popper:
 It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single popper.
 
 {{"demo": "pages/utils/popper/RenderPropsPopper.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
+
+{{"demo": "pages/utils/popper/PopperPopupState.js"}}

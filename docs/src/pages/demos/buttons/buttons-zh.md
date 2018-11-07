@@ -4,16 +4,22 @@ components: Button, IconButton, ButtonBase, Zoom
 ---
 # 按钮
 
-<p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
+<p class="description">按钮允许用户以轻触行为采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 它们通常放置在整个UI中，例如： - 对话 - 模态窗口 - 表单 - 卡片 - 工具栏
+[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+
+- 对话框
+- Modal windows
+- Forms
+- 卡片
+- Toolbars
 
 ## 文本按钮
 
 [文本按钮](https://material.io/design/components/buttons.html#text-button) 通常用于不太明显的操作, 包括那些位于:
 
-- 在对话框中
-- 在卡片
+- In dialogs
+- In cards
 
 在卡片中，文本按钮有助于在卡片内容之上强调按钮的存在。
 

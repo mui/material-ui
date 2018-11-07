@@ -2,7 +2,7 @@
 title: 日期、时间选择器 React 组件
 components: TextField
 ---
-# 选择器
+# Pickers
 
 <p class="description">选择器提供了一种从预先设定的集合中选取单个值的简单方法。</p>
 
@@ -15,19 +15,19 @@ components: TextField
 
 ⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。
 
-## 日期选择器
+## Date pickers
 
 一个原生的 `type="date"` 日期选择器示例 ，它也可以用作日历：
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## 时间选择器
+## Time pickers
 
 一个原生的 `type="time"` 时间选择器示例 ：
 
 {{"demo": "pages/demos/pickers/TimePickers.js"}}
 
-## 日期和时间选择器
+## Date & Time pickers
 
 一个原生的 `type="datetime-local"` 日期和时间选择器示例 ：
 

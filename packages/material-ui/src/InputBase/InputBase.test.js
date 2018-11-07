@@ -368,6 +368,18 @@ describe('<InputBase />', () => {
         assert.strictEqual(input.props().required, true);
       });
     });
+
+    describe('focused', () => {
+      it('prioritizes context focus', () => {
+        wrapper.setState({ focused: true });
+
+        setFormControlContext({ focused: false });
+        assert.strictEqual(wrapper.hasClass(classes.focused), false);
+
+        setFormControlContext({ focused: true });
+        assert.strictEqual(wrapper.hasClass(classes.focused), true);
+      });
+    });
   });
 
   describe('componentDidMount', () => {

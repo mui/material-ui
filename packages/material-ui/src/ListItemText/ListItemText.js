@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
+import ListContext from '../List/ListContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -40,7 +41,7 @@ export const styles = theme => ({
   textDense: {},
 });
 
-function ListItemText(props, context) {
+function ListItemText(props) {
   const {
     children,
     classes,
@@ -53,53 +54,58 @@ function ListItemText(props, context) {
     secondaryTypographyProps,
     ...other
   } = props;
-  const { dense } = context;
-
-  let primary = primaryProp != null ? primaryProp : children;
-  if (primary != null && primary.type !== Typography && !disableTypography) {
-    primary = (
-      <Typography
-        variant="subheading"
-        internalDeprecatedVariant
-        className={classNames(classes.primary, { [classes.textDense]: dense })}
-        component="span"
-        {...primaryTypographyProps}
-      >
-        {primary}
-      </Typography>
-    );
-  }
-
-  let secondary = secondaryProp;
-  if (secondary != null && secondary.type !== Typography && !disableTypography) {
-    secondary = (
-      <Typography
-        className={classNames(classes.secondary, {
-          [classes.textDense]: dense,
-        })}
-        color="textSecondary"
-        {...secondaryTypographyProps}
-      >
-        {secondary}
-      </Typography>
-    );
-  }
 
   return (
-    <div
-      className={classNames(
-        classes.root,
-        {
-          [classes.dense]: dense,
-          [classes.inset]: inset,
-        },
-        classNameProp,
-      )}
-      {...other}
-    >
-      {primary}
-      {secondary}
-    </div>
+    <ListContext.Consumer>
+      {({ dense }) => {
+        let primary = primaryProp != null ? primaryProp : children;
+        if (primary != null && primary.type !== Typography && !disableTypography) {
+          primary = (
+            <Typography
+              variant="subheading"
+              internalDeprecatedVariant
+              className={classNames(classes.primary, { [classes.textDense]: dense })}
+              component="span"
+              {...primaryTypographyProps}
+            >
+              {primary}
+            </Typography>
+          );
+        }
+
+        let secondary = secondaryProp;
+        if (secondary != null && secondary.type !== Typography && !disableTypography) {
+          secondary = (
+            <Typography
+              className={classNames(classes.secondary, {
+                [classes.textDense]: dense,
+              })}
+              color="textSecondary"
+              {...secondaryTypographyProps}
+            >
+              {secondary}
+            </Typography>
+          );
+        }
+
+        return (
+          <div
+            className={classNames(
+              classes.root,
+              {
+                [classes.dense]: dense,
+                [classes.inset]: inset,
+              },
+              classNameProp,
+            )}
+            {...other}
+          >
+            {primary}
+            {secondary}
+          </div>
+        );
+      }}
+    </ListContext.Consumer>
   );
 }
 
@@ -152,10 +158,6 @@ ListItemText.propTypes = {
 ListItemText.defaultProps = {
   disableTypography: false,
   inset: false,
-};
-
-ListItemText.contextTypes = {
-  dense: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

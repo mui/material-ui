@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
+import MergeListContext from './MergeListContext';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -73,90 +74,88 @@ export const styles = theme => ({
   selected: {},
 });
 
-class ListItem extends React.Component {
-  getChildContext() {
-    return {
-      dense: this.props.dense || this.context.dense || false,
-    };
-  }
+function ListItem(props) {
+  const {
+    button,
+    children: childrenProp,
+    classes,
+    className: classNameProp,
+    component: componentProp,
+    ContainerComponent,
+    ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
+    dense: denseProp,
+    disabled,
+    disableGutters,
+    divider,
+    focusVisibleClassName,
+    selected,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      button,
-      children: childrenProp,
-      classes,
-      className: classNameProp,
-      component: componentProp,
-      ContainerComponent,
-      ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
-      dense,
-      disabled,
-      disableGutters,
-      divider,
-      focusVisibleClassName,
-      selected,
-      ...other
-    } = this.props;
+  return (
+    <MergeListContext dense={denseProp}>
+      {({ dense }) => {
+        const children = React.Children.toArray(childrenProp);
+        const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
+        const hasSecondaryAction =
+          children.length &&
+          isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-    const isDense = dense || this.context.dense || false;
-    const children = React.Children.toArray(childrenProp);
-    const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
-    const hasSecondaryAction =
-      children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+        const className = classNames(
+          classes.root,
+          classes.default,
+          {
+            [classes.dense]: dense || hasAvatar,
+            [classes.gutters]: !disableGutters,
+            [classes.divider]: divider,
+            [classes.disabled]: disabled,
+            [classes.button]: button,
+            [classes.secondaryAction]: hasSecondaryAction,
+            [classes.selected]: selected,
+          },
+          classNameProp,
+        );
 
-    const className = classNames(
-      classes.root,
-      classes.default,
-      {
-        [classes.dense]: isDense || hasAvatar,
-        [classes.gutters]: !disableGutters,
-        [classes.divider]: divider,
-        [classes.disabled]: disabled,
-        [classes.button]: button,
-        [classes.secondaryAction]: hasSecondaryAction,
-        [classes.selected]: selected,
-      },
-      classNameProp,
-    );
+        const componentProps = { className, disabled, ...other };
+        let Component = componentProp || 'li';
 
-    const componentProps = { className, disabled, ...other };
-    let Component = componentProp || 'li';
-
-    if (button) {
-      componentProps.component = componentProp || 'div';
-      componentProps.focusVisibleClassName = classNames(
-        classes.focusVisible,
-        focusVisibleClassName,
-      );
-      Component = ButtonBase;
-    }
-
-    if (hasSecondaryAction) {
-      // Use div by default.
-      Component = !componentProps.component && !componentProp ? 'div' : Component;
-
-      // Avoid nesting of li > li.
-      if (ContainerComponent === 'li') {
-        if (Component === 'li') {
-          Component = 'div';
-        } else if (componentProps.component === 'li') {
-          componentProps.component = 'div';
+        if (button) {
+          componentProps.component = componentProp || 'div';
+          componentProps.focusVisibleClassName = classNames(
+            classes.focusVisible,
+            focusVisibleClassName,
+          );
+          Component = ButtonBase;
         }
-      }
 
-      return (
-        <ContainerComponent
-          className={classNames(classes.container, ContainerClassName)}
-          {...ContainerProps}
-        >
-          <Component {...componentProps}>{children}</Component>
-          {children.pop()}
-        </ContainerComponent>
-      );
-    }
+        if (hasSecondaryAction) {
+          // Use div by default.
+          Component = !componentProps.component && !componentProp ? 'div' : Component;
 
-    return <Component {...componentProps}>{children}</Component>;
-  }
+          // Avoid nesting of li > li.
+          if (ContainerComponent === 'li') {
+            if (Component === 'li') {
+              Component = 'div';
+            } else if (componentProps.component === 'li') {
+              componentProps.component = 'div';
+            }
+          }
+
+          return (
+            <ContainerComponent
+              className={classNames(classes.container, ContainerClassName)}
+              {...ContainerProps}
+            >
+              <Component {...componentProps}>{children}</Component>
+              {children.pop()}
+            </ContainerComponent>
+          );
+        }
+
+        return <Component {...componentProps}>{children}</Component>;
+      }}
+    </MergeListContext>
+  );
 }
 
 ListItem.propTypes = {
@@ -226,14 +225,6 @@ ListItem.defaultProps = {
   disableGutters: false,
   divider: false,
   selected: false,
-};
-
-ListItem.contextTypes = {
-  dense: PropTypes.bool,
-};
-
-ListItem.childContextTypes = {
-  dense: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiListItem' })(ListItem);
