@@ -41,7 +41,6 @@ This property accepts the following keys:
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
-| <span class="prop-name">shown</span> | Styles applied to the badge `span` element if `hide={false}`.
 | <span class="prop-name">hidden</span> | Styles applied to the badge `span` element if `hide={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

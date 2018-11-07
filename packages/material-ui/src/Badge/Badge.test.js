@@ -126,23 +126,16 @@ describe('<Badge />', () => {
         wrapper
           .find('span')
           .at(1)
-          .hasClass(classes.shown),
-        true,
+          .hasClass(classes.hidden),
+        false,
       );
     });
 
-    it('should render with shown class when set to false', () => {
+    it('should render without the hidden class when set to false', () => {
       const wrapper = shallow(
         <Badge badgeContent={10} hide={false}>
           {testChildren}
         </Badge>,
-      );
-      assert.strictEqual(
-        wrapper
-          .find('span')
-          .at(1)
-          .hasClass(classes.shown),
-        true,
       );
 
       assert.strictEqual(
@@ -154,18 +147,11 @@ describe('<Badge />', () => {
       );
     });
 
-    it('should render with shown class when set to true', () => {
+    it('should render with the hidden class when set to true', () => {
       const wrapper = shallow(
         <Badge badgeContent={10} hide>
           {testChildren}
         </Badge>,
-      );
-      assert.strictEqual(
-        wrapper
-          .find('span')
-          .at(1)
-          .hasClass(classes.shown),
-        false,
       );
 
       assert.strictEqual(

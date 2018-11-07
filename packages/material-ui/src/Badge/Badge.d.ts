@@ -10,13 +10,7 @@ export interface BadgeProps
   hide?: boolean;
 }
 
-export type BadgeClassKey =
-  | 'root'
-  | 'badge'
-  | 'colorPrimary'
-  | 'colorSecondary'
-  | 'shown'
-  | 'hidden';
+export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorSecondary' | 'hidden';
 
 declare const Badge: React.ComponentType<BadgeProps>;
 

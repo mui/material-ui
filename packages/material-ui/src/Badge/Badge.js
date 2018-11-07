@@ -34,7 +34,11 @@ export const styles = theme => ({
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
-    transition: '225ms cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    transform: 'scale(1)',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -51,12 +55,12 @@ export const styles = theme => ({
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
   },
-  /* Styles applied to the badge `span` element if `hide={false}`. */
-  shown: {
-    transform: 'scale(1)',
-  },
   /* Styles applied to the badge `span` element if `hide={true}`. */
   hidden: {
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
     transform: 'scale(0)',
   },
 });
