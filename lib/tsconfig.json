@@ -2,7 +2,7 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "module": "es6",
+    "module": "commonjs",
     "outDir": "build",
     "declaration": true,
     "jsx": "react"
