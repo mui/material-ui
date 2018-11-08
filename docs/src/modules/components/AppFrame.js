@@ -12,6 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import LanguageIcon from '@material-ui/icons/Language';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
@@ -77,6 +80,7 @@ const styles = theme => ({
 
 class AppFrame extends React.Component {
   state = {
+    languageMenu: null,
     mobileOpen: false,
   };
 
@@ -86,6 +90,22 @@ class AppFrame extends React.Component {
 
   handleDrawerClose = () => {
     this.setState({ mobileOpen: false });
+  };
+
+  handleLanguageIconClick = event => {
+    this.setState({ languageMenu: event.currentTarget });
+  };
+
+  handleLanguageMenuClose = () => {
+    this.setState({ languageMenu: null });
+  };
+
+  handleLanguageMenuItemClick = lang => {
+    if (lang !== this.props.userLanguage) {
+      document.cookie = `lang=${lang};path=/;max-age=31536000`;
+      window.location.reload();
+    }
+    this.handleLanguageMenuClose();
   };
 
   handleTogglePaletteType = () => {
@@ -107,7 +127,8 @@ class AppFrame extends React.Component {
   };
 
   render() {
-    const { children, classes, uiTheme } = this.props;
+    const { children, classes, uiTheme, userLanguage } = this.props;
+    const { languageMenu } = this.state;
 
     return (
       <PageTitle>
@@ -146,6 +167,35 @@ class AppFrame extends React.Component {
                   )}
                   <div className={classes.grow} />
                   <AppSearch />
+                  <Tooltip title="Change docs language" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      aria-owns={languageMenu ? 'language-menu' : undefined}
+                      aria-haspopup="true"
+                      onClick={this.handleLanguageIconClick}
+                    >
+                      <LanguageIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    id="language-menu"
+                    anchorEl={languageMenu}
+                    open={Boolean(languageMenu)}
+                    onClose={this.handleLanguageMenuClose}
+                  >
+                    <MenuItem
+                      selected={userLanguage === 'en'}
+                      onClick={() => this.handleLanguageMenuItemClick('en')}
+                    >
+                      English
+                    </MenuItem>
+                    <MenuItem
+                      selected={userLanguage === 'zh'}
+                      onClick={() => this.handleLanguageMenuItemClick('zh')}
+                    >
+                      中文
+                    </MenuItem>
+                  </Menu>
                   <Tooltip title="Edit docs colors" enterDelay={300}>
                     <IconButton
                       color="inherit"
@@ -216,6 +266,7 @@ AppFrame.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   uiTheme: PropTypes.object.isRequired,
+  userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
