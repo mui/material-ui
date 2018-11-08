@@ -317,13 +317,9 @@ class Slider extends React.Component {
   };
 
   handleMouseLeave = event => {
-    // If the mouse moves off the window then move the slider to the extremity in the
-    // direction of the window edge.
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
-    const value = percentToValue(percent, min, max);
-
-    this.emitChange(event, value);
+    // The mouse will have moved between the last mouse move event
+    // this mouse leave event
+    this.handleMouseMove(event);
   };
 
   handleTouchStart = event => {
