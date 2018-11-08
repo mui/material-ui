@@ -193,7 +193,7 @@ class AppFrame extends React.Component {
                       selected={userLanguage === 'zh'}
                       onClick={() => this.handleLanguageMenuItemClick('zh')}
                     >
-                      Chinese
+                      中文
                     </MenuItem>
                   </Menu>
                   <Tooltip title="Edit docs colors" enterDelay={300}>

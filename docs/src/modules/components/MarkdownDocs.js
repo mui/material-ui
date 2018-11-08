@@ -43,7 +43,7 @@ function MarkdownDocs(props) {
       {({ contents, markdownLocation }) => (
         <PageContext.Consumer>
           {({ userLanguage }) => (
-            <AppFrame {...{ userLanguage }}>
+            <AppFrame userLanguage={userLanguage}>
               <Head
                 title={`${headers.title || getTitle(markdown)} - Material-UI`}
                 description={headers.description || getDescription(markdown)}
