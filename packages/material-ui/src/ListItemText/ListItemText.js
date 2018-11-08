@@ -37,8 +37,8 @@ export const styles = theme => ({
       fontSize: 'inherit',
     },
   },
-  /* Styles applied to the tertiary `Typography` component. */
-  tertiary: {
+  /* Styles applied to the third `Typography` component. */
+  third: {
     '&$textDense': {
       fontSize: 'inherit',
     },
@@ -58,8 +58,8 @@ function ListItemText(props) {
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
-    tertiary: tertiaryProp,
-    tertiaryTypographyProps,
+    third: thirdProp,
+    thirdTypographyProps,
     ...other
   } = props;
 
@@ -96,17 +96,17 @@ function ListItemText(props) {
           );
         }
 
-        let tertiary = tertiaryProp;
-        if (tertiary != null && tertiary.type !== Typography && !disableTypography) {
-          tertiary = (
+        let third = thirdProp;
+        if (third != null && third.type !== Typography && !disableTypography) {
+          third = (
             <Typography
-              className={classNames(classes.tertiary, {
+              className={classNames(classes.third, {
                 [classes.textDense]: dense,
               })}
               color="textSecondary"
-              {...tertiaryTypographyProps}
+              {...thirdTypographyProps}
             >
-              {tertiary}
+              {third}
             </Typography>
           );
         }
@@ -125,7 +125,7 @@ function ListItemText(props) {
           >
             {primary}
             {secondary}
-            {tertiary}
+            {third}
           </div>
         );
       }}
@@ -178,14 +178,14 @@ ListItemText.propTypes = {
    */
   secondaryTypographyProps: PropTypes.object,
   /**
-   * The tertiary content element.
+   * The third content element.
    */
-  tertiary: PropTypes.node,
+  third: PropTypes.node,
   /**
-   * These props will be forwarded to the tertiary typography component
+   * These props will be forwarded to the third typography component
    * (as long as disableTypography is not `true`).
    */
-  tertiaryTypographyProps: PropTypes.object,
+  thirdTypographyProps: PropTypes.object,
 };
 
 ListItemText.defaultProps = {
