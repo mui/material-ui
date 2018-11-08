@@ -1,29 +1,38 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '../test-utils';
 import Table from './Table';
+import TableContext from './TableContext';
 
 describe('<Table />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<Table>foo</Table>);
   });
 
   it('should render a table', () => {
-    const wrapper = shallow(<Table>foo</Table>);
-    assert.strictEqual(wrapper.name(), 'table');
+    const wrapper = mount(
+      <Table>
+        <tbody />
+      </Table>,
+    );
+    assert.strictEqual(wrapper.getDOMNode().nodeName, 'TABLE');
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<Table component="div">foo</Table>);
-    assert.strictEqual(wrapper.name(), 'div');
+    const wrapper = mount(<Table component="div">foo</Table>);
+    assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<Table data-my-prop="woofTable">foo</Table>);
+    const wrapper = mount(
+      <Table data-my-prop="woofTable">
+        <tbody />
+      </Table>,
+    );
     assert.strictEqual(
       wrapper.props()['data-my-prop'],
       'woofTable',
@@ -32,20 +41,37 @@ describe('<Table />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<Table className="woofTable">foo</Table>);
-    assert.strictEqual(wrapper.hasClass('woofTable'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(
+      <Table className="woofTable">
+        <tbody />
+      </Table>,
+    );
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofTable'), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render children', () => {
     const children = <tbody className="test" />;
-    const wrapper = shallow(<Table>{children}</Table>);
-    assert.strictEqual(wrapper.childAt(0).equals(children), true);
+    const wrapper = mount(<Table>{children}</Table>);
+    assert.strictEqual(wrapper.contains(children), true);
   });
 
   it('should define table in the child context', () => {
-    const wrapper = shallow(<Table>foo</Table>);
-    assert.deepStrictEqual(wrapper.instance().getChildContext().table, {
+    let context;
+
+    mount(
+      <Table>
+        <TableContext.Consumer>
+          {value => {
+            context = value;
+
+            return <tbody />;
+          }}
+        </TableContext.Consumer>
+      </Table>,
+    );
+
+    assert.deepStrictEqual(context, {
       padding: 'default',
     });
   });
