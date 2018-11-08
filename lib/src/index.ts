@@ -7,4 +7,12 @@ export {
   InlineDateTimePicker,
 } from './DateTimePicker';
 
+export { default as Calendar } from './DatePicker/components/Calendar';
+
+export { default as Day } from './DatePicker/components/Day';
+
+export { default as TimePickerView } from './TimePicker/components/TimePickerView';
+
+export { default as Clock } from './TimePicker/components/Clock';
+
 export { default as MuiPickersUtilsProvider } from './MuiPickersUtilsProvider';
