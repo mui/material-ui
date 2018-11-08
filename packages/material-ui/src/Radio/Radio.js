@@ -49,6 +49,7 @@ function Radio(props) {
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      role="radio"
       {...other}
     />
   );

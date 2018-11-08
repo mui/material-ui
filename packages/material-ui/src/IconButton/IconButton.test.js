@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, findOutermostIntrinsic, getClasses } from '../test-utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
@@ -82,6 +82,11 @@ describe('<IconButton />', () => {
   it('should pass centerRipple={true} to ButtonBase', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
     assert.strictEqual(wrapper.props().centerRipple, true);
+  });
+
+  it('should have a button role', () => {
+    const wrapper = mount(<IconButton>clickme</IconButton>);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'button');
   });
 
   describe('prop: disabled', () => {

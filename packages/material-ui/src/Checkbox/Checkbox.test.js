@@ -35,6 +35,19 @@ describe('<Checkbox />', () => {
     mount(<Checkbox checked />);
   });
 
+  it('should have the checkbox role', () => {
+    const wrapper = mount(<Checkbox />);
+    assert.strictEqual(wrapper.find('span[role="checkbox"]').exists(), true);
+  });
+
+  it('should have the correct aria-checked attribute', () => {
+    const wrapper = mount(<Checkbox checked={false} />);
+    assert.equal(wrapper.find('span[role="checkbox"]').props()['aria-checked'], false);
+
+    wrapper.setProps({ checked: true });
+    assert.equal(wrapper.find('span[role="checkbox"]').props()['aria-checked'], true);
+  });
+
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       const wrapper = mount(<Checkbox indeterminate />);

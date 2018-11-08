@@ -92,6 +92,7 @@ function IconButton(props) {
       centerRipple
       focusRipple
       disabled={disabled}
+      role="button"
       {...other}
     >
       <span className={classes.label}>{children}</span>

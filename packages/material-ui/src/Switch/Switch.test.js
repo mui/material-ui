@@ -1,15 +1,17 @@
 import React from 'react';
 import { assert } from 'chai';
 import classNames from 'classnames';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(<Switch />);
   });
@@ -52,5 +54,18 @@ describe('<Switch />', () => {
       assert.strictEqual(bar.name(), 'span');
       assert.strictEqual(bar.hasClass(classes.bar), true);
     });
+  });
+
+  it('should have the switch role', () => {
+    const wrapper = mount(<Switch />);
+    assert.strictEqual(wrapper.find('span[role="switch"]').exists(), true);
+  });
+
+  it('should have the correct aria-checked attribute', () => {
+    const wrapper = mount(<Switch checked={false} />);
+    assert.equal(wrapper.find('span[role="switch"]').props()['aria-checked'], false);
+
+    wrapper.setProps({ checked: true });
+    assert.equal(wrapper.find('span[role="switch"]').props()['aria-checked'], true);
   });
 });

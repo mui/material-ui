@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, findOutermostIntrinsic } from '../test-utils';
 import StepButton from './StepButton';
 import StepLabel from '../StepLabel';
 import ButtonBase from '../ButtonBase';
@@ -70,6 +70,11 @@ describe('<StepButton />', () => {
     );
     const stepLabel = wrapper.find(ButtonBase);
     assert.strictEqual(stepLabel.props().disabled, true);
+  });
+
+  it('should have a button role', () => {
+    const wrapper = mount(<StepButton>clickme</StepButton>);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'button');
   });
 
   describe('event handlers', () => {

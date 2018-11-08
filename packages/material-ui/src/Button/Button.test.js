@@ -1,20 +1,32 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createRender, getClasses } from '../test-utils';
+import {
+  createShallow,
+  createMount,
+  createRender,
+  findOutermostIntrinsic,
+  getClasses,
+} from '../test-utils';
 import Button from './Button';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
 describe('<Button />', () => {
+  let mount;
   let shallow;
   let render;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     render = createRender();
     classes = getClasses(<Button>Hello World</Button>);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a <ButtonBase> element', () => {
@@ -292,6 +304,11 @@ describe('<Button />', () => {
     const renderedIconChild = label.childAt(0);
     assert.strictEqual(renderedIconChild.type(), Icon);
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
+  });
+
+  it('should have a button role', () => {
+    const wrapper = mount(<Button>clickme</Button>);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).props().role, 'button');
   });
 
   describe('server side', () => {

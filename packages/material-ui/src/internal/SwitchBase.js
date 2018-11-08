@@ -117,6 +117,7 @@ class SwitchBase extends React.Component {
 
     return (
       <IconButton
+        aria-checked={checked}
         component="span"
         className={classNames(
           classes.root,
@@ -128,7 +129,7 @@ class SwitchBase extends React.Component {
         )}
         disabled={disabled}
         tabIndex={null}
-        role={undefined}
+        role="switch"
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         {...other}

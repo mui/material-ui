@@ -276,6 +276,7 @@ function Button(props) {
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      role="button"
       {...other}
     >
       <span className={classes.label}>{children}</span>

@@ -72,6 +72,7 @@ function Checkbox(props) {
         ...inputProps,
       }}
       icon={indeterminate ? indeterminateIcon : icon}
+      role="checkbox"
       {...other}
     />
   );
