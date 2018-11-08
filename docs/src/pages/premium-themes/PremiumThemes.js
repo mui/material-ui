@@ -72,6 +72,9 @@ function PremiumThemes(props) {
               className={classes.media}
               image={theme.src}
               title={theme.name}
+              data-ga-event-category="premium-themes"
+              data-ga-event-action="click"
+              data-ga-event-label={theme.name}
             />
             <CardContent className={classes.cardContent}>
               <Grid container alignItems="center">
@@ -96,6 +99,9 @@ function PremiumThemes(props) {
                 href={theme.href}
                 size="small"
                 color="primary"
+                data-ga-event-category="premium-themes"
+                data-ga-event-action="click"
+                data-ga-event-label={theme.name}
               >
                 Learn More
               </Button>

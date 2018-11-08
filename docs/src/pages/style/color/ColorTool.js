@@ -48,6 +48,8 @@ const styles = theme => ({
   },
   slider: {
     width: 'calc(100% - 80px)',
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
   },
   colorBar: {
     marginTop: theme.spacing.unit * 2,
