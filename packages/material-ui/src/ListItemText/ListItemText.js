@@ -37,6 +37,12 @@ export const styles = theme => ({
       fontSize: 'inherit',
     },
   },
+  /* Styles applied to the tertiary `Typography` component. */
+  tertiary: {
+    '&$textDense': {
+      fontSize: 'inherit',
+    },
+  },
   /* Styles applied to the `Typography` components if `context.dense` is `true`. */
   textDense: {},
 });
@@ -52,6 +58,8 @@ function ListItemText(props) {
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
+    tertiary: tertiaryProp,
+    tertiaryTypographyProps,
     ...other
   } = props;
 
@@ -88,6 +96,21 @@ function ListItemText(props) {
           );
         }
 
+        let tertiary = tertiaryProp;
+        if (tertiary != null && tertiary.type !== Typography && !disableTypography) {
+          tertiary = (
+            <Typography
+              className={classNames(classes.tertiary, {
+                [classes.textDense]: dense,
+              })}
+              color="textSecondary"
+              {...tertiaryTypographyProps}
+            >
+              {tertiary}
+            </Typography>
+          );
+        }
+
         return (
           <div
             className={classNames(
@@ -102,6 +125,7 @@ function ListItemText(props) {
           >
             {primary}
             {secondary}
+            {tertiary}
           </div>
         );
       }}
@@ -153,6 +177,15 @@ ListItemText.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   secondaryTypographyProps: PropTypes.object,
+  /**
+   * The tertiary content element.
+   */
+  tertiary: PropTypes.node,
+  /**
+   * These props will be forwarded to the tertiary typography component
+   * (as long as disableTypography is not `true`).
+   */
+  tertiaryTypographyProps: PropTypes.object,
 };
 
 ListItemText.defaultProps = {
