@@ -13,7 +13,6 @@ import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
-import PageContext from 'docs/src/modules/components/PageContext';
 
 const styles = theme => ({
   root: {
@@ -41,64 +40,56 @@ function MarkdownDocs(props) {
   return (
     <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
       {({ contents, markdownLocation }) => (
-        <PageContext.Consumer>
-          {({ userLanguage }) => (
-            <AppFrame userLanguage={userLanguage}>
-              <Head
-                title={`${headers.title || getTitle(markdown)} - Material-UI`}
-                description={headers.description || getDescription(markdown)}
-              />
-              <AppTableOfContents contents={contents} />
-              {disableAd ? null : (
-                <Portal container={() => document.querySelector('.description')}>
-                  <Ad />
-                </Portal>
-              )}
-              <AppContent className={classes.root}>
-                <div className={classes.header}>
-                  <EditPage
-                    markdownLocation={markdownLocation}
-                    sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-                  />
-                </div>
-                {contents.map((content, index) => {
-                  const match = content.match(demoRegexp);
-
-                  if (match && demos) {
-                    let demoOptions;
-                    try {
-                      demoOptions = JSON.parse(`{${content}}`);
-                    } catch (err) {
-                      console.error(err); // eslint-disable-line no-console
-                      return null;
-                    }
-
-                    const name = demoOptions.demo;
-                    warning(demos && demos[name], `Missing demo: ${name}.`);
-                    return (
-                      <Demo
-                        key={content}
-                        js={demos[name].js}
-                        raw={demos[name].raw}
-                        index={index}
-                        demoOptions={demoOptions}
-                        githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-                      />
-                    );
-                  }
-
-                  return (
-                    <MarkdownElement
-                      className={classes.markdownElement}
-                      key={content}
-                      text={content}
-                    />
-                  );
-                })}
-              </AppContent>
-            </AppFrame>
+        <AppFrame>
+          <Head
+            title={`${headers.title || getTitle(markdown)} - Material-UI`}
+            description={headers.description || getDescription(markdown)}
+          />
+          <AppTableOfContents contents={contents} />
+          {disableAd ? null : (
+            <Portal container={() => document.querySelector('.description')}>
+              <Ad />
+            </Portal>
           )}
-        </PageContext.Consumer>
+          <AppContent className={classes.root}>
+            <div className={classes.header}>
+              <EditPage
+                markdownLocation={markdownLocation}
+                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+              />
+            </div>
+            {contents.map((content, index) => {
+              const match = content.match(demoRegexp);
+
+              if (match && demos) {
+                let demoOptions;
+                try {
+                  demoOptions = JSON.parse(`{${content}}`);
+                } catch (err) {
+                  console.error(err); // eslint-disable-line no-console
+                  return null;
+                }
+
+                const name = demoOptions.demo;
+                warning(demos && demos[name], `Missing demo: ${name}.`);
+                return (
+                  <Demo
+                    key={content}
+                    js={demos[name].js}
+                    raw={demos[name].raw}
+                    index={index}
+                    demoOptions={demoOptions}
+                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                  />
+                );
+              }
+
+              return (
+                <MarkdownElement className={classes.markdownElement} key={content} text={content} />
+              );
+            })}
+          </AppContent>
+        </AppFrame>
       )}
     </MarkdownDocsContents>
   );

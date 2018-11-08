@@ -1,6 +1,6 @@
 files:
   - source: /docs/src/pages/**/*.md
     ignore:
-      - /**/blog/blog-post.*.md
+      - /docs/src/pages/page-layout-examples/*/*.md
       - /**/%file_name%-%two_letters_code%.md
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%

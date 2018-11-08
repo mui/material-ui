@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
+import fromRenderProps from 'recompose/fromRenderProps';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -22,6 +23,7 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
@@ -167,12 +169,14 @@ class AppFrame extends React.Component {
                   )}
                   <div className={classes.grow} />
                   <AppSearch />
-                  <Tooltip title="Change docs language" enterDelay={300}>
+                  <Tooltip title="Change language" enterDelay={300}>
                     <IconButton
                       color="inherit"
                       aria-owns={languageMenu ? 'language-menu' : undefined}
                       aria-haspopup="true"
                       onClick={this.handleLanguageIconClick}
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="language"
                     >
                       <LanguageIcon />
                     </IconButton>
@@ -202,6 +206,8 @@ class AppFrame extends React.Component {
                       aria-label="Edit docs colors"
                       component={Link}
                       href="/style/color/#color-tool"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="colors"
                     >
                       <ColorsIcon />
                     </IconButton>
@@ -211,6 +217,8 @@ class AppFrame extends React.Component {
                       color="inherit"
                       onClick={this.handleTogglePaletteType}
                       aria-label="Toggle light/dark theme"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="dark"
                     >
                       {uiTheme.paletteType === 'light' ? (
                         <LightbulbOutlineIcon />
@@ -224,6 +232,8 @@ class AppFrame extends React.Component {
                       color="inherit"
                       onClick={this.handleToggleDirection}
                       aria-label="Toggle right-to-left/left-to-right"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="rtl"
                     >
                       {uiTheme.direction === 'rtl' ? (
                         <FormatTextdirectionLToR />
@@ -238,6 +248,8 @@ class AppFrame extends React.Component {
                       color="inherit"
                       href="https://github.com/mui-org/material-ui"
                       aria-label="GitHub repository"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="github"
                     >
                       <GithubIcon />
                     </IconButton>
@@ -269,9 +281,12 @@ AppFrame.propTypes = {
   userLanguage: PropTypes.string.isRequired,
 };
 
+const pageContext = fromRenderProps(PageContext.Consumer, ({ userLanguage }) => ({ userLanguage }));
+
 export default compose(
   connect(state => ({
     uiTheme: state.theme,
   })),
+  pageContext,
   withStyles(styles),
 )(AppFrame);
