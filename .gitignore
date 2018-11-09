@@ -1,8 +1,6 @@
 # dependencies
 node_modules
 
-docs-old
-
 # build
 dist
 build
