@@ -1,14 +1,12 @@
 import React from 'react';
 import Code from '_shared/Code';
 import { Typography } from '@material-ui/core';
-// eslint-disable-next-line
-import StaticPickersCode from 'Examples/CodeSnippets/StaticPickers';
+import SourcablePanel from '_shared/SourcablePanel';
 
 const StaticPickers = () => (
   <div>
     <Typography variant="h2" gutterBottom>
-      {' '}
-      Static pickers{' '}
+      Static pickers
     </Typography>
 
     <Typography variant="body1" gutterBottom>
@@ -23,7 +21,15 @@ const StaticPickers = () => (
       managing temporary chosen date and submitting state logic.
     </Typography>
 
-    <Code text={StaticPickersCode} />
+    <SourcablePanel
+      title="Patched french picker"
+      sourceFile="Guides/StaticPickers.example.jsx"
+      description={
+        <Typography variant="body1" gutterBottom>
+          Please make sure that your imports are consistent
+        </Typography>
+      }
+    />
   </div>
 );
 

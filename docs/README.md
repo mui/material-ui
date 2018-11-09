@@ -1,6 +1,5 @@
-Demo project for `material-ui-pickers`
+Documentation website project for `material-ui-pickers`
 
-First of all thank you for taking your time to contribute us 🤗
-To run the project do `npm start` from the docs folder. It would watch the `lib/src` folder and rebuild on change.
+To run this project just move up to the root and run `npm start`. Thus docs folder will watch for any changes made in `lib`
 
-Have a nice coding time 😉
+Happy hacking 😉
