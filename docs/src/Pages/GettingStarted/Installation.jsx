@@ -3,7 +3,7 @@ import Code from '_shared/Code';
 import { Typography } from '@material-ui/core';
 
 // eslint-disable-next-line
-import muiPickerProviderCode from '!raw-loader!Examples/CodeSnippets/MuiPickerProviderCode';
+import muiPickerProviderCode from '!raw-loader!./MuiPickersProvider.example.jsx';
 
 const installLibCode = `npm i @date-io/date-fns date-fns@2.0.0-alpha.16
 // or
@@ -14,26 +14,22 @@ npm i -s @date-io/luxon luxon`;
 const Installation = () => (
   <div>
     <Typography variant="h2" gutterBottom>
-      {' '}
-      Installation{' '}
+      Installation
     </Typography>
     <Typography variant="body1" gutterBottom>
-      {' '}
-      Available as{' '}
+      Available as
       <a
         className="link"
         href="https://www.npmjs.com/package/material-ui-pickers"
       >
-        {' '}
-        npm package{' '}
-      </a>{' '}
+        npm package
+      </a>
     </Typography>
 
     <Code withMargin text="npm i -s material-ui-pickers" />
 
     <Typography variant="h4" gutterBottom>
-      {' '}
-      Peer Library{' '}
+      Peer Library
     </Typography>
     <Typography variant="body1" gutterBottom>
       Material-ui-pickers was designed to use that date management library that
@@ -41,17 +37,16 @@ const Installation = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      We are providing interfaces for{' '}
+      We are providing interfaces for
       <a className="link" href="https://momentjs.com/">
         moment
       </a>
-      &nbsp;,{' '}
+      &nbsp;,
       <a className="link" href="https://date-fns.org/">
         date-fns 2
-      </a>{' '}
+      </a>
       and
       <a className="link" href="https://moment.github.io/luxon/">
-        {' '}
         luxon
       </a>
       . P.S. If you are not using moment in the project (or dont have it in the
@@ -73,7 +68,7 @@ const Installation = () => (
 
     <Code withMargin text={installLibCode} />
     <Typography>
-      Teach pickers how to use one of that library using{' '}
+      Teach pickers how to use one of that library using
       <span className="inline-code">MuiPickersUtilsProvider</span>. This
       component takes an utils property, and makes it available down the React
       tree thanks to React context. It should preferably be used at the root of
@@ -82,8 +77,7 @@ const Installation = () => (
 
     <Code withMargin text={muiPickerProviderCode} />
     <Typography variant="h4" gutterBottom>
-      {' '}
-      Font Icons{' '}
+      Font Icons
     </Typography>
     <Typography variant="body1">
       We are using material-ui-icons icon font to display icons. In order if you

@@ -1,84 +1,50 @@
 {
   "name": "docs",
-  "version": "2.0.0",
+  "version": "0.1.0",
   "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "0.0.2",
+    "@date-io/luxon": "0.0.2",
+    "@date-io/moment": "0.0.2",
+    "@material-ui/core": "^3.4.0",
+    "@types/classnames": "^2.2.6",
+    "@types/jest": "^23.3.9",
+    "@types/luxon": "^1.4.1",
+    "@types/moment-jalaali": "^0.7.4",
+    "@types/node": "^10.12.3",
+    "@types/react": "^16.7.1",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-jss": "^8.6.0",
+    "@types/react-router": "^4.4.1",
+    "@types/react-router-dom": "^4.3.1",
+    "classnames": "^2.2.6",
+    "date-fns": "^2.0.0-alpha.21",
+    "jss-rtl": "^0.2.3",
+    "luxon": "^1.5.0",
+    "material-ui-pickers": "2.0.0",
+    "material-ui-pickers-jalali-utils": "^0.4.3",
+    "moment": "^2.22.2",
+    "moment-jalaali": "^0.8.1",
+    "prismjs": "^1.15.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16.6.1",
+    "react-app-rewire-aliases": "^0.2.0",
+    "react-app-rewired": "^1.6.2",
+    "react-dom": "^16.6.1",
+    "react-jss": "^8.6.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "typescript": "^3.1.6"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "docs:generate": "node scripts/docgen.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docs:generate": "node scripts/docgen",
     "backers:generate": "node scripts/generate-backers",
     "deploy": "npm run docs:generate && npm run backers:generate && npm run build && firebase deploy"
-  },
-  "dependencies": {
-    "@date-io/core": "0.0.1",
-    "@date-io/date-fns": "0.0.1",
-    "@date-io/luxon": "0.0.1",
-    "@date-io/moment": "0.0.1",
-    "@material-ui/core": "^3.4.0",
-    "classnames": "^2.2.6",
-    "date-fns": "2.0.0-alpha.16",
-    "jss": "^9.8.7",
-    "jss-preset-default": "^4.5.0",
-    "jss-rtl": "^0.2.3",
-    "luxon": "^1.5.0",
-    "material-ui-pickers": "^1.0.1",
-    "material-ui-pickers-jalali-utils": "^0.4.3",
-    "moment": "^2.22.2",
-    "moment-jalaali": "^0.7.4",
-    "object-assign": "4.1.1",
-    "patreon": "^0.4.1",
-    "postcss-flexbugs-fixes": "3.2.0",
-    "postcss-loader": "2.0.8",
-    "prismjs": "^1.15.0",
-    "promise": "8.0.1",
-    "prop-types": "^15.6.2",
-    "raw-loader": "^0.5.1",
-    "react": "^16.6.0",
-    "react-docgen-typescript": "^1.12.0",
-    "react-dom": "^16.6.0",
-    "react-jss": "^8.6.1",
-    "react-markdown": "^2.5.1",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.1",
-    "typescript": "^3.1.6"
-  },
-  "devDependencies": {
-    "cross-env": "^5.2.0"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -88,5 +54,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "patreon": "^0.4.1",
+    "react-docgen-typescript": "^1.12.0"
+  }
 }

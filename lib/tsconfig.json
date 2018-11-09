@@ -5,7 +5,8 @@
     "module": "commonjs",
     "outDir": "build",
     "declaration": true,
-    "jsx": "react"
+    "jsx": "react",
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["./src/__tests__/**/*", "build"]

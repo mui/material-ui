@@ -5,19 +5,18 @@ import { Typography } from '@material-ui/core';
 const ControllingProgrammatically = () => (
   <div>
     <Typography variant="h2" gutterBottom>
-      {' '}
-      Control programmatically{' '}
+      Control programmatically
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Any picker can be controlled by <span className="inline-code"> ref </span>{' '}
+      Any picker can be controlled by <span className="inline-code"> ref </span>
       property which add an ability open any picker from the code. See an
       example below
     </Typography>
 
     <SourcablePanel
       title="Open from button"
-      sourceFile="Guides/ControllingProgrammatically.jsx"
+      sourceFile="Guides/ControllingProgrammatically.example.jsx"
     />
   </div>
 );

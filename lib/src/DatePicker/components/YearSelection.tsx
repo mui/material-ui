@@ -60,11 +60,11 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
     }
   };
 
-  public componentDidMount = () => {
+  public componentDidMount() {
     if (this.selectedYearRef) {
       this.scrollToCurrentYear(this.selectedYearRef);
     }
-  };
+  }
 
   public onYearSelect = (year: number) => {
     const { date, onChange, utils } = this.props;

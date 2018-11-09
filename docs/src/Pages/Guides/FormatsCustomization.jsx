@@ -9,8 +9,7 @@ import utilsInterfaceCode from '!raw-loader!@date-io/core/IUtils.d.ts';
 const FormatCustomization = () => (
   <div>
     <Typography variant="h2" gutterBottom>
-      {' '}
-      Format customization{' '}
+      Format customization
     </Typography>
 
     <Typography variant="body1" gutterBottom>
@@ -26,7 +25,7 @@ const FormatCustomization = () => (
 
     <SourcablePanel
       title="Patched french picker"
-      sourceFile="Guides/OverrideFormatPicker.jsx"
+      sourceFile="Guides/FormatsCustomization.example.jsx"
       description={
         <Typography variant="body1" gutterBottom>
           You can use ES6 class syntax or override values with a help of

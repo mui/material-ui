@@ -5,8 +5,7 @@ import { Typography } from '@material-ui/core';
 const CssOverrides = () => (
   <div>
     <Typography variant="h2" gutterBottom>
-      {' '}
-      Override stylesheet{' '}
+      Override stylesheet
     </Typography>
 
     <Typography variant="body1" gutterBottom>
@@ -23,7 +22,7 @@ const CssOverrides = () => (
 
     <SourcablePanel
       title="Override example"
-      sourceFile="Guides/CssTheme.jsx"
+      sourceFile="Guides/CssOverrides.example.jsx"
       description={
         <Typography variant="body1" gutterBottom>
           You can find the override component name and class in the generated
