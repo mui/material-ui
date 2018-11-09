@@ -41,7 +41,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docs:generate": "node scripts/docgen",
+    "backers:generate": "node scripts/generate-backers",
+    "deploy": "npm run docs:generate && npm run backers:generate && npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,5 +54,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "patreon": "^0.4.1",
+    "react-docgen-typescript": "^1.12.0"
+  }
 }

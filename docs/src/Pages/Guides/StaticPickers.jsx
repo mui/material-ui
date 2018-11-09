@@ -1,5 +1,4 @@
 import React from 'react';
-import Code from '_shared/Code';
 import { Typography } from '@material-ui/core';
 import SourcablePanel from '_shared/SourcablePanel';
 
