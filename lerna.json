@@ -1,4 +1,4 @@
 {
-  "packages": ["docs", "lib"],
+  "packages": ["lib", "docs"],
   "version": "0.0.0"
 }

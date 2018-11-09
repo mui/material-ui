@@ -102,6 +102,7 @@ export interface DateTextFieldProps
   /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
   mask?: any;
   pipe?: any;
+  keepCharPositions?: boolean;
   onChange: (date: MaterialUiPickersDate) => void;
   onClear?: () => void;
   /** On/off manual keyboard input mode */
@@ -174,6 +175,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     onError: PropTypes.func,
     onInputChange: PropTypes.func,
     pipe: PropTypes.func,
+    keepCharPositions: PropTypes.bool,
   };
 
   public static defaultProps = {
@@ -204,7 +206,9 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     InputAdornmentProps: {},
     adornmentPosition: 'end',
     pipe: undefined,
+    keepCharPositions: false,
   };
+
   public static updateState = (props: DateTextFieldProps) => ({
     value: props.value,
     displayValue: getDisplayDate(props),
@@ -342,6 +346,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       onClear,
       onClick,
       pipe,
+      keepCharPositions,
       TextFieldComponent,
       utils,
       value,
@@ -355,6 +360,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       inputProps: {
         mask: !keyboard ? null : mask,
         pipe: !keyboard ? null : pipe,
+        keepCharPositions: !keyboard ? undefined : keepCharPositions,
         readOnly: !keyboard,
       },
     };

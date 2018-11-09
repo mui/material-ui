@@ -2,10 +2,11 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "module": "es6",
+    "module": "commonjs",
     "outDir": "build",
     "declaration": true,
-    "jsx": "react"
+    "jsx": "react",
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["./src/__tests__/**/*", "build"]

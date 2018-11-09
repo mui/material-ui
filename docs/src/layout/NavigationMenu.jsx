@@ -24,9 +24,9 @@ const navItems = [
   {
     title: 'Components',
     children: [
-      { title: 'Date Picker', href: '/demo/datepicker' },
-      { title: 'Time Picker', href: '/demo/timepicker' },
-      { title: 'Date & Time Picker', href: '/demo/datetimepicker' },
+      { title: 'Date Picker', href: '/api/datepicker' },
+      { title: 'Time Picker', href: '/api/timepicker' },
+      { title: 'Date & Time Picker', href: '/api/datetimepicker' },
     ],
   },
   {
@@ -34,7 +34,10 @@ const navItems = [
     children: [
       { title: 'CSS overrides', href: '/guides/css-overrides' },
       { title: 'Global format customization', href: '/guides/formats' },
-      { title: 'Open pickers programmatically', href: '/guides/controlling-programmatically' },
+      {
+        title: 'Open pickers programmatically',
+        href: '/guides/controlling-programmatically',
+      },
       { title: 'Static picker`s components', href: '/guides/static-pickers' },
     ],
   },
@@ -44,9 +47,10 @@ class NavigationMenu extends React.Component {
   mapNavigation(depth) {
     return ({ title, children, href }) => {
       const { location } = this.props;
-      const open = children && children.length > 0
-        ? children.some(item => item.href === location.pathname)
-        : false;
+      const open =
+        children && children.length > 0
+          ? children.some(item => item.href === location.pathname)
+          : false;
 
       return (
         <NavItem
@@ -56,18 +60,16 @@ class NavigationMenu extends React.Component {
           href={href}
           open={open}
         >
-          {children && children.length > 0 && children.map(this.mapNavigation(depth + 1))}
+          {children &&
+            children.length > 0 &&
+            children.map(this.mapNavigation(depth + 1))}
         </NavItem>
       );
     };
   }
 
   render() {
-    return (
-      <List component="nav">
-        {navItems.map(this.mapNavigation(0))}
-      </List>
-    );
+    return <List component="nav">{navItems.map(this.mapNavigation(0))}</List>;
   }
 }
 
@@ -76,4 +78,3 @@ NavigationMenu.propTypes = {
 };
 
 export default withRouter(NavigationMenu);
-

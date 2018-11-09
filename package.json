@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Material-ui pickers root package",
   "main": "index.js",
   "directories": {
@@ -11,7 +11,7 @@
     "start": "lerna run start --parallel",
     "bump:patch": "lerna exec -- npm version patch",
     "bump:minor": "lerna exec -- npm version minor",
-    "release": "lerna run release --scope material-ui-pickers && lerna run deploy --scope docs",
+    "release": "lerna run release --scope --parallel material-ui-pickers && lerna run deploy --scope --parallel docs",
     "release:patch": "npm run bump:patch && npm run release",
     "release:minor": "npm run bump:minor && npm run release",
     "postinstall": "lerna link"

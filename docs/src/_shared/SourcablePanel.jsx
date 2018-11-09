@@ -1,10 +1,13 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
-
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { Typography, IconButton, Icon, withStyles, Collapse } from '@material-ui/core';
+import {
+  Typography,
+  IconButton,
+  Icon,
+  withStyles,
+  Collapse,
+} from '@material-ui/core';
 import Code from './Code';
 
 class SourcablePanel extends PureComponent {
@@ -13,24 +16,23 @@ class SourcablePanel extends PureComponent {
     title: PropTypes.string.isRequired,
     description: PropTypes.node,
     sourceFile: PropTypes.string.isRequired,
-  }
+  };
 
   static defaultProps = {
     description: undefined,
-  }
+  };
 
   state = {
     sourceExpanded: false,
+  };
 
-  }
+  getSource = () => require(`!raw-loader!../Pages/${this.props.sourceFile}`);
 
-  getSource = () => require(`!raw-loader!../Examples/${this.props.sourceFile}`)
-
-  getComponent = () => require(`../Examples/${this.props.sourceFile}`).default
+  getComponent = () => require(`../Pages/${this.props.sourceFile}`).default;
 
   toggleSource = () => {
     this.setState({ sourceExpanded: !this.state.sourceExpanded });
-  }
+  };
 
   render() {
     const { sourceExpanded } = this.state;
@@ -40,7 +42,7 @@ class SourcablePanel extends PureComponent {
     return (
       <React.Fragment>
         <Typography variant="h4" className={classes.exampleTitle}>
-          { title }
+          {title}
         </Typography>
 
         {description}
@@ -50,10 +52,7 @@ class SourcablePanel extends PureComponent {
         </Collapse>
 
         <div className={classes.pickers}>
-          <IconButton
-            className={classes.sourceBtn}
-            onClick={this.toggleSource}
-          >
+          <IconButton className={classes.sourceBtn} onClick={this.toggleSource}>
             <Icon>code</Icon>
           </IconButton>
           <Component />
@@ -73,7 +72,8 @@ const styles = theme => ({
   },
   pickers: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     flexWrap: 'wrap',
     minHeight: 160,
     paddingTop: 40,
@@ -81,7 +81,18 @@ const styles = theme => ({
     margin: '0 auto 50px',
     position: 'relative',
     backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+      theme.palette.type === 'light'
+        ? theme.palette.grey[200]
+        : theme.palette.grey[900],
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+
+      '& > div': {
+        marginBottom: 32,
+      },
+    },
   },
   sourceBtn: {
     position: 'absolute',
@@ -94,4 +105,3 @@ const styles = theme => ({
 });
 
 export default withStyles(styles)(SourcablePanel);
-
