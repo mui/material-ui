@@ -208,6 +208,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     pipe: undefined,
     keepCharPositions: false,
   };
+
   public static updateState = (props: DateTextFieldProps) => ({
     value: props.value,
     displayValue: getDisplayDate(props),
@@ -359,7 +360,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       inputProps: {
         mask: !keyboard ? null : mask,
         pipe: !keyboard ? null : pipe,
-        keepCharPositions: !keyboard ? null : keepCharPositions,
+        keepCharPositions: !keyboard ? undefined : keepCharPositions,
         readOnly: !keyboard,
       },
     };

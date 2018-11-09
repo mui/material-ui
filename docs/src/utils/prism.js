@@ -16,10 +16,9 @@ if (document.head) {
 }
 
 export function setPrismTheme(theme) {
-  styleNode.textContent = theme === 'light'
-    ? lightTheme
-    : darkTheme;
+  styleNode.textContent = theme === 'light' ? lightTheme : darkTheme;
 }
 
-export default prism;
+setPrismTheme('light'); // by default
 
+export default prism;

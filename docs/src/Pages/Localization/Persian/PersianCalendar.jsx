@@ -11,10 +11,10 @@ const PersianCalendar = () => (
 
     <Typography variant="body1" gutterBottom>
       <p key="persian-desc">
-        Make sure you have read the
+        Make sure you have read the{' '}
         <a href="https://material-ui-next.com/guides/right-to-left/">
           right to left section
-        </a>
+        </a>{' '}
         of the material-ui documentation page before proceeding.
       </p>
     </Typography>

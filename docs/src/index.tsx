@@ -10,11 +10,24 @@ import { BrowserRouter } from 'react-router-dom';
 // @ts-ignore
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+
+// @ts-ignore Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+
+// Custom Material-UI class name generator.
+const generateClassName = createGenerateClassName();
+
 ReactDOM.render(
   <BrowserRouter>
-    <MuiPickersUtilsProvider utils={Utils}>
-      <App />
-    </MuiPickersUtilsProvider>
+    <JssProvider jss={jss} generateClassName={generateClassName}>
+      <MuiPickersUtilsProvider utils={Utils}>
+        <App />
+      </MuiPickersUtilsProvider>
+    </JssProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );

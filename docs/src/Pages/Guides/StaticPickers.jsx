@@ -22,7 +22,7 @@ const StaticPickers = () => (
     </Typography>
 
     <SourcablePanel
-      title="Patched french picker"
+      title="Static components"
       sourceFile="Guides/StaticPickers.example.jsx"
       description={
         <Typography variant="body1" gutterBottom>

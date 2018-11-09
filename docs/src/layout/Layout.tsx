@@ -51,7 +51,6 @@ class Layout extends Component<LayoutProps> {
       theme,
       location,
     } = this.props;
-
     const isLanding = location.pathname === '/';
 
     return (
@@ -157,8 +156,8 @@ const styles = (theme: Theme) =>
     appBar: {
       // boxShadow: 'unset',
       [theme.breakpoints.up('md')]: {
-        left: 250,
         width: 'calc(100% - 250px)',
+        left: 250,
       },
     },
     main: {
@@ -181,9 +180,11 @@ const styles = (theme: Theme) =>
       padding: 0,
       maxWidth: '100vw',
       marginLeft: 0,
+      marginRight: 0,
     },
     landingAppBar: {
       left: 0,
+      right: 0,
       width: '100vw',
       boxShadow: 'unset',
     },
