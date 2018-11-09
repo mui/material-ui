@@ -84,6 +84,15 @@ const styles = theme => ({
       theme.palette.type === 'light'
         ? theme.palette.grey[200]
         : theme.palette.grey[900],
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+
+      '& > div': {
+        marginBottom: 32,
+      },
+    },
   },
   sourceBtn: {
     position: 'absolute',
