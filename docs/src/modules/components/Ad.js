@@ -100,7 +100,7 @@ class Ad extends React.Component {
 
     return (
       <span className={classes.root}>
-        {this.random >= 0.4 ? <CodeFund /> : <Carbon />}
+        {this.random >= 0.25 ? <CodeFund /> : <Carbon />}
         {adblock === true ? getAdblock(classes) : null}
         {adblock === false ? (
           <Tooltip

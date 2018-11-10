@@ -1,41 +1,59 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createMount, getClasses } from '../test-utils';
 import TableHead from './TableHead';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableHead />', () => {
-  let shallow;
+  let mount;
   let classes;
+  function mountInTable(node) {
+    const wrapper = mount(<table>{node}</table>);
+    return wrapper.childAt(0);
+  }
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<TableHead>foo</TableHead>);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   it('should render a thead', () => {
-    const wrapper = shallow(<TableHead>foo</TableHead>);
-    assert.strictEqual(wrapper.name(), 'thead');
+    const wrapper = mountInTable(<TableHead />);
+    assert.strictEqual(wrapper.getDOMNode().nodeName, 'THEAD');
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<TableHead component="div">foo</TableHead>);
-    assert.strictEqual(wrapper.name(), 'div');
+    const wrapper = mount(<TableHead component="div">foo</TableHead>);
+    assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
   });
 
   it('should render with the user and root class', () => {
-    const wrapper = shallow(<TableHead className="woofTableHead">foo</TableHead>);
-    assert.strictEqual(wrapper.hasClass('woofTableHead'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mountInTable(<TableHead className="woofTableHead" />);
+    assert.strictEqual(wrapper.find('thead').hasClass('woofTableHead'), true);
+    assert.strictEqual(wrapper.find('thead').hasClass(classes.root), true);
   });
 
   it('should render children', () => {
     const children = <tr className="test" />;
-    const wrapper = shallow(<TableHead>{children}</TableHead>);
-    assert.strictEqual(wrapper.childAt(0).equals(children), true);
+    const wrapper = mountInTable(<TableHead>{children}</TableHead>);
+    assert.strictEqual(wrapper.contains(children), true);
   });
 
   it('should define table.head in the child context', () => {
-    const wrapper = shallow(<TableHead>foo</TableHead>);
-    assert.strictEqual(wrapper.instance().getChildContext().tablelvl2.variant, 'head');
+    let context;
+    mountInTable(
+      <TableHead>
+        <Tablelvl2Context.Consumer>
+          {value => {
+            context = value;
+          }}
+        </Tablelvl2Context.Consumer>
+      </TableHead>,
+    );
+    assert.strictEqual(context.variant, 'head');
   });
 });

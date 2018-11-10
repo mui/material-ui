@@ -33,9 +33,9 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 {{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
 
-## Complementary projects
+## 补充项目
 
-For more advanced use cases you might be able to take advantage of:
+对于更高级的用例，您可以利用：
 
 ### PopupState helper
 

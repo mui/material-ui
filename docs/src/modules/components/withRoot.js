@@ -1,4 +1,4 @@
-// Use the same helper than Babel to avoid bundle bloat.
+// Use the same helper as Babel to avoid bundle bloat.
 import 'core-js/modules/es6.array.find-index';
 import 'core-js/modules/es6.set';
 
@@ -14,6 +14,7 @@ import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { getCookie } from 'docs/src/modules/utils/helpers';
 
 acceptLanguage.languages(['en', 'zh']);
 
@@ -294,7 +295,8 @@ function withRoot(Component) {
 
     componentDidMount() {
       const URL = url.parse(document.location.href, true);
-      const userLanguage = URL.query.lang || acceptLanguage.get(navigator.language) || 'en';
+      const userLanguage =
+        acceptLanguage.get(URL.query.lang || getCookie('lang') || navigator.language) || 'en';
 
       if (this.state.userLanguage !== userLanguage) {
         this.setState({

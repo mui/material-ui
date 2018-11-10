@@ -1,55 +1,53 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '../test-utils';
 import TableRow from './TableRow';
 
 describe('<TableRow />', () => {
-  let shallow;
+  let mount;
   let classes;
+  function mountInTable(node) {
+    const wrapper = mount(
+      <table>
+        <tbody>{node}</tbody>
+      </table>,
+    );
+    return wrapper.childAt(0).childAt(0);
+  }
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<TableRow />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   it('should render a tr', () => {
-    const wrapper = shallow(<TableRow />);
-    assert.strictEqual(wrapper.name(), 'tr');
+    const wrapper = mountInTable(<TableRow />);
+    assert.strictEqual(wrapper.getDOMNode().nodeName, 'TR');
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<TableRow component="div" />);
-    assert.strictEqual(wrapper.name(), 'div');
+    const wrapper = mount(<TableRow component="div" />);
+    assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<TableRow data-my-prop="woofTableRow" />);
-    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofTableRow');
+    const wrapper = mountInTable(<TableRow data-my-prop="woofTableRow" />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).props()['data-my-prop'], 'woofTableRow');
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<TableRow className="woofTableRow" />);
-    assert.strictEqual(wrapper.hasClass('woofTableRow'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mountInTable(<TableRow className="woofTableRow" />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofTableRow'), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render children', () => {
     const children = <td className="test" />;
-    const wrapper = shallow(<TableRow>{children}</TableRow>);
-    assert.strictEqual(wrapper.childAt(0).equals(children), true);
-  });
-
-  it('should render with the head class when in the context of a table head', () => {
-    const wrapper = shallow(<TableRow />);
-    wrapper.setContext({ tablelvl2: { variant: 'head' } });
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.head), true);
-  });
-
-  it('should render with the footer class when in the context of a table footer', () => {
-    const wrapper = shallow(<TableRow />);
-    wrapper.setContext({ tablelvl2: { variant: 'footer' } });
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.footer), true);
+    const wrapper = mountInTable(<TableRow>{children}</TableRow>);
+    assert.strictEqual(wrapper.contains(children), true);
   });
 });

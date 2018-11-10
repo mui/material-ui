@@ -208,8 +208,8 @@ class Demo extends React.Component {
             <div className={classes.header}>
               <Tooltip title="See the source on GitHub" placement="top">
                 <IconButton
-                  ga-event-category={category}
-                  ga-event-action="github"
+                  data-ga-event-category={category}
+                  data-ga-event-action="github"
                   href={githubLocation}
                   target="_blank"
                   aria-label="GitHub"
@@ -220,8 +220,8 @@ class Demo extends React.Component {
               {demoOptions.hideEditButton ? null : (
                 <Tooltip title="Edit in CodeSandbox" placement="top">
                   <IconButton
-                    ga-event-category={category}
-                    ga-event-action="codesandbox"
+                    data-ga-event-category={category}
+                    data-ga-event-action="codesandbox"
                     onClick={this.handleClickCodeSandbox}
                     aria-label="CodeSandbox"
                   >
@@ -231,8 +231,8 @@ class Demo extends React.Component {
               )}
               <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
-                  ga-event-category={category}
-                  ga-event-action="expand"
+                  data-ga-event-category={category}
+                  data-ga-event-action="expand"
                   onClick={this.handleClickCodeOpen}
                   aria-label={`Source of demo n°${index}`}
                 >
@@ -263,16 +263,16 @@ class Demo extends React.Component {
                 }}
               >
                 <MenuItem
-                  ga-event-category={category}
-                  ga-event-action="copy"
+                  data-ga-event-category={category}
+                  data-ga-event-action="copy"
                   onClick={this.handleClickCopy}
                 >
                   Copy the source
                 </MenuItem>
                 {demoOptions.hideEditButton ? null : (
                   <MenuItem
-                    ga-event-category={category}
-                    ga-event-action="stackblitz"
+                    data-ga-event-category={category}
+                    data-ga-event-action="stackblitz"
                     onClick={this.handleClickStackBlitz}
                   >
                     Edit in StackBlitz
