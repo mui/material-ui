@@ -62,6 +62,6 @@ components: Tooltip
 
 ## 交互式
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+文字提示可以是交互式的。当用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时, 它不会关闭。
 
 {{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}

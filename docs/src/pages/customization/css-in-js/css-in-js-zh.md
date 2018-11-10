@@ -96,7 +96,7 @@ import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 const generateClassName = createGenerateClassName();
 const jss = create({
   ...jssPreset(),
-  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+//我们定义一个自定义插入点，JSS将寻找在DOM中注入样式。
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -132,7 +132,7 @@ import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 const generateClassName = createGenerateClassName();
 const jss = create({
   ...jssPreset(),
-  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+//我们定义一个自定义插入点，JSS将寻找在DOM中注入样式。
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
