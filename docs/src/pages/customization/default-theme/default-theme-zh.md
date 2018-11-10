@@ -6,8 +6,8 @@
 
 主题通过为调色板、深色和浅色类型、排版、断点、阴影、过渡等提供默认值来实现其用途。
 
-Tip: you can play with the theme object in your console too. **We expose a global `theme` variable on all the pages**.
+提示：你也可以在控制台操纵 theme 对象。 **我们在所有的页面上暴露了一个全局变量 `theme` **
 
-Please take note that the documentation site is using a custom theme. As a result, the demos you see here might disagree with the values above.
+请注意, 文档网站使用的是自定义主题。 因此，你在这里看到的演示可能和上面的值不同。
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.
+如果你想了解更多有关主题是如何组合的信息，请看看 [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js) 和 如何用`createMuiTheme` 导入主题

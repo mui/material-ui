@@ -64,8 +64,8 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
-## Complementary projects
+## 补充项目
 
-For more advanced use cases you might be able to take advantage of:
+对于更高级的用例，您可以利用：
 
 - [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other.
