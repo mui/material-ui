@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import FAB from '@material-ui/core/FAB';
 import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 
@@ -89,9 +90,9 @@ class FabIntegrationSnackbar extends React.Component {
               </Typography>
             </Toolbar>
           </AppBar>
-          <Button variant="fab" color="secondary" className={fabClassName}>
+          <FAB color="secondary" className={fabClassName}>
             <AddIcon />
-          </Button>
+          </FAB>
           <Snackbar
             open={open}
             autoHideDuration={4000}

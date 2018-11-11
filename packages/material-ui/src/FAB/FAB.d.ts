@@ -10,38 +10,21 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
   disableRipple?: boolean;
   fullWidth?: boolean;
   href?: string;
-  mini?: boolean;
   size?: 'small' | 'medium' | 'large';
   type?: string;
-  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
+  variant?: 'round' | 'extended';
 }
 
 export type ButtonClassKey =
   | 'root'
   | 'label'
-  | 'text'
-  | 'textPrimary'
-  | 'textSecondary'
-  | 'flat'
-  | 'flatPrimary'
-  | 'flatSecondary'
-  | 'outlined'
-  | 'outlinedPrimary'
-  | 'outlinedSecondary'
-  | 'colorInherit'
-  | 'contained'
-  | 'containedPrimary'
-  | 'containedSecondary'
-  | 'raised'
-  | 'raisedPrimary'
-  | 'raisedSecondary'
+  | 'primary'
+  | 'secondary'
+  | 'extended'
   | 'focusVisible'
   | 'disabled'
-  | 'fab'
-  | 'extendedFab'
+  | 'colorInherit'
   | 'mini'
-  | 'sizeSmall'
-  | 'sizeLarge'
   | 'fullWidth';
 
 declare const Button: React.ComponentType<ButtonProps>;

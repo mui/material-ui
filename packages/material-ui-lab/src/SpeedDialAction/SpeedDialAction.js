@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import Button from '@material-ui/core/Button';
+import FAB from '@material-ui/core/FAB';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export const styles = theme => ({
@@ -104,9 +104,8 @@ class SpeedDialAction extends React.Component {
         open={open && this.state.tooltipOpen}
         {...other}
       >
-        <Button
-          variant="fab"
-          mini
+        <FAB
+          size="small"
           className={classNames(className, classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
           tabIndex={-1}
@@ -116,7 +115,7 @@ class SpeedDialAction extends React.Component {
           {...clickProp}
         >
           {icon}
-        </Button>
+        </FAB>
       </Tooltip>
     );
   }
