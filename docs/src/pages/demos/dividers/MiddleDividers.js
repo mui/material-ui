@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-function InsetDividers(props) {
+function MiddleDividers(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -29,16 +29,14 @@ function InsetDividers(props) {
           </Avatar>
           <ListItemText primary="Photos" secondary="Jan 9, 2014" />
         </ListItem>
-        <li>
-          <Divider variant={'inset'} />
-        </li>
+        <Divider component="li" variant={'middle'} />
         <ListItem>
           <Avatar>
             <WorkIcon />
           </Avatar>
           <ListItemText primary="Work" secondary="Jan 7, 2014" />
         </ListItem>
-        <Divider variant={'inset'} component="li" />
+        <Divider variant={'middle'} component="li" />
         <ListItem>
           <Avatar>
             <BeachAccessIcon />
@@ -50,8 +48,8 @@ function InsetDividers(props) {
   );
 }
 
-InsetDividers.propTypes = {
+MiddleDividers.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(InsetDividers);
+export default withStyles(styles)(MiddleDividers);

@@ -5,11 +5,12 @@ export interface DividerProps
   extends StandardProps<React.HTMLAttributes<HTMLHRElement>, DividerClassKey> {
   absolute?: boolean;
   component?: React.ReactType<DividerProps>;
-  inset?: boolean;
   light?: boolean;
+  subheader?: string;
+  variant?: 'fullBleed' | 'inset' | 'middle';
 }
 
-export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light';
+export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'subheader';
 
 declare const Divider: React.ComponentType<DividerProps>;
 

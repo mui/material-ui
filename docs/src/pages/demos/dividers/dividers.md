@@ -18,8 +18,16 @@ You can save rendering this DOM element by using the `divider` property on the `
 
 ## Inset Dividers
 
-The following example demonstrates the `inset` property.
+The following example demonstrates the `inset` variant.
 We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification.
 The example shows two ways of achieving this.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
+
+## Middle Dividers
+
+{{"demo": "pages/demos/dividers/MiddleDividers.js"}}
+
+## Subheader Dividers
+
+{{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
