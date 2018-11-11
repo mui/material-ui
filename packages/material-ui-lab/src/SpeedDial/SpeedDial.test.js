@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
-import Button from '@material-ui/core/Button';
+import FAB from '@material-ui/core/FAB';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
@@ -47,14 +47,14 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(wrapper.type(), 'div');
   });
 
-  it('should render a Button', () => {
+  it('should render a FAB', () => {
     const wrapper = shallow(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
     const buttonWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(buttonWrapper.type(), Button);
+    assert.strictEqual(buttonWrapper.type(), FAB);
   });
 
   it('should render with a null child', () => {
@@ -122,14 +122,14 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: onClick', () => {
-    it('should be set as the onClick prop of the button', () => {
+    it('should be set as the onClick prop of the FAB', () => {
       const onClick = spy();
       const wrapper = shallow(
         <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
           <div />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.find(Button);
+      const buttonWrapper = wrapper.find(FAB);
       assert.strictEqual(buttonWrapper.props().onClick, onClick);
     });
 
@@ -146,7 +146,7 @@ describe('<SpeedDial />', () => {
             <div />
           </SpeedDial>,
         );
-        const buttonWrapper = wrapper.find(Button);
+        const buttonWrapper = wrapper.find(FAB);
         assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 
