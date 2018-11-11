@@ -1,6 +1,6 @@
 ---
 title: React 按钮组件
-components: Button, IconButton, ButtonBase, Zoom
+components: Button, FAB, IconButton, ButtonBase, Zoom
 ---
 # 按钮
 

@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, IconButton, ButtonBase, Zoom
+components: Button, FAB, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons

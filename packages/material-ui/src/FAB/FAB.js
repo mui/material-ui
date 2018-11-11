@@ -10,7 +10,7 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    ...theme.typography.fab,
+    ...theme.typography.button,
     boxSizing: 'border-box',
     minHeight: 36,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {

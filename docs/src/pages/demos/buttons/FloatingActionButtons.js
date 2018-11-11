@@ -23,9 +23,6 @@ function FloatingActionButtons(props) {
       <FAB color="primary" aria-label="Add" className={classes.fab}>
         <AddIcon />
       </FAB>
-      <FAB color="primary" aria-label="Add" className={classes.fab}>
-        <AddIcon />
-      </FAB>
       <FAB color="secondary" aria-label="Edit" className={classes.fab}>
         <Icon>edit_icon</Icon>
       </FAB>
