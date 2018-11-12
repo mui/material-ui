@@ -3,13 +3,6 @@
 ## 3.5.1
 ###### *Nov 13, 2018*
 
-### `@material-ui/core@v3.5.1`
-
-- Add missing brcast dependency @oliviertassinari
-
-## 3.5.0
-###### *Nov 12, 2018*
-
 Big thanks to the 13 contributors who made this release possible!
 
 Here are some highlights ✨:
@@ -88,6 +81,7 @@ export default AdaptingHook;
 - [Table] Use stable context API (#13529) @eps1lon
 - [TablePagination] Allow more rows per pages (#13524) @oliviertassinari
 - [LinearProgress] Fix TypeScript definition (#13562) @AdamMcquiff
+- Add missing brcast dependency @oliviertassinari
 
 ### `@material-ui/styles@v3.0.0-alpha.0`
 
@@ -109,6 +103,11 @@ export default AdaptingHook;
 - [core] Remove recompose/wrapDisplayName usage (#13525) @oliviertassinari
 - [core] Fix the CDN release (#13540) @oliviertassinari
 - [core] Pass import filename through normalizePath function (#13565) @joshwooding
+
+## 3.5.0
+###### *Nov 12, 2018*
+
+*Corrupted, to not use.*
 
 ## 3.4.0
 ###### *Nov 5, 2018*
