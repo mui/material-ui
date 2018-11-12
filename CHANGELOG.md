@@ -17,7 +17,7 @@ This new package is a significant step forward. Some of the key features:
   - Replace the usage of the old React APIs with the new ones.
   - 15.0 KB gzipped.
 
-Here is an example: https://codesandbox.io/s/3vyw21lo8p.
+Here is an example: https://codesandbox.io/s/vjzn5z4k77.
 
 ```jsx
 import Button from '@material-ui/core/Button';
