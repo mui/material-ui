@@ -88,15 +88,13 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
       staticSheet = multiKeyStore.get(stylesOptions.sheetsCache, stylesCreator, theme);
     }
 
-    if (!staticSheet) {
-      const styles = stylesCreator.create(theme, name);
+    const styles = stylesCreator.create(theme, name);
 
+    if (!staticSheet) {
       staticSheet = stylesOptions.jss.createStyleSheet(styles, {
         link: false,
         ...options,
       });
-
-      sheetManager.staticSheet = staticSheet;
 
       if (sheetsRegistry) {
         sheetsRegistry.add(staticSheet);
@@ -104,12 +102,13 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
 
       staticSheet.attach();
 
-      sheetManager.dynamicStyles = getDynamicStyles(styles);
-
       if (stylesOptions.sheetsCache) {
         multiKeyStore.set(stylesOptions.sheetsCache, stylesCreator, theme, staticSheet);
       }
     }
+
+    sheetManager.dynamicStyles = getDynamicStyles(styles);
+    sheetManager.staticSheet = staticSheet;
   }
 
   if (sheetManager.dynamicStyles) {

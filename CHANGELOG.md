@@ -12,7 +12,7 @@ The Material-UI's styling solution has pretty much stayed the same [for the last
 Some interesting CSS-in-JS libraries like styled-components, emotion or linaria have emerged.
 This new package is a significant step forward. Some of the key features:
 
-  - Supports 4 different APIs: hooks, styled-components, higher-order components, render props.
+  - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
   - Allow accessing the component's props from within the style object.
   - Replace the usage of the old React APIs with the new ones.
   - 15.0 KB gzipped.
@@ -67,8 +67,8 @@ export default AdaptingHook;
 
 *Powered by [JSS](https://github.com/cssinjs/jss).*
 
-- Remove usages of the old React's APIs (#13487, #13529, #13503) @eps1lon.
-- Add a language menu in the documentation and persist the states (#13544, #13567) @mbrookes
+- Remove some usages of the old React's APIs (#13487, #13529, #13503) @eps1lon.
+- Add a language menu in the documentation and persist states between repeated visits (#13544, #13567) @mbrookes
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.5.0`

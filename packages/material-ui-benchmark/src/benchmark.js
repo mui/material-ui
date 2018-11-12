@@ -8,7 +8,8 @@ import styled, { ServerStyleSheet } from 'styled-components';
 import ReactDOMServer from 'react-dom/server';
 import styledEmotion from 'react-emotion';
 import { renderStylesToString } from 'emotion-server';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, makeStyles, ThemeProvider, StylesProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Markdown from 'docs/src/pages/getting-started/page-layout-examples/blog/Markdown';
 
@@ -42,25 +43,50 @@ const JssButton = withStyles({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent', // Reset default value
-    // We disable the focus ring for mouse, touch and keyboard users.
+    backgroundColor: 'transparent',
     outline: 'none',
     border: 0,
-    margin: 0, // Remove the margin in Safari
+    margin: 0,
     borderRadius: 0,
-    padding: 0, // Remove the padding in Firefox
+    padding: 0,
     cursor: 'pointer',
     userSelect: 'none',
     verticalAlign: 'middle',
-    '-moz-appearance': 'none', // Reset
-    '-webkit-appearance': 'none', // Reset
+    '-moz-appearance': 'none',
+    '-webkit-appearance': 'none',
     textDecoration: 'none',
-    // So we take precedent over the style of a native <a /> element.
     color: 'inherit',
   },
 })(NakedButton);
+
+const useStyles = makeStyles({
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent',
+    outline: 'none',
+    border: 0,
+    margin: 0,
+    borderRadius: 0,
+    padding: 0,
+    cursor: 'pointer',
+    userSelect: 'none',
+    verticalAlign: 'middle',
+    '-moz-appearance': 'none',
+    '-webkit-appearance': 'none',
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+});
+
+function HookButton(props) {
+  const classes = useStyles();
+  return <button type="button" className={classes.root} {...props} />;
+}
 
 class HocButton extends React.Component {
   state = {};
@@ -94,30 +120,69 @@ const EmotionButton = styledEmotion('button')({
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
-  // Remove grey highlight
   WebkitTapHighlightColor: 'transparent',
-  backgroundColor: 'transparent', // Reset default value
-  // We disable the focus ring for mouse, touch and keyboard users.
+  backgroundColor: 'transparent',
   outline: 'none',
   border: 0,
-  margin: 0, // Remove the margin in Safari
+  margin: 0,
   borderRadius: 0,
-  padding: 0, // Remove the padding in Firefox
+  padding: 0,
   cursor: 'pointer',
   userSelect: 'none',
   verticalAlign: 'middle',
-  '-moz-appearance': 'none', // Reset
-  '-webkit-appearance': 'none', // Reset
+  '-moz-appearance': 'none',
+  '-webkit-appearance': 'none',
   textDecoration: 'none',
-  // So we take precedent over the style of a native <a /> element.
   color: 'inherit',
 });
 
 const sheetsCache = new Map();
 
 suite
-  .add('Markdown', () => {
-    ReactDOMServer.renderToString(<Markdown>{markdown}</Markdown>);
+  .add('JssButton cache requests', () => {
+    ReactDOMServer.renderToString(
+      <StylesProvider sheetsManager={new Map()} sheetsCache={sheetsCache}>
+        <ThemeProvider theme={theme}>
+          <JssButton>Material-UI</JssButton>
+        </ThemeProvider>
+      </StylesProvider>,
+    );
+  })
+  .add('JssButton cache instances', () => {
+    ReactDOMServer.renderToString(
+      <StylesProvider>
+        <ThemeProvider theme={theme}>
+          <JssButton>Material-UI</JssButton>
+        </ThemeProvider>
+      </StylesProvider>,
+    );
+  })
+  .add('JssButton no cache', () => {
+    ReactDOMServer.renderToString(
+      <StylesProvider sheetsManager={new Map()}>
+        <ThemeProvider theme={theme}>
+          <JssButton>Material-UI</JssButton>
+        </ThemeProvider>
+      </StylesProvider>,
+    );
+  })
+  .add('HookButton no cache', () => {
+    ReactDOMServer.renderToString(
+      <StylesProvider sheetsManager={new Map()}>
+        <ThemeProvider theme={theme}>
+          <HookButton>Material-UI</HookButton>
+        </ThemeProvider>
+      </StylesProvider>,
+    );
+  })
+  .add('JssButton no styles', () => {
+    ReactDOMServer.renderToString(
+      <StylesProvider sheetsManager={new Map()} disableGeneration>
+        <ThemeProvider theme={theme}>
+          <JssButton>Material-UI</JssButton>
+        </ThemeProvider>
+      </StylesProvider>,
+    );
   })
   .add('StyledButton', () => {
     const sheet = new ServerStyleSheet();
@@ -126,74 +191,49 @@ suite
   .add('EmotionButton', () => {
     renderStylesToString(ReactDOMServer.renderToString(<EmotionButton>Material-UI</EmotionButton>));
   })
-  .add('JssButton cache requests', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
-        <JssButton>Material-UI</JssButton>
-      </MuiThemeProvider>,
-    );
-  })
-  .add('JssButton cache instances', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme}>
-        <JssButton>Material-UI</JssButton>
-      </MuiThemeProvider>,
-    );
-  })
-  .add('JssButton no cache', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
-        <JssButton>Material-UI</JssButton>
-      </MuiThemeProvider>,
-    );
-  })
-  .add('JssButton no styles', () => {
-    ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()} disableStylesGeneration>
-        <JssButton>Material-UI</JssButton>
-      </MuiThemeProvider>,
-    );
+  .add('Markdown', () => {
+    ReactDOMServer.renderToString(<Markdown>{markdown}</Markdown>);
   })
   .add('ButtonBase cache instances', () => {
     ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
   })
   .add('ButtonBase cache requests', () => {
     ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+      <ThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
         <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
   })
   .add('ButtonBase no cache', () => {
     ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+      <ThemeProvider theme={theme} sheetsManager={new Map()}>
         <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
   })
   .add('HocButton', () => {
     ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <HocButton />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
   })
   .add('NakedButton', () => {
     ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <NakedButton />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
   })
   .add('ButtonBase cache', () => {
     ReactDOMServer.renderToString(
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <ButtonBase>Material-UI</ButtonBase>
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
   })
   .add('ButtonBase ripple', () => {
