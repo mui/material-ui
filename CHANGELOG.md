@@ -1,5 +1,12 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.5.1
+###### *Nov 13, 2018*
+
+### `@material-ui/core@v3.5.1`
+
+- Add missing brcast dependency @oliviertassinari
+
 ## 3.5.0
 ###### *Nov 12, 2018*
 
