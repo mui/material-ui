@@ -31,6 +31,15 @@ const styles = {
 
 const themes = [
   {
+    name: 'Firebase',
+    description:
+      'A mimic Firebase Demo page.',
+    src: '/static/images/layouts/dashboard.png',
+    pathname: '/page-layout-examples/FirebaseDemo',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/FirebaseDemo',
+  },
+  {
     name: 'Dashboard',
     description:
       'A minimal dashboard with taskbar and mini variant draw. ' +
