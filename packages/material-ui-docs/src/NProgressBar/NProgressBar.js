@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
-import exactProp from '@material-ui/core/utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 NProgress.configure({
   template: `

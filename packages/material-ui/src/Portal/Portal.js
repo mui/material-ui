@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
-import exactProp from '../utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 function getContainer(container, defaultContainer) {
   container = typeof container === 'function' ? container() : container;

@@ -7,9 +7,9 @@ import {
   jssPreset,
   MuiThemeProvider,
 } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
-import JssProvider from 'react-jss/lib/JssProvider';
 
 const styles = theme => ({
   root: {
@@ -52,13 +52,13 @@ class DemoFrame extends React.Component {
     const { children, classes, theme } = this.props;
 
     const inIframe = this.state.ready ? (
-      <JssProvider jss={this.state.jss} generateClassName={generateClassName}>
+      <StylesProvider jss={this.state.jss} generateClassName={generateClassName}>
         <MuiThemeProvider theme={theme} sheetsManager={this.state.sheetsManager}>
           {React.cloneElement(children, {
             container: this.state.container,
           })}
         </MuiThemeProvider>
-      </JssProvider>
+      </StylesProvider>
     ) : null;
 
     return (

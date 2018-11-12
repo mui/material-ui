@@ -1,6 +1,8 @@
 /* eslint-disable no-console, no-underscore-dangle */
 
 import Benchmark from 'benchmark';
+import fs from 'fs';
+import path from 'path';
 import React from 'react';
 import styled, { ServerStyleSheet } from 'styled-components';
 import ReactDOMServer from 'react-dom/server';
@@ -8,6 +10,15 @@ import styledEmotion from 'react-emotion';
 import { renderStylesToString } from 'emotion-server';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Markdown from 'docs/src/pages/getting-started/page-layout-examples/blog/Markdown';
+
+const markdown = fs.readFileSync(
+  path.join(
+    __dirname,
+    '../../../docs/src/pages/getting-started/page-layout-examples/blog/blog-post.1.md',
+  ),
+  'UTF-8',
+);
 
 const theme = createMuiTheme();
 
@@ -105,6 +116,9 @@ const EmotionButton = styledEmotion('button')({
 const sheetsCache = new Map();
 
 suite
+  .add('Markdown', () => {
+    ReactDOMServer.renderToString(<Markdown>{markdown}</Markdown>);
+  })
   .add('StyledButton', () => {
     const sheet = new ServerStyleSheet();
     ReactDOMServer.renderToString(sheet.collectStyles(<StyledButton>Material-UI</StyledButton>));

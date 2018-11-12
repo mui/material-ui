@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, getClasses, createMount } from '../test-utils';
+import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 

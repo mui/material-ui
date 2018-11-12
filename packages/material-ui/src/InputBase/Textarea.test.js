@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, unwrap } from '../test-utils';
+import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
 import Textarea from './Textarea';
 
 function assignRefs(wrapper) {

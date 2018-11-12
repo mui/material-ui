@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import React from 'react';
-import getDisplayName from '../../packages/material-ui/src/utils/getDisplayName';
+import { getDisplayName } from '@material-ui/utils';
 
 function createComponentDidUpdate(instance) {
   return function componentDidUpdate() {

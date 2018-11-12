@@ -1,0 +1,60 @@
+{
+  "name": "@material-ui/styles",
+  "private": false,
+  "author": "Material-UI Team",
+  "version": "3.0.0-alpha.0",
+  "description": "Material-UI Styles - The styling solution of Material-UI.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "styles"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-styles",
+  "scripts": {
+    "prebuild": "rimraf build",
+    "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore *.test.js",
+    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
+    "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
+    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
+    "release": "yarn build && npm publish build"
+  },
+  "peerDependencies": {
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.1.2",
+    "@material-ui/utils": "^3.0.0-alpha.0",
+    "classnames": "^2.2.5",
+    "deepmerge": "^2.0.1",
+    "hoist-non-react-statics": "^3.0.0",
+    "jss": "^9.3.3",
+    "jss-camel-case": "^6.0.0",
+    "jss-default-unit": "^8.0.2",
+    "jss-global": "^3.0.0",
+    "jss-nested": "^6.0.1",
+    "jss-props-sort": "^6.0.0",
+    "jss-vendor-prefixer": "^7.0.0",
+    "prop-types": "^15.6.0",
+    "warning": "^4.0.1"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

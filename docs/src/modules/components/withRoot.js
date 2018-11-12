@@ -2,6 +2,7 @@
 import 'core-js/modules/es6.array.find-index';
 import 'core-js/modules/es6.set';
 
+import './bootstrap';
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
@@ -41,17 +42,20 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/supported-components',
-      },
-      {
-        pathname: '/getting-started/supported-platforms',
-      },
-      {
         pathname: '/getting-started/example-projects',
+      },
+      {
+        pathname: '/getting-started/page-layout-examples',
       },
       {
         pathname: '/getting-started/faq',
         title: 'Frequently Asked Questions',
+      },
+      {
+        pathname: '/getting-started/supported-components',
+      },
+      {
+        pathname: '/getting-started/supported-platforms',
       },
       {
         pathname: '/getting-started/comparison',
@@ -130,6 +134,22 @@ const pages = [
     title: 'Component API',
   },
   {
+    pathname: '/css-in-js',
+    title: 'CSS in JS (experimental)',
+    children: [
+      {
+        pathname: '/css-in-js/basics',
+      },
+      {
+        pathname: '/css-in-js/advanced',
+      },
+      {
+        pathname: '/css-in-js/api',
+        title: 'API',
+      },
+    ],
+  },
+  {
     pathname: '/customization',
     children: [
       {
@@ -186,17 +206,10 @@ const pages = [
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
       },
-      {
-        pathname: '/guides/csp',
-        title: 'Content Security Policy',
-      },
     ],
   },
   {
     pathname: '/premium-themes',
-  },
-  {
-    pathname: '/page-layout-examples',
   },
   {
     pathname: '/lab',
@@ -214,7 +227,10 @@ const pages = [
       {
         pathname: '/lab/toggle-button',
       },
-      findPages[2].children[1],
+      {
+        ...findPages[2].children[1],
+        title: 'API',
+      },
     ],
   },
   {
@@ -334,19 +350,22 @@ function withRoot(Component) {
       }
       const activePage = findActivePage(pages, { ...router, pathname });
 
+      // Add the strict mode back once the number of warnings is manageable.
+      // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
+      // <React.StrictMode>
+      // </React.StrictMode>
+
       return (
-        <React.StrictMode>
-          <PageContext.Provider value={{ activePage, pages, userLanguage }}>
-            <Provider store={this.redux}>
-              <AppWrapper pageContext={pageContext}>
-                <Component
-                  initialProps={other}
-                  lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
-                />
-              </AppWrapper>
-            </Provider>
-          </PageContext.Provider>
-        </React.StrictMode>
+        <PageContext.Provider value={{ activePage, pages, userLanguage }}>
+          <Provider store={this.redux}>
+            <AppWrapper pageContext={pageContext}>
+              <Component
+                initialProps={other}
+                lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+              />
+            </AppWrapper>
+          </Provider>
+        </PageContext.Provider>
       );
     }
   }
