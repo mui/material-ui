@@ -303,12 +303,19 @@ function withRoot(Component) {
         this.setState({ userLanguage });
       }
 
-      const colors = getCookie('colors');
+      const paletteType = getCookie('paletteType');
+      if (paletteType) {
+        this.redux.dispatch({
+          type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+          payload: { paletteType },
+        });
+      }
 
-      if (colors) {
+      const paletteColors = getCookie('paletteColors');
+      if (paletteColors) {
         this.redux.dispatch({
           type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
-          payload: { paletteColors: JSON.parse(colors) },
+          payload: { paletteColors: JSON.parse(paletteColors) },
         });
       }
     }

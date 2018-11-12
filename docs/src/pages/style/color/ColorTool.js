@@ -135,7 +135,7 @@ class ColorTool extends React.Component {
       payload: { paletteColors },
     });
 
-    document.cookie = `colors=${JSON.stringify(paletteColors)};path=/;max-age=31536000`;
+    document.cookie = `paletteColors=${JSON.stringify(paletteColors)};path=/;max-age=31536000`;
   };
 
   handleResetDocsColors = () => {
@@ -149,7 +149,7 @@ class ColorTool extends React.Component {
       payload: { paletteColors },
     });
 
-    document.cookie = 'colors=;path=/;max-age=0';
+    document.cookie = 'paletteColors=;path=/;max-age=0';
   };
 
   render() {
