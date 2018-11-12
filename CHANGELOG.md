@@ -71,7 +71,7 @@ export default AdaptingHook;
 - Add a language menu in the documentation and persist states between repeated visits (#13544, #13567) @mbrookes
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
-### `@material-ui/core@v3.5.0`
+### `@material-ui/core@v3.5.1`
 
 - [OutlinedInput] Remove Firefox workaround (#13519) @Studio384
 - [TextField] Fix style focus issue on mobile (#13511) @ekoeditaa
