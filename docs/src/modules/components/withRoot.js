@@ -15,6 +15,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
+import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 acceptLanguage.languages(['en', 'zh']);
 
@@ -299,8 +300,22 @@ function withRoot(Component) {
         acceptLanguage.get(URL.query.lang || getCookie('lang') || navigator.language) || 'en';
 
       if (this.state.userLanguage !== userLanguage) {
-        this.setState({
-          userLanguage,
+        this.setState({ userLanguage });
+      }
+
+      const paletteType = getCookie('paletteType');
+      if (paletteType) {
+        this.redux.dispatch({
+          type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+          payload: { paletteType },
+        });
+      }
+
+      const paletteColors = getCookie('paletteColors');
+      if (paletteColors) {
+        this.redux.dispatch({
+          type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
+          payload: { paletteColors: JSON.parse(paletteColors) },
         });
       }
     }

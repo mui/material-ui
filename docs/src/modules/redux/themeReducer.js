@@ -1,19 +1,5 @@
 import actionTypes from 'docs/src/modules/redux/actionTypes';
-import blue from '@material-ui/core/colors/blue';
-import pink from '@material-ui/core/colors/pink';
-import { darken } from '@material-ui/core/styles/colorManipulator';
-
-const initialState = {
-  paletteType: 'light',
-  paletteColors: {
-    primary: blue,
-    secondary: {
-      // Darken so we reach the AA contrast ratio level.
-      main: darken(pink.A400, 0.08),
-    },
-  },
-  direction: 'ltr',
-};
+import themeInitialState from 'docs/src/modules/styles/themeInitialState';
 
 const mapping = {
   [actionTypes.THEME_CHANGE_PALETTE_TYPE]: (state, action) => ({
@@ -30,7 +16,7 @@ const mapping = {
   }),
 };
 
-function themeReducer(state = initialState, action) {
+function themeReducer(state = themeInitialState, action) {
   let newState = state;
 
   if (mapping[action.type]) {
