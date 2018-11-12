@@ -111,10 +111,13 @@ class AppFrame extends React.Component {
   };
 
   handleTogglePaletteType = () => {
+    const paletteType = this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light';
+    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
+
     this.props.dispatch({
       type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
       payload: {
-        paletteType: this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light',
+        paletteType,
       },
     });
   };
