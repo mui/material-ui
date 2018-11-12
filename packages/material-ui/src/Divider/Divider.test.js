@@ -38,6 +38,27 @@ describe('<Divider />', () => {
     assert.strictEqual(hr.hasClass(classes.light), true);
   });
 
+  describe('prop: inset', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should set the inset class', () => {
+      const wrapper = shallow(<Divider inset />);
+      const hr = wrapper.childAt(0);
+      assert.strictEqual(hr.hasClass(classes.inset), true);
+    });
+
+    it('should log a deprecation warning if this property is used', () => {
+      shallow(<Divider inset />);
+      assert.match(consoleErrorMock.args()[0][0], /You are using the deprecated `inset` property/);
+    });
+  });
+
   describe('prop: subheader', () => {
     it('should render a Typography component', () => {
       const wrapper = shallow(<Divider subheader="test" />);
@@ -93,7 +114,7 @@ describe('<Divider />', () => {
         assert.strictEqual(hr.hasClass(classes.middle), true);
       });
 
-      it('should throw error if subheader is supplied', () => {
+      it('should log a warning if subheader is supplied with variant="middle"', () => {
         shallow(<Divider variant={'middle'} subheader="test" />);
         assert.match(
           consoleErrorMock.args()[0][0],

@@ -52,6 +52,7 @@ function Divider(props) {
     classes,
     className: classNameProp,
     component: Component,
+    inset,
     light,
     subheader,
     variant,
@@ -62,7 +63,7 @@ function Divider(props) {
     classes.root,
     {
       [classes.absolute]: absolute,
-      [classes.inset]: variant === 'inset',
+      [classes.inset]: inset || variant === 'inset',
       [classes.light]: light,
       [classes.middle]: variant === 'middle',
     },
@@ -103,6 +104,21 @@ Divider.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
+   * If `true`, the divider will be indented.
+   */
+  inset: chainPropTypes(PropTypes.bool, props => {
+    /* istanbul ignore if */
+    if (props.inset) {
+      return new Error(
+        'Material-UI: You are using the deprecated `inset` property ' +
+          'that will be removed in the next major release. The property `variant="inset"` ' +
+          'is equivalent and should be used instead',
+      );
+    }
+
+    return null;
+  }),
   /**
    * If `true`, the divider will have a lighter color.
    */
