@@ -1,15 +1,11 @@
 import React from 'react';
-
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import withStyles from '@material-ui/core/styles/withStyles';
-
 // COMPONENTS
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import Navigator from './components/Navigator';
 import Content from './components/Content';
 import Header from './components/Header';
-
 // THEME
 import theme from './theme';
 
@@ -28,7 +24,8 @@ const styles = () => ({
   },
   mainContent: {
     flex: 1,
-    paddingTop: 48,
+    padding: '48px 36px 0',
+    background: '#eaeff1',
   },
 });
 

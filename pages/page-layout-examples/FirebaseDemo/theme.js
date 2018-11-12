@@ -21,6 +21,25 @@ const theme = createMuiTheme({
         background: '#18202c',
       },
     },
+    MuiButton: {
+      root: {},
+      label: {
+        textTransform: 'initial',
+      },
+      contained: {
+        boxShadow: 'none',
+      },
+    },
+    MuiPrivateTabIndicator: {
+      root: {
+        height: 3,
+        borderTopLeftRadius: 3,
+        borderTopRightRadius: 3,
+      },
+      colorSecondary: {
+        backgroundColor: '#fff',
+      },
+    },
   },
 });
 
