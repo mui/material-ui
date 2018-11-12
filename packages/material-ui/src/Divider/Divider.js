@@ -106,6 +106,8 @@ Divider.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the divider will be indented.
+   * __WARNING__: `inset` is deprecated.
+   * Instead use `variant="inset"`.
    */
   inset: chainPropTypes(PropTypes.bool, props => {
     /* istanbul ignore if */
