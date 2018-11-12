@@ -1,5 +1,108 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.5.0
+###### *Nov 12, 2018*
+
+Big thanks to the 13 contributors who made this release possible!
+
+Here are some highlights ✨:
+- Introduce a new `@material-ui/styles` package 💅 (#13503).
+
+The Material-UI's styling solution has pretty much stayed the same [for the last 12 months](https://github.com/oliviertassinari/a-journey-toward-better-style).
+Some interesting CSS-in-JS libraries like styled-components, emotion or linaria have emerged.
+This new package is a significant step forward. Some of the key features:
+
+  - Supports 4 different APIs: hooks, styled-components, higher-order components, render props.
+  - Allow accessing the component's props from within the style object.
+  - Replace the usage of the old React APIs with the new ones.
+  - 15.0 KB gzipped.
+
+Here is an example: https://codesandbox.io/s/3vyw21lo8p.
+
+```jsx
+import Button from '@material-ui/core/Button';
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
+
+// Like https://github.com/brunobertolini/styled-by
+const styledBy = (property, mapping) => props => mapping[props[property]];
+
+const useStyles = makeStyles({
+  root: {
+    background: styledBy('color', {
+      red: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      blue: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    }),
+    border: 0,
+    borderRadius: 3,
+    boxShadow: styledBy('color', {
+      red: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      blue: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+    }),
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+});
+
+function MyButton(props) {
+  const { color, ...other } = props;
+  const classes = useStyles(props);
+  return <Button className={classes.root} {...other} />;
+}
+
+function AdaptingHook() {
+  return (
+    <div>
+      <MyButton color="red">Red</MyButton>
+      <br />
+      <br />
+      <MyButton color="blue">Blue</MyButton>
+    </div>
+  );
+}
+
+export default AdaptingHook;
+```
+
+*Powered by [JSS](https://github.com/cssinjs/jss).*
+
+- Remove usages of the old React's APIs (#13487, #13529, #13503) @eps1lon.
+- Add a language menu in the documentation and persist the states (#13544, #13567) @mbrookes
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.5.0`
+
+- [OutlinedInput] Remove Firefox workaround (#13519) @Studio384
+- [TextField] Fix style focus issue on mobile (#13511) @ekoeditaa
+- [InputBase] Remove legacy lifecycle methods (#13487) @eps1lon
+- [Chip] Alignment fix (#13536) @izyb
+- [Badge] Add invisible property (#13534) @joshwooding
+- [Table] Use stable context API (#13529) @eps1lon
+- [TablePagination] Allow more rows per pages (#13524) @oliviertassinari
+- [LinearProgress] Fix TypeScript definition (#13562) @AdamMcquiff
+
+### `@material-ui/styles@v3.0.0-alpha.0`
+
+- @material-ui/styles (#13503) @oliviertassinari
+
+### Docs
+
+- [docs] Advanced filter added to the documentation (#13528) @ashkank83
+- [docs] Save one component in the demo (#13537) @levelingup
+- [docs] Make the lab > core dependency more explicit (#13542) @Robindiddams
+- [docs] Remove redundant text (#13547) @EbiEbiEvidence
+- [docs] Add language menu (#13544) @mbrookes
+- [docs] Misc fixes (#13555) @oliviertassinari
+- [docs] Add cookie for persistant colors (#13567) @mbrookes
+
+### Core
+
+- [test] Improve tests related to lists (#13517) @eps1lon
+- [core] Remove recompose/wrapDisplayName usage (#13525) @oliviertassinari
+- [core] Fix the CDN release (#13540) @oliviertassinari
+- [core] Pass import filename through normalizePath function (#13565) @joshwooding
+
 ## 3.4.0
 ###### *Nov 5, 2018*
 
