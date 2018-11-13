@@ -238,7 +238,7 @@ describe('<SpeedDial />', () => {
     /**
      * @returns the button of SpeedDial
      */
-    const getDialButton = () => wrapper.find('Button').first();
+    const getDialButton = () => wrapper.find('Fab').first();
     /**
      *
      * @param actionIndex
