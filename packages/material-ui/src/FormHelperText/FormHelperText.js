@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
-import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -42,7 +43,7 @@ export const styles = theme => ({
   required: {},
 });
 
-function FormHelperText(props, context) {
+function FormHelperText(props) {
   const {
     classes,
     className: classNameProp,
@@ -52,6 +53,7 @@ function FormHelperText(props, context) {
     filled,
     focused,
     margin,
+    muiFormControl,
     required,
     variant,
     ...other
@@ -59,7 +61,7 @@ function FormHelperText(props, context) {
 
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['variant', 'margin', 'disabled', 'error', 'filled', 'focused', 'required'],
   });
 
@@ -124,6 +126,10 @@ FormHelperText.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * If `true`, the helper text should use required classes key.
    */
   required: PropTypes.bool,
@@ -137,8 +143,6 @@ FormHelperText.defaultProps = {
   component: 'p',
 };
 
-FormHelperText.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);
+export default withStyles(styles, { name: 'MuiFormHelperText' })(
+  withFormControlContext(FormHelperText),
+);

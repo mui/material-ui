@@ -1,16 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import Checkbox from '../Checkbox';
 import FormControlLabel from './FormControlLabel';
+import FormControlContext from '../FormControl/FormControlContext';
 
 describe('<FormControlLabel />', () => {
-  let shallow;
   let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
   });
@@ -20,35 +19,30 @@ describe('<FormControlLabel />', () => {
   });
 
   it('should render the label text inside an additional element', () => {
-    const wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
-    const label = wrapper.childAt(1);
+    const wrapper = findOutermostIntrinsic(
+      mount(<FormControlLabel label="Pizza" control={<div />} />),
+    );
     assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(label.childAt(0).text(), 'Pizza');
+    assert.strictEqual(wrapper.text(), 'Pizza');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   describe('prop: disabled', () => {
     it('should disable everything 1', () => {
-      const wrapper = shallow(<FormControlLabel label="Pizza" disabled control={<div />} />);
-      const label = wrapper.childAt(1);
-      assert.strictEqual(
-        wrapper.hasClass(classes.disabled),
-        true,
-        'should have the disabled class',
+      const wrapper = findOutermostIntrinsic(
+        mount(<FormControlLabel label="Pizza" disabled control={<div />} />),
       );
+      const label = wrapper.find('span').last();
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
       assert.strictEqual(label.hasClass(classes.disabled), true);
     });
 
     it('should disable everything 2', () => {
-      const wrapper = shallow(<FormControlLabel label="Pizza" control={<div disabled />} />);
-      const label = wrapper.childAt(1);
-      assert.strictEqual(
-        wrapper.hasClass(classes.disabled),
-        true,
-        'should have the disabled class',
+      const wrapper = findOutermostIntrinsic(
+        mount(<FormControlLabel label="Pizza" control={<div disabled />} />),
       );
+      const label = wrapper.find('span').last();
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
       assert.strictEqual(label.hasClass(classes.disabled), true);
@@ -57,24 +51,27 @@ describe('<FormControlLabel />', () => {
 
   describe('prop: labelPlacement', () => {
     it('should have the `start` class', () => {
-      const wrapper = shallow(
-        <FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />,
+      const wrapper = findOutermostIntrinsic(
+        mount(<FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />),
       );
       assert.strictEqual(wrapper.hasClass(classes.labelPlacementStart), true);
     });
 
     it('should have the `top` class', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControlLabel label="Pizza" labelPlacement="top" control={<div />} />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.labelPlacementTop), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.labelPlacementTop), true);
     });
 
     it('should have the `bottom` class', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControlLabel label="Pizza" labelPlacement="bottom" control={<div />} />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.labelPlacementBottom), true);
+      assert.strictEqual(
+        findOutermostIntrinsic(wrapper).hasClass(classes.labelPlacementBottom),
+        true,
+      );
     });
   });
 
@@ -85,15 +82,22 @@ describe('<FormControlLabel />', () => {
 
   describe('with muiFormControl context', () => {
     let wrapper;
-    let muiFormControl;
 
     function setFormControlContext(muiFormControlContext) {
-      muiFormControl = muiFormControlContext;
-      wrapper.setContext({ muiFormControl });
+      wrapper.setProps({ context: muiFormControlContext });
     }
 
     beforeEach(() => {
-      wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
+      function Provider(props) {
+        const { context, ...other } = props;
+        return (
+          <FormControlContext.Provider value={context}>
+            <FormControlLabel label="Pizza" control={<div />} {...other} />
+          </FormControlContext.Provider>
+        );
+      }
+
+      wrapper = mount(<Provider />);
     });
 
     describe('enabled', () => {
@@ -106,9 +110,9 @@ describe('<FormControlLabel />', () => {
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
         wrapper.setProps({ disabled: true });
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
       });
     });
 
@@ -118,13 +122,13 @@ describe('<FormControlLabel />', () => {
       });
 
       it('should have the disabled class', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
       });
 
       it('should honor props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
         wrapper.setProps({ disabled: false });
-        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
       });
     });
   });

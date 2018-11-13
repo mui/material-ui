@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
-import { formControlState } from '../InputBase/InputBase';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
@@ -76,11 +77,20 @@ export const styles = theme => ({
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
-function NativeSelect(props, context) {
-  const { children, classes, IconComponent, input, inputProps, variant, ...other } = props;
+function NativeSelect(props) {
+  const {
+    children,
+    classes,
+    IconComponent,
+    input,
+    inputProps,
+    muiFormControl,
+    variant,
+    ...other
+  } = props;
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['variant'],
   });
 
@@ -125,6 +135,10 @@ NativeSelect.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
@@ -146,10 +160,8 @@ NativeSelect.defaultProps = {
   input: <Input />,
 };
 
-NativeSelect.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
 NativeSelect.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiNativeSelect' })(NativeSelect);
+export default withStyles(styles, { name: 'MuiNativeSelect' })(
+  withFormControlContext(NativeSelect),
+);
