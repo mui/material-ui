@@ -24,7 +24,8 @@ export type ButtonClassKey =
   | 'focusVisible'
   | 'disabled'
   | 'colorInherit'
-  | 'mini'
+  | 'sizeSmall'
+  | 'sizeMedium'
   | 'fullWidth';
 
 declare const Button: React.ComponentType<ButtonProps>;
