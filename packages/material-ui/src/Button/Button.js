@@ -351,7 +351,7 @@ Button.propTypes = {
    * Instead use `text` and `contained` respectively.
    */
   variant: chainPropTypes(
-    PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab']),
+    PropTypes.oneOf(['text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised']),
     props => {
       if (props.variant === 'flat') {
         return new Error(
