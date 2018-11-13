@@ -360,6 +360,7 @@ class SwipeableDrawer extends React.Component {
       onOpen,
       open,
       PaperProps = {},
+      SwipeAreaProps,
       swipeAreaWidth,
       variant,
       ...other
@@ -391,7 +392,7 @@ class SwipeableDrawer extends React.Component {
         />
         {!disableDiscovery && !disableSwipeToOpen && variant === 'temporary' && (
           <NoSsr>
-            <SwipeArea anchor={anchor} width={swipeAreaWidth} />
+            <SwipeArea anchor={anchor} width={swipeAreaWidth} {...SwipeAreaProps} />
           </NoSsr>
         )}
       </React.Fragment>
@@ -454,6 +455,10 @@ SwipeableDrawer.propTypes = {
    * @ignore
    */
   PaperProps: PropTypes.object,
+  /**
+   * Properties applied to the swipe area element.
+   */
+  SwipeAreaProps: PropTypes.object,
   /**
    * The width of the left most (or right most) area in pixels where the
    * drawer can be swiped open from.
