@@ -69,6 +69,15 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(wrapper.state().focused, false);
   });
 
+  describe('prop: onBlur', () => {
+    it('handleblur should call onBlur prop when focus leaves', () => {
+      const myOnBlur = spy();
+      const wrapper = mount(<ExpansionPanelSummaryNaked onBlur={myOnBlur} classes={{}} />);
+      wrapper.instance().handleBlur();
+      assert.strictEqual(myOnBlur.callCount, 1, 'should have been called once');
+    });
+  });
+
   describe('prop: onChange', () => {
     it('should propagate call to onChange prop', () => {
       const eventMock = 'woofExpansionPanelSummary';

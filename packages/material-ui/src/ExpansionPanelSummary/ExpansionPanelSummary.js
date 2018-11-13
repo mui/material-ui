@@ -85,6 +85,7 @@ class ExpansionPanelSummary extends React.Component {
     this.setState({
       focused: false,
     });
+    if (typeof this.props.onBlur === 'function') this.props.onBlur();
   };
 
   handleChange = event => {
