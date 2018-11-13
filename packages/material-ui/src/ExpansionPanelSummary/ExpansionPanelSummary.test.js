@@ -54,10 +54,10 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(iconWrap.hasClass(classes.expandIcon), true);
   });
 
-  it('handleFocus() should set focused state', () => {
+  it('handleFocusVisible() should set focused state', () => {
     const eventMock = 'woofExpansionPanelSummary';
     const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} />);
-    wrapper.instance().handleFocus(eventMock);
+    wrapper.instance().handleFocusVisible(eventMock);
     assert.strictEqual(wrapper.state().focused, true);
   });
 
@@ -69,12 +69,22 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(wrapper.state().focused, false);
   });
 
-  describe('prop: onBlur', () => {
-    it('handleblur should call onBlur prop when focus leaves', () => {
-      const myOnBlur = spy();
-      const wrapper = mount(<ExpansionPanelSummaryNaked onBlur={myOnBlur} classes={{}} />);
-      wrapper.instance().handleBlur();
-      assert.strictEqual(myOnBlur.callCount, 1, 'should have been called once');
+  describe('event callbacks', () => {
+    it('should fire event callbacks', () => {
+      const events = ['onClick', 'onFocusVisible', 'onBlur'];
+
+      const handlers = events.reduce((result, n) => {
+        result[n] = spy();
+        return result;
+      }, {});
+
+      const wrapper = shallow(<ExpansionPanelSummary {...handlers} />);
+
+      events.forEach(n => {
+        const event = n.charAt(2).toLowerCase() + n.slice(3);
+        wrapper.simulate(event, { persist: () => {} });
+        assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+      });
     });
   });
 
