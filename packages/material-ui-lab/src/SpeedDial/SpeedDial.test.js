@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
-import FAB from '@material-ui/core/FAB';
+import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
@@ -54,7 +54,7 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const buttonWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(buttonWrapper.type(), FAB);
+    assert.strictEqual(buttonWrapper.type(), Fab);
   });
 
   it('should render with a null child', () => {
@@ -129,7 +129,7 @@ describe('<SpeedDial />', () => {
           <div />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.find(FAB);
+      const buttonWrapper = wrapper.find(Fab);
       assert.strictEqual(buttonWrapper.props().onClick, onClick);
     });
 
@@ -146,7 +146,7 @@ describe('<SpeedDial />', () => {
             <div />
           </SpeedDial>,
         );
-        const buttonWrapper = wrapper.find(FAB);
+        const buttonWrapper = wrapper.find(Fab);
         assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import green from '@material-ui/core/colors/green';
 import Button from '@material-ui/core/Button';
-import FAB from '@material-ui/core/FAB';
+import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
@@ -80,9 +80,9 @@ class CircularIntegration extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <FAB color="primary" className={buttonClassname} onClick={this.handleButtonClick}>
+          <Fab color="primary" className={buttonClassname} onClick={this.handleButtonClick}>
             {success ? <CheckIcon /> : <SaveIcon />}
-          </FAB>
+          </Fab>
           {loading && <CircularProgress size={68} className={classes.fabProgress} />}
         </div>
         <div className={classes.wrapper}>

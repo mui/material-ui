@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import FAB from '@material-ui/core/FAB';
+import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
@@ -91,9 +91,9 @@ function ColorDemo(props) {
 }
 \`\`\``}
         />
-        <FAB className={classes.fab} style={{ backgroundColor: secondary.main }}>
+        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }}>
           <AddIcon nativeColor={secondary.contrastText} />
-        </FAB>
+        </Fab>
       </div>
     </div>
   );

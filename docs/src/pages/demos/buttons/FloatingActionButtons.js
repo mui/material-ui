@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import FAB from '@material-ui/core/FAB';
+import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -20,19 +20,19 @@ function FloatingActionButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <FAB color="primary" aria-label="Add" className={classes.fab}>
+      <Fab color="primary" aria-label="Add" className={classes.fab}>
         <AddIcon />
-      </FAB>
-      <FAB color="secondary" aria-label="Edit" className={classes.fab}>
+      </Fab>
+      <Fab color="secondary" aria-label="Edit" className={classes.fab}>
         <Icon>edit_icon</Icon>
-      </FAB>
-      <FAB variant="extended" aria-label="Delete" className={classes.fab}>
+      </Fab>
+      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
         <NavigationIcon className={classes.extendedIcon} />
         Extended
-      </FAB>
-      <FAB disabled aria-label="Delete" className={classes.fab}>
+      </Fab>
+      <Fab disabled aria-label="Delete" className={classes.fab}>
         <DeleteIcon />
-      </FAB>
+      </Fab>
     </div>
   );
 }

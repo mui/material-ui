@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import FAB from '@material-ui/core/FAB';
+import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -54,15 +54,15 @@ function ButtonSizes(props) {
         </Button>
       </div>
       <div>
-        <FAB size="small" color="secondary" aria-label="Add" className={classes.fab}>
+        <Fab size="small" color="secondary" aria-label="Add" className={classes.fab}>
           <AddIcon />
-        </FAB>
-        <FAB size="medium" color="secondary" aria-label="Add" className={classes.fab}>
+        </Fab>
+        <Fab size="medium" color="secondary" aria-label="Add" className={classes.fab}>
           <AddIcon />
-        </FAB>
-        <FAB color="secondary" aria-label="Add" className={classes.fab}>
+        </Fab>
+        <Fab color="secondary" aria-label="Add" className={classes.fab}>
           <AddIcon />
-        </FAB>
+        </Fab>
       </div>
       <div>
         <IconButton aria-label="Delete" className={classes.button}>

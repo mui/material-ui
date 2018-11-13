@@ -350,7 +350,7 @@ Button.propTypes = {
    * __WARNING__: `flat` and `raised` are deprecated.
    * Instead use `text` and `contained` respectively.
    * `fab` and `extendedFab` are deprecated.
-   * Instead use `<FAB>` and `<FAB variant="extended">`
+   * Instead use `<Fab>` and `<Fab variant="extended">`
    */
   variant: chainPropTypes(
     PropTypes.oneOf(['text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised']),
@@ -370,13 +370,13 @@ Button.propTypes = {
       if (props.variant === 'fab') {
         return new Error(
           'The `fab` variant will be removed in the next major release. ' +
-            'The `<FAB>` component is equivalent and should be used instead.',
+            'The `<Fab>` component is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'extendedFab') {
         return new Error(
           'The `fab` variant will be removed in the next major release. ' +
-            'The `<FAB>` component with `variant="extended"` is equivalent ' +
+            'The `<Fab>` component with `variant="extended"` is equivalent ' +
             'and should be used instead.',
         );
       }

@@ -110,7 +110,7 @@ export const styles = theme => ({
   },
 });
 
-function Button(props) {
+function Fab(props) {
   const {
     children,
     classes,
@@ -152,7 +152,7 @@ function Button(props) {
   );
 }
 
-Button.propTypes = {
+Fab.propTypes = {
   /**
    * The content of the button.
    */
@@ -216,7 +216,7 @@ Button.propTypes = {
   variant: PropTypes.oneOf(['round', 'extended']),
 };
 
-Button.defaultProps = {
+Fab.defaultProps = {
   color: 'default',
   component: 'button',
   disabled: false,
@@ -227,4 +227,4 @@ Button.defaultProps = {
   variant: 'round',
 };
 
-export default withStyles(styles, { name: 'MuiButton' })(Button);
+export default withStyles(styles, { name: 'MuiFab' })(Fab);
