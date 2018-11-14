@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types, react/jsx-handler-names */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
@@ -209,64 +209,61 @@ const components = {
   ValueContainer,
 };
 
-class IntegrationReactSelect extends React.Component {
-  state = {
-    single: null,
-    multi: null,
-  };
+function IntegrationReactSelect(props) {
+  const { classes, theme } = props;
+  const [single, setSingle] = useState(null);
+  const [multi, setMulti] = useState(null);
 
-  handleChange = name => value => {
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  render() {
-    const { classes, theme } = this.props;
-
-    const selectStyles = {
-      input: base => ({
-        ...base,
-        color: theme.palette.text.primary,
-        '& input': {
-          font: 'inherit',
-        },
-      }),
-    };
-
-    return (
-      <div className={classes.root}>
-        <NoSsr>
-          <Select
-            classes={classes}
-            styles={selectStyles}
-            options={suggestions}
-            components={components}
-            value={this.state.single}
-            onChange={this.handleChange('single')}
-            placeholder="Search a country (start with a)"
-          />
-          <div className={classes.divider} />
-          <Select
-            classes={classes}
-            styles={selectStyles}
-            textFieldProps={{
-              label: 'Label',
-              InputLabelProps: {
-                shrink: true,
-              },
-            }}
-            options={suggestions}
-            components={components}
-            value={this.state.multi}
-            onChange={this.handleChange('multi')}
-            placeholder="Select multiple countries"
-            isMulti
-          />
-        </NoSsr>
-      </div>
-    );
+  function handleChangeSingle(value) {
+    setSingle(value);
   }
+
+  function handleChangeMulti(value) {
+    setMulti(value);
+  }
+
+  const selectStyles = {
+    input: base => ({
+      ...base,
+      color: theme.palette.text.primary,
+      '& input': {
+        font: 'inherit',
+      },
+    }),
+  };
+
+  return (
+    <div className={classes.root}>
+      <NoSsr>
+        <Select
+          classes={classes}
+          styles={selectStyles}
+          options={suggestions}
+          components={components}
+          value={single}
+          onChange={handleChangeSingle}
+          placeholder="Search a country (start with a)"
+        />
+        <div className={classes.divider} />
+        <Select
+          classes={classes}
+          styles={selectStyles}
+          textFieldProps={{
+            label: 'Label',
+            InputLabelProps: {
+              shrink: true,
+            },
+          }}
+          options={suggestions}
+          components={components}
+          value={multi}
+          onChange={handleChangeMulti}
+          placeholder="Select multiple countries"
+          isMulti
+        />
+      </NoSsr>
+    </div>
+  );
 }
 
 IntegrationReactSelect.propTypes = {
