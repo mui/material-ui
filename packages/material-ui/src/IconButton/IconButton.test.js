@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';

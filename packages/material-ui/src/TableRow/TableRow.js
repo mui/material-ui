@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -43,7 +44,7 @@ export const styles = theme => ({
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-function TableRow(props, context) {
+function TableRow(props) {
   const {
     classes,
     className: classNameProp,
@@ -52,20 +53,24 @@ function TableRow(props, context) {
     selected,
     ...other
   } = props;
-  const { tablelvl2 } = context;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
-      [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
-      [classes.hover]: hover,
-      [classes.selected]: selected,
-    },
-    classNameProp,
+  return (
+    <Tablelvl2Context.Consumer>
+      {tablelvl2 => {
+        const className = classNames(
+          classes.root,
+          {
+            [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
+            [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
+            [classes.hover]: hover,
+            [classes.selected]: selected,
+          },
+          classNameProp,
+        );
+        return <Component className={className} {...other} />;
+      }}
+    </Tablelvl2Context.Consumer>
   );
-
-  return <Component className={className} {...other} />;
 }
 
 TableRow.propTypes = {
@@ -101,10 +106,6 @@ TableRow.defaultProps = {
   component: 'tr',
   hover: false,
   selected: false,
-};
-
-TableRow.contextTypes = {
-  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

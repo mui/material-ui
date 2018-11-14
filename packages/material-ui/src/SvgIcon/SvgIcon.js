@@ -48,7 +48,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
-    fontSize: 36,
+    fontSize: 35,
   },
 });
 
@@ -121,6 +121,12 @@ SvgIcon.propTypes = {
    * Applies a color attribute to the SVG element.
    */
   nativeColor: PropTypes.string,
+  /**
+   * The shape-rendering attribute. The behavior of the different options is described
+   * [here](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * If you are having issues with blurry icons you should investigate this property.
+   */
+  shapeRendering: PropTypes.string,
   /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';

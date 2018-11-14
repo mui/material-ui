@@ -1,7 +1,8 @@
-// Use the same helper than Babel to avoid bundle bloat.
+// Use the same helper as Babel to avoid bundle bloat.
 import 'core-js/modules/es6.array.find-index';
 import 'core-js/modules/es6.set';
 
+import './bootstrap';
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
@@ -14,6 +15,8 @@ import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import acceptLanguage from 'accept-language';
 import PageContext from 'docs/src/modules/components/PageContext';
+import { getCookie } from 'docs/src/modules/utils/helpers';
+import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 acceptLanguage.languages(['en', 'zh']);
 
@@ -39,17 +42,20 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/supported-components',
-      },
-      {
-        pathname: '/getting-started/supported-platforms',
-      },
-      {
         pathname: '/getting-started/example-projects',
+      },
+      {
+        pathname: '/getting-started/page-layout-examples',
       },
       {
         pathname: '/getting-started/faq',
         title: 'Frequently Asked Questions',
+      },
+      {
+        pathname: '/getting-started/supported-components',
+      },
+      {
+        pathname: '/getting-started/supported-platforms',
       },
       {
         pathname: '/getting-started/comparison',
@@ -128,6 +134,22 @@ const pages = [
     title: 'Component API',
   },
   {
+    pathname: '/css-in-js',
+    title: 'CSS in JS (experimental)',
+    children: [
+      {
+        pathname: '/css-in-js/basics',
+      },
+      {
+        pathname: '/css-in-js/advanced',
+      },
+      {
+        pathname: '/css-in-js/api',
+        title: 'API',
+      },
+    ],
+  },
+  {
     pathname: '/customization',
     children: [
       {
@@ -184,17 +206,10 @@ const pages = [
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
       },
-      {
-        pathname: '/guides/csp',
-        title: 'Content Security Policy',
-      },
     ],
   },
   {
     pathname: '/premium-themes',
-  },
-  {
-    pathname: '/page-layout-examples',
   },
   {
     pathname: '/lab',
@@ -212,7 +227,10 @@ const pages = [
       {
         pathname: '/lab/toggle-button',
       },
-      findPages[2].children[1],
+      {
+        ...findPages[2].children[1],
+        title: 'API',
+      },
     ],
   },
   {
@@ -294,11 +312,26 @@ function withRoot(Component) {
 
     componentDidMount() {
       const URL = url.parse(document.location.href, true);
-      const userLanguage = URL.query.lang || acceptLanguage.get(navigator.language) || 'en';
+      const userLanguage =
+        acceptLanguage.get(URL.query.lang || getCookie('lang') || navigator.language) || 'en';
 
       if (this.state.userLanguage !== userLanguage) {
-        this.setState({
-          userLanguage,
+        this.setState({ userLanguage });
+      }
+
+      const paletteType = getCookie('paletteType');
+      if (paletteType) {
+        this.redux.dispatch({
+          type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+          payload: { paletteType },
+        });
+      }
+
+      const paletteColors = getCookie('paletteColors');
+      if (paletteColors) {
+        this.redux.dispatch({
+          type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
+          payload: { paletteColors: JSON.parse(paletteColors) },
         });
       }
     }
@@ -317,19 +350,22 @@ function withRoot(Component) {
       }
       const activePage = findActivePage(pages, { ...router, pathname });
 
+      // Add the strict mode back once the number of warnings is manageable.
+      // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
+      // <React.StrictMode>
+      // </React.StrictMode>
+
       return (
-        <React.StrictMode>
-          <PageContext.Provider value={{ activePage, pages, userLanguage }}>
-            <Provider store={this.redux}>
-              <AppWrapper pageContext={pageContext}>
-                <Component
-                  initialProps={other}
-                  lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
-                />
-              </AppWrapper>
-            </Provider>
-          </PageContext.Provider>
-        </React.StrictMode>
+        <PageContext.Provider value={{ activePage, pages, userLanguage }}>
+          <Provider store={this.redux}>
+            <AppWrapper pageContext={pageContext}>
+              <Component
+                initialProps={other}
+                lang={userLanguage === 'en' ? '' : `-${userLanguage}`}
+              />
+            </AppWrapper>
+          </Provider>
+        </PageContext.Provider>
       );
     }
   }

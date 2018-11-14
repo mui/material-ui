@@ -12,6 +12,12 @@ components: Badge
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## 自定义徽章
+## Badge visibility
+
+The visibility of badges can be controlled using the `invisible` property.
+
+{{"demo": "pages/demos/badges/BadgeVisibility.js"}}
+
+## Customized Badge
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import SwitchBase from './SwitchBase';
 import IconButton from '../IconButton';
 import Icon from '../Icon';

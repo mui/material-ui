@@ -1,8 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import { getDisplayName, ponyfillGlobal } from '@material-ui/utils';
 import { create } from 'jss';
 import ns from './reactJssContext';
 import jssPreset from './jssPreset';
@@ -12,7 +14,6 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
-import getDisplayName from '../utils/getDisplayName';
 import getThemeProps from './getThemeProps';
 
 // Default JSS instance.
@@ -56,10 +57,12 @@ function getDefaultTheme() {
   return defaultTheme;
 }
 
+ponyfillGlobal.__MUI_DEFAULT_THEME__ = getDefaultTheme();
+
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
-const withStyles = (stylesOrCreator, options = {}) => Component => {
+const withStylesOld = (stylesOrCreator, options = {}) => Component => {
   const { withTheme = false, flip = null, name, ...styleSheetOptions } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
@@ -313,7 +316,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    WithStyles.displayName = wrapDisplayName(Component, 'WithStyles');
+    WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithStyles, Component);
@@ -327,4 +330,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   return WithStyles;
 };
 
-export default withStyles;
+/* istanbul ignore if */
+if (!ponyfillGlobal.__MUI_STYLES__) {
+  ponyfillGlobal.__MUI_STYLES__ = {};
+}
+
+if (!ponyfillGlobal.__MUI_STYLES__.withStyles) {
+  ponyfillGlobal.__MUI_STYLES__.withStyles = withStylesOld;
+}
+
+export default ponyfillGlobal.__MUI_STYLES__.withStyles;

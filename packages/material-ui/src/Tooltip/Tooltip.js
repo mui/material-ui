@@ -273,7 +273,7 @@ class Tooltip extends React.Component {
 
     let open = this.isControlled ? openProp : this.state.open;
 
-    // There is no point at displaying an empty tooltip.
+    // There is no point in displaying an empty tooltip.
     if (title === '') {
       open = false;
     }
@@ -388,7 +388,7 @@ Tooltip.propTypes = {
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
    * This property is used with aria-describedby to solve the accessibility issue.
-   * If you don't provide this property. It fallback to a random generated id.
+   * If you don't provide this property. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**

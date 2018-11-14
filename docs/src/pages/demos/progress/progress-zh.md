@@ -64,13 +64,10 @@ components: CircularProgress, LinearProgress
 进度组件接受一个 0 - 100 范围的值。 作为默认的最小/最大值，这简化了屏幕阅读用户的使用。 但是有时，你可能会使用值超出这个范围的数据源。 这里告诉您如何轻松的将一个任意范围的值转换为0 - 100区间的值。
 
 ```jsx
-// MIN = 最小值
-// MAX = 最大值
-
-// 正常化值的函数（MIN / MAX 可相互协调）
+// MIN = 最小预期值
+// MAX = 最大预期值
+// 这是使数值标准化的一个函数（MIN 和 MAX 可以被整合）
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
-
-// 在 render 函数中，利用`正常化`函数的示例组件
 function Progress(props) {
   return (
     <React.Fragment>
@@ -87,10 +84,18 @@ function Progress(props) {
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
 
+## 自定义进度
+
+最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
+
+{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
+
 ## 局限性
 
 在特别慢的加载时，可能丢失stroke dash动画或看到环形进度的半径随机的情况。 为了不阻塞主渲染进程，应该在web worker中或批处理中执行密集操作的处理器。
 
 ![慢加载](/static/images/progress/heavy-load.gif)
 
-见 https://github.com/mui-org/material-ui/issues/10327
+当不能这样做的时候，你可以借助 `disableShrink` 特性来减轻这个问题。 见 https://github.com/mui-org/material-ui/issues/10327
+
+{{"demo": "pages/demos/progress/CircularUnderLoad.js"}}

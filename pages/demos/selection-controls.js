@@ -75,6 +75,15 @@ module.exports = require('fs')
   ), 'utf8')
 `,
         },
+        'pages/demos/selection-controls/FormControlLabelPosition.js': {
+          js: require('docs/src/pages/demos/selection-controls/FormControlLabelPosition').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve(
+    'docs/src/pages/demos/selection-controls/FormControlLabelPosition'
+  ), 'utf8')
+`,
+        },
       }}
     />
   );

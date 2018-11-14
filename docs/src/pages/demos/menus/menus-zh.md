@@ -57,3 +57,19 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 这是[render props](https://reactjs.org/docs/render-props.html) 的例子。保持跟踪单个菜单的本地状态。
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
+
+## 局限性
+
+这里有 [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，这个bug会让`text-overflow: ellipse`在 flexbox 布局中失去效果 你可以使用`Typography`组件做替代方案绕过这个问题：
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
+## 补充项目
+
+对于更高级的用例，您可以利用：
+
+### PopupState helper
+
+这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单状态
+
+{{"demo": "pages/demos/menus/MenuPopupState.js"}}

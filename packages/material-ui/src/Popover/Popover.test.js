@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import Grow from '../Grow';
 import Paper from '../Paper';
 import Popover from './Popover';

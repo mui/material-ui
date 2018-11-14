@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createRender, getClasses } from '../test-utils';
+import { createShallow, createRender, getClasses } from '@material-ui/core/test-utils';
 import Button from './Button';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ButtonBase from '../ButtonBase';

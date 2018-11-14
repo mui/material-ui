@@ -34,6 +34,11 @@ export const styles = theme => ({
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    transform: 'scale(1)',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -50,6 +55,14 @@ export const styles = theme => ({
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
   },
+  /* Styles applied to the badge `span` element if `invisible={true}`. */
+  invisible: {
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    transform: 'scale(0)',
+  },
 });
 
 function Badge(props) {
@@ -57,18 +70,20 @@ function Badge(props) {
     badgeContent,
     children,
     classes,
-    className: classNameProp,
+    className,
     color,
     component: ComponentProp,
+    invisible,
     ...other
   } = props;
 
   const badgeClassName = classNames(classes.badge, {
     [classes[`color${capitalize(color)}`]]: color !== 'default',
+    [classes.invisible]: invisible,
   });
 
   return (
-    <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
+    <ComponentProp className={classNames(classes.root, className)} {...other}>
       {children}
       <span className={badgeClassName}>{badgeContent}</span>
     </ComponentProp>
@@ -102,11 +117,16 @@ Badge.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
+   * If `true`, the badge will be invisible.
+   */
+  invisible: PropTypes.bool,
 };
 
 Badge.defaultProps = {
   color: 'default',
   component: 'span',
+  invisible: false,
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

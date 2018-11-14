@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import { getClasses, createShallow, createMount } from '../test-utils';
+import { getClasses, createShallow, createMount } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Radio from './Radio';
 
