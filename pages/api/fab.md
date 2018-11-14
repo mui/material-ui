@@ -26,7 +26,6 @@ import Fab from '@material-ui/core/Fab';
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |   | If `true`, the ripple effect will be disabled. |
-| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will take up the full width of its container. |
 | <span class="prop-name">href</span> | <span class="prop-type">string</span> |   | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'large'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'round'&nbsp;&#124;<br>&nbsp;'extended'<br></span> | <span class="prop-default">'round'</span> | The variant to use. |
@@ -51,7 +50,6 @@ This property accepts the following keys:
 | <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"``.
 | <span class="prop-name">sizeMedium</span> | Styles applied to the root element if `size="medium"``.
-| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Fab/Fab.js)
@@ -65,4 +63,8 @@ you need to use the following style sheet name: `MuiFab`.
 
 The properties of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
+
+## Demos
+
+- [Buttons](/demos/buttons/)
 

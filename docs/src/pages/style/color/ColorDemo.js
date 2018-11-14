@@ -91,7 +91,7 @@ function ColorDemo(props) {
 }
 \`\`\``}
         />
-        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }}>
+        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="Add">
           <AddIcon nativeColor={secondary.contrastText} />
         </Fab>
       </div>

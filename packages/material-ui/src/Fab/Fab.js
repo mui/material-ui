@@ -104,44 +104,36 @@ export const styles = theme => ({
     width: 48,
     height: 48,
   },
-  /* Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: {
-    width: '100%',
-  },
 });
 
 function Fab(props) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     color,
     disabled,
     disableFocusRipple,
     focusVisibleClassName,
-    fullWidth,
     size,
     variant,
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.extended]: variant === 'extended',
-      [classes.primary]: color === 'primary',
-      [classes.secondary]: color === 'secondary',
-      [classes[`size${capitalize(size)}`]]: size !== 'large',
-      [classes.disabled]: disabled,
-      [classes.fullWidth]: fullWidth,
-      [classes.colorInherit]: color === 'inherit',
-    },
-    classNameProp,
-  );
-
   return (
     <ButtonBase
-      className={className}
+      className={classNames(
+        classes.root,
+        {
+          [classes.extended]: variant === 'extended',
+          [classes.primary]: color === 'primary',
+          [classes.secondary]: color === 'secondary',
+          [classes[`size${capitalize(size)}`]]: size !== 'large',
+          [classes.disabled]: disabled,
+          [classes.colorInherit]: color === 'inherit',
+        },
+        className,
+      )}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
@@ -193,10 +185,6 @@ Fab.propTypes = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
-   * If `true`, the button will take up the full width of its container.
-   */
-  fullWidth: PropTypes.bool,
-  /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */
@@ -221,7 +209,6 @@ Fab.defaultProps = {
   component: 'button',
   disabled: false,
   disableFocusRipple: false,
-  fullWidth: false,
   size: 'large',
   type: 'button',
   variant: 'round',

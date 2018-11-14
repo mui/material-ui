@@ -27,12 +27,12 @@ function SimpleTooltips(props) {
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Add">
+      <Tooltip title="Add" aria-label="Add">
         <Fab color="primary" className={classes.fab}>
           <AddIcon />
         </Fab>
       </Tooltip>
-      <Tooltip title="Add">
+      <Tooltip title="Add" aria-label="Add">
         <Fab color="secondary" className={classes.absolute}>
           <AddIcon />
         </Fab>

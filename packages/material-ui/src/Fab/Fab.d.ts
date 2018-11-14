@@ -2,20 +2,19 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
+export interface FabProps extends StandardProps<ButtonBaseProps, FabClassKey, 'component'> {
   color?: PropTypes.Color;
-  component?: React.ReactType<ButtonProps>;
+  component?: React.ReactType<FabProps>;
   disabled?: boolean;
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
-  fullWidth?: boolean;
   href?: string;
   size?: 'small' | 'medium' | 'large';
   type?: string;
   variant?: 'round' | 'extended';
 }
 
-export type ButtonClassKey =
+export type FabClassKey =
   | 'root'
   | 'label'
   | 'primary'
@@ -25,9 +24,8 @@ export type ButtonClassKey =
   | 'disabled'
   | 'colorInherit'
   | 'sizeSmall'
-  | 'sizeMedium'
-  | 'fullWidth';
+  | 'sizeMedium';
 
-declare const Button: React.ComponentType<ButtonProps>;
+declare const Fab: React.ComponentType<FabProps>;
 
-export default Button;
+export default Fab;

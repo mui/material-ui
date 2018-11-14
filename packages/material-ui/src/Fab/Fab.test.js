@@ -13,17 +13,17 @@ describe('<Fab />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     render = createRender();
-    classes = getClasses(<Fab>FAB</Fab>);
+    classes = getClasses(<Fab>Fab</Fab>);
   });
 
   it('should render a <ButtonBase> element', () => {
-    const wrapper = shallow(<Fab>FAB</Fab>);
+    const wrapper = shallow(<Fab>Fab</Fab>);
     assert.strictEqual(wrapper.type(), ButtonBase);
     assert.strictEqual(wrapper.props().type, 'button');
   });
 
   it('should render with the root class but no others', () => {
-    const wrapper = shallow(<Fab>FAB</Fab>);
+    const wrapper = shallow(<Fab>Fab</Fab>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.primary), false);
     assert.strictEqual(wrapper.hasClass(classes.secondary), false);
@@ -78,7 +78,7 @@ describe('<Fab />', () => {
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = shallow(<Fab>FAB</Fab>);
+    const wrapper = shallow(<Fab>Fab</Fab>);
     assert.strictEqual(wrapper.props().disableRipple, undefined);
   });
 
@@ -88,7 +88,7 @@ describe('<Fab />', () => {
   });
 
   it('should have a focusRipple by default', () => {
-    const wrapper = shallow(<Fab>FAB</Fab>);
+    const wrapper = shallow(<Fab>Fab</Fab>);
     assert.strictEqual(wrapper.props().focusRipple, true);
   });
 
@@ -114,8 +114,8 @@ describe('<Fab />', () => {
     }
 
     it('should server side render', () => {
-      const markup = render(<Fab>FAB</Fab>);
-      assert.strictEqual(markup.text(), 'FAB');
+      const markup = render(<Fab>Fab</Fab>);
+      assert.strictEqual(markup.text(), 'Fab');
     });
   });
 });

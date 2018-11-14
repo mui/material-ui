@@ -47,7 +47,7 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(wrapper.type(), 'div');
   });
 
-  it('should render a FAB', () => {
+  it('should render a Fab', () => {
     const wrapper = shallow(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
@@ -122,7 +122,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: onClick', () => {
-    it('should be set as the onClick prop of the FAB', () => {
+    it('should be set as the onClick prop of the Fab', () => {
       const onClick = spy();
       const wrapper = shallow(
         <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
@@ -242,7 +242,7 @@ describe('<SpeedDial />', () => {
     /**
      *
      * @param actionIndex
-     * @returns the button of the nth SpeedDialAction or the FAB if -1
+     * @returns the button of the nth SpeedDialAction or the Fab if -1
      */
     const getActionButton = actionIndex => {
       if (actionIndex === -1) {
