@@ -40,7 +40,7 @@ function SwipeArea(props) {
 
   return (
     <div
-      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`])}
+      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`], classNameProp)}
       style={{
         [isHorizontal(props) ? 'width' : 'height']: width,
       }}
@@ -58,6 +58,10 @@ SwipeArea.propTypes = {
    * @ignore
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The width of the left most (or right most) area in pixels where the
    * drawer can be swiped open from.
