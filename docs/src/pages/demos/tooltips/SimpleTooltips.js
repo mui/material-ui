@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -27,15 +27,15 @@ function SimpleTooltips(props) {
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Add">
-        <Button variant="fab" color="primary" aria-label="Add" className={classes.fab}>
+      <Tooltip title="Add" aria-label="Add">
+        <Fab color="primary" className={classes.fab}>
           <AddIcon />
-        </Button>
+        </Fab>
       </Tooltip>
-      <Tooltip title="FAB">
-        <Button variant="fab" color="secondary" className={classes.absolute}>
+      <Tooltip title="Add" aria-label="Add">
+        <Fab color="secondary" className={classes.absolute}>
           <AddIcon />
-        </Button>
+        </Fab>
       </Tooltip>
     </div>
   );

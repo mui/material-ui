@@ -30,7 +30,7 @@ import Button from '@material-ui/core/Button';
 | <span class="prop-name">href</span> | <span class="prop-type">string</span> |   | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">mini</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, and `variant` is `'fab'`, will use mini floating action button styling. |
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised'<br></span> | <span class="prop-default">'text'</span> | The variant to use. __WARNING__: `flat` and `raised` are deprecated. Instead use `text` and `contained` respectively. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised'<br></span> | <span class="prop-default">'text'</span> | The variant to use. __WARNING__: `flat` and `raised` are deprecated. Instead use `text` and `contained` respectively. `fab` and `extendedFab` are deprecated. Instead use `<Fab>` and `<Fab variant="extended">` |
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
@@ -64,7 +64,7 @@ This property accepts the following keys:
 | <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the button is keyboard focused.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">mini</span> | Styles applied to the root element if `size="mini"` & `variant="[fab \| extendedFab]"`.
+| <span class="prop-name">mini</span> | Styles applied to the root element if `mini={true}` & `variant="[fab \| extendedFab]"`.
 | <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.

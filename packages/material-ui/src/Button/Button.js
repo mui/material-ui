@@ -197,7 +197,7 @@ export const styles = theme => ({
   colorInherit: {
     color: 'inherit',
   },
-  /* Styles applied to the root element if `size="mini"` & `variant="[fab | extendedFab]"`. */
+  /* Styles applied to the root element if `mini={true}` & `variant="[fab | extendedFab]"`. */
   mini: {
     width: 40,
     height: 40,
@@ -349,6 +349,8 @@ Button.propTypes = {
    * The variant to use.
    * __WARNING__: `flat` and `raised` are deprecated.
    * Instead use `text` and `contained` respectively.
+   * `fab` and `extendedFab` are deprecated.
+   * Instead use `<Fab>` and `<Fab variant="extended">`
    */
   variant: chainPropTypes(
     PropTypes.oneOf(['text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised']),
@@ -363,6 +365,19 @@ Button.propTypes = {
         return new Error(
           'The `raised` variant will be removed in the next major release. ' +
             '`contained` is equivalent and should be used instead.',
+        );
+      }
+      if (props.variant === 'fab') {
+        return new Error(
+          'The `fab` variant will be removed in the next major release. ' +
+            'The `<Fab>` component is equivalent and should be used instead.',
+        );
+      }
+      if (props.variant === 'extendedFab') {
+        return new Error(
+          'The `fab` variant will be removed in the next major release. ' +
+            'The `<Fab>` component with `variant="extended"` is equivalent ' +
+            'and should be used instead.',
         );
       }
 

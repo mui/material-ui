@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, IconButton, ButtonBase, Zoom
+components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
@@ -55,7 +55,7 @@ The last example of this demo show how to use an upload button.
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
 (FAB) performs the primary, or most common, action on a screen.
 It appears in front of all screen content, typically as a circular shape with an icon in its center.
-FABs come in three types: regular, mini, and extended.
+FABs come in two types: regular, and extended.
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
@@ -85,7 +85,7 @@ deselected, such as adding or removing a star to an item.
 
 ## Sizes
 
-Fancy larger or smaller buttons? Use the `size` or the `mini` property.
+Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
