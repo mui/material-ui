@@ -1,7 +1,7 @@
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import FormControlContext from './FormControlContext';
-import getDisplayName from '@material-ui/utils/getDisplayName';
+import { getDisplayName } from '@material-ui/utils';
 
 export default function withFormControlContext(Component) {
   const EnhancedComponent = props => {
