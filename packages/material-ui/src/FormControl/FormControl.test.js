@@ -53,7 +53,7 @@ describe('<FormControl />', () => {
     it('should have the margin dense class', () => {
       const wrapper = mount(<FormControl margin="dense" />);
 
-      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
+      assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
     });

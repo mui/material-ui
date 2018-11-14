@@ -13,4 +13,6 @@ export interface FormControlContextProps extends Pick<FormControlProps, ContextF
   onFocus: () => void;
 }
 
-declare const FormControlContext: Context<FormControlContextProps | undefined>;
+declare const FormControlContext: Context<FormControlContextProps | null | undefined>;
+
+export default FormControlContext;
