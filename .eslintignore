@@ -6,8 +6,6 @@
 /examples/create-react-app-with-flow/flow
 /examples/create-react-app-with-flow/flow-typed
 /examples/gatsby/public
-/flow
-/flow-typed
 /packages/material-ui-codemod/lib
 /packages/material-ui-codemod/src/*/*.test
 /packages/material-ui-codemod/src/*/*.test.js

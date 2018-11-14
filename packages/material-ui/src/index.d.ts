@@ -4,7 +4,9 @@ export { StyledComponentProps };
 
 export type PropsOf<C> = C extends new (props: infer P) => React.Component
   ? P
-  : C extends (props: infer P) => React.ReactElement<any> | null ? P : never;
+  : C extends (props: infer P) => React.ReactElement<any> | null
+  ? P
+  : never;
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with

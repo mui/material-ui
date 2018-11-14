@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import InputAdornment from '../InputAdornment';
 import Textarea from './Textarea';
 import InputBase from './InputBase';

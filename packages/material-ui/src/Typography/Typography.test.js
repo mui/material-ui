@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createMuiTheme from '../styles/createMuiTheme';
-import { createMount, createShallow, getClasses } from '../test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Typography from './Typography';
 
 describe('<Typography />', () => {

@@ -312,7 +312,7 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   githubLocation: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  js: PropTypes.func.isRequired,
+  js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   raw: PropTypes.string.isRequired,
 };
 

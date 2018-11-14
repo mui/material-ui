@@ -2,5 +2,5 @@ files:
   - source: /docs/src/pages/**/*.md
     ignore:
       - /**/%file_name%-%two_letters_code%.md
-      - /docs/src/pages/page-layout-examples/**/*
+      - /docs/src/pages/getting-started/page-layout-examples/**/*
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%

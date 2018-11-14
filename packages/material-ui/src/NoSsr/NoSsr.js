@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import exactProp from '../utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).

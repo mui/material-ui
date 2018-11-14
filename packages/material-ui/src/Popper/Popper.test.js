@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, unwrap } from '../test-utils';
+import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
 import createMuiTheme from '../styles/createMuiTheme';
 import Grow from '../Grow';
 import Popper from './Popper';

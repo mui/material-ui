@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, getClasses } from '../test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import ListItemAvatar from './ListItemAvatar';
 import ListContext from '../List/ListContext';
