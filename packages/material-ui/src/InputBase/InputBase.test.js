@@ -2,19 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+  unwrap,
+} from '@material-ui/core/test-utils';
+import FormControlContext from '../FormControl/FormControlContext';
 import InputAdornment from '../InputAdornment';
 import Textarea from './Textarea';
 import InputBase from './InputBase';
 
 describe('<InputBase />', () => {
-  let shallow;
   let classes;
   let mount;
   const NakedInputBase = unwrap(InputBase);
 
+  function setState(wrapper, state) {
+    return wrapper.find('InputBase').setState(state);
+  }
+
   before(() => {
-    shallow = createShallow({ untilSelector: 'InputBase' });
     mount = createMount();
     classes = getClasses(<InputBase />);
   });
@@ -24,13 +32,13 @@ describe('<InputBase />', () => {
   });
 
   it('should render a <div />', () => {
-    const wrapper = shallow(<InputBase />);
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(<InputBase />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render an <input /> inside the div', () => {
-    const wrapper = shallow(<InputBase />);
+    const wrapper = mount(<InputBase />);
     const input = wrapper.find('input');
     assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.props().type, 'text');
@@ -40,24 +48,24 @@ describe('<InputBase />', () => {
 
   describe('multiline', () => {
     it('should render an <Textarea /> when passed the multiline prop', () => {
-      const wrapper = shallow(<InputBase multiline />);
+      const wrapper = mount(<InputBase multiline />);
       assert.strictEqual(wrapper.find(Textarea).length, 1);
     });
 
     it('should render an <textarea /> when passed the multiline and rows props', () => {
-      const wrapper = shallow(<InputBase multiline rows="4" />);
+      const wrapper = mount(<InputBase multiline rows="4" />);
       assert.strictEqual(wrapper.find('textarea').length, 1);
     });
 
     it('should forward the value to the Textarea', () => {
-      const wrapper = shallow(<InputBase multiline rowsMax="4" value="" />);
+      const wrapper = mount(<InputBase multiline rowsMax="4" value="" />);
       assert.strictEqual(wrapper.find(Textarea).props().value, '');
     });
   });
 
   describe('prop: disabled', () => {
     it('should render a disabled <input />', () => {
-      const wrapper = shallow(<InputBase disabled />);
+      const wrapper = mount(<InputBase disabled />);
       const input = wrapper.find('input');
       assert.strictEqual(input.name(), 'input');
       assert.strictEqual(input.hasClass(classes.input), true);
@@ -65,41 +73,34 @@ describe('<InputBase />', () => {
     });
 
     it('should reset the focused state', () => {
-      const wrapper = shallow(<InputBase />);
       const handleBlur = spy();
-      wrapper.setContext({
-        ...wrapper.context(),
-        muiFormControl: {
-          onBlur: handleBlur,
-        },
-      });
+      const wrapper = mount(<InputBase muiFormControl={{ onBlur: handleBlur }} />);
       // We simulate a focused input that is getting disabled.
-      wrapper.setState({
+      setState(wrapper, {
         focused: true,
       });
       wrapper.setProps({
         disabled: true,
       });
-      assert.strictEqual(wrapper.state().focused, false);
+      assert.strictEqual(wrapper.find('InputBase').state().focused, false);
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
     // IE 11 bug
     it('should not respond the focus event when disabled', () => {
-      const wrapper = shallow(<InputBase disabled />);
-      const instance = wrapper.instance();
+      const wrapper = mount(<InputBase disabled />);
       const event = {
         stopPropagation: spy(),
       };
-      instance.handleFocus(event);
+      wrapper.find('input').simulate('focus', event);
       assert.strictEqual(event.stopPropagation.callCount, 1);
     });
   });
 
-  it('should disabled the underline', () => {
-    const wrapper = shallow(<InputBase disableUnderline />);
+  it('should disable the underline', () => {
+    const wrapper = mount(<InputBase disableUnderline />);
     const input = wrapper.find('input');
-    assert.strictEqual(wrapper.hasClass(classes.inkbar), false);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.inkbar), false);
     assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.hasClass(classes.input), true);
     assert.strictEqual(input.hasClass(classes.underline), false);
@@ -123,8 +124,8 @@ describe('<InputBase />', () => {
 
   describe('controlled', () => {
     it('should considered [] as controlled', () => {
-      const wrapper = shallow(<InputBase value={[]} />);
-      const instance = wrapper.instance();
+      const wrapper = mount(<InputBase value={[]} />);
+      const instance = wrapper.find('InputBase').instance();
       assert.strictEqual(instance.isControlled, true);
     });
 
@@ -137,13 +138,13 @@ describe('<InputBase />', () => {
         before(() => {
           handleEmpty = spy();
           handleFilled = spy();
-          wrapper = shallow(
+          wrapper = mount(
             <InputBase value={value} onFilled={handleFilled} onEmpty={handleEmpty} />,
           );
         });
 
         it('should check that the component is controlled', () => {
-          const instance = wrapper.instance();
+          const instance = wrapper.find('InputBase').instance();
           assert.strictEqual(instance.isControlled, true);
         });
 
@@ -214,21 +215,21 @@ describe('<InputBase />', () => {
     });
 
     it('should check that the component is uncontrolled', () => {
-      const instance = wrapper.instance();
+      const instance = wrapper.find('InputBase').instance();
       assert.strictEqual(instance.isControlled, false);
     });
 
     it('should fire the onFilled callback when dirtied', () => {
       assert.strictEqual(handleFilled.callCount, 1);
-      wrapper.instance().inputRef.value = 'hello';
+      wrapper.find('InputBase').instance().inputRef.value = 'hello';
       wrapper.find('input').simulate('change');
       assert.strictEqual(handleFilled.callCount, 2);
     });
 
     it('should fire the onEmpty callback when cleaned', () => {
-      // Because of shallow() this hasn't fired since there is no mounting
+      // Because of mount() this hasn't fired since there is no mounting
       assert.strictEqual(handleEmpty.callCount, 0);
-      wrapper.instance().inputRef.value = '';
+      wrapper.find('InputBase').instance().inputRef.value = '';
       wrapper.find('input').simulate('change');
       assert.strictEqual(handleEmpty.callCount, 1);
     });
@@ -240,16 +241,30 @@ describe('<InputBase />', () => {
 
     function setFormControlContext(muiFormControlContext) {
       muiFormControl = muiFormControlContext;
-      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+      wrapper.setProps({ context: muiFormControlContext });
     }
 
     beforeEach(() => {
-      wrapper = shallow(<InputBase />);
+      // we need a class for enzyme otherwise: "Can't call ::setState on functional component"
+      /* eslint-disable-next-line react/prefer-stateless-function */
+      class Provider extends React.Component {
+        render() {
+          const { context, ...other } = this.props;
+
+          return (
+            <FormControlContext.Provider value={context}>
+              <InputBase {...other} />
+            </FormControlContext.Provider>
+          );
+        }
+      }
+
+      wrapper = mount(<Provider />);
     });
 
     it('should have the formControl class', () => {
       setFormControlContext({});
-      assert.strictEqual(wrapper.hasClass(classes.formControl), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.formControl), true);
     });
 
     describe('callbacks', () => {
@@ -257,7 +272,7 @@ describe('<InputBase />', () => {
 
       beforeEach(() => {
         focus = spy();
-        wrapper.instance().inputRef = { value: '', focus };
+        wrapper.find('InputBase').instance().inputRef = { value: '', focus };
         setFormControlContext({
           onFilled: spy(),
           onEmpty: spy(),
@@ -272,7 +287,7 @@ describe('<InputBase />', () => {
           onFilled: handleFilled,
         });
 
-        wrapper.instance().inputRef.value = 'hello';
+        wrapper.find('InputBase').instance().inputRef.value = 'hello';
         wrapper.find('input').simulate('change');
         assert.strictEqual(handleFilled.callCount, 1);
         assert.strictEqual(muiFormControl.onFilled.callCount, 1);
@@ -284,7 +299,7 @@ describe('<InputBase />', () => {
           onEmpty: handleEmpty,
         });
 
-        wrapper.instance().inputRef.value = '';
+        wrapper.find('InputBase').instance().inputRef.value = '';
         wrapper.find('input').simulate('change');
         assert.strictEqual(handleEmpty.callCount, 1);
         assert.strictEqual(muiFormControl.onEmpty.callCount, 1);
@@ -331,15 +346,15 @@ describe('<InputBase />', () => {
       });
 
       it('should have the error class', () => {
-        assert.strictEqual(wrapper.hasClass(classes.error), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.error), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
         wrapper.setProps({ error: false });
-        assert.strictEqual(wrapper.hasClass(classes.error), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), false);
         wrapper.setProps({ error: true });
-        assert.strictEqual(wrapper.hasClass(classes.error), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
       });
     });
 
@@ -371,13 +386,13 @@ describe('<InputBase />', () => {
 
     describe('focused', () => {
       it('prioritizes context focus', () => {
-        wrapper.setState({ focused: true });
+        setState(wrapper, { focused: true });
 
         setFormControlContext({ focused: false });
-        assert.strictEqual(wrapper.hasClass(classes.focused), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), false);
 
         setFormControlContext({ focused: true });
-        assert.strictEqual(wrapper.hasClass(classes.focused), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.focused), true);
       });
     });
   });
@@ -388,7 +403,7 @@ describe('<InputBase />', () => {
 
     before(() => {
       wrapper = mount(<NakedInputBase classes={classes} />);
-      instance = wrapper.instance();
+      instance = wrapper.find('InputBase').instance();
     });
 
     beforeEach(() => {
@@ -443,11 +458,11 @@ describe('<InputBase />', () => {
 
   describe('prop: inputProps', () => {
     it('should apply the props on the input', () => {
-      const wrapper = shallow(<InputBase inputProps={{ className: 'foo', maxLength: true }} />);
+      const wrapper = mount(<InputBase inputProps={{ className: 'foo', maxLength: 5 }} />);
       const input = wrapper.find('input');
       assert.strictEqual(input.hasClass('foo'), true);
       assert.strictEqual(input.hasClass(classes.input), true);
-      assert.strictEqual(input.props().maxLength, true);
+      assert.strictEqual(input.props().maxLength, 5);
     });
 
     it('should be able to get a ref', () => {
@@ -459,19 +474,29 @@ describe('<InputBase />', () => {
 
   describe('prop: startAdornment, prop: endAdornment', () => {
     it('should render adornment before input', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <InputBase startAdornment={<InputAdornment position="start">$</InputAdornment>} />,
       );
 
-      assert.strictEqual(wrapper.childAt(0).type(), InputAdornment);
+      assert.strictEqual(
+        findOutermostIntrinsic(wrapper)
+          .childAt(0)
+          .type(),
+        InputAdornment,
+      );
     });
 
     it('should render adornment after input', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <InputBase endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
       );
 
-      assert.strictEqual(wrapper.childAt(1).type(), InputAdornment);
+      assert.strictEqual(
+        findOutermostIntrinsic(wrapper)
+          .childAt(1)
+          .type(),
+        InputAdornment,
+      );
     });
   });
 

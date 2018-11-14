@@ -1,22 +1,28 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses, createMount } from '@material-ui/core/test-utils';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
 import { spy } from 'sinon';
 
 describe('<Select />', () => {
-  let shallow;
   let classes;
   let mount;
   const defaultProps = {
     input: <Input />,
-    children: [<MenuItem value="1">1</MenuItem>, <MenuItem value="2">2</MenuItem>],
+    children: [
+      <MenuItem key="1" value="1">
+        1
+      </MenuItem>,
+      <MenuItem key="2" value="2">
+        2
+      </MenuItem>,
+    ],
+    value: '1',
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Select {...defaultProps} />);
     mount = createMount();
   });
@@ -26,18 +32,18 @@ describe('<Select />', () => {
   });
 
   it('should render a correct top element', () => {
-    const wrapper = shallow(<Select {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), Input);
+    const wrapper = mount(<Select {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Input).exists(), true);
   });
 
   it('should provide the classes to the input component', () => {
-    const wrapper = shallow(<Select {...defaultProps} />);
-    assert.deepEqual(wrapper.props().inputProps.classes, classes);
+    const wrapper = mount(<Select {...defaultProps} />);
+    assert.deepEqual(wrapper.find(Input).props().inputProps.classes, classes);
   });
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Select
           {...defaultProps}
           inputProps={{
@@ -45,7 +51,7 @@ describe('<Select />', () => {
           }}
         />,
       );
-      assert.deepEqual(wrapper.props().inputProps.classes, {
+      assert.deepEqual(wrapper.find(Input).props().inputProps.classes, {
         ...classes,
         root: `${classes.root} root`,
       });

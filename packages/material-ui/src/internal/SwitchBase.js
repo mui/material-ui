@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 
@@ -50,7 +51,7 @@ class SwitchBase extends React.Component {
       this.props.onFocus(event);
     }
 
-    const { muiFormControl } = this.context;
+    const { muiFormControl } = this.props;
     if (muiFormControl && muiFormControl.onFocus) {
       muiFormControl.onFocus(event);
     }
@@ -61,7 +62,7 @@ class SwitchBase extends React.Component {
       this.props.onBlur(event);
     }
 
-    const { muiFormControl } = this.context;
+    const { muiFormControl } = this.props;
     if (muiFormControl && muiFormControl.onBlur) {
       muiFormControl.onBlur(event);
     }
@@ -91,6 +92,7 @@ class SwitchBase extends React.Component {
       id,
       inputProps,
       inputRef,
+      muiFormControl,
       name,
       onBlur,
       onChange,
@@ -103,7 +105,6 @@ class SwitchBase extends React.Component {
       ...other
     } = this.props;
 
-    const { muiFormControl } = this.context;
     let disabled = disabledProp;
 
     if (muiFormControl) {
@@ -207,6 +208,10 @@ SwitchBase.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
   /*
    * @ignore
    */
@@ -250,8 +255,6 @@ SwitchBase.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
-SwitchBase.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(SwitchBase);
+export default withStyles(styles, { name: 'MuiPrivateSwitchBase' })(
+  withFormControlContext(SwitchBase),
+);

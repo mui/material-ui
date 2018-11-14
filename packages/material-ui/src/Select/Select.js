@@ -3,18 +3,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from './SelectInput';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 // To replace with InputBase in v4.0.0
 import Input from '../Input';
-import { formControlState } from '../InputBase/InputBase';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
-function Select(props, context) {
+function Select(props) {
   const {
     autoWidth,
     children,
@@ -24,6 +25,7 @@ function Select(props, context) {
     input,
     inputProps,
     MenuProps,
+    muiFormControl,
     multiple,
     native,
     onClose,
@@ -38,7 +40,7 @@ function Select(props, context) {
   const inputComponent = native ? NativeSelectInput : SelectInput;
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['variant'],
   });
 
@@ -192,10 +194,8 @@ Select.defaultProps = {
   native: false,
 };
 
-Select.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
 Select.muiName = 'Select';
 
-export default withStyles(nativeSelectStyles, { name: 'MuiSelect' })(Select);
+export default withStyles(nativeSelectStyles, { name: 'MuiSelect' })(
+  withFormControlContext(Select),
+);
