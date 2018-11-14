@@ -55,6 +55,53 @@ describe('<Slider />', () => {
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });
 
+  describe('when mouse leaves window', () => {
+    it('should move to the end', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    });
+  });
+
+  describe('when mouse reenters window', () => {
+    it('should update if mouse is still clicked', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 1;
+      document.body.dispatchEvent(mouseEnter);
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+
+      assert.strictEqual(handleChange.callCount, 2, 'should have called the handleChange cb');
+    });
+
+    it('should not update if mouse is not clicked', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 0;
+      document.body.dispatchEvent(mouseEnter);
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    });
+  });
+
   describe('unmount', () => {
     it('should not have global event listeners registered after unmount', () => {
       const handleChange = spy();
