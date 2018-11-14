@@ -38,6 +38,7 @@ export const styles = theme => {
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
+      boxSizing: 'border-box',
     },
     /* Styles applied to the root element if `color="primary"`. */
     colorPrimary: {
@@ -111,6 +112,9 @@ export const styles = theme => {
       }`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      },
+      '& $avatar': {
+        marginLeft: -1,
       },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */

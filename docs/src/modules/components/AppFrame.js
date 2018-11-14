@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
+import fromRenderProps from 'recompose/fromRenderProps';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,6 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import LanguageIcon from '@material-ui/icons/Language';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
@@ -19,11 +23,12 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import PageTitle from 'docs/src/modules/components/PageTitle';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 Router.onRouteChangeStart = () => {
@@ -77,6 +82,7 @@ const styles = theme => ({
 
 class AppFrame extends React.Component {
   state = {
+    languageMenu: null,
     mobileOpen: false,
   };
 
@@ -88,11 +94,30 @@ class AppFrame extends React.Component {
     this.setState({ mobileOpen: false });
   };
 
+  handleLanguageIconClick = event => {
+    this.setState({ languageMenu: event.currentTarget });
+  };
+
+  handleLanguageMenuClose = () => {
+    this.setState({ languageMenu: null });
+  };
+
+  handleLanguageMenuItemClick = lang => {
+    if (lang !== this.props.userLanguage) {
+      document.cookie = `lang=${lang};path=/;max-age=31536000`;
+      window.location.reload();
+    }
+    this.handleLanguageMenuClose();
+  };
+
   handleTogglePaletteType = () => {
+    const paletteType = this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light';
+    document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
+
     this.props.dispatch({
       type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
       payload: {
-        paletteType: this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light',
+        paletteType,
       },
     });
   };
@@ -107,103 +132,146 @@ class AppFrame extends React.Component {
   };
 
   render() {
-    const { children, classes, uiTheme } = this.props;
-
-    if (!this.context.activePage) {
-      throw new Error('Missing activePage.');
-    }
-
-    const title =
-      this.context.activePage.title !== false ? pageToTitle(this.context.activePage) : null;
-
-    let disablePermanent = false;
-    let navIconClassName = '';
-    let appBarClassName = classes.appBar;
-
-    if (title === null) {
-      // home route, don't shift app bar or dock drawer
-      disablePermanent = true;
-      appBarClassName += ` ${classes.appBarHome}`;
-    } else {
-      navIconClassName = classes.navIconHide;
-      appBarClassName += ` ${classes.appBarShift}`;
-    }
+    const { children, classes, uiTheme, userLanguage } = this.props;
+    const { languageMenu } = this.state;
 
     return (
-      <div className={classes.root}>
-        <NProgressBar />
-        <CssBaseline />
-        <AppBar className={appBarClassName}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={navIconClassName}
-            >
-              <MenuIcon />
-            </IconButton>
-            {title !== null && (
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                {title}
-              </Typography>
-            )}
-            <div className={classes.grow} />
-            <AppSearch />
-            <Tooltip title="Edit docs colors" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                aria-label="Edit docs colors"
-                component={Link}
-                href="/style/color/#color-tool"
-              >
-                <ColorsIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                onClick={this.handleTogglePaletteType}
-                aria-label="Toggle light/dark theme"
-              >
-                {uiTheme.paletteType === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                onClick={this.handleToggleDirection}
-                aria-label="Toggle right-to-left/left-to-right"
-              >
-                {uiTheme.direction === 'rtl' ? (
-                  <FormatTextdirectionLToR />
-                ) : (
-                  <FormatTextdirectionRToL />
-                )}
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="GitHub repository" enterDelay={300}>
-              <IconButton
-                component="a"
-                color="inherit"
-                href="https://github.com/mui-org/material-ui"
-                aria-label="GitHub repository"
-              >
-                <GithubIcon />
-              </IconButton>
-            </Tooltip>
-          </Toolbar>
-        </AppBar>
-        <Notifications />
-        <AppDrawer
-          className={classes.drawer}
-          disablePermanent={disablePermanent}
-          onClose={this.handleDrawerClose}
-          onOpen={this.handleDrawerOpen}
-          mobileOpen={this.state.mobileOpen}
-        />
-        {children}
-      </div>
+      <PageTitle>
+        {title => {
+          let disablePermanent = false;
+          let navIconClassName = '';
+          let appBarClassName = classes.appBar;
+
+          if (title === null) {
+            // home route, don't shift app bar or dock drawer
+            disablePermanent = true;
+            appBarClassName += ` ${classes.appBarHome}`;
+          } else {
+            navIconClassName = classes.navIconHide;
+            appBarClassName += ` ${classes.appBarShift}`;
+          }
+
+          return (
+            <div className={classes.root}>
+              <NProgressBar />
+              <CssBaseline />
+              <AppBar className={appBarClassName}>
+                <Toolbar>
+                  <IconButton
+                    color="inherit"
+                    aria-label="Open drawer"
+                    onClick={this.handleDrawerOpen}
+                    className={navIconClassName}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  {title !== null && (
+                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                      {title}
+                    </Typography>
+                  )}
+                  <div className={classes.grow} />
+                  <AppSearch />
+                  <Tooltip title="Change language" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      aria-owns={languageMenu ? 'language-menu' : undefined}
+                      aria-haspopup="true"
+                      onClick={this.handleLanguageIconClick}
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="language"
+                    >
+                      <LanguageIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    id="language-menu"
+                    anchorEl={languageMenu}
+                    open={Boolean(languageMenu)}
+                    onClose={this.handleLanguageMenuClose}
+                  >
+                    <MenuItem
+                      selected={userLanguage === 'en'}
+                      onClick={() => this.handleLanguageMenuItemClick('en')}
+                    >
+                      English
+                    </MenuItem>
+                    <MenuItem
+                      selected={userLanguage === 'zh'}
+                      onClick={() => this.handleLanguageMenuItemClick('zh')}
+                    >
+                      中文
+                    </MenuItem>
+                  </Menu>
+                  <Tooltip title="Edit docs colors" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      aria-label="Edit docs colors"
+                      component={Link}
+                      href="/style/color/#color-tool"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="colors"
+                    >
+                      <ColorsIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Toggle light/dark theme" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      onClick={this.handleTogglePaletteType}
+                      aria-label="Toggle light/dark theme"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="dark"
+                    >
+                      {uiTheme.paletteType === 'light' ? (
+                        <LightbulbOutlineIcon />
+                      ) : (
+                        <LightbulbFullIcon />
+                      )}
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
+                    <IconButton
+                      color="inherit"
+                      onClick={this.handleToggleDirection}
+                      aria-label="Toggle right-to-left/left-to-right"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="rtl"
+                    >
+                      {uiTheme.direction === 'rtl' ? (
+                        <FormatTextdirectionLToR />
+                      ) : (
+                        <FormatTextdirectionRToL />
+                      )}
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="GitHub repository" enterDelay={300}>
+                    <IconButton
+                      component="a"
+                      color="inherit"
+                      href="https://github.com/mui-org/material-ui"
+                      aria-label="GitHub repository"
+                      data-ga-event-category="AppBar"
+                      data-ga-event-action="github"
+                    >
+                      <GithubIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Toolbar>
+              </AppBar>
+              <Notifications />
+              <AppDrawer
+                className={classes.drawer}
+                disablePermanent={disablePermanent}
+                onClose={this.handleDrawerClose}
+                onOpen={this.handleDrawerOpen}
+                mobileOpen={this.state.mobileOpen}
+              />
+              {children}
+            </div>
+          );
+        }}
+      </PageTitle>
     );
   }
 }
@@ -213,17 +281,15 @@ AppFrame.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   uiTheme: PropTypes.object.isRequired,
+  userLanguage: PropTypes.string.isRequired,
 };
 
-AppFrame.contextTypes = {
-  activePage: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-};
+const pageContext = fromRenderProps(PageContext.Consumer, ({ userLanguage }) => ({ userLanguage }));
 
 export default compose(
   connect(state => ({
     uiTheme: state.theme,
   })),
+  pageContext,
   withStyles(styles),
 )(AppFrame);

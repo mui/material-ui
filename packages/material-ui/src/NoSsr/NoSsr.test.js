@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow } from '../test-utils';
+import { createMount, createShallow } from '@material-ui/core/test-utils';
 import NoSsr from './NoSsr';
 
 describe('<NoSsr />', () => {

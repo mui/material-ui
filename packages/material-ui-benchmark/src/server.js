@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
-import Pricing from 'docs/src/pages/page-layout-examples/pricing/Pricing';
+import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
 
 function renderFullPage(html, css) {
   return `

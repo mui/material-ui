@@ -139,18 +139,9 @@ You have learned how to override the style of the Material-UI components in the 
 Now, let's see how we can make these overrides dynamic.
 We demonstrate 5 alternatives, each has it's pros and cons.
 
-### withStyles property support
+### Dynamic CSS
 
-```jsx
-const styles = {
-  button: {
-    background: props => props.color,
-  },
-};
-```
-
-This feature isn't ready yet.
-It will come with: [#7633](https://github.com/mui-org/material-ui/issues/7633).
+{{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
 ### Class name branch
 

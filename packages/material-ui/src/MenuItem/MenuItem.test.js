@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses, createMount } from '../test-utils';
+import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
 import ListItem from '../ListItem';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import MenuItem from './MenuItem';

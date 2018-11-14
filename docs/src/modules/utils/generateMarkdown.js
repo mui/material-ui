@@ -366,7 +366,7 @@ ${pagesMarkdown
 }
 
 function generateImportStatement(reactAPI) {
-  const source = reactAPI.filename
+  const source = normalizePath(reactAPI.filename)
     // determine the published package name
     .replace(
       /\/packages\/material-ui(-(.+?))?\/src/,

@@ -1,4 +1,4 @@
-# Overrides
+# 覆盖
 
 <p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
 

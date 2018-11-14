@@ -3,8 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
@@ -79,16 +78,17 @@ class AppWrapper extends React.Component {
     const { pageContext } = this.state;
 
     return (
-      <JssProvider
-        jss={pageContext.jss}
-        registry={pageContext.sheetsRegistry}
+      <StylesProvider
         generateClassName={pageContext.generateClassName}
+        jss={pageContext.jss}
+        sheetsManager={pageContext.sheetsManager}
+        sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
+        <ThemeProvider theme={pageContext.theme}>
           {children}
           <GoogleAnalytics />
-        </MuiThemeProvider>
-      </JssProvider>
+        </ThemeProvider>
+      </StylesProvider>
     );
   }
 }

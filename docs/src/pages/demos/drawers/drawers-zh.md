@@ -1,5 +1,5 @@
 ---
-title: Drawer React component
+title: 抽屉React组件
 components: Drawer, SwipeableDrawer
 ---
 # 抽屉
@@ -40,42 +40,42 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
 
-## Permanent drawer
+## 永久抽屉
 
-Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。他们无法被关闭。
 
-Permanent navigation drawers are the **recommended default for desktop**.
+推荐在**桌面环境上默认**使用永久抽屉。
 
 ### 全高度导航栏
 
-Apps focused on information consumption that use a left-to-right hierarchy.
+这种情况下应用程序侧重与从左到右层次结构的信息消费。
 
 {{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
 
-### 剪切在应用栏下
+### 从应用栏下开始分割
 
-Apps focused on productivity that require balance across the screen.
+应用专注于生产力，需要在整个屏幕上保持平衡。
 
 {{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}
 
-## Persistent drawer
+## 持久抽屉
 
-Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
+持久抽屉在打开和关闭的状态中相互切换 抽屉与内容位于同一平面的高度上。 它默认情况下是关闭的，可通过选择菜单图标打开，它会保持打开状态，直到用户关闭。 操作和切换都会记住抽屉的状态。
 
-When the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.
+当抽屉位于页面网格之外并打开时，抽屉会强制其他内容更改大小并适应较小的视口。
 
-Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
+对于比移动设备更大的尺寸，可以使用持久性导航抽屉。 对于具有多级层次结构且需要使用向上箭头进行导航的应用，建议不要使用它们。
 
 {{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
 
-## Mini variant drawer
+## 迷你变型抽屉
 
-In this variation, the persistent navigation drawer changes its width. Its resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar. When expanded, it appears as the standard persistent navigation drawer.
+在这种情况下，持久抽屉会更改其宽度。 它的静止状态是一个迷你抽屉，与内容相同面，由应用栏遮盖住。 展开后，它将显示为标准的持久抽屉。
 
-The mini variant is recommended for apps sections that need quick selection access alongside content.
+对于需要快速切换访问内容的应用部分，建议使用迷你变形抽屉。
 
 {{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}

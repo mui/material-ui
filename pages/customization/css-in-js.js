@@ -23,6 +23,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/JssRegistry'), 'utf8')
 `,
         },
+        'pages/customization/css-in-js/Hook.js': {
+          js: require('docs/src/pages/customization/css-in-js/Hook').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/Hook'), 'utf8')
+`,
+        },
         'pages/customization/css-in-js/StyledComponents.js': {
           js: require('docs/src/pages/customization/css-in-js/StyledComponents').default,
           raw: preval`

@@ -7,15 +7,15 @@
 在你的项目中直接用以下命令安装:
 
 ```sh
-npm install @material-ui/lab
-```
-
-如果你尚未在你的项目中使用Material-UI, 你可以按如下方式安装:
-
-```sh
 // with npm
-npm install @material-ui/core
+npm install @material-ui/lab
 
 // with yarn
-yarn add @material-ui/core
+yarn add @material-ui/lab
+```
+
+The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
+
+```sh
+npm install @material-ui/core
 ```

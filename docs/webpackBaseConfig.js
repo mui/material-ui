@@ -11,6 +11,8 @@ module.exports = {
       '@material-ui/docs': path.resolve(__dirname, '../packages/material-ui-docs/src'),
       '@material-ui/icons': path.resolve(__dirname, '../packages/material-ui-icons/src'),
       '@material-ui/lab': path.resolve(__dirname, '../packages/material-ui-lab/src'),
+      '@material-ui/styles': path.resolve(__dirname, '../packages/material-ui-styles/src'),
+      '@material-ui/utils': path.resolve(__dirname, '../packages/material-ui-utils/src'),
       docs: path.resolve(__dirname, '../docs'),
     },
   },

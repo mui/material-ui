@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import ReactDOMServer from 'react-dom/server';
-import { createMount } from '../test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import createMuiTheme from './createMuiTheme';
 import Button from '../Button';
 import createGenerateClassName from './createGenerateClassName';

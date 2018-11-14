@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
@@ -75,6 +75,15 @@ describe('<FormControl />', () => {
     it('should not apply it to the DOM', () => {
       const wrapper = shallow(<FormControl required />);
       assert.strictEqual(wrapper.props().required, undefined);
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('will be unfocused if it gets disabled', () => {
+      const wrapper = shallow(<FormControl />);
+      wrapper.setState({ focused: true });
+      wrapper.setProps({ disabled: true });
+      assert.strictEqual(wrapper.state().focused, false);
     });
   });
 

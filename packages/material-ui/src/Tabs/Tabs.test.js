@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { ShallowWrapper } from 'enzyme';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';

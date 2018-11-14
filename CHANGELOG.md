@@ -1,5 +1,166 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.5.1
+###### *Nov 13, 2018*
+
+Big thanks to the 13 contributors who made this release possible!
+
+Here are some highlights ✨:
+- Introduce a new `@material-ui/styles` package 💅 (#13503).
+
+The Material-UI's styling solution has pretty much stayed the same [for the last 12 months](https://github.com/oliviertassinari/a-journey-toward-better-style).
+Some interesting CSS-in-JS libraries like styled-components, emotion or linaria have emerged.
+This new package is a significant step forward. Some of the key features:
+
+  - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
+  - Allow accessing the component's props from within the style object.
+  - Replace the usage of the old React APIs with the new ones.
+  - 15.0 KB gzipped.
+
+Here is an example: https://codesandbox.io/s/vjzn5z4k77.
+
+```jsx
+import Button from '@material-ui/core/Button';
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
+
+// Like https://github.com/brunobertolini/styled-by
+const styledBy = (property, mapping) => props => mapping[props[property]];
+
+const useStyles = makeStyles({
+  root: {
+    background: styledBy('color', {
+      red: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      blue: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    }),
+    border: 0,
+    borderRadius: 3,
+    boxShadow: styledBy('color', {
+      red: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      blue: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+    }),
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+});
+
+function MyButton(props) {
+  const { color, ...other } = props;
+  const classes = useStyles(props);
+  return <Button className={classes.root} {...other} />;
+}
+
+function AdaptingHook() {
+  return (
+    <div>
+      <MyButton color="red">Red</MyButton>
+      <br />
+      <br />
+      <MyButton color="blue">Blue</MyButton>
+    </div>
+  );
+}
+
+export default AdaptingHook;
+```
+
+*Powered by [JSS](https://github.com/cssinjs/jss).*
+
+- Remove some usages of the old React's APIs (#13487, #13529, #13503) @eps1lon.
+- Add a language menu in the documentation and persist states between repeated visits (#13544, #13567) @mbrookes
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.5.1`
+
+- [OutlinedInput] Remove Firefox workaround (#13519) @Studio384
+- [TextField] Fix style focus issue on mobile (#13511) @ekoeditaa
+- [InputBase] Remove legacy lifecycle methods (#13487) @eps1lon
+- [Chip] Alignment fix (#13536) @izyb
+- [Badge] Add invisible property (#13534) @joshwooding
+- [Table] Use stable context API (#13529) @eps1lon
+- [TablePagination] Allow more rows per pages (#13524) @oliviertassinari
+- [LinearProgress] Fix TypeScript definition (#13562) @AdamMcquiff
+- Add missing brcast dependency @oliviertassinari
+
+### `@material-ui/styles@v3.0.0-alpha.0`
+
+- @material-ui/styles (#13503) @oliviertassinari
+
+### Docs
+
+- [docs] Advanced filter added to the documentation (#13528) @ashkank83
+- [docs] Save one component in the demo (#13537) @levelingup
+- [docs] Make the lab > core dependency more explicit (#13542) @Robindiddams
+- [docs] Remove redundant text (#13547) @EbiEbiEvidence
+- [docs] Add language menu (#13544) @mbrookes
+- [docs] Misc fixes (#13555) @oliviertassinari
+- [docs] Add cookie for persistant colors (#13567) @mbrookes
+
+### Core
+
+- [test] Improve tests related to lists (#13517) @eps1lon
+- [core] Remove recompose/wrapDisplayName usage (#13525) @oliviertassinari
+- [core] Fix the CDN release (#13540) @oliviertassinari
+- [core] Pass import filename through normalizePath function (#13565) @joshwooding
+
+## 3.5.0
+###### *Nov 12, 2018*
+
+*Corrupted, to not use.*
+
+## 3.4.0
+###### *Nov 5, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+- ⚛️ Fix some React 16.6.0 warnings in StrictMode (#13498, #13477) @eps1lon.
+- 💅 Improve the customization of the outlined input (#13428) @oliviertassinari.
+- And many more bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.4.0`
+
+- [Autocomplete] Fix react-select input overflow (#13413) @sayfulloev
+- [Drawer] Add a root style rule for consistency (#13418) @KirankumarAmbati
+- [Menu] Fix position regression (#13419) @oliviertassinari
+- [Menu] Add a visual regression test (#13420) @oliviertassinari
+- [Select] Fix focused text colour (#13423) @joshwooding
+- [Tabs] Fix misaligned tab (#13421) @Ang-YC
+- [OutlinedInput] Improve customization (#13428) @oliviertassinari
+- [CircularProgress] Introduce disableShrink property (#13430) @joshwooding
+- [Select] Improve the value comparison function (#13408) @nicolasiensen
+- [InputLabel] Fix InputLabelClassKey (#13445) @eps1lon
+- [createMixins] Use theme spacing unit in gutters (#13452) @zsalzbank
+- [ButtonBase] Update focusVisible ponyfill for shadowRoots (#13483) @jaipe
+- [Table] Add rowspan and colspan examples (#13490) @josgraha
+- [FormControlLabel] Add top and bottom `labelPlacement` property variants (#13499) @JulienMalige
+- [List] Use stable context API (#13498) @eps1lon
+- [SvgIcon] Add shapeRendering property description (#13509) @joshwooding
+
+### `@material-ui/lab@v3.0.0-alpha.23`
+
+- [Slider] Fix hover state not being registered (#13437) @eps1lon
+- [SpeedDial] Add default value to tooltipOpen property (#13458) @joshwooding
+
+### Docs
+
+- [examples] Fix Next.js warning "no title in _document.js" (#13415) @iamhosseindhv
+- [docs] Update misspelled "Interactive" in Tooltip Demo (#13427) @imjaroiswebdev
+- [docs] Fix the scroll functionality of the mini drawer demo (#13460) @nicolasiensen
+- [examples] Update create-react-app examples (#13453) @eps1lon
+- [docs] Add Google Analytics events (#13451) @goldins
+- [docs] Use stable context API (#13477) @eps1lon
+- [docs] Update CONTRIBUTING.md (#13478) @josgraha
+- [docs] Fix material-ui-popup-state IE 11 issue (#13474) @jedwards1211
+- [docs] Add Typography example for MenuItem (#13500) @joshwooding
+- [docs] Reword flexbox limitation (#13508) @joshwooding
+
+### Core
+
+- [core] Ponyfill global (#13426) @TrySound
+- [core] Upgrade dev dependencies (#13429) @oliviertassinari
+
 ## 3.3.2
 ###### *Oct 27, 2018*
 

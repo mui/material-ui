@@ -14,7 +14,6 @@ export const styles = theme => ({
     boxSizing: 'content-box',
     width: 'auto',
     overflow: 'hidden',
-    textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     '&$selected': {},
   },

@@ -32,7 +32,7 @@ function SimpleTooltips(props) {
           <AddIcon />
         </Button>
       </Tooltip>
-      <Tooltip title="FAB 'position: absolute;'">
+      <Tooltip title="FAB">
         <Button variant="fab" color="secondary" className={classes.absolute}>
           <AddIcon />
         </Button>

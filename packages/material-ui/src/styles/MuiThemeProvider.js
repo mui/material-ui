@@ -1,16 +1,18 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import createBroadcast from 'brcast';
+import { exactProp, ponyfillGlobal } from '@material-ui/utils';
 import themeListener, { CHANNEL } from './themeListener';
-import exactProp from '../utils/exactProp';
 
 /**
  * This component takes a `theme` property.
  * It makes the `theme` available down the React tree thanks to React context.
  * This component should preferably be used at **the root of your component tree**.
  */
-class MuiThemeProvider extends React.Component {
+export class MuiThemeProviderOld extends React.Component {
   broadcast = createBroadcast();
 
   // We are not using the React state in order to avoid unnecessary rerender.
@@ -105,7 +107,7 @@ class MuiThemeProvider extends React.Component {
   }
 }
 
-MuiThemeProvider.propTypes = {
+MuiThemeProviderOld.propTypes = {
   /**
    * You can wrap a node.
    */
@@ -137,16 +139,25 @@ MuiThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-MuiThemeProvider.propTypes = exactProp(MuiThemeProvider.propTypes);
+MuiThemeProviderOld.propTypes = exactProp(MuiThemeProviderOld.propTypes);
 
-MuiThemeProvider.childContextTypes = {
+MuiThemeProviderOld.childContextTypes = {
   ...themeListener.contextTypes,
   muiThemeProviderOptions: PropTypes.object,
 };
 
-MuiThemeProvider.contextTypes = {
+MuiThemeProviderOld.contextTypes = {
   ...themeListener.contextTypes,
   muiThemeProviderOptions: PropTypes.object,
 };
 
-export default MuiThemeProvider;
+/* istanbul ignore if */
+if (!ponyfillGlobal.__MUI_STYLES__) {
+  ponyfillGlobal.__MUI_STYLES__ = {};
+}
+
+if (!ponyfillGlobal.__MUI_STYLES__.MuiThemeProvider) {
+  ponyfillGlobal.__MUI_STYLES__.MuiThemeProvider = MuiThemeProviderOld;
+}
+
+export default ponyfillGlobal.__MUI_STYLES__.MuiThemeProvider;

@@ -243,7 +243,7 @@ Given `withStyles` is our internal styling solution, all the plugins aren't avai
 - [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
 It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
-Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3-jss-rtl).
+Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3--jss-rtl).
 
 ## API
 

@@ -9,7 +9,7 @@ import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
-import TablePaginationActions from '../TablePaginationActions';
+import TablePaginationActions from './TablePaginationActions';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -237,7 +237,7 @@ TablePagination.defaultProps = {
   component: TableCell,
   labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
   labelRowsPerPage: 'Rows per page:',
-  rowsPerPageOptions: [5, 10, 25],
+  rowsPerPageOptions: [10, 25, 50, 100],
 };
 
 export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);
