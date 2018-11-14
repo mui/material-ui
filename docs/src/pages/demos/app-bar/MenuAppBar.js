@@ -48,9 +48,7 @@ function MenuAppBar(props) {
     <div className={classes.root}>
       <FormGroup>
         <FormControlLabel
-          control={
-            <Switch checked={auth} onChange={handleChange} aria-label="LoginSwitch" />
-          }
+          control={<Switch checked={auth} onChange={handleChange} aria-label="LoginSwitch" />}
           label={auth ? 'Logout' : 'Login'}
         />
       </FormGroup>
