@@ -36,11 +36,11 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function SwipeArea(props) {
-  const { anchor, classes, width, ...other } = props;
+  const { anchor, classes, className, width, ...other } = props;
 
   return (
     <div
-      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`], classNameProp)}
+      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
       style={{
         [isHorizontal(props) ? 'width' : 'height']: width,
       }}
