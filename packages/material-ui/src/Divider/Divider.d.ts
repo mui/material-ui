@@ -7,11 +7,10 @@ export interface DividerProps
   component?: React.ReactType<DividerProps>;
   inset?: boolean;
   light?: boolean;
-  subheader?: string;
-  variant?: 'fullBleed' | 'inset' | 'middle';
+  variant?: 'fullWidth' | 'inset' | 'middle';
 }
 
-export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'subheader';
+export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle';
 
 declare const Divider: React.ComponentType<DividerProps>;
 

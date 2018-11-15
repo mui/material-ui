@@ -2,7 +2,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Divider from './Divider';
-import Typography from '../Typography';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<Divider />', () => {
@@ -16,26 +15,22 @@ describe('<Divider />', () => {
 
   it('should render a hr', () => {
     const wrapper = shallow(<Divider />);
-    const hr = wrapper.childAt(0);
-    assert.strictEqual(hr.name(), 'hr');
+    assert.strictEqual(wrapper.name(), 'hr');
   });
 
   it('should render with the root and default class', () => {
     const wrapper = shallow(<Divider />);
-    const hr = wrapper.childAt(0);
-    assert.strictEqual(hr.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should set the absolute class', () => {
     const wrapper = shallow(<Divider absolute />);
-    const hr = wrapper.childAt(0);
-    assert.strictEqual(hr.hasClass(classes.absolute), true);
+    assert.strictEqual(wrapper.hasClass(classes.absolute), true);
   });
 
   it('should set the light class', () => {
     const wrapper = shallow(<Divider light />);
-    const hr = wrapper.childAt(0);
-    assert.strictEqual(hr.hasClass(classes.light), true);
+    assert.strictEqual(wrapper.hasClass(classes.light), true);
   });
 
   describe('prop: inset', () => {
@@ -49,77 +44,35 @@ describe('<Divider />', () => {
 
     it('should set the inset class', () => {
       const wrapper = shallow(<Divider inset />);
-      const hr = wrapper.childAt(0);
-      assert.strictEqual(hr.hasClass(classes.inset), true);
-    });
-
-    it('should log a deprecation warning if this property is used', () => {
-      shallow(<Divider inset />);
-      assert.match(consoleErrorMock.args()[0][0], /You are using the deprecated `inset` property/);
-    });
-  });
-
-  describe('prop: subheader', () => {
-    it('should render a Typography component', () => {
-      const wrapper = shallow(<Divider subheader="test" />);
-      const wrappedTypography = wrapper.find(Typography);
-      const typography = wrappedTypography.childAt(0);
-      assert.strictEqual(wrappedTypography.type(), Typography);
-      assert.strictEqual(wrappedTypography.hasClass(classes.subheader), true);
-      assert.strictEqual(typography.text(), 'test');
-    });
-
-    it('should not render a Typography component when null or not present', () => {
-      const wrapper = shallow(<Divider />);
-      assert.strictEqual(wrapper.childAt(1).exists(), false);
+      assert.strictEqual(wrapper.hasClass(classes.inset), true);
     });
   });
 
   describe('prop: variant', () => {
-    it('should default to variant={"fullBleed"}', () => {
+    it('should default to variant="fullWidth"', () => {
       const wrapper = shallow(<Divider />);
-      const hr = wrapper.childAt(0);
-      assert.strictEqual(hr.hasClass(classes.inset), false);
-      assert.strictEqual(hr.hasClass(classes.middle), false);
+      assert.strictEqual(wrapper.hasClass(classes.inset), false);
+      assert.strictEqual(wrapper.hasClass(classes.middle), false);
     });
 
-    describe('prop: variant={"fullBleed"} ', () => {
+    describe('prop: variant="fullWidth" ', () => {
       it('should render with the root and default class', () => {
         const wrapper = shallow(<Divider />);
-        const hr = wrapper.childAt(0);
-        assert.strictEqual(hr.hasClass(classes.root), true);
+        assert.strictEqual(wrapper.hasClass(classes.root), true);
       });
     });
 
-    describe('prop: variant={"inset"} ', () => {
+    describe('prop: variant="inset" ', () => {
       it('should set the inset class', () => {
-        const wrapper = shallow(<Divider variant={'inset'} />);
-        const hr = wrapper.childAt(0);
-        assert.strictEqual(hr.hasClass(classes.inset), true);
+        const wrapper = shallow(<Divider variant="inset" />);
+        assert.strictEqual(wrapper.hasClass(classes.inset), true);
       });
     });
 
-    describe('prop: variant={"middle"}', () => {
-      before(() => {
-        consoleErrorMock.spy();
-      });
-
-      after(() => {
-        consoleErrorMock.reset();
-      });
-
+    describe('prop: variant="middle"', () => {
       it('should set the middle class', () => {
-        const wrapper = shallow(<Divider variant={'middle'} />);
-        const hr = wrapper.childAt(0);
-        assert.strictEqual(hr.hasClass(classes.middle), true);
-      });
-
-      it('should log a warning if subheader is supplied with variant="middle"', () => {
-        shallow(<Divider variant={'middle'} subheader="test" />);
-        assert.match(
-          consoleErrorMock.args()[0][0],
-          /`subheader` property with the variant `middle`. This will have no effect./,
-        );
+        const wrapper = shallow(<Divider variant="middle" />);
+        assert.strictEqual(wrapper.hasClass(classes.middle), true);
       });
     });
   });

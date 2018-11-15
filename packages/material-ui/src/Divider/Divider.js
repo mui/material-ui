@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
-import Typography from '../Typography/Typography';
 import chainPropTypes from '../utils/chainPropTypes';
 
 export const styles = theme => ({
@@ -22,27 +21,18 @@ export const styles = theme => ({
     left: 0,
     width: '100%',
   },
-  /* Styles applied to the root element if `variant={'inset'}`. */
+  /* Styles applied to the root element if `variant="inset"`. */
   inset: {
     marginLeft: 72,
-    '& + $subheader': {
-      marginLeft: 72,
-      marginTop: theme.spacing.unit / 2,
-    },
   },
   /* Styles applied to the root element if `light={true}`. */
   light: {
     backgroundColor: fade(theme.palette.divider, 0.08),
   },
-  /* Styles applied to the root element if `variant={'middle'}`. */
+  /* Styles applied to the root element if `variant="middle"`. */
   middle: {
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
-  },
-  /* Styles applied to the Typography element */
-  subheader: {
-    marginLeft: theme.spacing.unit * 2,
-    marginTop: theme.spacing.unit / 2 + 1,
   },
 });
 
@@ -50,45 +40,35 @@ function Divider(props) {
   const {
     absolute,
     classes,
-    className: classNameProp,
+    className,
     component: Component,
     inset,
     light,
-    subheader,
     variant,
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.absolute]: absolute,
-      [classes.inset]: inset || variant === 'inset',
-      [classes.light]: light,
-      [classes.middle]: variant === 'middle',
-    },
-    classNameProp,
-  );
-
-  let subheaderComponent;
-
-  if (subheader && variant !== 'middle') {
-    subheaderComponent = (
-      <Typography color="textSecondary" className={classes.subheader}>
-        {subheader}
-      </Typography>
-    );
-  }
-
   return (
-    <React.Fragment>
-      <Component className={className} {...other} />
-      {subheaderComponent}
-    </React.Fragment>
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.inset]: inset || variant === 'inset',
+          [classes.middle]: variant === 'middle',
+          [classes.absolute]: absolute,
+          [classes.light]: light,
+        },
+        className,
+      )}
+      {...other}
+    />
   );
 }
 
 Divider.propTypes = {
+  /**
+   * Absolutely position the element.
+   */
   absolute: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
@@ -113,9 +93,9 @@ Divider.propTypes = {
     /* istanbul ignore if */
     if (props.inset) {
       return new Error(
-        'Material-UI: You are using the deprecated `inset` property ' +
+        'Material-UI: you are using the deprecated `inset` property ' +
           'that will be removed in the next major release. The property `variant="inset"` ' +
-          'is equivalent and should be used instead',
+          'is equivalent and should be used instead.',
       );
     }
 
@@ -126,30 +106,16 @@ Divider.propTypes = {
    */
   light: PropTypes.bool,
   /**
-   * Divider subheader text. This will not work with `variant={'middle'}`
-   */
-  subheader: chainPropTypes(PropTypes.string, props => {
-    /* istanbul ignore if */
-    if (props.subheader && props.variant === 'middle') {
-      return new Error(
-        'Material-UI: you have provided the `subheader` property ' +
-          'with the variant `middle`. This will have no effect.',
-      );
-    }
-
-    return null;
-  }),
-  /**
    *  The variant to use.
    */
-  variant: PropTypes.oneOf(['fullBleed', 'inset', 'middle']),
+  variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
 };
 
 Divider.defaultProps = {
   absolute: false,
   component: 'hr',
   light: false,
-  variant: 'fullBleed',
+  variant: 'fullWidth',
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

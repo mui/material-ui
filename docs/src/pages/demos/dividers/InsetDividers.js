@@ -21,32 +21,30 @@ const styles = theme => ({
 function InsetDividers(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <List>
-        <ListItem>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-          <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-        </ListItem>
-        <li>
-          <Divider variant={'inset'} />
-        </li>
-        <ListItem>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-          <ListItemText primary="Work" secondary="Jan 7, 2014" />
-        </ListItem>
-        <Divider variant={'inset'} component="li" />
-        <ListItem>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
-          <ListItemText primary="Vacation" secondary="July 20, 2014" />
-        </ListItem>
-      </List>
-    </div>
+    <List className={classes.root}>
+      <ListItem>
+        <Avatar>
+          <ImageIcon />
+        </Avatar>
+        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+      </ListItem>
+      <li>
+        <Divider variant="inset" />
+      </li>
+      <ListItem>
+        <Avatar>
+          <WorkIcon />
+        </Avatar>
+        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+      </ListItem>
+      <Divider variant="inset" component="li" />
+      <ListItem>
+        <Avatar>
+          <BeachAccessIcon />
+        </Avatar>
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+      </ListItem>
+    </List>
   );
 }
 

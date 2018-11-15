@@ -21,30 +21,28 @@ const styles = theme => ({
 function MiddleDividers(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <List>
-        <ListItem>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-          <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-        </ListItem>
-        <Divider component="li" variant={'middle'} />
-        <ListItem>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-          <ListItemText primary="Work" secondary="Jan 7, 2014" />
-        </ListItem>
-        <Divider variant={'middle'} component="li" />
-        <ListItem>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
-          <ListItemText primary="Vacation" secondary="July 20, 2014" />
-        </ListItem>
-      </List>
-    </div>
+    <List className={classes.root}>
+      <ListItem>
+        <Avatar>
+          <ImageIcon />
+        </Avatar>
+        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+      </ListItem>
+      <Divider component="li" variant="middle" />
+      <ListItem>
+        <Avatar>
+          <WorkIcon />
+        </Avatar>
+        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+      </ListItem>
+      <Divider variant="middle" component="li" />
+      <ListItem>
+        <Avatar>
+          <BeachAccessIcon />
+        </Avatar>
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+      </ListItem>
+    </List>
   );
 }
 
