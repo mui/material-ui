@@ -129,7 +129,7 @@ const styles = (theme: Theme) =>
       cursor: 'default',
     },
     ampmSelection: {
-      top: 7,
+      top: 9,
       position: 'relative',
       marginLeft: 10,
       marginRight: -10,
@@ -138,7 +138,7 @@ const styles = (theme: Theme) =>
       fontSize: 18,
     },
     hourMinuteLabel: {
-      top: 4,
+      top: 5,
       position: 'relative',
       display: 'flex',
       justifyContent: 'flex-end',
