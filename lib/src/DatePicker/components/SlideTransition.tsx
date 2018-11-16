@@ -89,12 +89,12 @@ const styles = (theme: Theme) => {
     },
     'slideExitActiveLeft-left': {
       willChange: 'transform',
-      transform: 'translate(-100%)',
+      transform: 'translate(-200%)',
       transition: slideTransition,
     },
     'slideExitActiveLeft-right': {
       willChange: 'transform',
-      transform: 'translate(100%)',
+      transform: 'translate(200%)',
       transition: slideTransition,
     },
   });
