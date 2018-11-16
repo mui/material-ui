@@ -109,7 +109,6 @@ export const DateTimePickerHeader: React.SFC<
 (DateTimePickerHeader as any).propTypes = {
   date: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
   meridiemMode: PropTypes.string.isRequired,
   openView: PropTypes.string.isRequired,
   onOpenViewChange: PropTypes.func.isRequired,

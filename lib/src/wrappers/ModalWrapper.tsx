@@ -16,7 +16,6 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   onOpen?: () => void;
   /** On close callback */
   onClose?: () => void;
-  dialogContentClassName?: string;
   /** "OK" label message */
   okLabel?: React.ReactNode;
   /** "Cancel" label message */
@@ -25,6 +24,7 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   clearLabel?: React.ReactNode;
   /** "Today" label message */
   todayLabel?: React.ReactNode;
+  showTabs?: boolean;
   /**
    * If true today button will be displayed
    * <b>Note*</b> that clear button has higher priority
@@ -47,7 +47,6 @@ export default class ModalWrapper extends React.PureComponent<
     showTodayButton: PropTypes.bool,
     onOpen: PropTypes.func,
     format: PropTypes.string,
-    /** Dialog props passed to material-ui Dialog */
     DialogProps: PropTypes.object,
     value: DomainPropTypes.date,
     invalidLabel: PropTypes.node,
@@ -58,12 +57,10 @@ export default class ModalWrapper extends React.PureComponent<
     onClear: PropTypes.func,
     onSetToday: PropTypes.func,
     children: PropTypes.node.isRequired,
-    dialogContentClassName: PropTypes.string,
     isAccepted: PropTypes.bool.isRequired,
   };
 
   public static defaultProps = {
-    dialogContentClassName: '',
     invalidLabel: undefined,
     value: new Date(),
     labelFunc: undefined,
@@ -159,7 +156,6 @@ export default class ModalWrapper extends React.PureComponent<
       value,
       format,
       children,
-      dialogContentClassName,
       onAccept,
       onDismiss,
       invalidLabel,
@@ -175,6 +171,7 @@ export default class ModalWrapper extends React.PureComponent<
       onSetToday,
       isAccepted,
       DialogProps,
+      showTabs,
       ...other
     } = this.props;
 
@@ -192,13 +189,13 @@ export default class ModalWrapper extends React.PureComponent<
         />
 
         <ModalDialog
+          showTabs={showTabs}
           open={this.state.open}
           onKeyDown={this.handleKeyDown as any}
           onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
           onSetToday={this.handleSetTodayDate}
-          dialogContentClassName={dialogContentClassName}
           clearLabel={clearLabel}
           todayLabel={todayLabel}
           okLabel={okLabel}
