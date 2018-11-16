@@ -8,6 +8,13 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import clamp from '../utils/clamp';
 
+/**
+ * radius of the box-shadow when pressed
+ * hover should have a diameter equal to the pressed radius
+ */
+const pressedOutlineRadius = 9;
+const padding = pressedOutlineRadius * 2 + 6;
+
 export const styles = theme => {
   const commonTransitionsOptions = {
     duration: theme.transitions.duration.shortest,
@@ -29,28 +36,27 @@ export const styles = theme => {
     thumbOutline: fade(theme.palette.primary.main, 0.16),
   };
 
-  /**
-   * radius of the box-shadow when pressed
-   * hover should have a diameter equal to the pressed radius
-   */
-  const pressedOutlineRadius = 9;
-
   return {
     /* Styles applied to the root element. */
     root: {
+      margin: -padding,
+      padding: padding,
       position: 'relative',
       width: '100%',
-      cursor: 'pointer',
+      boxSizing: 'content-box',
+      overflow: 'hidden',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
         cursor: 'no-drop',
       },
       '&$vertical': {
+        width: 'auto',
         height: '100%',
       },
     },
     /* Styles applied to the container element. */
     container: {
+      cursor: 'pointer',
       position: 'relative',
       '&$vertical': {
         height: '100%',
@@ -197,8 +203,8 @@ function calculatePercent(node, event, isVertical, isRtl) {
   const { bottom, left } = getOffset(node);
   const { x, y } = getMousePosition(event);
 
-  const value = isVertical ? bottom - y : x - left;
-  const onePercent = (isVertical ? height : width) / 100;
+  const value = (isVertical ? bottom - y : x - left) - padding;
+  const onePercent = ((isVertical ? height : width) - padding * 2) / 100;
 
   return isRtl && !isVertical ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
 }
