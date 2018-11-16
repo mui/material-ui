@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/CircularProgress/CircularProgress.js
-title: CircularProgress API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# CircularProgress
+# CircularProgress API
 
 <p class="description">The API documentation of the CircularProgress React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -33,7 +32,7 @@ attribute to `true` on that region until it has finished loading.
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

@@ -3,10 +3,10 @@ import { StandardProps } from '..';
 
 export interface InputBaseProps
   extends StandardProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      InputBaseClassKey,
-      'onChange' | 'onKeyUp' | 'onKeyDown' | 'defaultValue'
-    > {
+    React.HTMLAttributes<HTMLDivElement>,
+    InputBaseClassKey,
+    'onChange' | 'onKeyUp' | 'onKeyDown' | 'defaultValue'
+  > {
   autoComplete?: string;
   autoFocus?: boolean;
   defaultValue?: string | number;

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/MobileStepper/MobileStepper.js
-title: MobileStepper API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# MobileStepper
+# MobileStepper API
 
 <p class="description">The API documentation of the MobileStepper React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -30,7 +29,7 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

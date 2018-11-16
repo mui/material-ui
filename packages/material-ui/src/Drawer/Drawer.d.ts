@@ -8,10 +8,10 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 
 export interface DrawerProps
   extends StandardProps<
-      ModalProps & Partial<TransitionHandlerProps>,
-      DrawerClassKey,
-      'open' | 'children'
-    > {
+    ModalProps & Partial<TransitionHandlerProps>,
+    DrawerClassKey,
+    'open' | 'children'
+  > {
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   children?: React.ReactNode;
   elevation?: number;

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.js
-title: ExpansionPanelActions API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# ExpansionPanelActions
+# ExpansionPanelActions API
 
 <p class="description">The API documentation of the ExpansionPanelActions React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -24,7 +23,7 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

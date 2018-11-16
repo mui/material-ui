@@ -3,10 +3,10 @@ import { StandardProps } from '..';
 
 export interface FormControlLabelProps
   extends StandardProps<
-      React.LabelHTMLAttributes<HTMLLabelElement>,
-      FormControlLabelClassKey,
-      'onChange'
-    > {
+    React.LabelHTMLAttributes<HTMLLabelElement>,
+    FormControlLabelClassKey,
+    'onChange'
+  > {
   checked?: boolean | string;
   control: React.ReactElement<any>;
   disabled?: boolean;

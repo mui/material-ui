@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/InputBase/InputBase.js
-title: InputBase API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# InputBase
+# InputBase API
 
 <p class="description">The API documentation of the InputBase React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -49,7 +48,7 @@ It contains a load of style reset and some state logic.
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

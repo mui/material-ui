@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Chip/Chip.js
-title: Chip API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Chip
+# Chip API
 
 <p class="description">The API documentation of the Chip React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -33,7 +32,7 @@ Chips represent complex entities in small blocks, such as a contact.
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
