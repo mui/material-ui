@@ -23,6 +23,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dividers/InsetDividers'), 'utf8')
 `,
         },
+        'pages/demos/dividers/MiddleDividers.js': {
+          js: require('docs/src/pages/demos/dividers/MiddleDividers').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dividers/MiddleDividers'), 'utf8')
+`,
+        },
+        'pages/demos/dividers/SubheaderDividers.js': {
+          js: require('docs/src/pages/demos/dividers/SubheaderDividers').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dividers/SubheaderDividers'), 'utf8')
+`,
+        },
       }}
     />
   );
