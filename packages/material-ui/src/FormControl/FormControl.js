@@ -5,6 +5,7 @@ import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
+import FormControlContext from './FormControlContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -86,28 +87,6 @@ class FormControl extends React.Component {
     }
   }
 
-  getChildContext() {
-    const { disabled, error, required, margin, variant } = this.props;
-    const { adornedStart, filled, focused } = this.state;
-
-    return {
-      muiFormControl: {
-        adornedStart,
-        disabled,
-        error,
-        filled,
-        focused,
-        margin,
-        onBlur: this.handleBlur,
-        onEmpty: this.handleClean,
-        onFilled: this.handleDirty,
-        onFocus: this.handleFocus,
-        required,
-        variant,
-      },
-    };
-  }
-
   handleFocus = () => {
     this.setState(state => (!state.focused ? { focused: true } : null));
   };
@@ -141,19 +120,37 @@ class FormControl extends React.Component {
       variant,
       ...other
     } = this.props;
+    const { adornedStart, filled, focused } = this.state;
+
+    const childContext = {
+      adornedStart,
+      disabled,
+      error,
+      filled,
+      focused,
+      margin,
+      onBlur: this.handleBlur,
+      onEmpty: this.handleClean,
+      onFilled: this.handleDirty,
+      onFocus: this.handleFocus,
+      required,
+      variant,
+    };
 
     return (
-      <Component
-        className={classNames(
-          classes.root,
-          {
-            [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
-            [classes.fullWidth]: fullWidth,
-          },
-          className,
-        )}
-        {...other}
-      />
+      <FormControlContext.Provider value={childContext}>
+        <Component
+          className={classNames(
+            classes.root,
+            {
+              [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
+              [classes.fullWidth]: fullWidth,
+            },
+            className,
+          )}
+          {...other}
+        />
+      </FormControlContext.Provider>
     );
   }
 }
@@ -211,10 +208,6 @@ FormControl.defaultProps = {
   margin: 'none',
   required: false,
   variant: 'standard',
-};
-
-FormControl.childContextTypes = {
-  muiFormControl: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

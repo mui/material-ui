@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
-import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -39,7 +40,7 @@ export const styles = theme => ({
   },
 });
 
-function FormLabel(props, context) {
+function FormLabel(props) {
   const {
     children,
     classes,
@@ -49,13 +50,14 @@ function FormLabel(props, context) {
     error,
     filled,
     focused,
+    muiFormControl,
     required,
     ...other
   } = props;
 
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['required', 'focused', 'disabled', 'error', 'filled'],
   });
 
@@ -125,6 +127,10 @@ FormLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
@@ -134,8 +140,4 @@ FormLabel.defaultProps = {
   component: 'label',
 };
 
-FormLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);
+export default withStyles(styles, { name: 'MuiFormLabel' })(withFormControlContext(FormLabel));

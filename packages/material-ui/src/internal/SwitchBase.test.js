@@ -1,9 +1,14 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+  unwrap,
+} from '@material-ui/core/test-utils';
 import SwitchBase from './SwitchBase';
-import IconButton from '../IconButton';
+import FormControlContext from '../FormControl/FormControlContext';
 import Icon from '../Icon';
 
 function assertIsChecked(wrapper) {
@@ -41,7 +46,6 @@ function assertIsNotChecked(wrapper) {
 }
 
 describe('<SwitchBase />', () => {
-  let shallow;
   let mount;
   let classes;
   let SwitchBaseNaked;
@@ -53,7 +57,6 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBaseNaked = unwrap(SwitchBase);
-    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<SwitchBase {...defaultProps} />);
   });
@@ -62,36 +65,43 @@ describe('<SwitchBase />', () => {
     mount.cleanUp();
   });
 
-  it('should render an IconButton', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), IconButton);
+  it('should render a span', () => {
+    const wrapper = mount(<SwitchBase {...defaultProps} />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'span');
   });
 
   it('should render an icon and input inside the button by default', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.childAt(0).name(), 'h1');
-    assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true);
+    const wrapper = mount(<SwitchBase {...defaultProps} />);
+    assert.strictEqual(
+      wrapper.find('IconButton').containsMatchingElement(
+        <span>
+          {defaultProps.icon}
+          <input type="checkbox" />
+        </span>,
+      ),
+      true,
+    );
   });
 
   it('should have a ripple by default', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.props().disableRipple, undefined);
+    const wrapper = mount(<SwitchBase {...defaultProps} />);
+    assert.strictEqual(wrapper.find('IconButton').props().disableRipple, undefined);
   });
 
   it('should pass disableRipple={true} to IconButton', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} disableRipple />);
-    assert.strictEqual(wrapper.props().disableRipple, true);
+    const wrapper = mount(<SwitchBase {...defaultProps} disableRipple />);
+    assert.strictEqual(wrapper.find('IconButton').props().disableRipple, true);
   });
 
   // className is put on the root node, this is a special case!
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} className="woofSwitchBase" />);
-    assert.strictEqual(wrapper.hasClass('woofSwitchBase'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(<SwitchBase {...defaultProps} className="woofSwitchBase" />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofSwitchBase'), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} data-my-prop="woofSwitchBase" />);
+    const wrapper = mount(<SwitchBase {...defaultProps} data-my-prop="woofSwitchBase" />);
     assert.strictEqual(
       wrapper.props()['data-my-prop'],
       'woofSwitchBase',
@@ -100,7 +110,7 @@ describe('<SwitchBase />', () => {
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} tabIndex={-1} />);
+    const wrapper = mount(<SwitchBase {...defaultProps} tabIndex={-1} />);
     const input = wrapper.find('input');
     assert.strictEqual(input.props().tabIndex, -1);
   });
@@ -108,7 +118,7 @@ describe('<SwitchBase />', () => {
   it('should pass value, disabled, checked, and name to the input', () => {
     const props = { name: 'gender', disabled: true, value: 'male' };
 
-    const wrapper = shallow(<SwitchBase {...defaultProps} {...props} />);
+    const wrapper = mount(<SwitchBase {...defaultProps} {...props} />);
     const input = wrapper.find('input');
 
     Object.keys(props).forEach(n => {
@@ -117,19 +127,19 @@ describe('<SwitchBase />', () => {
   });
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
-    const wrapper = shallow(<SwitchBase {...defaultProps} disabled />);
-    assert.strictEqual(wrapper.props().disabled, true);
-    assert.strictEqual(wrapper.childAt(1).props().disabled, true);
+    const wrapper = mount(<SwitchBase {...defaultProps} disabled />);
+    assert.strictEqual(wrapper.find('ButtonBase').props().disabled, true);
+    assert.strictEqual(wrapper.find('IconButton').hasClass(classes.disabled), true);
   });
 
   it('should apply the custom disabled className when disabled', () => {
     const disabledClassName = 'foo';
-    const wrapperA = shallow(
+    const wrapperA = mount(
       <SwitchBase {...defaultProps} disabled classes={{ disabled: disabledClassName }} />,
     );
 
     assert.strictEqual(
-      wrapperA.hasClass(disabledClassName),
+      findOutermostIntrinsic(wrapperA).hasClass(disabledClassName),
       true,
       'should have the custom disabled class',
     );
@@ -162,7 +172,7 @@ describe('<SwitchBase />', () => {
 
     it('should recognize a controlled input', () => {
       assert.strictEqual(
-        wrapper.instance().isControlled,
+        wrapper.find('SwitchBase').instance().isControlled,
         true,
         'should set instance.isControlled to true',
       );
@@ -209,7 +219,7 @@ describe('<SwitchBase />', () => {
     });
 
     it('should recognize an uncontrolled input', () => {
-      assert.strictEqual(wrapper.instance().isControlled, false);
+      assert.strictEqual(wrapper.find('SwitchBase').instance().isControlled, false);
       assertIsNotChecked(wrapper);
     });
 
@@ -238,8 +248,8 @@ describe('<SwitchBase />', () => {
 
   describe('prop: icon', () => {
     it('should render an Icon', () => {
-      const wrapper = shallow(<SwitchBase {...defaultProps} icon={<Icon>heart</Icon>} />);
-      assert.strictEqual(wrapper.childAt(0).is(Icon), true);
+      const wrapper = mount(<SwitchBase {...defaultProps} icon={<Icon>heart</Icon>} />);
+      assert.strictEqual(wrapper.contains(Icon), true);
     });
   });
 
@@ -255,7 +265,7 @@ describe('<SwitchBase />', () => {
       const wrapper = mount(
         <SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('SwitchBase').instance();
       instance.handleInputChange(event);
 
       assert.strictEqual(handleChange.callCount, 1);
@@ -276,7 +286,7 @@ describe('<SwitchBase />', () => {
             onChange={handleChange}
           />,
         );
-        const instance = wrapper.instance();
+        const instance = wrapper.find('SwitchBase').instance();
         instance.handleInputChange(event);
 
         assert.strictEqual(handleChange.callCount, 1);
@@ -297,8 +307,9 @@ describe('<SwitchBase />', () => {
         handleChange = spy();
         wrapper = mount(<SwitchBaseNaked {...defaultProps} classes={{}} onChange={handleChange} />);
         checkedMock = true;
-        const instance = wrapper.instance();
-        wrapper.setState({ checked: checkedMock });
+        const instance = wrapper.find('SwitchBase').instance();
+        instance.handleInputChange({ target: { checked: checkedMock } });
+        handleChange.resetHistory();
         instance.handleInputChange(event);
       });
 
@@ -311,13 +322,13 @@ describe('<SwitchBase />', () => {
       });
 
       it('should change state.checked !checkedMock', () => {
-        assert.strictEqual(wrapper.state('checked'), !checkedMock);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.checked), !checkedMock);
       });
     });
 
     describe('prop: inputProps', () => {
       it('should be able to add aria', () => {
-        const wrapper2 = shallow(
+        const wrapper2 = mount(
           <SwitchBase {...defaultProps} inputProps={{ 'aria-label': 'foo' }} />,
         );
         assert.strictEqual(wrapper2.find('input').props()['aria-label'], 'foo');
@@ -326,12 +337,12 @@ describe('<SwitchBase />', () => {
 
     describe('prop: id', () => {
       it('should be able to add id to a checkbox input', () => {
-        const wrapper2 = shallow(<SwitchBase {...defaultProps} type="checkbox" id="foo" />);
+        const wrapper2 = mount(<SwitchBase {...defaultProps} type="checkbox" id="foo" />);
         assert.strictEqual(wrapper2.find('input').props().id, 'foo');
       });
 
       it('should be able to add id to a radio input', () => {
-        const wrapper2 = shallow(<SwitchBase {...defaultProps} type="radio" id="foo" />);
+        const wrapper2 = mount(<SwitchBase {...defaultProps} type="radio" id="foo" />);
         assert.strictEqual(wrapper2.find('input').props().id, 'foo');
       });
     });
@@ -339,15 +350,22 @@ describe('<SwitchBase />', () => {
 
   describe('with muiFormControl context', () => {
     let wrapper;
-    let muiFormControl;
 
     function setFormControlContext(muiFormControlContext) {
-      muiFormControl = muiFormControlContext;
-      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+      wrapper.setProps({ context: muiFormControlContext });
     }
 
     beforeEach(() => {
-      wrapper = shallow(<SwitchBase {...defaultProps} />);
+      function Provider(props) {
+        const { context, ...other } = props;
+        return (
+          <FormControlContext.Provider value={context}>
+            <SwitchBase {...defaultProps} {...other} />
+          </FormControlContext.Provider>
+        );
+      }
+
+      wrapper = mount(<Provider />);
     });
 
     describe('enabled', () => {
@@ -360,9 +378,9 @@ describe('<SwitchBase />', () => {
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
         wrapper.setProps({ disabled: true });
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
       });
     });
 
@@ -372,13 +390,13 @@ describe('<SwitchBase />', () => {
       });
 
       it('should have the disabled class', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
       });
 
       it('should honor props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
         wrapper.setProps({ disabled: false });
-        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), false);
       });
     });
   });
@@ -388,14 +406,9 @@ describe('<SwitchBase />', () => {
       const handleFocusProps = spy();
       const handleFocusContext = spy();
       const wrapper = mount(
-        <SwitchBaseNaked {...defaultProps} classes={{}} onFocus={handleFocusProps} />,
-        {
-          context: {
-            muiFormControl: {
-              onFocus: handleFocusContext,
-            },
-          },
-        },
+        <FormControlContext.Provider value={{ onFocus: handleFocusContext }}>
+          <SwitchBaseNaked {...defaultProps} classes={{}} onFocus={handleFocusProps} />
+        </FormControlContext.Provider>,
       );
       wrapper.find('input').simulate('focus');
       assert.strictEqual(handleFocusProps.callCount, 1);
@@ -408,14 +421,9 @@ describe('<SwitchBase />', () => {
       const handleFocusProps = spy();
       const handleFocusContext = spy();
       const wrapper = mount(
-        <SwitchBaseNaked {...defaultProps} classes={{}} onBlur={handleFocusProps} />,
-        {
-          context: {
-            muiFormControl: {
-              onBlur: handleFocusContext,
-            },
-          },
-        },
+        <FormControlContext.Provider value={{ onBlur: handleFocusContext }}>
+          <SwitchBaseNaked {...defaultProps} classes={{}} onBlur={handleFocusProps} />
+        </FormControlContext.Provider>,
       );
       wrapper.find('input').simulate('blur');
       assert.strictEqual(handleFocusProps.callCount, 1);
