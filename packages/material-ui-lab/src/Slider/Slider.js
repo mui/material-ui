@@ -40,7 +40,7 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       margin: -padding,
-      padding: padding,
+      padding,
       position: 'relative',
       width: '100%',
       boxSizing: 'content-box',
