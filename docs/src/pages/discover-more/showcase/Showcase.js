@@ -242,6 +242,12 @@ const appList = [
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
   },
+  {
+    title: 'SelfEducation.app',
+    description: 'Watch short videos and develop your skills',
+    image: '/static/images/showcase/selfeducationapp.png',
+    link: 'https://selfeducation.app/',
+  },
 ];
 
 function Showcase(props) {
