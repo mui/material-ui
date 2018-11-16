@@ -8,11 +8,14 @@ import ListContext from '../List/ListContext';
  * Consumes a context and passes that context merged with its props.
  */
 function MergeListContext(props) {
-  const { children, dense: denseProp } = props;
+  const { alignItems, children, dense } = props;
   return (
     <ListContext.Consumer>
       {context => {
-        const childContext = { dense: denseProp || context.dense || false };
+        const childContext = {
+          dense: dense || context.dense || false,
+          alignItems,
+        };
 
         return (
           <ListContext.Provider value={childContext}>{children(childContext)}</ListContext.Provider>
@@ -23,6 +26,7 @@ function MergeListContext(props) {
 }
 
 MergeListContext.propTypes = {
+  alignItems: PropTypes.oneOf(['flex-start', 'center']).isRequired,
   children: PropTypes.func.isRequired,
   dense: PropTypes.bool.isRequired,
 };

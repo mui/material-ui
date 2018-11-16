@@ -54,6 +54,12 @@ Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all 
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
+## Align list items
+
+You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+
+{{"demo": "pages/demos/lists/AlignItemsList.js"}}
+
 ## List Controls
 
 ### Checkbox

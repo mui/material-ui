@@ -39,6 +39,10 @@ export const styles = theme => ({
     paddingTop: 8,
     paddingBottom: 8,
   },
+  /* Styles applied to the `component` element if `alignItems="flex-start"`. */
+  alignItemsFlexStart: {
+    alignItems: 'flex-start',
+  },
   /* Styles applied to the inner `component` element if `disabled={true}`. */
   disabled: {
     opacity: 0.5,
@@ -76,6 +80,7 @@ export const styles = theme => ({
 
 function ListItem(props) {
   const {
+    alignItems,
     button,
     children: childrenProp,
     classes,
@@ -93,7 +98,7 @@ function ListItem(props) {
   } = props;
 
   return (
-    <MergeListContext dense={denseProp}>
+    <MergeListContext dense={denseProp} alignItems={alignItems}>
       {({ dense }) => {
         const children = React.Children.toArray(childrenProp);
         const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
@@ -110,6 +115,7 @@ function ListItem(props) {
             [classes.divider]: divider,
             [classes.disabled]: disabled,
             [classes.button]: button,
+            [classes.alignItemsFlexStart]: alignItems === 'flex-start',
             [classes.secondaryAction]: hasSecondaryAction,
             [classes.selected]: selected,
           },
@@ -159,6 +165,10 @@ function ListItem(props) {
 }
 
 ListItem.propTypes = {
+  /**
+   * Defines the `align-items` style property.
+   */
+  alignItems: PropTypes.oneOf(['flex-start', 'center']),
   /**
    * If `true`, the list item will be a button (using `ButtonBase`).
    */
@@ -218,6 +228,7 @@ ListItem.propTypes = {
 };
 
 ListItem.defaultProps = {
+  alignItems: 'center',
   button: false,
   ContainerComponent: 'li',
   dense: false,

@@ -37,12 +37,6 @@ export const styles = theme => ({
       fontSize: 'inherit',
     },
   },
-  /* Styles applied to the third `Typography` component. */
-  third: {
-    '&$textDense': {
-      fontSize: 'inherit',
-    },
-  },
   /* Styles applied to the `Typography` components if `context.dense` is `true`. */
   textDense: {},
 });
@@ -58,8 +52,6 @@ function ListItemText(props) {
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
-    third: thirdProp,
-    thirdTypographyProps,
     ...other
   } = props;
 
@@ -96,21 +88,6 @@ function ListItemText(props) {
           );
         }
 
-        let third = thirdProp;
-        if (third != null && third.type !== Typography && !disableTypography) {
-          third = (
-            <Typography
-              className={classNames(classes.third, {
-                [classes.textDense]: dense,
-              })}
-              color="textSecondary"
-              {...thirdTypographyProps}
-            >
-              {third}
-            </Typography>
-          );
-        }
-
         return (
           <div
             className={classNames(
@@ -125,7 +102,6 @@ function ListItemText(props) {
           >
             {primary}
             {secondary}
-            {third}
           </div>
         );
       }}
@@ -177,15 +153,6 @@ ListItemText.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   secondaryTypographyProps: PropTypes.object,
-  /**
-   * The third content element.
-   */
-  third: PropTypes.node,
-  /**
-   * These props will be forwarded to the third typography component
-   * (as long as disableTypography is not `true`).
-   */
-  thirdTypographyProps: PropTypes.object,
 };
 
 ListItemText.defaultProps = {

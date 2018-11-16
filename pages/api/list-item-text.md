@@ -27,8 +27,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 | <span class="prop-name">primaryTypographyProps</span> | <span class="prop-type">object</span> |   | These props will be forwarded to the primary typography component (as long as disableTypography is not `true`). |
 | <span class="prop-name">secondary</span> | <span class="prop-type">node</span> |   | The secondary content element. |
 | <span class="prop-name">secondaryTypographyProps</span> | <span class="prop-type">object</span> |   | These props will be forwarded to the secondary typography component (as long as disableTypography is not `true`). |
-| <span class="prop-name">third</span> | <span class="prop-type">node</span> |   | The third content element. |
-| <span class="prop-name">thirdTypographyProps</span> | <span class="prop-type">object</span> |   | These props will be forwarded to the third typography component (as long as disableTypography is not `true`). |
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -45,7 +43,6 @@ This property accepts the following keys:
 | <span class="prop-name">dense</span> | Styles applied to the root element if `context.dense` is `true`.
 | <span class="prop-name">primary</span> | Styles applied to the primary `Typography` component.
 | <span class="prop-name">secondary</span> | Styles applied to the secondary `Typography` component.
-| <span class="prop-name">third</span> | Styles applied to the third `Typography` component.
 | <span class="prop-name">textDense</span> | Styles applied to the `Typography` components if `context.dense` is `true`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
