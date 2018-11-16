@@ -244,10 +244,9 @@ const appList = [
   },
   {
     title: 'SelfEducation.app',
-    description:
-      'Watch short videos and develop your skills',
+    description: 'Watch short videos and develop your skills',
     image: '/static/images/showcase/selfeducationapp.png',
-    link: 'https://selfeducation.app/'
+    link: 'https://selfeducation.app/',
   },
 ];
 
