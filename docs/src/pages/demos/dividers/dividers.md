@@ -27,10 +27,10 @@ The `inset` property has now been deprecated. You should now use `variant="inset
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
-## Middle Dividers
-
-{{"demo": "pages/demos/dividers/MiddleDividers.js"}}
-
 ## Subheader Dividers
 
 {{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
+
+## Middle Dividers
+
+{{"demo": "pages/demos/dividers/MiddleDividers.js"}}
