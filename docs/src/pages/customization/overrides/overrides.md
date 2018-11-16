@@ -143,6 +143,9 @@ We demonstrate 5 alternatives, each has it's pros and cons.
 
 {{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
+⚠️ This demo relies on the [`@material-ui/styles`](/css-in-js/basics/) package.
+It doesn't work with the stable version.
+
 ### Class name branch
 
 {{"demo": "pages/customization/overrides/DynamicClassName.js"}}
