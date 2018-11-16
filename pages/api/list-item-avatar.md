@@ -13,7 +13,8 @@ title: ListItemAvatar API
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 ```
 
-This is a simple wrapper to apply the `dense` mode styles to `Avatar`.
+This is a simple wrapper to apply the `dense`
+and `align-items="flex-start"` mode styles to `Avatar`.
 
 ## Props
 
@@ -33,6 +34,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the root element when.
 | <span class="prop-name">icon</span> | Styles applied to the children – typically the `Avatar` component.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
