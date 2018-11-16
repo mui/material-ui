@@ -23,36 +23,29 @@ export interface DateTimePickerHeaderProps
   ampm?: boolean;
 }
 
-export const DateTimePickerHeader: React.SFC<
-  DateTimePickerHeaderProps
-> = props => {
-  const {
-    date,
-    classes,
-    openView,
-    meridiemMode,
-    onOpenViewChange,
-    setMeridiemMode,
-    utils,
-    ampm,
-  } = props;
-
-  const changeOpenView = (view: DateTimePickerView) => () =>
-    onOpenViewChange(view);
-
+export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
+  date,
+  classes,
+  openView,
+  meridiemMode,
+  onOpenViewChange,
+  setMeridiemMode,
+  utils,
+  ampm,
+}) => {
   return (
     <PickerToolbar className={classes.toolbar}>
       <div className={classes.dateHeader}>
         <ToolbarButton
           variant="subtitle1"
-          onClick={changeOpenView(DateTimePickerView.YEAR)}
+          onClick={() => onOpenViewChange(DateTimePickerView.YEAR)}
           selected={openView === DateTimePickerView.YEAR}
           label={utils.getYearText(date)}
         />
 
         <ToolbarButton
           variant="h4"
-          onClick={changeOpenView(DateTimePickerView.DATE)}
+          onClick={() => onOpenViewChange(DateTimePickerView.DATE)}
           selected={openView === DateTimePickerView.DATE}
           label={utils.getDateTimePickerHeaderText(date)}
         />
@@ -62,7 +55,7 @@ export const DateTimePickerHeader: React.SFC<
         <div className={classes.hourMinuteLabel}>
           <ToolbarButton
             variant="h3"
-            onClick={changeOpenView(DateTimePickerView.HOUR)}
+            onClick={() => onOpenViewChange(DateTimePickerView.HOUR)}
             selected={openView === DateTimePickerView.HOUR}
             label={utils.getHourText(date, ampm!)}
           />
@@ -76,7 +69,7 @@ export const DateTimePickerHeader: React.SFC<
 
           <ToolbarButton
             variant="h3"
-            onClick={changeOpenView(DateTimePickerView.MINUTES)}
+            onClick={() => onOpenViewChange(DateTimePickerView.MINUTES)}
             selected={openView === DateTimePickerView.MINUTES}
             label={utils.getMinuteText(date)}
           />
@@ -153,7 +146,7 @@ const styles = (theme: Theme) =>
       flexDirection: theme.direction === 'rtl' ? 'row' : 'row-reverse',
     },
     dateHeader: {
-      height: 65,
+      height: 60,
     },
     timeHeader: {
       height: 65,
