@@ -360,6 +360,8 @@ class Slider extends React.Component {
   };
 
   handleDragEnd(event) {
+    this.handleMouseMove(event);
+
     this.setState({ currentState: 'normal' });
 
     document.body.removeEventListener('mouseenter', this.handleMouseEnter);
