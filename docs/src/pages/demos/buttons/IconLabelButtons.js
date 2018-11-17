@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import KeyboardVoiceICon from '@material-ui/icons/KeyboardVoice';
-import Icon from '@material-ui/core/Icon';
+import SendIcon from '@material-ui/core/Send';
 import SaveIcon from '@material-ui/icons/Save';
 
 const styles = theme => ({
@@ -34,7 +34,7 @@ function IconLabelButtons(props) {
       </Button>
       <Button variant="contained" color="primary" className={classes.button}>
         Send
-        <Icon className={classes.rightIcon}>send</Icon>
+        <SendIcon className={classes.rightIcon}>send</SendIcon>
       </Button>
       <Button variant="contained" color="default" className={classes.button}>
         Upload
