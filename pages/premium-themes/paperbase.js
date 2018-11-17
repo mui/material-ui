@@ -1,12 +1,12 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import AppTheme from 'docs/src/modules/components/AppTheme';
-import Firebase from 'docs/src/pages/premium-themes/firebase-ui/Firebase';
+import Paperbase from 'docs/src/pages/premium-themes/paperbase/Paperbase';
 
 function Page() {
   return (
-    <AppTheme title="Firebase-UI theme - Material-UI" description="A mimic page from Firebase.">
-      <Firebase />
+    <AppTheme title="Paperbase theme - Material-UI" description="A page that mimics Firebase.">
+      <Paperbase />
     </AppTheme>
   );
 }

@@ -4,11 +4,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Help from '@material-ui/icons/Help';
+import HelpIcon from '@material-ui/icons/Help';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Notifications from '@material-ui/icons/Notifications';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -67,9 +67,9 @@ function Header(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Tooltip title="Firebase alerts * No alters">
+              <Tooltip title="Alerts • No alters">
                 <IconButton color="inherit">
-                  <Notifications />
+                  <NotificationsIcon />
                 </IconButton>
               </Tooltip>
             </Grid>
@@ -103,7 +103,7 @@ function Header(props) {
             <Grid item>
               <Tooltip title="Help">
                 <IconButton color="inherit">
-                  <Help />
+                  <HelpIcon />
                 </IconButton>
               </Tooltip>
             </Grid>

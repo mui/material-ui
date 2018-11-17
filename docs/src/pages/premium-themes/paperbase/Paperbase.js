@@ -148,7 +148,7 @@ const styles = () => ({
   },
 });
 
-class Firebase extends React.Component {
+class Paperbase extends React.Component {
   state = {
     mobileOpen: false,
   };
@@ -165,8 +165,7 @@ class Firebase extends React.Component {
         <div className={classes.root}>
           <CssBaseline />
           <nav className={classes.drawer}>
-            {/* The implementation can be swap with js to avoid SEO duplication of links. */}
-            <Hidden smUp implementation="css">
+            <Hidden smUp implementation="js">
               <Navigator
                 PaperProps={{ style: { width: drawerWidth } }}
                 variant="temporary"
@@ -190,8 +189,8 @@ class Firebase extends React.Component {
   }
 }
 
-Firebase.propTypes = {
+Paperbase.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Firebase);
+export default withStyles(styles)(Paperbase);

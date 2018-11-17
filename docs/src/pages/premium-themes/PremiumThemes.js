@@ -57,16 +57,16 @@ const themes = [
     href: 'https://www.creative-tim.com/product/material-kit-react?partner=104080',
   },
   {
-    name: 'Firebase-UI',
+    name: 'Paperbase',
     description:
-      'A mimic page from Firebase. ' +
+      'A page that mimics Firebase. ' +
       'This item includes theming using the theme provider component.',
-    src: '/static/images/themes/firebase-ui.png',
+    src: '/static/images/themes/paperbase.png',
     price: 'FREE',
     category: 'Admin & Dashboard',
-    href: '/premium-themes/firebase-ui',
+    href: '/premium-themes/paperbase',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/firebase-ui',
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/paperbase',
   },
 ];
 

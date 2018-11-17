@@ -229,7 +229,7 @@ const appList = [
   {
     title: 'Tentu',
     description:
-      'A web app built with Material UI v1 and Firebase that offers the ' +
+      'A web app built with Material-UI v1 and Firebase that offers the ' +
       'user news and events of his interest.',
     link: 'https://tentu.eus/',
     image: '/static/images/showcase/tentu.jpg',

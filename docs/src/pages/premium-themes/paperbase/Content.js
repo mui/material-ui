@@ -10,8 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import Search from '@material-ui/icons/Search';
-import Refresh from '@material-ui/icons/Refresh';
+import SearchIcon from '@material-ui/icons/Search';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 const styles = theme => ({
   paper: {
@@ -45,7 +45,7 @@ function Content(props) {
         <Toolbar>
           <Grid container spacing={16} alignItems="center">
             <Grid item>
-              <Search className={classes.block} color="inherit" />
+              <SearchIcon className={classes.block} color="inherit" />
             </Grid>
             <Grid item xs>
               <TextField
@@ -63,7 +63,7 @@ function Content(props) {
               </Button>
               <Tooltip title="Reload">
                 <IconButton>
-                  <Refresh className={classes.block} color="inherit" />
+                  <RefreshIcon className={classes.block} color="inherit" />
                 </IconButton>
               </Tooltip>
             </Grid>
