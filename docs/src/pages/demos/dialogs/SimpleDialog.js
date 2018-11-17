@@ -90,11 +90,7 @@ function SimpleDialogDemo() {
       <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
       <br />
       <Button onClick={handleClickOpen}>Open simple dialog</Button>
-      <SimpleDialogWrapped
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
+      <SimpleDialogWrapped selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );
 }

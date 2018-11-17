@@ -42,12 +42,7 @@ function FullScreenDialog(props) {
   return (
     <div>
       <Button onClick={handleClickOpen}>Open full-screen dialog</Button>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
+      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton color="inherit" onClick={handleClose} aria-label="Close">
