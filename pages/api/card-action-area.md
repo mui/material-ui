@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/CardActionArea/CardActionArea.js
-title: CardActionArea API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# CardActionArea
+# CardActionArea API
 
 <p class="description">The API documentation of the CardActionArea React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -24,7 +23,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Portal/Portal.js
-title: Portal API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Portal
+# Portal API
 
 <p class="description">The API documentation of the Portal React component. Learn more about the properties and the CSS customization points.</p>
 

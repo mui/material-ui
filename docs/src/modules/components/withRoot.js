@@ -48,6 +48,9 @@ const pages = [
         pathname: '/getting-started/page-layout-examples',
       },
       {
+        pathname: '/getting-started/learn',
+      },
+      {
         pathname: '/getting-started/faq',
         title: 'Frequently Asked Questions',
       },

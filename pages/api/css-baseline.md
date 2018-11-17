@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/CssBaseline/CssBaseline.js
-title: CssBaseline API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# CssBaseline
+# CssBaseline API
 
 <p class="description">The API documentation of the CssBaseline React component. Learn more about the properties and the CSS customization points.</p>
 

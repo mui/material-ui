@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/TextField/TextField.js
-title: TextField API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# TextField
+# TextField API
 
 <p class="description">The API documentation of the TextField React component. Learn more about the properties and the CSS customization points.</p>
 

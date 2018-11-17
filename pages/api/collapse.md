@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Collapse/Collapse.js
-title: Collapse API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Collapse
+# Collapse API
 
 <p class="description">The API documentation of the Collapse React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -30,7 +29,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 Any other properties supplied will be spread to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
