@@ -7,9 +7,11 @@ import glob from 'glob';
 import prettier from 'prettier';
 import fs from 'fs';
 import os from 'os';
+import path from 'path';
 import listChangedFiles from './listChangedFiles';
 
-const prettierConfigPath = require.resolve('../prettier.config');
+const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
+
 const mode = process.argv[2] || 'check';
 const shouldWrite = mode === 'write' || mode === 'write-changed';
 const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
@@ -33,26 +35,22 @@ if (!files.length) {
 }
 
 files.forEach(file => {
-  console.log(`Formatting ${file}`);
   const options = prettier.resolveConfig.sync(file, {
     config: prettierConfigPath,
   });
   try {
     const input = fs.readFileSync(file, 'utf8');
     if (shouldWrite) {
+      console.log(`Formatting ${file}`);
       const output = prettier.format(input, { ...options, filepath: file });
       if (output !== input) {
         fs.writeFileSync(file, output, 'utf8');
       }
     } else if (!prettier.check(input, { ...options, filepath: file })) {
       if (!didWarn) {
-        console.log(
-          `\n${console.log(
-            '  This project uses prettier to format all JavaScript code.\n',
-          )}${console.log('    Please run ')}${console.log('yarn prettier-all')}${console.log(
-            ' and add changes to files listed below to your commit:',
-          )}\n\n`,
-        );
+        console.log(`\nThis project uses prettier to format all JavaScript code.
+           Please run 'yarn prettier-all' and add changes to files listed
+           below to your commit:\n\n`);
         didWarn = true;
       }
       console.log(file);

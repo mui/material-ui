@@ -38,7 +38,6 @@
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "prettier": "babel-node ./scripts/prettier.js write-changed",
     "prettier:all":"babel-node ./scripts/prettier.js write",
-    "prettier:ci": "babel-node ./scripts/prettier.js",
     "size": "size-limit",
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",

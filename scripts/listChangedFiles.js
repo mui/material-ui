@@ -2,11 +2,9 @@
 
 // Based on similar script in React
 // https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/scripts/shared/listChangedFiles.js
-
-const execFileSync = require('child_process').execFileSync;
+import { execFileSync } from 'child_process';
 
 const exec = (command, args) => {
-  console.log(`> ${[command].concat(args).join(' ')}`);
   const options = {
     cwd: process.cwd(),
     env: process.env,
