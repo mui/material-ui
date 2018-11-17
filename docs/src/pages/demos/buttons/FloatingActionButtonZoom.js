@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
@@ -49,7 +49,7 @@ const styles = theme => ({
 
 function FloatingActionButtonZoom(props) {
   const { classes, theme } = props;
-  const [value, setValue] = useState(0);
+  const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
     setValue(newValue);

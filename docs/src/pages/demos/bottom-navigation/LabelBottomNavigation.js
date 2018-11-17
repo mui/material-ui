@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -16,7 +16,7 @@ const styles = {
 
 function LabelBottomNavigation(props) {
   const { classes } = props;
-  const [value, setValue] = useState('recents');
+  const [value, setValue] = React.useState('recents');
 
   function handleChange(event, newValue) {
     setValue(newValue);

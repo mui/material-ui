@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
 import keycode from 'keycode';
@@ -112,8 +112,8 @@ function getSuggestions(value) {
 
 function DownshiftMultiple(props) {
   const { classes } = props;
-  const [inputValue, setInputValue] = useState('');
-  const [selectedItem, setSelectedItem] = useState([]);
+  const [inputValue, setInputValue] = React.useState('');
+  const [selectedItem, setSelectedItem] = React.useState([]);
 
   function handleKeyDown(event) {
     if (selectedItem.length && !inputValue.length && keycode(event) === 'backspace') {

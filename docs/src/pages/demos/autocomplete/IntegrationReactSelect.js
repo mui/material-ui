@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types, react/jsx-handler-names */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
@@ -211,8 +211,8 @@ const components = {
 
 function IntegrationReactSelect(props) {
   const { classes, theme } = props;
-  const [single, setSingle] = useState(null);
-  const [multi, setMulti] = useState(null);
+  const [single, setSingle] = React.useState(null);
+  const [multi, setMulti] = React.useState(null);
 
   function handleChangeSingle(value) {
     setSingle(value);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
@@ -20,7 +20,7 @@ const styles = theme => ({
 
 function BadgeVisibility(props) {
   const { classes } = props;
-  const [invisible, setInvisible] = useState(false);
+  const [invisible, setInvisible] = React.useState(false);
 
   function handleBadgeVisibility() {
     setInvisible(!invisible);
