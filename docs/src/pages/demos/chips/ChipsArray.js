@@ -17,56 +17,48 @@ const styles = theme => ({
   },
 });
 
-class ChipsArray extends React.Component {
-  state = {
-    chipData: [
-      { key: 0, label: 'Angular' },
-      { key: 1, label: 'jQuery' },
-      { key: 2, label: 'Polymer' },
-      { key: 3, label: 'React' },
-      { key: 4, label: 'Vue.js' },
-    ],
-  };
+function ChipsArray(props) {
+  const { classes } = props;
+  const [chipData, setChipData] = React.useState([
+    { key: 0, label: 'Angular' },
+    { key: 1, label: 'jQuery' },
+    { key: 2, label: 'Polymer' },
+    { key: 3, label: 'React' },
+    { key: 4, label: 'Vue.js' },
+  ]);
 
-  handleDelete = data => () => {
+  const handleDelete = data => () => {
     if (data.label === 'React') {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
     }
 
-    this.setState(state => {
-      const chipData = [...state.chipData];
-      const chipToDelete = chipData.indexOf(data);
-      chipData.splice(chipToDelete, 1);
-      return { chipData };
-    });
+    const chipToDelete = chipData.indexOf(data);
+    chipData.splice(chipToDelete, 1);
+    setChipData(chipData);
   };
 
-  render() {
-    const { classes } = this.props;
+  return (
+    <Paper className={classes.root}>
+      {chipData.map(data => {
+        let icon = null;
 
-    return (
-      <Paper className={classes.root}>
-        {this.state.chipData.map(data => {
-          let icon = null;
+        if (data.label === 'React') {
+          icon = <TagFacesIcon />;
+        }
 
-          if (data.label === 'React') {
-            icon = <TagFacesIcon />;
-          }
-
-          return (
-            <Chip
-              key={data.key}
-              icon={icon}
-              label={data.label}
-              onDelete={this.handleDelete(data)}
-              className={classes.chip}
-            />
-          );
-        })}
-      </Paper>
-    );
-  }
+        return (
+          <Chip
+            key={data.key}
+            icon={icon}
+            label={data.label}
+            onDelete={handleDelete(data)}
+            className={classes.chip}
+          />
+        );
+      })}
+    </Paper>
+  );
 }
 
 ChipsArray.propTypes = {
