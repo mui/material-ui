@@ -31,16 +31,6 @@ const styles = {
 
 const themes = [
   {
-    name: 'Firebase',
-    description:
-      'A mimic page from Firebase Demo Project. This Example' +
-      ' includes theming using MuiThemeProvider.',
-    src: '/static/images/layouts/firebaseDemo.png',
-    pathname: '/page-layout-examples/FirebaseDemo',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/FirebaseDemo',
-  },
-  {
     name: 'Dashboard',
     description:
       'A minimal dashboard with taskbar and mini variant draw. ' +
@@ -95,6 +85,16 @@ const themes = [
     pathname: '/getting-started/page-layout-examples/pricing',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/pricing',
+  },
+  {
+    name: 'Firebase',
+    description:
+      'A mimic page from Firebase Demo Project. This Example' +
+      ' includes theming using MuiThemeProvider.',
+    src: '/static/images/layouts/firebaseDemo.png',
+    pathname: '/page-layout-examples/FirebaseDemo',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/FirebaseDemo',
   },
 ];
 
