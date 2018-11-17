@@ -24,46 +24,44 @@ const styles = {
   },
 };
 
-class SimpleDialog extends React.Component {
-  handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
-  };
+function SimpleDialog(props) {
+  const { classes, onClose, selectedValue, ...other } = props;
 
-  handleListItemClick = value => {
-    this.props.onClose(value);
-  };
+  function handleClose() {
+    onClose(selectedValue);
+  }
 
-  render() {
-    const { classes, onClose, selectedValue, ...other } = this.props;
+  function handleListItemClick(value) {
+    onClose(value);
+  }
 
-    return (
-      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-        <div>
-          <List>
-            {emails.map(email => (
-              <ListItem button onClick={() => this.handleListItemClick(email)} key={email}>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <PersonIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={email} />
-              </ListItem>
-            ))}
-            <ListItem button onClick={() => this.handleListItemClick('addAccount')}>
+  return (
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
+      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <div>
+        <List>
+          {emails.map(email => (
+            <ListItem button onClick={() => handleListItemClick(email)} key={email}>
               <ListItemAvatar>
-                <Avatar>
-                  <AddIcon />
+                <Avatar className={classes.avatar}>
+                  <PersonIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="add account" />
+              <ListItemText primary={email} />
             </ListItem>
-          </List>
-        </div>
-      </Dialog>
-    );
-  }
+          ))}
+          <ListItem button onClick={() => handleListItemClick('addAccount')}>
+            <ListItemAvatar>
+              <Avatar>
+                <AddIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="add account" />
+          </ListItem>
+        </List>
+      </div>
+    </Dialog>
+  );
 }
 
 SimpleDialog.propTypes = {
@@ -74,36 +72,31 @@ SimpleDialog.propTypes = {
 
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
-class SimpleDialogDemo extends React.Component {
-  state = {
-    open: false,
-    selectedValue: emails[1],
-  };
+function SimpleDialogDemo() {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
-  handleClickOpen = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  handleClose = value => {
-    this.setState({ selectedValue: value, open: false });
-  };
-
-  render() {
-    return (
-      <div>
-        <Typography variant="subtitle1">Selected: {this.state.selectedValue}</Typography>
-        <br />
-        <Button onClick={this.handleClickOpen}>Open simple dialog</Button>
-        <SimpleDialogWrapped
-          selectedValue={this.state.selectedValue}
-          open={this.state.open}
-          onClose={this.handleClose}
-        />
-      </div>
-    );
+  function handleClickOpen() {
+    setOpen(true);
   }
+
+  const handleClose = value => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
+  return (
+    <div>
+      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <br />
+      <Button onClick={handleClickOpen}>Open simple dialog</Button>
+      <SimpleDialogWrapped
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
+    </div>
+  );
 }
 
 export default SimpleDialogDemo;
