@@ -56,6 +56,18 @@ const themes = [
     category: 'Components',
     href: 'https://www.creative-tim.com/product/material-kit-react?partner=104080',
   },
+  {
+    name: 'Firebase-UI',
+    description:
+      'A mimic page from Firebase. ' +
+      'This item includes theming using the theme provider component.',
+    src: '/static/images/themes/firebase-ui.png',
+    price: 'FREE',
+    category: 'Admin & Dashboard',
+    href: '/premium-themes/firebase-ui',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/firebase-ui',
+  },
 ];
 
 function PremiumThemes(props) {
@@ -105,6 +117,11 @@ function PremiumThemes(props) {
               >
                 Learn More
               </Button>
+              {theme.source ? (
+                <Button component="a" href={theme.source} size="small" color="primary">
+                  Source code
+                </Button>
+              ) : null}
             </CardActions>
           </Card>
         </Grid>
