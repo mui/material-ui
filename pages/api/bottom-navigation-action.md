@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js
-title: BottomNavigationAction API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# BottomNavigationAction
+# BottomNavigationAction API
 
 <p class="description">The API documentation of the BottomNavigationAction React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -28,7 +27,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/ListItem/ListItem.js
-title: ListItem API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# ListItem
+# ListItem API
 
 <p class="description">The API documentation of the ListItem React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -19,6 +18,7 @@ import ListItem from '@material-ui/core/ListItem';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">alignItems</span> | <span class="prop-type">enum:&nbsp;'flex-start'&nbsp;&#124;<br>&nbsp;'center'<br></span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
 | <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
@@ -33,7 +33,7 @@ import ListItem from '@material-ui/core/ListItem';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -46,6 +46,7 @@ This property accepts the following keys:
 | <span class="prop-name">focusVisible</span> | Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`.
 | <span class="prop-name">default</span> | Legacy styles applied to the root element. Use `root` instead.
 | <span class="prop-name">dense</span> | Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`.
+| <span class="prop-name">alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
 | <span class="prop-name">disabled</span> | Styles applied to the inner `component` element if `disabled={true}`.
 | <span class="prop-name">divider</span> | Styles applied to the inner `component` element if `divider={true}`.
 | <span class="prop-name">gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.

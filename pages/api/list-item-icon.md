@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/ListItemIcon/ListItemIcon.js
-title: ListItemIcon API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# ListItemIcon
+# ListItemIcon API
 
 <p class="description">The API documentation of the ListItemIcon React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -24,7 +23,7 @@ A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

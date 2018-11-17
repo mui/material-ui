@@ -1,57 +1,61 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
+import FormControlContext from './FormControlContext';
 
 describe('<FormControl />', () => {
-  let shallow;
+  let mount;
   let classes;
 
+  function setState(wrapper, state) {
+    return wrapper.find('FormControl').setState(state);
+  }
+
+  function getState(wrapper) {
+    return wrapper.find('FormControl').state();
+  }
+
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<FormControl />);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   describe('initial state', () => {
     it('should render a div with the root and user classes', () => {
-      const wrapper = shallow(<FormControl className="woofFormControl" />);
+      const wrapper = mount(<FormControl className="woofFormControl" />);
 
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('woofFormControl'), true);
-    });
-
-    it('should have the focused class', () => {
-      const wrapper = shallow(<FormControl className="woofFormControl" />);
-
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('woofFormControl'), true);
+      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('woofFormControl'), true);
     });
 
     it('should have no margin', () => {
-      const wrapper = shallow(<FormControl />);
+      const wrapper = mount(<FormControl />);
 
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.marginNormal), false);
-      assert.strictEqual(wrapper.hasClass(classes.marginDense), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), false);
     });
 
     it('should have the margin normal class', () => {
-      const wrapper = shallow(<FormControl margin="normal" />);
+      const wrapper = mount(<FormControl margin="normal" />);
 
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.marginNormal), true);
+      assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), true);
     });
 
     it('should have the margin dense class', () => {
-      const wrapper = shallow(<FormControl margin="dense" />);
+      const wrapper = mount(<FormControl margin="dense" />);
 
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
-      assert.strictEqual(wrapper.hasClass(classes.marginNormal), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
     });
   });
 
@@ -59,89 +63,89 @@ describe('<FormControl />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<FormControl />);
+      wrapper = mount(<FormControl />);
     });
 
     it('should not be filled initially', () => {
-      assert.strictEqual(wrapper.state().filled, false);
+      assert.strictEqual(getState(wrapper).filled, false);
     });
 
     it('should not be focused initially', () => {
-      assert.strictEqual(wrapper.state().focused, false);
+      assert.strictEqual(getState(wrapper).focused, false);
     });
   });
 
   describe('prop: required', () => {
     it('should not apply it to the DOM', () => {
-      const wrapper = shallow(<FormControl required />);
-      assert.strictEqual(wrapper.props().required, undefined);
+      const wrapper = mount(<FormControl required />);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).props().required, undefined);
     });
   });
 
   describe('prop: disabled', () => {
     it('will be unfocused if it gets disabled', () => {
-      const wrapper = shallow(<FormControl />);
-      wrapper.setState({ focused: true });
+      const wrapper = mount(<FormControl />);
+      setState(wrapper, { focused: true });
       wrapper.setProps({ disabled: true });
-      assert.strictEqual(wrapper.state().focused, false);
+      assert.strictEqual(getState(wrapper).focused, false);
     });
   });
 
   describe('input', () => {
     it('should be filled with a value', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControl>
           <Input value="bar" />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().filled, true);
+      assert.strictEqual(getState(wrapper).filled, true);
     });
 
     it('should be filled with a defaultValue', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControl>
           <Input defaultValue="bar" />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().filled, true);
+      assert.strictEqual(getState(wrapper).filled, true);
     });
 
     it('should be adorned with an endAdornment', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControl>
           <Input endAdornment={<div />} />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().adornedStart, false);
+      assert.strictEqual(getState(wrapper).adornedStart, false);
     });
 
     it('should be adorned with a startAdornment', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControl>
           <Input startAdornment={<div />} />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().adornedStart, true);
+      assert.strictEqual(getState(wrapper).adornedStart, true);
     });
   });
 
   describe('select', () => {
     it('should not be adorned without a startAdornment', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControl>
           <Select value="" />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().adornedStart, false);
+      assert.strictEqual(getState(wrapper).adornedStart, false);
     });
 
     it('should be adorned with a startAdornment', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <FormControl>
           <Select value="" input={<Input startAdornment={<div />} />} />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().adornedStart, true);
+      assert.strictEqual(getState(wrapper).adornedStart, true);
     });
   });
 
@@ -149,34 +153,34 @@ describe('<FormControl />', () => {
     let wrapper;
     let muiFormControlContext;
 
-    function loadChildContext() {
-      muiFormControlContext = wrapper.instance().getChildContext().muiFormControl;
-    }
-
     beforeEach(() => {
-      wrapper = shallow(<FormControl />);
-      loadChildContext();
+      wrapper = mount(
+        <FormControl>
+          <FormControlContext.Consumer>
+            {context => {
+              muiFormControlContext = context;
+            }}
+          </FormControlContext.Consumer>
+        </FormControl>,
+      );
     });
 
     describe('from state', () => {
       it('should have the filled state from the instance', () => {
         assert.strictEqual(muiFormControlContext.filled, false);
-        wrapper.setState({ filled: true });
-        loadChildContext();
+        setState(wrapper, { filled: true });
         assert.strictEqual(muiFormControlContext.filled, true);
       });
 
       it('should have the focused state from the instance', () => {
         assert.strictEqual(muiFormControlContext.focused, false);
-        wrapper.setState({ focused: true });
-        loadChildContext();
+        setState(wrapper, { focused: true });
         assert.strictEqual(muiFormControlContext.focused, true);
       });
 
       it('should have the adornedStart state from the instance', () => {
         assert.strictEqual(muiFormControlContext.adornedStart, false);
-        wrapper.setState({ adornedStart: true });
-        loadChildContext();
+        setState(wrapper, { adornedStart: true });
         assert.strictEqual(muiFormControlContext.adornedStart, true);
       });
     });
@@ -185,21 +189,18 @@ describe('<FormControl />', () => {
       it('should have the required prop from the instance', () => {
         assert.strictEqual(muiFormControlContext.required, false);
         wrapper.setProps({ required: true });
-        loadChildContext();
         assert.strictEqual(muiFormControlContext.required, true);
       });
 
       it('should have the error prop from the instance', () => {
         assert.strictEqual(muiFormControlContext.error, false);
         wrapper.setProps({ error: true });
-        loadChildContext();
         assert.strictEqual(muiFormControlContext.error, true);
       });
 
       it('should have the margin prop from the instance', () => {
         assert.strictEqual(muiFormControlContext.margin, 'none');
         wrapper.setProps({ margin: 'dense' });
-        loadChildContext();
         assert.strictEqual(muiFormControlContext.margin, 'dense');
       });
     });
@@ -209,7 +210,6 @@ describe('<FormControl />', () => {
         it('should set the filled state', () => {
           assert.strictEqual(muiFormControlContext.filled, false);
           muiFormControlContext.onFilled();
-          loadChildContext();
           assert.strictEqual(muiFormControlContext.filled, true);
           muiFormControlContext.onFilled();
           assert.strictEqual(muiFormControlContext.filled, true);
@@ -219,10 +219,8 @@ describe('<FormControl />', () => {
       describe('onEmpty', () => {
         it('should clean the filled state', () => {
           muiFormControlContext.onFilled();
-          loadChildContext();
           assert.strictEqual(muiFormControlContext.filled, true);
           muiFormControlContext.onEmpty();
-          loadChildContext();
           assert.strictEqual(muiFormControlContext.filled, false);
           muiFormControlContext.onEmpty();
           assert.strictEqual(muiFormControlContext.filled, false);
@@ -231,23 +229,23 @@ describe('<FormControl />', () => {
 
       describe('handleFocus', () => {
         it('should set the focused state', () => {
-          assert.strictEqual(wrapper.state().focused, false);
+          assert.strictEqual(getState(wrapper).focused, false);
           muiFormControlContext.onFocus();
-          assert.strictEqual(wrapper.state().focused, true);
+          assert.strictEqual(getState(wrapper).focused, true);
           muiFormControlContext.onFocus();
-          assert.strictEqual(wrapper.state().focused, true);
+          assert.strictEqual(getState(wrapper).focused, true);
         });
       });
 
       describe('handleBlur', () => {
         it('should clear the focused state', () => {
-          assert.strictEqual(wrapper.state().focused, false);
+          assert.strictEqual(getState(wrapper).focused, false);
           muiFormControlContext.onFocus();
-          assert.strictEqual(wrapper.state().focused, true);
+          assert.strictEqual(getState(wrapper).focused, true);
           muiFormControlContext.onBlur();
-          assert.strictEqual(wrapper.state().focused, false);
+          assert.strictEqual(getState(wrapper).focused, false);
           muiFormControlContext.onBlur();
-          assert.strictEqual(wrapper.state().focused, false);
+          assert.strictEqual(getState(wrapper).focused, false);
         });
       });
     });

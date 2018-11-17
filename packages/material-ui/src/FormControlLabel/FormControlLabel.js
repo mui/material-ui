@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import { capitalize } from '../utils/helpers';
@@ -53,7 +54,7 @@ export const styles = theme => ({
  * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
  */
-function FormControlLabel(props, context) {
+function FormControlLabel(props) {
   const {
     checked,
     classes,
@@ -63,12 +64,12 @@ function FormControlLabel(props, context) {
     inputRef,
     label,
     labelPlacement,
+    muiFormControl,
     name,
     onChange,
     value,
     ...other
   } = props;
-  const { muiFormControl } = context;
 
   let disabled = disabledProp;
   if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {
@@ -144,6 +145,10 @@ FormControlLabel.propTypes = {
    * The position of the label.
    */
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
+  /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
   /*
    * @ignore
    */
@@ -166,8 +171,6 @@ FormControlLabel.defaultProps = {
   labelPlacement: 'end',
 };
 
-FormControlLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);
+export default withStyles(styles, { name: 'MuiFormControlLabel' })(
+  withFormControlContext(FormControlLabel),
+);

@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import SpeedDialAction from './SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
@@ -42,7 +42,7 @@ describe('<SpeedDialAction />', () => {
   it('should render a Button', () => {
     const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
     const buttonWrapper = wrapper.childAt(0);
-    assert.strictEqual(buttonWrapper.type(), Button);
+    assert.strictEqual(buttonWrapper.type(), Fab);
   });
 
   it('should render the Button with the button class', () => {

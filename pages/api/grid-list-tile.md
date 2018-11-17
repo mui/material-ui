@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/GridListTile/GridListTile.js
-title: GridListTile API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# GridListTile
+# GridListTile API
 
 <p class="description">The API documentation of the GridListTile React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -27,7 +26,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

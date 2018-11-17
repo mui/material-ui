@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui-lab/src/SpeedDial/SpeedDial.js
-title: SpeedDial API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# SpeedDial
+# SpeedDial API
 
 <p class="description">The API documentation of the SpeedDial React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -35,7 +34,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

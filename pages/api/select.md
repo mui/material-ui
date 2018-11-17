@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Select/Select.js
-title: Select API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Select
+# Select API
 
 <p class="description">The API documentation of the Select React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -40,7 +39,7 @@ import Select from '@material-ui/core/Select';
 
 Any other properties supplied will be spread to the root element ([Input](/api/input/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

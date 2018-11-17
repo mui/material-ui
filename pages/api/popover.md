@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Popover/Popover.js
-title: Popover API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Popover
+# Popover API
 
 <p class="description">The API documentation of the Popover React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -47,7 +46,7 @@ import Popover from '@material-ui/core/Popover';
 
 Any other properties supplied will be spread to the root element ([Modal](/api/modal/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

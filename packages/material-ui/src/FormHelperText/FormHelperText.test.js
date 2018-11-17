@@ -1,19 +1,20 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import FormHelperText from './FormHelperText';
+import FormControlContext from '../FormControl/FormControlContext';
 
 describe('<FormHelperText />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<FormHelperText />);
   });
 
   it('should render a <p />', () => {
-    const wrapper = shallow(<FormHelperText className="woofHelperText" />);
+    const wrapper = findOutermostIntrinsic(mount(<FormHelperText className="woofHelperText" />));
     assert.strictEqual(wrapper.name(), 'p');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass('woofHelperText'), true);
@@ -21,29 +22,37 @@ describe('<FormHelperText />', () => {
 
   describe('prop: component', () => {
     it('should render the prop component', () => {
-      const wrapper = shallow(<FormHelperText component="div" />);
+      const wrapper = findOutermostIntrinsic(mount(<FormHelperText component="div" />));
       assert.strictEqual(wrapper.name(), 'div');
     });
   });
 
   describe('prop: error', () => {
     it('should have an error class', () => {
-      const wrapper = shallow(<FormHelperText error />);
+      const wrapper = findOutermostIntrinsic(mount(<FormHelperText error />));
       assert.strictEqual(wrapper.hasClass(classes.error), true);
     });
   });
 
   describe('with muiFormControl context', () => {
     let wrapper;
-    let muiFormControl;
 
     function setFormControlContext(muiFormControlContext) {
-      muiFormControl = muiFormControlContext;
-      wrapper.setContext({ muiFormControl });
+      wrapper.setProps({ context: muiFormControlContext });
     }
 
     beforeEach(() => {
-      wrapper = shallow(<FormHelperText>Foo</FormHelperText>);
+      function Provider(props) {
+        const { context, ...other } = props;
+
+        return (
+          <FormControlContext.Provider value={context}>
+            <FormHelperText {...other}>Foo</FormHelperText>
+          </FormControlContext.Provider>
+        );
+      }
+
+      wrapper = mount(<Provider />);
     });
     ['error', 'disabled'].forEach(visualState => {
       describe(visualState, () => {
@@ -52,15 +61,15 @@ describe('<FormHelperText />', () => {
         });
 
         it(`should have the ${visualState} class`, () => {
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
         });
 
         it('should be overridden by props', () => {
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
           wrapper.setProps({ [visualState]: false });
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), false);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), false);
           wrapper.setProps({ [visualState]: true });
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
         });
       });
     });
@@ -72,14 +81,14 @@ describe('<FormHelperText />', () => {
         });
 
         it('should have the dense class', () => {
-          assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
         });
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.marginDense), false);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), false);
         wrapper.setProps({ margin: 'dense' });
-        assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
+        assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
       });
     });
   });

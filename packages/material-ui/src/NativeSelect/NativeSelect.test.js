@@ -1,20 +1,25 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
+import { getClasses, createMount } from '@material-ui/core/test-utils';
 import Input from '../Input';
 import NativeSelect from './NativeSelect';
 
 describe('<NativeSelect />', () => {
-  let shallow;
   let classes;
   let mount;
   const props = {
     input: <Input />,
-    children: [<option value="1">1</option>, <option value="2">2</option>],
+    children: [
+      <option key="1" value="1">
+        1
+      </option>,
+      <option key="2" value="2">
+        2
+      </option>,
+    ],
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<NativeSelect {...props} />);
     mount = createMount();
   });
@@ -24,13 +29,13 @@ describe('<NativeSelect />', () => {
   });
 
   it('should render a correct top element', () => {
-    const wrapper = shallow(<NativeSelect {...props} />);
-    assert.strictEqual(wrapper.type(), Input);
+    const wrapper = mount(<NativeSelect {...props} />);
+    assert.strictEqual(wrapper.find(Input).exists(), true);
   });
 
   it('should provide the classes to the input component', () => {
-    const wrapper = shallow(<NativeSelect {...props} />);
-    assert.deepEqual(wrapper.props().inputProps.classes, classes);
+    const wrapper = mount(<NativeSelect {...props} />);
+    assert.deepEqual(wrapper.find(Input).props().inputProps.classes, classes);
   });
 
   it('should be able to mount the component', () => {

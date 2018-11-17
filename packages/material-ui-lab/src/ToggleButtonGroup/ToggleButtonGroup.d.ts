@@ -4,10 +4,10 @@ import { StandardProps } from '@material-ui/core';
 
 export interface ToggleButtonGroupProps
   extends StandardProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      ToggleButtonGroupClassKey,
-      'onChange'
-    > {
+    React.HTMLAttributes<HTMLDivElement>,
+    ToggleButtonGroupClassKey,
+    'onChange'
+  > {
   selected?: boolean;
   exclusive?: boolean;
   onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;

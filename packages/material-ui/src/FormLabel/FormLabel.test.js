@@ -1,19 +1,20 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import FormLabel from './FormLabel';
+import FormControlContext from '../FormControl/FormControlContext';
 
 describe('<FormLabel />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<FormLabel />);
   });
 
   it('should render a <label />', () => {
-    const wrapper = shallow(<FormLabel className="woofFormLabel" />);
+    const wrapper = findOutermostIntrinsic(mount(<FormLabel className="woofFormLabel" />));
     assert.strictEqual(wrapper.name(), 'label');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass('woofFormLabel'), true);
@@ -21,14 +22,14 @@ describe('<FormLabel />', () => {
 
   describe('prop: required', () => {
     it('should show an asterisk if required is set', () => {
-      const wrapper = shallow(<FormLabel required />);
+      const wrapper = mount(<FormLabel required />);
       const text = wrapper.text();
       assert.strictEqual(text.slice(-1), '*');
       assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
     });
 
     it('should not show an asterisk by default', () => {
-      const wrapper = shallow(<FormLabel />);
+      const wrapper = mount(<FormLabel />);
       assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 0);
       assert.strictEqual(wrapper.text().includes('*'), false);
     });
@@ -36,26 +37,35 @@ describe('<FormLabel />', () => {
 
   describe('prop: error', () => {
     it('should have an error class', () => {
-      const wrapper = shallow(<FormLabel required error />);
+      const wrapper = mount(<FormLabel required error />);
       const asteriskWrapper = wrapper.find('[data-mui-test="FormLabelAsterisk"]');
       assert.strictEqual(asteriskWrapper.length, 1);
       assert.strictEqual(asteriskWrapper.hasClass(classes.error), true);
-      assert.strictEqual(wrapper.hasClass(classes.error), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.error), true);
     });
   });
 
   describe('with muiFormControl context', () => {
     let wrapper;
-    let muiFormControl;
 
     function setFormControlContext(muiFormControlContext) {
-      muiFormControl = muiFormControlContext;
-      wrapper.setContext({ muiFormControl });
+      wrapper.setProps({ context: muiFormControlContext });
     }
 
     beforeEach(() => {
-      wrapper = shallow(<FormLabel>Foo</FormLabel>);
+      function Provider(props) {
+        const { context, ...other } = props;
+
+        return (
+          <FormControlContext.Provider value={context}>
+            <FormLabel {...other}>Foo</FormLabel>
+          </FormControlContext.Provider>
+        );
+      }
+
+      wrapper = mount(<Provider />);
     });
+
     ['error', 'focused'].forEach(visualState => {
       describe(visualState, () => {
         beforeEach(() => {
@@ -63,15 +73,15 @@ describe('<FormLabel />', () => {
         });
 
         it(`should have the ${visualState} class`, () => {
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
         });
 
         it('should be overridden by props', () => {
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
           wrapper.setProps({ [visualState]: false });
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), false);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), false);
           wrapper.setProps({ [visualState]: true });
-          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes[visualState]), true);
         });
       });
     });
@@ -82,15 +92,27 @@ describe('<FormLabel />', () => {
       });
 
       it('should show an asterisk', () => {
-        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+        assert.strictEqual(
+          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
+          1,
+        );
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+        assert.strictEqual(
+          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
+          1,
+        );
         wrapper.setProps({ required: false });
-        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 0);
+        assert.strictEqual(
+          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
+          0,
+        );
         wrapper.setProps({ required: true });
-        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+        assert.strictEqual(
+          findOutermostIntrinsic(wrapper).find('[data-mui-test="FormLabelAsterisk"]').length,
+          1,
+        );
       });
     });
   });

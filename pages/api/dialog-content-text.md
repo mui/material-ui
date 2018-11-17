@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/DialogContentText/DialogContentText.js
-title: DialogContentText API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# DialogContentText
+# DialogContentText API
 
 <p class="description">The API documentation of the DialogContentText React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -24,7 +23,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 Any other properties supplied will be spread to the root element ([Typography](/api/typography/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
+import chainPropTypes from '../utils/chainPropTypes';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -20,7 +21,7 @@ export const styles = theme => ({
     left: 0,
     width: '100%',
   },
-  /* Styles applied to the root element if `inset={true}`. */
+  /* Styles applied to the root element if `variant="inset"`. */
   inset: {
     marginLeft: 72,
   },
@@ -28,33 +29,46 @@ export const styles = theme => ({
   light: {
     backgroundColor: fade(theme.palette.divider, 0.08),
   },
+  /* Styles applied to the root element if `variant="middle"`. */
+  middle: {
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+  },
 });
 
 function Divider(props) {
   const {
     absolute,
     classes,
-    className: classNameProp,
+    className,
     component: Component,
     inset,
     light,
+    variant,
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.absolute]: absolute,
-      [classes.inset]: inset,
-      [classes.light]: light,
-    },
-    classNameProp,
+  return (
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.inset]: inset || variant === 'inset',
+          [classes.middle]: variant === 'middle',
+          [classes.absolute]: absolute,
+          [classes.light]: light,
+        },
+        className,
+      )}
+      {...other}
+    />
   );
-
-  return <Component className={className} {...other} />;
 }
 
 Divider.propTypes = {
+  /**
+   * Absolutely position the element.
+   */
   absolute: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
@@ -72,19 +86,36 @@ Divider.propTypes = {
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the divider will be indented.
+   * __WARNING__: `inset` is deprecated.
+   * Instead use `variant="inset"`.
    */
-  inset: PropTypes.bool,
+  inset: chainPropTypes(PropTypes.bool, props => {
+    /* istanbul ignore if */
+    if (props.inset) {
+      return new Error(
+        'Material-UI: you are using the deprecated `inset` property ' +
+          'that will be removed in the next major release. The property `variant="inset"` ' +
+          'is equivalent and should be used instead.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * If `true`, the divider will have a lighter color.
    */
   light: PropTypes.bool,
+  /**
+   *  The variant to use.
+   */
+  variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
 };
 
 Divider.defaultProps = {
   absolute: false,
   component: 'hr',
-  inset: false,
   light: false,
+  variant: 'fullWidth',
 };
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

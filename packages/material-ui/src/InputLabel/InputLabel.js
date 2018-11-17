@@ -3,9 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
-import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -79,7 +80,7 @@ export const styles = theme => ({
   },
 });
 
-function InputLabel(props, context) {
+function InputLabel(props) {
   const {
     children,
     classes,
@@ -87,12 +88,11 @@ function InputLabel(props, context) {
     disableAnimation,
     FormLabelClasses,
     margin,
+    muiFormControl,
     shrink: shrinkProp,
     variant,
     ...other
   } = props;
-
-  const { muiFormControl } = context;
 
   let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
@@ -101,7 +101,7 @@ function InputLabel(props, context) {
 
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['margin', 'variant'],
   });
 
@@ -176,6 +176,10 @@ InputLabel.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * if `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
@@ -193,8 +197,4 @@ InputLabel.defaultProps = {
   disableAnimation: false,
 };
 
-InputLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);
+export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));

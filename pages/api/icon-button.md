@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/IconButton/IconButton.js
-title: IconButton API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# IconButton
+# IconButton API
 
 <p class="description">The API documentation of the IconButton React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -28,7 +27,7 @@ regarding the available icon options.
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

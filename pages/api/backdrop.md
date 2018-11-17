@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Backdrop/Backdrop.js
-title: Backdrop API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Backdrop
+# Backdrop API
 
 <p class="description">The API documentation of the Backdrop React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -26,7 +25,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

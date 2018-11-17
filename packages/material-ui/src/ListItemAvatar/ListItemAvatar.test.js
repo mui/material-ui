@@ -1,6 +1,5 @@
 import React from 'react';
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import ListItemAvatar from './ListItemAvatar';
@@ -38,14 +37,6 @@ describe('<ListItemAvatar />', () => {
   });
 
   describe('List', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
     it('should render an Avatar', () => {
       const wrapper = mount(
         <ListContext.Provider value={{ dense: true }}>
@@ -55,16 +46,6 @@ describe('<ListItemAvatar />', () => {
         </ListContext.Provider>,
       );
       assert.strictEqual(wrapper.type(), ListItemAvatar);
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
-    });
-
-    it('should warn in a wrong context', () => {
-      mount(
-        <ListItemAvatar>
-          <Avatar />
-        </ListItemAvatar>,
-      );
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
     });
   });
 });

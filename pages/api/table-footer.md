@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/TableFooter/TableFooter.js
-title: TableFooter API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# TableFooter
+# TableFooter API
 
 <p class="description">The API documentation of the TableFooter React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -25,7 +24,7 @@ import TableFooter from '@material-ui/core/TableFooter';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

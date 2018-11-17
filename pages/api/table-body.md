@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/TableBody/TableBody.js
-title: TableBody API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# TableBody
+# TableBody API
 
 <p class="description">The API documentation of the TableBody React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -25,7 +24,7 @@ import TableBody from '@material-ui/core/TableBody';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
