@@ -20,120 +20,115 @@ const styles = {
   },
 };
 
-class TemporaryDrawer extends React.Component {
-  state = {
+function TemporaryDrawer(props) {
+  const { classes } = props;
+  const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
+  });
+
+  const toggleDrawer = (side, open) => () => {
+    setState({ ...state, [side]: open });
   };
 
-  toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open,
-    });
-  };
+  const sideList = (
+    <div className={classes.list}>
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
 
-  render() {
-    const { classes } = this.props;
+  const fullList = (
+    <div className={classes.fullList}>
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
 
-    const sideList = (
-      <div className={classes.list}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
-    return (
-      <div>
-        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
-        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
-        <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
-        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
-        <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
-          >
-            {sideList}
-          </div>
-        </Drawer>
-        <Drawer anchor="top" open={this.state.top} onClose={this.toggleDrawer('top', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('top', false)}
-            onKeyDown={this.toggleDrawer('top', false)}
-          >
-            {fullList}
-          </div>
-        </Drawer>
-        <Drawer
-          anchor="bottom"
-          open={this.state.bottom}
-          onClose={this.toggleDrawer('bottom', false)}
+  return (
+    <div>
+      <Button onClick={toggleDrawer('left', true)}>Open Left</Button>
+      <Button onClick={toggleDrawer('right', true)}>Open Right</Button>
+      <Button onClick={toggleDrawer('top', true)}>Open Top</Button>
+      <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
+      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleDrawer('left', false)}
+          onKeyDown={toggleDrawer('left', false)}
         >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('bottom', false)}
-            onKeyDown={this.toggleDrawer('bottom', false)}
-          >
-            {fullList}
-          </div>
-        </Drawer>
-        <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('right', false)}
-            onKeyDown={this.toggleDrawer('right', false)}
-          >
-            {sideList}
-          </div>
-        </Drawer>
-      </div>
-    );
-  }
+          {sideList}
+        </div>
+      </Drawer>
+      <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleDrawer('top', false)}
+          onKeyDown={toggleDrawer('top', false)}
+        >
+          {fullList}
+        </div>
+      </Drawer>
+      <Drawer
+        anchor="bottom"
+        open={state.bottom}
+        onClose={toggleDrawer('bottom', false)}
+      >
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleDrawer('bottom', false)}
+          onKeyDown={toggleDrawer('bottom', false)}
+        >
+          {fullList}
+        </div>
+      </Drawer>
+      <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleDrawer('right', false)}
+          onKeyDown={toggleDrawer('right', false)}
+        >
+          {sideList}
+        </div>
+      </Drawer>
+    </div>
+  );
 }
 
 TemporaryDrawer.propTypes = {
