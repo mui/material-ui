@@ -2,6 +2,76 @@
 
 <p class="description">The API reference of the @material-ui/styles package.</p>
 
+## `createBox(style function) => Component`
+
+Create a Box component using [a style function](/system/basics/).
+
+#### Arguments
+
+1. `style function` (*Function*): The style function input.
+
+#### Returns
+
+`Component`: The Box component created.
+
+##### Props
+
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| <span class="prop-name required">children *</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span> |   | Box render function or node. |
+| <span class="prop-name">clone</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the box will recycle it's children DOM element. It's using `React.cloneElement` internally. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+
+Any other properties supplied will be used by the style function or spread to the root element.
+
+#### Examples
+
+```js
+import { createBox } from '@material-ui/styles';
+import { style } from '@material-ui/system';
+
+const border = style({
+  prop: 'border',
+  themeKey: 'borders',
+  transform: getBorder,
+});
+
+const Box = createBox(border);
+```
+
+## `createGenerateClassName([options]) => class name generator`
+
+A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
+
+#### Arguments
+
+1. `options` (*Object* [optional]):
+  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+  - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
+  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
+
+#### Returns
+
+`class name generator`: The generator should be provided to JSS.
+
+#### Examples
+
+```jsx
+import React from 'react';
+import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+
+const generateClassName = createGenerateClassName({
+  dangerouslyUseGlobalCSS: true,
+  productionPrefix: 'c',
+});
+
+export default function App() {
+  return (
+    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
+  );
+}
+```
+
 ## `createStyled(styles, [options]) => Component`
 
 Link a style sheet with a component using the **render props** pattern.
@@ -198,32 +268,6 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-## `withTheme()(Component) => Component`
-
-Provide the `theme` object as a property of the input component so it can be used
-in the render method.
-
-#### Arguments
-
-1. `Component`: The component that will be wrapped.
-
-#### Returns
-
-`Component`: The new component created.
-
-#### Examples
-
-```jsx
-import React from 'react';
-import { withTheme } from '@material-ui/styles';
-
-function MyComponent(props) {
-  return <div>{props.theme.direction}</div>;
-}
-
-export default withTheme()(MyComponent);
-```
-
 ## `useTheme() => theme`
 
 This hook returns the `theme` object so it can be used inside a functional component.
@@ -316,35 +360,28 @@ class MyComponent extends React.Component {
 export default MyComponent
 ```
 
-## `createGenerateClassName([options]) => class name generator`
+## `withTheme()(Component) => Component`
 
-A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
+Provide the `theme` object as a property of the input component so it can be used
+in the render method.
 
 #### Arguments
 
-1. `options` (*Object* [optional]):
-  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
-  - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
+1. `Component`: The component that will be wrapped.
 
 #### Returns
 
-`class name generator`: The generator should be provided to JSS.
+`Component`: The new component created.
 
 #### Examples
 
 ```jsx
 import React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { withTheme } from '@material-ui/styles';
 
-const generateClassName = createGenerateClassName({
-  dangerouslyUseGlobalCSS: true,
-  productionPrefix: 'c',
-});
-
-export default function App() {
-  return (
-    <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
-  );
+function MyComponent(props) {
+  return <div>{props.theme.direction}</div>;
 }
+
+export default withTheme()(MyComponent);
 ```

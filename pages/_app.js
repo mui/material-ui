@@ -98,6 +98,42 @@ const pages = [
     ],
   },
   {
+    pathname: '/system',
+    title: 'System (alpha)',
+    children: [
+      {
+        pathname: '/system/basics',
+      },
+      {
+        pathname: '/system/borders',
+      },
+      {
+        pathname: '/system/display',
+      },
+      {
+        pathname: '/system/flexbox',
+      },
+      {
+        pathname: '/system/palette',
+      },
+      {
+        pathname: '/system/position',
+      },
+      {
+        pathname: '/system/shadows',
+      },
+      {
+        pathname: '/system/sizing',
+      },
+      {
+        pathname: '/system/spacing',
+      },
+      {
+        pathname: '/system/typography',
+      },
+    ],
+  },
+  {
     pathname: '/utils',
     children: [
       {
@@ -121,6 +157,10 @@ const pages = [
       },
       {
         pathname: '/utils/click-away-listener',
+      },
+      {
+        pathname: '/utils/box',
+        title: 'Box (unstable)',
       },
     ],
   },

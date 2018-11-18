@@ -50,6 +50,7 @@ const externs = [
   'https://material.io/',
   'https://www.styled-components.com/',
   'https://emotion.sh/',
+  'https://getbootstrap.com/',
 ];
 
 renderer.link = (href, title, text) => {

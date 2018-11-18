@@ -13,6 +13,10 @@ import {
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
+import createBox from '@material-ui/styles/createBox';
+import { spacing, palette } from '@material-ui/system';
+
+const BoxMUI = createBox(spacing);
 
 function renderFullPage(html, css) {
   return `
@@ -42,7 +46,7 @@ const theme = createMuiTheme({
   },
 });
 
-function handleRender(req, res) {
+function renderPricing(req, res) {
   const sheetsRegistry = new SheetsRegistry();
   const generateClassName = createGenerateClassName();
   const html = ReactDOMServer.renderToString(
@@ -56,8 +60,53 @@ function handleRender(req, res) {
   res.send(renderFullPage(html, css));
 }
 
+function renderBox(req, res) {
+  const sheetsRegistry = new SheetsRegistry();
+  const generateClassName = createGenerateClassName();
+  const html = ReactDOMServer.renderToString(
+    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+      <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
+        <div>
+          {Array.from(new Array(1000)).map((_, index) => (
+            <BoxMUI key={String(index)} m={[1, 2, 3]}>
+              Material-UI
+            </BoxMUI>
+          ))}
+        </div>
+      </MuiThemeProvider>
+    </JssProvider>,
+  );
+  const css = sheetsRegistry.toString();
+  res.send(renderFullPage(html, css));
+}
+
+function renderSpacing(req, res) {
+  for (let i = 0; i < 10000; i += 1) {
+    spacing({
+      theme: {},
+      p: [1, 2, 3],
+    });
+  }
+
+  res.send(renderFullPage('hello', ''));
+}
+
+function renderPalette(req, res) {
+  for (let i = 0; i < 10000; i += 1) {
+    palette({
+      theme: {},
+      bg: ['blue', 'red'],
+    });
+  }
+
+  res.send(renderFullPage('hello', ''));
+}
+
 const app = express();
-app.use(handleRender);
+app.get('/', renderPricing);
+app.get('/box', renderBox);
+app.get('/spacing', renderSpacing);
+app.get('/palette', renderPalette);
 
 const port = 3001;
 app.listen(port, () => {

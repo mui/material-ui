@@ -1,3 +1,4 @@
+export { default as createBox } from './createBox';
 export { default as createGenerateClassName } from './createGenerateClassName';
 export { default as createStyled } from './createStyled';
 export { default as createStyles } from './createStyles';

@@ -28,7 +28,13 @@ module.exports = [
     name: 'The size of the @material-ui/styles modules',
     webpack: true,
     path: 'packages/material-ui-styles/build/index.js',
-    limit: '15.0 KB',
+    limit: '15.3 KB',
+  },
+  {
+    name: 'The size of the @material-ui/system modules',
+    webpack: true,
+    path: 'packages/material-ui-system/build/index.js',
+    limit: '3.6 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
@@ -49,7 +55,7 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '177 KB',
+    limit: '178 KB',
   },
   {
     name: 'The docs home page',

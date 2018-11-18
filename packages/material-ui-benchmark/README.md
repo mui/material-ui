@@ -1,9 +1,11 @@
-# Material-UI Benchmarking
+# Material-UI benchmark
 
-## Synthetic benchmark
+## `@material-ui/core`
+
+### Synthetic benchmark
 
 ```sh
-yarn benchmark
+yarn core
 
 ButtonBase cache instances x 37,666 ops/sec ±10.24% (64 runs sampled)
 ButtonBase cache requests x 36,496 ops/sec ±6.27% (68 runs sampled)
@@ -21,7 +23,7 @@ ButtonBase ripple x 38,715 ops/sec ±13.70% (68 runs sampled)
 ButtonBase disableRipple x 46,165 ops/sec ±13.53% (66 runs sampled)
 ```
 
-## Real life benchmark
+### Real-world benchmark
 
 ```sh
 yarn server
@@ -46,6 +48,24 @@ Statistics        Avg      Stdev        Max
     1xx - 0, 2xx - 26642, 3xx - 0, 4xx - 0, 5xx - 0
     others - 0
   Throughput:    11.61MB/s
+```
+
+## `@material-ui/system`
+
+```sh
+yarn system
+
+@material-ui/system palette x 410,735 ops/sec ±2.05% (171 runs sampled)
+styled-system color x 176,670 ops/sec ±1.96% (184 runs sampled)
+
+@material-ui/system spacing x 320,001 ops/sec ±4.30% (186 runs sampled)
+styled-system space x 130,870 ops/sec ±1.30% (186 runs sampled)
+
+@material-ui/system composed x 70,434 ops/sec ±0.61% (191 runs sampled)
+styled-system composed x 32,479 ops/sec ±0.83% (189 runs sampled)
+
+@material-ui/system Box x 11,764 ops/sec ±0.72% (189 runs sampled)
+styled-system Box x 10,043 ops/sec ±0.54% (189 runs sampled)
 ```
 
 ## Resources
