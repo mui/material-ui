@@ -25,56 +25,51 @@ const styles = theme => ({
   },
 });
 
-class NestedList extends React.Component {
-  state = {
-    open: true,
-  };
+function NestedList(props) {
+  const { classes } = props;
+  const [open, setOpen] = React.useState(true);
 
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <List
-        component="nav"
-        subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
-        className={classes.root}
-      >
-        <ListItem button>
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText inset primary="Sent mail" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText inset primary="Drafts" />
-        </ListItem>
-        <ListItem button onClick={this.handleClick}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText inset primary="Inbox" />
-          {this.state.open ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText inset primary="Starred" />
-            </ListItem>
-          </List>
-        </Collapse>
-      </List>
-    );
+  function handleClick() {
+    setOpen(!open);
   }
+
+  return (
+    <List
+      component="nav"
+      subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
+      className={classes.root}
+    >
+      <ListItem button>
+        <ListItemIcon>
+          <SendIcon />
+        </ListItemIcon>
+        <ListItemText inset primary="Sent mail" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <DraftsIcon />
+        </ListItemIcon>
+        <ListItemText inset primary="Drafts" />
+      </ListItem>
+      <ListItem button onClick={handleClick}>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+        <ListItemText inset primary="Inbox" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItem button className={classes.nested}>
+            <ListItemIcon>
+              <StarBorder />
+            </ListItemIcon>
+            <ListItemText inset primary="Starred" />
+          </ListItem>
+        </List>
+      </Collapse>
+    </List>
+  );
 }
 
 NestedList.propTypes = {

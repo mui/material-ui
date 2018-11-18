@@ -17,13 +17,11 @@ const styles = theme => ({
   },
 });
 
-class CheckboxListSecondary extends React.Component {
-  state = {
-    checked: [1],
-  };
+function CheckboxListSecondary(props) {
+  const { classes } = props;
+  const [checked, setChecked] = React.useState([1]);
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
+  const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -33,36 +31,24 @@ class CheckboxListSecondary extends React.Component {
       newChecked.splice(currentIndex, 1);
     }
 
-    this.setState({
-      checked: newChecked,
-    });
+    setChecked(newChecked);
   };
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <List dense className={classes.root}>
-        {[0, 1, 2, 3].map(value => (
-          <ListItem key={value} button>
-            <ListItemAvatar>
-              <Avatar
-                alt={`Avatar n°${value + 1}`}
-                src={`/static/images/avatar/${value + 1}.jpg`}
-              />
-            </ListItemAvatar>
-            <ListItemText primary={`Line item ${value + 1}`} />
-            <ListItemSecondaryAction>
-              <Checkbox
-                onChange={this.handleToggle(value)}
-                checked={this.state.checked.indexOf(value) !== -1}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
-    );
-  }
+  return (
+    <List dense className={classes.root}>
+      {[0, 1, 2, 3].map(value => (
+        <ListItem key={value} button>
+          <ListItemAvatar>
+            <Avatar alt={`Avatar n°${value + 1}`} src={`/static/images/avatar/${value + 1}.jpg`} />
+          </ListItemAvatar>
+          <ListItemText primary={`Line item ${value + 1}`} />
+          <ListItemSecondaryAction>
+            <Checkbox onChange={handleToggle(value)} checked={checked.indexOf(value) !== -1} />
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
+    </List>
+  );
 }
 
 CheckboxListSecondary.propTypes = {

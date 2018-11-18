@@ -17,62 +17,57 @@ const styles = theme => ({
   },
 });
 
-class SelectedListItem extends React.Component {
-  state = {
-    selectedIndex: 1,
-  };
+function SelectedListItem(props) {
+  const { classes } = props;
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  handleListItemClick = (event, index) => {
-    this.setState({ selectedIndex: index });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <List component="nav">
-          <ListItem
-            button
-            selected={this.state.selectedIndex === 0}
-            onClick={event => this.handleListItemClick(event, 0)}
-          >
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem
-            button
-            selected={this.state.selectedIndex === 1}
-            onClick={event => this.handleListItemClick(event, 1)}
-          >
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </List>
-        <Divider />
-        <List component="nav">
-          <ListItem
-            button
-            selected={this.state.selectedIndex === 2}
-            onClick={event => this.handleListItemClick(event, 2)}
-          >
-            <ListItemText primary="Trash" />
-          </ListItem>
-          <ListItem
-            button
-            selected={this.state.selectedIndex === 3}
-            onClick={event => this.handleListItemClick(event, 3)}
-          >
-            <ListItemText primary="Spam" />
-          </ListItem>
-        </List>
-      </div>
-    );
+  function handleListItemClick(event, index) {
+    setSelectedIndex(index);
   }
+
+  return (
+    <div className={classes.root}>
+      <List component="nav">
+        <ListItem
+          button
+          selected={selectedIndex === 0}
+          onClick={event => handleListItemClick(event, 0)}
+        >
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Inbox" />
+        </ListItem>
+        <ListItem
+          button
+          selected={selectedIndex === 1}
+          onClick={event => handleListItemClick(event, 1)}
+        >
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Drafts" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List component="nav">
+        <ListItem
+          button
+          selected={selectedIndex === 2}
+          onClick={event => handleListItemClick(event, 2)}
+        >
+          <ListItemText primary="Trash" />
+        </ListItem>
+        <ListItem
+          button
+          selected={selectedIndex === 3}
+          onClick={event => handleListItemClick(event, 3)}
+        >
+          <ListItemText primary="Spam" />
+        </ListItem>
+      </List>
+    </div>
+  );
 }
 
 SelectedListItem.propTypes = {

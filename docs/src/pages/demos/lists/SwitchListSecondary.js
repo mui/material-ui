@@ -19,13 +19,11 @@ const styles = theme => ({
   },
 });
 
-class SwitchListSecondary extends React.Component {
-  state = {
-    checked: ['wifi'],
-  };
+function SwitchListSecondary(props) {
+  const { classes } = props;
+  const [checked, setChecked] = React.useState(['wifi']);
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
+  const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -35,43 +33,34 @@ class SwitchListSecondary extends React.Component {
       newChecked.splice(currentIndex, 1);
     }
 
-    this.setState({
-      checked: newChecked,
-    });
+    setChecked(newChecked);
   };
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
-        <ListItem>
-          <ListItemIcon>
-            <WifiIcon />
-          </ListItemIcon>
-          <ListItemText primary="Wi-Fi" />
-          <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('wifi')}
-              checked={this.state.checked.indexOf('wifi') !== -1}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <BluetoothIcon />
-          </ListItemIcon>
-          <ListItemText primary="Bluetooth" />
-          <ListItemSecondaryAction>
-            <Switch
-              onChange={this.handleToggle('bluetooth')}
-              checked={this.state.checked.indexOf('bluetooth') !== -1}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-      </List>
-    );
-  }
+  return (
+    <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
+      <ListItem>
+        <ListItemIcon>
+          <WifiIcon />
+        </ListItemIcon>
+        <ListItemText primary="Wi-Fi" />
+        <ListItemSecondaryAction>
+          <Switch onChange={handleToggle('wifi')} checked={checked.indexOf('wifi') !== -1} />
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem>
+        <ListItemIcon>
+          <BluetoothIcon />
+        </ListItemIcon>
+        <ListItemText primary="Bluetooth" />
+        <ListItemSecondaryAction>
+          <Switch
+            onChange={handleToggle('bluetooth')}
+            checked={checked.indexOf('bluetooth') !== -1}
+          />
+        </ListItemSecondaryAction>
+      </ListItem>
+    </List>
+  );
 }
 
 SwitchListSecondary.propTypes = {
