@@ -103,11 +103,7 @@ function TemporaryDrawer(props) {
           {fullList}
         </div>
       </Drawer>
-      <Drawer
-        anchor="bottom"
-        open={state.bottom}
-        onClose={toggleDrawer('bottom', false)}
-      >
+      <Drawer anchor="bottom" open={state.bottom} onClose={toggleDrawer('bottom', false)}>
         <div
           tabIndex={0}
           role="button"
