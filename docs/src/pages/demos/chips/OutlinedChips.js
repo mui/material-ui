@@ -38,7 +38,7 @@ function OutlinedChips(props) {
         variant="outlined"
       />
       <Chip
-        avatar={<Avatar alt="Natacha" src="/static/images/uxceo-128.jpg" />}
+        avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable Chip"
         onDelete={handleDelete}
         className={classes.chip}

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/TablePagination/TablePagination.js
-title: TablePagination API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# TablePagination
+# TablePagination API
 
 <p class="description">The API documentation of the TablePagination React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -36,7 +35,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 Any other properties supplied will be spread to the root element ([TableCell](/api/table-cell/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

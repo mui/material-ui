@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/NativeSelect/NativeSelect.js
-title: NativeSelect API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# NativeSelect
+# NativeSelect API
 
 <p class="description">The API documentation of the NativeSelect React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -30,7 +29,7 @@ An alternative to `<Select native />` with a much smaller bundle size footprint.
 
 Any other properties supplied will be spread to the root element ([Input](/api/input/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

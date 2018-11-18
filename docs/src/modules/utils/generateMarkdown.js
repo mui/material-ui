@@ -16,12 +16,7 @@ function normalizePath(path) {
 }
 
 function generateHeader(reactAPI) {
-  return [
-    '---',
-    `filename: ${normalizePath(reactAPI.filename)}`,
-    `title: ${reactAPI.name} API`,
-    '---',
-  ].join('\n');
+  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
 }
 
 function getDeprecatedInfo(type) {
@@ -288,7 +283,7 @@ function generateClasses(reactAPI) {
     text = reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n');
   }
 
-  return `## CSS API
+  return `## CSS
 
 You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
@@ -387,7 +382,7 @@ export default function generateMarkdown(reactAPI) {
     '',
     '<!--- This documentation is automatically generated, do not try to edit it. -->',
     '',
-    `# ${reactAPI.name}`,
+    `# ${reactAPI.name} API`,
     '',
     `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
       'Learn more about the properties and the CSS customization points.</p>',

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import deepPurple from '@material-ui/core/colors/deepPurple';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
   avatar: {
@@ -19,20 +20,16 @@ const styles = {
     color: '#fff',
     backgroundColor: deepPurple[500],
   },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
 };
 
 function LetterAvatars(props) {
   const { classes } = props;
   return (
-    <div className={classes.row}>
+    <Grid container justify="center" alignItems="center">
       <Avatar className={classes.avatar}>H</Avatar>
       <Avatar className={classes.orangeAvatar}>N</Avatar>
       <Avatar className={classes.purpleAvatar}>OP</Avatar>
-    </div>
+    </Grid>
   );
 }
 

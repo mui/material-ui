@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/FilledInput/FilledInput.js
-title: FilledInput API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# FilledInput
+# FilledInput API
 
 <p class="description">The API documentation of the FilledInput React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -47,7 +46,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 
 Any other properties supplied will be spread to the root element ([InputBase](/api/input-base/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
