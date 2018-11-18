@@ -36,7 +36,7 @@ const themes = [
       'A minimal dashboard with taskbar and mini variant draw. ' +
       'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
     src: '/static/images/layouts/dashboard.png',
-    pathname: '/getting-started/page-layout-examples/dashboard',
+    href: '/getting-started/page-layout-examples/dashboard',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/dashboard',
   },
@@ -44,7 +44,7 @@ const themes = [
     name: 'Sign-in',
     description: 'A simple sign-in page.',
     src: '/static/images/layouts/sign-in.png',
-    pathname: '/getting-started/page-layout-examples/sign-in',
+    href: '/getting-started/page-layout-examples/sign-in',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in',
   },
@@ -54,7 +54,7 @@ const themes = [
       'A sophisticated blog page layout. Markdown support is courtesy of markdown-to-jsx, ' +
       'but is easily replaced.',
     src: '/static/images/layouts/blog.png',
-    pathname: '/getting-started/page-layout-examples/blog',
+    href: '/getting-started/page-layout-examples/blog',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/blog',
   },
@@ -64,7 +64,7 @@ const themes = [
       'A step-by-step checkout page layout. ' +
       'Adapt the number of steps to suit your needs, or make steps optional.',
     src: '/static/images/layouts/checkout.png',
-    pathname: '/getting-started/page-layout-examples/checkout',
+    href: '/getting-started/page-layout-examples/checkout',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/checkout',
   },
@@ -72,7 +72,7 @@ const themes = [
     name: 'Album',
     description: 'A responsive album / gallery page layout with a hero unit and footer.',
     src: '/static/images/layouts/album.png',
-    pathname: '/getting-started/page-layout-examples/album',
+    href: '/getting-started/page-layout-examples/album',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/album',
   },
@@ -82,7 +82,7 @@ const themes = [
       'Quickly build an effective pricing table for your potential customers with this page ' +
       'layout.',
     src: '/static/images/layouts/pricing.png',
-    pathname: '/getting-started/page-layout-examples/pricing',
+    href: '/getting-started/page-layout-examples/pricing',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/pricing',
   },
@@ -97,7 +97,7 @@ function PageLayoutExamples(props) {
           <Card className={classes.card}>
             <CardMedia
               component="a"
-              href={_rewriteUrlForNextExport(theme.pathname)}
+              href={_rewriteUrlForNextExport(theme.href)}
               className={classes.cardMedia}
               image={theme.src}
               title={theme.name}
