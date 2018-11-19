@@ -18,70 +18,63 @@ const styles = theme => ({
   },
 });
 
-class MenuListComposition extends React.Component {
-  state = {
-    open: false,
-  };
+function MenuListComposition(props) {
+  const { classes } = props;
+  const [open, setOpen] = React.useState(false);
+  const anchorEl = React.useRef(null);
 
-  handleToggle = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
+  function handleToggle() {
+    setOpen(!open);
+  }
 
-  handleClose = event => {
-    if (this.anchorEl.contains(event.target)) {
+  function handleClose(event) {
+    if (anchorEl.current.contains(event.target)) {
       return;
     }
 
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <MenuList>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>My account</MenuItem>
-            <MenuItem>Logout</MenuItem>
-          </MenuList>
-        </Paper>
-        <div>
-          <Button
-            buttonRef={node => {
-              this.anchorEl = node;
-            }}
-            aria-owns={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={this.handleToggle}
-          >
-            Toggle Menu Grow
-          </Button>
-          <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                id="menu-list-grow"
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.handleClose}>
-                    <MenuList>
-                      <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-      </div>
-    );
+    setOpen(false);
   }
+
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <MenuList>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>My account</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </MenuList>
+      </Paper>
+      <div>
+        <Button
+          buttonRef={anchorEl}
+          aria-owns={open ? 'menu-list-grow' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          Toggle Menu Grow
+        </Button>
+        <Popper open={open} anchorEl={anchorEl.current} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              id="menu-list-grow"
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList>
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
+    </div>
+  );
 }
 
 MenuListComposition.propTypes = {
