@@ -506,6 +506,7 @@ class Slider extends React.Component {
       <Component
         role="slider"
         className={className}
+        aria-disabled={disabled}
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}
@@ -524,6 +525,7 @@ class Slider extends React.Component {
           <div className={thumbWrapperClasses} style={inlineThumbStyles}>
             <ButtonBase
               className={thumbClasses}
+              disabled={disabled}
               disableRipple
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
