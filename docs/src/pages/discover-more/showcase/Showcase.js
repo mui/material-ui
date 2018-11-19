@@ -35,6 +35,12 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'Swimmy',
+    description: 'An open source forum PWA.',
+    image: '/static/images/showcase/swimmy.jpg',
+    link: 'https://swimmy.io/',
+  },
+  {
     title: 'Onepixel',
     description: 'Beautiful Stock Photos for $1.',
     image: '/static/images/showcase/onepixel.jpg',
