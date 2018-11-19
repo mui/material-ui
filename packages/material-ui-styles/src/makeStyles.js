@@ -203,7 +203,7 @@ function makeStyles(stylesOrCreator, options = {}) {
     const firstRender = React.useRef(true);
     React.useEffect(() => {
       firstRender.current = false;
-    });
+    }, []);
 
 <<<<<<< HEAD
     // Execute synchronously every time the theme changes.
