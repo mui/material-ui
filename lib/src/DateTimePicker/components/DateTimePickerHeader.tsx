@@ -1,3 +1,4 @@
+import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
@@ -13,7 +14,7 @@ import { MaterialUiPickersDate } from '../../typings/date';
 export type MeridiemMode = 'am' | 'pm';
 export interface DateTimePickerHeaderProps
   extends WithUtilsProps,
-    WithStyles<typeof styles, true> {
+    WithStyles<typeof styles> {
   date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
   openView: DateTimePickerViewType;
@@ -22,52 +23,39 @@ export interface DateTimePickerHeaderProps
   ampm?: boolean;
 }
 
-export const DateTimePickerHeader: React.SFC<
-  DateTimePickerHeaderProps
-> = props => {
-  const {
-    date,
-    classes,
-    openView,
-    meridiemMode,
-    onOpenViewChange,
-    setMeridiemMode,
-    theme,
-    utils,
-    ampm,
-  } = props;
-
-  const changeOpenView = (view: DateTimePickerView) => () =>
-    onOpenViewChange(view);
-
-  const rtl = theme.direction === 'rtl';
-  const hourMinuteClassName = rtl
-    ? classes.hourMinuteLabelReverse
-    : classes.hourMinuteLabel;
-
+export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
+  date,
+  classes,
+  openView,
+  meridiemMode,
+  onOpenViewChange,
+  setMeridiemMode,
+  utils,
+  ampm,
+}) => {
   return (
     <PickerToolbar className={classes.toolbar}>
       <div className={classes.dateHeader}>
         <ToolbarButton
           variant="subtitle1"
-          onClick={changeOpenView(DateTimePickerView.YEAR)}
+          onClick={() => onOpenViewChange(DateTimePickerView.YEAR)}
           selected={openView === DateTimePickerView.YEAR}
           label={utils.getYearText(date)}
         />
 
         <ToolbarButton
           variant="h4"
-          onClick={changeOpenView(DateTimePickerView.DATE)}
+          onClick={() => onOpenViewChange(DateTimePickerView.DATE)}
           selected={openView === DateTimePickerView.DATE}
           label={utils.getDateTimePickerHeaderText(date)}
         />
       </div>
 
       <div className={classes.timeHeader}>
-        <div className={hourMinuteClassName}>
+        <div className={classes.hourMinuteLabel}>
           <ToolbarButton
             variant="h3"
-            onClick={changeOpenView(DateTimePickerView.HOUR)}
+            onClick={() => onOpenViewChange(DateTimePickerView.HOUR)}
             selected={openView === DateTimePickerView.HOUR}
             label={utils.getHourText(date, ampm!)}
           />
@@ -81,7 +69,7 @@ export const DateTimePickerHeader: React.SFC<
 
           <ToolbarButton
             variant="h3"
-            onClick={changeOpenView(DateTimePickerView.MINUTES)}
+            onClick={() => onOpenViewChange(DateTimePickerView.MINUTES)}
             selected={openView === DateTimePickerView.MINUTES}
             label={utils.getMinuteText(date)}
           />
@@ -114,7 +102,6 @@ export const DateTimePickerHeader: React.SFC<
 (DateTimePickerHeader as any).propTypes = {
   date: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
   meridiemMode: PropTypes.string.isRequired,
   openView: PropTypes.string.isRequired,
   onOpenViewChange: PropTypes.func.isRequired,
@@ -128,7 +115,7 @@ DateTimePickerHeader.defaultProps = {
   ampm: true,
 };
 
-const styles = () =>
+const styles = (theme: Theme) =>
   createStyles({
     toolbar: {
       flexDirection: 'row',
@@ -142,6 +129,8 @@ const styles = () =>
       cursor: 'default',
     },
     ampmSelection: {
+      top: 9,
+      position: 'relative',
       marginLeft: 10,
       marginRight: -10,
     },
@@ -149,18 +138,15 @@ const styles = () =>
       fontSize: 18,
     },
     hourMinuteLabel: {
+      top: 5,
+      position: 'relative',
       display: 'flex',
       justifyContent: 'flex-end',
       alignItems: 'flex-end',
-    },
-    hourMinuteLabelReverse: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-      flexDirection: 'row-reverse',
+      flexDirection: theme.direction === 'rtl' ? 'row' : 'row-reverse',
     },
     dateHeader: {
-      height: 65,
+      height: 60,
     },
     timeHeader: {
       height: 65,
@@ -170,6 +156,4 @@ const styles = () =>
     },
   });
 
-export default withStyles(styles, { withTheme: true })(
-  withUtils()(DateTimePickerHeader)
-);
+export default withStyles(styles)(withUtils()(DateTimePickerHeader));

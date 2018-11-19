@@ -15,7 +15,6 @@ describe('DateTimePickerHeader', () => {
         setMeridiemMode={() => jest.fn()}
         date={utilsToUse.date('01-01-2017')}
         classes={{} as any}
-        theme={{} as any}
         meridiemMode="am"
         openView="year"
         onOpenViewChange={jest.fn()}
