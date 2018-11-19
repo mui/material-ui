@@ -1,6 +1,8 @@
 import './utils/performance';
 import './utils/init';
 
+import '@babel/polyfill';
+
 // eslint-disable-next-line no-underscore-dangle
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 

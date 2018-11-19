@@ -62,7 +62,7 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            exclude: /node_modules(\\|\/)(?!(sinon)(\\|\/)).*/,
           },
         ],
       },
@@ -117,6 +117,13 @@ module.exports = function setKarmaConfig(config) {
           os_version: '10',
           browser: 'Edge',
           browser_version: '14.0',
+        },
+        BrowserStack_IE: {
+          base: 'BrowserStack',
+          os: 'Windows',
+          os_version: '10',
+          browser: 'IE',
+          browser_version: '11.0',
         },
       }),
     });
