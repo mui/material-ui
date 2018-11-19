@@ -101,6 +101,7 @@ class SpeedDialAction extends React.Component {
         placement={tooltipPlacement}
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
+        classes={classes.tooltip}
         open={open && this.state.tooltipOpen}
         {...other}
       >
