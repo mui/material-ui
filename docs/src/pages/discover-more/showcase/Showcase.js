@@ -199,6 +199,19 @@ const appList = [
     source: 'https://github.com/richardscarrott/snippets',
   },
   {
+    title: 'SelfEducation.app',
+    description: 'Watch short videos and develop your skills',
+    image: '/static/images/showcase/selfeducationapp.jpg',
+    link: 'https://selfeducation.app/',
+  },
+  {
+    title: 'Swimmy',
+    description: 'An open source forum PWA.',
+    image: '/static/images/showcase/swimmy.jpg',
+    link: 'https://swimmy.io/',
+    source: 'https://github.com/uufish/swimmy.io',
+  },
+  {
     title: 'Componofy: Spotify Playlist Combination',
     description:
       'A web app that allows a Spotify user to combine private and public playlists ' +
@@ -241,12 +254,6 @@ const appList = [
     image: '/static/images/showcase/typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
-  },
-  {
-    title: 'SelfEducation.app',
-    description: 'Watch short videos and develop your skills',
-    image: '/static/images/showcase/selfeducationapp.png',
-    link: 'https://selfeducation.app/',
   },
 ];
 
