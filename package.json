@@ -36,7 +36,7 @@
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
-    "prettier": "babel-node ./scripts/prettier.js write-changed",
+    "prettier": "babel-node ./scripts/prettier.js",
     "prettier:all":"babel-node ./scripts/prettier.js write",
     "size": "size-limit",
     "size:why": "size-limit --why packages/material-ui/build/index.js",

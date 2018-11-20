@@ -58,7 +58,7 @@ jobs:
       - *install_js
       - run:
           name: Check if yarn prettier was run
-          command: yarn babel-node ./scripts/prettier.js check-changed
+          command: yarn prettier check-changed
       - run:
           name: Lint
           command: yarn lint
