@@ -14,7 +14,7 @@
     "release": "lerna run release --scope --parallel material-ui-pickers && lerna run deploy --scope --parallel docs",
     "release:patch": "npm run bump:patch && npm run release",
     "release:minor": "npm run bump:minor && npm run release",
-    "postinstall": "lerna link"
+    "postinstall": "lerna bootstrap"
   },
   "repository": {
     "type": "git",
