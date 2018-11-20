@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "0.0.2",
