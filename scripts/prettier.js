@@ -3,35 +3,19 @@
 // Based on similar script in React
 // https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/scripts/prettier/index.js
 
-import glob from 'glob';
-import prettier from 'prettier';
-import fs from 'fs';
-import path from 'path';
-import listChangedFiles from './listChangedFiles';
+// supported modes = check, check-changed, write, write-changed
+
+const glob = require('glob-gitignore');
+const prettier = require('prettier');
+const fs = require('fs');
+const path = require('path');
+const listChangedFiles = require('./listChangedFiles');
 
 const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
 
 const mode = process.argv[2] || 'write-changed';
 const shouldWrite = mode === 'write' || mode === 'write-changed';
 const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
-
-function mapEslintEntriesToGlobs(file) {
-  let prefix = '';
-  let hasSlashPrefix = false;
-  let suffix = '';
-
-  if (file.charAt(0) === '/') {
-    hasSlashPrefix = true;
-  } else {
-    prefix = '**/';
-  }
-
-  if (!path.extname(file)) {
-    suffix = '/**';
-  }
-  console.log(`${prefix}${hasSlashPrefix ? file.substring(1) : file}${suffix}`);
-  return `${prefix}${hasSlashPrefix ? file.substring(1) : file}${suffix}`;
-}
 
 function runPrettier(changedFiles) {
   let didWarn = false;
@@ -41,8 +25,7 @@ function runPrettier(changedFiles) {
   const ignoredFiles = fs
     .readFileSync('.eslintignore', 'utf-8')
     .split(/\r*\n/)
-    .filter(notEmpty => notEmpty)
-    .map(file => mapEslintEntriesToGlobs(file));
+    .filter(notEmpty => notEmpty);
 
   const files = glob
     .sync('**/*.{js,tsx,d.ts}', { ignore: ['**/node_modules/**', ...ignoredFiles] })
@@ -95,7 +78,7 @@ function runPrettier(changedFiles) {
 if (onlyChanged) {
   listChangedFiles()
     .then(changedFiles => {
-      runPrettier(changedFiles);
+      return runPrettier(changedFiles);
     })
     .catch(console.error);
 } else {

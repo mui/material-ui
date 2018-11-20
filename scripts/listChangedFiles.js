@@ -2,8 +2,9 @@
 
 // Based on similar script in React
 // https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/scripts/shared/listChangedFiles.js
-import { promisify } from 'util';
-import { execFile } from 'child_process';
+
+const promisify = require('util').promisify;
+const execFile = require('child_process').execFile;
 
 const execFileAsync = promisify(execFile);
 
