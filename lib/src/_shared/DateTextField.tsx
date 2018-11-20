@@ -226,13 +226,12 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       prevProps.emptyLabel !== this.props.emptyLabel ||
       prevProps.utils !== this.props.utils
     ) {
-      /* eslint-disable-next-line react/no-did-update-set-state */
       this.setState(DateTextField.updateState(this.props));
     }
   }
 
   public commitUpdates = (value: string) => {
-    const { clearable, onClear, utils, format, onError } = this.props;
+    const { onChange, clearable, onClear, utils, format, onError } = this.props;
 
     if (value === '') {
       if (this.props.value === null) {
@@ -256,7 +255,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       },
       () => {
         if (!error && !utils.isEqual(newValue, oldValue)) {
-          this.props.onChange(newValue);
+          onChange(newValue);
         }
 
         if (error && onError) {

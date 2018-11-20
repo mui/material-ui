@@ -99,18 +99,17 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const { date, minDate, maxDate, utils, disablePast } = this.props;
 
     if (this.shouldDisableDate(date)) {
-      this.onDateSelect(
-        findClosestEnabledDate({
-          date,
-          utils,
-          minDate,
-          maxDate,
-          disablePast: Boolean(disablePast),
-          disableFuture: Boolean(disablePast),
-          shouldDisableDate: this.shouldDisableDate,
-        }),
-        false
-      );
+      const closestEnabledDate = findClosestEnabledDate({
+        date,
+        utils,
+        minDate,
+        maxDate,
+        disablePast: Boolean(disablePast),
+        disableFuture: Boolean(disablePast),
+        shouldDisableDate: this.shouldDisableDate,
+      });
+
+      this.onDateSelect(closestEnabledDate || minDate, false);
     }
   }
 
