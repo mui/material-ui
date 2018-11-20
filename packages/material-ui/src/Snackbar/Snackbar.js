@@ -292,7 +292,7 @@ Snackbar.propTypes = {
    */
   autoHideDuration: PropTypes.number,
   /**
-   * If you wish the take control over the children of the component you can use this property.
+   * If you wish to take control over the children of the component you can use this property.
    * When used, you replace the `SnackbarContent` component with the children.
    */
   children: PropTypes.element,
