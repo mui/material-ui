@@ -32,6 +32,7 @@ const navItems = [
   {
     title: 'Guides',
     children: [
+      { title: 'Form integration', href: '/guides/formik-integration' },
       { title: 'CSS overrides', href: '/guides/css-overrides' },
       { title: 'Global format customization', href: '/guides/formats' },
       {
