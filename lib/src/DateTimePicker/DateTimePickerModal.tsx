@@ -40,6 +40,8 @@ export const DateTimePickerModal: React.SFC<
     ...other
   } = props;
 
+  // do not show tabs for small screens
+  const toShowTabs = showTabs && window && window.innerHeight > 667;
   return (
     <BasePicker {...props}>
       {({
@@ -55,6 +57,7 @@ export const DateTimePickerModal: React.SFC<
         pick12hOr24hFormat,
       }) => (
         <ModalWrapper
+          showTabs={toShowTabs}
           ref={forwardedRef}
           disableFuture={disableFuture}
           disablePast={disablePast}
@@ -90,7 +93,7 @@ export const DateTimePickerModal: React.SFC<
             renderDay={renderDay}
             rightArrowIcon={rightArrowIcon}
             shouldDisableDate={shouldDisableDate}
-            showTabs={showTabs}
+            showTabs={toShowTabs}
             timeIcon={timeIcon}
           />
         </ModalWrapper>
@@ -148,7 +151,7 @@ export const DateTimePickerModal: React.SFC<
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
-(DateTimePickerModal as any).defaultProps = {
+DateTimePickerModal.defaultProps = {
   value: new Date(),
   format: undefined,
   autoOk: false,

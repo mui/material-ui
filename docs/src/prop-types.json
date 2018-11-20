@@ -320,7 +320,7 @@
       },
       "required": false,
       "type": {
-        "name": "string | ComponentClass<StandardTextFieldProps, any> | StatelessComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | StatelessComponent<HTMLAttributes<any>>"
+        "name": "string | ComponentClass<StandardTextFieldProps, any> | FunctionComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | FunctionComponent<HTMLAttributes<any>>"
       }
     },
     "InputAdornmentProps": {
@@ -632,7 +632,7 @@
       },
       "required": false,
       "type": {
-        "name": "string | ComponentClass<StandardTextFieldProps, any> | StatelessComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | StatelessComponent<HTMLAttributes<any>>"
+        "name": "string | ComponentClass<StandardTextFieldProps, any> | FunctionComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | FunctionComponent<HTMLAttributes<any>>"
       }
     },
     "InputAdornmentProps": {
@@ -1045,7 +1045,7 @@
       },
       "required": false,
       "type": {
-        "name": "string | ComponentClass<StandardTextFieldProps, any> | StatelessComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | StatelessComponent<HTMLAttributes<any>>"
+        "name": "string | ComponentClass<StandardTextFieldProps, any> | FunctionComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | FunctionComponent<HTMLAttributes<any>>"
       }
     },
     "InputAdornmentProps": {

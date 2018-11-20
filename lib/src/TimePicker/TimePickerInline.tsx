@@ -26,7 +26,7 @@ export const TimePickerInline: React.SFC<TimePickerInlineProps> = props => {
   } = props;
 
   return (
-    <BasePicker {...props} autoOk>
+    <BasePicker mergePreviousDateOnChange autoOk {...props}>
       {({
         date,
         utils,

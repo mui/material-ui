@@ -1,4 +1,4 @@
-// Ensure environment variables are read.
+process.env.NODE_ENV = 'production';
 require('react-scripts/config/env');
 
 const fse = require('fs-extra');

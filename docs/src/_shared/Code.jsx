@@ -27,12 +27,12 @@ const anchorLinkStyle = (theme, size) => ({
 
 const styles = theme => ({
   root: {
-    margin: 0,
+    margin: '0',
     fontFamily: theme.typography.fontFamily,
     fontSize: '0.9em',
     color: theme.palette.text.primary,
-    backgroundColor: theme.palette.background.paper,
     padding: 10,
+    backgroundColor: theme.palette.background.paper,
 
     '& .anchor-link': {
       marginTop: -theme.spacing.unit * 12, // Offset for the anchor.
