@@ -102,7 +102,7 @@ jobs:
             fi
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash) -Z
+          command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
   test_material-ui-x:
     <<: *defaults
     steps:
