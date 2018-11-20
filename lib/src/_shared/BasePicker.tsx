@@ -91,7 +91,6 @@ export class BasePicker extends React.Component<
     this.handleChange(this.props.utils.date(), false);
 
   public handleTextFieldChange = (date: MaterialUiPickersDate) => {
-    console.log(date);
     const { onChange, utils, mergePreviousDateOnChange } = this.props;
 
     if (mergePreviousDateOnChange) {
