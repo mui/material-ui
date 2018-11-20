@@ -40,6 +40,7 @@ export interface BasePickerProps {
   /** Date that will be initially highlighted */
   initialFocusedDate?: DateType;
   forwardedRef?: any;
+  mergePreviousDateOnChange?: boolean;
 }
 
 export interface OuterBasePickerProps extends BasePickerProps, WithUtilsProps {
@@ -90,7 +91,12 @@ export class BasePicker extends React.Component<
     this.handleChange(this.props.utils.date(), false);
 
   public handleTextFieldChange = (date: MaterialUiPickersDate) => {
-    const { onChange } = this.props;
+    const { onChange, utils, mergePreviousDateOnChange } = this.props;
+
+    if (mergePreviousDateOnChange) {
+      date = utils.mergeDateAndTime(this.state.date, date);
+    }
+
     if (date === null) {
       onChange(null);
     } else {

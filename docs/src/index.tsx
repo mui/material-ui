@@ -6,14 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import Utils from '@date-io/date-fns';
 import { BrowserRouter } from 'react-router-dom';
-
-// @ts-ignore
-window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+
+// @ts-ignore
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 // @ts-ignore Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });

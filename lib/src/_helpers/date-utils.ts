@@ -28,6 +28,7 @@ export const findClosestEnabledDate = ({
   if (disablePast && utils.isBefore(minDate, today)) {
     minDate = today;
   }
+
   if (disableFuture && utils.isAfter(maxDate, today)) {
     maxDate = today;
   }

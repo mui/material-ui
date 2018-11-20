@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Layout from './layout/Layout';
 import Router from './Pages/Router';
-import { setPrismTheme } from './utils/prism';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 interface AppState {

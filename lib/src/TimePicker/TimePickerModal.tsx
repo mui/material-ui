@@ -25,7 +25,7 @@ export const TimePickerModal: React.SFC<TimePickerModalProps> = props => {
   } = props;
 
   return (
-    <BasePicker {...props}>
+    <BasePicker mergePreviousDateOnChange {...props}>
       {({
         date,
         utils,
