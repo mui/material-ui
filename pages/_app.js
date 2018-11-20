@@ -1,6 +1,3 @@
-// Use the same helper as Babel to avoid bundle bloat.
-import 'core-js/modules/es6.array.find-index';
-import 'core-js/modules/es6.set';
 import 'docs/src/modules/components/bootstrap';
 
 import React from 'react';

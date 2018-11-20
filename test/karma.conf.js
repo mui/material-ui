@@ -62,6 +62,7 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.js$/,
             loader: 'babel-loader',
+            // https://github.com/sinonjs/sinon/issues/1951
             exclude: /node_modules(\\|\/)(?!(sinon)(\\|\/)).*/,
           },
         ],
@@ -82,7 +83,12 @@ module.exports = function setKarmaConfig(config) {
   if (browserStack.accessKey) {
     newConfig = Object.assign({}, baseConfig, {
       browserStack,
-      browsers: ['BrowserStack_IE'],
+      browsers: baseConfig.browsers.concat([
+        'BrowserStack_Chrome',
+        'BrowserStack_Firefox',
+        'BrowserStack_Safari',
+        'BrowserStack_Edge',
+      ]),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
         BrowserStack_Chrome: {
@@ -90,7 +96,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Sierra',
           browser: 'Chrome',
-          browser_version: '45.0',
+          browser_version: '41.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',
@@ -112,13 +118,6 @@ module.exports = function setKarmaConfig(config) {
           os_version: '10',
           browser: 'Edge',
           browser_version: '14.0',
-        },
-        BrowserStack_IE: {
-          base: 'BrowserStack',
-          os: 'Windows',
-          os_version: '10',
-          browser: 'IE',
-          browser_version: '11.0',
         },
       }),
     });
