@@ -84,10 +84,8 @@ class AppWrapper extends React.Component {
         sheetsManager={pageContext.sheetsManager}
         sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <ThemeProvider theme={pageContext.theme}>
-          {children}
-          <GoogleAnalytics />
-        </ThemeProvider>
+        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+        <GoogleAnalytics />
       </StylesProvider>
     );
   }
