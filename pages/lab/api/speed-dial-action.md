@@ -36,6 +36,7 @@ This property accepts the following keys:
 
 | Name | Description |
 |:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">button</span> | Styles applied to the `Button` component.
 | <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
 
