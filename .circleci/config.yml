@@ -57,30 +57,8 @@ jobs:
       - *restore_yarn_cache
       - *install_js
       - run:
-          name: Export changed files
-          command: |
-            # changed files on this branch
-            # `git diff --name-only master` but since the checkout used reset --hard
-            # we need to parse the revs for the actual master
-            echo 'export CHANGED_FILES=$(git diff --name-only $(git rev-parse origin/master)...)' >> $BASH_ENV
-      - run:
           name: Check if yarn prettier was run
-          command: |
-            # if we use an empty string as a pattern grep will match everything
-            if [ -z "$CHANGED_FILES" ]; then
-              echo "no changes"
-            else
-              # Files that should have been formatted while working on this branch
-              # CircleCI does not support interpolation when setting environment variables
-              echo 'export FORMATTED_FILES=$(yarn --silent prettier:files | grep "$CHANGED_FILES")' >> $BASH_ENV
-              source $BASH_ENV
-
-              if [ -z "$FORMATTED_FILES" ]; then
-                echo "no files for prettier were changed"
-              else
-                yarn prettier:ci $FORMATTED_FILES
-              fi
-            fi
+          command: yarn prettier check-changed
       - run:
           name: Lint
           command: yarn lint
