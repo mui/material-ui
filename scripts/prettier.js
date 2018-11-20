@@ -5,13 +5,11 @@
 
 // supported modes = check, check-changed, write, write-changed
 
-const glob = require('glob-gitignore');
-const prettier = require('prettier');
-const fs = require('fs');
-const path = require('path');
-const listChangedFiles = require('./listChangedFiles');
-
-const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
+import glob from 'glob-gitignore';
+import prettier from 'prettier';
+import fs from 'fs';
+import path from 'path';
+import listChangedFiles from './listChangedFiles';
 
 const mode = process.argv[2] || 'write-changed';
 const shouldWrite = mode === 'write' || mode === 'write-changed';
@@ -35,10 +33,13 @@ function runPrettier(changedFiles) {
     process.exit(0);
   }
 
+  const prettierConfigPath = path.join(__dirname, '../prettier.config.js');
+
   files.forEach(file => {
     const options = prettier.resolveConfig.sync(file, {
       config: prettierConfigPath,
     });
+
     try {
       const input = fs.readFileSync(file, 'utf8');
       if (shouldWrite) {
@@ -75,12 +76,18 @@ function runPrettier(changedFiles) {
   }
 }
 
-if (onlyChanged) {
-  listChangedFiles()
-    .then(changedFiles => {
-      return runPrettier(changedFiles);
-    })
-    .catch(console.error);
-} else {
-  runPrettier();
+async function run() {
+  try {
+    if (onlyChanged) {
+      const changedFiles = await listChangedFiles();
+      runPrettier(changedFiles);
+      return;
+    }
+
+    runPrettier();
+  } catch (err) {
+    console.error(err);
+  }
 }
+
+run();
