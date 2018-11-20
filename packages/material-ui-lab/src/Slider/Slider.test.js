@@ -166,5 +166,13 @@ describe('<Slider />', () => {
 
       assert.strictEqual(handleChange.callCount, 0);
     });
+
+    it('should disable its thumb', () => {
+      assert.ok(wrapper.find('button').props().disabled);
+    });
+
+    it('should signal that it is disabled', () => {
+      assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
+    });
   });
 });
