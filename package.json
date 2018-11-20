@@ -42,7 +42,7 @@
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' 'docs/**/*.test.js'",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js'",
     "test:watch": "yarn test:unit --watch",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' && nyc report -r lcovonly",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' && nyc report --reporter=html",

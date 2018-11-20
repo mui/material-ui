@@ -28,7 +28,8 @@
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
-    "release": "yarn build && npm publish build"
+    "release": "yarn build && npm publish build",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.js'"
   },
   "peerDependencies": {
     "react": "^16.7.0-alpha.0",
