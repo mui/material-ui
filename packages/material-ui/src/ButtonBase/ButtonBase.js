@@ -359,7 +359,8 @@ ButtonBase.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * Either a string to use a DOM element or a component. If a component is provided
+   * it must properly forward their refs via React.forwardRef.
    */
   component: PropTypes.elementType,
   /**
