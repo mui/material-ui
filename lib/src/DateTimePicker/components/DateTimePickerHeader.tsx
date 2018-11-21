@@ -143,7 +143,7 @@ const styles = (theme: Theme) =>
       display: 'flex',
       justifyContent: 'flex-end',
       alignItems: 'flex-end',
-      flexDirection: theme.direction === 'rtl' ? 'row' : 'row-reverse',
+      flexDirection: theme.direction === 'rtl' ? 'row-reverse' : 'row',
     },
     dateHeader: {
       height: 60,
