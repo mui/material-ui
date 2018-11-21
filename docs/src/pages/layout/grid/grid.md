@@ -89,7 +89,7 @@ There is one limitation with the negative margin we use to implement the spacing
 A horizontal scroll will appear if a negative margin goes beyond the `<body>`.
 There are 3 available workarounds:
 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default).
-2. Adding a padding on the parent with, at least, the spacing value:
+2. Applying padding to the parent with at least half the the spacing value applied to the child:
 ```jsx
   <body>
     <div style={{ padding: 20 }}>
@@ -99,7 +99,7 @@ There are 3 available workarounds:
     </div>
   </body>
 ```
-3. Adding `overflow-x: hidden;` on the parent.
+3. Adding `overflow-x: hidden;` to the parent.
 
 ### white-space: nowrap;
 
