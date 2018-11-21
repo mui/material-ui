@@ -43,7 +43,7 @@ import Input from '@material-ui/core/Input';
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |   | Maximum number of rows to display when multiline option is set to true. |
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node</span> |   | Start `InputAdornment` for this component. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |   | Type of the input element. It should be a valid HTML5 input type. |
-| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br></span> |   | The input value, required for a controlled component. |
+| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string, number, bool, object, arrayOf<br></span> |   | The input value, required for a controlled component. |
 
 Any other properties supplied will be spread to the root element ([InputBase](/api/input-base/)).
 
