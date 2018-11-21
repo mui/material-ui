@@ -38,6 +38,8 @@ renderer.heading = (text, level) => {
 const styles = theme => ({
   root: {
     top: 70,
+    // Fix IE 11 position sticky issue.
+    marginTop: 70,
     width: 162,
     flexShrink: 0,
     order: 2,
