@@ -53,7 +53,7 @@ class SimpleGrow extends React.Component {
           <Grow
             in={checked}
             style={{ transformOrigin: '0 0 0' }}
-            {...(checked ? { timeout: 1000 } : {})}
+            timeout={1000}
           >
             <Paper elevation={4} className={classes.paper}>
               <svg className={classes.svg}>
