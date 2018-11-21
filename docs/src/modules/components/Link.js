@@ -9,11 +9,11 @@ import { connect } from 'react-redux';
 import compose from 'docs/src/modules/utils/compose';
 
 function NextComposed(props) {
-  const { as, href, prefetch, ...other } = props;
+  const { as, href, innerRef, prefetch, ...other } = props;
 
   return (
     <NextLink href={href} prefetch={prefetch} as={as}>
-      <a {...other} />
+      <a ref={innerRef} {...other} />
     </NextLink>
   );
 }
@@ -21,12 +21,13 @@ function NextComposed(props) {
 NextComposed.propTypes = {
   as: PropTypes.string,
   href: PropTypes.string,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   prefetch: PropTypes.bool,
 };
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function Link(props) {
+const Link = React.forwardRef(function Link(props, ref) {
   const {
     activeClassName,
     className: classNameProps,
@@ -46,11 +47,11 @@ function Link(props) {
   }
 
   if (naked) {
-    return <NextComposed className={className} {...other} />;
+    return <NextComposed className={className} innerRef={ref} {...other} />;
   }
 
-  return <MuiLink component={NextComposed} className={className} {...other} />;
-}
+  return <MuiLink component={NextComposed} className={className} ref={ref} {...other} />;
+});
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
