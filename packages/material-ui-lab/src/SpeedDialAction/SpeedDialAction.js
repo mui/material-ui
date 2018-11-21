@@ -1,3 +1,5 @@
+// @inheritedComponent Tooltip
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -7,8 +9,6 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export const styles = theme => ({
-  /* Styles applied to the root element. */
-  root: {},
   /* Styles applied to the `Button` component. */
   button: {
     margin: 8,
@@ -103,7 +103,6 @@ class SpeedDialAction extends React.Component {
         placement={tooltipPlacement}
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
-        className={classes.root}
         open={open && this.state.tooltipOpen}
         {...other}
       >

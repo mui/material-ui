@@ -282,6 +282,7 @@ class Tooltip extends React.Component {
       'aria-describedby': open ? id || this.defaultId : null,
       title: !open && typeof title === 'string' ? title : null,
       ...other,
+      ...children.props,
     };
 
     if (!disableTouchListener) {
