@@ -449,7 +449,9 @@ InputBase.propTypes = {
     PropTypes.number,
     PropTypes.bool,
     PropTypes.object,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object])),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
   /**
    * If `true`, the input will be disabled.
@@ -574,7 +576,9 @@ InputBase.propTypes = {
     PropTypes.number,
     PropTypes.bool,
     PropTypes.object,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object])),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
 };
 
