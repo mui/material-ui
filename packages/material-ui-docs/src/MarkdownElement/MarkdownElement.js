@@ -22,7 +22,8 @@ export function textToHash(text) {
   return text
     .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/\W/g, '-');
+    .replace(/\W+/g, '-')
+    .replace(/-$/g, '');
 }
 
 renderer.heading = (text, level) => {

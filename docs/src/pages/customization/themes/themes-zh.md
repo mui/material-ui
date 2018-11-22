@@ -19,7 +19,7 @@ If you wish to customize the theme, you need to use the `MuiThemeProvider` compo
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
 - [Palette](#palette)
-- [Type (light / dark theme)](#type-light-dark-theme-)
+- [Type (light / dark theme)](#type-light-dark-theme)
 - [Typography](#typography)
 - [Other variables](#other-variables)
 - [Custom variables](#custom-variables)
@@ -300,7 +300,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application
     },
   },
 });
