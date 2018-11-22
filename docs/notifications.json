@@ -1,10 +1,10 @@
 [
   {
-    "id": 27,
-    "text": "You can <a style=\"color: white;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about Material-UI and React ecosystem."
-  },
-  {
     "id": 30,
     "text": "Material-UI v3.5.1 is out 🎉. Please see <a style=\"color: white;\" target=\"_blank\" rel=\"noopener\" href=\"https://github.com/mui-org/material-ui/releases/tag/v3.5.1\">the release notes</a>."
+  },
+  {
+    "id": 31,
+    "text": "🔥 Black Friday. <a style=\"color: white;\" target=\"_blank\" rel=\"noopener\" href=\"https://www.creative-tim.com/product/buy/bundle/react-bundle/?partner=104080\">Save up to 90% on our premium Material-UI themes</a>."
   }
 ]
