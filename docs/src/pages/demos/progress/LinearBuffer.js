@@ -9,42 +9,37 @@ const styles = {
   },
 };
 
-class LinearBuffer extends React.Component {
-  state = {
-    completed: 0,
-    buffer: 10,
-  };
+function LinearBuffer(props) {
+  const { classes } = props;
+  const [completed, setCompleted] = React.useState(0);
+  const [buffer, setBuffer] = React.useState(10);
 
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 500);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  progress = () => {
-    const { completed } = this.state;
+  function progress() {
     if (completed > 100) {
-      this.setState({ completed: 0, buffer: 10 });
+      setCompleted(0);
+      setBuffer(10);
     } else {
       const diff = Math.random() * 10;
       const diff2 = Math.random() * 10;
-      this.setState({ completed: completed + diff, buffer: completed + diff + diff2 });
+      setCompleted(completed + diff);
+      setBuffer(completed + diff + diff2);
     }
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { completed, buffer } = this.state;
-    return (
-      <div className={classes.root}>
-        <LinearProgress variant="buffer" value={completed} valueBuffer={buffer} />
-        <br />
-        <LinearProgress color="secondary" variant="buffer" value={completed} valueBuffer={buffer} />
-      </div>
-    );
   }
+
+  React.useEffect(() => {
+    const timer = setInterval(progress, 500);
+    return () => {
+      clearInterval(timer);
+    };
+  });
+
+  return (
+    <div className={classes.root}>
+      <LinearProgress variant="buffer" value={completed} valueBuffer={buffer} />
+      <br />
+      <LinearProgress color="secondary" variant="buffer" value={completed} valueBuffer={buffer} />
+    </div>
+  );
 }
 
 LinearBuffer.propTypes = {

@@ -20,83 +20,72 @@ const styles = theme => ({
   },
 });
 
-class DelayingAppearance extends React.Component {
-  state = {
-    loading: false,
-    query: 'idle',
-  };
+function DelayingAppearance(props) {
+  const { classes } = props;
+  const [loading, setLoading] = React.useState(false);
+  const [query, setQuery] = React.useState('idle');
+  let timer = null;
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
+  React.useState(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  function handleClickLoading() {
+    setLoading(prevLoading => !prevLoading);
   }
 
-  handleClickLoading = () => {
-    this.setState(state => ({
-      loading: !state.loading,
-    }));
-  };
+  function handleClickQuery() {
+    clearTimeout(timer);
 
-  handleClickQuery = () => {
-    clearTimeout(this.timer);
-
-    if (this.state.query !== 'idle') {
-      this.setState({
-        query: 'idle',
-      });
+    if (query !== 'idle') {
+      setQuery('idle');
       return;
     }
 
-    this.setState({
-      query: 'progress',
-    });
-    this.timer = setTimeout(() => {
-      this.setState({
-        query: 'success',
-      });
+    setQuery('progress');
+    timer = setTimeout(() => {
+      setQuery('success');
     }, 2e3);
-  };
+  }
 
-  render() {
-    const { classes } = this.props;
-    const { loading, query } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.placeholder}>
+  return (
+    <div className={classes.root}>
+      <div className={classes.placeholder}>
+        <Fade
+          in={loading}
+          style={{
+            transitionDelay: loading ? '800ms' : '0ms',
+          }}
+          unmountOnExit
+        >
+          <CircularProgress />
+        </Fade>
+      </div>
+      <Button onClick={handleClickLoading} className={classes.button}>
+        {loading ? 'Stop loading' : 'Loading'}
+      </Button>
+      <div className={classes.placeholder}>
+        {query === 'success' ? (
+          <Typography>Success!</Typography>
+        ) : (
           <Fade
-            in={loading}
+            in={query === 'progress'}
             style={{
-              transitionDelay: loading ? '800ms' : '0ms',
+              transitionDelay: query === 'progress' ? '800ms' : '0ms',
             }}
             unmountOnExit
           >
             <CircularProgress />
           </Fade>
-        </div>
-        <Button onClick={this.handleClickLoading} className={classes.button}>
-          {loading ? 'Stop loading' : 'Loading'}
-        </Button>
-        <div className={classes.placeholder}>
-          {query === 'success' ? (
-            <Typography>Success!</Typography>
-          ) : (
-            <Fade
-              in={query === 'progress'}
-              style={{
-                transitionDelay: query === 'progress' ? '800ms' : '0ms',
-              }}
-              unmountOnExit
-            >
-              <CircularProgress />
-            </Fade>
-          )}
-        </div>
-        <Button onClick={this.handleClickQuery} className={classes.button}>
-          {query !== 'idle' ? 'Reset' : 'Simulate a load'}
-        </Button>
+        )}
       </div>
-    );
-  }
+      <Button onClick={handleClickQuery} className={classes.button}>
+        {query !== 'idle' ? 'Reset' : 'Simulate a load'}
+      </Button>
+    </div>
+  );
 }
 
 DelayingAppearance.propTypes = {

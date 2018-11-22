@@ -9,41 +9,31 @@ const styles = theme => ({
   },
 });
 
-class CircularStatic extends React.Component {
-  state = {
-    completed: 0,
-  };
+function CircularStatic(props) {
+  const { classes } = props;
+  const [completed, setCompleted] = React.useState(0);
 
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 1000);
+  function progress() {
+    setCompleted(prevCompleted => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+  React.useState(() => {
+    const timer = setInterval(progress, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-  progress = () => {
-    const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 10 });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <CircularProgress className={classes.progress} variant="static" value={5} />
-        <CircularProgress className={classes.progress} variant="static" value={25} />
-        <CircularProgress className={classes.progress} variant="static" value={50} />
-        <CircularProgress className={classes.progress} variant="static" value={75} />
-        <CircularProgress className={classes.progress} variant="static" value={100} />
-        <CircularProgress
-          className={classes.progress}
-          variant="static"
-          value={this.state.completed}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CircularProgress className={classes.progress} variant="static" value={5} />
+      <CircularProgress className={classes.progress} variant="static" value={25} />
+      <CircularProgress className={classes.progress} variant="static" value={50} />
+      <CircularProgress className={classes.progress} variant="static" value={75} />
+      <CircularProgress className={classes.progress} variant="static" value={100} />
+      <CircularProgress className={classes.progress} variant="static" value={completed} />
+    </div>
+  );
 }
 
 CircularStatic.propTypes = {

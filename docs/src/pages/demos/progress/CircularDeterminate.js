@@ -9,42 +9,32 @@ const styles = theme => ({
   },
 });
 
-class CircularDeterminate extends React.Component {
-  state = {
-    completed: 0,
-  };
+function CircularDeterminate(props) {
+  const { classes } = props;
+  const [completed, setCompleted] = React.useState(0);
 
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 20);
+  function progress() {
+    setCompleted(completed >= 100 ? 0 : completed + 1);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+  React.useEffect(() => {
+    const timer = setInterval(progress, 20);
+    return () => {
+      clearInterval(timer);
+    };
+  });
 
-  progress = () => {
-    const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <CircularProgress
-          className={classes.progress}
-          variant="determinate"
-          value={this.state.completed}
-        />
-        <CircularProgress
-          className={classes.progress}
-          variant="determinate"
-          value={this.state.completed}
-          color="secondary"
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CircularProgress className={classes.progress} variant="determinate" value={completed} />
+      <CircularProgress
+        className={classes.progress}
+        variant="determinate"
+        value={completed}
+        color="secondary"
+      />
+    </div>
+  );
 }
 
 CircularDeterminate.propTypes = {
