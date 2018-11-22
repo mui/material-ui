@@ -283,6 +283,7 @@ class Tooltip extends React.Component {
       title: !open && typeof title === 'string' ? title : null,
       ...other,
       ...children.props,
+      className: classNames(other.className, children.props.className),
     };
 
     if (!disableTouchListener) {

@@ -259,19 +259,19 @@ describe('<Tooltip />', () => {
     it('should forward properties to the child element', () => {
       const wrapper = shallow(
         <Tooltip className="foo" {...defaultProps}>
-          <h1>H1</h1>
+          <h1 className="bar">H1</h1>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.find('h1').props().className, 'foo');
+      assert.strictEqual(wrapper.find('h1').props().className, 'foo bar');
     });
 
     it('should respect the properties priority', () => {
       const wrapper = shallow(
-        <Tooltip className="foo" {...defaultProps}>
-          <h1 className="bar">H1</h1>
+        <Tooltip hidden {...defaultProps}>
+          <h1 hidden={false}>H1</h1>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.find('h1').props().className, 'bar');
+      assert.strictEqual(wrapper.find('h1').props().hidden, false);
     });
   });
 });
