@@ -72,8 +72,9 @@ function Avatar(props) {
       />
     );
   } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
-    const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-    children = React.cloneElement(childrenProp, { className: childrenClassName });
+    children = React.cloneElement(childrenProp, {
+      className: classNames(childrenClassNameProp, childrenProp.props.className),
+    });
   } else {
     children = childrenProp;
   }
