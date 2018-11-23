@@ -38,11 +38,13 @@ class Menu extends React.Component {
   }
 
   getContentAnchorEl = () => {
-    if (!this.menuListRef || !this.menuListRef.selectedItemRef) {
+    if (this.menuListRef) {
+      if (this.menuListRef.selectedItemRef) {
+        return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
+      }
       return ReactDOM.findDOMNode(this.menuListRef).firstChild;
     }
-
-    return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
+    return null;
   };
 
   focus = () => {
