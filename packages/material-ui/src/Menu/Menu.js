@@ -38,11 +38,11 @@ class Menu extends React.Component {
   }
 
   getContentAnchorEl = () => {
-    if (!this.menuListRef || !this.menuListRef.selectedItemRef) {
-      return ReactDOM.findDOMNode(this.menuListRef).firstChild;
+    if (this.menuListRef.selectedItemRef) {
+      return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
     }
 
-    return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
+    return ReactDOM.findDOMNode(this.menuListRef).firstChild;
   };
 
   focus = () => {
@@ -55,6 +55,10 @@ class Menu extends React.Component {
     if (menuList && menuList.firstChild) {
       menuList.firstChild.focus();
     }
+  };
+
+  handleMenuListRef = ref => {
+    this.menuListRef = ref;
   };
 
   handleEntering = element => {
@@ -122,9 +126,7 @@ class Menu extends React.Component {
           data-mui-test="Menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
-          ref={ref => {
-            this.menuListRef = ref;
-          }}
+          ref={this.handleMenuListRef}
         >
           {children}
         </MenuList>
