@@ -221,4 +221,11 @@ describe('<Menu />', () => {
       });
     });
   });
+
+  it('should not throw error on missing menuListRef ', () => {
+    const wrapper = shallow(<Menu open />);
+    const instance = wrapper.instance();
+    delete instance.menuListRef;
+    instance.getContentAnchorEl();
+  });
 });
