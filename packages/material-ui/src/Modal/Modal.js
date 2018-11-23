@@ -124,6 +124,7 @@ class Modal extends React.Component {
 
   handleOpened = () => {
     this.autoFocus();
+    this.props.manager.mount(this);
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     this.modalRef.scrollTop = 0;
@@ -298,7 +299,7 @@ class Modal extends React.Component {
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
-          className={classNames(classes.root, className, {
+          className={classNames('mui-fixed', classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
