@@ -153,6 +153,35 @@ describe('<ClickAwayListener />', () => {
       assert.strictEqual(handleClickAway.callCount, 1);
       assert.deepEqual(handleClickAway.args[0], [touchStartEvent]);
     });
+
+    it('should ignore `touchend` when preceeded by `touchmove` event', () => {
+      const handleClickAway = spy();
+      wrapper = mount(
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchEnd">
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+
+      const touchStartEvent = document.createEvent('Events');
+      touchStartEvent.initEvent('touchstart', true, true);
+      window.document.body.dispatchEvent(touchStartEvent);
+
+      const touchMoveEvent = document.createEvent('Events');
+      touchMoveEvent.initEvent('touchmove', true, true);
+      window.document.body.dispatchEvent(touchMoveEvent);
+
+      const touchEndEvent = document.createEvent('Events');
+      touchEndEvent.initEvent('touchend', true, true);
+      window.document.body.dispatchEvent(touchEndEvent);
+
+      assert.strictEqual(handleClickAway.callCount, 0);
+
+      touchEndEvent.initEvent('touchend', true, true);
+      window.document.body.dispatchEvent(touchEndEvent);
+
+      assert.strictEqual(handleClickAway.callCount, 1);
+      assert.deepEqual(handleClickAway.args[0], [touchEndEvent]);
+    });
   });
 
   describe('IE 11 issue', () => {
