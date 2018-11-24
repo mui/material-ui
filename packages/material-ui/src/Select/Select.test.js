@@ -85,4 +85,21 @@ describe('<Select />', () => {
       assert.strictEqual(React.isValidElement(selected), true);
     });
   });
+
+  describe('prop: value', () => {
+    it('should be able to use an object', () => {
+      const value = {};
+      const wrapper = mount(
+        <Select {...defaultProps} value={value}>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={value}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+      assert.strictEqual(wrapper.find(`.${classes.select}`).text(), 'Twenty');
+    });
+  });
 });
