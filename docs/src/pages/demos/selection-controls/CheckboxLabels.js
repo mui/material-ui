@@ -20,95 +20,82 @@ const styles = {
   checked: {},
 };
 
-class CheckboxLabels extends React.Component {
-  state = {
+function CheckboxLabels(props) {
+  const { classes } = props;
+  const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
     checkedF: true,
     checkedG: true,
+  });
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
   };
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
-            />
-          }
-          label="Secondary"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
-              value="checkedB"
-              color="primary"
-            />
-          }
-          label="Primary"
-        />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="Uncontrolled" />
-        <FormControlLabel disabled control={<Checkbox value="checkedD" />} label="Disabled" />
-        <FormControlLabel
-          disabled
-          control={<Checkbox checked value="checkedE" />}
-          label="Disabled"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedF}
-              onChange={this.handleChange('checkedF')}
-              value="checkedF"
-              indeterminate
-            />
-          }
-          label="Indeterminate"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedG}
-              onChange={this.handleChange('checkedG')}
-              value="checkedG"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
-              }}
-            />
-          }
-          label="Custom color"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} value="checkedH" />
-          }
-          label="Custom icon"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-              checkedIcon={<CheckBoxIcon fontSize="small" />}
-              value="checkedI"
-            />
-          }
-          label="Custom size"
-        />
-      </FormGroup>
-    );
-  }
+  return (
+    <FormGroup row>
+      <FormControlLabel
+        control={
+          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
+        }
+        label="Secondary"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange('checkedB')}
+            value="checkedB"
+            color="primary"
+          />
+        }
+        label="Primary"
+      />
+      <FormControlLabel control={<Checkbox value="checkedC" />} label="Uncontrolled" />
+      <FormControlLabel disabled control={<Checkbox value="checkedD" />} label="Disabled" />
+      <FormControlLabel disabled control={<Checkbox checked value="checkedE" />} label="Disabled" />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedF}
+            onChange={handleChange('checkedF')}
+            value="checkedF"
+            indeterminate
+          />
+        }
+        label="Indeterminate"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedG}
+            onChange={handleChange('checkedG')}
+            value="checkedG"
+            classes={{
+              root: classes.root,
+              checked: classes.checked,
+            }}
+          />
+        }
+        label="Custom color"
+      />
+      <FormControlLabel
+        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} value="checkedH" />}
+        label="Custom icon"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            checkedIcon={<CheckBoxIcon fontSize="small" />}
+            value="checkedI"
+          />
+        }
+        label="Custom size"
+      />
+    </FormGroup>
+  );
 }
 
 CheckboxLabels.propTypes = {
