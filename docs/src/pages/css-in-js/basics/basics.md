@@ -172,7 +172,7 @@ This button component has a color property that changes its color:
 
 ### Adapting hook API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHook.js"}}
+{{"demo": "pages/css-in-js/basics/AdaptingHook.js", "react":"next"}}
 
 ### Adapting styled components API
 
