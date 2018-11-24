@@ -22,14 +22,6 @@ The overlay can accommodate a `title`, `subtitle` and secondary action - in this
 
 {{"demo": "pages/demos/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
-## Advanced Grid list
-
-This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing.
-The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
-The secondary action `IconButton` is positioned on the left.
-
-{{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}
-
 ## Single line Grid list
 
 This example demonstrates a horizontal scrollable single-line grid list of images.
@@ -37,3 +29,11 @@ Horizontally scrolling grid lists are discouraged because the scrolling interfer
 One notable exception is a horizontally-scrolling, single-line grid list of images, such as a gallery.
 
 {{"demo": "pages/demos/grid-list/SingleLineGridList.js", "hideEditButton": true}}
+
+## Advanced Grid list
+
+This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing.
+The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
+The secondary action `IconButton` is positioned on the left.
+
+{{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}
