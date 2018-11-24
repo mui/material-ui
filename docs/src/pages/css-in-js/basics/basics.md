@@ -79,7 +79,7 @@ export default function Hook() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/Hook.js"}}
+{{"demo": "pages/css-in-js/basics/Hook.js", "react": "next"}}
 
 ### Styled components API
 

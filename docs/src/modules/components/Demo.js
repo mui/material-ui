@@ -36,7 +36,7 @@ function getDemo(props) {
   return {
     title: 'Material demo',
     description: props.githubLocation,
-    dependencies: getDependencies(props.raw),
+    dependencies: getDependencies(props.raw, props.react),
     files: {
       'demo.js': props.raw,
       'index.js': `
@@ -307,6 +307,10 @@ class Demo extends React.Component {
   }
 }
 
+Demo.defaultProps = {
+  reactVersion: 'latest',
+};
+
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
@@ -314,6 +318,8 @@ Demo.propTypes = {
   index: PropTypes.number.isRequired,
   js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   raw: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
+  reactVersion: PropTypes.string,
 };
 
 export default withStyles(styles)(Demo);
