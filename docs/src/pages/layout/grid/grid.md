@@ -57,6 +57,12 @@ That also means you can set the width of one *item* and the others will automati
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
+## Complex Grid
+
+The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
+
+{{"demo": "pages/layout/grid/ComplexGrid.js"}}
+
 ## CSS Grid Layout
 
 **CSS Grid Layout** excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
@@ -74,12 +80,6 @@ The `container` and `item` properties are two independent booleans. They can be 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/layout/grid/NestedGrid.js"}}
-
-## Complex Grid
-
-The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
-
-{{"demo": "pages/layout/grid/ComplexGrid.js"}}
 
 ## Limitations
 

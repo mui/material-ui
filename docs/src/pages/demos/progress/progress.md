@@ -81,6 +81,12 @@ function Progress(props) {
 }
 ```
 
+## Customized Progress
+
+The last demo demonstrates how you can build a Facebook like spinner.
+
+{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
+
 ## Delaying appearance
 
 There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
@@ -89,12 +95,6 @@ Normally, no special feedback is necessary during delays of more than 0.1 but le
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
-
-## Customized Progress
-
-The last demo demonstrates how you can build a Facebook like spinner.
-
-{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
 ## Limitations
 

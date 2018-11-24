@@ -39,11 +39,11 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Spanning Table
+## Customized Tables
 
-A simple example with spanning rows & columns.
+You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 
-{{"demo": "pages/demos/tables/SpanningTable.js"}}
+{{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
 ## Custom Table Pagination Action
 
@@ -52,11 +52,11 @@ custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Customized Tables
+## Spanning Table
 
-You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
+A simple example with spanning rows & columns.
 
-{{"demo": "pages/demos/tables/CustomizedTable.js"}}
+{{"demo": "pages/demos/tables/SpanningTable.js"}}
 
 ## Complementary projects
 
