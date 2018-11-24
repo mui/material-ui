@@ -61,7 +61,7 @@ class ClickAwayListener extends React.Component {
 
   handleTouchMove = () => {
     this.moved = true;
-  }
+  };
 
   render() {
     const { children, mouseEvent, touchEvent, onClickAway, ...other } = this.props;
