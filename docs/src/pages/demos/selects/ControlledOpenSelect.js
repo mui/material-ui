@@ -18,56 +18,51 @@ const styles = theme => ({
   },
 });
 
-class ControlledOpenSelect extends React.Component {
-  state = {
-    age: '',
-    open: false,
-  };
+function ControlledOpenSelect(props) {
+  const { classes } = props;
+  const [age, setAge] = React.useState('');
+  const [open, setOpen] = React.useState(false);
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <form autoComplete="off">
-        <Button className={classes.button} onClick={this.handleOpen}>
-          Open the select
-        </Button>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
-          <Select
-            open={this.state.open}
-            onClose={this.handleClose}
-            onOpen={this.handleOpen}
-            value={this.state.age}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'demo-controlled-open-select',
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-      </form>
-    );
+  function handleChange(event) {
+    setAge(event.target.value);
   }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  function handleOpen() {
+    setOpen(true);
+  }
+
+  return (
+    <form autoComplete="off">
+      <Button className={classes.button} onClick={handleOpen}>
+        Open the select
+      </Button>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
+        <Select
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={age}
+          onChange={handleChange}
+          inputProps={{
+            name: 'age',
+            id: 'demo-controlled-open-select',
+          }}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+    </form>
+  );
 }
 
 ControlledOpenSelect.propTypes = {
