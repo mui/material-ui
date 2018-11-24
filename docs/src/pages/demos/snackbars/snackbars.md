@@ -70,6 +70,12 @@ Use a different transition all together.
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+Material-UI doesn't provide a high-level API for displaying snackbars. You can take advantage of third party libraries for this.
 
-- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other.
+### notistack
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars)
+![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+
+In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
+
+{{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}
