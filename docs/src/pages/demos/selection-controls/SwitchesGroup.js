@@ -10,7 +10,7 @@ function SwitchesGroup() {
   const [state, setState] = React.useState({
     gilad: true,
     jason: false,
-    antoine: false,
+    antoine: true,
   });
 
   const handleChange = name => event => {
