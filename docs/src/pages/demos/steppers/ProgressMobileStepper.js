@@ -13,48 +13,39 @@ const styles = {
   },
 };
 
-class ProgressMobileStepper extends React.Component {
-  state = {
-    activeStep: 0,
-  };
+function ProgressMobileStepper(props) {
+  const { classes, theme } = props;
+  const [activeStep, setActiveStep] = React.useState(0);
 
-  handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1,
-    }));
-  };
-
-  handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
-  };
-
-  render() {
-    const { classes, theme } = this.props;
-
-    return (
-      <MobileStepper
-        variant="progress"
-        steps={6}
-        position="static"
-        activeStep={this.state.activeStep}
-        className={classes.root}
-        nextButton={
-          <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
-            Next
-            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            Back
-          </Button>
-        }
-      />
-    );
+  function handleNext() {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   }
+
+  function handleBack() {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  }
+
+  return (
+    <MobileStepper
+      variant="progress"
+      steps={6}
+      position="static"
+      activeStep={activeStep}
+      className={classes.root}
+      nextButton={
+        <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
+          Next
+          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        </Button>
+      }
+      backButton={
+        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+          Back
+        </Button>
+      }
+    />
+  );
 }
 
 ProgressMobileStepper.propTypes = {

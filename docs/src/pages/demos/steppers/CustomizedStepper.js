@@ -56,96 +56,81 @@ function getStepContent(step) {
   }
 }
 
-class CustomizedStepper extends React.Component {
-  state = {
-    activeStep: 0,
-  };
+function CustomizedStepper(props) {
+  const { classes } = props;
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
 
-  handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1,
-    }));
-  };
+  function handleNext() {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  }
 
-  handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
-  };
+  function handleBack() {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  }
 
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-    });
-  };
+  function handleReset() {
+    setActiveStep(0);
+  }
 
-  render() {
-    const { classes } = this.props;
-    const { activeStep } = this.state;
-    const steps = getSteps();
-    const connector = (
-      <StepConnector
-        classes={{
-          active: classes.connectorActive,
-          completed: classes.connectorCompleted,
-          disabled: classes.connectorDisabled,
-          line: classes.connectorLine,
-        }}
-      />
-    );
+  const connector = (
+    <StepConnector
+      classes={{
+        active: classes.connectorActive,
+        completed: classes.connectorCompleted,
+        disabled: classes.connectorDisabled,
+        line: classes.connectorLine,
+      }}
+    />
+  );
 
-    return (
-      <div className={classes.root}>
-        <Stepper activeStep={activeStep} connector={connector}>
-          {steps.map(label => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        <Stepper alternativeLabel activeStep={activeStep} connector={connector}>
-          {steps.map(label => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          {activeStep === steps.length ? (
+  return (
+    <div className={classes.root}>
+      <Stepper activeStep={activeStep} connector={connector}>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <Stepper alternativeLabel activeStep={activeStep} connector={connector}>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <div>
+        {activeStep === steps.length ? (
+          <div>
+            <Typography className={classes.instructions}>
+              All steps completed - you&quot;re finished
+            </Typography>
+            <Button onClick={handleReset} className={classes.button}>
+              Reset
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
             <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
-              </Typography>
-              <Button onClick={this.handleReset} className={classes.button}>
-                Reset
+              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNext}
+                className={classes.button}
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
-          ) : (
-            <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 CustomizedStepper.propTypes = {

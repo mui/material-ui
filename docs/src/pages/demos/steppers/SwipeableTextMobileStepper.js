@@ -61,72 +61,62 @@ const styles = theme => ({
   },
 });
 
-class SwipeableTextMobileStepper extends React.Component {
-  state = {
-    activeStep: 0,
-  };
+function SwipeableTextMobileStepper(props) {
+  const { classes, theme } = props;
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = tutorialSteps.length;
 
-  handleNext = () => {
-    this.setState(prevState => ({
-      activeStep: prevState.activeStep + 1,
-    }));
-  };
-
-  handleBack = () => {
-    this.setState(prevState => ({
-      activeStep: prevState.activeStep - 1,
-    }));
-  };
-
-  handleStepChange = activeStep => {
-    this.setState({ activeStep });
-  };
-
-  render() {
-    const { classes, theme } = this.props;
-    const { activeStep } = this.state;
-    const maxSteps = tutorialSteps.length;
-
-    return (
-      <div className={classes.root}>
-        <Paper square elevation={0} className={classes.header}>
-          <Typography>{tutorialSteps[activeStep].label}</Typography>
-        </Paper>
-        <AutoPlaySwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={activeStep}
-          onChangeIndex={this.handleStepChange}
-          enableMouseEvents
-        >
-          {tutorialSteps.map((step, index) => (
-            <div key={step.label}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <img className={classes.img} src={step.imgPath} alt={step.label} />
-              ) : null}
-            </div>
-          ))}
-        </AutoPlaySwipeableViews>
-        <MobileStepper
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          className={classes.mobileStepper}
-          nextButton={
-            <Button size="small" onClick={this.handleNext} disabled={activeStep === maxSteps - 1}>
-              Next
-              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </Button>
-          }
-          backButton={
-            <Button size="small" onClick={this.handleBack} disabled={activeStep === 0}>
-              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-              Back
-            </Button>
-          }
-        />
-      </div>
-    );
+  function handleNext() {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   }
+
+  function handleBack() {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  }
+
+  function handleStepChange(step) {
+    setActiveStep(step);
+  }
+
+  return (
+    <div className={classes.root}>
+      <Paper square elevation={0} className={classes.header}>
+        <Typography>{tutorialSteps[activeStep].label}</Typography>
+      </Paper>
+      <AutoPlaySwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeStep}
+        onChangeIndex={handleStepChange}
+        enableMouseEvents
+      >
+        {tutorialSteps.map((step, index) => (
+          <div key={step.label}>
+            {Math.abs(activeStep - index) <= 2 ? (
+              <img className={classes.img} src={step.imgPath} alt={step.label} />
+            ) : null}
+          </div>
+        ))}
+      </AutoPlaySwipeableViews>
+      <MobileStepper
+        steps={maxSteps}
+        position="static"
+        activeStep={activeStep}
+        className={classes.mobileStepper}
+        nextButton={
+          <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+            Next
+            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+          </Button>
+        }
+        backButton={
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            Back
+          </Button>
+        }
+      />
+    </div>
+  );
 }
 
 SwipeableTextMobileStepper.propTypes = {
