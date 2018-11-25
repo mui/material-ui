@@ -188,17 +188,16 @@ function HorizontalNonLinearAlternativeLabelStepper(props) {
               >
                 Next
               </Button>
-              {isStepOptional(activeStep) &&
-                !completed.has(activeStep) && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSkip}
-                    className={classes.button}
-                  >
-                    Skip
-                  </Button>
-                )}
+              {isStepOptional(activeStep) && !completed.has(activeStep) && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSkip}
+                  className={classes.button}
+                >
+                  Skip
+                </Button>
+              )}
               {activeStep !== steps.length &&
                 (completed.has(activeStep) ? (
                   <Typography variant="caption" className={classes.completed}>
