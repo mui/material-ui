@@ -50,7 +50,7 @@ class SimpleZoom extends React.Component {
               </svg>
             </Paper>
           </Zoom>
-          <Zoom in={checked} style={{ transitionDelay: checked ? 500 : 0 }}>
+          <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
             <Paper elevation={4} className={classes.paper}>
               <svg className={classes.svg}>
                 <polygon points="0,100 50,00, 100,100" className={classes.polygon} />

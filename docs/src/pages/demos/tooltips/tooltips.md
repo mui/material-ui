@@ -20,17 +20,39 @@ They don’t have directional arrows; instead, they rely on motion emanating fro
 
 {{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
 
-## Controlled Tooltips
+## Customized Tooltips
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
-
-{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
 ## Triggers
 
 You can define the types of events that cause a tooltip to show.
 
 {{"demo": "pages/demos/tooltips/TriggersTooltips.js"}}
+
+## Controlled Tooltips
+
+You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+
+{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+
+## Variable Width
+
+The `Tooltip` wraps long text by default to make it readable.
+
+{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+
+## Interactive
+
+A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+
+{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
+
+## Disabled Elements
+
+By default disabled elements like `Button` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accomodate disabled elements, add a simple wrapper element like a `span`.
+
+{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
 ## Transitions
 
@@ -45,25 +67,3 @@ The tooltip is normally shown immediately when the user's mouse hovers over the 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 
 {{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
-
-## Disabled Elements
-
-By default disabled elements like `Button` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accomodate disabled elements, add a simple wrapper element like a `span`.
-
-{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
-
-## Customized Tooltips
-
-{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
-
-## Variable Width
-
-The `Tooltip` wraps long text by default to make it readable.
-
-{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
-
-## Interactive
-
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
-
-{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}

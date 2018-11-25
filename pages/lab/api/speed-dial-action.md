@@ -26,7 +26,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 | <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
 | <span class="prop-name required">tooltipTitle *</span> | <span class="prop-type">node</span> |   | Label to display in the tooltip. |
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be spread to the root element ([Tooltip](/api/tooltip/)).
 
 ## CSS
 
@@ -46,6 +46,11 @@ for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSpeedDialAction`.
+
+## Inheritance
+
+The properties of the [Tooltip](/api/tooltip/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

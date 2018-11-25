@@ -26,14 +26,6 @@ The currently selected menu item is set using the `selected` property (from [Lis
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
-If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
-
-## Max height menus
-
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
-
-{{"demo": "pages/demos/menus/LongMenu.js"}}
-
 ## MenuList composition
 
 The `Menu` component uses the `Popover` component internally.
@@ -51,11 +43,13 @@ You can use the same list composition features with the `MenuItem` component:
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-## Change Transition
+If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
 
-Use a different transition altogether.
+## Max height menus
 
-{{"demo": "pages/demos/menus/FadeMenu.js"}}
+If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+
+{{"demo": "pages/demos/menus/LongMenu.js"}}
 
 ## Render Props
 
@@ -70,6 +64,12 @@ There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=3
 You can use the `Typography` component to workaround this issue:
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
+## Change Transition
+
+Use a different transition altogether.
+
+{{"demo": "pages/demos/menus/FadeMenu.js"}}
 
 ## Complementary projects
 

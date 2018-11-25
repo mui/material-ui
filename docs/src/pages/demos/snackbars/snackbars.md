@@ -22,11 +22,13 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 {{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
-## Message Length
+## Customized Snackbars
 
-Some snackbars with varying message length.
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here are examples of how you can change the look of a Snackbar.
 
-{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
 ## Positioned
 
@@ -34,7 +36,25 @@ There may be circumstances when the placement of the snackbar needs to be more f
 
 {{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
 
+## Message Length
+
+Some snackbars with varying message length.
+
+{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+
 ## Transitions
+
+### Consecutive Snackbars
+
+Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
+
+{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
+
+### Don't block the floating action button
+
+Move the floating action button vertically to accommodate the snackbar height.
+
+{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
 
 ### Control Direction
 
@@ -47,26 +67,6 @@ Change the direction of the transition. Slide is the default transition.
 Use a different transition all together.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
-
-### Don't block the floating action button
-
-Move the floating action button vertically to accommodate the snackbar height.
-
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
-
-### Consecutive Snackbars
-
-Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
-
-{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
-
-## Customized Snackbars
-
-If you have been reading the [overrides documentation page](/customization/overrides/)
-but you are not confident jumping in,
-here are examples of how you can change the look of a Snackbar.
-
-{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
 ## Complementary projects
 

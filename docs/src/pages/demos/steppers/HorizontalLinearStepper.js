@@ -108,7 +108,7 @@ function HorizontalLinearStepper(props) {
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
-              All steps completed - you&quot;re finished
+              All steps completed - you&apos;re finished
             </Typography>
             <Button onClick={handleReset} className={classes.button}>
               Reset
