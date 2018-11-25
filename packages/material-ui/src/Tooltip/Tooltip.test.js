@@ -44,8 +44,21 @@ describe('<Tooltip />', () => {
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
   });
 
+  describe('prop: disableHoverListener', () => {
+    it('should hide the native title', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World" disableHoverListener>
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('button');
+      assert.strictEqual(children.props().title, null);
+    });
+  });
+
   describe('prop: title', () => {
-    it('should display if the title is presetn', () => {
+    it('should display if the title is present', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} open />);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
@@ -53,6 +66,17 @@ describe('<Tooltip />', () => {
     it('should not display if the title is an empty string', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} title="" open />);
       assert.strictEqual(wrapper.find(Popper).props().open, false);
+    });
+
+    it('should be passed down to the child as a native title', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World">
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('button');
+      assert.strictEqual(children.props().title, 'Hello World');
     });
   });
 
