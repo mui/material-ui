@@ -27,14 +27,14 @@ A native date picker example with `type="date"`, it can be used as a calendar to
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## Time pickers
-
-A native time picker example with `type="time"`:
-
-{{"demo": "pages/demos/pickers/TimePickers.js"}}
-
 ## Date & Time pickers
 
 A native date & time picker example with `type="datetime-local"`:
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
+
+## Time pickers
+
+A native time picker example with `type="time"`:
+
+{{"demo": "pages/demos/pickers/TimePickers.js"}}

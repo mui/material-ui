@@ -47,6 +47,23 @@ You can also swap out the transition, the next example uses `Slide`.
 
 {{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
+## Form dialogs
+
+Form dialogs allow users to fill out form fields within a dialog.
+For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
+
+{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+
+## Full-screen dialogs
+
+{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+
+## Responsive full-screen
+
+You may make a `Dialog` responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
+
+{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+
 ## Confirmation dialogs
 
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
@@ -55,23 +72,6 @@ For example, users can listen to multiple ringtones but only make a final select
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
-
-## Full-screen dialogs
-
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
-
-## Form dialogs
-
-Form dialogs allow users to fill out form fields within a dialog.
-For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
-
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
-
-## Responsive full-screen
-
-You may make a `Dialog` responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics/). You can choose your own breakpoint for example `xs` by passing the `breakpoint` argument: `withMobileDialog({breakpoint: 'xs'})(Dialog)`.
-
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
 ## Accessibility
 

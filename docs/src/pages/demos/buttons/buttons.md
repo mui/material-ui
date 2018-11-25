@@ -15,6 +15,16 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 - Cards
 - Toolbars
 
+## Contained Buttons
+
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
+are high-emphasis, distinguished by their use of elevation and fill.
+They contain actions that are primary to your app.
+
+The last example of this demo show how to use an upload button.
+
+{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
+
 ## Text Buttons
 
 [Text buttons](https://material.io/design/components/buttons.html#text-button)
@@ -40,16 +50,6 @@ or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## Contained Buttons
-
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
-are high-emphasis, distinguished by their use of elevation and fill.
-They contain actions that are primary to your app.
-
-The last example of this demo show how to use an upload button.
-
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
-
 ## Floating Action Buttons
 
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
@@ -74,6 +74,18 @@ animation to finish before the new one enters.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
+## Sizes
+
+Fancy larger or smaller buttons? Use the `size` property.
+
+{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+
+## Buttons with icons and label
+
+Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+
+{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+
 ## Icon Buttons
 
 Icon buttons are commonly found in app bars and toolbars.
@@ -82,18 +94,6 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
-
-## Sizes
-
-Fancy larger or smaller buttons? Use the `size` property.
-
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
-
-### Buttons with icons and label
-
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
-
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
 
 ## Customized Buttons
 
