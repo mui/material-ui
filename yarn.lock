@@ -1869,6 +1869,11 @@
     "@webassemblyjs/wast-parser" "1.7.8"
     "@xtuc/long" "4.2.1"
 
+"@weco/next-plugin-transpile-modules@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@weco/next-plugin-transpile-modules/-/next-plugin-transpile-modules-0.0.2.tgz#f8f8af6adc6a3c565ed6212ae82a383f18efc40e"
+  integrity sha1-+PivatxqPFZe1iEq6Co4PxjvxA4=
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"

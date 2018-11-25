@@ -10,14 +10,14 @@ class App extends React.Component {
 
   handleClickVariant = variant => () => {
     // variant could be success, error, warning or info
-    this.props.enqueueSnackbar('I love snacks.', { variant });
+    this.props.enqueueSnackbar('This is a warning message!', { variant });
   }
 
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick}>Display multiple snackbars</Button>
-        <Button onClick={this.handleClickVariant('warning')}>Display warning snackbar</Button>
+        <Button onClick={this.handleClick}>Show snackbar</Button>
+        <Button onClick={this.handleClickVariant('warning')}>Show warning snackbar</Button>
       </div>
     );
   }
