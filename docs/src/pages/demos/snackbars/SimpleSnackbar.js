@@ -12,58 +12,54 @@ const styles = theme => ({
   },
 });
 
-class SimpleSnackbar extends React.Component {
-  state = {
-    open: false,
-  };
+function SimpleSnackbar(props) {
+  const { classes } = props;
+  const [open, setOpen] = React.useState(false);
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
+  function handleClick() {
+    setOpen(true);
+  }
 
-  handleClose = (event, reason) => {
+  function handleClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
 
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <Button onClick={this.handleClick}>Open simple snackbar</Button>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">Note archived</span>}
-          action={[
-            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              UNDO
-            </Button>,
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
-      </div>
-    );
+    setOpen(false);
   }
+
+  return (
+    <div>
+      <Button onClick={handleClick}>Open simple snackbar</Button>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id">Note archived</span>}
+        action={[
+          <Button key="undo" color="secondary" size="small" onClick={handleClose}>
+            UNDO
+          </Button>,
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            className={classes.close}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>,
+        ]}
+      />
+    </div>
+  );
 }
 
 SimpleSnackbar.propTypes = {

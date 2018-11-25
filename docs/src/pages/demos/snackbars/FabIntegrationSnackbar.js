@@ -56,63 +56,58 @@ const styles = theme => ({
   },
 });
 
-class FabIntegrationSnackbar extends React.Component {
-  state = {
-    open: false,
-  };
+function FabIntegrationSnackbar(props) {
+  const { classes } = props;
+  const [open, setOpen] = React.useState(false);
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-    const fabClassName = classNames(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
-
-    return (
-      <div className={classes.root}>
-        <Button className={classes.button} onClick={this.handleClick}>
-          Open snackbar
-        </Button>
-        <div className={classes.appFrame}>
-          <AppBar position="static" color="primary">
-            <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit">
-                Out of my way!
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Fab color="secondary" className={fabClassName}>
-            <AddIcon />
-          </Fab>
-          <Snackbar
-            open={open}
-            autoHideDuration={4000}
-            onClose={this.handleClose}
-            ContentProps={{
-              'aria-describedby': 'snackbar-fab-message-id',
-              className: classes.snackbarContent,
-            }}
-            message={<span id="snackbar-fab-message-id">Archived</span>}
-            action={
-              <Button color="inherit" size="small" onClick={this.handleClose}>
-                Undo
-              </Button>
-            }
-            className={classes.snackbar}
-          />
-        </div>
-      </div>
-    );
+  function handleClick() {
+    setOpen(true);
   }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  const fabClassName = classNames(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
+
+  return (
+    <div className={classes.root}>
+      <Button className={classes.button} onClick={handleClick}>
+        Open snackbar
+      </Button>
+      <div className={classes.appFrame}>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit">
+              Out of my way!
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Fab color="secondary" className={fabClassName}>
+          <AddIcon />
+        </Fab>
+        <Snackbar
+          open={open}
+          autoHideDuration={4000}
+          onClose={handleClose}
+          ContentProps={{
+            'aria-describedby': 'snackbar-fab-message-id',
+            className: classes.snackbarContent,
+          }}
+          message={<span id="snackbar-fab-message-id">Archived</span>}
+          action={
+            <Button color="inherit" size="small" onClick={handleClose}>
+              Undo
+            </Button>
+          }
+          className={classes.snackbar}
+        />
+      </div>
+    </div>
+  );
 }
 
 FabIntegrationSnackbar.propTypes = {

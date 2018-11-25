@@ -93,69 +93,64 @@ const styles2 = theme => ({
   },
 });
 
-class CustomizedSnackbars extends React.Component {
-  state = {
-    open: false,
-  };
+function CustomizedSnackbars(props) {
+  const { classes } = props;
+  const [open, setOpen] = React.useState(false);
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
+  function handleClick() {
+    setOpen(true);
+  }
 
-  handleClose = (event, reason) => {
+  function handleClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
 
-    this.setState({ open: false });
-  };
+    setOpen(false);
+  }
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div>
-        <Button className={classes.margin} onClick={this.handleClick}>
-          Open success snackbar
-        </Button>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-        >
-          <MySnackbarContentWrapper
-            onClose={this.handleClose}
-            variant="success"
-            message="This is a success message!"
-          />
-        </Snackbar>
+  return (
+    <div>
+      <Button className={classes.margin} onClick={handleClick}>
+        Open success snackbar
+      </Button>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
         <MySnackbarContentWrapper
-          variant="error"
-          className={classes.margin}
-          message="This is an error message!"
-        />
-        <MySnackbarContentWrapper
-          variant="warning"
-          className={classes.margin}
-          message="This is a warning message!"
-        />
-        <MySnackbarContentWrapper
-          variant="info"
-          className={classes.margin}
-          message="This is an information message!"
-        />
-        <MySnackbarContentWrapper
+          onClose={handleClose}
           variant="success"
-          className={classes.margin}
           message="This is a success message!"
         />
-      </div>
-    );
-  }
+      </Snackbar>
+      <MySnackbarContentWrapper
+        variant="error"
+        className={classes.margin}
+        message="This is an error message!"
+      />
+      <MySnackbarContentWrapper
+        variant="warning"
+        className={classes.margin}
+        message="This is a warning message!"
+      />
+      <MySnackbarContentWrapper
+        variant="info"
+        className={classes.margin}
+        message="This is an information message!"
+      />
+      <MySnackbarContentWrapper
+        variant="success"
+        className={classes.margin}
+        message="This is a success message!"
+      />
+    </div>
+  );
 }
 
 CustomizedSnackbars.propTypes = {
