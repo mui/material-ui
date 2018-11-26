@@ -77,7 +77,6 @@ function MarkdownDocs(props) {
                     key={content}
                     js={demos[name].js}
                     raw={demos[name].raw}
-                    reactVersion={demoOptions.react}
                     index={index}
                     demoOptions={demoOptions}
                     githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}

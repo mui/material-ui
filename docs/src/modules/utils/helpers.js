@@ -28,7 +28,7 @@ export function pageToTitle(page) {
   return titleize(name);
 }
 
-export function getDependencies(raw, reactVersion) {
+export function getDependencies(raw, reactVersion = 'latest') {
   const deps = {
     'react-dom': reactVersion,
     react: reactVersion,
