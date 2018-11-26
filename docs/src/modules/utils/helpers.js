@@ -28,10 +28,10 @@ export function pageToTitle(page) {
   return titleize(name);
 }
 
-export function getDependencies(raw) {
+export function getDependencies(raw, reactVersion = 'latest') {
   const deps = {
-    'react-dom': 'latest',
-    react: 'latest',
+    'react-dom': reactVersion,
+    react: reactVersion,
   };
   const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
   let m;
