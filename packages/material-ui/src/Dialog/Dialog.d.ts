@@ -9,7 +9,7 @@ export interface DialogProps
   children?: React.ReactNode;
   fullScreen?: boolean;
   fullWidth?: boolean;
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   PaperProps?: Partial<PaperProps>;
   scroll?: 'body' | 'paper';
   TransitionComponent?: React.ReactType;

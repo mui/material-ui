@@ -12,7 +12,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Slide from '@material-ui/core/Slide';
 import Switch from '@material-ui/core/Switch';
 
 const styles = theme => ({
@@ -23,17 +22,13 @@ const styles = theme => ({
     width: 'fit-content',
   },
   formControl: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing.unit * 2,
     minWidth: 120,
   },
   formControlLabel: {
     marginTop: theme.spacing.unit,
   },
 });
-
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 
 class FullScreenDialog extends React.Component {
   state = {
@@ -60,24 +55,25 @@ class FullScreenDialog extends React.Component {
 
   render() {
     const { classes } = this.props;
+
     return (
-      <div>
+      <React.Fragment>
         <Button onClick={this.handleClickOpen}>Open max-width dialog</Button>
         <Dialog
           fullWidth={this.state.fullWidth}
           maxWidth={this.state.maxWidth}
           open={this.state.open}
           onClose={this.handleClose}
-          TransitionComponent={Transition}
+          aria-labelledby="max-width-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Play with me</DialogTitle>
+          <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
           <DialogContent>
             <DialogContentText>
               You can set my maximum width and whether to adapt or not.
             </DialogContentText>
             <form className={classes.form} noValidate>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="max-width">Max width</InputLabel>
+                <InputLabel htmlFor="max-width">maxWidth</InputLabel>
                 <Select
                   value={this.state.maxWidth}
                   onChange={this.handleMaxWidthChange}
@@ -113,7 +109,7 @@ class FullScreenDialog extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </React.Fragment>
     );
   }
 }
