@@ -27,6 +27,8 @@ export type DialogClassKey =
   | 'paperWidthXs'
   | 'paperWidthSm'
   | 'paperWidthMd'
+  | 'paperWidthLg'
+  | 'paperWidthXl'
   | 'paperFullWidth'
   | 'paperFullScreen';
 

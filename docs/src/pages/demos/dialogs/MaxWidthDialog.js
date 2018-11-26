@@ -30,7 +30,7 @@ const styles = theme => ({
   },
 });
 
-class FullScreenDialog extends React.Component {
+class MaxWidthDialog extends React.Component {
   state = {
     open: false,
     fullWidth: true,
@@ -114,8 +114,8 @@ class FullScreenDialog extends React.Component {
   }
 }
 
-FullScreenDialog.propTypes = {
+MaxWidthDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FullScreenDialog);
+export default withStyles(styles)(MaxWidthDialog);
