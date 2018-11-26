@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import getDynamicStyles from 'jss/lib/utils/getDynamicStyles';
 import { getDisplayName } from '@material-ui/utils';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 import { increment } from './indexCounter';
 import mergeClasses from './mergeClasses';
 import multiKeyStore from './multiKeyStore';
@@ -332,8 +331,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   if (process.env.NODE_ENV !== 'production') {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
-
-  hoistNonReactStatics(WithStyles, Component);
 
   if (process.env.NODE_ENV !== 'production') {
     // Exposed for test purposes.

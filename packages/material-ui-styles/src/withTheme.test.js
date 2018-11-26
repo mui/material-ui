@@ -34,4 +34,11 @@ describe('withTheme', () => {
     );
     assert.strictEqual(wrapper.text(), 'foo');
   });
+
+  it('does not hoist statics', () => {
+    const Test = () => null;
+    Test.someStatic = 'will not get hoisted';
+    const TestWithTheme = withTheme()(Test);
+    assert.strictEqual(TestWithTheme.someStatic, undefined);
+  });
 });
