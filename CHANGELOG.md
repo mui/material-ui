@@ -1,5 +1,96 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.6.0
+###### *Nov 26, 2018*
+
+Big thanks to the 28 contributors who made this release possible!
+
+The last release was two weeks ago.
+Last weekend, we have missed the release train 🚃.
+As a consequence, this is a dense release.
+
+Here are some highlights ✨:
+- 🎨 Add a new Firebase theme demo (#13579) @siriwatknp.
+You can preview it following [this link](/premium-themes/paperbase/).
+- ⚛️ Introduce a new Fab component (#13573) @mbrookes.
+- ⛏ Fix more StrictMode warnings (#13590) @eps1lon.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.6.0`
+
+#### Deprecations
+
+- [Fab] Extract from Button as new component (#13573) @mbrookes
+
+The floating action button doesn't share many styles with the default button component.
+We are extracting the variant into its own component.
+This way, we better isolate the concerns.
+We will remove the FAB styles from the button in v4, making the `Button` component more lightweight, a win for people overriding our styles.
+
+```diff
+-import Button from '@material-ui/core/Button';
++import Fab from '@material-ui/core/Fab';
+
+-<Button variant="fab" color="primary">
++<Fab color="primary">
+  <AddIcon />
+-</Button>
++</Fab>
+```
+
+#### Changes
+
+- [FormControlLabel] Fix documentation warnings (#13583) @dsbrutha777
+- [ExpansionPanelSummary] Fix event forwarding (#13582) @jmetev1
+- [Button] Move deprecated variants to the end of the list (#13584) @avetisk
+- [FormControl] Use stable context API (#13590) @eps1lon
+- [TablePagination] Improve TypeScript definition (#13601) @xiaoyu-tamu
+- [SwipeableDrawer] Add `SwipeAreaProps` property (#13592) @SerhiiBilyk
+- [Divider] Add support for middle divider (#13574) @joshwooding
+- [ListItem] Add three-line support (#13553) @ntorion
+- [Grid] Fix the IE 11 issue in the demo (7d2070fb388295d38806ecc49717006f34393e74) @oliviertassinari
+- [Zoom] Correct transition delay value of the example (#13645) @t49tran
+- [Tabs] Improve the warning message (#13640) @oliviertassinari
+- [Grow] Condense the demo (#13665) @Thyix
+- [Tooltip] Fix the property forwarding priority (#13667) @oliviertassinari
+- [Modal] Fix the close jump on Windows (#13674) @oliviertassinari
+- [Select] Support object value (#13661) @yezhi780625
+- [Menu] Fix wrong condition (#13675) @dolezel
+
+### `@material-ui/lab@v3.0.0-alpha.24`
+
+- [Slider] Fix sticky slider when mousing off the window then back in (#13479) @gkjohnson
+- [Slider] Fix visual hover state on disabled slider (#13638) @eps1lon
+- [Slider] Add missing thumb TypeScript definition (#13650) @dhiroll
+
+### `@material-ui/styles@v3.0.0-alpha.1`
+
+- [styles] Add TypeScript declarations (#13612) @eps1lon
+
+### Docs
+
+- [docs] Add redirect rule for moved page layout examples (#13588) @mbrookes
+- [docs] Add the selfeducation.app showcase (#13620) @kulakowka
+- [docs] Warn about the Dynamic CSS alpha state (#13619) @WebDeg-Brian
+- [docs] Learn Material-UI (#13624) @oliviertassinari
+- [docs] Add a Firebase example in the premium-theme section (#13579) @siriwatknp
+- [docs] Increase clarity around the usage of font icons (#13628) @JosephMart
+- [docs] Add swimmy.io to showcase page (#13637) @uufish
+- [docs] Correct typo in comment of snackbar, children (#13651) @kobi
+- [docs] Improve Grid limitation description (#13668) @sshevlyagin
+- [docs] Fix theme menu link (#13669) @iamhosseindhv
+- [docs] Change &quote; to &apos; (#13678) @wiktoriatomzik
+- [docs] Restructure the demo based on usage analytics (#13684) @oliviertassinari
+- [docs] Fix typo in URL (#13688) @Malvineous
+
+### Core
+
+- [core] Update dev dependencies (#13626) @oliviertassinari
+- [test] Fix codecov failing on merge commits (#13654) @eps1lon
+- [core] Make prettier run programmatically (#13621) @joshwooding
+- [test] Run unit/integration test on Chrome 41 (#13642) @eps1lon
+- [core] Move unit test commands to their package (#13604) @eps1lon
+
 ## 3.5.1
 ###### *Nov 13, 2018*
 
