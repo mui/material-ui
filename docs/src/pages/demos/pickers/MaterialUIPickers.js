@@ -25,8 +25,8 @@ class MuiPickersDemo extends PureComponent {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.pickersContainer} justify="space-around">
-          <DatePicker value={selectedDate} onChange={this.handleDateChange} />
-          <TimePicker value={selectedDate} onChange={this.handleDateChange} />
+          <DatePicker label="Date picker" value={selectedDate} onChange={this.handleDateChange} />
+          <TimePicker label="Time picker" value={selectedDate} onChange={this.handleDateChange} />
         </Grid>
       </MuiPickersUtilsProvider>
     );
