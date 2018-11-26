@@ -11,7 +11,7 @@ As a consequence, this is a dense release.
 
 Here are some highlights ✨:
 - 🎨 Add a new Firebase theme demo (#13579) @siriwatknp.
-You can preview it following [this link](/premium-themes/paperbase/).
+You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
 - ⚛️ Introduce a new Fab component (#13573) @mbrookes.
 - ⛏ Fix more StrictMode warnings (#13590) @eps1lon.
 - And many more 🐛 bug fixes and 📝 documentation improvements.
@@ -66,6 +66,10 @@ We will remove the FAB styles from the button in v4, making the `Button` compone
 ### `@material-ui/styles@v3.0.0-alpha.1`
 
 - [styles] Add TypeScript declarations (#13612) @eps1lon
+
+### `@material-ui/docs@v3.0.0-alpha.8`
+
+- Fix the @material-ui/utils require error.
 
 ### Docs
 
