@@ -28,7 +28,7 @@ export const styles = {
   },
 };
 
-function List(props) {
+const List = React.forwardRef((props, ref) => {
   const {
     children,
     classes,
@@ -51,6 +51,7 @@ function List(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     >
       <ListContext.Provider value={{ dense }}>
@@ -59,7 +60,9 @@ function List(props) {
       </ListContext.Provider>
     </Component>
   );
-}
+});
+
+List.displayName = 'List';
 
 List.propTypes = {
   /**

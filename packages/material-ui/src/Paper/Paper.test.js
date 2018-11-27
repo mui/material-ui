@@ -1,15 +1,21 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses, testRef } from '@material-ui/core/test-utils';
 import Paper from './Paper';
 
 describe('<Paper />', () => {
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Paper />);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a div', () => {
@@ -47,6 +53,10 @@ describe('<Paper />', () => {
       true,
       'should have the 2 elevation class',
     );
+  });
+
+  it('does forward refs', () => {
+    testRef(<Paper />, mount);
   });
 
   describe('prop: component', () => {
