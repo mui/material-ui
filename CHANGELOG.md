@@ -38,6 +38,17 @@ We will remove the FAB styles from the button in v4, making the `Button` compone
 +</Fab>
 ```
 
+- [Divider] Add support for middle divider by introducing a `variant` prop (#13574) @joshwooding
+
+We are introducing a new variant to the divider component: middle. Following our API guideline, we can no longer use a boolean property, it needs to be an enum, hence the introduction of the variant property.
+
+```diff
+import Divider from '@material-ui/core/Divider';
+
+-<Divider inset />
++<Divider variant="inset" />
+```
+
 #### Changes
 
 - [FormControlLabel] Fix documentation warnings (#13583) @dsbrutha777
@@ -46,7 +57,6 @@ We will remove the FAB styles from the button in v4, making the `Button` compone
 - [FormControl] Use stable context API (#13590) @eps1lon
 - [TablePagination] Improve TypeScript definition (#13601) @xiaoyu-tamu
 - [SwipeableDrawer] Add `SwipeAreaProps` property (#13592) @SerhiiBilyk
-- [Divider] Add support for middle divider (#13574) @joshwooding
 - [ListItem] Add three-line support (#13553) @ntorion
 - [Grid] Fix the IE 11 issue in the demo (7d2070fb388295d38806ecc49717006f34393e74) @oliviertassinari
 - [Zoom] Correct transition delay value of the example (#13645) @t49tran
