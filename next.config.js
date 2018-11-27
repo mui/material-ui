@@ -8,6 +8,7 @@ process.env.LIB_VERSION = pkg.version;
 
 module.exports = {
   webpack: (config, options) => {
+    // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
       transpileModules: ['notistack'],
     }).webpack(config, options);
