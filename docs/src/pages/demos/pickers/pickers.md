@@ -40,8 +40,11 @@ A native time picker example with `type="time"`:
 
 {{"demo": "pages/demos/pickers/TimePickers.js"}}
 
-## MUI-pickers example
+## Complementary projects
+For more advanced use cases you might be able to take advantage of:
 
-Material-ui-pickers package provides more complex ui for date & time controls. You can refer [documentation website](https://material-ui-pickers.firebaseapp.com/) for more information.
+### material-ui-pickers
+
+[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) provides date and time controls that follow the Material Design spec.
 
 {{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}

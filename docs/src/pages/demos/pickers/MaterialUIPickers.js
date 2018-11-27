@@ -1,11 +1,17 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/styles/withStyles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 
-class MuiPickersDemo extends PureComponent {
+const styles = {
+  pickersContainer: {
+    width: '60%',
+  },
+};
+
+class MuiPickersDemo extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   };
@@ -32,11 +38,5 @@ class MuiPickersDemo extends PureComponent {
     );
   }
 }
-
-const styles = {
-  pickersContainer: {
-    width: '60%',
-  },
-};
 
 export default withStyles(styles)(MuiPickersDemo);
