@@ -6,16 +6,12 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 
 const styles = {
-  pickersContainer: {
+  grid: {
     width: '60%',
   },
 };
 
-class MuiPickersDemo extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
+class MaterialUIPickers extends React.Component {
   state = {
     selectedDate: new Date(),
   };
@@ -30,13 +26,27 @@ class MuiPickersDemo extends React.Component {
 
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container className={classes.pickersContainer} justify="space-around">
-          <DatePicker label="Date picker" value={selectedDate} onChange={this.handleDateChange} />
-          <TimePicker label="Time picker" value={selectedDate} onChange={this.handleDateChange} />
+        <Grid container className={classes.grid} justify="space-around">
+          <DatePicker
+            margin="normal"
+            label="Date picker"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
+          <TimePicker
+            margin="normal"
+            label="Time picker"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
         </Grid>
       </MuiPickersUtilsProvider>
     );
   }
 }
 
-export default withStyles(styles)(MuiPickersDemo);
+MaterialUIPickers.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MaterialUIPickers);
