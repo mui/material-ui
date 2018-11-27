@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
 import marked from 'marked';
+import warning from 'warning';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
@@ -22,6 +23,10 @@ renderer.heading = (text, level) => {
       children: [],
     });
   } else if (level === 3) {
+    if (!itemsServer[itemsServer.length - 1]) {
+      throw new Error(`Missing parent level for: ${text}`);
+    }
+
     itemsServer[itemsServer.length - 1].children.push({
       text,
       level,
@@ -33,6 +38,8 @@ renderer.heading = (text, level) => {
 const styles = theme => ({
   root: {
     top: 70,
+    // Fix IE 11 position sticky issue.
+    marginTop: 70,
     width: 162,
     flexShrink: 0,
     order: 2,
@@ -61,6 +68,14 @@ const styles = theme => ({
   },
 });
 
+function checkDuplication(uniq, item) {
+  warning(!uniq[item.hash], `Duplicated table of content ${item.hash}`);
+
+  if (!uniq[item.hash]) {
+    uniq[item.hash] = true;
+  }
+}
+
 class AppTableOfContents extends React.Component {
   handleScroll = throttle(() => {
     this.findActiveIndex();
@@ -80,8 +95,10 @@ class AppTableOfContents extends React.Component {
 
   componentDidMount() {
     this.itemsClient = [];
+    const uniq = {};
 
     itemsServer.forEach(item2 => {
+      checkDuplication(uniq, item2);
       this.itemsClient.push({
         ...item2,
         node: document.getElementById(item2.hash),
@@ -89,6 +106,7 @@ class AppTableOfContents extends React.Component {
 
       if (item2.children.length > 0) {
         item2.children.forEach(item3 => {
+          checkDuplication(uniq, item3);
           this.itemsClient.push({
             ...item3,
             node: document.getElementById(item3.hash),

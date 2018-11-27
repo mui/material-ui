@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Hidden/Hidden.js
-title: Hidden API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Hidden
+# Hidden API
 
 <p class="description">The API documentation of the Hidden React component. Learn more about the properties and the CSS customization points.</p>
 

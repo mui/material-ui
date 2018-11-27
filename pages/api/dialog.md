@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Dialog/Dialog.js
-title: Dialog API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Dialog
+# Dialog API
 
 <p class="description">The API documentation of the Dialog React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -25,7 +24,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">disableEscapeKeyDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hitting escape will not fire the `onClose` callback. |
 | <span class="prop-name">fullScreen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog will be full-screen |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog stretches to `maxWidth`. |
-| <span class="prop-name">maxWidth</span> | <span class="prop-type">enum:&nbsp;'xs', 'sm', 'md', 'lg', false<br></span> | <span class="prop-default">'sm'</span> | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. Set to `false` to disable `maxWidth`. |
+| <span class="prop-name">maxWidth</span> | <span class="prop-type">enum:&nbsp;'xs', 'sm', 'md', 'lg', 'xl', false<br></span> | <span class="prop-default">'sm'</span> | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. Set to `false` to disable `maxWidth`. |
 | <span class="prop-name">onBackdropClick</span> | <span class="prop-type">func</span> |   | Callback fired when the backdrop is clicked. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |   | Callback fired before the dialog enters. |
@@ -44,7 +43,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 
 Any other properties supplied will be spread to the root element ([Modal](/api/modal/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -63,6 +62,7 @@ This property accepts the following keys:
 | <span class="prop-name">paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
 | <span class="prop-name">paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.
 | <span class="prop-name">paperWidthLg</span> | Styles applied to the `Paper` component if `maxWidth="lg"`.
+| <span class="prop-name">paperWidthXl</span> | Styles applied to the `Paper` component if `maxWidth="xl"`.
 | <span class="prop-name">paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
 | <span class="prop-name">paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 

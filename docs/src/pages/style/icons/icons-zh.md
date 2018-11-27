@@ -27,46 +27,46 @@ Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径�
 
 #### 使用
 
-你可以通过 [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) 找到某个特定的图标。 When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
+你可以通过 [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) 找到某个特定的图标。 导入图标时, 请记住图标的名称是 `PascalCase` 风格，例如：
 
-- [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
-- [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) is exposed as `@material-ui/icons/DeleteForever`
+- [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) 暴露为 `@material-ui/icons/Delete`
+- [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) 暴露为 `@material-ui/icons/DeleteForever`
 
-For *"themed"* icons, append the theme name to the icon name. For instance with the
+对于 *"被主题修饰过"* 的图标，在图标名称后面添加主题名。 例如：
 
-- The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/DeleteOutlined`
-- The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/DeleteRounded`
-- The Two Tone [`delete`](https://material.io/tools/icons/?icon=delete&style=twotone) icon is exposed as `@material-ui/icons/DeleteTwoTone`
+- 描边的 [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) 图标由 `@material-ui/icons/DeleteOutlined` 暴露
+- 圆角的 [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) 图标由 `@material-ui/icons/DeleteRounded` 暴露
+- 双色的 [`delete`](https://material.io/tools/icons/?icon=delete&style=twotone) 图标由 `@material-ui/icons/DeleteTwoTone` 暴露
 - The Sharp [`delete`](https://material.io/tools/icons/?icon=delete&style=sharp) icon is exposed as `@material-ui/icons/DeleteSharp`
 
-There are three exceptions to this rule:
+这条规则有三个例外情况：
 
-- [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`
-- [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) is exposed as `@material-ui/icons/FourK`
-- [`360`](https://material.io/tools/icons/?icon=360&style=baseline) is exposed as `@material-ui/icons/ThreeSixty`
+- [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) 暴露为 `@material-ui/icons/ThreeDRotation`
+- [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) 暴露为 `@material-ui/icons/FourK`
+- [`360`](https://material.io/tools/icons/?icon=360&style=baseline) 暴露为 `@material-ui/icons/ThreeSixty`
 
 {{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
 
-#### Imports
+#### 导入
 
-- If your environment doesn't support tree-shaking, the **recommended** way to import the icons is the following:
+- 假如你的环境不支持 tree-shaking，**推荐** 方式是用下面的方法导入图标：
 
 ```jsx
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
-- If your environment support tree-shaking you can also import the icons this way:
+- 如果你的环境支持 tree-shaking 你也可以这样导入图标：
 
 ```jsx
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
-Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
+注意：用这种名称导出的方式导入会造成 *每一个图标* 的代码都会被包含在你的项目里，所以不推荐你这样做除非你配置 [tree-shaking](https://webpack.js.org/guides/tree-shaking/). 这也可能会影响热模块重载的性能。
 
-### More SVG icons
+### 更多的 SVG 图标
 
-Looking for even more SVG icons? There are a lot of projects out there, but [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 official and community provided icons. [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
+正在寻找更多SVG图标？ 或许已经有许多项目，不过 [https://materialdesignicons.com](https://materialdesignicons.com/) 提供了超过 2,000 多由官方和社区提供的图标。 [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
 
 ## 字体图标
 

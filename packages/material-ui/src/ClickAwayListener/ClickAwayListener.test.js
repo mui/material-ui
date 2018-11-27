@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from '../test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import ClickAwayListener from './ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {

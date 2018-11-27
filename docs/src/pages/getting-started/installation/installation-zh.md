@@ -32,7 +32,7 @@ Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)
 
 ## SVG 图标
 
-为了使用预构建的SVG Material icons，例如在[组件演示](/demos/app-bar/)中找到的那些, 你必须先安装 [@material-ui/icons](https://www.npmjs.com/package@material-ui/icons)包
+为了使用预构建的SVG Material icons，例如在[组件演示](/demos/app-bar/)中找到的那些, 你必须先安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)包
 
 ```sh
 npm install @material-ui/icons

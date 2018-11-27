@@ -22,7 +22,8 @@ export function textToHash(text) {
   return text
     .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/\W/g, '-');
+    .replace(/\W+/g, '-')
+    .replace(/-$/g, '');
 }
 
 renderer.heading = (text, level) => {
@@ -45,10 +46,16 @@ renderer.heading = (text, level) => {
   );
 };
 
+const externs = [
+  'https://material.io/',
+  'https://www.styled-components.com/',
+  'https://emotion.sh/',
+];
+
 renderer.link = (href, title, text) => {
   let more = '';
 
-  if (href.indexOf('https://material.io/') !== -1) {
+  if (externs.some(domain => href.indexOf(domain) !== -1)) {
     more = ' target="_blank" rel="noopener nofollow"';
   }
 

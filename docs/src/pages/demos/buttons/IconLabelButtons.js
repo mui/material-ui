@@ -34,6 +34,7 @@ function IconLabelButtons(props) {
       </Button>
       <Button variant="contained" color="primary" className={classes.button}>
         Send
+        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
         <Icon className={classes.rightIcon}>send</Icon>
       </Button>
       <Button variant="contained" color="default" className={classes.button}>

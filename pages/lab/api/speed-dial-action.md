@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js
-title: SpeedDialAction API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# SpeedDialAction
+# SpeedDialAction API
 
 <p class="description">The API documentation of the SpeedDialAction React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -27,9 +26,9 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 | <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
 | <span class="prop-name required">tooltipTitle *</span> | <span class="prop-type">node</span> |   | Label to display in the tooltip. |
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be spread to the root element ([Tooltip](/api/tooltip/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -47,6 +46,11 @@ for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSpeedDialAction`.
+
+## Inheritance
+
+The properties of the [Tooltip](/api/tooltip/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

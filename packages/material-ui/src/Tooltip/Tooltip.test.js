@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -255,12 +255,23 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should forward properties to the child element', () => {
-    const wrapper = shallow(
-      <Tooltip className="foo" {...defaultProps}>
-        <h1>H1</h1>
-      </Tooltip>,
-    );
-    assert.strictEqual(wrapper.find('h1').props().className, 'foo');
+  describe('forward', () => {
+    it('should forward properties to the child element', () => {
+      const wrapper = shallow(
+        <Tooltip className="foo" {...defaultProps}>
+          <h1 className="bar">H1</h1>
+        </Tooltip>,
+      );
+      assert.strictEqual(wrapper.find('h1').props().className, 'foo bar');
+    });
+
+    it('should respect the properties priority', () => {
+      const wrapper = shallow(
+        <Tooltip hidden {...defaultProps}>
+          <h1 hidden={false}>H1</h1>
+        </Tooltip>,
+      );
+      assert.strictEqual(wrapper.find('h1').props().hidden, false);
+    });
   });
 });

@@ -199,6 +199,19 @@ const appList = [
     source: 'https://github.com/richardscarrott/snippets',
   },
   {
+    title: 'SelfEducation.app',
+    description: 'Watch short videos and develop your skills',
+    image: '/static/images/showcase/selfeducationapp.jpg',
+    link: 'https://selfeducation.app/',
+  },
+  {
+    title: 'Swimmy',
+    description: 'An open source forum PWA.',
+    image: '/static/images/showcase/swimmy.jpg',
+    link: 'https://swimmy.io/',
+    source: 'https://github.com/uufish/swimmy.io',
+  },
+  {
     title: 'Componofy: Spotify Playlist Combination',
     description:
       'A web app that allows a Spotify user to combine private and public playlists ' +
@@ -229,7 +242,7 @@ const appList = [
   {
     title: 'Tentu',
     description:
-      'A web app built with Material UI v1 and Firebase that offers the ' +
+      'A web app built with Material-UI v1 and Firebase that offers the ' +
       'user news and events of his interest.',
     link: 'https://tentu.eus/',
     image: '/static/images/showcase/tentu.jpg',

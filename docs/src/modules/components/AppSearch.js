@@ -45,7 +45,7 @@ function initDocsearch() {
         Router.push(url);
       },
       // Set debug to true if you want to inspect the dropdown.
-      debug: true,
+      // debug: true,
     });
   }, 100);
 }
@@ -53,7 +53,18 @@ function initDocsearch() {
 const styles = theme => ({
   '@global': {
     '.algolia-autocomplete': {
-      fontFamily: theme.typography.fontFamily,
+      '& .ds-dropdown-menu': {
+        boxShadow: theme.shadows[1],
+        borderRadius: theme.shape.borderRadius,
+        '&::before': {
+          display: 'none',
+        },
+        '& [class^=ds-dataset-]': {
+          border: 0,
+          borderRadius: theme.shape.borderRadius,
+          backgroundColor: theme.palette.background.paper,
+        },
+      },
       '& .algolia-docsearch-suggestion--category-header-lvl0': {
         color: theme.palette.text.primary,
       },
@@ -62,20 +73,11 @@ const styles = theme => ({
         padding: '5.33px 10.66px',
         textAlign: 'right',
         width: '30%',
-        '&:before': {
-          display: 'block',
-        },
-        '&:after': {
-          display: 'none',
-        },
       },
       '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
         float: 'right',
         padding: '5.33px 0 5.33px 10.66px',
         width: '70%',
-        '&:before': {
-          display: 'block',
-        },
       },
       '& .algolia-docsearch-suggestion--subcategory-column-text': {
         color: theme.palette.text.secondary,
@@ -85,25 +87,18 @@ const styles = theme => ({
         color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
       },
       '& .algolia-docsearch-suggestion': {
-        background: 'transparent',
+        textDecoration: 'none',
       },
-      '& .algolia-docsearch-suggestion--title': {
-        ...theme.typography.h6,
-      },
-      '& .algolia-docsearch-suggestion--text': {
-        ...theme.typography.body2,
-      },
-      '& .ds-dropdown-menu': {
-        boxShadow: theme.shadows[1],
-        borderRadius: 2,
+      '& .algolia-docsearch-suggestion--title': theme.typography.h6,
+      '& .algolia-docsearch-suggestion--text': theme.typography.body2,
+      '&& .algolia-docsearch-suggestion--no-results': {
+        width: '100%',
         '&::before': {
           display: 'none',
         },
-        '& [class^=ds-dataset-]': {
-          border: 0,
-          borderRadius: 2,
-          backgroundColor: theme.palette.background.paper,
-        },
+      },
+      '& b': {
+        fontWeight: theme.typography.fontWeightMedium,
       },
     },
   },

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Fade/Fade.js
-title: Fade API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Fade
+# Fade API
 
 <p class="description">The API documentation of the Fade React component. Learn more about the properties and the CSS customization points.</p>
 

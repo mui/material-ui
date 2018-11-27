@@ -60,16 +60,16 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 局限性
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout. You can use the `Typography` component to workaround this issue:
+这里有 [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，这个bug会让`text-overflow: ellipse`在 flexbox 布局中失去效果 你可以使用`Typography`组件做替代方案绕过这个问题：
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
-## Complementary projects
+## 补充项目
 
-For more advanced use cases you might be able to take advantage of:
+对于更高级的用例，您可以利用：
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单状态
 
 {{"demo": "pages/demos/menus/MenuPopupState.js"}}

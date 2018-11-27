@@ -6,9 +6,9 @@ import { TransitionHandlerProps } from '@material-ui/core/transitions/transition
 
 export interface SpeedDialProps
   extends StandardProps<
-      React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-      SpeedDialClassKey
-    > {
+    React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
+    SpeedDialClassKey
+  > {
   ariaLabel: string;
   ButtonProps?: Partial<ButtonProps>;
   direction?: 'up' | 'down' | 'left' | 'right';

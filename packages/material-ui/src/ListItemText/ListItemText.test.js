@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { getClasses, createMount, findOutermostIntrinsic } from '../test-utils';
+import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import ListItemText from './ListItemText';
 

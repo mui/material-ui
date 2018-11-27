@@ -2,11 +2,11 @@
 
 <p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
 
-1. [Specific variation for a one-time situation](#1--specific-variation-for-a-one-time-situation)
-1. [Dynamic variation for a one-time situation](#2--dynamic-variation-for-a-one-time-situation)
-1. [Specific variation of a component](#3--specific-variation-of-a-component) re-used in different contexts
-1. [Material Design variations](#4--material-design-variations) such as with the button component
-1. [Global theme variation](#5--global-theme-variation)
+1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
+1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
+1. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
+1. [Material Design variations](#4-material-design-variations) such as with the button component
+1. [Global theme variation](#5-global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 
@@ -139,18 +139,12 @@ You have learned how to override the style of the Material-UI components in the 
 Now, let's see how we can make these overrides dynamic.
 We demonstrate 5 alternatives, each has it's pros and cons.
 
-### withStyles property support
+### Dynamic CSS
 
-```jsx
-const styles = {
-  button: {
-    background: props => props.color,
-  },
-};
-```
+{{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
-This feature isn't ready yet.
-It will come with: [#7633](https://github.com/mui-org/material-ui/issues/7633).
+⚠️ This demo relies on the [`@material-ui/styles`](/css-in-js/basics/) package.
+It doesn't work with the stable version.
 
 ### Class name branch
 

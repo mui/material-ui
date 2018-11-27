@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import EventListener from 'react-event-listener';
-import { createMount, createShallow } from '../test-utils';
+import { createMount, createShallow } from '@material-ui/core/test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createBreakpoints from '../styles/createBreakpoints';
 import createMuiTheme from '../styles/createMuiTheme';

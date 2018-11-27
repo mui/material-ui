@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Popper/Popper.js
-title: Popper API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Popper
+# Popper API
 
 <p class="description">The API documentation of the Popper React component. Learn more about the properties and the CSS customization points.</p>
 

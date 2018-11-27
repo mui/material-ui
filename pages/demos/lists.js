@@ -51,6 +51,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/PinnedSubheaderList'), 'utf8')
 `,
         },
+        'pages/demos/lists/AlignItemsList.js': {
+          js: require('docs/src/pages/demos/lists/AlignItemsList').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/AlignItemsList'), 'utf8')
+`,
+        },
         'pages/demos/lists/CheckboxList.js': {
           js: require('docs/src/pages/demos/lists/CheckboxList').default,
           raw: preval`

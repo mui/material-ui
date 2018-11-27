@@ -23,7 +23,7 @@ Changing the theme configuration variables is the most effective way to match Ma
 The following sections cover the most important theme variables:
 
 - [Palette](#palette)
-- [Type (light / dark theme)](#type-light-dark-theme-)
+- [Type (light / dark theme)](#type-light-dark-theme)
 - [Typography](#typography)
 - [Other variables](#other-variables)
 - [Custom variables](#custom-variables)

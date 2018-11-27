@@ -2,9 +2,9 @@
 title: 复选、单选、开关 React 组件
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# 选择控制
+# 选项控件
 
-<p class="description">选择控件允许用户选择选项。</p>
+<p class="description">选项控件允许用户选择选项。</p>
 
 [选择控件](https://material.io/design/components/selection-controls.html) 允许用户完成涉及选择选项, 或打开或关闭设置等选项的任务。 选择控件一般用于让用户作出选择，或者在设置或者对话框上声明偏好。
 
@@ -74,8 +74,8 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
-## Label placement
+## 标签放置
 
-You can change the placement of the label:
+你可以更改标签放置的位置:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}

@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { ShallowWrapper } from 'enzyme';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
@@ -314,14 +314,14 @@ describe('<Tabs />', () => {
       consoleErrorMock.spy();
       mount(
         <Tabs width="md" onChange={noop} value={2}>
-          <Tab />
-          <Tab />
+          <Tab value={1} />
+          <Tab value={3} />
         </Tabs>,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 3);
-      assert.strictEqual(
+      assert.match(
         consoleErrorMock.args()[0][0],
-        'Warning: Material-UI: the value provided `2` is invalid',
+        /You can provide one of the following values: 1, 3/,
       );
     });
   });

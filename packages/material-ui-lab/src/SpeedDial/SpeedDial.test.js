@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
@@ -47,14 +47,14 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(wrapper.type(), 'div');
   });
 
-  it('should render a Button', () => {
+  it('should render a Fab', () => {
     const wrapper = shallow(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
     const buttonWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(buttonWrapper.type(), Button);
+    assert.strictEqual(buttonWrapper.type(), Fab);
   });
 
   it('should render with a null child', () => {
@@ -122,14 +122,14 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: onClick', () => {
-    it('should be set as the onClick prop of the button', () => {
+    it('should be set as the onClick prop of the Fab', () => {
       const onClick = spy();
       const wrapper = shallow(
         <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
           <div />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.find(Button);
+      const buttonWrapper = wrapper.find(Fab);
       assert.strictEqual(buttonWrapper.props().onClick, onClick);
     });
 
@@ -146,7 +146,7 @@ describe('<SpeedDial />', () => {
             <div />
           </SpeedDial>,
         );
-        const buttonWrapper = wrapper.find(Button);
+        const buttonWrapper = wrapper.find(Fab);
         assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 
@@ -238,11 +238,11 @@ describe('<SpeedDial />', () => {
     /**
      * @returns the button of SpeedDial
      */
-    const getDialButton = () => wrapper.find('Button').first();
+    const getDialButton = () => wrapper.find('Fab').first();
     /**
      *
      * @param actionIndex
-     * @returns the button of the nth SpeedDialAction or the FAB if -1
+     * @returns the button of the nth SpeedDialAction or the Fab if -1
      */
     const getActionButton = actionIndex => {
       if (actionIndex === -1) {

@@ -12,6 +12,7 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-benchmark",
   "scripts": {
+    "test": "exit 0",
     "benchmark": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/benchmark.js",
     "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js"
   },

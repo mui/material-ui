@@ -9,7 +9,7 @@ export interface DialogProps
   children?: React.ReactNode;
   fullScreen?: boolean;
   fullWidth?: boolean;
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | false;
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   PaperProps?: Partial<PaperProps>;
   scroll?: 'body' | 'paper';
   TransitionComponent?: React.ReactType;
@@ -27,6 +27,8 @@ export type DialogClassKey =
   | 'paperWidthXs'
   | 'paperWidthSm'
   | 'paperWidthMd'
+  | 'paperWidthLg'
+  | 'paperWidthXl'
   | 'paperFullWidth'
   | 'paperFullScreen';
 

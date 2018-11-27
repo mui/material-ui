@@ -1,5 +1,209 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.6.0
+###### *Nov 26, 2018*
+
+Big thanks to the 28 contributors who made this release possible!
+
+The last release was two weeks ago.
+Last weekend, we have missed the release train 🚃.
+As a consequence, this is a dense release.
+
+Here are some highlights ✨:
+- 🎨 Add a new Firebase theme demo (#13579) @siriwatknp.
+You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
+- ⚛️ Introduce a new Fab component (#13573) @mbrookes.
+- ⛏ Fix more StrictMode warnings (#13590) @eps1lon.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.6.0`
+
+#### Deprecations
+
+- [Fab] Extract from Button as new component (#13573) @mbrookes
+
+The floating action button doesn't share many styles with the default button component.
+We are extracting the variant into its own component.
+This way, we better isolate the concerns.
+We will remove the FAB styles from the button in v4, making the `Button` component more lightweight, a win for people overriding our styles.
+
+```diff
+-import Button from '@material-ui/core/Button';
++import Fab from '@material-ui/core/Fab';
+
+-<Button variant="fab" color="primary">
++<Fab color="primary">
+  <AddIcon />
+-</Button>
++</Fab>
+```
+
+#### Changes
+
+- [FormControlLabel] Fix documentation warnings (#13583) @dsbrutha777
+- [ExpansionPanelSummary] Fix event forwarding (#13582) @jmetev1
+- [Button] Move deprecated variants to the end of the list (#13584) @avetisk
+- [FormControl] Use stable context API (#13590) @eps1lon
+- [TablePagination] Improve TypeScript definition (#13601) @xiaoyu-tamu
+- [SwipeableDrawer] Add `SwipeAreaProps` property (#13592) @SerhiiBilyk
+- [Divider] Add support for middle divider (#13574) @joshwooding
+- [ListItem] Add three-line support (#13553) @ntorion
+- [Grid] Fix the IE 11 issue in the demo (7d2070fb388295d38806ecc49717006f34393e74) @oliviertassinari
+- [Zoom] Correct transition delay value of the example (#13645) @t49tran
+- [Tabs] Improve the warning message (#13640) @oliviertassinari
+- [Grow] Condense the demo (#13665) @Thyix
+- [Tooltip] Fix the property forwarding priority (#13667) @oliviertassinari
+- [Modal] Fix the close jump on Windows (#13674) @oliviertassinari
+- [Select] Support object value (#13661) @yezhi780625
+- [Menu] Fix wrong condition (#13675) @dolezel
+
+### `@material-ui/lab@v3.0.0-alpha.24`
+
+- [Slider] Fix sticky slider when mousing off the window then back in (#13479) @gkjohnson
+- [Slider] Fix visual hover state on disabled slider (#13638) @eps1lon
+- [Slider] Add missing thumb TypeScript definition (#13650) @dhiroll
+
+### `@material-ui/styles@v3.0.0-alpha.1`
+
+- [styles] Add TypeScript declarations (#13612) @eps1lon
+
+### `@material-ui/docs@v3.0.0-alpha.8`
+
+- Fix the @material-ui/utils require error.
+
+### Docs
+
+- [docs] Add redirect rule for moved page layout examples (#13588) @mbrookes
+- [docs] Add the selfeducation.app showcase (#13620) @kulakowka
+- [docs] Warn about the Dynamic CSS alpha state (#13619) @WebDeg-Brian
+- [docs] Learn Material-UI (#13624) @oliviertassinari
+- [docs] Add a Firebase example in the premium-theme section (#13579) @siriwatknp
+- [docs] Increase clarity around the usage of font icons (#13628) @JosephMart
+- [docs] Add swimmy.io to showcase page (#13637) @uufish
+- [docs] Correct typo in comment of snackbar, children (#13651) @kobi
+- [docs] Improve Grid limitation description (#13668) @sshevlyagin
+- [docs] Fix theme menu link (#13669) @iamhosseindhv
+- [docs] Change &quote; to &apos; (#13678) @wiktoriatomzik
+- [docs] Restructure the demo based on usage analytics (#13684) @oliviertassinari
+- [docs] Fix typo in URL (#13688) @Malvineous
+
+### Core
+
+- [core] Update dev dependencies (#13626) @oliviertassinari
+- [test] Fix codecov failing on merge commits (#13654) @eps1lon
+- [core] Make prettier run programmatically (#13621) @joshwooding
+- [test] Run unit/integration test on Chrome 41 (#13642) @eps1lon
+- [core] Move unit test commands to their package (#13604) @eps1lon
+
+## 3.5.1
+###### *Nov 13, 2018*
+
+Big thanks to the 13 contributors who made this release possible!
+
+Here are some highlights ✨:
+- Introduce a new `@material-ui/styles` package 💅 (#13503).
+
+The Material-UI's styling solution has pretty much stayed the same [for the last 12 months](https://github.com/oliviertassinari/a-journey-toward-better-style).
+Some interesting CSS-in-JS libraries like styled-components, emotion or linaria have emerged.
+This new package is a significant step forward. Some of the key features:
+
+  - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
+  - Allow accessing the component's props from within the style object.
+  - Replace the usage of the old React APIs with the new ones.
+  - 15.0 KB gzipped.
+
+Here is an example: https://codesandbox.io/s/vjzn5z4k77.
+
+```jsx
+import Button from '@material-ui/core/Button';
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
+
+// Like https://github.com/brunobertolini/styled-by
+const styledBy = (property, mapping) => props => mapping[props[property]];
+
+const useStyles = makeStyles({
+  root: {
+    background: styledBy('color', {
+      red: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      blue: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    }),
+    border: 0,
+    borderRadius: 3,
+    boxShadow: styledBy('color', {
+      red: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      blue: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+    }),
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+});
+
+function MyButton(props) {
+  const { color, ...other } = props;
+  const classes = useStyles(props);
+  return <Button className={classes.root} {...other} />;
+}
+
+function AdaptingHook() {
+  return (
+    <div>
+      <MyButton color="red">Red</MyButton>
+      <br />
+      <br />
+      <MyButton color="blue">Blue</MyButton>
+    </div>
+  );
+}
+
+export default AdaptingHook;
+```
+
+*Powered by [JSS](https://github.com/cssinjs/jss).*
+
+- Remove some usages of the old React's APIs (#13487, #13529, #13503) @eps1lon.
+- Add a language menu in the documentation and persist states between repeated visits (#13544, #13567) @mbrookes
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.5.1`
+
+- [OutlinedInput] Remove Firefox workaround (#13519) @Studio384
+- [TextField] Fix style focus issue on mobile (#13511) @ekoeditaa
+- [InputBase] Remove legacy lifecycle methods (#13487) @eps1lon
+- [Chip] Alignment fix (#13536) @izyb
+- [Badge] Add invisible property (#13534) @joshwooding
+- [Table] Use stable context API (#13529) @eps1lon
+- [TablePagination] Allow more rows per pages (#13524) @oliviertassinari
+- [LinearProgress] Fix TypeScript definition (#13562) @AdamMcquiff
+- Add missing brcast dependency @oliviertassinari
+
+### `@material-ui/styles@v3.0.0-alpha.0`
+
+- @material-ui/styles (#13503) @oliviertassinari
+
+### Docs
+
+- [docs] Advanced filter added to the documentation (#13528) @ashkank83
+- [docs] Save one component in the demo (#13537) @levelingup
+- [docs] Make the lab > core dependency more explicit (#13542) @Robindiddams
+- [docs] Remove redundant text (#13547) @EbiEbiEvidence
+- [docs] Add language menu (#13544) @mbrookes
+- [docs] Misc fixes (#13555) @oliviertassinari
+- [docs] Add cookie for persistant colors (#13567) @mbrookes
+
+### Core
+
+- [test] Improve tests related to lists (#13517) @eps1lon
+- [core] Remove recompose/wrapDisplayName usage (#13525) @oliviertassinari
+- [core] Fix the CDN release (#13540) @oliviertassinari
+- [core] Pass import filename through normalizePath function (#13565) @joshwooding
+
+## 3.5.0
+###### *Nov 12, 2018*
+
+*Corrupted, to not use.*
+
 ## 3.4.0
 ###### *Nov 5, 2018*
 

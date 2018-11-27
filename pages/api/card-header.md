@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/CardHeader/CardHeader.js
-title: CardHeader API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# CardHeader
+# CardHeader API
 
 <p class="description">The API documentation of the CardHeader React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -31,7 +30,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

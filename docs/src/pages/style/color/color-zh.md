@@ -55,9 +55,9 @@ const theme = createMuiTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customise `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/themes/#palette) section.
+一般只需要提供 `主`阴影(除非你想进一步地自定义 `亮`，`暗` 或 ` 对比文本`)，同时其他的颜色将由 `createMuiTheme()` 进行计算，就像在 [主题自定义](/customization/themes/#palette) 里被描述的部分。
 
-If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
+如果你通过提供 color object 的方式 使用默认的主要阴影 和/或 次要阴影，`createMuiTheme()` 将会根据 主、亮和暗 三种 material 颜色选择合适的阴影。
 
 ### 官方色彩工具
 
@@ -93,7 +93,7 @@ const theme = createMuiTheme({
 ### 社区工具
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 是一款使用 Material Design 创建 Material-UI 主题的在线工具。
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
 
 ## 调色板
 

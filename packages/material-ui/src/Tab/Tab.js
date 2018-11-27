@@ -91,13 +91,9 @@ export const styles = theme => ({
   labelContainer: {
     width: '100%', // Fix an IE 11 issue
     boxSizing: 'border-box',
-    paddingTop: 6,
-    paddingBottom: 6,
-    paddingLeft: 12,
-    paddingRight: 12,
+    padding: '6px 12px',
     [theme.breakpoints.up('md')]: {
-      paddingLeft: 24,
-      paddingRight: 24,
+      padding: '6px 24px',
     },
   },
   /* Styles applied to the label wrapper element if `label` is provided. */

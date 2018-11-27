@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import {
-  withStyles,
-  createGenerateClassName,
-  jssPreset,
-  MuiThemeProvider,
-} from '@material-ui/core/styles';
+import { withStyles, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
-import JssProvider from 'react-jss/lib/JssProvider';
 
 const styles = theme => ({
   root: {
@@ -49,16 +44,18 @@ class DemoFrame extends React.Component {
   };
 
   render() {
-    const { children, classes, theme } = this.props;
+    const { children, classes } = this.props;
 
     const inIframe = this.state.ready ? (
-      <JssProvider jss={this.state.jss} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme} sheetsManager={this.state.sheetsManager}>
-          {React.cloneElement(children, {
-            container: this.state.container,
-          })}
-        </MuiThemeProvider>
-      </JssProvider>
+      <StylesProvider
+        jss={this.state.jss}
+        generateClassName={generateClassName}
+        sheetsManager={this.state.sheetsManager}
+      >
+        {React.cloneElement(children, {
+          container: this.state.container,
+        })}
+      </StylesProvider>
     ) : null;
 
     return (

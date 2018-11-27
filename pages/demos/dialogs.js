@@ -44,6 +44,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/FullScreenDialog'), 'utf8')
 `,
         },
+        'pages/demos/dialogs/MaxWidthDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/MaxWidthDialog').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/MaxWidthDialog'), 'utf8')
+`,
+        },
         'pages/demos/dialogs/FormDialog.js': {
           js: require('docs/src/pages/demos/dialogs/FormDialog').default,
           raw: preval`

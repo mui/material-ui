@@ -2,6 +2,10 @@
 
 <p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
+> ⚠️ We are working on extracting the styling solution into it's own package: [`@material-ui/styles`](/css-in-js/basics/).
+It's an experimental project (alpha version).
+Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
+
 Material-UI aims to provide strong foundations for building dynamic UIs.
 For the sake of simplicity, **we expose our styling solution to users**.
 You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
@@ -243,7 +247,7 @@ Given `withStyles` is our internal styling solution, all the plugins aren't avai
 - [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
 It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
-Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3-jss-rtl).
+Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3--jss-rtl).
 
 ## API
 

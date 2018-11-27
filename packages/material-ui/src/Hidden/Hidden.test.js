@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
 import Hidden from './Hidden';
 import HiddenJs from './HiddenJs';
 import HiddenCss from './HiddenCss';

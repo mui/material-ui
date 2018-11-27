@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Tooltip/Tooltip.js
-title: Tooltip API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Tooltip
+# Tooltip API
 
 <p class="description">The API documentation of the Tooltip React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -26,7 +25,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 | <span class="prop-name">disableTouchListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to long press touch events. |
 | <span class="prop-name">enterDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The number of milliseconds to wait before showing the tooltip. This property won't impact the enter touch delay (`enterTouchDelay`). |
 | <span class="prop-name">enterTouchDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">1000</span> | The number of milliseconds a user must touch the element before showing the tooltip. |
-| <span class="prop-name">id</span> | <span class="prop-type">string</span> |   | The relationship between the tooltip and the wrapper component is not clear from the DOM. This property is used with aria-describedby to solve the accessibility issue. If you don't provide this property. It fallback to a random generated id. |
+| <span class="prop-name">id</span> | <span class="prop-type">string</span> |   | The relationship between the tooltip and the wrapper component is not clear from the DOM. This property is used with aria-describedby to solve the accessibility issue. If you don't provide this property. It falls back to a randomly generated id. |
 | <span class="prop-name">interactive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Makes a tooltip interactive, i.e. will not close when the user hovers over the tooltip before the `leaveDelay` is expired. |
 | <span class="prop-name">leaveDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The number of milliseconds to wait before hiding the tooltip. This property won't impact the leave touch delay (`leaveTouchDelay`). |
 | <span class="prop-name">leaveTouchDelay</span> | <span class="prop-type">number</span> | <span class="prop-default">1500</span> | The number of milliseconds after the user stops touching an element before hiding the tooltip. |
@@ -41,7 +40,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

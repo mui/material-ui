@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import classNames from 'classnames';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
 

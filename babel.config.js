@@ -27,21 +27,38 @@ if (process.env.BABEL_ENV === 'es') {
   ];
 }
 
+const defaultAlias = {
+  // docly
+  '@docly/web': './packages/docly/src',
+
+  '@material-ui/core': './packages/material-ui/src',
+  '@material-ui/icons': './packages/material-ui-icons/src',
+  '@material-ui/lab': './packages/material-ui-lab/src',
+  '@material-ui/styles': './packages/material-ui-styles/src',
+  '@material-ui/utils': './packages/material-ui-utils/src',
+};
+
 module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
     ['@babel/plugin-proposal-class-properties', { loose: true }],
-    [
-      '@babel/plugin-proposal-object-rest-spread',
-      {
-        // Workaround for https://github.com/babel/babel/issues/8323
-        loose: process.env.BABEL_ENV !== 'es',
-      },
-    ],
+    ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],
   env: {
+    test: {
+      sourceMaps: 'both',
+      plugins: [
+        [
+          'babel-plugin-module-resolver',
+          {
+            root: ['./'],
+            alias: defaultAlias,
+          },
+        ],
+      ],
+    },
     coverage: {
       plugins: [
         'babel-plugin-istanbul',
@@ -50,10 +67,9 @@ module.exports = {
           {
             root: ['./'],
             alias: {
-              '@docly/web': './packages/docly/src',
-              '@material-ui/core': './packages/material-ui/src',
-              '@material-ui/icons': './packages/material-ui-icons/src',
+              ...defaultAlias,
             },
+            // alias: defaultAlias,
           },
         ],
       ],
@@ -77,11 +93,8 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             alias: {
-              '@docly/web': './packages/docly/src',
-              '@material-ui/core': './packages/material-ui/src',
+              ...defaultAlias,
               '@material-ui/docs': './packages/material-ui-docs/src',
-              '@material-ui/icons': './packages/material-ui-icons/src',
-              '@material-ui/lab': './packages/material-ui-lab/src',
               docs: './docs',
               modules: './modules',
               pages: './pages',
@@ -99,11 +112,8 @@ module.exports = {
           'babel-plugin-module-resolver',
           {
             alias: {
-              '@docly/web': './packages/docly/src',
-              '@material-ui/core': './packages/material-ui/src',
+              ...defaultAlias,
               '@material-ui/docs': './packages/material-ui-docs/src',
-              '@material-ui/icons': './packages/material-ui-icons/src',
-              '@material-ui/lab': './packages/material-ui-lab/src',
               docs: './docs',
               modules: './modules',
               pages: './pages',
@@ -159,22 +169,6 @@ module.exports = {
           'transform-react-remove-prop-types',
           {
             mode: 'wrap',
-          },
-        ],
-      ],
-    },
-    test: {
-      sourceMaps: 'both',
-      plugins: [
-        [
-          'babel-plugin-module-resolver',
-          {
-            root: ['./'],
-            alias: {
-              '@docly/web': './packages/docly/src',
-              '@material-ui/core': './packages/material-ui/src',
-              '@material-ui/icons': './packages/material-ui-icons/src',
-            },
           },
         ],
       ],

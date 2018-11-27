@@ -5,14 +5,15 @@ function handleClick(event) {
   let element = event.target;
 
   while (element && element !== rootNode) {
-    const category = element.getAttribute('ga-event-category');
+    const category = element.getAttribute('data-ga-event-category');
 
     // We reach a tracking element, no need to look higher in the dom tree.
     if (category) {
       window.ga('send', {
         hitType: 'event',
         eventCategory: category,
-        eventAction: element.getAttribute('ga-event-action'),
+        eventAction: element.getAttribute('data-ga-event-action'),
+        eventLabel: element.getAttribute('data-ga-event-label'),
       });
       break;
     }

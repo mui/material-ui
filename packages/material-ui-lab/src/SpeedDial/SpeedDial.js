@@ -6,7 +6,7 @@ import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { isMuiElement, setRef } from '@material-ui/core/utils/reactHelpers';
 import * as utils from './utils';
 import clamp from '../utils/clamp';
@@ -95,7 +95,7 @@ class SpeedDial extends React.Component {
 
   /**
    * refs to the Button that have an action associated to them in this SpeedDial
-   * [FAB, ...(SpeeDialActions > Button)]
+   * [Fab, ...(SpeeDialActions > Button)]
    * @type {HTMLButtonElement[]}
    */
   actions = [];
@@ -245,8 +245,7 @@ class SpeedDial extends React.Component {
           unmountOnExit
           {...TransitionProps}
         >
-          <Button
-            variant="fab"
+          <Fab
             color="primary"
             onKeyDown={this.handleKeyboardNavigation}
             aria-label={ariaLabel}
@@ -262,7 +261,7 @@ class SpeedDial extends React.Component {
             }}
           >
             {icon()}
-          </Button>
+          </Fab>
         </TransitionComponent>
         <div
           id={`${id}-actions`}

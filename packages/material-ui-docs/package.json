@@ -2,7 +2,7 @@
   "name": "@material-ui/docs",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.7",
+  "version": "3.0.0-alpha.8",
   "description": "Material-UI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
+    "test": "exit 0",
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.1.2",
+    "@material-ui/utils": "^3.0.0-alpha.0",
     "marked": "^0.5.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"

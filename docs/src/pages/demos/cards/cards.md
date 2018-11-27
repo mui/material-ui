@@ -17,6 +17,12 @@ Although cards can support multiple actions, UI controls, and an overflow menu, 
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
 
+## Complex Interaction
+
+On desktop, card content can expand.
+
+{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
+
 ## Media
 
 Example of a card using an image to reinforce the content.
@@ -34,9 +40,3 @@ Supplemental actions within the card are explicitly called out using icons, text
 Here's an example of a media control card.
 
 {{"demo": "pages/demos/cards/MediaControlCard.js"}}
-
-## Complex Interaction
-
-On desktop, card content can expand.
-
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
+import withRoot from 'docs/src/modules/components/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';

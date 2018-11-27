@@ -56,6 +56,18 @@ const themes = [
     category: 'Components',
     href: 'https://www.creative-tim.com/product/material-kit-react?partner=104080',
   },
+  {
+    name: 'Paperbase',
+    description:
+      'A page that mimics Firebase. ' +
+      'This item includes theming using the theme provider component.',
+    src: '/static/images/themes/paperbase.png',
+    price: 'FREE',
+    category: 'Admin & Dashboard',
+    href: '/premium-themes/paperbase',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/paperbase',
+  },
 ];
 
 function PremiumThemes(props) {
@@ -72,6 +84,9 @@ function PremiumThemes(props) {
               className={classes.media}
               image={theme.src}
               title={theme.name}
+              data-ga-event-category="premium-themes"
+              data-ga-event-action="click"
+              data-ga-event-label={theme.name}
             />
             <CardContent className={classes.cardContent}>
               <Grid container alignItems="center">
@@ -96,9 +111,17 @@ function PremiumThemes(props) {
                 href={theme.href}
                 size="small"
                 color="primary"
+                data-ga-event-category="premium-themes"
+                data-ga-event-action="click"
+                data-ga-event-label={theme.name}
               >
                 Learn More
               </Button>
+              {theme.source ? (
+                <Button component="a" href={theme.source} size="small" color="primary">
+                  Source code
+                </Button>
+              ) : null}
             </CardActions>
           </Card>
         </Grid>
