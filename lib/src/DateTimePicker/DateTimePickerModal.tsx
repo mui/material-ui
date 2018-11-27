@@ -41,7 +41,8 @@ export const DateTimePickerModal: React.SFC<
   } = props;
 
   // do not show tabs for small screens
-  const toShowTabs = showTabs && window && window.innerHeight > 667;
+  const toShowTabs =
+    showTabs && typeof window !== 'undefined' && window.innerHeight > 667;
   return (
     <BasePicker {...props}>
       {({
