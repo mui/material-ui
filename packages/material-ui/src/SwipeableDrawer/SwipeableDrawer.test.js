@@ -9,13 +9,14 @@ import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import createMuiTheme from '../styles/createMuiTheme';
 
-function fireBodyMouseEvent(name, properties) {
+function fireBodyMouseEvent(name, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
   Object.keys(properties).forEach(key => {
     event[key] = properties[key];
   });
   document.body.dispatchEvent(event);
+  return event;
 }
 
 describe('<SwipeableDrawer />', () => {

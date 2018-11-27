@@ -36,7 +36,7 @@ function getDemo(props) {
   return {
     title: 'Material demo',
     description: props.githubLocation,
-    dependencies: getDependencies(props.raw),
+    dependencies: getDependencies(props.raw, props.demoOptions.react),
     files: {
       'demo.js': props.raw,
       'index.js': `
