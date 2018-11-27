@@ -52,6 +52,8 @@ module.exports = {
     'no-param-reassign': 'off', // airbnb use error
     'no-prototype-builtins': 'off', // airbnb use error
     'operator-linebreak': 'off', // airbnb use error
+    // named callbacks are useful for debugging and display name inference in react-devtools
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
 
     // It would be better to enable this rule, but it might slow us down.
     'import/no-extraneous-dependencies': 'off',
