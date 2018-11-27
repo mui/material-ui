@@ -70,9 +70,10 @@ Use a different transition all together.
 
 ## Complementary projects
 
-Material-UI doesn't provide a high-level API for displaying snackbars. You can take advantage of third party libraries for this.
+For more advanced use cases you might be able to take advantage of:
 
 ### notistack
+
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars)
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 

@@ -6,19 +6,19 @@ import { SnackbarProvider, withSnackbar } from 'notistack';
 class App extends React.Component {
   handleClick = () => {
     this.props.enqueueSnackbar('I love snacks.');
-  }
+  };
 
   handleClickVariant = variant => () => {
     // variant could be success, error, warning or info
     this.props.enqueueSnackbar('This is a warning message!', { variant });
-  }
+  };
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Button onClick={this.handleClick}>Show snackbar</Button>
         <Button onClick={this.handleClickVariant('warning')}>Show warning snackbar</Button>
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -29,9 +29,12 @@ App.propTypes = {
 
 const MyApp = withSnackbar(App);
 
+function IntegrationNotistack() {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <MyApp />
+    </SnackbarProvider>
+  );
+}
 
-export default () => (
-  <SnackbarProvider maxSnack={3}>
-    <MyApp />
-  </SnackbarProvider>
-);
+export default IntegrationNotistack;
