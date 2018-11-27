@@ -109,7 +109,7 @@ or [GraphicsMagick](http://http://www.graphicsmagick.org/) being installed.
 
 ## Writing Tests
 
-For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/src/Avatar/Avatar.spec.js) a small shallow rendered test to get you started.
+For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Avatar/Avatar.test.js) a small shallow rendered test to get you started.
 
 If the Component being unit tested requires a DOM, you can use the [mount api](https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md) from `enzyme`. For some operations, you may still need to use the React test utils, but try to use the `enzyme` API as much as possible.
 
