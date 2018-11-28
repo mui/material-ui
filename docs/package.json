@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "0.0.2",
@@ -22,7 +22,7 @@
     "formik": "^1.3.2",
     "jss-rtl": "^0.2.3",
     "luxon": "^1.6.2",
-    "material-ui-pickers": "2.0.1",
+    "material-ui-pickers": "latest",
     "material-ui-pickers-jalali-utils": "^0.4.3",
     "moment": "^2.22.2",
     "moment-jalaali": "^0.8.1",
