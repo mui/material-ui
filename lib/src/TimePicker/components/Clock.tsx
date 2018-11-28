@@ -127,7 +127,7 @@ export class Clock extends React.Component<ClockProps> {
   }
 }
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',

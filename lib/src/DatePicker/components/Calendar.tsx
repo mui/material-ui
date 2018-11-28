@@ -280,7 +280,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   }
 }
 
-const styles = (theme: Theme) => ({
+export const styles = (theme: Theme) => ({
   transitionContainer: {
     minHeight: 36 * 6,
     marginTop: theme.spacing.unit * 1.5,

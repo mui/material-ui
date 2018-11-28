@@ -103,7 +103,7 @@ CalendarHeader.defaultProps = {
   disableNextMonth: false,
 };
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     switchHeader: {
       display: 'flex',

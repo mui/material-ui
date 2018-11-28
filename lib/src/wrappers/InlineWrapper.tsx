@@ -158,7 +158,7 @@ export class InlineWrapper extends React.PureComponent<
   }
 }
 
-const styles = {
+export const styles = {
   popoverPaper: {
     maxWidth: 310,
     minWidth: 290,

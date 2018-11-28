@@ -1,6 +1,8 @@
 import React from 'react';
+import Code from '_shared/Code';
 import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from '@material-ui/core';
+import typescriptOverrideCode from './CssOverridesTypescript.example'; // eslint-disable-line
 
 const CssOverrides = () => (
   <div>
@@ -29,6 +31,17 @@ const CssOverrides = () => (
         </Typography>
       }
     />
+
+    <Typography variant="h4" gutterBottom>
+      For typescript users
+    </Typography>
+
+    <Typography variant="body1" gutterBottom>
+      Override default material-ui theme to attach picker's component override. (This will also
+      autocomplete classnames for overrides)
+    </Typography>
+
+    <Code language="ts" text={typescriptOverrideCode} />
   </div>
 );
 

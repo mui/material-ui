@@ -7,6 +7,7 @@ interface AppState {
   direction: 'rtl' | 'ltr';
   theme: 'light' | 'dark';
 }
+
 class App extends React.Component<{}, AppState> {
   state: AppState = {
     direction: 'ltr',
