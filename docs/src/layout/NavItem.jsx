@@ -38,7 +38,7 @@ class NavItem extends React.Component {
     };
   }
 
-  handleClick = (e) => {
+  handleClick = e => {
     if (this.props.depth === 0) {
       e.stopPropagation();
     }
@@ -47,9 +47,7 @@ class NavItem extends React.Component {
   };
 
   render() {
-    const {
-      href, title, children, classes, depth, ...props
-    } = this.props;
+    const { href, title, children, classes, depth, ...props } = this.props;
 
     const style = { paddingLeft: `${(depth + 1) * 16}px` };
 
@@ -59,11 +57,7 @@ class NavItem extends React.Component {
 
     if (href) {
       return (
-        <ListItem
-          disableGutters
-          className={classes.listItem}
-          {...props}
-        >
+        <ListItem disableGutters className={classes.listItem} {...props}>
           <Button
             disableRipple
             component={NavLink}
@@ -82,11 +76,7 @@ class NavItem extends React.Component {
     }
 
     return (
-      <ListItem
-        disableGutters
-        className={classes.listItem}
-        {...props}
-      >
+      <ListItem disableGutters className={classes.listItem} {...props}>
         <Button
           onClick={this.handleClick}
           style={style}
@@ -96,12 +86,7 @@ class NavItem extends React.Component {
         >
           {title}
         </Button>
-        <Collapse
-          in={this.state.open}
-          unmountOnExit
-          component="ul"
-          className={classes.collapse}
-        >
+        <Collapse in={this.state.open} unmountOnExit component="ul" className={classes.collapse}>
           {children}
         </Collapse>
       </ListItem>

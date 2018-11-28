@@ -66,10 +66,7 @@ export const convertToMeridiem = (
   if (ampm) {
     const currentMeridiem = utils.getHours(time) >= 12 ? 'pm' : 'am';
     if (currentMeridiem !== meridiem) {
-      const hours =
-        meridiem === 'am'
-          ? utils.getHours(time) - 12
-          : utils.getHours(time) + 12;
+      const hours = meridiem === 'am' ? utils.getHours(time) - 12 : utils.getHours(time) + 12;
 
       return utils.setHours(time, hours);
     }

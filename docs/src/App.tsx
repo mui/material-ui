@@ -40,10 +40,7 @@ class App extends React.Component<{}, AppState> {
   render() {
     return (
       <MuiThemeProvider theme={this.createMuiTheme()}>
-        <Layout
-          toggleDirection={this.toggleDirection}
-          toggleThemeType={this.toggleTheme}
-        >
+        <Layout toggleDirection={this.toggleDirection} toggleThemeType={this.toggleTheme}>
           <Router />
         </Layout>
       </MuiThemeProvider>

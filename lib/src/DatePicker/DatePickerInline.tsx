@@ -4,9 +4,7 @@ import * as React from 'react';
 import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper, {
-  OuterInlineWrapperProps,
-} from '../wrappers/InlineWrapper';
+import InlineWrapper, { OuterInlineWrapperProps } from '../wrappers/InlineWrapper';
 import Calendar from './components/Calendar';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
 
@@ -45,14 +43,7 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = props => {
 
   return (
     <BasePicker {...props} autoOk>
-      {({
-        date,
-        utils,
-        isAccepted,
-        handleChange,
-        handleTextFieldChange,
-        handleAccept,
-      }) => (
+      {({ date, utils, isAccepted, handleChange, handleTextFieldChange, handleAccept }) => (
         <InlineWrapper
           disableFuture={disableFuture}
           disablePast={disablePast}

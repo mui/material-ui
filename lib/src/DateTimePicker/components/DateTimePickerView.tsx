@@ -6,10 +6,7 @@ export interface DateTimePickerViewProps {
   children: React.ReactChild;
 }
 
-export const DateTimePickerView: React.SFC<DateTimePickerViewProps> = ({
-  selected,
-  children,
-}) => {
+export const DateTimePickerView: React.SFC<DateTimePickerViewProps> = ({ selected, children }) => {
   if (!selected) {
     return null;
   }

@@ -1,11 +1,7 @@
 import { WithStyles } from '@material-ui/core';
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import {
-  ModalDialog,
-  ModalDialogProps,
-  styles,
-} from '../../_shared/ModalDialog';
+import { ModalDialog, ModalDialogProps, styles } from '../../_shared/ModalDialog';
 import { shallow } from '../test-utils';
 
 const initialProps: ModalDialogProps & WithStyles<typeof styles> = {
@@ -39,9 +35,7 @@ describe('ModalDialog', () => {
   });
 
   it('Should render dialog content', () => {
-    expect(component.find('WithStyles(DialogContent)').props().children).toBe(
-      props.children
-    );
+    expect(component.find('WithStyles(DialogContent)').props().children).toBe(props.children);
   });
 
   it('Should render dialog actions with 2 buttons', () => {

@@ -9,12 +9,10 @@ const TimePickerDemo = () => (
       Time picker
     </Typography>
     <Typography variant="body1" gutterBottom>
-      Time pickers use a dialog to select a single time (in the hours:minutes
-      format).
+      Time pickers use a dialog to select a single time (in the hours:minutes format).
     </Typography>
     <Typography variant="body1">
-      The selected time is indicated by the filled circle at the end of the
-      clock hand.
+      The selected time is indicated by the filled circle at the end of the clock hand.
     </Typography>
 
     <SourcablePanel
@@ -22,8 +20,7 @@ const TimePickerDemo = () => (
       sourceFile="Components/TimePicker/TimePickerBasic.example.jsx"
       description={
         <Typography variant="body1" gutterBottom>
-          A time picker should adjusts to a user’s preferred time setting, i.e.
-          the 12-hour or 24-hour format.
+          A time picker should adjusts to a user’s preferred time setting, i.e. the 12-hour or 24-hour format.
         </Typography>
       }
     />
@@ -38,15 +35,9 @@ const TimePickerDemo = () => (
       }
     />
 
-    <SourcablePanel
-      title="Keyboard input"
-      sourceFile="Components/TimePicker/KeyboardTimePicker.example.jsx"
-    />
+    <SourcablePanel title="Keyboard input" sourceFile="Components/TimePicker/KeyboardTimePicker.example.jsx" />
 
-    <SourcablePanel
-      title="Inline mode"
-      sourceFile="Components/TimePicker/InlineTimePicker.example.jsx"
-    />
+    <SourcablePanel title="Inline mode" sourceFile="Components/TimePicker/InlineTimePicker.example.jsx" />
 
     <PropTypesTable src="TimePicker/TimePickerModal.tsx" />
   </div>

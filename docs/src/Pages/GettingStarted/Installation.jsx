@@ -18,10 +18,7 @@ const Installation = () => (
     </Typography>
     <Typography variant="body1" gutterBottom>
       Available as{' '}
-      <a
-        className="link"
-        href="https://www.npmjs.com/package/material-ui-pickers"
-      >
+      <a className="link" href="https://www.npmjs.com/package/material-ui-pickers">
         npm package
       </a>
     </Typography>
@@ -32,8 +29,7 @@ const Installation = () => (
       Peer Library
     </Typography>
     <Typography variant="body1" gutterBottom>
-      Material-ui-pickers was designed to use that date management library that
-      you need.
+      Material-ui-pickers was designed to use that date management library that you need.
     </Typography>
 
     <Typography variant="body1" gutterBottom>
@@ -49,9 +45,8 @@ const Installation = () => (
       <a className="link" href="https://moment.github.io/luxon/">
         luxon
       </a>
-      P.S. If you are not using moment in the project (or dont have it in the
-      bundle already) we suggest using date-fns, because it is much more
-      lightweight and will be correctly tree-shaken from the bundle.
+      P.S. If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns,
+      because it is much more lightweight and will be correctly tree-shaken from the bundle.
     </Typography>
 
     <Typography variant="body1" gutterBottom>
@@ -61,10 +56,9 @@ const Installation = () => (
     <Code withMargin text={installLibCode} />
     <Typography variant="body1">
       Teach pickers how to use one of that library using
-      <span className="inline-code">MuiPickersUtilsProvider</span>. This
-      component takes an utils property, and makes it available down the React
-      tree thanks to React context. It should preferably be used at the root of
-      your component tree.
+      <span className="inline-code">MuiPickersUtilsProvider</span>. This component takes an utils property, and makes it
+      available down the React tree thanks to React context. It should preferably be used at the root of your component
+      tree.
     </Typography>
 
     <Code withMargin text={muiPickerProviderCode} />
@@ -72,9 +66,8 @@ const Installation = () => (
       Font Icons
     </Typography>
     <Typography variant="body1">
-      We are using material-ui-icons icon font to display icons. In order if you
-      can override with a help of corresponding props. Just add this to your
-      html
+      We are using material-ui-icons icon font to display icons. In order if you can override with a help of
+      corresponding props. Just add this to your html
     </Typography>
 
     <Code

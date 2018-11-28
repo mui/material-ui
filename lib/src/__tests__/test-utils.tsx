@@ -44,27 +44,19 @@ export const utilsToUse = new UtilClassToUse();
 //   return { default: WithUtils };
 // });
 
-const getComponentWithUtils = <P extends WithUtilsProps>(
-  element: React.ReactElement<P>
-) => React.cloneElement(element, { utils: utilsToUse } as any);
+const getComponentWithUtils = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
+  React.cloneElement(element, { utils: utilsToUse } as any);
 
-export const shallow = <P extends WithUtilsProps>(
-  element: React.ReactElement<P>
-) => enzyme.shallow(getComponentWithUtils(element));
+export const shallow = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
+  enzyme.shallow(getComponentWithUtils(element));
 
-export const mount = <P extends WithUtilsProps>(
-  element: React.ReactElement<P>
-) =>
+export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
   enzyme.mount(
     <MuiPickersUtilsProvider utils={UtilClassToUse}>
       <MuiThemeProvider theme={theme}>{element}</MuiThemeProvider>
     </MuiPickersUtilsProvider>
   );
 
-export const shallowRender = (
-  render: (props: any) => React.ReactElement<any>
-) => {
-  return enzyme.shallow(
-    render({ utils: utilsToUse, classes: {} as any, theme: {} as any })
-  );
+export const shallowRender = (render: (props: any) => React.ReactElement<any>) => {
+  return enzyme.shallow(render({ utils: utilsToUse, classes: {} as any, theme: {} as any }));
 };

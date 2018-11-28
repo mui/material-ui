@@ -35,9 +35,7 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
   isAccepted?: boolean;
 }
 
-export default class ModalWrapper extends React.PureComponent<
-  ModalWrapperProps
-> {
+export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
   public static propTypes: any = {
     okLabel: PropTypes.node,
     cancelLabel: PropTypes.node,

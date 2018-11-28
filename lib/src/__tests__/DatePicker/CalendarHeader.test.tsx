@@ -1,9 +1,6 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import {
-  CalendarHeader,
-  CalendarHeaderProps,
-} from '../../DatePicker/components/CalendarHeader';
+import { CalendarHeader, CalendarHeaderProps } from '../../DatePicker/components/CalendarHeader';
 import { shallow, utilsToUse } from '../test-utils';
 
 describe('CalendarHeader', () => {

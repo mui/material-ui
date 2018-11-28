@@ -8,11 +8,7 @@ describe('Calendar', () => {
 
   beforeEach(() => {
     component = shallowRender(props => (
-      <Calendar
-        date={utilsToUse.date('01-01-2017')}
-        onChange={jest.fn()}
-        {...props}
-      />
+      <Calendar date={utilsToUse.date('01-01-2017')} onChange={jest.fn()} {...props} />
     ));
   });
 
@@ -61,30 +57,22 @@ describe('Calendar - keyboard control', () => {
   });
 
   it('Should render go to prev week on up', () => {
-    component
-      .find('EventListener')
-      .simulate('keyDown', { keyCode: 38, preventDefault: jest.fn() });
+    component.find('EventListener').simulate('keyDown', { keyCode: 38, preventDefault: jest.fn() });
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should render go to next week on down', () => {
-    component
-      .find('EventListener')
-      .simulate('keyDown', { keyCode: 40, preventDefault: jest.fn() });
+    component.find('EventListener').simulate('keyDown', { keyCode: 40, preventDefault: jest.fn() });
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should render go to prev week on up', () => {
-    component
-      .find('EventListener')
-      .simulate('keyDown', { keyCode: 37, preventDefault: jest.fn() });
+    component.find('EventListener').simulate('keyDown', { keyCode: 37, preventDefault: jest.fn() });
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should render go to prev week on up', () => {
-    component
-      .find('EventListener')
-      .simulate('keyDown', { keyCode: 39, preventDefault: jest.fn() });
+    component.find('EventListener').simulate('keyDown', { keyCode: 39, preventDefault: jest.fn() });
     expect(onChangeMock).toHaveBeenCalled();
   });
 });

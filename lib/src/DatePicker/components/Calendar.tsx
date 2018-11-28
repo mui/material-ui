@@ -23,9 +23,7 @@ export type RenderDay = (
   dayComponent: DayComponent
 ) => JSX.Element;
 
-export interface CalendarProps
-  extends WithUtilsProps,
-    WithStyles<typeof styles, true> {
+export interface CalendarProps extends WithUtilsProps, WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   minDate: DateType;
   maxDate: DateType;
@@ -76,10 +74,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     shouldDisableDate: () => false,
   };
 
-  public static getDerivedStateFromProps(
-    nextProps: CalendarProps,
-    state: CalendarState
-  ) {
+  public static getDerivedStateFromProps(nextProps: CalendarProps, state: CalendarState) {
     if (!nextProps.utils.isEqual(nextProps.date, state.lastDate)) {
       return {
         lastDate: nextProps.date,
@@ -119,10 +114,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
   };
 
-  public handleChangeMonth = (
-    newMonth: MaterialUiPickersDate,
-    slideDirection: SlideDirection
-  ) => {
+  public handleChangeMonth = (newMonth: MaterialUiPickersDate, slideDirection: SlideDirection) => {
     this.setState({ currentMonth: newMonth, slideDirection });
   };
 
@@ -139,9 +131,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const { utils, disablePast, minDate } = this.props;
     const now = utils.date();
     return !utils.isBefore(
-      utils.getStartOfMonth(
-        disablePast && utils.isAfter(now, minDate) ? now : utils.date(minDate)
-      ),
+      utils.getStartOfMonth(disablePast && utils.isAfter(now, minDate) ? now : utils.date(minDate)),
       this.state.currentMonth
     );
   };
@@ -150,11 +140,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const { utils, disableFuture, maxDate } = this.props;
     const now = utils.date();
     return !utils.isAfter(
-      utils.getStartOfMonth(
-        disableFuture && utils.isBefore(now, maxDate)
-          ? now
-          : utils.date(maxDate)
-      ),
+      utils.getStartOfMonth(disableFuture && utils.isBefore(now, maxDate) ? now : utils.date(maxDate)),
       this.state.currentMonth
     );
   };
@@ -187,14 +173,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         this.moveToDay(utils.addDays(date, 7));
         break;
       case 'left':
-        theme.direction === 'ltr'
-          ? this.moveToDay(utils.addDays(date, -1))
-          : this.moveToDay(utils.addDays(date, 1));
+        theme.direction === 'ltr' ? this.moveToDay(utils.addDays(date, -1)) : this.moveToDay(utils.addDays(date, 1));
         break;
       case 'right':
-        theme.direction === 'ltr'
-          ? this.moveToDay(utils.addDays(date, 1))
-          : this.moveToDay(utils.addDays(date, -1));
+        theme.direction === 'ltr' ? this.moveToDay(utils.addDays(date, 1)) : this.moveToDay(utils.addDays(date, -1));
         break;
       default:
         // if keycode is not handled, stop execution
@@ -211,10 +193,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const weeks = utils.getWeekArray(currentMonth);
 
     return weeks.map(week => (
-      <div
-        key={`week-${week[0].toString()}`}
-        className={this.props.classes.week}
-      >
+      <div key={`week-${week[0].toString()}`} className={this.props.classes.week}>
         {this.renderDays(week)}
       </div>
     ));
@@ -243,12 +222,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       );
 
       if (renderDay) {
-        dayComponent = renderDay(
-          day,
-          selectedDate,
-          dayInCurrentMonth,
-          dayComponent
-        );
+        dayComponent = renderDay(day, selectedDate, dayInCurrentMonth, dayComponent);
       }
 
       return (
@@ -271,9 +245,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
     return (
       <React.Fragment>
-        {allowKeyboardControl && (
-          <EventListener target="window" onKeyDown={this.handleKeyDown} />
-        )}
+        {allowKeyboardControl && <EventListener target="window" onKeyDown={this.handleKeyDown} />}
 
         <CalendarHeader
           slideDirection={slideDirection}

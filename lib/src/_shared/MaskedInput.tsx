@@ -20,11 +20,7 @@ export default class Input extends React.PureComponent<CustomMaskedInputProps> {
   public render() {
     const { inputRef, keepCharPositions, ...rest } = this.props;
     return this.props.mask ? (
-      <MaskedInput
-        {...rest}
-        keepCharPositions={keepCharPositions}
-        ref={inputRef}
-      />
+      <MaskedInput {...rest} keepCharPositions={keepCharPositions} ref={inputRef} />
     ) : (
       <input {...rest} ref={inputRef} />
     );

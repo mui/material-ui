@@ -45,9 +45,7 @@ export interface DatePickerProps extends BaseDatePickerProps {
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
 
-export class DatePicker extends React.PureComponent<
-  DatePickerProps & WithUtilsProps
-> {
+export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsProps> {
   public static propTypes: any = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,

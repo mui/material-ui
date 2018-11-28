@@ -65,10 +65,9 @@ describe('DateTextField keyboard mode', () => {
     component.setProps({ disabled: true });
 
     expect(component.find('TextField').props().disabled).toBe(true);
-    expect(
-      (component.find('TextField').props() as any).InputProps.endAdornment.props
-        .children.props.disabled
-    ).toBe(true);
+    expect((component.find('TextField').props() as any).InputProps.endAdornment.props.children.props.disabled).toBe(
+      true
+    );
   });
 });
 

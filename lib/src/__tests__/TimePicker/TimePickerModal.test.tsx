@@ -1,9 +1,6 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import {
-  TimePickerModal,
-  TimePickerModalProps,
-} from '../../TimePicker/TimePickerModal';
+import { TimePickerModal, TimePickerModalProps } from '../../TimePicker/TimePickerModal';
 import { shallow } from '../test-utils';
 
 describe('TimePickerModal', () => {

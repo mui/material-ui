@@ -7,15 +7,10 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import DateTimePickerView, {
-  DateTimePickerViewType,
-} from '../../constants/DateTimePickerView';
+import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
 
 const viewToTabIndex = (openView: DateTimePickerViewType) => {
-  if (
-    openView === DateTimePickerView.DATE ||
-    openView === DateTimePickerView.YEAR
-  ) {
+  if (openView === DateTimePickerView.DATE || openView === DateTimePickerView.YEAR) {
     return 'date';
   }
 
@@ -30,8 +25,7 @@ const tabIndexToView = (tab: DateTimePickerView) => {
   return DateTimePickerView.HOUR;
 };
 
-export interface DateTimePickerTabsProps
-  extends WithStyles<typeof styles, true> {
+export interface DateTimePickerTabsProps extends WithStyles<typeof styles, true> {
   view: DateTimePickerViewType;
   onChange: (view: DateTimePickerView) => void;
   dateRangeIcon: React.ReactNode;
@@ -41,12 +35,8 @@ export interface DateTimePickerTabsProps
 export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
   const { view, onChange, classes, theme, dateRangeIcon, timeIcon } = props;
 
-  const indicatorColor =
-    theme.palette.type === 'light' ? 'secondary' : 'primary';
-  const handleChange = (
-    e: React.ChangeEvent<{}>,
-    value: DateTimePickerView
-  ) => {
+  const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
+  const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
     }
@@ -80,13 +70,8 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
 const styles = (theme: Theme) => ({
   tabs: {
     color: theme.palette.common.white,
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.primary.main
-        : theme.palette.background.default,
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.background.default,
   },
 });
 
-export default withTheme()(
-  withStyles(styles, { name: 'MuiPickerDTTabs' })(DateTimePickerTabs)
-);
+export default withTheme()(withStyles(styles, { name: 'MuiPickerDTTabs' })(DateTimePickerTabs));

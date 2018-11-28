@@ -16,11 +16,7 @@ export default class BasicDateTimePicker extends PureComponent {
     return (
       <Fragment>
         <div className="picker">
-          <DateTimePicker
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            label="DateTimePicker"
-          />
+          <DateTimePicker value={selectedDate} onChange={this.handleDateChange} label="DateTimePicker" />
         </div>
 
         <div className="picker">

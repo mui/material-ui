@@ -2,12 +2,7 @@ import React, { PureComponent } from 'react';
 import Paper from '@material-ui/core/Paper';
 
 import DateFnsUtils from '@date-io/date-fns';
-import {
-  BasePicker,
-  MuiPickersUtilsProvider,
-  TimePickerView,
-  Calendar,
-} from 'material-ui-pickers';
+import { BasePicker, MuiPickersUtilsProvider, TimePickerView, Calendar } from 'material-ui-pickers';
 
 class StaticPickers extends PureComponent {
   state = {
@@ -41,12 +36,7 @@ class StaticPickers extends PureComponent {
                 </Paper>
               </div>
 
-              <TimePickerView
-                date={date}
-                ampm={false}
-                onHourChange={handleChange}
-                type="hours"
-              />
+              <TimePickerView date={date} ampm={false} onHourChange={handleChange} type="hours" />
             </div>
           )}
         </BasePicker>

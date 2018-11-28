@@ -23,9 +23,7 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
   transKey,
   slideDirection,
 }) => (
-  <TransitionGroup
-    className={classnames(classes.transitionContainer, className)}
-  >
+  <TransitionGroup className={classnames(classes.transitionContainer, className)}>
     <CSSTransition
       key={transKey}
       mountOnEnter

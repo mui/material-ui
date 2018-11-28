@@ -10,14 +10,9 @@ import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 
-export interface CalendarHeaderProps
-  extends WithUtilsProps,
-    WithStyles<typeof styles, true> {
+export interface CalendarHeaderProps extends WithUtilsProps, WithStyles<typeof styles, true> {
   currentMonth: object;
-  onMonthChange: (
-    date: MaterialUiPickersDate,
-    direction: SlideDirection
-  ) => void;
+  onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void;
   leftArrowIcon?: React.ReactNode;
   rightArrowIcon?: React.ReactNode;
   disablePrevMonth?: boolean;
@@ -39,19 +34,13 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 }) => {
   const rtl = theme.direction === 'rtl';
 
-  const selectNextMonth = () =>
-    onMonthChange(utils.getNextMonth(currentMonth), 'left');
-  const selectPreviousMonth = () =>
-    onMonthChange(utils.getPreviousMonth(currentMonth), 'right');
+  const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth), 'left');
+  const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(currentMonth), 'right');
 
   return (
     <div>
       <div className={classes.switchHeader}>
-        <IconButton
-          disabled={disablePrevMonth}
-          onClick={selectPreviousMonth}
-          className={classes.iconButton}
-        >
+        <IconButton disabled={disablePrevMonth} onClick={selectPreviousMonth} className={classes.iconButton}>
           <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
         </IconButton>
 
@@ -65,11 +54,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           </Typography>
         </SlideTransition>
 
-        <IconButton
-          disabled={disableNextMonth}
-          onClick={selectNextMonth}
-          className={classes.iconButton}
-        >
+        <IconButton disabled={disableNextMonth} onClick={selectNextMonth} className={classes.iconButton}>
           <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
         </IconButton>
       </div>

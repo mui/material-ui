@@ -10,14 +10,10 @@ const ControllingProgrammatically = () => (
 
     <Typography variant="body1" gutterBottom>
       Any picker can be controlled by <span className="inline-code"> ref </span>
-      property which add an ability open any picker from the code. See an
-      example below
+      property which add an ability open any picker from the code. See an example below
     </Typography>
 
-    <SourcablePanel
-      title="Open from button"
-      sourceFile="Guides/ControllingProgrammatically.example.jsx"
-    />
+    <SourcablePanel title="Open from button" sourceFile="Guides/ControllingProgrammatically.example.jsx" />
   </div>
 );
 
