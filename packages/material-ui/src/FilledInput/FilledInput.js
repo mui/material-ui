@@ -124,13 +124,15 @@ export const styles = theme => {
 };
 
 function FilledInput(props) {
-  const { classes, ...other } = props;
+  const { disableUnderline, classes, ...other } = props;
 
   return (
     <InputBase
       classes={{
         ...classes,
-        root: classNames(classes.root, classes.underline, {}),
+        root: classNames(classes.root, {
+          [classes.underline]: !disableUnderline,
+        }),
         underline: null,
       }}
       {...other}
@@ -167,6 +169,10 @@ FilledInput.propTypes = {
    * If `true`, the input will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, the input will not have an underline.
+   */
+  disableUnderline: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */

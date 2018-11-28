@@ -278,7 +278,6 @@ class InputBase extends React.Component {
       className: classNameProp,
       defaultValue,
       disabled,
-      disableUnderline,
       endAdornment,
       error,
       fullWidth,
