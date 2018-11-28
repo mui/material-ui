@@ -4,9 +4,7 @@ import * as React from 'react';
 import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
-import InlineWrapper, {
-  OuterInlineWrapperProps,
-} from '../wrappers/InlineWrapper';
+import InlineWrapper, { OuterInlineWrapperProps } from '../wrappers/InlineWrapper';
 import DateTimePicker, { BaseDateTimePickerProps } from './DateTimePicker';
 
 export interface DateTimePickerInlineProps
@@ -14,9 +12,7 @@ export interface DateTimePickerInlineProps
     BaseDateTimePickerProps,
     Omit<OuterInlineWrapperProps, 'onChange' | 'value'> {}
 
-export const DateTimePickerInline: React.SFC<
-  DateTimePickerInlineProps
-> = props => {
+export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = props => {
   const {
     value,
     format,
@@ -44,15 +40,7 @@ export const DateTimePickerInline: React.SFC<
 
   return (
     <BasePicker {...props} autoOk>
-      {({
-        date,
-        utils,
-        handleChange,
-        handleTextFieldChange,
-        isAccepted,
-        pick12hOr24hFormat,
-        handleAccept,
-      }) => (
+      {({ date, utils, handleChange, handleTextFieldChange, isAccepted, pick12hOr24hFormat, handleAccept }) => (
         <InlineWrapper
           innerRef={forwardedRef}
           disableFuture={disableFuture}
@@ -63,10 +51,7 @@ export const DateTimePickerInline: React.SFC<
           value={value}
           isAccepted={isAccepted}
           handleAccept={handleAccept}
-          format={pick12hOr24hFormat(
-            utils.dateTime12hFormat,
-            utils.dateTime24hFormat
-          )}
+          format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
           {...other}
         >
           <DateTimePicker

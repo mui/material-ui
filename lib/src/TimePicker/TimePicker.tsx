@@ -21,10 +21,7 @@ export interface BaseTimePickerProps {
   seconds?: boolean;
 }
 
-export interface TimePickerProps
-  extends BaseTimePickerProps,
-    WithUtilsProps,
-    WithStyles<typeof styles, true> {
+export interface TimePickerProps extends BaseTimePickerProps, WithUtilsProps, WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
@@ -55,8 +52,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
 
   public state: TimePickerState = {
     openView: ClockType.HOURS,
-    meridiemMode:
-      this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
+    meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   };
 
   public setMeridiemMode = (mode: MeridiemMode) => () => {
@@ -81,12 +77,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     openMinutes: boolean;
     openSeconds: boolean;
   }) => {
-    const withMeridiem = convertToMeridiem(
-      time,
-      this.state.meridiemMode,
-      Boolean(this.props.ampm),
-      this.props.utils
-    );
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, Boolean(this.props.ampm), this.props.utils);
 
     if (isFinish) {
       if (!openMinutes && !openSeconds) {
@@ -106,10 +97,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     this.props.onChange(withMeridiem, false);
   };
 
-  public handleHourChange = (
-    time: MaterialUiPickersDate,
-    isFinish?: boolean
-  ) => {
+  public handleHourChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.handleChange({
       time,
       isFinish,
@@ -118,10 +106,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     });
   };
 
-  public handleMinutesChange = (
-    time: MaterialUiPickersDate,
-    isFinish?: boolean
-  ) => {
+  public handleMinutesChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.handleChange({
       time,
       isFinish,
@@ -130,10 +115,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     });
   };
 
-  public handleSecondsChange = (
-    time: MaterialUiPickersDate,
-    isFinish?: boolean
-  ) => {
+  public handleSecondsChange = (time: MaterialUiPickersDate, isFinish?: boolean) => {
     this.handleChange({
       time,
       isFinish,
@@ -160,9 +142,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     const { meridiemMode, openView } = this.state;
 
     const rtl = theme.direction === 'rtl';
-    const hourMinuteClassName = rtl
-      ? classes.hourMinuteLabelReverse
-      : classes.hourMinuteLabel;
+    const hourMinuteClassName = rtl ? classes.hourMinuteLabelReverse : classes.hourMinuteLabel;
 
     return (
       <React.Fragment>
@@ -179,12 +159,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
               label={utils.getHourText(date, Boolean(ampm))}
             />
 
-            <ToolbarButton
-              variant="h2"
-              label=":"
-              selected={false}
-              className={classes.separator}
-            />
+            <ToolbarButton variant="h2" label=":" selected={false} className={classes.separator} />
 
             <ToolbarButton
               variant="h2"
@@ -195,12 +170,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
 
             {seconds && (
               <React.Fragment>
-                <ToolbarButton
-                  variant="h2"
-                  label=":"
-                  selected={false}
-                  className={classes.separator}
-                />
+                <ToolbarButton variant="h2" label=":" selected={false} className={classes.separator} />
 
                 <ToolbarButton
                   variant="h2"
@@ -213,13 +183,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
           </div>
 
           {ampm && (
-            <div
-              className={
-                seconds
-                  ? classes.ampmSelectionWithSeconds
-                  : classes.ampmSelection
-              }
-            >
+            <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
               <ToolbarButton
                 className={classes.ampmLabel}
                 selected={meridiemMode === 'am'}

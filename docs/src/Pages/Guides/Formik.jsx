@@ -9,9 +9,8 @@ const Formik = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      We are providing inbound validating dates and triggering date's on accept.
-      And also there are quite a lot ways to submit the date, so we cannot
-      provide the event for onChange handler.
+      We are providing inbound validating dates and triggering date's on accept. And also there are quite a lot ways to
+      submit the date, so we cannot provide the event for onChange handler.
     </Typography>
 
     <SourcablePanel

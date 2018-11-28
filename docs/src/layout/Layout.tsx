@@ -18,9 +18,7 @@ import {
 import Github from '../_shared/GithubIcon';
 import DrawerMenu from './DrawerMenu';
 
-interface LayoutProps
-  extends RouteComponentProps,
-    WithStyles<typeof styles, true> {
+interface LayoutProps extends RouteComponentProps, WithStyles<typeof styles, true> {
   toggleThemeType: () => void;
   toggleDirection: () => void;
   children: React.ReactChild;
@@ -44,13 +42,7 @@ class Layout extends Component<LayoutProps> {
   };
 
   render() {
-    const {
-      classes,
-      toggleThemeType,
-      toggleDirection,
-      theme,
-      location,
-    } = this.props;
+    const { classes, toggleThemeType, toggleDirection, theme, location } = this.props;
     const isLanding = location.pathname === '/';
 
     return (
@@ -85,11 +77,7 @@ class Layout extends Component<LayoutProps> {
               </IconButton>
             </Tooltip>
             <Tooltip title="Github" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                component="a"
-                href="https://github.com/dmtrKovalenko/material-ui-pickers"
-              >
+              <IconButton color="inherit" component="a" href="https://github.com/dmtrKovalenko/material-ui-pickers">
                 <Github color="inherit" />
               </IconButton>
             </Tooltip>

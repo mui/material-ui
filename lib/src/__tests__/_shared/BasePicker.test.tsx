@@ -34,12 +34,7 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker
-          value={value}
-          initialFocusedDate={initialFocusedDate}
-          utils={utilsToUse}
-          onChange={jest.fn()}
-        >
+        <BasePicker value={value} initialFocusedDate={initialFocusedDate} utils={utilsToUse} onChange={jest.fn()}>
           {renderFuncMock}
         </BasePicker>
       ));
@@ -53,20 +48,13 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker
-          initialFocusedDate={initialFocusedDate}
-          utils={utilsToUse}
-          onChange={jest.fn()}
-          value={null}
-        >
+        <BasePicker initialFocusedDate={initialFocusedDate} utils={utilsToUse} onChange={jest.fn()} value={null}>
           {renderFuncMock}
         </BasePicker>
       ));
 
       const renderCallParam = getFirstParamFromMock(renderFuncMock);
-      expect(utilsToUse.isEqual(renderCallParam.date, initialFocusedDate)).toBe(
-        true
-      );
+      expect(utilsToUse.isEqual(renderCallParam.date, initialFocusedDate)).toBe(true);
     });
 
     it('passes updated initialFocusedDate as date if value is not provided and initialFocusedDate has changed', () => {
@@ -75,12 +63,7 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       const component = shallow(
-        <BasePicker
-          initialFocusedDate={initialFocusedDate}
-          utils={utilsToUse}
-          onChange={jest.fn()}
-          value={null}
-        >
+        <BasePicker initialFocusedDate={initialFocusedDate} utils={utilsToUse} onChange={jest.fn()} value={null}>
           {renderFuncMock}
         </BasePicker>
       );
@@ -100,9 +83,7 @@ describe('BasePicker', () => {
       const renderCallParam = getFirstParamFromMock(renderFuncMock);
       // fuzzy match on same day since utils.date() calls could be off by a couple of
       // milliseconds
-      expect(
-        utilsToUse.isSameDay(renderCallParam.date, utilsToUse.date())
-      ).toBe(true);
+      expect(utilsToUse.isSameDay(renderCallParam.date, utilsToUse.date())).toBe(true);
     });
   });
 });

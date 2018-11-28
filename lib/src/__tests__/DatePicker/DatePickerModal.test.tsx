@@ -1,9 +1,6 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import {
-  DatePickerModal,
-  DatePickerModalProps,
-} from '../../DatePicker/DatePickerModal';
+import { DatePickerModal, DatePickerModalProps } from '../../DatePicker/DatePickerModal';
 import { shallow, utilsToUse } from '../test-utils';
 
 const spy = jest.fn();

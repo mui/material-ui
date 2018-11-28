@@ -9,15 +9,14 @@ const StaticPickers = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Somewhere its required to use some internal control for calendar or some
-      timeinput. Here you are! You can use directly any sub-control of the
-      pickers. Please note - if you want to use internal controls ALL your
-      imports must be from the relative paths
+      Somewhere its required to use some internal control for calendar or some timeinput. Here you are! You can use
+      directly any sub-control of the pickers. Please note - if you want to use internal controls ALL your imports must
+      be from the relative paths
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Also you can use our own HOC that is using for any picker which provide
-      managing temporary chosen date and submitting state logic.
+      Also you can use our own HOC that is using for any picker which provide managing temporary chosen date and
+      submitting state logic.
     </Typography>
 
     <SourcablePanel

@@ -18,9 +18,7 @@ const DatePickerField = ({ field, form, ...other }) => {
       error={Boolean(currentError)}
       onError={(_, error) => form.setFieldError(field.name, error)}
       onChange={date => form.setFieldValue(field.name, date, true)}
-      mask={value =>
-        value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : []
-      }
+      mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
       {...other}
     />
   );

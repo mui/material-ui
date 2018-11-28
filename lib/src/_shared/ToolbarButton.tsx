@@ -6,20 +6,12 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { ExtendMui } from '../typings/extendMui';
 
-export interface ToolbarButtonProps
-  extends ExtendMui<TypographyProps>,
-    WithStyles<typeof styles> {
+export interface ToolbarButtonProps extends ExtendMui<TypographyProps>, WithStyles<typeof styles> {
   selected: boolean;
   label: string;
 }
 
-const ToolbarButton: React.SFC<ToolbarButtonProps> = ({
-  classes,
-  selected,
-  label,
-  className,
-  ...other
-}) => (
+const ToolbarButton: React.SFC<ToolbarButtonProps> = ({ classes, selected, label, className, ...other }) => (
   <Typography
     className={classnames(classes.toolbarBtn, className, {
       [classes.toolbarBtnSelected]: selected,
@@ -52,6 +44,4 @@ const styles = (theme: Theme) => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(
-  ToolbarButton
-);
+export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(ToolbarButton);

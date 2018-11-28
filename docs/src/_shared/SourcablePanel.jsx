@@ -1,13 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  Typography,
-  IconButton,
-  Icon,
-  withStyles,
-  Collapse,
-} from '@material-ui/core';
+import { Typography, IconButton, Icon, withStyles, Collapse } from '@material-ui/core';
 import Code from './Code';
 
 class SourcablePanel extends PureComponent {
@@ -80,10 +74,7 @@ const styles = theme => ({
     width: '100%',
     margin: '0 auto 50px',
     position: 'relative',
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[900],
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
 
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',

@@ -1,9 +1,7 @@
 import { PopoverProps } from '@material-ui/core/Popover';
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DatePickerInline, {
-  DatePickerInlineProps,
-} from '../../DatePicker/DatePickerInline';
+import DatePickerInline, { DatePickerInlineProps } from '../../DatePicker/DatePickerInline';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DatePickerInline', () => {
@@ -36,9 +34,7 @@ describe('e2e - DatePickerInline', () => {
   });
 
   it('Should close on popover close request', () => {
-    const popoverOnClose = (component
-      .find('WithStyles(Popover)')
-      .props() as PopoverProps).onClose;
+    const popoverOnClose = (component.find('WithStyles(Popover)').props() as PopoverProps).onClose;
     if (!popoverOnClose) {
       throw new Error('expected popoverOnClose');
     }

@@ -36,9 +36,7 @@ class CustomElements extends PureComponent {
       date = date.toDate();
     }
 
-    return date && isValid(date)
-      ? `Week of ${format(startOfWeek(date), 'MMM do')}`
-      : invalidLabel;
+    return date && isValid(date) ? `Week of ${format(startOfWeek(date), 'MMM do')}` : invalidLabel;
   };
 
   renderWrappedWeekDay = (date, selectedDate, dayInCurrentMonth) => {

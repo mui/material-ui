@@ -1,6 +1,4 @@
-import Popover, {
-  PopoverProps as PopoverPropsType,
-} from '@material-ui/core/Popover';
+import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
@@ -21,9 +19,7 @@ export interface InlineWrapperProps extends OuterInlineWrapperProps {
   onlyCalendar: boolean;
 }
 
-export class InlineWrapper extends React.PureComponent<
-  InlineWrapperProps & WithStyles<typeof styles>
-> {
+export class InlineWrapper extends React.PureComponent<InlineWrapperProps & WithStyles<typeof styles>> {
   public static propTypes: any = {
     /** Show only calendar for datepicker in popover mode */
     onlyCalendar: PropTypes.bool,
@@ -126,17 +122,9 @@ export class InlineWrapper extends React.PureComponent<
 
     return (
       <React.Fragment>
-        {isOpen && (
-          <EventListener target="window" onKeyDown={this.handleKeyDown} />
-        )}
+        {isOpen && <EventListener target="window" onKeyDown={this.handleKeyDown} />}
 
-        <DateTextField
-          value={value}
-          format={format}
-          onClick={this.open}
-          keyboard={keyboard}
-          {...other}
-        />
+        <DateTextField value={value} format={format} onClick={this.open} keyboard={keyboard} {...other} />
 
         <Popover
           id="picker-popover"

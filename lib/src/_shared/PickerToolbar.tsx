@@ -7,18 +7,11 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { ExtendMui } from '../typings/extendMui';
 
-export interface PickerToolbarProps
-  extends ExtendMui<ToolbarProps>,
-    WithStyles<typeof styles> {
+export interface PickerToolbarProps extends ExtendMui<ToolbarProps>, WithStyles<typeof styles> {
   children: React.ReactNodeArray;
 }
 
-const PickerToolbar: React.SFC<PickerToolbarProps> = ({
-  children,
-  className,
-  classes,
-  ...other
-}) => {
+const PickerToolbar: React.SFC<PickerToolbarProps> = ({ children, className, classes, ...other }) => {
   return (
     <Toolbar className={classnames(classes.toolbar, className)} {...other}>
       {children}
@@ -45,10 +38,7 @@ const styles = (theme: Theme) =>
       alignItems: 'flex-start',
       justifyContent: 'center',
       height: 100,
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? theme.palette.primary.main
-          : theme.palette.background.default,
+      backgroundColor: theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.background.default,
     },
   });
 

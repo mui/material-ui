@@ -12,9 +12,7 @@ export interface DateTimePickerModalProps
     BaseDateTimePickerProps,
     Omit<ModalWrapperProps, 'onChange' | 'value'> {}
 
-export const DateTimePickerModal: React.SFC<
-  DateTimePickerModalProps
-> = props => {
+export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props => {
   const {
     value,
     format,
@@ -41,8 +39,7 @@ export const DateTimePickerModal: React.SFC<
   } = props;
 
   // do not show tabs for small screens
-  const toShowTabs =
-    showTabs && typeof window !== 'undefined' && window.innerHeight > 667;
+  const toShowTabs = showTabs && typeof window !== 'undefined' && window.innerHeight > 667;
   return (
     <BasePicker {...props}>
       {({
@@ -71,10 +68,7 @@ export const DateTimePickerModal: React.SFC<
           onSetToday={handleSetTodayDate}
           value={value}
           isAccepted={isAccepted}
-          format={pick12hOr24hFormat(
-            utils.dateTime12hFormat,
-            utils.dateTime24hFormat
-          )}
+          format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
           {...other}
         >
           <DateTimePicker

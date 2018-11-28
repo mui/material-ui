@@ -35,14 +35,7 @@ export class Year extends React.PureComponent<YearProps> {
   };
 
   public render() {
-    const {
-      classes,
-      selected,
-      disabled,
-      value,
-      children,
-      ...other
-    } = this.props;
+    const { classes, selected, disabled, value, children, ...other } = this.props;
 
     return (
       <Typography

@@ -4,7 +4,4 @@ import { Omit } from '@material-ui/core';
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type ExtendMui<C, Removals extends keyof C = never> = Omit<
-  C,
-  'classes' | 'theme' | Removals
->;
+export type ExtendMui<C, Removals extends keyof C = never> = Omit<C, 'classes' | 'theme' | Removals>;

@@ -1,8 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DateTimePicker, {
-  DateTimePickerProps,
-} from '../../DateTimePicker/DateTimePicker';
+import DateTimePicker, { DateTimePickerProps } from '../../DateTimePicker/DateTimePicker';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DateTimePicker', () => {
@@ -71,9 +69,6 @@ describe('e2e - DateTimePicker', () => {
       return;
     }
 
-    expect(onChangeMock).toHaveBeenCalledWith(
-      utilsToUse.date('2018-01-01T12:00:00.000Z'),
-      false
-    );
+    expect(onChangeMock).toHaveBeenCalledWith(utilsToUse.date('2018-01-01T12:00:00.000Z'), false);
   });
 });

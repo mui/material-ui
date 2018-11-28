@@ -30,10 +30,7 @@ export default () => (
     <Route path="/guides/formats" component={FormatCustomization} />
     <Route path="/guides/formik-integration" component={Formik} />
 
-    <Route
-      path="/guides/controlling-programmatically"
-      component={ControllingProgrammatically}
-    />
+    <Route path="/guides/controlling-programmatically" component={ControllingProgrammatically} />
     <Route path="/guides/static-pickers" component={StaticPickers} />
 
     <Route path="/" exact component={Landing} />

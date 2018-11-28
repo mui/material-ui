@@ -26,9 +26,7 @@ export interface ModalDialogProps extends DialogBaseProps {
   showTabs?: boolean;
 }
 
-export const ModalDialog: React.SFC<
-  ModalDialogProps & WithStyles<typeof styles>
-> = ({
+export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,
   onKeyDown,

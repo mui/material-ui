@@ -13,9 +13,8 @@ const Usage = ({ classes }) => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Material-UI-pickers rely only on material-ui controls and the
-      date-management lib you have choose. Please note that all components are
-      controlled, thats means that its required to pass
+      Material-UI-pickers rely only on material-ui controls and the date-management lib you have choose. Please note
+      that all components are controlled, thats means that its required to pass
       <span className="inline-code"> value </span> and
       <span className="inline-code"> onChange </span> props.
     </Typography>

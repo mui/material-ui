@@ -28,21 +28,12 @@ class DayWrapper extends React.PureComponent<DayWrapperProps> {
   };
 
   public render() {
-    const {
-      children,
-      value,
-      dayInCurrentMonth,
-      disabled,
-      onSelect,
-      ...other
-    } = this.props;
+    const { children, value, dayInCurrentMonth, disabled, onSelect, ...other } = this.props;
 
     return (
       <div
         onClick={dayInCurrentMonth && !disabled ? this.handleClick : undefined}
-        onKeyPress={
-          dayInCurrentMonth && !disabled ? this.handleClick : undefined
-        }
+        onKeyPress={dayInCurrentMonth && !disabled ? this.handleClick : undefined}
         role="presentation"
         {...other}
       >

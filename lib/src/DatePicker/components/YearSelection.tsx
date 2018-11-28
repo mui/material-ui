@@ -8,9 +8,7 @@ import DomainPropTypes, { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import Year from './Year';
 
-export interface YearSelectionProps
-  extends WithUtilsProps,
-    WithStyles<typeof styles> {
+export interface YearSelectionProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;
   minDate?: DateType;
   maxDate?: DateType;
@@ -50,10 +48,7 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
 
     if (currentYearElement && currentYearElement.scrollIntoView) {
       if (animateYearScrolling) {
-        setTimeout(
-          () => currentYearElement.scrollIntoView({ behavior: 'smooth' }),
-          100
-        );
+        setTimeout(() => currentYearElement.scrollIntoView({ behavior: 'smooth' }), 100);
       } else {
         currentYearElement.scrollIntoView();
       }
@@ -74,15 +69,7 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
   };
 
   public render() {
-    const {
-      minDate,
-      maxDate,
-      date,
-      classes,
-      disablePast,
-      disableFuture,
-      utils,
-    } = this.props;
+    const { minDate, maxDate, date, classes, disablePast, disableFuture, utils } = this.props;
     const currentYear = utils.getYear(date);
 
     return (
@@ -121,6 +108,4 @@ const styles = createStyles({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersYearSelection' })(
-  withUtils()(YearSelection)
-);
+export default withStyles(styles, { name: 'MuiPickersYearSelection' })(withUtils()(YearSelection));

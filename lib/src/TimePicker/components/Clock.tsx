@@ -18,8 +18,7 @@ export interface ClockProps extends WithStyles<typeof styles> {
 
 export class Clock extends React.Component<ClockProps> {
   public static propTypes: any = {
-    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key]))
-      .isRequired,
+    type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -45,8 +44,7 @@ export class Clock extends React.Component<ClockProps> {
     }
 
     const value =
-      this.props.type === ClockType.SECONDS ||
-      this.props.type === ClockType.MINUTES
+      this.props.type === ClockType.SECONDS || this.props.type === ClockType.MINUTES
         ? getMinutes(offsetX, offsetY)
         : getHours(offsetX, offsetY, Boolean(this.props.ampm));
 
@@ -69,10 +67,7 @@ export class Clock extends React.Component<ClockProps> {
     e.preventDefault();
     e.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    const isButtonPressed =
-      typeof e.buttons === 'undefined'
-        ? e.nativeEvent.which === 1
-        : e.buttons === 1;
+    const isButtonPressed = typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
 
     if (isButtonPressed) {
       this.setTime(e.nativeEvent, false);
@@ -100,8 +95,7 @@ export class Clock extends React.Component<ClockProps> {
   public render() {
     const { classes, value, children, type, ampm } = this.props;
 
-    const isPointerInner =
-      !ampm && type === ClockType.HOURS && (value < 1 || value > 12);
+    const isPointerInner = !ampm && type === ClockType.HOURS && (value < 1 || value > 12);
 
     return (
       <div className={classes.container}>
@@ -118,12 +112,7 @@ export class Clock extends React.Component<ClockProps> {
 
           <div className={classes.pin} />
 
-          <ClockPointer
-            type={type}
-            value={value}
-            isInner={isPointerInner}
-            hasSelected={this.hasSelected()}
-          />
+          <ClockPointer type={type} value={value} isInner={isPointerInner} hasSelected={this.hasSelected()} />
 
           {children}
         </div>

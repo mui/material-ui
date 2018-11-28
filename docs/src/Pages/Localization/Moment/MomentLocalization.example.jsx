@@ -47,11 +47,7 @@ export default class MomentLocalizationExample extends PureComponent {
     const locale = localeMap[this.state.currentLocale];
 
     return (
-      <MuiPickersUtilsProvider
-        utils={MomentUtils}
-        locale={locale}
-        moment={moment}
-      >
+      <MuiPickersUtilsProvider utils={MomentUtils} locale={locale} moment={moment}>
         <div className="picker">
           <DatePicker
             value={selectedDate}

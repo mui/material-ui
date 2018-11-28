@@ -6,15 +6,52 @@ import * as React from 'react';
 import PickerToolbar from '../../_shared/PickerToolbar';
 import ToolbarButton from '../../_shared/ToolbarButton';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import DateTimePickerView, {
-  DateTimePickerViewType,
-} from '../../constants/DateTimePickerView';
+import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
 import { MaterialUiPickersDate } from '../../typings/date';
 
+const styles = (theme: Theme) =>
+  createStyles({
+    toolbar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingLeft: 16,
+      paddingRight: 16,
+      justifyContent: 'space-around',
+    },
+    separator: {
+      margin: '0 4px 0 2px',
+      cursor: 'default',
+    },
+    ampmSelection: {
+      top: 9,
+      position: 'relative',
+      marginLeft: 10,
+      marginRight: -10,
+    },
+    ampmLabel: {
+      fontSize: 18,
+    },
+    hourMinuteLabel: {
+      top: 5,
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+      flexDirection: theme.direction === 'rtl' ? 'row' : 'row-reverse',
+    },
+    dateHeader: {
+      height: 60,
+    },
+    timeHeader: {
+      height: 65,
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+    },
+  });
+
 export type MeridiemMode = 'am' | 'pm';
-export interface DateTimePickerHeaderProps
-  extends WithUtilsProps,
-    WithStyles<typeof styles> {
+export interface DateTimePickerHeaderProps extends WithUtilsProps, WithStyles<typeof styles> {
   date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
   openView: DateTimePickerViewType;
@@ -60,12 +97,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
             label={utils.getHourText(date, ampm!)}
           />
 
-          <ToolbarButton
-            variant="h3"
-            label=":"
-            selected={false}
-            className={classes.separator}
-          />
+          <ToolbarButton variant="h3" label=":" selected={false} className={classes.separator} />
 
           <ToolbarButton
             variant="h3"
@@ -115,47 +147,4 @@ DateTimePickerHeader.defaultProps = {
   ampm: true,
 };
 
-const styles = (theme: Theme) =>
-  createStyles({
-    toolbar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingLeft: 16,
-      paddingRight: 16,
-      justifyContent: 'space-around',
-    },
-    separator: {
-      margin: '0 4px 0 2px',
-      cursor: 'default',
-    },
-    ampmSelection: {
-      top: 9,
-      position: 'relative',
-      marginLeft: 10,
-      marginRight: -10,
-    },
-    ampmLabel: {
-      fontSize: 18,
-    },
-    hourMinuteLabel: {
-      top: 5,
-      position: 'relative',
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-      flexDirection: theme.direction === 'rtl' ? 'row-reverse' : 'row',
-    },
-    dateHeader: {
-      height: 60,
-    },
-    timeHeader: {
-      height: 65,
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-    },
-  });
-
-export default withStyles(styles, {
-  name: 'MuiPickersDTHeader'
-})(withUtils()(DateTimePickerHeader));
+export default withStyles(styles)(withUtils()(DateTimePickerHeader));

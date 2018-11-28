@@ -50,13 +50,7 @@ export const getHourNumbers = ({
   return hourNumbers;
 };
 
-export const getMinutesNumbers = ({
-  value,
-  utils,
-}: {
-  value: number;
-  utils: IUtils<MaterialUiPickersDate>;
-}) => {
+export const getMinutesNumbers = ({ value, utils }: { value: number; utils: IUtils<MaterialUiPickersDate> }) => {
   const f = utils.formatNumber;
 
   return [

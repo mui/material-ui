@@ -1,8 +1,4 @@
-import {
-  convertToMeridiem,
-  getHours,
-  getMinutes,
-} from '../../_helpers/time-utils';
+import { convertToMeridiem, getHours, getMinutes } from '../../_helpers/time-utils';
 import { utilsToUse } from '../test-utils';
 
 describe('Time utils', () => {
@@ -15,12 +11,7 @@ describe('Time utils', () => {
   });
 
   it('Should convert time to meridiem', () => {
-    const time = convertToMeridiem(
-      utilsToUse.date('2017-01-01T16:00'),
-      'am',
-      true,
-      utilsToUse
-    );
+    const time = convertToMeridiem(utilsToUse.date('2017-01-01T16:00'), 'am', true, utilsToUse);
     expect(utilsToUse.getHours(time)).toBe(4);
   });
 });

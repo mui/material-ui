@@ -1,9 +1,6 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import {
-  DateTimePickerInlineProps,
-  InlineDateTimePicker,
-} from '../../DateTimePicker';
+import { DateTimePickerInlineProps, InlineDateTimePicker } from '../../DateTimePicker';
 import { shallow, utilsToUse } from '../test-utils';
 
 const spy = jest.fn();

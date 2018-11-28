@@ -9,8 +9,7 @@ const DateFnsLocalization = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Date-fns localization simply performs by passing date-fns locale object to
-      the MuiPickerUtilsProvider
+      Date-fns localization simply performs by passing date-fns locale object to the MuiPickerUtilsProvider
     </Typography>
 
     <SourcablePanel

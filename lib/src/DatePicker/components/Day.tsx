@@ -33,15 +33,7 @@ class Day extends React.PureComponent<DayProps> {
   };
 
   public render() {
-    const {
-      children,
-      classes,
-      disabled,
-      hidden,
-      current,
-      selected,
-      ...other
-    } = this.props;
+    const { children, classes, disabled, hidden, current, selected, ...other } = this.props;
 
     const className = classnames(classes.day, {
       [classes.hidden]: hidden,
@@ -51,11 +43,7 @@ class Day extends React.PureComponent<DayProps> {
     });
 
     return (
-      <IconButton
-        className={className}
-        tabIndex={hidden || disabled ? -1 : 0}
-        {...other}
-      >
+      <IconButton className={className} tabIndex={hidden || disabled ? -1 : 0} {...other}>
         {children}
       </IconButton>
     );
@@ -95,6 +83,4 @@ const styles = (theme: Theme) =>
     },
   });
 
-export default withStyles(styles, { name: 'MuiPickersDay' })(
-  Day as React.ComponentType<DayProps>
-);
+export default withStyles(styles, { name: 'MuiPickersDay' })(Day as React.ComponentType<DayProps>);
