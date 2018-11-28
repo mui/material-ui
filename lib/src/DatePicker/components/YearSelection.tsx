@@ -100,7 +100,7 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
   }
 }
 
-const styles = createStyles({
+export const styles = createStyles({
   container: {
     maxHeight: 300,
     overflowY: 'auto',

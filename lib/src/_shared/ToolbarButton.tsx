@@ -40,7 +40,7 @@ ToolbarButton.defaultProps = {
   className: '',
 };
 
-const styles = (theme: Theme) => ({
+export const styles = (theme: Theme) => ({
   toolbarBtn: {
     cursor: 'pointer',
     color: 'rgba(255, 255, 255, 0.54)',

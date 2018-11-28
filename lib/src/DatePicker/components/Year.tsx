@@ -58,7 +58,7 @@ export class Year extends React.PureComponent<YearProps> {
   }
 }
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     root: {
       height: theme.spacing.unit * 5,

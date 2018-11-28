@@ -50,7 +50,7 @@ class Day extends React.PureComponent<DayProps> {
   }
 }
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     day: {
       width: 36,

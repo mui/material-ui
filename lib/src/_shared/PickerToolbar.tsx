@@ -35,7 +35,7 @@ PickerToolbar.defaultProps = {
   className: '',
 };
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     toolbar: {
       display: 'flex',

@@ -81,7 +81,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
   }
 }
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     pointer: {
       width: 2,

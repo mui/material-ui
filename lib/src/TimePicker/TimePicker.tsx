@@ -231,7 +231,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
   }
 }
 
-const styles = () =>
+export const styles = () =>
   createStyles({
     toolbar: {
       flexDirection: 'row',
