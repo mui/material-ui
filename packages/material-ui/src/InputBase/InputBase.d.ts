@@ -68,6 +68,7 @@ export type InputBaseClassKey =
   | 'error'
   | 'multiline'
   | 'fullWidth'
+  | 'icon'
   | 'input'
   | 'inputMarginDense'
   | 'inputDisabled'
