@@ -95,6 +95,9 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       </div>
     );
   };
+
+  // testing options
+  const useConfiguredStyles = makeStyles(styles, { flip: true, name: 'some-sheet' });
 }
 
 // styled
