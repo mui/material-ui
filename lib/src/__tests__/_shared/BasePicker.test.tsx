@@ -34,7 +34,12 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker value={value} initialFocusedDate={initialFocusedDate} utils={utilsToUse} onChange={jest.fn()}>
+        <BasePicker
+          value={value}
+          initialFocusedDate={initialFocusedDate}
+          utils={utilsToUse}
+          onChange={jest.fn()}
+        >
           {renderFuncMock}
         </BasePicker>
       ));
@@ -48,7 +53,12 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       renderComponent(() => (
-        <BasePicker initialFocusedDate={initialFocusedDate} utils={utilsToUse} onChange={jest.fn()} value={null}>
+        <BasePicker
+          initialFocusedDate={initialFocusedDate}
+          utils={utilsToUse}
+          onChange={jest.fn()}
+          value={null}
+        >
           {renderFuncMock}
         </BasePicker>
       ));
@@ -63,7 +73,12 @@ describe('BasePicker', () => {
       const renderFuncMock = getRenderFuncMock();
 
       const component = shallow(
-        <BasePicker initialFocusedDate={initialFocusedDate} utils={utilsToUse} onChange={jest.fn()} value={null}>
+        <BasePicker
+          initialFocusedDate={initialFocusedDate}
+          utils={utilsToUse}
+          onChange={jest.fn()}
+          value={null}
+        >
           {renderFuncMock}
         </BasePicker>
       );

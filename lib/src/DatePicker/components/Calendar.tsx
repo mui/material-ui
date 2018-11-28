@@ -140,7 +140,9 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const { utils, disableFuture, maxDate } = this.props;
     const now = utils.date();
     return !utils.isAfter(
-      utils.getStartOfMonth(disableFuture && utils.isBefore(now, maxDate) ? now : utils.date(maxDate)),
+      utils.getStartOfMonth(
+        disableFuture && utils.isBefore(now, maxDate) ? now : utils.date(maxDate)
+      ),
       this.state.currentMonth
     );
   };
@@ -173,10 +175,14 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
         this.moveToDay(utils.addDays(date, 7));
         break;
       case 'left':
-        theme.direction === 'ltr' ? this.moveToDay(utils.addDays(date, -1)) : this.moveToDay(utils.addDays(date, 1));
+        theme.direction === 'ltr'
+          ? this.moveToDay(utils.addDays(date, -1))
+          : this.moveToDay(utils.addDays(date, 1));
         break;
       case 'right':
-        theme.direction === 'ltr' ? this.moveToDay(utils.addDays(date, 1)) : this.moveToDay(utils.addDays(date, -1));
+        theme.direction === 'ltr'
+          ? this.moveToDay(utils.addDays(date, 1))
+          : this.moveToDay(utils.addDays(date, -1));
         break;
       default:
         // if keycode is not handled, stop execution

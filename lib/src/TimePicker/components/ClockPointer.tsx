@@ -23,7 +23,10 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
     type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
   };
 
-  public static getDerivedStateFromProps = (nextProps: ClockPointerProps, state: ClockPointer['state']) => {
+  public static getDerivedStateFromProps = (
+    nextProps: ClockPointerProps,
+    state: ClockPointer['state']
+  ) => {
     if (nextProps.type !== state.previousType) {
       return {
         toAnimateTransform: true,

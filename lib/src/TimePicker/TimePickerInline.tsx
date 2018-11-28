@@ -17,7 +17,15 @@ export const TimePickerInline: React.SFC<TimePickerInlineProps> = props => {
 
   return (
     <BasePicker mergePreviousDateOnChange autoOk {...props}>
-      {({ date, utils, handleChange, handleTextFieldChange, isAccepted, pick12hOr24hFormat, handleAccept }) => (
+      {({
+        date,
+        utils,
+        handleChange,
+        handleTextFieldChange,
+        isAccepted,
+        pick12hOr24hFormat,
+        handleAccept,
+      }) => (
         <InlineWrapper
           innerRef={forwardedRef}
           value={value}

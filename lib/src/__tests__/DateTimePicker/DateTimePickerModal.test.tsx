@@ -1,6 +1,9 @@
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { DateTimePickerModal, DateTimePickerModalProps } from '../../DateTimePicker/DateTimePickerModal';
+import {
+  DateTimePickerModal,
+  DateTimePickerModalProps,
+} from '../../DateTimePicker/DateTimePickerModal';
 import { shallow } from '../test-utils';
 
 describe('DateTimePickerModal', () => {

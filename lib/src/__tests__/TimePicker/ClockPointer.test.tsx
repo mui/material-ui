@@ -7,7 +7,9 @@ describe('ClockPointer', () => {
   let component: ShallowWrapper<ClockPointerProps>;
 
   beforeEach(() => {
-    component = shallow(<ClockPointer classes={{} as any} value={1} hasSelected isInner type="hours" />);
+    component = shallow(
+      <ClockPointer classes={{} as any} value={1} hasSelected isInner type="hours" />
+    );
   });
 
   it('Should renders', () => {

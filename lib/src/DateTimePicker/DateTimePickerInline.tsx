@@ -40,7 +40,15 @@ export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = props 
 
   return (
     <BasePicker {...props} autoOk>
-      {({ date, utils, handleChange, handleTextFieldChange, isAccepted, pick12hOr24hFormat, handleAccept }) => (
+      {({
+        date,
+        utils,
+        handleChange,
+        handleTextFieldChange,
+        isAccepted,
+        pick12hOr24hFormat,
+        handleAccept,
+      }) => (
         <InlineWrapper
           innerRef={forwardedRef}
           disableFuture={disableFuture}

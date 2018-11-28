@@ -68,9 +68,11 @@ export class BasePicker extends React.Component<OuterBasePickerProps & WithUtils
     }
   }
 
-  public changeDate = (date: MaterialUiPickersDate, callback?: any) => this.setState({ date }, callback);
+  public changeDate = (date: MaterialUiPickersDate, callback?: any) =>
+    this.setState({ date }, callback);
 
-  public handleAcceptedChange = (isAccepted: boolean, callback?: any) => this.setState({ isAccepted }, callback);
+  public handleAcceptedChange = (isAccepted: boolean, callback?: any) =>
+    this.setState({ isAccepted }, callback);
 
   public handleClear = () => this.props.onChange(null);
 

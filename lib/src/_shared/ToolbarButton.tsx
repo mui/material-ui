@@ -11,7 +11,13 @@ export interface ToolbarButtonProps extends ExtendMui<TypographyProps>, WithStyl
   label: string;
 }
 
-const ToolbarButton: React.SFC<ToolbarButtonProps> = ({ classes, selected, label, className, ...other }) => (
+const ToolbarButton: React.SFC<ToolbarButtonProps> = ({
+  classes,
+  selected,
+  label,
+  className,
+  ...other
+}) => (
   <Typography
     className={classnames(classes.toolbarBtn, className, {
       [classes.toolbarBtnSelected]: selected,

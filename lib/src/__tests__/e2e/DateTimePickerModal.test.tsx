@@ -1,6 +1,8 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DateTimePickerModal, { DateTimePickerModalProps } from '../../DateTimePicker/DateTimePickerModal';
+import DateTimePickerModal, {
+  DateTimePickerModalProps,
+} from '../../DateTimePicker/DateTimePickerModal';
 import { mount, utilsToUse } from '../test-utils';
 
 const format = process.env.UTILS === 'luxon' ? 'MM/dd/yyyy hh:mm' : 'MM/DD/YYYY HH:mm';
