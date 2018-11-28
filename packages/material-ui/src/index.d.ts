@@ -138,6 +138,7 @@ export { default as ExpansionPanel } from './ExpansionPanel';
 export { default as ExpansionPanelActions } from './ExpansionPanelActions';
 export { default as ExpansionPanelDetails } from './ExpansionPanelDetails';
 export { default as ExpansionPanelSummary } from './ExpansionPanelSummary';
+export { default as Fab } from './Fab';
 export { default as Fade } from './Fade';
 export { default as FilledInput } from './FilledInput';
 export { default as FormControl } from './FormControl';
