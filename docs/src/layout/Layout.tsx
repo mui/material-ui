@@ -77,7 +77,11 @@ class Layout extends Component<LayoutProps> {
               </IconButton>
             </Tooltip>
             <Tooltip title="Github" enterDelay={300}>
-              <IconButton color="inherit" component="a" href="https://github.com/dmtrKovalenko/material-ui-pickers">
+              <IconButton
+                color="inherit"
+                component="a"
+                href="https://github.com/dmtrKovalenko/material-ui-pickers"
+              >
                 <Github color="inherit" />
               </IconButton>
             </Tooltip>

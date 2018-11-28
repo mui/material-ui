@@ -12,8 +12,8 @@ const PersianCalendar = () => (
     <Typography variant="body1" gutterBottom>
       <p key="persian-desc">
         Make sure you have read the{' '}
-        <a href="https://material-ui-next.com/guides/right-to-left/">right to left section</a> of the material-ui
-        documentation page before proceeding.
+        <a href="https://material-ui-next.com/guides/right-to-left/">right to left section</a> of
+        the material-ui documentation page before proceeding.
       </p>
     </Typography>
 
@@ -35,8 +35,8 @@ const PersianCalendar = () => (
           </Typography>
 
           <Typography variant="body1" gutterBottom>
-            Also, to make sure the example is fully functional, don&apos;t forget to change the direction of the page to
-            Right to Left from the top right corner.
+            Also, to make sure the example is fully functional, don&apos;t forget to change the
+            direction of the page to Right to Left from the top right corner.
           </Typography>
         </div>
       }

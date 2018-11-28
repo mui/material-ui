@@ -1,6 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Toolbar, Typography, withStyles, createStyles, Theme, WithStyles } from '@material-ui/core';
+import {
+  Divider,
+  Toolbar,
+  Typography,
+  withStyles,
+  createStyles,
+  Theme,
+  WithStyles,
+} from '@material-ui/core';
 
 import NavigationMenu from './NavigationMenu';
 import { version } from '../../package.json';
@@ -14,7 +22,11 @@ const DrawerMenu: React.SFC<WithStyles<typeof styles>> = ({ classes }) => (
         </Typography>
       </Link>
 
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/dmtrKovalenko/material-ui-pickers/releases">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/dmtrKovalenko/material-ui-pickers/releases"
+      >
         <Typography variant="caption" className={classes.headerLink}>
           {version}
         </Typography>

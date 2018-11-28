@@ -11,8 +11,9 @@ const MomentLocalization = () => (
       Moment localization relying on the global moment object used.
     </Typography>
     <Typography variant="body1" gutterBottom>
-      It is possible to pass configured global moment with selected locale, default timezone, etc. Also pass selected
-      locale as string to the provider to make pickers rerenders automatically on locale change.
+      It is possible to pass configured global moment with selected locale, default timezone, etc.
+      Also pass selected locale as string to the provider to make pickers rerenders automatically on
+      locale change.
     </Typography>
     <SourcablePanel
       title="Localized example"

@@ -16,7 +16,11 @@ export default class InlineDateTimePickerDemo extends PureComponent {
     return (
       <Fragment>
         <div className="picker">
-          <InlineDateTimePicker label="Basic example" value={selectedDate} onChange={this.handleDateChange} />
+          <InlineDateTimePicker
+            label="Basic example"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
         </div>
 
         <div className="picker">

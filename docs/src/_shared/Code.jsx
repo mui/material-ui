@@ -108,8 +108,8 @@ const styles = theme => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 5}px ${theme.spacing.unit}px ${theme.spacing.unit *
-        3}px`,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 5}px ${theme.spacing.unit}px ${theme
+        .spacing.unit * 3}px`,
       textAlign: 'left',
     },
     '& td:last-child': {
