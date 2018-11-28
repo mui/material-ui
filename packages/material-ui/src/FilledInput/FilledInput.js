@@ -124,13 +124,19 @@ export const styles = theme => {
 };
 
 function FilledInput(props) {
-  const { classes, ...other } = props;
+  const { disableUnderline, classes, ...other } = props;
 
   return (
     <InputBase
       classes={{
         ...classes,
-        root: classNames(classes.root, classes.underline, {}),
+        root: classNames(
+          classes.root,
+          {
+            [classes.underline]: !disableUnderline,
+          },
+          {},
+        ),
         underline: null,
       }}
       {...other}
