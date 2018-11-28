@@ -1869,6 +1869,11 @@
     "@webassemblyjs/wast-parser" "1.7.8"
     "@xtuc/long" "4.2.1"
 
+"@weco/next-plugin-transpile-modules@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@weco/next-plugin-transpile-modules/-/next-plugin-transpile-modules-0.0.2.tgz#f8f8af6adc6a3c565ed6212ae82a383f18efc40e"
+  integrity sha1-+PivatxqPFZe1iEq6Co4PxjvxA4=
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -5637,7 +5642,7 @@ eslint-plugin-jsx-a11y@^6.0.3:
     jsx-ast-utils "^2.0.1"
 
 "eslint-plugin-material-ui@file:packages/eslint-plugin-material-ui":
-  version "1.0.0-beta.35"
+  version "3.0.0"
 
 eslint-plugin-mocha@^5.0.0:
   version "5.2.0"
@@ -9317,6 +9322,11 @@ normalize-scroll-left@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-scroll-left/-/normalize-scroll-left-0.1.2.tgz#6b79691ba79eb5fb107fa5edfbdc06b55caee2aa"
   integrity sha512-F9YMRls0zCF6BFIE2YnXDRpHPpfd91nOIaNdDgrx5YMoPLo8Wqj+6jNXHQsYBavJeXP4ww8HCt0xQAKc5qk2Fg==
+
+notistack@^0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.3.9.tgz#622d89c0038b7cdebba2897b3018f89ada03551d"
+  integrity sha512-Xt55Jn2kq+1o34wS6y8ydj/84UpZrJhpWFfFqY5YqxZPdSiu5RgxhUcoTeq6XLQ8Mwg/TdhH+kRgn21Pxb6IlA==
 
 npm-bundled@^1.0.1:
   version "1.0.5"
