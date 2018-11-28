@@ -16,13 +16,13 @@ module.exports = [
     name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '18.5 KB',
+    limit: '18.6 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '94.8 KB',
+    limit: '94.9 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
