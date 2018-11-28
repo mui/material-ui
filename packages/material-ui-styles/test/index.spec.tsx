@@ -95,6 +95,17 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       </div>
     );
   };
+
+  // testing options
+  makeStyles(styles, {
+    flip: true,
+    name: 'some-sheet',
+    generateClassName: (_, sheet) => (sheet ? sheet.classes.root : 'no-sheet'),
+  });
+  makeStyles(styles, {
+    // Property 'toot' does not exist on type 'Record<"root", string>'
+    generateClassName: (_, sheet) => (sheet ? sheet.classes.toot : 'no-sheet'), // $ExpectError
+  });
 }
 
 // styled
