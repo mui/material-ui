@@ -130,13 +130,9 @@ function FilledInput(props) {
     <InputBase
       classes={{
         ...classes,
-        root: classNames(
-          classes.root,
-          {
-            [classes.underline]: !disableUnderline,
-          },
-          {},
-        ),
+        root: classNames(classes.root, {
+          [classes.underline]: !disableUnderline,
+        }),
         underline: null,
       }}
       {...other}
