@@ -31,6 +31,7 @@ import { ExpansionPanelClassKey } from '../ExpansionPanel';
 import { ExpansionPanelActionsClassKey } from '../ExpansionPanelActions';
 import { ExpansionPanelDetailsClassKey } from '../ExpansionPanelDetails';
 import { ExpansionPanelSummaryClassKey } from '../ExpansionPanelSummary';
+import { FabClassKey } from '../Fab';
 import { FilledInputClassKey } from '../FilledInput';
 import { FormControlClassKey } from '../FormControl';
 import { FormControlLabelClassKey } from '../FormControlLabel';
@@ -126,6 +127,7 @@ export interface ComponentNameToClassKey {
   MuiExpansionPanelActions: ExpansionPanelActionsClassKey;
   MuiExpansionPanelDetails: ExpansionPanelDetailsClassKey;
   MuiExpansionPanelSummary: ExpansionPanelSummaryClassKey;
+  MuiFab: FabClassKey;
   MuiFilledInput: FilledInputClassKey;
   MuiFormControl: FormControlClassKey;
   MuiFormControlLabel: FormControlLabelClassKey;
