@@ -123,7 +123,7 @@
     "markdown-to-jsx": "^6.8.3",
     "material-ui-popup-state": "^1.0.1",
     "mocha": "^5.0.0",
-    "next": "^7.0.0",
+    "next": "7.0.2-canary.31",
     "nyc": "^13.0.0",
     "patch-package": "^5.1.1",
     "postcss": "^7.0.0",
