@@ -1,7 +1,9 @@
 import { PopoverProps } from '@material-ui/core/Popover';
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DateTimePickerInline, { DateTimePickerInlineProps } from '../../DateTimePicker/DateTimePickerInline';
+import DateTimePickerInline, {
+  DateTimePickerInlineProps,
+} from '../../DateTimePicker/DateTimePickerInline';
 import { mount, utilsToUse } from '../test-utils';
 
 describe('e2e - DateTimePickerInline', () => {
@@ -53,12 +55,16 @@ describe('e2e - DateTimePickerInline', () => {
     expect(component.find('Clock').prop('type')).toBe('hours');
 
     // Hour
-    component.find('Clock div[role="menu"]').simulate('mouseUp', { nativeEvent: { offsetX: 10, offsetY: 20 } });
+    component
+      .find('Clock div[role="menu"]')
+      .simulate('mouseUp', { nativeEvent: { offsetX: 10, offsetY: 20 } });
 
     expect(component.find('Clock').prop('type')).toBe('minutes');
 
     // Minutes
-    component.find('Clock div[role="menu"]').simulate('mouseUp', { nativeEvent: { offsetX: 10, offsetY: 20 } });
+    component
+      .find('Clock div[role="menu"]')
+      .simulate('mouseUp', { nativeEvent: { offsetX: 10, offsetY: 20 } });
 
     expect(onChangeMock).toHaveBeenCalled();
   });

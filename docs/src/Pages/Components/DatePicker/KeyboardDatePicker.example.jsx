@@ -35,7 +35,9 @@ export default class BasicUsage extends PureComponent {
             format="dd/MM/yyyy"
             placeholder="10/10/2018"
             // handle clearing outside => pass plain array if you are not controlling value outside
-            mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
+            mask={value =>
+              value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : []
+            }
             value={selectedDate}
             onChange={this.handleDateChange}
             disableOpenOnEnter

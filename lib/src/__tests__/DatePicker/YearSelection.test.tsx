@@ -8,7 +8,12 @@ describe('YearSelection', () => {
 
   beforeEach(() => {
     component = shallow(
-      <YearSelection classes={{} as any} date={utilsToUse.date('01-01-2017')} onChange={jest.fn()} utils={utilsToUse} />
+      <YearSelection
+        classes={{} as any}
+        date={utilsToUse.date('01-01-2017')}
+        onChange={jest.fn()}
+        utils={utilsToUse}
+      />
     );
   });
 

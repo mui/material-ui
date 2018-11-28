@@ -21,7 +21,10 @@ export interface BaseTimePickerProps {
   seconds?: boolean;
 }
 
-export interface TimePickerProps extends BaseTimePickerProps, WithUtilsProps, WithStyles<typeof styles, true> {
+export interface TimePickerProps
+  extends BaseTimePickerProps,
+    WithUtilsProps,
+    WithStyles<typeof styles, true> {
   date: MaterialUiPickersDate;
   onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
 }
@@ -77,7 +80,12 @@ export class TimePicker extends React.Component<TimePickerProps> {
     openMinutes: boolean;
     openSeconds: boolean;
   }) => {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, Boolean(this.props.ampm), this.props.utils);
+    const withMeridiem = convertToMeridiem(
+      time,
+      this.state.meridiemMode,
+      Boolean(this.props.ampm),
+      this.props.utils
+    );
 
     if (isFinish) {
       if (!openMinutes && !openSeconds) {
@@ -170,7 +178,12 @@ export class TimePicker extends React.Component<TimePickerProps> {
 
             {seconds && (
               <React.Fragment>
-                <ToolbarButton variant="h2" label=":" selected={false} className={classes.separator} />
+                <ToolbarButton
+                  variant="h2"
+                  label=":"
+                  selected={false}
+                  className={classes.separator}
+                />
 
                 <ToolbarButton
                   variant="h2"

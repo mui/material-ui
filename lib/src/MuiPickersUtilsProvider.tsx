@@ -15,8 +15,10 @@ export default class MuiPickersUtilsProvider extends React.Component<MuiPickersU
   public static propTypes: any = {
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    children: PropTypes.oneOfType([PropTypes.element.isRequired, PropTypes.arrayOf(PropTypes.element.isRequired)])
-      .isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element.isRequired,
+      PropTypes.arrayOf(PropTypes.element.isRequired),
+    ]).isRequired,
     moment: PropTypes.func,
   };
 
@@ -25,7 +27,11 @@ export default class MuiPickersUtilsProvider extends React.Component<MuiPickersU
     moment: undefined,
   };
 
-  public static getDerivedStateFromProps({ utils: Utils, locale, moment }: MuiPickersUtilsProviderProps) {
+  public static getDerivedStateFromProps({
+    utils: Utils,
+    locale,
+    moment,
+  }: MuiPickersUtilsProviderProps) {
     return {
       utils: new Utils({ locale, moment }),
     };

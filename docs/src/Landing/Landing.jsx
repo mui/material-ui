@@ -29,12 +29,22 @@ class Demo extends Component {
           <Typography variant="h4" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
           </Typography>
-          <Typography variant="h5" align="center" color="inherit" gutterBottom className="text-light">
+          <Typography
+            variant="h5"
+            align="center"
+            color="inherit"
+            gutterBottom
+            className="text-light"
+          >
             Accessible, customizable, delightful date & time pickers for @material-ui/core
           </Typography>
 
           <Link to="/installation">
-            <Button variant="contained" className={classes.getStarted} onClick={this.scrollToContent}>
+            <Button
+              variant="contained"
+              className={classes.getStarted}
+              onClick={this.scrollToContent}
+            >
               Get Started
             </Button>
           </Link>
@@ -46,8 +56,8 @@ class Demo extends Component {
           </Typography>
 
           <Typography align="center" gutterBottom>
-            Material-UI-pickers is a MIT licensed open source project. We are intent on code quality and project
-            maintain. Entirely thanks to our awesome bakers.
+            Material-UI-pickers is a MIT licensed open source project. We are intent on code quality
+            and project maintain. Entirely thanks to our awesome bakers.
           </Typography>
 
           <Typography align="center" className={classes.sponsorHeader} variant="h5" gutterBottom>

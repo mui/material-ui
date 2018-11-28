@@ -16,11 +16,22 @@ export default class BasicUsage extends PureComponent {
     return (
       <Fragment>
         <div className="picker">
-          <TimePicker autoOk label="12 hours" value={selectedDate} onChange={this.handleDateChange} />
+          <TimePicker
+            autoOk
+            label="12 hours"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
         </div>
 
         <div className="picker">
-          <TimePicker clearable ampm={false} label="24 hours" value={selectedDate} onChange={this.handleDateChange} />
+          <TimePicker
+            clearable
+            ampm={false}
+            label="24 hours"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
         </div>
 
         <div className="picker">

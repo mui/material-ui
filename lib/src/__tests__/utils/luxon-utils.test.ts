@@ -139,7 +139,9 @@ describe('Luxon utils', () => {
     const now = luxonUtil.date(new Date(2018, 2));
 
     expect(luxonUtil.format(now, 'yyyy LLL dd')).toBe('2018 Mar 01');
-    expect(luxonUtilDe.format(now, 'yyyy LLL dd')).toBe(hasFullICU() ? '2018 Mär 01' : '2018 M03 01');
+    expect(luxonUtilDe.format(now, 'yyyy LLL dd')).toBe(
+      hasFullICU() ? '2018 Mär 01' : '2018 M03 01'
+    );
   });
 
   it('Should format numbers correclty', () => {
@@ -268,7 +270,9 @@ describe('Luxon utils', () => {
     const now = luxonUtil.date(new Date(2018, 2));
 
     expect(luxonUtil.getDatePickerHeaderText(now)).toBe('Thu, Mar 1');
-    expect(luxonUtilDe.getDatePickerHeaderText(now)).toBe(hasFullICU() ? 'Do, März 1' : 'Thu, M03 1');
+    expect(luxonUtilDe.getDatePickerHeaderText(now)).toBe(
+      hasFullICU() ? 'Do, März 1' : 'Thu, M03 1'
+    );
   });
 
   it('Should get the date time picker header text', () => {

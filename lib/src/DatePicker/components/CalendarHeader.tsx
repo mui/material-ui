@@ -40,7 +40,11 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   return (
     <div>
       <div className={classes.switchHeader}>
-        <IconButton disabled={disablePrevMonth} onClick={selectPreviousMonth} className={classes.iconButton}>
+        <IconButton
+          disabled={disablePrevMonth}
+          onClick={selectPreviousMonth}
+          className={classes.iconButton}
+        >
           <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
         </IconButton>
 
@@ -54,7 +58,11 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           </Typography>
         </SlideTransition>
 
-        <IconButton disabled={disableNextMonth} onClick={selectNextMonth} className={classes.iconButton}>
+        <IconButton
+          disabled={disableNextMonth}
+          onClick={selectNextMonth}
+          className={classes.iconButton}
+        >
           <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
         </IconButton>
       </div>

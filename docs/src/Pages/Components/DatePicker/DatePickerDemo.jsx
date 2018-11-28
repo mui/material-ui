@@ -12,15 +12,24 @@ const DatePickerDemo = () => (
       Date pickers use a dialog window to select a single date.
     </Typography>
     <Typography variant="body1">
-      The selected day is indicated by a filled circle. The current day is indicated by a different color and type
-      weight.
+      The selected day is indicated by a filled circle. The current day is indicated by a different
+      color and type weight.
     </Typography>
 
-    <SourcablePanel title="Basic usage" sourceFile="Components/DatePicker/BasicDatePicker.example.jsx" />
+    <SourcablePanel
+      title="Basic usage"
+      sourceFile="Components/DatePicker/BasicDatePicker.example.jsx"
+    />
 
-    <SourcablePanel title="Keyboard input" sourceFile="Components/DatePicker/KeyboardDatePicker.example.jsx" />
+    <SourcablePanel
+      title="Keyboard input"
+      sourceFile="Components/DatePicker/KeyboardDatePicker.example.jsx"
+    />
 
-    <SourcablePanel title="Inline mode" sourceFile="Components/DatePicker/InlineDatePicker.example.jsx" />
+    <SourcablePanel
+      title="Inline mode"
+      sourceFile="Components/DatePicker/InlineDatePicker.example.jsx"
+    />
 
     <SourcablePanel
       title="Custom day element"

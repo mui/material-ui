@@ -67,10 +67,13 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
   timeIcon: PropTypes.node.isRequired,
 };
 
-const styles = (theme: Theme) => ({
+export const styles = (theme: Theme) => ({
   tabs: {
     color: theme.palette.common.white,
-    backgroundColor: theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.background.default,
+    backgroundColor:
+      theme.palette.type === 'light'
+        ? theme.palette.primary.main
+        : theme.palette.background.default,
   },
 });
 

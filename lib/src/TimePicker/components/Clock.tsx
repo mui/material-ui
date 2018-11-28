@@ -67,7 +67,8 @@ export class Clock extends React.Component<ClockProps> {
     e.preventDefault();
     e.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    const isButtonPressed = typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
+    const isButtonPressed =
+      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
 
     if (isButtonPressed) {
       this.setTime(e.nativeEvent, false);
@@ -112,7 +113,12 @@ export class Clock extends React.Component<ClockProps> {
 
           <div className={classes.pin} />
 
-          <ClockPointer type={type} value={value} isInner={isPointerInner} hasSelected={this.hasSelected()} />
+          <ClockPointer
+            type={type}
+            value={value}
+            isInner={isPointerInner}
+            hasSelected={this.hasSelected()}
+          />
 
           {children}
         </div>

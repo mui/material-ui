@@ -13,7 +13,10 @@ const ControllingProgrammatically = () => (
       property which add an ability open any picker from the code. See an example below
     </Typography>
 
-    <SourcablePanel title="Open from button" sourceFile="Guides/ControllingProgrammatically.example.jsx" />
+    <SourcablePanel
+      title="Open from button"
+      sourceFile="Guides/ControllingProgrammatically.example.jsx"
+    />
   </div>
 );
 

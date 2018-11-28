@@ -9,7 +9,7 @@ import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import DateTimePickerView, { DateTimePickerViewType } from '../../constants/DateTimePickerView';
 import { MaterialUiPickersDate } from '../../typings/date';
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
   createStyles({
     toolbar: {
       flexDirection: 'row',
@@ -147,4 +147,4 @@ DateTimePickerHeader.defaultProps = {
   ampm: true,
 };
 
-export default withStyles(styles)(withUtils()(DateTimePickerHeader));
+export default withStyles(styles, { name: 'MuiPickerDTHeader' })(withUtils()(DateTimePickerHeader));

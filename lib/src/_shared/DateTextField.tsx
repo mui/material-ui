@@ -14,7 +14,14 @@ import { ExtendMui } from '../typings/extendMui';
 import MaskedInput from './MaskedInput';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
-const getDisplayDate = ({ utils, value, format, invalidLabel, emptyLabel, labelFunc }: DateTextFieldProps) => {
+const getDisplayDate = ({
+  utils,
+  value,
+  format,
+  invalidLabel,
+  emptyLabel,
+  labelFunc,
+}: DateTextFieldProps) => {
   const isEmpty = value === null;
   const date = utils.date(value);
 
@@ -73,7 +80,10 @@ export interface DateTextFieldProps
   // Properly extend different variants from mui textfield
   variant?: 'outlined' | 'standard' | 'filled';
   InputProps?: Partial<InputPropsType | OutlinedInputProps | FilledInputProps>;
-  inputProps?: InputPropsType['inputProps'] | OutlinedInputProps['inputProps'] | FilledInputProps['inputProps'];
+  inputProps?:
+    | InputPropsType['inputProps']
+    | OutlinedInputProps['inputProps']
+    | FilledInputProps['inputProps'];
   value: DateType;
   minDate?: DateType;
   /** Error message, shown if date is less then minimal date */
@@ -108,7 +118,9 @@ export interface DateTextFieldProps
   /** If true clear button will be displayed */
   clearable?: boolean;
   /** Component that should replace the default Material-UI TextField */
-  TextFieldComponent?: React.ComponentType<StandardTextFieldProps> | React.ReactType<React.HTMLAttributes<any>>;
+  TextFieldComponent?:
+    | React.ComponentType<StandardTextFieldProps>
+    | React.ReactType<React.HTMLAttributes<any>>;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: object;
   /** Specifies position of keyboard button adornment */
@@ -122,7 +134,12 @@ export interface DateTextFieldProps
 
 export class DateTextField extends React.PureComponent<DateTextFieldProps> {
   public static propTypes: any = {
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number, PropTypes.instanceOf(Date)]),
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
     disablePast: PropTypes.bool,
