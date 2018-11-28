@@ -170,6 +170,10 @@ FilledInput.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the input will not have an underline.
+   */
+  disableUnderline: PropTypes.bool,
+  /**
    * End `InputAdornment` for this component.
    */
   endAdornment: PropTypes.node,
