@@ -45,34 +45,9 @@ export const styles = theme => ({
   /* Styles applied to the root element if `selected={true}`. */
   selected: {
     color: theme.palette.action.active,
-    '&:after': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      overflow: 'hidden',
-      borderRadius: 'inherit',
-      width: '100%',
-      height: '100%',
-      left: 0,
-      top: 0,
-      pointerEvents: 'none',
-      zIndex: 0,
-      backgroundColor: 'currentColor',
-      opacity: 0.38,
-    },
-    '& + &:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      overflow: 'hidden',
-      width: 1,
-      height: '100%',
-      left: 0,
-      top: 0,
-      pointerEvents: 'none',
-      zIndex: 0,
-      backgroundColor: 'currentColor',
-      opacity: 0.12,
+    backgroundColor: fade(theme.palette.action.active, 0.2),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.action.active, 0.25),
     },
   },
   /* Styles applied to the `label` wrapper element. */
