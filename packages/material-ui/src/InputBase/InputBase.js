@@ -152,8 +152,8 @@ class InputBase extends React.Component {
     return null;
   }
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.isControlled = props.value != null;
     if (this.isControlled) {
       this.checkDirty(props);
