@@ -125,7 +125,13 @@ class TablePagination extends React.Component {
               onChange={onChangeRowsPerPage}
               {...SelectProps}
             >
-              {rowsPerPageOptions.map(rowsPerPageOption => (
+              {rowsPerPageOptions.map(rowsPerPageOption => SelectProps.native ?
+                <option
+                  key={rowsPerPageOption}
+                  value={rowsPerPageOption}
+                >
+                  {rowsPerPageOption}
+                </option> :
                 <MenuItem
                   className={classes.menuItem}
                   key={rowsPerPageOption}
@@ -133,7 +139,7 @@ class TablePagination extends React.Component {
                 >
                   {rowsPerPageOption}
                 </MenuItem>
-              ))}
+              )}
             </Select>
           )}
           <Typography color="inherit" variant="caption" className={classes.caption}>
