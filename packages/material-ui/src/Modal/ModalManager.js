@@ -124,7 +124,7 @@ class ModalManager {
     const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
     const data = this.data[containerIdx];
 
-    if (data.modals.length === 1 && this.handleContainerOverflow) {
+    if (!data.style && this.handleContainerOverflow) {
       setContainerStyle(data);
     }
   }
