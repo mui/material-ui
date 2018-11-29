@@ -24,6 +24,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 | <span class="prop-name">className</span> | <span class="prop-type">string</span> |   | The CSS class name of the wrapper element. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |   | The default input value, useful when not controlling the component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, the input will be disabled. |
+| <span class="prop-name">disableUnderline</span> | <span class="prop-type">bool</span> |   | If `true`, the input will not have an underline. |
 | <span class="prop-name">endAdornment</span> | <span class="prop-type">node</span> |   | End `InputAdornment` for this component. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> |   | If `true`, the input will indicate an error. This is normally obtained via context from FormControl. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> |   | If `true`, the input will take up the full width of its container. |

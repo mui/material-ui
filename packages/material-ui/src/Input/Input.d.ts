@@ -2,7 +2,9 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { InputBaseProps } from '../InputBase';
 
-export interface InputProps extends StandardProps<InputBaseProps, InputClassKey> {}
+export interface InputProps extends StandardProps<InputBaseProps, InputClassKey> {
+  disableUnderline?: boolean;
+}
 
 export type InputClassKey =
   | 'root'

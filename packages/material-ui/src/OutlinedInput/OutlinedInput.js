@@ -99,7 +99,7 @@ function OutlinedInput(props) {
       )}
       classes={{
         ...classes,
-        root: classNames(classes.root, classes.underline, {}),
+        root: classNames(classes.root, classes.underline),
         notchedOutline: null,
       }}
       {...other}
