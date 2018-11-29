@@ -94,7 +94,7 @@ class TablePagination extends React.Component {
       page,
       rowsPerPage,
       rowsPerPageOptions,
-      SelectProps,
+      SelectProps = {},
       ...other
     } = this.props;
 
@@ -103,6 +103,8 @@ class TablePagination extends React.Component {
     if (Component === TableCell || Component === 'td') {
       colSpan = colSpanProp || 1000; // col-span over everything
     }
+
+    const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
     return (
       <Component className={classes.root} colSpan={colSpan} {...other}>
@@ -126,13 +128,13 @@ class TablePagination extends React.Component {
               {...SelectProps}
             >
               {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItem
+                <MenuItemComponent
                   className={classes.menuItem}
                   key={rowsPerPageOption}
                   value={rowsPerPageOption}
                 >
                   {rowsPerPageOption}
-                </MenuItem>
+                </MenuItemComponent>
               ))}
             </Select>
           )}
