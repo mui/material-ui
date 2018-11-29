@@ -46,6 +46,23 @@ function assertIsNotChecked(wrapper) {
   assert.strictEqual(icon.name(), 'h1');
 }
 
+const shouldSuccessOnce = name => func => () => {
+  global.successOnce = global.successOnce || {};
+
+  if (!global.successOnce[name]) {
+    global.successOnce[name] = false;
+  }
+
+  try {
+    func();
+    global.successOnce[name] = true;
+  } catch (err) {
+    if (!global.successOnce[name]) {
+      throw err;
+    }
+  }
+};
+
 describe('<SwitchBase />', () => {
   let mount;
   let classes;
@@ -440,26 +457,32 @@ describe('<SwitchBase />', () => {
       consoleErrorMock.reset();
     });
 
-    it('should error when uncontrolled and changed to controlled', () => {
-      const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" />);
-      wrapper.setProps({ checked: true });
+    it(
+      'should error when uncontrolled and changed to controlled',
+      shouldSuccessOnce('didWarnUncontrolledToControlled')(() => {
+        const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" />);
+        wrapper.setProps({ checked: true });
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'A component is changing an uncontrolled input of type %s to be controlled.',
-      );
-    });
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'A component is changing an uncontrolled input of type %s to be controlled.',
+        );
+      }),
+    );
 
-    it('should error when controlled and changed to uncontrolled', () => {
-      const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" checked={false} />);
-      wrapper.setProps({ checked: undefined });
+    it(
+      'should error when controlled and changed to uncontrolled',
+      shouldSuccessOnce('didWarnControlledToUncontrolled')(() => {
+        const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" checked={false} />);
+        wrapper.setProps({ checked: undefined });
 
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'A component is changing a controlled input of type %s to be uncontrolled.',
-      );
-    });
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'A component is changing a controlled input of type %s to be uncontrolled.',
+        );
+      }),
+    );
   });
 });
