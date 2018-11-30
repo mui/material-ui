@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import { withStyles, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { withStyles, jssPreset } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
+import NoSsr from '@material-ui/core/NoSsr';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
 
@@ -15,8 +16,6 @@ const styles = theme => ({
     boxShadow: theme.shadows[1],
   },
 });
-
-const generateClassName = createGenerateClassName();
 
 class DemoFrame extends React.Component {
   state = {
@@ -46,28 +45,25 @@ class DemoFrame extends React.Component {
   render() {
     const { children, classes } = this.props;
 
-    const inIframe = this.state.ready ? (
-      <StylesProvider
-        jss={this.state.jss}
-        generateClassName={generateClassName}
-        sheetsManager={this.state.sheetsManager}
-      >
-        {React.cloneElement(children, {
-          container: this.state.container,
-        })}
-      </StylesProvider>
-    ) : null;
-
+    // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
     return (
-      <Frame
-        ref={this.handleRef}
-        className={classes.root}
-        contentDidMount={this.onContentDidMount}
-        contentDidUpdate={this.onContentDidUpdate}
-      >
-        <div id="demo-frame-jss" />
-        {inIframe}
-      </Frame>
+      <NoSsr>
+        <Frame
+          ref={this.handleRef}
+          className={classes.root}
+          contentDidMount={this.onContentDidMount}
+          contentDidUpdate={this.onContentDidUpdate}
+        >
+          <div id="demo-frame-jss" />
+          {this.state.ready ? (
+            <StylesProvider jss={this.state.jss} sheetsManager={this.state.sheetsManager}>
+              {React.cloneElement(children, {
+                container: this.state.container,
+              })}
+            </StylesProvider>
+          ) : null}
+        </Frame>
+      </NoSsr>
     );
   }
 }
