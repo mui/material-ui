@@ -1,20 +1,5 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core';
-import { AppBarProps } from '@material-ui/core/AppBar';
-import { getThemeProps } from '@material-ui/styles';
 import styled, { StyledProps } from '@material-ui/styles/styled';
-
-function testGetThemeProps(theme: Theme, props: AppBarProps): void {
-  const overriddenProps: AppBarProps = getThemeProps({ name: 'MuiAppBar', props, theme });
-
-  // AvatarProps not assignable to AppBarProps
-  // $ExpectError
-  const wronglyNamedProps: AppBarProps = getThemeProps({
-    name: 'MuiAvatar',
-    props,
-    theme,
-  });
-}
 
 {
   // styled

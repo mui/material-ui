@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Theme } from '@material-ui/core';
 import { AppBarProps } from '@material-ui/core/AppBar';
-import { createStyled, createStyles, getThemeProps, makeStyles } from '@material-ui/styles';
+import { createStyled, createStyles, makeStyles } from '@material-ui/styles';
 import styled, { StyledProps } from '@material-ui/styles/styled';
 
 // createStyled
@@ -48,18 +48,6 @@ import styled, { StyledProps } from '@material-ui/styles/styled';
     // `foo` does not exist on type Styles
     // $ExpectError
     foo: {},
-  });
-}
-
-function testGetThemeProps(theme: Theme, props: AppBarProps): void {
-  const overriddenProps: AppBarProps = getThemeProps({ name: 'MuiAppBar', props, theme });
-
-  // AvatarProps not assignable to AppBarProps
-  // $ExpectError
-  const wronglyNamedProps: AppBarProps = getThemeProps({
-    name: 'MuiAvatar',
-    props,
-    theme,
   });
 }
 
@@ -139,7 +127,7 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       return <div className={className}>Greeted?: {defaulted.startsWith('Hello')}</div>;
     }
   }
-  const StyledMyComponent = styled<typeof MyComponent>(MyComponent)((theme: MyTheme) => ({
+  const StyledMyComponent = styled(MyComponent)((theme: MyTheme) => ({
     fontFamily: theme.fontFamily,
   }));
   const renderedMyComponent = (
@@ -148,4 +136,10 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       <StyledMyComponent />
     </>
   );
+
+  // will not catch type mismatch
+  interface ClassNumberProps {
+    className: number;
+  }
+  styled(({ className }: ClassNumberProps) => <div>{className.toFixed(2)}</div>)({});
 }
