@@ -92,6 +92,12 @@ class Popover extends React.Component {
 
     if (typeof window !== 'undefined') {
       this.handleResize = debounce(() => {
+        // Because we debounce the event, the open property might no longer be true
+        // when the callback resolves.
+        if (!this.props.open) {
+          return;
+        }
+
         this.setPositioningStyles(this.paperRef);
       }, 166); // Corresponds to 10 frames at 60 Hz.
     }
