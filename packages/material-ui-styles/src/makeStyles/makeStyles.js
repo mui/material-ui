@@ -1,9 +1,9 @@
 import React from 'react';
-import { ThemeContext } from './ThemeProvider';
-import { StylesContext } from './StylesProvider';
-import { attach, update, detach, getClasses } from './withStyles';
-import { increment } from './indexCounter';
-import getStylesCreator from './getStylesCreator';
+import { ThemeContext } from '../ThemeProvider';
+import { StylesContext } from '../StylesProvider';
+import { attach, update, detach, getClasses } from '../withStyles';
+import { increment } from '../internal/indexCounter';
+import getStylesCreator from '../internal/getStylesCreator';
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};

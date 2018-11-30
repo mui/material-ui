@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import withStyles from './withStyles';
+import withStyles from '../withStyles';
 
 function createStyled(styles, options) {
   function Styled(props) {
