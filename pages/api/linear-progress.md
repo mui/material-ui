@@ -53,7 +53,6 @@ This property accepts the following keys:
 | <span class="prop-name">bar1Determinate</span> | Styles applied to the bar1 element if `variant="determinate"`.
 | <span class="prop-name">bar1Buffer</span> | Styles applied to the bar1 element if `variant="buffer"`.
 | <span class="prop-name">bar2Indeterminate</span> | Styles applied to the bar2 element if `variant="indeterminate or query"`.
-| <span class="prop-name">bar2Determinate</span> | Styles applied to the bar2 element if `variant="determinate"`.
 | <span class="prop-name">bar2Buffer</span> | Styles applied to the bar2 element if `variant="buffer"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
