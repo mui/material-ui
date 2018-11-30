@@ -47,7 +47,7 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       return <div className={className}>Greeted?: {defaulted.startsWith('Hello')}</div>;
     }
   }
-  const StyledMyComponent = styled<typeof MyComponent>(MyComponent)((theme: MyTheme) => ({
+  const StyledMyComponent = styled(MyComponent)((theme: MyTheme) => ({
     fontFamily: theme.fontFamily,
   }));
   const renderedMyComponent = (
@@ -56,4 +56,10 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       <StyledMyComponent />
     </>
   );
+
+  // will not catch type mismatch
+  interface ClassNumberProps {
+    className: number;
+  }
+  styled(({ className }: ClassNumberProps) => <div>{className.toFixed(2)}</div>)({});
 }
