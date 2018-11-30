@@ -54,7 +54,7 @@ function Avatar(props) {
   const className = classNames(
     classes.root,
     {
-      [classes.colorDefault]: childrenProp && !src && !srcSet,
+      [classes.colorDefault]: !src && !srcSet,
     },
     classNameProp,
   );
