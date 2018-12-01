@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import withStyles from '../withStyles';
+import withStyles from './withStyles';
 
 // styled-components's API removes the mapping between components and styles.
 // Using components as a low-level styling construct can be simpler.

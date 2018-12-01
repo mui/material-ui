@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
 import createStyled from './createStyled';
-import StylesProvider from '../StylesProvider';
+import StylesProvider from './StylesProvider';
 
 describe('createStyled', () => {
   let mount;

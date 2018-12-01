@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import PropTypes from 'prop-types';
 import withTheme from './withTheme';
-import ThemeProvider from '../ThemeProvider';
+import ThemeProvider from './ThemeProvider';
 
 describe('withTheme', () => {
   let mount;

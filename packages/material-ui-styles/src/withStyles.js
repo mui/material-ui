@@ -6,13 +6,13 @@ import warning from 'warning';
 import getDynamicStyles from 'jss/lib/utils/getDynamicStyles';
 import { getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { increment } from '../internal/indexCounter';
-import mergeClasses from '../internal/mergeClasses';
-import multiKeyStore from '../internal/multiKeyStore';
-import getStylesCreator from '../internal/getStylesCreator';
-import getThemeProps from '../internal/getThemeProps';
-import { StylesContext } from '../StylesProvider';
-import { ThemeContext } from '../ThemeProvider';
+import { increment } from './indexCounter';
+import mergeClasses from './mergeClasses';
+import multiKeyStore from './multiKeyStore';
+import getStylesCreator from './getStylesCreator';
+import getThemeProps from './getThemeProps';
+import { StylesContext } from './StylesProvider';
+import { ThemeContext } from './ThemeProvider';
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};

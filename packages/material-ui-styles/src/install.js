@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 
 import { ponyfillGlobal } from '@material-ui/utils';
-import ThemeProvider from '../ThemeProvider';
-import withTheme from '../withTheme';
-import withStyles from '../withStyles';
+import ThemeProvider from './ThemeProvider';
+import withTheme from './withTheme';
+import withStyles from './withStyles';
 
 export default function install() {
   if (!ponyfillGlobal.__MUI_STYLES__) {
