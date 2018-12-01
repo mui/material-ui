@@ -61,7 +61,7 @@ describe('<ToggleButtonGroup />', () => {
 
   it('should not render a selected div when selected is "auto" and a value is missing', () => {
     const wrapper = shallow(
-      <ToggleButtonGroup selected="auto" value={null}>
+      <ToggleButtonGroup selected="auto">
         <ToggleButton value="hello" />
       </ToggleButtonGroup>,
     );

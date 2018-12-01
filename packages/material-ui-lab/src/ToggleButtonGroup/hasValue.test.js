@@ -21,4 +21,8 @@ describe('<ToggleButton /> hasValue', () => {
   it('should be false for null', () => {
     assert.strictEqual(hasValue(null), false);
   });
+
+  it('should be true for empty string', () => {
+    assert.strictEqual(hasValue(''), true);
+  });
 });
