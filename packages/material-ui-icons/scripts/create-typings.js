@@ -14,8 +14,13 @@ function normalizeFileName(file) {
 
 function createIconTyping(file) {
   const name = normalizeFileName(file);
-  /* eslint-disable-next-line quotes */
-  const contents = `export { default } from '@material-ui/core/SvgIcon';`;
+  const contents = [
+    'import { SvgIconProps } from \'@material-ui/core/SvgIcon\'',
+    'import * as React from \'react\'',
+    `declare const ${name}: React.ComponentType<SvgIconProps>`,
+    `export default ${name}`,
+    '',
+  ].join(';\n');
   return fse.writeFile(path.resolve(TARGET_DIR, `${name}.d.ts`), contents, 'utf8');
 }
 
