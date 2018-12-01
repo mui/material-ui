@@ -83,7 +83,6 @@ class Tabs extends React.Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ mounted: true });
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
