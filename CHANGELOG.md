@@ -1,5 +1,51 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.6.1
+###### *Dec 1, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+
+There are no fundamental changes in this version.
+It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
+
+### `@material-ui/core@v3.6.1`
+
+- [Dialog] Add xl maxWidth and demo component (#13694) @dispix
+- [Dialog] Add missing TypeScript style rule (ddfa8e0215bfe895efcb8da69f1ea3cc3b1370ff) @oliviertassinari
+- [ClickAwayListener] Ignore touchend after touchmove (#13689) @hsimah
+- [Tooltip] Hide native title when disableHoverListener is true (#13690) @joshwooding
+- [withTheme] Fix typography warning (#13707) @jmcpeak
+- [Fab] Add Fab type declaration to index and theme (#13715) @Naturalclar
+- [InputBase] Remove dead disableUnderline property (#13720) @PierreCapo
+- [FilledInput] Fix disableUnderline property (#13719) @ekoeditaa
+- [SwitchBase] Fix error not being thrown when controlled state is changed (#13726) @joshwooding
+- [TextField] Better support select object value (#13730) @yezhi780625
+- [TablePagination] Support native selection (#13737) @jsdev
+- [Modal] Fix concurrency regression (#13743) @oliviertassinari
+- [LinearProgress] Remove dead code (#13749) @ekoeditaa
+- [typescript] Add test case for FormControl type limitations (#13754) @eps1lon
+- [Popover] Handle resize close concurrency issue (#13758) @oliviertassinari
+- [Avatar] Remove truthiness check on childrenProp (#13759) @camilleryr
+
+### `@material-ui/styles@v3.0.0-alpha.2`
+
+- [styles] Add options definitions for makeStyles (#13721) @eps1lon
+- [styles] Loosen props consistency check in styled (#13755) @eps1lon
+
+### Docs
+
+- [docs] Add support for changing react version in codesandbox demos (#13686) @joshwooding
+- [CHANGELOG] Add deprecation notice for Divider (#13700) @eps1lon
+- [docs] Add notistack demo to the snackbar page (#13685) @iamhosseindhv
+- [docs] Remove Grid List dead code (#13731) @akhil-gautam
+- [docs] Reduce the no-results rate on Algolia (#13741) @oliviertassinari
+- [docs] Fix concurrency with Frame demos (#13747) @oliviertassinari
+
+### Core
+
+- [test] Correct the link to the example test (#13709) @mdcanham
+- [styles] Fix tslint false negative with outdated local builds (#13750) @eps1lon
+
 ## 3.6.0
 ###### *Nov 26, 2018*
 
