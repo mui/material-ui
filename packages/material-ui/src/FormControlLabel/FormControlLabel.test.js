@@ -134,7 +134,6 @@ describe('<FormControlLabel />', () => {
   });
 
   it('should not inject extra properties', () => {
-    // eslint-disable-next-line react/prop-types
     const Control = ({ inputRef, ...props }) => <div name="name" {...props} />;
     const wrapper = mount(<FormControlLabel label="Pizza" control={<Control />} />);
     assert.strictEqual(wrapper.find('div').props().name, 'name');

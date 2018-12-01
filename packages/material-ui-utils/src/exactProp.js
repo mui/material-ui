@@ -13,7 +13,6 @@ function exactProp(propTypes) {
 
   return {
     ...propTypes,
-    // eslint-disable-next-line prefer-arrow-callback
     [specialProperty]: props => {
       const unsupportedProps = Object.keys(props).filter(prop => !propTypes.hasOwnProperty(prop));
       if (unsupportedProps.length > 0) {

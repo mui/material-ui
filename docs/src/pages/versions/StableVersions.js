@@ -1,5 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state */
-
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
