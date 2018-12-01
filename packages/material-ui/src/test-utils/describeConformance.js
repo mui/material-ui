@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import React from 'react';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 /**
  * Material-UI components have a className prop. The className is applied to the
@@ -53,10 +54,44 @@ function testPropsSpread(element, options) {
   });
 }
 
+/**
+ * Some Material-UI components can forward their refs via innerRef
+ *
+ * @param {React.ReactElement} element
+ * @param {Object} options
+ * @param {boolean} options.noForwardRef - If `true` then this component can't forward its refs
+ */
+function testRefForwarding(element, options) {
+  const { noForwardRef, mount } = options;
+
+  describe('prop: innerRef', () => {
+    before(() => {
+      // just to swallow possible error messages from attaching refs to function components
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it(`should ${noForwardRef ? 'not' : ''} forward a ref`, () => {
+      const ref = React.createRef();
+      mount(React.cloneElement(element, { innerRef: ref }));
+
+      if (noForwardRef) {
+        assert.strictEqual(ref.current, null);
+      } else {
+        assert.ok(ref.current);
+      }
+    });
+  });
+}
+
 const fullSuite = {
   class: testClassName,
   componentProp: testComponentProp,
   propsSpread: testPropsSpread,
+  refForwarding: testRefForwarding,
 };
 
 /**
@@ -68,6 +103,7 @@ const fullSuite = {
  * @param {string} options.defaultRootClassName - see testClassName
  * @param {string} options.inheritComponentName - see testPropsSpread
  * @param {function} options.mount - Should be a return value from createMount
+ * @param {boolean} options.noForwardRef - see test testRefForwarding
  * @param {string[]} options.tests - list of tests that the component conforms to. see fullSuite
  */
 export default function testConformance(minimalElement, options) {

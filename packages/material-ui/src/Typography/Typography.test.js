@@ -22,6 +22,7 @@ describe('<Typography />', () => {
       defaultRootClassName: classes.body2,
       inheritComponentName: 'p',
       mount,
+      noForwardRef: true,
     });
   });
 
