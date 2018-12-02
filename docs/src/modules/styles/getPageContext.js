@@ -2,7 +2,8 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import themeInitialState from './themeInitialState';
 
 function getTheme(uiTheme) {
