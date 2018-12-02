@@ -2,6 +2,10 @@ import { assert } from 'chai';
 import React from 'react';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 
+function randomStringValue() {
+  return Math.random().toString(36);
+}
+
 /**
  * Material-UI components have a className prop. The className is applied to the
  * outermost DOM node.
@@ -15,7 +19,7 @@ function testClassName(element, options) {
   const { defaultRootClassName, mount } = options;
 
   it('applies the className to the outermost DOM node', () => {
-    const className = Math.random().toString(36);
+    const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
     const { classList } = wrapper.getDOMNode();
@@ -49,8 +53,9 @@ function testPropsSpread(element, options) {
 
   it('should spread props', () => {
     const testProp = 'data-test-props-spread';
-    const wrapper = mount(React.cloneElement(element, { [testProp]: true }));
-    assert.ok(wrapper.find(inheritComponentName).props()[testProp]);
+    const value = randomStringValue();
+    const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
+    assert.strictEqual(wrapper.find(inheritComponentName).props()[testProp], value);
   });
 }
 
