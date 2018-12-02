@@ -15,8 +15,8 @@ function normalizeFileName(file) {
 function createIconTyping(file) {
   const name = normalizeFileName(file);
   const contents = [
-    'import { SvgIconProps } from \'@material-ui/core/SvgIcon\'',
-    'import * as React from \'react\'',
+    "import { SvgIconProps } from '@material-ui/core/SvgIcon'",
+    "import * as React from 'react'",
     `declare const ${name}: React.ComponentType<SvgIconProps>`,
     `export default ${name}`,
     '',
