@@ -30,36 +30,30 @@ const styles = theme => ({
   },
 });
 
-class NavTabs extends React.Component {
-  state = {
-    value: 0,
-  };
+function NavTabs(props) {
+  const { classes } = props;
+  const [value, setValue] = React.useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <NoSsr>
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Tabs fullWidth value={value} onChange={this.handleChange}>
-              <LinkTab label="Page One" href="page1" />
-              <LinkTab label="Page Two" href="page2" />
-              <LinkTab label="Page Three" href="page3" />
-            </Tabs>
-          </AppBar>
-          {value === 0 && <TabContainer>Page One</TabContainer>}
-          {value === 1 && <TabContainer>Page Two</TabContainer>}
-          {value === 2 && <TabContainer>Page Three</TabContainer>}
-        </div>
-      </NoSsr>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <NoSsr>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Tabs fullWidth value={value} onChange={handleChange}>
+            <LinkTab label="Page One" href="page1" />
+            <LinkTab label="Page Two" href="page2" />
+            <LinkTab label="Page Three" href="page3" />
+          </Tabs>
+        </AppBar>
+        {value === 0 && <TabContainer>Page One</TabContainer>}
+        {value === 1 && <TabContainer>Page Two</TabContainer>}
+        {value === 2 && <TabContainer>Page Three</TabContainer>}
+      </div>
+    </NoSsr>
+  );
 }
 
 NavTabs.propTypes = {

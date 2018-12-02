@@ -33,42 +33,36 @@ const styles = theme => ({
   },
 });
 
-class ScrollableTabsButtonPrevent extends React.Component {
-  state = {
-    value: 0,
-  };
+function ScrollableTabsButtonPrevent(props) {
+  const { classes } = props;
+  const [value, setValue] = React.useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="off">
-            <Tab icon={<PhoneIcon />} />
-            <Tab icon={<FavoriteIcon />} />
-            <Tab icon={<PersonPinIcon />} />
-            <Tab icon={<HelpIcon />} />
-            <Tab icon={<ShoppingBasket />} />
-            <Tab icon={<ThumbDown />} />
-            <Tab icon={<ThumbUp />} />
-          </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer>Item One</TabContainer>}
-        {value === 1 && <TabContainer>Item Two</TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
-        {value === 3 && <TabContainer>Item Four</TabContainer>}
-        {value === 4 && <TabContainer>Item Five</TabContainer>}
-        {value === 5 && <TabContainer>Item Six</TabContainer>}
-        {value === 6 && <TabContainer>Item Seven</TabContainer>}
-      </div>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Tabs value={value} onChange={handleChange} scrollable scrollButtons="off">
+          <Tab icon={<PhoneIcon />} />
+          <Tab icon={<FavoriteIcon />} />
+          <Tab icon={<PersonPinIcon />} />
+          <Tab icon={<HelpIcon />} />
+          <Tab icon={<ShoppingBasket />} />
+          <Tab icon={<ThumbDown />} />
+          <Tab icon={<ThumbUp />} />
+        </Tabs>
+      </AppBar>
+      {value === 0 && <TabContainer>Item One</TabContainer>}
+      {value === 1 && <TabContainer>Item Two</TabContainer>}
+      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      {value === 3 && <TabContainer>Item Four</TabContainer>}
+      {value === 4 && <TabContainer>Item Five</TabContainer>}
+      {value === 5 && <TabContainer>Item Six</TabContainer>}
+      {value === 6 && <TabContainer>Item Seven</TabContainer>}
+    </div>
+  );
 }
 
 ScrollableTabsButtonPrevent.propTypes = {

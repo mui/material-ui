@@ -51,46 +51,40 @@ const styles = theme => ({
   },
 });
 
-class CustomizedTabs extends React.Component {
-  state = {
-    value: 0,
-  };
+function CustomizedTabs(props) {
+  const { classes } = props;
+  const [value, setValue] = React.useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Tabs
-          value={value}
-          onChange={this.handleChange}
-          classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
-        >
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 1"
-          />
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 2"
-          />
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 3"
-          />
-        </Tabs>
-        <Typography className={classes.typography}>Ant Design UI powered by Material-UI</Typography>
-      </div>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <div className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
+      >
+        <Tab
+          disableRipple
+          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+          label="Tab 1"
+        />
+        <Tab
+          disableRipple
+          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+          label="Tab 2"
+        />
+        <Tab
+          disableRipple
+          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+          label="Tab 3"
+        />
+      </Tabs>
+      <Typography className={classes.typography}>Ant Design UI powered by Material-UI</Typography>
+    </div>
+  );
 }
 
 CustomizedTabs.propTypes = {

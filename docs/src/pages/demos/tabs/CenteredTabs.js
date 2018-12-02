@@ -11,34 +11,29 @@ const styles = {
   },
 };
 
-class CenteredTabs extends React.Component {
-  state = {
-    value: 0,
-  };
+function CenteredTabs(props) {
+  const { classes } = props;
+  const [value, setValue] = React.useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Paper className={classes.root}>
-        <Tabs
-          value={this.state.value}
-          onChange={this.handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
-        >
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
-        </Tabs>
-      </Paper>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <Paper className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        <Tab label="Item One" />
+        <Tab label="Item Two" />
+        <Tab label="Item Three" />
+      </Tabs>
+    </Paper>
+  );
 }
 
 CenteredTabs.propTypes = {

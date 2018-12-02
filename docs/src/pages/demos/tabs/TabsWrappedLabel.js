@@ -25,34 +25,28 @@ const styles = theme => ({
   },
 });
 
-class TabsWrappedLabel extends React.Component {
-  state = {
-    value: 'one',
-  };
+function TabsWrappedLabel(props) {
+  const { classes } = props;
+  const [value, setValue] = React.useState('one');
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" />
-            <Tab value="two" label="Item Two" />
-            <Tab value="three" label="Item Three" />
-          </Tabs>
-        </AppBar>
-        {value === 'one' && <TabContainer>Item One</TabContainer>}
-        {value === 'two' && <TabContainer>Item Two</TabContainer>}
-        {value === 'three' && <TabContainer>Item Three</TabContainer>}
-      </div>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Tabs value={value} onChange={handleChange}>
+          <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" />
+          <Tab value="two" label="Item Two" />
+          <Tab value="three" label="Item Three" />
+        </Tabs>
+      </AppBar>
+      {value === 'one' && <TabContainer>Item One</TabContainer>}
+      {value === 'two' && <TabContainer>Item Two</TabContainer>}
+      {value === 'three' && <TabContainer>Item Three</TabContainer>}
+    </div>
+  );
 }
 
 TabsWrappedLabel.propTypes = {
