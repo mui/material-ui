@@ -12,11 +12,11 @@ function randomStringValue() {
  *
  * @param {React.ReactElement} element
  * @param {Object} options
- * @param {string} options.defaultRootClassName - the className that should be
+ * @param {string} options.defaultRootClassNames - the className that should be
  *                                                applied to the outermost DOM node
  */
 function testClassName(element, options) {
-  const { defaultRootClassName, mount } = options;
+  const { defaultRootClassNames = [], mount } = options;
 
   it('applies the className to the outermost DOM node', () => {
     const className = randomStringValue();
@@ -25,7 +25,13 @@ function testClassName(element, options) {
     const { classList } = wrapper.getDOMNode();
 
     assert.ok(classList.contains(className));
-    assert.ok(!defaultRootClassName || classList.contains(defaultRootClassName));
+    defaultRootClassNames.forEach(defaultClassName => {
+      assert.strictEqual(
+        classList.contains(defaultRootClassNames),
+        true,
+        `Does not have the '${defaultClassName}' class. Did you mean of ${classList}`,
+      );
+    });
   });
 }
 
@@ -105,7 +111,7 @@ const fullSuite = {
  *
  * @param {React.ReactElement} minimalElement - the component with it's minimal required props
  * @param {Object} options
- * @param {string} options.defaultRootClassName - see testClassName
+ * @param {string} options.defaultRootClassNames - see testClassName
  * @param {string} options.inheritComponentName - see testPropsSpread
  * @param {function} options.mount - Should be a return value from createMount
  * @param {boolean} options.noForwardRef - see test testRefForwarding
