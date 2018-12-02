@@ -138,7 +138,6 @@ ToggleButtonGroup.propTypes = {
 ToggleButtonGroup.defaultProps = {
   exclusive: false,
   selected: 'auto',
-  value: null,
 };
 
 export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);
