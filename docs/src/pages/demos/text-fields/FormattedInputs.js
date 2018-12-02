@@ -61,46 +61,40 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-class FormattedInputs extends React.Component {
-  state = {
+function FormattedInputs(props) {
+  const { classes } = props;
+  const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
     numberformat: '1320',
+  });
+
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value });
   };
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { textmask, numberformat } = this.state;
-
-    return (
-      <div className={classes.container}>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
-          <Input
-            value={textmask}
-            onChange={this.handleChange('textmask')}
-            id="formatted-text-mask-input"
-            inputComponent={TextMaskCustom}
-          />
-        </FormControl>
-        <TextField
-          className={classes.formControl}
-          label="react-number-format"
-          value={numberformat}
-          onChange={this.handleChange('numberformat')}
-          id="formatted-numberformat-input"
-          InputProps={{
-            inputComponent: NumberFormatCustom,
-          }}
+  return (
+    <div className={classes.container}>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+        <Input
+          value={values.textmask}
+          onChange={handleChange('textmask')}
+          id="formatted-text-mask-input"
+          inputComponent={TextMaskCustom}
         />
-      </div>
-    );
-  }
+      </FormControl>
+      <TextField
+        className={classes.formControl}
+        label="react-number-format"
+        value={values.numberformat}
+        onChange={handleChange('numberformat')}
+        id="formatted-numberformat-input"
+        InputProps={{
+          inputComponent: NumberFormatCustom,
+        }}
+      />
+    </div>
+  );
 }
 
 FormattedInputs.propTypes = {

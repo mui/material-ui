@@ -37,117 +37,111 @@ const ranges = [
   },
 ];
 
-class FilledInputAdornments extends React.Component {
-  state = {
+function FilledInputAdornments(props) {
+  const { classes } = props;
+  const [values, setValues] = React.useState({
     amount: '',
     password: '',
     weight: '',
     weightRange: '',
     showPassword: false,
+  });
+
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value });
   };
 
-  handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <TextField
-          id="filled-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
-          variant="filled"
-          label="With filled TextField"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment variant="filled" position="start">
-                Kg
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          select
-          className={classNames(classes.margin, classes.textField)}
-          variant="filled"
-          label="With Select"
-          value={this.state.weightRange}
-          onChange={this.handleChange('weightRange')}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment variant="filled" position="start">
-                Kg
-              </InputAdornment>
-            ),
-          }}
-        >
-          {ranges.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          id="filled-adornment-amount"
-          className={classNames(classes.margin, classes.textField)}
-          variant="filled"
-          label="Amount"
-          value={this.state.amount}
-          onChange={this.handleChange('amount')}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment variant="filled" position="start">
-                $
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          id="filled-adornment-weight"
-          className={classNames(classes.margin, classes.textField)}
-          variant="filled"
-          label="Weight"
-          value={this.state.weight}
-          onChange={this.handleChange('weight')}
-          helperText="Weight"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment variant="filled" position="end">
-                Kg
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          id="filled-adornment-password"
-          className={classNames(classes.margin, classes.textField)}
-          variant="filled"
-          type={this.state.showPassword ? 'text' : 'password'}
-          label="Password"
-          value={this.state.password}
-          onChange={this.handleChange('password')}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment variant="filled" position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <TextField
+        id="filled-simple-start-adornment"
+        className={classNames(classes.margin, classes.textField)}
+        variant="filled"
+        label="With filled TextField"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment variant="filled" position="start">
+              Kg
+            </InputAdornment>
+          ),
+        }}
+      />
+      <TextField
+        select
+        className={classNames(classes.margin, classes.textField)}
+        variant="filled"
+        label="With Select"
+        value={values.weightRange}
+        onChange={handleChange('weightRange')}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment variant="filled" position="start">
+              Kg
+            </InputAdornment>
+          ),
+        }}
+      >
+        {ranges.map(option => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+      <TextField
+        id="filled-adornment-amount"
+        className={classNames(classes.margin, classes.textField)}
+        variant="filled"
+        label="Amount"
+        value={values.amount}
+        onChange={handleChange('amount')}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment variant="filled" position="start">
+              $
+            </InputAdornment>
+          ),
+        }}
+      />
+      <TextField
+        id="filled-adornment-weight"
+        className={classNames(classes.margin, classes.textField)}
+        variant="filled"
+        label="Weight"
+        value={values.weight}
+        onChange={handleChange('weight')}
+        helperText="Weight"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment variant="filled" position="end">
+              Kg
+            </InputAdornment>
+          ),
+        }}
+      />
+      <TextField
+        id="filled-adornment-password"
+        className={classNames(classes.margin, classes.textField)}
+        variant="filled"
+        type={values.showPassword ? 'text' : 'password'}
+        label="Password"
+        value={values.password}
+        onChange={handleChange('password')}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment variant="filled" position="end">
+              <IconButton aria-label="Toggle password visibility" onClick={handleClickShowPassword}>
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+    </div>
+  );
 }
 
 FilledInputAdornments.propTypes = {
