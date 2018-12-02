@@ -28,15 +28,22 @@ const members = [
     name: 'Matt Brookes',
     github: 'mbrookes',
     twitter: 'randomtechdude',
-    flag: 'Documentation wizard 📖',
+    flag: 'Core team',
     city: 'London, UK',
   },
   {
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    flag: 'Core focus',
+    flag: 'Core team',
     city: 'Franklin, Tennessee, US',
+  },
+  {
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+    twitter: 'sebsilbermann',
+    flag: 'Core team',
+    city: 'Dresden, Germany',
   },
   {
     name: 'Nathan Marks',
@@ -82,9 +89,7 @@ const members = [
 
 const styles = theme => ({
   details: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: `${theme.spacing.unit}px 0`,
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px 0`,
   },
   cover: {
     width: theme.spacing.unit * 10,
@@ -94,15 +99,9 @@ const styles = theme => ({
     flexShrink: 0,
     backgroundColor: theme.palette.background.default,
   },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-  },
   icon: {
-    margin: theme.spacing.unit,
     fontSize: 18,
-    width: 22,
-    height: 22,
+    padding: theme.spacing.unit,
   },
 });
 
@@ -113,7 +112,7 @@ function Team(props) {
       {members.map(member => (
         <Grid key={member.name} item xs={12} md={6}>
           <Paper>
-            <Grid container>
+            <Grid container wrap="nowrap">
               <Grid item>
                 <CardMedia
                   className={classes.cover}
@@ -130,7 +129,7 @@ function Team(props) {
                     {member.flag}
                   </Typography>
                   <Typography color="textSecondary">{member.city}</Typography>
-                  <div className={classes.controls}>
+                  <Grid container>
                     {member.github && (
                       <IconButton
                         aria-label="GitHub"
@@ -138,7 +137,7 @@ function Team(props) {
                         href={`https://github.com/${member.github}`}
                         className={classes.icon}
                       >
-                        <Github />
+                        <Github fontSize="inherit" />
                       </IconButton>
                     )}
                     {member.twitter && (
@@ -148,10 +147,10 @@ function Team(props) {
                         href={`https://twitter.com/${member.twitter}`}
                         className={classes.icon}
                       >
-                        <Twitter />
+                        <Twitter fontSize="inherit" />
                       </IconButton>
                     )}
-                  </div>
+                  </Grid>
                 </div>
               </Grid>
             </Grid>
