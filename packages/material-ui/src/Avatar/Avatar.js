@@ -20,7 +20,6 @@ export const styles = theme => ({
     userSelect: 'none',
   },
   /* Styles applied to the root element if there are children and not `src` or `srcSet` */
-  /* Styles applied to the root element if `color="default"`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
@@ -51,16 +50,10 @@ function Avatar(props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.colorDefault]: childrenProp && !src && !srcSet,
-    },
-    classNameProp,
-  );
   let children = null;
+  const img = src || srcSet;
 
-  if (src || srcSet) {
+  if (img) {
     children = (
       <img
         alt={alt}
@@ -80,7 +73,16 @@ function Avatar(props) {
   }
 
   return (
-    <Component className={className} {...other}>
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.colorDefault]: !img,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
       {children}
     </Component>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Grow from '../Grow';
 import Paper from '../Paper';
 import Popover from './Popover';
@@ -14,6 +14,7 @@ describe('<Popover />', () => {
   const defaultProps = {
     open: false,
   };
+  const PopoverNaked = unwrap(Popover);
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -602,24 +603,21 @@ describe('<Popover />', () => {
         .at(0)
         .simulate('resize');
       clock.tick(166);
-      assert.strictEqual(
-        instance.setPositioningStyles.called,
-        true,
-        'position styles recalculated',
-      );
+      assert.strictEqual(instance.setPositioningStyles.called, true);
     });
 
     it('should not recalculate position if the popover is closed', () => {
       const wrapper = mount(
-        <Popover {...defaultProps} transitionDuration={0}>
+        <PopoverNaked {...defaultProps} classes={{}} transitionDuration={0}>
           <div />
-        </Popover>,
+        </PopoverNaked>,
       );
-      assert.strictEqual(
-        wrapper.contains('EventListener'),
-        false,
-        'no component listening on resize',
-      );
+      const instance = wrapper.instance();
+      assert.strictEqual(wrapper.contains('EventListener'), false);
+      stub(instance, 'setPositioningStyles');
+      wrapper.instance().handleResize();
+      clock.tick(166);
+      assert.strictEqual(instance.setPositioningStyles.called, false);
     });
   });
 

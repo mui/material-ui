@@ -108,15 +108,17 @@ declare module '@material-ui/styles/makeStyles' {
     ClassNameMap,
     PropsOfStyles,
     Styles,
+    WithStylesOptions,
   } from '@material-ui/styles/withStyles';
 
   export default function makeStyles<S extends Styles<any, any>>(
     styles: S,
+    options?: WithStylesOptions<ClassKeyOfStyles<S>>,
   ): (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 }
 
 declare module '@material-ui/styles/styled' {
-  import { ConsistentWith, Omit, PropsOf } from '@material-ui/core';
+  import { Omit, PropsOf } from '@material-ui/core';
   import {
     CSSProperties,
     StyledComponentProps,
@@ -139,9 +141,7 @@ declare module '@material-ui/styles/styled' {
     className: string;
   }
 
-  export default function styled<
-    C extends React.ReactType<ConsistentWith<PropsOf<C>, { className: string }>>
-  >(Component: C): ComponentCreator<C>;
+  export default function styled<C extends React.ReactType>(Component: C): ComponentCreator<C>;
 }
 
 declare module '@material-ui/styles/StylesProvider' {

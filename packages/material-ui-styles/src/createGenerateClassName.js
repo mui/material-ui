@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import warning from 'warning';
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;

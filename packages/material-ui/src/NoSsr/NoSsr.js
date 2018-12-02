@@ -34,7 +34,7 @@ class NoSsr extends React.Component {
         });
       });
     } else {
-      this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ mounted: true });
     }
   }
 

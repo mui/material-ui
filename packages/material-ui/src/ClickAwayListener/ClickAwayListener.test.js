@@ -5,6 +5,16 @@ import { spy } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import ClickAwayListener from './ClickAwayListener';
 
+function fireBodyMouseEvent(name, properties = {}) {
+  const event = document.createEvent('MouseEvents');
+  event.initEvent(name, true, true);
+  Object.keys(properties).forEach(key => {
+    event[key] = properties[key];
+  });
+  document.body.dispatchEvent(event);
+  return event;
+}
+
 describe('<ClickAwayListener />', () => {
   let mount;
   let wrapper;
@@ -36,9 +46,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      const event = document.createEvent('MouseEvents');
-      event.initEvent('mouseup', true, true);
-      window.document.body.dispatchEvent(event);
+      const event = fireBodyMouseEvent('mouseup');
 
       assert.strictEqual(handleClickAway.callCount, 1);
       assert.deepEqual(handleClickAway.args[0], [event]);
@@ -85,11 +93,7 @@ describe('<ClickAwayListener />', () => {
           <span>Hello</span>
         </ClickAwayListener>,
       );
-
-      const event = document.createEvent('MouseEvents');
-      event.initEvent('mouseup', true, true);
-      window.document.body.dispatchEvent(event);
-
+      fireBodyMouseEvent('mouseup');
       assert.strictEqual(handleClickAway.callCount, 0);
     });
 
@@ -100,17 +104,9 @@ describe('<ClickAwayListener />', () => {
           <span>Hello</span>
         </ClickAwayListener>,
       );
-
-      const mouseUpEvent = document.createEvent('MouseEvents');
-      mouseUpEvent.initEvent('mouseup', true, true);
-      window.document.body.dispatchEvent(mouseUpEvent);
-
+      fireBodyMouseEvent('mouseup');
       assert.strictEqual(handleClickAway.callCount, 0);
-
-      const mouseDownEvent = document.createEvent('MouseEvents');
-      mouseDownEvent.initEvent('mousedown', true, true);
-      window.document.body.dispatchEvent(mouseDownEvent);
-
+      const mouseDownEvent = fireBodyMouseEvent('mousedown');
       assert.strictEqual(handleClickAway.callCount, 1);
       assert.deepEqual(handleClickAway.args[0], [mouseDownEvent]);
     });
@@ -124,11 +120,7 @@ describe('<ClickAwayListener />', () => {
           <span>Hello</span>
         </ClickAwayListener>,
       );
-
-      const event = document.createEvent('Events');
-      event.initEvent('touchend', true, true);
-      window.document.body.dispatchEvent(event);
-
+      fireBodyMouseEvent('touchend');
       assert.strictEqual(handleClickAway.callCount, 0);
     });
 
@@ -139,19 +131,28 @@ describe('<ClickAwayListener />', () => {
           <span>Hello</span>
         </ClickAwayListener>,
       );
-
-      const touchEndEvent = document.createEvent('Events');
-      touchEndEvent.initEvent('touchend', true, true);
-      window.document.body.dispatchEvent(touchEndEvent);
-
+      fireBodyMouseEvent('touchend');
       assert.strictEqual(handleClickAway.callCount, 0);
-
-      const touchStartEvent = document.createEvent('Events');
-      touchStartEvent.initEvent('touchstart', true, true);
-      window.document.body.dispatchEvent(touchStartEvent);
-
+      const touchStartEvent = fireBodyMouseEvent('touchstart');
       assert.strictEqual(handleClickAway.callCount, 1);
       assert.deepEqual(handleClickAway.args[0], [touchStartEvent]);
+    });
+
+    it('should ignore `touchend` when preceeded by `touchmove` event', () => {
+      const handleClickAway = spy();
+      wrapper = mount(
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchEnd">
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+      fireBodyMouseEvent('touchstart');
+      fireBodyMouseEvent('touchmove');
+      fireBodyMouseEvent('touchend');
+      assert.strictEqual(handleClickAway.callCount, 0);
+
+      const touchEndEvent = fireBodyMouseEvent('touchend');
+      assert.strictEqual(handleClickAway.callCount, 1);
+      assert.deepEqual(handleClickAway.args[0], [touchEndEvent]);
     });
   });
 
@@ -164,11 +165,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
       wrapper.instance().mounted = false;
-
-      const event = document.createEvent('MouseEvents');
-      event.initEvent('mouseup', true, true);
-      window.document.body.dispatchEvent(event);
-
+      fireBodyMouseEvent('mouseup');
       assert.strictEqual(handleClickAway.callCount, 0);
     });
   });
@@ -181,11 +178,7 @@ describe('<ClickAwayListener />', () => {
         <Child />
       </ClickAwayListener>,
     );
-
-    const event = document.createEvent('MouseEvents');
-    event.initEvent('mouseup', true, true);
-    window.document.body.dispatchEvent(event);
-
+    fireBodyMouseEvent('mouseup');
     assert.strictEqual(handleClickAway.callCount, 0);
   });
 });

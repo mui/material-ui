@@ -1,12 +1,18 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
+const withTM = require('@weco/next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
 process.env.LIB_VERSION = pkg.version;
 
 module.exports = {
-  webpack: config => {
+  webpack: (config, options) => {
+    // Alias @material-ui/core peer dependency imports form the following modules to our sources.
+    config = withTM({
+      transpileModules: ['notistack'],
+    }).webpack(config, options);
+
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {

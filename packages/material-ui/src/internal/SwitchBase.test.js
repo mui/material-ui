@@ -7,6 +7,7 @@ import {
   getClasses,
   unwrap,
 } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import SwitchBase from './SwitchBase';
 import FormControlContext from '../FormControl/FormControlContext';
 import Icon from '../Icon';
@@ -44,6 +45,23 @@ function assertIsNotChecked(wrapper) {
   const icon = label.childAt(0);
   assert.strictEqual(icon.name(), 'h1');
 }
+
+const shouldSuccessOnce = name => func => () => {
+  global.successOnce = global.successOnce || {};
+
+  if (!global.successOnce[name]) {
+    global.successOnce[name] = false;
+  }
+
+  try {
+    func();
+    global.successOnce[name] = true;
+  } catch (err) {
+    if (!global.successOnce[name]) {
+      throw err;
+    }
+  }
+};
 
 describe('<SwitchBase />', () => {
   let mount;
@@ -145,7 +163,6 @@ describe('<SwitchBase />', () => {
     );
 
     wrapperA.setProps({ disabled: false });
-    wrapperA.setProps({ checked: true });
 
     assert.strictEqual(
       wrapperA.hasClass(disabledClassName),
@@ -429,5 +446,43 @@ describe('<SwitchBase />', () => {
       assert.strictEqual(handleFocusProps.callCount, 1);
       assert.strictEqual(handleFocusContext.callCount, 1);
     });
+  });
+
+  describe('check transitioning between controlled states throws errors', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it(
+      'should error when uncontrolled and changed to controlled',
+      shouldSuccessOnce('didWarnUncontrolledToControlled')(() => {
+        const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" />);
+        wrapper.setProps({ checked: true });
+
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'A component is changing an uncontrolled input of type %s to be controlled.',
+        );
+      }),
+    );
+
+    it(
+      'should error when controlled and changed to uncontrolled',
+      shouldSuccessOnce('didWarnControlledToUncontrolled')(() => {
+        const wrapper = mount(<SwitchBase {...defaultProps} type="checkbox" checked={false} />);
+        wrapper.setProps({ checked: undefined });
+
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'A component is changing a controlled input of type %s to be uncontrolled.',
+        );
+      }),
+    );
   });
 });

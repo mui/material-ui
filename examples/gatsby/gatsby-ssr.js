@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types, react/no-danger */
+/* eslint-disable react/no-danger */
 
 const React = require('react');
 const { renderToString } = require('react-dom/server');
