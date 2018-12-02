@@ -1,9 +1,10 @@
 import { assert } from 'chai';
 import React from 'react';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 function randomStringValue() {
-  return Math.random().toString(36);
+  return Math.random().toString(36).slice(2);
 }
 
 /**
@@ -22,14 +23,14 @@ function testClassName(element, options) {
     const className = randomStringValue();
 
     const wrapper = mount(React.cloneElement(element, { className }));
-    const { classList } = wrapper.getDOMNode();
+    const domWrapper = findOutermostIntrinsic(wrapper);
 
-    assert.ok(classList.contains(className));
+    assert.strictEqual(domWrapper.hasClass(className), true);
     defaultRootClassNames.forEach(defaultClassName => {
       assert.strictEqual(
-        classList.contains(defaultRootClassNames),
+        domWrapper.hasClass(defaultRootClassNames),
         true,
-        `Does not have the '${defaultClassName}' class. Did you mean of ${classList}`,
+        `Does not have the '${defaultClassName}' class`,
       );
     });
   });
