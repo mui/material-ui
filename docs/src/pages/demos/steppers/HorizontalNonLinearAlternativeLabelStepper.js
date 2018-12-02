@@ -111,7 +111,6 @@ function HorizontalNonLinearAlternativeLabelStepper(props) {
   };
 
   function handleComplete() {
-    // eslint-disable-next-line react/no-access-state-in-setstate
     const newCompleted = new Set(completed);
     newCompleted.add(activeStep);
     setCompleted(newCompleted);
