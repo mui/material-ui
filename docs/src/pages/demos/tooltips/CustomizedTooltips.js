@@ -74,52 +74,41 @@ const styles = theme => ({
   },
 });
 
-class CustomizedTooltips extends React.Component {
-  state = {
-    arrowRef: null,
-  };
+function CustomizedTooltips(props) {
+  const { classes } = props;
+  const arrowRef = React.useRef();
 
-  handleArrowRef = node => {
-    this.setState({
-      arrowRef: node,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div>
-        <Tooltip title="Add">
-          <Button className={classes.button}>Default</Button>
-        </Tooltip>
-        <Tooltip title="Add" classes={{ tooltip: classes.lightTooltip }}>
-          <Button className={classes.button}>Light</Button>
-        </Tooltip>
-        <Tooltip
-          title={
-            <React.Fragment>
-              Add
-              <span className={classes.arrowArrow} ref={this.handleArrowRef} />
-            </React.Fragment>
-          }
-          classes={{ popper: classes.arrowPopper }}
-          PopperProps={{
-            popperOptions: {
-              modifiers: {
-                arrow: {
-                  enabled: Boolean(this.state.arrowRef),
-                  element: this.state.arrowRef,
-                },
+  return (
+    <div>
+      <Tooltip title="Add">
+        <Button className={classes.button}>Default</Button>
+      </Tooltip>
+      <Tooltip title="Add" classes={{ tooltip: classes.lightTooltip }}>
+        <Button className={classes.button}>Light</Button>
+      </Tooltip>
+      <Tooltip
+        title={
+          <React.Fragment>
+            Add
+            <span className={classes.arrowArrow} ref={arrowRef} />
+          </React.Fragment>
+        }
+        classes={{ popper: classes.arrowPopper }}
+        PopperProps={{
+          popperOptions: {
+            modifiers: {
+              arrow: {
+                enabled: Boolean(arrowRef.current),
+                element: arrowRef.current,
               },
             },
-          }}
-        >
-          <Button className={classes.button}>Arrow</Button>
-        </Tooltip>
-      </div>
-    );
-  }
+          },
+        }}
+      >
+        <Button className={classes.button}>Arrow</Button>
+      </Tooltip>
+    </div>
+  );
 }
 
 CustomizedTooltips.propTypes = {
