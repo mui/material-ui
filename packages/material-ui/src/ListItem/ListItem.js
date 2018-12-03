@@ -53,7 +53,10 @@ export const styles = theme => ({
     backgroundClip: 'padding-box',
   },
   /* Styles applied to the inner `component` element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
   /* Styles applied to the inner `component` element if `button={true}`. */
   button: {
     transition: theme.transitions.create('background-color', {

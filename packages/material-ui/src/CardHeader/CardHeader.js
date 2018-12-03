@@ -6,12 +6,11 @@ import Typography from '../Typography';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
-  root: theme.mixins.gutters({
+  root: {
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 16,
-    paddingBottom: 16,
-  }),
+    padding: 16,
+  },
   /* Styles applied to the avatar element. */
   avatar: {
     flex: '0 0 auto',

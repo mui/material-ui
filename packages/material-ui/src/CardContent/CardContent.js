@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
-  root: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
+  root: {
+    padding: 16,
     '&:last-child': {
       paddingBottom: 24,
     },
-  }),
-});
+  },
+};
 
 function CardContent(props) {
   const { classes, className, component: Component, ...other } = props;
