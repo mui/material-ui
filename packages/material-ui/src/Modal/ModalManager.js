@@ -50,9 +50,11 @@ function setContainerStyle(data) {
 }
 
 function removeContainerStyle(data) {
-  Object.keys(data.style).forEach(key => {
-    data.container.style[key] = data.style[key];
-  });
+  if (data.style) {
+    Object.keys(data.style).forEach(key => {
+      data.container.style[key] = data.style[key];
+    });
+  }
 
   const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
   for (let i = 0; i < fixedNodes.length; i += 1) {
