@@ -51,7 +51,6 @@ const blacklistSuite = [
   'docs-', // Home
   'docs-discover-more-showcase',
   'docs-guides',
-  'docs-premium-themes',
   'docs-style-color', // non important demo
   'docs-versions',
 ];
@@ -73,14 +72,24 @@ const demos = requireDemos.keys().reduce((res, path) => {
     .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklistSuite.includes(suite) && !blacklistFilename.includes(`${suite}/${name}.png`)) {
-    res.push({
-      path,
-      suite,
-      name,
-      case: requireDemos(path).default,
-    });
+  if (blacklistSuite.includes(suite)) {
+    return res;
   }
+
+  if (blacklistFilename.includes(`${suite}/${name}.png`)) {
+    return res;
+  }
+
+  if (/^docs-premium-themes(.*)/.test(suite)) {
+    return res;
+  }
+
+  res.push({
+    path,
+    suite,
+    name,
+    case: requireDemos(path).default,
+  });
 
   return res;
 }, []);
