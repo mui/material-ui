@@ -240,6 +240,17 @@ describe('<Tooltip />', () => {
       consoleErrorMock.reset();
     });
 
+    it('should not raise a warning if title is empty', () => {
+      mount(
+        <Tooltip title="">
+          <button type="submit" disabled>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
+    });
+
     it('should raise a warning when we can listen to events', () => {
       mount(
         <Tooltip title="Hello World">
