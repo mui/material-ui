@@ -147,6 +147,7 @@
     "react-swipeable-views": "^0.13.0",
     "react-test-renderer": "^16.1.1",
     "react-text-mask": "^5.0.2",
+    "react-virtualized": "^9.21.0",
     "recast": "^0.16.0",
     "recharts": "^1.1.0",
     "redux": "^4.0.0",
