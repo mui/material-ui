@@ -85,7 +85,7 @@ class Tooltip extends React.Component {
     warning(
       !this.childrenRef.disabled ||
         (this.childrenRef.disabled && this.props.title === '') ||
-        !this.childrenRef.tagName.toLowerCase() === 'button',
+        this.childrenRef.tagName.toLowerCase() !== 'button',
       [
         'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
         'A disabled element does not fire events.',
