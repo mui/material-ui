@@ -114,7 +114,7 @@ declare module '@material-ui/styles/makeStyles' {
   export default function makeStyles<S extends Styles<any, any>>(
     styles: S,
     options?: WithStylesOptions<ClassKeyOfStyles<S>>,
-  ): (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
+  ): (props?: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 }
 
 declare module '@material-ui/styles/styled' {
