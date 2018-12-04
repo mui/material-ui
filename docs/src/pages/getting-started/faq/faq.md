@@ -34,7 +34,7 @@ In this situation, you can apply a global `.mui-fixed` class name to tell Materi
 ## How can I disable the ripple effect globally?
 
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can disable the ripple effect globally by providing the following variables to your theme:
+You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -52,7 +52,7 @@ const theme = createMuiTheme({
 
 ## How can I disable animations globally?
 
-You can disable animations globally by providing the following variables to your theme:
+You can disable animations globally by providing the following in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
