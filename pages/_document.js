@@ -24,7 +24,13 @@ const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA
 
 class MyDocument extends Document {
   render() {
-    const { canonical, pageContext } = this.props;
+    const { canonical, pageContext, url } = this.props;
+
+    let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+    if (url.match(/onepirate/)) {
+      font = 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400';
+    }
 
     return (
       <html lang="en" dir="ltr">
@@ -43,10 +49,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
+          <link rel="stylesheet" href={font} />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -119,6 +122,7 @@ MyDocument.getInitialProps = async ctx => {
   return {
     ...page,
     pageContext,
+    url: ctx.req.url,
     canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style

@@ -23,6 +23,11 @@ For instance, via Google Web Fonts:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
+Alternatively, if you are using JSX over HTML to render the head:
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+```
+
 ## Font Icons
 
 In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font.
@@ -31,6 +36,11 @@ on how to do so.
 For instance, via Google Web Fonts:
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+```
+
+Alternatively, if you are using JSX over HTML to render the head:
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 ## SVG Icons
