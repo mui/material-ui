@@ -58,6 +58,12 @@ A simple example with spanning rows & columns.
 
 {{"demo": "pages/demos/tables/SpanningTable.js"}}
 
+## Virtualized Table
+
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
+
+{{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:

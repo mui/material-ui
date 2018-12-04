@@ -44,6 +44,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomizedTable'), 'utf8')
 `,
         },
+        'pages/demos/tables/ReactVirtualizedTable.js': {
+          js: require('docs/src/pages/demos/tables/ReactVirtualizedTable').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/ReactVirtualizedTable'), 'utf8')
+`,
+        },
       }}
     />
   );
