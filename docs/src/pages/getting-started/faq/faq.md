@@ -38,6 +38,29 @@ The ripple effect is exclusively coming from the `BaseButton` component.
 You can find the components using the ButtonBase [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
+## How can I disable animations globally?
+
+You can disable animations globally by providing the following variables to your theme:
+```js
+import { createMuiTheme } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => 'none',
+  },
+});
+```
+Sometimes you will want to enable this behavior conditionally, for instance during testing or on low end devices,
+in these cases you can dynamically change the theme value.
+
 ## Do I have to use JSS to style my app?
 
 It's highly recommended:
