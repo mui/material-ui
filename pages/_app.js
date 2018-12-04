@@ -299,7 +299,15 @@ function findActivePage(currentPages, router) {
   return activePage;
 }
 
+function ErrorFallback() {
+  return <h1>Whoops</h1>;
+}
+
 class MyApp extends App {
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
   constructor(props) {
     super();
     this.redux = initRedux(props.reduxServerState || {});
@@ -307,6 +315,7 @@ class MyApp extends App {
   }
 
   state = {
+    hasError: false,
     userLanguage: 'en',
   };
 
@@ -338,7 +347,11 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, router } = this.props;
-    const { userLanguage } = this.state;
+    const { hasError, userLanguage } = this.state;
+
+    if (hasError) {
+      return <ErrorFallback />;
+    }
 
     let pathname = router.pathname;
     if (pathname !== '/') {
