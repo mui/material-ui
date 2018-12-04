@@ -54,9 +54,9 @@ export const styles = theme => ({
     // zIndex: 1 will raise the label above opaque background-colors of input.
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(12px, 22px) scale(1)',
+    transform: 'translate(12px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(12px, 19px) scale(1)',
+      transform: 'translate(12px, 17px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(12px, 10px) scale(0.75)',
@@ -70,9 +70,9 @@ export const styles = theme => ({
     // see comment above on filled.zIndex
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(14px, 22px) scale(1)',
+    transform: 'translate(14px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(14px, 17.5px) scale(1)',
+      transform: 'translate(14px, 17px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(14px, -6px) scale(0.75)',
