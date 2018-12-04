@@ -2,7 +2,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
-import createMuiTheme from '../styles/createMuiTheme';
 import Grow from '../Grow';
 import Popper from './Popper';
 
@@ -11,7 +10,6 @@ const PopperNaked = unwrap(Popper);
 describe('<Popper />', () => {
   const defaultProps = {
     open: true,
-    theme: createMuiTheme(),
     children: <span>Hello World</span>,
   };
   let shallow;
@@ -21,7 +19,7 @@ describe('<Popper />', () => {
   before(() => {
     anchorEl = window.document.createElement('div');
     window.document.body.appendChild(anchorEl);
-    shallow = createShallow({ dive: true });
+    shallow = createShallow();
     mount = createMount();
   });
 
@@ -37,6 +35,14 @@ describe('<Popper />', () => {
   });
 
   describe('prop: placement', () => {
+    before(() => {
+      document.body.setAttribute('dir', 'rtl');
+    });
+
+    after(() => {
+      document.body.removeAttribute('dir');
+    });
+
     it('should have top placement', () => {
       const renderSpy = spy();
       shallow(
@@ -49,10 +55,6 @@ describe('<Popper />', () => {
       );
       assert.strictEqual(renderSpy.callCount, 1);
       assert.strictEqual(renderSpy.args[0][0], 'top');
-    });
-
-    const theme = createMuiTheme({
-      direction: 'rtl',
     });
 
     [
@@ -80,7 +82,7 @@ describe('<Popper />', () => {
       it(`should flip ${test.in} when direction=rtl is used`, () => {
         const renderSpy = spy();
         shallow(
-          <Popper {...defaultProps} theme={theme} placement={test.in}>
+          <Popper {...defaultProps} placement={test.in}>
             {({ placement }) => {
               renderSpy(placement);
               return null;

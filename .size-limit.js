@@ -31,6 +31,13 @@ module.exports = [
     limit: '14.9 KB',
   },
   {
+    // vs https://bundlephobia.com/result?p=react-popper
+    name: 'The size of the @material-ui/core/Popper component',
+    webpack: true,
+    path: 'packages/material-ui/build/Popper/index.js',
+    limit: '10.0 KB',
+  },
+  {
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
