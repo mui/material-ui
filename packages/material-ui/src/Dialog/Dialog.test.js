@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Fade from '../Fade';
@@ -241,8 +242,16 @@ describe('<Dialog />', () => {
     });
   });
 
-  describe('prop: PaperProps', () => {
-    it('merges the className', () => {
+  describe('prop: PaperProps.className', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('warns on className usage', () => {
       const wrapper = mount(
         <Dialog open PaperProps={{ className: 'custom-paper-class' }}>
           foo
@@ -251,7 +260,13 @@ describe('<Dialog />', () => {
       const paperWrapper = wrapper.find('div.custom-paper-class');
 
       assert.strictEqual(paperWrapper.exists(), true);
-      assert.strictEqual(paperWrapper.hasClass(classes.paper), true);
+      assert.strictEqual(paperWrapper.hasClass(classes.paper), false);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        '`className` overrides all `Dialog` specific styles in `Paper`. If you wanted to add ' +
+          'styles to the `Paper` component use `classes.paper` in the `Dialog` props instead.',
+      );
     });
   });
 });
