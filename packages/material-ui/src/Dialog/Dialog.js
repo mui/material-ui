@@ -151,7 +151,7 @@ class Dialog extends React.Component {
       onExited,
       onExiting,
       open,
-      PaperProps,
+      PaperProps: { className: paperClassName, ...PaperProps },
       scroll,
       TransitionComponent,
       transitionDuration,
@@ -194,11 +194,16 @@ class Dialog extends React.Component {
           >
             <Paper
               elevation={24}
-              className={classNames(classes.paper, classes[`paperScroll${capitalize(scroll)}`], {
-                [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
-                [classes.paperFullScreen]: fullScreen,
-                [classes.paperFullWidth]: fullWidth,
-              })}
+              className={classNames(
+                classes.paper,
+                classes[`paperScroll${capitalize(scroll)}`],
+                {
+                  [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
+                  [classes.paperFullScreen]: fullScreen,
+                  [classes.paperFullWidth]: fullWidth,
+                },
+                paperClassName,
+              )}
               {...PaperProps}
             >
               {children}
@@ -326,6 +331,7 @@ Dialog.defaultProps = {
   fullScreen: false,
   fullWidth: false,
   maxWidth: 'sm',
+  PaperProps: {},
   scroll: 'paper',
   TransitionComponent: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
