@@ -1,7 +1,7 @@
-// Adapted from https://codesandbox.io/s/32wk7226pm
+/* eslint-disable no-console */
 
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,7 +9,10 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
 
-const muiVirtualizedTableStyles = theme => ({
+const styles = theme => ({
+  table: {
+    fontFamily: theme.typography.fontFamily,
+  },
   flexContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -29,31 +32,14 @@ const muiVirtualizedTableStyles = theme => ({
   noClick: {
     cursor: 'initial',
   },
-  table: {
-    fontFamily: 'sans-serif',
-  },
 });
 
 class MuiVirtualizedTable extends React.PureComponent {
-  getChildContext() {
-    return {
-      table: {
-        body: true,
-      },
-    };
-  }
-
   getRowClassName = ({ index }) => {
-    const {
-      classes: { tableRow, tableRowHover, flexContainer },
-      rowClassName,
-      onRowClick,
-    } = this.props;
-    return classNames({
-      [tableRow]: true,
-      [flexContainer]: true,
-      [rowClassName]: true,
-      [tableRowHover]: index !== -1 && onRowClick != null,
+    const { classes, rowClassName, onRowClick } = this.props;
+
+    return classNames(classes.tableRow, classes.flexContainer, rowClassName, {
+      [classes.tableRowHover]: index !== -1 && onRowClick != null,
     });
   };
 
@@ -62,8 +48,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     return (
       <TableCell
         component="div"
-        className={classNames(classes.tableCell, {
-          [classes.flexContainer]: true,
+        className={classNames(classes.tableCell, classes.flexContainer, {
           [classes.noClick]: onRowClick == null,
         })}
         variant="body"
@@ -81,6 +66,7 @@ class MuiVirtualizedTable extends React.PureComponent {
       [SortDirection.ASC]: 'asc',
       [SortDirection.DESC]: 'desc',
     };
+
     const inner =
       !columns[columnIndex].disableSort && sort != null ? (
         <TableSortLabel active={dataKey === sortBy} direction={direction[sortDirection]}>
@@ -89,6 +75,7 @@ class MuiVirtualizedTable extends React.PureComponent {
       ) : (
         label
       );
+
     return (
       <TableCell
         component="div"
@@ -114,7 +101,7 @@ class MuiVirtualizedTable extends React.PureComponent {
             {...tableProps}
             rowClassName={this.getRowClassName}
           >
-            {columns.map(({ cellContentRenderer = null, className = null, ...other }, index) => {
+            {columns.map(({ cellContentRenderer = null, className, dataKey, ...other }, index) => {
               let renderer;
               if (cellContentRenderer != null) {
                 renderer = cellRendererProps =>
@@ -125,10 +112,10 @@ class MuiVirtualizedTable extends React.PureComponent {
               } else {
                 renderer = this.cellRenderer;
               }
-              const columnProps = { cellRenderer: renderer, ...other };
+
               return (
                 <Column
-                  key={other.dataKey}
+                  key={dataKey}
                   headerRenderer={headerProps =>
                     this.headerRenderer({
                       ...headerProps,
@@ -136,7 +123,9 @@ class MuiVirtualizedTable extends React.PureComponent {
                     })
                   }
                   className={classNames(classes.flexContainer, className)}
-                  {...columnProps}
+                  cellRenderer={renderer}
+                  dataKey={dataKey}
+                  {...other}
                 />
               );
             })}
@@ -148,13 +137,7 @@ class MuiVirtualizedTable extends React.PureComponent {
 }
 
 MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.shape({
-    flexContainer: PropTypes.string,
-    noClick: PropTypes.string,
-    tableCell: PropTypes.string,
-    tableRow: PropTypes.string,
-    tableRowHover: PropTypes.string,
-  }).isRequired,
+  classes: PropTypes.object.isRequired,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       cellContentRenderer: PropTypes.func,
@@ -171,17 +154,10 @@ MuiVirtualizedTable.propTypes = {
 
 MuiVirtualizedTable.defaultProps = {
   headerHeight: 56,
-  onRowClick: undefined,
-  rowClassName: null,
   rowHeight: 56,
-  sort: undefined,
 };
 
-MuiVirtualizedTable.childContextTypes = {
-  table: PropTypes.object,
-};
-
-const WrappedVirtualizedTable = withStyles(muiVirtualizedTableStyles)(MuiVirtualizedTable);
+const WrappedVirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 const data = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
@@ -204,51 +180,48 @@ for (let i = 0; i < 200; i += 1) {
   rows.push(createData(...randomSelection));
 }
 
-class ReactVirtualizedTable extends React.Component {
-  rowGetter = ({ index }) => rows[index];
-
-  render() {
-    return (
-      <Paper style={{ height: 400, width: '100%' }}>
-        <WrappedVirtualizedTable
-          rowCount={rows.length}
-          rowGetter={this.rowGetter}
-          columns={[
-            {
-              width: 200,
-              flexGrow: 1.0,
-              label: 'Dessert',
-              dataKey: 'dessert',
-            },
-            {
-              width: 120,
-              label: 'Calories (g)',
-              dataKey: 'calories',
-              numeric: true,
-            },
-            {
-              width: 120,
-              label: 'Fat (g)',
-              dataKey: 'fat',
-              numeric: true,
-            },
-            {
-              width: 120,
-              label: 'Carbs (g)',
-              dataKey: 'carbs',
-              numeric: true,
-            },
-            {
-              width: 120,
-              label: 'Protein (g)',
-              dataKey: 'protein',
-              numeric: true,
-            },
-          ]}
-        />
-      </Paper>
-    );
-  }
+function ReactVirtualizedTable() {
+  return (
+    <Paper style={{ height: 400, width: '100%' }}>
+      <WrappedVirtualizedTable
+        rowCount={rows.length}
+        rowGetter={({ index }) => rows[index]}
+        onRowClick={event => console.log(event)}
+        columns={[
+          {
+            width: 200,
+            flexGrow: 1.0,
+            label: 'Dessert',
+            dataKey: 'dessert',
+          },
+          {
+            width: 120,
+            label: 'Calories (g)',
+            dataKey: 'calories',
+            numeric: true,
+          },
+          {
+            width: 120,
+            label: 'Fat (g)',
+            dataKey: 'fat',
+            numeric: true,
+          },
+          {
+            width: 120,
+            label: 'Carbs (g)',
+            dataKey: 'carbs',
+            numeric: true,
+          },
+          {
+            width: 120,
+            label: 'Protein (g)',
+            dataKey: 'protein',
+            numeric: true,
+          },
+        ]}
+      />
+    </Paper>
+  );
 }
 
 export default ReactVirtualizedTable;
