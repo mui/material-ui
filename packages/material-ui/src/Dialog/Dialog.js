@@ -116,10 +116,6 @@ export const styles = theme => ({
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 class Dialog extends React.Component {
-  componentWillUnmount() {
-    this.clickTarget = null;
-  }
-
   handleMouseDown = e => {
     this.clickTarget = e.target;
   };
@@ -132,6 +128,7 @@ class Dialog extends React.Component {
     if (event.target !== this.clickTarget) {
       return;
     }
+    this.clickTarget = null;
 
     if (this.props.onBackdropClick) {
       this.props.onBackdropClick(event);
@@ -212,6 +209,7 @@ class Dialog extends React.Component {
           >
             <PaperComponent
               elevation={24}
+              role="dialog"
               {...PaperProps}
               className={classNames(
                 classes.paper,

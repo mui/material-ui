@@ -129,7 +129,7 @@ describe('<Dialog />', () => {
       wrapper.setProps({ onClose });
 
       const handler = wrapper.instance().handleBackdropClick;
-      const backdrop = wrapper.find('div');
+      const backdrop = wrapper.find('[role="document"]');
       assert.strictEqual(
         backdrop.props().onMouseUp,
         handler,
@@ -188,8 +188,8 @@ describe('<Dialog />', () => {
         const onBackdropClick = spy();
         wrapper.setProps({ onBackdropClick });
 
-        const backdrop = wrapper.find('div');
-        const content = wrapper.find(Paper).childAt(0);
+        const backdrop = wrapper.find('[role="document"]');
+        const content = wrapper.find('[role="dialog"]');
         content.simulate('mousedown');
         backdrop.simulate('mouseup');
 
@@ -208,8 +208,8 @@ describe('<Dialog />', () => {
         const onBackdropClick = spy();
         wrapper.setProps({ onBackdropClick });
 
-        const backdrop = wrapper.find('div');
-        const content = wrapper.find(Paper).childAt(0);
+        const backdrop = wrapper.find('[role="document"]');
+        const content = wrapper.find('[role="dialog"]');
         backdrop.simulate('mousedown');
         content.simulate('mouseup');
 
@@ -230,7 +230,7 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(className), true);
+      assert.strictEqual(wrapper.find('[role="dialog"]').hasClass(className), true);
     });
   });
 
@@ -241,7 +241,7 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperWidthXs), true);
+      assert.strictEqual(wrapper.find('[role="dialog"]').hasClass(classes.paperWidthXs), true);
     });
   });
 
@@ -252,12 +252,12 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), true);
+      assert.strictEqual(wrapper.find('[role="dialog"]').hasClass(classes.paperFullWidth), true);
     });
 
     it('should not set `fullWidth` class if not specified', () => {
       const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), false);
+      assert.strictEqual(wrapper.find('[role="dialog"]').hasClass(classes.paperFullWidth), false);
     });
   });
 
@@ -268,7 +268,7 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), true);
+      assert.strictEqual(wrapper.find('[role="dialog"]').hasClass(classes.paperFullScreen), true);
     });
 
     it('false should not render fullScreen', () => {
@@ -277,7 +277,7 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+      assert.strictEqual(wrapper.find('[role="dialog"]').hasClass(classes.paperFullScreen), false);
     });
   });
 
