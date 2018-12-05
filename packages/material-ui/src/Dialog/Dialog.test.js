@@ -131,7 +131,7 @@ describe('<Dialog />', () => {
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find('div');
       assert.strictEqual(
-        backdrop.props().onClick,
+        backdrop.props().onMouseUp,
         handler,
         'should attach the handleBackdropClick handler',
       );
@@ -180,6 +180,46 @@ describe('<Dialog />', () => {
         'should not fire the onBackdropClick callback',
       );
     });
+
+    it(
+      'should not close if the dialog receives the mousedown and the ' +
+        'backdrop receives the mouseup',
+      () => {
+        const onBackdropClick = spy();
+        wrapper.setProps({ onBackdropClick });
+
+        const backdrop = wrapper.find('div');
+        const content = wrapper.find(Paper).childAt(0);
+        content.simulate('mousedown');
+        backdrop.simulate('mouseup');
+
+        assert.strictEqual(
+          onBackdropClick.callCount,
+          0,
+          'should not fire the onBackdropClick callback',
+        );
+      },
+    );
+
+    it(
+      'should not close if the backdrop receives the mousedown and the ' +
+        'dialog receives the mouseup',
+      () => {
+        const onBackdropClick = spy();
+        wrapper.setProps({ onBackdropClick });
+
+        const backdrop = wrapper.find('div');
+        const content = wrapper.find(Paper).childAt(0);
+        backdrop.simulate('mousedown');
+        content.simulate('mouseup');
+
+        assert.strictEqual(
+          onBackdropClick.callCount,
+          0,
+          'should not fire the onBackdropClick callback',
+        );
+      },
+    );
   });
 
   describe('prop: classes', () => {
