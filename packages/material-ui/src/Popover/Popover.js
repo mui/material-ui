@@ -8,6 +8,7 @@ import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce 
 import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -300,7 +301,7 @@ class Popover extends React.Component {
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
-      TransitionProps,
+      TransitionProps = {},
       ...other
     } = this.props;
 
@@ -329,13 +330,13 @@ class Popover extends React.Component {
           in={open}
           onEnter={onEnter}
           onEntered={onEntered}
-          onEntering={this.handleEntering}
           onExit={onExit}
           onExited={onExited}
           onExiting={onExiting}
           role={role}
           timeout={transitionDuration}
           {...TransitionProps}
+          onEntering={createChainedFunction(this.handleEntering, TransitionProps.onEntering)}
         >
           <Paper
             className={classes.paper}
