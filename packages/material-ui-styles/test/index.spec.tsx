@@ -119,7 +119,23 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   );
   const NoPropsComponent = () => {
     const classes = useWithoutProps();
-    const alssoClasses = useWithoutProps({});
+    const alsoClasses = useWithoutProps(5);
+  };
+
+  // unsafe any props make the param optional
+  const useUnsafeProps = makeStyles(
+    createStyles({
+      root: (props: any) => ({
+        backgroundColor: props.deep.color,
+      }),
+    }),
+  );
+
+  const UnsafeProps = (props: StyleProps) => {
+    // would be nice to have at least a compile time error because we forgot the argument
+    const classes = useUnsafeProps(); // runtime: Can't read property color of undefined
+    // but this would pass anyway
+    const alsoClasses = useUnsafeProps(undefined); // runtime: Can't read property color of undefined
   };
 }
 
