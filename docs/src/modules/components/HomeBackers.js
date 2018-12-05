@@ -49,11 +49,11 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center;">
-  <a href="https://opencollective.com/callemall" rel="noopener" target="_blank" style="margin-right: 8px;">
+  <a href="https://www.call-em-all.com" rel="noopener" target="_blank" style="margin-right: 8px;">
     <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100">
   </a>
-  <a href="https://opencollective.com/localize" rel="noopener" target="_blank" style="margin-right: 8px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=100">
+  <a href="https://localizejs.com" rel="noopener" target="_blank" style="margin-right: 8px;">
+    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=70">
   </a>
 </p>
 
