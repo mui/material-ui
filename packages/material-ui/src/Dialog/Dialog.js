@@ -182,7 +182,6 @@ class Dialog extends React.Component {
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         open={open}
-        role="dialog"
         {...other}
       >
         <TransitionComponent
