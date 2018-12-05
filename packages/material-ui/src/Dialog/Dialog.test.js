@@ -207,9 +207,9 @@ describe('<Dialog />', () => {
       wrapper.setProps({ onBackdropClick });
 
       const backdrop = wrapper.find('[role="document"]');
-      const dialog = wrapper.find('[role="dialog"]');
+
       backdrop.simulate('mousedown', { target: 'backdrop' });
-      dialog.simulate('mouseup', { target: 'dialog' });
+      backdrop.simulate('mouseup', { target: 'dialog', currentTarget: 'dialog' });
       assert.strictEqual(
         onBackdropClick.callCount,
         0,
