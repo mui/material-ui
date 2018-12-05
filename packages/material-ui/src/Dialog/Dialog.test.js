@@ -181,45 +181,21 @@ describe('<Dialog />', () => {
       );
     });
 
-    it(
-      'should not close if the dialog receives the mousedown and the ' +
-        'backdrop receives the mouseup',
-      () => {
-        const onBackdropClick = spy();
-        wrapper.setProps({ onBackdropClick });
+    it('should not close if the target changes between the mousedown and the mouseup', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
 
-        const backdrop = wrapper.find('[role="document"]');
-        const content = wrapper.find('[role="dialog"]');
-        content.simulate('mousedown');
-        backdrop.simulate('mouseup');
+      const backdrop = wrapper.find('[role="document"]');
+      const dialog = wrapper.find('[role="dialog"]');
+      dialog.simulate('mouseup', { target: 'dialog' });
+      backdrop.simulate('mousedown', { target: 'backdrop' });
 
-        assert.strictEqual(
-          onBackdropClick.callCount,
-          0,
-          'should not fire the onBackdropClick callback',
-        );
-      },
-    );
-
-    it(
-      'should not close if the backdrop receives the mousedown and the ' +
-        'dialog receives the mouseup',
-      () => {
-        const onBackdropClick = spy();
-        wrapper.setProps({ onBackdropClick });
-
-        const backdrop = wrapper.find('[role="document"]');
-        const content = wrapper.find('[role="dialog"]');
-        backdrop.simulate('mousedown');
-        content.simulate('mouseup');
-
-        assert.strictEqual(
-          onBackdropClick.callCount,
-          0,
-          'should not fire the onBackdropClick callback',
-        );
-      },
-    );
+      assert.strictEqual(
+        onBackdropClick.callCount,
+        0,
+        'should not fire the onBackdropClick callback',
+      );
+    });
   });
 
   describe('prop: classes', () => {
