@@ -23,6 +23,10 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
+  /* Styles applied to the root element if `variant="determinate"`. */
+  determinate: {},
+  /* Styles applied to the root element if `variant="indeterminate"`. */
+  indeterminate: {},
   /* Styles applied to the root element if `variant="buffer"`. */
   buffer: {
     backgroundColor: 'transparent',
@@ -169,6 +173,8 @@ function LinearProgress(props) {
     {
       [classes.colorPrimary]: color === 'primary',
       [classes.colorSecondary]: color === 'secondary',
+      [classes.determinate]: variant === 'determinate',
+      [classes.indeterminate]: variant === 'indeterminate',
       [classes.buffer]: variant === 'buffer',
       [classes.query]: variant === 'query',
     },

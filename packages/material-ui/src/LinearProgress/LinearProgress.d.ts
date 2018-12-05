@@ -13,6 +13,8 @@ export type LinearProgressClassKey =
   | 'root'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'determinate'
+  | 'indeterminate'
   | 'buffer'
   | 'query'
   | 'dashed'
