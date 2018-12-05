@@ -172,6 +172,9 @@
     "webpack-cli": "^3.1.0",
     "workbox-build": "^3.6.3"
   },
+  "resolutions": {
+    "**/hoist-non-react-statics": "^3.2.1"
+  },
   "sideEffects": false,
   "nyc": {
     "include": [
