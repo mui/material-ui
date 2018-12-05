@@ -45,7 +45,9 @@ export const styles = theme => ({
     justifyContent: 'inherit',
   },
   /* Styles applied to the root element if `variant="text"`. */
-  text: {},
+  text: {
+    padding: theme.spacing.unit,
+  },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
