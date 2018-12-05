@@ -55,8 +55,8 @@ function Select(props) {
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       ...(native
         ? {
-          multiple,
-        }
+            multiple,
+          }
         : {
             autoWidth,
             displayEmpty,

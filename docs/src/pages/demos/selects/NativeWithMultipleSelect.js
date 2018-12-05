@@ -28,7 +28,7 @@ class NativeWithMultipleSelect extends React.Component {
     this.setState({
       multiple: value,
     });
-  }
+  };
 
   render() {
     const { classes } = this.props;
