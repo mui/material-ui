@@ -83,6 +83,8 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
 
   const MyComponent = (props: MyComponentProps) => {
     const { color, message } = props;
+    // Expected 1 argument, but got 0
+    const emptyClasses = useMyStyles(); // $ExpectError
     const classes = useMyStyles(props);
     // $ExpectError
     const invalidClasses = useMyStyles({ colourTypo: 'red' });
@@ -106,6 +108,35 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     // Property 'toot' does not exist on type 'Record<"root", string>'
     generateClassName: (_, sheet) => (sheet ? sheet.classes.toot : 'no-sheet'), // $ExpectError
   });
+
+  // optional props
+  const useWithoutProps = makeStyles((theme: Theme) =>
+    createStyles({
+      root: {
+        background: 'none',
+      },
+    }),
+  );
+  const NoPropsComponent = () => {
+    const classes = useWithoutProps();
+    const alsoClasses = useWithoutProps(5);
+  };
+
+  // unsafe any props make the param optional
+  const useUnsafeProps = makeStyles(
+    createStyles({
+      root: (props: any) => ({
+        backgroundColor: props.deep.color,
+      }),
+    }),
+  );
+
+  const UnsafeProps = (props: StyleProps) => {
+    // would be nice to have at least a compile time error because we forgot the argument
+    const classes = useUnsafeProps(); // runtime: Can't read property color of undefined
+    // but this would pass anyway
+    const alsoClasses = useUnsafeProps(undefined); // runtime: Can't read property color of undefined
+  };
 }
 
 // styled
