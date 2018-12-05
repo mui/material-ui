@@ -181,6 +181,27 @@ describe('<Dialog />', () => {
       );
     });
 
+    it('should store the click target on mousedown', () => {
+      const clickedElement = 'clicked element';
+      const backdrop = wrapper.find('[role="document"]');
+      backdrop.simulate('mousedown', { target: clickedElement });
+      assert.strictEqual(wrapper.instance().clickTarget, clickedElement);
+    });
+
+    it('should clear click target on successful backdrop click', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const clickedElement = 'backdrop';
+
+      const backdrop = wrapper.find('[role="document"]');
+      backdrop.simulate('mousedown', { target: clickedElement });
+      assert.strictEqual(wrapper.instance().clickTarget, clickedElement);
+      backdrop.simulate('mouseup', { target: clickedElement, currentTarget: clickedElement });
+      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+      assert.strictEqual(wrapper.instance().clickTarget, null);
+    });
+
     it('should not close if the target changes between the mousedown and the mouseup', () => {
       const onBackdropClick = spy();
       wrapper.setProps({ onBackdropClick });
