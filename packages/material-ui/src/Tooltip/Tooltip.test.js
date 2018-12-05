@@ -38,7 +38,7 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     assert.strictEqual(wrapper.type(), React.Fragment);
     assert.strictEqual(wrapper.childAt(0).name(), 'RootRef');
-    assert.strictEqual(wrapper.childAt(1).name(), 'WithTheme(Popper)');
+    assert.strictEqual(wrapper.childAt(1).name(), 'Popper');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
   });
 
