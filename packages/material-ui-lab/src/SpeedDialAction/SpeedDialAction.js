@@ -75,6 +75,7 @@ class SpeedDialAction extends React.Component {
       onKeyDown,
       open,
       tooltipTitle,
+      TooltipClasses,
       tooltipPlacement,
       tooltipOpen,
       ...other
@@ -104,6 +105,7 @@ class SpeedDialAction extends React.Component {
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={open && this.state.tooltipOpen}
+        classes={TooltipClasses}
         {...other}
       >
         <Fab
@@ -160,6 +162,10 @@ SpeedDialAction.propTypes = {
    * @ignore
    */
   open: PropTypes.bool,
+  /**
+   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   */
+  TooltipClasses: PropTypes.object,
   /**
    * Make the tooltip always visible when the SpeedDial is open.
    */
