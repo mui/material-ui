@@ -23,13 +23,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/NativeSelects'), 'utf8')
 `,
         },
-        'pages/demos/selects/NativeWithMultipleSelect.js': {
-          js: require('docs/src/pages/demos/selects/NativeWithMultipleSelect').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/NativeWithMultipleSelect'), 'utf8')
-`,
-        },
         'pages/demos/selects/MultipleSelect.js': {
           js: require('docs/src/pages/demos/selects/MultipleSelect').default,
           raw: preval`

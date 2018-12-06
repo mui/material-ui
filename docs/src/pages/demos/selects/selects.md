@@ -29,10 +29,6 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
-## Native with multiple Select
-
-{{"demo": "pages/demos/selects/NativeWithMultipleSelect.js"}}
-
 ## Controlled open Select
 
 {{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}

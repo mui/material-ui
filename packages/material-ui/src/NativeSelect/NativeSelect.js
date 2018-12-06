@@ -41,6 +41,9 @@ export const styles = theme => ({
     '&$disabled': {
       cursor: 'default',
     },
+    '&[multiple]': {
+      height: 'auto',
+    },
   },
   /* Styles applied to the `Input` component if `variant="filled"`. */
   filled: {
@@ -148,7 +151,12 @@ NativeSelect.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+  ]),
   /**
    * The variant to use.
    */
