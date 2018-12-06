@@ -53,13 +53,13 @@ function Select(props) {
       IconComponent,
       variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+      multiple,
       ...(native
         ? {}
         : {
             autoWidth,
             displayEmpty,
             MenuProps,
-            multiple,
             onClose,
             onOpen,
             open,
@@ -196,6 +196,4 @@ Select.defaultProps = {
 
 Select.muiName = 'Select';
 
-export default withStyles(nativeSelectStyles, { name: 'MuiSelect' })(
-  withFormControlContext(Select),
-);
+export default withStyles(styles, { name: 'MuiSelect' })(withFormControlContext(Select));
