@@ -75,6 +75,7 @@ class SpeedDialAction extends React.Component {
       onKeyDown,
       open,
       tooltipTitle,
+      TooltipProps,
       tooltipPlacement,
       tooltipOpen,
       ...other
@@ -104,6 +105,7 @@ class SpeedDialAction extends React.Component {
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={open && this.state.tooltipOpen}
+        {...TooltipProps}
         {...other}
       >
         <Fab
@@ -181,6 +183,10 @@ SpeedDialAction.propTypes = {
     'top-start',
     'top',
   ]),
+  /**
+   * Properties applied to the [`Tooltip`](/api/tooltip/) element.
+   */
+  TooltipProps: PropTypes.object,
   /**
    * Label to display in the tooltip.
    */

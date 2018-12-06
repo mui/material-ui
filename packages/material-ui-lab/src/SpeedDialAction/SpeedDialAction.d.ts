@@ -9,6 +9,7 @@ export interface SpeedDialActionProps
   delay?: number;
   icon: React.ReactNode;
   tooltipPlacement?: TooltipProps['placement'];
+  TooltipProps?: Partial<TooltipProps>;
   tooltipTitle?: React.ReactNode;
   tooltipOpen?: boolean;
 }

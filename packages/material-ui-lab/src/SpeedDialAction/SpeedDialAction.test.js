@@ -39,6 +39,12 @@ describe('<SpeedDialAction />', () => {
     assert.strictEqual(wrapper.type(), Tooltip);
   });
 
+  it('should apply the className to the Tooltip', () => {
+    const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
+    wrapper.setProps({ TooltipProps: { className: 'foo' } });
+    assert.strictEqual(wrapper.childAt(0).hasClass('foo'), true);
+  });
+
   it('should render a Button', () => {
     const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
     const buttonWrapper = wrapper.childAt(0);
