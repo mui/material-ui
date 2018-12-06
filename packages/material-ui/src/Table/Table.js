@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { shallowEqual } from 'recompose';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
@@ -15,14 +16,25 @@ export const styles = theme => ({
   },
 });
 
-function Table(props) {
-  const { classes, className, component: Component, padding, ...other } = props;
+class Table extends React.Component {
+  memoizedContextValue = {};
 
-  return (
-    <TableContext.Provider value={{ padding }}>
-      <Component className={classNames(classes.root, className)} {...other} />
-    </TableContext.Provider>
-  );
+  getMemoizedContextValue(contextValue) {
+    if (!shallowEqual(contextValue, this.memoizedContextValue)) {
+      this.memoizedContextValue = contextValue;
+    }
+    return this.memoizedContextValue;
+  }
+
+  render() {
+    const { classes, className, component: Component, padding, ...other } = this.props;
+
+    return (
+      <TableContext.Provider value={this.getMemoizedContextValue({ padding })}>
+        <Component className={classNames(classes.root, className)} {...other} />
+      </TableContext.Provider>
+    );
+  }
 }
 
 Table.propTypes = {
