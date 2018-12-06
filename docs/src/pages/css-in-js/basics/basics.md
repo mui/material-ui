@@ -46,7 +46,7 @@ import { install } from '@material-ui/styles';
 install();
 ```
 
-There has to be at least one `ThemeProvider` in your application surrounding the components. It is recommended to place the above code in a seperate file (e.g. `bootstrap.js`) and importing it in `index.js` to ensure the installation is executed before anything else. If the installation step is not performed correctly the resulting build could have conflicting classnames.
+There has to be at least one `ThemeProvider` in your application surrounding the components. It is recommended to place the above code in a separate file (e.g. `bootstrap.js`) and importing it in your application entry point (`index.js`) to ensure the installation is executed before anything else. If the installation step is not performed correctly the resulting build could have conflicting classnames.
 
 We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4.
 This installation step is temporary.
