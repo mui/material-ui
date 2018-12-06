@@ -41,7 +41,11 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 ## Customized Tables
 
-You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here are examples of how you can change the look of a `TableCell`.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 

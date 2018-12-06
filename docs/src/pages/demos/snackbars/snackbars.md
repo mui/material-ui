@@ -28,6 +28,8 @@ If you have been reading the [overrides documentation page](/customization/overr
 but you are not confident jumping in,
 here are examples of how you can change the look of a Snackbar.
 
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
 ## Positioned

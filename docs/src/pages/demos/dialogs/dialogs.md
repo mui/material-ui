@@ -54,6 +54,16 @@ For example, if your site prompts for potential subscribers to fill in their ema
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
+## Customized dialog
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here is one example of how you can customize the `DialogTitle` to support a close button.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
+
+{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+
 ## Full-screen dialogs
 
 {{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
@@ -79,12 +89,6 @@ For example, users can listen to multiple ringtones but only make a final select
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
-
-## Adding a close button
-
-You can customize the `DialogTitle` to support a close button that will close the `Dialog` on click.
-
-{{"demo": "pages/demos/dialogs/WithCloseButtonDialog.js"}}
 
 ## Accessibility
 
