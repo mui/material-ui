@@ -80,6 +80,12 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
+## Adding a close button
+
+You can customize the `DialogTitle` to support a close button that will close the `Dialog` on click.
+
+{{"demo": "pages/demos/dialogs/WithCloseButtonDialog.js"}}
+
 ## Accessibility
 
 Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Dialog`. Additionally, you may give a description of your modal dialog with the `aria-describedby="id..."` property on the `Dialog`.
