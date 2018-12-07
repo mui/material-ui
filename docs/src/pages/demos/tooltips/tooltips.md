@@ -22,6 +22,11 @@ They don’t have directional arrows; instead, they rely on motion emanating fro
 
 ## Customized Tooltips
 
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here's an example of how you can theme a tooltip.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
 ## Triggers
