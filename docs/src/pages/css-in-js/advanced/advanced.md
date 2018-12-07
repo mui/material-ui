@@ -25,7 +25,28 @@ You might need to access the theme variables inside your React components.
 You can nest multiple theme providers.
 This can be really useful when dealing with different area of your application that have distinct appearance from each other.
 
+```jsx
+<ThemeProvider theme={outerTheme}>
+  <Child1 />
+  <ThemeProvider theme={innerTheme}>
+    <Child2 />
+  </ThemeProvider>
+</ThemeProvider>
+```
+
 {{"demo": "pages/css-in-js/advanced/ThemeNesting.js", "react": "next"}}
+
+The inner theme will **override** the outer theme.
+You can extend the outer theme by providing a function:
+
+```jsx
+<ThemeProvider theme={…} >
+  <Child1 />
+  <ThemeProvider theme={outerTheme => ({ darkMode: true, ...outerTheme })}>
+    <Child2 />
+  </ThemeProvider>
+</ThemeProvider>
+```
 
 ## JSS plugins
 

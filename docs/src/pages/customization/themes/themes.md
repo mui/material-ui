@@ -356,10 +356,15 @@ Let's say you want to display the value of the primary color, you can use the `w
 
 ## Nesting the theme
 
-The theming solution is very flexible, as you can nest multiple theme providers.
+The theming solution is very flexible, as [you can nest](/css-in-js/advanced/#theme-nesting) multiple theme providers.
 This can be really useful when dealing with different area of your application that have distinct appearance from each other.
 
-{{"demo": "pages/customization/themes/Nested.js"}}
+{{"demo": "pages/customization/themes/ThemeNesting.js"}}
+
+The inner theme will **override** the outer theme.
+You can extend the outer theme by providing a function:
+
+{{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
 #### A note on performance
 
