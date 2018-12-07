@@ -21,7 +21,7 @@ class Table extends React.Component {
   getMemoizedContextValue(contextValue) {
     const objectKeys = Object.keys(contextValue);
 
-    for (let i = 0; i < objectKeys.length; i++) {
+    for (let i = 0; i < objectKeys.length; i += 1) {
       const objectKey = objectKeys[i];
 
       if (contextValue[objectKey] !== this.memoizedContextValue[objectKey]) {
