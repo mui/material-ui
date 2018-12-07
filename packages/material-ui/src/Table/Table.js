@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { shallowEqual } from 'recompose';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
@@ -20,8 +19,15 @@ class Table extends React.Component {
   memoizedContextValue = {};
 
   getMemoizedContextValue(contextValue) {
-    if (!shallowEqual(contextValue, this.memoizedContextValue)) {
-      this.memoizedContextValue = contextValue;
+    const objectKeys = Object.keys(contextValue);
+
+    for (let i = 0; i < objectKeys.length; i++) {
+      const objectKey = objectKeys[i];
+
+      if (contextValue[objectKey] !== this.memoizedContextValue[objectKey]) {
+        this.memoizedContextValue = contextValue;
+        break;
+      }
     }
     return this.memoizedContextValue;
   }
