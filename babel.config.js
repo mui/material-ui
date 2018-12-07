@@ -43,6 +43,7 @@ module.exports = {
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],
+  ignore: [/@babel[\\|/]runtime/],
   env: {
     test: {
       sourceMaps: 'both',
