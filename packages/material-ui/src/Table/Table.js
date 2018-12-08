@@ -18,7 +18,9 @@ export const styles = theme => ({
 class Table extends React.Component {
   memoizedContextValue = {};
 
-  getMemoizedContextValue(contextValue) {
+  // To replace with the corresponding Hook once Material-UI v4.0.0 is out:
+  // https://reactjs.org/docs/hooks-reference.html#usememo
+  useMemo(contextValue) {
     const objectKeys = Object.keys(contextValue);
 
     for (let i = 0; i < objectKeys.length; i += 1) {
@@ -36,7 +38,7 @@ class Table extends React.Component {
     const { classes, className, component: Component, padding, ...other } = this.props;
 
     return (
-      <TableContext.Provider value={this.getMemoizedContextValue({ padding })}>
+      <TableContext.Provider value={this.useMemo({ padding })}>
         <Component className={classNames(classes.root, className)} {...other} />
       </TableContext.Provider>
     );
