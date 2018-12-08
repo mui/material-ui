@@ -1,7 +1,7 @@
 import { capitalize } from './helpers';
 
 export const textAlignClasses = {
-     /* Styles applied to the root element if `align="left"`. */
+  /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
   },
@@ -26,7 +26,7 @@ export const textAlignClasses = {
 };
 
 const getTextAlignClassName = (classes, align) => {
-    return { [classes[`align${capitalize(align)}`]]: align !== 'inherit' };
+  return { [classes[`align${capitalize(align)}`]]: align !== 'inherit' };
 };
 
 export default getTextAlignClassName;
