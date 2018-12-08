@@ -88,7 +88,9 @@ StylesProvider.propTypes = {
   sheetsRegistry: PropTypes.object,
 };
 
-StylesProvider.propTypes = exactProp(StylesProvider.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  StylesProvider.propTypes = exactProp(StylesProvider.propTypes);
+}
 
 StylesProvider.defaultProps = {
   disableGeneration: false,
