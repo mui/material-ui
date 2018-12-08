@@ -6,7 +6,6 @@ import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import getTextAlignClassName, { textAlignClasses } from '../utils/getTextAlignClassName';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -68,7 +67,22 @@ export const styles = theme => ({
       padding: 0,
     },
   },
-  ...textAlignClasses,
+  /* Styles applied to the root element if `align="left"`. */
+  alignLeft: {
+    textAlign: 'left',
+  },
+  /* Styles applied to the root element if `align="center"`. */
+  alignCenter: {
+    textAlign: 'center',
+  },
+  /* Styles applied to the root element if `align="right"`. */
+  alignRight: {
+    textAlign: 'right',
+  },
+  /* Styles applied to the root element if `align="justify"`. */
+  alignJustify: {
+    textAlign: 'justify',
+  },
 });
 
 function TableCell(props) {
@@ -106,7 +120,6 @@ function TableCell(props) {
 
             const className = classNames(
               classes.root,
-              getTextAlignClassName(classes, align),
               {
                 [classes.head]: variant
                   ? variant === 'head'
@@ -117,6 +130,7 @@ function TableCell(props) {
                 [classes.footer]: variant
                   ? variant === 'footer'
                   : tablelvl2 && tablelvl2.variant === 'footer',
+                [classes[`align${capitalize(align)}`]]: align !== 'inherit',
                 [classes.numeric]: numeric,
                 [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
               },

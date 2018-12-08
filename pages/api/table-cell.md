@@ -46,11 +46,10 @@ This property accepts the following keys:
 | <span class="prop-name">paddingDense</span> | Styles applied to the root element if `padding="dense"`.
 | <span class="prop-name">paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
 | <span class="prop-name">paddingNone</span> | Styles applied to the root element if `padding="none"`.
-| <span class="prop-name">alignLeft</span> | 
-| <span class="prop-name">alignCenter</span> | 
-| <span class="prop-name">alignRight</span> | 
-| <span class="prop-name">alignJustify</span> | 
-| <span class="prop-name">noWrap</span> | 
+| <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
+| <span class="prop-name">alignJustify</span> | Styles applied to the root element if `align="justify"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TableCell/TableCell.js)
