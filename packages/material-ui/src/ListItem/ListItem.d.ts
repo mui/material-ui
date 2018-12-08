@@ -13,7 +13,7 @@ declare const ListItem: MuiComponent<{
     divider?: boolean;
     focusVisibleClassName?: string;
   },
-  defaultRoot: typeof ButtonBase;
+  defaultComponent: typeof ButtonBase;
   classKey: ListItemClassKey;
 }>;
 

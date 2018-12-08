@@ -10,7 +10,7 @@ declare const Avatar: MuiComponent<{
     src?: string;
     srcSet?: string;
   };
-  defaultRoot: 'div';
+  defaultComponent: 'div';
   classKey: AvatarClassKey;
 }>;
 

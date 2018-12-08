@@ -15,7 +15,7 @@ declare const Button: MuiComponent<{
     type?: string;
     variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
   };
-  defaultRoot: 'button' | 'a';
+  defaultComponent: 'button' | 'a';
   classKey: ButtonClassKey;
 }>;
 

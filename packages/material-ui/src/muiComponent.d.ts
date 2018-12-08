@@ -5,7 +5,7 @@ import { StyledComponentProps } from './styles';
 export interface TypeMap {
   outerProps: {};
   innerProps?: {};
-  defaultRoot: AnyReactType;
+  defaultComponent: AnyReactType;
   classKey: string;
 }
 
@@ -25,7 +25,7 @@ export type BaseMuiProps<M extends TypeMap> =
 // prettier-ignore
 export type DefaultMuiProps<M extends TypeMap> =
   & BaseMuiProps<M>
-  & Omit<PropsOf<M['defaultRoot']>, keyof BaseMuiProps<M>>;
+  & Omit<PropsOf<M['defaultComponent']>, keyof BaseMuiProps<M>>;
 
 // prettier-ignore
 export type OverrideMuiProps<

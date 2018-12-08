@@ -12,7 +12,7 @@ declare const Foo: MuiComponent<{
     innerInconsistent?: string;
   }
   classKey: 'root' | 'foo' | 'bar'
-  defaultRoot: React.ComponentType<{
+  defaultComponent: React.ComponentType<{
     defaultPassthru?: boolean
     defaultPassthruCallback?(s: string): void;
   }>

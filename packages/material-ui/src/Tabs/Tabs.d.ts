@@ -19,7 +19,7 @@ declare const Tabs: MuiComponent<{
     value: any;
     width?: string;
   },
-  defaultRoot: typeof ButtonBase;
+  defaultComponent: typeof ButtonBase;
   classKey: TabsClassKey;
 }>;
 

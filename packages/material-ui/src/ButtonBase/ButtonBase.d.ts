@@ -16,7 +16,7 @@ export interface ButtonBaseTypeMap {
     onFocusVisible?: React.FocusEventHandler<any>;
     TouchRippleProps?: Partial<TouchRippleProps>;
   };
-  defaultRoot: 'button';
+  defaultComponent: 'button';
   classKey: ButtonBaseClassKey;
 }
 
