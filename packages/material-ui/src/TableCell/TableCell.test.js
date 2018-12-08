@@ -98,4 +98,9 @@ describe('<TableCell />', () => {
     const wrapper = mountInTable(<TableCell sortDirection="desc" />);
     assert.strictEqual(wrapper.find('td').props()['aria-sort'], 'descending');
   });
+
+  it('should center content', () => {
+    const wrapper = mountInTable(<TableCell align="center" />);
+    assert.strictEqual(wrapper.find('td').hasClass(classes.alignCenter), true);
+  });
 });

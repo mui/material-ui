@@ -62,11 +62,6 @@ This property accepts the following keys:
 | <span class="prop-name">subtitle2</span> | Styles applied to the root element if `variant="subtitle2"`.
 | <span class="prop-name">overline</span> | Styles applied to the root element if `variant="overline"`.
 | <span class="prop-name">srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
-| <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.
-| <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
-| <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
-| <span class="prop-name">alignJustify</span> | Styles applied to the root element if `align="justify"`.
-| <span class="prop-name">noWrap</span> | Styles applied to the root element if `align="nowrap"`.
 | <span class="prop-name">gutterBottom</span> | Styles applied to the root element if `gutterBottom={true}`.
 | <span class="prop-name">paragraph</span> | Styles applied to the root element if `paragraph={true}`.
 | <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
@@ -75,6 +70,11 @@ This property accepts the following keys:
 | <span class="prop-name">colorTextPrimary</span> | Styles applied to the root element if `color="textPrimary"`.
 | <span class="prop-name">colorTextSecondary</span> | Styles applied to the root element if `color="textSecondary"`.
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
+| <span class="prop-name">alignLeft</span> | 
+| <span class="prop-name">alignCenter</span> | 
+| <span class="prop-name">alignRight</span> | 
+| <span class="prop-name">alignJustify</span> | 
+| <span class="prop-name">noWrap</span> | 
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Typography/Typography.js)

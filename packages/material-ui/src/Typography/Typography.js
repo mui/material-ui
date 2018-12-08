@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import chainPropTypes from '../utils/chainPropTypes';
+import getTextAlignClassName, { textAlignClasses } from '../utils/getTextAlignClassName';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -58,28 +59,6 @@ export const styles = theme => ({
     width: 1,
     overflow: 'hidden',
   },
-  /* Styles applied to the root element if `align="left"`. */
-  alignLeft: {
-    textAlign: 'left',
-  },
-  /* Styles applied to the root element if `align="center"`. */
-  alignCenter: {
-    textAlign: 'center',
-  },
-  /* Styles applied to the root element if `align="right"`. */
-  alignRight: {
-    textAlign: 'right',
-  },
-  /* Styles applied to the root element if `align="justify"`. */
-  alignJustify: {
-    textAlign: 'justify',
-  },
-  /* Styles applied to the root element if `align="nowrap"`. */
-  noWrap: {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
   /* Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom: {
     marginBottom: '0.35em',
@@ -112,6 +91,7 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
+  ...textAlignClasses,
 });
 
 const nextVariants = {
@@ -187,8 +167,8 @@ function Typography(props) {
       [classes.noWrap]: noWrap,
       [classes.gutterBottom]: gutterBottom,
       [classes.paragraph]: paragraph,
-      [classes[`align${capitalize(align)}`]]: align !== 'inherit',
     },
+    getTextAlignClassName(classes, align),
     classNameProp,
   );
 

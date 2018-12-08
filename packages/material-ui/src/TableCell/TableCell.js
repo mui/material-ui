@@ -6,6 +6,7 @@ import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import getTextAlignClassName, { textAlignClasses } from '../utils/getTextAlignClassName';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -67,10 +68,12 @@ export const styles = theme => ({
       padding: 0,
     },
   },
+  ...textAlignClasses,
 });
 
 function TableCell(props) {
   const {
+    align,
     children,
     classes,
     className: classNameProp,
@@ -103,6 +106,7 @@ function TableCell(props) {
 
             const className = classNames(
               classes.root,
+              getTextAlignClassName(classes, align),
               {
                 [classes.head]: variant
                   ? variant === 'head'
@@ -137,6 +141,10 @@ function TableCell(props) {
 }
 
 TableCell.propTypes = {
+  /**
+   * Set the text-align on the table cell content.
+   */
+  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
   /**
    * The table cell contents.
    */
@@ -183,6 +191,7 @@ TableCell.propTypes = {
 };
 
 TableCell.defaultProps = {
+  align: 'inherit',
   numeric: false,
 };
 
