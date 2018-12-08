@@ -46,10 +46,12 @@ import { install } from '@material-ui/styles';
 install();
 ```
 
-There has to be at least one `ThemeProvider` in your application surrounding the components. It is recommended to place the above code in a separate file (e.g. `bootstrap.js`) and importing it in your application entry point (`index.js`) to ensure the installation is executed before anything else. If the installation step is not performed correctly the resulting build could have conflicting classnames.
+It's **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and importing it in your application entry point (e.g. `index.js`).
+It ensures the installation is executed before anything else because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
 
-We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4.
-This installation step is temporary.
+We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
+Waiting for the v4 release, we are using dependency injection.
+Behind the scene, the `install()` function is switching the styling engine the core components are using.
 
 ## Getting started
 
