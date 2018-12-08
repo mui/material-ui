@@ -314,7 +314,7 @@ That's a really powerful feature.
 const theme = createMuiTheme({
   overrides: {
     MuiButton: { // Name of the component ⚛️ / style sheet
-      root: { // Name of the rule
+      text: { // Name of the rule
         color: 'white', // Some CSS
       },
     },
