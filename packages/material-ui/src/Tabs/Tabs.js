@@ -114,10 +114,7 @@ class Tabs extends React.Component {
     const { classes, scrollable, ScrollButtonComponent, scrollButtons, theme } = this.props;
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize
-        onLoad={this.handleScrollbarSizeChange}
-        onChange={this.handleScrollbarSizeChange}
-      />
+      <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
 
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
@@ -194,7 +191,7 @@ class Tabs extends React.Component {
     this.moveTabsScroll(this.tabsRef.clientWidth);
   };
 
-  handleScrollbarSizeChange = ({ scrollbarHeight }) => {
+  handleScrollbarSizeChange = scrollbarHeight => {
     this.setState({
       scrollerStyle: {
         marginBottom: -scrollbarHeight,
