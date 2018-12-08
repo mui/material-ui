@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import componentProp from '@material-ui/utils/componentProp';
+import { componentPropType } from '@material-ui/utils';
 import clamp from '../utils/clamp';
 
 export const styles = theme => {
@@ -558,7 +558,7 @@ Slider.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentProp,
+  component: componentPropType,
   /**
    * If `true`, the slider will be disabled.
    */

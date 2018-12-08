@@ -35,7 +35,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
     path: 'packages/material-ui/build/Popper/index.js',
-    limit: '10.0 KB',
+    limit: '10.6 KB',
   },
   {
     name: 'The main docs bundle',

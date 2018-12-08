@@ -9,7 +9,12 @@ import * as ReactIs from 'react-is';
  *                             that will throw if nullish values are passed
  */
 function createComponentProp(isRequired) {
-  return function componentProp(props, key, componentName, location, propFullName) {
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV === 'production') {
+    return () => null;
+  }
+
+  return function componentPropType(props, key, componentName, location, propFullName) {
     const prop = props[key];
     const propName = propFullName || key;
     let message;
@@ -37,7 +42,7 @@ function createComponentProp(isRequired) {
   };
 }
 
-const componentProp = createComponentProp(false);
-componentProp.isRequired = createComponentProp(true);
+const componentPropType = createComponentProp(false);
+componentPropType.isRequired = createComponentProp(true);
 
-export default componentProp;
+export default componentPropType;

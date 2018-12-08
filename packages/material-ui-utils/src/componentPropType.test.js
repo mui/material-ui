@@ -2,9 +2,9 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import React from 'react';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import componentProp from './componentProp';
+import componentPropType from './componentPropType';
 
-describe('componentProp', () => {
+describe('componentPropType', () => {
   function testPropType(value, validator, expectedError) {
     const propName = 'children';
     const componentName = 'ComponentName';
@@ -41,7 +41,7 @@ describe('componentProp', () => {
     it('rejectes null', () => {
       testPropType(
         undefined,
-        componentProp.isRequired,
+        componentPropType.isRequired,
         'The prop `children` is marked as required in `ComponentName`, ' +
           'but its value is `undefined`.',
       );
@@ -50,15 +50,15 @@ describe('componentProp', () => {
     it('rejects undefined', () => {
       testPropType(
         null,
-        componentProp.isRequired,
+        componentPropType.isRequired,
         'The prop `children` is marked as required in `ComponentName`, but its value is `object`.',
       );
     });
   });
 
   it('supports optional props', () => {
-    testPropType(undefined, componentProp, null);
-    testPropType(null, componentProp, null);
+    testPropType(undefined, componentPropType, null);
+    testPropType(null, componentPropType, null);
   });
 
   it('accepts strings, class and functional components', () => {
@@ -69,15 +69,15 @@ describe('componentProp', () => {
       }
     }
 
-    testPropType(ClassComponent, componentProp, null);
-    testPropType(() => null, componentProp, null);
-    testPropType('will accept any string though', componentProp, null);
+    testPropType(ClassComponent, componentPropType, null);
+    testPropType(() => null, componentPropType, null);
+    testPropType('will accept any string though', componentPropType, null);
   });
 
   it('rejects other types with their type hint', () => {
     testPropType(
       1,
-      componentProp,
+      componentPropType,
       'Invalid prop `children` of type `number` supplied to `ComponentName`, expected a component',
     );
   });
@@ -85,7 +85,7 @@ describe('componentProp', () => {
   it('rejects objects', () => {
     testPropType(
       {},
-      componentProp,
+      componentPropType,
       'Invalid prop `children` of type `object` supplied to `ComponentName`, expected a component',
     );
   });
