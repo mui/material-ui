@@ -38,7 +38,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
 
     if (size === 0) {
       styles[key] = {
-        display: 'none'
+        display: 'none',
       };
       return;
     }
