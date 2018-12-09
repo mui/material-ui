@@ -10,11 +10,13 @@ export type AnyComponent<P = any> =
 
 export type AnyReactType<P = any> = keyof JSX.IntrinsicElements | React.ComponentType<P>;
 
-export type PropsOf<C extends AnyReactType> =
-  C extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[C] :
-  C extends new (props: infer P) => React.Component ? P :
-  C extends (props: infer P) => React.ReactElement<any> | null ? P :
-  never;
+export type PropsOf<C> = C extends new (props: infer P) => React.Component
+  ? P
+  : C extends (props: infer P) => React.ReactElement<any> | null
+  ? P
+  : C extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[C]
+  : never;
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
