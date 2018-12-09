@@ -46,7 +46,7 @@ Notice that in addition to the button styling, the button label's capitalization
 #### Shorthand
 
 The above code example can be condensed by using **the same CSS API** as the child component.
-In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css-api).
+In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
 
 ```jsx
 const StyledButton = withStyles({
