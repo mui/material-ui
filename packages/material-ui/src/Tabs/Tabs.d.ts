@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { OverridableComponent, PropsOf, StandardProps } from '..';
+import { PropsOf, StandardProps } from '..';
 import ButtonBase from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
+import { OverridableComponent } from '../OverridableComponent';
 
 declare const Tabs: OverridableComponent<{
   outerProps: {

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { OverridableComponent, PropsOf, PropTypes } from '..';
+import {  PropsOf, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
+import { OverridableComponent } from '../OverridableComponent';
 
 declare const Button: OverridableComponent<{
   outerProps: ButtonBaseProps & {

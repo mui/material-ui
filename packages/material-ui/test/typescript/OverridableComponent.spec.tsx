@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '../../src';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 
 declare const Foo: OverridableComponent<{
   outerProps: {
@@ -18,12 +18,12 @@ declare const Foo: OverridableComponent<{
   }>;
 }>;
 
-type MyOverrideProps = {
+interface MyOverrideProps {
   innerAndOverride: string;
   className: string;
   myString?: string;
   myCallback?(n: number): void;
-};
+}
 declare const MyOverrideComponent: React.ComponentType<MyOverrideProps>;
 declare const MyIncompatibleComponent1: React.ComponentType<{ outerInconsistent?: number }>;
 declare const MyIncompatibleComponent2: React.ComponentType<{ innerInconsistent?: number }>;

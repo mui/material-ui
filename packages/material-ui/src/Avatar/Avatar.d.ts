@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { OverridableComponent, PropsOf, OverridableTypeMap } from '..';
+import { PropsOf } from '..';
+import { OverridableComponent } from '../OverridableComponent';
 
 declare const Avatar: OverridableComponent<{
   outerProps: {

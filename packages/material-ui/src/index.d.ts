@@ -2,8 +2,6 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
-export { OverridableComponent } from './OverridableComponent'
-
 /**
  * Get the type of a component's props.
  *
