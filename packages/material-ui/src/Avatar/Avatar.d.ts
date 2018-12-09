@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf, TypeMap } from '..';
+import { OverridableComponent, PropsOf, OverridableTypeMap } from '..';
 
-declare const Avatar: MuiComponent<{
+declare const Avatar: OverridableComponent<{
   outerProps: {
     alt?: string;
     childrenClassName?: string;

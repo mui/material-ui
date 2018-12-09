@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf, PropTypes } from '..';
+import { OverridableComponent, PropsOf, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-declare const Button: MuiComponent<{
+declare const Button: OverridableComponent<{
   outerProps: ButtonBaseProps & {
     color?: PropTypes.Color;
     disabled?: boolean;

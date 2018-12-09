@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf } from '..';
+import { OverridableComponent, PropsOf } from '..';
 import { TouchRippleProps } from './TouchRipple';
-import { OverrideMuiProps } from '../muiComponent';
+import { OverrideProps } from '../OverridableComponent';
 
 export interface ButtonBaseTypeMap {
   outerProps: {
@@ -21,8 +21,8 @@ export interface ButtonBaseTypeMap {
 }
 
 declare const ButtonBase: {
-  (props: { href: string } & OverrideMuiProps<ButtonBaseTypeMap, 'a'>): JSX.Element;
-} & MuiComponent<ButtonBaseTypeMap>;
+  (props: { href: string } & OverrideProps<ButtonBaseTypeMap, 'a'>): JSX.Element;
+} & OverridableComponent<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps = PropsOf<typeof ButtonBase>;
 

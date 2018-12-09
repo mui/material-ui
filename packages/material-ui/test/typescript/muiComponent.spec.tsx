@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { MuiComponent } from '../../src';
+import { OverridableComponent } from '../../src';
 
-declare const Foo: MuiComponent<{
+declare const Foo: OverridableComponent<{
   outerProps: {
     outer: number;
     outerCallback?(b: boolean): void;

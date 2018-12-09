@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
-export * from './muiComponent';
+export * from './OverridableComponent';
 
 export type AnyComponent<P = any> =
   | (new (props: P) => React.Component)

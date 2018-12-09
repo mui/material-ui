@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf, StandardProps } from '..';
+import { OverridableComponent, PropsOf, StandardProps } from '..';
 import ButtonBase from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
 
-declare const Tabs: MuiComponent<{
+declare const Tabs: OverridableComponent<{
   outerProps: {
     action?: (actions: TabsActions) => void;
     centered?: boolean;

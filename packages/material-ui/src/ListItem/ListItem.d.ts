@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf, StandardProps } from '..';
+import { OverridableComponent, PropsOf, StandardProps } from '..';
 import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
 
-declare const ListItem: MuiComponent<{
+declare const ListItem: OverridableComponent<{
   outerProps: {
     button?: boolean;
     ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
