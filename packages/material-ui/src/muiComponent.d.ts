@@ -38,5 +38,5 @@ export type OverrideMuiProps<
 
 export interface MuiComponent<M extends TypeMap> {
   <C extends AnyReactType>(props: { component: C } & OverrideMuiProps<M, C>): JSX.Element;
-  <C extends never>(props: DefaultMuiProps<M>): JSX.Element;
+  (props: DefaultMuiProps<M>): JSX.Element;
 }
