@@ -26,7 +26,7 @@ export type GridJustification =
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type GridSize = 'auto' | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export interface GridProps
   extends StandardProps<
@@ -73,6 +73,7 @@ export type GridClassKey =
   | 'spacing-xs-40'
   | 'grid-xs-auto'
   | 'grid-xs-true'
+  | 'grid-xs-0'
   | 'grid-xs-1'
   | 'grid-xs-2'
   | 'grid-xs-3'
