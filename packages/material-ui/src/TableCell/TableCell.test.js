@@ -83,12 +83,6 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.find('div').hasClass(classes.root), true);
   });
 
-  it('should render with the numeric class', () => {
-    const wrapper = mountInTable(<TableCell numeric />);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.numeric), true);
-  });
-
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {
     const wrapper = mountInTable(<TableCell sortDirection="asc" />);
     assert.strictEqual(wrapper.find('td').props()['aria-sort'], 'ascending');
