@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf, AnyReactType } from '..';
+import { MuiComponent, PropsOf } from '..';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideMuiProps } from '../muiComponent';
 

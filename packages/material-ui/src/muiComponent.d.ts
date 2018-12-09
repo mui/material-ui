@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { AnyReactType, ConsistentWith, PropsOf, Omit } from './';
+import { ConsistentWith, PropsOf, Omit } from './';
 import { StyledComponentProps } from './styles';
+
+export interface MuiComponent<M extends TypeMap> {
+  <C extends AnyReactType>(props: { component: C } & OverrideMuiProps<M, C>): JSX.Element;
+  (props: DefaultMuiProps<M>): JSX.Element;
+}
 
 export interface TypeMap {
   outerProps: {};
@@ -36,7 +41,4 @@ export type OverrideMuiProps<
   & Omit<PropsOf<C>, keyof (InnerProps<M> & UniversalPassthruProps)>
 );
 
-export interface MuiComponent<M extends TypeMap> {
-  <C extends AnyReactType>(props: { component: C } & OverrideMuiProps<M, C>): JSX.Element;
-  (props: DefaultMuiProps<M>): JSX.Element;
-}
+export type AnyReactType<P = any> = keyof JSX.IntrinsicElements | React.ComponentType<P>;
