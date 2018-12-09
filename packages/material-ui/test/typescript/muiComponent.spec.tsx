@@ -59,6 +59,12 @@ shouldSucceed = (
   <Foo component={MyOverrideComponent} myCallback={(n: number) => console.log(n)} outer={3} />
 );
 
+// Can pass overriding component type as a parameter and callback parameters
+// will be inferred.
+shouldSucceed = (
+  <Foo<typeof MyOverrideComponent> component={MyOverrideComponent} myCallback={n => console.log(n)} outer={3} />
+);
+
 // Can (optionally) override props that are provided by the wrapping component.
 shouldSucceed = <Foo outer={3} innerAndOverride="hi" />;
 shouldSucceed = <Foo component={MyOverrideComponent} outer={3} innerAndOverride="hi" />;
