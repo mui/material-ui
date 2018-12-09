@@ -6,16 +6,16 @@ declare const Foo: MuiComponent<{
     outer: number;
     outerCallback?(b: boolean): void;
     outerInconsistent?: string;
-  }
+  };
   innerProps: {
-    innerAndOverride: string
+    innerAndOverride: string;
     innerInconsistent?: string;
-  }
-  classKey: 'root' | 'foo' | 'bar'
+  };
+  classKey: 'root' | 'foo' | 'bar';
   defaultComponent: React.ComponentType<{
-    defaultPassthru?: boolean
+    defaultPassthru?: boolean;
     defaultPassthruCallback?(s: string): void;
-  }>
+  }>;
 }>;
 
 type MyOverrideProps = {
@@ -30,75 +30,54 @@ declare const MyIncompatibleComponent2: React.ComponentType<{ innerInconsistent?
 
 let shouldSucceed;
 
+// minimally, can provide just outer required props
+shouldSucceed = <Foo outer={3} />;
+
+// can also provide optional outer props and universal props; callback parameter types will be inferred
 shouldSucceed = (
   <Foo
     outer={3}
-  />
-);
-
-shouldSucceed = (
-  <Foo
     className="foo"
     style={{ backgroundColor: 'red' }}
     classes={{ root: 'x', foo: 'y' }}
-    outer={3}
     outerCallback={b => console.log(b)}
   />
 );
 
+// Can pass props unique to the default component type; callback parameter types
+// will be inferred.
+shouldSucceed = <Foo outer={3} defaultPassthru defaultPassthruCallback={s => console.log(s)} />;
+
+// Can override the component and pass props unique to it; props of the override
+// component that are provided from the wrapping component ("inner props") do
+// not need to be specified.
+shouldSucceed = <Foo component={MyOverrideComponent} myString="hello" outer={3} />;
+
+// Can pass a callback prop with an override component; callback parameter must
+// be explicitly specified.
 shouldSucceed = (
-  <Foo
-    outer={3}
-    defaultPassthru
-    defaultPassthruCallback={s => console.log(s)}
-  />
+  <Foo component={MyOverrideComponent} myCallback={(n: number) => console.log(n)} outer={3} />
 );
 
-shouldSucceed = (
-  <Foo
-    component={MyOverrideComponent}
-    myString="hello"
-    outer={3}
-  />
-);
+// Can (optionally) override props that are provided by the wrapping component.
+shouldSucceed = <Foo outer={3} innerAndOverride="hi" />;
+shouldSucceed = <Foo component={MyOverrideComponent} outer={3} innerAndOverride="hi" />;
 
-shouldSucceed = (
-  <Foo
-    component={MyOverrideComponent}
-    myCallback={(n: number) => console.log(n)}
-    outer={3}
-  />
-);
+// Can do this even if the overriding component doesn't know about it.
+shouldSucceed = <Foo component="div" outer={3} innerAndOverride="hi" />;
 
-shouldSucceed = (
-  <Foo
-    outer={3}
-    innerAndOverride="hi"
-  />
-);
-
-shouldSucceed = (
-  <Foo
-    component={MyOverrideComponent}
-    outer={3}
-    innerAndOverride="hi"
-  />
-);
-
-shouldSucceed = (
-  <Foo
-    component="div"
-    outer={3}
-    innerAndOverride="hi"
-  />
-);
-
+// Can provide a primitive override and an event handler with explicit type.
 shouldSucceed = (
   <Foo
     component="button"
     outer={3}
     onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
   />
+);
+
+// Can get inferred type for events by providing a component type parameter.
+shouldSucceed = (
+  <Foo<'button'> component="button" outer={3} onClick={e => e.currentTarget.checkValidity()} />
 );
 
 // let shouldFail;
@@ -148,18 +127,18 @@ shouldSucceed = (
 //   <Foo
 //     component="div" // doesn't match onClick handler type
 //     outer={3}
-//     onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+//     onClick={e => e.currentTarget.checkValidity()}
 //   />
-// )
+// );
 
 // shouldFail = (
 //   <Foo<'div'>
 //     component="div"
 //     outer={3}
-//     // doesn't match component type
+//     // event type doesn't match component type
 //     onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
 //   />
-// )
+// );
 
 // // ideally this should fail but haven't figured out a way to enforce it without
 // // the whole house of cards collapsing
