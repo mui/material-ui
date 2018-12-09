@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {  PropsOf, PropTypes } from '..';
+import { PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
-import { OverridableComponent } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Button: OverridableComponent<{
   outerProps: ButtonBaseProps & {
@@ -20,7 +20,7 @@ declare const Button: OverridableComponent<{
   classKey: ButtonClassKey;
 }>;
 
-export type ButtonProps = PropsOf<typeof Button>;
+export type ButtonProps = SimplifiedPropsOf<typeof Button>;
 
 export type ButtonClassKey =
   | 'root'

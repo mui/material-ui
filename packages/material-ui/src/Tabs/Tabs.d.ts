@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PropsOf, StandardProps } from '..';
 import ButtonBase from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
-import { OverridableComponent } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Tabs: OverridableComponent<{
   outerProps: {
@@ -39,6 +39,6 @@ export interface TabsActions {
   updateIndicator(): void;
 }
 
-export type TabsProps = PropsOf<typeof Tabs>;
+export type TabsProps = SimplifiedPropsOf<typeof Tabs>;
 
 export default Tabs;

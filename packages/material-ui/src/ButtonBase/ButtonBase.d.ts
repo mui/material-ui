@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { PropsOf } from '..';
 import { TouchRippleProps } from './TouchRipple';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 export interface ButtonBaseTypeMap {
   outerProps: {
@@ -23,7 +22,7 @@ declare const ButtonBase:
   ((props: { href: string } & OverrideProps<ButtonBaseTypeMap, 'a'>) => JSX.Element)
  & OverridableComponent<ButtonBaseTypeMap>;
 
-export type ButtonBaseProps = PropsOf<typeof ButtonBase>;
+export type ButtonBaseProps = SimplifiedPropsOf<typeof ButtonBase>;
 
 export type ButtonBaseClassKey = 'root' | 'disabled' | 'focusVisible';
 

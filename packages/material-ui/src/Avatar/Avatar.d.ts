@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PropsOf } from '..';
-import { OverridableComponent } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Avatar: OverridableComponent<{
   outerProps: {
@@ -17,6 +17,6 @@ declare const Avatar: OverridableComponent<{
 
 export type AvatarClassKey = 'root' | 'colorDefault' | 'img';
 
-export type AvatarProps = PropsOf<typeof Avatar>;
+export type AvatarProps = SimplifiedPropsOf<typeof Avatar>;
 
 export default Avatar;

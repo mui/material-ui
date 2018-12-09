@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { PropTypes, StandardProps, PropsOf } from '@material-ui/core';
+import { PropTypes, StandardProps } from '@material-ui/core';
 import { ButtonBaseClassKey, ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
 
 declare const ToggleButton: OverridableComponent<{
   outerProps: ButtonBaseProps & {
@@ -16,7 +16,7 @@ declare const ToggleButton: OverridableComponent<{
   classKey: ToggleButtonClassKey
 }>;
 
-export type ToggleButtonProps = PropsOf<typeof ToggleButton>;
+export type ToggleButtonProps = SimplifiedPropsOf<typeof ToggleButton>;
 
 export type ToggleButtonClassKey = ButtonBaseClassKey | 'label' | 'selected';
 

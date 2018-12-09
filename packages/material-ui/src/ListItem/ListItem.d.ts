@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { PropsOf, StandardProps } from '..';
+import { StandardProps } from '..';
 import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
-import { OverridableComponent } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const ListItem: OverridableComponent<{
   outerProps: {
@@ -32,6 +32,6 @@ export type ListItemClassKey =
   | 'secondaryAction'
   | 'selected';
 
-export type ListItemProps = PropsOf<typeof ListItem>;
+export type ListItemProps = SimplifiedPropsOf<typeof ListItem>;
 
 export default ListItem;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StandardProps, PropTypes, PropsOf } from '..';
+import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
-import { OverridableComponent } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Fab: OverridableComponent<{
   outerProps: ButtonBaseProps & {
@@ -18,7 +18,7 @@ declare const Fab: OverridableComponent<{
   classKey: FabClassKey;
 }>;
 
-export type FabProps = PropsOf<typeof Fab>;
+export type FabProps = SimplifiedPropsOf<typeof Fab>;
 
 export type FabClassKey =
   | 'root'

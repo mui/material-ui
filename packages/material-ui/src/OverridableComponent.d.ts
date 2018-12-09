@@ -42,3 +42,7 @@ export interface OverridableTypeMap {
 }
 
 export type AnyReactType<P = any> = keyof JSX.IntrinsicElements | React.ComponentType<P>;
+
+export type Simplify<T> = { [K in keyof T]: T[K] };
+
+export type SimplifiedPropsOf<C> = Simplify<PropsOf<C>>;
