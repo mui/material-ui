@@ -31,6 +31,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/RenderPropsWithWidth'), 'utf8')
 `,
         },
+        'pages/layout/breakpoints/UseWidth.js': {
+          js: require('docs/src/pages/layout/breakpoints/UseWidth').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/UseWidth'), 'utf8')
+`,
+        },
       }}
     />
   );

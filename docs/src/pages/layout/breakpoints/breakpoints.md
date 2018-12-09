@@ -52,6 +52,26 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ⚠️ `withWidth()` server-side rendering support is limited.
 
+## useWidth()
+
+> ⚠️ `useWidth` is experimental as Hooks aren't stable yet, therefore it is exported with an unstable prefix\
+__PLEASE NOTE: `useWidth` depends on react >= 16.7.0-alpha.0, react-dom >= 16.7.0-alpha.0 and @material-ui/styles.__
+
+```jsx
+import React from 'react';
+import { unstable_useWidth as useWidth } from '@material-ui/core/useWidth';
+
+export default function UseWidth() {
+  const { width } = useWidth();
+
+  return (
+    <div>{`Current width: ${width}`}</div>
+  );
+}
+```
+
+{{"demo": "pages/layout/breakpoints/UseWidth.js", "react": "next"}}
+
 ### Render Props
 
 In some cases, you could have property name collisions using higher-order components.
@@ -144,6 +164,57 @@ class MyComponent extends React.Component {
 }
 
 export default withWidth()(MyComponent);
+```
+
+### unstable_useWidth([options]) => Object
+
+#### Arguments
+
+1. `options` (*Object* [optional]):
+  In order to perform the server-side rendering reconciliation, we need to render twice.
+  A first time with nothing and a second time with the children.
+  This double pass rendering cycle comes with a drawback. The UI might blink.
+  You can set this flag to `true` if you are not doing server-side rendering.
+  - `options.initialWidth` (*Breakpoint* [optional]):
+  As `window.innerWidth` is unavailable on the server,
+  we default to returning undefined during the first mount.
+  In some situation, you might want to use an heuristic to approximate
+  the screen width of the client browser screen width.
+  For instance, you could be using the user-agent or the client-hints.
+  https://caniuse.com/#search=client%20hint, we also can set the initial width
+  globally using [`custom properties`](/customization/themes/#properties) on the theme.
+  In order to set the initialWidth we need to pass a custom property with this shape:
+  - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+
+#### Returns
+
+An `object` containing:
+  - `width` (*Breakpoint*): The current width
+  - `isWidthUp` (*Function*): A function to check if the current width is larger than the supplied breakpoint
+    - Arguments:
+      - breakpoint (*Breakpoint*): The breakpoint to check
+      - inclusive (*Boolean* [optional]): Defaults to true, whether the check is inclusive of the current width
+  - `isWidthDown` (*Function*): A function to check if the current width is smaller than the supplied breakpoint
+    - Arguments:
+       - breakpoint (*Breakpoint*): The breakpoint to check
+       - inclusive (*Boolean* [optional]): Defaults to true, whether the check is inclusive of the current width
+
+#### Examples
+
+```jsx
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { unstable_useWidth as useWidth } from '@material-ui/core/withWidth';
+
+export default function UseWidth() {
+  const { width } = useWidth();
+
+  return (
+    <Typography>
+      {`Current width: ${width}`}
+    </Typography>
+  );
+}
 ```
 
 ### `theme.breakpoints.up(key) => media query`
