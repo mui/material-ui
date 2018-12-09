@@ -14,7 +14,8 @@ import TextField from '@material-ui/core/TextField';
       variant="standard"
       InputProps={{
         // notchedOutline is only used with variant "outlined"
-        classes: { inputTypeSearch: 'search-input', notchedOutline: 'notched-outline' }, // $ExpectError
+        // FIXME this no longer generates an error in TS 3.2, see https://github.com/Microsoft/TypeScript/issues/28926
+        // classes: { inputTypeSearch: 'search-input', notchedOutline: 'notched-outline' }, // $ExpectError
       }}
     />
   );
