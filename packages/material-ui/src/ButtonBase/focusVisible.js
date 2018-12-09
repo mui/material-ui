@@ -1,5 +1,3 @@
-// @flow weak
-
 import keycode from 'keycode';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
@@ -8,6 +6,14 @@ const internal = {
   focusKeyPressed: false,
   keyUpEventTimeout: -1,
 };
+
+function findActiveElement(doc) {
+  let activeElement = doc.activeElement;
+  while (activeElement && activeElement.shadowRoot && activeElement.shadowRoot.activeElement) {
+    activeElement = activeElement.shadowRoot.activeElement;
+  }
+  return activeElement;
+}
 
 export function detectFocusVisible(instance, element, callback, attempt = 1) {
   warning(instance.focusVisibleCheckTime, 'Material-UI: missing instance.focusVisibleCheckTime.');
@@ -18,10 +24,11 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
 
   instance.focusVisibleTimeout = setTimeout(() => {
     const doc = ownerDocument(element);
+    const activeElement = findActiveElement(doc);
 
     if (
       internal.focusKeyPressed &&
-      (doc.activeElement === element || element.contains(doc.activeElement))
+      (activeElement === element || element.contains(activeElement))
     ) {
       callback();
     } else if (attempt < instance.focusVisibleMaxCheckTimes) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import MenuItem from '../MenuItem';
 import NativeSelectInput from './NativeSelectInput';
 
@@ -58,5 +58,31 @@ describe('<NativeSelectInput />', () => {
     wrapper.find('select').simulate('change', { target: { value: 20 } });
     assert.strictEqual(handleChange.callCount, 1);
     assert.strictEqual(handleChange.args[0][0].target.value, 20);
+  });
+
+  it('should apply outlined class', () => {
+    const outlined = 'class for outlined variant';
+    const wrapper = shallow(
+      <NativeSelectInput
+        {...defaultProps}
+        variant="outlined"
+        classes={{ ...defaultProps.classes, outlined }}
+      />,
+    );
+
+    assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined), true);
+  });
+
+  it('should apply filled class', () => {
+    const filled = 'class for filled variant';
+    const wrapper = shallow(
+      <NativeSelectInput
+        {...defaultProps}
+        variant="filled"
+        classes={{ ...defaultProps.classes, filled }}
+      />,
+    );
+
+    assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).hasClass(filled), true);
   });
 });

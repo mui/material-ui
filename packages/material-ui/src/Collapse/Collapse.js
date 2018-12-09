@@ -18,13 +18,14 @@ export const styles = theme => ({
   /* Styles applied to the container element when the transition has entered. */
   entered: {
     height: 'auto',
+    overflow: 'visible',
   },
   /* Styles applied to the outer wrapper element. */
   wrapper: {
     // Hack to get children with a negative margin to not falsify the height computation.
     display: 'flex',
   },
-  /* Styles applied to the outer wrapper element. */
+  /* Styles applied to the inner wrapper element. */
   wrapperInner: {
     width: '100%',
   },
@@ -32,16 +33,10 @@ export const styles = theme => ({
 
 /**
  * The Collapse transition is used by the
- * [Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
+ * [Vertical Stepper](/demos/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Collapse extends React.Component {
-  wrapper = null;
-
-  autoTransitionDuration = null;
-
-  timer = null;
-
   componentWillUnmount() {
     clearTimeout(this.timer);
   }

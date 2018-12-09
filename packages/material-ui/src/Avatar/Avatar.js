@@ -20,7 +20,6 @@ export const styles = theme => ({
     userSelect: 'none',
   },
   /* Styles applied to the root element if there are children and not `src` or `srcSet` */
-  /* Styles applied to the root element if `color="default"`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
@@ -31,7 +30,7 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
     textAlign: 'center',
-    // Handle non-square image. The property isn't supported by IE11.
+    // Handle non-square image. The property isn't supported by IE 11.
     objectFit: 'cover',
   },
 });
@@ -51,27 +50,10 @@ function Avatar(props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.colorDefault]: childrenProp && !src && !srcSet,
-    },
-    classNameProp,
-  );
   let children = null;
+  const img = src || srcSet;
 
-  if (childrenProp) {
-    if (
-      childrenClassNameProp &&
-      typeof childrenProp !== 'string' &&
-      React.isValidElement(childrenProp)
-    ) {
-      const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-      children = React.cloneElement(childrenProp, { className: childrenClassName });
-    } else {
-      children = childrenProp;
-    }
-  } else if (src || srcSet) {
+  if (img) {
     children = (
       <img
         alt={alt}
@@ -82,10 +64,25 @@ function Avatar(props) {
         {...imgProps}
       />
     );
+  } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+    children = React.cloneElement(childrenProp, {
+      className: classNames(childrenClassNameProp, childrenProp.props.className),
+    });
+  } else {
+    children = childrenProp;
   }
 
   return (
-    <Component className={className} {...other}>
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.colorDefault]: !img,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
       {children}
     </Component>
   );

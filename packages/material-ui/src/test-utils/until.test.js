@@ -1,5 +1,3 @@
-// @flow
-
 import assert from 'assert';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -81,7 +79,7 @@ describe('until', () => {
   });
 
   // eslint-disable-next-line react/prefer-stateless-function
-  class Foo extends React.Component<{}> {
+  class Foo extends React.Component {
     render() {
       return <Div />;
     }
@@ -100,7 +98,7 @@ describe('until', () => {
   });
 
   // eslint-disable-next-line react/no-multi-comp
-  class Bar extends React.Component<{}> {
+  class Bar extends React.Component {
     static childContextTypes = { quux: PropTypes.bool };
 
     getChildContext = () => ({ quux: true });

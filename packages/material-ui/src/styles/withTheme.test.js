@@ -2,13 +2,13 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import createBroadcast from 'brcast';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import { CHANNEL } from './themeListener';
 import withTheme from './withTheme';
 
 const Empty = () => <div />;
 // eslint-disable-next-line react/prefer-stateless-function
-class EmptyClass extends React.Component<{}> {
+class EmptyClass extends React.Component {
   render() {
     return <div />;
   }

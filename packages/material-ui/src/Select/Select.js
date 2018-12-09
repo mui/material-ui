@@ -3,9 +3,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from './SelectInput';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
+// To replace with InputBase in v4.0.0
 import Input from '../Input';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
@@ -22,6 +25,7 @@ function Select(props) {
     input,
     inputProps,
     MenuProps,
+    muiFormControl,
     multiple,
     native,
     onClose,
@@ -29,10 +33,16 @@ function Select(props) {
     open,
     renderValue,
     SelectDisplayProps,
+    variant,
     ...other
   } = props;
 
   const inputComponent = native ? NativeSelectInput : SelectInput;
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['variant'],
+  });
 
   return React.cloneElement(input, {
     // Most of the logic is implemented in `SelectInput`.
@@ -41,14 +51,15 @@ function Select(props) {
     inputProps: {
       children,
       IconComponent,
+      variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+      multiple,
       ...(native
         ? {}
         : {
             autoWidth,
             displayEmpty,
             MenuProps,
-            multiple,
             onClose,
             onOpen,
             open,
@@ -104,7 +115,7 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -163,8 +174,15 @@ Select.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 Select.defaultProps = {
@@ -178,4 +196,4 @@ Select.defaultProps = {
 
 Select.muiName = 'Select';
 
-export default withStyles(nativeSelectStyles, { name: 'MuiSelect' })(Select);
+export default withStyles(styles, { name: 'MuiSelect' })(withFormControlContext(Select));

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
+import ListContext from '../List/ListContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -11,6 +11,10 @@ export const styles = theme => ({
     height: 36,
     fontSize: theme.typography.pxToRem(18),
     marginRight: 4,
+  },
+  /* Styles applied to the root element when. */
+  alignItemsFlexStart: {
+    marginTop: 4,
   },
   /* Styles applied to the children – typically the `Avatar` component. */
   icon: {
@@ -21,32 +25,33 @@ export const styles = theme => ({
 });
 
 /**
- * This is a simple wrapper to apply the `dense` mode styles to `Avatar`.
+ * This is a simple wrapper to apply the `dense`
+ * and `align-items="flex-start"` mode styles to `Avatar`.
  */
-function ListItemAvatar(props, context) {
-  const { children, classes, className: classNameProp, ...other } = props;
+function ListItemAvatar(props) {
+  const { children, classes, className, ...other } = props;
 
-  if (context.dense === undefined) {
-    warning(
-      false,
-      `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
-      to <Avatar>. You do not need it unless you are controlling the <List> dense property.`,
-    );
-    return props.children;
-  }
-
-  return React.cloneElement(children, {
-    className: classNames(
-      { [classes.root]: context.dense },
-      classNameProp,
-      children.props.className,
-    ),
-    childrenClassName: classNames(
-      { [classes.icon]: context.dense },
-      children.props.childrenClassName,
-    ),
-    ...other,
-  });
+  return (
+    <ListContext.Consumer>
+      {context => {
+        return React.cloneElement(children, {
+          className: classNames(
+            {
+              [classes.root]: context.dense,
+              [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
+            },
+            className,
+            children.props.className,
+          ),
+          childrenClassName: classNames(
+            { [classes.icon]: context.dense },
+            children.props.childrenClassName,
+          ),
+          ...other,
+        });
+      }}
+    </ListContext.Consumer>
+  );
 }
 
 ListItemAvatar.propTypes = {
@@ -63,10 +68,6 @@ ListItemAvatar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-};
-
-ListItemAvatar.contextTypes = {
-  dense: PropTypes.bool,
 };
 
 ListItemAvatar.muiName = 'ListItemAvatar';

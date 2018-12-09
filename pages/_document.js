@@ -1,7 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getPageContext from 'docs/src/modules/styles/getPageContext';
-import config from 'docs/src/config';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -21,9 +20,17 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
+const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
+
 class MyDocument extends Document {
   render() {
-    const { canonical, pageContext } = this.props;
+    const { canonical, pageContext, url } = this.props;
+
+    let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+    if (url.match(/onepirate/)) {
+      font = 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400';
+    }
 
     return (
       <html lang="en" dir="ltr">
@@ -31,10 +38,7 @@ class MyDocument extends Document {
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
-            content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
-            }
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {/*
             manifest.json provides metadata used when your web app is added to the
@@ -45,10 +49,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
+          <link rel="stylesheet" href={font} />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -59,19 +60,19 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          <NextScript />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.google-analytics.com/analytics.js" />
+          <script defer src="https://www.google-analytics.com/analytics.js" />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', '${config.google.id}', 'material-ui.com');
+window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
-          <NextScript />
-          <script async src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
+          <script defer src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );
@@ -96,11 +97,20 @@ MyDocument.getInitialProps = async ctx => {
   // 1. page.getInitialProps
   // 3. page.render
 
-  // Get the context of the page to collected side effects.
-  const pageContext = getPageContext();
-  const page = ctx.renderPage(Component => props => (
-    <Component pageContext={pageContext} {...props} />
-  ));
+  // Render app and page and get the context of the page with collected side effects.
+  let pageContext;
+  const page = ctx.renderPage(Component => {
+    const WrappedComponent = props => {
+      pageContext = props.pageContext;
+      return <Component {...props} />;
+    };
+
+    WrappedComponent.propTypes = {
+      pageContext: PropTypes.object.isRequired,
+    };
+
+    return WrappedComponent;
+  });
 
   let css = pageContext.sheetsRegistry.toString();
   if (process.env.NODE_ENV === 'production') {
@@ -112,6 +122,7 @@ MyDocument.getInitialProps = async ctx => {
   return {
     ...page,
     pageContext,
+    url: ctx.req.url,
     canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style

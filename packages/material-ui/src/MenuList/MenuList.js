@@ -9,12 +9,6 @@ import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 
 class MenuList extends React.Component {
-  listRef = null;
-
-  selectedItemRef = null;
-
-  blurTimer = null;
-
   state = {
     currentTabIndex: null,
   };

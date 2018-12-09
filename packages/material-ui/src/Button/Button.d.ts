@@ -43,6 +43,7 @@ export type ButtonClassKey =
   | 'focusVisible'
   | 'disabled'
   | 'fab'
+  | 'extendedFab'
   | 'mini'
   | 'sizeSmall'
   | 'sizeLarge'

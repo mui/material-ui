@@ -7,12 +7,12 @@ import { TransitionHandlerProps } from '@material-ui/core/transitions/transition
 export interface SliderProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange'> {
   disabled?: boolean;
-  reverse?: boolean;
   vertical?: boolean;
   max?: number;
   min?: number;
   step?: number;
   value?: number;
+  thumb?: React.ReactElement<any>;
   onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
   onDragEnd?: (event: React.ChangeEvent<{}>) => void;
   onDragStart?: (event: React.ChangeEvent<{}>) => void;
@@ -25,11 +25,12 @@ export type SliderClassKey =
   | 'trackBefore'
   | 'trackAfter'
   | 'thumb'
+  | 'thumbIconWrapper'
+  | 'thumbIcon'
   | 'focused'
   | 'activated'
   | 'disabled'
   | 'vertical'
-  | 'reverse'
   | 'jumped';
 
 declare const Slider: React.ComponentType<SliderProps>;

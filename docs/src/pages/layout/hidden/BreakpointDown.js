@@ -28,7 +28,7 @@ function BreakpointDown(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subheading">Current width: {props.width}</Typography>
+      <Typography variant="subtitle1">Current width: {props.width}</Typography>
       <div className={classes.container}>
         <Hidden xsDown>
           <Paper className={classes.paper}>xsDown</Paper>

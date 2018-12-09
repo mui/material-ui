@@ -1,6 +1,4 @@
-// @flow
-
-import * as ns from 'react-jss/lib/ns';
+import ns from '../styles/reactJssContext';
 import { SheetsRegistry } from 'jss';
 import createShallow from './createShallow';
 import { sheetsManager } from '../styles/withStyles';
@@ -8,7 +6,7 @@ import { sheetsManager } from '../styles/withStyles';
 const shallow = createShallow();
 
 // Helper function to extract the classes from a styleSheet.
-export default function getClasses(element: Object, options: Object = {}) {
+export default function getClasses(element, options = {}) {
   const sheetsRegistry = new SheetsRegistry();
 
   sheetsManager.clear();

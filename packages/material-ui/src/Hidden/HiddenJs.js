@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../withWidth';
-import exactProp from '../utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 /**
  * @ignore - internal component.
@@ -73,7 +73,7 @@ HiddenJs.propTypes = {
    * the screen width of the client browser screen width.
    *
    * For instance, you could be using the user-agent or the client-hints.
-   * http://caniuse.com/#search=client%20hint
+   * https://caniuse.com/#search=client%20hint
    */
   initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   /**

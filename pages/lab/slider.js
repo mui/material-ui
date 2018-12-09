@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/lab/slider/slider.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./slider${props.lang}.md`)}
       demos={{
         'pages/lab/slider/SimpleSlider.js': {
           js: require('docs/src/pages/lab/slider/SimpleSlider').default,
@@ -36,11 +37,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/lab/slider/VerticalSlider'), 'utf8')
 `,
         },
-        'pages/lab/slider/ReverseSlider.js': {
-          js: require('docs/src/pages/lab/slider/ReverseSlider').default,
+        'pages/lab/slider/CustomIconSlider.js': {
+          js: require('docs/src/pages/lab/slider/CustomIconSlider').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/lab/slider/ReverseSlider'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/lab/slider/CustomIconSlider'), 'utf8')
 `,
         },
       }}

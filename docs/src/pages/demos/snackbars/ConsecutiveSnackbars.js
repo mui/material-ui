@@ -8,8 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
+    padding: theme.spacing.unit / 2,
   },
 });
 
@@ -58,13 +57,14 @@ class ConsecutiveSnackbars extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { message, key } = this.state.messageInfo;
+    const { messageInfo } = this.state;
+
     return (
       <div>
         <Button onClick={this.handleClick('message a')}>Show message A</Button>
         <Button onClick={this.handleClick('message b')}>Show message B</Button>
         <Snackbar
-          key={key}
+          key={messageInfo.key}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
@@ -76,7 +76,7 @@ class ConsecutiveSnackbars extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">{message}</span>}
+          message={<span id="message-id">{messageInfo.message}</span>}
           action={[
             <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
               UNDO

@@ -4,12 +4,14 @@ import { ButtonProps } from '@material-ui/core/Button';
 import { TooltipProps } from '@material-ui/core/Tooltip';
 
 export interface SpeedDialActionProps
-  extends StandardProps<ButtonProps & Partial<TooltipProps>, SpeedDialActionClassKey> {
+  extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey> {
   ButtonProps?: Partial<ButtonProps>;
   delay?: number;
   icon: React.ReactNode;
-  tooltipPlacement?: string;
+  TooltipClasses?: TooltipProps['classes'];
+  tooltipPlacement?: TooltipProps['placement'];
   tooltipTitle?: React.ReactNode;
+  tooltipOpen?: boolean;
 }
 
 export type SpeedDialActionClassKey = 'root' | 'button' | 'buttonClosed';

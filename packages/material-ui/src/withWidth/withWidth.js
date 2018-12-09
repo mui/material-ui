@@ -1,10 +1,8 @@
-/* eslint-disable react/no-did-mount-set-state */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import { getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -35,26 +33,24 @@ const withWidth = (options = {}) => Component => {
   } = options;
 
   class WithWidth extends React.Component {
-    handleResize = debounce(() => {
-      const width = this.getWidth();
-      if (width !== this.state.width) {
-        this.setState({
-          width,
-        });
-      }
-    }, resizeInterval);
-
     constructor(props) {
       super(props);
 
-      if (noSSR) {
-        this.state.width = this.getWidth();
+      this.state = {
+        width: noSSR ? this.getWidth() : undefined,
+      };
+
+      if (typeof window !== 'undefined') {
+        this.handleResize = debounce(() => {
+          const width2 = this.getWidth();
+          if (width2 !== this.state.width) {
+            this.setState({
+              width: width2,
+            });
+          }
+        }, resizeInterval);
       }
     }
-
-    state = {
-      width: undefined,
-    };
 
     componentDidMount() {
       const width = this.getWidth();
@@ -98,22 +94,16 @@ const withWidth = (options = {}) => Component => {
     }
 
     render() {
-      const { initialWidth, theme, width, innerRef, ...other } = this.props;
+      const { initialWidth, theme, width, ...other } = getThemeProps({
+        theme: this.props.theme,
+        name: 'MuiWithWidth',
+        props: { ...this.props },
+      });
 
-      const props = {
-        width:
-          width ||
-          this.state.width ||
-          initialWidth ||
-          initialWidthOption ||
-          getThemeProps({ theme, name: 'MuiWithWidth' }).initialWidth,
+      const more = {
+        width: width || this.state.width || initialWidth || initialWidthOption,
         ...other,
       };
-      const more = {};
-
-      if (withThemeOption) {
-        more.theme = theme;
-      }
 
       // When rendering the component on the server,
       // we have no idea about the client browser screen width.
@@ -121,14 +111,19 @@ const withWidth = (options = {}) => Component => {
       // we are not rendering the child component.
       //
       // An alternative is to use the `initialWidth` property.
-      if (props.width === undefined) {
+      if (more.width === undefined) {
         return null;
       }
 
+      if (withThemeOption) {
+        more.theme = theme;
+      }
+
       return (
-        <EventListener target="window" onResize={this.handleResize}>
-          <Component {...more} {...props} ref={innerRef} />
-        </EventListener>
+        <React.Fragment>
+          <Component {...more} />
+          <EventListener target="window" onResize={this.handleResize} />
+        </React.Fragment>
       );
     }
   }
@@ -141,13 +136,9 @@ const withWidth = (options = {}) => Component => {
      * the screen width of the client browser screen width.
      *
      * For instance, you could be using the user-agent or the client-hints.
-     * http://caniuse.com/#search=client%20hint
+     * https://caniuse.com/#search=client%20hint
      */
     initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-    /**
-     * Use that property to pass a ref callback to the decorated component.
-     */
-    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     /**
      * @ignore
      */
@@ -159,7 +150,7 @@ const withWidth = (options = {}) => Component => {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    WithWidth.displayName = wrapDisplayName(Component, 'WithWidth');
+    WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithWidth, Component);

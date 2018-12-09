@@ -1,6 +1,6 @@
 ---
 title: Text Field React component
-components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
 # Text Fields
@@ -15,9 +15,28 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
+## Outlined
+
+`TextField` supports outlined styling.
+
+{{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
+
+## Filled
+
+`TextField` supports filled styling.
+
+{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
+
 ## Components
 
-`TextField` is composed of smaller components ([`FormControl`](/api/form-control), [`InputLabel`](/api/input-label), [`Input`](/api/input), and [`FormHelperText`](/api/form-helper-text)) that you can leverage directly to significantly customize your form inputs.
+`TextField` is composed of smaller components (
+[`FormControl`](/api/form-control/),
+[`Input`](/api/input/),
+[`FilledInput`](/api/filled-input/),
+[`InputLabel`](/api/input-label/),
+[`OutlinedInput`](/api/outlined-input/),
+and [`FormHelperText`](/api/form-helper-text/)
+) that you can leverage directly to significantly customize your form inputs.
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.
@@ -25,13 +44,18 @@ The component takes care of the most used properties, then it's up to the user t
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
-## Layout
+## Inputs
 
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
-`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
-other styles to meet the specification.
+{{"demo": "pages/demos/text-fields/Inputs.js"}}
 
-{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
+## Customized inputs
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
 ## Input Adornments
 
@@ -41,9 +65,44 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
-## Inputs
+### With icon
 
-{{"demo": "pages/demos/text-fields/Inputs.js"}}
+Icons can be specified as prepended or appended.
+
+{{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
+
+### Filled Input Adornments
+
+{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
+
+### Outlined Input Adornments
+
+{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
+
+## Layout
+
+`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
+`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
+other styles to meet the specification.
+
+{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
+
+## Limitations
+
+The input label "shrink" state isn't always correct.
+The input label is supposed to shrink as soon as the input is displaying something.
+In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+
+![shrink](/static/images/text-fields/shrink.png)
+
+To workaround the issue, you can force the "shrink" state of the label.
+```jsx
+<TextField InputLabelProps={{ shrink: true }} />
+```
+or
+```jsx
+<InputLabel shrink>Count</InputLabel>
+```
 
 ## Formatted inputs
 
@@ -54,15 +113,10 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
-## Customized inputs
+## Complementary projects
 
-If you have been reading the [overrides documentation page](/customization/overrides)
-but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+For more advanced use cases you might be able to take advantage of:
 
-{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
-
-## With icon
-
-Icons can be specified as prepended or appended.
-
-{{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.

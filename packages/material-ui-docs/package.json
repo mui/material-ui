@@ -2,7 +2,7 @@
   "name": "@material-ui/docs",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.4",
+  "version": "3.0.0-alpha.8",
   "description": "Material-UI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
@@ -22,20 +22,23 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
-    "prebuild": "../../node_modules/.bin/rimraf build",
-    "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
-    "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
-    "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
+    "test": "exit 0",
+    "prebuild": "rimraf build",
+    "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build",
+    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
+    "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:copy-files",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "@material-ui/core": "^1.0.0",
+    "@material-ui/core": "^3.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "marked": "^0.4.0",
+    "@babel/runtime": "7.1.2",
+    "@material-ui/utils": "^3.0.0-alpha.0",
+    "marked": "^0.5.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"
   },

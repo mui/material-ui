@@ -17,9 +17,6 @@ const styles = theme => ({
     width: 500,
     height: 450,
   },
-  subheader: {
-    width: '100%',
-  },
 });
 
 /**

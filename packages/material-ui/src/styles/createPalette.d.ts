@@ -1,14 +1,16 @@
 import { Color, PaletteType } from '..';
 import { CommonColors } from '../colors/common';
 
-interface TypeText {
+export type ColorPartial = Partial<Color>;
+
+export interface TypeText {
   primary: string;
   secondary: string;
   disabled: string;
   hint: string;
 }
 
-interface TypeAction {
+export interface TypeAction {
   active: string;
   hover: string;
   hoverOpacity: number;
@@ -17,14 +19,14 @@ interface TypeAction {
   disabledBackground: string;
 }
 
-interface TypeBackground {
+export interface TypeBackground {
   default: string;
   paper: string;
 }
 
-type TypeDivider = string;
+export type TypeDivider = string;
 
-export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;
+export type PaletteColorOptions = SimplePaletteColorOptions | ColorPartial;
 
 export interface SimplePaletteColorOptions {
   light?: string;
@@ -64,16 +66,18 @@ export interface Palette {
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (background: string) => string;
-  augmentColor: (
-    color: SimplePaletteColorOptions,
-    mainShade: number | string,
-    lightShade: number | string,
-    darkShade: number | string,
-  ) => void;
+  augmentColor: {
+    (
+      color: ColorPartial,
+      mainShade?: number | string,
+      lightShade?: number | string,
+      darkShade?: number | string,
+    ): void;
+    (color: PaletteColorOptions): void;
+  };
 }
 
-type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
-type ColorPartial = Partial<Color>;
+export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 
 export interface PaletteOptions {
   primary?: PaletteColorOptions;

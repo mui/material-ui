@@ -6,21 +6,24 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import withStyles, { WithStyles, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import createStyles from '@material-ui/core/styles/createStyles';
+import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import withRoot from '../withRoot';
 
-const styles: StyleRulesCallback<'root'> = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      textAlign: 'center',
+      paddingTop: theme.spacing.unit * 20,
+    },
+  });
 
 type State = {
   open: boolean;
 };
 
-class Index extends React.Component<WithStyles<'root'>, State> {
+class Index extends React.Component<WithStyles<typeof styles>, State> {
   state = {
     open: false,
   };
@@ -51,13 +54,13 @@ class Index extends React.Component<WithStyles<'root'>, State> {
             </Button>
           </DialogActions>
         </Dialog>
-        <Typography variant="display1" gutterBottom>
+        <Typography variant="h4" gutterBottom>
           Material-UI
         </Typography>
-        <Typography variant="subheading" gutterBottom>
+        <Typography variant="subtitle1" gutterBottom>
           example project
         </Typography>
-        <Button variant="raised" color="secondary" onClick={this.handleClick}>
+        <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
       </div>

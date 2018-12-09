@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/snackbars/snackbars.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./snackbars${props.lang}.md`)}
       demos={{
         'pages/demos/snackbars/SimpleSnackbar.js': {
           js: require('docs/src/pages/demos/snackbars/SimpleSnackbar').default,
@@ -62,6 +63,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/snackbars/CustomizedSnackbars'), 'utf8')
+`,
+        },
+        'pages/demos/snackbars/IntegrationNotistack.js': {
+          js: require('docs/src/pages/demos/snackbars/IntegrationNotistack').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/snackbars/IntegrationNotistack'), 'utf8')
 `,
         },
       }}

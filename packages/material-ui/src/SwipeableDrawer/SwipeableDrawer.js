@@ -31,17 +31,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class SwipeableDrawer extends React.Component {
-  backdrop = null;
-
-  paper = null;
+  state = {};
 
   isSwiping = null;
-
-  startX = null;
-
-  startY = null;
-
-  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -93,7 +85,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   getMaxTranslate() {
-    return isHorizontal(this.props) ? this.paper.clientWidth : this.paper.clientHeight;
+    return isHorizontal(this.props) ? this.paperRef.clientWidth : this.paperRef.clientHeight;
   }
 
   getTranslate(current) {
@@ -112,7 +104,7 @@ class SwipeableDrawer extends React.Component {
     const transform = isHorizontal(this.props)
       ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
       : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
-    const drawerStyle = this.paper.style;
+    const drawerStyle = this.paperRef.style;
     drawerStyle.webkitTransform = transform;
     drawerStyle.transform = transform;
 
@@ -137,8 +129,8 @@ class SwipeableDrawer extends React.Component {
       drawerStyle.transition = transition;
     }
 
-    if (!this.props.disableBackdropTransition) {
-      const backdropStyle = this.backdrop.style;
+    if (!this.props.disableBackdropTransition && !this.props.hideBackdrop) {
+      const backdropStyle = this.backdropRef.style;
       backdropStyle.opacity = 1 - translate / this.getMaxTranslate();
 
       if (changeTransition) {
@@ -183,12 +175,16 @@ class SwipeableDrawer extends React.Component {
     this.startY = currentY;
 
     this.setState({ maybeSwiping: true });
-    if (!open && this.paper) {
-      // the ref may be null when a parent component updates while swiping
+    if (!open && this.paperRef) {
+      // The ref may be null when a parent component updates while swiping.
       this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
         changeTransition: false,
       });
     }
+
+    this.velocity = 0;
+    this.lastTime = null;
+    this.lastTranslate = null;
 
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.handleBodyTouchEnd);
@@ -198,7 +194,7 @@ class SwipeableDrawer extends React.Component {
 
   handleBodyTouchMove = event => {
     // the ref may be null when a parent component updates while swiping
-    if (!this.paper) return;
+    if (!this.paperRef) return;
 
     const anchor = getAnchor(this.props);
     const horizontalSwipe = isHorizontal(this.props);
@@ -255,9 +251,24 @@ class SwipeableDrawer extends React.Component {
       return;
     }
 
+    const translate = this.getTranslate(horizontalSwipe ? currentX : currentY);
+
+    if (this.lastTranslate === null) {
+      this.lastTranslate = translate;
+      this.lastTime = performance.now() + 1;
+    }
+
+    const velocity = ((translate - this.lastTranslate) / (performance.now() - this.lastTime)) * 1e3;
+
+    // Low Pass filter.
+    this.velocity = this.velocity * 0.4 + velocity * 0.6;
+
+    this.lastTranslate = translate;
+    this.lastTime = performance.now();
+
     // We are swiping, let's prevent the scroll event on iOS.
     event.preventDefault();
-    this.setPosition(this.getTranslate(horizontalSwipe ? currentX : currentY));
+    this.setPosition(translate);
   };
 
   handleBodyTouchEnd = event => {
@@ -270,6 +281,8 @@ class SwipeableDrawer extends React.Component {
       this.isSwiping = null;
       return;
     }
+
+    this.isSwiping = null;
 
     const anchor = getAnchor(this.props);
     let current;
@@ -284,37 +297,41 @@ class SwipeableDrawer extends React.Component {
           ? window.innerHeight - event.changedTouches[0].clientY
           : event.changedTouches[0].clientY;
     }
+
     const translateRatio = this.getTranslate(current) / this.getMaxTranslate();
 
-    // We have to open or close after setting swiping to null,
-    // because only then CSS transition is enabled.
-    if (translateRatio > 0.5) {
-      if (this.isSwiping && !this.props.open) {
-        // Reset the position, the swipe was aborted.
-        this.setPosition(this.getMaxTranslate(), {
-          mode: 'enter',
-        });
-      } else {
+    if (this.props.open) {
+      if (this.velocity > this.props.minFlingVelocity || translateRatio > this.props.hysteresis) {
         this.props.onClose();
+      } else {
+        // Reset the position, the swipe was aborted.
+        this.setPosition(0, {
+          mode: 'exit',
+        });
       }
-    } else if (this.isSwiping && !this.props.open) {
+
+      return;
+    }
+
+    if (
+      this.velocity < -this.props.minFlingVelocity ||
+      1 - translateRatio > this.props.hysteresis
+    ) {
       this.props.onOpen();
     } else {
       // Reset the position, the swipe was aborted.
-      this.setPosition(0, {
-        mode: 'exit',
+      this.setPosition(this.getMaxTranslate(), {
+        mode: 'enter',
       });
     }
-
-    this.isSwiping = null;
   };
 
-  handleBackdropRef = node => {
-    this.backdrop = node ? ReactDOM.findDOMNode(node) : null;
+  handleBackdropRef = ref => {
+    this.backdropRef = ref ? ReactDOM.findDOMNode(ref) : null;
   };
 
-  handlePaperRef = node => {
-    this.paper = node ? ReactDOM.findDOMNode(node) : null;
+  handlePaperRef = ref => {
+    this.paperRef = ref ? ReactDOM.findDOMNode(ref) : null;
   };
 
   listenTouchStart() {
@@ -337,10 +354,13 @@ class SwipeableDrawer extends React.Component {
       disableBackdropTransition,
       disableDiscovery,
       disableSwipeToOpen,
+      hysteresis,
+      minFlingVelocity,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
       PaperProps = {},
+      SwipeAreaProps,
       swipeAreaWidth,
       variant,
       ...other
@@ -370,13 +390,11 @@ class SwipeableDrawer extends React.Component {
           anchor={anchor}
           {...other}
         />
-        {!disableDiscovery &&
-          !disableSwipeToOpen &&
-          variant === 'temporary' && (
-            <NoSsr>
-              <SwipeArea anchor={anchor} width={swipeAreaWidth} />
-            </NoSsr>
-          )}
+        {!disableDiscovery && !disableSwipeToOpen && variant === 'temporary' && (
+          <NoSsr>
+            <SwipeArea anchor={anchor} width={swipeAreaWidth} {...SwipeAreaProps} />
+          </NoSsr>
+        )}
       </React.Fragment>
     );
   }
@@ -403,6 +421,17 @@ SwipeableDrawer.propTypes = {
    */
   disableSwipeToOpen: PropTypes.bool,
   /**
+   * Affects how far the drawer must be opened/closed to change his state.
+   * Specified as percent (0-1) of the width of the drawer
+   */
+  hysteresis: PropTypes.number,
+  /**
+   * Defines, from which (average) velocity on, the swipe is
+   * defined as complete although hysteresis isn't reached.
+   * Good threshold is between 250 - 1000 px/s
+   */
+  minFlingVelocity: PropTypes.number,
+  /**
    * @ignore
    */
   ModalProps: PropTypes.object,
@@ -426,6 +455,10 @@ SwipeableDrawer.propTypes = {
    * @ignore
    */
   PaperProps: PropTypes.object,
+  /**
+   * Properties applied to the swipe area element.
+   */
+  SwipeAreaProps: PropTypes.object,
   /**
    * The width of the left most (or right most) area in pixels where the
    * drawer can be swiped open from.
@@ -455,6 +488,8 @@ SwipeableDrawer.defaultProps = {
   disableDiscovery: false,
   disableSwipeToOpen:
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
+  hysteresis: 0.55,
+  minFlingVelocity: 400,
   swipeAreaWidth: 20,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.

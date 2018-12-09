@@ -1,13 +1,16 @@
 ---
 filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
-title: GridListTileBar API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# GridListTileBar
+# GridListTileBar API
 
-<p class="description">The API documentation of the GridListTileBar React component.</p>
+<p class="description">The API documentation of the GridListTileBar React component. Learn more about the properties and the CSS customization points.</p>
+
+```js
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+```
 
 
 
@@ -15,16 +18,16 @@ title: GridListTileBar API
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">actionIcon</span> | <span class="prop-type">node |   | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
-| <span class="prop-name">actionPosition</span> | <span class="prop-type">enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | <span class="prop-default">'right'</span> | Position of secondary action IconButton. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">subtitle</span> | <span class="prop-type">node |   | String or element serving as subtitle (support text). |
-| <span class="prop-name">title</span> | <span class="prop-type">node |   | Title to be displayed on tile. |
-| <span class="prop-name">titlePosition</span> | <span class="prop-type">enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
+| <span class="prop-name">actionIcon</span> | <span class="prop-type">node</span> |   | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
+| <span class="prop-name">actionPosition</span> | <span class="prop-type">enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br></span> | <span class="prop-default">'right'</span> | Position of secondary action IconButton. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |   | String or element serving as subtitle (support text). |
+| <span class="prop-name">title</span> | <span class="prop-type">node</span> |   | Title to be displayed on tile. |
+| <span class="prop-name">titlePosition</span> | <span class="prop-type">enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br></span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -42,17 +45,17 @@ This property accepts the following keys:
 | <span class="prop-name">title</span> | Styles applied to the title container element.
 | <span class="prop-name">subtitle</span> | Styles applied to the subtitle container element.
 | <span class="prop-name">actionIcon</span> | Styles applied to the actionIcon if supplied.
-| <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left".
+| <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/GridListTileBar/GridListTileBar.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+[here](/customization/themes/#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiGridListTileBar`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list)
+- [Grid List](/demos/grid-list/)
 

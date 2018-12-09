@@ -10,24 +10,29 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 const tutorialSteps = [
   {
-    label: 'How to be happy :)',
-    imgPath: '/static/images/steppers/1-happy.jpg',
+    label: 'San Francisco – Oakland Bay Bridge, United States',
+    imgPath:
+      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: '1. Work with something that you like, like…',
-    imgPath: '/static/images/steppers/2-work.jpg',
+    label: 'Bird',
+    imgPath:
+      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: '2. Keep your friends close to you and hangout with them',
-    imgPath: '/static/images/steppers/3-friends.jpg',
+    label: 'Bali, Indonesia',
+    imgPath:
+      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
   },
   {
-    label: '3. Travel everytime that you have a chance',
-    imgPath: '/static/images/steppers/4-travel.jpg',
+    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
+    imgPath:
+      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
   },
   {
-    label: '4. And contribute to Material-UI :D',
-    imgPath: '/static/images/steppers/5-mui.png',
+    label: 'Goč, Serbia',
+    imgPath:
+      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
   },
 ];
 
@@ -41,13 +46,13 @@ const styles = theme => ({
     alignItems: 'center',
     height: 50,
     paddingLeft: theme.spacing.unit * 4,
-    marginBottom: 20,
     backgroundColor: theme.palette.background.default,
   },
   img: {
     height: 255,
     maxWidth: 400,
     overflow: 'hidden',
+    display: 'block',
     width: '100%',
   },
 });
@@ -72,7 +77,6 @@ class TextMobileStepper extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
-
     const maxSteps = tutorialSteps.length;
 
     return (

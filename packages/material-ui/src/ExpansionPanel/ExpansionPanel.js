@@ -81,18 +81,15 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
-  isControlled = null;
-
   constructor(props) {
     super();
     this.isControlled = props.expanded != null;
+    this.state = {};
     if (!this.isControlled) {
       // not controlled, use internal state
       this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
     }
   }
-
-  state = {};
 
   handleChange = event => {
     const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
@@ -188,7 +185,7 @@ ExpansionPanel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the [`Collapse`](/api/collapse) element.
+   * Properties applied to the [`Collapse`](/api/collapse/) element.
    */
   CollapseProps: PropTypes.object,
   /**

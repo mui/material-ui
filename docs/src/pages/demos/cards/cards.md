@@ -1,6 +1,6 @@
 ---
 title: Card React component
-components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
 # Cards
@@ -17,11 +17,21 @@ Although cards can support multiple actions, UI controls, and an overflow menu, 
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
 
+## Complex Interaction
+
+On desktop, card content can expand.
+
+{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
+
 ## Media
 
 Example of a card using an image to reinforce the content.
 
-{{"demo": "pages/demos/cards/SimpleMediaCard.js"}}
+{{"demo": "pages/demos/cards/MediaCard.js"}}
+
+By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
+
+{{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
 ## UI Controls
 
@@ -30,10 +40,3 @@ Supplemental actions within the card are explicitly called out using icons, text
 Here's an example of a media control card.
 
 {{"demo": "pages/demos/cards/MediaControlCard.js"}}
-
-## Complex Interaction
-
-On desktop, card content can expand.
-
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
-

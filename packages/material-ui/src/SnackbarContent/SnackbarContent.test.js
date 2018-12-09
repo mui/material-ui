@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import SnackbarContent from './SnackbarContent';
 
 describe('<SnackbarContent />', () => {
@@ -24,6 +24,15 @@ describe('<SnackbarContent />', () => {
       const wrapper = shallow(<SnackbarContent message="message" action={action} />);
       assert.strictEqual(wrapper.childAt(1).hasClass(classes.action), true);
       assert.strictEqual(wrapper.childAt(1).contains(action), true);
+    });
+
+    it('should render an array of elements', () => {
+      const action0 = <span key={0}>action0</span>;
+      const action1 = <span key={1}>action1</span>;
+      const wrapper = shallow(<SnackbarContent message="message" action={[action0, action1]} />);
+      assert.strictEqual(wrapper.childAt(1).hasClass(classes.action), true);
+      assert.strictEqual(wrapper.childAt(1).contains(action0), true);
+      assert.strictEqual(wrapper.childAt(1).contains(action1), true);
     });
   });
 

@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -33,14 +31,12 @@ const options = [
 ];
 
 class ConfirmationDialogRaw extends React.Component {
-  radioGroupRef = null;
-
   constructor(props) {
     super();
-    this.state.value = props.value;
+    this.state = {
+      value: props.value,
+    };
   }
-
-  state = {};
 
   // TODO
   componentWillReceiveProps(nextProps) {
@@ -124,8 +120,6 @@ const styles = theme => ({
 });
 
 class ConfirmationDialog extends React.Component {
-  button = null;
-
   state = {
     open: false,
     value: 'Dione',

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
-import { isFilled, isAdornedStart } from '../Input/Input';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
+import FormControlContext from './FormControlContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -12,11 +13,12 @@ export const styles = {
     display: 'inline-flex',
     flexDirection: 'column',
     position: 'relative',
-    // Reset fieldset default style
+    // Reset fieldset default style.
     minWidth: 0,
     padding: 0,
     margin: 0,
     border: 0,
+    verticalAlign: 'top', // Fix alignment issue on Safari.
   },
   /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {
@@ -43,16 +45,32 @@ export const styles = {
  *  - FormHelperText
  *  - Input
  *  - InputLabel
+ *
+ * ⚠️ Only one input can be used within a FormControl.
  */
 class FormControl extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    if (props.disabled && state.focused) {
+      return { focused: false };
+    }
+    return null;
+  }
+
   constructor(props) {
     super();
+
+    this.state = {
+      adornedStart: false,
+      filled: false,
+      focused: false,
+    };
+
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
     const { children } = props;
     if (children) {
       React.Children.forEach(children, child => {
-        if (!isMuiElement(child, ['Input', 'Select', 'NativeSelect'])) {
+        if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
 
@@ -60,40 +78,13 @@ class FormControl extends React.Component {
           this.state.filled = true;
         }
 
-        const input = isMuiElement(child, ['Select', 'NativeSelect']) ? child.props.input : child;
+        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
 
         if (input && isAdornedStart(input.props)) {
           this.state.adornedStart = true;
         }
       });
     }
-  }
-
-  state = {
-    adornedStart: false,
-    filled: false,
-    focused: false,
-  };
-
-  getChildContext() {
-    const { disabled, error, required, margin } = this.props;
-    const { adornedStart, filled, focused } = this.state;
-
-    return {
-      muiFormControl: {
-        adornedStart,
-        disabled,
-        error,
-        filled,
-        focused,
-        margin,
-        onBlur: this.handleBlur,
-        onEmpty: this.handleClean,
-        onFilled: this.handleDirty,
-        onFocus: this.handleFocus,
-        required,
-      },
-    };
   }
 
   handleFocus = () => {
@@ -126,21 +117,40 @@ class FormControl extends React.Component {
       fullWidth,
       margin,
       required,
+      variant,
       ...other
     } = this.props;
+    const { adornedStart, filled, focused } = this.state;
+
+    const childContext = {
+      adornedStart,
+      disabled,
+      error,
+      filled,
+      focused,
+      margin,
+      onBlur: this.handleBlur,
+      onEmpty: this.handleClean,
+      onFilled: this.handleDirty,
+      onFocus: this.handleFocus,
+      required,
+      variant,
+    };
 
     return (
-      <Component
-        className={classNames(
-          classes.root,
-          {
-            [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
-            [classes.fullWidth]: fullWidth,
-          },
-          className,
-        )}
-        {...other}
-      />
+      <FormControlContext.Provider value={childContext}>
+        <Component
+          className={classNames(
+            classes.root,
+            {
+              [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
+              [classes.fullWidth]: fullWidth,
+            },
+            className,
+          )}
+          {...other}
+        />
+      </FormControlContext.Provider>
     );
   }
 }
@@ -184,6 +194,10 @@ FormControl.propTypes = {
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 FormControl.defaultProps = {
@@ -193,10 +207,7 @@ FormControl.defaultProps = {
   fullWidth: false,
   margin: 'none',
   required: false,
-};
-
-FormControl.childContextTypes = {
-  muiFormControl: PropTypes.object,
+  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

@@ -1,8 +1,6 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import ListSubheader from '../ListSubheader';
 import List from './List';
 
@@ -29,7 +27,7 @@ describe('<List />', () => {
     const wrapper = shallow(<List className="woofList" />);
     assert.strictEqual(wrapper.hasClass('woofList'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.padding), true, 'should have the padding class');
+    assert.strictEqual(wrapper.hasClass(classes.padding), true);
   });
 
   it('should disable the padding', () => {
@@ -55,7 +53,7 @@ describe('<List />', () => {
 
     it('should render ListSubheader', () => {
       const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      assert.strictEqual(wrapper.find(ListSubheader).length, 1, 'should render ListSubheader');
+      assert.strictEqual(wrapper.find(ListSubheader).length, 1);
     });
   });
 
@@ -63,17 +61,13 @@ describe('<List />', () => {
     it('should forward the context', () => {
       const wrapper1 = shallow(<List />);
       assert.strictEqual(
-        wrapper1.instance().getChildContext().dense,
+        wrapper1.hasClass(classes.dense),
         false,
         'dense should be false by default',
       );
 
       const wrapper2 = shallow(<List dense />);
-      assert.strictEqual(
-        wrapper2.instance().getChildContext().dense,
-        true,
-        'dense should be true when set',
-      );
+      assert.strictEqual(wrapper2.hasClass(classes.dense), true);
     });
   });
 });

@@ -4,4 +4,4 @@ Custom eslint rules for Material-UI
 
 ## Supported Rules
 
-* docgen-ignore-before-comment
+- `docgen-ignore-before-comment`

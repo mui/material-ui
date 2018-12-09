@@ -15,8 +15,6 @@ const styles = theme => ({
 });
 
 class SimplePortal extends React.Component {
-  container = null;
-
   state = {
     show: false,
   };

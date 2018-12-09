@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -38,65 +40,47 @@ export const styles = theme => ({
   },
 });
 
-function FormLabel(props, context) {
+function FormLabel(props) {
   const {
     children,
     classes,
     className: classNameProp,
     component: Component,
-    disabled: disabledProp,
-    error: errorProp,
-    filled: filledProp,
-    focused: focusedProp,
-    required: requiredProp,
+    disabled,
+    error,
+    filled,
+    focused,
+    muiFormControl,
+    required,
     ...other
   } = props;
 
-  const { muiFormControl } = context;
-
-  let disabled = disabledProp;
-  let error = errorProp;
-  let filled = filledProp;
-  let focused = focusedProp;
-  let required = requiredProp;
-
-  if (muiFormControl) {
-    if (typeof required === 'undefined') {
-      required = muiFormControl.required;
-    }
-    if (typeof focused === 'undefined') {
-      focused = muiFormControl.focused;
-    }
-    if (typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
-    }
-    if (typeof error === 'undefined') {
-      error = muiFormControl.error;
-    }
-    if (typeof filled === 'undefined') {
-      filled = muiFormControl.filled;
-    }
-  }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.disabled]: disabled,
-      [classes.error]: error,
-      [classes.filled]: filled,
-      [classes.focused]: focused,
-      [classes.required]: required,
-    },
-    classNameProp,
-  );
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['required', 'focused', 'disabled', 'error', 'filled'],
+  });
 
   return (
-    <Component className={className} {...other}>
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.disabled]: fcs.disabled,
+          [classes.error]: fcs.error,
+          [classes.filled]: fcs.filled,
+          [classes.focused]: fcs.focused,
+          [classes.required]: fcs.required,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
       {children}
-      {required && (
+      {fcs.required && (
         <span
           className={classNames(classes.asterisk, {
-            [classes.error]: error,
+            [classes.error]: fcs.error,
           })}
           data-mui-test="FormLabelAsterisk"
         >
@@ -143,6 +127,10 @@ FormLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
@@ -152,8 +140,4 @@ FormLabel.defaultProps = {
   component: 'label',
 };
 
-FormLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);
+export default withStyles(styles, { name: 'MuiFormLabel' })(withFormControlContext(FormLabel));

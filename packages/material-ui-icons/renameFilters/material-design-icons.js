@@ -1,6 +1,4 @@
-// @flow
-
-function myDestRewriter(svgPathObj: Object) {
+function myDestRewriter(svgPathObj) {
   let fileName = svgPathObj.base;
 
   fileName = fileName

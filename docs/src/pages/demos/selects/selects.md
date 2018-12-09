@@ -29,6 +29,10 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
+## Controlled open Select
+
+{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
+
 ## With a Dialog
 
 While it's discouraged by the Material Design specification, you can use a select inside a dialog.
@@ -37,8 +41,4 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 ## Text Fields
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields#textfield).
-
-## Controlled open Select
-
-{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
+The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

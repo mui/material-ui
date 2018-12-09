@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from '@material-ui/core/Popover';
@@ -36,7 +34,7 @@ class MouseOverPopover extends React.Component {
     return (
       <div>
         <Typography
-          aria-owns={open ? 'mouse-over-popover' : null}
+          aria-owns={open ? 'mouse-over-popover' : undefined}
           aria-haspopup="true"
           onMouseEnter={this.handlePopoverOpen}
           onMouseLeave={this.handlePopoverClose}

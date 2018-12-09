@@ -16,10 +16,21 @@ You can save rendering this DOM element by using the `divider` property on the `
 
 {{"demo": "pages/demos/dividers/ListDividers.js"}}
 
+## HTML5 Specification
+
+We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification.
+The examples below show two ways of achieving this.
+
 ## Inset Dividers
 
-The following example demonstrates the `inset` property.
-We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification.
-The example shows two ways of achieving this.
+The `inset` property has now been deprecated. You should now use `variant="inset"`
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
+
+## Subheader Dividers
+
+{{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
+
+## Middle Dividers
+
+{{"demo": "pages/demos/dividers/MiddleDividers.js"}}

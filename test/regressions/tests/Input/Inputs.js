@@ -19,8 +19,6 @@ const styles = {
 };
 
 class Inputs extends React.Component {
-  focusInput = null;
-
   componentDidMount() {
     this.focusInput.focus();
   }

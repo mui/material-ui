@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
+import NoSsr from '../NoSsr';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
@@ -58,13 +59,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
-  ripple = null;
+  state = {};
 
   keyDown = false; // Used to help track keyboard activation keyDown
-
-  button = null;
-
-  focusVisibleTimeout = null;
 
   focusVisibleCheckTime = 50;
 
@@ -98,8 +95,6 @@ class ButtonBase extends React.Component {
     }
   });
 
-  state = {};
-
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
     listenForFocusKeys(ownerWindow(this.button));
@@ -126,7 +121,6 @@ class ButtonBase extends React.Component {
   }
 
   componentWillUnmount() {
-    this.button = null;
     clearTimeout(this.focusVisibleTimeout);
   }
 
@@ -276,14 +270,13 @@ class ButtonBase extends React.Component {
       classNameProp,
     );
 
-    const buttonProps = {};
-
     let ComponentProp = component;
 
     if (ComponentProp === 'button' && other.href) {
       ComponentProp = 'a';
     }
 
+    const buttonProps = {};
     if (ComponentProp === 'button') {
       buttonProps.type = type || 'button';
       buttonProps.disabled = disabled;
@@ -293,6 +286,7 @@ class ButtonBase extends React.Component {
 
     return (
       <ComponentProp
+        className={className}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onKeyDown={this.handleKeyDown}
@@ -303,15 +297,17 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        tabIndex={disabled ? '-1' : tabIndex}
-        className={className}
         ref={buttonRef}
+        tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
         {...other}
       >
         {children}
         {!disableRipple && !disabled ? (
-          <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
+          <NoSsr>
+            {/* TouchRipple is only needed client side, x2 boost on the server. */}
+            <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
+          </NoSsr>
         ) : null}
       </ComponentProp>
     );

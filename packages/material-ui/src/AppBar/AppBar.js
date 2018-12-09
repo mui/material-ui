@@ -46,6 +46,10 @@ export const styles = theme => {
     positionStatic: {
       position: 'static',
     },
+    /* Styles applied to the root element if `position="relative"`. */
+    positionRelative: {
+      position: 'relative',
+    },
     /* Styles applied to the root element if `color="default"`. */
     colorDefault: {
       backgroundColor: backgroundColorDefault,
@@ -107,7 +111,7 @@ AppBar.propTypes = {
    * [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    */
-  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static']),
+  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static', 'relative']),
 };
 
 AppBar.defaultProps = {

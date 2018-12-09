@@ -46,7 +46,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
-  /* Styles applied to the `ScrollButtonComponent` component if `sscrollButtons="auto"`. */
+  /* Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`. */
   scrollButtonsAuto: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
@@ -57,18 +57,20 @@ export const styles = theme => ({
 });
 
 class Tabs extends React.Component {
-  tabs = null;
+  constructor() {
+    super();
 
-  valueToIndex = new Map();
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.updateIndicatorState(this.props);
+        this.updateScrollButtonState();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
 
-  handleResize = debounce(() => {
-    this.updateIndicatorState(this.props);
-    this.updateScrollButtonState();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
-  handleTabsScroll = debounce(() => {
-    this.updateScrollButtonState();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+      this.handleTabsScroll = debounce(() => {
+        this.updateScrollButtonState();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   state = {
     indicatorStyle: {},
@@ -81,7 +83,6 @@ class Tabs extends React.Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ mounted: true });
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
@@ -113,10 +114,7 @@ class Tabs extends React.Component {
     const { classes, scrollable, ScrollButtonComponent, scrollButtons, theme } = this.props;
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize
-        onLoad={this.handleScrollbarSizeChange}
-        onChange={this.handleScrollbarSizeChange}
-      />
+      <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
 
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
@@ -167,7 +165,18 @@ class Tabs extends React.Component {
 
       if (children.length > 0) {
         const tab = children[this.valueToIndex.get(value)];
-        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+        warning(
+          tab,
+          [
+            `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
+            'Non of the Tabs children have this value.',
+            this.valueToIndex.keys
+              ? `You can provide one of the following values: ${Array.from(
+                  this.valueToIndex.keys(),
+                ).join(', ')}.`
+              : null,
+          ].join('\n'),
+        );
         tabMeta = tab ? tab.getBoundingClientRect() : null;
       }
     }
@@ -182,7 +191,7 @@ class Tabs extends React.Component {
     this.moveTabsScroll(this.tabsRef.clientWidth);
   };
 
-  handleScrollbarSizeChange = ({ scrollbarHeight }) => {
+  handleScrollbarSizeChange = scrollbarHeight => {
     this.setState({
       scrollerStyle: {
         marginBottom: -scrollbarHeight,

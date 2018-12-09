@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { PopoverProps, PopoverClassKey } from '../Popover';
+import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { PaperProps } from '../Paper';
 import { StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
-import { ClassNameMap } from '../styles/withStyles';
 
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
   disableAutoFocusItem?: boolean;
   MenuListProps?: Partial<MenuListProps>;
   PaperProps?: Partial<PaperProps>;
-  PopoverClasses?: Partial<ClassNameMap<PopoverClassKey>>;
+  PopoverClasses?: PopoverProps['classes'];
   transitionDuration?: TransitionProps['timeout'] | 'auto';
 }
 

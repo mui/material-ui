@@ -2,18 +2,16 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
-import pink from '@material-ui/core/colors/pink';
-import { darken } from '@material-ui/core/styles/colorManipulator';
+import { createGenerateClassName, jssPreset } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import themeInitialState from './themeInitialState';
 
 function getTheme(uiTheme) {
   const theme = createMuiTheme({
     direction: uiTheme.direction,
-    nprogress: {
-      color: uiTheme.paletteType === 'light' ? '#000' : '#fff',
-    },
+    nprogress: { color: uiTheme.paletteType === 'light' ? '#000' : '#fff' },
     palette: { ...uiTheme.paletteColors, type: uiTheme.paletteType },
+    typography: { useNextVariants: true },
   });
 
   // Expose the theme as a global variable so people can play with it.
@@ -24,21 +22,13 @@ function getTheme(uiTheme) {
   return theme;
 }
 
-const theme = getTheme({
-  direction: 'ltr',
-  paletteType: 'light',
-  paletteColors: {
-    primary: blue,
-    secondary: {
-      // Darken so we reach the AA contrast ratio level.
-      main: darken(pink.A400, 0.08),
-    },
-  },
-});
+const theme = getTheme(themeInitialState);
 
 // Configure JSS
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-jss.options.insertionPoint = 'insertion-point-jss';
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint: 'insertion-point-jss',
+});
 
 function createPageContext() {
   return {

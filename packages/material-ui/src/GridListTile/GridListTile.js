@@ -18,14 +18,14 @@ export const styles = {
     height: '100%',
     overflow: 'hidden',
   },
-  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
   imgFullHeight: {
     height: '100%',
     transform: 'translateX(-50%)',
     position: 'relative',
     left: '50%',
   },
-  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
   imgFullWidth: {
     width: '100%',
     position: 'relative',
@@ -35,11 +35,15 @@ export const styles = {
 };
 
 class GridListTile extends React.Component {
-  imgElement = null;
+  constructor() {
+    super();
 
-  handleResize = debounce(() => {
-    this.fit();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.fit();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   componentDidMount() {
     this.ensureImageCover();

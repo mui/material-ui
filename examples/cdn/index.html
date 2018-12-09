@@ -3,7 +3,7 @@
   <head>
     <title>My page</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height">
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
     <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin="anonymous"></script>
@@ -42,6 +42,9 @@ const theme = createMuiTheme({
       main: colors.green[500],
       dark: colors.green[700],
     },
+  },
+  typography: {
+    useNextVariants: true,
   },
 });
 
@@ -91,13 +94,13 @@ class Index extends React.Component {
               </Button>
             </DialogActions>
           </Dialog>
-          <Typography variant="display1" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             Material-UI
           </Typography>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom>
             example project
           </Typography>
-          <Button variant="raised" color="secondary" onClick={this.handleClick}>
+          <Button variant="contained" color="secondary" onClick={this.handleClick}>
             <Icon className={classes.icon}>fingerprint</Icon>
             Super Secret Password
           </Button>

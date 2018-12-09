@@ -2,7 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TestViewer from './TestViewer';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 // Get all the tests specifically written for preventing regressions.
 const requireRegression = require.context('./tests', true, /js$/);
@@ -33,25 +40,25 @@ const blacklistSuite = [
 
   // Less important
   'docs-layouts',
-  'docs-page-layout-examples-album',
-  'docs-page-layout-examples-blog',
-  'docs-page-layout-examples-checkout',
-  'docs-page-layout-examples-dashboard',
-  'docs-page-layout-examples-pricing',
-  'docs-page-layout-examples-sign-in',
+  'docs-getting-started-page-layout-examples-album',
+  'docs-getting-started-page-layout-examples-blog',
+  'docs-getting-started-page-layout-examples-checkout',
+  'docs-getting-started-page-layout-examples-dashboard',
+  'docs-getting-started-page-layout-examples-pricing',
+  'docs-getting-started-page-layout-examples-sign-in',
 
   // Useless
   'docs-', // Home
   'docs-discover-more-showcase',
   'docs-guides',
-  'docs-premium-themes',
   'docs-style-color', // non important demo
   'docs-versions',
 ];
 
 const blacklistFilename = [
-  'docs-demos-drawers/tileData.png', // no component
   'docs-demos-grid-list/tileData.png', // no component
+  'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
+  'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
 ];
 
@@ -65,14 +72,24 @@ const demos = requireDemos.keys().reduce((res, path) => {
     .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklistSuite.includes(suite) && !blacklistFilename.includes(`${suite}/${name}.png`)) {
-    res.push({
-      path,
-      suite,
-      name,
-      case: requireDemos(path).default,
-    });
+  if (blacklistSuite.includes(suite)) {
+    return res;
   }
+
+  if (blacklistFilename.includes(`${suite}/${name}.png`)) {
+    return res;
+  }
+
+  if (/^docs-premium-themes(.*)/.test(suite)) {
+    return res;
+  }
+
+  res.push({
+    path,
+    suite,
+    name,
+    case: requireDemos(path).default,
+  });
 
   return res;
 }, []);
@@ -121,9 +138,11 @@ tests.forEach(test => {
 
   suite.createTest(test.name, () => {
     ReactDOM.render(
-      <TestViewer>
-        <TestCase />
-      </TestViewer>,
+      <MuiThemeProvider theme={theme}>
+        <TestViewer>
+          <TestCase />
+        </TestViewer>
+      </MuiThemeProvider>,
       rootEl,
     );
   });

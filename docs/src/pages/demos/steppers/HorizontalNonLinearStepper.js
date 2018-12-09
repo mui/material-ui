@@ -67,10 +67,9 @@ class HorizontalNonLinearStepper extends React.Component {
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleStep = step => () => {
@@ -132,7 +131,7 @@ class HorizontalNonLinearStepper extends React.Component {
           {this.allStepsCompleted() ? (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
+                All steps completed - you&apos;re finished
               </Typography>
               <Button onClick={this.handleReset}>Reset</Button>
             </div>

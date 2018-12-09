@@ -8,7 +8,8 @@ export interface NativeSelectInputProps {
   ) => void;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>, child: React.ReactNode) => void;
-  value?: string | number | boolean;
+  value?: Array<string | number | boolean> | string | number | boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 declare const NativeSelectInput: React.ComponentType<NativeSelectInputProps>;

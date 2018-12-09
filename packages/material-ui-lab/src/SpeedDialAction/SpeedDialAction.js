@@ -1,16 +1,14 @@
+// @inheritedComponent Tooltip
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export const styles = theme => ({
-  /* Styles applied to the root (`Tooltip`) component. */
-  root: {
-    position: 'relative',
-  },
   /* Styles applied to the `Button` component. */
   button: {
     margin: 8,
@@ -32,57 +30,96 @@ export const styles = theme => ({
 });
 
 class SpeedDialAction extends React.Component {
-  state = {
-    tooltipOpen: false,
+  constructor(props) {
+    super();
+    this.state = {
+      tooltipOpen: props.tooltipOpen,
+    };
+  }
+
+  static getDerivedStateFromProps = (props, state) => {
+    if (!props.open && state.tooltipOpen) {
+      return { tooltipOpen: false };
+    }
+    return null;
   };
 
   handleTooltipClose = () => {
+    if (this.props.tooltipOpen) return;
     this.setState({ tooltipOpen: false });
   };
 
   handleTooltipOpen = () => {
+    if (this.props.tooltipOpen) return;
     this.setState({ tooltipOpen: true });
   };
+
+  componentDidUpdate = prevProps => {
+    if (!this.props.tooltipOpen || prevProps.open === this.props.open) return;
+    if (!this.state.tooltipOpen) {
+      this.timeout = setTimeout(() => this.setState({ tooltipOpen: true }), this.props.delay + 100);
+    }
+  };
+
+  componentWillUnmount = () => clearTimeout(this.timeout);
 
   render() {
     const {
       ButtonProps,
       classes,
-      className: classNameProp,
+      className,
       delay,
       icon,
       id,
       onClick,
+      onKeyDown,
       open,
       tooltipTitle,
+      TooltipClasses,
       tooltipPlacement,
+      tooltipOpen,
       ...other
     } = this.props;
+
+    let clickProp = { onClick };
+    if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+      let startTime;
+      clickProp = {
+        onTouchStart: () => {
+          startTime = new Date();
+        },
+        onTouchEnd: () => {
+          // only perform action if the touch is a tap, i.e. not long press
+          if (new Date() - startTime < 500) {
+            onClick();
+          }
+        },
+      };
+    }
 
     return (
       <Tooltip
         id={id}
-        className={classNames(classes.root, classNameProp)}
         title={tooltipTitle}
         placement={tooltipPlacement}
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={open && this.state.tooltipOpen}
+        classes={TooltipClasses}
         {...other}
       >
-        <Button
-          variant="fab"
-          mini
-          className={classNames(classes.button, !open && classes.buttonClosed)}
+        <Fab
+          size="small"
+          className={classNames(className, classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
-          onClick={onClick}
           tabIndex={-1}
           role="menuitem"
-          aria-labelledby={id}
+          onKeyDown={onKeyDown}
           {...ButtonProps}
+          {...clickProp}
         >
           {icon}
-        </Button>
+        </Fab>
       </Tooltip>
     );
   }
@@ -90,7 +127,7 @@ class SpeedDialAction extends React.Component {
 
 SpeedDialAction.propTypes = {
   /**
-   * Properties applied to the [`Button`](/api/button) component.
+   * Properties applied to the [`Button`](/api/button/) component.
    */
   ButtonProps: PropTypes.object,
   /**
@@ -126,19 +163,41 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   */
+  TooltipClasses: PropTypes.object,
+  /**
+   * Make the tooltip always visible when the SpeedDial is open.
+   */
+  tooltipOpen: PropTypes.bool,
+  /**
    * Placement of the tooltip.
    */
-  tooltipPlacement: PropTypes.string,
+  tooltipPlacement: PropTypes.oneOf([
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top',
+  ]),
   /**
    * Label to display in the tooltip.
    */
-  tooltipTitle: PropTypes.node,
+  tooltipTitle: PropTypes.node.isRequired,
 };
 
 SpeedDialAction.defaultProps = {
   delay: 0,
   open: false,
   tooltipPlacement: 'left',
+  tooltipOpen: false,
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);

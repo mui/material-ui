@@ -4,21 +4,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
 import marked from 'marked';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import warning from 'warning';
+import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
-import CodeFund from 'docs/src/modules/components/CodeFund';
 
 const renderer = new marked.Renderer();
 
 let itemsServer = null;
 renderer.heading = (text, level) => {
-  if (level === 1 || level > 3) {
-    return;
-  }
-
   if (level === 2) {
     itemsServer.push({
       text,
@@ -26,9 +22,11 @@ renderer.heading = (text, level) => {
       hash: textToHash(text),
       children: [],
     });
-  }
+  } else if (level === 3) {
+    if (!itemsServer[itemsServer.length - 1]) {
+      throw new Error(`Missing parent level for: ${text}`);
+    }
 
-  if (level === 3) {
     itemsServer[itemsServer.length - 1].children.push({
       text,
       level,
@@ -40,6 +38,8 @@ renderer.heading = (text, level) => {
 const styles = theme => ({
   root: {
     top: 70,
+    // Fix IE 11 position sticky issue.
+    marginTop: 70,
     width: 162,
     flexShrink: 0,
     order: 2,
@@ -68,10 +68,18 @@ const styles = theme => ({
   },
 });
 
+function checkDuplication(uniq, item) {
+  warning(!uniq[item.hash], `Duplicated table of content ${item.hash}`);
+
+  if (!uniq[item.hash]) {
+    uniq[item.hash] = true;
+  }
+}
+
 class AppTableOfContents extends React.Component {
-  handleScroll = debounce(() => {
+  handleScroll = throttle(() => {
     this.findActiveIndex();
-  }, 83); // Corresponds to 5 frames at 60 Hz.
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   constructor(props) {
     super(props);
@@ -87,8 +95,10 @@ class AppTableOfContents extends React.Component {
 
   componentDidMount() {
     this.itemsClient = [];
+    const uniq = {};
 
     itemsServer.forEach(item2 => {
+      checkDuplication(uniq, item2);
       this.itemsClient.push({
         ...item2,
         node: document.getElementById(item2.hash),
@@ -96,6 +106,7 @@ class AppTableOfContents extends React.Component {
 
       if (item2.children.length > 0) {
         item2.children.forEach(item3 => {
+          checkDuplication(uniq, item3);
           this.itemsClient.push({
             ...item3,
             node: document.getElementById(item3.hash),
@@ -108,15 +119,22 @@ class AppTableOfContents extends React.Component {
   }
 
   componentWillUnmount() {
-    this.handleScroll.clear();
+    this.handleScroll.cancel();
   }
 
   findActiveIndex = () => {
-    const active = this.itemsClient.find(
-      (item, index) =>
+    let active;
+
+    for (let i = 0; i < this.itemsClient.length; i += 1) {
+      const item = this.itemsClient[i];
+      if (
         document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-        index === this.itemsClient.length - 1,
-    );
+        i === this.itemsClient.length - 1
+      ) {
+        active = item;
+        break;
+      }
+    }
 
     if (active && this.state.active !== active.hash) {
       this.setState({
@@ -126,15 +144,14 @@ class AppTableOfContents extends React.Component {
   };
 
   render() {
-    const { classes, disableAd } = this.props;
+    const { classes } = this.props;
     const { active } = this.state;
 
     return (
       <nav className={classes.root}>
-        {disableAd ? null : <CodeFund />}
         {itemsServer.length > 0 ? (
           <React.Fragment>
-            <Typography variant="body2" gutterBottom className={classes.contents}>
+            <Typography gutterBottom className={classes.contents}>
               Contents
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />
@@ -183,7 +200,6 @@ class AppTableOfContents extends React.Component {
 AppTableOfContents.propTypes = {
   classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
-  disableAd: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(AppTableOfContents);

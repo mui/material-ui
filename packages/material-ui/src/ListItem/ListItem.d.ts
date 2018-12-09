@@ -12,6 +12,7 @@ declare const ListItem: OverridableComponent<{
     disableGutters?: boolean;
     divider?: boolean;
     focusVisibleClassName?: string;
+    selected?: boolean;
   },
   defaultComponent: typeof ButtonBase;
   classKey: ListItemClassKey;
@@ -27,7 +28,8 @@ export type ListItemClassKey =
   | 'divider'
   | 'gutters'
   | 'button'
-  | 'secondaryAction';
+  | 'secondaryAction'
+  | 'selected';
 
 export type ListItemProps = PropsOf<typeof ListItem>;
 

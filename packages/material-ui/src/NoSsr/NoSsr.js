@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import exactProp from '../utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
@@ -12,6 +12,8 @@ import exactProp from '../utils/exactProp';
  * - Under too heavy server load, you can turn on service degradation.
  */
 class NoSsr extends React.Component {
+  mounted = false;
+
   state = {
     mounted: false,
   };
@@ -20,7 +22,7 @@ class NoSsr extends React.Component {
     this.mounted = true;
 
     if (this.props.defer) {
-      // Wondering why we use two raf? Check this video out:
+      // Wondering why we use two RAFs? Check this video out:
       // https://www.youtube.com/watch?v=cCOL7MC4Pl0
       requestAnimationFrame(() => {
         // The browser should be about to render the DOM that React commited at this point.
@@ -32,7 +34,7 @@ class NoSsr extends React.Component {
         });
       });
     } else {
-      this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ mounted: true });
     }
   }
 

@@ -1,44 +1,52 @@
 const fs = require('fs');
 
-function getMainFile() {
-  const dirname = '.next/static/commons';
-  const files = fs.readdirSync(dirname);
-  const [file] = files
-    .reduce((result, filename) => {
-      if (!/^main-[a-f0-9]+\.js$/.test(filename)) {
-        return result;
-      }
+const buildId = fs.readFileSync('.next/BUILD_ID', 'utf8');
 
-      const path = `${dirname}/${filename}`;
-      return [...result, { path, ctime: fs.statSync(path).ctimeMs }];
-    }, [])
-    .sort((x, y) => y.ctime - x.ctime);
-  return file;
-}
+const dirname = '.next/static/chunks';
+const [main] = fs.readdirSync(dirname).reduce((result, filename) => {
+  if (filename.length === 31) {
+    return [...result, { path: `${dirname}/${filename}` }];
+  }
+
+  return result;
+}, []);
 
 module.exports = [
   {
-    name: 'The initial cost people pay for using one component',
+    name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '17.6 KB',
+    limit: '18.5 KB',
   },
   {
-    name: 'The size of all the modules of material-ui.',
+    name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '95.6 KB',
+    limit: '94.9 KB',
   },
   {
-    name: 'The main bundle of the docs',
-    webpack: false,
-    path: getMainFile().path,
-    limit: '181 KB',
+    name: 'The size of the @material-ui/styles modules',
+    webpack: true,
+    path: 'packages/material-ui-styles/build/index.js',
+    limit: '14.9 KB',
   },
   {
-    name: 'The home page of the docs',
+    // vs https://bundlephobia.com/result?p=react-popper
+    name: 'The size of the @material-ui/core/Popper component',
+    webpack: true,
+    path: 'packages/material-ui/build/Popper/index.js',
+    limit: '9.9 KB',
+  },
+  {
+    name: 'The main docs bundle',
     webpack: false,
-    path: '.next/bundles/pages/index.js',
-    limit: '5.9 KB',
+    path: main.path,
+    limit: '177 KB',
+  },
+  {
+    name: 'The docs home page',
+    webpack: false,
+    path: `.next/static/${buildId}/pages/index.js`,
+    limit: '6 KB',
   },
 ];

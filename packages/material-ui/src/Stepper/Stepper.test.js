@@ -1,10 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Step from '../Step';
+import StepLabel from '../StepLabel';
 import StepConnector from '../StepConnector';
+import StepContent from '../StepContent';
 import Stepper from './Stepper';
 
 describe('<Stepper />', () => {
@@ -101,7 +103,7 @@ describe('<Stepper />', () => {
       assert.strictEqual(wrapper.find('.child-2').props().active, true);
     });
 
-    it('passes last down correctly when rendering children containing arrays', () => {
+    it('passes index down correctly when rendering children containing arrays', () => {
       const wrapper = shallow(
         <Stepper linear={false}>
           <div />
@@ -110,9 +112,9 @@ describe('<Stepper />', () => {
       );
 
       const steps = wrapper.children().find('div');
-      assert.strictEqual(steps.at(0).props().last, false);
-      assert.strictEqual(steps.at(1).props().last, false);
-      assert.strictEqual(steps.at(2).props().last, true);
+      assert.strictEqual(steps.at(0).props().index, 0);
+      assert.strictEqual(steps.at(1).props().index, 1);
+      assert.strictEqual(steps.at(2).props().index, 2);
     });
   });
 
@@ -166,5 +168,79 @@ describe('<Stepper />', () => {
         'should not contain a <StepConnector /> child',
       );
     });
+
+    it('should pass active prop to connector when second step is active', () => {
+      const wrapper = shallow(
+        <Stepper activeStep={1}>
+          <Step />
+          <Step />
+        </Stepper>,
+      );
+      const connectors = wrapper.find(StepConnector);
+      assert.strictEqual(connectors.first().props().active, true);
+    });
+
+    it('should pass completed prop to connector when second step is completed', () => {
+      const wrapper = shallow(
+        <Stepper activeStep={2}>
+          <Step />
+          <Step />
+        </Stepper>,
+      );
+      const connectors = wrapper.find(StepConnector);
+      assert.strictEqual(connectors.first().props().completed, true);
+    });
+  });
+
+  it('renders with a null child', () => {
+    const wrapper = shallow(
+      <Stepper>
+        <Step />
+        {null}
+      </Stepper>,
+    );
+    assert.strictEqual(wrapper.find(Step).length, 1);
+  });
+
+  it('should be able to force a state', () => {
+    const wrapper = shallow(
+      <Stepper>
+        <Step className="child-0" />
+        <Step className="child-1" active />
+        <Step className="child-2" />
+      </Stepper>,
+    );
+    assert.strictEqual(wrapper.find('.child-0').props().active, true);
+    assert.strictEqual(wrapper.find('.child-1').props().active, true);
+    assert.strictEqual(wrapper.find('.child-2').props().active, false);
+  });
+
+  it('should hide the last connector', () => {
+    const wrapper = mount(
+      <Stepper orientation="vertical">
+        <Step>
+          <StepLabel>one</StepLabel>
+          <StepContent />
+        </Step>
+        <Step>
+          <StepLabel>two</StepLabel>
+          <StepContent />
+        </Step>
+      </Stepper>,
+    );
+    assert.strictEqual(
+      wrapper
+        .find(StepContent)
+        .at(0)
+        .props().last,
+      false,
+    );
+    assert.strictEqual(
+      wrapper
+        .find(StepContent)
+        .at(1)
+        .props().last,
+      true,
+    );
   });
 });

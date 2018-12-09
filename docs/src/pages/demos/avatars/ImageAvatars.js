@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   avatar: {
     margin: 10,
   },
   bigAvatar: {
+    margin: 10,
     width: 60,
     height: 60,
   },
@@ -21,14 +18,10 @@ const styles = {
 function ImageAvatars(props) {
   const { classes } = props;
   return (
-    <div className={classes.row}>
-      <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" className={classes.avatar} />
-      <Avatar
-        alt="Adelle Charles"
-        src="/static/images/uxceo-128.jpg"
-        className={classNames(classes.avatar, classes.bigAvatar)}
-      />
-    </div>
+    <Grid container justify="center" alignItems="center">
+      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.avatar} />
+      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.bigAvatar} />
+    </Grid>
   );
 }
 

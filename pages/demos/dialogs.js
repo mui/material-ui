@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/dialogs/dialogs.md';
 
-function Page() {
+const req = require.context('markdown', true, /.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./dialogs${props.lang}.md`)}
       demos={{
         'pages/demos/dialogs/SimpleDialog.js': {
           js: require('docs/src/pages/demos/dialogs/SimpleDialog').default,
@@ -43,6 +44,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/FullScreenDialog'), 'utf8')
 `,
         },
+        'pages/demos/dialogs/MaxWidthDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/MaxWidthDialog').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/MaxWidthDialog'), 'utf8')
+`,
+        },
         'pages/demos/dialogs/FormDialog.js': {
           js: require('docs/src/pages/demos/dialogs/FormDialog').default,
           raw: preval`
@@ -62,6 +70,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ScrollDialog'), 'utf8')
+`,
+        },
+        'pages/demos/dialogs/CustomizedDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/CustomizedDialog.js').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/CustomizedDialog'), 'utf8')
 `,
         },
       }}

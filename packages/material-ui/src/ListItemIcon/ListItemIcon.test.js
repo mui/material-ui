@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import ListItemIcon from './ListItemIcon';
 
 describe('<ListItemIcon />', () => {
@@ -16,23 +16,25 @@ describe('<ListItemIcon />', () => {
     );
   });
 
-  it('should render a span', () => {
+  it('should render a span inside a div', () => {
     const wrapper = shallow(
       <ListItemIcon>
         <span />
       </ListItemIcon>,
     );
-    assert.strictEqual(wrapper.name(), 'span');
+    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.children().name(), 'span');
   });
 
-  it('should render with the user and root classes', () => {
+  it('should render a div with the user and root classes, but not the children classes', () => {
     const wrapper = shallow(
       <ListItemIcon className="foo">
         <span className="bar" />
       </ListItemIcon>,
     );
-    assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
-    assert.strictEqual(wrapper.hasClass('bar'), true, 'should have the "bar" class');
+    assert.strictEqual(wrapper.hasClass('foo'), true);
+    assert.strictEqual(wrapper.hasClass('bar'), false);
+    assert.strictEqual(wrapper.children().hasClass('bar'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

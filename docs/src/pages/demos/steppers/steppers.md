@@ -62,6 +62,18 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 {{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}
 
+## Customized Stepper
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here are examples of how you can change the look of a stepper.
+
+This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
+
 ## Mobile Stepper
 
 This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.

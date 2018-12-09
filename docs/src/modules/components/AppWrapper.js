@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import GoogleTag from 'docs/src/modules/components/GoogleTag';
+import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -40,7 +39,7 @@ class AppWrapper extends React.Component {
     if (
       'serviceWorker' in navigator &&
       process.env.NODE_ENV === 'production' &&
-      window.location.host === 'material-ui.com'
+      window.location.host.indexOf('material-ui.com') <= 0
     ) {
       navigator.serviceWorker.register('/sw.js');
     }
@@ -79,16 +78,15 @@ class AppWrapper extends React.Component {
     const { pageContext } = this.state;
 
     return (
-      <JssProvider
-        jss={pageContext.jss}
-        registry={pageContext.sheetsRegistry}
+      <StylesProvider
         generateClassName={pageContext.generateClassName}
+        jss={pageContext.jss}
+        sheetsManager={pageContext.sheetsManager}
+        sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
-          {children}
-          <GoogleTag />
-        </MuiThemeProvider>
-      </JssProvider>
+        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+        <GoogleAnalytics />
+      </StylesProvider>
     );
   }
 }

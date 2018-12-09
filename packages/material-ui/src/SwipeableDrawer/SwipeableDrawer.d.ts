@@ -6,9 +6,12 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   disableBackdropTransition?: boolean;
   disableDiscovery?: boolean;
   disableSwipeToOpen?: boolean;
+  hysteresis?: number;
+  minFlingVelocity?: number;
   onClose: React.ReactEventHandler<{}>;
   onOpen: React.ReactEventHandler<{}>;
   open: boolean;
+  SwipeAreaProps?: object;
   swipeAreaWidth?: number;
 }
 

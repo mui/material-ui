@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
@@ -41,7 +41,7 @@ describe('<Zoom />', () => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
-        assert.strictEqual(handlers[n].args[0].length, 1, 'should forward the element');
+        assert.strictEqual(handlers[n].args[0].length, 1);
       });
     });
   });

@@ -2,9 +2,13 @@
 
 <p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
+> ⚠️ We are working on extracting the styling solution into it's own package: [`@material-ui/styles`](/css-in-js/basics/).
+It's an experimental project (alpha version).
+Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
+
 Material-UI aims to provide strong foundations for building dynamic UIs.
 For the sake of simplicity, **we expose our styling solution to users**.
-You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability) all the other major solutions.
+You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
 
 ## Material-UI's styling solution
 
@@ -39,7 +43,7 @@ Check the jss-rtl [readme](https://github.com/alitaheri/jss-rtl#simple-usage) to
 
 When rendering on the server, you will need to get all rendered styles as a CSS string.
 The `SheetsRegistry` class allows you to manually aggregate and stringify them.
-Read more about [Server Rendering](/guides/server-rendering).
+Read more about [Server Rendering](/guides/server-rendering/).
 
 {{"demo": "pages/customization/css-in-js/JssRegistry.js", "hideEditButton": true}}
 
@@ -48,7 +52,7 @@ Read more about [Server Rendering](/guides/server-rendering).
 The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
 This technique provides an important performance boost when re-rendering instances of a component.
 
-When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering).
+When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering/).
 
 ## Class names
 
@@ -116,9 +120,11 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
 
 function App() {
   return (
@@ -151,9 +157,11 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = document.getElementById('jss-insertion-point');
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: document.getElementById('jss-insertion-point'),
+});
 
 function App() {
   return (
@@ -180,9 +188,11 @@ const styleNode = document.createComment("jss-insertion-point");
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
 
 function App() {
   return (
@@ -200,8 +210,8 @@ export default App;
 react-jss exposes a `JssProvider` component to configure JSS for the underlying child components.
 There are different use cases:
 - Providing a class name generator.
-- [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
-- Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or changing the [CSS injection order](/customization/css-in-js#css-injection-order).
+- [Providing a Sheets registry.](/customization/css-in-js/#sheets-registry)
+- Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left/) or changing the [CSS injection order](/customization/css-in-js/#css-injection-order).
 Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.
 Here is an example:
 
@@ -237,7 +247,7 @@ Given `withStyles` is our internal styling solution, all the plugins aren't avai
 - [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
 It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
-Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left#3-jss-rtl).
+Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3--jss-rtl).
 
 ## API
 
@@ -289,7 +299,7 @@ class MyComponent extends React.Component {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
+Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
 
 ```jsx
 import { withStyles } from '@material-ui/core/styles';
@@ -312,13 +322,14 @@ export default MyComponent
 
 ### `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/js-api#generate-your-own-class-names).
+A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
 
 #### Arguments
 
 1. `options` (*Object* [optional]):
   - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
+  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
 
 #### Returns
 

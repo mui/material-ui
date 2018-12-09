@@ -1,14 +1,15 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { spy } from 'sinon';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Fade from '../Fade';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
 describe('<Dialog />', () => {
+  let mount;
   let shallow;
   let classes;
   const defaultProps = {
@@ -16,8 +17,13 @@ describe('<Dialog />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Modal', () => {
@@ -32,11 +38,7 @@ describe('<Dialog />', () => {
         foo
       </Dialog>,
     );
-    assert.strictEqual(
-      wrapper.find(Transition).length,
-      1,
-      'should include element given in TransitionComponent',
-    );
+    assert.strictEqual(wrapper.find(Transition).length, 1);
   });
 
   it('should put Modal specific props on the root Modal node', () => {
@@ -71,11 +73,7 @@ describe('<Dialog />', () => {
         foo
       </Dialog>,
     );
-    assert.strictEqual(
-      wrapper.prop('data-my-prop'),
-      'woofDialog',
-      'custom prop should be woofDialog',
-    );
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofDialog');
   });
 
   it('should render with the user classes on the root node', () => {
@@ -87,38 +85,102 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.hasClass('woofDialog'), true);
   });
 
-  it('should render Fade > Paper > children inside the Modal', () => {
+  it('should render Fade > div > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
     const wrapper = shallow(<Dialog {...defaultProps}>{children}</Dialog>);
 
     const fade = wrapper.childAt(0);
     assert.strictEqual(fade.type(), Fade);
 
-    const paper = fade.childAt(0);
+    const div = fade.childAt(0);
+    assert.strictEqual(div.type(), 'div');
+
+    const paper = div.childAt(0);
     assert.strictEqual(paper.length === 1 && paper.type(), Paper);
 
-    assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the dialog class');
+    assert.strictEqual(paper.hasClass(classes.paper), true);
   });
 
   it('should not be open by default', () => {
     const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, false, 'should pass show=false to the Modal');
-    assert.strictEqual(wrapper.find(Fade).props().in, false, 'should pass in=false to the Fade');
+    assert.strictEqual(wrapper.props().open, false);
+    assert.strictEqual(wrapper.find(Fade).props().in, false);
   });
 
   it('should be open by default', () => {
     const wrapper = shallow(<Dialog open>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, true, 'should pass show=true to the Modal');
-    assert.strictEqual(wrapper.find(Fade).props().in, true, 'should pass in=true to the Fade');
+    assert.strictEqual(wrapper.props().open, true);
+    assert.strictEqual(wrapper.find(Fade).props().in, true);
   });
 
   it('should fade down and make the transition appear on first mount', () => {
     const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(
-      wrapper.find(Fade).props().appear,
-      true,
-      'should pass appear=true to the Fade',
-    );
+    assert.strictEqual(wrapper.find(Fade).props().appear, true);
+  });
+
+  describe('backdrop', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Dialog open>foo</Dialog>);
+    });
+
+    it('should attach a handler to the backdrop that fires onClose', () => {
+      const onClose = spy();
+      wrapper.setProps({ onClose });
+
+      const handler = wrapper.instance().handleBackdropClick;
+      const backdrop = wrapper.find('div');
+      assert.strictEqual(
+        backdrop.props().onClick,
+        handler,
+        'should attach the handleBackdropClick handler',
+      );
+
+      handler({});
+      assert.strictEqual(onClose.callCount, 1, 'should fire the onClose callback');
+    });
+
+    it('should let the user disable backdrop click triggering onClose', () => {
+      const onClose = spy();
+      wrapper.setProps({ onClose, disableBackdropClick: true });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({});
+      assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
+    });
+
+    it('should call through to the user specified onBackdropClick callback', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({});
+      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+    });
+
+    it('should ignore the backdrop click if the event did not come from the backdrop', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({
+        target: {
+          /* a dom node */
+        },
+        currentTarget: {
+          /* another dom node */
+        },
+      });
+      assert.strictEqual(
+        onBackdropClick.callCount,
+        0,
+        'should not fire the onBackdropClick callback',
+      );
+    });
   });
 
   describe('prop: classes', () => {
@@ -177,6 +239,34 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
       assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+    });
+  });
+
+  describe('prop: PaperProps.className', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('warns on className usage', () => {
+      const wrapper = mount(
+        <Dialog open PaperProps={{ className: 'custom-paper-class' }}>
+          foo
+        </Dialog>,
+      );
+      const paperWrapper = wrapper.find('div.custom-paper-class');
+
+      assert.strictEqual(paperWrapper.exists(), true);
+      assert.strictEqual(paperWrapper.hasClass(classes.paper), false);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        '`className` overrides all `Dialog` specific styles in `Paper`. If you wanted to add ' +
+          'styles to the `Paper` component use `classes.paper` in the `Dialog` props instead.',
+      );
     });
   });
 });

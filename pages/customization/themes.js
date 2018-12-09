@@ -1,12 +1,13 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/customization/themes/themes.md';
 
-function Page() {
+const req = require.context('markdown', true, /\.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./themes${props.lang}.md`)}
       demos={{
         'pages/customization/themes/Palette.js': {
           js: require('docs/src/pages/customization/themes/Palette').default,
@@ -64,11 +65,18 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/themes/WithTheme'), 'utf8')
 `,
         },
-        'pages/customization/themes/Nested.js': {
-          js: require('docs/src/pages/customization/themes/Nested').default,
+        'pages/customization/themes/ThemeNesting.js': {
+          js: require('docs/src/pages/customization/themes/ThemeNesting').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/themes/Nested'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/customization/themes/ThemeNesting'), 'utf8')
+`,
+        },
+        'pages/customization/themes/ThemeNestingExtend.js': {
+          js: require('docs/src/pages/customization/themes/ThemeNestingExtend').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/themes/ThemeNestingExtend'), 'utf8')
 `,
         },
       }}

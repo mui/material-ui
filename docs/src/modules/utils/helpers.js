@@ -28,11 +28,10 @@ export function pageToTitle(page) {
   return titleize(name);
 }
 
-export function getDependencies(raw) {
+export function getDependencies(raw, reactVersion = 'latest') {
   const deps = {
-    '@material-ui/core': 'latest',
-    'react-dom': 'latest',
-    react: 'latest',
+    'react-dom': reactVersion,
+    react: reactVersion,
   };
   const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
   let m;
@@ -43,4 +42,9 @@ export function getDependencies(raw) {
     deps[name] = deps[name] || 'latest';
   }
   return deps;
+}
+
+export function getCookie(name) {
+  const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
+  return document.cookie.replace(regex, '$1');
 }

@@ -41,7 +41,7 @@ function Tidelift(props) {
     <Link
       className={classes.root}
       variant="button"
-      href="https://tidelift.com/subscription/npm/material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage"
+      href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage"
       target="_blank"
       rel="noopener"
     >

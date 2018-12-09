@@ -99,8 +99,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Snackbar extends React.Component {
-  timerAutoHide = null;
-
   state = {};
 
   componentDidMount() {
@@ -210,6 +208,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      ClickAwayListenerProps,
       ContentProps,
       disableWindowBlurListener,
       message,
@@ -236,7 +235,7 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <ClickAwayListener onClickAway={this.handleClickAway}>
+      <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
         <div
           className={classNames(
             classes.root,
@@ -283,7 +282,7 @@ Snackbar.propTypes = {
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['top', 'center', 'bottom']).isRequired,
+    vertical: PropTypes.oneOf(['top', 'bottom']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
@@ -293,8 +292,7 @@ Snackbar.propTypes = {
    */
   autoHideDuration: PropTypes.number,
   /**
-   * If you wish the take control over the children of the component you can use this property.
-   * When used, you replace the `SnackbarContent` component with the children.
+   * Replace the `SnackbarContent` component.
    */
   children: PropTypes.element,
   /**
@@ -307,7 +305,11 @@ Snackbar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
+   * Properties applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps: PropTypes.object,
+  /**
+   * Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**

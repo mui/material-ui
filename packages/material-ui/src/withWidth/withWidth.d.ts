@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { AnyComponent, ConsistentWith, Overwrite } from '..';
+import { PropInjector } from '..';
 
 export interface WithWidthOptions {
   resizeInterval: number;
@@ -24,6 +24,4 @@ export function isWidthUp(
 
 export default function withWidth(
   options?: WithWidthOptions,
-): <P extends ConsistentWith<P, WithWidth>>(
-  component: AnyComponent<P & WithWidth>,
-) => React.ComponentType<Overwrite<P, Partial<WithWidth>>>;
+): PropInjector<WithWidth, Partial<WithWidth>>;

@@ -1,8 +1,6 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
 
@@ -44,6 +42,17 @@ describe('<InputAdornment />', () => {
     const wrapper = shallow(<InputAdornment position="end">foo</InputAdornment>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.positionEnd), true);
+  });
+
+  it('should have the filled root and class when variant is filled', () => {
+    const wrapper = shallow(
+      <InputAdornment variant="filled" position="start">
+        foo
+      </InputAdornment>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.positionStart), true);
+    assert.strictEqual(wrapper.hasClass(classes.filled), true);
   });
 
   it('should not wrap text children in a Typography when disableTypography true', () => {

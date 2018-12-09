@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -10,28 +11,21 @@ export const styles = {
   },
 };
 
-class TableBody extends React.Component {
-  getChildContext() {
-    // eslint-disable-line class-methods-use-this
-    return {
-      tablelvl2: {
-        variant: 'body',
-      },
-    };
-  }
+function TableBody(props) {
+  const { classes, className, component: Component, ...other } = props;
 
-  render() {
-    const { classes, className, component: Component, ...other } = this.props;
-
-    return <Component className={classNames(classes.root, className)} {...other} />;
-  }
+  return (
+    <Tablelvl2Context.Provider value={{ variant: 'body' }}>
+      <Component className={classNames(classes.root, className)} {...other} />
+    </Tablelvl2Context.Provider>
+  );
 }
 
 TableBody.propTypes = {
   /**
    * The content of the component, normally `TableRow`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -50,10 +44,6 @@ TableBody.propTypes = {
 
 TableBody.defaultProps = {
   component: 'tbody',
-};
-
-TableBody.childContextTypes = {
-  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);
