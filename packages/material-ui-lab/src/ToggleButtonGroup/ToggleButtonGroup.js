@@ -34,7 +34,6 @@ class ToggleButtonGroup extends React.Component {
     if (value && index >= 0) {
       newValue = [...value];
       newValue.splice(index, 1);
-      if (newValue.length === 0) newValue = null;
     } else {
       newValue = value ? [...value, buttonValue] : [buttonValue];
     }
@@ -120,7 +119,7 @@ ToggleButtonGroup.propTypes = {
    * @param {object} event The event source of the callback
    * @param {object} value of the selected buttons. When `exclusive` is true
    * this is a single value; when false an array of selected values. If no value
-   * is selected the value is null.
+   * is selected and `exclusive` is true the value is null; when false an empty array.
    */
   onChange: PropTypes.func,
   /**
