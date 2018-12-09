@@ -173,7 +173,7 @@ export function detach({ state, theme, stylesOptions, stylesCreator }) {
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
-  const { withTheme = false, name, ...stylesOptions2 } = options;
+  const { withTheme = false, name, defaultTheme, ...stylesOptions2 } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
 
@@ -298,11 +298,21 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         return listenToTheme ? (
           <ThemeContext.Consumer>
             {theme => (
-              <WithStylesInner stylesOptions={stylesOptions} ref={ref} theme={theme} {...props} />
+              <WithStylesInner
+                stylesOptions={stylesOptions}
+                ref={ref}
+                theme={theme || defaultTheme || noopTheme}
+                {...props}
+              />
             )}
           </ThemeContext.Consumer>
         ) : (
-          <WithStylesInner stylesOptions={stylesOptions} ref={ref} theme={noopTheme} {...props} />
+          <WithStylesInner
+            stylesOptions={stylesOptions}
+            ref={ref}
+            theme={defaultTheme || noopTheme}
+            {...props}
+          />
         );
       }}
     </StylesContext.Consumer>

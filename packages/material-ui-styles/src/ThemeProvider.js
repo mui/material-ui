@@ -1,16 +1,9 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import { exactProp, ponyfillGlobal } from '@material-ui/utils';
+import { exactProp } from '@material-ui/utils';
 
-// In order to have self-supporting components, we rely on default theme when not provided.
-ponyfillGlobal.__MUI_DEFAULT_THEME__ = ponyfillGlobal.__MUI_DEFAULT_THEME__ || {};
-
-const defaultTheme = ponyfillGlobal.__MUI_DEFAULT_THEME__;
-
-export const ThemeContext = React.createContext(defaultTheme);
+export const ThemeContext = React.createContext(null);
 
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {
@@ -52,7 +45,7 @@ function ThemeProvider(props) {
     <ThemeContext.Consumer>
       {outerTheme => {
         const theme =
-          outerTheme === defaultTheme ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+          outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
 
         return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
       }}
