@@ -14,7 +14,7 @@ export interface UniversalPassthruProps {
   style?: React.CSSProperties;
 }
 
-export type InnerProps<M extends TypeMap> = undefined extends M['innerProps'] ? {} : M['innerProps'];
+export type InnerProps<M extends TypeMap> = M extends { innerProps: any } ? M['innerProps'] : {}
 
 // prettier-ignore
 export type BaseMuiProps<M extends TypeMap> =
