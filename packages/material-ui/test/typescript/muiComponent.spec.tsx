@@ -66,11 +66,10 @@ shouldSucceed = (
   <Foo<typeof MyOverrideComponent> component={MyOverrideComponent} myCallback={n => console.log(n)} outer={3} />
 );
 
-// Can (optionally) override props that are provided by the wrapping component.
+// Can (optionally) override props that are provided by the wrapping component,
+// whether or not the overriding component knows about them.
 shouldSucceed = <Foo outer={3} innerAndOverride="hi" />;
 shouldSucceed = <Foo component={MyOverrideComponent} outer={3} innerAndOverride="hi" />;
-
-// Can do this even if the overriding component doesn't know about it.
 shouldSucceed = <Foo component="div" outer={3} innerAndOverride="hi" />;
 
 // Can provide a primitive override and an event handler with explicit type.
