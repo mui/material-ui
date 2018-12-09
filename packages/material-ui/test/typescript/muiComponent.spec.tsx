@@ -33,7 +33,8 @@ let shouldSucceed;
 // minimally, can provide just outer required props
 shouldSucceed = <Foo outer={3} />;
 
-// can also provide optional outer props and universal props; callback parameter types will be inferred
+// Can also provide optional outer props and universal props; callback parameter
+// types will be inferred.
 shouldSucceed = (
   <Foo
     outer={3}
