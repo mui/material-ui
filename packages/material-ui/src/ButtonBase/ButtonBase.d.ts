@@ -35,10 +35,7 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
-declare const ButtonBase: ((
-  props: { href: string } & OverrideProps<ButtonBaseTypeMap, 'a'>,
-) => JSX.Element) &
-  OverridableComponent<ButtonBaseTypeMap>;
+declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps = SimplifiedPropsOf<typeof ButtonBase>;
 
