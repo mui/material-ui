@@ -8,7 +8,7 @@ import {
 } from '../OverridableComponent';
 
 export interface ButtonBaseTypeMap {
-  outerProps: {
+  props: {
     action?: (actions: ButtonBaseActions) => void;
     buttonRef?: React.Ref<any> | React.RefObject<any>;
     centerRipple?: boolean;
@@ -24,7 +24,7 @@ export interface ButtonBaseTypeMap {
 }
 
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
-  outerProps: ButtonBaseTypeMap['outerProps'] & M['outerProps'];
+  props: ButtonBaseTypeMap['props'] & M['props'];
   innerProps?: M['innerProps'];
   defaultComponent: M['defaultComponent'];
   classKey: M['classKey'];

@@ -4,7 +4,7 @@ import { ButtonBaseClassKey, ExtendButtonBase } from '@material-ui/core/ButtonBa
 import { OverridableComponent, SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
 
 declare const ToggleButton: ExtendButtonBase<{
-  outerProps: {
+  props: {
     disabled?: boolean;
     disableFocusRipple?: boolean;
     disableRipple?: boolean;

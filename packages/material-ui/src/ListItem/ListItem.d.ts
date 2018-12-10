@@ -4,7 +4,7 @@ import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const ListItem: OverridableComponent<{
-  outerProps: {
+  props: {
     button?: boolean;
     ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;

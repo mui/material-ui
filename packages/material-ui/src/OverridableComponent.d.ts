@@ -27,12 +27,12 @@ export type InnerProps<M extends OverridableTypeMap> = M extends { innerProps: a
 
 // prettier-ignore
 export type BaseProps<M extends OverridableTypeMap> =
-  & M['outerProps']
+  & M['props']
   & Partial<InnerProps<M>>
   & StyledComponentProps<M['classKey']>;
 
 export interface OverridableTypeMap {
-  outerProps: {};
+  props: {};
   innerProps?: {};
   defaultComponent: AnyReactType;
   classKey: string;

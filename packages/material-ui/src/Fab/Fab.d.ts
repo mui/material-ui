@@ -3,7 +3,7 @@ import { ExtendButtonBase } from '../ButtonBase';
 import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Fab: ExtendButtonBase<{
-  outerProps: {
+  props: {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;

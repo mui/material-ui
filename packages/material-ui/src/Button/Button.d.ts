@@ -4,7 +4,7 @@ import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
 
 declare const Button: ExtendButtonBase<{
-  outerProps: {
+  props: {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;

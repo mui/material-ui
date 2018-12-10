@@ -5,7 +5,7 @@ import { TabIndicatorProps } from './TabIndicator';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Tabs: OverridableComponent<{
-  outerProps: {
+  props: {
     action?: (actions: TabsActions) => void;
     centered?: boolean;
     children?: React.ReactNode;

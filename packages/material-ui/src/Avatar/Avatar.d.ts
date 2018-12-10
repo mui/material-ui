@@ -3,7 +3,7 @@ import { PropsOf } from '..';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Avatar: OverridableComponent<{
-  outerProps: {
+  props: {
     alt?: string;
     childrenClassName?: string;
     imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;

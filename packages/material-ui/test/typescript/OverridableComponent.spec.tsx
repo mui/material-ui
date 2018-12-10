@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 
 declare const Foo: OverridableComponent<{
-  outerProps: {
+  props: {
     outer: number;
     outerCallback?(b: boolean): void;
     outerInconsistent?: string;
