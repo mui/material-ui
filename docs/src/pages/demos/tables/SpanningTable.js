@@ -56,9 +56,9 @@ function SpanningTable(props) {
         <TableHead>
           <TableRow>
             <TableCell>Desc</TableCell>
-            <TableCell numeric>Qty.</TableCell>
-            <TableCell numeric>@</TableCell>
-            <TableCell numeric>Price</TableCell>
+            <TableCell align="right">Qty.</TableCell>
+            <TableCell align="right">@</TableCell>
+            <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -66,25 +66,25 @@ function SpanningTable(props) {
             return (
               <TableRow key={row.id}>
                 <TableCell>{row.desc}</TableCell>
-                <TableCell numeric>{row.qty}</TableCell>
-                <TableCell numeric>{row.unit}</TableCell>
-                <TableCell numeric>{ccyFormat(row.price)}</TableCell>
+                <TableCell align="right">{row.qty}</TableCell>
+                <TableCell align="right">{row.unit}</TableCell>
+                <TableCell align="right">{ccyFormat(row.price)}</TableCell>
               </TableRow>
             );
           })}
           <TableRow>
             <TableCell rowSpan={3} />
             <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell numeric>{ccyFormat(invoiceSubtotal)}</TableCell>
+            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Tax</TableCell>
-            <TableCell numeric>{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-            <TableCell numeric>{ccyFormat(invoiceTaxes)}</TableCell>
+            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+            <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={2}>Total</TableCell>
-            <TableCell numeric>{ccyFormat(invoiceTotal)}</TableCell>
+            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
