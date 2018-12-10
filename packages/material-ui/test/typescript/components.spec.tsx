@@ -104,10 +104,15 @@ const AvatarTest = () => (
     <Avatar
       component={(props: { x: number }) => <div />}
       x={3}
-      // Should NOT be allowed:
-      // onClick={e => log(e)}
       alt="Image Alt"
       src="example.jpg"
+    />
+    // onClick isn't allowed since we're overriding with a component that
+    // doesn't have that prop:
+    // $ExpectError
+    <Avatar
+      component={(props: {}) => <div />}
+      onClick={log}
     />
   </div>
 );

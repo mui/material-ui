@@ -86,68 +86,73 @@ shouldSucceed = (
   <Foo<'button'> component="button" outer={3} onClick={e => e.currentTarget.checkValidity()} />
 );
 
-// let shouldFail;
+let shouldFail;
 
-// shouldFail = (
-//   <Foo
-//     outer={3}
-//     bad="hi" // invalid prop
-//   />
-// );
+shouldFail = (
+  // $ExpectError
+  <Foo
+    outer={3}
+    bad="hi" // invalid prop
+  />
+);
 
-// shouldFail = (
-//   <Foo
-//     // error appears on next line; to get a better message annotate with
-//     // the type of the overriding component as in the next example
-//     component={MyOverrideComponent}
-//     myString={4} // should be a string
-//     outer={3}
-//   />
-// );
+shouldFail = (
+  // $ExpectError
+  <Foo
+    component={MyOverrideComponent}
+    myString={4} // should be a string
+    outer={3}
+  />
+);
 
-// shouldFail = (
-//   <Foo<typeof MyOverrideComponent>
-//     component={MyOverrideComponent}
-//     myString={4} // should be a string
-//     outer={3}
-//   />
-// );
+shouldFail = (
+  <Foo<typeof MyOverrideComponent>
+    component={MyOverrideComponent}
+    // $ExpectError
+    myString={4} // should be a string
+    outer={3}
+  />
+);
 
-// shouldFail = (
-//   <Foo
-//     component={MyOverrideComponent}
-//     myCallback={n => console.log(n)} // n has type any
-//     outer={3}
-//   />
-// );
+shouldFail = (
+  <Foo
+    component={MyOverrideComponent}
+    // $ExpectError
+    myCallback={n => console.log(n)} // n has type any
+    outer={3}
+  />
+);
 
-// shouldFail = (
-//   <Foo
-//     component={MyIncompatibleComponent1} // inconsistent typing of outer vs passthru prop
-//     outer={3}
-//     outerInconsistent="hi"
-//   />
-// );
+shouldFail = (
+  // $ExpectError
+  <Foo
+    component={MyIncompatibleComponent1} // inconsistent typing of outer vs passthru prop
+    outer={3}
+    outerInconsistent="hi"
+  />
+);
 
-// shouldFail = (
-//   <Foo
-//     component="div" // doesn't match onClick handler type
-//     outer={3}
-//     onClick={e => e.currentTarget.checkValidity()}
-//   />
-// );
+shouldFail = (
+  <Foo
+    component="div" // doesn't match onClick handler type
+    outer={3}
+    // $ExpectError
+    onClick={e => e.currentTarget.checkValidity()}
+  />
+);
 
-// shouldFail = (
-//   <Foo<'div'>
-//     component="div"
-//     outer={3}
-//     // event type doesn't match component type
-//     onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
-//   />
-// );
+shouldFail = (
+  <Foo<'div'>
+    component="div"
+    outer={3}
+    // event type doesn't match component type
+    // $ExpectError
+    onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+  />
+);
 
-// // ideally this should fail but haven't figured out a way to enforce it without
-// // the whole house of cards collapsing
+// ideally this should fail but haven't figured out a way to enforce it without
+// the whole house of cards collapsing
 // shouldFail = (
 //   <Foo
 //     component={MyIncompatibleComponent2} // inconsistent typing of inner vs passthru prop
