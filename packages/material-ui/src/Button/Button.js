@@ -45,7 +45,9 @@ export const styles = theme => ({
     justifyContent: 'inherit',
   },
   /* Styles applied to the root element if `variant="text"`. */
-  text: {},
+  text: {
+    padding: theme.spacing.unit,
+  },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
@@ -250,9 +252,9 @@ function Button(props) {
       [classes.text]: text,
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
-      [classes.flat]: variant === 'text' || variant === 'flat',
-      [classes.flatPrimary]: (variant === 'text' || variant === 'flat') && color === 'primary',
-      [classes.flatSecondary]: (variant === 'text' || variant === 'flat') && color === 'secondary',
+      [classes.flat]: text,
+      [classes.flatPrimary]: text && color === 'primary',
+      [classes.flatSecondary]: text && color === 'secondary',
       [classes.contained]: contained || fab,
       [classes.containedPrimary]: (contained || fab) && color === 'primary',
       [classes.containedSecondary]: (contained || fab) && color === 'secondary',
