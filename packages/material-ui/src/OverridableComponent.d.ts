@@ -13,7 +13,7 @@ export type OverrideProps<
   C extends AnyReactType
 > = (
   & BaseProps<M>
-  & Omit<PropsOf<C>, keyof (InnerProps<M> & StyledComponentProps<M['classKey']>)>
+  & Omit<PropsOf<C>, keyof StyledComponentProps<M['classKey']>>
 );
 
 // prettier-ignore
@@ -21,19 +21,13 @@ export type DefaultProps<M extends OverridableTypeMap> =
   & BaseProps<M>
   & Omit<PropsOf<M['defaultComponent']>, keyof BaseProps<M>>;
 
-export type InnerProps<M extends OverridableTypeMap> = M extends { innerProps: any }
-  ? M['innerProps']
-  : {};
-
 // prettier-ignore
 export type BaseProps<M extends OverridableTypeMap> =
   & M['props']
-  & Partial<InnerProps<M>>
   & StyledComponentProps<M['classKey']>;
 
 export interface OverridableTypeMap {
   props: {};
-  innerProps?: {};
   defaultComponent: AnyReactType;
   classKey: string;
 }

@@ -25,7 +25,6 @@ export interface ButtonBaseTypeMap {
 
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
   props: ButtonBaseTypeMap['props'] & M['props'];
-  innerProps?: M['innerProps'];
   defaultComponent: M['defaultComponent'];
   classKey: M['classKey'];
 }
