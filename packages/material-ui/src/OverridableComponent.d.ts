@@ -21,7 +21,9 @@ export type DefaultProps<M extends OverridableTypeMap> =
   & BaseProps<M>
   & Omit<PropsOf<M['defaultComponent']>, keyof BaseProps<M>>;
 
-export type InnerProps<M extends OverridableTypeMap> = M extends { innerProps: any } ? M['innerProps'] : {};
+export type InnerProps<M extends OverridableTypeMap> = M extends { innerProps: any }
+  ? M['innerProps']
+  : {};
 
 export interface UniversalProps {
   className: string;

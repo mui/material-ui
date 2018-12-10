@@ -12,8 +12,8 @@ declare const ToggleButton: ExtendButtonBase<{
     type?: string;
     value?: any;
   };
-  defaultComponent: 'button',
-  classKey: ToggleButtonClassKey
+  defaultComponent: 'button';
+  classKey: ToggleButtonClassKey;
 }>;
 
 export type ToggleButtonProps = SimplifiedPropsOf<typeof ToggleButton>;

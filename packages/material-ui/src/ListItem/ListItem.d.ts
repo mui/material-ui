@@ -14,7 +14,7 @@ declare const ListItem: OverridableComponent<{
     divider?: boolean;
     focusVisibleClassName?: string;
     selected?: boolean;
-  },
+  };
   defaultComponent: typeof ButtonBase;
   classKey: ListItemClassKey;
 }>;

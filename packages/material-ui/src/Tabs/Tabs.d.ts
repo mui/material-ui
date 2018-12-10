@@ -19,7 +19,7 @@ declare const Tabs: OverridableComponent<{
     textColor?: 'secondary' | 'primary' | 'inherit' | string;
     value: any;
     width?: string;
-  },
+  };
   defaultComponent: typeof ButtonBase;
   classKey: TabsClassKey;
 }>;

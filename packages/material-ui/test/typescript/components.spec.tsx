@@ -204,12 +204,9 @@ const ButtonTest = () => (
     >
       Div
     </Button>
-    // Can't have an onClick handler if the overriding component doesn't specify one:
-    // $ExpectError
-    <Button<typeof TestOverride>
-      component={TestOverride}
-      onClick={log}
-    >
+    // Can't have an onClick handler if the overriding component doesn't specify one: //
+    $ExpectError
+    <Button<typeof TestOverride> component={TestOverride} onClick={log}>
       TestOverride
     </Button>
   </div>
