@@ -53,7 +53,7 @@ class MuiVirtualizedTable extends React.PureComponent {
         })}
         variant="body"
         style={{ height: rowHeight }}
-        numeric={(columnIndex != null && columns[columnIndex].numeric) || false}
+        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
       >
         {cellData}
       </TableCell>
@@ -82,7 +82,7 @@ class MuiVirtualizedTable extends React.PureComponent {
         className={classNames(classes.tableCell, classes.flexContainer, classes.noClick)}
         variant="head"
         style={{ height: headerHeight }}
-        numeric={columns[columnIndex].numeric || false}
+        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
       >
         {inner}
       </TableCell>

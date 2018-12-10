@@ -18,10 +18,11 @@ import TableCell from '@material-ui/core/TableCell';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">align</span> | <span class="prop-type">enum:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br></span> | <span class="prop-default">'inherit'</span> | Set the text-align on the table cell content.<br>Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The table cell contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |   | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">numeric</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, content will align to the right.<br>Monetary or generally number fields should be right aligned as that allows you to add them up quickly in your head without having to worry about decimals. |
+| ~~<span class="prop-name">numeric</span>~~ | <span class="prop-type">bool</span> |   | *Deprecated*. Instead, use the `align` property.<br><br>If `true`, content will align to the right. |
 | <span class="prop-name">padding</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br></span> |   | Sets the padding applied to the cell. By default, the Table parent component set the value. |
 | <span class="prop-name">scope</span> | <span class="prop-type">string</span> |   | Set scope attribute. |
 | <span class="prop-name">sortDirection</span> | <span class="prop-type">enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'&nbsp;&#124;<br>&nbsp;false<br></span> |   | Set aria-sort direction. |
@@ -45,6 +46,10 @@ This property accepts the following keys:
 | <span class="prop-name">paddingDense</span> | Styles applied to the root element if `padding="dense"`.
 | <span class="prop-name">paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
 | <span class="prop-name">paddingNone</span> | Styles applied to the root element if `padding="none"`.
+| <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
+| <span class="prop-name">alignJustify</span> | Styles applied to the root element if `align="justify"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TableCell/TableCell.js)
