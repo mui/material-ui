@@ -13,9 +13,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
+import JSLogo from '@material-ui/docs/svgIcons/JSLogo';
+import HooksLogo from '@material-ui/docs/svgIcons/HooksLogo';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import { getDependencies } from 'docs/src/modules/utils/helpers';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
+
+const CODE_LANGUAGE_TYPES = {
+  JS: 'js',
+  HOOKS: 'hooks',
+};
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -32,13 +39,14 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-function getDemo(props) {
+function getDemo(props, codeLanguage) {
+  const raw = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS ? props.rawHooks : props.rawJS;
   return {
     title: 'Material demo',
     description: props.githubLocation,
-    dependencies: getDependencies(props.raw, props.demoOptions.react),
+    dependencies: getDependencies(raw, props.demoOptions.react),
     files: {
-      'demo.js': props.raw,
+      'demo.js': raw,
       'index.js': `
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -118,6 +126,7 @@ const styles = theme => ({
 class Demo extends React.Component {
   state = {
     anchorEl: null,
+    codeLanguage: CODE_LANGUAGE_TYPES.JS,
     codeOpen: false,
   };
 
@@ -136,7 +145,8 @@ class Demo extends React.Component {
   };
 
   handleClickCodeSandbox = () => {
-    const demo = getDemo(this.props);
+    const { codeLanguage } = this.state;
+    const demo = getDemo(this.props, codeLanguage);
     const parameters = compress({
       files: {
         'package.json': {
@@ -169,15 +179,19 @@ class Demo extends React.Component {
   };
 
   handleClickCopy = async () => {
+    const { rawJS, rawHooks } = this.props;
+    const { codeLanguage } = this.state;
+
     try {
-      await copy(this.props.raw);
+      await copy(codeLanguage === CODE_LANGUAGE_TYPES.HOOKS ? rawHooks : rawJS);
     } finally {
       this.handleCloseMore();
     }
   };
 
   handleClickStackBlitz = () => {
-    const demo = getDemo(this.props);
+    const { codeLanguage } = this.state;
+    const demo = getDemo(this.props, codeLanguage);
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -196,16 +210,66 @@ class Demo extends React.Component {
     this.handleCloseMore();
   };
 
+  handleCodeLanguageClick = event => {
+    const { value: codeLanguage } = event.currentTarget;
+    this.setState({
+      codeLanguage,
+      codeOpen: true,
+    });
+  };
+
+  hasHooksVersion = () => {
+    return Boolean(this.props.rawHooks);
+  };
+
   render() {
-    const { classes, demoOptions, githubLocation, index, js: DemoComponent, raw } = this.props;
-    const { anchorEl, codeOpen } = this.state;
+    const {
+      classes,
+      demoOptions,
+      githubLocation: githubLocationJS,
+      index, js:
+      DemoComponent,
+      rawJS,
+      rawHooks,
+    } = this.props;
+    const { anchorEl, codeOpen, codeLanguage } = this.state;
     const category = demoOptions.demo;
+
+    const hasHooksVersion = this.hasHooksVersion();
+
+    const githubLocation = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS
+      ? githubLocationJS.replace(/\.jsx?$/, '.hooks.js')
+      : githubLocationJS;
+
+    const raw = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS && hasHooksVersion
+      ? rawHooks
+      : rawJS;
 
     return (
       <div className={classes.root}>
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
+              <Tooltip title="Display source in JavaScript" placement="top">
+                <IconButton
+                  aria-label="Display source in JavaScript"
+                  onClick={this.handleCodeLanguageClick}
+                  value={CODE_LANGUAGE_TYPES.JS}
+                >
+                  <JSLogo />
+                </IconButton>
+              </Tooltip>
+              {hasHooksVersion && (
+                <Tooltip title="Display source in Hooks" placement="top">
+                  <IconButton
+                    aria-label="Display source in React Hooks"
+                    onClick={this.handleCodeLanguageClick}
+                    value={CODE_LANGUAGE_TYPES.HOOKS}
+                  >
+                    <HooksLogo />
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip title="See the source on GitHub" placement="top">
                 <IconButton
                   data-ga-event-category={category}
@@ -313,7 +377,8 @@ Demo.propTypes = {
   githubLocation: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  raw: PropTypes.string.isRequired,
+  rawHooks: PropTypes.string,
+  rawJS: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Demo);
