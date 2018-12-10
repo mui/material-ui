@@ -149,6 +149,10 @@ function generatePropType(type) {
         return generatePropType(chained);
       }
 
+      if (type.raw === 'componentProp') {
+        return 'Component';
+      }
+
       return type.raw;
     }
 
