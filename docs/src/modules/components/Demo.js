@@ -227,8 +227,8 @@ class Demo extends React.Component {
       classes,
       demoOptions,
       githubLocation: githubLocationJS,
-      index, js:
-      DemoComponent,
+      index,
+      js: DemoComponent,
       rawJS,
       rawHooks,
     } = this.props;
@@ -237,13 +237,12 @@ class Demo extends React.Component {
 
     const hasHooksVersion = this.hasHooksVersion();
 
-    const githubLocation = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS
-      ? githubLocationJS.replace(/\.jsx?$/, '.hooks.js')
-      : githubLocationJS;
+    const githubLocation =
+      codeLanguage === CODE_LANGUAGE_TYPES.HOOKS
+        ? githubLocationJS.replace(/\.jsx?$/, '.hooks.js')
+        : githubLocationJS;
 
-    const raw = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS && hasHooksVersion
-      ? rawHooks
-      : rawJS;
+    const raw = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS && hasHooksVersion ? rawHooks : rawJS;
 
     return (
       <div className={classes.root}>
