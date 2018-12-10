@@ -24,7 +24,10 @@ export const styles = theme => ({
     color: 'inherit',
   },
   /* Styles applied to the inner `component` element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
   /* Styles applied to the root element if `inset={true}`. */
   inset: {
     paddingLeft: 72,
