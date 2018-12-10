@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ButtonBaseTypeMap } from '../ButtonBase';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Button: OverridableComponent<{
-  outerProps: ButtonBaseProps & {
+  outerProps: ButtonBaseTypeMap['outerProps'] & {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;
@@ -16,7 +16,7 @@ declare const Button: OverridableComponent<{
     type?: string;
     variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
   };
-  defaultComponent: 'button' | 'a';
+  defaultComponent: 'button';
   classKey: ButtonClassKey;
 }>;
 

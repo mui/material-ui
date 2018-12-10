@@ -99,21 +99,33 @@ const AppBarTest = () => (
 
 const AvatarTest = () => (
   <div>
-    <Avatar onClick={e => log(e)} alt="Image Alt" src="example.jpg" />
-    <Avatar onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)} component="button" alt="Image Alt" src="example.jpg" />
     <Avatar
-      component={(props: { x: number }) => <div />}
-      x={3}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLDivElement>
+        log(e);
+      }}
       alt="Image Alt"
       src="example.jpg"
     />
-    // onClick isn't allowed since we're overriding with a component that
-    // doesn't have that prop:
-    // $ExpectError
-    <Avatar
-      component={(props: {}) => <div />}
-      onClick={log}
+    <Avatar<'button'>
+      component="button"
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLButtonElement>
+        log(e);
+      }}
+      alt="Image Alt"
+      src="example.jpg"
     />
+    <Avatar
+      component="button"
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar component={(props: { x: number }) => <div />} x={3} alt="Image Alt" src="example.jpg" />
+    // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
+    // $ExpectError
+    <Avatar component={(props: {}) => <div />} onClick={log} />
   </div>
 );
 
@@ -161,6 +173,25 @@ const ButtonTest = () => (
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
+    <Button
+      href="/open-collective"
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLButtonElement>
+        log(e);
+      }}
+    >
+      Link
+    </Button>
+    <Button<'a'>
+      component="a"
+      href="/open-collective"
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLAnchorElement>
+        log(e);
+      }}
+    >
+      Link
+    </Button>
   </div>
 );
 
@@ -354,10 +385,22 @@ const DrawerTest = () => {
       >
         List
       </Drawer>
-      <Drawer anchor="bottom" variant="temporary" open={open.bottom} onClose={e => log(e)} onClick={e => log(e)}>
+      <Drawer
+        anchor="bottom"
+        variant="temporary"
+        open={open.bottom}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+      >
         List
       </Drawer>
-      <Drawer variant="persistent" anchor="right" open={open.right} onClose={e => log(e)} onClick={e => log(e)}>
+      <Drawer
+        variant="persistent"
+        anchor="right"
+        open={open.right}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+      >
         List
       </Drawer>
     </div>
@@ -373,7 +416,12 @@ const SwipeableDrawerTest = () => {
   };
   return (
     <div>
-      <SwipeableDrawer open={open.left} onClose={e => log(e)} onClick={e => log(e)} onOpen={e => log(e)}>
+      <SwipeableDrawer
+        open={open.left}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
+      >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
@@ -388,7 +436,13 @@ const SwipeableDrawerTest = () => {
       >
         List
       </SwipeableDrawer>
-      <SwipeableDrawer anchor="bottom" open={open.bottom} onClose={e => log(e)} onClick={e => log(e)} onOpen={e => log(e)}>
+      <SwipeableDrawer
+        anchor="bottom"
+        open={open.bottom}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
+      >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
