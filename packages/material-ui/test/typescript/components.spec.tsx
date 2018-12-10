@@ -83,6 +83,8 @@ import { DialogProps } from '@material-ui/core/Dialog';
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
 
+const TestOverride = (props: { x?: number }) => <div />;
+
 const AppBarTest = () => (
   <AppBar position="static">
     <Toolbar>
@@ -122,10 +124,10 @@ const AvatarTest = () => (
       alt="Image Alt"
       src="example.jpg"
     />
-    <Avatar component={(props: { x: number }) => <div />} x={3} alt="Image Alt" src="example.jpg" />
+    <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
     // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
     // $ExpectError
-    <Avatar component={(props: {}) => <div />} onClick={log} />
+    <Avatar component={TestOverride} onClick={log} />
   </div>
 );
 
@@ -173,17 +175,17 @@ const ButtonTest = () => (
       Link
     </Button>
     <Button href="/open-collective">Link</Button>
+    // By default the underlying component is a button element:
     <Button
-      href="/open-collective"
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLButtonElement>
         log(e);
       }}
     >
-      Link
+      Button
     </Button>
-    <Button<'a'>
-      component="a"
+    // If an href is provided, an anchor is used:
+    <Button
       href="/open-collective"
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLAnchorElement>
@@ -191,6 +193,24 @@ const ButtonTest = () => (
       }}
     >
       Link
+    </Button>
+    // If a component prop is specified, use that:
+    <Button<'div'>
+      component="div"
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLDivElement>
+        log(e);
+      }}
+    >
+      Div
+    </Button>
+    // Can't have an onClick handler if the overriding component doesn't specify one:
+    // $ExpectError
+    <Button<typeof TestOverride>
+      component={TestOverride}
+      onClick={log}
+    >
+      TestOverride
     </Button>
   </div>
 );

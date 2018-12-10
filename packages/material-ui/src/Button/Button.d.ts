@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { PropTypes } from '..';
 import { ButtonBaseTypeMap } from '../ButtonBase';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
 
-declare const Button: OverridableComponent<{
+interface ButtonTypeMap {
   outerProps: ButtonBaseTypeMap['outerProps'] & {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;
     disableRipple?: boolean;
     fullWidth?: boolean;
-    href?: string;
     mini?: boolean;
     size?: 'small' | 'medium' | 'large';
     type?: string;
@@ -18,7 +17,12 @@ declare const Button: OverridableComponent<{
   };
   defaultComponent: 'button';
   classKey: ButtonClassKey;
-}>;
+}
+
+declare const Button: ((
+  props: { href: string } & OverrideProps<ButtonTypeMap, 'a'>,
+) => JSX.Element) &
+  OverridableComponent<ButtonTypeMap>;
 
 export type ButtonProps = SimplifiedPropsOf<typeof Button>;
 
