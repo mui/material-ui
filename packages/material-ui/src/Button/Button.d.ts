@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { PropTypes } from '..';
-import { ButtonBaseTypeMap } from '../ButtonBase';
+import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
 
-interface ButtonTypeMap {
-  outerProps: ButtonBaseTypeMap['outerProps'] & {
+declare const Button: ExtendButtonBase<{
+  outerProps: {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;
@@ -17,12 +17,7 @@ interface ButtonTypeMap {
   };
   defaultComponent: 'button';
   classKey: ButtonClassKey;
-}
-
-declare const Button: ((
-  props: { href: string } & OverrideProps<ButtonTypeMap, 'a'>,
-) => JSX.Element) &
-  OverridableComponent<ButtonTypeMap>;
+}>;
 
 export type ButtonProps = SimplifiedPropsOf<typeof Button>;
 

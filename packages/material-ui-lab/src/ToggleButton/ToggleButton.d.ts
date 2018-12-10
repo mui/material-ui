@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { PropTypes, StandardProps } from '@material-ui/core';
-import { ButtonBaseClassKey, ButtonBaseTypeMap } from '@material-ui/core/ButtonBase';
+import { ButtonBaseClassKey, ExtendButtonBase } from '@material-ui/core/ButtonBase';
 import { OverridableComponent, SimplifiedPropsOf } from '@material-ui/core/OverridableComponent';
 
-declare const ToggleButton: OverridableComponent<{
-  outerProps: ButtonBaseTypeMap['outerProps'] & {
+declare const ToggleButton: ExtendButtonBase<{
+  outerProps: {
     disabled?: boolean;
     disableFocusRipple?: boolean;
     disableRipple?: boolean;

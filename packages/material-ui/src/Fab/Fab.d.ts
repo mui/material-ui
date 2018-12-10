@@ -1,10 +1,9 @@
-import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps, ButtonBaseTypeMap } from '../ButtonBase';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { PropTypes } from '..';
+import { ExtendButtonBase } from '../ButtonBase';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
-declare const Fab: OverridableComponent<{
-  outerProps: ButtonBaseTypeMap['outerProps'] & {
+declare const Fab: ExtendButtonBase<{
+  outerProps: {
     color?: PropTypes.Color;
     disabled?: boolean;
     disableFocusRipple?: boolean;
