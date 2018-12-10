@@ -42,22 +42,11 @@ export const sheetsManager = new Map();
 const noopTheme = {};
 
 // In order to have self-supporting components, we rely on default theme when not provided.
-let defaultTheme;
-
-function getDefaultTheme() {
-  if (defaultTheme) {
-    return defaultTheme;
-  }
-
-  defaultTheme = createMuiTheme({
-    typography: {
-      suppressWarning: true,
-    },
-  });
-  return defaultTheme;
-}
-
-ponyfillGlobal.__MUI_DEFAULT_THEME__ = getDefaultTheme();
+const defaultTheme = createMuiTheme({
+  typography: {
+    suppressWarning: true,
+  },
+});
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
@@ -103,7 +92,7 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
         ...context[ns.sheetOptions],
       };
       // We use || as the function call is lazy evaluated.
-      this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
+      this.theme = listenToTheme ? themeListener.initial(context) || defaultTheme : noopTheme;
 
       this.attach(this.theme);
 
@@ -339,4 +328,8 @@ if (!ponyfillGlobal.__MUI_STYLES__.withStyles) {
   ponyfillGlobal.__MUI_STYLES__.withStyles = withStylesOld;
 }
 
-export default ponyfillGlobal.__MUI_STYLES__.withStyles;
+export default (styles, options) =>
+  ponyfillGlobal.__MUI_STYLES__.withStyles(styles, {
+    defaultTheme,
+    ...options,
+  });

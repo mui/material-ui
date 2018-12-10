@@ -1,5 +1,68 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.6.2
+###### *Dec 9, 2018*
+
+Big thanks to the 20 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🎨 Add a new Onepirate theme demo (#13769) @oliviertassinari
+You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
+- 📝 Add virtualized table demo (#13786) @joshwooding
+- 🚀 Avoid unnecessary Table re-rendering (#13832) @petrjaros
+- And many more 🐛 bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.6.2`
+
+- [Tooltip] Supress warning if button is disabled and title is empty (#13785) @rfbotto
+- [Dialog] Warn if className in PaperProps is set (#13797) @eps1lon
+- [TextField] Fix textfield label position when empty (#13791) @Studio384
+- [Popper] Save 7 KB gzipped (for people only using it) (#13804) @oliviertassinari
+- [Modal] Handle modal mount interruption (#13778) @amensouissi
+- [Select] Make value prop required in TypeScript (#13810) @t49tran
+- [Popover] Fix onEntering event propagation (#13821) @ekoeditaa
+- [Input] Make CSS override a bit simpler (#13825) @euharrison
+- [LinearProgress] Add determinate and indeterminate classes to root element (#13828) @alxsnchez
+- [Select] Support native multiple value (#13830) @rfbotto
+- [BottomNavigation] Improve action padding (#13851) @rfbotto
+- [Dialog] Add dialog with close button to demos (#13845) @rfbotto
+- [Tabs] Reduce the bundle size (#13853) @oliviertassinari
+- [Dialog] Add missing TypeScript style rule (#13856) @garredow
+- [Table] Avoid unnecessary re-rendering (#13832) @petrjaros
+
+### `@material-ui/lab@v3.0.0-alpha.25`
+
+- [ToggleButtonGroup] Consider nullish instead of falsy value as no selected value (#13494) @ItamarShDev
+- [Slider] Update SliderClassKey types (#13826) @guiihlopes
+- [SpeedDialAction] Add TooltipClasses prop (#13848) @mbrookes
+- [ToggleButton] Change ToggleButtonGroup non-exclusive default value to an empty array (#13857) @joshwooding
+
+### `@material-ui/styles@v3.0.0-alpha.3`
+
+- [styles] Infer optional props argument for makeStyles in TypeScript (#13815) @oliviertassinari
+
+### Docs
+
+- [docs] Add @eps1lon to the team page (#13768) @oliviertassinari
+- [docs] Add a new onepirate theme (#13769) @oliviertassinari
+- [docs] Link tags HTML vs JSX (#13775) @benbowler
+- [docs] Missing text in docs (#13798) @Skn0tt
+- [docs] Add virtualized table demo (#13786) @joshwooding
+- [docs] Add OpenCollective gold sponsors manually (#13806) @mbrookes
+- [docs] Add example of globally disabling animations (#13805) @joshwooding
+- [docs] Fix KeyboardIcon import name (#13822) @bryantabaird
+- [docs] Force common hoist-non-react-statics version (#13818) @eps1lon
+- [docs] Improve the theme nesting documentation (#13843) @oliviertassinari
+- [docs] Add more details regarding installation of material-ui/styles (#13813) @wilcoschoneveld
+- [docs] Fix broken link anchor (#13862) @mvasin
+
+### Core
+
+- [typescript] Add test case for List type limitations (#13764) @eps1lon
+- [core] Remove unused lint directives (#13766) @eps1lon
+- [test] Fix running tests on Windows (#13852) @joshwooding
+- [core] Upgrade the dependencies (#13858) @oliviertassinari
+
 ## 3.6.1
 ###### *Dec 1, 2018*
 
