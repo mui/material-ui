@@ -131,7 +131,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -147,7 +147,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -163,7 +163,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],

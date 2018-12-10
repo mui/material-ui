@@ -62,7 +62,9 @@ NoSsr.propTypes = {
   fallback: PropTypes.node,
 };
 
-NoSsr.propTypes = exactProp(NoSsr.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  NoSsr.propTypes = exactProp(NoSsr.propTypes);
+}
 
 NoSsr.defaultProps = {
   defer: false,

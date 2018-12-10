@@ -139,7 +139,9 @@ MuiThemeProviderOld.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-MuiThemeProviderOld.propTypes = exactProp(MuiThemeProviderOld.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  MuiThemeProviderOld.propTypes = exactProp(MuiThemeProviderOld.propTypes);
+}
 
 MuiThemeProviderOld.childContextTypes = {
   ...themeListener.contextTypes,

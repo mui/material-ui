@@ -64,6 +64,8 @@ ThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
+}
 
 export default ThemeProvider;
