@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
-import CodeIcon from '@material-ui/icons/Code';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -212,9 +211,17 @@ class Demo extends React.Component {
 
   handleCodeLanguageClick = event => {
     const { value: codeLanguage } = event.currentTarget;
-    this.setState({
-      codeLanguage,
-      codeOpen: true,
+    this.setState(prevState => {
+      const isSameCodeOpen = prevState.codeLanguage === codeLanguage;
+      return {
+        codeLanguage,
+        /**
+         * if the the same code type is open,
+         * toggle the state, otherwise if it is
+         * another code type always open it. i.e, true
+         */
+        codeOpen: isSameCodeOpen ? !prevState.codeOpen : true,
+      };
     });
   };
 
@@ -227,7 +234,6 @@ class Demo extends React.Component {
       classes,
       demoOptions,
       githubLocation: githubLocationJS,
-      index,
       js: DemoComponent,
       rawJS,
       rawHooks,
@@ -292,16 +298,6 @@ class Demo extends React.Component {
                   </IconButton>
                 </Tooltip>
               )}
-              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
-                <IconButton
-                  data-ga-event-category={category}
-                  data-ga-event-action="expand"
-                  onClick={this.handleClickCodeOpen}
-                  aria-label={`Source of demo n°${index}`}
-                >
-                  <CodeIcon />
-                </IconButton>
-              </Tooltip>
               <IconButton
                 onClick={this.handleClickMore}
                 aria-owns={anchorEl ? 'demo-menu-more' : undefined}
@@ -374,7 +370,6 @@ Demo.propTypes = {
   classes: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
   js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   rawHooks: PropTypes.string,
   rawJS: PropTypes.string.isRequired,
