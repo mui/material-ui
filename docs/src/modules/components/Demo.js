@@ -137,12 +137,6 @@ class Demo extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleClickCodeOpen = () => {
-    this.setState(state => ({
-      codeOpen: !state.codeOpen,
-    }));
-  };
-
   handleClickCodeSandbox = () => {
     const { codeLanguage } = this.state;
     const demo = getDemo(this.props, codeLanguage);
