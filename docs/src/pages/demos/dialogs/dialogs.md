@@ -66,7 +66,7 @@ here is one example of how you can customize the `DialogTitle` to support a clos
 
 ## Draggable dialog
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable) together with material UI.
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable) together with material-ui. To do so, you can pass the the imported `Draggable` component as the `TransitionComponent` of the `Dialog` component. This will make the entire dialog draggable.
 
 {{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
 
