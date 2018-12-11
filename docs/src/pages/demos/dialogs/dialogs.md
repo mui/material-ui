@@ -64,6 +64,12 @@ here is one example of how you can customize the `DialogTitle` to support a clos
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 
+## Draggable dialog
+
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable) together with material UI:
+
+{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+
 ## Full-screen dialogs
 
 {{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
