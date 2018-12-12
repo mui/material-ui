@@ -135,7 +135,7 @@ const pages = [
   },
   {
     pathname: '/css-in-js',
-    title: 'CSS in JS (experimental)',
+    title: 'CSS in JS (alpha)',
     children: [
       {
         pathname: '/css-in-js/basics',

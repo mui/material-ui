@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import RootRef from '../RootRef';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -461,9 +462,9 @@ Tooltip.propTypes = {
    */
   title: PropTypes.node.isRequired,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Properties applied to the `Transition` element.
    */
