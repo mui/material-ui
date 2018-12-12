@@ -58,7 +58,9 @@ class MaxWidthDialog extends React.Component {
 
     return (
       <React.Fragment>
-        <Button onClick={this.handleClickOpen}>Open max-width dialog</Button>
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Open max-width dialog
+        </Button>
         <Dialog
           fullWidth={this.state.fullWidth}
           maxWidth={this.state.maxWidth}

@@ -20,7 +20,7 @@ function generateHeader(reactAPI) {
 }
 
 function getDeprecatedInfo(type) {
-  const marker = 'deprecated(PropTypes.';
+  const marker = 'deprecatedPropType(PropTypes.';
   const indexStart = type.raw.indexOf(marker);
 
   if (indexStart !== -1) {
@@ -147,6 +147,10 @@ function generatePropType(type) {
       const chained = getChained(type);
       if (chained !== false) {
         return generatePropType(chained);
+      }
+
+      if (type.raw === 'componentProp') {
+        return 'Component';
       }
 
       return type.raw;

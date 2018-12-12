@@ -72,6 +72,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ScrollDialog'), 'utf8')
 `,
         },
+        'pages/demos/dialogs/CustomizedDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/CustomizedDialog.js').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/CustomizedDialog'), 'utf8')
+`,
+        },
       }}
     />
   );

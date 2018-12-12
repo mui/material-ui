@@ -23,6 +23,10 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
+  /* Styles applied to the root element if `variant="determinate"`. */
+  determinate: {},
+  /* Styles applied to the root element if `variant="indeterminate"`. */
+  indeterminate: {},
   /* Styles applied to the root element if `variant="buffer"`. */
   buffer: {
     backgroundColor: 'transparent',
@@ -98,8 +102,6 @@ export const styles = theme => ({
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
     animationDelay: '1.15s',
   },
-  /* Styles applied to the bar2 element if `variant="determinate"`. */
-  bar2Determinate: {},
   /* Styles applied to the bar2 element if `variant="buffer"`. */
   bar2Buffer: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
@@ -171,6 +173,8 @@ function LinearProgress(props) {
     {
       [classes.colorPrimary]: color === 'primary',
       [classes.colorSecondary]: color === 'secondary',
+      [classes.determinate]: variant === 'determinate',
+      [classes.indeterminate]: variant === 'indeterminate',
       [classes.buffer]: variant === 'buffer',
       [classes.query]: variant === 'query',
     },
@@ -193,7 +197,6 @@ function LinearProgress(props) {
     [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',
     [classes.colorSecondary]: color === 'secondary' && variant === 'buffer',
     [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar2Determinate]: variant === 'determinate',
     [classes.bar2Buffer]: variant === 'buffer',
   });
   const rootProps = {};

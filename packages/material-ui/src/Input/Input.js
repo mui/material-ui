@@ -70,7 +70,7 @@ export const styles = theme => {
         },
       },
       '&$disabled:before': {
-        borderBottom: `1px dotted ${bottomLineColor}`,
+        borderBottomStyle: 'dotted',
       },
     },
     /* Styles applied to the root element if `error={true}`. */

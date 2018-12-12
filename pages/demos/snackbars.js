@@ -65,6 +65,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/snackbars/CustomizedSnackbars'), 'utf8')
 `,
         },
+        'pages/demos/snackbars/IntegrationNotistack.js': {
+          js: require('docs/src/pages/demos/snackbars/IntegrationNotistack').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/snackbars/IntegrationNotistack'), 'utf8')
+`,
+        },
       }}
     />
   );

@@ -102,6 +102,8 @@ but you are not confident jumping in,
 here are examples of how you can change the main color of a Button using classes,
 and using a theme; and of a Bootstrap style Button.
 
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
 ## Complex Buttons

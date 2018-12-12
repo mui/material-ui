@@ -44,7 +44,9 @@ class FullScreenDialog extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open full-screen dialog</Button>
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Open full-screen dialog
+        </Button>
         <Dialog
           fullScreen
           open={this.state.open}

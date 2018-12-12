@@ -33,7 +33,7 @@ import { withStyles } from '@material-ui/core/styles';
 const suggestions = [`;
 
 describe('docs getDependencies helpers', () => {
-  it('generate the right npm dependencies', () => {
+  it('generates the right npm dependencies', () => {
     assert.deepEqual(getDependencies(s1), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
@@ -49,6 +49,13 @@ describe('docs getDependencies helpers', () => {
       'react-autosuggest': 'latest',
       'react-dom': 'latest',
       react: 'latest',
+    });
+    assert.deepEqual(getDependencies(s1, 'next'), {
+      '@foo-bar/bip': 'latest',
+      '@material-ui/core': 'latest',
+      'prop-types': 'latest',
+      'react-dom': 'next',
+      react: 'next',
     });
   });
 });

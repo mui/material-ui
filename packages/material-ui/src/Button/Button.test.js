@@ -28,6 +28,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.flat), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
     assert.strictEqual(wrapper.hasClass(classes.flatPrimary), false);
@@ -75,6 +76,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.textPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
   });
@@ -88,6 +90,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
     assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
   });
@@ -101,6 +104,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.contained), true);
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
     assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.containedSecondary), true);
   });
@@ -108,6 +112,7 @@ describe('<Button />', () => {
   it('should render a small button', () => {
     const wrapper = shallow(<Button size="small">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
     assert.strictEqual(wrapper.hasClass(classes.sizeLarge), false);
   });
@@ -115,6 +120,7 @@ describe('<Button />', () => {
   it('should render a large button', () => {
     const wrapper = shallow(<Button size="large">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), true);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
     assert.strictEqual(wrapper.hasClass(classes.sizeLarge), true);
   });
@@ -134,6 +140,7 @@ describe('<Button />', () => {
       assert.strictEqual(wrapper.hasClass(classes.contained), true);
       assert.strictEqual(wrapper.hasClass(classes.raised), true);
       assert.strictEqual(wrapper.hasClass(classes.fab), false);
+      assert.strictEqual(wrapper.hasClass(classes.text), false);
       assert.strictEqual(wrapper.hasClass(classes.containedPrimary), false);
       assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false);
       assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);
@@ -150,6 +157,7 @@ describe('<Button />', () => {
       assert.strictEqual(wrapper.hasClass(classes.contained), true);
       assert.strictEqual(wrapper.hasClass(classes.raised), true);
       assert.strictEqual(wrapper.hasClass(classes.fab), false);
+      assert.strictEqual(wrapper.hasClass(classes.text), false);
       assert.strictEqual(wrapper.hasClass(classes.containedPrimary), true);
       assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true);
       assert.strictEqual(wrapper.hasClass(classes.containedSecondary), false);

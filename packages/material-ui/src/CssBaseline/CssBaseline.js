@@ -48,7 +48,9 @@ CssBaseline.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-CssBaseline.propTypes = exactProp(CssBaseline.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  CssBaseline.propTypes = exactProp(CssBaseline.propTypes);
+}
 
 CssBaseline.defaultProps = {
   children: null,

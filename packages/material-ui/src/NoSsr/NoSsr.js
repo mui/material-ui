@@ -34,7 +34,7 @@ class NoSsr extends React.Component {
         });
       });
     } else {
-      this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ mounted: true });
     }
   }
 
@@ -62,7 +62,9 @@ NoSsr.propTypes = {
   fallback: PropTypes.node,
 };
 
-NoSsr.propTypes = exactProp(NoSsr.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  NoSsr.propTypes = exactProp(NoSsr.propTypes);
+}
 
 NoSsr.defaultProps = {
   defer: false,

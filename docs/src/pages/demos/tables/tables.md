@@ -41,7 +41,11 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 ## Customized Tables
 
-You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here are examples of how you can change the look of a `TableCell`.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
@@ -57,6 +61,12 @@ custom actions.
 A simple example with spanning rows & columns.
 
 {{"demo": "pages/demos/tables/SpanningTable.js"}}
+
+## Virtualized Table
+
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
+
+{{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 
 ## Complementary projects
 

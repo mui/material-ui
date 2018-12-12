@@ -75,6 +75,19 @@ class MultipleSelect extends React.Component {
     this.setState({ name: event.target.value });
   };
 
+  handleChangeMultiple = event => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0, l = options.length; i < l; i += 1) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    this.setState({
+      name: value,
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -160,6 +173,26 @@ class MultipleSelect extends React.Component {
               <MenuItem key={name} value={name} style={getStyles(name, this)}>
                 {name}
               </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel shrink htmlFor="select-multiple-native">
+            Native
+          </InputLabel>
+          <Select
+            multiple
+            native
+            value={this.state.name}
+            onChange={this.handleChangeMultiple}
+            inputProps={{
+              id: 'select-multiple-native',
+            }}
+          >
+            {names.map(name => (
+              <option key={name} value={name}>
+                {name}
+              </option>
             ))}
           </Select>
         </FormControl>

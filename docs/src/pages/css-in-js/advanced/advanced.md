@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
 
-{{"demo": "pages/css-in-js/advanced/Theming.js"}}
+{{"demo": "pages/css-in-js/advanced/Theming.js", "react": "next"}}
 
 ## Accessing the theme in a component
 
@@ -14,18 +14,39 @@ You might need to access the theme variables inside your React components.
 
 ### `useTheme` hook
 
-{{"demo": "pages/css-in-js/advanced/UseTheme.js"}}
+{{"demo": "pages/css-in-js/advanced/UseTheme.js", "react": "next"}}
 
 ### `withTheme` HOC
 
-{{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
+{{"demo": "pages/css-in-js/advanced/WithTheme.js", "react": "next"}}
 
 ## Theme nesting
 
 You can nest multiple theme providers.
 This can be really useful when dealing with different area of your application that have distinct appearance from each other.
 
-{{"demo": "pages/css-in-js/advanced/ThemeNesting.js"}}
+```jsx
+<ThemeProvider theme={outerTheme}>
+  <Child1 />
+  <ThemeProvider theme={innerTheme}>
+    <Child2 />
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+{{"demo": "pages/css-in-js/advanced/ThemeNesting.js", "react": "next"}}
+
+The inner theme will **override** the outer theme.
+You can extend the outer theme by providing a function:
+
+```jsx
+<ThemeProvider theme={…} >
+  <Child1 />
+  <ThemeProvider theme={outerTheme => ({ darkMode: true, ...outerTheme })}>
+    <Child2 />
+  </ThemeProvider>
+</ThemeProvider>
+```
 
 ## JSS plugins
 
@@ -81,7 +102,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/css-in-js/advanced/StringTemplates.js"}}
+{{"demo": "pages/css-in-js/advanced/StringTemplates.js", "react": "next"}}
 
 ## CSS injection order
 

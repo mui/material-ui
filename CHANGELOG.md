@@ -1,5 +1,114 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.6.2
+###### *Dec 9, 2018*
+
+Big thanks to the 20 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🎨 Add a new Onepirate theme demo (#13769) @oliviertassinari
+You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
+- 📝 Add virtualized table demo (#13786) @joshwooding
+- 🚀 Avoid unnecessary Table re-rendering (#13832) @petrjaros
+- And many more 🐛 bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.6.2`
+
+- [Tooltip] Supress warning if button is disabled and title is empty (#13785) @rfbotto
+- [Dialog] Warn if className in PaperProps is set (#13797) @eps1lon
+- [TextField] Fix textfield label position when empty (#13791) @Studio384
+- [Popper] Save 7 KB gzipped (for people only using it) (#13804) @oliviertassinari
+- [Modal] Handle modal mount interruption (#13778) @amensouissi
+- [Select] Make value prop required in TypeScript (#13810) @t49tran
+- [Popover] Fix onEntering event propagation (#13821) @ekoeditaa
+- [Input] Make CSS override a bit simpler (#13825) @euharrison
+- [LinearProgress] Add determinate and indeterminate classes to root element (#13828) @alxsnchez
+- [Select] Support native multiple value (#13830) @rfbotto
+- [BottomNavigation] Improve action padding (#13851) @rfbotto
+- [Dialog] Add dialog with close button to demos (#13845) @rfbotto
+- [Tabs] Reduce the bundle size (#13853) @oliviertassinari
+- [Dialog] Add missing TypeScript style rule (#13856) @garredow
+- [Table] Avoid unnecessary re-rendering (#13832) @petrjaros
+
+### `@material-ui/lab@v3.0.0-alpha.25`
+
+- [ToggleButtonGroup] Consider nullish instead of falsy value as no selected value (#13494) @ItamarShDev
+- [Slider] Update SliderClassKey types (#13826) @guiihlopes
+- [SpeedDialAction] Add TooltipClasses prop (#13848) @mbrookes
+- [ToggleButton] Change ToggleButtonGroup non-exclusive default value to an empty array (#13857) @joshwooding
+
+### `@material-ui/styles@v3.0.0-alpha.3`
+
+- [styles] Infer optional props argument for makeStyles in TypeScript (#13815) @oliviertassinari
+
+### Docs
+
+- [docs] Add @eps1lon to the team page (#13768) @oliviertassinari
+- [docs] Add a new onepirate theme (#13769) @oliviertassinari
+- [docs] Link tags HTML vs JSX (#13775) @benbowler
+- [docs] Missing text in docs (#13798) @Skn0tt
+- [docs] Add virtualized table demo (#13786) @joshwooding
+- [docs] Add OpenCollective gold sponsors manually (#13806) @mbrookes
+- [docs] Add example of globally disabling animations (#13805) @joshwooding
+- [docs] Fix KeyboardIcon import name (#13822) @bryantabaird
+- [docs] Force common hoist-non-react-statics version (#13818) @eps1lon
+- [docs] Improve the theme nesting documentation (#13843) @oliviertassinari
+- [docs] Add more details regarding installation of material-ui/styles (#13813) @wilcoschoneveld
+- [docs] Fix broken link anchor (#13862) @mvasin
+
+### Core
+
+- [typescript] Add test case for List type limitations (#13764) @eps1lon
+- [core] Remove unused lint directives (#13766) @eps1lon
+- [test] Fix running tests on Windows (#13852) @joshwooding
+- [core] Upgrade the dependencies (#13858) @oliviertassinari
+
+## 3.6.1
+###### *Dec 1, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+
+There are no fundamental changes in this version.
+It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
+
+### `@material-ui/core@v3.6.1`
+
+- [Dialog] Add xl maxWidth and demo component (#13694) @dispix
+- [Dialog] Add missing TypeScript style rule (ddfa8e0215bfe895efcb8da69f1ea3cc3b1370ff) @oliviertassinari
+- [ClickAwayListener] Ignore touchend after touchmove (#13689) @hsimah
+- [Tooltip] Hide native title when disableHoverListener is true (#13690) @joshwooding
+- [withTheme] Fix typography warning (#13707) @jmcpeak
+- [Fab] Add Fab type declaration to index and theme (#13715) @Naturalclar
+- [InputBase] Remove dead disableUnderline property (#13720) @PierreCapo
+- [FilledInput] Fix disableUnderline property (#13719) @ekoeditaa
+- [SwitchBase] Fix error not being thrown when controlled state is changed (#13726) @joshwooding
+- [TextField] Better support select object value (#13730) @yezhi780625
+- [TablePagination] Support native selection (#13737) @jsdev
+- [Modal] Fix concurrency regression (#13743) @oliviertassinari
+- [LinearProgress] Remove dead code (#13749) @ekoeditaa
+- [typescript] Add test case for FormControl type limitations (#13754) @eps1lon
+- [Popover] Handle resize close concurrency issue (#13758) @oliviertassinari
+- [Avatar] Remove truthiness check on childrenProp (#13759) @camilleryr
+
+### `@material-ui/styles@v3.0.0-alpha.2`
+
+- [styles] Add options definitions for makeStyles (#13721) @eps1lon
+- [styles] Loosen props consistency check in styled (#13755) @eps1lon
+
+### Docs
+
+- [docs] Add support for changing react version in codesandbox demos (#13686) @joshwooding
+- [CHANGELOG] Add deprecation notice for Divider (#13700) @eps1lon
+- [docs] Add notistack demo to the snackbar page (#13685) @iamhosseindhv
+- [docs] Remove Grid List dead code (#13731) @akhil-gautam
+- [docs] Reduce the no-results rate on Algolia (#13741) @oliviertassinari
+- [docs] Fix concurrency with Frame demos (#13747) @oliviertassinari
+
+### Core
+
+- [test] Correct the link to the example test (#13709) @mdcanham
+- [styles] Fix tslint false negative with outdated local builds (#13750) @eps1lon
+
 ## 3.6.0
 ###### *Nov 26, 2018*
 
@@ -38,6 +147,17 @@ We will remove the FAB styles from the button in v4, making the `Button` compone
 +</Fab>
 ```
 
+- [Divider] Add support for middle divider by introducing a `variant` prop (#13574) @joshwooding
+
+We are introducing a new variant to the divider component: middle. Following our API guideline, we can no longer use a boolean property, it needs to be an enum, hence the introduction of the variant property.
+
+```diff
+import Divider from '@material-ui/core/Divider';
+
+-<Divider inset />
++<Divider variant="inset" />
+```
+
 #### Changes
 
 - [FormControlLabel] Fix documentation warnings (#13583) @dsbrutha777
@@ -46,7 +166,6 @@ We will remove the FAB styles from the button in v4, making the `Button` compone
 - [FormControl] Use stable context API (#13590) @eps1lon
 - [TablePagination] Improve TypeScript definition (#13601) @xiaoyu-tamu
 - [SwipeableDrawer] Add `SwipeAreaProps` property (#13592) @SerhiiBilyk
-- [Divider] Add support for middle divider (#13574) @joshwooding
 - [ListItem] Add three-line support (#13553) @ntorion
 - [Grid] Fix the IE 11 issue in the demo (7d2070fb388295d38806ecc49717006f34393e74) @oliviertassinari
 - [Zoom] Correct transition delay value of the example (#13645) @t49tran

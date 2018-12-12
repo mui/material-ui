@@ -130,6 +130,8 @@ HiddenJs.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-HiddenJs.propTypes = exactProp(HiddenJs.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  HiddenJs.propTypes = exactProp(HiddenJs.propTypes);
+}
 
 export default withWidth()(HiddenJs);

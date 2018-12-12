@@ -31,7 +31,7 @@ of the `<head />` to ensure the components always render correctly.
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component.
 The list of  classes for each
 component is documented in the **Component API** section.
-For instance, you can have a look at the [Button CSS API](/api/button/#css-api).
+For instance, you can have a look at the [Button CSS API](/api/button/#css).
 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to
@@ -46,7 +46,7 @@ Notice that in addition to the button styling, the button label's capitalization
 #### Shorthand
 
 The above code example can be condensed by using **the same CSS API** as the child component.
-In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css-api).
+In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
 
 ```jsx
 const StyledButton = withStyles({

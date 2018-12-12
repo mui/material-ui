@@ -46,8 +46,11 @@ import { install } from '@material-ui/styles';
 install();
 ```
 
-We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4.
-This installation step is temporary.
+It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`).
+This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
+
+We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
+Behind the scenes, the `install()` function switches the styling engine the core components use.
 
 ## Getting started
 
@@ -79,7 +82,7 @@ export default function Hook() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/Hook.js"}}
+{{"demo": "pages/css-in-js/basics/Hook.js", "react": "next"}}
 
 ### Styled components API
 
@@ -103,7 +106,7 @@ export default function StyledComponents() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/StyledComponents.js"}}
+{{"demo": "pages/css-in-js/basics/StyledComponents.js", "react": "next"}}
 
 ### Higher-order component API
 
@@ -137,7 +140,7 @@ HigherOrderComponent.propTypes = {
 export default withStyles(styles)(HigherOrderComponent);
 ```
 
-{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
+{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js", "react": "next"}}
 
 ### Render props API
 
@@ -163,7 +166,7 @@ export default function RenderProps() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/RenderProps.js"}}
+{{"demo": "pages/css-in-js/basics/RenderProps.js", "react": "next"}}
 
 ## Adapting based on props
 
@@ -172,16 +175,16 @@ This button component has a color property that changes its color:
 
 ### Adapting hook API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHook.js"}}
+{{"demo": "pages/css-in-js/basics/AdaptingHook.js", "react":"next"}}
 
 ### Adapting styled components API
 
-{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js"}}
+{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js", "react": "next"}}
 
 ### Adapting higher-order component API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
+{{"demo": "pages/css-in-js/basics/AdaptingHOC.js", "react": "next"}}
 
 ### Adapting render props API
 
-{{"demo": "pages/css-in-js/basics/AdaptingRenderProps.js"}}
+{{"demo": "pages/css-in-js/basics/AdaptingRenderProps.js", "react": "next"}}
