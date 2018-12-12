@@ -3,10 +3,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import url from 'url';
+import acceptLanguage from 'accept-language';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { getCookie } from 'docs/src/modules/utils/helpers';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
+
+acceptLanguage.languages(['en', 'zh']);
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -19,16 +25,16 @@ if (process.browser && !global.__INSERTION_POINT__) {
   }
 }
 
-function uiThemeSideEffect(uiTheme) {
-  setPrismTheme(uiTheme.paletteType === 'light' ? lightTheme : darkTheme);
-  document.body.dir = uiTheme.direction;
+function themeSideEffect(reduxTheme) {
+  setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
+  document.body.dir = reduxTheme.direction;
 }
 
 class AppWrapper extends React.Component {
   state = {};
 
   componentDidMount() {
-    uiThemeSideEffect(this.props.uiTheme);
+    themeSideEffect(this.props.reduxTheme);
 
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -43,10 +49,42 @@ class AppWrapper extends React.Component {
     ) {
       navigator.serviceWorker.register('/sw.js');
     }
+
+    const { options, reduxTheme } = this.props;
+
+    const paletteType = getCookie('paletteType');
+    const paletteColors = getCookie('paletteColors');
+
+    if (reduxTheme.paletteType !== paletteType || reduxTheme.paletteColors !== paletteColors) {
+      this.props.dispatch({
+        type: ACTION_TYPES.THEME_CHANGE,
+        payload: {
+          paletteType,
+          paletteColors: paletteColors ? JSON.parse(paletteColors) : null,
+        },
+      });
+    }
+
+    const URL = url.parse(document.location.href, true);
+    const userLanguage = acceptLanguage.get(
+      URL.query.lang || getCookie('lang') || navigator.language || 'en',
+    );
+
+    const codeVariant = getCookie('codeVariant');
+
+    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
+      this.props.dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          userLanguage,
+          codeVariant,
+        },
+      });
+    }
   }
 
   componentDidUpdate() {
-    uiThemeSideEffect(this.props.uiTheme);
+    themeSideEffect(this.props.reduxTheme);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -60,13 +98,13 @@ class AppWrapper extends React.Component {
     const { prevProps } = prevState;
 
     if (
-      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
-      nextProps.uiTheme.paletteColors !== prevProps.uiTheme.paletteColors ||
-      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
+      nextProps.reduxTheme.paletteType !== prevProps.reduxTheme.paletteType ||
+      nextProps.reduxTheme.paletteColors !== prevProps.reduxTheme.paletteColors ||
+      nextProps.reduxTheme.direction !== prevProps.reduxTheme.direction
     ) {
       return {
         prevProps: nextProps,
-        pageContext: updatePageContext(nextProps.uiTheme),
+        pageContext: updatePageContext(nextProps.reduxTheme),
       };
     }
 
@@ -74,7 +112,7 @@ class AppWrapper extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, options } = this.props;
     const { pageContext } = this.state;
 
     return (
@@ -84,7 +122,11 @@ class AppWrapper extends React.Component {
         sheetsManager={pageContext.sheetsManager}
         sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={pageContext.theme}>
+          {React.cloneElement(children, {
+            lang: options.userLanguage === 'en' ? '' : `-${options.userLanguage}`,
+          })}
+        </ThemeProvider>
         <GoogleAnalytics />
       </StylesProvider>
     );
@@ -93,11 +135,14 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  options: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
-  uiTheme: PropTypes.object.isRequired,
+  reduxTheme: PropTypes.object.isRequired,
 };
 
 export default connect(state => ({
-  uiTheme: state.theme,
+  options: state.options,
+  reduxTheme: state.theme,
 }))(AppWrapper);

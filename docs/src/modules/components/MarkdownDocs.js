@@ -58,7 +58,7 @@ function MarkdownDocs(props) {
                 sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
               />
             </div>
-            {contents.map((content, index) => {
+            {contents.map(content => {
               const match = content.match(demoRegexp);
 
               if (match && demos) {
@@ -75,10 +75,7 @@ function MarkdownDocs(props) {
                 return (
                   <Demo
                     key={content}
-                    js={demos[name].js}
-                    rawJS={demos[name].raw}
-                    rawHooks={demos[name].rawHooks}
-                    index={index}
+                    demo={demos[name]}
                     demoOptions={demoOptions}
                     githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
                   />

@@ -3,25 +3,24 @@ import LZString from 'lz-string';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import copy from 'clipboard-copy';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
+import CodeIcon from '@material-ui/icons/Code';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import JSLogo from '@material-ui/docs/svgIcons/JSLogo';
-import HooksLogo from '@material-ui/docs/svgIcons/HooksLogo';
+import HookLogo from '@material-ui/docs/svgIcons/HookLogo';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import { getDependencies } from 'docs/src/modules/utils/helpers';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
-
-const CODE_LANGUAGE_TYPES = {
-  JS: 'js',
-  HOOKS: 'hooks',
-};
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -38,8 +37,7 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-function getDemo(props, codeLanguage) {
-  const raw = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS ? props.rawHooks : props.rawJS;
+function getDemo(props, raw) {
   return {
     title: 'Material demo',
     description: props.githubLocation,
@@ -110,12 +108,13 @@ const styles = theme => ({
   code: {
     display: 'none',
     padding: 0,
-    margin: 0,
+    marginRight: 0,
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
     '& pre': {
       overflow: 'auto',
+      paddingTop: theme.spacing.unit * 5,
       margin: '0px !important',
       borderRadius: '0px !important',
     },
@@ -125,7 +124,6 @@ const styles = theme => ({
 class Demo extends React.Component {
   state = {
     anchorEl: null,
-    codeLanguage: CODE_LANGUAGE_TYPES.JS,
     codeOpen: false,
   };
 
@@ -138,8 +136,7 @@ class Demo extends React.Component {
   };
 
   handleClickCodeSandbox = () => {
-    const { codeLanguage } = this.state;
-    const demo = getDemo(this.props, codeLanguage);
+    const demo = getDemo(this.props, this.getDemoData().raw);
     const parameters = compress({
       files: {
         'package.json': {
@@ -172,19 +169,16 @@ class Demo extends React.Component {
   };
 
   handleClickCopy = async () => {
-    const { rawJS, rawHooks } = this.props;
-    const { codeLanguage } = this.state;
-
     try {
-      await copy(codeLanguage === CODE_LANGUAGE_TYPES.HOOKS ? rawHooks : rawJS);
+      await copy(this.getDemoData().raw);
     } finally {
       this.handleCloseMore();
     }
   };
 
   handleClickStackBlitz = () => {
-    const { codeLanguage } = this.state;
-    const demo = getDemo(this.props, codeLanguage);
+    const { codeVariant } = this.state;
+    const demo = getDemo(this.props, codeVariant);
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -204,71 +198,100 @@ class Demo extends React.Component {
   };
 
   handleCodeLanguageClick = event => {
-    const { value: codeLanguage } = event.currentTarget;
+    const codeVariant = event.currentTarget.value;
+
+    if (this.props.options.codeVariant !== codeVariant) {
+      document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
+
+      this.props.dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          codeVariant,
+        },
+      });
+    }
+
     this.setState(prevState => {
-      const isSameCodeOpen = prevState.codeLanguage === codeLanguage;
       return {
-        codeLanguage,
         /**
          * if the the same code type is open,
          * toggle the state, otherwise if it is
          * another code type always open it. i.e, true
          */
-        codeOpen: isSameCodeOpen ? !prevState.codeOpen : true,
+        codeOpen: this.props.options.codeVariant === codeVariant ? !prevState.codeOpen : true,
       };
     });
   };
 
-  hasHooksVersion = () => {
-    return Boolean(this.props.rawHooks);
+  handleClickCodeOpen = () => {
+    this.setState(state => ({
+      codeOpen: !state.codeOpen,
+    }));
+  };
+
+  getDemoData = () => {
+    const { options, demo } = this.props;
+    return options.codeVariant === CODE_VARIANTS.HOOK && demo.rawHook
+      ? {
+          codeVariant: CODE_VARIANTS.HOOK,
+          raw: demo.rawHook,
+          js: demo.jsHook,
+        }
+      : {
+          codeVariant: CODE_VARIANTS.JS,
+          js: demo.js,
+          raw: demo.raw,
+        };
   };
 
   render() {
-    const {
-      classes,
-      demoOptions,
-      githubLocation: githubLocationJS,
-      js: DemoComponent,
-      rawJS,
-      rawHooks,
-    } = this.props;
-    const { anchorEl, codeOpen, codeLanguage } = this.state;
+    const { classes, demo, demoOptions, githubLocation: githubLocationJS } = this.props;
+    const { anchorEl, codeOpen } = this.state;
     const category = demoOptions.demo;
-
-    const hasHooksVersion = this.hasHooksVersion();
-
+    const demoData = this.getDemoData();
+    const DemoComponent = demoData.js;
     const githubLocation =
-      codeLanguage === CODE_LANGUAGE_TYPES.HOOKS
-        ? githubLocationJS.replace(/\.jsx?$/, '.hooks.js')
+      demoData.codeVariant === CODE_VARIANTS.HOOK
+        ? githubLocationJS.replace(/\.jsx?$/, '.hook.js')
         : githubLocationJS;
-
-    const raw = codeLanguage === CODE_LANGUAGE_TYPES.HOOKS && hasHooksVersion ? rawHooks : rawJS;
 
     return (
       <div className={classes.root}>
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              <Tooltip title="Display source in JavaScript" placement="top">
-                <IconButton
-                  aria-label="Display source in JavaScript"
-                  onClick={this.handleCodeLanguageClick}
-                  value={CODE_LANGUAGE_TYPES.JS}
-                >
-                  <JSLogo />
-                </IconButton>
-              </Tooltip>
-              {hasHooksVersion && (
-                <Tooltip title="Display source in Hooks" placement="top">
+              {demo.rawHook && (
+                <Tooltip title="Set source using React Hook" placement="top">
                   <IconButton
-                    aria-label="Display source in React Hooks"
+                    aria-label="Set source using React Hook"
                     onClick={this.handleCodeLanguageClick}
-                    value={CODE_LANGUAGE_TYPES.HOOKS}
+                    value={CODE_VARIANTS.HOOK}
                   >
-                    <HooksLogo />
+                    <HookLogo />
                   </IconButton>
                 </Tooltip>
               )}
+              {demo.rawHook && (
+                <Tooltip title="Set source in JavaScript" placement="top">
+                  <IconButton
+                    aria-label="Set source in JavaScript"
+                    onClick={this.handleCodeLanguageClick}
+                    value={CODE_VARIANTS.JS}
+                  >
+                    <JSLogo />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
+                <IconButton
+                  data-ga-event-category={category}
+                  data-ga-event-action="expand"
+                  onClick={this.handleClickCodeOpen}
+                  aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
+                >
+                  <CodeIcon />
+                </IconButton>
+              </Tooltip>
               <Tooltip title="See the source on GitHub" placement="top">
                 <IconButton
                   data-ga-event-category={category}
@@ -337,7 +360,7 @@ class Demo extends React.Component {
               <MarkdownElement
                 dir="ltr"
                 className={classes.code}
-                text={`\`\`\`jsx\n${raw}\n\`\`\``}
+                text={`\`\`\`jsx\n${demoData.raw}\n\`\`\``}
               />
             </Collapse>
           </div>
@@ -362,11 +385,16 @@ class Demo extends React.Component {
 
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
+  demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  rawHooks: PropTypes.string,
-  rawJS: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Demo);
+export default compose(
+  connect(state => ({
+    options: state.options,
+  })),
+  withStyles(styles),
+)(Demo);
