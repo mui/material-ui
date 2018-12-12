@@ -44,9 +44,9 @@
     "classnames": "^2.2.5",
     "csstype": "^2.5.2",
     "debounce": "^1.1.0",
-    "deepmerge": "^2.0.1",
+    "deepmerge": "^3.0.0",
     "dom-helpers": "^3.2.1",
-    "hoist-non-react-statics": "^2.5.0",
+    "hoist-non-react-statics": "^3.2.1",
     "is-plain-object": "^2.0.4",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
@@ -62,7 +62,8 @@
     "react-event-listener": "^0.6.2",
     "react-transition-group": "^2.2.1",
     "recompose": "0.28.0 - 0.30.0",
-    "warning": "^4.0.1"
+    "warning": "^4.0.1",
+    "@material-ui/utils": "^3.0.0-alpha.0"
   },
   "sideEffects": false,
   "publishConfig": {
