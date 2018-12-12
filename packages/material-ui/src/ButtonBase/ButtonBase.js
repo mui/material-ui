@@ -89,6 +89,8 @@ class ButtonBase extends React.Component {
 
   handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
 
+  handleContextMenu = createRippleHandler(this, 'ContextMenu', 'stop');
+
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     clearTimeout(this.focusVisibleTimeout);
     if (this.state.focusVisible) {
@@ -298,6 +300,7 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
+        onContextMenu={this.handleContextMenu}
         ref={buttonRef}
         tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
