@@ -22,7 +22,7 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '95.5 KB',
+    limit: '95.2 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -35,13 +35,13 @@ module.exports = [
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
     path: 'packages/material-ui/build/Popper/index.js',
-    limit: '10.6 KB',
+    limit: '10.7 KB',
   },
   {
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '177 KB',
+    limit: '176 KB',
   },
   {
     name: 'The docs home page',
