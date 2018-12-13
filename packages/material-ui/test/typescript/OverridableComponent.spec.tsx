@@ -121,15 +121,6 @@ shouldFail = (
 );
 
 shouldFail = (
-  <Foo
-    component="div" // doesn't match onClick handler type
-    numberProp={3}
-    // $ExpectError
-    onClick={e => e.currentTarget.checkValidity()}
-  />
-);
-
-shouldFail = (
   <Foo<'div'>
     component="div"
     numberProp={3}
