@@ -40,7 +40,7 @@ const styles = theme => ({
     top: 70,
     // Fix IE 11 position sticky issue.
     marginTop: 70,
-    width: 162,
+    width: 167,
     flexShrink: 0,
     order: 2,
     position: 'sticky',
@@ -48,7 +48,7 @@ const styles = theme => ({
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit *
-      2}px 0`,
+      2}px 5px`,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',

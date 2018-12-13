@@ -199,7 +199,7 @@ ListItem.propTypes = {
   /**
    * The container component used when a `ListItemSecondaryAction` is rendered.
    */
-  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  ContainerComponent: componentPropType,
   /**
    * Properties applied to the container element when the component
    * is used to display a `ListItemSecondaryAction`.

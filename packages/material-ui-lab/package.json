@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.1.2",
+    "@material-ui/utils": "^3.0.0-alpha.0",
     "classnames": "^2.2.5",
     "keycode": "^2.1.9"
   },

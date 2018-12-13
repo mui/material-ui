@@ -135,6 +135,7 @@
     "react-autosuggest": "^9.3.2",
     "react-docgen": "^3.0.0-beta10",
     "react-dom": "^16.7.0-alpha.0",
+    "react-draggable": "^3.0.5",
     "react-final-form": "^4.0.2",
     "react-frame-component": "^4.0.2",
     "react-inspector": "^2.2.2",

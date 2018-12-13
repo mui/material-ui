@@ -14,12 +14,12 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       paddingLeft: theme.spacing.unit * 4,
       paddingRight: theme.spacing.unit * 4,
-      maxWidth: 'calc(100% - 162px)',
+      maxWidth: 'calc(100% - 167px)',
     },
     [theme.breakpoints.up('lg')]: {
       paddingLeft: theme.spacing.unit * 5,
       paddingRight: theme.spacing.unit * 9,
-      maxWidth: 'calc(100% - 240px - 162px)',
+      maxWidth: 'calc(100% - 240px - 167px)',
     },
   },
 });
