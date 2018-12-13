@@ -1,6 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
+import { Input } from '@material-ui/core';
+import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import PropTypes from 'prop-types';
 import withTheme from './withTheme';
 import ThemeProvider from './ThemeProvider';
@@ -40,5 +42,13 @@ describe('withTheme', () => {
     Test.someStatic = 'will not get hoisted';
     const TestWithTheme = withTheme()(Test);
     assert.strictEqual(TestWithTheme.someStatic, undefined);
+  });
+
+  it('hoists mui internals', () => {
+    assert.strictEqual(isMuiElement(<Input />, ['Input']), true);
+
+    const ThemedInput = withTheme()(Input);
+
+    assert.strictEqual(isMuiElement(<ThemedInput />, ['Input']), true);
   });
 });
