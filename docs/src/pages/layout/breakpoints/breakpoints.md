@@ -36,7 +36,7 @@ Sometimes, using CSS isn't enough.
 You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
 We provide a `withWidth()` higher-order component for this use case.
 
-```js
+```jsx
 import withWidth from '@material-ui/core/withWidth';
 
 function MyComponent(props) {
@@ -55,7 +55,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 ## useWidth()
 
 > ⚠️ `useWidth` is experimental as Hooks aren't stable yet, therefore it is exported with an unstable prefix\
-__PLEASE NOTE: `useWidth` depends on react >= 16.7.0-alpha.0, react-dom >= 16.7.0-alpha.0 and @material-ui/styles.__
+PLEASE NOTE: `useWidth` depends on react >= 16.7.0-alpha.0, react-dom >= 16.7.0-alpha.0 and @material-ui/styles.
 
 ```jsx
 import React from 'react';
@@ -77,7 +77,7 @@ export default function UseWidth() {
 In some cases, you could have property name collisions using higher-order components.
 To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
 
-```js
+```jsx
 import Typography from '@material-ui/core/Typography';
 import toRenderProps from 'recompose/toRenderProps';
 
@@ -117,7 +117,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 1. `options` (*Object* [optional]):
   - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
   - `options.noSSR` (*Boolean* [optional]): Defaults to `false`.
-  In order to perform the server-side rendering reconciliation, we need to render twice.
+  In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. The UI might blink.
   You can set this flag to `true` if you are not doing server-side rendering.
@@ -166,12 +166,13 @@ class MyComponent extends React.Component {
 export default withWidth()(MyComponent);
 ```
 
-### unstable_useWidth([options]) => Object
+### `unstable_useWidth([options]) => Object`
 
 #### Arguments
 
 1. `options` (*Object* [optional]):
-  In order to perform the server-side rendering reconciliation, we need to render twice.
+  - `options.noSSR` (*Boolean* [optional]): Defaults to `false`.
+  In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. The UI might blink.
   You can set this flag to `true` if you are not doing server-side rendering.

@@ -1,5 +1,7 @@
 import React from 'react';
 import { unstable_useWidth as useWidth } from '@material-ui/core/useWidth';
+import { ThemeContext } from '@material-ui/styles/ThemeProvider';
+import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useWidth/unstable_useMediaQuery';
 import Typography from '@material-ui/core/Typography';
 
 const components = {
@@ -9,12 +11,12 @@ const components = {
 };
 
 export default function UseWidth() {
-  const { width } = useWidth();
-  const Component = components[width] || 'span';
+  const theme = React.useContext(ThemeContext);
+  const match = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <Typography variant="subtitle1">
-      <Component>{`Current width: ${width}`}</Component>
+      <span>{`Current match: ${match}`}</span>
     </Typography>
   );
 }

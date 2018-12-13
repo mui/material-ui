@@ -41,6 +41,7 @@
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",
     "classnames": "^2.2.5",
+    "css-mediaquery": "^0.1.2",
     "csstype": "^2.5.2",
     "debounce": "^1.1.0",
     "deepmerge": "^3.0.0",
