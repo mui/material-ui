@@ -96,6 +96,14 @@ You can change the placement of the label:
 
 ## Accessibility
 
-Sometimes adding attributes directly to input components is necessary for accessibility purposes.  In these cases, passing additional attributes (e.g. aria-label, aria-labelledby, title, etc.) into a selection control component via the `inputProps` property is required.
+All form controls should have a label to identify it, this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
 
-{{"demo": "pages/demos/selection-controls/Accessibility.js"}}
+When a label can't be used, it's necessary to add an attribute directly to the input component.
+In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+
+```jsx
+<Checkbox
+  value="checkedA"
+  inputProps={{ 'aria-label': 'Checkbox A' } }
+/>
+```
