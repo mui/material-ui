@@ -231,11 +231,11 @@ class Demo extends React.Component {
 
   getDemoData = () => {
     const { options, demo } = this.props;
-    return options.codeVariant === CODE_VARIANTS.HOOK && demo.rawHook
+    return options.codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks
       ? {
           codeVariant: CODE_VARIANTS.HOOK,
-          raw: demo.rawHook,
-          js: demo.jsHook,
+          raw: demo.rawHooks,
+          js: demo.jsHooks,
         }
       : {
           codeVariant: CODE_VARIANTS.JS,
@@ -252,7 +252,7 @@ class Demo extends React.Component {
     const DemoComponent = demoData.js;
     const githubLocation =
       demoData.codeVariant === CODE_VARIANTS.HOOK
-        ? githubLocationJS.replace(/\.jsx?$/, '.hook.js')
+        ? githubLocationJS.replace(/\.jsx?$/, '.hooks.js')
         : githubLocationJS;
 
     return (
@@ -260,10 +260,10 @@ class Demo extends React.Component {
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              {demo.rawHook && (
-                <Tooltip title="Set source using React Hook" placement="top">
+              {demo.rawHooks && (
+                <Tooltip title="Set source using React Hooks" placement="top">
                   <IconButton
-                    aria-label="Set source using React Hook"
+                    aria-label="Set source using React Hooks"
                     onClick={this.handleCodeLanguageClick}
                     value={CODE_VARIANTS.HOOK}
                   >
@@ -271,7 +271,7 @@ class Demo extends React.Component {
                   </IconButton>
                 </Tooltip>
               )}
-              {demo.rawHook && (
+              {demo.rawHooks && (
                 <Tooltip title="Set source in JavaScript" placement="top">
                   <IconButton
                     aria-label="Set source in JavaScript"

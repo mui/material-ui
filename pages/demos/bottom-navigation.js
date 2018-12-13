@@ -16,12 +16,12 @@ module.exports = require('fs')
   .readFileSync(require
     .resolve('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation'), 'utf8')
 `,
-          jsHook: require('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation.hook')
+          jsHooks: require('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation.hooks')
             .default,
-          rawHook: preval`
+          rawHooks: preval`
 module.exports = require('fs')
   .readFileSync(require
-    .resolve('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation.hook'), 'utf8')
+    .resolve('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation.hooks'), 'utf8')
 `,
         },
         'pages/demos/bottom-navigation/LabelBottomNavigation.js': {
