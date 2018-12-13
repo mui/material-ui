@@ -2,7 +2,7 @@
   "name": "@docly/web",
   "private": true,
   "author": "Docly Healthcare AB",
-  "version": "0.0.2",
+  "version": "0.0.362",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
