@@ -157,8 +157,7 @@ class ColorTool extends React.Component {
     const { primaryShade, secondaryShade } = this.state;
 
     const colorBar = color => {
-      const background = { main: color };
-      theme.palette.augmentColor(background);
+      const background = theme.palette.augmentColor({ main: color });
 
       return (
         <Grid container className={classes.colorBar}>
