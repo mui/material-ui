@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getDisplayName } from '@material-ui/utils';
+import hoistStatics from './hoistInternalStatics';
 import { ThemeContext } from './ThemeProvider';
 
 // Provide the theme object as a property to the input component.
@@ -24,6 +25,8 @@ const withTheme = () => Component => {
   if (process.env.NODE_ENV !== 'production') {
     WithTheme.displayName = `WithTheme(${getDisplayName(Component)})`;
   }
+
+  hoistStatics(WithTheme, Component);
 
   return WithTheme;
 };

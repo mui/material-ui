@@ -8,6 +8,7 @@ import mergeClasses from './mergeClasses';
 import multiKeyStore from './multiKeyStore';
 import getStylesCreator from './getStylesCreator';
 import getThemeProps from './getThemeProps';
+import hoistStatics from './hoistInternalStatics';
 import { StylesContext } from './StylesProvider';
 import { ThemeContext } from './ThemeProvider';
 
@@ -331,6 +332,8 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   if (process.env.NODE_ENV !== 'production') {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
+
+  hoistStatics(WithStyles, Component);
 
   if (process.env.NODE_ENV !== 'production') {
     // Exposed for test purposes.
