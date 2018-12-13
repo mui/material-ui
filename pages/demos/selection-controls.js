@@ -84,6 +84,15 @@ module.exports = require('fs')
   ), 'utf8')
 `,
         },
+        'pages/demos/selection-controls/Accessibility.js': {
+          js: require('docs/src/pages/demos/selection-controls/Accessibility').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve(
+    'docs/src/pages/demos/selection-controls/Accessibility'
+  ), 'utf8')
+`,
+        },
       }}
     />
   );

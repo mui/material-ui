@@ -93,3 +93,9 @@ but you are not confident jumping in, here's an example of how you can change th
 You can change the placement of the label:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
+
+## Accessibility
+
+Sometimes adding attributes directly to input components is necessary for accessibility purposes.  In these cases, passing additional attributes (e.g. aria-label, aria-labelledby, title, etc.) into a selection control component via the `inputProps` property is required.
+
+{{"demo": "pages/demos/selection-controls/Accessibility.js"}}
