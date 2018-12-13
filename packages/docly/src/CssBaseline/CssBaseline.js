@@ -3,7 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
-import exactProp from '../material-core/utils/exactProp';
+// import exactProp from '../material-core-utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 const styles = theme => ({
   '@global': {

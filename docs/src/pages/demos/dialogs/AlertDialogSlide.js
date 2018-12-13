@@ -27,7 +27,9 @@ class AlertDialogSlide extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Slide in alert dialog
+        </Button>
         <Dialog
           open={this.state.open}
           TransitionComponent={Transition}

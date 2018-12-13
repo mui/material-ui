@@ -88,6 +88,7 @@ const styles = theme => ({
       },
       '& .algolia-docsearch-suggestion': {
         textDecoration: 'none',
+        backgroundColor: theme.palette.background.paper,
       },
       '& .algolia-docsearch-suggestion--title': theme.typography.h6,
       '& .algolia-docsearch-suggestion--text': theme.typography.body2,

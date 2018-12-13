@@ -88,7 +88,7 @@ class Menu extends React.Component {
       event.preventDefault();
 
       if (this.props.onClose) {
-        this.props.onClose(event);
+        this.props.onClose(event, 'tabKeyDown');
       }
     }
   };
@@ -161,6 +161,7 @@ Menu.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`
    */
   onClose: PropTypes.func,
   /**

@@ -108,15 +108,31 @@ declare module '@material-ui/styles/makeStyles' {
     ClassNameMap,
     PropsOfStyles,
     Styles,
+    WithStylesOptions,
   } from '@material-ui/styles/withStyles';
+
+  // https://stackoverflow.com/a/49928360/3406963 without generic branch types
+  type IsAny<T> = 0 extends (1 & T) ? true : false;
+
+  /**
+   * @internal
+   *
+   * `Props` are `any` either by explicit annotation or if there are no callbacks
+   * from which the typechecker could infer a type so it falls back to `any`.
+   * See the test cases for examples and implications of explicit `any` annotation
+   */
+  export type StylesHook<S extends Styles<any, any>> = IsAny<PropsOfStyles<S>> extends true
+    ? (props?: any) => ClassNameMap<ClassKeyOfStyles<S>>
+    : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 
   export default function makeStyles<S extends Styles<any, any>>(
     styles: S,
-  ): (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
+    options?: WithStylesOptions<ClassKeyOfStyles<S>>,
+  ): StylesHook<S>;
 }
 
 declare module '@material-ui/styles/styled' {
-  import { ConsistentWith, Omit, PropsOf } from '@material-ui/core';
+  import { Omit, PropsOf } from '@material-ui/core';
   import {
     CSSProperties,
     StyledComponentProps,
@@ -139,9 +155,7 @@ declare module '@material-ui/styles/styled' {
     className: string;
   }
 
-  export default function styled<
-    C extends React.ReactType<ConsistentWith<PropsOf<C>, { className: string }>>
-  >(Component: C): ComponentCreator<C>;
+  export default function styled<C extends React.ReactType>(Component: C): ComponentCreator<C>;
 }
 
 declare module '@material-ui/styles/StylesProvider' {
@@ -200,9 +214,10 @@ declare module '@material-ui/styles/withStyles' {
    * @internal
    * This is basically the API of JSS. It defines a Map<string, CSS>,
    * where
-   *
    * - the `keys` are the class (names) that will be created
    * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
+   *
+   * if only `CSSProperties` are matched `Props` are inferred to `any`
    */
   export type StyleRules<Props extends object, ClassKey extends string = string> = Record<
     ClassKey,

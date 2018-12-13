@@ -5,7 +5,7 @@ function isHidable(node) {
 }
 
 function siblings(container, mount, currentNode, callback) {
-  const blacklist = [mount, currentNode]; // eslint-disable-line no-param-reassign
+  const blacklist = [mount, currentNode];
 
   [].forEach.call(container.children, node => {
     if (blacklist.indexOf(node) === -1 && isHidable(node)) {

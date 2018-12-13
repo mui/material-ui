@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
+import { componentPropType } from '@material-ui/utils';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
@@ -83,7 +84,6 @@ class Tabs extends React.Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ mounted: true });
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
@@ -115,10 +115,7 @@ class Tabs extends React.Component {
     const { classes, scrollable, ScrollButtonComponent, scrollButtons, theme } = this.props;
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSize
-        onLoad={this.handleScrollbarSizeChange}
-        onChange={this.handleScrollbarSizeChange}
-      />
+      <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
 
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
@@ -195,7 +192,7 @@ class Tabs extends React.Component {
     this.moveTabsScroll(this.tabsRef.clientWidth);
   };
 
-  handleScrollbarSizeChange = ({ scrollbarHeight }) => {
+  handleScrollbarSizeChange = scrollbarHeight => {
     this.setState({
       scrollerStyle: {
         marginBottom: -scrollbarHeight,
@@ -425,7 +422,7 @@ Tabs.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.

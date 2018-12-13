@@ -50,9 +50,12 @@ function setContainerStyle(data) {
 }
 
 function removeContainerStyle(data) {
-  Object.keys(data.style).forEach(key => {
-    data.container.style[key] = data.style[key];
-  });
+  // The modal might be closed before it had the chance to be mounted in the DOM.
+  if (data.style) {
+    Object.keys(data.style).forEach(key => {
+      data.container.style[key] = data.style[key];
+    });
+  }
 
   const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
   for (let i = 0; i < fixedNodes.length; i += 1) {
@@ -124,7 +127,7 @@ class ModalManager {
     const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
     const data = this.data[containerIdx];
 
-    if (data.modals.length === 1 && this.handleContainerOverflow) {
+    if (!data.style && this.handleContainerOverflow) {
       setContainerStyle(data);
     }
   }

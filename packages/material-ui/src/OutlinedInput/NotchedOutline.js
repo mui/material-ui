@@ -31,7 +31,7 @@ export const styles = theme => {
     legend: {
       textAlign: 'left',
       padding: 0,
-      lineHeight: '10px',
+      lineHeight: '11px',
       transition: theme.transitions.create('width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,

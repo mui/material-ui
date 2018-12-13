@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
@@ -40,12 +38,25 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     assert.strictEqual(wrapper.type(), React.Fragment);
     assert.strictEqual(wrapper.childAt(0).name(), 'RootRef');
-    assert.strictEqual(wrapper.childAt(1).name(), 'WithTheme(Popper)');
+    assert.strictEqual(wrapper.childAt(1).name(), 'Popper');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
   });
 
+  describe('prop: disableHoverListener', () => {
+    it('should hide the native title', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World" disableHoverListener>
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('button');
+      assert.strictEqual(children.props().title, null);
+    });
+  });
+
   describe('prop: title', () => {
-    it('should display if the title is presetn', () => {
+    it('should display if the title is present', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} open />);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
@@ -53,6 +64,17 @@ describe('<Tooltip />', () => {
     it('should not display if the title is an empty string', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} title="" open />);
       assert.strictEqual(wrapper.find(Popper).props().open, false);
+    });
+
+    it('should be passed down to the child as a native title', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World">
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('button');
+      assert.strictEqual(children.props().title, 'Hello World');
     });
   });
 
@@ -216,6 +238,17 @@ describe('<Tooltip />', () => {
 
     after(() => {
       consoleErrorMock.reset();
+    });
+
+    it('should not raise a warning if title is empty', () => {
+      mount(
+        <Tooltip title="">
+          <button type="submit" disabled>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
     });
 
     it('should raise a warning when we can listen to events', () => {

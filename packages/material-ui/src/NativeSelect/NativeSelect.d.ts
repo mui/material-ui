@@ -9,7 +9,7 @@ export interface NativeSelectProps
     Pick<NativeSelectInputProps, 'onChange'> {
   IconComponent?: React.ReactType;
   input?: React.ReactNode;
-  value?: string | number | boolean;
+  value?: Array<string | number | boolean> | string | number | boolean;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

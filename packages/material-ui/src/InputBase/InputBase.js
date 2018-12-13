@@ -152,8 +152,8 @@ class InputBase extends React.Component {
     return null;
   }
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.isControlled = props.value != null;
     if (this.isControlled) {
       this.checkDirty(props);
@@ -278,7 +278,6 @@ class InputBase extends React.Component {
       className: classNameProp,
       defaultValue,
       disabled,
-      disableUnderline,
       endAdornment,
       error,
       fullWidth,

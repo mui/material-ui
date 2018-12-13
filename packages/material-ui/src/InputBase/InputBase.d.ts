@@ -11,7 +11,6 @@ export interface InputBaseProps
   autoFocus?: boolean;
   defaultValue?: Array<string | number | boolean | object> | string | number | boolean | object;
   disabled?: boolean;
-  disableUnderline?: boolean;
   endAdornment?: React.ReactNode;
   error?: boolean;
   fullWidth?: boolean;

@@ -134,7 +134,7 @@ function buildDocs(options) {
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Button') {
+  // if (reactAPI.name !== 'TableCell') {
   //   return;
   // }
 

@@ -65,11 +65,18 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/themes/WithTheme'), 'utf8')
 `,
         },
-        'pages/customization/themes/Nested.js': {
-          js: require('docs/src/pages/customization/themes/Nested').default,
+        'pages/customization/themes/ThemeNesting.js': {
+          js: require('docs/src/pages/customization/themes/ThemeNesting').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/themes/Nested'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/customization/themes/ThemeNesting'), 'utf8')
+`,
+        },
+        'pages/customization/themes/ThemeNestingExtend.js': {
+          js: require('docs/src/pages/customization/themes/ThemeNestingExtend').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/themes/ThemeNestingExtend'), 'utf8')
 `,
         },
       }}

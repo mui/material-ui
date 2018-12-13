@@ -21,6 +21,7 @@ export type DialogClassKey =
   | 'root'
   | 'scrollPaper'
   | 'scrollBody'
+  | 'container'
   | 'paper'
   | 'paperScrollPaper'
   | 'paperScrollBody'

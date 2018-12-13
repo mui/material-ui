@@ -11,7 +11,7 @@ A [Menu](https://material.io/design/components/menus.html) displays a list of ch
 
 ## Simple Menu
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make all menu items are completely visible.
+Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
 
@@ -38,12 +38,16 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Customized MenuItem
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles.
-You can use the same list composition features with the `MenuItem` component:
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here is one example of how you can customize the `MenuItem`.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
+The `MenuItem` is a wrapper around `ListItem` with some additional styles.
+You can use the same list composition features with the `MenuItem` component:
 
 ## Max height menus
 
