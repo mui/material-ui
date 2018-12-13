@@ -3,6 +3,8 @@ import Typography from '../material-core/Typography';
 // TODO: decide whether to extend or make our own Typography component:
 // import Typography from './mui-typography';
 
+export default Typography;
+
 export const fontWeights = {
   light: 300,
   regular: 400,

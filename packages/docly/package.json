@@ -21,6 +21,7 @@
   "homepage": "http://material-ui.com/",
   "scripts": {
     "copy-material-core": "rimraf src/material-core && cp -R ../material-ui/src src/material-core",
+    "copy-material-utils": "rimraf src/material-ui-utils && cp -R ../material-ui-utils/src src/material-ui-utils",
     "prebuild": "rimraf build && yarn copy-material-core",
     "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore *.test.js",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
@@ -30,7 +31,7 @@
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd && yarn build:copy-files",
     "release": "yarn build && npm publish build",
     "sync-package-json": "node ./scripts/sync-package-json.js",
-    "postinstall": "yarn copy-material-core"
+    "postinstall": "yarn copy-material-core && yarn copy-material-utils"
   },
   "peerDependencies": {
     "react": "^16.3.0",

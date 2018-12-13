@@ -45,6 +45,7 @@ module.exports = {
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
+    '@babel/plugin-proposal-export-default-from',
   ],
   ignore: [/@babel[\\|/]runtime/],
   env: {
