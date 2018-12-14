@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
@@ -500,9 +501,9 @@ Popover.propTypes = {
       .isRequired,
   }),
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */

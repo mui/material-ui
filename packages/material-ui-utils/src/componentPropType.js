@@ -1,4 +1,4 @@
-import * as ReactIs from 'react-is';
+const ReactIs = require('react-is');
 
 /**
  * A factory that returns a propTypes validator that only accepts values that

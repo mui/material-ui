@@ -76,7 +76,9 @@ function ProductHowItWorks(props) {
                   alt="suitcase"
                   className={classes.image}
                 />
-                <Typography variant="h5">Appointment every Wednesday 9am.</Typography>
+                <Typography variant="h5" align="center">
+                  Appointment every Wednesday 9am.
+                </Typography>
               </div>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -87,7 +89,7 @@ function ProductHowItWorks(props) {
                   alt="graph"
                   className={classes.image}
                 />
-                <Typography variant="h5">
+                <Typography variant="h5" align="center">
                   First come, first served. Our offers are in limited quantities, so be quick.
                 </Typography>
               </div>
@@ -100,7 +102,7 @@ function ProductHowItWorks(props) {
                   alt="clock"
                   className={classes.image}
                 />
-                <Typography variant="h5">
+                <Typography variant="h5" align="center">
                   {'New offers every week. New experiences, new surprises. '}
                   {'Your Sundays will no longer be alike.'}
                 </Typography>

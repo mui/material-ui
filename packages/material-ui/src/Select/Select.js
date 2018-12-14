@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { componentPropType } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -104,7 +105,7 @@ Select.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */

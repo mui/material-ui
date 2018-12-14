@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { setRef } from '../utils/reactHelpers';
@@ -369,7 +370,7 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * Use that property to pass a ref callback to the native select element.
    */

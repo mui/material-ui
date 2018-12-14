@@ -10771,6 +10771,14 @@ react-dom@^16.7.0-alpha.0:
     prop-types "^15.6.2"
     scheduler "^0.12.0-alpha.2"
 
+react-draggable@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.0.5.tgz#c031e0ed4313531f9409d6cd84c8ebcec0ddfe2d"
+  integrity sha512-qo76q6+pafyGllbmfc+CgWfOkwY9v3UoJa3jp6xG2vdsRY8uJTN1kqNievLj0uVNjEqCvZ0OFiEBxlAJNj3OTg==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
 react-emotion@^9.2.12:
   version "9.2.12"
   resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.2.12.tgz#74d1494f89e22d0b9442e92a33ca052461955c83"

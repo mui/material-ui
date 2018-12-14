@@ -170,7 +170,7 @@ class Tabs extends React.Component {
           tab,
           [
             `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
-            'Non of the Tabs children have this value.',
+            'None of the Tabs children have this value.',
             this.valueToIndex.keys
               ? `You can provide one of the following values: ${Array.from(
                   this.valueToIndex.keys(),
@@ -447,7 +447,7 @@ Tabs.propTypes = {
   /**
    * The component used to render the scroll buttons.
    */
-  ScrollButtonComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  ScrollButtonComponent: componentPropType,
   /**
    * Determine behavior of scroll buttons when tabs are set to scroll
    * `auto` will only present them on medium and larger viewports
