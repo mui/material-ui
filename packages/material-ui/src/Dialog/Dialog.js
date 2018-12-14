@@ -311,7 +311,8 @@ Dialog.propTypes = {
     const { PaperProps = {} } = props;
     if ('className' in PaperProps) {
       return new Error(
-        '`className` overrides all `Dialog` specific styles in `Paper`. If you wanted to add ' +
+        'Material-UI: `className` overrides all `Dialog` specific styles in `Paper`. ' +
+          'If you wanted to add ' +
           'styles to the `Paper` component use `classes.paper` in the `Dialog` props ' +
           `instead.${process.env.NODE_ENV === 'test' ? Date.now() : ''}`,
       );

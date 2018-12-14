@@ -360,25 +360,25 @@ Button.propTypes = {
     props => {
       if (props.variant === 'flat') {
         return new Error(
-          'The `flat` variant will be removed in the next major release. ' +
+          'Material-UI: the `flat` variant will be removed in the next major release. ' +
             '`text` is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'raised') {
         return new Error(
-          'The `raised` variant will be removed in the next major release. ' +
+          'Material-UI: the `raised` variant will be removed in the next major release. ' +
             '`contained` is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'fab') {
         return new Error(
-          'The `fab` variant will be removed in the next major release. ' +
+          'Material-UI: the `fab` variant will be removed in the next major release. ' +
             'The `<Fab>` component is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'extendedFab') {
         return new Error(
-          'The `fab` variant will be removed in the next major release. ' +
+          'Material-UI: the `fab` variant will be removed in the next major release. ' +
             'The `<Fab>` component with `variant="extended"` is equivalent ' +
             'and should be used instead.',
         );
