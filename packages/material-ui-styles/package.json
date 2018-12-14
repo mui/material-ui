@@ -40,7 +40,6 @@
     "@material-ui/utils": "^3.0.0-alpha.0",
     "classnames": "^2.2.5",
     "deepmerge": "^3.0.0",
-    "hoist-non-react-statics": "^3.2.1",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
     "jss-default-unit": "^8.0.2",
