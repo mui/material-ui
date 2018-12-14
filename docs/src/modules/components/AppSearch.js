@@ -187,6 +187,6 @@ AppSearch.propTypes = {
 };
 
 export default compose(
-  withStyles(styles),
   withWidth(),
+  withStyles(styles),
 )(AppSearch);

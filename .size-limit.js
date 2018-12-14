@@ -41,7 +41,7 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '176.1 KB',
+    limit: '177 KB',
   },
   {
     name: 'The docs home page',

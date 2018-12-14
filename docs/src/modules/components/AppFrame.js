@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import fromRenderProps from 'recompose/fromRenderProps';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,13 +22,12 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
-import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -102,8 +100,8 @@ class AppFrame extends React.Component {
     this.setState({ languageMenu: null });
   };
 
-  handleLanguageMenuItemClick = lang => {
-    if (lang !== this.props.userLanguage) {
+  handleLanguageMenuItemClick = lang => () => {
+    if (lang !== this.props.options.userLanguage) {
       document.cookie = `lang=${lang};path=/;max-age=31536000`;
       window.location.reload();
     }
@@ -111,11 +109,11 @@ class AppFrame extends React.Component {
   };
 
   handleTogglePaletteType = () => {
-    const paletteType = this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light';
+    const paletteType = this.props.reduxTheme.paletteType === 'light' ? 'dark' : 'light';
     document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
 
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: {
         paletteType,
       },
@@ -124,15 +122,15 @@ class AppFrame extends React.Component {
 
   handleToggleDirection = () => {
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_DIRECTION,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: {
-        direction: this.props.uiTheme.direction === 'ltr' ? 'rtl' : 'ltr',
+        direction: this.props.reduxTheme.direction === 'ltr' ? 'rtl' : 'ltr',
       },
     });
   };
 
   render() {
-    const { children, classes, uiTheme, userLanguage } = this.props;
+    const { children, classes, reduxTheme, options } = this.props;
     const { languageMenu } = this.state;
 
     return (
@@ -191,14 +189,14 @@ class AppFrame extends React.Component {
                     onClose={this.handleLanguageMenuClose}
                   >
                     <MenuItem
-                      selected={userLanguage === 'en'}
-                      onClick={() => this.handleLanguageMenuItemClick('en')}
+                      selected={options.userLanguage === 'en'}
+                      onClick={this.handleLanguageMenuItemClick('en')}
                     >
                       English
                     </MenuItem>
                     <MenuItem
-                      selected={userLanguage === 'zh'}
-                      onClick={() => this.handleLanguageMenuItemClick('zh')}
+                      selected={options.userLanguage === 'zh'}
+                      onClick={this.handleLanguageMenuItemClick('zh')}
                     >
                       中文
                     </MenuItem>
@@ -223,7 +221,7 @@ class AppFrame extends React.Component {
                       data-ga-event-category="AppBar"
                       data-ga-event-action="dark"
                     >
-                      {uiTheme.paletteType === 'light' ? (
+                      {reduxTheme.paletteType === 'light' ? (
                         <LightbulbOutlineIcon />
                       ) : (
                         <LightbulbFullIcon />
@@ -238,7 +236,7 @@ class AppFrame extends React.Component {
                       data-ga-event-category="AppBar"
                       data-ga-event-action="rtl"
                     >
-                      {uiTheme.direction === 'rtl' ? (
+                      {reduxTheme.direction === 'rtl' ? (
                         <FormatTextdirectionLToR />
                       ) : (
                         <FormatTextdirectionRToL />
@@ -280,16 +278,14 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  uiTheme: PropTypes.object.isRequired,
-  userLanguage: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired,
+  reduxTheme: PropTypes.object.isRequired,
 };
-
-const pageContext = fromRenderProps(PageContext.Consumer, ({ userLanguage }) => ({ userLanguage }));
 
 export default compose(
   connect(state => ({
-    uiTheme: state.theme,
+    options: state.options,
+    reduxTheme: state.theme,
   })),
-  pageContext,
   withStyles(styles),
 )(AppFrame);
