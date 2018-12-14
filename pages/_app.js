@@ -1,5 +1,5 @@
 import 'docs/src/modules/components/bootstrap';
-
+// --- Post bootstrap -----
 import React from 'react';
 import App, { Container } from 'next/app';
 import find from 'lodash/find';
