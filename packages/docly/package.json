@@ -2,7 +2,7 @@
   "name": "@docly/web",
   "private": true,
   "author": "Docly Healthcare AB",
-  "version": "0.0.362",
+  "version": "0.1.362",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -28,8 +28,10 @@
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
     "build:umd": "cross-env BABEL_ENV=production-umd rollup -c scripts/rollup.config.js",
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
+    "build:copy-icons": "rimraf build/icons && cd ../material-ui-icons && yarn build && cd ../docly && mv ../material-ui-icons/build ./build/icons",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd && yarn build:copy-files",
-    "release": "yarn build && npm publish build",
+    "postbuild": "yarn build:copy-icons",
+    "release": "yarn build && yarn publish build",
     "sync-package-json": "node ./scripts/sync-package-json.js",
     "postinstall": "yarn copy-material-core && yarn copy-material-utils"
   },
