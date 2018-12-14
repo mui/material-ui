@@ -3,7 +3,7 @@
 <p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
 > ⚠️ We are working on extracting the styling solution into it's own package: [`@material-ui/styles`](/css-in-js/basics/).
-It's an experimental project (alpha version).
+It's an unstable project (alpha version).
 Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
 
 Material-UI aims to provide strong foundations for building dynamic UIs.

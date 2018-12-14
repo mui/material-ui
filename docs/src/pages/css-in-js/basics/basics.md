@@ -2,7 +2,7 @@
 
 <p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
-> ⚠️ `@material-ui/styles` is experimental (alpha version).
+> ⚠️ `@material-ui/styles` is unstable (alpha version).
 Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
 [Follow this path](/customization/css-in-js/) to read the documentation
 of the default style implementation.

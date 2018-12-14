@@ -8,55 +8,20 @@ import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import getThemeProps from '../styles/getThemeProps';
 
-export const calculateWidthUp = (breakpoints, breakpoint, width, inclusive) => {
-  if (inclusive) {
-    return breakpoints.indexOf(breakpoint) <= breakpoints.indexOf(width);
-  }
-  return breakpoints.indexOf(breakpoint) < breakpoints.indexOf(width);
-};
-
-export const calculateWidthDown = (breakpoints, breakpoint, width, inclusive) => {
-  if (inclusive) {
-    return breakpoints.indexOf(width) <= breakpoints.indexOf(breakpoint);
-  }
-  return breakpoints.indexOf(width) < breakpoints.indexOf(breakpoint);
-};
-
 // By default, returns true if screen width is the same or greater than the given breakpoint.
 export const isWidthUp = (breakpoint, width, inclusive = true) => {
-  return calculateWidthUp(breakpointKeys, breakpoint, width, inclusive);
+  if (inclusive) {
+    return breakpointKeys.indexOf(breakpoint) <= breakpointKeys.indexOf(width);
+  }
+  return breakpointKeys.indexOf(breakpoint) < breakpointKeys.indexOf(width);
 };
 
 // By default, returns true if screen width is the same or less than the given breakpoint.
 export const isWidthDown = (breakpoint, width, inclusive = true) => {
-  return calculateWidthDown(breakpointKeys, breakpoint, width, inclusive);
-};
-
-export const calculateWidth = (innerWidth, breakpoints) => {
-  let width = null;
-
-  /**
-   * Start with the slowest value as low end devices often have a small screen.
-   *
-   * innerWidth |xs      sm      md      lg      xl
-   *            |-------|-------|-------|-------|------>
-   * width      |  xs   |  sm   |  md   |  lg   |  xl
-   */
-  let index = 1;
-  while (width === null && index < breakpointKeys.length) {
-    const currentWidth = breakpointKeys[index];
-
-    // @media are inclusive, so reproduce the behavior here.
-    if (innerWidth < breakpoints.values[currentWidth]) {
-      width = breakpointKeys[index - 1];
-      break;
-    }
-
-    index += 1;
+  if (inclusive) {
+    return breakpointKeys.indexOf(width) <= breakpointKeys.indexOf(breakpoint);
   }
-
-  width = width || 'xl';
-  return width;
+  return breakpointKeys.indexOf(width) < breakpointKeys.indexOf(breakpoint);
 };
 
 const withWidth = (options = {}) => Component => {
@@ -102,7 +67,30 @@ const withWidth = (options = {}) => Component => {
 
     getWidth(innerWidth = window.innerWidth) {
       const breakpoints = this.props.theme.breakpoints;
-      return calculateWidth(innerWidth, breakpoints);
+      let width = null;
+
+      /**
+       * Start with the slowest value as low end devices often have a small screen.
+       *
+       * innerWidth |xs      sm      md      lg      xl
+       *            |-------|-------|-------|-------|------>
+       * width      |  xs   |  sm   |  md   |  lg   |  xl
+       */
+      let index = 1;
+      while (width === null && index < breakpointKeys.length) {
+        const currentWidth = breakpointKeys[index];
+
+        // @media are inclusive, so reproduce the behavior here.
+        if (innerWidth < breakpoints.values[currentWidth]) {
+          width = breakpointKeys[index - 1];
+          break;
+        }
+
+        index += 1;
+      }
+
+      width = width || 'xl';
+      return width;
     }
 
     render() {

@@ -88,6 +88,10 @@ const pages = [
         pathname: '/layout/breakpoints',
       },
       {
+        pathname: '/layout/use-media-query',
+        title: 'useMediaQuery',
+      },
+      {
         pathname: '/layout/hidden',
       },
     ],

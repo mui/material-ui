@@ -13,7 +13,7 @@ Material-UI was designed from the ground-up with the constraint of rendering on 
 3. Pull the CSS out of the `sheetsRegistry`.
 4. Pass the CSS along to the client.
 
-On the client side, the CSS will be injected a second time before removing the server side injected CSS.
+On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
 
 ## Setting Up
 
@@ -21,7 +21,7 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 ### The Server Side
 
-The following is the outline for what our server side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
+The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
 
 `server.js`
 
@@ -41,7 +41,7 @@ function handleRender(req, res) {
 
 const app = express();
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;
@@ -54,7 +54,7 @@ The first thing that we need to do on every request is create a new `sheetsRegis
 
 When rendering, we will wrap `App`, our root component, inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider/) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
-The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
@@ -108,7 +108,7 @@ function handleRender(req, res) {
 
 ### Inject Initial Component HTML and CSS
 
-The final step on the server side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
 
 ```js
 function renderFullPage(html, css) {
@@ -249,7 +249,7 @@ function handleRender(req, res) {
 ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
-    
+
     You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
 *example of fix (package.json):*

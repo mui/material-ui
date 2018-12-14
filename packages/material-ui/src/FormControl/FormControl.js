@@ -67,7 +67,7 @@ class FormControl extends React.Component {
     };
 
     // We need to iterate through the children and find the Input in order
-    // to fully support server side rendering.
+    // to fully support server-side rendering.
     const { children } = props;
     if (children) {
       React.Children.forEach(children, child => {

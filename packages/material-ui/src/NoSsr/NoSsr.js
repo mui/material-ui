@@ -52,7 +52,7 @@ class NoSsr extends React.Component {
 NoSsr.propTypes = {
   children: PropTypes.node.isRequired,
   /**
-   * If `true`, the component will not only prevent server side rendering.
+   * If `true`, the component will not only prevent server-side rendering.
    * It will also defer the rendering of the children into a different screen frame.
    */
   defer: PropTypes.bool,

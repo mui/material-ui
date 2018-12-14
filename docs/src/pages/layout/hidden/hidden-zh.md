@@ -30,7 +30,7 @@ By default, the `js` implementation is used, responsively hiding content based o
 
 ### css
 
-If you are using server side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
+If you are using server-side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
 
 ## Breakpoint up
 

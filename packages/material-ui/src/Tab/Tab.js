@@ -241,7 +241,7 @@ Tab.propTypes = {
   icon: PropTypes.node,
   /**
    * @ignore
-   * For server side rendering consideration, we let the selected tab
+   * For server-side rendering consideration, we let the selected tab
    * render the indicator.
    */
   indicator: PropTypes.node,
