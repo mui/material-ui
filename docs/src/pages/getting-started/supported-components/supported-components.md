@@ -15,6 +15,7 @@ to discuss the approach before submitting a pull request.
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - [Bottom](https://material.io/design/components/app-bars-bottom.html)
+- **[Banners](https://material.io/design/components/banners.html)**
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
