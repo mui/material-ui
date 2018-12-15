@@ -70,8 +70,8 @@ here is one example of how you can customize the `DialogTitle` to support a clos
 
 ## Optional sizes
 
-You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean.
-When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullScreen` boolean.
+When the `fullScreen` property is true, the dialog will adapt based on the `maxWidth` value.
 
 {{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
 
