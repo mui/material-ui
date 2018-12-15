@@ -159,8 +159,9 @@ function buildDocs(options) {
     writeFileSync(path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`), markdown);
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
+      `import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
+import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './${kebabCase(reactAPI.name)}.md';
 
@@ -168,7 +169,7 @@ function Page() {
   return <MarkdownDocs markdown={markdown} />;
 }
 
-export default withRoot(Page);
+export default Page;
 `,
     );
 
