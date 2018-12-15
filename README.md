@@ -1,4 +1,5 @@
-<img height="200" alt="2018-12-15 12 45 13" src="https://user-images.githubusercontent.com/16926049/50042085-943a7000-0067-11e9-8d71-4beb1b629e55.png">
+
+![](https://user-images.githubusercontent.com/16926049/50042085-943a7000-0067-11e9-8d71-4beb1b629e55.png)
 
 # Material-UI pickers
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
