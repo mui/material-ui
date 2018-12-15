@@ -6,7 +6,8 @@
 <h1 align="center">Material-UI pickers</h1>  
 
 <div align="center">
-Accessible, customizable, delightful date & time pickers for @material-ui/core
+  
+Accessible, customizable, delightful date & time pickers for [@material-ui/core](https://material-ui.com/)
   
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![npm download](https://img.shields.io/npm/dm/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
