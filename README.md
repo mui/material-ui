@@ -1,10 +1,21 @@
-# Material-UI pickers
+
+<p align="center">
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="400" src="https://user-images.githubusercontent.com/16926049/50042115-1dea3d80-0068-11e9-9996-6b7ea8af9fc6.png" alt="Material-UI logo"></a></p>
+</p>
+
+<h1 align="center">Material-UI pickers</h1>  
+
+<div align="center">
+  
+Accessible, customizable, delightful date & time pickers for [@material-ui/core](https://material-ui.com/)
+  
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![npm download](https://img.shields.io/npm/dm/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![codecov](https://codecov.io/gh/dmtrKovalenko/material-ui-pickers/branch/develop/graph/badge.svg)](https://codecov.io/gh/dmtrKovalenko/material-ui-pickers)
 [![Bundle Size](https://img.shields.io/badge/gzip-14.7%20KB-brightgreen.svg)](https://unpkg.com/material-ui-pickers@1.0.0-rc.10/dist/material-ui-pickers.cjs.js)
 [![Build Status](https://api.travis-ci.org/dmtrKovalenko/material-ui-pickers.svg?branch=master)](https://travis-ci.org/dmtrKovalenko/material-ui-pickers)
-> Accessible, customizable, delightful date & time pickers for @material-ui/core
+
+</div>
 
 ### Installation
 Available as npm package.

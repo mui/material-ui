@@ -5,12 +5,10 @@ import 'prismjs/components/prism-typescript';
 /* eslint-disable import/no-webpack-loader-syntax  */
 import lightTheme from '!raw-loader!prismjs/themes/prism.css';
 import darkTheme from '!raw-loader!prismjs/themes/prism-okaidia.css';
-/* eslint-enable import/no-webpack-loader-syntax  */
-
-export { lightTheme, darkTheme };
 
 const styleNode = document.createElement('style');
 styleNode.setAttribute('data-prism', 'true');
+
 if (document.head) {
   document.head.appendChild(styleNode);
 }
@@ -20,5 +18,7 @@ export function setPrismTheme(theme) {
 }
 
 setPrismTheme('light'); // by default
+
+export { lightTheme, darkTheme };
 
 export default prism;
