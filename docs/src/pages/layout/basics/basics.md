@@ -8,7 +8,7 @@
 We provide the following helpers to make the UI responsive:
 
 - [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-- [Breakpoints](/layout/breakpoints/): We provide a low-level API for using the breakpoints in a wide variery of context.
+- [Breakpoints](/layout/breakpoints/): We provide a low-level API that enables the use of breakpoints in a wide variety of contexts.
 - [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React.
 - [Hidden](/layout/hidden/):
 The hidden component can be used to change the visibility of the elements.

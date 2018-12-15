@@ -22,6 +22,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
   }
 
   // Early exit for server-side rendering performance.
+  /* istanbul ignore if */
   if (typeof window === 'undefined') {
     return defaultMatches;
   }

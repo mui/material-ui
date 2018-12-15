@@ -9,7 +9,25 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import unstable_useMediaQuery, { testReset } from './unstable_useMediaQuery';
 
+function createMatchMedia(width, listeners) {
+  return query => ({
+    matches: mediaQuery.match(query, {
+      width,
+    }),
+    addListener: listener => {
+      listeners.push(listener);
+    },
+    removeListener: listener => {
+      const index = listeners.indexOf(listener);
+      if (index > -1) {
+        listeners.splice(index, 1);
+      }
+    },
+  });
+}
+
 describe('unstable_useMediaQuery', () => {
+  const listeners = [];
   let mount;
   let values;
 
@@ -21,21 +39,13 @@ describe('unstable_useMediaQuery', () => {
 
   before(() => {
     mount = createMount();
-    if (!window.matchMedia) {
-      window.matchMedia = query => ({
-        matches: mediaQuery.match(query, {
-          width: 1200,
-        }),
-        addListener: () => {},
-        removeListener: () => {},
-      });
-    }
   });
 
   beforeEach(() => {
     ReactDOM.unmountComponentAtNode(mount.attachTo);
     testReset();
     values = spy();
+    window.matchMedia = createMatchMedia(1200, listeners);
   });
 
   after(() => {
@@ -196,6 +206,35 @@ describe('unstable_useMediaQuery', () => {
         assert.strictEqual(values.callCount, 4);
         done();
       });
+    });
+  });
+
+  it('should observe the media query', done => {
+    const Test = props => {
+      const matches = unstable_useMediaQuery(props.query);
+      values(matches);
+      return <span>{`${matches}`}</span>;
+    };
+    Test.propTypes = {
+      query: PropTypes.string.isRequired,
+    };
+
+    const wrapper = mount(<Test query="(min-width:2000px)" />);
+    assert.strictEqual(wrapper.text(), 'false');
+    assert.strictEqual(values.callCount, 1);
+
+    setTimeout(() => {
+      assert.strictEqual(values.callCount, 1);
+      assert.strictEqual(wrapper.text(), 'false');
+
+      window.matchMedia = createMatchMedia(30000, listeners);
+      listeners[0]({
+        matches: true,
+      });
+      assert.strictEqual(wrapper.text(), 'true');
+      assert.strictEqual(values.callCount, 2);
+
+      done();
     });
   });
 });

@@ -4,7 +4,7 @@ title: Media queries in React for responsive design
 
 # useMediaQuery
 
-<p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query and renders components based on whether the query matches or not.</p>
+<p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
 
 > ⚠️ `useMediaQuery` is unstable as hooks aren't stable yet, therefore it is exported with an unstable prefix.
 It depends on react >= 16.7.0-alpha.0, react-dom >= 16.7.0-alpha.0.
@@ -13,13 +13,13 @@ Some of the key features:
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
 - 📦 Less than [600 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
-- 💄 It's an alternative of react-responsive and react-media that aims for simplicity.
+- 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
 - 🤖 It supports Server side rendering.
 
 ## Simple media query
 
-This is the simplest possible example.
-You can provide any media query to the first argument, exactly like you would do it with CSS, e.g. `'print'`.
+You should provide a media query to the first argument of the hook.
+The media query string can by any valid CSS media query, e.g. `'print'`.
 
 ```jsx
 import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
@@ -35,7 +35,7 @@ function MyComponent() {
 
 ## Using Material-UI's breakpoint helpers
 
-You can use the Material-UI's [breakpoint helpers](/layout/breakpoints/) as follow:
+You can use Material-UI's [breakpoint helpers](/layout/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/styles';
@@ -53,14 +53,14 @@ function MyComponent() {
 
 ## Server side rendering
 
-You need to use a [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ponyfill on the server, we recommand using [css-mediaquery](https://github.com/ericf/css-mediaquery).
+You will need to use a [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ponyfill on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
 We also encourage the usage of the `unstable_useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
 
 {{"demo": "pages/layout/use-media-query/ServerSide.js", "react": "next"}}
 
 ## Migrating from `withWidth()`
 
-The `withWidth()` higher-order component inject the screen width of the page.
+The `withWidth()` higher-order component injects the screen width of the page.
 You can reproduce the same behavior as follow:
 
 ```jsx
@@ -95,15 +95,14 @@ function MyComponent() {
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. It's slower.
   You can set this flag to `true` if you are **not doing server-side rendering**.
-  - `options.ssrMatchMedia`
-  In some situation, you might want to use an heuristic to approximate
+  - `options.ssrMatchMedia` (*Function* [optional]) You might want to use an heuristic to approximate
   the screen of the client browser.
   For instance, you could be using the user-agent or the client-hint https://caniuse.com/#search=client%20hint.
   You can provide a global ponyfill using [`custom properties`](/customization/themes/#properties) on the theme. Check the [server-side rendering example](#server-side-rendering).
 
 #### Returns
 
-`matches`: The matches is a Boolean that returns true if the document currently matches the media query, or false if not.
+`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 
 #### Examples
 

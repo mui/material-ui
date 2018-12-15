@@ -24,7 +24,7 @@ for controlling the layout of your application through the [Grid](/layout/grid/)
 ## CSS Media Queries
 
 CSS media queries is the idiomatic approach to make your UI responsive.
-We provide three [CSS-in-JS](/customization/css-in-js/) helpers to do so:
+We provide four [CSS-in-JS](/customization/css-in-js/) helpers to do so:
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
@@ -58,11 +58,11 @@ You might want to change the React rendering tree based on the breakpoint value,
 
 ### useMediaQuery hook
 
-You can learn more about this hook following [this link](/layout/use-media-query/).
+You can learn more about this hook [here](/layout/use-media-query/).
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/layout/use-media-query/) hook once the React's hooks are released as stable.
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/layout/use-media-query/) hook when the React's hooks are released as stable.
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -80,8 +80,8 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 #### Render Props
 
-In some cases, you could have property name collisions using higher-order components.
-To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
+In some cases, you can experience property name collisions using higher-order components.
+To avoid this, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern shown in the following demo.
 
 ```jsx
 import Typography from '@material-ui/core/Typography';
@@ -234,7 +234,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   - `options.initialWidth` (*Breakpoint* [optional]):
   As `window.innerWidth` is unavailable on the server,
   we default to rendering an empty component during the first mount.
-  In some situation, you might want to use an heuristic to approximate
+  You might want to use an heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the client-hints.
   https://caniuse.com/#search=client%20hint, we also can set the initial width
