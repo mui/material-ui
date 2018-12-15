@@ -1,5 +1,5 @@
 
-![](https://user-images.githubusercontent.com/16926049/50042085-943a7000-0067-11e9-8d71-4beb1b629e55.png)
+![](https://user-images.githubusercontent.com/16926049/50042115-1dea3d80-0068-11e9-9996-6b7ea8af9fc6.png)
 
 # Material-UI pickers
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
