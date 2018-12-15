@@ -48,10 +48,11 @@ install();
 
 It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`).
 This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
-`ThemeProvider` from `@material-ui/core` is on it's way out.
 
 We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
 Behind the scenes, the `install()` function switches the styling engine the core components use.
+
+Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@material-ui/styles/ThemeProvider`. We will remove this component in v4.
 
 ## Getting started
 
