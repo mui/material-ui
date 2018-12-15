@@ -6,26 +6,26 @@
     "@date-io/date-fns": "0.0.2",
     "@date-io/luxon": "0.0.2",
     "@date-io/moment": "0.0.2",
-    "@material-ui/core": "^3.5.1",
+    "@material-ui/core": "^3.6.1",
     "@types/classnames": "^2.2.6",
-    "@types/jest": "^23.3.9",
+    "@types/jest": "^23.3.10",
     "@types/luxon": "^1.4.1",
     "@types/moment-jalaali": "^0.7.4",
-    "@types/node": "^10.12.9",
-    "@types/react": "^16.7.6",
-    "@types/react-dom": "^16.0.9",
+    "@types/node": "^10.12.12",
+    "@types/react": "^16.7.13",
+    "@types/react-dom": "^16.0.11",
     "@types/react-jss": "^8.6.0",
     "@types/react-router": "^4.4.1",
     "@types/react-router-dom": "^4.3.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.0.0-alpha.21",
-    "formik": "^1.3.2",
+    "formik": "^1.4.0",
     "jss-rtl": "^0.2.3",
-    "luxon": "^1.6.2",
+    "luxon": "^1.8.2",
     "material-ui-pickers": "latest",
     "material-ui-pickers-jalali-utils": "^0.4.3",
     "moment": "^2.22.2",
-    "moment-jalaali": "^0.8.1",
+    "moment-jalaali": "^0.8.3",
     "prismjs": "^1.15.0",
     "raw-loader": "^0.5.1",
     "react": "^16.6.3",
@@ -36,7 +36,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "typescript": "^3.1.6"
+    "typescript": "^3.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -58,6 +58,6 @@
   ],
   "devDependencies": {
     "patreon": "^0.4.1",
-    "react-docgen-typescript": "^1.12.1"
+    "react-docgen-typescript": "^1.12.2"
   }
 }

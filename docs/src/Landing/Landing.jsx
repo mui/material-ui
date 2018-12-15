@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Toolbar, Typography, withStyles, Button } from '@material-ui/core';
+import { Toolbar, Typography, withStyles, Button, Paper } from '@material-ui/core';
 import PatreonSponsors from './components/PatreonSponsors';
-import MuiLogo from '../assets/mui-logo.svg';
+import PickersLogo from '../assets/pickers-logo.png';
 
 class Demo extends Component {
   static propTypes = {
@@ -24,11 +24,14 @@ class Demo extends Component {
     return (
       <div>
         <Toolbar color="primary" className={classes.appToolbar}>
-          <img alt="Material-UI logo" className={classes.materialUILogo} src={MuiLogo} />
+          <Paper elevation={8} className={classes.logoContainer}>
+            <img alt="Material-UI logo" className={classes.logo} src={PickersLogo} />
+          </Paper>
 
           <Typography variant="h4" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
           </Typography>
+
           <Typography
             variant="h5"
             align="center"
@@ -79,11 +82,13 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
-  materialUILogo: {
-    width: '100%',
-    height: '35vw',
-    maxHeight: 200,
+  logoContainer: {
     margin: '20px 0',
+    borderRadius: '50%',
+    padding: '4px 4px 0',
+  },
+  logo: {
+    maxHeight: 200,
   },
   menuButton: {
     marginLeft: -12,
