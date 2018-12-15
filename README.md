@@ -1,6 +1,9 @@
 
-![](https://user-images.githubusercontent.com/16926049/50042115-1dea3d80-0068-11e9-9996-6b7ea8af9fc6.png)
+<p align="center">
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img src="https://user-images.githubusercontent.com/16926049/50042115-1dea3d80-0068-11e9-9996-6b7ea8af9fc6.png" alt="Material-UI logo"></a></p>
+</p>
 
+<h1 align="center">Material-UI pickers</h1>
 # Material-UI pickers
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![npm download](https://img.shields.io/npm/dm/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
