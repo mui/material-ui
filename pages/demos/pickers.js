@@ -17,6 +17,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/pickers/DatePickers'), 'utf8')
 `,
         },
+        'pages/demos/pickers/MaterialUIPickers.js': {
+          js: require('docs/src/pages/demos/pickers/MaterialUIPickers').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/pickers/MaterialUIPickers'), 'utf8')
+`,
+        },
         'pages/demos/pickers/TimePickers.js': {
           js: require('docs/src/pages/demos/pickers/TimePickers').default,
           raw: preval`
