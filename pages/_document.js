@@ -46,7 +46,10 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={pageContext ? pageContext.theme.palette.primary.main : null}
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
           <link rel="stylesheet" href={font} />
@@ -112,11 +115,15 @@ MyDocument.getInitialProps = async ctx => {
     return WrappedComponent;
   });
 
-  let css = pageContext.sheetsRegistry.toString();
-  if (process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
+  let css;
+  // It might not be defined, it won't after an error occures.
+  if (pageContext) {
+    css = pageContext.sheetsRegistry.toString();
+    if (process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
   }
 
   return {

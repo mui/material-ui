@@ -148,6 +148,10 @@ const styles = theme => ({
       ...theme.typography.h6,
       margin: '24px 0 16px',
     },
+    '& h5': {
+      ...theme.typography.subtitle2,
+      margin: '24px 0 16px',
+    },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
     },
