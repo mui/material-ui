@@ -13,7 +13,8 @@ const styles = {
 
 class MaterialUIPickers extends React.Component {
   state = {
-    selectedDate: new Date(),
+    // The first commit of Material-UI
+    selectedDate: new Date('2014-08-18T21:11:54'),
   };
 
   handleDateChange = date => {

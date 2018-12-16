@@ -31,7 +31,11 @@ You can expect [the same advantages](https://www.styled-components.com/docs/basi
 To install and save in your `package.json` dependencies, run:
 
 ```sh
+// with npm
 npm install @material-ui/styles
+
+// with yarn
+yarn add @material-ui/styles
 ```
 
 Please note that [react](https://www.npmjs.com/package/react) >= 16.7.0-alpha.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.7.0-alpha.0 are peer dependencies.

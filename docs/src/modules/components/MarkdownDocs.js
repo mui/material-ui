@@ -12,7 +12,12 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  getHeaders,
+  getTitle,
+  getDescription,
+  demoRegexp,
+} from 'docs/src/modules/utils/parseMarkdown';
 
 const styles = theme => ({
   root: {
@@ -30,7 +35,6 @@ const styles = theme => ({
   },
 });
 
-const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 
 function MarkdownDocs(props) {
@@ -59,9 +63,7 @@ function MarkdownDocs(props) {
               />
             </div>
             {contents.map(content => {
-              const match = content.match(demoRegexp);
-
-              if (match && demos) {
+              if (demoRegexp.test(content) && demos) {
                 let demoOptions;
                 try {
                   demoOptions = JSON.parse(`{${content}}`);
@@ -71,7 +73,10 @@ function MarkdownDocs(props) {
                 }
 
                 const name = demoOptions.demo;
-                warning(demos && demos[name], `Missing demo: ${name}.`);
+                warning(
+                  demos && demos[name],
+                  `Missing demo: ${name}. You can use one of the following:\n${Object.keys(demos)}`,
+                );
                 return (
                   <Demo
                     key={content}
