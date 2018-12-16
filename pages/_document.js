@@ -116,7 +116,7 @@ MyDocument.getInitialProps = async ctx => {
   });
 
   let css;
-  // It might not be defined, it won't after an error occures.
+  // It might be undefined, e.g. after an error.
   if (pageContext) {
     css = pageContext.sheetsRegistry.toString();
     if (process.env.NODE_ENV === 'production') {
