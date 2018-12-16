@@ -49,6 +49,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">popper</span> | Styles applied to the Popper component.
+| <span class="prop-name">popperInteractive</span> | Styles applied to the Popper component if `interactive={true}`.
 | <span class="prop-name">tooltip</span> | Styles applied to the tooltip (label wrapper) element.
 | <span class="prop-name">touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
 | <span class="prop-name">tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".

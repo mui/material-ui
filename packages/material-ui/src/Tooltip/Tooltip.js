@@ -14,6 +14,11 @@ export const styles = theme => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     opacity: 0.9,
+    pointerEvents: 'none',
+  },
+  /* Styles applied to the Popper component if `interactive={true}`. */
+  popperInteractive: {
+    pointerEvents: 'auto',
   },
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
@@ -331,7 +336,9 @@ class Tooltip extends React.Component {
       <React.Fragment>
         <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
-          className={classes.popper}
+          className={classNames(classes.popper, {
+            [classes.popperInteractive]: interactive,
+          })}
           placement={placement}
           anchorEl={this.childrenRef}
           open={open}
