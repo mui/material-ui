@@ -1,5 +1,55 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.7.0
+###### *Dec 17, 2018*
+
+Big thanks to the 11 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 📝 A first step toward converting all the demos to React Hooks (#13873) @adeelibr.
+- 💅 Update some components to better match the Material specification (#13788, #13827) @bdeloeste @joshwooding.
+- 📅 Add a material-ui-pickers live demo (#13697) @dmtrKovalenko.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.7.0`
+
+- [TableCell] Add align property (#13860) @rfbotto
+- [Card][List] Change sub-components to have fixed gutters (#13788) @joshwooding
+- [Button] Fix padding for Text Button variant to adhere to spec (#13827) @bdeloeste
+- [ButtonBase] Add stop ripple on context menu event (#13740) @joshwooding
+- [Menu] Add reason value and update documentation for on close reason (#13877) @rfbotto
+- [Dialog] Add a `PaperComponent ` property & draggable demo (#13879) @rfbotto
+- [Tabs] Correct typo in error message (#13902) @timmydoza
+- [Tooltip] Fix hover display issue (#13911) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.26`
+
+- [ToggleButton] Change the classes structure to match the core components convention (#13723) @DonBrody
+
+### `@material-ui/styles@v3.0.0-alpha.4`
+
+- [styles] Remove hoisting of static properties in HOCs (#13698) @eps1lon
+
+### `@material-ui/utils@v3.0.0-alpha.1`
+
+- [utils] Add component propType (#13816) @eps1lon
+
+### Docs
+
+- [docs] Fix search suggestions on dark mode (#13874) @rfbotto
+- [docs] Add accessibility section to selection-controls with demo (#13896) @wyseguyonline
+- [docs] Add support for multiple demo variants e.g JS or Hooks (#13873) @adeelibr
+- [docs] Remove the withRoot HOC (#13909) @oliviertassinari
+- [docs] Add material-ui-pickers in pickers page (#13697) @dmtrKovalenko
+- [docs] Continue #13806 and port back some fix from @system (#13917) @oliviertassinari
+- [docs] Notify that we will do core/MuiThemeProvider -> styles/ThemeProvider (#13910) @Skn0tt
+- [docs] Improve the state override story (#13919) @oliviertassinari
+
+### Core
+
+- [core] 100% remove the prop types (#13859) @oliviertassinari
+- [core] Prefix the errors with Material-UI (#13892) @oliviertassinari
+
 ## 3.6.2
 ###### *Dec 9, 2018*
 
