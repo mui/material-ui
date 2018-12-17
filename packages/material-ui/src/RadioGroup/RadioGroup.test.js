@@ -37,6 +37,20 @@ describe('<RadioGroup />', () => {
     assert.strictEqual(handleKeyDown.args[0][0], event);
   });
 
+  it('should support uncontrolled mode', () => {
+    const wrapper = shallow(
+      <RadioGroup name="group">
+        <Radio value="one" />
+        <Radio value="second" />
+      </RadioGroup>,
+    );
+
+    const firstRadioGroupChild = wrapper.children().first();
+    const event = { target: { value: 'one' } };
+    firstRadioGroupChild.simulate('change', event, true);
+    assert.strictEqual(wrapper.instance().state.value, 'one');
+  });
+
   describe('imperative focus()', () => {
     let wrapper;
 
