@@ -22,6 +22,8 @@ which is great for prototyping. We discourage using this approach in production 
 the client has to download the entire library, regardless of which components are actually used,
 affecting performance and bandwidth utilisation.
 
+[The live preview.](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/cdn)
+
 ## UMD releases
 
 We are providing two Universal Module Definition (UMD) files:

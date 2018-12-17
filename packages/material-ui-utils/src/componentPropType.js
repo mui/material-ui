@@ -1,4 +1,4 @@
-const ReactIs = require('react-is');
+import { isValidElementType } from 'react-is';
 
 /**
  * A factory that returns a propTypes validator that only accepts values that
@@ -25,7 +25,7 @@ function createComponentProp(isRequired) {
           `The ${location} \`${propName}\` is marked as required in \`${componentName}\`, ` +
           `but its value is \`${typeof prop}\`.`;
       }
-    } else if (!ReactIs.isValidElementType(prop)) {
+    } else if (!isValidElementType(prop)) {
       const preciseType = typeof prop;
       message =
         `Invalid ${location} \`${propName}\` of type \`${preciseType}\` ` +
