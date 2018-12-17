@@ -56,6 +56,8 @@ This ensures that the installation is executed before anything else, because ECM
 We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
 Behind the scenes, the `install()` function switches the styling engine the core components use.
 
+Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@material-ui/styles/ThemeProvider`. We will remove this component in v4.
+
 ## Getting started
 
 Because taste and colours are not always the same, we are proving 4 different APIs.
