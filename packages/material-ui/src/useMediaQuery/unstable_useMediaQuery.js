@@ -3,7 +3,7 @@
 import React from 'react';
 
 // This variable will be true once the server-side reconciliation is done.
-let didMount = false;
+let reconciliationDone = false;
 
 function unstable_useMediaQuery(queryInput, options = {}) {
   const query = queryInput.replace('@media ', '');
@@ -15,7 +15,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 
   let defaultMatches = defaultMatchesInput;
 
-  if (didMount || noSsr) {
+  if (reconciliationDone || noSsr) {
     defaultMatches = window.matchMedia(query).matches;
   } else if (ssrMatchMedia) {
     defaultMatches = ssrMatchMedia(query).matches;
@@ -31,7 +31,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 
   React.useEffect(
     () => {
-      didMount = true;
+      reconciliationDone = true;
 
       const queryList = window.matchMedia(query);
       if (matches !== queryList.matches) {
@@ -54,7 +54,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 }
 
 export function testReset() {
-  didMount = false;
+  reconciliationDone = false;
 }
 
 export default unstable_useMediaQuery;
