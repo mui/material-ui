@@ -17,7 +17,7 @@ export const styles = theme => ({
     boxSizing: 'border-box',
     minWidth: 64,
     minHeight: 36,
-    padding: '8px 16px',
+    padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
