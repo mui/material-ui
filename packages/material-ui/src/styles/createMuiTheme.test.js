@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import createMuiTheme from './createMuiTheme';
 import { deepOrange, green } from '../colors';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('createMuiTheme', () => {
   it('should have a palette', () => {
@@ -87,6 +88,29 @@ describe('createMuiTheme', () => {
       };
       const muiTheme = createMuiTheme({ props });
       assert.deepEqual(muiTheme.props, props);
+    });
+  });
+
+  describe('overrides', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when trying to override an internal state the wrong way', () => {
+      createMuiTheme({ overrides: { Button: { disabled: { color: 'blue' } } } });
+      assert.strictEqual(consoleErrorMock.args().length, 0);
+      createMuiTheme({ overrides: { MuiButton: { root: { color: 'blue' } } } });
+      assert.strictEqual(consoleErrorMock.args().length, 0);
+      createMuiTheme({ overrides: { MuiButton: { disabled: { color: 'blue' } } } });
+      assert.strictEqual(consoleErrorMock.args().length, 1);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /the `MuiButton` component increases the CSS specificity of the `disabled` internal state./,
+      );
     });
   });
 });

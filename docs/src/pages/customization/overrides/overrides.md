@@ -43,7 +43,7 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-#### Shorthand
+### Shorthand
 
 The above code example can be condensed by using **the same CSS API** as the child component.
 In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
@@ -67,36 +67,53 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
-#### Internal states
+### Internal states
 
-Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components.
-The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
+The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity.
 [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+
 In order to override the components internal states, **you need to increase specificity**.
-Here is an example with the `disable` state and the button component:
+Here is an example with the *disable* state and the button component using a **pseudo-class** (`:disabled`):
 
 ```css
-.classes-state-root {
-  /* ... */
+.button {
+  color: black;
 }
-.classes-state-root.disabled {
+/* We increase the specificity */
+.button:disabled {
   color: white;
 }
 ```
 
 ```jsx
-
-<Button
-  disabled
-  classes={{
-    root: 'classes-state-root',
-    disabled: 'disabled', }
-  }
->
-
+<Button disabled className="button">
 ```
 
-#### Use `$ruleName` to reference a local rule within the same style sheet
+Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform.
+Let's take the menu item component and the *selected* state as an example.
+Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components:
+
+```css
+.menu-item {
+  color: black;
+}
+/* We increase the specificity */
+.menu-item.selected {
+  color: blue;
+}
+```
+
+```jsx
+<MenuItem selected classes={{ root: 'menu-item', selected: 'selected' }}>
+```
+
+##### Why do I need to increase specificity to override one component state?
+
+By design, the CSS specification makes the pseudo-classes increase the specificity.
+For consistency, Material-UI increases the specificity of its custom states.
+This has one important advantage, it's allowing you to cherry-pick the state you want to customize.
+
+### Use `$ruleName` to reference a local rule within the same style sheet
 
 The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
 
@@ -117,6 +134,18 @@ compiles to:
 .root-x.disable-x {
   color: white;
 }
+```
+
+⚠️ You need to apply the two generated class names (`root` & `disabled`) to the DOM to make it work.
+
+```jsx
+<Button
+  disabled
+  classes={{
+    root: classes.root, // class name, e.g. `root-x`
+    disabled: classes.disabled, // class name, e.g. `disabled-x`
+  } }
+>
 ```
 
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
