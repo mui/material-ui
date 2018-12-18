@@ -78,6 +78,16 @@ const themes = [
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/onepirate',
   },
+  {
+    name: 'Instagram',
+    description: 'Instagram\'s profile page by customizing material-ui theme',
+    src: '/static/themes/instagram.png',
+    price: 'FREE',
+    category: 'Profile page',
+    href: '/premium-themes/instagram',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/instagram',
+  },
 ];
 
 function PremiumThemes(props) {
