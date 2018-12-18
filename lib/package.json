@@ -57,7 +57,7 @@
     "test:date-fns": "UTILS=date-fns npm run test",
     "test:luxon": "UTILS=luxon npm run test",
     "test:moment": "UTILS=moment npm run test",
-    "start": "rollup --config --watch",
+    "start": "rollup --config rollup.config.dev.js --watch",
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "rollup --config",
