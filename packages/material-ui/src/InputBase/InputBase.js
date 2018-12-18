@@ -231,11 +231,11 @@ class InputBase extends React.Component {
     this.inputRef = ref;
 
     warning(
-      !ref || ref instanceof HTMLElement || ref.focus,
+      !ref || ref instanceof HTMLInputElement || ref.focus,
       [
         'Material-UI: you have provided a `inputComponent` to the input component',
         'that does not correctly handle the `inputRef` property.',
-        'Make sure the `inputRef` property is called with a HTMLElement.',
+        'Make sure the `inputRef` property is called with a HTMLInputElement.',
       ].join('\n'),
     );
 
