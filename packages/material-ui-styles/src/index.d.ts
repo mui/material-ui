@@ -123,7 +123,7 @@ declare module '@material-ui/styles/makeStyles' {
    */
   export type StylesHook<S extends Styles<any, any>> = IsAny<PropsOfStyles<S>> extends true
     ? (props?: any) => ClassNameMap<ClassKeyOfStyles<S>>
-    : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
+    : (props?: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 
   export default function makeStyles<S extends Styles<any, any>>(
     styles: S,
