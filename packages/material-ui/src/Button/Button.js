@@ -345,6 +345,10 @@ Button.propTypes = {
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
+   * The target for href, used on the a tag with href.
+   */
+  target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
+  /**
    * @ignore
    */
   type: PropTypes.string,
