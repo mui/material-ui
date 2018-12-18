@@ -6,14 +6,29 @@
 Big thanks to the 11 contributors who made this release possible!
 
 Here are some highlights ✨:
-- 📝 A first step toward converting all the demos to React Hooks (#13873) @adeelibr.
 - 💅 Update some components to better match the Material specification (#13788, #13827) @bdeloeste @joshwooding.
 - 📅 Add a material-ui-pickers live demo (#13697) @dmtrKovalenko.
+- ⚛️ A first step toward converting all the demos to React Hooks (#13873) @adeelibr.
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.7.0`
 
+#### Deprecations
+
+We are allowing more align variants (left, center, right, inherit, justify).
+Following our [API guideline](https://material-ui.com/guides/api/), we are using an enum over a boolean.
+Keep in mind that monetary or generally number fields **should be right aligned** as that allows
+you to add them up quickly in your head without having to worry about decimals.
+
+```diff
+-<TableCell numeric>
++<TableCell align="right">
+```
+
 - [TableCell] Add align property (#13860) @rfbotto
+
+#### Changes
+
 - [Card][List] Change sub-components to have fixed gutters (#13788) @joshwooding
 - [Button] Fix padding for Text Button variant to adhere to spec (#13827) @bdeloeste
 - [ButtonBase] Add stop ripple on context menu event (#13740) @joshwooding
