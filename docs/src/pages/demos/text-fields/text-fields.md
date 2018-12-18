@@ -57,6 +57,9 @@ but you are not confident jumping in, here's an example of how you can change th
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
+Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel.
+
+{{"demo": "pages/demos/text-fields/GoogleMapsInspiredSearch.js"}}
 ## Input Adornments
 
 `Input` allows the provision of `InputAdornment`.
