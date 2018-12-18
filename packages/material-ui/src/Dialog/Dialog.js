@@ -153,15 +153,13 @@ class Dialog extends React.Component {
       onExiting,
       open,
       PaperComponent,
-      PaperProps,
+      PaperProps = {},
       scroll,
       TransitionComponent,
       transitionDuration,
       TransitionProps,
       ...other
     } = this.props;
-
-    const { className: customPaperClassName, ...otherPaperProps } = PaperProps;
 
     return (
       <Modal
@@ -198,6 +196,7 @@ class Dialog extends React.Component {
           >
             <PaperComponent
               elevation={24}
+              {...PaperProps}
               className={classNames(
                 classes.paper,
                 classes[`paperScroll${capitalize(scroll)}`],
@@ -206,9 +205,8 @@ class Dialog extends React.Component {
                   [classes.paperFullScreen]: fullScreen,
                   [classes.paperFullWidth]: fullWidth,
                 },
-                customPaperClassName,
+                PaperProps.className,
               )}
-              {...otherPaperProps}
             >
               {children}
             </PaperComponent>
