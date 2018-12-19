@@ -35,6 +35,14 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'AospExtended Download center',
+    description:
+      'A download center that hosts all the official builds of AospExtended ROM, ' +
+      'for supported devices for different android versions. ',
+    image: '/static/images/showcase/aexdownloadcenter.jpg',
+    link: 'https://downloads.aospextended.com',
+  },
+  {
     title: 'Onepixel',
     description: 'Beautiful Stock Photos for $1.',
     image: '/static/images/showcase/onepixel.jpg',
