@@ -21,6 +21,13 @@ function ImageAvatars(props) {
     <Grid container justify="center" alignItems="center">
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.avatar} />
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.bigAvatar} />
+      <Avatar
+        alt="Not found image"
+        src="http://notexists.cn/static/images/avatar/notfound.jpg"
+        className={classes.bigAvatar}
+      >
+        Foo
+      </Avatar>
     </Grid>
   );
 }

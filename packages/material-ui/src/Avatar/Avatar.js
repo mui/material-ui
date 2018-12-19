@@ -36,57 +36,72 @@ export const styles = theme => ({
   },
 });
 
-function Avatar(props) {
-  const {
-    alt,
-    children: childrenProp,
-    childrenClassName: childrenClassNameProp,
-    classes,
-    className: classNameProp,
-    component: Component,
-    imgProps,
-    sizes,
-    src,
-    srcSet,
-    ...other
-  } = props;
+class Avatar extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isImageError: false,
+    };
 
-  let children = null;
-  const img = src || srcSet;
-
-  if (img) {
-    children = (
-      <img
-        alt={alt}
-        src={src}
-        srcSet={srcSet}
-        sizes={sizes}
-        className={classes.img}
-        {...imgProps}
-      />
-    );
-  } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
-    children = React.cloneElement(childrenProp, {
-      className: classNames(childrenClassNameProp, childrenProp.props.className),
-    });
-  } else {
-    children = childrenProp;
+    this.handleImageError = () => {
+      this.setState({ isImageError: true });
+    };
   }
 
-  return (
-    <Component
-      className={classNames(
-        classes.root,
-        {
-          [classes.colorDefault]: !img,
-        },
-        classNameProp,
-      )}
-      {...other}
-    >
-      {children}
-    </Component>
-  );
+  render() {
+    const {
+      alt,
+      children: childrenProp,
+      childrenClassName: childrenClassNameProp,
+      classes,
+      className: classNameProp,
+      component: Component,
+      imgProps,
+      sizes,
+      src,
+      srcSet,
+      ...other
+    } = this.props;
+
+    let children = null;
+    const { isImageError } = this.state;
+    const img = src || srcSet;
+
+    if (!isImageError && img) {
+      children = (
+        <img
+          alt={alt}
+          src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          className={classes.img}
+          {...imgProps}
+          onError={this.handleImageError}
+        />
+      );
+    } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+      children = React.cloneElement(childrenProp, {
+        className: classNames(childrenClassNameProp, childrenProp.props.className),
+      });
+    } else {
+      children = childrenProp;
+    }
+
+    return (
+      <Component
+        className={classNames(
+          classes.root,
+          {
+            [classes.colorDefault]: !img || isImageError,
+          },
+          classNameProp,
+        )}
+        {...other}
+      >
+        {children}
+      </Component>
+    );
+  }
 }
 
 Avatar.propTypes = {
