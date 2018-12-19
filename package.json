@@ -49,7 +49,7 @@
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
-    "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
+    "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN"
   },
   "peerDependencies": {
     "react": "*",
