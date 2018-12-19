@@ -41,14 +41,19 @@ describe('<RadioGroup />', () => {
     const wrapper = shallow(
       <RadioGroup name="group">
         <Radio value="one" />
-        <Radio value="second" />
       </RadioGroup>,
     );
 
-    const firstRadioGroupChild = wrapper.children().first();
+    const radio = wrapper.children().first();
     const event = { target: { value: 'one' } };
-    firstRadioGroupChild.simulate('change', event, true);
-    assert.strictEqual(wrapper.instance().state.value, 'one');
+    radio.simulate('change', event, true);
+    assert.strictEqual(
+      wrapper
+        .children()
+        .first()
+        .props().checked,
+      true,
+    );
   });
 
   describe('imperative focus()', () => {
@@ -146,20 +151,6 @@ describe('<RadioGroup />', () => {
       internalRadio.simulate('change', event, true);
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.calledWith(event), true);
-    });
-
-    it('should not fire onChange if not checked', () => {
-      const handleChange = spy();
-      const wrapper = shallow(
-        <RadioGroup value="" onChange={handleChange}>
-          <Radio />
-          <Radio />
-        </RadioGroup>,
-      );
-
-      const internalRadio = wrapper.children().first();
-      internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, false);
-      assert.strictEqual(handleChange.callCount, 0);
     });
 
     it('should chain the onChange property', () => {

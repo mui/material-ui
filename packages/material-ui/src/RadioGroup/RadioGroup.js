@@ -14,7 +14,7 @@ class RadioGroup extends React.Component {
   };
 
   constructor(props) {
-    super(props);
+    super();
     this.isControlled = props.value != null;
   }
 
@@ -39,14 +39,14 @@ class RadioGroup extends React.Component {
     focusRadios[0].focus();
   };
 
-  handleChange = (event, checked) => {
+  handleChange = event => {
     if (!this.isControlled) {
       this.setState({
         value: event.target.value,
       });
     }
 
-    if (checked && this.props.onChange) {
+    if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }
   };
