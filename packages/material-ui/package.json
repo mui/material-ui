@@ -47,7 +47,7 @@
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^3.2.1",
     "is-plain-object": "^2.0.4",
-    "jss": "^9.3.3",
+    "jss": "^9.8.7",
     "jss-camel-case": "^6.0.0",
     "jss-default-unit": "^8.0.2",
     "jss-global": "^3.0.0",
