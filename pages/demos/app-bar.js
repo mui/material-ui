@@ -25,11 +25,7 @@ function Page(props) {
       demos={parseAll({
         fileNameSuffix: 'pages/demos/app-bar/',
         js: require.context('docs/src/pages/demos/app-bar/', true, /\.js$/),
-        raw: require.context(
-          '!raw-loader!../../docs/src/pages/demos/app-bar',
-          true,
-          /.js$/,
-        ),
+        raw: require.context('!raw-loader!../../docs/src/pages/demos/app-bar', true, /.js$/),
       })}
     />
   );
