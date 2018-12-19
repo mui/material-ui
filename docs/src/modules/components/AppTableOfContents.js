@@ -128,8 +128,9 @@ class AppTableOfContents extends React.Component {
     for (let i = 0; i < this.itemsClient.length; i += 1) {
       const item = this.itemsClient[i];
       if (
-        document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-        i === this.itemsClient.length - 1
+        item.node &&
+        (document.documentElement.scrollTop < item.node.offsetTop + 100 ||
+          i === this.itemsClient.length - 1)
       ) {
         active = item;
         break;
