@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -15,28 +14,23 @@ const styles = {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 392,
-    height: 48,
+    width: 400,
   },
   input: {
-    marginLeft: 4,
+    marginLeft: 8,
     flex: 1,
   },
   iconButton: {
-    width: 46,
-    height: 46,
-  },
-  directionsButton: {
-    color: '#4285F4',
+    padding: 10,
   },
   divider: {
     width: 1,
     height: 28,
-    margin: '0 2px',
+    margin: 4,
   },
 };
 
-function GoogleMapsInspiredSearch(props) {
+function CustomizedInputBase(props) {
   const { classes } = props;
 
   return (
@@ -49,18 +43,15 @@ function GoogleMapsInspiredSearch(props) {
         <SearchIcon />
       </IconButton>
       <Divider className={classes.divider} />
-      <IconButton
-        className={classNames(classes.directionsButton, classes.iconButton)}
-        aria-label="Directions"
-      >
+      <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
         <DirectionsIcon />
       </IconButton>
     </Paper>
   );
 }
 
-GoogleMapsInspiredSearch.propTypes = {
+CustomizedInputBase.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GoogleMapsInspiredSearch);
+export default withStyles(styles)(CustomizedInputBase);

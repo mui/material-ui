@@ -87,11 +87,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/CustomizedInputs'), 'utf8')
 `,
         },
-        'pages/demos/text-fields/GoogleMapsInspiredSearch.js': {
-          js: require('docs/src/pages/demos/text-fields/GoogleMapsInspiredSearch').default,
+        'pages/demos/text-fields/CustomizedInputBase.js': {
+          js: require('docs/src/pages/demos/text-fields/CustomizedInputBase').default,
           raw: preval`
 module.exports = require('fs').readFileSync(
-  require.resolve('docs/src/pages/demos/text-fields/GoogleMapsInspiredSearch'), 'utf8')
+  require.resolve('docs/src/pages/demos/text-fields/CustomizedInputBase'), 'utf8')
 `,
         },
         'pages/demos/text-fields/InputWithIcon.js': {
