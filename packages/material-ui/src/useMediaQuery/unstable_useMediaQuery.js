@@ -2,8 +2,21 @@
 
 import React from 'react';
 
-// This variable will be true once the server-side reconciliation is done.
-let reconciliationDone = false;
+// This variable will be true once the server-side hydratation is completed.
+let hydratationCompleted = false;
+
+function useMounted() {
+  const mountedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  return mountedRef.current;
+}
 
 function unstable_useMediaQuery(queryInput, options = {}) {
   const query = queryInput.replace('@media ', '');
@@ -14,8 +27,12 @@ function unstable_useMediaQuery(queryInput, options = {}) {
   } = options;
 
   let defaultMatches = defaultMatchesInput;
+  const mounted = useMounted();
 
-  if (reconciliationDone || noSsr) {
+  if (mounted) {
+    // Once the component is mounted, we rely on the
+    // event listeners to return the correct matches value.
+  } else if (hydratationCompleted || noSsr) {
     defaultMatches = window.matchMedia(query).matches;
   } else if (ssrMatchMedia) {
     defaultMatches = ssrMatchMedia(query).matches;
@@ -31,7 +48,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 
   React.useEffect(
     () => {
-      reconciliationDone = true;
+      hydratationCompleted = true;
 
       const queryList = window.matchMedia(query);
       if (matches !== queryList.matches) {
@@ -54,7 +71,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 }
 
 export function testReset() {
-  reconciliationDone = false;
+  hydratationCompleted = false;
 }
 
 export default unstable_useMediaQuery;

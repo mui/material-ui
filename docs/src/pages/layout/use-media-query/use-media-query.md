@@ -12,7 +12,7 @@ It depends on react >= 16.7.0-alpha.0, react-dom >= 16.7.0-alpha.0.
 Some of the key features:
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 Less than [600 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
+- 📦 Less than [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
 - 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
 - 🤖 It supports Server side rendering.
 

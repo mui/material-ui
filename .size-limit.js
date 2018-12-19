@@ -43,7 +43,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/useMediaQuery component',
     webpack: true,
     path: 'packages/material-ui/build/useMediaQuery/index.js',
-    limit: '600 B',
+    limit: '700 B',
   },
   {
     name: 'The main docs bundle',
