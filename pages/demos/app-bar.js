@@ -5,15 +5,29 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('markdown', true, /.md$/);
 
-const parseAll = ({ fileNameSuffix, js, raw }) => {
+const parseAll = ({ fileNameSuffix: suffix, js, raw }) => {
   const cache = {};
   const rawKeys = raw.keys();
   js.keys().forEach((key, index) => {
-    const fileName = `${fileNameSuffix}${key.split('./')[1]}`;
-    cache[fileName] = {
-      js: js(key).default,
-      raw: raw(rawKeys[index]),
-    };
+    const isHooksVariant = key.includes('.hooks.js');
+    const fileName = `${suffix}${key
+      .split('.')[1]
+      .replace('/', '')
+      .concat('.js')}`;
+    if (isHooksVariant) {
+      cache[fileName] = {
+        jsHooks: js(key).default,
+        rawHooks: raw(rawKeys[index]),
+        ...(cache[fileName] ? { ...cache[fileName] } : {}),
+      };
+    }
+    if (!isHooksVariant) {
+      cache[fileName] = {
+        js: js(key).default,
+        raw: raw(rawKeys[index]),
+        ...(cache[fileName] ? { ...cache[fileName] } : {}),
+      };
+    }
   });
   return cache;
 };
