@@ -35,14 +35,6 @@ const styles = theme => ({
 
 const appList = [
   {
-    title: 'AospExtended Download center',
-    description:
-      'A download center that hosts all the official builds of AospExtended ROM, ' +
-      'for supported devices for different android versions. ',
-    image: '/static/images/showcase/aexdownloadcenter.jpg',
-    link: 'https://downloads.aospextended.com',
-  },
-  {
     title: 'Onepixel',
     description: 'Beautiful Stock Photos for $1.',
     image: '/static/images/showcase/onepixel.jpg',
@@ -72,6 +64,14 @@ const appList = [
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: '/static/images/showcase/hijup.jpg',
     link: 'https://www.hijup.com/',
+  },
+  {
+    title: 'AospExtended Download center',
+    description:
+      'A download center that hosts all the official builds of AospExtended ROM, ' +
+      'for supported devices for different android versions.',
+    image: '/static/images/showcase/aexdownloadcenter.jpg',
+    link: 'https://downloads.aospextended.com',
   },
   {
     title: 'Venumob',
