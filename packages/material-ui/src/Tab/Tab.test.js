@@ -75,24 +75,6 @@ describe('<Tab />', () => {
         .childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
     });
-
-    it('should render with text wrapping', () => {
-      const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
-      const instance = wrapper.instance();
-      instance.labelRef = { getClientRects: stub().returns({ length: 2 }) };
-      instance.checkTextWrap();
-      wrapper.update();
-      const label = wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(0);
-      assert.strictEqual(
-        label.hasClass(classes.labelWrapped),
-        true,
-        'should have labelWrapped class',
-      );
-      assert.strictEqual(wrapper.state().labelWrapped, true, 'labelWrapped state should be true');
-    });
   });
 
   describe('prop: classes', () => {

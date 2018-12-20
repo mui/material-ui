@@ -98,34 +98,9 @@ export const styles = theme => ({
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
   label: {},
-  /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
-  labelWrapped: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: theme.typography.pxToRem(12),
-    },
-  },
 });
 
 class Tab extends React.Component {
-  state = {
-    labelWrapped: false,
-  };
-
-  componentDidMount() {
-    this.checkTextWrap();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.labelWrapped === prevState.labelWrapped) {
-      /**
-       * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
-       * font size still only requires one line.  This check will prevent an infinite render loop
-       * fron occurring in that scenario.
-       */
-      this.checkTextWrap();
-    }
-  }
-
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -135,15 +110,6 @@ class Tab extends React.Component {
 
     if (onClick) {
       onClick(event);
-    }
-  };
-
-  checkTextWrap = () => {
-    if (this.labelRef) {
-      const labelWrapped = this.labelRef.getClientRects().length > 1;
-      if (this.state.labelWrapped !== labelWrapped) {
-        this.setState({ labelWrapped });
-      }
     }
   };
 
@@ -169,9 +135,7 @@ class Tab extends React.Component {
       label = (
         <span className={classes.labelContainer}>
           <span
-            className={classNames(classes.label, {
-              [classes.labelWrapped]: this.state.labelWrapped,
-            })}
+            className={classes.label}
             ref={ref => {
               this.labelRef = ref;
             }}
