@@ -5,11 +5,10 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('markdown', true, /.md$/);
 
-const getDemoProps = ({ js, raw }) => {
+const getDemoProps = ({ fileSuffix, js, raw }) => {
   const demos = {};
   const rawKeys = raw.keys();
   const jsKeys = js.keys();
-  const fileSuffix = js.id.split(' ')[0].replace('./docs/src/', '');
   jsKeys.forEach((key, index) => {
     const fileName = `${fileSuffix}/${key.replace(/.\/|.hooks/g, '')}`;
     const isHooks = key.includes('.hooks.js');
@@ -29,6 +28,7 @@ function Page(props) {
     <MarkdownDocs
       markdown={req(`./app-bar${props.lang}.md`)}
       {...getDemoProps({
+        fileSuffix: 'pages/demos/app-bar',
         js: require.context('docs/src/pages/demos/app-bar/', true, /\.js$/),
         raw: require.context('!raw-loader!../../docs/src/pages/demos/app-bar', true, /.js$/),
       })}
