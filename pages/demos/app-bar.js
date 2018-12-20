@@ -5,39 +5,30 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('markdown', true, /.md$/);
 
-const parseAll = ({ fileNameSuffix: suffix, js, raw }) => {
-  const cache = {};
+const getDemoProps = ({ js, raw }) => {
+  const demos = {};
   const rawKeys = raw.keys();
-  js.keys().forEach((key, index) => {
-    const isHooksVariant = key.includes('.hooks.js');
-    const fileName = `${suffix}${key
-      .split('.')[1]
-      .replace('/', '')
-      .concat('.js')}`;
-    if (isHooksVariant) {
-      cache[fileName] = {
-        jsHooks: js(key).default,
-        rawHooks: raw(rawKeys[index]),
-        ...(cache[fileName] ? { ...cache[fileName] } : {}),
-      };
-    }
-    if (!isHooksVariant) {
-      cache[fileName] = {
-        js: js(key).default,
-        raw: raw(rawKeys[index]),
-        ...(cache[fileName] ? { ...cache[fileName] } : {}),
-      };
-    }
+  const jsKeys = js.keys();
+  const fileSuffix = js.id.split(' ')[0].replace('./docs/src/', '');
+  jsKeys.forEach((key, index) => {
+    const fileName = `${fileSuffix}/${key.replace(/.\/|.hooks/g, '')}`;
+    const isHooks = key.includes('.hooks.js');
+    const jsType = isHooks ? 'jsHooks' : 'js';
+    const rawType = isHooks ? 'rawHooks' : 'raw';
+    demos[fileName] = {
+      [jsType]: js(key).default,
+      [rawType]: raw(rawKeys[index]),
+      ...(demos[fileName] ? { ...demos[fileName] } : {}),
+    };
   });
-  return cache;
+  return { demos };
 };
 
 function Page(props) {
   return (
     <MarkdownDocs
       markdown={req(`./app-bar${props.lang}.md`)}
-      demos={parseAll({
-        fileNameSuffix: 'pages/demos/app-bar/',
+      {...getDemoProps({
         js: require.context('docs/src/pages/demos/app-bar/', true, /\.js$/),
         raw: require.context('!raw-loader!../../docs/src/pages/demos/app-bar', true, /.js$/),
       })}
