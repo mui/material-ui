@@ -1,19 +1,11 @@
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField, {
-  BaseTextFieldProps,
-  FilledTextFieldProps,
-  OutlinedTextFieldProps,
-  StandardTextFieldProps,
-  TextFieldProps,
-} from '@material-ui/core/TextField';
+import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { FilledInputProps } from '@material-ui/core/FilledInput';
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
-import { OutlinedInputProps } from '@material-ui/core/OutlinedInput';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { ExtendMui } from '../typings/extendMui';
@@ -121,7 +113,9 @@ export interface DateTextFieldProps
   /** If true clear button will be displayed */
   clearable?: boolean;
   /** Component that should replace the default Material-UI TextField */
-  TextFieldComponent?: React.ComponentType<TextFieldProps>;
+  TextFieldComponent?:
+    | React.ComponentType<TextFieldProps>
+    | React.ReactType<React.HTMLAttributes<any>>;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: object;
   /** Specifies position of keyboard button adornment */
