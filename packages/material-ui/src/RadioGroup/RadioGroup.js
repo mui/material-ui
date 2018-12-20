@@ -9,6 +9,15 @@ import { createChainedFunction, find } from '../utils/helpers';
 class RadioGroup extends React.Component {
   radios = [];
 
+  state = {
+    value: null,
+  };
+
+  constructor(props) {
+    super();
+    this.isControlled = props.value != null;
+  }
+
   focus = () => {
     if (!this.radios || !this.radios.length) {
       return;
@@ -30,15 +39,22 @@ class RadioGroup extends React.Component {
     focusRadios[0].focus();
   };
 
-  handleRadioChange = (event, checked) => {
-    if (checked && this.props.onChange) {
+  handleChange = event => {
+    if (!this.isControlled) {
+      this.setState({
+        value: event.target.value,
+      });
+    }
+
+    if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }
   };
 
   render() {
-    const { children, name, value, onChange, ...other } = this.props;
+    const { children, name, value: valueProp, onChange, ...other } = this.props;
 
+    const value = this.isControlled ? valueProp : this.state.value;
     this.radios = [];
 
     return (
@@ -64,7 +80,7 @@ class RadioGroup extends React.Component {
               }
             },
             checked: value === child.props.value,
-            onChange: createChainedFunction(child.props.onChange, this.handleRadioChange),
+            onChange: createChainedFunction(child.props.onChange, this.handleChange),
           });
         })}
       </FormGroup>
