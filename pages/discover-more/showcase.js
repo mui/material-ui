@@ -3,23 +3,15 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/discover-more/showcase', true, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/discover-more/showcase',
+  true,
+  /\.js$/,
+);
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./showcase${props.lang}.md`)}
-      demos={{
-        'pages/discover-more/showcase/Showcase.js': {
-          js: require('docs/src/pages/discover-more/showcase/Showcase').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/discover-more/showcase/Showcase'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} />;
 }
 
 export default Page;

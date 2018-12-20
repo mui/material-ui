@@ -26,8 +26,8 @@ Hidden.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Specify which implementation to use.  'js' is the default, 'css' works better for server
-   * side rendering.
+   * Specify which implementation to use.  'js' is the default, 'css' works better for
+   * server-side rendering.
    */
   implementation: PropTypes.oneOf(['js', 'css']),
   /**

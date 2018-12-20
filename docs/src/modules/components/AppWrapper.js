@@ -4,15 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import url from 'url';
-import acceptLanguage from 'accept-language';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
-
-acceptLanguage.languages(['en', 'zh']);
+import acceptLanguage from 'accept-language';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -29,6 +26,42 @@ function themeSideEffect(reduxTheme) {
   setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
   document.body.dir = reduxTheme.direction;
 }
+
+class SideEffectsRaw extends React.Component {
+  componentDidMount() {
+    const { options } = this.props;
+
+    acceptLanguage.languages(['en', 'zh']);
+    const URL = url.parse(document.location.href, true);
+    const userLanguage = acceptLanguage.get(
+      URL.query.lang || getCookie('lang') || navigator.language || 'en',
+    );
+    const codeVariant = getCookie('codeVariant');
+
+    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
+      this.props.dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          userLanguage,
+          codeVariant,
+        },
+      });
+    }
+  }
+
+  render() {
+    return null;
+  }
+}
+
+SideEffectsRaw.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  options: PropTypes.object.isRequired,
+};
+
+const SideEffects = connect(state => ({
+  options: state.options,
+}))(SideEffectsRaw);
 
 class AppWrapper extends React.Component {
   state = {};
@@ -50,7 +83,7 @@ class AppWrapper extends React.Component {
       navigator.serviceWorker.register('/sw.js');
     }
 
-    const { options, reduxTheme } = this.props;
+    const { reduxTheme } = this.props;
 
     const paletteType = getCookie('paletteType');
     const paletteColors = getCookie('paletteColors');
@@ -61,23 +94,6 @@ class AppWrapper extends React.Component {
         payload: {
           paletteType,
           paletteColors: paletteColors ? JSON.parse(paletteColors) : null,
-        },
-      });
-    }
-
-    const URL = url.parse(document.location.href, true);
-    const userLanguage = acceptLanguage.get(
-      URL.query.lang || getCookie('lang') || navigator.language || 'en',
-    );
-
-    const codeVariant = getCookie('codeVariant');
-
-    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
-      this.props.dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          userLanguage,
-          codeVariant,
         },
       });
     }
@@ -112,7 +128,7 @@ class AppWrapper extends React.Component {
   }
 
   render() {
-    const { children, options } = this.props;
+    const { children } = this.props;
     const { pageContext } = this.state;
 
     return (
@@ -122,12 +138,8 @@ class AppWrapper extends React.Component {
         sheetsManager={pageContext.sheetsManager}
         sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <ThemeProvider theme={pageContext.theme}>
-          {React.cloneElement(children, {
-            lang: options.userLanguage === 'en' ? '' : `-${options.userLanguage}`,
-          })}
-        </ThemeProvider>
-        <GoogleAnalytics />
+        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+        <SideEffects />
       </StylesProvider>
     );
   }
@@ -136,13 +148,11 @@ class AppWrapper extends React.Component {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dispatch: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   reduxTheme: PropTypes.object.isRequired,
 };
 
 export default connect(state => ({
-  options: state.options,
   reduxTheme: state.theme,
 }))(AppWrapper);

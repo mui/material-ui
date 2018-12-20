@@ -200,7 +200,7 @@ class Demo extends React.Component {
   handleCodeLanguageClick = event => {
     const codeVariant = event.currentTarget.value;
 
-    if (this.props.options.codeVariant !== codeVariant) {
+    if (this.props.codeVariant !== codeVariant) {
       document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
 
       this.props.dispatch({
@@ -218,7 +218,7 @@ class Demo extends React.Component {
          * toggle the state, otherwise if it is
          * another code type always open it. i.e, true
          */
-        codeOpen: this.props.options.codeVariant === codeVariant ? !prevState.codeOpen : true,
+        codeOpen: this.props.codeVariant === codeVariant ? !prevState.codeOpen : true,
       };
     });
   };
@@ -230,8 +230,8 @@ class Demo extends React.Component {
   };
 
   getDemoData = () => {
-    const { options, demo } = this.props;
-    return options.codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks
+    const { codeVariant, demo } = this.props;
+    return codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks
       ? {
           codeVariant: CODE_VARIANTS.HOOK,
           raw: demo.rawHooks,
@@ -385,16 +385,16 @@ class Demo extends React.Component {
 
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
+  codeVariant: PropTypes.string.isRequired,
   demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  options: PropTypes.object.isRequired,
 };
 
 export default compose(
   connect(state => ({
-    options: state.options,
+    codeVariant: state.options.codeVariant,
   })),
   withStyles(styles),
 )(Demo);

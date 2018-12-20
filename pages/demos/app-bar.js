@@ -3,37 +3,11 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/demos/app-bar', true, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/app-bar', true, /\.js$/);
 
-const getDemoProps = ({ fileSuffix: suffix, js, raw }) => {
-  const demos = {};
-  const rawKeys = raw.keys();
-  const jsKeys = js.keys();
-  jsKeys.forEach((key, index) => {
-    const fileName = `${suffix}/${key.replace(/.\/|.hooks/g, '')}`;
-    const isHooks = key.includes('.hooks.js');
-    const jsType = isHooks ? 'jsHooks' : 'js';
-    const rawType = isHooks ? 'rawHooks' : 'raw';
-    demos[fileName] = {
-      [jsType]: js(key).default,
-      [rawType]: raw(rawKeys[index]),
-      ...(demos[fileName] ? { ...demos[fileName] } : {}),
-    };
-  });
-  return { demos };
-};
-
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./app-bar${props.lang}.md`)}
-      {...getDemoProps({
-        fileSuffix: 'pages/demos/app-bar',
-        js: require.context('docs/src/pages/demos/app-bar/', true, /\.js$/),
-        raw: require.context('!raw-loader!../../docs/src/pages/demos/app-bar', true, /.js$/),
-      })}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} />;
 }
 
 export default Page;

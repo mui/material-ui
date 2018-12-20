@@ -3,10 +3,15 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/guides/typescript', true, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/guides/typescript',
+  true,
+  /\.js$/,
+);
 
-function Page(props) {
-  return <MarkdownDocs markdown={req(`./typescript${props.lang}.md`)} />;
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} />;
 }
 
 export default Page;
