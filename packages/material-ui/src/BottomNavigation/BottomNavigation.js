@@ -96,8 +96,8 @@ BottomNavigation.propTypes = {
 };
 
 BottomNavigation.defaultProps = {
-  showLabels: false,
   component: 'div',
+  showLabels: false,
 };
 
 export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);
