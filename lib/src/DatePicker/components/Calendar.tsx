@@ -15,12 +15,11 @@ import Day from './Day';
 import DayWrapper from './DayWrapper';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 
-export type DayComponent = React.ReactElement<IconButtonProps>;
 export type RenderDay = (
   day: MaterialUiPickersDate,
   selectedDate: MaterialUiPickersDate,
   dayInCurrentMonth: boolean,
-  dayComponent: DayComponent
+  dayComponent: React.ReactElement<IconButtonProps>
 ) => JSX.Element;
 
 export interface CalendarProps extends WithUtilsProps, WithStyles<typeof styles, true> {
@@ -208,9 +207,9 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   public renderDays = (week: MaterialUiPickersDate[]) => {
     const { date, renderDay, utils } = this.props;
 
+    const now = utils.date();
     const selectedDate = utils.startOfDay(date);
     const currentMonthNumber = utils.getMonth(this.state.currentMonth);
-    const now = utils.date();
 
     return week.map(day => {
       const disabled = this.shouldDisableDate(day);
@@ -218,9 +217,9 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
       let dayComponent = (
         <Day
+          disabled={disabled}
           current={utils.isSameDay(day, now)}
           hidden={!dayInCurrentMonth}
-          disabled={disabled}
           selected={utils.isSameDay(selectedDate, day)}
         >
           {utils.getDayText(day)}
@@ -233,10 +232,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
       return (
         <DayWrapper
-          key={day.toString()}
           value={day}
-          dayInCurrentMonth={dayInCurrentMonth}
+          key={day.toString()}
           disabled={disabled}
+          dayInCurrentMonth={dayInCurrentMonth}
           onSelect={this.onDateSelect}
         >
           {dayComponent}
@@ -268,12 +267,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
           transKey={currentMonth.toString()}
           className={classes.transitionContainer}
         >
-          <div
-            // @ts-ignore Autofocus required for getting work keyboard navigation feature
-            autoFocus
-          >
-            {this.renderWeeks()}
-          </div>
+          <div>{this.renderWeeks()}</div>
         </SlideTransition>
       </React.Fragment>
     );

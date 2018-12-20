@@ -1,7 +1,13 @@
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import TextField, { BaseTextFieldProps, StandardTextFieldProps } from '@material-ui/core/TextField';
+import TextField, {
+  BaseTextFieldProps,
+  FilledTextFieldProps,
+  OutlinedTextFieldProps,
+  StandardTextFieldProps,
+  TextFieldProps,
+} from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -78,12 +84,9 @@ export interface DateTextFieldProps
   extends WithUtilsProps,
     ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
-  variant?: 'outlined' | 'standard' | 'filled';
-  InputProps?: Partial<InputPropsType | OutlinedInputProps | FilledInputProps>;
-  inputProps?:
-    | InputPropsType['inputProps']
-    | OutlinedInputProps['inputProps']
-    | FilledInputProps['inputProps'];
+  variant?: TextFieldProps['variant'];
+  InputProps?: Partial<TextFieldProps>;
+  inputProps?: TextFieldProps['inputMode'];
   value: DateType;
   minDate?: DateType;
   /** Error message, shown if date is less then minimal date */
@@ -118,9 +121,7 @@ export interface DateTextFieldProps
   /** If true clear button will be displayed */
   clearable?: boolean;
   /** Component that should replace the default Material-UI TextField */
-  TextFieldComponent?:
-    | React.ComponentType<StandardTextFieldProps>
-    | React.ReactType<React.HTMLAttributes<any>>;
+  TextFieldComponent?: React.ComponentType<TextFieldProps>;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: object;
   /** Specifies position of keyboard button adornment */
@@ -368,7 +369,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       );
     }
 
-    const Component = TextFieldComponent!;
+    const Component = TextFieldComponent! as React.ComponentType<any>;
     const inputProps = {
       ...localInputProps,
       ...InputProps,
