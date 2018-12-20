@@ -87,6 +87,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/CustomizedInputs'), 'utf8')
 `,
         },
+        'pages/demos/text-fields/CustomizedInputBase.js': {
+          js: require('docs/src/pages/demos/text-fields/CustomizedInputBase').default,
+          raw: preval`
+module.exports = require('fs').readFileSync(
+  require.resolve('docs/src/pages/demos/text-fields/CustomizedInputBase'), 'utf8')
+`,
+        },
         'pages/demos/text-fields/InputWithIcon.js': {
           js: require('docs/src/pages/demos/text-fields/InputWithIcon').default,
           raw: preval`
