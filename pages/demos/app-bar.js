@@ -5,12 +5,12 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('markdown', true, /.md$/);
 
-const getDemoProps = ({ fileSuffix, js, raw }) => {
+const getDemoProps = ({ fileSuffix: suffix, js, raw }) => {
   const demos = {};
   const rawKeys = raw.keys();
   const jsKeys = js.keys();
   jsKeys.forEach((key, index) => {
-    const fileName = `${fileSuffix}/${key.replace(/.\/|.hooks/g, '')}`;
+    const fileName = `${suffix}/${key.replace(/.\/|.hooks/g, '')}`;
     const isHooks = key.includes('.hooks.js');
     const jsType = isHooks ? 'jsHooks' : 'js';
     const rawType = isHooks ? 'rawHooks' : 'raw';
