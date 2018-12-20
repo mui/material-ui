@@ -48,7 +48,7 @@
   },
   "size-limit": [
     {
-      "path": "build/dist/material-ui-pickers.cjs.js",
+      "path": "build/dist/material-ui-pickers.esm.js",
       "limit": "30 KB"
     }
   ],
@@ -63,7 +63,7 @@
     "build:bundle": "rollup --config",
     "build:typescript": "tsc --project tsconfig.json",
     "build": "npm run build:typescript && npm run build:bundle && npm run build:copy",
-    "build:analyze": "npm run build && npx size-limit",
+    "build:analyze": "npm run build",
     "release": "npm run test && npm run build && npm publish build",
     "lint": "tslint --project tsconfig.json",
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mHave you installed one of peer libraries?\\u001b[22m\\u001b[39m\\n > date-fns \\n > luxon \\n > moment')\""
@@ -107,14 +107,14 @@
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "rollup": "^0.66.6",
+    "rollup": "^0.68.1",
     "rollup-plugin-babel": "^4.1.0",
     "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-size-snapshot": "^0.7.0",
     "rollup-plugin-typescript": "^1.0.0",
     "rollup-plugin-uglify": "^6.0.0",
-    "size-limit": "^0.20.1",
+    "size-limit": "^0.21.0",
     "ts-jest": "^23.10.5",
     "ts-lib": "0.0.5",
     "tslint": "^5.12.0",
