@@ -57,7 +57,8 @@ but you are not confident jumping in, here's an example of how you can change th
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. It's demonstrating a use case for the [`InputBase`](/api/input-base/) component inspired by Google Maps.
+Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel.
+Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
