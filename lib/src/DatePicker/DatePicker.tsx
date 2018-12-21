@@ -6,7 +6,7 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import Calendar, { DayComponent } from './components/Calendar';
+import Calendar, { RenderDay } from './components/Calendar';
 import YearSelection from './components/YearSelection';
 
 export interface BaseDatePickerProps {
@@ -27,12 +27,7 @@ export interface BaseDatePickerProps {
   /** Right arrow icon */
   rightArrowIcon?: React.ReactNode;
   /** Custom renderer for day */
-  renderDay?: (
-    day: MaterialUiPickersDate,
-    selectedDate: MaterialUiPickersDate,
-    dayInCurrentMonth: boolean,
-    dayComponent: DayComponent
-  ) => JSX.Element;
+  renderDay?: RenderDay;
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl?: boolean;
   /** Disable specific date */

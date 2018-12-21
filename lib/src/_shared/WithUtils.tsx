@@ -22,7 +22,7 @@ export const withUtils = () => <P extends WithUtilsProps>(Component: React.Compo
     <MuiPickersContextConsumer>
       {utils => {
         checkUtils(utils);
-        return <Component utils={utils} {...props} />;
+        return <Component utils={utils} {...props as any} />;
       }}
     </MuiPickersContextConsumer>
   );
