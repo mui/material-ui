@@ -3,37 +3,16 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/layout/breakpoints', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/layout/breakpoints',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/layout/breakpoints';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./breakpoints${props.lang}.md`)}
-      demos={{
-        'pages/layout/breakpoints/MediaQuery.js': {
-          js: require('docs/src/pages/layout/breakpoints/MediaQuery').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/MediaQuery'), 'utf8')
-`,
-        },
-        'pages/layout/breakpoints/WithWidth.js': {
-          js: require('docs/src/pages/layout/breakpoints/WithWidth').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/WithWidth'), 'utf8')
-`,
-        },
-        'pages/layout/breakpoints/RenderPropsWithWidth.js': {
-          js: require('docs/src/pages/layout/breakpoints/RenderPropsWithWidth').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/RenderPropsWithWidth'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

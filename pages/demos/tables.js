@@ -3,58 +3,12 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/demos/tables', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/tables', false, /\.js$/);
+const reqPrefix = 'pages/demos/tables';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./tables${props.lang}.md`)}
-      demos={{
-        'pages/demos/tables/SimpleTable.js': {
-          js: require('docs/src/pages/demos/tables/SimpleTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/SimpleTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/EnhancedTable.js': {
-          js: require('docs/src/pages/demos/tables/EnhancedTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/EnhancedTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/SpanningTable.js': {
-          js: require('docs/src/pages/demos/tables/SpanningTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/SpanningTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/CustomPaginationActionsTable.js': {
-          js: require('docs/src/pages/demos/tables/CustomPaginationActionsTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomPaginationActionsTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/CustomizedTable.js': {
-          js: require('docs/src/pages/demos/tables/CustomizedTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomizedTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/ReactVirtualizedTable.js': {
-          js: require('docs/src/pages/demos/tables/ReactVirtualizedTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/ReactVirtualizedTable'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

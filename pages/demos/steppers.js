@@ -3,99 +3,16 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/demos/steppers', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/demos/steppers',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/demos/steppers';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./steppers${props.lang}.md`)}
-      demos={{
-        'pages/demos/steppers/HorizontalLinearAlternativeLabelStepper.js': {
-          js: require('docs/src/pages/demos/steppers/HorizontalLinearAlternativeLabelStepper')
-            .default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/steppers/HorizontalLinearAlternativeLabelStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/HorizontalLinearStepper.js': {
-          js: require('docs/src/pages/demos/steppers/HorizontalLinearStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/HorizontalLinearStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper.js': {
-          js: require('docs/src/pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper')
-            .default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/HorizontalNonLinearStepper.js': {
-          js: require('docs/src/pages/demos/steppers/HorizontalNonLinearStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/HorizontalNonLinearStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/VerticalLinearStepper.js': {
-          js: require('docs/src/pages/demos/steppers/VerticalLinearStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/VerticalLinearStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/HorizontalNonLinearStepperWithError.js': {
-          js: require('docs/src/pages/demos/steppers/HorizontalNonLinearStepperWithError').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/steppers/HorizontalNonLinearStepperWithError'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/CustomizedStepper.js': {
-          js: require('docs/src/pages/demos/steppers/CustomizedStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/steppers/CustomizedStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/TextMobileStepper.js': {
-          js: require('docs/src/pages/demos/steppers/TextMobileStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/TextMobileStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/SwipeableTextMobileStepper.js': {
-          js: require('docs/src/pages/demos/steppers/SwipeableTextMobileStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/SwipeableTextMobileStepper'), 'utf8')
-          `,
-        },
-        'pages/demos/steppers/DotsMobileStepper.js': {
-          js: require('docs/src/pages/demos/steppers/DotsMobileStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/DotsMobileStepper'), 'utf8')
-`,
-        },
-        'pages/demos/steppers/ProgressMobileStepper.js': {
-          js: require('docs/src/pages/demos/steppers/ProgressMobileStepper').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/steppers/ProgressMobileStepper'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

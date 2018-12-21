@@ -3,79 +3,12 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/layout/grid', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/layout/grid', false, /\.js$/);
+const reqPrefix = 'pages/layout/grid';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./grid${props.lang}.md`)}
-      demos={{
-        'pages/layout/grid/SpacingGrid.js': {
-          js: require('docs/src/pages/layout/grid/SpacingGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/SpacingGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/FullWidthGrid.js': {
-          js: require('docs/src/pages/layout/grid/FullWidthGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/FullWidthGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/CenteredGrid.js': {
-          js: require('docs/src/pages/layout/grid/CenteredGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/CenteredGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/InteractiveGrid.js': {
-          js: require('docs/src/pages/layout/grid/InteractiveGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/InteractiveGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/AutoGrid.js': {
-          js: require('docs/src/pages/layout/grid/AutoGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/AutoGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/CSSGrid.js': {
-          js: require('docs/src/pages/layout/grid/CSSGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/CSSGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/NestedGrid.js': {
-          js: require('docs/src/pages/layout/grid/NestedGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/NestedGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/ComplexGrid.js': {
-          js: require('docs/src/pages/layout/grid/ComplexGrid').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/ComplexGrid'), 'utf8')
-`,
-        },
-        'pages/layout/grid/AutoGridNoWrap.js': {
-          js: require('docs/src/pages/layout/grid/AutoGridNoWrap').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/AutoGridNoWrap'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

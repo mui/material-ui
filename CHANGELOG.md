@@ -5182,7 +5182,7 @@ styling update of the previous release.
 
 - [docs] Add example with Create React App (#7485) @akshaynaik404
 - [docs] Minor tweaks to grammar of CSS in JS page (#7530) @mbrookes
-- [docs] Server side fix docs (91a30ee2276d8d06776f6fba831930568974dacc) @oliviertassinari
+- [docs] Server-side fix docs (91a30ee2276d8d06776f6fba831930568974dacc) @oliviertassinari
 - [docs] Fix 'colors' path in imports (#7519) @burnoo
 - [docs] Some fixes after the latest upgrade (#7528) @oliviertassinari
 - [docs] Update for supported components (#7586) @skirunman
@@ -5900,7 +5900,7 @@ We are now at 93.53%. That's pretty great.
 
 #### Core
 
-- [test] Server side render some element to be sure (#6328) @oliviertassinari
+- [test] Server-side render some element to be sure (#6328) @oliviertassinari
 - [npm] Add correct extension (#6241) @okvic77
 - [core] Rename travis to circle as we migrated (e7fba22bd19f82f5489cb52eaaaaff23f2f57939) @oliviertassinari
 - [core] Fix docs:start command on Windows (#6307) @kybarg

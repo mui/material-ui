@@ -14,7 +14,7 @@ Some of the key features:
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
 - 📦 Less than [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
 - 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
-- 🤖 It supports Server side rendering.
+- 🤖 It supports Server-side rendering.
 
 ## Simple media query
 
@@ -51,7 +51,7 @@ function MyComponent() {
 
 {{"demo": "pages/layout/use-media-query/ThemeHelper.js", "react": "next"}}
 
-## Server side rendering
+## Server-side rendering
 
 You will need to use a [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ponyfill on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
 We also encourage the usage of the `unstable_useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
