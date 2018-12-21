@@ -1,4 +1,4 @@
-# Next.js Hooks with Typescript example
+# Next.js Hooks with TypeScript example
 
 ## How to use
 
