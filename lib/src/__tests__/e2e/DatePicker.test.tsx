@@ -59,10 +59,9 @@ describe('e2e -- DatePicker keyboard input', () => {
       <DatePickerModal
         keyboard
         label="Masked input"
-        format="dd/MM/yyyy"
         placeholder="10/10/2018"
-        // handle clearing outside => pass plain array if you are not controlling value outside
-        mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
+        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
+        mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
         value={'2018-01-01T00:00:00.000Z'}
         onChange={onChangeMock}
       />
