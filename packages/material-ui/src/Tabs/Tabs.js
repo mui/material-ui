@@ -25,7 +25,7 @@ export const styles = theme => ({
   flexContainer: {
     display: 'flex',
   },
-  /* Styles applied to the flex container element if `centered={true}` & `variant="scrollable"`. */
+  /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: {
     justifyContent: 'center',
   },
