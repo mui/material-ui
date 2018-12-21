@@ -4,14 +4,14 @@
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
-```bash
+```sh
 curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/cdn
 cd cdn
 ```
 
 Run:
 
-```bash
+```sh
 open index.html
 ```
 
