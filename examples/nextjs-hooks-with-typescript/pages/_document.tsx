@@ -67,7 +67,7 @@ MyDocument.getInitialProps = ctx => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  let pageContext: PageContext | undefined = undefined;
+  let pageContext: PageContext | undefined;
   const page = ctx.renderPage((Component: ComponentType<PagePropsWithPageContext>) => {
     const WrappedComponent: ComponentType<{ pageContext: PageContext } & PageProps> = props => {
       pageContext = props.pageContext;

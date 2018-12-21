@@ -1,10 +1,10 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { StylesProvider, ThemeProvider } from '@material-ui/styles';
-import App, { Container } from 'next/app';
-import Head from 'next/head';
+import '../src/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
-import '../src/bootstrap';
+import App, { Container } from 'next/app';
+import Head from 'next/head';
+import { StylesProvider, ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext, { PageContext } from '../src/getPageContext';
 
 class MyApp extends App {

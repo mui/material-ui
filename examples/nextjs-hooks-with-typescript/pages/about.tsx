@@ -1,10 +1,10 @@
+import '../src/bootstrap';
+// --- Post bootstrap -----
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import Link from 'next/link';
-// --- Post bootstrap -----
-import React from 'react';
-import '../src/bootstrap';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function About() {
-  const classes = useStyles();
+  const classes = useStyles({});
 
   return (
     <div className={classes.root}>
