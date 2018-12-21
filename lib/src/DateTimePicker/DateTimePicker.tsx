@@ -17,12 +17,19 @@ import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export interface BaseDateTimePickerProps extends Omit<BaseDatePickerProps, 'openToYearSelection'> {
+  /** Auto move between date, hours and minutes */
   autoSubmit?: boolean;
+  /** Show or hide tabs switching between date and time */
   showTabs?: boolean;
+  /** Control 12h or 24h view mode for clock */
   ampm?: boolean;
-  openTo?: DateTimePickerViewType;
+  /** Initial view to show when datetime picker is open */
+  openTo?: 'year' | 'date' | 'hours' | 'minutes';
+  /** Date tab icon */
   dateRangeIcon?: React.ReactNode;
+  /** Time tab icon */
   timeIcon?: React.ReactNode;
+  /** Container component for date time picker views */
   ViewContainerComponent?: string | React.ComponentType<any>;
 }
 

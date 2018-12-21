@@ -185,9 +185,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: ReactElement<IconButtonProps>) => Element"
-      }
+      "type": { "name": "RenderDay" }
     },
     "allowKeyboardControl": {
       "defaultValue": null,
@@ -211,6 +209,17 @@
       "required": false,
       "type": { "name": "(day: any) => boolean" }
     },
+    "mask": {
+      "defaultValue": null,
+      "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "name": "DateTextFieldProps"
+      },
+      "required": false,
+      "type": { "name": "any" }
+    },
     "minDateMessage": {
       "defaultValue": null,
       "description": "Error message, shown if date is less then minimal date",
@@ -232,17 +241,6 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
-    },
-    "mask": {
-      "defaultValue": null,
-      "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
-      "name": "mask",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
-        "name": "DateTextFieldProps"
-      },
-      "required": false,
-      "type": { "name": "any" }
     },
     "keyboard": {
       "defaultValue": null,
@@ -320,7 +318,7 @@
       },
       "required": false,
       "type": {
-        "name": "string | ComponentClass<StandardTextFieldProps, any> | FunctionComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | FunctionComponent<HTMLAttributes<any>>"
+        "name": "\"symbol\" | \"object\" | \"style\" | \"title\" | \"time\" | \"link\" | \"menu\" | \"dialog\" | \"text\" | \"a\" | \"abbr\" | \"address\" | \"area\" | \"article\" | \"aside\" | \"audio\" | \"b\" | \"base\" | \"bdi\" | ... 154 more ... | FunctionComponent<...>"
       }
     },
     "InputAdornmentProps": {
@@ -523,6 +521,17 @@
       "required": false,
       "type": { "name": "boolean" }
     },
+    "mask": {
+      "defaultValue": null,
+      "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "name": "DateTextFieldProps"
+      },
+      "required": false,
+      "type": { "name": "any" }
+    },
     "minDateMessage": {
       "defaultValue": null,
       "description": "Error message, shown if date is less then minimal date",
@@ -544,17 +553,6 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
-    },
-    "mask": {
-      "defaultValue": null,
-      "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
-      "name": "mask",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
-        "name": "DateTextFieldProps"
-      },
-      "required": false,
-      "type": { "name": "any" }
     },
     "keyboard": {
       "defaultValue": null,
@@ -632,7 +630,7 @@
       },
       "required": false,
       "type": {
-        "name": "string | ComponentClass<StandardTextFieldProps, any> | FunctionComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | FunctionComponent<HTMLAttributes<any>>"
+        "name": "\"symbol\" | \"object\" | \"style\" | \"title\" | \"time\" | \"link\" | \"menu\" | \"dialog\" | \"text\" | \"a\" | \"abbr\" | \"address\" | \"area\" | \"article\" | \"aside\" | \"audio\" | \"b\" | \"base\" | \"bdi\" | ... 154 more ... | FunctionComponent<...>"
       }
     },
     "InputAdornmentProps": {
@@ -824,6 +822,72 @@
       "required": false,
       "type": { "name": "DateType" }
     },
+    "autoSubmit": {
+      "defaultValue": null,
+      "description": "Auto move between date, hours and minutes",
+      "name": "autoSubmit",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "showTabs": {
+      "defaultValue": null,
+      "description": "Show or hide tabs switching between date and time",
+      "name": "showTabs",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "boolean" }
+    },
+    "openTo": {
+      "defaultValue": null,
+      "description": "Initial view to show when datetime picker is open",
+      "name": "openTo",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "\"date\" | \"year\" | \"hours\" | \"minutes\"" }
+    },
+    "dateRangeIcon": {
+      "defaultValue": null,
+      "description": "Date tab icon",
+      "name": "dateRangeIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "timeIcon": {
+      "defaultValue": null,
+      "description": "Time tab icon",
+      "name": "timeIcon",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "ViewContainerComponent": {
+      "defaultValue": null,
+      "description": "Container component for date time picker views",
+      "name": "ViewContainerComponent",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "string | ComponentClass<any, any> | FunctionComponent<any>" }
+    },
     "minDate": {
       "defaultValue": null,
       "description": "Min selectable date",
@@ -910,9 +974,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: ReactElement<IconButtonProps>) => Element"
-      }
+      "type": { "name": "RenderDay" }
     },
     "allowKeyboardControl": {
       "defaultValue": null,
@@ -936,6 +998,17 @@
       "required": false,
       "type": { "name": "(day: any) => boolean" }
     },
+    "mask": {
+      "defaultValue": null,
+      "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
+      "name": "mask",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "name": "DateTextFieldProps"
+      },
+      "required": false,
+      "type": { "name": "any" }
+    },
     "minDateMessage": {
       "defaultValue": null,
       "description": "Error message, shown if date is less then minimal date",
@@ -957,17 +1030,6 @@
       },
       "required": false,
       "type": { "name": "ReactNode" }
-    },
-    "mask": {
-      "defaultValue": null,
-      "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
-      "name": "mask",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
-        "name": "DateTextFieldProps"
-      },
-      "required": false,
-      "type": { "name": "any" }
     },
     "keyboard": {
       "defaultValue": null,
@@ -1045,7 +1107,7 @@
       },
       "required": false,
       "type": {
-        "name": "string | ComponentClass<StandardTextFieldProps, any> | FunctionComponent<StandardTextFieldProps> | ComponentClass<HTMLAttributes<any>, any> | FunctionComponent<HTMLAttributes<any>>"
+        "name": "\"symbol\" | \"object\" | \"style\" | \"title\" | \"time\" | \"link\" | \"menu\" | \"dialog\" | \"text\" | \"a\" | \"abbr\" | \"address\" | \"area\" | \"article\" | \"aside\" | \"audio\" | \"b\" | \"base\" | \"bdi\" | ... 154 more ... | FunctionComponent<...>"
       }
     },
     "InputAdornmentProps": {
