@@ -6,6 +6,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
+import { MaskedInputProps } from 'react-text-mask';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { ExtendMui } from '../typings/extendMui';
@@ -89,7 +90,7 @@ export interface DateTextFieldProps
   /** Error message, shown if date is more then maximal date */
   maxDateMessage?: React.ReactNode;
   /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
-  mask?: any;
+  mask?: MaskedInputProps['mask'];
   pipe?: any;
   keepCharPositions?: boolean;
   onChange: (date: MaterialUiPickersDate) => void;

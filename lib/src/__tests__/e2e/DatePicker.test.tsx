@@ -1,5 +1,6 @@
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
+import DatePickerModal from '../../DatePicker';
 import DatePicker, { DatePickerProps } from '../../DatePicker/DatePicker';
 import { mount, utilsToUse } from '../test-utils';
 
@@ -17,6 +18,7 @@ describe('e2e - DatePicker', () => {
       />
     );
   });
+
   it('Should renders', () => {
     expect(component).toBeTruthy();
   });
@@ -45,5 +47,35 @@ describe('e2e - DatePicker', () => {
       .at(1)
       .simulate('click');
     expect(onChangeMock).toHaveBeenCalled();
+  });
+});
+
+describe('e2e -- DatePicker keyboard input', () => {
+  const onChangeMock = jest.fn();
+  let component: ReactWrapper<DatePickerProps>;
+
+  beforeEach(() => {
+    component = mount(
+      <DatePickerModal
+        keyboard
+        label="Masked input"
+        format="dd/MM/yyyy"
+        placeholder="10/10/2018"
+        // handle clearing outside => pass plain array if you are not controlling value outside
+        mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
+        value={'2018-01-01T00:00:00.000Z'}
+        onChange={onChangeMock}
+      />
+    );
+  });
+
+  it('Should properly set value on change keyboard', () => {
+    const e = { target: { value: '10/11/2018' } };
+
+    component.find('input').simulate('change', e);
+    expect(component.find('t').prop('value')).toBe('10/11/2018');
+
+    component.find('input').simulate('blur');
+    expect(onChangeMock).toBeCalled();
   });
 });
