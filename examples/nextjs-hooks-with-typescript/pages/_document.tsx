@@ -10,7 +10,8 @@ class MyDocument extends Document<{
   render() {
     const { pageContext } = this.props;
 
-    const theme = typeof pageContext.theme === 'function' ? pageContext.theme(null) : pageContext.theme;
+    const theme =
+      typeof pageContext.theme === 'function' ? pageContext.theme(null) : pageContext.theme;
     const themeColor = theme.palette.primary.main;
 
     return (
@@ -18,10 +19,16 @@ class MyDocument extends Document<{
         <Head>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+          />
           {/* PWA primary color */}
           <meta name="theme-color" content={themeColor} />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          />
         </Head>
         <body>
           <Main />
@@ -36,7 +43,7 @@ interface PagePropsWithPageContext extends AnyPageProps {
   pageContext: PageContext;
 }
 
-MyDocument.getInitialProps = (ctx) => {
+MyDocument.getInitialProps = ctx => {
   // Resolution order
   //
   // On the server:
@@ -62,7 +69,7 @@ MyDocument.getInitialProps = (ctx) => {
   // Render app and page and get the context of the page with collected side effects.
   let pageContext: PageContext | undefined = undefined;
   const page = ctx.renderPage((Component: ComponentType<PagePropsWithPageContext>) => {
-    const WrappedComponent: ComponentType<{ pageContext: PageContext } & PageProps> = (props) => {
+    const WrappedComponent: ComponentType<{ pageContext: PageContext } & PageProps> = props => {
       pageContext = props.pageContext;
       return <Component {...props} />;
     };
@@ -89,7 +96,7 @@ MyDocument.getInitialProps = (ctx) => {
         />
         {flush() || null}
       </React.Fragment>
-    )
+    ),
   };
 };
 
