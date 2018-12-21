@@ -9,9 +9,10 @@ const reqSource = require.context(
   true,
   /\.js$/,
 );
+const reqPrefix = 'pages/demos/grid-list';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

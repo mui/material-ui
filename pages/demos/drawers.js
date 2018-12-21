@@ -5,9 +5,10 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('docs/src/pages/demos/drawers', true, /\.md|\.js$/);
 const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/drawers', true, /\.js$/);
+const reqPrefix = 'pages/demos/drawers';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

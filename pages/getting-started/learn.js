@@ -9,9 +9,10 @@ const reqSource = require.context(
   true,
   /\.js$/,
 );
+const reqPrefix = 'pages/getting-started/learn';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;
