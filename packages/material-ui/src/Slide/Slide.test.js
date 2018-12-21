@@ -301,7 +301,7 @@ describe('<Slide />', () => {
     });
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     it('should be initially hidden', () => {
       const wrapper = shallow(<Slide {...defaultProps} in={false} />);
       assert.strictEqual(wrapper.find(Transition).props().style.visibility, 'hidden');

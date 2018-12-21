@@ -11,7 +11,6 @@ import { capitalize } from '../utils/helpers';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import { duration } from '../styles/transitions';
-import chainPropTypes from '../utils/chainPropTypes';
 import Paper from '../Paper';
 
 export const styles = theme => ({
@@ -154,7 +153,7 @@ class Dialog extends React.Component {
       onExiting,
       open,
       PaperComponent,
-      PaperProps,
+      PaperProps = {},
       scroll,
       TransitionComponent,
       transitionDuration,
@@ -197,12 +196,17 @@ class Dialog extends React.Component {
           >
             <PaperComponent
               elevation={24}
-              className={classNames(classes.paper, classes[`paperScroll${capitalize(scroll)}`], {
-                [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
-                [classes.paperFullScreen]: fullScreen,
-                [classes.paperFullWidth]: fullWidth,
-              })}
               {...PaperProps}
+              className={classNames(
+                classes.paper,
+                classes[`paperScroll${capitalize(scroll)}`],
+                {
+                  [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
+                  [classes.paperFullScreen]: fullScreen,
+                  [classes.paperFullWidth]: fullWidth,
+                },
+                PaperProps.className,
+              )}
             >
               {children}
             </PaperComponent>
@@ -304,22 +308,8 @@ Dialog.propTypes = {
   PaperComponent: componentPropType,
   /**
    * Properties applied to the [`Paper`](/api/paper/) element.
-   * If you want to add a class to the `Paper` component use
-   * `classes.paper` in the `Dialog` props instead.
    */
-  PaperProps: chainPropTypes(PropTypes.object, props => {
-    const { PaperProps = {} } = props;
-    if ('className' in PaperProps) {
-      return new Error(
-        'Material-UI: `className` overrides all `Dialog` specific styles in `Paper`. ' +
-          'If you wanted to add ' +
-          'styles to the `Paper` component use `classes.paper` in the `Dialog` props ' +
-          `instead.${process.env.NODE_ENV === 'test' ? Date.now() : ''}`,
-      );
-    }
-
-    return null;
-  }),
+  PaperProps: PropTypes.object,
   /**
    * Determine the container for scrolling the dialog.
    */

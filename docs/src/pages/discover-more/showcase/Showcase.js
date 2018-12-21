@@ -66,6 +66,14 @@ const appList = [
     link: 'https://www.hijup.com/',
   },
   {
+    title: 'AospExtended Download center',
+    description:
+      'A download center that hosts all the official builds of AospExtended ROM, ' +
+      'for supported devices for different android versions.',
+    image: '/static/images/showcase/aexdownloadcenter.jpg',
+    link: 'https://downloads.aospextended.com',
+  },
+  {
     title: 'Venumob',
     description:
       'A platform for individuals and businesses to find and book the perfect venue for any event.',

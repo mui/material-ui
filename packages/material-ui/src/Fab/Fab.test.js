@@ -107,13 +107,13 @@ describe('<Fab />', () => {
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    it('should server side render', () => {
+    it('should server-side render', () => {
       const markup = render(<Fab>Fab</Fab>);
       assert.strictEqual(markup.text(), 'Fab');
     });

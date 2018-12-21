@@ -101,7 +101,7 @@ class AppFrame extends React.Component {
   };
 
   handleLanguageMenuItemClick = lang => () => {
-    if (lang !== this.props.options.userLanguage) {
+    if (lang !== this.props.userLanguage) {
       document.cookie = `lang=${lang};path=/;max-age=31536000`;
       window.location.reload();
     }
@@ -130,7 +130,7 @@ class AppFrame extends React.Component {
   };
 
   render() {
-    const { children, classes, reduxTheme, options } = this.props;
+    const { children, classes, reduxTheme, userLanguage } = this.props;
     const { languageMenu } = this.state;
 
     return (
@@ -189,13 +189,13 @@ class AppFrame extends React.Component {
                     onClose={this.handleLanguageMenuClose}
                   >
                     <MenuItem
-                      selected={options.userLanguage === 'en'}
+                      selected={userLanguage === 'en'}
                       onClick={this.handleLanguageMenuItemClick('en')}
                     >
                       English
                     </MenuItem>
                     <MenuItem
-                      selected={options.userLanguage === 'zh'}
+                      selected={userLanguage === 'zh'}
                       onClick={this.handleLanguageMenuItemClick('zh')}
                     >
                       中文
@@ -278,14 +278,14 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
   reduxTheme: PropTypes.object.isRequired,
+  userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
   connect(state => ({
-    options: state.options,
     reduxTheme: state.theme,
+    userLanguage: state.options.userLanguage,
   })),
   withStyles(styles),
 )(AppFrame);

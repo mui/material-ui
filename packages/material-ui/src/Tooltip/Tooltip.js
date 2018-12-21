@@ -103,7 +103,7 @@ class Tooltip extends React.Component {
 
     // Fallback to this default id when possible.
     // Use the random value for client side rendering only.
-    // We can't use it server side.
+    // We can't use it server-side.
     this.defaultId = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
 
     // Rerender with this.defaultId and this.childrenRef.

@@ -121,7 +121,6 @@ Select.propTypes = {
   MenuProps: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
-   * You can only use it when the `native` property is `false` (default).
    */
   multiple: PropTypes.bool,
   /**
