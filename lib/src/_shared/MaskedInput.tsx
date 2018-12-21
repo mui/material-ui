@@ -18,8 +18,12 @@ export default class Input extends React.PureComponent<CustomMaskedInputProps> {
   };
 
   public createInputRef = (ref: MaskedInput | null) => {
-    // @ts-ignore masked input really has input element in the component instance
-    this.props.inputRef(ref ? ref.inputElement : null);
+    const { inputRef } = this.props;
+
+    if (inputRef && typeof inputRef === 'function') {
+      // @ts-ignore inputElement exists in Masked input. Issue in typings
+      inputRef(ref ? ref.inputElement : null);
+    }
   };
 
   public render() {
