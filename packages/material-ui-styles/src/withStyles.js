@@ -10,7 +10,7 @@ import getStylesCreator from './getStylesCreator';
 import getThemeProps from './getThemeProps';
 import hoistStatics from './hoistInternalStatics';
 import { StylesContext } from './StylesProvider';
-import { ThemeContext } from './ThemeProvider';
+import ThemeContext from './ThemeContext';
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};

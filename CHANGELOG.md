@@ -564,7 +564,7 @@ Here are some highlights ✨:
 - [core] Fix defaultFontFamily misspelled in createTypography (#13260) @TheBear44
 - [core] Misc of improvements (#13271) @oliviertassinari
 - [core] Upgrade the dev dependencies (#13286) @oliviertassinari
-- [core] Disable the jss vendor plugin server side (#13285) @oliviertassinari
+- [core] Disable the jss vendor plugin server-side (#13285) @oliviertassinari
 - [core] Work toward preventing Googlebot regressions (#13323) @oliviertassinari
 
 ## 3.2.2
@@ -4914,7 +4914,7 @@ We wanted to release them as soon as possible, while the v1-beta market share is
 Hopefully, the frequency of the breaking changes will slow down.
 - @rosskevin has upgraded the Flow dependency. v0.53 is providing a much better typing integration with React.
 - The Drawer component has some new features.
-One of them is allowing the documentation to fully take advantage of the server side rendering.
+One of them is allowing the documentation to fully take advantage of the server-side rendering.
 We expect the documentation to render even faster with this beta.
 
 Big thanks to the 12 contributors who made this release possible.
@@ -5229,7 +5229,7 @@ In other words, the API will change if we need to.
 
 - [core] Improve styling solution (#7461)
 
-The `styleManager` is gone. The server side rendering configuration changed, use the `sheetManager` instead. The documentation was updated, you can refer to it if needed.
+The `styleManager` is gone. The server-side rendering configuration changed, use the `sheetManager` instead. The documentation was updated, you can refer to it if needed.
 
 #### Component Fixes / Enhancements
 
@@ -6596,7 +6596,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [Menu] Fix regression that caused nested menus to be unreachable (#3947)
 - [RaisedButton] fix hover overlay for icon only buttons, fixes #3815 (#4035)
 - [RefreshIndicator] Fix timer leaks (#3986)
-- [SelectField] Fix server side rendering (#4004)
+- [SelectField] Fix server-side rendering (#4004)
 - [Tab] Fix the justify content when there is only one child (#4023)
 
 ##### Deprecations
@@ -7227,7 +7227,7 @@ Have a look at them as well.
 - Add import statements to components' docs pages (#2113)
 
 #### Component Fixes / Enhancements
-- Fix server side rendering (#2021)
+- Fix server-side rendering (#2021)
 - Add key to TableHeaderColumn for selectAll (#2030)
 - Fix Circular Progress transition (#2047)
 - Fix Snackbar getting stuck when receiving new props (#2024)

@@ -38,6 +38,14 @@ module.exports = [
     limit: '10.7 KB',
   },
   {
+    // vs https://bundlephobia.com/result?p=react-responsive
+    // vs https://bundlephobia.com/result?p=react-media
+    name: 'The size of the @material-ui/core/useMediaQuery component',
+    webpack: true,
+    path: 'packages/material-ui/build/useMediaQuery/index.js',
+    limit: '700 B',
+  },
+  {
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,

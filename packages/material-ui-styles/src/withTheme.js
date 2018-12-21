@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getDisplayName } from '@material-ui/utils';
 import hoistStatics from './hoistInternalStatics';
-import { ThemeContext } from './ThemeProvider';
+import ThemeContext from './ThemeContext';
 
 // Provide the theme object as a property to the input component.
 const withTheme = () => Component => {
