@@ -3,10 +3,10 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('docs/src/pages/customization/overrides', true, /\.md|\.js$/);
+const req = require.context('docs/src/pages/customization/overrides', false, /\.md|\.js$/);
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/customization/overrides',
-  true,
+  false,
   /\.js$/,
 );
 const reqPrefix = 'pages/customization/overrides';

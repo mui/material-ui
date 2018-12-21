@@ -10,7 +10,7 @@ const req = require.context(
 );
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/getting-started/supported-platforms',
-  true,
+  false,
   /\.js$/,
 );
 const reqPrefix = 'pages/getting-started/supported-platforms';

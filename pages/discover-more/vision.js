@@ -3,10 +3,10 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('docs/src/pages/discover-more/vision', true, /\.md|\.js$/);
+const req = require.context('docs/src/pages/discover-more/vision', false, /\.md|\.js$/);
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/discover-more/vision',
-  true,
+  false,
   /\.js$/,
 );
 const reqPrefix = 'pages/discover-more/vision';

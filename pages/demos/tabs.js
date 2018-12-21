@@ -3,8 +3,8 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('docs/src/pages/demos/tabs', true, /\.md|\.js$/);
-const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/tabs', true, /\.js$/);
+const req = require.context('docs/src/pages/demos/tabs', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/tabs', false, /\.js$/);
 const reqPrefix = 'pages/demos/tabs';
 
 function Page() {
