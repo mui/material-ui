@@ -46,7 +46,7 @@ export interface InputBaseProps
    * which by default is an input or textarea. Since these handlers differ from the
    * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
    *
-   * Note that  `blur` and `focus` event handler are applied to the outter `<div>`.
+   * Note that  `blur` and `focus` event handler are applied to the outer `<div>`.
    * So these can just be inherited from the native `<div>`.
    */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;

@@ -63,7 +63,7 @@ class Notifications extends React.Component {
     document.cookie = `lastSeenNotification=${this.state.message.id};path=/;max-age=31536000`;
   };
 
-  componentWillUnmout() {
+  componentWillUnmount() {
     this.mounted = false;
   }
 

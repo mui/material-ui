@@ -30,7 +30,7 @@ function MyButton(props) {
   );
 }
 
-function AdpatingRenderProps() {
+function AdaptingRenderProps() {
   return (
     <div>
       <MyButton color="red">Red</MyButton>
@@ -41,4 +41,4 @@ function AdpatingRenderProps() {
   );
 }
 
-export default AdpatingRenderProps;
+export default AdaptingRenderProps;

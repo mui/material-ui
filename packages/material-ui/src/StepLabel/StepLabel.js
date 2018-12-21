@@ -18,7 +18,7 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `orientation="horiizontal". */
+  /* Styles applied to the root element if `orientation="horizontal". */
   horizontal: {},
   /* Styles applied to the root element if `orientation="vertical". */
   vertical: {},

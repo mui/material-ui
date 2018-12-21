@@ -15,12 +15,12 @@ export function getHeaders(markdown) {
 
   header = header[1];
 
-  let regexMatchs;
+  let regexMatches;
   const headers = {};
 
   // eslint-disable-next-line no-cond-assign
-  while ((regexMatchs = headerKeyValueRegExp.exec(header)) !== null) {
-    headers[regexMatchs[1]] = regexMatchs[2];
+  while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
+    headers[regexMatches[1]] = regexMatches[2];
   }
 
   if (headers.components) {

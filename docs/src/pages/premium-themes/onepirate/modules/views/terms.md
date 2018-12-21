@@ -1,4 +1,4 @@
-Last motifided: October 7th, 2018.
+Last modified: October 7th, 2018.
 
 ## 1. Services
 

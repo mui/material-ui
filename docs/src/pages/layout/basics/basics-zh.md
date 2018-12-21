@@ -8,7 +8,7 @@ Material Design中的[响应式布局](https://material.io/design/layout/respons
 
 - [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 - [Hidden](/layout/hidden/): The hidden component can be used to change the visibility of the elements.
-- [Breakpoints](/layout/breakpoints/): We provide a low-level API for using the breakpoints in a wide variery of context.
+- [Breakpoints](/layout/breakpoints/): We provide a low-level API for using the breakpoints in a wide variety of context.
 
 ## z-index
 
