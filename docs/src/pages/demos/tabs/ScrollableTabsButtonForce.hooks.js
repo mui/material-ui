@@ -72,5 +72,4 @@ function ScrollableTabsButtonForce() {
   );
 }
 
-
 export default ScrollableTabsButtonForce;

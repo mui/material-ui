@@ -126,5 +126,4 @@ function FloatingActionButtonZoom() {
   );
 }
 
-
 export default FloatingActionButtonZoom;

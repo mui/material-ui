@@ -110,5 +110,4 @@ function CustomizedTooltips() {
   );
 }
 
-
 export default CustomizedTooltips;
