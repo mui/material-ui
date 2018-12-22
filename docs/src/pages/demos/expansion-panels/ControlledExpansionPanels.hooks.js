@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ControlledExpansionPanels(props) {
+function ControlledExpansionPanels() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(null);
 
