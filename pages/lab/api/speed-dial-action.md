@@ -22,6 +22,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Useful to extend the style applied to components. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node</span> |   | The Icon to display in the SpeedDial Floating Action Button. |
+| <span class="prop-name">TooltipClasses</span> | <span class="prop-type">object</span> |   | Classes applied to the [`Tooltip`](/api/tooltip/) element. |
 | <span class="prop-name">tooltipOpen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Make the tooltip always visible when the SpeedDial is open. |
 | <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
 | <span class="prop-name required">tooltipTitle *</span> | <span class="prop-type">node</span> |   | Label to display in the tooltip. |
@@ -40,11 +41,10 @@ This property accepts the following keys:
 | <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSpeedDialAction`.
 
 ## Inheritance

@@ -98,12 +98,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
   label: {},
-  /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
-  labelWrapped: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: theme.typography.pxToRem(12),
-    },
-  },
+  /* Deprecated, the styles will be removed in v4. */
+  labelWrapped: {},
 });
 
 class Tab extends React.Component {
@@ -241,7 +237,7 @@ Tab.propTypes = {
   icon: PropTypes.node,
   /**
    * @ignore
-   * For server side rendering consideration, we let the selected tab
+   * For server-side rendering consideration, we let the selected tab
    * render the indicator.
    */
   indicator: PropTypes.node,

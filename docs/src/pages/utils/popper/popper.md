@@ -7,9 +7,11 @@ components: Popper
 
 <p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
 
-Things to know when using the `Popper` component:
+Some important features of the `Popper` component:
 
-- Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
+- 💄 It's an alternative API to react-popper. It aims for simplicity.
+- 📦 Less than [10 KB gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
 - The children is [`Portal`](/utils/portal/) to the body of the document to avoid rendering problems.
 You can disable this behavior with `disablePortal`.
 - The scroll and click away aren't blocked like with the [`Popover`](/utils/popover/) component.

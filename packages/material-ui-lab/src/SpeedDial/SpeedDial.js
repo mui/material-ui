@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
@@ -340,9 +341,9 @@ SpeedDial.propTypes = {
    */
   openIcon: PropTypes.node,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

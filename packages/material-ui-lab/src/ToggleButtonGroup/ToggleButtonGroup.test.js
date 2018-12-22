@@ -178,7 +178,7 @@ describe('<ToggleButtonGroup />', () => {
     });
 
     describe('non exclusive', () => {
-      it('should be null when current value is toggled off', () => {
+      it('should be an empty array when current value is toggled off', () => {
         const handleChange = spy();
         const wrapper = mount(
           <ToggleButtonGroup value={['one']} onChange={handleChange}>
@@ -193,7 +193,8 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(handleChange.args[0][1], null);
+        assert.ok(Array.isArray(handleChange.args[0][1]));
+        assert.strictEqual(handleChange.args[0][1].length, 0);
       });
 
       it('should be an array with a single value when value is toggled on', () => {

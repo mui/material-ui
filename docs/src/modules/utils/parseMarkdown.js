@@ -32,6 +32,8 @@ export function getHeaders(markdown) {
   return headers;
 }
 
+export const demoRegexp = /^"demo": "(.*)"/;
+
 export function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information

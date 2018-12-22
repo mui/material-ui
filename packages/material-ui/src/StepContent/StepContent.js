@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
 
@@ -109,9 +110,9 @@ StepContent.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * Collapse component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Adjust the duration of the content expand transition.
    * Passed as a property to the transition component.

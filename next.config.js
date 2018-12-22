@@ -10,7 +10,7 @@ module.exports = {
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
     config = withTM({
-      transpileModules: ['notistack'],
+      transpileModules: ['notistack', 'material-ui-pickers'],
     }).webpack(config, options);
 
     const plugins = config.plugins.concat([

@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
@@ -24,10 +23,10 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+});
 
-function MenuAppBar(props) {
-  const { classes } = props;
+function MenuAppBar() {
+  const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -95,8 +94,4 @@ function MenuAppBar(props) {
   );
 }
 
-MenuAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(MenuAppBar);
+export default MenuAppBar;

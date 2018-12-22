@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import keycode from 'keycode';
+import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import RootRef from '../RootRef';
 import Portal from '../Portal';
@@ -318,7 +319,7 @@ Modal.propTypes = {
   /**
    * A backdrop component. This property enables custom backdrop rendering.
    */
-  BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  BackdropComponent: componentPropType,
   /**
    * Properties applied to the [`Backdrop`](/api/backdrop/) element.
    */

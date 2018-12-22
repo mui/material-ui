@@ -541,4 +541,27 @@ describe('<Modal />', () => {
       assert.strictEqual(document.body.style.overflow, '');
     });
   });
+
+  it('should support open abort', () => {
+    class TestCase extends React.Component {
+      state = {
+        open: true,
+      };
+
+      componentDidMount() {
+        this.setState({
+          open: false,
+        });
+      }
+
+      render() {
+        return (
+          <Modal open={this.state.open}>
+            <div>Hello</div>
+          </Modal>
+        );
+      }
+    }
+    mount(<TestCase />);
+  });
 });

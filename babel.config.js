@@ -43,6 +43,7 @@ module.exports = {
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],
+  ignore: [/@babel[\\|/]runtime/],
   env: {
     test: {
       sourceMaps: 'both',
@@ -130,7 +131,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -146,7 +147,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -162,7 +163,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],

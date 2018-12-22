@@ -845,4 +845,20 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
     });
   });
+
+  describe('prop: TransitionProp', () => {
+    it('should fire Popover transition event callbacks', () => {
+      const handler1 = spy();
+      const handler2 = spy();
+      const wrapper = shallow(
+        <Popover {...defaultProps} TransitionProps={{ onEntering: handler2 }} onEntering={handler1}>
+          <div />
+        </Popover>,
+      );
+
+      wrapper.find(Grow).simulate('entering', { style: {} });
+      assert.strictEqual(handler1.callCount, 1);
+      assert.strictEqual(handler2.callCount, 1);
+    });
+  });
 });

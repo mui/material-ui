@@ -84,6 +84,8 @@ However, we encourage you to use a [Checkbox](#checkboxes) instead.
 If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
 ## Label placement
@@ -91,3 +93,17 @@ but you are not confident jumping in, here's an example of how you can change th
 You can change the placement of the label:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
+
+## Accessibility
+
+All form controls should have a label to identify it, this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+
+When a label can't be used, it's necessary to add an attribute directly to the input component.
+In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+
+```jsx
+<Checkbox
+  value="checkedA"
+  inputProps={{ 'aria-label': 'Checkbox A' } }
+/>
+```

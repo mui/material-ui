@@ -21,22 +21,50 @@ but you can also take advantage of them
 for controlling the layout of your application through the [Grid](/layout/grid/) and
 [Hidden](/layout/hidden/) components.
 
-## Media Queries
+## CSS Media Queries
 
 CSS media queries is the idiomatic approach to make your UI responsive.
-We provide some [CSS-in-JS](/customization/css-in-js/) helpers to do so.
+We provide four [CSS-in-JS](/customization/css-in-js/) helpers to do so:
+- [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
+- [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
+- [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
 
+```jsx
+const styles = theme => ({
+  root: {
+    padding: theme.spacing.unit,
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
+    },
+  },
+});
+```
+
 {{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
 
-## withWidth()
+## JavaScript Media Queries
 
 Sometimes, using CSS isn't enough.
 You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
-We provide a `withWidth()` higher-order component for this use case.
 
-```js
+### useMediaQuery hook
+
+You can learn more about this hook [here](/layout/use-media-query/).
+
+### withWidth()
+
+> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/layout/use-media-query/) hook when the React's hooks are released as stable.
+
+```jsx
 import withWidth from '@material-ui/core/withWidth';
 
 function MyComponent(props) {
@@ -50,14 +78,12 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
-⚠️ `withWidth()` server-side rendering support is limited.
+#### Render Props
 
-### Render Props
+In some cases, you can experience property name collisions using higher-order components.
+To avoid this, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern shown in the following demo.
 
-In some cases, you could have property name collisions using higher-order components.
-To avoid the issue, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern like in the following demo.
-
-```js
+```jsx
 import Typography from '@material-ui/core/Typography';
 import toRenderProps from 'recompose/toRenderProps';
 
@@ -75,76 +101,6 @@ export default function MyComponent() {
 {{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
 
 ## API
-
-### `withWidth([options]) => higher-order component`
-
-Inject a `width` property.
-It does not modify the component passed to it; instead, it returns a new component.
-This `width` breakpoint property match the current screen width.
-It can be one of the following breakpoints:
-
-```ts
-type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-```
-
-Some implementation details that might be interesting to being aware of:
-
-- It forwards *non React static* properties so this HOC is more "transparent".
-For instance, it can be used to defined a `getInitialProps()` static method (next.js).
-
-#### Arguments
-
-1. `options` (*Object* [optional]):
-  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-  - `options.noSSR` (*Boolean* [optional]): Defaults to `false`.
-  In order to perform the server-side rendering reconciliation, we need to render twice.
-  A first time with nothing and a second time with the children.
-  This double pass rendering cycle comes with a drawback. The UI might blink.
-  You can set this flag to `true` if you are not doing server-side rendering.
-  - `options.initialWidth` (*Breakpoint* [optional]):
-  As `window.innerWidth` is unavailable on the server,
-  we default to rendering an empty component during the first mount.
-  In some situation, you might want to use an heuristic to approximate
-  the screen width of the client browser screen width.
-  For instance, you could be using the user-agent or the client-hints.
-  https://caniuse.com/#search=client%20hint, we also can set the initial width
-  globally using [`custom properties`](/customization/themes/#properties) on the theme.
-  In order to set the initialWidth we need to pass a custom property with this shape:
-
-```js
-const theme = createMuiTheme({
-  props: {
-    // withWidth component ⚛️
-    MuiWithWidth: {
-      // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 🌎!
-    },
-  },
-});
-```
-  - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
-
-#### Returns
-
-`higher-order component`: Should be used to wrap a component.
-
-#### Examples
-
-```jsx
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-
-class MyComponent extends React.Component {
-  render () {
-    if (isWidthUp('sm', this.props.width)) {
-      return <span />
-    }
-
-    return <div />;
-  }
-}
-
-export default withWidth()(MyComponent);
-```
 
 ### `theme.breakpoints.up(key) => media query`
 
@@ -248,4 +204,74 @@ const styles = theme => ({
     },
   },
 });
+```
+
+### `withWidth([options]) => higher-order component`
+
+Inject a `width` property.
+It does not modify the component passed to it; instead, it returns a new component.
+This `width` breakpoint property match the current screen width.
+It can be one of the following breakpoints:
+
+```ts
+type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+```
+
+Some implementation details that might be interesting to being aware of:
+
+- It forwards *non React static* properties so this HOC is more "transparent".
+For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+
+#### Arguments
+
+1. `options` (*Object* [optional]):
+  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+  - `options.noSSR` (*Boolean* [optional]): Defaults to `false`.
+  In order to perform the server-side rendering reconciliation, it needs to render twice.
+  A first time with nothing and a second time with the children.
+  This double pass rendering cycle comes with a drawback. The UI might blink.
+  You can set this flag to `true` if you are not doing server-side rendering.
+  - `options.initialWidth` (*Breakpoint* [optional]):
+  As `window.innerWidth` is unavailable on the server,
+  we default to rendering an empty component during the first mount.
+  You might want to use an heuristic to approximate
+  the screen width of the client browser screen width.
+  For instance, you could be using the user-agent or the client-hints.
+  https://caniuse.com/#search=client%20hint, we also can set the initial width
+  globally using [`custom properties`](/customization/themes/#properties) on the theme.
+  In order to set the initialWidth we need to pass a custom property with this shape:
+
+```js
+const theme = createMuiTheme({
+  props: {
+    // withWidth component ⚛️
+    MuiWithWidth: {
+      // Initial width property
+      initialWidth: 'lg', // Breakpoint being globally set 🌎!
+    },
+  },
+});
+```
+  - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+
+#### Returns
+
+`higher-order component`: Should be used to wrap a component.
+
+#### Examples
+
+```jsx
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+
+class MyComponent extends React.Component {
+  render () {
+    if (isWidthUp('sm', this.props.width)) {
+      return <span />
+    }
+
+    return <div />;
+  }
+}
+
+export default withWidth()(MyComponent);
 ```

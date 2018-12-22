@@ -1,5 +1,133 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.7.0
+###### *Dec 17, 2018*
+
+Big thanks to the 11 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 💅 Update some components to better match the Material specification (#13788, #13827) @bdeloeste @joshwooding.
+- 📅 Add a material-ui-pickers live demo (#13697) @dmtrKovalenko.
+- ⚛️ A first step toward converting all the demos to React Hooks (#13873) @adeelibr.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.7.0`
+
+#### Deprecations
+
+We are allowing more align variants (left, center, right, inherit, justify).
+Following our [API guideline](https://material-ui.com/guides/api/), we are using an enum over a boolean.
+Keep in mind that monetary or generally number fields **should be right aligned** as that allows
+you to add them up quickly in your head without having to worry about decimals.
+
+```diff
+-<TableCell numeric>
++<TableCell align="right">
+```
+
+- [TableCell] Add align property (#13860) @rfbotto
+
+#### Changes
+
+- [Card][List] Change sub-components to have fixed gutters (#13788) @joshwooding
+- [Button] Fix padding for Text Button variant to adhere to spec (#13827) @bdeloeste
+- [ButtonBase] Add stop ripple on context menu event (#13740) @joshwooding
+- [Menu] Add reason value and update documentation for on close reason (#13877) @rfbotto
+- [Dialog] Add a `PaperComponent ` property & draggable demo (#13879) @rfbotto
+- [Tabs] Correct typo in error message (#13902) @timmydoza
+- [Tooltip] Fix hover display issue (#13911) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.26`
+
+- [ToggleButton] Change the classes structure to match the core components convention (#13723) @DonBrody
+
+### `@material-ui/styles@v3.0.0-alpha.4`
+
+- [styles] Remove hoisting of static properties in HOCs (#13698) @eps1lon
+
+### `@material-ui/utils@v3.0.0-alpha.1`
+
+- [utils] Add component propType (#13816) @eps1lon
+
+### Docs
+
+- [docs] Fix search suggestions on dark mode (#13874) @rfbotto
+- [docs] Add accessibility section to selection-controls with demo (#13896) @wyseguyonline
+- [docs] Add support for multiple demo variants e.g JS or Hooks (#13873) @adeelibr
+- [docs] Remove the withRoot HOC (#13909) @oliviertassinari
+- [docs] Add material-ui-pickers in pickers page (#13697) @dmtrKovalenko
+- [docs] Continue #13806 and port back some fix from @system (#13917) @oliviertassinari
+- [docs] Notify that we will do core/MuiThemeProvider -> styles/ThemeProvider (#13910) @Skn0tt
+- [docs] Improve the state override story (#13919) @oliviertassinari
+
+### Core
+
+- [core] 100% remove the prop types (#13859) @oliviertassinari
+- [core] Prefix the errors with Material-UI (#13892) @oliviertassinari
+
+## 3.6.2
+###### *Dec 9, 2018*
+
+Big thanks to the 20 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🎨 Add a new Onepirate theme demo (#13769) @oliviertassinari
+You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
+- 📝 Add virtualized table demo (#13786) @joshwooding
+- 🚀 Avoid unnecessary Table re-rendering (#13832) @petrjaros
+- And many more 🐛 bug fixes and documentation improvements.
+
+### `@material-ui/core@v3.6.2`
+
+- [Tooltip] Supress warning if button is disabled and title is empty (#13785) @rfbotto
+- [Dialog] Warn if className in PaperProps is set (#13797) @eps1lon
+- [TextField] Fix textfield label position when empty (#13791) @Studio384
+- [Popper] Save 7 KB gzipped (for people only using it) (#13804) @oliviertassinari
+- [Modal] Handle modal mount interruption (#13778) @amensouissi
+- [Select] Make value prop required in TypeScript (#13810) @t49tran
+- [Popover] Fix onEntering event propagation (#13821) @ekoeditaa
+- [Input] Make CSS override a bit simpler (#13825) @euharrison
+- [LinearProgress] Add determinate and indeterminate classes to root element (#13828) @alxsnchez
+- [Select] Support native multiple value (#13830) @rfbotto
+- [BottomNavigation] Improve action padding (#13851) @rfbotto
+- [Dialog] Add dialog with close button to demos (#13845) @rfbotto
+- [Tabs] Reduce the bundle size (#13853) @oliviertassinari
+- [Dialog] Add missing TypeScript style rule (#13856) @garredow
+- [Table] Avoid unnecessary re-rendering (#13832) @petrjaros
+
+### `@material-ui/lab@v3.0.0-alpha.25`
+
+- [ToggleButtonGroup] Consider nullish instead of falsy value as no selected value (#13494) @ItamarShDev
+- [Slider] Update SliderClassKey types (#13826) @guiihlopes
+- [SpeedDialAction] Add TooltipClasses prop (#13848) @mbrookes
+- [ToggleButton] Change ToggleButtonGroup non-exclusive default value to an empty array (#13857) @joshwooding
+
+### `@material-ui/styles@v3.0.0-alpha.3`
+
+- [styles] Infer optional props argument for makeStyles in TypeScript (#13815) @oliviertassinari
+
+### Docs
+
+- [docs] Add @eps1lon to the team page (#13768) @oliviertassinari
+- [docs] Add a new onepirate theme (#13769) @oliviertassinari
+- [docs] Link tags HTML vs JSX (#13775) @benbowler
+- [docs] Missing text in docs (#13798) @Skn0tt
+- [docs] Add virtualized table demo (#13786) @joshwooding
+- [docs] Add OpenCollective gold sponsors manually (#13806) @mbrookes
+- [docs] Add example of globally disabling animations (#13805) @joshwooding
+- [docs] Fix KeyboardIcon import name (#13822) @bryantabaird
+- [docs] Force common hoist-non-react-statics version (#13818) @eps1lon
+- [docs] Improve the theme nesting documentation (#13843) @oliviertassinari
+- [docs] Add more details regarding installation of material-ui/styles (#13813) @wilcoschoneveld
+- [docs] Fix broken link anchor (#13862) @mvasin
+
+### Core
+
+- [typescript] Add test case for List type limitations (#13764) @eps1lon
+- [core] Remove unused lint directives (#13766) @eps1lon
+- [test] Fix running tests on Windows (#13852) @joshwooding
+- [core] Upgrade the dependencies (#13858) @oliviertassinari
+
 ## 3.6.1
 ###### *Dec 1, 2018*
 
@@ -436,7 +564,7 @@ Here are some highlights ✨:
 - [core] Fix defaultFontFamily misspelled in createTypography (#13260) @TheBear44
 - [core] Misc of improvements (#13271) @oliviertassinari
 - [core] Upgrade the dev dependencies (#13286) @oliviertassinari
-- [core] Disable the jss vendor plugin server side (#13285) @oliviertassinari
+- [core] Disable the jss vendor plugin server-side (#13285) @oliviertassinari
 - [core] Work toward preventing Googlebot regressions (#13323) @oliviertassinari
 
 ## 3.2.2
@@ -4786,7 +4914,7 @@ We wanted to release them as soon as possible, while the v1-beta market share is
 Hopefully, the frequency of the breaking changes will slow down.
 - @rosskevin has upgraded the Flow dependency. v0.53 is providing a much better typing integration with React.
 - The Drawer component has some new features.
-One of them is allowing the documentation to fully take advantage of the server side rendering.
+One of them is allowing the documentation to fully take advantage of the server-side rendering.
 We expect the documentation to render even faster with this beta.
 
 Big thanks to the 12 contributors who made this release possible.
@@ -5054,7 +5182,7 @@ styling update of the previous release.
 
 - [docs] Add example with Create React App (#7485) @akshaynaik404
 - [docs] Minor tweaks to grammar of CSS in JS page (#7530) @mbrookes
-- [docs] Server side fix docs (91a30ee2276d8d06776f6fba831930568974dacc) @oliviertassinari
+- [docs] Server-side fix docs (91a30ee2276d8d06776f6fba831930568974dacc) @oliviertassinari
 - [docs] Fix 'colors' path in imports (#7519) @burnoo
 - [docs] Some fixes after the latest upgrade (#7528) @oliviertassinari
 - [docs] Update for supported components (#7586) @skirunman
@@ -5101,7 +5229,7 @@ In other words, the API will change if we need to.
 
 - [core] Improve styling solution (#7461)
 
-The `styleManager` is gone. The server side rendering configuration changed, use the `sheetManager` instead. The documentation was updated, you can refer to it if needed.
+The `styleManager` is gone. The server-side rendering configuration changed, use the `sheetManager` instead. The documentation was updated, you can refer to it if needed.
 
 #### Component Fixes / Enhancements
 
@@ -5772,7 +5900,7 @@ We are now at 93.53%. That's pretty great.
 
 #### Core
 
-- [test] Server side render some element to be sure (#6328) @oliviertassinari
+- [test] Server-side render some element to be sure (#6328) @oliviertassinari
 - [npm] Add correct extension (#6241) @okvic77
 - [core] Rename travis to circle as we migrated (e7fba22bd19f82f5489cb52eaaaaff23f2f57939) @oliviertassinari
 - [core] Fix docs:start command on Windows (#6307) @kybarg
@@ -6468,7 +6596,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [Menu] Fix regression that caused nested menus to be unreachable (#3947)
 - [RaisedButton] fix hover overlay for icon only buttons, fixes #3815 (#4035)
 - [RefreshIndicator] Fix timer leaks (#3986)
-- [SelectField] Fix server side rendering (#4004)
+- [SelectField] Fix server-side rendering (#4004)
 - [Tab] Fix the justify content when there is only one child (#4023)
 
 ##### Deprecations
@@ -7099,7 +7227,7 @@ Have a look at them as well.
 - Add import statements to components' docs pages (#2113)
 
 #### Component Fixes / Enhancements
-- Fix server side rendering (#2021)
+- Fix server-side rendering (#2021)
 - Add key to TableHeaderColumn for selectAll (#2030)
 - Fix Circular Progress transition (#2047)
 - Fix Snackbar getting stuck when receiving new props (#2024)

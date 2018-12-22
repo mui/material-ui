@@ -2,7 +2,7 @@
 
 <p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
-> ⚠️ `@material-ui/styles` is experimental (alpha version).
+> ⚠️ `@material-ui/styles` is unstable (alpha version).
 Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
 [Follow this path](/customization/css-in-js/) to read the documentation
 of the default style implementation.
@@ -31,7 +31,11 @@ You can expect [the same advantages](https://www.styled-components.com/docs/basi
 To install and save in your `package.json` dependencies, run:
 
 ```sh
+// with npm
 npm install @material-ui/styles
+
+// with yarn
+yarn add @material-ui/styles
 ```
 
 Please note that [react](https://www.npmjs.com/package/react) >= 16.7.0-alpha.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.7.0-alpha.0 are peer dependencies.
@@ -46,8 +50,13 @@ import { install } from '@material-ui/styles';
 install();
 ```
 
-We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4.
-This installation step is temporary.
+It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`).
+This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
+
+We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
+Behind the scenes, the `install()` function switches the styling engine the core components use.
+
+Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@material-ui/styles/ThemeProvider`. We will remove this component in v4.
 
 ## Getting started
 

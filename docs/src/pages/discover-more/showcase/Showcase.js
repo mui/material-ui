@@ -46,7 +46,7 @@ const appList = [
       '"SFR Presse" provides the best access to the french newspapers, ' +
       'magazines and real time streams, personalized for you.',
     image: '/static/images/showcase/sfrpresse.jpg',
-    link: 'https://magazine-presse.sfr.fr/',
+    link: 'https://sfrpresse.sfr.fr/',
   },
   {
     title: 'react-admin',
@@ -64,6 +64,14 @@ const appList = [
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: '/static/images/showcase/hijup.jpg',
     link: 'https://www.hijup.com/',
+  },
+  {
+    title: 'AospExtended Download center',
+    description:
+      'A download center that hosts all the official builds of AospExtended ROM, ' +
+      'for supported devices for different android versions.',
+    image: '/static/images/showcase/aexdownloadcenter.jpg',
+    link: 'https://downloads.aospextended.com',
   },
   {
     title: 'Venumob',
@@ -209,7 +217,7 @@ const appList = [
     description: 'An open source forum PWA.',
     image: '/static/images/showcase/swimmy.jpg',
     link: 'https://swimmy.io/',
-    source: 'https://github.com/uufish/swimmy.io',
+    source: 'https://github.com/swimmy/swimmy.io',
   },
   {
     title: 'Componofy: Spotify Playlist Combination',

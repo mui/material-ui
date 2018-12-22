@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
@@ -53,7 +54,10 @@ export const styles = theme => ({
     backgroundClip: 'padding-box',
   },
   /* Styles applied to the inner `component` element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
   /* Styles applied to the inner `component` element if `button={true}`. */
   button: {
     transition: theme.transitions.create('background-color', {
@@ -191,11 +195,11 @@ ListItem.propTypes = {
    * Either a string to use a DOM element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * The container component used when a `ListItemSecondaryAction` is rendered.
    */
-  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  ContainerComponent: componentPropType,
   /**
    * Properties applied to the container element when the component
    * is used to display a `ListItemSecondaryAction`.

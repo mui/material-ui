@@ -1,5 +1,6 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import AppTheme from 'docs/src/modules/components/AppTheme';
 import Home from 'docs/src/pages/premium-themes/onepirate/Home';
 
@@ -11,4 +12,4 @@ function Page() {
   );
 }
 
-export default withRoot(Page);
+export default Page;

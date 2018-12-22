@@ -6,8 +6,10 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -300,7 +302,7 @@ class Popover extends React.Component {
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
-      TransitionProps,
+      TransitionProps = {},
       ...other
     } = this.props;
 
@@ -329,13 +331,13 @@ class Popover extends React.Component {
           in={open}
           onEnter={onEnter}
           onEntered={onEntered}
-          onEntering={this.handleEntering}
           onExit={onExit}
           onExited={onExited}
           onExiting={onExiting}
           role={role}
           timeout={transitionDuration}
           {...TransitionProps}
+          onEntering={createChainedFunction(this.handleEntering, TransitionProps.onEntering)}
         >
           <Paper
             className={classes.paper}
@@ -443,6 +445,7 @@ Popover.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`
    */
   onClose: PropTypes.func,
   /**
@@ -498,9 +501,9 @@ Popover.propTypes = {
       .isRequired,
   }),
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */

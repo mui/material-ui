@@ -6,7 +6,7 @@ import { parse as docgenParse } from 'react-docgen';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const TRANSLATIONS = ['zh'];
@@ -20,7 +20,7 @@ function generateHeader(reactAPI) {
 }
 
 function getDeprecatedInfo(type) {
-  const marker = 'deprecated(PropTypes.';
+  const marker = 'deprecatedPropType(PropTypes.';
   const indexStart = type.raw.indexOf(marker);
 
   if (indexStart !== -1) {
@@ -147,6 +147,10 @@ function generatePropType(type) {
       const chained = getChained(type);
       if (chained !== false) {
         return generatePropType(chained);
+      }
+
+      if (type.raw === 'componentProp') {
+        return 'Component';
       }
 
       return type.raw;
@@ -296,8 +300,7 @@ and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath
   )})
 for more detail.
 
-If using the \`overrides\` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the \`overrides\` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 
 `;

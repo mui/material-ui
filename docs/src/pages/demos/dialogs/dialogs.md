@@ -54,6 +54,16 @@ For example, if your site prompts for potential subscribers to fill in their ema
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
+## Customized dialog
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here is one example of how you can customize the `DialogTitle` to support a close button.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
+
+{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+
 ## Full-screen dialogs
 
 {{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
@@ -94,3 +104,15 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 Try the demo below to see what we mean:
 
 {{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+
+## Draggable dialog
+
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable).
+To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
+This will make the entire dialog draggable.
+
+{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+
+## Performance
+
+Follow the [Modal performance section](/utils/modal/#performance).

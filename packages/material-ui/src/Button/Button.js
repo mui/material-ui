@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -45,7 +46,9 @@ export const styles = theme => ({
     justifyContent: 'inherit',
   },
   /* Styles applied to the root element if `variant="text"`. */
-  text: {},
+  text: {
+    padding: theme.spacing.unit,
+  },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
@@ -250,9 +253,9 @@ function Button(props) {
       [classes.text]: text,
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
-      [classes.flat]: variant === 'text' || variant === 'flat',
-      [classes.flatPrimary]: (variant === 'text' || variant === 'flat') && color === 'primary',
-      [classes.flatSecondary]: (variant === 'text' || variant === 'flat') && color === 'secondary',
+      [classes.flat]: text,
+      [classes.flatPrimary]: text && color === 'primary',
+      [classes.flatSecondary]: text && color === 'secondary',
       [classes.contained]: contained || fab,
       [classes.containedPrimary]: (contained || fab) && color === 'primary',
       [classes.containedSecondary]: (contained || fab) && color === 'secondary',
@@ -305,7 +308,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -357,25 +360,25 @@ Button.propTypes = {
     props => {
       if (props.variant === 'flat') {
         return new Error(
-          'The `flat` variant will be removed in the next major release. ' +
+          'Material-UI: the `flat` variant will be removed in the next major release. ' +
             '`text` is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'raised') {
         return new Error(
-          'The `raised` variant will be removed in the next major release. ' +
+          'Material-UI: the `raised` variant will be removed in the next major release. ' +
             '`contained` is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'fab') {
         return new Error(
-          'The `fab` variant will be removed in the next major release. ' +
+          'Material-UI: the `fab` variant will be removed in the next major release. ' +
             'The `<Fab>` component is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'extendedFab') {
         return new Error(
-          'The `fab` variant will be removed in the next major release. ' +
+          'Material-UI: the `fab` variant will be removed in the next major release. ' +
             'The `<Fab>` component with `variant="extended"` is equivalent ' +
             'and should be used instead.',
         );

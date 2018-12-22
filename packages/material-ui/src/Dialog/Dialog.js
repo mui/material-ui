@@ -5,6 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Modal from '../Modal';
@@ -151,7 +152,8 @@ class Dialog extends React.Component {
       onExited,
       onExiting,
       open,
-      PaperProps,
+      PaperComponent,
+      PaperProps = {},
       scroll,
       TransitionComponent,
       transitionDuration,
@@ -192,17 +194,22 @@ class Dialog extends React.Component {
             onClick={this.handleBackdropClick}
             role="document"
           >
-            <Paper
+            <PaperComponent
               elevation={24}
-              className={classNames(classes.paper, classes[`paperScroll${capitalize(scroll)}`], {
-                [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
-                [classes.paperFullScreen]: fullScreen,
-                [classes.paperFullWidth]: fullWidth,
-              })}
               {...PaperProps}
+              className={classNames(
+                classes.paper,
+                classes[`paperScroll${capitalize(scroll)}`],
+                {
+                  [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
+                  [classes.paperFullScreen]: fullScreen,
+                  [classes.paperFullWidth]: fullWidth,
+                },
+                PaperProps.className,
+              )}
             >
               {children}
-            </Paper>
+            </PaperComponent>
           </div>
         </TransitionComponent>
       </Modal>
@@ -259,6 +266,7 @@ Dialog.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`
    */
   onClose: PropTypes.func,
   /**
@@ -295,6 +303,10 @@ Dialog.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
+   * The component used to render the body of the dialog.
+   */
+  PaperComponent: componentPropType,
+  /**
    * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
@@ -303,9 +315,9 @@ Dialog.propTypes = {
    */
   scroll: PropTypes.oneOf(['body', 'paper']),
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -326,6 +338,7 @@ Dialog.defaultProps = {
   fullScreen: false,
   fullWidth: false,
   maxWidth: 'sm',
+  PaperComponent: Paper,
   scroll: 'paper',
   TransitionComponent: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },

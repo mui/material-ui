@@ -53,7 +53,14 @@ The component takes care of the most used properties, then it's up to the user t
 If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
+
+Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel.
+Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+
+{{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
 ## Input Adornments
 
@@ -106,6 +113,8 @@ or
 
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+The provided input component should handle the `inputRef` property.
+The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
 
 The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
 

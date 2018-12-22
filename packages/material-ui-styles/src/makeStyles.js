@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeContext } from './ThemeProvider';
+import ThemeContext from './ThemeContext';
 import { StylesContext } from './StylesProvider';
 import { attach, update, detach, getClasses } from './withStyles';
 import { increment } from './indexCounter';
