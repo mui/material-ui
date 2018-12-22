@@ -1,5 +1,48 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.7.1
+###### *Dec 22, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+
+Here are some highlights ✨:
+- ⚛️ Introduce a new useMediaQuery hook (#13867) @joshwooding
+https://material-ui.com/layout/use-media-query
+- ⛄️ Support uncontrolled RadioGroup mode (#13929) @rfbotto
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.7.1`
+
+- [Slide] Remove direction from being passed on to children (#13930) @rfbotto
+- [Dialog] Allow use of custom className under PaperProps (#13935) @eladhayun
+- [Input] Check custom input inputRef implementation (#13934) @henrik1234
+- [BottomNavigation] Add component prop (#13960) @lychyi
+- [TextField] Add Solo Field demo (#13945) @joshwooding
+- [RadioGroup] Support uncontrolled mode (#13929) @rfbotto
+- [TextField] Reword solo textfield documentation (#13970) @joshwooding
+- [layout] Add new useMediaQuery hook (#13867) @joshwooding
+- [Tab] Remove font size change logic (#13969) @rfbotto
+- [Autocomplete] Update react-select demo to have isClearable set to true (#13975) @rfbotto
+
+### Docs
+
+- [docs] Fix Typo in BottomNavigationAction label (#13943) @ovidiumihaibelciug
+- [docs] Update album page-layout preview image album.png (#13946) @dvorwak
+- [docs] Add a next.js demo with hooks (#13920) @oliviertassinari
+- [docs] Fix select multiple prop description (91a95d38218459282b381a23653b722493392190) @AkselsLedins
+- [docs] Add AospExtended Download center to showcase (#13956) @ishubhamsingh
+- [docs] Fix i18n page transition (#13947) @unordered
+- [docs] Fix material-ui-pickers codesandbox demo (#13976) @rfbotto
+- [docs] Fix a typo, the word "the" was repeated in Layout Grid (#13983) @sgoldens
+- [docs] Improve demos loading (#13959) @adeelibr
+- [docs] Improve the service-worker logic (#13987) @oliviertassinari
+
+### Core
+
+- [CDN] Fix the UMD build (#13928) @oliviertassinari
+- [ci] Exit with non-zero if argos cli failed (#13954) @eps1lon
+- [core] Upgrade JSS to latest minor version (#13950) @doaboa
+
 ## 3.7.0
 ###### *Dec 17, 2018*
 
