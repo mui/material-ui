@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     display: 'block',
     marginTop: theme.spacing.unit * 2,
@@ -16,10 +15,10 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
-});
+}));
 
-function ControlledOpenSelect(props) {
-  const { classes } = props;
+function ControlledOpenSelect() {
+  const classes = useStyles();
   const [age, setAge] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
@@ -65,8 +64,4 @@ function ControlledOpenSelect(props) {
   );
 }
 
-ControlledOpenSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ControlledOpenSelect);
+export default ControlledOpenSelect;

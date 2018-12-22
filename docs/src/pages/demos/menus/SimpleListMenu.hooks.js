@@ -1,19 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-});
+}));
 
 const options = [
   'Show some love to Material-UI',
@@ -22,8 +21,8 @@ const options = [
   'Hide all notification content',
 ];
 
-function SimpleListMenu(props) {
-  const { classes } = props;
+function SimpleListMenu() {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -69,8 +68,4 @@ function SimpleListMenu(props) {
   );
 }
 
-SimpleListMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleListMenu);
+export default SimpleListMenu;

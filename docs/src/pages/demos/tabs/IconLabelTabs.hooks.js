@@ -1,22 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     maxWidth: 500,
   },
-};
+});
 
-function IconLabelTabs(props) {
-  const { classes } = props;
+function IconLabelTabs() {
+  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -40,8 +39,4 @@ function IconLabelTabs(props) {
   );
 }
 
-IconLabelTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(IconLabelTabs);
+export default IconLabelTabs;

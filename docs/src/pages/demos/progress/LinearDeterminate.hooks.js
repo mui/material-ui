@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
-};
+});
 
-function LinearDeterminate(props) {
-  const { classes } = props;
+function LinearDeterminate() {
+  const classes = useStyles();
   const [completed, setCompleted] = React.useState(0);
 
   function progress() {
@@ -38,8 +37,4 @@ function LinearDeterminate(props) {
   );
 }
 
-LinearDeterminate.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LinearDeterminate);
+export default LinearDeterminate;

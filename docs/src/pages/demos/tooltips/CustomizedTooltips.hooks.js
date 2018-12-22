@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   lightTooltip: {
     background: theme.palette.common.white,
     color: theme.palette.text.primary,
@@ -72,10 +71,10 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-});
+}));
 
-function CustomizedTooltips(props) {
-  const { classes } = props;
+function CustomizedTooltips() {
+  const classes = useStyles();
   const arrowRef = React.useRef();
 
   return (
@@ -111,8 +110,5 @@ function CustomizedTooltips(props) {
   );
 }
 
-CustomizedTooltips.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(CustomizedTooltips);
+export default CustomizedTooltips;

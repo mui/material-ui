@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,7 +20,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
@@ -76,10 +75,11 @@ const styles = theme => ({
     }),
     marginRight: 0,
   },
-});
+}));
 
-function PersistentDrawerRight(props) {
-  const { classes, theme } = props;
+function PersistentDrawerRight() {
+  const classes = useStyles();
+  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   function handleDrawerOpen() {
@@ -180,9 +180,4 @@ function PersistentDrawerRight(props) {
   );
 }
 
-PersistentDrawerRight.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(PersistentDrawerRight);
+export default PersistentDrawerRight;

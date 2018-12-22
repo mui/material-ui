@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -8,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
@@ -18,10 +17,10 @@ const styles = theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
-});
+}));
 
-function RadioButtonsGroup(props) {
-  const { classes } = props;
+function RadioButtonsGroup() {
+  const classes = useStyles();
   const [value, setValue] = React.useState('female');
 
   function handleChange(event) {
@@ -91,8 +90,4 @@ function RadioButtonsGroup(props) {
   );
 }
 
-RadioButtonsGroup.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RadioButtonsGroup);
+export default RadioButtonsGroup;

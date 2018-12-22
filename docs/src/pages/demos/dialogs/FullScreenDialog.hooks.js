@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,21 +13,21 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
-const styles = {
+const useStyles = makeStyles({
   appBar: {
     position: 'relative',
   },
   flex: {
     flex: 1,
   },
-};
+});
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-function FullScreenDialog(props) {
-  const { classes } = props;
+function FullScreenDialog() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
@@ -70,8 +69,4 @@ function FullScreenDialog(props) {
   );
 }
 
-FullScreenDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FullScreenDialog);
+export default FullScreenDialog;

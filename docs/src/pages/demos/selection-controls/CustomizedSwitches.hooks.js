@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import purple from '@material-ui/core/colors/purple';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   colorSwitchBase: {
     color: purple[300],
     '&$colorChecked': {
@@ -56,10 +55,10 @@ const styles = theme => ({
   iOSIconChecked: {
     boxShadow: theme.shadows[1],
   },
-});
+}));
 
-function CustomizedSwitches(props) {
-  const { classes } = props;
+function CustomizedSwitches() {
+  const classes = useStyles();
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -108,8 +107,4 @@ function CustomizedSwitches(props) {
   );
 }
 
-CustomizedSwitches.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedSwitches);
+export default CustomizedSwitches;

@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -20,7 +19,7 @@ const styles = theme => ({
   menu: {
     width: 200,
   },
-});
+}));
 
 const currencies = [
   {
@@ -41,8 +40,8 @@ const currencies = [
   },
 ];
 
-function FilledTextFields(props) {
-  const { classes } = props;
+function FilledTextFields() {
+  const classes = useStyles();
   const [values, setValues] = React.useState({
     name: 'Cat in the Hat',
     age: '',
@@ -275,8 +274,4 @@ function FilledTextFields(props) {
   );
 }
 
-FilledTextFields.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FilledTextFields);
+export default FilledTextFields;

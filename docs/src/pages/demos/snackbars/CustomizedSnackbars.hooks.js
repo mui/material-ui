@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -21,7 +21,7 @@ const variantIcon = {
   info: InfoIcon,
 };
 
-const styles1 = theme => ({
+const useStyles1 = makeStyles(theme => ({
   success: {
     backgroundColor: green[600],
   },
@@ -45,10 +45,11 @@ const styles1 = theme => ({
     display: 'flex',
     alignItems: 'center',
   },
-});
+}));
 
-function MySnackbarContent(props) {
-  const { classes, className, message, onClose, variant, ...other } = props;
+function MySnackbarContentWrapper(props) {
+  const classes = useStyles1();
+  const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
   return (
@@ -77,24 +78,21 @@ function MySnackbarContent(props) {
   );
 }
 
-MySnackbarContent.propTypes = {
-  classes: PropTypes.object.isRequired,
+MySnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
   message: PropTypes.node,
   onClose: PropTypes.func,
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
 };
 
-const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
-
-const styles2 = theme => ({
+const useStyles2 = makeStyles(theme => ({
   margin: {
     margin: theme.spacing.unit,
   },
-});
+}));
 
-function CustomizedSnackbars(props) {
-  const { classes } = props;
+function CustomizedSnackbars() {
+  const classes = useStyles2();
   const [open, setOpen] = React.useState(false);
 
   function handleClick() {
@@ -153,8 +151,4 @@ function CustomizedSnackbars(props) {
   );
 }
 
-CustomizedSnackbars.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles2)(CustomizedSnackbars);
+export default CustomizedSnackbars;

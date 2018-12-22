@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -10,7 +9,7 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     color: green[600],
     '&$checked': {
@@ -18,10 +17,10 @@ const styles = {
     },
   },
   checked: {},
-};
+});
 
-function CheckboxLabels(props) {
-  const { classes } = props;
+function CheckboxLabels() {
+  const classes = useStyles();
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -98,8 +97,4 @@ function CheckboxLabels(props) {
   );
 }
 
-CheckboxLabels.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CheckboxLabels);
+export default CheckboxLabels;

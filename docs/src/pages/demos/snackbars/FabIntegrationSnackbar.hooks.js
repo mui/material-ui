@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,7 +11,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -54,10 +53,10 @@ const styles = theme => ({
   snackbarContent: {
     width: 360,
   },
-});
+}));
 
-function FabIntegrationSnackbar(props) {
-  const { classes } = props;
+function FabIntegrationSnackbar() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   function handleClick() {
@@ -110,8 +109,4 @@ function FabIntegrationSnackbar(props) {
   );
 }
 
-FabIntegrationSnackbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FabIntegrationSnackbar);
+export default FabIntegrationSnackbar;

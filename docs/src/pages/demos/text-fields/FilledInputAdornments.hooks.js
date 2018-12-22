@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
@@ -9,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -20,7 +19,7 @@ const styles = theme => ({
   textField: {
     flexBasis: 200,
   },
-});
+}));
 
 const ranges = [
   {
@@ -37,8 +36,8 @@ const ranges = [
   },
 ];
 
-function FilledInputAdornments(props) {
-  const { classes } = props;
+function FilledInputAdornments() {
+  const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -144,8 +143,4 @@ function FilledInputAdornments(props) {
   );
 }
 
-FilledInputAdornments.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FilledInputAdornments);
+export default FilledInputAdornments;

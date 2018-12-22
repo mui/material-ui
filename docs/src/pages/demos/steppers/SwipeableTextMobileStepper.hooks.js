@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -40,7 +39,7 @@ const tutorialSteps = [
   },
 ];
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 400,
     flexGrow: 1,
@@ -59,10 +58,11 @@ const styles = theme => ({
     overflow: 'hidden',
     width: '100%',
   },
-});
+}));
 
-function SwipeableTextMobileStepper(props) {
-  const { classes, theme } = props;
+function SwipeableTextMobileStepper() {
+  const classes = useStyles();
+  const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
 
@@ -119,9 +119,4 @@ function SwipeableTextMobileStepper(props) {
   );
 }
 
-SwipeableTextMobileStepper.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(SwipeableTextMobileStepper);
+export default SwipeableTextMobileStepper;

@@ -1,19 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   close: {
     padding: theme.spacing.unit / 2,
   },
-});
+}));
 
-function SimpleSnackbar(props) {
-  const { classes } = props;
+function SimpleSnackbar() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   function handleClick() {
@@ -62,8 +61,4 @@ function SimpleSnackbar(props) {
   );
 }
 
-SimpleSnackbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleSnackbar);
+export default SimpleSnackbar;

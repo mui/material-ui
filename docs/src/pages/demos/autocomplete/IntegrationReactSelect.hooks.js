@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types, react/jsx-handler-names */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Select from 'react-select';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
@@ -54,7 +53,7 @@ const suggestions = [
   label: suggestion.label,
 }));
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: 250,
@@ -100,7 +99,7 @@ const styles = theme => ({
   divider: {
     height: theme.spacing.unit * 2,
   },
-});
+}));
 
 function NoOptionsMessage(props) {
   return (
@@ -209,8 +208,9 @@ const components = {
   ValueContainer,
 };
 
-function IntegrationReactSelect(props) {
-  const { classes, theme } = props;
+function IntegrationReactSelect() {
+  const classes = useStyles();
+  const theme = useTheme();
   const [single, setSingle] = React.useState(null);
   const [multi, setMulti] = React.useState(null);
 
@@ -266,9 +266,4 @@ function IntegrationReactSelect(props) {
   );
 }
 
-IntegrationReactSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(IntegrationReactSelect);
+export default IntegrationReactSelect;

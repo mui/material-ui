@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '90%',
   },
@@ -18,7 +17,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
-});
+}));
 
 function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
@@ -37,8 +36,8 @@ function getStepContent(step) {
   }
 }
 
-function HorizontalLinearStepper(props) {
-  const { classes } = props;
+function HorizontalLinearStepper() {
+  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
@@ -147,8 +146,4 @@ function HorizontalLinearStepper(props) {
   );
 }
 
-HorizontalLinearStepper.propTypes = {
-  classes: PropTypes.object,
-};
-
-export default withStyles(styles)(HorizontalLinearStepper);
+export default HorizontalLinearStepper;

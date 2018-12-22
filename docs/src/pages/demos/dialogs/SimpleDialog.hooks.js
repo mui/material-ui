@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
@@ -15,15 +15,16 @@ import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
-const styles = {
+const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
     color: blue[600],
   },
-};
+});
 
 function SimpleDialog(props) {
-  const { classes, onClose, selectedValue, ...other } = props;
+  const classes = useStyles();
+  const { onClose, selectedValue, ...other } = props;
 
   function handleClose() {
     onClose(selectedValue);
@@ -63,12 +64,9 @@ function SimpleDialog(props) {
 }
 
 SimpleDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
   selectedValue: PropTypes.string,
 };
-
-const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
 function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
@@ -88,7 +86,7 @@ function SimpleDialogDemo() {
       <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
       <br />
       <Button onClick={handleClickOpen}>Open simple dialog</Button>
-      <SimpleDialogWrapped selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );
 }

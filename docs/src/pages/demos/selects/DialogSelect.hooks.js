@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -21,10 +20,10 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
-});
+}));
 
-function DialogSelect(props) {
-  const { classes } = props;
+function DialogSelect() {
+  const classes = useStyles();
   const [state, setState] = React.useState({
     open: false,
     age: '',
@@ -93,8 +92,4 @@ function DialogSelect(props) {
   );
 }
 
-DialogSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DialogSelect);
+export default DialogSelect;

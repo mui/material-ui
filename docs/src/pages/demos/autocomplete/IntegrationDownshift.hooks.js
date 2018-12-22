@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
 import keycode from 'keycode';
 import Downshift from 'downshift';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import TextField from '@material-ui/core/TextField';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
@@ -198,7 +198,7 @@ DownshiftMultiple.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: 250,
@@ -227,12 +227,12 @@ const styles = theme => ({
   divider: {
     height: theme.spacing.unit * 2,
   },
-});
+}));
 
 let popperNode;
 
-function IntegrationDownshift(props) {
-  const { classes } = props;
+function IntegrationDownshift() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -321,8 +321,4 @@ function IntegrationDownshift(props) {
   );
 }
 
-IntegrationDownshift.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(IntegrationDownshift);
+export default IntegrationDownshift;

@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,7 +16,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 400,
   },
@@ -44,10 +43,10 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
-});
+}));
 
-function RecipeReviewCard(props) {
-  const { classes } = props;
+function RecipeReviewCard() {
+  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   function handleExpandClick() {
@@ -130,8 +129,4 @@ function RecipeReviewCard(props) {
   );
 }
 
-RecipeReviewCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RecipeReviewCard);
+export default RecipeReviewCard;

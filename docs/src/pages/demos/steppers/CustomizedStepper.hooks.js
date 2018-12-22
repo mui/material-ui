@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -8,7 +7,7 @@ import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '90%',
   },
@@ -37,7 +36,7 @@ const styles = theme => ({
   connectorLine: {
     transition: theme.transitions.create('border-color'),
   },
-});
+}));
 
 function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
@@ -56,8 +55,8 @@ function getStepContent(step) {
   }
 }
 
-function CustomizedStepper(props) {
-  const { classes } = props;
+function CustomizedStepper() {
+  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
@@ -133,8 +132,4 @@ function CustomizedStepper(props) {
   );
 }
 
-CustomizedStepper.propTypes = {
-  classes: PropTypes.object,
-};
-
-export default withStyles(styles)(CustomizedStepper);
+export default CustomizedStepper;

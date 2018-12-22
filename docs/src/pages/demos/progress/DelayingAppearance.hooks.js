@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/styles';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -18,10 +17,10 @@ const styles = theme => ({
   placeholder: {
     height: 40,
   },
-});
+}));
 
-function DelayingAppearance(props) {
-  const { classes } = props;
+function DelayingAppearance() {
+  const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
   let timer = null;
@@ -88,8 +87,4 @@ function DelayingAppearance(props) {
   );
 }
 
-DelayingAppearance.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DelayingAppearance);
+export default DelayingAppearance;

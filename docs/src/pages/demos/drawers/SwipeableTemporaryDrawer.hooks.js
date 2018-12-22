@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -11,17 +10,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-const styles = {
+const useStyles = makeStyles({
   list: {
     width: 250,
   },
   fullList: {
     width: 'auto',
   },
-};
+});
 
-function SwipeableTemporaryDrawer(props) {
-  const { classes } = props;
+function SwipeableTemporaryDrawer() {
+  const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -146,8 +145,4 @@ function SwipeableTemporaryDrawer(props) {
   );
 }
 
-SwipeableTemporaryDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SwipeableTemporaryDrawer);
+export default SwipeableTemporaryDrawer;

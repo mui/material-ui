@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -111,7 +111,7 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-const toolbarStyles = theme => ({
+const useToolbarStyles = makeStyles(theme => ({
   root: {
     paddingRight: theme.spacing.unit,
   },
@@ -134,10 +134,11 @@ const toolbarStyles = theme => ({
   title: {
     flex: '0 0 auto',
   },
-});
+}));
 
-let EnhancedTableToolbar = props => {
-  const { numSelected, classes } = props;
+const EnhancedTableToolbar = props => {
+  const classes = useToolbarStyles();
+  const { numSelected } = props;
 
   return (
     <Toolbar
@@ -177,13 +178,10 @@ let EnhancedTableToolbar = props => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
 };
 
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
-
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -194,10 +192,10 @@ const styles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-});
+}));
 
-function EnhancedTable(props) {
-  const { classes } = props;
+function EnhancedTable() {
+  const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -334,8 +332,4 @@ function EnhancedTable(props) {
   );
 }
 
-EnhancedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(EnhancedTable);
+export default EnhancedTable;

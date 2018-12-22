@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -16,10 +15,10 @@ const styles = theme => ({
   margin: {
     margin: theme.spacing.unit,
   },
-});
+}));
 
-function BadgeVisibility(props) {
-  const { classes } = props;
+function BadgeVisibility() {
+  const classes = useStyles();
   const [invisible, setInvisible] = React.useState(false);
 
   function handleBadgeVisibility() {
@@ -43,8 +42,4 @@ function BadgeVisibility(props) {
   );
 }
 
-BadgeVisibility.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(BadgeVisibility);
+export default BadgeVisibility;

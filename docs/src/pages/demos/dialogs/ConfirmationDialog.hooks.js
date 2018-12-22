@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -99,7 +99,7 @@ ConfirmationDialogRaw.propTypes = {
   value: PropTypes.string,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -109,10 +109,10 @@ const styles = theme => ({
     width: '80%',
     maxHeight: 435,
   },
-});
+}));
 
-function ConfirmationDialog(props) {
-  const { classes } = props;
+function ConfirmationDialog() {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
 
@@ -157,8 +157,4 @@ function ConfirmationDialog(props) {
   );
 }
 
-ConfirmationDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ConfirmationDialog);
+export default ConfirmationDialog;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,16 +14,18 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 
-const actionsStyles = theme => ({
+const useStyles1 = makeStyles(theme => ({
   root: {
     flexShrink: 0,
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 2.5,
   },
-});
+}));
 
 function TablePaginationActions(props) {
-  const { classes, count, page, rowsPerPage, theme, onChangePage } = props;
+  const classes = useStyles1();
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onChangePage } = props;
 
   function handleFirstPageButtonClick(event) {
     onChangePage(event, 0);
@@ -72,17 +74,11 @@ function TablePaginationActions(props) {
 }
 
 TablePaginationActions.propTypes = {
-  classes: PropTypes.object.isRequired,
   count: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
-  theme: PropTypes.object.isRequired,
 };
-
-const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: true })(
-  TablePaginationActions,
-);
 
 let counter = 0;
 function createData(name, calories, fat) {
@@ -90,7 +86,7 @@ function createData(name, calories, fat) {
   return { id: counter, name, calories, fat };
 }
 
-const styles = theme => ({
+const useStyles2 = makeStyles(theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -101,10 +97,10 @@ const styles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-});
+}));
 
-function CustomPaginationActionsTable(props) {
-  const { classes } = props;
+function CustomPaginationActionsTable() {
+  const classes = useStyles2();
   const [rows] = React.useState(
     [
       createData('Cupcake', 305, 3.7),
@@ -170,7 +166,7 @@ function CustomPaginationActionsTable(props) {
                 }}
                 onChangePage={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActionsWrapped}
+                ActionsComponent={TablePaginationActions}
               />
             </TableRow>
           </TableFooter>
@@ -180,8 +176,4 @@ function CustomPaginationActionsTable(props) {
   );
 }
 
-CustomPaginationActionsTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomPaginationActionsTable);
+export default CustomPaginationActionsTable;

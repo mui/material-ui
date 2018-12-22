@@ -2,13 +2,13 @@ import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -16,7 +16,7 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
   },
-});
+}));
 
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
@@ -61,8 +61,8 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-function FormattedInputs(props) {
-  const { classes } = props;
+function FormattedInputs() {
+  const classes = useStyles();
   const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
     numberformat: '1320',
@@ -97,8 +97,4 @@ function FormattedInputs(props) {
   );
 }
 
-FormattedInputs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FormattedInputs);
+export default FormattedInputs;

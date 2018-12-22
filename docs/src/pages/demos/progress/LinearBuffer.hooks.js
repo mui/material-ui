@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
-};
+});
 
-function LinearBuffer(props) {
-  const { classes } = props;
+function LinearBuffer() {
+  const classes = useStyles();
   const [completed, setCompleted] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
 
@@ -42,8 +41,4 @@ function LinearBuffer(props) {
   );
 }
 
-LinearBuffer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LinearBuffer);
+export default LinearBuffer;

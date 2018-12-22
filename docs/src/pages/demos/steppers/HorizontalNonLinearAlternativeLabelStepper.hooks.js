@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '90%',
   },
@@ -24,7 +23,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
   },
-});
+}));
 
 function getSteps() {
   return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
@@ -43,8 +42,8 @@ function getStepContent(step) {
   }
 }
 
-function HorizontalNonLinearAlternativeLabelStepper(props) {
-  const { classes } = props;
+function HorizontalNonLinearAlternativeLabelStepper() {
+  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState(new Set());
   const [skipped, setSkipped] = React.useState(new Set());
@@ -215,8 +214,4 @@ function HorizontalNonLinearAlternativeLabelStepper(props) {
   );
 }
 
-HorizontalNonLinearAlternativeLabelStepper.propTypes = {
-  classes: PropTypes.object,
-};
-
-export default withStyles(styles)(HorizontalNonLinearAlternativeLabelStepper);
+export default HorizontalNonLinearAlternativeLabelStepper;

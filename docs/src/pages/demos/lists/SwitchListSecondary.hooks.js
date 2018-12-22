@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -11,16 +10,16 @@ import Switch from '@material-ui/core/Switch';
 import WifiIcon from '@material-ui/icons/Wifi';
 import BluetoothIcon from '@material-ui/icons/Bluetooth';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-});
+}));
 
-function SwitchListSecondary(props) {
-  const { classes } = props;
+function SwitchListSecondary() {
+  const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
   const handleToggle = value => () => {
@@ -63,8 +62,4 @@ function SwitchListSecondary(props) {
   );
 }
 
-SwitchListSecondary.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SwitchListSecondary);
+export default SwitchListSecondary;

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -15,10 +15,10 @@ const styles = theme => ({
   chip: {
     margin: theme.spacing.unit / 2,
   },
-});
+}));
 
-function ChipsArray(props) {
-  const { classes } = props;
+function ChipsArray() {
+  const classes = useStyles();
   const [chipData, setChipData] = React.useState([
     { key: 0, label: 'Angular' },
     { key: 1, label: 'jQuery' },
@@ -61,8 +61,4 @@ function ChipsArray(props) {
   );
 }
 
-ChipsArray.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ChipsArray);
+export default ChipsArray;

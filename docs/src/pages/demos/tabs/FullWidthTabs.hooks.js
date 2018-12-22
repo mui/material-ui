@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -20,15 +20,16 @@ TabContainer.propTypes = {
   dir: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 500,
   },
-});
+}));
 
-function FullWidthTabs(props) {
-  const { classes, theme } = props;
+function FullWidthTabs() {
+  const classes = useStyles();
+  const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -67,9 +68,4 @@ function FullWidthTabs(props) {
   );
 }
 
-FullWidthTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(FullWidthTabs);
+export default FullWidthTabs;

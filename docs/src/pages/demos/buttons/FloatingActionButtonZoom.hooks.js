@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -29,7 +29,7 @@ TabContainer.propTypes = {
   dir: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 500,
@@ -45,10 +45,11 @@ const styles = theme => ({
     color: theme.palette.common.white,
     backgroundColor: green[500],
   },
-});
+}));
 
-function FloatingActionButtonZoom(props) {
-  const { classes, theme } = props;
+function FloatingActionButtonZoom() {
+  const classes = useStyles();
+  const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   function handleChange(event, newValue) {
@@ -125,9 +126,5 @@ function FloatingActionButtonZoom(props) {
   );
 }
 
-FloatingActionButtonZoom.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles, { withTheme: true })(FloatingActionButtonZoom);
+export default FloatingActionButtonZoom;

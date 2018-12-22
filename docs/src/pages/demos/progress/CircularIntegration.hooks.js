@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import green from '@material-ui/core/colors/green';
 import Button from '@material-ui/core/Button';
@@ -9,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -39,10 +38,10 @@ const styles = theme => ({
     marginTop: -12,
     marginLeft: -12,
   },
-});
+}));
 
-function CircularIntegration(props) {
-  const { classes } = props;
+function CircularIntegration() {
+  const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   let timer = null;
@@ -92,8 +91,4 @@ function CircularIntegration(props) {
   );
 }
 
-CircularIntegration.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CircularIntegration);
+export default CircularIntegration;

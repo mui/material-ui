@@ -1,20 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     maxWidth: 400,
     flexGrow: 1,
   },
-};
+});
 
-function DotsMobileStepper(props) {
-  const { classes, theme } = props;
+function DotsMobileStepper() {
+  const classes = useStyles();
+  const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
   function handleNext() {
@@ -48,9 +48,4 @@ function DotsMobileStepper(props) {
   );
 }
 
-DotsMobileStepper.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(DotsMobileStepper);
+export default DotsMobileStepper;

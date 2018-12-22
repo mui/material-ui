@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import Radio from '@material-ui/core/Radio';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     color: green[600],
     '&$checked': {
@@ -14,10 +13,10 @@ const styles = {
     },
   },
   checked: {},
-};
+});
 
-function RadioButtons(props) {
-  const { classes } = props;
+function RadioButtons() {
+  const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState('a');
 
   function handleChange(event) {
@@ -73,8 +72,4 @@ function RadioButtons(props) {
   );
 }
 
-RadioButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RadioButtons);
+export default RadioButtons;

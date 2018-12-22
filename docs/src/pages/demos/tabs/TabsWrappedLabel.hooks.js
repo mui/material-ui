@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -18,15 +18,15 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
-});
+}));
 
-function TabsWrappedLabel(props) {
-  const { classes } = props;
+function TabsWrappedLabel() {
+  const classes = useStyles();
   const [value, setValue] = React.useState('one');
 
   function handleChange(event, newValue) {
@@ -49,8 +49,4 @@ function TabsWrappedLabel(props) {
   );
 }
 
-TabsWrappedLabel.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(TabsWrappedLabel);
+export default TabsWrappedLabel;
