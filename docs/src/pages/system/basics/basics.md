@@ -33,12 +33,10 @@ const Box = styled.div`${palette}${spacing}${typography}`;
 
 <Box
   color="primary.main"
-  bg="background.paper"
+  bgcolor="background.paper"
   fontFamily="h6.fontFamily"
-  fontSize="h6.fontSize"
-  p={2}
-  sm={{ fontSize: 'h4.fontSize', p: 3 } }
-  md={{ fontSize: 'h3.fontSize', p: 4 } }
+  fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' } }
+  p={{ xs: 2, sm: 3, md: 4} }
 >
   @material-ui/system
 </Box>
@@ -127,7 +125,7 @@ To make the Box component more useful, we have been building a collection of sty
 - [display](/system/display/#api)
 - [flexbox](/system/flexbox/#api)
 - [palette](/system/palette/#api)
-- [position](/system/position/#api)
+- [positions](/system/positions/#api)
 - [shadows](/system/shadows/#api)
 - [sizing](/system/sizing/#api)
 - [spacing](/system/spacing/#api)
@@ -149,9 +147,9 @@ If you are already using `@material-ui/core`, we encourage you to start with the
 
 ```jsx
 import { palette, spacing, compose } from '@material-ui/system';
-import createBox from '@material-ui/styles/createBox';
+import { styled } from '@material-ui/styles';
 
-const Box = createBox(compose(spacing, palette));
+const Box = styled(compose(spacing, palette));
 ```
 
 {{"demo": "pages/system/basics/JSS.js"}}
@@ -181,7 +179,7 @@ const Box = styled.div`${palette}${spacing}`;
 ## Responsive
 
 **All** the properties are responsive, we support 3 different APIs.
-It uses this default breakpoint theme structure:
+It uses this default, but customizable, breakpoints theme structure:
 
 ```js
 const values = {
@@ -238,7 +236,21 @@ const theme = {
 
 ### Collocation
 
+If you want to group the breakpoint values, you can use our `breakpoints()` helper.
+
 ```jsx
+import { compose, spacing, palette, breakpoints } from '@material-ui/system';
+import styled from 'styled-components';
+
+const Box = styled.div`
+  ${breakpoints(
+    compose(
+      spacing,
+      palette,
+    ),
+  )}
+`;
+
 <Box
   p={2}
   sm={{ p: 3 } }
@@ -312,18 +324,19 @@ export const textColor = style({
   themeKey: 'palette',
 });
 
-export const bgColor = style({
-  prop: 'bg',
+export const bgcolor = style({
+  prop: 'bgcolor',
   cssProperty: 'backgroundColor',
   themeKey: 'palette',
 });
 
-const palette = compose(textColor, bgColor);
+const palette = compose(textColor, bgcolor);
 ```
 
 ## Variants
 
 The `style()` helper can also be used to maps properties to style objects in a theme.
+In this example, the `variant` property supports all the keys present in `theme.typography`.
 
 ```jsx
 import { style } from '@material-ui/system';
@@ -365,7 +378,7 @@ const Box = styled.div`
   )}
 `;
 
-<Box color="white" css={{ bg: 'palevioletred', p: '1', textTransform: 'uppercase' }}>
+<Box color="white" css={{ bgcolor: 'palevioletred', p: 1, textTransform: 'uppercase' }}>
   CssProp
 </Box>
 ```

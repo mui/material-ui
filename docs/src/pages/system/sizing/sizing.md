@@ -31,12 +31,11 @@
 import { sizing } from '@material-ui/system';
 ```
 
-| Function Name | Prop | CSS Property | Theme Key |
-|:--------------|:-----|:-------------|:----------|
+| Import name | Prop | CSS property | Theme key |
+|:------------|:-----|:-------------|:----------|
 | `width` | `width` | `width` | none |
 | `maxWidth` | `maxWidth` | `max-width` | none |
 | `minWidth` | `minWidth` | `min-width` | none |
 | `height` | `height` | `height` | none |
 | `maxHeight` | `axHeight`| `max-height` | none |
 | `minHeight` | `inHeight`| `min-height` | none |
-| `size` | `size` | `width`, `height` | none |

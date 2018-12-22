@@ -5,25 +5,25 @@ import { unstable_Box as Box } from '@material-ui/core/Box';
 function Background() {
   return (
     <Typography component="div" variant="body1">
-      <Box bg="primary.main" color="primary.contrastText" p={2} m={1}>
+      <Box bgcolor="primary.main" color="primary.contrastText" p={2} m={1}>
         primary.main
       </Box>
-      <Box bg="secondary.main" color="secondary.contrastText" p={2} m={1}>
+      <Box bgcolor="secondary.main" color="secondary.contrastText" p={2} m={1}>
         secondary.main
       </Box>
-      <Box bg="error.main" color="error.contrastText" p={2} m={1}>
+      <Box bgcolor="error.main" color="error.contrastText" p={2} m={1}>
         error.main
       </Box>
-      <Box bg="text.primary" color="background.paper" p={2} m={1}>
+      <Box bgcolor="text.primary" color="background.paper" p={2} m={1}>
         text.primary
       </Box>
-      <Box bg="text.secondary" color="background.paper" p={2} m={1}>
+      <Box bgcolor="text.secondary" color="background.paper" p={2} m={1}>
         text.secondary
       </Box>
-      <Box bg="text.disabled" color="background.paper" p={2} m={1}>
+      <Box bgcolor="text.disabled" color="background.paper" p={2} m={1}>
         text.disabled
       </Box>
-      <Box bg="text.hint" color="background.paper" p={2} m={1}>
+      <Box bgcolor="text.hint" color="background.paper" p={2} m={1}>
         text.hint
       </Box>
     </Typography>

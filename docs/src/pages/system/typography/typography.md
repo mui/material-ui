@@ -48,8 +48,8 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Function Name | Prop | CSS Property | Theme Key |
-|:--------------|:-----|:-------------|:----------|
+| Import name | Prop | CSS property | Theme key |
+|:------------|:-----|:-------------|:----------|
 | `fontFamily` | `fontFamily` | `font-family` | `typography` |
 | `fontSize` | `fontSize` | `font-size` | `typography` |
 | `fontWeight` | `fontWeight` | `font-weight` | `typography` |

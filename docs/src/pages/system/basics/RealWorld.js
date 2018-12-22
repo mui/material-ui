@@ -13,7 +13,7 @@ function RealWorld() {
       <Paper elevation={0}>
         <Grid container spacing={16} alignItems="center" wrap="nowrap">
           <Grid item>
-            <Box bg="primary.main" clone>
+            <Box bgcolor="primary.main" clone>
               <Avatar>
                 <SignalWifiOffIcon />
               </Avatar>

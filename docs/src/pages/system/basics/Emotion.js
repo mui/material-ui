@@ -11,7 +11,7 @@ const Box = styled.div`
 function Emotion() {
   return (
     <NoSsr>
-      <Box color="white" bg="palevioletred" p="1">
+      <Box color="white" bgcolor="palevioletred" p={1}>
         Emotion
       </Box>
     </NoSsr>

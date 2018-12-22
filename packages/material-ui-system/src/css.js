@@ -18,11 +18,9 @@ function css(styleFunction) {
     const output = styleFunction(props);
 
     if (props.css) {
-      const omittedSystem = ['xs', 'sm', 'md', 'lg', 'xl', ...(styleFunction.filterProps || [])];
-
       return {
         ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
-        ...omit(props.css, omittedSystem),
+        ...omit(props.css, [styleFunction.filterProps]),
       };
     }
 

@@ -35,11 +35,6 @@ export const sizeHeight = style({
   cssProperty: 'height',
 });
 
-export const size = compose(
-  sizeHeight,
-  sizeWidth,
-);
-
 const sizing = compose(
   width,
   maxWidth,
@@ -47,7 +42,6 @@ const sizing = compose(
   height,
   maxHeight,
   minHeight,
-  size,
 );
 
 export default sizing;

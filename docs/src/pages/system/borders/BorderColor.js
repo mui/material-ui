@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { unstable_Box as Box } from '@material-ui/core/Box';
 
 const inner = (
-  <Box bg="background.paper" m={1} border={1} style={{ width: '5rem', height: '5rem' }} />
+  <Box bgcolor="background.paper" m={1} border={1} style={{ width: '5rem', height: '5rem' }} />
 );
 
 function BorderColor() {

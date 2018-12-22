@@ -7,7 +7,7 @@ function Height() {
     <Grid container>
       <Box
         boxShadow={0}
-        bg="background.paper"
+        bgcolor="background.paper"
         m={1}
         p={1}
         style={{ width: '8rem', height: '5rem' }}
@@ -16,7 +16,7 @@ function Height() {
       </Box>
       <Box
         boxShadow={1}
-        bg="background.paper"
+        bgcolor="background.paper"
         m={1}
         p={1}
         style={{ width: '8rem', height: '5rem' }}
@@ -25,7 +25,7 @@ function Height() {
       </Box>
       <Box
         boxShadow={2}
-        bg="background.paper"
+        bgcolor="background.paper"
         m={1}
         p={1}
         style={{ width: '8rem', height: '5rem' }}
@@ -34,7 +34,7 @@ function Height() {
       </Box>
       <Box
         boxShadow={3}
-        bg="background.paper"
+        bgcolor="background.paper"
         m={1}
         p={1}
         style={{ width: '8rem', height: '5rem' }}

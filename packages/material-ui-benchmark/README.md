@@ -29,11 +29,11 @@ ButtonBase disableRipple x 46,165 ops/sec ±13.53% (66 runs sampled)
 yarn server
 
 bombardier \
-  -c 100 \
+  -c 4 \
   -l \
-  -d 60s \
+  -d 30s \
   -m GET \
-  '0.0.0.0:3001/'
+  '0.0.0.0:3001/ui-box'
 
 Statistics        Avg      Stdev        Max
   Reqs/sec       442.47      55.44     547.63
@@ -64,8 +64,9 @@ styled-system space x 130,870 ops/sec ±1.30% (186 runs sampled)
 @material-ui/system composed x 70,434 ops/sec ±0.61% (191 runs sampled)
 styled-system composed x 32,479 ops/sec ±0.83% (189 runs sampled)
 
-@material-ui/system Box x 11,764 ops/sec ±0.72% (189 runs sampled)
-styled-system Box x 10,043 ops/sec ±0.54% (189 runs sampled)
+@material-ui/system Box x 11,535 ops/sec ±1.52% (187 runs sampled)
+@material-ui/styles Box x 12,469 ops/sec ±1.91% (188 runs sampled)
+styled-system Box x 9,242 ops/sec ±0.80% (190 runs sampled)
 ```
 
 ## Resources

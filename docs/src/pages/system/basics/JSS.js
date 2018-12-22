@@ -1,8 +1,8 @@
 import React from 'react';
-import createBox from '@material-ui/styles/createBox';
+import { styled } from '@material-ui/styles';
 import { compose, spacing, palette } from '@material-ui/system';
 
-const Box = createBox(
+const Box = styled('div')(
   compose(
     spacing,
     palette,
@@ -11,7 +11,7 @@ const Box = createBox(
 
 function JSS() {
   return (
-    <Box color="white" bg="palevioletred" p="1">
+    <Box color="white" bgcolor="palevioletred" p={1}>
       JSS
     </Box>
   );

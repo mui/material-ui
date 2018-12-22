@@ -1,19 +1,19 @@
-# Position
+# Positions
 
 <p class="description">Use these shorthand utilities for quickly configuring the position of an element.</p>
 
 ## z-index
 
-{{"demo": "pages/system/position/ZIndex.js"}}
+{{"demo": "pages/system/positions/ZIndex.js"}}
 
 ## API
 
 ```js
-import { position } from '@material-ui/system';
+import { positions } from '@material-ui/system';
 ```
 
-| Function Name | Prop | CSS Property | Theme Key |
-|:--------------|:-----|:-------------|:----------|
+| Import name | Prop | CSS property | Theme key |
+|:------------|:-----|:-------------|:----------|
 | `position` | `position` | `position` | none |
 | `zIndex` | `zIndex` | `z-index` | `zIndex` |
 | `top` | `top` | `top` | none |

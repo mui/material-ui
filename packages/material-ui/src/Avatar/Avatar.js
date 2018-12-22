@@ -77,6 +77,7 @@ function Avatar(props) {
     <Component
       className={classNames(
         classes.root,
+        classes.system,
         {
           [classes.colorDefault]: !img,
         },

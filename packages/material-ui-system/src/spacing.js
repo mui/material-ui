@@ -39,7 +39,6 @@ const spacingKeys = [
   'mr',
   'mb',
   'ml',
-  'marginLeft',
   'mx',
   'my',
   'p',
@@ -50,6 +49,7 @@ const spacingKeys = [
   'px',
   'py',
   'margin',
+  'marginLeft',
   'marginTop',
   'marginRight',
   'marginBottom',
@@ -141,7 +141,7 @@ function spacing(props) {
       const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
 
       const propValue = props[prop];
-      return handleBreakpoints(props, propValue, styleFromPropValue, prop);
+      return handleBreakpoints(props, propValue, styleFromPropValue);
     })
     .reduce(merge, {});
 }

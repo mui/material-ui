@@ -10,7 +10,7 @@ function ZIndex() {
       style={{ height: 100, width: '100%', position: 'relative' }}
     >
       <Box
-        bg="grey.700"
+        bgcolor="grey.700"
         color="white"
         p={2}
         position="absolute"
@@ -21,7 +21,7 @@ function ZIndex() {
         z-index tooltip
       </Box>
       <Box
-        bg="background.paper"
+        bgcolor="background.paper"
         color="text.primary"
         p={2}
         position="absolute"

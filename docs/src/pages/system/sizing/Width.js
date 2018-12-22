@@ -3,20 +3,20 @@ import { unstable_Box as Box } from '@material-ui/core/Box';
 
 function Width() {
   return (
-    <Box width="100%" bg="background.paper">
-      <Box width="25%" bg="grey.300" p={1} my={0.5}>
+    <Box width="100%" bgcolor="background.paper">
+      <Box width="25%" bgcolor="grey.300" p={1} my={0.5}>
         Width 25%
       </Box>
-      <Box width="50%" bg="grey.300" p={1} my={0.5}>
+      <Box width="50%" bgcolor="grey.300" p={1} my={0.5}>
         Width 50%
       </Box>
-      <Box width="75%" bg="grey.300" p={1} my={0.5}>
+      <Box width="75%" bgcolor="grey.300" p={1} my={0.5}>
         Width 75%
       </Box>
-      <Box width="100%" bg="grey.300" p={1} my={0.5}>
+      <Box width="100%" bgcolor="grey.300" p={1} my={0.5}>
         Width 100%
       </Box>
-      <Box width="auto" bg="grey.300" p={1} my={0.5}>
+      <Box width="auto" bgcolor="grey.300" p={1} my={0.5}>
         Width auto
       </Box>
     </Box>

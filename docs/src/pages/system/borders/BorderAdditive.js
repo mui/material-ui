@@ -4,7 +4,7 @@ import { unstable_Box as Box } from '@material-ui/core/Box';
 
 const inner = (
   <Box
-    bg="background.paper"
+    bgcolor="background.paper"
     m={1}
     borderColor="text.primary"
     style={{ width: '5rem', height: '5rem' }}

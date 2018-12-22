@@ -13,12 +13,11 @@ function style(options) {
   const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
   const fn = props => {
-    const propValue = props[prop];
-
-    if (propValue == null) {
+    if (props[prop] == null) {
       return null;
     }
 
+    const propValue = props[prop];
     const theme = props.theme;
     const themeMapping = getPath(theme, themeKey) || {};
     const styleFromPropValue = propValueFinal => {
@@ -45,7 +44,7 @@ function style(options) {
       };
     };
 
-    return handleBreakpoints(props, propValue, styleFromPropValue, prop);
+    return handleBreakpoints(props, propValue, styleFromPropValue);
   };
 
   fn.propTypes =

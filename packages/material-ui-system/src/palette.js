@@ -1,20 +1,20 @@
 import style from './style';
 import compose from './compose';
 
-export const textColor = style({
+export const color = style({
   prop: 'color',
   themeKey: 'palette',
 });
 
-export const bgColor = style({
-  prop: 'bg',
+export const bgcolor = style({
+  prop: 'bgcolor',
   cssProperty: 'backgroundColor',
   themeKey: 'palette',
 });
 
 const palette = compose(
-  textColor,
-  bgColor,
+  color,
+  bgcolor,
 );
 
 export default palette;

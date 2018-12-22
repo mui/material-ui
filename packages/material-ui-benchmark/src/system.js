@@ -1,12 +1,16 @@
 /* eslint-disable no-console */
 
+import './bootstrap';
 import Benchmark from 'benchmark';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import styledEmotion from '@emotion/styled';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
-import styled, { ThemeProvider } from 'styled-components';
+import { styleFunction } from '@material-ui/core/Box/Box';
+import { styled } from '@material-ui/styles';
+import styled2, { ThemeProvider } from 'styled-components';
 
 const mui = compose(
   palette,
@@ -15,8 +19,10 @@ const mui = compose(
 );
 const ss = compose2(color, space, fontFamily, fontSize);
 
-const BoxMUI = styled.div`${palette}${spacing}${typography}`;
-const BoxSS = styled.div`${color}${space}${fontFamily}${fontSize}`;
+const BoxMUI = styled2.div`${mui}`;
+const BoxMUIStyles = styled('div')(mui);
+const BoxEmotion = styledEmotion(mui);
+const BoxSS = styled2.div`${ss}`;
 
 const suite = new Benchmark.Suite('ssr', {
   onError: event => {
@@ -44,6 +50,16 @@ ssTheme.fonts = ssTheme.typography;
 Benchmark.options.minSamples = 100;
 
 suite
+  .add('@material-ui/core all-inclusive', () => {
+    styleFunction({
+      theme,
+      color: 'primary.main',
+      bgcolor: 'background.paper',
+      fontFamily: 'h6.fontFamily',
+      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
+      p: [2, 3, 4],
+    });
+  })
   .add('@material-ui/system palette', () => {
     palette({
       theme: {},
@@ -72,7 +88,7 @@ suite
     mui({
       theme,
       color: 'primary.main',
-      bg: 'background.paper',
+      bgcolor: 'background.paper',
       fontFamily: 'h6.fontFamily',
       fontSize: 'h6.fontSize',
       p: 2,
@@ -84,7 +100,7 @@ suite
     ss({
       theme: ssTheme,
       color: 'primary.main',
-      bg: 'background.paper',
+      bgcolor: 'background.paper',
       fontFamily: 'h6.fontFamily',
       fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
       p: [2, 3, 4],
@@ -95,7 +111,7 @@ suite
       <ThemeProvider theme={theme}>
         <BoxMUI
           color="primary.main"
-          bg="background.paper"
+          bgcolor="background.paper"
           fontFamily="h6.fontFamily"
           fontSize="h6.fontSize"
           p={2}
@@ -107,18 +123,50 @@ suite
       </ThemeProvider>,
     );
   })
+  .add('@material-ui/styles Box', () => {
+    ReactDOMServer.renderToString(
+      <ThemeProvider theme={theme}>
+        <BoxMUIStyles
+          color="primary.main"
+          bgcolor="background.paper"
+          fontFamily="h6.fontFamily"
+          fontSize="h6.fontSize"
+          p={2}
+          sm={{ fontSize: 'h4.fontSize', p: 3 }}
+          md={{ fontSize: 'h3.fontSize', p: 4 }}
+        >
+          @material-ui/styles
+        </BoxMUIStyles>
+      </ThemeProvider>,
+    );
+  })
   .add('styled-system Box', () => {
     ReactDOMServer.renderToString(
       <ThemeProvider theme={ssTheme}>
         <BoxSS
           color="primary.main"
-          bg="background.paper"
+          bgcolor="background.paper"
           fontFamily="h6.fontFamily"
           fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
           p={[2, 3, 4]}
         >
           styled-system
         </BoxSS>
+      </ThemeProvider>,
+    );
+  })
+  .add('emotion Box', () => {
+    ReactDOMServer.renderToString(
+      <ThemeProvider theme={ssTheme}>
+        <BoxEmotion
+          color="primary.main"
+          bgcolor="background.paper"
+          fontFamily="h6.fontFamily"
+          fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+          p={[2, 3, 4]}
+        >
+          emotion
+        </BoxEmotion>
       </ThemeProvider>,
     );
   })

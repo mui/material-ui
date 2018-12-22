@@ -92,8 +92,8 @@ const theme = {
 import { spacing } from '@material-ui/system';
 ```
 
-| Function Name | Prop | CSS Property | Theme Key |
-|:--------------|:-----|:-------------|:----------|
+| Import name | Prop | CSS property | Theme key |
+|:------------|:-----|:-------------|:----------|
 | `spacing` | `m` | `margin` | `spacing` |
 | `spacing` | `mt` | `margin-top` | `spacing` |
 | `spacing` | `mr` | `margin-right` | `spacing` |

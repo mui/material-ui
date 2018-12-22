@@ -1,6 +1,6 @@
 import warning from 'warning';
-
-/* eslint-disable import/prefer-default-export */
+import PropTypes from 'prop-types';
+import merge from './merge';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -19,40 +19,64 @@ const defaultBreakpoints = {
   up: key => `@media (min-width:${values[key]}px)`,
 };
 
-export function handleBreakpoints(props, propValue, styleFromPropValue, prop) {
+export function handleBreakpoints(props, propValue, styleFromPropValue) {
   warning(
     props.theme,
     '@material-ui/system: you are calling a style function without a theme value.',
   );
 
-  const breakpoints = props.theme.breakpoints || defaultBreakpoints;
-
   if (Array.isArray(propValue)) {
+    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
     return propValue.reduce((acc, item, index) => {
-      acc[breakpoints.up(breakpoints.keys[index])] = styleFromPropValue(propValue[index]);
+      acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
       return acc;
     }, {});
   }
 
   if (typeof propValue === 'object') {
+    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
-      acc[breakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+      acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
       return acc;
     }, {});
   }
 
   const output = styleFromPropValue(propValue);
 
-  return breakpoints.keys.reduce((acc, key) => {
-    const propBreakpoint = props[key];
-
-    if (propBreakpoint) {
-      const propValue2 = propBreakpoint[prop];
-      if (propValue2) {
-        acc[breakpoints.up(key)] = styleFromPropValue(propValue2);
-      }
-    }
-
-    return acc;
-  }, output);
+  return output;
 }
+
+function breakpoints(styleFunction) {
+  const newStyleFunction = props => {
+    const base = styleFunction(props);
+    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+
+    const extended = themeBreakpoints.keys.reduce((acc, key) => {
+      if (props[key]) {
+        acc = acc || {};
+        acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props[key] });
+      }
+      return acc;
+    }, null);
+
+    return merge(base, extended);
+  };
+
+  newStyleFunction.propTypes =
+    process.env.NODE_ENV !== 'production'
+      ? {
+          ...styleFunction.propTypes,
+          xs: PropTypes.object,
+          sm: PropTypes.object,
+          md: PropTypes.object,
+          lg: PropTypes.object,
+          xl: PropTypes.object,
+        }
+      : {};
+
+  newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];
+
+  return newStyleFunction;
+}
+
+export default breakpoints;

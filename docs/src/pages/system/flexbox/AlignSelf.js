@@ -9,16 +9,16 @@ function AlignSelf() {
         alignItems="flex-start"
         p={1}
         m={1}
-        bg="background.paper"
+        bgcolor="background.paper"
         css={{ height: 100 }}
       >
-        <Box p={1} bg="grey.300">
+        <Box p={1} bgcolor="grey.300">
           Item 1
         </Box>
-        <Box p={1} bg="grey.300" alignSelf="flex-end">
+        <Box p={1} bgcolor="grey.300" alignSelf="flex-end">
           Item 1
         </Box>
-        <Box p={1} bg="grey.300">
+        <Box p={1} bgcolor="grey.300">
           Item 1
         </Box>
       </Box>

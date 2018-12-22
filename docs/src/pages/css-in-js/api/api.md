@@ -2,43 +2,6 @@
 
 <p class="description">The API reference of the @material-ui/styles package.</p>
 
-## `createBox(style function) => Component`
-
-Create a Box component using [a style function](/system/basics/).
-
-#### Arguments
-
-1. `style function` (*Function*): The style function input.
-
-#### Returns
-
-`Component`: The Box component created.
-
-##### Props
-
-| Name | Type | Default | Description |
-|:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br>&nbsp;func<br></span> |   | Box render function or node. |
-| <span class="prop-name">clone</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the box will recycle it's children DOM element. It's using `React.cloneElement` internally. |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-
-Any other properties supplied will be used by the style function or spread to the root element.
-
-#### Examples
-
-```js
-import { createBox } from '@material-ui/styles';
-import { style } from '@material-ui/system';
-
-const border = style({
-  prop: 'border',
-  themeKey: 'borders',
-  transform: getBorder,
-});
-
-const Box = createBox(border);
-```
-
 ## `createGenerateClassName([options]) => class name generator`
 
 A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
@@ -68,47 +31,6 @@ const generateClassName = createGenerateClassName({
 export default function App() {
   return (
     <StylesProvider generateClassName={generateClassName}>...</StylesProvider>
-  );
-}
-```
-
-## `createStyled(styles, [options]) => Component`
-
-Link a style sheet with a component using the **render props** pattern.
-
-#### Arguments
-
-1. `styles` (*Function | Object*): A function generating the styles or a styles object.
-It will be linked to the component.
-Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]):
-  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
-    If the value isn't provided, it will try to fallback to the name of the component.
-  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
-
-#### Returns
-
-`Component`: The styled component created.
-
-#### Examples
-
-```jsx
-import React from 'react';
-import { createStyled } from '@material-ui/styles';
-
-const Styled = createStyled({
-  root: {
-    backgroundColor: 'red',
-  },
-});
-
-export default function MyComponent() {
-  return (
-    <Styled>
-      {({ classes }) => <div className={classes.root} />}
-    </Styled>
   );
 }
 ```

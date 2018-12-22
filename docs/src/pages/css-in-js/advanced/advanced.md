@@ -275,9 +275,6 @@ const Button = styled(styles, { name: 'button' })(ButtonBase);
 
 // Higher-order component
 const Button = withStyles(styles, { name: 'button' })(ButtonBase);
-
-// Render props
-const Styled = createStyled(styles, { name: 'button' });
 ```
 
 ## Content Security Policy (CSP)

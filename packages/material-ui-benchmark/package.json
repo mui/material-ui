@@ -25,6 +25,9 @@
   "dependencies": {
     "benchmark": "^2.1.4",
     "nodemod": "^1.5.19",
-    "styled-system": "^3.1.11"
+    "styled-system": "^3.1.11",
+    "styletron-engine-atomic": "^1.0.13",
+    "styletron-react": "^4.4.4",
+    "ui-box": "^1.4.0"
   }
 }

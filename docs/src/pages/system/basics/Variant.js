@@ -10,15 +10,23 @@ const typography = style({
   themeKey: 'typography',
 });
 
+// ⚠ Text is already defined in the global context:
+// https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
 const Text = styled.div`
   ${typography}
 `;
 
-const theme = createMuiTheme({
+const muiTheme = createMuiTheme({
   typography: {
     useNextVariants: true,
   },
 });
+
+const theme = {
+  typography: {
+    h5: muiTheme.typography.h5,
+  },
+};
 
 function Variant() {
   return (

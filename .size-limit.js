@@ -16,7 +16,7 @@ module.exports = [
     name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '18.6 KB',
+    limit: '18.7 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
@@ -34,7 +34,7 @@ module.exports = [
     name: 'The size of the @material-ui/system modules',
     webpack: true,
     path: 'packages/material-ui-system/build/index.js',
-    limit: '3.6 KB',
+    limit: '3.9 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper

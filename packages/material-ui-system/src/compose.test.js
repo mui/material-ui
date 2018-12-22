@@ -7,8 +7,8 @@ const textColor = style({
   themeKey: 'palette',
 });
 
-const bgColor = style({
-  prop: 'bg',
+const bgcolor = style({
+  prop: 'bgcolor',
   cssProperty: 'backgroundColor',
   themeKey: 'palette',
 });
@@ -17,7 +17,7 @@ describe('compose', () => {
   it('should compose', () => {
     const palette = compose(
       textColor,
-      bgColor,
+      bgcolor,
     );
 
     assert.strictEqual(palette.filterProps.length, 2);
@@ -25,7 +25,7 @@ describe('compose', () => {
       palette({
         theme: {},
         color: 'red',
-        bg: 'gree',
+        bgcolor: 'gree',
       }),
       {
         backgroundColor: 'gree',

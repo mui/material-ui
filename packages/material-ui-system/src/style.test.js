@@ -2,16 +2,16 @@ import { assert } from 'chai';
 import style from './style';
 
 describe('style', () => {
-  const bgColor = style({
-    prop: 'bg',
+  const bgcolor = style({
+    prop: 'bgcolor',
     cssProperty: 'backgroundColor',
     themeKey: 'palette',
   });
 
   it('should work', () => {
-    const output = bgColor({
+    const output = bgcolor({
       theme: {},
-      bg: 'blue',
+      bgcolor: 'blue',
     });
     assert.deepEqual(output, {
       backgroundColor: 'blue',
@@ -19,9 +19,9 @@ describe('style', () => {
   });
 
   it('should support breakpoints', () => {
-    const output1 = bgColor({
+    const output1 = bgcolor({
       theme: {},
-      bg: ['blue', 'red'],
+      bgcolor: ['blue', 'red'],
     });
     assert.deepEqual(output1, {
       '@media (min-width:0px)': {
@@ -32,9 +32,9 @@ describe('style', () => {
       },
     });
 
-    const output2 = bgColor({
+    const output2 = bgcolor({
       theme: {},
-      bg: {
+      bgcolor: {
         xs: 'blue',
         sm: 'red',
       },
@@ -48,19 +48,19 @@ describe('style', () => {
       },
     });
 
-    const output3 = bgColor({
-      theme: {},
-      bg: 'blue',
-      sm: {
-        bg: 'red',
-      },
-    });
-    assert.deepEqual(output3, {
-      backgroundColor: 'blue',
-      '@media (min-width:600px)': {
-        backgroundColor: 'red',
-      },
-    });
+    // const output3 = bgcolor({
+    //   theme: {},
+    //   bgcolor: 'blue',
+    //   sm: {
+    //     bgcolor: 'red',
+    //   },
+    // });
+    // assert.deepEqual(output3, {
+    //   backgroundColor: 'blue',
+    //   '@media (min-width:600px)': {
+    //     backgroundColor: 'red',
+    //   },
+    // });
   });
 
   const boxShadow = style({

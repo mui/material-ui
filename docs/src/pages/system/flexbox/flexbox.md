@@ -110,8 +110,8 @@ We highly encourage you to read and memorize it.
 import { flexbox } from '@material-ui/system';
 ```
 
-| Function Name | Prop | CSS Property | Theme Key |
-|:--------------|:-----|:-------------|:----------|
+| Import name | Prop | CSS property | Theme key |
+|:------------|:-----|:-------------|:----------|
 | `flexDirection` | `flexDirection` | `flex-direction` | none |
 | `flexWrap` | `flexWrap` | `flex-wrap` | none |
 | `justifyContent` | `justifyContent` | `justify-content` | none |

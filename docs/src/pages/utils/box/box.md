@@ -7,7 +7,7 @@ title: Box React component
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
-It's created using the [`createBox()`](/css-in-js/api/#createbox-style-function-component) function of `@material-ui/styles`.
+It's created using the [`styled()`](/css-in-js/api/#styled-style-function-component) function of `@material-ui/styles`.
 
 > ⚠️ "unstable_" APIs may change in any version without respecting semver.
 
@@ -54,6 +54,10 @@ The Box children accepts a render props function. You can pull out the `classNam
   {props => <Button {...props} />}
 </Box>
 ```
+
+> ⚠️ The CSS specificity relies on the import order.
+If you want the guarantee that the wrapped component's style will be overridden,
+you need to import the Box last.
 
 ## API
 

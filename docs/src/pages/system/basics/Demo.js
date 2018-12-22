@@ -19,13 +19,11 @@ function Demo() {
       <ThemeProvider theme={theme}>
         <Box
           color="primary.main"
-          bg="background.paper"
+          bgcolor="background.paper"
           width="100%"
           fontFamily="h6.fontFamily"
-          fontSize="h6.fontSize"
-          p={2}
-          sm={{ fontSize: 'h4.fontSize', p: 3 }}
-          md={{ fontSize: 'h3.fontSize', p: 4 }}
+          fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' }}
+          p={{ xs: 2, sm: 3, md: 4 }}
         >
           @material-ui/system
         </Box>
