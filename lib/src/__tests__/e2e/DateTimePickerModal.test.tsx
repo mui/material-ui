@@ -57,10 +57,14 @@ describe('e2e - DateTimePickerModal', () => {
 
   it('Should handle accept on enter', () => {
     component.find('input').simulate('click');
-    const onKeyDown = component.find('ModalDialog').props().onKeyDown;
+    const onKeyDown = component
+      .find('EventListener')
+      .at(0)
+      .props().onKeyDown;
     if (!onKeyDown) {
       throw new Error('Expected onKeyDown to be non-null');
     }
+
     onKeyDown({
       keyCode: 13, // enter
       preventDefault: jest.fn(),
