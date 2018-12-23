@@ -92,7 +92,7 @@ function generatePropDescription(description, type) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach(tag => {
       if (tag.description) {
-        tag.description = tag.description.replace(/\n/g, ' ');
+        tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
     });
 
@@ -224,7 +224,7 @@ function generateProps(reactAPI) {
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(
-        prop.defaultValue.value.replace(/\n/g, ''),
+        prop.defaultValue.value.replace(/\r*\n/g, ''),
       )}</span>`;
     }
 
