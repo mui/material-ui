@@ -8,7 +8,7 @@ const initialProps: ModalDialogProps & WithStyles<typeof styles> = {
   onAccept: jest.fn(),
   onDismiss: jest.fn(),
   onClear: jest.fn(),
-  onKeyDown: jest.fn(),
+  onKeyDownInner: jest.fn(),
   okLabel: 'OK',
   open: false,
   cancelLabel: 'Cancel',
