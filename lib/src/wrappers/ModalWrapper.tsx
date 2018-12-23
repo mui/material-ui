@@ -98,8 +98,8 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     open: false,
   };
 
-  public handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (keycode(event.nativeEvent)) {
+  public handleKeyDown = (event: KeyboardEvent) => {
+    switch (keycode(event)) {
       case 'enter':
         this.handleAccept();
         break;
@@ -192,7 +192,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
         <ModalDialog
           showTabs={showTabs}
           open={this.state.open}
-          onKeyDown={this.handleKeyDown}
+          onKeyDownInner={this.handleKeyDown}
           onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
