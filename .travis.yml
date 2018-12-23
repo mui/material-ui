@@ -13,4 +13,3 @@ env:
   - CMD='lint'
 
 script: npm run $CMD
-after_script: npx codecov

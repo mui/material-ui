@@ -54,7 +54,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "test:date-fns": "UTILS=date-fns npm run test",
+    "test:date-fns": "UTILS=date-fns npm run test && codecov",
     "test:luxon": "UTILS=luxon npm run test",
     "test:moment": "UTILS=moment npm run test",
     "start": "rollup --config rollup.config.dev.js --watch",
@@ -136,6 +136,9 @@
       "jsx",
       "json",
       "node"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/__tests__/"
     ],
     "globals": {
       "ts-jest": {

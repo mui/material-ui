@@ -7,16 +7,13 @@ import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
-import { ExtendMui } from '../typings/extendMui';
 
-export interface DialogBaseProps extends ExtendMui<DialogProps, 'onKeyDown'> {}
-
-export interface ModalDialogProps extends DialogBaseProps {
+export interface ModalDialogProps extends DialogProps {
   onAccept: () => void;
   onDismiss: () => void;
   onClear: () => void;
   onSetToday: () => void;
-  onKeyDown: (e: KeyboardEvent) => void;
+  onKeyDownInner: (e: KeyboardEvent) => void;
   okLabel?: React.ReactNode;
   cancelLabel?: React.ReactNode;
   clearLabel?: React.ReactNode;
@@ -29,7 +26,7 @@ export interface ModalDialogProps extends DialogBaseProps {
 export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
   children,
   classes,
-  onKeyDown,
+  onKeyDownInner,
   onAccept,
   onDismiss,
   onClear,
@@ -53,7 +50,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     }}
     {...other}
   >
-    <EventListener target="window" onKeyDown={onKeyDown} />
+    <EventListener target="window" onKeyDown={onKeyDownInner} />
     <DialogContent
       children={children}
       className={classnames(classes.dialog, {
@@ -97,7 +94,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
 ModalDialog.displayName = 'ModalDialog';
 (ModalDialog as any).propTypes = {
   children: PropTypes.node.isRequired,
-  onKeyDown: PropTypes.func.isRequired,
+  onKeyDownInner: PropTypes.func.isRequired,
   onAccept: PropTypes.func.isRequired,
   onDismiss: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,

@@ -82,6 +82,10 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
   public static getDerivedStateFromProps(nextProps: ModalWrapperProps) {
     // only if accept = true close the dialog
     if (nextProps.isAccepted) {
+      if (nextProps.onClose) {
+        nextProps.onClose();
+      }
+
       return {
         open: false,
       };
@@ -179,7 +183,6 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
           value={value}
           format={format}
           onClick={this.open}
-          // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
           labelFunc={labelFunc}
           clearable={clearable}
@@ -189,7 +192,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
         <ModalDialog
           showTabs={showTabs}
           open={this.state.open}
-          onKeyDown={this.handleKeyDown as any}
+          onKeyDownInner={this.handleKeyDown}
           onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}

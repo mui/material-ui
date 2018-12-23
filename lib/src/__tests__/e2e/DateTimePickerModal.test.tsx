@@ -9,14 +9,17 @@ const format = process.env.UTILS === 'luxon' ? 'MM/dd/yyyy hh:mm' : 'MM/DD/YYYY 
 
 describe('e2e - DateTimePickerModal', () => {
   let component: ReactWrapper<DateTimePickerModalProps>;
+
+  const onCloseMock = jest.fn();
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
     component = mount(
       <DateTimePickerModal
         format={format}
-        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        onClose={onCloseMock}
         onChange={onChangeMock}
+        value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
   });
@@ -57,15 +60,21 @@ describe('e2e - DateTimePickerModal', () => {
 
   it('Should handle accept on enter', () => {
     component.find('input').simulate('click');
-    const onKeyDown = component.find('ModalDialog').props().onKeyDown;
+    const onKeyDown = component
+      .find('EventListener')
+      .at(0)
+      .props().onKeyDown;
+
     if (!onKeyDown) {
       throw new Error('Expected onKeyDown to be non-null');
     }
+
     onKeyDown({
       keyCode: 13, // enter
       preventDefault: jest.fn(),
     } as any);
 
+    expect(onCloseMock).toHaveBeenCalled();
     expect(onChangeMock).toHaveBeenCalled();
   });
 });
