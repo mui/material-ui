@@ -137,6 +137,9 @@
       "json",
       "node"
     ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/__tests__/"
+    ],
     "globals": {
       "ts-jest": {
         "tsConfig": "./src/__tests__/tsconfig.json"
