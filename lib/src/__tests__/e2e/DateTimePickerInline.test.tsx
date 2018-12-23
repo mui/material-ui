@@ -39,6 +39,7 @@ describe('e2e - DateTimePickerInline', () => {
     if (!popoverOnClose) {
       throw new Error('expected popoverOnClose');
     }
+
     popoverOnClose({} as any);
     expect(component.find('WithStyles(Popover)').props().open).toBeFalsy();
     expect(onCloseMock).toHaveBeenCalled();
@@ -67,5 +68,6 @@ describe('e2e - DateTimePickerInline', () => {
       .simulate('mouseUp', { nativeEvent: { offsetX: 10, offsetY: 20 } });
 
     expect(onChangeMock).toHaveBeenCalled();
+    expect(onCloseMock).toHaveBeenCalled();
   });
 });
