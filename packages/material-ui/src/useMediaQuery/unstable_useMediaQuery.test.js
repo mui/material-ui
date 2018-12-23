@@ -129,7 +129,7 @@ describe('unstable_useMediaQuery', () => {
       });
     });
 
-    it('should render once if the default value does not match the expectation with noSsr', done => {
+    it('should render once if the default value does not match the expectation', done => {
       const Test = () => {
         const matches = unstable_useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
