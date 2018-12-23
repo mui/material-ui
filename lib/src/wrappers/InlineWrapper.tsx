@@ -86,7 +86,11 @@ export class InlineWrapper extends React.PureComponent<
 
   public close = () => {
     this.setState({ anchorEl: null });
-    this.props.handleAccept();
+
+    if (this.props.value !== null) {
+      this.props.handleAccept();
+    }
+
     if (this.props.onClose) {
       this.props.onClose();
     }
