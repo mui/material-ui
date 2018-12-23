@@ -16,7 +16,7 @@ export interface ModalDialogProps extends DialogBaseProps {
   onDismiss: () => void;
   onClear: () => void;
   onSetToday: () => void;
-  onKeyDown: (e: KeyboardEvent) => void;
+  onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
   okLabel?: React.ReactNode;
   cancelLabel?: React.ReactNode;
   clearLabel?: React.ReactNode;

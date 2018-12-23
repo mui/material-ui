@@ -61,6 +61,10 @@ export class InlineWrapper extends React.PureComponent<
   public static getDerivedStateFromProps(nextProps: InlineWrapperProps) {
     // only if accept = true close the popover
     if (nextProps.isAccepted) {
+      if (nextProps.onClose) {
+        nextProps.onClose();
+      }
+
       return {
         anchorEl: null,
       };
