@@ -13,6 +13,7 @@ import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -235,8 +236,8 @@ class Tabs extends React.Component {
   };
 
   updateScrollButtonState = () => {
-    const { scrollButtons, theme, variant } = this.props;
-    const scrollable = variant === 'scrollable';
+    const { scrollable: deprecatedScrollable, scrollButtons, theme, variant } = this.props;
+    const scrollable = variant === 'scrollable' || deprecatedScrollable;
 
     if (scrollable && scrollButtons !== 'off') {
       const { scrollWidth, clientWidth } = this.tabsRef;
@@ -295,8 +296,10 @@ class Tabs extends React.Component {
       classes,
       className: classNameProp,
       component: Component,
+      fullWidth = false,
       indicatorColor,
       onChange,
+      scrollable: deprecatedScrollable = false,
       ScrollButtonComponent,
       scrollButtons,
       TabIndicatorProps = {},
@@ -307,7 +310,7 @@ class Tabs extends React.Component {
       ...other
     } = this.props;
 
-    const scrollable = variant === 'scrollable';
+    const scrollable = variant === 'scrollable' || deprecatedScrollable;
 
     warning(
       !centered || !scrollable,
@@ -357,7 +360,7 @@ class Tabs extends React.Component {
 
       childIndex += 1;
       return React.cloneElement(child, {
-        fullWidth: variant === 'fullWidth',
+        fullWidth: variant === 'fullWidth' || fullWidth,
         indicator: selected && !this.state.mounted && indicator,
         selected,
         onChange,
@@ -427,6 +430,11 @@ Tabs.propTypes = {
    */
   component: componentPropType,
   /**
+   * If `true`, the tabs will grow to use all the available space.
+   * This property is intended for small views, like on mobile.
+   */
+  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead, use the `variant` property.'),
+  /**
    * Determines the color of the indicator.
    */
   indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
@@ -437,6 +445,11 @@ Tabs.propTypes = {
    * @param {number} value We default to the index of the child
    */
   onChange: PropTypes.func,
+  /**
+   * True invokes scrolling properties and allow for horizontally scrolling
+   * (or swiping) the tab bar.
+   */
+  scrollable: deprecatedPropType(PropTypes.bool, 'Instead, use the `variant` property.'),
   /**
    * The component used to render the scroll buttons.
    */
