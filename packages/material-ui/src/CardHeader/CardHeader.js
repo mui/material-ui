@@ -5,7 +5,7 @@ import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -32,7 +32,7 @@ export const styles = theme => ({
   title: {},
   /* Styles applied to the subheader Typography element. */
   subheader: {},
-});
+};
 
 function CardHeader(props) {
   const {
