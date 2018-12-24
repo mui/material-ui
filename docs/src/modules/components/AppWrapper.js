@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import url from 'url';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
-import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
+import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 import acceptLanguage from 'accept-language';
@@ -155,7 +155,7 @@ class AppWrapper extends React.Component {
     if (typeof prevState.pageContext === 'undefined') {
       return {
         prevProps: nextProps,
-        pageContext: nextProps.pageContext || getPageContext(),
+        pageContext: nextProps.pageContext,
       };
     }
 
