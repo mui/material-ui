@@ -489,8 +489,8 @@ Tabs.propTypes = {
    *  Determines additional display behavior of the tabs
    * `scrollable` will invoke scrolling properties and allow for horizontally
    *  scrolling (or swiping) of the tab bar
-   * `fullWidth` will make the tabs grow to use all the available space.
-   *  It's intended to be used for small views, like on mobile
+   * `fullWidth` will make the tabs grow to use all the available space,
+   *  which should be used for small views, like on mobile
    */
   variant: PropTypes.oneOf(['scrollable', 'fullWidth']),
 };
