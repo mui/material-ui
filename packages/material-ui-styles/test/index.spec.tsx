@@ -150,9 +150,9 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   });
-  const renderedStyledButton = <StyledButton classes={{ root: 'additonal-root-class' }} />;
+  const renderedStyledButton = <StyledButton classes={{ root: 'additional-root-class' }} />;
   // $ExpectError
-  const nonExistingClassKey = <StyledButton classes={{ notRoot: 'additonal-root-class' }} />;
+  const nonExistingClassKey = <StyledButton classes={{ notRoot: 'additional-root-class' }} />;
 
   interface MyTheme {
     fontFamily: string;

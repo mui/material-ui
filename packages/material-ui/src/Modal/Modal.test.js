@@ -275,7 +275,7 @@ describe('<Modal />', () => {
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
 
-    it('when mounted, TopModal and event not esc should not call given funcs', () => {
+    it('when mounted, TopModal and event not esc should not call given functions', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
       event = { keyCode: keycode('j') }; // Not 'esc'

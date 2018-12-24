@@ -96,7 +96,7 @@ class SpeedDial extends React.Component {
 
   /**
    * refs to the Button that have an action associated to them in this SpeedDial
-   * [Fab, ...(SpeeDialActions > Button)]
+   * [Fab, ...(SpeedDialActions > Button)]
    * @type {HTMLButtonElement[]}
    */
   actions = [];

@@ -101,7 +101,7 @@ const AllTheComposition = withTheme<Theme>()(StyledComponent);
 declare const themed: boolean;
 {
   // this is necessary so that TypesScript can infer the theme
-  // usually it's better to just use withTheme<Theme> if you're not actuall styling
+  // usually it's better to just use withTheme<Theme> if you're not actual styling
   const themedStyles = (theme: Theme) => ({ root: {} });
   // Test that withTheme: true guarantees the presence of the theme
   const Foo = withStyles(themedStyles, { withTheme: true })(
@@ -193,7 +193,7 @@ withStyles(theme =>
         padding: '0 16px',
       },
 
-      iiiinset: {
+      inset: {
         '&:first-child': {
           paddingLeft: theme.spacing.unit * 7,
         },
@@ -380,7 +380,7 @@ withStyles(theme =>
   }
 
   const StyledMyComponent = withStyles(styles)(MyComponent);
-  const rendererdStyledMyComponent = <StyledMyComponent message="Hi" />;
+  const renderedStyledMyComponent = <StyledMyComponent message="Hi" />;
 
   //  number is not assignable to 'blue' | 'red'
   // $ExpectError

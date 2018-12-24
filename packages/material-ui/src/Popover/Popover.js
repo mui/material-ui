@@ -363,7 +363,7 @@ Popover.propTypes = {
    * This is useful when you want to trigger an action programmatically.
    * It currently only supports updatePosition() action.
    *
-   * @param {object} actions This object contains all posible actions
+   * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
   action: PropTypes.func,

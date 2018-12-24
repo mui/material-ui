@@ -91,7 +91,7 @@ describe('unstable_useMediaQuery', () => {
   });
 
   describe('option: noSsr', () => {
-    it('should render once if the defaut value match the expectation', done => {
+    it('should render once if the default value match the expectation', done => {
       const Test = () => {
         const matches = unstable_useMediaQuery('(min-width:2000px)', {
           defaultMatches: false,
@@ -110,7 +110,7 @@ describe('unstable_useMediaQuery', () => {
       });
     });
 
-    it('should render twice if the defaut value does not match the expectation', done => {
+    it('should render twice if the default value does not match the expectation', done => {
       const Test = () => {
         const matches = unstable_useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
@@ -129,7 +129,7 @@ describe('unstable_useMediaQuery', () => {
       });
     });
 
-    it('should render once if the defaut value does not match the expectation with noSsr', done => {
+    it('should render once if the default value does not match the expectation', done => {
       const Test = () => {
         const matches = unstable_useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
@@ -150,7 +150,7 @@ describe('unstable_useMediaQuery', () => {
     });
   });
 
-  it('should try to reconciliate only the first time', done => {
+  it('should try to reconcile only the first time', done => {
     const Test = () => {
       const matches = unstable_useMediaQuery('(min-width:2000px)', {
         defaultMatches: true,

@@ -138,7 +138,7 @@ describe('<ClickAwayListener />', () => {
       assert.deepEqual(handleClickAway.args[0], [touchStartEvent]);
     });
 
-    it('should ignore `touchend` when preceeded by `touchmove` event', () => {
+    it('should ignore `touchend` when preceded by `touchmove` event', () => {
       const handleClickAway = spy();
       wrapper = mount(
         <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchEnd">

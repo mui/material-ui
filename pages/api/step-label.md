@@ -38,7 +38,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horiizontal".
+| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal".
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical".
 | <span class="prop-name">label</span> | Styles applied to the `Typography` component which wraps `children`.
 | <span class="prop-name">active</span> | Styles applied to the `Typography` component if `active={true}`.

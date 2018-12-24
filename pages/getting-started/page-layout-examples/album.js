@@ -8,7 +8,7 @@ function Page() {
   return (
     <AppTheme
       title="Album page layout - Material-UI"
-      description="An example layout for creating an albumn or gallery."
+      description="An example layout for creating an album or gallery."
     >
       <Album />
     </AppTheme>

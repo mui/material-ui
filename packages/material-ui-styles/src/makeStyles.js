@@ -44,7 +44,7 @@ function makeStyles(stylesOrCreator, options = {}) {
       };
     });
 
-    // Execute synchronously everytime the theme changes.
+    // Execute synchronously every time the theme changes.
     React.useMemo(
       () => {
         attach({
@@ -71,7 +71,7 @@ function makeStyles(stylesOrCreator, options = {}) {
       }
     });
 
-    // Execute asynchronously everytime the theme changes.
+    // Execute asynchronously every time the theme changes.
     React.useEffect(
       () => {
         return function cleanup() {

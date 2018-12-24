@@ -116,7 +116,7 @@ class Tab extends React.Component {
       /**
        * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
        * font size still only requires one line.  This check will prevent an infinite render loop
-       * fron occurring in that scenario.
+       * from occurring in that scenario.
        */
       this.checkTextWrap();
     }
