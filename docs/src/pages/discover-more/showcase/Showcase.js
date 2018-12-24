@@ -35,6 +35,12 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'DevControlPanel',
+    description: 'The Control Panel for developers. Developers can share their problems, solutions, etc. Developer can publish stories about their every day work challenges. More features in progress',
+    image: '/static/images/showcase/devcontrolpanel.jpg',
+    link: 'https://www.devcontrolpanel.com/',
+  },
+  {
     title: 'Onepixel',
     description: 'Beautiful Stock Photos for $1.',
     image: '/static/images/showcase/onepixel.jpg',
