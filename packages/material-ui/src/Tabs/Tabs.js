@@ -113,9 +113,16 @@ class Tabs extends React.Component {
   }
 
   getConditionalElements = () => {
-    const { classes, ScrollButtonComponent, scrollButtons, theme, variant } = this.props;
+    const {
+      classes,
+      scrollable: deprecatedScrollable,
+      ScrollButtonComponent,
+      scrollButtons,
+      theme,
+      variant,
+    } = this.props;
     const conditionalElements = {};
-    const scrollable = variant === 'scrollable';
+    const scrollable = variant === 'scrollable' || deprecatedScrollable;
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
