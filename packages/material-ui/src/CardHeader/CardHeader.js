@@ -23,9 +23,6 @@ export const styles = theme => ({
     alignSelf: 'flex-start',
     marginTop: -8,
     marginRight: -12,
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -20,
-    },
   },
   /* Styles applied to the content wrapper element. */
   content: {
