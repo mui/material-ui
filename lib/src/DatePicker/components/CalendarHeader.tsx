@@ -143,7 +143,15 @@ export const styles = (theme: Theme) =>
     },
   });
 
+const MemoCalendarHeader = React.memo(
+  CalendarHeader,
+  (prevProps, nextProps) =>
+    nextProps.utils.isEqual(prevProps.currentMonth, nextProps.currentMonth) &&
+    prevProps.utils === nextProps.utils &&
+    prevProps.theme === nextProps.theme
+);
+
 export default withStyles(styles, {
   withTheme: true,
   name: 'MuiPickersCalendarHeader',
-})(withUtils()(CalendarHeader));
+})(withUtils()(MemoCalendarHeader));
