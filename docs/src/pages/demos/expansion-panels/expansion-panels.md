@@ -9,6 +9,8 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 [An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
 
+**Note:** Expansion panels are no longer documented in the current version of Material. Try using Cards instead for newer code.
+
 ## Simple Expansion Panel
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
