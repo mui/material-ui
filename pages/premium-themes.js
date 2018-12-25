@@ -8,7 +8,7 @@ const reqSource = require.context('!raw-loader!../docs/src/pages/premium-themes'
 const reqPrefix = 'pages/premium-themes';
 
 function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+  return <MarkdownDocs disableAd req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

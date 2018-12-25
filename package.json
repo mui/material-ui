@@ -167,6 +167,7 @@
     "rollup-plugin-uglify": "^6.0.0",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
+    "styled-components": "^4.0.0",
     "tslint": "^5.11.0",
     "typescript": "^3.0.0",
     "url-loader": "^1.0.1",
