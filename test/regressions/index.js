@@ -80,7 +80,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     return res;
   }
 
-  if (/^docs-premium-themes(.*)/.test(suite)) {
+  if (/^docs-premium-themes(.*)/.test(suite) || /\.hooks$/.test(name)) {
     return res;
   }
 
