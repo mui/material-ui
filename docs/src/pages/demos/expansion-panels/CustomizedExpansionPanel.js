@@ -1,65 +1,106 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const styles = theme => ({
+const ExpansionPanel = withStyles({
   root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-    color: theme.palette.primary.contrastText,
-  },
-});
-
-const ExpansionPanelSummary = withStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.primary[500],
+    border: '1px solid rgba(0,0,0,.125)',
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
   },
   expanded: {
-    backgroundColor: theme.palette.primary[700],
+    margin: 'auto',
   },
-  expandIcon: {
-    color: theme.palette.primary.contrastText,
+})(MuiExpansionPanel);
+
+const ExpansionPanelSummary = withStyles({
+  root: {
+    backgroundColor: 'rgba(0,0,0,.03)',
+    borderBottom: '1px solid rgba(0,0,0,.125)',
+    marginBottom: -1,
+    minHeight: 56,
+    '&$expanded': {
+      minHeight: 56,
+    },
   },
-}))(MuiExpansionPanelSummary);
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  expanded: {},
+})(props => <MuiExpansionPanelSummary {...props} />);
+
+ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
 const ExpansionPanelDetails = withStyles(theme => ({
   root: {
-    padding: theme.spacing.unit * 4,
-    border: `15px solid ${theme.palette.primary[700]}`,
-    borderTop: 0,
+    padding: theme.spacing.unit * 2,
   },
 }))(MuiExpansionPanelDetails);
 
-function CustomizedExpansionPanel(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Customized Expansion Panel</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-  );
+class CustomizedExpansionPanel extends React.Component {
+  state = {
+    expanded: 'panel1',
+  };
+
+  handleChange = panel => (event, expanded) => {
+    this.setState({
+      expanded: expanded ? panel : false,
+    });
+  };
+
+  render() {
+    const { expanded } = this.state;
+    return (
+      <div>
+        <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
+          <ExpansionPanelSummary>
+            <Typography>Collapsible Group Item #1</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+              ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')}>
+          <ExpansionPanelSummary>
+            <Typography>Collapsible Group Item #2</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+              ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
+          <ExpansionPanelSummary>
+            <Typography>Collapsible Group Item #3</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+              ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </div>
+    );
+  }
 }
 
-CustomizedExpansionPanel.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedExpansionPanel);
+export default CustomizedExpansionPanel;
