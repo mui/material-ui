@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from '@emotion/styled';
 import NoSsr from '@material-ui/core/NoSsr';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { darken, fade } from '@material-ui/core/styles/colorManipulator';
+import { ThemeProvider } from 'emotion-theming';
 
 const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
@@ -45,14 +46,14 @@ const StyledButton = styled.button`
   }
 `;
 
-function StyledComponentsTheme() {
+function EmotionTheme() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
-        <StyledButton>Styled Components</StyledButton>
+        <StyledButton>Emotion</StyledButton>
       </ThemeProvider>
     </NoSsr>
   );
 }
 
-export default StyledComponentsTheme;
+export default EmotionTheme;
