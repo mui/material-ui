@@ -24,6 +24,8 @@ Steppers may display a transient feedback message after a step is saved.
 - Linear
 - Non-linear
 
+> **Note:** Steppers are no longer documented in the Material Design documentation.
+
 ## Horizontal Linear
 
 The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `Stepper` orientation is set using the `orientation` property.
