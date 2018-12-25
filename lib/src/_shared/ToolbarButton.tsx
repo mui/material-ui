@@ -28,7 +28,7 @@ const ToolbarButton: React.SFC<ToolbarButtonProps> = ({
   </Typography>
 );
 
-(ToolbarButton as any).propTypes = {
+ToolbarButton.propTypes = {
   selected: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   classes: PropTypes.any.isRequired,
@@ -50,4 +50,10 @@ export const styles = (theme: Theme) => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(ToolbarButton);
+export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(
+  React.memo(
+    ToolbarButton,
+    (prevProps, nextProps) =>
+      prevProps.label === nextProps.label && prevProps.selected === nextProps.selected
+  )
+);

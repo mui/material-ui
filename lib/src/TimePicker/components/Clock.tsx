@@ -16,7 +16,7 @@ export interface ClockProps extends WithStyles<typeof styles> {
   children: Array<React.ReactElement<any>>;
 }
 
-export class Clock extends React.Component<ClockProps> {
+export class Clock extends React.PureComponent<ClockProps> {
   public static propTypes: any = {
     type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
     classes: PropTypes.object.isRequired,
