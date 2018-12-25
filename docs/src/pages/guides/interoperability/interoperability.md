@@ -81,7 +81,7 @@ const StyledButton = styled(Button)`
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 `;
 
-function StyledComponentsButton() {
+function StyledComponents() {
   return (
     <div>
       <Button>
@@ -94,8 +94,10 @@ function StyledComponentsButton() {
   );
 }
 
-export default StyledComponentsButton;
+export default StyledComponents;
 ```
+
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
 
@@ -104,50 +106,17 @@ export default StyledComponentsButton;
 Both styled-components and JSS inject their styles at the bottom of the `<head>`.
 One approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-Another approach is to use the `&` character in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name.
+Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name.
 Use this to ensure styled-components styles are applied before JSS styles.
 An example of this solution:
 
-```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-
-const StyledButton = styled(Button)`
-  && {
-    background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-    border-radius: 3px;
-    border: 0;
-    color: white;
-    height: 48px;
-    padding: 0 30px;
-    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
-  }
-`;
-
-function StyledComponentsButton() {
-  return (
-    <div>
-      <Button>
-        Material-UI
-      </Button>
-      <StyledButton>
-        Styled Components
-      </StyledButton>
-    </div>
-  );
-}
-
-export default StyledComponentsButton;
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xpp5oj9o0z)
+{{"demo": "pages/guides/interoperability/StyledComponentsPriority.js"}}
 
 ### Deeper elements
 
 In some cases, the approaches above will not work.
 For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `permanent`,
-you will likely need to affect the Drawer's underlying `paper` style.
+you will likely need to affect the Drawer's child `paper` element.
 
 However, this is not the root element of `Drawer` and therefore styled-components customization as above will not work.
 You can workaround this by using [stable JSS class names](/customization/css-in-js/#global-css), but the most reliable approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
@@ -160,7 +129,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => (
-  <Button {...other} classes={{ label: 'label' }} />
+  <Button classes={{ label: 'label' }} {...other} />
 ))`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
   border: 0;
@@ -174,7 +143,7 @@ const StyledButton = styled(({ color, ...other }) => (
   }
 `;
 
-function StyledComponentsButton() {
+function StyledComponentsDeep() {
   return (
     <div>
       <Button>Material-UI</Button>
@@ -183,11 +152,19 @@ function StyledComponentsButton() {
   );
 }
 
-export default StyledComponentsButton;
+export default StyledComponentsDeep;
 ```
+
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideHeader": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
 
+### ThemeProvider
+
+Material-UI has a rich theme structure that you can leverage for
+the color manipulations, the transitions, the media queries, and more.
+
+{{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
 
 ## Emotion
 
@@ -264,7 +241,7 @@ export default EmotionButton
 
 **Note:** By default Emotion and JSS both inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the examples.
 
-## React Emotion
+### React Emotion
 
 The **styled()** function can be used to customize the root styles of any Material-UI component.
 

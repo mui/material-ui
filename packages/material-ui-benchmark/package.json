@@ -26,7 +26,6 @@
     "emotion": "^9.2.12",
     "emotion-server": "^9.2.12",
     "nodemod": "^1.5.19",
-    "react-emotion": "^9.2.12",
-    "styled-components": "^4.0.0"
+    "react-emotion": "^9.2.12"
   }
 }
