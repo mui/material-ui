@@ -23,15 +23,19 @@ import Tabs from '@material-ui/core/Tabs';
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the tabs will grow to use all the available space. This property is intended for small views, like on mobile. |
+| ~~<span class="prop-name">fullWidth</span>~~ | <span class="prop-type">bool</span> |   | *Deprecated*. Instead, use the `variant="fullWidth"` property.<br><br>If `true`, the tabs will grow to use all the available space. This property is intended for small views, like on mobile. |
 | <span class="prop-name">indicatorColor</span> | <span class="prop-type">enum:&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'primary'<br></span> | <span class="prop-default">'secondary'</span> | Determines the color of the indicator. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: number) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
-| <span class="prop-name">scrollable</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | True invokes scrolling properties and allow for horizontally scrolling (or swiping) the tab bar. |
+| <span class="prop-name">scrollable</span> | <span class="prop-type">deprecatedPropType(
+  PropTypes.bool,
+  'Instead, use the `variant="scrollable"` property.',
+)</span> |   | True invokes scrolling properties and allow for horizontally scrolling (or swiping) the tab bar. |
 | <span class="prop-name">ScrollButtonComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">TabScrollButton</span> | The component used to render the scroll buttons. |
 | <span class="prop-name">scrollButtons</span> | <span class="prop-type">enum:&nbsp;'auto'&nbsp;&#124;<br>&nbsp;'on'&nbsp;&#124;<br>&nbsp;'off'<br></span> | <span class="prop-default">'auto'</span> | Determine behavior of scroll buttons when tabs are set to scroll `auto` will only present them on medium and larger viewports `on` will always present them `off` will never present them |
 | <span class="prop-name">TabIndicatorProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `TabIndicator` element. |
 | <span class="prop-name">textColor</span> | <span class="prop-type">enum:&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br></span> | <span class="prop-default">'inherit'</span> | Determines the color of the `Tab`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |   | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'scrollable'&nbsp;&#124;<br>&nbsp;'fullWidth'<br></span> |   | Determines additional display behavior of the tabs:  - `scrollable` will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -`fullWidth` will make the tabs grow to use all the available space,  which should be used for small views, like on mobile. |
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -45,10 +49,10 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">flexContainer</span> | Styles applied to the flex container element.
-| <span class="prop-name">centered</span> | Styles applied to the flex container element if `centered={true}` & `scrollable={false}`.
+| <span class="prop-name">centered</span> | Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`.
 | <span class="prop-name">scroller</span> | Styles applied to the tablist element.
-| <span class="prop-name">fixed</span> | Styles applied to the tablist element if `scrollable={false}`.
-| <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `scrollable={true}`.
+| <span class="prop-name">fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
+| <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
 | <span class="prop-name">scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
 | <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`.
 | <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.

@@ -59,10 +59,10 @@ describe('<Tabs />', () => {
     });
 
     it('should warn if the input is invalid', () => {
-      shallow(<Tabs onChange={noop} value={0} centered scrollable />);
+      shallow(<Tabs onChange={noop} value={0} centered variant="scrollable" />);
       assert.match(
         consoleErrorMock.args()[0][0],
-        /Material-UI: you can not use the `centered={true}` and `scrollable={true}`/,
+        /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });
   });
@@ -347,14 +347,14 @@ describe('<Tabs />', () => {
     });
   });
 
-  describe('prop: scrollable', () => {
+  describe('prop: variant="scrollable"', () => {
     let clock;
     let wrapper;
 
     before(() => {
       clock = useFakeTimers();
       wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable>
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable">
           <Tab />
           <Tab />
         </Tabs>,
@@ -388,7 +388,7 @@ describe('<Tabs />', () => {
     it('should get a scrollbar size listener', () => {
       // use mount to ensure that handleScrollbarSizeChange gets covered
       const mountWrapper = mount(
-        <Tabs width="md" onChange={noop} value={0} scrollable>
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable">
           <Tab />
           <Tab />
         </Tabs>,
@@ -398,7 +398,7 @@ describe('<Tabs />', () => {
     });
   });
 
-  describe('prop: !scrollable', () => {
+  describe('prop: !variant="scrollable"', () => {
     it('should not render with the scrollable class', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0}>
@@ -426,7 +426,7 @@ describe('<Tabs />', () => {
 
     it('should render scroll buttons', () => {
       const wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
           <Tab />
           <Tab />
         </Tabs>,
@@ -436,7 +436,7 @@ describe('<Tabs />', () => {
 
     it('should render scroll buttons automatically', () => {
       const wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="auto">
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="auto">
           <Tab />
           <Tab />
         </Tabs>,
@@ -446,7 +446,7 @@ describe('<Tabs />', () => {
 
     it('should should not render scroll buttons automatically', () => {
       const wrapper = shallow(
-        <Tabs width="sm" onChange={noop} value={0} scrollable scrollButtons="auto">
+        <Tabs width="sm" onChange={noop} value={0} variant="scrollable" scrollButtons="auto">
           <Tab />
           <Tab />
         </Tabs>,
@@ -460,7 +460,7 @@ describe('<Tabs />', () => {
 
     it('should handle window resize event', () => {
       const wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
           <Tab />
           <Tab />
         </Tabs>,
@@ -482,7 +482,7 @@ describe('<Tabs />', () => {
       let instance;
       before(() => {
         wrapper = shallow(
-          <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+          <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
             <Tab />
             <Tab />
           </Tabs>,
@@ -527,7 +527,7 @@ describe('<Tabs />', () => {
     const dimensions = { scrollLeft: 100, clientWidth: 200, scrollWidth: 1000 };
     before(() => {
       wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
           <Tab />
           <Tab />
         </Tabs>,
@@ -566,7 +566,7 @@ describe('<Tabs />', () => {
 
     beforeEach(() => {
       const wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable>
+        <Tabs width="md" onChange={noop} value={0} variant="scrollable">
           <Tab />
           <Tab />
         </Tabs>,
