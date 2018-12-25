@@ -52,6 +52,7 @@ function ListItemText(props) {
     primaryTypographyProps,
     secondary: secondaryProp,
     secondaryTypographyProps,
+    theme,
     ...other
   } = props;
 
@@ -62,8 +63,7 @@ function ListItemText(props) {
         if (primary != null && primary.type !== Typography && !disableTypography) {
           primary = (
             <Typography
-              variant="subheading"
-              internalDeprecatedVariant
+              variant={theme.typography.useNextVariants ? 'body1' : 'subheading'}
               className={classNames(classes.primary, { [classes.textDense]: dense })}
               component="span"
               {...primaryTypographyProps}
@@ -153,6 +153,10 @@ ListItemText.propTypes = {
    * (as long as disableTypography is not `true`).
    */
   secondaryTypographyProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
 };
 
 ListItemText.defaultProps = {
@@ -160,4 +164,4 @@ ListItemText.defaultProps = {
   inset: false,
 };
 
-export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);
+export default withStyles(styles, { name: 'MuiListItemText', withTheme: true })(ListItemText);

@@ -52,7 +52,7 @@ describe('<ListItemText />', () => {
       const listItemText = findOutermostIntrinsic(wrapper);
       const typography = listItemText.find(Typography);
       assert.strictEqual(typography.exists(), true);
-      assert.strictEqual(typography.props().variant, 'subheading');
+      assert.strictEqual(typography.props().variant, 'body1');
       assert.strictEqual(wrapper.text(), 'This is the primary text');
     });
 
@@ -109,7 +109,7 @@ describe('<ListItemText />', () => {
       assert.strictEqual(texts.length, 2);
 
       const primaryText = texts.first();
-      assert.strictEqual(primaryText.props().variant, 'subheading');
+      assert.strictEqual(primaryText.props().variant, 'body1');
       assert.strictEqual(primaryText.text(), 'This is the primary text');
 
       const secondaryText = texts.last();

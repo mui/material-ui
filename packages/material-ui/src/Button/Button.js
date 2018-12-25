@@ -13,11 +13,12 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    lineHeight: 1.3125, // To remove with v4.
     ...theme.typography.button,
     boxSizing: 'border-box',
     minWidth: 64,
     minHeight: 36,
-    padding: '8px 16px',
+    padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
@@ -47,7 +48,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="text"`. */
   text: {
-    padding: theme.spacing.unit,
+    padding: '6px 8px',
   },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
@@ -207,16 +208,15 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: '7px 8px',
+    padding: '4px 8px',
     minWidth: 64,
-    minHeight: 32,
+    minHeight: 31,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     padding: '8px 24px',
-    minWidth: 112,
-    minHeight: 40,
+    minHeight: 42,
     fontSize: theme.typography.pxToRem(15),
   },
   /* Styles applied to the root element if `fullWidth={true}`. */
