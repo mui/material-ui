@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-class BadgeVisibility extends Component {
+class BadgeVisibility extends React.Component {
   state = {
     invisible: false,
   };
