@@ -3,14 +3,7 @@ import cx from 'classnames';
 import MuiCard from '@material-ui/core/Card';
 import { CARD } from '../../theme/core';
 
-const Card = ({
-  className,
-  actionable,
-  contained,
-  spaceGrey,
-  darkBlue,
-  ...props
-}) => (
+const Card = ({ className, actionable, contained, spaceGrey, darkBlue, ...props }) => (
   <MuiCard
     className={cx(
       CARD.root,
@@ -18,7 +11,7 @@ const Card = ({
       actionable && CARD.actionable,
       contained && CARD.contained,
       spaceGrey && CARD.spaceGrey,
-      darkBlue && CARD.darkBlue
+      darkBlue && CARD.darkBlue,
     )}
     {...props}
   />

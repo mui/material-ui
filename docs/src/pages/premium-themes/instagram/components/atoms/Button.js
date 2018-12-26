@@ -5,12 +5,7 @@ import { BUTTON } from '../../theme/core';
 
 const Button = ({ className, inverted, danger, ...props }) => (
   <MuiButton
-    className={cx(
-      BUTTON.root,
-      className,
-      inverted && BUTTON.inverted,
-      danger && BUTTON.danger,
-    )}
+    className={cx(BUTTON.root, className, inverted && BUTTON.inverted, danger && BUTTON.danger)}
     {...props}
   />
 );

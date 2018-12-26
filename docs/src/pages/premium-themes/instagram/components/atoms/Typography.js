@@ -28,7 +28,7 @@ const Typography = ({
       inverted && TEXT.inverted,
       indented && TEXT.indented,
       light && TEXT.light,
-      lightWeight && TEXT.lightWeight
+      lightWeight && TEXT.lightWeight,
     )}
     {...props}
   />

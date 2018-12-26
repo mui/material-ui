@@ -1,11 +1,4 @@
-export default ({
-  attach,
-  nest,
-  ICON,
-  ICON_BUTTON,
-  linkInverted,
-  muiBaseTheme,
-}) => ({
+export default ({ attach, nest, ICON, ICON_BUTTON, linkInverted, muiBaseTheme }) => ({
   MuiIconButton: {
     root: {
       padding: 8,

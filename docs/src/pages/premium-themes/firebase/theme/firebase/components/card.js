@@ -47,8 +47,7 @@ export default ({ primary, white }) => ({
           background: '#172568',
         },
         '&:hover': {
-          boxShadow:
-            '0 1px 3px 0 rgba(60,64,67,.3),0 4px 8px 3px rgba(60,64,67,.15)',
+          boxShadow: '0 1px 3px 0 rgba(60,64,67,.3),0 4px 8px 3px rgba(60,64,67,.15)',
         },
         '& .card-media__root': {
           borderBottom: '1px solid rgba(255,255,255,.2)',

@@ -13,8 +13,7 @@ req.keys().forEach(filename => {
 const muiTheme = {
   typography: {
     useNextVariants: true,
-    fontFamily:
-      '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
   },
   palette: {
     primary,

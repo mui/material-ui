@@ -80,7 +80,7 @@ const themes = [
   },
   {
     name: 'Instagram',
-    description: 'Instagram\'s profile page by customizing material-ui theme',
+    description: "Instagram's profile page by customizing material-ui theme",
     src: '/static/themes/instagram.png',
     price: 'FREE',
     category: 'Profile page',

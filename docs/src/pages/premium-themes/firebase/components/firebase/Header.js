@@ -36,12 +36,7 @@ const Header = () => {
       </AppBar>
       <AppBar color={'primary'} position={'static'} elevation={0}>
         <Toolbar narrow>
-          <Grid
-            container
-            spacing={16}
-            justify={'flex-end'}
-            alignItems={'center'}
-          >
+          <Grid container spacing={16} justify={'flex-end'} alignItems={'center'}>
             <Grid item>
               <Typography linkInverted>Go to docs</Typography>
             </Grid>
@@ -73,12 +68,7 @@ const Header = () => {
       </AppBar>
       <AppBar color={'primary'} position={'static'} elevation={0}>
         <Toolbar narrow>
-          <Grid
-            container
-            spacing={16}
-            justify={'space-between'}
-            alignItems={'center'}
-          >
+          <Grid container spacing={16} justify={'space-between'} alignItems={'center'}>
             <Grid item>
               <Typography gutterBottom color={'inherit'} variant={'h5'}>
                 Authentication

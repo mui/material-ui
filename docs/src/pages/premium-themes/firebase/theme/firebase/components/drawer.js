@@ -30,9 +30,9 @@ export default ({
           background: 'rgba(255,255,255,.08)',
         },
         [`&.${LIST_ITEM.active}`]: {
-          [`& .${LIST_ITEM_ICON.subcategory} *, .${
-            LIST_ITEM_TEXT.subcategory
-          } .${LIST_ITEM_TEXT.primary}`]: {
+          [`& .${LIST_ITEM_ICON.subcategory} *, .${LIST_ITEM_TEXT.subcategory} .${
+            LIST_ITEM_TEXT.primary
+          }`]: {
             color: primary.light,
           },
         },

@@ -31,12 +31,7 @@ const Content = () => {
       })}
     >
       <Paper className={'paper--of-hidden'}>
-        <AppBar
-          position="static"
-          color={'default'}
-          className={'app-bar--shaded'}
-          elevation={0}
-        >
+        <AppBar position="static" color={'default'} className={'app-bar--shaded'} elevation={0}>
           <Toolbar>
             <Grid container spacing={16} alignItems="center">
               <Grid item>
@@ -91,28 +86,18 @@ const Content = () => {
               <img
                 style={{ maxWidth: 192 }}
                 alt={'authen-sticker'}
-                src={
-                  'https://www.gstatic.com/mobilesdk/160505_mobilesdk/zerostate/2x/auth.png'
-                }
+                src={'https://www.gstatic.com/mobilesdk/160505_mobilesdk/zerostate/2x/auth.png'}
               />
             </Grid>
             <Grid item xs={4}>
-              <Typography
-                variant={'h6'}
-                style={{ fontWeight: 400, marginTop: 24 }}
-              >
-                Authenticate and manage users from a variety of providers
-                without server-side code
+              <Typography variant={'h6'} style={{ fontWeight: 400, marginTop: 24 }}>
+                Authenticate and manage users from a variety of providers without server-side code
               </Typography>
               <Typography className={'text--icon text--link text--inline'}>
                 <Notification className={'icon--small'} />
                 Learn more
               </Typography>
-              <Typography
-                className={
-                  'text--icon text--link text--inline text--indented-lg'
-                }
-              >
+              <Typography className={'text--icon text--link text--inline text--indented-lg'}>
                 <Subject className={'icon--small'} />
                 View the docs
               </Typography>
@@ -127,8 +112,7 @@ const Content = () => {
               >
                 <Info color={'inherit'} />
                 <Typography className={'text--inline text--indented'} color={'inherit'}>
-                  To manage Authentication, ask a project owner for the
-                  necessary permissions
+                  To manage Authentication, ask a project owner for the necessary permissions
                 </Typography>
               </div>
             </Grid>

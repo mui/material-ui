@@ -24,7 +24,7 @@ const ListItem = ({
         headerActionable && LIST_ITEM.headerActionable,
         subcategory && LIST_ITEM.subcategory,
         category && LIST_ITEM.category,
-        active && LIST_ITEM.active
+        active && LIST_ITEM.active,
       )}
       {...props}
     />

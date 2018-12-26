@@ -1,12 +1,4 @@
-export default ({
-  attach,
-  linked,
-  linkInverted,
-  muiBaseTheme,
-  primary,
-  white,
-  ICON,
-}) => {
+export default ({ attach, linked, linkInverted, muiBaseTheme, primary, white, ICON }) => {
   const root = {
     [attach(ICON.linkInverted)]: linkInverted,
     [attach(ICON.link)]: {

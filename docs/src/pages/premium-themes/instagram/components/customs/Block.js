@@ -41,7 +41,7 @@ const mapProperties = (property, value) =>
       ...prev,
       [curr]: value,
     }),
-    {}
+    {},
   );
 
 const mapPropsToStyles = props => {
@@ -49,10 +49,7 @@ const mapPropsToStyles = props => {
   const keys = Object.keys(props);
   const validKeys = keys.filter(isValidProperty);
   // map properties to style
-  return validKeys.reduce(
-    (prev, curr) => ({ ...prev, ...mapProperties(curr, props[curr]) }),
-    {}
-  );
+  return validKeys.reduce((prev, curr) => ({ ...prev, ...mapProperties(curr, props[curr]) }), {});
 };
 
 const Block = styled('div')(mapPropsToStyles);

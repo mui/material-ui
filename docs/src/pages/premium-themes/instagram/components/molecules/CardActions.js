@@ -5,11 +5,7 @@ import { CARD_ACTIONS } from '../../theme/core';
 
 const CardActions = ({ className, contained, ...props }) => (
   <MuiCardActions
-    className={cx(
-      CARD_ACTIONS.root,
-      className,
-      contained && CARD_ACTIONS.contained
-    )}
+    className={cx(CARD_ACTIONS.root, className, contained && CARD_ACTIONS.contained)}
     classes={{
       action: CARD_ACTIONS.action,
     }}

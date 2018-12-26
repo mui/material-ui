@@ -1,13 +1,4 @@
-export default ({
-  attach,
-  nest,
-  linked,
-  linkInverted,
-  muiBaseTheme,
-  primary,
-  TEXT,
-  ICON,
-}) => ({
+export default ({ attach, nest, linked, linkInverted, muiBaseTheme, primary, TEXT, ICON }) => ({
   MuiTypography: {
     root: {
       [attach(TEXT.link)]: {
