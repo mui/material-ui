@@ -1,0 +1,51 @@
+{
+  "name": "@material-ui/system",
+  "private": false,
+  "author": "Material-UI Team",
+  "version": "3.0.0-alpha.0",
+  "description": "Material-UI System - Design system for Material-UI.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-system",
+  "scripts": {
+    "prebuild": "rimraf build",
+    "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore *.test.js",
+    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
+    "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
+    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
+    "release": "yarn build && npm publish build",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-system/**/*.test.js'"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.1.2",
+    "deepmerge": "^2.0.1",
+    "warning": "^4.0.1"
+  },
+  "devDependencies": {},
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

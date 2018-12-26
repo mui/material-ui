@@ -13,8 +13,9 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-benchmark",
   "scripts": {
     "test": "exit 0",
-    "benchmark": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/benchmark.js",
-    "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js"
+    "core": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/core.js --inspect=0.0.0.0:9229",
+    "system": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/system.js --inspect=0.0.0.0:9229",
+    "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js --inspect=0.0.0.0:9229"
   },
   "devDependencies": {},
   "engines": {
@@ -23,9 +24,10 @@
   "license": "MIT",
   "dependencies": {
     "benchmark": "^2.1.4",
-    "emotion": "^9.2.12",
-    "emotion-server": "^9.2.12",
     "nodemod": "^1.5.19",
-    "react-emotion": "^9.2.12"
+    "styled-system": "^3.1.11",
+    "styletron-engine-atomic": "^1.0.13",
+    "styletron-react": "^4.4.4",
+    "ui-box": "^1.4.0"
   }
 }

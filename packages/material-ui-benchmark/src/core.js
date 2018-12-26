@@ -1,13 +1,13 @@
 /* eslint-disable no-console, no-underscore-dangle */
 
+import './bootstrap';
 import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import styled, { ServerStyleSheet } from 'styled-components';
 import ReactDOMServer from 'react-dom/server';
-import styledEmotion from 'react-emotion';
-import { renderStylesToString } from 'emotion-server';
+import styledEmotion from '@emotion/styled';
 import { withStyles, makeStyles, ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -189,7 +189,7 @@ suite
     ReactDOMServer.renderToString(sheet.collectStyles(<StyledButton>Material-UI</StyledButton>));
   })
   .add('EmotionButton', () => {
-    renderStylesToString(ReactDOMServer.renderToString(<EmotionButton>Material-UI</EmotionButton>));
+    ReactDOMServer.renderToString(<EmotionButton>Material-UI</EmotionButton>);
   })
   .add('Markdown', () => {
     ReactDOMServer.renderToString(<Markdown>{markdown}</Markdown>);

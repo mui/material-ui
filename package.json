@@ -138,10 +138,10 @@
     "prettier": "^1.8.2",
     "puppeteer": "^1.5.0",
     "raw-loader": "^0.5.1",
-    "react": "^16.7.0-alpha.0",
+    "react": "next",
     "react-autosuggest": "^9.3.2",
     "react-docgen": "^3.0.0-beta10",
-    "react-dom": "^16.7.0-alpha.0",
+    "react-dom": "next",
     "react-draggable": "^3.0.5",
     "react-final-form": "^4.0.2",
     "react-frame-component": "^4.0.2",
@@ -170,9 +170,9 @@
     "rollup-plugin-uglify": "^6.0.0",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
-    "styled-components": "^4.0.0",
+    "styled-components": "^4.1.1",
     "tslint": "^5.11.0",
-    "typescript": "^3.0.0",
+    "typescript": "3.1.6",
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
@@ -202,5 +202,6 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {}
 }

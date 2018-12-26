@@ -13,6 +13,7 @@ module.exports = {
       '@material-ui/lab': path.resolve(__dirname, '../packages/material-ui-lab/src'),
       '@material-ui/styles': path.resolve(__dirname, '../packages/material-ui-styles/src'),
       '@material-ui/utils': path.resolve(__dirname, '../packages/material-ui-utils/src'),
+      '@material-ui/system': path.resolve(__dirname, '../packages/material-ui-system/src'),
       docs: path.resolve(__dirname, '../docs'),
     },
   },

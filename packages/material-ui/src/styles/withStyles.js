@@ -158,6 +158,7 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
         this.stylesCreatorSaved,
         this.theme,
       );
+
       if (sheetManager.sheet.classes !== this.cacheClasses.lastJSS) {
         this.cacheClasses.lastJSS = sheetManager.sheet.classes;
         generate = true;
