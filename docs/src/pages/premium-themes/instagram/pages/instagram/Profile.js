@@ -71,12 +71,7 @@ class ProfilePage extends React.Component {
                 </Grid>
                 <Grid item style={{ flexGrow: 2 }}>
                   <div className={classes.wrapper}>
-                    <Typography
-                      component={'h1'}
-                      variant={'h4'}
-                      inline
-                      lightWeight
-                    >
+                    <Typography component={'h1'} variant={'h4'} inline lightWeight>
                       siriwatknp
                     </Typography>
                     <div className={classes.editButton}>
@@ -110,9 +105,7 @@ class ProfilePage extends React.Component {
                   <Typography variant={'subtitle1'} bold>
                     Siriwat Kunaporn
                   </Typography>
-                  <Typography variant={'subtitle1'}>
-                    Bangkok Christian College
-                  </Typography>
+                  <Typography variant={'subtitle1'}>Bangkok Christian College</Typography>
                   <Typography variant={'subtitle1'}>CU intania 96.</Typography>
                 </Grid>
               </Grid>
@@ -122,17 +115,9 @@ class ProfilePage extends React.Component {
               centered
               onChange={(e, value) => this.setState({ tabIndex: value })}
             >
-              <Tab
-                label="Posts"
-                disableRipple
-                icon={<Icon>grid_on_outlined</Icon>}
-              />
+              <Tab label="Posts" disableRipple icon={<Icon>grid_on_outlined</Icon>} />
               <Tab label="IGTV" disableRipple icon={<Icon>live_tv</Icon>} />
-              <Tab
-                label="Saved"
-                disableRipple
-                icon={<Icon>bookmark_border_outlined</Icon>}
-              />
+              <Tab label="Saved" disableRipple icon={<Icon>bookmark_border_outlined</Icon>} />
               <Tab label="Tagged" disableRipple />
             </Tabs>
             <Grid container spacing={32}>
