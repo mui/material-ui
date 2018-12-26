@@ -1,11 +1,8 @@
 import React from 'react';
-
 import AppBar from '@material-ui/core/AppBar';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-
 import Search from '@material-ui/icons/Search';
-
 import atoms from '../atoms';
 import molecules from '../molecules';
 

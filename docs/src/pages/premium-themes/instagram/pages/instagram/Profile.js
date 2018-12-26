@@ -1,18 +1,47 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid/Grid';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import customs from '../../components/customs';
 import atoms from '../../components/atoms';
 import molecules from '../../components/molecules';
 import Header from '../../components/instagram/Header';
 import theme from '../../theme/instagram/instagramTheme';
 import withTheme from './withTheme';
 
-const { Block } = customs;
 const { Avatar, Icon, Typography } = atoms;
 const { Tabs, Tab } = molecules;
+
+const styles = () => ({
+  container: {
+    width: '100vw',
+    minHeight: '100vh',
+    backgroundColor: '#fafafa',
+  },
+  content: {
+    maxWidth: 935,
+    margin: 'auto',
+    padding: '60px 20px 0',
+  },
+  profile: {
+    marginBottom: 44,
+  },
+  wrapper: {
+    marginBottom: 20,
+    display: 'flex',
+    alignItems: 'center',
+  },
+  editButton: {
+    marginLeft: 20,
+  },
+  settings: {
+    marginLeft: 5,
+  },
+  stat: {
+    marginBottom: 20,
+  },
+});
 
 class ProfilePage extends React.Component {
   state = {
@@ -21,38 +50,39 @@ class ProfilePage extends React.Component {
 
   render() {
     const { tabIndex } = this.state;
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <CssBaseline />
-        <Block width={'100vw'} minHeight={'100vh'} backgroundColor={'#fafafa'}>
+        <div className={classes.container}>
           <Header />
-          <Block maxWidth={935} m={'auto'} p={'60px 20px 0'}>
-            <Block mb={44}>
+          <div className={classes.content}>
+            <div className={classes.profile}>
               <Grid container>
                 <Grid item style={{ flexGrow: 1 }}>
                   <Avatar
-                    style={{ margin: 'auto' }}
                     ultraLarge
+                    style={{ margin: 'auto' }}
                     src={
                       'https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg'
                     }
                   />
                 </Grid>
                 <Grid item style={{ flexGrow: 2 }}>
-                  <Block mb={20} display={'flex'} alignItems={'center'}>
+                  <div className={classes.wrapper}>
                     <Typography component={'h1'} variant={'h4'} inline lightWeight>
                       siriwatknp
                     </Typography>
-                    <Block ml={20}>
+                    <div className={classes.editButton}>
                       <Button variant={'outlined'}>Edit Profile</Button>
-                    </Block>
-                    <Block ml={5}>
+                    </div>
+                    <div className={classes.settings}>
                       <IconButton>
                         <Icon>settings</Icon>
                       </IconButton>
-                    </Block>
-                  </Block>
-                  <Block mb={20}>
+                    </div>
+                  </div>
+                  <div className={classes.stat}>
                     <Grid container spacing={40}>
                       <Grid item>
                         <Typography variant={'subtitle1'} inline>
@@ -70,7 +100,7 @@ class ProfilePage extends React.Component {
                         </Typography>{' '}
                       </Grid>
                     </Grid>
-                  </Block>
+                  </div>
                   <Typography variant={'subtitle1'} bold>
                     Siriwat Kunaporn
                   </Typography>
@@ -78,7 +108,7 @@ class ProfilePage extends React.Component {
                   <Typography variant={'subtitle1'}>CU intania 96.</Typography>
                 </Grid>
               </Grid>
-            </Block>
+            </div>
             <Tabs
               value={tabIndex}
               centered
@@ -154,11 +184,11 @@ class ProfilePage extends React.Component {
                 />
               </Grid>
             </Grid>
-          </Block>
-        </Block>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
 }
 
-export default withTheme(theme)(ProfilePage);
+export default withTheme(theme)(withStyles(styles)(ProfilePage));
