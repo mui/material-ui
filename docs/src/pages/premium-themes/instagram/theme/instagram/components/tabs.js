@@ -1,4 +1,4 @@
-export default ({ muiBaseTheme, nest, ICON }) => ({
+export default ({ attach, muiBaseTheme, nest, ICON, TAB }) => ({
   MuiTabs: {
     root: {
       borderTop: '1px solid #efefef',
@@ -23,9 +23,18 @@ export default ({ muiBaseTheme, nest, ICON }) => ({
       [muiBaseTheme.breakpoints.up('md')]: {
         minWidth: 0,
       },
+      [attach(TAB.selected)]: {
+        [nest(TAB.label)]: {
+          fontWeight: 600,
+        },
+        '& *': {
+          color: '#262626 !important',
+        },
+      },
     },
     labelIcon: {
       minHeight: 53,
+      paddingTop: 0,
       '& .MuiTab-wrapper': {
         flexDirection: 'row',
       },
@@ -49,12 +58,8 @@ export default ({ muiBaseTheme, nest, ICON }) => ({
       },
     },
     label: {
+      letterSpacing: '1px',
       textTransform: 'uppercase',
-    },
-    selected: {
-      '& *': {
-        color: '#262626 !important',
-      },
     },
   },
 });

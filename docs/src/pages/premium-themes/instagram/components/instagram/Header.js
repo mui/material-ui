@@ -21,7 +21,7 @@ const Header = () => (
   <AppBar position={'sticky'} color={'default'} elevation={0}>
     <Toolbar narrow>
       <Grid container alignItems={'center'}>
-        <Grid item xs flex alignItems={'center'}>
+        <Grid item xs flex style={{ alignItems: 'center' }}>
           <img alt={'logo'} src={logo} className={'image__instagram-logo'} />
           <Divider vertical />
           <img alt={'label'} className={'image__instagram-label'} src={label} />
@@ -31,7 +31,6 @@ const Header = () => (
             variant={'outlined'}
             placeholder={'Search'}
             InputProps={{
-              disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
                   <Search />
@@ -40,7 +39,7 @@ const Header = () => (
             }}
           />
         </Grid>
-        <Grid item xs flex justify={'flex-end'}>
+        <Grid item xs flex style={{ justifyContent: 'flex-end' }}>
           <Icon link>explore_outlined</Icon>
           <Icon link>favorite_border_rounded</Icon>
           <Icon link>person_outlined</Icon>

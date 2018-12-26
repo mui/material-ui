@@ -140,6 +140,12 @@ export const TABS = {
   indicator: 'tabs__indicator',
 };
 
+export const TAB = {
+  root: 'tab__root',
+  label: 'tab__label',
+  selected: 'tab--selected',
+};
+
 export const TEXT = {
   root: 'text__root',
   bold: 'text--bold',
@@ -179,6 +185,7 @@ export default {
   ICON,
   ICON_BUTTON,
   TABS,
+  TAB,
   TOOLBAR,
   TEXT,
   attach,
