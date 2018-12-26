@@ -1,21 +1,17 @@
 import React from 'react';
-
-import Avatar from '@material-ui/core/Avatar/Avatar';
 import Button from '@material-ui/core/Button/Button';
 import Grid from '@material-ui/core/Grid/Grid';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import customs from '../../components/customs';
 import atoms from '../../components/atoms';
 import molecules from '../../components/molecules';
-
 import Header from '../../components/instagram/Header';
 import theme from '../../theme/instagram/instagramTheme';
 import withTheme from './withTheme';
 
 const { Block } = customs;
-const { Icon, Typography } = atoms;
+const { Avatar, Icon, Typography } = atoms;
 const { Tabs, Tab } = molecules;
 
 class ProfilePage extends React.Component {
@@ -36,7 +32,7 @@ class ProfilePage extends React.Component {
                 <Grid item style={{ flexGrow: 1 }}>
                   <Avatar
                     style={{ margin: 'auto' }}
-                    className={'avatar--ultra-large'}
+                    ultraLarge
                     src={
                       'https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg'
                     }
@@ -44,18 +40,11 @@ class ProfilePage extends React.Component {
                 </Grid>
                 <Grid item style={{ flexGrow: 2 }}>
                   <Block mb={20} display={'flex'} alignItems={'center'}>
-                    <Typography
-                      component={'h1'}
-                      variant={'h4'}
-                      inline
-                      lightWeight
-                    >
+                    <Typography component={'h1'} variant={'h4'} inline lightWeight>
                       siriwatknp
                     </Typography>
                     <Block ml={20}>
-                      <Button variant={'outlined'}>
-                        Edit Profile
-                      </Button>
+                      <Button variant={'outlined'}>Edit Profile</Button>
                     </Block>
                     <Block ml={5}>
                       <IconButton>
@@ -85,9 +74,7 @@ class ProfilePage extends React.Component {
                   <Typography variant={'subtitle1'} bold>
                     Siriwat Kunaporn
                   </Typography>
-                  <Typography variant={'subtitle1'}>
-                    Bangkok Christian College
-                  </Typography>
+                  <Typography variant={'subtitle1'}>Bangkok Christian College</Typography>
                   <Typography variant={'subtitle1'}>CU intania 96.</Typography>
                 </Grid>
               </Grid>
@@ -97,17 +84,9 @@ class ProfilePage extends React.Component {
               centered
               onChange={(e, value) => this.setState({ tabIndex: value })}
             >
-              <Tab
-                label="Posts"
-                disableRipple
-                icon={<Icon>grid_on_outlined</Icon>}
-              />
+              <Tab label="Posts" disableRipple icon={<Icon>grid_on_outlined</Icon>} />
               <Tab label="IGTV" disableRipple icon={<Icon>live_tv</Icon>} />
-              <Tab
-                label="Saved"
-                disableRipple
-                icon={<Icon>bookmark_border_outlined</Icon>}
-              />
+              <Tab label="Saved" disableRipple icon={<Icon>bookmark_border_outlined</Icon>} />
               <Tab label="Tagged" disableRipple />
             </Tabs>
             <Grid container spacing={32}>

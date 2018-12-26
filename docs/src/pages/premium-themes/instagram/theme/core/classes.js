@@ -9,6 +9,7 @@ export const APP_BAR = {
 export const AVATAR = {
   root: 'avatar__root',
   small: 'avatar--small',
+  ultraLarge: 'avatar--ultra-large',
 };
 
 export const BADGE = {
