@@ -172,9 +172,9 @@
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "4.20.2",
+    "webpack": "^4.20.2",
     "webpack-bundle-analyzer": "^3.0.0",
-    "webpack-cli": "^3.1.0",
+    "webpack-cli": "^3.1.2",
     "workbox-build": "^3.6.3"
   },
   "resolutions": {
@@ -198,5 +198,11 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@material-ui/core": "^3.7.0",
+    "marked": "^0.5.2",
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.15.0"
+  }
 }
