@@ -75,7 +75,7 @@ export const styles = theme => ({
   /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positionned.
+    // is absolutely positioned.
     paddingRight: 32,
   },
   /* Styles applied to the root element if `selected={true}`. */

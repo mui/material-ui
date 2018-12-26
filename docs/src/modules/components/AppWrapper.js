@@ -4,15 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import url from 'url';
-import acceptLanguage from 'accept-language';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
-import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
-
-acceptLanguage.languages(['en', 'zh']);
+import acceptLanguage from 'accept-language';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -30,6 +27,96 @@ function themeSideEffect(reduxTheme) {
   document.body.dir = reduxTheme.direction;
 }
 
+class SideEffectsRaw extends React.Component {
+  componentDidMount() {
+    const { options } = this.props;
+
+    acceptLanguage.languages(['en', 'zh']);
+    const URL = url.parse(document.location.href, true);
+    const userLanguage = acceptLanguage.get(
+      URL.query.lang || getCookie('lang') || navigator.language || 'en',
+    );
+    const codeVariant = getCookie('codeVariant');
+
+    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
+      this.props.dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          userLanguage,
+          codeVariant,
+        },
+      });
+    }
+  }
+
+  render() {
+    return null;
+  }
+}
+
+SideEffectsRaw.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  options: PropTypes.object.isRequired,
+};
+
+const SideEffects = connect(state => ({
+  options: state.options,
+}))(SideEffectsRaw);
+
+// Inspired by
+// https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
+function forcePageReload(registration) {
+  // console.log('already controlled?', Boolean(navigator.serviceWorker.controller));
+
+  if (!navigator.serviceWorker.controller) {
+    // The window client isn't currently controlled so it's a new service
+    // worker that will activate immediately.
+    return;
+  }
+
+  // console.log('registration waiting?', Boolean(registration.waiting));
+  if (registration.waiting) {
+    // SW is waiting to activate. Can occur if multiple clients open and
+    // one of the clients is refreshed.
+    registration.waiting.postMessage('skipWaiting');
+    return;
+  }
+
+  function listenInstalledStateChange() {
+    registration.installing.addEventListener('statechange', event => {
+      // console.log('statechange', event.target.state);
+      if (event.target.state === 'installed' && registration.waiting) {
+        // A new service worker is available, inform the user
+        registration.waiting.postMessage('skipWaiting');
+      } else if (event.target.state === 'activated') {
+        // window.location.reload();
+      }
+    });
+  }
+
+  if (registration.installing) {
+    listenInstalledStateChange();
+    return;
+  }
+
+  // We are currently controlled so a new SW may be found...
+  // Add a listener in case a new SW is found,
+  registration.addEventListener('updatefound', listenInstalledStateChange);
+}
+
+async function registerServiceWorker() {
+  if (
+    'serviceWorker' in navigator &&
+    process.env.NODE_ENV === 'production' &&
+    window.location.host.indexOf('material-ui.com') <= 0
+  ) {
+    // register() automatically attempts to refresh the sw.js.
+    const registration = await navigator.serviceWorker.register('/sw.js');
+    // Force the page reload for users.
+    forcePageReload(registration);
+  }
+}
+
 class AppWrapper extends React.Component {
   state = {};
 
@@ -42,15 +129,7 @@ class AppWrapper extends React.Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    if (
-      'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production' &&
-      window.location.host.indexOf('material-ui.com') <= 0
-    ) {
-      navigator.serviceWorker.register('/sw.js');
-    }
-
-    const { options, reduxTheme } = this.props;
+    const { reduxTheme } = this.props;
 
     const paletteType = getCookie('paletteType');
     const paletteColors = getCookie('paletteColors');
@@ -65,22 +144,7 @@ class AppWrapper extends React.Component {
       });
     }
 
-    const URL = url.parse(document.location.href, true);
-    const userLanguage = acceptLanguage.get(
-      URL.query.lang || getCookie('lang') || navigator.language || 'en',
-    );
-
-    const codeVariant = getCookie('codeVariant');
-
-    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
-      this.props.dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          userLanguage,
-          codeVariant,
-        },
-      });
-    }
+    registerServiceWorker();
   }
 
   componentDidUpdate() {
@@ -91,7 +155,7 @@ class AppWrapper extends React.Component {
     if (typeof prevState.pageContext === 'undefined') {
       return {
         prevProps: nextProps,
-        pageContext: nextProps.pageContext || getPageContext(),
+        pageContext: nextProps.pageContext,
       };
     }
 
@@ -112,7 +176,7 @@ class AppWrapper extends React.Component {
   }
 
   render() {
-    const { children, options } = this.props;
+    const { children } = this.props;
     const { pageContext } = this.state;
 
     return (
@@ -122,12 +186,8 @@ class AppWrapper extends React.Component {
         sheetsManager={pageContext.sheetsManager}
         sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <ThemeProvider theme={pageContext.theme}>
-          {React.cloneElement(children, {
-            lang: options.userLanguage === 'en' ? '' : `-${options.userLanguage}`,
-          })}
-        </ThemeProvider>
-        <GoogleAnalytics />
+        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+        <SideEffects />
       </StylesProvider>
     );
   }
@@ -136,13 +196,11 @@ class AppWrapper extends React.Component {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dispatch: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   reduxTheme: PropTypes.object.isRequired,
 };
 
 export default connect(state => ({
-  options: state.options,
   reduxTheme: state.theme,
 }))(AppWrapper);

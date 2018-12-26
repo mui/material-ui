@@ -3,23 +3,12 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/utils/no-ssr', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/utils/no-ssr', false, /\.js$/);
+const reqPrefix = 'pages/utils/no-ssr';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./no-ssr${props.lang}.md`)}
-      demos={{
-        'pages/utils/no-ssr/SimpleNoSsr.js': {
-          js: require('docs/src/pages/utils/no-ssr/SimpleNoSsr').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/no-ssr/SimpleNoSsr'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

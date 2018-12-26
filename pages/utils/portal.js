@@ -3,23 +3,12 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/utils/portal', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/utils/portal', false, /\.js$/);
+const reqPrefix = 'pages/utils/portal';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./portal${props.lang}.md`)}
-      demos={{
-        'pages/utils/portal/SimplePortal.js': {
-          js: require('docs/src/pages/utils/portal/SimplePortal').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/portal/SimplePortal'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

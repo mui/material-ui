@@ -3,37 +3,16 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/style/typography', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/style/typography',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/style/typography';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./typography${props.lang}.md`)}
-      demos={{
-        'pages/style/typography/Types.js': {
-          js: require('docs/src/pages/style/typography/Types').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/typography/Types'), 'utf8')
-`,
-        },
-        'pages/style/typography/DeprecatedTypes.js': {
-          js: require('docs/src/pages/style/typography/DeprecatedTypes').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/typography/DeprecatedTypes'), 'utf8')
-`,
-        },
-        'pages/style/typography/TypographyTheme.js': {
-          js: require('docs/src/pages/style/typography/TypographyTheme').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/typography/TypographyTheme'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

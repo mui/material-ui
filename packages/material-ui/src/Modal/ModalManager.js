@@ -66,7 +66,7 @@ function removeContainerStyle(data) {
 /**
  * @ignore - do not document.
  *
- * Proper state managment for containers and the modals in those containers.
+ * Proper state management for containers and the modals in those containers.
  * Simplified, but inspired by react-overlay's ModalManager class.
  * Used by the Modal to ensure proper styling of containers.
  */
@@ -160,7 +160,7 @@ class ModalManager {
       }
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
-      // Otherwise make sure the next top modal is visible to a screan reader.
+      // Otherwise make sure the next top modal is visible to a screen reader.
       const nextTop = data.modals[data.modals.length - 1];
       // as soon as a modal is adding its modalRef is undefined. it can't set
       // aria-hidden because the dom element doesn't exist either

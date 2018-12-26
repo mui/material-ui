@@ -56,7 +56,7 @@ class SelectInput extends React.Component {
     }
 
     this.setState({
-      // Perfom the layout computation outside of the render method.
+      // Perform the layout computation outside of the render method.
       menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
       open,
     });
@@ -298,7 +298,7 @@ class SelectInput extends React.Component {
           onFocus={onFocus}
           {...SelectDisplayProps}
         >
-          {/* So the vertical align positioning algorithm quicks in. */}
+          {/* So the vertical align positioning algorithm kicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
           {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>

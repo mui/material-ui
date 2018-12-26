@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-// This variable will be true once the server-side hydratation is completed.
-let hydratationCompleted = false;
+// This variable will be true once the server-side hydration is completed.
+let hydrationCompleted = false;
 
 function useMounted() {
   const mountedRef = React.useRef(false);
@@ -32,7 +32,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
   if (mounted) {
     // Once the component is mounted, we rely on the
     // event listeners to return the correct matches value.
-  } else if (hydratationCompleted || noSsr) {
+  } else if (hydrationCompleted || noSsr) {
     defaultMatches = window.matchMedia(query).matches;
   } else if (ssrMatchMedia) {
     defaultMatches = ssrMatchMedia(query).matches;
@@ -48,7 +48,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 
   React.useEffect(
     () => {
-      hydratationCompleted = true;
+      hydrationCompleted = true;
 
       const queryList = window.matchMedia(query);
       if (matches !== queryList.matches) {
@@ -71,7 +71,7 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 }
 
 export function testReset() {
-  hydratationCompleted = false;
+  hydrationCompleted = false;
 }
 
 export default unstable_useMediaQuery;

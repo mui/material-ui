@@ -43,7 +43,7 @@ describe('unstable_useMediaQueryTheme', () => {
     mount.cleanUp();
   });
 
-  it('should use the ssr match media ponlyfill', done => {
+  it('should use the ssr match media ponyfill', done => {
     function MyComponent() {
       const matches = unstable_useMediaQueryTheme('(min-width:2000px)');
       values(matches);

@@ -13,6 +13,7 @@ import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
+import deprecatedPropType from '../utils/deprecatedPropType';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -25,7 +26,7 @@ export const styles = theme => ({
   flexContainer: {
     display: 'flex',
   },
-  /* Styles applied to the flex container element if `centered={true}` & `scrollable={false}`. */
+  /* Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: {
     justifyContent: 'center',
   },
@@ -36,12 +37,12 @@ export const styles = theme => ({
     flex: '1 1 auto',
     whiteSpace: 'nowrap',
   },
-  /* Styles applied to the tablist element if `scrollable={false}`. */
+  /* Styles applied to the tablist element if `!variant="scrollable"`. */
   fixed: {
     overflowX: 'hidden',
     width: '100%',
   },
-  /* Styles applied to the tablist element if `scrollable={true}`. */
+  /* Styles applied to the tablist element if `variant="scrollable"`. */
   scrollable: {
     overflowX: 'scroll',
   },
@@ -112,8 +113,16 @@ class Tabs extends React.Component {
   }
 
   getConditionalElements = () => {
-    const { classes, scrollable, ScrollButtonComponent, scrollButtons, theme } = this.props;
+    const {
+      classes,
+      scrollable: deprecatedScrollable,
+      ScrollButtonComponent,
+      scrollButtons,
+      theme,
+      variant,
+    } = this.props;
     const conditionalElements = {};
+    const scrollable = variant === 'scrollable' || deprecatedScrollable;
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize onChange={this.handleScrollbarSizeChange} />
     ) : null;
@@ -234,7 +243,8 @@ class Tabs extends React.Component {
   };
 
   updateScrollButtonState = () => {
-    const { scrollable, scrollButtons, theme } = this.props;
+    const { scrollable: deprecatedScrollable, scrollButtons, theme, variant } = this.props;
+    const scrollable = variant === 'scrollable' || deprecatedScrollable;
 
     if (scrollable && scrollButtons !== 'off') {
       const { scrollWidth, clientWidth } = this.tabsRef;
@@ -293,22 +303,25 @@ class Tabs extends React.Component {
       classes,
       className: classNameProp,
       component: Component,
-      fullWidth,
+      fullWidth = false,
       indicatorColor,
       onChange,
-      scrollable,
+      scrollable: deprecatedScrollable = false,
       ScrollButtonComponent,
       scrollButtons,
       TabIndicatorProps = {},
       textColor,
       theme,
       value,
+      variant,
       ...other
     } = this.props;
 
+    const scrollable = variant === 'scrollable' || deprecatedScrollable;
+
     warning(
       !centered || !scrollable,
-      'Material-UI: you can not use the `centered={true}` and `scrollable={true}` properties ' +
+      'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
         'at the same time on a `Tabs` component.',
     );
 
@@ -354,7 +367,7 @@ class Tabs extends React.Component {
 
       childIndex += 1;
       return React.cloneElement(child, {
-        fullWidth,
+        fullWidth: variant === 'fullWidth' || fullWidth,
         indicator: selected && !this.state.mounted && indicator,
         selected,
         onChange,
@@ -427,7 +440,7 @@ Tabs.propTypes = {
    * If `true`, the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
    */
-  fullWidth: PropTypes.bool,
+  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead, use the `variant="fullWidth"` property.'),
   /**
    * Determines the color of the indicator.
    */
@@ -443,7 +456,10 @@ Tabs.propTypes = {
    * True invokes scrolling properties and allow for horizontally scrolling
    * (or swiping) the tab bar.
    */
-  scrollable: PropTypes.bool,
+  scrollable: deprecatedPropType(
+    PropTypes.bool,
+    'Instead, use the `variant="scrollable"` property.',
+  ),
   /**
    * The component used to render the scroll buttons.
    */
@@ -472,14 +488,20 @@ Tabs.propTypes = {
    * If you don't want any selected `Tab`, you can set this property to `false`.
    */
   value: PropTypes.any,
+  /**
+   *  Determines additional display behavior of the tabs:
+   *  - `scrollable` will invoke scrolling properties and allow for horizontally
+   *  scrolling (or swiping) of the tab bar.
+   *  -`fullWidth` will make the tabs grow to use all the available space,
+   *  which should be used for small views, like on mobile.
+   */
+  variant: PropTypes.oneOf(['scrollable', 'fullWidth']),
 };
 
 Tabs.defaultProps = {
   centered: false,
   component: 'div',
-  fullWidth: false,
   indicatorColor: 'secondary',
-  scrollable: false,
   ScrollButtonComponent: TabScrollButton,
   scrollButtons: 'auto',
   textColor: 'inherit',

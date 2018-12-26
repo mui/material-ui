@@ -2,7 +2,7 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /static/images/*
-  Cache-Control: public, max-age=43200
+  Cache-Control: public, max-age=86400
 
 /favicon.ico
   Content-Type: image/x-icon

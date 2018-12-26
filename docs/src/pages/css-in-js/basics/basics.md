@@ -148,32 +148,6 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/css-in-js/basics/HigherOrderComponent.js", "react": "next"}}
 
-### Render props API
-
-```jsx
-import React from 'react';
-import { createStyled } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
-
-const Styled = createStyled({
-  root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-  },
-});
-
-export default function RenderProps() {
-  return <Styled>{({ classes }) => <Button className={classes.root}>Render props</Button>}</Styled>;
-}
-```
-
-{{"demo": "pages/css-in-js/basics/RenderProps.js", "react": "next"}}
-
 ## Adapting based on props
 
 You can pass a function ("interpolations") to a style property to adapt it based on its props.
@@ -190,7 +164,3 @@ This button component has a color property that changes its color:
 ### Adapting higher-order component API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHOC.js", "react": "next"}}
-
-### Adapting render props API
-
-{{"demo": "pages/css-in-js/basics/AdaptingRenderProps.js", "react": "next"}}

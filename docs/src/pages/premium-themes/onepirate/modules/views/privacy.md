@@ -1,4 +1,4 @@
-Last motifided: October 7th, 2018.
+Last modified: October 7th, 2018.
 
 Material-UI is committed to protecting and respecting your privacy. This Privacy Policy sets out how we collect and process personal information about you when you visit our website argos-ci.com, when you use our products and services (our “Services”), or when you otherwise do business or make contact with us.
 
@@ -41,7 +41,7 @@ We use cookies to understand and save your preferences for future visits, to adv
 
 You may refuse to accept cookies by activating the setting on your browser which allows you to refuse the setting of cookies. You can find information on popular browsers and how to adjust your cookie preferences at the following websites:
 
-- [Microsoft Interne Explorer](https://www.microsoft.com/info/cookies.mspx)
+- [Microsoft Internet Explorer](https://www.microsoft.com/info/cookies.mspx)
 - [Mozilla Firefox](https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences)
 - [Google Chrome](https://support.google.com/accounts/answer/61416)
 - [Apple Safari](https://support.apple.com/en-us/HT201265)

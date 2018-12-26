@@ -33,7 +33,7 @@ It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/perfor
 It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins).
+The best place to start is by looking at the features that each [plugin](https://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins).
 You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
 
 If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.

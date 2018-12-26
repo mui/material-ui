@@ -33,7 +33,7 @@ Fixed tabs should be used with a limited number of tabs and when consistent plac
 
 ### Full width
 
-The `fullWidth` property should be used for smaller views.
+The `variant="fullWidth"` property should be used for smaller views.
 This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
 
 {{"demo": "pages/demos/tabs/FullWidthTabs.js"}}

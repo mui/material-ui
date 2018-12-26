@@ -3,51 +3,16 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/customization/css-in-js', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/customization/css-in-js',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/customization/css-in-js';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./css-in-js${props.lang}.md`)}
-      demos={{
-        'pages/customization/css-in-js/CssInJs.js': {
-          js: require('docs/src/pages/customization/css-in-js/CssInJs').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/CssInJs'), 'utf8')
-`,
-        },
-        'pages/customization/css-in-js/JssRegistry.js': {
-          js: require('docs/src/pages/customization/css-in-js/JssRegistry').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/JssRegistry'), 'utf8')
-`,
-        },
-        'pages/customization/css-in-js/Hook.js': {
-          js: require('docs/src/pages/customization/css-in-js/Hook').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/Hook'), 'utf8')
-`,
-        },
-        'pages/customization/css-in-js/StyledComponents.js': {
-          js: require('docs/src/pages/customization/css-in-js/StyledComponents').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/StyledComponents'), 'utf8')
-`,
-        },
-        'pages/customization/css-in-js/RenderProps.js': {
-          js: require('docs/src/pages/customization/css-in-js/RenderProps').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/css-in-js/RenderProps'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

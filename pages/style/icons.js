@@ -3,52 +3,12 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/style/icons', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/style/icons', false, /\.js$/);
+const reqPrefix = 'pages/style/icons';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./icons${props.lang}.md`)}
-      demos={{
-        'pages/style/icons/SvgIcons.js': {
-          js: require('docs/src/pages/style/icons/SvgIcons').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/SvgIcons'), 'utf8')
-`,
-        },
-        'pages/style/icons/SvgMaterialIcons.js': {
-          js: require('docs/src/pages/style/icons/SvgMaterialIcons').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIcons'), 'utf8')
-`,
-        },
-        //         'pages/style/icons/SvgMaterialIconsAll.js': {
-        //           js: require('docs/src/pages/style/icons/SvgMaterialIconsAll').default,
-        //           raw: preval`
-        // module.exports = require('fs')
-        //   .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIconsAll'),
-        //      'utf8')
-        // `,
-        //         },
-        'pages/style/icons/Icons.js': {
-          js: require('docs/src/pages/style/icons/Icons').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/Icons'), 'utf8')
-`,
-        },
-        'pages/style/icons/FontAwesome.js': {
-          js: require('docs/src/pages/style/icons/FontAwesome').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/FontAwesome'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

@@ -3,27 +3,20 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context(
+  'docs/src/pages/getting-started/page-layout-examples',
+  false,
+  /\.md|\.js$/,
+);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/getting-started/page-layout-examples',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/getting-started/page-layout-examples';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./page-layout-examples${props.lang}.md`)}
-      demos={{
-        'pages/getting-started/page-layout-examples/PageLayoutExamples.js': {
-          js: require('docs/src/pages/getting-started/page-layout-examples/PageLayoutExamples')
-            .default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(
-    require.resolve('docs/src/pages/getting-started/page-layout-examples/PageLayoutExamples'),
-    'utf8'
-  )
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

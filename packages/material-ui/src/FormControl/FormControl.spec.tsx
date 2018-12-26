@@ -7,6 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
   // we only accept DivAttributes since we don't have generic props
   // however once v4 typings are available this should be accepted #v4-typings
   <FormControl component="fieldset" className="hello-world" />; // $ExpectError
-  // Deafeat device
+  // Defeat device
   <FormControl component={'fieldset' as 'div'} className="hello-world" />;
 }

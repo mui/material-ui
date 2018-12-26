@@ -3,44 +3,16 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/demos/grid-list', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/demos/grid-list',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/demos/grid-list';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./grid-list${props.lang}.md`)}
-      demos={{
-        'pages/demos/grid-list/ImageGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/ImageGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/ImageGridList'), 'utf8')
-`,
-        },
-        'pages/demos/grid-list/TitlebarGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/TitlebarGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/TitlebarGridList'), 'utf8')
-`,
-        },
-        'pages/demos/grid-list/AdvancedGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/AdvancedGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/AdvancedGridList'), 'utf8')
-`,
-        },
-        'pages/demos/grid-list/SingleLineGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/SingleLineGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/SingleLineGridList'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;

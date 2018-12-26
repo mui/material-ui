@@ -39,7 +39,7 @@ export const styles = {
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
- * Relying on the context provides high flexibilty and ensures that the state always stays
+ * Relying on the context provides high flexibility and ensures that the state always stays
  * consistent across the children of the `FormControl`.
  * This context is used by the following components:
  *  - FormLabel

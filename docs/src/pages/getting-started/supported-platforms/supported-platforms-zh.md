@@ -10,7 +10,7 @@ Material-UI支持最新的，稳定版的全部主流浏览器和平台。 我�
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-因为Googlebot使用了网络渲染服务（Web rendering service）（WRS）对页面进行所以，因此Material-UI对它的支持显得至关重要。 [WRS是基于CHrome 41的。](https://developers.google.com/search/docs/guides/rendering) You can expect Material-UI's components to render without major issues.
+因为Googlebot使用了网络渲染服务（Web rendering service）（WRS）对页面进行所以，因此Material-UI对它的支持显得至关重要。 [WRS是基于Chrome 41的。](https://developers.google.com/search/docs/guides/rendering) You can expect Material-UI's components to render without major issues.
 
 ## 服务器
 

@@ -46,7 +46,7 @@ components: Tooltip
 
 ## 对于 disabled 的元素
 
-默认情况下，` Button `等distabled的元素不会触发用户交互，因此` Tooltip `不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如` span `。
+默认情况下，` Button `等disabled的元素不会触发用户交互，因此` Tooltip `不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如` span `。
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 

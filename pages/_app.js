@@ -10,6 +10,7 @@ import findPages from /* preval */ 'docs/src/modules/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
+import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 
 if (process.browser) {
   loadCSS(
@@ -121,6 +122,10 @@ const pages = [
       {
         pathname: '/utils/click-away-listener',
       },
+      {
+        pathname: '/utils/box',
+        title: 'Box (unstable)',
+      },
     ],
   },
   {
@@ -143,6 +148,46 @@ const pages = [
       },
       {
         pathname: '/css-in-js/api',
+        title: 'API',
+      },
+    ],
+  },
+  {
+    pathname: '/system',
+    title: 'System (alpha)',
+    children: [
+      {
+        pathname: '/system/basics',
+      },
+      {
+        pathname: '/system/borders',
+      },
+      {
+        pathname: '/system/display',
+      },
+      {
+        pathname: '/system/flexbox',
+      },
+      {
+        pathname: '/system/palette',
+      },
+      {
+        pathname: '/system/positions',
+      },
+      {
+        pathname: '/system/shadows',
+      },
+      {
+        pathname: '/system/sizing',
+      },
+      {
+        pathname: '/system/spacing',
+      },
+      {
+        pathname: '/system/typography',
+      },
+      {
+        pathname: '/system/api',
         title: 'API',
       },
     ],
@@ -323,13 +368,14 @@ class MyApp extends App {
 
     return (
       <Container>
-        <PageContext.Provider value={{ activePage, pages }}>
-          <Provider store={this.redux}>
+        <Provider store={this.redux}>
+          <PageContext.Provider value={{ activePage, pages }}>
             <AppWrapper pageContext={this.pageContext}>
               <Component pageContext={this.pageContext} {...pageProps} />
             </AppWrapper>
-          </Provider>
-        </PageContext.Provider>
+          </PageContext.Provider>
+        </Provider>
+        <GoogleAnalytics key={router.route} />
       </Container>
     );
   }

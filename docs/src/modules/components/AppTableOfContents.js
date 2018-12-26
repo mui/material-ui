@@ -77,7 +77,7 @@ const styles = theme => ({
 });
 
 function checkDuplication(uniq, item) {
-  warning(!uniq[item.hash], `Duplicated table of content ${item.hash}`);
+  warning(!uniq[item.hash], `Table of content: duplicated \`${item.hash}\` item`);
 
   if (!uniq[item.hash]) {
     uniq[item.hash] = true;

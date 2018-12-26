@@ -3,40 +3,16 @@ import 'docs/src/modules/components/bootstrap';
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/demos/expansion-panels', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/demos/expansion-panels',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/demos/expansion-panels';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./expansion-panels${props.lang}.md`)}
-      demos={{
-        'pages/demos/expansion-panels/DetailedExpansionPanel.js': {
-          js: require('docs/src/pages/demos/expansion-panels/DetailedExpansionPanel').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/expansion-panels/DetailedExpansionPanel'), 'utf8')
-`,
-        },
-        'pages/demos/expansion-panels/SimpleExpansionPanel.js': {
-          js: require('docs/src/pages/demos/expansion-panels/SimpleExpansionPanel').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/expansion-panels/SimpleExpansionPanel'), 'utf8')
-`,
-        },
-        'pages/demos/expansion-panels/ControlledExpansionPanels.js': {
-          js: require('docs/src/pages/demos/expansion-panels/ControlledExpansionPanels').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require
-    .resolve('docs/src/pages/demos/expansion-panels/ControlledExpansionPanels'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
 export default Page;
