@@ -33,6 +33,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">disableActionSpacing</span> | Styles applied to the root element if `disableActionSpacing={true}`.
 | <span class="prop-name">action</span> | Styles applied to the children.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
