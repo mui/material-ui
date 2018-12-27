@@ -1,4 +1,5 @@
 import warning from 'warning';
+import hash from '@emotion/hash';
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
 
@@ -8,6 +9,8 @@ function safePrefix(classNamePrefix) {
   // Sanitize the string as will be used to prefix the generated class name.
   return prefix.replace(escapeRegex, '-');
 }
+
+const themeHashCache = {};
 
 // Returns a function which generates unique class names based on counters.
 // When new generator function is created, rule counter is reset.
@@ -20,6 +23,10 @@ export default function createGenerateClassName(options = {}) {
   let ruleCounter = 0;
 
   return (rule, styleSheet) => {
+    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
+      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
+    }
+
     ruleCounter += 1;
     warning(
       ruleCounter < 1e10,
@@ -29,19 +36,28 @@ export default function createGenerateClassName(options = {}) {
       ].join(''),
     );
 
-    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
-      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
+    let suffix = ruleCounter;
+
+    // It's a static rule.
+    if (!styleSheet.options.link) {
+      let themeHash = themeHashCache[styleSheet.options.theme];
+      if (!themeHash) {
+        themeHash = hash(JSON.stringify(styleSheet.options.theme));
+        themeHashCache[styleSheet.theme] = themeHash;
+      }
+      const raw = styleSheet.rules.raw[rule.key];
+      suffix = hash(`${themeHash}${rule.key}${JSON.stringify(raw)}`);
     }
 
     if (process.env.NODE_ENV === 'production') {
-      return `${productionPrefix}${seed}${ruleCounter}`;
+      return `${productionPrefix}${seed}${suffix}`;
     }
 
     // Help with debuggability.
     if (styleSheet && styleSheet.options.classNamePrefix) {
-      return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${ruleCounter}`;
+      return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${suffix}`;
     }
 
-    return `${rule.key}-${seed}${ruleCounter}`;
+    return `${rule.key}-${seed}${suffix}`;
   };
 }

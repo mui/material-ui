@@ -74,6 +74,7 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
   const options = {
     ...stylesCreator.options,
     ...stylesOptions,
+    theme,
     flip: typeof stylesOptions.flip === 'boolean' ? stylesOptions.flip : theme.direction === 'rtl',
   };
   options.generateId = options.generateClassName;

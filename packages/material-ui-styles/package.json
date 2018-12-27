@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.2.0",
+    "@emotion/hash": "^0.7.1",
     "@material-ui/utils": "^3.0.0-alpha.1",
     "classnames": "^2.2.5",
     "deepmerge": "^3.0.0",

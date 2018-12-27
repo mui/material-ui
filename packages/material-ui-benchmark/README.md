@@ -7,13 +7,12 @@
 ```sh
 yarn core
 
-ButtonBase no cache x 5,226 ops/sec ±7.01% (181 runs sampled)
-ButtonBase cache requests x 40,400 ops/sec ±1.15% (187 runs sampled)
-HocButton x 147,810 ops/sec ±1.21% (186 runs sampled)
-NakedButton x 209,086 ops/sec ±1.26% (190 runs sampled)
-ButtonBase enable ripple x 55,893 ops/sec ±0.89% (188 runs sampled)
-ButtonBase disable ripple x 57,364 ops/sec ±2.35% (187 runs sampled)
-Markdown x 924 ops/sec ±3.05% (184 runs sampled)
+ButtonBase x 40,724 ops/sec ±1.58% (189 runs sampled)
+HocButton x 166,229 ops/sec ±1.04% (191 runs sampled)
+NakedButton x 228,473 ops/sec ±0.99% (187 runs sampled)
+ButtonBase enable ripple x 56,019 ops/sec ±0.87% (189 runs sampled)
+ButtonBase disable ripple x 61,748 ops/sec ±0.35% (190 runs sampled)
+Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 ```
 
 ## `@material-ui/styles`
@@ -23,15 +22,14 @@ Markdown x 924 ops/sec ±3.05% (184 runs sampled)
 ```sh
 yarn styles
 
-JSSButton x 13,573 ops/sec ±5.01% (78 runs sampled)
-Box x 3,043 ops/sec ±4.14% (179 runs sampled)
-JSS naked x 21,021 ops/sec ±7.27% (72 runs sampled)
-WithStylesButton x 8,442 ops/sec ±3.31% (176 runs sampled)
-HookButton x 11,265 ops/sec ±3.43% (178 runs sampled)
-StyledComponentsButton x 6,745 ops/sec ±2.91% (181 runs sampled)
-EmotionButton x 6,856 ops/sec ±5.06% (165 runs sampled)
-Naked x 32,683 ops/sec ±3.54% (172 runs sampled)
-hashing x 221,423 ops/sec ±1.22% (190 runs sampled)
+Box x 3,854 ops/sec ±1.73% (189 runs sampled)
+JSS naked x 35,830 ops/sec ±1.30% (186 runs sampled)
+WithStylesButton x 15,551 ops/sec ±1.86% (189 runs sampled)
+HookButton x 21,649 ops/sec ±0.63% (190 runs sampled)
+StyledComponentsButton x 7,728 ops/sec ±1.46% (189 runs sampled)
+EmotionButton x 8,821 ops/sec ±7.96% (149 runs sampled)
+Naked x 31,835 ops/sec ±7.60% (167 runs sampled)
+hashing x 171,955 ops/sec ±5.22% (164 runs sampled)
 ```
 
 ## `@material-ui/system`
