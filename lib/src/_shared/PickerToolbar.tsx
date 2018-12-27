@@ -18,11 +18,13 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   ...other
 }) => {
   return (
-    <Toolbar className={classnames(classes.toolbar, className)} children={children} {...other} />
+    <Toolbar className={classnames(classes.toolbar, className)} {...other}>
+      {children}
+    </Toolbar>
   );
 };
 
-PickerToolbar.propTypes = {
+(PickerToolbar as any).propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   className: PropTypes.string,
   classes: PropTypes.any.isRequired,

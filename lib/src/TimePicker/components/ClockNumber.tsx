@@ -40,7 +40,7 @@ export interface ClockNumberProps extends WithStyles<typeof styles> {
   isInner?: boolean;
 }
 
-export class ClockNumber extends React.PureComponent<ClockNumberProps> {
+export class ClockNumber extends React.Component<ClockNumberProps> {
   public static propTypes: any = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
@@ -104,4 +104,6 @@ export const styles = (theme: Theme) => {
   });
 };
 
-export default withStyles(styles, { name: 'MuiPickersClockNumber' })(ClockNumber);
+export default withStyles(styles, {
+  name: 'MuiPickersClockNumber',
+})(ClockNumber as React.ComponentType<ClockNumberProps>);

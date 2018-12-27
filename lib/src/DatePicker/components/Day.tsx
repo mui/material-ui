@@ -15,7 +15,7 @@ export interface DayProps extends WithStyles<typeof styles> {
 }
 
 class Day extends React.PureComponent<DayProps> {
-  public static propTypes = {
+  public static propTypes: any = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
     current: PropTypes.bool,

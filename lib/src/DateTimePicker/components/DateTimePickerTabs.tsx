@@ -2,6 +2,7 @@ import { Theme } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import Paper from '@material-ui/core/Paper';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import withTheme from '@material-ui/core/styles/withTheme';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import * as PropTypes from 'prop-types';
@@ -31,14 +32,9 @@ export interface DateTimePickerTabsProps extends WithStyles<typeof styles, true>
   timeIcon: React.ReactNode;
 }
 
-export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = ({
-  view,
-  onChange,
-  classes,
-  theme,
-  dateRangeIcon,
-  timeIcon,
-}) => {
+export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
+  const { view, onChange, classes, theme, dateRangeIcon, timeIcon } = props;
+
   const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
   const handleChange = (e: React.ChangeEvent<{}>, value: DateTimePickerView) => {
     if (value !== viewToTabIndex(view)) {
@@ -81,10 +77,4 @@ export const styles = (theme: Theme) => ({
   },
 });
 
-export default withStyles(styles, { withTheme: true, name: 'MuiPickerDTTabs' })(
-  React.memo(
-    DateTimePickerTabs,
-    (prevProps, nextProps) =>
-      prevProps.view === nextProps.view && prevProps.theme === nextProps.theme
-  )
-);
+export default withTheme()(withStyles(styles, { name: 'MuiPickerDTTabs' })(DateTimePickerTabs));
