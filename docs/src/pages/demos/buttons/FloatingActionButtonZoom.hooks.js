@@ -91,7 +91,7 @@ function FloatingActionButtonZoom() {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          fullWidth
+          variant="fullWidth"
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />

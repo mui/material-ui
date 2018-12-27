@@ -42,7 +42,7 @@ function NavTabs() {
     <NoSsr>
       <div className={classes.root}>
         <AppBar position="static">
-          <Tabs fullWidth value={value} onChange={handleChange}>
+          <Tabs variant="fullWidth" value={value} onChange={handleChange}>
             <LinkTab label="Page One" href="page1" />
             <LinkTab label="Page Two" href="page2" />
             <LinkTab label="Page Three" href="page3" />
