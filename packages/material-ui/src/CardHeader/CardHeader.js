@@ -22,7 +22,7 @@ export const styles = {
     flex: '0 0 auto',
     alignSelf: 'flex-start',
     marginTop: -8,
-    marginRight: -12,
+    marginRight: -8,
   },
   /* Styles applied to the content wrapper element. */
   content: {
