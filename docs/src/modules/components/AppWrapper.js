@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import url from 'url';
-import { ThemeProvider, StylesProvider } from '@material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -186,7 +187,7 @@ class AppWrapper extends React.Component {
         sheetsManager={pageContext.sheetsManager}
         sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
+        <MuiThemeProvider theme={pageContext.theme}>{children}</MuiThemeProvider>
         <SideEffects />
       </StylesProvider>
     );
