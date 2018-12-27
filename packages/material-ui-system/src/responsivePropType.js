@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const resonsivePropType =
+const responsivePropType =
   process.env.NODE_ENV !== 'production'
     ? PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object])
     : {};
 
-export default resonsivePropType;
+export default responsivePropType;

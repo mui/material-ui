@@ -1,4 +1,4 @@
-import resonsivePropType from './resonsivePropType';
+import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 
 function getPath(obj, path) {
@@ -50,7 +50,7 @@ function style(options) {
   fn.propTypes =
     process.env.NODE_ENV !== 'production'
       ? {
-          [prop]: resonsivePropType,
+          [prop]: responsivePropType,
         }
       : {};
 
