@@ -118,7 +118,6 @@ export const styles = createStyles({
     minHeight: dialogHeight,
   },
   dialog: {
-    width: dialogWidth,
     minHeight: dialogHeight,
     overflow: 'hidden',
 
