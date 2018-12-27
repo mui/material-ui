@@ -8,7 +8,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-jss": "latest",
+    "react-jss": "^8.1.0",
     "react-scripts": "latest"
   },
   "scripts": {
