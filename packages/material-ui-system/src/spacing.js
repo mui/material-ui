@@ -1,5 +1,5 @@
 import warning from 'warning';
-import resonsivePropType from './resonsivePropType';
+import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 import merge from './merge';
 import memoize from './memoize';
@@ -149,7 +149,7 @@ function spacing(props) {
 spacing.propTypes =
   process.env.NODE_ENV !== 'production'
     ? spacingKeys.reduce((obj, key) => {
-        obj[key] = resonsivePropType;
+        obj[key] = responsivePropType;
         return obj;
       }, {})
     : {};
