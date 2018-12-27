@@ -6,7 +6,12 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
+import {
+  styled as materialStyled,
+  StylesProvider,
+  ThemeProvider,
+  createGenerateClassName,
+} from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
@@ -15,13 +20,13 @@ import Avatar from '@material-ui/core/Avatar';
 import { styleFunction, unstable_Box as Box } from '@material-ui/core/Box/Box';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
-import UIBox, { extractStyles } from 'ui-box';
-import { Provider as StyletronProvider, styled } from 'styletron-react';
-import { Server as Styletron } from 'styletron-engine-atomic';
 
 const StyledBox = styledComponents('div')`${styleFunction}`;
 const EmotionBox = styledEmotion('div')`${styleFunction}`;
-const StyletronBox = styled('div', styleFunction);
+
+const StyledFunction = materialStyled('div')(() => ({
+  color: 'blue',
+}));
 
 function renderFullPage(html, css) {
   return `
@@ -78,11 +83,9 @@ function renderBox(req, res) {
       sheetsManager={new Map()}
     >
       <ThemeProvider theme={theme}>
-        <div>
-          {Array.from(new Array(1000)).map((_, index) => (
-            <Box key={String(index)} m={1} />
-          ))}
-        </div>
+        {Array.from(new Array(1000)).map((_, index) => (
+          <Box key={String(index)} m={1} />
+        ))}
       </ThemeProvider>
     </StylesProvider>,
   );
@@ -98,13 +101,26 @@ function renderAvatar(req, res) {
       generateClassName={createGenerateClassName()}
       sheetsManager={new Map()}
     >
-      <ThemeProvider theme={theme}>
-        <div>
-          {Array.from(new Array(1000)).map((_, index) => (
-            <Avatar key={String(index)} m={1} />
-          ))}
-        </div>
-      </ThemeProvider>
+      {Array.from(new Array(1)).map((_, index) => (
+        <Avatar key={String(index)}>Avatar</Avatar>
+      ))}
+    </StylesProvider>,
+  );
+  const css = sheetsRegistry.toString();
+  res.send(renderFullPage(html, css));
+}
+
+function renderStyledFunction(req, res) {
+  const sheetsRegistry = new SheetsRegistry();
+  const html = ReactDOMServer.renderToString(
+    <StylesProvider
+      sheetsRegistry={sheetsRegistry}
+      generateClassName={createGenerateClassName()}
+      sheetsManager={new Map()}
+    >
+      {Array.from(new Array(1000)).map((_, index) => (
+        <StyledFunction key={String(index)} />
+      ))}
     </StylesProvider>,
   );
   const css = sheetsRegistry.toString();
@@ -125,37 +141,6 @@ function renderStyledBox(req, res) {
 
   const css = sheet.getStyleTags();
   res.send(renderFullPage(html, css));
-}
-
-function renderUIBox(req, res) {
-  const html = ReactDOMServer.renderToString(
-    <div>
-      {Array.from(new Array(1000)).map((_, index) => (
-        <UIBox key={String(index)} margin={`${index}px`} />
-      ))}
-    </div>,
-  );
-
-  const { styles } = extractStyles();
-  res.send(renderFullPage(html, styles));
-}
-
-const engine = new Styletron();
-
-function renderStyletronBox(req, res) {
-  const html = ReactDOMServer.renderToString(
-    <StyletronProvider value={engine}>
-      <div>
-        {Array.from(new Array(1000)).map((_, index) => (
-          <StyletronBox theme={{}} key={String(index)} p={1} />
-        ))}
-      </div>
-    </StyletronProvider>,
-  );
-
-  const styles = engine.getStylesheetsHtml();
-
-  res.send(renderFullPage(html, styles));
 }
 
 function renderEmotionBox(req, res) {
@@ -219,11 +204,10 @@ app.get('/spacing', renderSpacing);
 app.get('/palette', renderPalette);
 app.get('/system', renderSystem);
 app.get('/avatar', renderAvatar);
+app.get('/styled-function', renderStyledFunction);
 app.get('/box', renderBox);
 app.get('/styled-box', renderStyledBox);
 app.get('/emotion-box', renderEmotionBox);
-app.get('/ui-box', renderUIBox);
-app.get('/styletron-box', renderStyletronBox);
 
 const port = 3001;
 app.listen(port, () => {

@@ -94,15 +94,15 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
         ...options,
       });
 
-      if (sheetsRegistry) {
-        sheetsRegistry.add(staticSheet);
-      }
-
       staticSheet.attach();
 
       if (stylesOptions.sheetsCache) {
         multiKeyStore.set(stylesOptions.sheetsCache, stylesCreator, theme, staticSheet);
       }
+    }
+
+    if (sheetsRegistry) {
+      sheetsRegistry.add(staticSheet);
     }
 
     sheetManager.dynamicStyles = getDynamicStyles(styles);
@@ -173,9 +173,10 @@ export function detach({ state, theme, stylesOptions, stylesCreator }) {
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
-  const { withTheme = false, name, defaultTheme, ...stylesOptions2 } = options;
+  const { withTheme = false, name, defaultTheme: defaultThemeOption, ...stylesOptions2 } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
+  const defaultTheme = defaultThemeOption || noopTheme;
 
   let meta = name;
 
@@ -301,7 +302,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
               <WithStylesInner
                 stylesOptions={stylesOptions}
                 ref={ref}
-                theme={theme || defaultTheme || noopTheme}
+                theme={theme || defaultTheme}
                 {...props}
               />
             )}
@@ -310,7 +311,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
           <WithStylesInner
             stylesOptions={stylesOptions}
             ref={ref}
-            theme={defaultTheme || noopTheme}
+            theme={defaultTheme}
             {...props}
           />
         );

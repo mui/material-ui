@@ -5,100 +5,84 @@ import Benchmark from 'benchmark';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styledEmotion from '@emotion/styled';
+import { ThemeProvider as EmotionTheme } from 'emotion-theming';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { styleFunction } from '@material-ui/core/Box/Box';
-import { styled } from '@material-ui/styles';
-import styled2, { ThemeProvider } from 'styled-components';
+import { styled, ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
+import styledComponents, {
+  ThemeProvider as StyledComponentsThemeProvider,
+} from 'styled-components';
 
-const mui = compose(
-  palette,
-  spacing,
-  typography,
-);
-const ss = compose2(color, space, fontFamily, fontSize);
-
-const BoxMUI = styled2.div`${mui}`;
-const BoxMUIStyles = styled('div')(mui);
-const BoxEmotion = styledEmotion(mui);
-const BoxSS = styled2.div`${ss}`;
-
-const suite = new Benchmark.Suite('ssr', {
+const suite = new Benchmark.Suite('system', {
   onError: event => {
     console.log(event.target.error);
   },
 });
-
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
-
-const ssTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
-
-ssTheme.breakpoints = null;
-ssTheme.colors = ssTheme.palette;
-ssTheme.fontSizes = ssTheme.typography;
-ssTheme.fonts = ssTheme.typography;
-
 Benchmark.options.minSamples = 100;
 
+const materialSystem = compose(
+  palette,
+  spacing,
+  typography,
+);
+const styledSystem = compose2(color, space, fontFamily, fontSize);
+
+const BoxStyles = styled('div')(styleFunction);
+const BoxStyleComponents = styledComponents('div')(styleFunction);
+const BoxEmotion = styledEmotion('div')(styleFunction);
+
+const BoxMaterialSystem = styledComponents.div`${materialSystem}`;
+const BoxStyledSystem = styledComponents.div`${styledSystem}`;
+
+const materialSystemTheme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
+
+const styledSystemTheme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
+styledSystemTheme.breakpoints = null;
+styledSystemTheme.colors = styledSystemTheme.palette;
+styledSystemTheme.fontSizes = styledSystemTheme.typography;
+styledSystemTheme.fonts = styledSystemTheme.typography;
+
 suite
-  .add('@material-ui/core all-inclusive', () => {
-    styleFunction({
-      theme,
-      color: 'primary.main',
-      bgcolor: 'background.paper',
-      fontFamily: 'h6.fontFamily',
-      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
-      p: [2, 3, 4],
-    });
-  })
-  .add('@material-ui/system palette', () => {
+  // ---
+  .add('colors @material-ui/system ', () => {
     palette({
       theme: {},
-      bg: ['red', 'blue'],
+      bgcolor: ['red', 'blue'],
     });
   })
-  .add('styled-system color', () => {
+  .add('colors styled-system', () => {
     color({
       theme: {},
       bg: ['red', 'blue'],
     });
   })
-  .add('@material-ui/system spacing', () => {
+  // ---
+  .add('spaces @material-ui/system', () => {
     spacing({
       theme: {},
       p: [1, 2, 3],
     });
   })
-  .add('styled-system space', () => {
+  .add('spaces styled-system', () => {
     space({
       theme: {},
       p: [1, 2, 3],
     });
   })
-  .add('@material-ui/system composed', () => {
-    mui({
-      theme,
-      color: 'primary.main',
-      bgcolor: 'background.paper',
-      fontFamily: 'h6.fontFamily',
-      fontSize: 'h6.fontSize',
-      p: 2,
-      sm: { fontSize: 'h4.fontSize', p: 3 },
-      md: { fontSize: 'h3.fontSize', p: 4 },
-    });
-  })
-  .add('styled-system composed', () => {
-    ss({
-      theme: ssTheme,
+  // ---
+  .add('compose @material-ui/system', () => {
+    materialSystem({
+      theme: materialSystemTheme,
       color: 'primary.main',
       bgcolor: 'background.paper',
       fontFamily: 'h6.fontFamily',
@@ -106,68 +90,105 @@ suite
       p: [2, 3, 4],
     });
   })
-  .add('@material-ui/system Box', () => {
-    ReactDOMServer.renderToString(
-      <ThemeProvider theme={theme}>
-        <BoxMUI
-          color="primary.main"
-          bgcolor="background.paper"
-          fontFamily="h6.fontFamily"
-          fontSize="h6.fontSize"
-          p={2}
-          sm={{ fontSize: 'h4.fontSize', p: 3 }}
-          md={{ fontSize: 'h3.fontSize', p: 4 }}
-        >
-          @material-ui/system
-        </BoxMUI>
-      </ThemeProvider>,
-    );
+  .add('compose styled-system', () => {
+    styledSystem({
+      theme: styledSystemTheme,
+      color: 'primary.main',
+      bg: 'background.paper',
+      fontFamily: 'h6.fontFamily',
+      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
+      p: [2, 3, 4],
+    });
   })
-  .add('@material-ui/styles Box', () => {
-    ReactDOMServer.renderToString(
-      <ThemeProvider theme={theme}>
-        <BoxMUIStyles
-          color="primary.main"
-          bgcolor="background.paper"
-          fontFamily="h6.fontFamily"
-          fontSize="h6.fontSize"
-          p={2}
-          sm={{ fontSize: 'h4.fontSize', p: 3 }}
-          md={{ fontSize: 'h3.fontSize', p: 4 }}
-        >
-          @material-ui/styles
-        </BoxMUIStyles>
-      </ThemeProvider>,
-    );
+  // ---
+  .add('@material-ui/core all-inclusive', () => {
+    styleFunction({
+      theme: materialSystemTheme,
+      color: 'primary.main',
+      bgcolor: 'background.paper',
+      fontFamily: 'h6.fontFamily',
+      fontSize: ['h6.fontSize', 'h4.fontSize', 'h3.fontSize'],
+      p: [2, 3, 4],
+    });
   })
-  .add('styled-system Box', () => {
+  // ---
+  .add('styled-components Box + @material-ui/system', () => {
     ReactDOMServer.renderToString(
-      <ThemeProvider theme={ssTheme}>
-        <BoxSS
+      <StyledComponentsThemeProvider theme={materialSystemTheme}>
+        <BoxMaterialSystem
           color="primary.main"
           bgcolor="background.paper"
           fontFamily="h6.fontFamily"
           fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
           p={[2, 3, 4]}
         >
-          styled-system
-        </BoxSS>
-      </ThemeProvider>,
+          @material-ui/system
+        </BoxMaterialSystem>
+      </StyledComponentsThemeProvider>,
     );
   })
-  .add('emotion Box', () => {
+  .add('styled-components Box + styled-system', () => {
     ReactDOMServer.renderToString(
-      <ThemeProvider theme={ssTheme}>
+      <StyledComponentsThemeProvider theme={styledSystemTheme}>
+        <BoxStyledSystem
+          color="primary.main"
+          bg="background.paper"
+          fontFamily="h6.fontFamily"
+          fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+          p={[2, 3, 4]}
+        >
+          styled-system
+        </BoxStyledSystem>
+      </StyledComponentsThemeProvider>,
+    );
+  })
+  // // ---
+  .add('Box emotion', () => {
+    ReactDOMServer.renderToString(
+      <EmotionTheme theme={styledSystemTheme}>
         <BoxEmotion
           color="primary.main"
           bgcolor="background.paper"
           fontFamily="h6.fontFamily"
           fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
           p={[2, 3, 4]}
+          fuu={Math.round(Math.random() * 10000)}
         >
           emotion
         </BoxEmotion>
-      </ThemeProvider>,
+      </EmotionTheme>,
+    );
+  })
+  .add('Box @material-ui/styles', () => {
+    ReactDOMServer.renderToString(
+      <StylesThemeProvider theme={materialSystemTheme}>
+        <BoxStyles
+          color="primary.main"
+          bgcolor="background.paper"
+          fontFamily="h6.fontFamily"
+          fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+          p={[2, 3, 4]}
+          fuu={Math.round(Math.random() * 10000)}
+        >
+          @material-ui/styles
+        </BoxStyles>
+      </StylesThemeProvider>,
+    );
+  })
+  .add('Box styled-components', () => {
+    ReactDOMServer.renderToString(
+      <StyledComponentsThemeProvider theme={materialSystemTheme}>
+        <BoxStyleComponents
+          color="primary.main"
+          bgcolor="background.paper"
+          fontFamily="h6.fontFamily"
+          fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
+          p={[2, 3, 4]}
+          fuu={Math.round(Math.random() * 10000)}
+        >
+          styled-components
+        </BoxStyleComponents>
+      </StyledComponentsThemeProvider>,
     );
   })
   .on('cycle', event => {
