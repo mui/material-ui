@@ -82,6 +82,40 @@ declare module '@material-ui/styles/makeStyles' {
 
   // https://stackoverflow.com/a/49928360/3406963 without generic branch types
   type IsAny<T> = 0 extends (1 & T) ? true : false;
+  /**
+   * @internal
+   *
+   * check if a type is `{}`
+   *
+   * 1. false if the given type has any members
+   * 2. false if the type is `object` which is the only other type with no members
+   *  {} is a top type so e.g. `string extends {}` but not `string extends object`
+   */
+  export type IsEmptyInterface<T> = keyof T extends never
+    ? string extends T
+      ? true
+      : false
+    : false;
+
+  type Or<A, B> = A extends true ? true : B extends true ? true : false;
+
+  /**
+   * @internal
+   *
+   * If a style callback is given with `theme => stylesOfTheme` then typescript
+   * infers `Props` to `any`.
+   * If a static object is given with { ...members } then typescript infers `Props`
+   * to `{}`.
+   *
+   * So we require no props in `useStyles` if `Props` in `makeStyles(styles)` is
+   * inferred to either `any` or `{}`
+   */
+  export type StylesRequireProps<S> = Or<
+    IsAny<PropsOfStyles<S>>,
+    IsEmptyInterface<PropsOfStyles<S>>
+  > extends true
+    ? false
+    : true;
 
   /**
    * @internal
@@ -90,7 +124,7 @@ declare module '@material-ui/styles/makeStyles' {
    * from which the typechecker could infer a type so it falls back to `any`.
    * See the test cases for examples and implications of explicit `any` annotation
    */
-  export type StylesHook<S extends Styles<any, any>> = IsAny<PropsOfStyles<S>> extends true
+  export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> extends false
     ? (props?: any) => ClassNameMap<ClassKeyOfStyles<S>>
     : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 

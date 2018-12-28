@@ -70,8 +70,17 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       },
     }),
   );
+  const chartStyles = {
+    chart: {
+      width: '100%',
+      height: 70,
+      backgroundColor: '#f9f9f9',
+    },
+  };
+  const useChartClasses = makeStyles(chartStyles);
   const NoPropsComponent = () => {
     const classes = useWithoutProps();
+    const chartClasses = useChartClasses();
     const alsoClasses = useWithoutProps(5);
   };
 
