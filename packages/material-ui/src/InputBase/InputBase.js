@@ -326,6 +326,7 @@ class InputBase extends React.Component {
     });
 
     const focused = muiFormControl ? muiFormControl.focused : this.state.focused;
+    const variantContext = muiFormControl ? muiFormControl.variant : null;
 
     const className = classNames(
       classes.root,
@@ -392,7 +393,7 @@ class InputBase extends React.Component {
     }
 
     return (
-      <FormControlContext.Provider value={null}>
+      <FormControlContext.Provider value={{ variant: variantContext }}>
         <div className={className} onClick={this.handleClick} {...other}>
           {renderPrefix
             ? renderPrefix({
