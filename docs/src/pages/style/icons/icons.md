@@ -162,7 +162,7 @@ We add the `aria-hidden=true` attribute so that your icons are properly accessib
 
 ### Semantic Font Icons
 
-If your icons have semantic meaning, you need to provide a text alternative only visible to assisitive technologies.
+If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
 
 ```jsx
 import Icon from '@material-ui/core/Icon';

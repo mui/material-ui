@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
-
-export const ThemeContext = React.createContext(null);
+import ThemeContext from './ThemeContext';
 
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {

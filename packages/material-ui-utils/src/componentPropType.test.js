@@ -38,7 +38,7 @@ describe('componentPropType', () => {
   });
 
   it('describe .isRequired', () => {
-    it('rejectes null', () => {
+    it('rejects null', () => {
       testPropType(
         undefined,
         componentPropType.isRequired,

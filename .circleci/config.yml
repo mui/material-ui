@@ -169,6 +169,9 @@ jobs:
           name: Can we generate the @material-ui/utils build?
           command: cd packages/material-ui-utils && yarn build
       - run:
+          name: Can we generate the @material-ui/system build?
+          command: cd packages/material-ui-system && yarn build
+      - run:
           name: Can we build the docs?
           command: yarn docs:build
       - run:

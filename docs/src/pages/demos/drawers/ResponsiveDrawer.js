@@ -117,9 +117,6 @@ class ResponsiveDrawer extends React.Component {
               classes={{
                 paper: classes.drawerPaper,
               }}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
             >
               {drawer}
             </Drawer>

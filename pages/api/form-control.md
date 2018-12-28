@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 ```
 
 Provides context such as filled/focused/error/required for form inputs.
-Relying on the context provides high flexibilty and ensures that the state always stays
+Relying on the context provides high flexibility and ensures that the state always stays
 consistent across the children of the `FormControl`.
 This context is used by the following components:
  - FormLabel
@@ -53,11 +53,10 @@ This property accepts the following keys:
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/FormControl/FormControl.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormControl/FormControl.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiFormControl`.
 
 ## Demos

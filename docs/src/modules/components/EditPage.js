@@ -1,35 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import PageContext from 'docs/src/modules/components/PageContext';
+import { connect } from 'react-redux';
 
 function EditPage(props) {
-  const { markdownLocation, sourceCodeRootUrl } = props;
+  const { markdownLocation, options, sourceCodeRootUrl } = props;
+
+  if (options.userLanguage === 'zh') {
+    return (
+      <Button component="a" href="https://translate.material-ui.com/project/material-ui-docs">
+        {'将此页面翻译成中文'}
+      </Button>
+    );
+  }
 
   return (
-    <PageContext.Consumer>
-      {({ userLanguage }) => {
-        if (userLanguage === 'zh') {
-          return (
-            <Button component="a" href="https://translate.material-ui.com/project/material-ui-docs">
-              {'将此页面翻译成中文'}
-            </Button>
-          );
-        }
-
-        return (
-          <Button component="a" href={`${sourceCodeRootUrl}${markdownLocation}`}>
-            {'Edit this page'}
-          </Button>
-        );
-      }}
-    </PageContext.Consumer>
+    <Button component="a" href={`${sourceCodeRootUrl}${markdownLocation}`}>
+      {'Edit this page'}
+    </Button>
   );
 }
 
 EditPage.propTypes = {
   markdownLocation: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired,
   sourceCodeRootUrl: PropTypes.string.isRequired,
 };
 
-export default EditPage;
+export default connect(state => ({ options: state.options }))(EditPage);

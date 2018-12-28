@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import fromRenderProps from 'recompose/fromRenderProps';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,24 +15,21 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LanguageIcon from '@material-ui/icons/Language';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
-
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import doclyTheme from '@docly/web/theme';
-
-import PageContext from 'docs/src/modules/components/PageContext';
-
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -106,7 +102,7 @@ class AppFrame extends React.Component {
     this.setState({ languageMenu: null });
   };
 
-  handleLanguageMenuItemClick = lang => {
+  handleLanguageMenuItemClick = lang => () => {
     if (lang !== this.props.userLanguage) {
       document.cookie = `lang=${lang};path=/;max-age=31536000`;
       window.location.reload();
@@ -115,11 +111,11 @@ class AppFrame extends React.Component {
   };
 
   handleTogglePaletteType = () => {
-    const paletteType = this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light';
+    const paletteType = this.props.reduxTheme.paletteType === 'light' ? 'dark' : 'light';
     document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
 
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: {
         paletteType,
       },
@@ -128,15 +124,15 @@ class AppFrame extends React.Component {
 
   handleToggleDirection = () => {
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_DIRECTION,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: {
-        direction: this.props.uiTheme.direction === 'ltr' ? 'rtl' : 'ltr',
+        direction: this.props.reduxTheme.direction === 'ltr' ? 'rtl' : 'ltr',
       },
     });
   };
 
   render() {
-    const { children, classes, uiTheme, userLanguage } = this.props;
+    const { children, classes, reduxTheme, userLanguage } = this.props;
     const { languageMenu } = this.state;
 
     return (
@@ -197,13 +193,13 @@ class AppFrame extends React.Component {
                     >
                       <MenuItem
                         selected={userLanguage === 'en'}
-                        onClick={() => this.handleLanguageMenuItemClick('en')}
+                        onClick={this.handleLanguageMenuItemClick('en')}
                       >
                         English
                       </MenuItem>
                       <MenuItem
                         selected={userLanguage === 'zh'}
-                        onClick={() => this.handleLanguageMenuItemClick('zh')}
+                        onClick={this.handleLanguageMenuItemClick('zh')}
                       >
                         中文
                       </MenuItem>
@@ -217,7 +213,7 @@ class AppFrame extends React.Component {
                         data-ga-event-category="AppBar"
                         data-ga-event-action="colors"
                       >
-                        <MenuIcon />
+                        <ColorsIcon />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Toggle light/dark theme" enterDelay={300}>
@@ -228,7 +224,7 @@ class AppFrame extends React.Component {
                         data-ga-event-category="AppBar"
                         data-ga-event-action="dark"
                       >
-                        {uiTheme.paletteType === 'light' ? (
+                        {reduxTheme.paletteType === 'light' ? (
                           <LightbulbOutlineIcon />
                         ) : (
                           <LightbulbFullIcon />
@@ -238,28 +234,15 @@ class AppFrame extends React.Component {
                     <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
                       <IconButton
                         color="inherit"
-                        onClick={this.handleToggleDirection}
-                        aria-label="Toggle right-to-left/left-to-right"
-                        data-ga-event-category="AppBar"
-                        data-ga-event-action="rtl"
+                        aria-label="Open drawer"
+                        onClick={this.handleDrawerOpen}
+                        className={navIconClassName}
                       >
-                        {uiTheme.direction === 'rtl' ? (
+                        {reduxTheme.direction === 'rtl' ? (
                           <FormatTextdirectionLToR />
                         ) : (
                           <FormatTextdirectionRToL />
                         )}
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="GitHub repository" enterDelay={300}>
-                      <IconButton
-                        component="a"
-                        color="inherit"
-                        href="https://github.com/mui-org/material-ui"
-                        aria-label="GitHub repository"
-                        data-ga-event-category="AppBar"
-                        data-ga-event-action="github"
-                      >
-                        <GithubIcon />
                       </IconButton>
                     </Tooltip>
                   </Toolbar>
@@ -286,16 +269,14 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  uiTheme: PropTypes.object.isRequired,
+  reduxTheme: PropTypes.object.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
-const pageContext = fromRenderProps(PageContext.Consumer, ({ userLanguage }) => ({ userLanguage }));
-
 export default compose(
   connect(state => ({
-    uiTheme: state.theme,
+    reduxTheme: state.theme,
+    userLanguage: state.options.userLanguage,
   })),
-  pageContext,
   withStyles(styles),
 )(AppFrame);

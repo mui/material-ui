@@ -316,13 +316,13 @@ describe('<Button />', () => {
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true);
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    it('should server side render', () => {
+    it('should server-side render', () => {
       const markup = render(<Button>Hello World</Button>);
       assert.strictEqual(markup.text(), 'Hello World');
     });

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
@@ -12,7 +14,12 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
 import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
-import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  getHeaders,
+  getTitle,
+  getDescription,
+  demoRegexp,
+} from 'docs/src/modules/utils/parseMarkdown';
 
 const styles = theme => ({
   root: {
@@ -30,11 +37,48 @@ const styles = theme => ({
   },
 });
 
-const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 
 function MarkdownDocs(props) {
-  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
+  const {
+    classes,
+    disableAd,
+    markdown: markdownProp,
+    markdownLocation: markdownLocationProp,
+    req,
+    reqPrefix,
+    reqSource,
+    userLanguage,
+  } = props;
+
+  let demos;
+  let markdown = markdownProp;
+
+  if (req) {
+    demos = {};
+    const markdowns = {};
+    req.keys().forEach(filename => {
+      if (filename.indexOf('.md') !== -1) {
+        if (filename.indexOf('-zh.md') !== -1) {
+          markdowns.zh = req(filename);
+        } else {
+          markdowns.en = req(filename);
+        }
+      } else {
+        const demoName = `${reqPrefix}/${filename.replace(/.\/|.hooks/g, '')}`;
+        const isHooks = filename.indexOf('.hooks.js') !== -1;
+        const jsType = isHooks ? 'jsHooks' : 'js';
+        const rawType = isHooks ? 'rawHooks' : 'raw';
+        demos[demoName] = {
+          ...(demos[demoName] ? demos[demoName] : {}),
+          [jsType]: req(filename).default,
+          [rawType]: reqSource(filename),
+        };
+      }
+    });
+    markdown = markdowns[userLanguage] || markdowns.en;
+  }
+
   const headers = getHeaders(markdown);
 
   return (
@@ -58,10 +102,8 @@ function MarkdownDocs(props) {
                 sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
               />
             </div>
-            {contents.map((content, index) => {
-              const match = content.match(demoRegexp);
-
-              if (match && demos) {
+            {contents.map(content => {
+              if (demos && demoRegexp.test(content)) {
                 let demoOptions;
                 try {
                   demoOptions = JSON.parse(`{${content}}`);
@@ -71,13 +113,14 @@ function MarkdownDocs(props) {
                 }
 
                 const name = demoOptions.demo;
-                warning(demos && demos[name], `Missing demo: ${name}.`);
+                warning(
+                  demos && demos[name],
+                  `Missing demo: ${name}. You can use one of the following:\n${Object.keys(demos)}`,
+                );
                 return (
                   <Demo
                     key={content}
-                    js={demos[name].js}
-                    raw={demos[name].raw}
-                    index={index}
+                    demo={demos[name]}
                     demoOptions={demoOptions}
                     githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
                   />
@@ -97,16 +140,24 @@ function MarkdownDocs(props) {
 
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
-  demos: PropTypes.object,
   disableAd: PropTypes.bool,
-  markdown: PropTypes.string.isRequired,
+  markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
   markdownLocation: PropTypes.string,
+  req: PropTypes.func,
+  reqPrefix: PropTypes.string,
+  reqSource: PropTypes.func,
+  userLanguage: PropTypes.string.isRequired,
 };
 
 MarkdownDocs.defaultProps = {
   disableAd: false,
 };
 
-export default withStyles(styles)(MarkdownDocs);
+export default compose(
+  connect(state => ({
+    userLanguage: state.options.userLanguage,
+  })),
+  withStyles(styles),
+)(MarkdownDocs);

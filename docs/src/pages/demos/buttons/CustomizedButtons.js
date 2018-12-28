@@ -7,10 +7,6 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   margin: {
     margin: theme.spacing.unit,
   },
@@ -69,7 +65,7 @@ function CustomizedInputs(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <div>
       <Button
         variant="contained"
         color="primary"

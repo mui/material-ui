@@ -16,19 +16,25 @@ module.exports = [
     name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '18.6 KB',
+    limit: '18.7 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '95.2 KB',
+    limit: '95.5 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
     webpack: true,
     path: 'packages/material-ui-styles/build/index.js',
-    limit: '15.0 KB',
+    limit: '15.3 KB',
+  },
+  {
+    name: 'The size of the @material-ui/system modules',
+    webpack: true,
+    path: 'packages/material-ui-system/build/index.js',
+    limit: '3.9 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
@@ -38,10 +44,18 @@ module.exports = [
     limit: '10.7 KB',
   },
   {
+    // vs https://bundlephobia.com/result?p=react-responsive
+    // vs https://bundlephobia.com/result?p=react-media
+    name: 'The size of the @material-ui/core/useMediaQuery component',
+    webpack: true,
+    path: 'packages/material-ui/build/useMediaQuery/index.js',
+    limit: '700 B',
+  },
+  {
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '176 KB',
+    limit: '178 KB',
   },
   {
     name: 'The docs home page',

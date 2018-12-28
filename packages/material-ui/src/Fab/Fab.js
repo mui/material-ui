@@ -84,8 +84,23 @@ export const styles = theme => ({
     borderRadius: 48 / 2,
     padding: '0 16px',
     width: 'auto',
+    minHeight: 'auto',
     minWidth: 48,
     height: 48,
+    '&$sizeSmall': {
+      width: 'auto',
+      padding: '0 8px',
+      borderRadius: 34 / 2,
+      minWidth: 34,
+      height: 34,
+    },
+    '&$sizeMedium': {
+      width: 'auto',
+      padding: '0 16px',
+      borderRadius: 40 / 2,
+      minWidth: 40,
+      height: 40,
+    },
   },
   /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},

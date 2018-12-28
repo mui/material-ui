@@ -167,7 +167,7 @@ TablePagination.propTypes = {
    * The component used for displaying the actions.
    * Either a string to use a DOM element or a component.
    */
-  ActionsComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  ActionsComponent: componentPropType,
   /**
    * Properties applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */

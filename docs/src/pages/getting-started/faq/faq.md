@@ -74,8 +74,8 @@ It's highly recommended:
 
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
-- It has a clean, consistent [API](http://cssinjs.org/json-api/).
-- It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/).
+- It has a clean, consistent [API](https://cssinjs.org/json-api/).
+- It supports a number of advanced features, either natively, or through [plugins](https://cssinjs.org/plugins/).
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the

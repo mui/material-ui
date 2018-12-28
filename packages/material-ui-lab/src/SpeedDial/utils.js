@@ -6,7 +6,7 @@
 /**
  *
  * @param direction {string}
- * @returns value useable in aria-orientation or undefined if no ArrowKey given
+ * @returns value usable in aria-orientation or undefined if no ArrowKey given
  */
 export function getOrientation(direction) {
   if (direction === 'up' || direction === 'down') {

@@ -12,7 +12,7 @@ export const styles = theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
-    height: 5,
+    height: 4,
   },
   /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
   colorPrimary: {

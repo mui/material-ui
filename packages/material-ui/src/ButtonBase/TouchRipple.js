@@ -185,7 +185,7 @@ class TouchRipple extends React.PureComponent {
       this.startTimerCommit = () => {
         this.startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
       };
-      // Deplay the execution of the ripple effect.
+      // Delay the execution of the ripple effect.
       this.startTimer = setTimeout(() => {
         if (this.startTimerCommit) {
           this.startTimerCommit();

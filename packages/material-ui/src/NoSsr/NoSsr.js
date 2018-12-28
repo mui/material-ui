@@ -25,7 +25,7 @@ class NoSsr extends React.Component {
       // Wondering why we use two RAFs? Check this video out:
       // https://www.youtube.com/watch?v=cCOL7MC4Pl0
       requestAnimationFrame(() => {
-        // The browser should be about to render the DOM that React commited at this point.
+        // The browser should be about to render the DOM that React committed at this point.
         // We don't want to interrupt. Let's wait the next raf.
         requestAnimationFrame(() => {
           if (this.mounted) {
@@ -52,7 +52,7 @@ class NoSsr extends React.Component {
 NoSsr.propTypes = {
   children: PropTypes.node.isRequired,
   /**
-   * If `true`, the component will not only prevent server side rendering.
+   * If `true`, the component will not only prevent server-side rendering.
    * It will also defer the rendering of the children into a different screen frame.
    */
   defer: PropTypes.bool,

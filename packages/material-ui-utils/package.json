@@ -2,7 +2,7 @@
   "name": "@material-ui/utils",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
   "main": "./src/index.js",
   "keywords": [
@@ -36,7 +36,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.1.2",
+    "@babel/runtime": "7.2.0",
     "react-is": "^16.6.3"
   },
   "devDependencies": {},

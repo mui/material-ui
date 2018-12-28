@@ -62,7 +62,7 @@ describe('<MuiThemeProvider />', () => {
     mount.cleanUp();
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;

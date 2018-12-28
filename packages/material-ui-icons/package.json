@@ -39,7 +39,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.1.2",
+    "@babel/runtime": "7.2.0",
     "recompose": "0.28.0 - 0.30.0"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "mkdirp": "^0.5.0",
     "mustache": "^3.0.0",
     "svgo": "^1.0.5",
-    "temp": "^0.8.3",
+    "temp": "^0.9.0",
     "yargs": "^12.0.0"
   },
   "sideEffects": false,
