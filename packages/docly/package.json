@@ -28,9 +28,10 @@
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
     "build:umd": "cross-env BABEL_ENV=production-umd rollup -c scripts/rollup.config.js",
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
-    "build:copy-icons": "rimraf build/icons && cd ../material-ui-icons && yarn build && cd ../docly && mv ../material-ui-icons/build ./build/icons",
+    "copy-icons": "rimraf build/icons && cd ../material-ui-icons && yarn build && cd ../docly && mv ../material-ui-icons/build ./build/icons",
+    "copy-guide-icons": "rimraf build/guide-icons && cd ../docly-guide-icons && yarn build && cd ../docly && mv ../docly-guide-icons/build ./build/guide-icons",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd && yarn build:copy-files",
-    "postbuild": "yarn build:copy-icons",
+    "postbuild": "yarn copy-icons yarn copy-guide-icons",
     "release": "yarn build && yarn publish build",
     "sync-package-json": "node ./scripts/sync-package-json.js",
     "postinstall": "yarn copy-material-core && yarn copy-material-utils"
@@ -40,7 +41,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.1.2",
+    "@babel/runtime": "7.2.0",
     "@types/jss": "^9.5.6",
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",
@@ -51,7 +52,7 @@
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^3.2.1",
     "is-plain-object": "^2.0.4",
-    "jss": "^9.3.3",
+    "jss": "^9.8.7",
     "jss-camel-case": "^6.0.0",
     "jss-default-unit": "^8.0.2",
     "jss-global": "^3.0.0",
@@ -66,7 +67,7 @@
     "react-transition-group": "^2.2.1",
     "recompose": "0.28.0 - 0.30.0",
     "warning": "^4.0.1",
-    "@material-ui/utils": "^3.0.0-alpha.0"
+    "@material-ui/utils": "^3.0.0-alpha.1"
   },
   "sideEffects": false,
   "publishConfig": {

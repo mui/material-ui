@@ -1,0 +1,27 @@
+<svg viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_fortidigutlosning</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(62 24)">
+<g id="ill_fortidigutlosning">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -62 -24L -6 -24L -6 32L -62 32L -62 -24Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Group 46" clip-path="url(#clip-0)">
+<g id="Subtract">
+<use xlink:href="#path0_fill" transform="translate(-48.6342 -12.6154)" fill="#283D46"/>
+</g>
+<g id="Union">
+<use xlink:href="#path1_fill" transform="translate(-55 -20)" fill="#283D46"/>
+</g>
+</g>
+<g id="male">
+<use xlink:href="#path2_fill" transform="translate(-21 17)" fill="#283D46"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 2.63422 0L 0 0L 0 5.0197C 0 9.51206 3.64178 13.1538 8.13415 13.1538C 12.6265 13.1538 16.2683 9.51206 16.2683 5.0197L 16.2683 0L 4.63422 0L 4.63422 5.61539C 4.63422 6.16767 4.1865 6.61539 3.63422 6.61539C 3.08193 6.61539 2.63422 6.16767 2.63422 5.61539L 2.63422 0Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 0 0L 29 0L 29 2L 27 2L 27 12.5C 27 17.6616 23.8714 22.0926 19.4072 24C 23.8715 25.9074 27 30.3384 27 35.5L 27 46L 29 46L 29 48L 0 48L 0 46L 2 46L 2 35.5C 2 30.3384 5.12855 25.9074 9.59283 24C 5.12855 22.0926 2 17.6617 2 12.5L 2 2L 0 2L 0 0ZM 4 46L 25 46L 25 35.5C 25 30.0383 20.8299 25.5506 15.5 25.047L 15.5 22.953C 20.8299 22.4494 25 17.9617 25 12.5L 25 2L 4 2L 4 12.5C 4 17.9617 8.17007 22.4494 13.5 22.953L 13.5 25.047C 8.17007 25.5506 4 30.0383 4 35.5L 4 46Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 13 6L 15 6L 15 0L 9 0L 9 2L 11.6284 2L 8.56458 5.06381C 7.68237 4.45047 6.61041 4.09091 5.45453 4.09091C 2.44208 4.09091 0 6.53299 0 9.54547C 0 12.5579 2.44208 15 5.45453 15C 8.46698 15 10.9091 12.5579 10.9091 9.54547C 10.9091 8.41153 10.5631 7.3584 9.97089 6.4859L 13 3.45676L 13 6ZM 8.90912 9.54547C 8.90912 11.4533 7.36243 13 5.45453 13C 3.54663 13 2 11.4533 2 9.54547C 2 7.63757 3.54663 6.09091 5.45453 6.09091C 7.36243 6.09091 8.90912 7.63757 8.90912 9.54547Z"/>
+</defs>
+</svg>

@@ -1,0 +1,33 @@
+<svg viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_barn_forstoppning</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(292 -148)">
+<g id="ill_barn_forstoppning">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -292 148L -236 148L -236 204L -292 204L -292 148Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Group 19" clip-path="url(#clip-0)">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(-281 138)" fill="#283D46"/>
+<use xlink:href="#path1_fill" transform="translate(-281 138)" fill="#283D46"/>
+<use xlink:href="#path2_fill" transform="translate(-281 138)" fill="#283D46"/>
+<use xlink:href="#path3_fill" transform="translate(-281 138)" fill="#283D46"/>
+</g>
+</g>
+<g id="Union">
+<use xlink:href="#path4_fill" transform="translate(-272 182)" fill="#FF383B"/>
+<use xlink:href="#path5_fill" transform="translate(-272 182)" fill="#FF383B"/>
+<use xlink:href="#path6_fill" transform="translate(-272 182)" fill="#FF383B"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 17 0L 27 0L 27 18C 27 20.8273 25.6963 23.35 23.6573 25L 25 25C 29.9706 25 34 29.0294 34 34C 34 38.9706 29.9706 43 25 43L 23.6573 43C 25.6963 44.65 27 47.1727 27 50L 27 70C 27 72.7614 24.7614 75 22 75C 19.2386 75 17 72.7614 17 70L 17 51L 9 51C 4.02944 51 0 46.9706 0 42C 0 38.5171 1.97845 35.4962 4.8728 34C 1.97845 32.5038 0 29.4829 0 26C 0 21.0294 4.02944 17 9 17L 17 17L 17 0ZM 9 33L 9 35C 5.13401 35 2 38.134 2 42C 2 45.866 5.13401 49 9 49L 19 49L 19 70C 19 71.6569 20.3431 73 22 73C 23.6569 73 25 71.6569 25 70L 25 50C 25 46.134 21.866 43 18 43L 18 41L 25 41C 28.866 41 32 37.866 32 34C 32 30.134 28.866 27 25 27L 18 27L 18 25C 21.866 25 25 21.866 25 18L 25 2L 19 2L 19 19L 9 19C 5.13401 19 2 22.134 2 26C 2 29.866 5.13401 33 9 33Z"/>
+<path id="path1_fill" d="M 23 27L 9 27L 9 25L 23 25L 23 27Z"/>
+<path id="path2_fill" d="M 9 41L 18 41L 18 43L 9 43L 9 41Z"/>
+<path id="path3_fill" d="M 25 33L 9 33L 9 35L 25 35L 25 33Z"/>
+<path id="path4_fill" d="M 2 0L 0 0L 0 4L 2 4L 2 0Z"/>
+<path id="path5_fill" d="M 5 0L 3 0L 3 4L 5 4L 5 0Z"/>
+<path id="path6_fill" d="M 11 22L 15 22L 15 5C 14.4185 2.09271 11.8658 0 8.90097 0L 6 0L 6 4L 11 4L 11 22Z"/>
+</defs>
+</svg>

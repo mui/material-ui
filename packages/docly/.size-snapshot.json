@@ -1,7 +1,7 @@
 {
   "build/umd/material-ui.production.min.js": {
-    "bundled": 1088480,
-    "minified": 317993,
-    "gzipped": 83876
+    "bundled": 1083036,
+    "minified": 315796,
+    "gzipped": 83424
   }
 }

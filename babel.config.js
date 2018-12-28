@@ -30,6 +30,7 @@ if (process.env.BABEL_ENV === 'es') {
 const defaultAlias = {
   // docly
   '@docly/web': './packages/docly/src',
+  '@docly/guide-icons': './packages/docly-guide-icons/src',
 
   '@material-ui/core': './packages/material-ui/src',
   '@material-ui/icons': './packages/material-ui-icons/src',

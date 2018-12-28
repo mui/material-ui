@@ -1,0 +1,31 @@
+<svg viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_receptfornyelse</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(63 258)">
+<g id="ill_receptfornyelse">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -63 -258L -7 -258L -7 -202L -63 -202L -63 -258Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Group 22" clip-path="url(#clip-0)">
+<g id="Rectangle 2 (Stroke)">
+<use xlink:href="#path0_fill" transform="matrix(0.707107 0.707107 -0.707107 0.707107 -21.3517 -253)" fill="#283D46"/>
+</g>
+<g id="Ellipse 3">
+<use xlink:href="#path1_stroke" transform="translate(-57 -253)" fill="#FF383B"/>
+</g>
+<g id="Line (Stroke)">
+<use xlink:href="#path2_fill" transform="matrix(0.707107 0.707107 -0.707107 0.707107 -37.5858 -235.414)" fill="#283D46"/>
+</g>
+<g id="Line 2 (Stroke)">
+<use xlink:href="#path3_fill" transform="matrix(-0.707107 0.707107 -0.707107 -0.707107 -26.2929 -239.293)" fill="#283D46"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 20 38L 20 11C 20 6.02944 15.9706 2 11 2C 6.02944 2 2 6.02944 2 11L 2 38C 2 42.9706 6.02944 47 11 47C 15.9706 47 20 42.9706 20 38ZM 11 0C 4.92487 0 0 4.92487 0 11L 0 38C 0 44.0751 4.92487 49 11 49C 17.0751 49 22 44.0751 22 38L 22 11C 22 4.92487 17.0751 0 11 0Z"/>
+<path id="path1_stroke" d="M 16 8.5C 16 12.6421 12.6421 16 8.5 16L 8.5 18C 13.7467 18 18 13.7467 18 8.5L 16 8.5ZM 8.5 16C 4.35786 16 1 12.6421 1 8.5L -1 8.5C -1 13.7467 3.25329 18 8.5 18L 8.5 16ZM 1 8.5C 1 4.35786 4.35786 1 8.5 1L 8.5 -1C 3.25329 -1 -1 3.25329 -1 8.5L 1 8.5ZM 8.5 1C 12.6421 1 16 4.35786 16 8.5L 18 8.5C 18 3.25329 13.7467 -1 8.5 -1L 8.5 1Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 19.799 2L 0 2L 0 0L 19.799 0L 19.799 2Z"/>
+<path id="path3_fill" fill-rule="evenodd" d="M 0 0.5C 0 0.223858 0.223858 0 0.5 0L 23.5416 0C 23.8178 0 24.0416 0.223858 24.0416 0.5C 24.0416 0.776142 23.8178 1 23.5416 1L 0.5 1C 0.223858 1 0 0.776142 0 0.5Z"/>
+</defs>
+</svg>

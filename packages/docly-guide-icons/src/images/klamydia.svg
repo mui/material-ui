@@ -1,0 +1,43 @@
+<svg viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_klamydia</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-91 178)">
+<g id="ill_klamydia">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 91 -178L 147 -178L 147 -122L 91 -122L 91 -178Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Group 32" clip-path="url(#clip-0)">
+<g id="Rectangle 3 (Stroke)">
+<use xlink:href="#path0_fill" transform="translate(110 -171)" fill="#283D46"/>
+</g>
+<g id="Union">
+<use xlink:href="#path1_fill" transform="translate(112 -166)" fill="#FF383B"/>
+<use xlink:href="#path2_fill" transform="translate(112 -166)" fill="#FF383B"/>
+<use xlink:href="#path3_fill" transform="translate(112 -166)" fill="#FF383B"/>
+<use xlink:href="#path4_fill" transform="translate(112 -166)" fill="#FF383B"/>
+<use xlink:href="#path5_fill" transform="translate(112 -166)" fill="#FF383B"/>
+</g>
+<g id="Rectangle 5">
+<use xlink:href="#path6_fill" transform="translate(107 -171)" fill="#283D46"/>
+</g>
+<g id="Rectangle 3.2 (Stroke)">
+<use xlink:href="#path7_fill" transform="translate(116 -140)" fill="#283D46"/>
+</g>
+<g id="Rectangle 3.1">
+<use xlink:href="#path8_fill" transform="translate(118 -177)" fill="#283D46"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 15 2L 2 2L 2 39C 2 42.3137 4.68629 45 8 45L 9 45C 12.3137 45 15 42.3137 15 39L 15 2ZM 0 0L 0 39C 0 43.4183 3.58172 47 8 47L 9 47C 13.4183 47 17 43.4183 17 39L 17 0L 0 0Z"/>
+<path id="path1_fill" d="M 0 0L 4 0L 4 1.03642L 0 1.03642L 0 0Z"/>
+<path id="path2_fill" d="M 0 4.52644L 4 4.52644L 4 5.56287L 0 5.56287L 0 4.52644Z"/>
+<path id="path3_fill" d="M 4 8.67215L 0 8.67215L 0 9.70857L 4 9.70857L 4 8.67215Z"/>
+<path id="path4_fill" d="M 0 12.8179L 4 12.8179L 4 13.8543L 0 13.8543L 0 12.8179Z"/>
+<path id="path5_fill" d="M 4 16.9636L 0 16.9636L 0 18L 4 18L 4 16.9636Z"/>
+<path id="path6_fill" d="M 0 0L 23 0L 23 2L 0 2L 0 0Z"/>
+<path id="path7_fill" fill-rule="evenodd" d="M 3 2L 2 2L 2 8L 3 8L 3 2ZM 2 0C 0.895431 0 0 0.895431 0 2L 0 8C 0 9.10457 0.895431 10 2 10L 3 10C 4.10457 10 5 9.10457 5 8L 5 2C 5 0.895431 4.10457 0 3 0L 2 0Z"/>
+<path id="path8_fill" d="M 0 0L 1 0L 1 37L 0 37L 0 0Z"/>
+</defs>
+</svg>

@@ -118,7 +118,19 @@ async function worker({ svgPath, options, renameFilter, template }) {
     .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
     .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
 
-  const result = await svgo.optimize(input);
+  // console.log('reading', svgPath);
+
+  let result = {};
+
+  try {
+    result = await svgo.optimize(input);
+  } catch (err) {
+    console.log('ERROR: ', err);
+  }
+  if (!result.data) {
+    console.log('SKIPPING', svgPath);
+    return;
+  }
 
   // Extract the paths from the svg string
   // Clean xml paths

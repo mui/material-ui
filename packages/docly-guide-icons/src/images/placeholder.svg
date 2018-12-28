@@ -1,0 +1,37 @@
+<svg viewBox="0 0 57 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_placeholder</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-167 -149)">
+<g id="ill_placeholder">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 168 149L 224 149L 224 205L 168 205L 168 149Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Group 53.1" clip-path="url(#clip-0)">
+<g id="Vector 8 (Stroke)">
+<use xlink:href="#path0_fill" transform="translate(171 154.667)" fill="#2F424A"/>
+</g>
+<g id="Vector 8.1 (Stroke)">
+<use xlink:href="#path0_fill" transform="matrix(-1 0 0 1 202.3 154.667)" fill="#2F424A"/>
+</g>
+<g id="Vector 8 (Stroke)">
+<use xlink:href="#path1_fill" transform="translate(184.984 180.333)" fill="#2F424A"/>
+</g>
+<g id="Ellipse 4">
+<use xlink:href="#path2_fill" transform="translate(177.327 153)" fill="#2F424A"/>
+</g>
+<g id="Ellipse 4.1">
+<use xlink:href="#path2_fill" transform="translate(190.646 153)" fill="#2F424A"/>
+</g>
+<g id="Ellipse 5 (Stroke)">
+<use xlink:href="#path3_fill" transform="translate(208.571 170.195)" fill="#2F424A"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 0L 7.47333 0L 7.47333 2L 2 2L 2 11.0165C 2 18.5553 8.11139 24.6667 15.6502 24.6667L 15.6502 26.6667C 7.00682 26.6667 0 19.6598 0 11.0165L 0 0Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 0 5.51593L 0 0L 2 0L 2 5.51593C 2 12.7789 7.88778 18.6667 15.1507 18.6667C 22.4137 18.6667 28.3015 12.7789 28.3015 5.51593L 28.3015 0L 30.3015 0L 30.3015 5.51593C 30.3015 13.8835 23.5182 20.6667 15.1507 20.6667C 6.78321 20.6667 0 13.8835 0 5.51593Z"/>
+<path id="path2_fill" d="M 5.32733 2.66667C 5.32733 4.13943 4.13477 5.33333 2.66367 5.33333C 1.19256 5.33333 0 4.13943 0 2.66667C 0 1.19391 1.19256 0 2.66367 0C 4.13477 0 5.32733 1.19391 5.32733 2.66667Z"/>
+<path id="path3_fill" fill-rule="evenodd" d="M 5.71429 9.46341C 7.75989 9.46341 9.42857 7.79841 9.42857 5.73171C 9.42857 3.665 7.75989 2 5.71429 2C 3.66868 2 2 3.665 2 5.73171C 2 7.79841 3.66868 9.46341 5.71429 9.46341ZM 5.71429 11.4634C 8.8702 11.4634 11.4286 8.89724 11.4286 5.73171C 11.4286 2.56617 8.8702 0 5.71429 0C 2.55837 0 0 2.56617 0 5.73171C 0 8.89724 2.55837 11.4634 5.71429 11.4634Z"/>
+</defs>
+</svg>

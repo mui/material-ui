@@ -86,7 +86,6 @@ class HomePage extends React.Component {
 
   render() {
     const classes = this.props.classes;
-
     return (
       <AppFrame>
         <div className={classes.root}>

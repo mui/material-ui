@@ -1,0 +1,24 @@
+<svg viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_ovriga besvar</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-167 257)">
+<g id="ill_ovriga besvar">
+<g id="Group 8.4">
+<g id="Subtract">
+<use xlink:href="#path0_fill" transform="translate(185 -251)" fill="#2F424A"/>
+</g>
+<g id="Rectangle (Stroke)">
+<use xlink:href="#path1_fill" transform="translate(173 -242)" fill="#2F424A"/>
+</g>
+<g id="Union">
+<use xlink:href="#path2_fill" transform="translate(188 -233)" fill="#FF383B"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 18 10L 20 10C 20 4.47716 15.5228 0 10 0C 4.47716 0 0 4.47716 0 10L 2 10C 2 5.58173 5.58173 2 10 2C 14.4183 2 18 5.58173 18 10Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 44 33L 0 33L 0 6C 0 2.68629 2.68629 0 6 0L 38 0C 41.3137 0 44 2.68629 44 6L 44 33ZM 6 2C 3.79086 2 2 3.79086 2 6L 2 31L 42 31L 42 6C 42 3.79086 40.2091 2 38 2L 6 2Z"/>
+<path id="path2_fill" d="M 9 6L 9 0L 6 0L 6 6L 0 6L 0 9L 6 9L 6 15L 9 15L 9 9L 15 9L 15 6L 9 6Z"/>
+</defs>
+</svg>

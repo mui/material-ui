@@ -1,0 +1,36 @@
+<svg viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_forskjuta_mens</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(366 178)">
+<g id="ill_forskjuta_mens">
+<g id="Rectangle 4">
+<use xlink:href="#path0_fill" transform="translate(-350 -147)" fill="#FF383B"/>
+</g>
+<g id="Rectangle 3 (Stroke)">
+<use xlink:href="#path1_fill" transform="translate(-364 -169)" fill="#283D46"/>
+</g>
+<g id="Union">
+<use xlink:href="#path2_fill" transform="translate(-358 -174)" fill="#283D46"/>
+<use xlink:href="#path3_fill" transform="translate(-358 -174)" fill="#283D46"/>
+</g>
+<g id="Union">
+<use xlink:href="#path4_fill" transform="translate(-358.5 -155.5)" fill="#283D46"/>
+</g>
+<g id="Line (Stroke)">
+<use xlink:href="#path5_fill" transform="translate(-363 -162)" fill="#283D46"/>
+</g>
+<g id="female">
+<use xlink:href="#path6_fill" transform="translate(-320.909 -140)" fill="#283D46"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 0 0L 22 0L 22 7L 0 7L 0 0Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 38 2L 4 2C 2.89543 2 2 2.89543 2 4L 2 40L 40 40L 40 4C 40 2.89543 39.1046 2 38 2ZM 4 0C 1.79086 0 0 1.79086 0 4L 0 42L 42 42L 42 4C 42 1.79086 40.2091 0 38 0L 4 0Z"/>
+<path id="path2_fill" d="M 5 0L 0 0L 0 6L 5 6L 5 0Z"/>
+<path id="path3_fill" d="M 30 0L 25 0L 25 6L 30 6L 30 0Z"/>
+<path id="path4_fill" fill-rule="evenodd" d="M 0 0L 0 23.5L 31 23.5L 31 0L 0 0ZM 30 15L 30 8.5L 23.5 8.5L 23.5 15L 30 15ZM 22.5 15L 22.5 8.5L 16 8.5L 16 15L 22.5 15ZM 30 16L 23.5 16L 23.5 22.5L 30 22.5L 30 16ZM 22.5 22.5L 22.5 16L 16 16L 16 22.5L 22.5 22.5ZM 15 16L 15 22.5L 8.5 22.5L 8.5 16L 15 16ZM 8.5 15L 15 15L 15 8.5L 8.5 8.5L 8.5 15ZM 7.5 22.5L 7.5 16L 1 16L 1 22.5L 7.5 22.5ZM 7.5 15L 1 15L 1 8.5L 7.5 8.5L 7.5 15ZM 30 7.5L 30 1L 23.5 1L 23.5 7.5L 30 7.5ZM 22.5 7.5L 22.5 1L 16 1L 16 7.5L 22.5 7.5ZM 8.5 7.5L 15 7.5L 15 1L 8.5 1L 8.5 7.5ZM 7.5 7.5L 1 7.5L 1 1L 7.5 1L 7.5 7.5Z"/>
+<path id="path5_fill" fill-rule="evenodd" d="M 40 1L 0 1L 0 0L 40 0L 40 1Z"/>
+<path id="path6_fill" fill-rule="evenodd" d="M 4.4545 10.8176C 1.91965 10.3479 0 8.12541 0 5.45454C 0 2.44208 2.44208 0 5.45454 0C 8.467 0 10.9091 2.44208 10.9091 5.45454C 10.9091 8.12544 8.98939 10.348 6.4545 10.8176L 6.4545 13.3134L 8.9545 13.3134L 8.9545 15.3134L 6.4545 15.3134L 6.4545 18L 4.4545 18L 4.4545 15.3134L 1.9545 15.3134L 1.9545 13.3134L 4.4545 13.3134L 4.4545 10.8176ZM 2 5.45454C 2 7.36244 3.54665 8.90909 5.45454 8.90909C 7.36243 8.90909 8.90909 7.36244 8.90909 5.45454C 8.90909 3.54665 7.36243 2 5.45454 2C 3.54665 2 2 3.54665 2 5.45454Z"/>
+</defs>
+</svg>

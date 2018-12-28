@@ -1,0 +1,56 @@
+<svg viewBox="0 0 56 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>ill_barn_klada_i_rumpan</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(214 -226)">
+<g id="ill_barn_klada_i_rumpan">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -214 227L -158 227L -158 283L -214 283L -214 227Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Group 57" clip-path="url(#clip-0)">
+<g id="Line (Stroke)">
+<use xlink:href="#path0_fill" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -185 254)" fill="#2F424A"/>
+</g>
+<g id="Vector (Stroke)">
+<use xlink:href="#path1_fill" transform="translate(-204.5 254.5)" fill="#2F424A"/>
+</g>
+<g id="Vector (Stroke)">
+<use xlink:href="#path2_fill" transform="translate(-185.5 254.5)" fill="#2F424A"/>
+</g>
+<g id="Vector 2 (Stroke)">
+<use xlink:href="#path3_fill" transform="translate(-210 229.688)" fill="#2F424A"/>
+</g>
+<g id="Vector 2.1 (Stroke)">
+<use xlink:href="#path3_fill" transform="matrix(-1 0 0 1 -162.12 229.688)" fill="#2F424A"/>
+</g>
+<g id="Ellipse 3.7">
+<use xlink:href="#path4_fill" transform="matrix(-1 0 0 1 -190 260)" fill="#FF383B"/>
+</g>
+<g id="Ellipse 3.8">
+<use xlink:href="#path5_fill" transform="matrix(-1 0 0 1 -180 266)" fill="#FF383B"/>
+</g>
+<g id="Ellipse 3.9">
+<use xlink:href="#path6_fill" transform="matrix(-1 0 0 1 -179.615 250)" fill="#FF383B"/>
+</g>
+<g id="Ellipse 3.10">
+<use xlink:href="#path5_fill" transform="matrix(-1 0 0 1 -178 261)" fill="#FF383B"/>
+</g>
+<g id="Ellipse 3.12">
+<use xlink:href="#path7_fill" transform="matrix(-1 0 0 1 -195 265)" fill="#FF383B"/>
+</g>
+<g id="Ellipse 3.11">
+<use xlink:href="#path5_fill" transform="matrix(-1 0 0 1 -190 251)" fill="#FF383B"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 1C 0 0.447715 0.447715 0 1 0L 26 0L 26 2L 1 2C 0.447715 2 0 1.55228 0 1Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 0.0737928 0.238753C 0.218115 0.00332652 0.525962 -0.0705289 0.761389 0.0737928C 0.843938 0.1244 0.928623 0.17657 1.01543 0.230052C 2.47163 1.12715 4.52649 2.39307 7.14608 2.83384C 9.88266 3.30441 13.2676 2.89058 17.2107 0.0923155C 17.4359 -0.0674995 17.748 -0.0144969 17.9078 0.2107C 18.0676 0.435897 18.0146 0.748011 17.7894 0.907827C 13.6378 3.85409 9.98517 4.33671 6.97661 3.81938C 4.1337 3.32072 1.89431 1.94402 0.429634 1.04359C 0.364468 1.00352 0.300837 0.964406 0.238753 0.926349C 0.00332652 0.782028 -0.0705289 0.47418 0.0737928 0.238753Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 0.0776957 0.232473C 0.225482 -0.000794649 0.534387 -0.0700908 0.767655 0.0776957C 0.85123 0.130647 0.936969 0.185236 1.02486 0.241199C 2.49642 1.17814 4.57239 2.4999 7.21857 2.96002C 9.98049 3.45085 13.3993 3.02015 17.3851 0.0968804C 17.6078 -0.0664344 17.9207 -0.0183157 18.084 0.204356C 18.2473 0.427029 18.1992 0.739933 17.9765 0.903248C 13.7815 3.97998 10.0879 4.48561 7.0436 3.9446C 4.1692 3.42349 1.90525 1.98511 0.424938 1.0446C 0.359234 1.00286 0.295074 0.962091 0.232473 0.922432C -0.000794649 0.774646 -0.0700908 0.465741 0.0776957 0.232473Z"/>
+<path id="path3_fill" fill-rule="evenodd" d="M 0 21.6607C 0 14.1981 2.81011 3.40426 3.92955 0L 5.82947 0.624759C 4.73204 3.96207 2 14.5166 2 21.6607C 1.99422 26.6792 2.47665 28.8597 3.21128 32.1773L 3.22095 32.2209C 3.95465 35.5342 4.93107 39.9435 5.87436 49.2113L 3.8846 49.4135C 2.95948 40.2902 2.00791 35.9933 1.27499 32.6837L 1.25859 32.6097C 0.523353 29.2894 0.00578094 26.894 0 21.6607Z"/>
+<path id="path4_fill" d="M 4 2C 4 3.10457 3.10457 4 2 4C 0.895431 4 0 3.10457 0 2C 0 0.895431 0.895431 0 2 0C 3.10457 0 4 0.895431 4 2Z"/>
+<path id="path5_fill" d="M 3 1.5C 3 2.32843 2.32843 3 1.5 3C 0.671573 3 0 2.32843 0 1.5C 0 0.671573 0.671573 0 1.5 0C 2.32843 0 3 0.671573 3 1.5Z"/>
+<path id="path6_fill" d="M 3.38462 1.74021C 3.38462 2.7013 2.62694 3.48041 1.69231 3.48041C 0.757672 3.48041 0 2.7013 0 1.74021C 0 0.779117 0.757672 0 1.69231 0C 2.62694 0 3.38462 0.779117 3.38462 1.74021Z"/>
+<path id="path7_fill" d="M 2 1C 2 1.55228 1.55228 2 1 2C 0.447715 2 0 1.55228 0 1C 0 0.447715 0.447715 0 1 0C 1.55228 0 2 0.447715 2 1Z"/>
+</defs>
+</svg>
