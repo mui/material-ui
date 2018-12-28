@@ -18,7 +18,7 @@ declare module '@material-ui/styles' {
 }
 
 declare module '@material-ui/styles/createGenerateClassName' {
-  import { GenerateClassName } from 'jss';
+  import { GenerateId } from 'jss';
 
   export interface GenerateClassNameOptions {
     dangerouslyUseGlobalCSS?: boolean;
@@ -26,9 +26,7 @@ declare module '@material-ui/styles/createGenerateClassName' {
     seed?: string;
   }
 
-  export default function createGenerateClassName(
-    options?: GenerateClassNameOptions,
-  ): GenerateClassName;
+  export default function createGenerateClassName(options?: GenerateClassNameOptions): GenerateId;
 }
 
 declare module '@material-ui/styles/createStyles' {
@@ -66,9 +64,9 @@ declare module '@material-ui/styles/install' {
 }
 
 declare module '@material-ui/styles/jssPreset' {
-  import { JSSOptions } from 'jss';
+  import { JssOptions } from 'jss';
 
-  export default function jssPreset(): JSSOptions;
+  export default function jssPreset(): JssOptions;
 }
 
 declare module '@material-ui/styles/makeStyles' {
@@ -96,7 +94,7 @@ declare module '@material-ui/styles/makeStyles' {
 
   export default function makeStyles<S extends Styles<any, any>>(
     styles: S,
-    options?: WithStylesOptions<ClassKeyOfStyles<S>>,
+    options?: WithStylesOptions,
   ): StylesHook<S>;
 }
 
@@ -128,12 +126,12 @@ declare module '@material-ui/styles/styled' {
 }
 
 declare module '@material-ui/styles/StylesProvider' {
-  import { GenerateClassName, JSS } from 'jss';
+  import { GenerateId, Jss } from 'jss';
 
   interface StylesOptions {
     disableGeneration?: boolean;
-    generateClassName?: GenerateClassName;
-    jss?: JSS;
+    generateClassName?: GenerateId;
+    jss?: Jss;
     // TODO need info @oliviertassinari
     sheetsCache?: {};
     // TODO need info @oliviertassinari
@@ -204,8 +202,7 @@ declare module '@material-ui/styles/withStyles' {
     | StyleRules<Props, ClassKey>
     | StyleRulesCallback<Theme, Props, ClassKey>;
 
-  export interface WithStylesOptions<ClassKey extends string = string>
-    extends JSS.CreateStyleSheetOptions<ClassKey> {
+  export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
     flip?: boolean;
     withTheme?: boolean;
     name?: string;
@@ -249,7 +246,7 @@ declare module '@material-ui/styles/withStyles' {
 
   export default function withStyles<
     S extends Styles<any, any>,
-    Options extends WithStylesOptions<ClassKeyOfStyles<S>> = {}
+    Options extends WithStylesOptions = {}
   >(
     style: S,
     options?: Options,

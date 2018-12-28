@@ -1,3 +1,3 @@
-import { JSSOptions } from 'jss';
+import { JssOptions } from 'jss';
 
-export default function jssPreset(): JSSOptions;
+export default function jssPreset(): JssOptions;
