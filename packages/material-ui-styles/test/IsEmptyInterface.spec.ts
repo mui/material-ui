@@ -10,7 +10,22 @@ type EmptyInterfaceIsValid = IsEmptyInterface<{}>;
 type ObjectIsValid = IsEmptyInterface<object>;
 
 // $ExpectType false
+type NullishIsValid = IsEmptyInterface<null | undefined>;
+
+// $ExpectType false
+type StringIsValid = IsEmptyInterface<string>;
+
+// $ExpectType false
+type NumberIsValid = IsEmptyInterface<number>;
+
+// $ExpectType false
 type SymbolIsValid = IsEmptyInterface<symbol>;
+
+// $ExpectType false
+type NeverIsValid = IsEmptyInterface<never>;
+
+// $ExpectType false
+type UnknownIsValid = IsEmptyInterface<unknown>;
 
 const noop = () => {};
 // $ExpectType false
