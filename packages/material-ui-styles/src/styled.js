@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName } from '@material-ui/utils';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import withStyles from './withStyles';
 
 function omit(input, fields) {
@@ -39,7 +40,7 @@ function styled(Component) {
 
       let spread = other;
       if (style.filterProps) {
-        const omittedProps = [style.filterProps];
+        const omittedProps = style.filterProps;
         spread = omit(spread, omittedProps);
       }
 
@@ -81,10 +82,16 @@ function styled(Component) {
       ...(style.propTypes || {}),
     };
 
+    if (process.env.NODE_ENV !== 'production') {
+      StyledComponent.displayName = `Styled(${getDisplayName(Component)})`;
+    }
+
     const styles =
       typeof style === 'function'
         ? theme => ({ root: props => style({ theme, ...props }) })
         : { root: style };
+
+    hoistNonReactStatics(StyledComponent, Component);
 
     return withStyles(styles, options)(StyledComponent);
   };

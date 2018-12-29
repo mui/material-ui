@@ -19,7 +19,7 @@ const styles = {
     flexGrow: 1,
   },
   media: {
-    height: 220,
+    paddingTop: '55.55%',
   },
 };
 
@@ -77,6 +77,16 @@ const themes = [
     href: '/premium-themes/onepirate',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/onepirate',
+  },
+  {
+    name: 'Instapaper',
+    description: "Instagram's profile page by customizing Material-UI theme.",
+    src: '/static/themes/instapaper.png',
+    price: 'FREE',
+    category: 'Profile page',
+    href: '/premium-themes/instapaper',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/instapaper',
   },
 ];
 

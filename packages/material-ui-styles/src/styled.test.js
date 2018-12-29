@@ -38,6 +38,6 @@ describe('styled', () => {
     );
 
     assert.strictEqual(sheetsRegistry.registry.length, 1);
-    assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'StyledComponent-root-1' });
+    assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Styled-button--root-1' });
   });
 });
