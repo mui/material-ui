@@ -22,6 +22,7 @@ component and some styles:
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 
 Modal is a lower-level construct that is leveraged by the following components:
+
 - [Dialog](/demos/dialogs/)
 - [Drawer](/demos/drawers/)
 - [Menu](/demos/menus/)
