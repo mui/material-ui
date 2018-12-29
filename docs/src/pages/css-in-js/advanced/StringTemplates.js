@@ -1,7 +1,7 @@
 import React from 'react';
 import { jssPreset, StylesProvider, makeStyles } from '@material-ui/styles';
 import { create } from 'jss';
-import jssTemplate from 'jss-template';
+import jssTemplate from 'jss-plugin-template';
 import Button from '@material-ui/core/Button';
 
 const jss = create({

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import getDynamicStyles from 'jss/lib/utils/getDynamicStyles';
+import { getDynamicStyles } from 'jss';
 import { getDisplayName } from '@material-ui/utils';
 import { increment } from './indexCounter';
 import mergeClasses from './mergeClasses';
@@ -76,6 +76,7 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
     ...stylesOptions,
     flip: typeof stylesOptions.flip === 'boolean' ? stylesOptions.flip : theme.direction === 'rtl',
   };
+  options.generateId = options.generateClassName;
 
   const sheetsRegistry = stylesOptions.sheetsRegistry;
 
