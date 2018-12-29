@@ -55,10 +55,7 @@ export const styles = theme => ({
     color: 'inherit',
     fontWeight: 'inherit',
   },
-  themeInherit: {
-    ...theme.typography,
-    fontWeight: 500,
-  },
+  body2: theme.typography.body2,
 });
 
 function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
@@ -85,7 +82,7 @@ function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
   }
 
   return (
-    <li style={rowStyle} key={colorValue} className={classes.themeInherit}>
+    <li style={rowStyle} key={colorValue} className={classes.body2}>
       {blockTitle}
       <div className={classes.colorContainer}>
         <span>{colorValue}</span>
