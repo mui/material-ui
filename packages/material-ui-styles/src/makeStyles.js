@@ -12,9 +12,10 @@ const noopTheme = {};
 // let id = 0;
 
 function makeStyles(stylesOrCreator, options = {}) {
-  const { withTheme = false, name, ...stylesOptions2 } = options;
+  const { withTheme = false, name, defaultTheme: defaultThemeOption, ...stylesOptions2 } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
+  const defaultTheme = defaultThemeOption || noopTheme;
 
   const meta = name || 'Hook';
 
@@ -28,7 +29,7 @@ function makeStyles(stylesOrCreator, options = {}) {
   };
 
   return (props = {}) => {
-    const theme = listenToTheme ? React.useContext(ThemeContext) : noopTheme;
+    const theme = listenToTheme ? React.useContext(ThemeContext) || defaultTheme : defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
       ...stylesOptions2,
