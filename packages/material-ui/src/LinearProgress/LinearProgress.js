@@ -89,7 +89,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the bar1 element if `variant="determinate"`. */
   bar1Determinate: {
-    willChange: 'transform',
     transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   /* Styles applied to the bar1 element if `variant="buffer"`. */

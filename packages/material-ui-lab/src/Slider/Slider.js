@@ -68,7 +68,6 @@ export const styles = theme => {
       transition: trackTransitions,
       '&$activated': {
         transition: 'none',
-        willChange: 'transform',
       },
       '&$disabled': {
         backgroundColor: colors.disabled,
@@ -105,7 +104,6 @@ export const styles = theme => {
       transition: thumbTransitions,
       '&$activated': {
         transition: 'none',
-        willChange: 'transform',
       },
       '&$vertical': {
         bottom: 0,

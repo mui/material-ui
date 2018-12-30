@@ -37,6 +37,7 @@ export const styles = theme => ({
   indeterminate: {
     animation: 'mui-progress-circular-rotate 1.4s linear infinite',
     animationName: '$mui-progress-circular-rotate',
+    willChange: 'transform',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -65,6 +66,7 @@ export const styles = theme => ({
     // Some default value that looks fine waiting for the animation to kicks in.
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
+    willChange: 'stroke-dasharray, stroke-dashoffset',
   },
   '@keyframes mui-progress-circular-rotate': {
     '100%': {
@@ -88,6 +90,7 @@ export const styles = theme => ({
   /* Styles applied to the `circle` svg path if `disableShrink={true}`. */
   circleDisableShrink: {
     animation: 'none',
+    willChange: 'auto', // reset to it's default value
   },
 });
 
