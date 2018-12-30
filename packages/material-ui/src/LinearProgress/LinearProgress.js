@@ -43,6 +43,7 @@ export const styles = theme => ({
     width: '100%',
     animation: 'buffer 3s infinite linear',
     animationName: '$buffer',
+    willChange: 'opacity, background-position',
   },
   /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
   dashedColorPrimary: {
