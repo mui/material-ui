@@ -45,8 +45,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 /**
- * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
- *
  * Modal is a lower-level construct that is leveraged by the following components:
  *
  * - [Dialog](/api/dialog/)
@@ -57,6 +55,7 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
  * rather than directly using Modal.
  *
+ * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
   mounted = false;

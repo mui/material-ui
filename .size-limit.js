@@ -37,6 +37,12 @@ module.exports = [
     limit: '3.9 KB',
   },
   {
+    name: 'The size of the color manipulator helpers',
+    webpack: true,
+    path: 'packages/material-ui/build/styles/colorManipulator.js',
+    limit: '900 B',
+  },
+  {
     // vs https://bundlephobia.com/result?p=react-popper
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
