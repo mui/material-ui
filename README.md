@@ -24,7 +24,7 @@ Available as npm package.
 npm i material-ui-pickers
 ```
 
-Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.16 version of date-fns for now. Stay tuned!
+Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.21 version of date-fns for now. Stay tuned!
 
 ```sh
 npm i date-fns@2.0.0-alpha.21 @date-io/date-fns
