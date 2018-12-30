@@ -3,22 +3,19 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   '@global': {
-    '#cf_ad': {
+    '#cf': {
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: `${theme.palette.background.paper} !important`,
       padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
         .spacing.unit + 130}px`,
       borderRadius: theme.shape.borderRadius,
+      width: 'initial !important',
       margin: '0 !important', // Reset
       maxWidth: 'none !important', // Reset
       '& img': {
         verticalAlign: 'middle',
       },
-      '& a': {
-        textDecoration: 'none',
-      },
       '& .cf-wrapper.cf-wrapper': {
-        padding: 0, // Reset
         overflow: 'visible', // Reset
         backgroundColor: 'transparent', // Reset
       },
@@ -26,9 +23,11 @@ const styles = theme => ({
         float: 'left',
         marginLeft: -130,
         marginRight: theme.spacing.unit,
+        marginBottom: '0px !important', // Reset
       },
       '& .cf-text.cf-text': {
         ...theme.typography.body2,
+        color: `${theme.typography.body2.color} !important`,
         display: 'block',
         '& strong': {
           fontWeight: theme.typography.fontWeightMedium,
@@ -36,9 +35,9 @@ const styles = theme => ({
       },
       '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
-        color: theme.palette.text.secondary,
-        display: 'block',
-        marginTop: 0, // Reset
+        fontSize: `${theme.typography.caption.fontSize} !important`,
+        color: `${theme.palette.text.secondary} !important`,
+        marginTop: '0px! important', // Reset
       },
     },
   },
@@ -55,7 +54,7 @@ class CodeFund extends React.Component {
 
     const script = document.createElement('script');
     script.setAttribute('async', '');
-    script.src = '//codefund.io/scripts/71fdcb01-40be-4590-af75-cd1bd4773c2a/embed.js';
+    script.src = '//codefund.io/properties/137/funder.js';
     scriptSlot.appendChild(script);
   }
 
@@ -63,7 +62,7 @@ class CodeFund extends React.Component {
     return (
       <React.Fragment>
         <span id="code-fund-script-slot" />
-        <span id="codefund_ad" />
+        <span id="codefund" />
       </React.Fragment>
     );
   }
