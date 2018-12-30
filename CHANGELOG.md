@@ -1,5 +1,24 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.8.1
+###### *Dec 30, 2018*
+
+### `@material-ui/core@v3.8.1`
+
+- Fix utils.chainPropTypes issue
+
+### `@material-ui/styles@v3.0.0-alpha.6`
+
+- Fix utils.chainPropTypes issue
+
+### `@material-ui/lab@v3.0.0-alpha.27`
+
+- Fix utils.chainPropTypes issue
+
+### `@material-ui/utils@v3.0.0-alpha.2`
+
+- Fix utils.chainPropTypes issue
+
 ## 3.8.0
 ###### *Dec 30, 2018*
 

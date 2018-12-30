@@ -2,7 +2,7 @@
   "name": "@material-ui/lab",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.26",
+  "version": "3.0.0-alpha.27",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.2.0",
-    "@material-ui/utils": "^3.0.0-alpha.1",
+    "@material-ui/utils": "^3.0.0-alpha.2",
     "classnames": "^2.2.5",
     "keycode": "^2.1.9",
     "prop-types": "^15.6.0"
