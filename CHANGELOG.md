@@ -26,8 +26,8 @@ Big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 - System package 💎 & Box component 🛠️
+- Demos 100% powered by React hooks ⚛️ (#13497) @adeelibr
 - Massive speed-up of the SSR performance 🚀
-- Demos 100% powered by React hooks ⚛️
 - A new Instagram demo theme 💅 https://material-ui.com/premium-themes/instapaper/
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
