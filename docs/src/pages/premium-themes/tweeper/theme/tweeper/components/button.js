@@ -7,7 +7,6 @@ export default ({
   nest,
   BUTTON,
   ICON,
-  ICON_BUTTON,
 }) => ({
   MuiButton: {
     label: {

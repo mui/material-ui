@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import Proptypes from 'prop-types';
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
