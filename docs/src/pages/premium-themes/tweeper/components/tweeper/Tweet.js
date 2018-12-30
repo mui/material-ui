@@ -79,7 +79,7 @@ const Tweet = () => {
                   </Icon>
                 </IconButton>
                 <Typography light inline success>
-                  24
+                  122
                 </Typography>
               </Box>
               <Box ml={'32px'} display={'inline-flex'} alignItems={'center'}>
@@ -89,7 +89,7 @@ const Tweet = () => {
                   </Icon>
                 </IconButton>
                 <Typography light inline danger>
-                  24
+                  661
                 </Typography>
               </Box>
               <Box ml={'32px'} display={'inline-flex'} alignItems={'center'}>
@@ -98,9 +98,6 @@ const Tweet = () => {
                     space_bar
                   </Icon>
                 </IconButton>
-                <Typography light inline>
-                  24
-                </Typography>
               </Box>
             </Grid>
           </Grid>
