@@ -14,6 +14,16 @@ import Modal from '@material-ui/core/Modal';
 
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 
+Modal is a lower-level construct that is leveraged by the following components:
+
+- [Dialog](/api/dialog/)
+- [Drawer](/api/drawer/)
+- [Menu](/api/menu/)
+- [Popover](/api/popover/)
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+rather than directly using Modal.
+
 ## Props
 
 | Name | Type | Default | Description |

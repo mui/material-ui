@@ -21,6 +21,16 @@ component and some styles:
 
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 
+Modal is a lower-level construct that is leveraged by the following components:
+
+- [Dialog](/demos/dialogs/)
+- [Drawer](/demos/drawers/)
+- [Menu](/demos/menus/)
+- [Popover](/utils/popover/)
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component
+rather than directly using Modal.
+
 ## Simple modal
 
 {{"demo": "pages/utils/modal/SimpleModal.js"}}
