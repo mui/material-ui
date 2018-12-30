@@ -1,5 +1,74 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.8.0
+###### *Dec 30, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+
+Here are some highlights ✨:
+- System package 💎 & Box component 🛠️
+- Massive speed-up of the SSR performance 🚀
+- Demos 100% powered by React hooks ⚛️
+- A new Instagram demo theme 💅 https://material-ui.com/premium-themes/instapaper/
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.8.0`
+
+#### Deprecations
+
+- [Tabs] Add variant prop and deprecate fullWidth and scrollable props (#13980)
+
+The Tabs `fullWidth` and `scrollable` properties can't be used at the same time. The API change prevents any awkward usage.
+
+```diff
+-<Tabs fullWidth>
++<Tabs variant="fullWidth">
+```
+
+#### Changes
+
+- [Fab] Add styles to make size property work with extended property (#13973) @rfbotto
+- [CardHeader] Change action element to have a fixed right margin (#13992) @inv8der
+- [SvgIcon] Add createSvgIcon type definition (#13994) @yifei-fu
+- [ExpansionPanel] Add customized demo (#13998) @rfbotto
+- [Button] Fix vertical text alignment by reducing padding (#13931) @adipascu
+- [Card] Update the action spacing to better match the spec (#14005) @oliviertassinari
+- [LinearProgress] Change height from 5 to 4 pixels (#14009) @almondj
+- [Modal] Add cross references from Modal docs to other components (#14025) @ryancogswell
+- [Tabs] Fix infinite loop in the scroll button logic (#14033) @joshwooding
+- [styles] Fix component animations (#14035) @joshwooding
+
+### `@material-ui/system@v3.0.0-alpha.0`
+
+- @material-ui/system (#13632) @oliviertassinari
+- [system] Fix responsivePropType typo (#14011) @eps1lon
+- [styles] Add defaultTheme option for makeStyles (#14032) @joshwooding
+
+### `@material-ui/styles@v3.0.0-alpha.5`
+
+- [styles] Upgrade JSS to v10-alpha (#14006) @oliviertassinari
+- [styles] Hash the classnames (#14013) @oliviertassinari
+- [styles] Fix typescript throwing in makeStyles with no props required (#14019) @eps1lon
+
+### Docs
+
+- [examples] Add nextjs-hooks-with-typescript (#13981) @virzak
+- [docs] Theme usage with styled-components (#13999) @oliviertassinari
+- [docs] Update the emotion documentation (#14001) @oliviertassinari
+- [docs] Duplicate all the demos with the React Hooks API (#13497) @adeelibr
+- [docs] Set react-jss version in nextjs example (#14015) @goofiw
+- [docs] Fix fullWidth deprecation warnings (#14010) @oliviertassinari
+- [docs] Add note on archived components (#14000) @rudolfolah
+- [docs] Add Instagram theme (#14007) @siriwatknp
+- [docs] Removed focus outline on modal demo (#14022) @sebasrodriguez
+- [styles] Document withStyles defaultTheme option (#14029) @joshwooding
+- [docs] Update the CodeFund embed script (#14031) @oliviertassinari
+
+### Core
+
+- [core] Fix running docs:api on Windows and other minor spelling mistakes (#13989) @joshwooding
+- [core] Sanitize the benchmark (#14012) @oliviertassinari
+
 ## 3.7.1
 ###### *Dec 22, 2018*
 
