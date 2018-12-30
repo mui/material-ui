@@ -1,13 +1,4 @@
-export default ({
-  primary,
-  muiBaseTheme,
-  red,
-  white,
-  attach,
-  nest,
-  BUTTON,
-  ICON,
-}) => ({
+export default ({ primary, muiBaseTheme, red, white, attach, nest, BUTTON, ICON }) => ({
   MuiButton: {
     label: {
       textTransform: 'none',
