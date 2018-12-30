@@ -2,7 +2,7 @@
   "name": "@material-ui/workspace",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.7.1",
+  "version": "3.8.0",
   "description": "Material-UI's workspace package",
   "keywords": [
     "react",

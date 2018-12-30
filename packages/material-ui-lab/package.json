@@ -40,7 +40,8 @@
     "@babel/runtime": "7.2.0",
     "@material-ui/utils": "^3.0.0-alpha.1",
     "classnames": "^2.2.5",
-    "keycode": "^2.1.9"
+    "keycode": "^2.1.9",
+    "prop-types": "^15.6.0"
   },
   "devDependencies": {},
   "sideEffects": false,
