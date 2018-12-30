@@ -27,16 +27,7 @@ export default function createGenerateClassName(options = {}) {
       return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
     }
 
-    ruleCounter += 1;
-    warning(
-      ruleCounter < 1e10,
-      [
-        'Material-UI: you might have a memory leak.',
-        'The ruleCounter is not supposed to grow that much.',
-      ].join(''),
-    );
-
-    let suffix = ruleCounter;
+    let suffix;
 
     // It's a static rule.
     if (!styleSheet.options.link) {
@@ -47,6 +38,19 @@ export default function createGenerateClassName(options = {}) {
       }
       const raw = styleSheet.rules.raw[rule.key];
       suffix = hash(`${themeHash}${rule.key}${JSON.stringify(raw)}`);
+    }
+
+    if (!suffix) {
+      ruleCounter += 1;
+      warning(
+        ruleCounter < 1e10,
+        [
+          'Material-UI: you might have a memory leak.',
+          'The ruleCounter is not supposed to grow that much.',
+        ].join(''),
+      );
+
+      suffix = ruleCounter;
     }
 
     if (process.env.NODE_ENV === 'production') {
