@@ -183,8 +183,7 @@
     "workbox-build": "^3.6.3"
   },
   "resolutions": {
-    "**/hoist-non-react-statics": "^3.2.1",
-    "jss": "^10.0.0-alpha.3"
+    "**/hoist-non-react-statics": "^3.2.1"
   },
   "sideEffects": false,
   "nyc": {
