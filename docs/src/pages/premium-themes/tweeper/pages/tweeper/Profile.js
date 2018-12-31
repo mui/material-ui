@@ -1,8 +1,6 @@
-import Proptypes from 'prop-types';
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button/Button';
 import Divider from '@material-ui/core/Divider/Divider';
 import { unstable_Box as Box } from '@material-ui/core/Box';
 import styled from '@material-ui/styles/styled';
@@ -16,7 +14,7 @@ import withTheme from './withTheme';
 import atoms from '../../components/atoms';
 import molecules from '../../components/molecules';
 
-const { Avatar, Icon, Typography } = atoms;
+const { Avatar, Icon, Typography, Button } = atoms;
 const { Tabs, Tab } = molecules;
 
 const Container = styled('div')({
@@ -103,7 +101,7 @@ class Profile extends React.Component {
                     Followers
                   </Typography>
                 </div>
-                <Tabs underline value={0} fullWidth>
+                <Tabs value={0} variant={'fullWidth'}>
                   <Tab label="Tweet" disableRipple />
                   <Tab label="Tweets and Responses" disableRipple />
                   <Tab label="Media" disableRipple />
@@ -130,9 +128,5 @@ class Profile extends React.Component {
     );
   }
 }
-
-Profile.propTypes = {
-  classes: Proptypes.shape({}).isRequired,
-};
 
 export default withTheme(theme)(Profile);

@@ -13,7 +13,7 @@ const Header = () => (
     <Toolbar>
       <Grid container alignItems={'center'} spacing={16}>
         <Grid item xs={4}>
-          <Tabs value={0} fullWidth>
+          <Tabs value={0} variant={'fullWidth'}>
             <Tab
               onlyIcon
               icon={

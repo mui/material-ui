@@ -32,7 +32,7 @@ const TrackWho = () => {
   return (
     <List subheader={<ListSubheader>Popular Now</ListSubheader>}>
       {twitterList2.map(({ primary, secondary, tertiary }) => (
-        <React.Fragment>
+        <React.Fragment key={primary}>
           <ListItem key={primary} button>
             <ListItemText disableTypography>
               <Typography primary>{primary}</Typography>

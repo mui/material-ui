@@ -31,7 +31,7 @@ const TrackWho = () => {
   return (
     <List subheader={<ListSubheader>According to whom</ListSubheader>}>
       {twitterList.map(({ image, primary, secondary }) => (
-        <React.Fragment>
+        <React.Fragment key={primary}>
           <ListItem key={primary} button>
             <Avatar link src={image} />
             <ListItemText primary={primary} secondary={secondary} />

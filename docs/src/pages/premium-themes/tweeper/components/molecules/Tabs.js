@@ -3,9 +3,9 @@ import cx from 'classnames';
 import MuiTabs from '@material-ui/core/Tabs';
 import { TABS } from '../../theme/core';
 
-const Tabs = ({ className, inverted, ...props }) => (
+const Tabs = ({ className, underline, inverted, ...props }) => (
   <MuiTabs
-    className={cx(TABS.root, className, inverted && TABS.inverted)}
+    className={cx(TABS.root, className, inverted && TABS.inverted, underline && TABS.underline)}
     classes={{ indicator: TABS.indicator }}
     {...props}
   />
