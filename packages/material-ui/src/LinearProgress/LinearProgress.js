@@ -43,7 +43,6 @@ export const styles = theme => ({
     width: '100%',
     animation: 'buffer 3s infinite linear',
     animationName: '$buffer',
-    willChange: 'opacity, background-position',
   },
   /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
   dashedColorPrimary: {
@@ -84,7 +83,6 @@ export const styles = theme => ({
   /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
     animationName: '$mui-indeterminate1',
   },
@@ -100,7 +98,6 @@ export const styles = theme => ({
   /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
   bar2Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
     animationName: '$mui-indeterminate2',
     animationDelay: '1.15s',
