@@ -16,7 +16,7 @@ install_js: &install_js
       yarn
 restore_yarn_cache: &restore_yarn_cache
   restore_cache:
-    key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+    key: v2-yarn-sha-{{ checksum "yarn.lock" }}
 restore_yarn_offline_mirror: &restore_yarn_offline_mirror
   restore_cache:
     key: v1-npm-packages-offline-cache
@@ -42,9 +42,9 @@ jobs:
           name: Should not have any git not staged
           command: git diff --exit-code
       - save_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn/v1
+            - ~/.cache/yarn
       - save_cache:
           key: v1-npm-packages-offline-cache
           paths:
@@ -188,7 +188,7 @@ jobs:
           name: Can we generate the documentation?
           command: yarn docs:api
       - run:
-          name: "`yarn docs:api` changes commited?"
+          name: '`yarn docs:api` changes commited?'
           command: git diff --exit-code
       - run:
           name: Install dependencies for Chrome Headless
