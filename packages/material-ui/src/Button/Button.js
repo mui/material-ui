@@ -18,6 +18,8 @@ export const styles = theme => ({
     minWidth: 64,
     minHeight: 36,
     padding: '6px 16px',
+    height: 0, // IE11 work around for alignItems
+    alignItems: 'center',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
