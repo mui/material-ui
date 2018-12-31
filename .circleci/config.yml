@@ -19,7 +19,7 @@ restore_yarn_cache: &restore_yarn_cache
     key: v2-yarn-sha-{{ checksum "yarn.lock" }}
 restore_yarn_offline_mirror: &restore_yarn_offline_mirror
   restore_cache:
-    key: v1-npm-packages-offline-cache
+    key: v2-npm-packages-offline-cache
 version: 2
 jobs:
   checkout:
@@ -44,9 +44,9 @@ jobs:
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.cache/yarn/v4
       - save_cache:
-          key: v1-npm-packages-offline-cache
+          key: v2-npm-packages-offline-cache
           paths:
             - ~/.cache/npm-packages-offline-cache/v1
   test_unit:
