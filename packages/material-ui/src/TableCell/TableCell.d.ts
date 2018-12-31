@@ -10,6 +10,7 @@ import { StandardProps } from '..';
  * here.
  */
 export interface TableCellProps extends StandardProps<TableCellBaseProps, TableCellClassKey> {
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   component?: React.ReactType<TableCellBaseProps>;
   numeric?: boolean;
   padding?: Padding;
