@@ -13,24 +13,43 @@ import {
   WithStyles,
   createStyles,
   Theme,
+  Menu,
+  MenuItem,
 } from '@material-ui/core';
 
 import Github from '../_shared/GithubIcon';
 import DrawerMenu from './DrawerMenu';
+import { utilsMap, UtilsLib } from '../App';
 
 interface LayoutProps extends RouteComponentProps, WithStyles<typeof styles, true> {
   toggleThemeType: () => void;
   toggleDirection: () => void;
+  onChangeUtils: (lib: UtilsLib) => void;
   children: React.ReactChild;
 }
 
 class Layout extends Component<LayoutProps> {
   state = {
+    anchorEl: null,
     drawerOpen: false,
+    selectedIndex: 2, // date-fns
   };
 
   handleDrawerToggle = () => {
     this.setState({ drawerOpen: !this.state.drawerOpen });
+  };
+
+  handleUtilsMenuOpen = (event: React.MouseEvent<any>) => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleUtilsChange = (event: React.MouseEvent<any>, index: number) => {
+    this.props.onChangeUtils(Object.keys(utilsMap)[index] as UtilsLib);
+    this.setState({ selectedIndex: index, anchorEl: null });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
   };
 
   scrollToContent = () => {
@@ -42,6 +61,7 @@ class Layout extends Component<LayoutProps> {
   };
 
   render() {
+    const { anchorEl } = this.state;
     const { classes, toggleThemeType, toggleDirection, theme, location } = this.props;
     const isLanding = location.pathname === '/';
 
@@ -64,6 +84,29 @@ class Layout extends Component<LayoutProps> {
             </IconButton>
 
             <div className={classes.flex} />
+
+            <Tooltip title="Change library that will work with date under the hood">
+              <IconButton color="inherit" onClick={this.handleUtilsMenuOpen}>
+                <Icon>settings</Icon>
+              </IconButton>
+            </Tooltip>
+            <Menu
+              id="utils-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={this.handleClose}
+            >
+              {Object.keys(utilsMap).map((option, index) => (
+                <MenuItem
+                  key={option}
+                  className={classes.utilsMenuItem}
+                  selected={index === this.state.selectedIndex}
+                  onClick={event => this.handleUtilsChange(event, index)}
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Menu>
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleThemeType}>
@@ -151,6 +194,9 @@ const styles = (theme: Theme) =>
         width: 'calc(100% - 250px)',
         left: 250,
       },
+    },
+    utilsMenuItem: {
+      textTransform: 'capitalize',
     },
     main: {
       marginTop: 55,

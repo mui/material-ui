@@ -71,9 +71,9 @@ export class ClockNumber extends React.Component<ClockNumberProps> {
 
     return (
       <Typography
-        variant={isInner ? 'body1' : 'subtitle1'}
         component="span"
         className={className}
+        variant={isInner ? 'body2' : 'body1'}
         style={this.getTransformStyle(index)}
       >
         {label}

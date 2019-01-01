@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Typography, IconButton, Icon, withStyles, Collapse } from '@material-ui/core';
 import Code from './Code';
+import { withUtilsService } from './UtilsServiceContext';
 
 class SourcablePanel extends PureComponent {
   static propTypes = {
@@ -31,7 +32,8 @@ class SourcablePanel extends PureComponent {
   render() {
     const { sourceExpanded } = this.state;
     const { classes, title, description } = this.props;
-    const Component = this.getComponent();
+    // make each component rerender on utils change
+    const Component = withUtilsService(this.getComponent());
 
     return (
       <React.Fragment>

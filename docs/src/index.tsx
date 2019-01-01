@@ -1,10 +1,8 @@
 import rtl from 'jss-rtl';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Utils from '@date-io/date-fns';
 
 import App from './App';
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import { BrowserRouter } from 'react-router-dom';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
@@ -25,9 +23,7 @@ const generateClassName = createGenerateClassName();
 ReactDOM.render(
   <BrowserRouter>
     <JssProvider jss={jss} generateClassName={generateClassName}>
-      <MuiPickersUtilsProvider utils={Utils}>
-        <App />
-      </MuiPickersUtilsProvider>
+      <App />
     </JssProvider>
   </BrowserRouter>,
   document.getElementById('root')

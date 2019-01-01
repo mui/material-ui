@@ -1,8 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import { DateTimePicker } from 'material-ui-pickers';
 import { IconButton, Icon, InputAdornment } from '@material-ui/core';
+import { withUtilsService } from '../../../_shared/UtilsServiceContext';
 
-export default class CustomDateTimePicker extends PureComponent {
+class CustomDateTimePicker extends PureComponent {
   state = {
     selectedDate: new Date('2018-01-01T18:54'),
     clearedDate: null,
@@ -54,7 +55,10 @@ export default class CustomDateTimePicker extends PureComponent {
             minDate={new Date('2018-01-01T00:00')}
             value={selectedDate}
             onChange={this.handleDateChange}
-            format="yyyy/MM/dd hh:mm A"
+            format={this.props.getFormatString({
+              moment: 'YYYY/MM/DD hh:mm A',
+              dateFns: 'yyyy/MM/dd hh:mm A',
+            })}
             disableOpenOnEnter
             mask={[
               /\d/,
@@ -92,3 +96,5 @@ export default class CustomDateTimePicker extends PureComponent {
     );
   }
 }
+
+export default withUtilsService(CustomDateTimePicker);

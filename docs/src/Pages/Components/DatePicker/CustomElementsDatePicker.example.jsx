@@ -13,6 +13,7 @@ import isSameDay from 'date-fns/isSameDay';
 import startOfWeek from 'date-fns/startOfWeek';
 import endOfWeek from 'date-fns/endOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
+import cloneCrossUtils from '../../../utils/helpers';
 
 class CustomElements extends PureComponent {
   static propTypes = {
@@ -24,34 +25,28 @@ class CustomElements extends PureComponent {
   };
 
   handleWeekChange = date => {
-    this.setState({ selectedDate: startOfWeek(date) });
+    this.setState({ selectedDate: startOfWeek(cloneCrossUtils(date)) });
   };
 
   formatWeekSelectLabel = (date, invalidLabel) => {
-    if (date === null) {
-      return '';
-    }
+    let dateClone = cloneCrossUtils(date);
 
-    if (date instanceof moment) {
-      date = date.toDate();
-    }
-
-    return date && isValid(date) ? `Week of ${format(startOfWeek(date), 'MMM do')}` : invalidLabel;
+    return dateClone && isValid(dateClone)
+      ? `Week of ${format(startOfWeek(dateClone), 'MMM do')}`
+      : invalidLabel;
   };
 
   renderWrappedWeekDay = (date, selectedDate, dayInCurrentMonth) => {
     const { classes } = this.props;
+    let dateClone = cloneCrossUtils(date);
+    let selectedDateClone = cloneCrossUtils(selectedDate);
 
-    if (date instanceof moment) {
-      date = date.toDate();
-    }
+    const start = startOfWeek(selectedDateClone);
+    const end = endOfWeek(selectedDateClone);
 
-    const start = startOfWeek(selectedDate);
-    const end = endOfWeek(selectedDate);
-
-    const dayIsBetween = isWithinInterval(date, { start, end });
-    const isFirstDay = isSameDay(date, start);
-    const isLastDay = isSameDay(date, end);
+    const dayIsBetween = isWithinInterval(dateClone, { start, end });
+    const isFirstDay = isSameDay(dateClone, start);
+    const isLastDay = isSameDay(dateClone, end);
 
     const wrapperClassName = classNames({
       [classes.highlight]: dayIsBetween,
@@ -67,7 +62,7 @@ class CustomElements extends PureComponent {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> {format(date, 'd')} </span>
+          <span> {format(dateClone, 'd')} </span>
         </IconButton>
       </div>
     );

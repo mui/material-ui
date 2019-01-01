@@ -1,7 +1,8 @@
 import { InlineDateTimePicker } from 'material-ui-pickers';
 import React, { Fragment, PureComponent } from 'react';
+import { withUtilsService } from '../../../_shared/UtilsServiceContext';
 
-export default class InlineDateTimePickerDemo extends PureComponent {
+class InlineDateTimePickerDemo extends PureComponent {
   state = {
     selectedDate: '2018-01-01T00:00:00.000Z',
   };
@@ -29,11 +30,36 @@ export default class InlineDateTimePickerDemo extends PureComponent {
             label="With keyboard"
             value={selectedDate}
             onChange={this.handleDateChange}
-            format="dd/MM/yyyy"
-            mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+            format={this.props.getFormatString({
+              moment: 'YYYY/MM/DD hh:mm A',
+              dateFns: 'yyyy/MM/dd hh:mm A',
+            })}
+            mask={[
+              /\d/,
+              /\d/,
+              /\d/,
+              /\d/,
+              '/',
+              /\d/,
+              /\d/,
+              '/',
+              /\d/,
+              /\d/,
+              ' ',
+              /\d/,
+              /\d/,
+              ':',
+              /\d/,
+              /\d/,
+              ' ',
+              /a|p/i,
+              'M',
+            ]}
           />
         </div>
       </Fragment>
     );
   }
 }
+
+export default withUtilsService(InlineDateTimePickerDemo);

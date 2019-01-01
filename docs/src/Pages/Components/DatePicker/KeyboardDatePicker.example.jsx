@@ -1,7 +1,8 @@
 import React, { Fragment, PureComponent } from 'react';
 import { DatePicker } from 'material-ui-pickers';
+import { withUtilsService } from '../../../_shared/UtilsServiceContext';
 
-export default class BasicUsage extends PureComponent {
+class KeyboardDatePicker extends PureComponent {
   state = {
     selectedDate: new Date(),
   };
@@ -32,7 +33,10 @@ export default class BasicUsage extends PureComponent {
           <DatePicker
             keyboard
             label="Masked input"
-            format="dd/MM/yyyy"
+            format={this.props.getFormatString({
+              moment: 'MM/DD/YYYY',
+              dateFns: 'MM/dd/yyyy',
+            })}
             placeholder="10/10/2018"
             // handle clearing outside => pass plain array if you are not controlling value outside
             mask={value =>
@@ -48,3 +52,5 @@ export default class BasicUsage extends PureComponent {
     );
   }
 }
+
+export default withUtilsService(KeyboardDatePicker);

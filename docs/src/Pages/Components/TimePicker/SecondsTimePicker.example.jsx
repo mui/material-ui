@@ -18,7 +18,7 @@ export default class BasicUsage extends PureComponent {
         <div className="picker">
           <TimePicker
             seconds
-            format="hh:mm:ss A"
+            format="hh:mm:ss a"
             label="With seconds"
             value={selectedDate}
             onChange={this.handleDateChange}

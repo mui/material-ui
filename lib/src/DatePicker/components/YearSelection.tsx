@@ -84,7 +84,6 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
               selected={selected}
               value={yearNumber}
               onSelect={this.onYearSelect}
-              // @ts-ignore
               ref={selected ? this.getSelectedYearRef : undefined}
               disabled={
                 (disablePast && utils.isBeforeYear(year, utils.date())) ||
