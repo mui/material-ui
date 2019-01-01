@@ -18,7 +18,6 @@ export const styles = theme => ({
     minWidth: 64,
     minHeight: 36,
     padding: '6px 16px',
-    height: 0, // IE11 work around for alignItems
     alignItems: 'center',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
@@ -38,6 +37,10 @@ export const styles = theme => ({
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
+    },
+    '&:before': {
+      content: '""',
+      height: 24, // Same height as desired min-height
     },
   },
   /* Styles applied to the span element that wraps the children. */
@@ -213,12 +216,20 @@ export const styles = theme => ({
     minWidth: 64,
     minHeight: 31,
     fontSize: theme.typography.pxToRem(13),
+    '&:before': {
+      content: '""',
+      height: 23, // Same height as desired min-height
+    },
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     padding: '8px 24px',
     minHeight: 42,
     fontSize: theme.typography.pxToRem(15),
+    '&:before': {
+      content: '""',
+      height: 26, // Same height as desired min-height
+    },
   },
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
