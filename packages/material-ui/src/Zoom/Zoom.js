@@ -64,7 +64,6 @@ class Zoom extends React.Component {
           return React.cloneElement(children, {
             style: {
               transform: 'scale(0)',
-              willChange: 'transform',
               ...styles[state],
               ...style,
             },

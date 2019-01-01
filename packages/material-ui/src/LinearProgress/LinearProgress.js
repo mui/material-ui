@@ -85,7 +85,6 @@ export const styles = theme => ({
   /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
     // Backward compatible logic between JSS v9 and v10.
     // To remove with the release of Material-UI v4
@@ -93,7 +92,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the bar1 element if `variant="determinate"`. */
   bar1Determinate: {
-    willChange: 'transform',
     transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   /* Styles applied to the bar1 element if `variant="buffer"`. */
@@ -104,7 +102,6 @@ export const styles = theme => ({
   /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
   bar2Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
     // Backward compatible logic between JSS v9 and v10.
     // To remove with the release of Material-UI v4

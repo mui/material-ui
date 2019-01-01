@@ -16,7 +16,6 @@ export const styles = theme => ({
     margin: 0,
     padding: `${theme.spacing.unit - 4}px ${theme.spacing.unit * 1.5}px`,
     borderRadius: 2,
-    willChange: 'opacity',
     color: fade(theme.palette.action.active, 0.38),
     '&$selected': {
       color: theme.palette.action.active,
