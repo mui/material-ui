@@ -12,13 +12,11 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    lineHeight: 1.3125, // To remove with v4.
+    lineHeight: 1.75, // To remove with v4.
     ...theme.typography.button,
     boxSizing: 'border-box',
     minWidth: 64,
-    minHeight: 36,
     padding: '6px 16px',
-    alignItems: 'center',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
@@ -37,10 +35,6 @@ export const styles = theme => ({
     },
     '&$disabled': {
       color: theme.palette.action.disabled,
-    },
-    '&:before': {
-      content: '""',
-      height: 24, // Same height as desired min-height
     },
   },
   /* Styles applied to the span element that wraps the children. */
@@ -84,6 +78,7 @@ export const styles = theme => ({
   flatSecondary: {},
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
+    padding: '5px 16px',
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
@@ -214,22 +209,12 @@ export const styles = theme => ({
   sizeSmall: {
     padding: '4px 8px',
     minWidth: 64,
-    minHeight: 31,
     fontSize: theme.typography.pxToRem(13),
-    '&:before': {
-      content: '""',
-      height: 23, // Same height as desired min-height
-    },
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     padding: '8px 24px',
-    minHeight: 42,
     fontSize: theme.typography.pxToRem(15),
-    '&:before': {
-      content: '""',
-      height: 26, // Same height as desired min-height
-    },
   },
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
