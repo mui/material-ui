@@ -19,7 +19,7 @@ export const styles = theme => ({
 class Table extends React.Component {
   memoizedContextValue = {};
 
-  // To replace with the corresponding Hook once Material-UI v4.0.0 is out:
+  // To replace with the corresponding Hook once Material-UI v4 is out:
   // https://reactjs.org/docs/hooks-reference.html#usememo
   useMemo(contextValue) {
     const objectKeys = Object.keys(contextValue);
