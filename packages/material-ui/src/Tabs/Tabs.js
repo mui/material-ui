@@ -414,7 +414,7 @@ Tabs.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * If `true` the tabs will be centered.
+   * If `true,` the tabs will be centered.
    * This property is intended for large views.
    */
   centered: PropTypes.bool,
