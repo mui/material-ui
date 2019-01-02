@@ -494,8 +494,9 @@ Tabs.propTypes = {
    *  scrolling (or swiping) of the tab bar.
    *  -`fullWidth` will make the tabs grow to use all the available space,
    *  which should be used for small views, like on mobile.
+   *  - `standard` will render the default state.
    */
-  variant: PropTypes.oneOf(['scrollable', 'fullWidth']),
+  variant: PropTypes.oneOf(['standard', 'scrollable', 'fullWidth']),
 };
 
 Tabs.defaultProps = {
@@ -505,6 +506,7 @@ Tabs.defaultProps = {
   ScrollButtonComponent: TabScrollButton,
   scrollButtons: 'auto',
   textColor: 'inherit',
+  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);

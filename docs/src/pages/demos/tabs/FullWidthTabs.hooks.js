@@ -48,7 +48,7 @@ function FullWidthTabs() {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          fullWidth
+          variant={null}
         >
           <Tab label="Item One" />
           <Tab label="Item Two" />

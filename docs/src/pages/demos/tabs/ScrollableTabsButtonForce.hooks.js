@@ -47,7 +47,7 @@ function ScrollableTabsButtonForce() {
         <Tabs
           value={value}
           onChange={handleChange}
-          scrollable
+          variant="scrollable"
           scrollButtons="on"
           indicatorColor="primary"
           textColor="primary"
