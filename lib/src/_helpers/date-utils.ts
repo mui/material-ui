@@ -33,17 +33,18 @@ export const findClosestEnabledDate = ({
     maxDate = today;
   }
 
-  let forward = utils.date(date);
-  let backward = utils.date(date);
+  let forward = date;
+  let backward = date;
   if (utils.isBefore(date, minDate)) {
-    forward = minDate;
+    forward = utils.date(minDate);
     backward = null;
   }
 
   if (utils.isAfter(date, maxDate)) {
     if (backward) {
-      backward = maxDate;
+      backward = utils.date(maxDate);
     }
+
     forward = null;
   }
 
