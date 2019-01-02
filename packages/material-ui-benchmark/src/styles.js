@@ -1,14 +1,14 @@
-/* eslint-disable no-console, no-underscore-dangle */
+/* eslint-disable no-console */
 
 import './bootstrap';
 import Benchmark from 'benchmark';
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 import { css } from '@emotion/core';
 import { renderStylesToString } from 'emotion-server';
-import { JssProvider, SheetsRegistry } from 'react-jss';
+import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
 import { withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
 import jss, { getDynamicStyles } from 'jss';
 import { unstable_Box as Box } from '@material-ui/core/Box/Box';
@@ -19,8 +19,6 @@ const suite = new Benchmark.Suite('styles', {
   },
 });
 Benchmark.options.minSamples = 100;
-
-global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const cssContent = `
 display: inline-flex;
@@ -65,40 +63,41 @@ const cssObject = {
   // }),
 };
 
-const emotionCss = css`${cssContent}`;
-
-const WithStylesButton = withStyles(cssObject)(props =>
-  <button type="submit" className={props.classes.root} {...props} />);
-
-const EmotionButton = styledEmotion('button')`
+const emotionCss = css`
   ${cssContent}
 `;
 
-const StyledComponentsButton = styledComponents.button`
-      ${cssContent}
-    `;
+const JSSButton = injectSheet(cssObject)(props => (
+  <button type="button" className={props.classes.root} {...props} />
+));
+
+const WithStylesButton = withStyles(cssObject)(props => (
+  <button type="submit" className={props.classes.root} {...props} />
+));
+
+const EmotionButton = styledEmotion('button')(cssObject.root);
+
+const StyledComponentsButton = styledComponents.button`${cssContent}`;
 
 const useStyles = makeStyles(cssObject);
-
 function HookButton(props) {
   const classes = useStyles();
   return <button type="button" className={classes.root} {...props} />;
 }
 
-
-const rawJSS = () => cssObject;
+const NakedButton = props => <button type="submit" {...props} />;
+const EmotionCssButton = props => <button type="submit" css={emotionCss} {...props} />;
 
 suite
   .add('Box', () => {
     const sheetsRegistry = new SheetsRegistry();
     ReactDOMServer.renderToString(
       <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
-        {Array.from(new Array(5))
-          .map((_, index) => (
-            <Box key={String(index)} p={2}>
-              Material-UI
-            </Box>
-          ))}
+        {Array.from(new Array(5)).map((_, index) => (
+          <Box key={String(index)} p={2}>
+            Material-UI
+          </Box>
+        ))}
       </StylesProvider>,
     );
     sheetsRegistry.toString();
@@ -106,7 +105,7 @@ suite
   .add('JSS naked', () => {
     const sheetsRegistry = new SheetsRegistry();
 
-    const staticStyles = rawJSS();
+    const staticStyles = cssObject;
     const dynamicStyles = getDynamicStyles(staticStyles);
 
     const staticSheet = jss.createStyleSheet(staticStyles);
@@ -119,21 +118,30 @@ suite
       const dynamicSheet = jss.createStyleSheet(dynamicStyles, {
         link: true,
       });
-      dynamicSheet.update({})
-        .attach();
+      dynamicSheet.update({}).attach();
       sheetsRegistry.add(dynamicSheet);
     }
 
     ReactDOMServer.renderToString(
       <JssProvider registry={sheetsRegistry}>
-        <Fragment>
-          {Array.from(new Array(5))
-            .map((_, index) => (
-              <button key={String(index)} type="submit">
-                Material-UI
-              </button>
-            ))}
-        </Fragment>
+        {Array.from(new Array(5)).map((_, index) => (
+          <button key={String(index)} type="submit">
+            Material-UI
+          </button>
+        ))}
+      </JssProvider>,
+    );
+    sheetsRegistry.toString();
+  })
+  .add('JSSButton', () => {
+    const sheetsRegistry = new SheetsRegistry();
+    ReactDOMServer.renderToString(
+      <JssProvider registry={sheetsRegistry}>
+        <React.Fragment>
+          {Array.from(new Array(5)).map((_, index) => (
+            <JSSButton key={String(index)}>Material-UI</JSSButton>
+          ))}
+        </React.Fragment>
       </JssProvider>,
     );
     sheetsRegistry.toString();
@@ -142,10 +150,9 @@ suite
     const sheetsRegistry = new SheetsRegistry();
     ReactDOMServer.renderToString(
       <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
-        {Array.from(new Array(5))
-          .map((_, index) => (
-            <WithStylesButton key={String(index)}>Material-UI</WithStylesButton>
-          ))}
+        {Array.from(new Array(5)).map((_, index) => (
+          <WithStylesButton key={String(index)}>Material-UI</WithStylesButton>
+        ))}
       </StylesProvider>,
     );
     sheetsRegistry.toString();
@@ -154,10 +161,9 @@ suite
     const sheetsRegistry = new SheetsRegistry();
     ReactDOMServer.renderToString(
       <StylesProvider sheetsManager={new Map()} sheetsRegistry={sheetsRegistry}>
-        {Array.from(new Array(5))
-          .map((_, index) => (
-            <HookButton key={String(index)}>Material-UI</HookButton>
-          ))}
+        {Array.from(new Array(5)).map((_, index) => (
+          <HookButton key={String(index)}>Material-UI</HookButton>
+        ))}
       </StylesProvider>,
     );
     sheetsRegistry.toString();
@@ -166,12 +172,11 @@ suite
     const sheet = new ServerStyleSheet();
     ReactDOMServer.renderToString(
       sheet.collectStyles(
-        <Fragment>
-          {Array.from(new Array(5))
-            .map((_, index) => (
-              <StyledComponentsButton key={String(index)}>Material-UI</StyledComponentsButton>
-            ))}
-        </Fragment>,
+        <React.Fragment>
+          {Array.from(new Array(5)).map((_, index) => (
+            <StyledComponentsButton key={String(index)}>Material-UI</StyledComponentsButton>
+          ))}
+        </React.Fragment>,
       ),
     );
     sheet.getStyleTags();
@@ -179,8 +184,7 @@ suite
   .add('EmotionButton', () => {
     ReactDOMServer.renderToString(
       <StylesProvider>
-        {Array.from(new Array(5))
-        .map((_, index) => (
+        {Array.from(new Array(5)).map((_, index) => (
           <EmotionButton key={String(index)}>Material-UI</EmotionButton>
         ))}
       </StylesProvider>,
@@ -189,38 +193,33 @@ suite
   .add('EmotionCssButton', () => {
     ReactDOMServer.renderToString(
       <StylesProvider>
-        {Array.from(new Array(5))
-          .map((_, index) => (
-            <button type="submit" css={emotionCss} key={String(index)}>Material-UI</button>
-          ))}
+        {Array.from(new Array(5)).map((_, index) => (
+          <EmotionCssButton key={String(index)}>Material-UI</EmotionCssButton>
+        ))}
       </StylesProvider>,
     );
   })
   .add('EmotionServerCssButton', () => {
-    renderStylesToString(ReactDOMServer.renderToString(
-      <StylesProvider>
-        {Array.from(new Array(5))
-          .map((_, index) => (
-            <button type="submit" css={emotionCss} key={String(index)}>Material-UI</button>
+    renderStylesToString(
+      ReactDOMServer.renderToString(
+        <StylesProvider>
+          {Array.from(new Array(5)).map((_, index) => (
+            <EmotionCssButton key={String(index)}>Material-UI</EmotionCssButton>
           ))}
-      </StylesProvider>,
-    ));
+        </StylesProvider>,
+      ),
+    );
   })
   .add('Naked', () => {
     ReactDOMServer.renderToString(
       <StylesProvider>
-        {Array.from(new Array(5))
-          .map((_, index) => (
-            <button type="submit" key={String(index)}>Material-UI</button>
-          ))}
+        {Array.from(new Array(5)).map((_, index) => (
+          <NakedButton key={String(index)}>Material-UI</NakedButton>
+        ))}
       </StylesProvider>,
     );
   })
   .on('cycle', event => {
     console.log(String(event.target));
   })
-  .on('complete', function () {
-    console.log(`Fastest is ${this.filter('fastest')
-      .map('name')}`);
-  })
-  .run({ async: true });
+  .run();
