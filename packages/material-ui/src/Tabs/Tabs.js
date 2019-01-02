@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals */
+/* eslint-disable no-restricted-globals max-len */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -297,7 +297,6 @@ class Tabs extends React.Component {
 
   render() {
     const {
-      action,
       centered,
       children: childrenProp,
       classes,
@@ -307,11 +306,8 @@ class Tabs extends React.Component {
       indicatorColor,
       onChange,
       scrollable: deprecatedScrollable = false,
-      ScrollButtonComponent,
-      scrollButtons,
       TabIndicatorProps = {},
       textColor,
-      theme,
       value,
       variant,
       ...other
@@ -414,7 +410,7 @@ Tabs.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * If `true`, the tabs will be centered.
+   * If `true` the tabs will be centered.
    * This property is intended for large views.
    */
   centered: PropTypes.bool,
@@ -437,10 +433,10 @@ Tabs.propTypes = {
    */
   component: componentPropType,
   /**
-   * If `true`, the tabs will grow to use all the available space.
+   * If `true` the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
    */
-  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead, use the `variant="fullWidth"` property.'),
+  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead use the `variant="fullWidth"` property.'),
   /**
    * Determines the color of the indicator.
    */
@@ -453,13 +449,10 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * True invokes scrolling properties and allow for horizontally scrolling
-   * (or swiping) the tab bar.
+   * If `true` it invokes scrolling properties and allow for horizontally scrolling
+   * (or swiping) of the tab bar.
    */
-  scrollable: deprecatedPropType(
-    PropTypes.bool,
-    'Instead, use the `variant="scrollable"` property.',
-  ),
+  scrollable: deprecatedPropType(PropTypes.bool, 'Instead use the `variant="scrollable"` property.'),
   /**
    * The component used to render the scroll buttons.
    */
