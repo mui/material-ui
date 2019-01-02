@@ -152,7 +152,9 @@ MarkdownDocs.propTypes = {
 };
 
 MarkdownDocs.defaultProps = {
-  disableAd: false,
+  // docly: default to true
+  // disableAd: false,
+  disableAd: true,
 };
 
 export default compose(
