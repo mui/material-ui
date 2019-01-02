@@ -55,11 +55,11 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   makeStyles(styles, {
     flip: true,
     name: 'some-sheet',
-    generateClassName: (_, sheet) => (sheet ? sheet.classes.root : 'no-sheet'),
+    generateId: (_, sheet) => (sheet ? sheet.classes.root : 'no-sheet'),
   });
   makeStyles(styles, {
-    // Property 'toot' does not exist on type 'Record<"root", string>'
-    generateClassName: (_, sheet) => (sheet ? sheet.classes.toot : 'no-sheet'), // $ExpectError
+    // rules are added at runtime so no compile time error
+    generateId: (_, sheet) => (sheet ? sheet.classes.toot : 'no-sheet'),
   });
 
   // optional props
@@ -70,8 +70,17 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
       },
     }),
   );
+  const chartStyles = {
+    chart: {
+      width: '100%',
+      height: 70,
+      backgroundColor: '#f9f9f9',
+    },
+  };
+  const useChartClasses = makeStyles(chartStyles);
   const NoPropsComponent = () => {
     const classes = useWithoutProps();
+    const chartClasses = useChartClasses();
     const alsoClasses = useWithoutProps(5);
   };
 

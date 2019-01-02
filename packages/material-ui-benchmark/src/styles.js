@@ -280,13 +280,13 @@ suite
   .add('Naked', () => {
     const Raw = props => <button type="submit" {...props} />;
     ReactDOMServer.renderToString(
-      <JssProvider>
+      <StylesProvider>
         <React.Fragment>
           {Array.from(new Array(5)).map((_, index) => (
             <Raw key={String(index)}>Material-UI</Raw>
           ))}
         </React.Fragment>
-      </JssProvider>,
+      </StylesProvider>,
     );
   })
   .add('hashing', () => {

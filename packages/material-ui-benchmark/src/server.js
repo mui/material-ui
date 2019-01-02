@@ -43,8 +43,6 @@ function renderFullPage(html, css) {
   `;
 }
 
-const sheetsCache = new Map();
-
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -63,7 +61,6 @@ function renderPricing(req, res) {
       sheetsRegistry={sheetsRegistry}
       generateClassName={createGenerateClassName()}
       sheetsManager={new Map()}
-      sheetsCache={sheetsCache}
     >
       <ThemeProvider theme={theme}>
         <Pricing />

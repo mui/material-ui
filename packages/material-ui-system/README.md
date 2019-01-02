@@ -16,4 +16,4 @@ yarn add @material-ui/system
 
 ## Documentation
 
-[The documentation](https://material-ui.com/css-in-js/basics/)
+[The documentation](https://material-ui.com/system/basics/)

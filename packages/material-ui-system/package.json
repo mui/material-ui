@@ -38,6 +38,7 @@
   "dependencies": {
     "@babel/runtime": "7.1.2",
     "deepmerge": "^2.0.1",
+    "prop-types": "^15.6.0",
     "warning": "^4.0.1"
   },
   "devDependencies": {},

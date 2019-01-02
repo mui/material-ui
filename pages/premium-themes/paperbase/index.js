@@ -6,7 +6,11 @@ import Paperbase from 'docs/src/pages/premium-themes/paperbase/Paperbase';
 
 function Page() {
   return (
-    <AppTheme title="Paperbase theme - Material-UI" description="A page that mimics Firebase.">
+    <AppTheme
+      title="Paperbase theme - Material-UI"
+      description={`A page that mimics Firebase.
+        This item includes theming using the theme provider component.`}
+    >
       <Paperbase />
     </AppTheme>
   );

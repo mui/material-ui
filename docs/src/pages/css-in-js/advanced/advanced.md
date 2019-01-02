@@ -86,7 +86,7 @@ export default App;
 
 ## String templates
 
-If you prefer using the CSS syntax, you can use the [jss-template](https://cssinjs.org/jss-template) plugin.
+If you prefer using the CSS syntax, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template) plugin.
 
 ```jsx
 const useStyles = makeStyles({

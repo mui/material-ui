@@ -22,7 +22,7 @@ const defaultOptions = {
   disableGeneration: false,
   generateClassName,
   jss,
-  sheetsCache: null,
+  sheetsCache: typeof window === 'undefined' ? new Map() : null,
   sheetsManager,
   sheetsRegistry: null,
 };

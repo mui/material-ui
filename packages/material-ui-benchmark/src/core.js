@@ -37,19 +37,10 @@ class HocButton extends React.Component {
   }
 }
 
-const sheetsCache = new Map();
-
 suite
-  .add('ButtonBase no cache', () => {
+  .add('ButtonBase', () => {
     ReactDOMServer.renderToString(
       <StylesProvider sheetsManager={new Map()}>
-        <ButtonBase>Material-UI</ButtonBase>
-      </StylesProvider>,
-    );
-  })
-  .add('ButtonBase cache requests', () => {
-    ReactDOMServer.renderToString(
-      <StylesProvider sheetsManager={new Map()} sheetsCache={sheetsCache}>
         <ButtonBase>Material-UI</ButtonBase>
       </StylesProvider>,
     );

@@ -18,7 +18,7 @@ declare module '@material-ui/styles' {
 }
 
 declare module '@material-ui/styles/createGenerateClassName' {
-  import { GenerateClassName } from 'jss';
+  import { GenerateId } from 'jss';
 
   export interface GenerateClassNameOptions {
     dangerouslyUseGlobalCSS?: boolean;
@@ -26,9 +26,7 @@ declare module '@material-ui/styles/createGenerateClassName' {
     seed?: string;
   }
 
-  export default function createGenerateClassName(
-    options?: GenerateClassNameOptions,
-  ): GenerateClassName;
+  export default function createGenerateClassName(options?: GenerateClassNameOptions): GenerateId;
 }
 
 declare module '@material-ui/styles/createStyles' {
@@ -66,9 +64,9 @@ declare module '@material-ui/styles/install' {
 }
 
 declare module '@material-ui/styles/jssPreset' {
-  import { JSSOptions } from 'jss';
+  import { JssOptions } from 'jss';
 
-  export default function jssPreset(): JSSOptions;
+  export default function jssPreset(): JssOptions;
 }
 
 declare module '@material-ui/styles/makeStyles' {
@@ -83,6 +81,55 @@ declare module '@material-ui/styles/makeStyles' {
   // https://stackoverflow.com/a/49928360/3406963 without generic branch types
   type IsAny<T> = 0 extends (1 & T) ? true : false;
 
+  type Or<A, B, C = false> = A extends true
+    ? true
+    : B extends true
+    ? true
+    : C extends true
+    ? true
+    : false;
+  type And<A, B, C = true> = A extends true
+    ? B extends true
+      ? C extends true
+        ? true
+        : false
+      : false
+    : false;
+
+  /**
+   * @internal
+   *
+   * check if a type is `{}`
+   *
+   * 1. false if the given type has any members
+   * 2. false if the type is `object` which is the only other type with no members
+   *  {} is a top type so e.g. `string extends {}` but not `string extends object`
+   * 3. false if the given type is `unknown`
+   */
+  export type IsEmptyInterface<T> = And<
+    keyof T extends never ? true : false,
+    string extends T ? true : false,
+    unknown extends T ? false : true
+  >;
+
+  /**
+   * @internal
+   *
+   * If a style callback is given with `theme => stylesOfTheme` then typescript
+   * infers `Props` to `any`.
+   * If a static object is given with { ...members } then typescript infers `Props`
+   * to `{}`.
+   *
+   * So we require no props in `useStyles` if `Props` in `makeStyles(styles)` is
+   * inferred to either `any` or `{}`
+   */
+  export type StylesRequireProps<S> = Or<
+    IsAny<PropsOfStyles<S>>,
+    IsEmptyInterface<PropsOfStyles<S>>
+  > extends true
+    ? false
+    : true;
+
   /**
    * @internal
    *
@@ -90,13 +137,13 @@ declare module '@material-ui/styles/makeStyles' {
    * from which the typechecker could infer a type so it falls back to `any`.
    * See the test cases for examples and implications of explicit `any` annotation
    */
-  export type StylesHook<S extends Styles<any, any>> = IsAny<PropsOfStyles<S>> extends true
+  export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> extends false
     ? (props?: any) => ClassNameMap<ClassKeyOfStyles<S>>
     : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 
   export default function makeStyles<S extends Styles<any, any>>(
     styles: S,
-    options?: WithStylesOptions<ClassKeyOfStyles<S>>,
+    options?: WithStylesOptions,
   ): StylesHook<S>;
 }
 
@@ -128,12 +175,12 @@ declare module '@material-ui/styles/styled' {
 }
 
 declare module '@material-ui/styles/StylesProvider' {
-  import { GenerateClassName, JSS } from 'jss';
+  import { GenerateId, Jss } from 'jss';
 
   interface StylesOptions {
     disableGeneration?: boolean;
-    generateClassName?: GenerateClassName;
-    jss?: JSS;
+    generateClassName?: GenerateId;
+    jss?: Jss;
     // TODO need info @oliviertassinari
     sheetsCache?: {};
     // TODO need info @oliviertassinari
@@ -204,8 +251,7 @@ declare module '@material-ui/styles/withStyles' {
     | StyleRules<Props, ClassKey>
     | StyleRulesCallback<Theme, Props, ClassKey>;
 
-  export interface WithStylesOptions<ClassKey extends string = string>
-    extends JSS.CreateStyleSheetOptions<ClassKey> {
+  export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
     flip?: boolean;
     withTheme?: boolean;
     name?: string;
@@ -249,7 +295,7 @@ declare module '@material-ui/styles/withStyles' {
 
   export default function withStyles<
     S extends Styles<any, any>,
-    Options extends WithStylesOptions<ClassKeyOfStyles<S>> = {}
+    Options extends WithStylesOptions = {}
   >(
     style: S,
     options?: Options,

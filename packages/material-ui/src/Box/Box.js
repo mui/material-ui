@@ -30,4 +30,4 @@ export const styleFunction = css(
 /**
  * @ignore - do not document.
  */
-export const unstable_Box = styled('div')(styleFunction);
+export const unstable_Box = styled('div')(styleFunction, { name: 'MuiBox' });

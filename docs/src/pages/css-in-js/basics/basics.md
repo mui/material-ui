@@ -21,10 +21,11 @@ We think that it's the future:
 - [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 Material-UI's styling solution is inspired by many other CSS-in-JS libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
-It uses [JSS](https://github.com/cssinjs/jss) at its core.
-It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
-You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- 🚀 Is [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles). x2.6 faster than emotion on the server for rendering static style sheets.
+- 🧩 Is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core. It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles).
 
 ## Installation
 
@@ -60,7 +61,7 @@ Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@
 
 ## Getting started
 
-Because taste and colours are not always the same, we are proving 4 different APIs.
+Because taste and colours are not always the same, we are proving 3 different APIs.
 They all share the same underlying logic.
 
 ### Hook API

@@ -42,6 +42,9 @@ export const styles = theme => ({
     height: '100%',
     width: '100%',
     animation: 'buffer 3s infinite linear',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$buffer',
   },
   /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
   dashedColorPrimary: {
@@ -82,12 +85,13 @@ export const styles = theme => ({
   /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-indeterminate1',
   },
   /* Styles applied to the bar1 element if `variant="determinate"`. */
   bar1Determinate: {
-    willChange: 'transform',
     transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   /* Styles applied to the bar1 element if `variant="buffer"`. */
@@ -98,8 +102,10 @@ export const styles = theme => ({
   /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
   bar2Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-indeterminate2',
     animationDelay: '1.15s',
   },
   /* Styles applied to the bar2 element if `variant="buffer"`. */
