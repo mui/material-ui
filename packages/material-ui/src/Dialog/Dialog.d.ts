@@ -9,7 +9,7 @@ export interface DialogProps
   children?: React.ReactNode;
   fullScreen?: boolean;
   fullWidth?: boolean;
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | false;
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   PaperProps?: Partial<PaperProps>;
   scroll?: 'body' | 'paper';
   TransitionComponent?: React.ReactType;
@@ -21,12 +21,15 @@ export type DialogClassKey =
   | 'root'
   | 'scrollPaper'
   | 'scrollBody'
+  | 'container'
   | 'paper'
   | 'paperScrollPaper'
   | 'paperScrollBody'
   | 'paperWidthXs'
   | 'paperWidthSm'
   | 'paperWidthMd'
+  | 'paperWidthLg'
+  | 'paperWidthXl'
   | 'paperFullWidth'
   | 'paperFullScreen';
 

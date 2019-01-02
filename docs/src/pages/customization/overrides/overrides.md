@@ -31,7 +31,7 @@ of the `<head />` to ensure the components always render correctly.
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component.
 The list of  classes for each
 component is documented in the **Component API** section.
-For instance, you can have a look at the [Button CSS API](/api/button/#css-api).
+For instance, you can have a look at the [Button CSS API](/api/button/#css).
 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to
@@ -43,10 +43,10 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-#### Shorthand
+### Shorthand
 
 The above code example can be condensed by using **the same CSS API** as the child component.
-In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css-api).
+In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
 
 ```jsx
 const StyledButton = withStyles({
@@ -67,36 +67,53 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
-#### Internal states
+### Internal states
 
-Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components.
-The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
+The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity.
 [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+
 In order to override the components internal states, **you need to increase specificity**.
-Here is an example with the `disable` state and the button component:
+Here is an example with the *disable* state and the button component using a **pseudo-class** (`:disabled`):
 
 ```css
-.classes-state-root {
-  /* ... */
+.button {
+  color: black;
 }
-.classes-state-root.disabled {
+/* We increase the specificity */
+.button:disabled {
   color: white;
 }
 ```
 
 ```jsx
-
-<Button
-  disabled
-  classes={{
-    root: 'classes-state-root',
-    disabled: 'disabled', }
-  }
->
-
+<Button disabled className="button">
 ```
 
-#### Use `$ruleName` to reference a local rule within the same style sheet
+Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform.
+Let's take the menu item component and the *selected* state as an example.
+Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components:
+
+```css
+.menu-item {
+  color: black;
+}
+/* We increase the specificity */
+.menu-item.selected {
+  color: blue;
+}
+```
+
+```jsx
+<MenuItem selected classes={{ root: 'menu-item', selected: 'selected' }}>
+```
+
+##### Why do I need to increase specificity to override one component state?
+
+By design, the CSS specification makes the pseudo-classes increase the specificity.
+For consistency, Material-UI increases the specificity of its custom states.
+This has one important advantage, it's allowing you to cherry-pick the state you want to customize.
+
+### Use `$ruleName` to reference a local rule within the same style sheet
 
 The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
 
@@ -119,6 +136,18 @@ compiles to:
 }
 ```
 
+⚠️ You need to apply the two generated class names (`root` & `disabled`) to the DOM to make it work.
+
+```jsx
+<Button
+  disabled
+  classes={{
+    root: classes.root, // class name, e.g. `root-x`
+    disabled: classes.disabled, // class name, e.g. `disabled-x`
+  } }
+>
+```
+
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
 
 ### Overriding with inline-style
@@ -139,18 +168,12 @@ You have learned how to override the style of the Material-UI components in the 
 Now, let's see how we can make these overrides dynamic.
 We demonstrate 5 alternatives, each has it's pros and cons.
 
-### withStyles property support
+### Dynamic CSS
 
-```jsx
-const styles = {
-  button: {
-    background: props => props.color,
-  },
-};
-```
+{{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
-This feature isn't ready yet.
-It will come with: [#7633](https://github.com/mui-org/material-ui/issues/7633).
+⚠️ This demo relies on the [`@material-ui/styles`](/css-in-js/basics/) package.
+It doesn't work with the stable version.
 
 ### Class name branch
 
@@ -178,7 +201,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 ## 4. Material Design variations
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
+The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (formerly "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (formerly "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
 

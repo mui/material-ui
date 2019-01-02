@@ -9,7 +9,9 @@ import { StandardProps } from '..';
  * Since it is not decided via prop, we have create loose typings
  * here.
  */
-export interface TableCellProps extends StandardProps<TableCellBaseProps, TableCellClassKey> {
+export interface TableCellProps
+  extends StandardProps<TableCellBaseProps, TableCellClassKey, 'align'> {
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   component?: React.ReactType<TableCellBaseProps>;
   numeric?: boolean;
   padding?: Padding;

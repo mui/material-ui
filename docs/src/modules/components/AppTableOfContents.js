@@ -4,26 +4,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
 import marked from 'marked';
+import warning from 'warning';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
-import Ad from 'docs/src/modules/components/Ad';
 
+let itemsCollector;
 const renderer = new marked.Renderer();
-
-let itemsServer = null;
 renderer.heading = (text, level) => {
   if (level === 2) {
-    itemsServer.push({
+    itemsCollector.push({
       text,
       level,
       hash: textToHash(text),
       children: [],
     });
   } else if (level === 3) {
-    itemsServer[itemsServer.length - 1].children.push({
+    if (!itemsCollector[itemsCollector.length - 1]) {
+      throw new Error(`Missing parent level for: ${text}`);
+    }
+
+    itemsCollector[itemsCollector.length - 1].children.push({
       text,
       level,
       hash: textToHash(text),
@@ -31,10 +34,21 @@ renderer.heading = (text, level) => {
   }
 };
 
+function getItems(contents) {
+  itemsCollector = [];
+  marked(contents.join(''), {
+    renderer,
+  });
+
+  return itemsCollector;
+}
+
 const styles = theme => ({
   root: {
     top: 70,
-    width: 162,
+    // Fix IE 11 position sticky issue.
+    marginTop: 70,
+    width: 167,
     flexShrink: 0,
     order: 2,
     position: 'sticky',
@@ -42,7 +56,7 @@ const styles = theme => ({
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit *
-      2}px 0`,
+      2}px 5px`,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -62,17 +76,22 @@ const styles = theme => ({
   },
 });
 
+function checkDuplication(uniq, item) {
+  warning(!uniq[item.hash], `Table of content: duplicated \`${item.hash}\` item`);
+
+  if (!uniq[item.hash]) {
+    uniq[item.hash] = true;
+  }
+}
+
 class AppTableOfContents extends React.Component {
   handleScroll = throttle(() => {
     this.findActiveIndex();
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   constructor(props) {
-    super(props);
-    itemsServer = [];
-    marked(props.contents.join(''), {
-      renderer,
-    });
+    super();
+    this.itemsServer = getItems(props.contents);
   }
 
   state = {
@@ -81,8 +100,10 @@ class AppTableOfContents extends React.Component {
 
   componentDidMount() {
     this.itemsClient = [];
+    const uniq = {};
 
-    itemsServer.forEach(item2 => {
+    this.itemsServer.forEach(item2 => {
+      checkDuplication(uniq, item2);
       this.itemsClient.push({
         ...item2,
         node: document.getElementById(item2.hash),
@@ -90,6 +111,7 @@ class AppTableOfContents extends React.Component {
 
       if (item2.children.length > 0) {
         item2.children.forEach(item3 => {
+          checkDuplication(uniq, item3);
           this.itemsClient.push({
             ...item3,
             node: document.getElementById(item3.hash),
@@ -97,7 +119,6 @@ class AppTableOfContents extends React.Component {
         });
       }
     });
-
     this.findActiveIndex();
   }
 
@@ -110,9 +131,13 @@ class AppTableOfContents extends React.Component {
 
     for (let i = 0; i < this.itemsClient.length; i += 1) {
       const item = this.itemsClient[i];
+
+      warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
+
       if (
-        document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-        i === this.itemsClient.length - 1
+        item.node &&
+        (document.documentElement.scrollTop < item.node.offsetTop + 100 ||
+          i === this.itemsClient.length - 1)
       ) {
         active = item;
         break;
@@ -127,20 +152,19 @@ class AppTableOfContents extends React.Component {
   };
 
   render() {
-    const { classes, disableAd } = this.props;
+    const { classes } = this.props;
     const { active } = this.state;
 
     return (
       <nav className={classes.root}>
-        {disableAd ? null : <Ad />}
-        {itemsServer.length > 0 ? (
+        {this.itemsServer.length > 0 ? (
           <React.Fragment>
             <Typography gutterBottom className={classes.contents}>
               Contents
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />
             <ul className={classes.ul}>
-              {itemsServer.map(item2 => (
+              {this.itemsServer.map(item2 => (
                 <li key={item2.text}>
                   <Typography
                     color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
@@ -184,7 +208,6 @@ class AppTableOfContents extends React.Component {
 AppTableOfContents.propTypes = {
   classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
-  disableAd: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(AppTableOfContents);

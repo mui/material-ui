@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
-import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
+import BuildIcon from '@material-ui/icons/Build';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';

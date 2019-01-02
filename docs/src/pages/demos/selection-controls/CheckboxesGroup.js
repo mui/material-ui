@@ -31,7 +31,7 @@ class CheckboxesGroup extends React.Component {
   render() {
     const { classes } = this.props;
     const { gilad, jason, antoine } = this.state;
-    const error = Object.values(this.state).filter(v => v).length !== 2;
+    const error = [gilad, jason, antoine].filter(v => v).length !== 2;
 
     return (
       <div className={classes.root}>

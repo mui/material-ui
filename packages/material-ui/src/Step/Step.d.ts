@@ -11,6 +11,7 @@ export interface StepProps
   connector?: React.ReactElement<any>;
   disabled?: boolean;
   index?: number;
+  last?: boolean;
   orientation?: Orientation;
 }
 

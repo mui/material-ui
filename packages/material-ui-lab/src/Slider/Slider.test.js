@@ -1,5 +1,5 @@
 import React from 'react';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Slider from './Slider';
@@ -55,6 +55,53 @@ describe('<Slider />', () => {
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });
 
+  describe('when mouse leaves window', () => {
+    it('should move to the end', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    });
+  });
+
+  describe('when mouse reenters window', () => {
+    it('should update if mouse is still clicked', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 1;
+      document.body.dispatchEvent(mouseEnter);
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+
+      assert.strictEqual(handleChange.callCount, 2, 'should have called the handleChange cb');
+    });
+
+    it('should not update if mouse is not clicked', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 0;
+      document.body.dispatchEvent(mouseEnter);
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    });
+  });
+
   describe('unmount', () => {
     it('should not have global event listeners registered after unmount', () => {
       const handleChange = spy();
@@ -75,7 +122,7 @@ describe('<Slider />', () => {
 
       wrapper.unmount();
 
-      // After unmounting global listeners should not be registered aynmore since that would
+      // After unmounting global listeners should not be registered anymore since that would
       // break component encapsulation. If they are still mounted either react will throw warnings
       // or other component logic throws.
       // post condition: the dispatched events dont cause errors/warnings
@@ -119,52 +166,13 @@ describe('<Slider />', () => {
 
       assert.strictEqual(handleChange.callCount, 0);
     });
-  });
 
-  describe('prop: value', () => {
-    const transitionComplexDuration = 375;
-    let wrapper;
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-      wrapper = mount(<Slider value={0} />);
+    it('should disable its thumb', () => {
+      assert.ok(wrapper.find('button').props().disabled);
     });
 
-    after(() => {
-      clock.restore();
-    });
-
-    it('should render thumb in initial state', () => {
-      const button = wrapper.find('button');
-      assert.strictEqual(button.props().style.left, '0%');
-    });
-
-    it('should render tracks in initial state', () => {
-      const tracks = wrapper.find('div').filterWhere(n => n.hasClass(classes.track));
-      const trackBefore = tracks.at(0);
-      const trackAfter = tracks.at(1);
-
-      assert.strictEqual(trackBefore.props().style.width, '0%');
-      assert.strictEqual(trackAfter.props().style.width, 'calc(100% - 5px)');
-    });
-
-    it('after change value should change position of thumb', () => {
-      wrapper.setProps({ value: 50 });
-
-      clock.tick(transitionComplexDuration);
-
-      const button = wrapper.find('button');
-      assert.strictEqual(button.props().style.left, '50%');
-    });
-
-    it('should render tracks in new state', () => {
-      const tracks = wrapper.find('div').filterWhere(n => n.hasClass(classes.track));
-      const trackBefore = tracks.at(0);
-      const trackAfter = tracks.at(1);
-
-      assert.strictEqual(trackBefore.props().style.width, '50%');
-      assert.strictEqual(trackAfter.props().style.width, 'calc(100% - 5px)');
+    it('should signal that it is disabled', () => {
+      assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
     });
   });
 });

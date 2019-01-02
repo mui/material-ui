@@ -1,11 +1,11 @@
 import React from 'react';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { JssProvider } from 'react-jss';
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import CssInJs from './CssInJs';
 
 const sheetsRegistry = new SheetsRegistry();
-const theme = createMuiTheme();
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
 class JssRegistry extends React.Component {
   state = {

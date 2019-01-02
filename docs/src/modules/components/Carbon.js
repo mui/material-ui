@@ -4,24 +4,29 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   '@global': {
     '#carbonads': {
-      padding: theme.spacing.unit,
+      overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
+        .spacing.unit + 130}px`,
+      borderRadius: theme.shape.borderRadius,
+      '& .carbon-img': {
+        float: 'left',
+        marginLeft: -130,
+        marginRight: theme.spacing.unit,
+      },
       '& img': {
         verticalAlign: 'middle',
       },
       '& a': {
         textDecoration: 'none',
       },
-      '& .carbon-wrap': {
-        display: 'block',
-      },
       '& .carbon-text': {
         ...theme.typography.body2,
         display: 'block',
-        margin: `${theme.spacing.unit}px 0`,
       },
       '& .carbon-poweredby': {
         ...theme.typography.caption,
+        color: theme.palette.text.secondary,
         display: 'block',
       },
     },
@@ -30,16 +35,22 @@ const styles = theme => ({
 
 class Carbon extends React.Component {
   componentDidMount() {
+    const scriptSlot = document.querySelector('#carbon-ad');
+
+    // Concurrence issues
+    if (!scriptSlot) {
+      return;
+    }
+
     const script = document.createElement('script');
     script.setAttribute('async', '');
     script.src = '//cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
     script.id = '_carbonads_js';
-    const scriptSlot = document.querySelector('#carbon-ad');
     scriptSlot.appendChild(script);
   }
 
   render() {
-    return <div id="carbon-ad" />;
+    return <span id="carbon-ad" />;
   }
 }
 

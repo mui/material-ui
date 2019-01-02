@@ -3,7 +3,7 @@
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
-import * as reactDocgen from 'react-docgen';
+import { parse as docgenParse } from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
@@ -39,7 +39,7 @@ if (args.length < 4) {
 
 const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
-const theme = createMuiTheme();
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
 
@@ -101,7 +101,10 @@ function buildDocs(options) {
     // Exception for Select where the classes are imported from NativeSelect
     if (name === 'Select') {
       styleSrc = readFileSync(
-        componentObject.filename.replace('Select/Select', 'NativeSelect/NativeSelect'),
+        componentObject.filename.replace(
+          `Select${path.sep}Select`,
+          `NativeSelect${path.sep}NativeSelect`,
+        ),
         'utf8',
       );
     }
@@ -113,6 +116,7 @@ function buildDocs(options) {
     const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
+
     if (stylesSrc) {
       // Extract individual classes and descriptions
       stylesSrc[0].replace(styleRegexp, (match, desc, key) => {
@@ -123,7 +127,7 @@ function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = reactDocgen.parse(src);
+    reactAPI = docgenParse(src);
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;
@@ -134,7 +138,7 @@ function buildDocs(options) {
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Snackbar') {
+  // if (reactAPI.name !== 'TableCell') {
   //   return;
   // }
 
@@ -159,8 +163,9 @@ function buildDocs(options) {
     writeFileSync(path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`), markdown);
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
+      `import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
+import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './${kebabCase(reactAPI.name)}.md';
 
@@ -168,7 +173,7 @@ function Page() {
   return <MarkdownDocs markdown={markdown} />;
 }
 
-export default withRoot(Page);
+export default Page;
 `,
     );
 

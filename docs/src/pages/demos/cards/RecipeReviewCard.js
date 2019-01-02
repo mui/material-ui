@@ -30,13 +30,10 @@ const styles = theme => ({
   },
   expand: {
     transform: 'rotate(0deg)',
+    marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -8,
-    },
   },
   expandOpen: {
     transform: 'rotate(180deg)',
@@ -75,7 +72,7 @@ class RecipeReviewCard extends React.Component {
         <CardMedia
           className={classes.media}
           image="/static/images/cards/paella.jpg"
-          title="Contemplative Reptile"
+          title="Paella dish"
         />
         <CardContent>
           <Typography component="p">

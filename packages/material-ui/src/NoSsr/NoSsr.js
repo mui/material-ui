@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import exactProp from '../utils/exactProp';
+import { exactProp } from '@material-ui/utils';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
@@ -22,10 +22,10 @@ class NoSsr extends React.Component {
     this.mounted = true;
 
     if (this.props.defer) {
-      // Wondering why we use two raf? Check this video out:
+      // Wondering why we use two RAFs? Check this video out:
       // https://www.youtube.com/watch?v=cCOL7MC4Pl0
       requestAnimationFrame(() => {
-        // The browser should be about to render the DOM that React commited at this point.
+        // The browser should be about to render the DOM that React committed at this point.
         // We don't want to interrupt. Let's wait the next raf.
         requestAnimationFrame(() => {
           if (this.mounted) {
@@ -34,7 +34,7 @@ class NoSsr extends React.Component {
         });
       });
     } else {
-      this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ mounted: true });
     }
   }
 
@@ -52,7 +52,7 @@ class NoSsr extends React.Component {
 NoSsr.propTypes = {
   children: PropTypes.node.isRequired,
   /**
-   * If `true`, the component will not only prevent server side rendering.
+   * If `true`, the component will not only prevent server-side rendering.
    * It will also defer the rendering of the children into a different screen frame.
    */
   defer: PropTypes.bool,
@@ -62,7 +62,9 @@ NoSsr.propTypes = {
   fallback: PropTypes.node,
 };
 
-NoSsr.propTypes = exactProp(NoSsr.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  NoSsr.propTypes = exactProp(NoSsr.propTypes);
+}
 
 NoSsr.defaultProps = {
   defer: false,

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -9,7 +10,7 @@ import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
-import TablePaginationActions from '../TablePaginationActions';
+import TablePaginationActions from './TablePaginationActions';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -39,7 +40,6 @@ export const styles = theme => ({
   selectRoot: {
     marginRight: 32,
     marginLeft: 8,
-    color: theme.palette.text.secondary,
   },
   /* Styles applied to the Select component `select` class. */
   select: {
@@ -52,6 +52,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `InputBase` component. */
   input: {
+    color: 'inherit',
     fontSize: 'inherit',
     flexShrink: 0,
   },
@@ -60,7 +61,6 @@ export const styles = theme => ({
   /* Styles applied to the internal `TablePaginationActions` component. */
   actions: {
     flexShrink: 0,
-    color: theme.palette.text.secondary,
     marginLeft: 20,
   },
 });
@@ -95,7 +95,7 @@ class TablePagination extends React.Component {
       page,
       rowsPerPage,
       rowsPerPageOptions,
-      SelectProps,
+      SelectProps = {},
       ...other
     } = this.props;
 
@@ -104,6 +104,8 @@ class TablePagination extends React.Component {
     if (Component === TableCell || Component === 'td') {
       colSpan = colSpanProp || 1000; // col-span over everything
     }
+
+    const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
     return (
       <Component className={classes.root} colSpan={colSpan} {...other}>
@@ -127,13 +129,13 @@ class TablePagination extends React.Component {
               {...SelectProps}
             >
               {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItem
+                <MenuItemComponent
                   className={classes.menuItem}
                   key={rowsPerPageOption}
                   value={rowsPerPageOption}
                 >
                   {rowsPerPageOption}
-                </MenuItem>
+                </MenuItemComponent>
               ))}
             </Select>
           )}
@@ -165,7 +167,7 @@ TablePagination.propTypes = {
    * The component used for displaying the actions.
    * Either a string to use a DOM element or a component.
    */
-  ActionsComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  ActionsComponent: componentPropType,
   /**
    * Properties applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
@@ -183,7 +185,7 @@ TablePagination.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * The total number of rows.
    */
@@ -238,7 +240,7 @@ TablePagination.defaultProps = {
   component: TableCell,
   labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
   labelRowsPerPage: 'Rows per page:',
-  rowsPerPageOptions: [5, 10, 25],
+  rowsPerPageOptions: [10, 25, 50, 100],
 };
 
 export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);

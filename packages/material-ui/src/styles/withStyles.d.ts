@@ -28,8 +28,7 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions<ClassKey extends string = string>
-  extends JSS.CreateStyleSheetOptions<ClassKey> {
+export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -44,7 +43,11 @@ export type WithStyles<
   classes: ClassNameMap<
     T extends string
       ? T
-      : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
+      : T extends StyleRulesCallback<infer K>
+      ? K
+      : T extends StyleRules<infer K>
+      ? K
+      : never
   >;
   innerRef?: React.Ref<any> | React.RefObject<any>;
 };
@@ -54,10 +57,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<
-  ClassKey extends string,
-  Options extends WithStylesOptions<ClassKey> = {}
->(
+export default function withStyles<ClassKey extends string, Options extends WithStylesOptions = {}>(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
 ): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

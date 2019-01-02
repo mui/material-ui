@@ -98,7 +98,7 @@ const AppBarTest = () => (
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
-const AvaterClassName = () => <Avatar className="foo" />;
+const AvatarClassName = () => <Avatar className="foo" />;
 
 const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
@@ -133,7 +133,7 @@ const ButtonTest = () => (
       Raised
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complexe Link</Button>
+    <Button component={props => <a {...props} />}>Complex Link</Button>
   </div>
 );
 
@@ -479,7 +479,7 @@ const PaperTest = () => (
   </Paper>
 );
 
-const CircularProgessTest = () => (
+const CircularProgressTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
@@ -687,7 +687,7 @@ const TableTest = () => {
         <Table>
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
               <TableCell numeric>Fat (g)</TableCell>
               <TableCell numeric>Carbs (g)</TableCell>

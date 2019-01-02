@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
@@ -87,7 +87,6 @@ describe('<Fade />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         opacity: 0,
-        willChange: 'opacity',
       });
     });
 
@@ -99,7 +98,6 @@ describe('<Fade />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         opacity: 0,
-        willChange: 'opacity',
       });
     });
   });

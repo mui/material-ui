@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-<p class="description">Stuck on a particular problem? Check some of these common gotchas first.</p>
+<p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
 
 If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
@@ -13,6 +13,7 @@ For Material-UI to work, the `classNames` values of all components on a page mus
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** between them.
 
 You could end up accidentally using two class name generators in a variety of scenarios:
+
 - You accidentally **bundle** two versions of Material-UI. You might have a dependency not correctly setting Material-UI as a peer dependency.
 - You are using `JssProvider` for a **subset** of your React Tree.
 - You are using a bundler and it is splitting code in a way results in multiple class name generator instances to be created.
@@ -30,12 +31,42 @@ We block the scroll as soon as a modal is opened.
 This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move.
 In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
-## How can I disable the ripple effect on the whole app?
+## How can I disable the ripple effect globally?
 
-The best solution at present is to write wrapping components for all the Material-UI components showing a ripple.
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can find the components using the ButtonBase [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
-Then, all you have to do is to provide the `disableRipple` property.
+You can disable the ripple effect globally by providing the following in your theme:
+
+```js
+import { createMuiTheme } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+});
+```
+
+## How can I disable animations globally?
+
+You can disable animations globally by providing the following in your theme:
+
+```js
+import { createMuiTheme } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => 'none',
+  },
+});
+```
+
+Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices,
+in these cases, you can dynamically change the theme value.
 
 ## Do I have to use JSS to style my app?
 
@@ -43,8 +74,8 @@ It's highly recommended:
 
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
-- It has a clean, consistent [API](http://cssinjs.org/json-api/).
-- It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/).
+- It has a clean, consistent [API](https://cssinjs.org/json-api/).
+- It supports a number of advanced features, either natively, or through [plugins](https://cssinjs.org/plugins/).
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
@@ -107,6 +138,7 @@ page](/customization/themes/) to learn about theme customization.
 ## Material-UI is awesome. How can I support the project?
 
 There are many ways to support Material-UI:
+
 - Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).

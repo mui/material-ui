@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, IconButton, ButtonBase, Zoom
+components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
@@ -8,11 +8,22 @@ components: Button, IconButton, ButtonBase, Zoom
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
 [Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+
 - Dialogs
 - Modal windows
 - Forms
 - Cards
 - Toolbars
+
+## Contained Buttons
+
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
+are high-emphasis, distinguished by their use of elevation and fill.
+They contain actions that are primary to your app.
+
+The last example of this demo show how to use an upload button.
+
+{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
 ## Text Buttons
 
@@ -39,22 +50,12 @@ or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## Contained Buttons
-
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
-are high-emphasis, distinguished by their use of elevation and fill.
-They contain actions that are primary to your app.
-
-The last example of this demo show how to use an upload button.
-
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
-
 ## Floating Action Buttons
 
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
 (FAB) performs the primary, or most common, action on a screen.
 It appears in front of all screen content, typically as a circular shape with an icon in its center.
-FABs come in three types: regular, mini, and extended.
+FABs come in two types: regular, and extended.
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
@@ -73,6 +74,18 @@ animation to finish before the new one enters.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
+## Sizes
+
+Fancy larger or smaller buttons? Use the `size` property.
+
+{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+
+## Buttons with icons and label
+
+Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+
+{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+
 ## Icon Buttons
 
 Icon buttons are commonly found in app bars and toolbars.
@@ -82,24 +95,14 @@ deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
-## Sizes
-
-Fancy larger or smaller buttons? Use the `size` or the `mini` property.
-
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
-
-### Buttons with icons and label
-
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
-
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
-
 ## Customized Buttons
 
 If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in,
 here are examples of how you can change the main color of a Button using classes,
 and using a theme; and of a Bootstrap style Button.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 

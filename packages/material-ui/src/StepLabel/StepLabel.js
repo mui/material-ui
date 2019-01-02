@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
@@ -17,7 +18,7 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `orientation="horiizontal". */
+  /* Styles applied to the root element if `orientation="horizontal". */
   horizontal: {},
   /* Styles applied to the root element if `orientation="vertical". */
   vertical: {},
@@ -50,6 +51,7 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the `icon` container element. */
   iconContainer: {
+    flexShrink: 0, // Fix IE 11 issue
     display: 'flex',
     paddingRight: 8,
     '&$alternativeLabel': {
@@ -75,6 +77,7 @@ function StepLabel(props) {
     disabled,
     error,
     icon,
+    last,
     optional,
     orientation,
     StepIconComponent: StepIconComponentProp,
@@ -178,6 +181,10 @@ StepLabel.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * @ignore
+   */
+  last: PropTypes.bool,
+  /**
    * The optional node to display.
    */
   optional: PropTypes.node,
@@ -188,7 +195,7 @@ StepLabel.propTypes = {
   /**
    * The component to render in place of the [`StepIcon`](/api/step-icon/).
    */
-  StepIconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  StepIconComponent: componentPropType,
   /**
    * Properties applied to the [`StepIcon`](/api/step-icon/) element.
    */
@@ -201,6 +208,7 @@ StepLabel.defaultProps = {
   completed: false,
   disabled: false,
   error: false,
+  last: false,
   orientation: 'horizontal',
 };
 

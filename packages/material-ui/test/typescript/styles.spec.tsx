@@ -281,8 +281,7 @@ withStyles(theme =>
         flex: '1 1 auto',
         padding: '0 16px',
       },
-
-      iiiinset: {
+      inset: {
         '&:first-child': {
           paddingLeft: theme.spacing.unit * 7,
         },

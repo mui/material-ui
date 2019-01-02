@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import rerender from 'test/utils/rerender';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 
@@ -263,6 +263,65 @@ describe('<ButtonBase />', () => {
     });
   });
 
+  describe('focus inside shadowRoot', () => {
+    // Only run on HeadlessChrome which has native shadowRoot support.
+    // And jsdom which has limited support for shadowRoot (^12.0.0).
+    if (!/HeadlessChrome|jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
+
+    let wrapper;
+    let instance;
+    let button;
+    let clock;
+    let rootElement;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+      rootElement = document.createElement('div');
+      rootElement.tabIndex = 0;
+      document.body.appendChild(rootElement);
+      rootElement.attachShadow({ mode: 'open' });
+      wrapper = mount(
+        <ButtonBaseNaked theme={{}} classes={{}} id="test-button">
+          Hello
+        </ButtonBaseNaked>,
+        { attachTo: rootElement.shadowRoot },
+      );
+      instance = wrapper.instance();
+      button = rootElement.shadowRoot.getElementById('test-button');
+      if (!button) {
+        throw new Error('missing button');
+      }
+
+      button.focus();
+
+      if (document.activeElement !== rootElement) {
+        // Mock activeElement value and simulate host-retargeting in shadow root for
+        // jsdom@12.0.0 (https://github.com/jsdom/jsdom/issues/2343)
+        rootElement.focus();
+        rootElement.shadowRoot.activeElement = button;
+        wrapper.simulate('focus');
+      }
+
+      const event = new window.Event('keyup');
+      event.which = keycode('tab');
+      window.dispatchEvent(event);
+    });
+
+    afterEach(() => {
+      clock.restore();
+      ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
+      document.body.removeChild(rootElement);
+    });
+
+    it('should set focus state for shadowRoot children', () => {
+      assert.strictEqual(wrapper.state().focusVisible, false);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
+      assert.strictEqual(wrapper.state().focusVisible, true);
+    });
+  });
+
   describe('mounted tab press listener', () => {
     let wrapper;
     let instance;
@@ -383,7 +442,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
 
-    it('onFocusVisibleHandler() should propogate call to onFocusVisible prop', () => {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const eventMock = 'woofButtonBase';
       const onFocusVisibleSpy = spy();
       const wrapper = mount(
@@ -402,7 +461,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(onFocusVisibleSpy.calledWith(eventMock), true);
     });
 
-    it('should work with a functionnal component', () => {
+    it('should work with a functional component', () => {
       const MyLink = props => (
         <a href="/foo" {...props}>
           bar
@@ -496,7 +555,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(onClickSpy.calledWith(event), true);
       });
 
-      it('should hanlde the link with no href', () => {
+      it('should handle a link with no href', () => {
         const onClickSpy = spy();
         wrapper = mount(
           <ButtonBaseNaked theme={{}} classes={{}} component="a" onClick={onClickSpy}>
@@ -633,7 +692,10 @@ describe('<ButtonBase />', () => {
       wrapper.setProps({
         children: 'bar',
       });
-      assert.strictEqual(rerender.updates.length, 1);
+      assert.strictEqual(
+        rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
+        1,
+      );
     });
   });
 });

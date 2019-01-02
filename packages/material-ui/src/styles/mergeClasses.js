@@ -1,22 +1,23 @@
 import warning from 'warning';
-import getDisplayName from '../utils/getDisplayName';
+import { getDisplayName } from '@material-ui/utils';
 
 function mergeClasses(options = {}) {
-  const { baseClasses, newClasses, Component, noBase = false } = options;
+  const { baseClasses, newClasses, Component } = options;
 
   if (!newClasses) {
     return baseClasses;
   }
 
-  return {
-    ...baseClasses,
-    ...Object.keys(newClasses).reduce((accumulator, key) => {
+  const nextClasses = { ...baseClasses };
+
+  Object.keys(newClasses).forEach(key => {
+    if (Component) {
       warning(
-        baseClasses[key] || noBase || !newClasses[key],
+        baseClasses[key] || !newClasses[key],
         [
           `Material-UI: the key \`${key}\` ` +
             `provided to the classes property is not implemented in ${getDisplayName(Component)}.`,
-          `You can only override one of the following: ${Object.keys(baseClasses).join(',')}`,
+          `You can only override one of the following: ${Object.keys(baseClasses).join(',')}.`,
         ].join('\n'),
       );
 
@@ -28,14 +29,14 @@ function mergeClasses(options = {}) {
           `You need to provide a non empty string instead of: ${newClasses[key]}.`,
         ].join('\n'),
       );
+    }
 
-      if (newClasses[key]) {
-        accumulator[key] = `${baseClasses[key]} ${newClasses[key]}`;
-      }
+    if (newClasses[key]) {
+      nextClasses[key] = `${baseClasses[key]} ${newClasses[key]}`;
+    }
+  });
 
-      return accumulator;
-    }, {}),
-  };
+  return nextClasses;
 }
 
 export default mergeClasses;

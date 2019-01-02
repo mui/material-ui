@@ -1,16 +1,18 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import createBroadcast from 'brcast';
+import { exactProp, ponyfillGlobal } from '@material-ui/utils';
 import themeListener, { CHANNEL } from './themeListener';
-import exactProp from '../utils/exactProp';
 
 /**
  * This component takes a `theme` property.
  * It makes the `theme` available down the React tree thanks to React context.
  * This component should preferably be used at **the root of your component tree**.
  */
-class MuiThemeProvider extends React.Component {
+export class MuiThemeProviderOld extends React.Component {
   broadcast = createBroadcast();
 
   // We are not using the React state in order to avoid unnecessary rerender.
@@ -23,15 +25,19 @@ class MuiThemeProvider extends React.Component {
   }
 
   getChildContext() {
-    const { sheetsManager, disableStylesGeneration } = this.props;
+    const { disableStylesGeneration, sheetsCache, sheetsManager } = this.props;
     const muiThemeProviderOptions = this.context.muiThemeProviderOptions || {};
-
-    if (sheetsManager !== undefined) {
-      muiThemeProviderOptions.sheetsManager = sheetsManager;
-    }
 
     if (disableStylesGeneration !== undefined) {
       muiThemeProviderOptions.disableStylesGeneration = disableStylesGeneration;
+    }
+
+    if (sheetsCache !== undefined) {
+      muiThemeProviderOptions.sheetsCache = sheetsCache;
+    }
+
+    if (sheetsManager !== undefined) {
+      muiThemeProviderOptions.sheetsManager = sheetsManager;
     }
 
     return {
@@ -101,7 +107,7 @@ class MuiThemeProvider extends React.Component {
   }
 }
 
-MuiThemeProvider.propTypes = {
+MuiThemeProviderOld.propTypes = {
   /**
    * You can wrap a node.
    */
@@ -111,10 +117,16 @@ MuiThemeProvider.propTypes = {
    * It can be useful when traversing the React tree outside of the HTML
    * rendering step on the server.
    * Let's say you are using react-apollo to extract all
-   * the queries made by the interface server side.
+   * the queries made by the interface server-side.
    * You can significantly speed up the traversal with this property.
    */
   disableStylesGeneration: PropTypes.bool,
+  /**
+   * @ignore
+   *
+   * In beta.
+   */
+  sheetsCache: PropTypes.object,
   /**
    * The sheetsManager is used to deduplicate style sheet injection in the page.
    * It's deduplicating using the (theme, styles) couple.
@@ -127,16 +139,27 @@ MuiThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-MuiThemeProvider.propTypes = exactProp(MuiThemeProvider.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  MuiThemeProviderOld.propTypes = exactProp(MuiThemeProviderOld.propTypes);
+}
 
-MuiThemeProvider.childContextTypes = {
+MuiThemeProviderOld.childContextTypes = {
   ...themeListener.contextTypes,
   muiThemeProviderOptions: PropTypes.object,
 };
 
-MuiThemeProvider.contextTypes = {
+MuiThemeProviderOld.contextTypes = {
   ...themeListener.contextTypes,
   muiThemeProviderOptions: PropTypes.object,
 };
 
-export default MuiThemeProvider;
+/* istanbul ignore if */
+if (!ponyfillGlobal.__MUI_STYLES__) {
+  ponyfillGlobal.__MUI_STYLES__ = {};
+}
+
+if (!ponyfillGlobal.__MUI_STYLES__.MuiThemeProvider) {
+  ponyfillGlobal.__MUI_STYLES__.MuiThemeProvider = MuiThemeProviderOld;
+}
+
+export default ponyfillGlobal.__MUI_STYLES__.MuiThemeProvider;

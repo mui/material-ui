@@ -1,0 +1,31 @@
+{
+  "name": "@material-ui/benchmark",
+  "private": true,
+  "version": "3.0.0",
+  "description": "Material-UI Benchmark.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-benchmark",
+  "scripts": {
+    "test": "exit 0",
+    "core": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/core.js --inspect=0.0.0.0:9229",
+    "styles": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/styles.js --inspect=0.0.0.0:9229",
+    "system": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/system.js --inspect=0.0.0.0:9229",
+    "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js --inspect=0.0.0.0:9229"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "nodemod": "^1.5.19",
+    "styled-system": "^3.1.11"
+  }
+}

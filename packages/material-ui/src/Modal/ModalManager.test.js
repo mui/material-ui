@@ -20,6 +20,7 @@ describe('ModalManager', () => {
     const modal = {};
     const modalManager2 = new ModalManager();
     const idx = modalManager2.add(modal, container1);
+    modalManager2.mount(modal);
     assert.strictEqual(modalManager2.add(modal, container1), idx);
     modalManager2.remove(modal);
   });
@@ -30,13 +31,14 @@ describe('ModalManager', () => {
     let modal3;
 
     before(() => {
-      modal1 = {};
-      modal2 = {};
-      modal3 = {};
+      modal1 = { modalRef: document.createElement('div') };
+      modal2 = { modalRef: document.createElement('div') };
+      modal3 = { modalRef: document.createElement('div') };
     });
 
     it('should add modal1', () => {
       const idx = modalManager.add(modal1, container1);
+      modalManager.mount(modal1);
       assert.strictEqual(idx, 0, 'should be the first modal');
       assert.strictEqual(modalManager.isTopModal(modal1), true);
     });
@@ -60,6 +62,7 @@ describe('ModalManager', () => {
 
     it('should add modal2', () => {
       const idx = modalManager.add(modal2, container1);
+      modalManager.mount(modal2);
       assert.strictEqual(idx, 2, 'should be the "third" modal');
       assert.strictEqual(modalManager.isTopModal(modal2), true);
       assert.strictEqual(
@@ -111,6 +114,7 @@ describe('ModalManager', () => {
       const modal = {};
       const paddingRightBefore = container1.style.paddingRight;
       modalManager.add(modal, container1);
+      modalManager.mount(modal);
       assert.strictEqual(container1.style.overflow, 'hidden');
       assert.strictEqual(container1.style.paddingRight, `${getScrollbarSize()}px`);
       assert.strictEqual(fixedNode.style.paddingRight, `${14 + getScrollbarSize()}px`);
@@ -121,16 +125,55 @@ describe('ModalManager', () => {
     });
   });
 
+  describe('multi container', () => {
+    let container3;
+    let container4;
+
+    beforeEach(() => {
+      container3 = document.createElement('div');
+      document.body.appendChild(container3);
+      container3.appendChild(document.createElement('div'));
+
+      container4 = document.createElement('div');
+      document.body.appendChild(container4);
+      container4.appendChild(document.createElement('div'));
+    });
+
+    it('should work will multiple containers', () => {
+      modalManager = new ModalManager();
+      const modal1 = {};
+      const modal2 = {};
+      modalManager.add(modal1, container3);
+      modalManager.mount(modal1);
+      assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), 'true');
+
+      modalManager.add(modal2, container4);
+      modalManager.mount(modal2);
+      assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), 'true');
+
+      modalManager.remove(modal2);
+      assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), null);
+
+      modalManager.remove(modal1);
+      assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), null);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(container3);
+      document.body.removeChild(container4);
+    });
+  });
+
   describe('container aria-hidden', () => {
-    let mountNode1;
+    let modalRef1;
     let container2;
 
     beforeEach(() => {
       container2 = document.createElement('div');
       document.body.appendChild(container2);
 
-      mountNode1 = document.createElement('div');
-      container2.appendChild(mountNode1);
+      modalRef1 = document.createElement('div');
+      container2.appendChild(modalRef1);
 
       modalManager = new ModalManager();
     });
@@ -139,46 +182,46 @@ describe('ModalManager', () => {
       document.body.removeChild(container2);
     });
 
+    it('should not contain aria-hidden on modal', () => {
+      const modal2 = document.createElement('div');
+      modal2.setAttribute('aria-hidden', 'true');
+
+      assert.strictEqual(modal2.getAttribute('aria-hidden'), 'true');
+      modalManager.add({ modalRef: modal2 }, container2);
+      assert.strictEqual(modal2.getAttribute('aria-hidden'), null);
+    });
+
     it('should add aria-hidden to container siblings', () => {
       modalManager.add({}, container2);
-      assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
     });
 
     it('should add aria-hidden to previous modals', () => {
-      const modal2 = {};
-      const modal3 = {};
-      const mountNode2 = document.createElement('div');
+      const modal2 = document.createElement('div');
+      const modal3 = document.createElement('div');
 
-      modal2.mountNode = mountNode2;
-      container2.appendChild(mountNode2);
-      modalManager.add(modal2, container2);
-      modalManager.add(modal3, container2);
-      assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'true');
-      assert.strictEqual(mountNode2.getAttribute('aria-hidden'), 'true');
-    });
+      container2.appendChild(modal2);
+      container2.appendChild(modal3);
 
-    it('should remove aria-hidden on americas next top modal', () => {
-      const modal2 = {};
-      const modal3 = {};
-      const mountNode2 = document.createElement('div');
+      modalManager.add({ modalRef: modal2 }, container2);
+      // Simulate the main React DOM true.
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(container2.children[1].getAttribute('aria-hidden'), null);
 
-      modal2.mountNode = mountNode2;
-      container2.appendChild(mountNode2);
-      modalManager.add({}, container1);
-      modalManager.add(modal2, container2);
-      modalManager.add(modal3, container2);
-      assert.strictEqual(mountNode2.getAttribute('aria-hidden'), 'true');
-      modalManager.remove(modal3, container2);
-      assert.strictEqual(mountNode2.getAttribute('aria-hidden'), null);
+      modalManager.add({ modalRef: modal3 }, container2);
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(container2.children[1].getAttribute('aria-hidden'), 'true');
+      assert.strictEqual(container2.children[2].getAttribute('aria-hidden'), null);
     });
 
     it('should remove aria-hidden on siblings', () => {
-      const modal = {};
+      const modal = { modalRef: container2.children[0] };
 
       modalManager.add(modal, container2);
-      assert.strictEqual(mountNode1.getAttribute('aria-hidden'), 'true');
+      modalManager.mount(modal);
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), null);
       modalManager.remove(modal, container2);
-      assert.strictEqual(mountNode1.getAttribute('aria-hidden'), null);
+      assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');
     });
   });
 });

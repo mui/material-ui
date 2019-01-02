@@ -5,7 +5,7 @@ import { StyleRules, StylesCreator } from './withStyles';
 
 interface SheetManagerTheme {
   refs: number;
-  sheet: StyleSheet<string>;
+  sheet: StyleSheet;
 }
 
 export interface MuiThemeProviderProps {

@@ -57,6 +57,7 @@ we need to make sure they will behave as expected with a **real DOM**.
 To solve that problem we use [karma](https://github.com/karma-runner/karma),
 which is almost a drop in replacement of [jsdom](https://github.com/tmpvar/jsdom).
 Our tests run on different browsers to increase the coverage:
+
 - [PhantomJS](https://github.com/ariya/phantomjs) - Scriptable Headless WebKit
 - Firefox, Chrome and Safari thanks to [BrowserStack](https://www.browserstack.com)
 
@@ -108,7 +109,7 @@ or [GraphicsMagick](http://http://www.graphicsmagick.org/) being installed.
 
 ## Writing Tests
 
-For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/src/Avatar/Avatar.spec.js) a small shallow rendered test to get you started.
+For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Avatar/Avatar.test.js) a small shallow rendered test to get you started.
 
 If the Component being unit tested requires a DOM, you can use the [mount api](https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md) from `enzyme`. For some operations, you may still need to use the React test utils, but try to use the `enzyme` API as much as possible.
 
@@ -119,5 +120,6 @@ Stick to test assertions such as `assert.strictEqual` and `assert.ok`. This help
 We should try to use as many demos from the documentation as possible;
 however, we can't replace one with the other as they address different needs.
 With the regression tests:
+
 - You might need to test a more complex situation, e.g. a stress test of the grid
 - You might need to test a simpler situation, e.g. a static progress bar

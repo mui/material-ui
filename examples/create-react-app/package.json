@@ -1,13 +1,13 @@
 {
   "name": "create-react-app",
-  "version": "3.0.0",
+  "version": "3.2.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "^2.0.4"
+    "react-scripts": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

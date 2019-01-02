@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/MenuList/MenuList.js
-title: MenuList API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# MenuList
+# MenuList API
 
 <p class="description">The API documentation of the MenuList React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -19,7 +18,7 @@ import MenuList from '@material-ui/core/MenuList';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |   | MenuList contents, normally `MenuItem`s. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | MenuList contents, normally `MenuItem`s. |
 
 Any other properties supplied will be spread to the root element ([List](/api/list/)).
 

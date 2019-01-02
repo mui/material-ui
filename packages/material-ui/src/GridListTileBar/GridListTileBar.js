@@ -61,7 +61,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the actionIcon if supplied. */
   actionIcon: {},
-  /* Styles applied to the actionIcon if `actionPosition="left". */
+  /* Styles applied to the actionIcon if `actionPosition="left"`. */
   actionIconActionPosLeft: {
     order: -1,
   },

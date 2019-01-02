@@ -37,7 +37,7 @@ This has the benefit of not rendering any content at all unless the breakpoint i
 
 ### css
 
-If you are using server side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
+If you are using server-side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
 
 ## Breakpoint up
 
@@ -56,8 +56,9 @@ Using any breakpoint `down` property, the given *children* will be hidden *at or
 Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
 
 The `only` property can be used in two ways:
- - list a single breakpoint
- - list an array of breakpoints
+
+- list a single breakpoint
+- list an array of breakpoints
 
 {{"demo": "pages/layout/hidden/BreakpointOnly.js"}}
 

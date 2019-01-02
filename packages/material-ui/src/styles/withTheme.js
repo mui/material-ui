@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import { getDisplayName, ponyfillGlobal } from '@material-ui/utils';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 
@@ -12,12 +14,16 @@ function getDefaultTheme() {
     return defaultTheme;
   }
 
-  defaultTheme = createMuiTheme();
+  defaultTheme = createMuiTheme({
+    typography: {
+      suppressWarning: true,
+    },
+  });
   return defaultTheme;
 }
 
 // Provide the theme object as a property to the input component.
-const withTheme = () => Component => {
+const withThemeOld = () => Component => {
   class WithTheme extends React.Component {
     constructor(props, context) {
       super();
@@ -55,7 +61,7 @@ const withTheme = () => Component => {
   WithTheme.contextTypes = themeListener.contextTypes;
 
   if (process.env.NODE_ENV !== 'production') {
-    WithTheme.displayName = wrapDisplayName(Component, 'WithTheme');
+    WithTheme.displayName = `WithTheme(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithTheme, Component);
@@ -68,4 +74,13 @@ const withTheme = () => Component => {
   return WithTheme;
 };
 
-export default withTheme;
+/* istanbul ignore if */
+if (!ponyfillGlobal.__MUI_STYLES__) {
+  ponyfillGlobal.__MUI_STYLES__ = {};
+}
+
+if (!ponyfillGlobal.__MUI_STYLES__.withTheme) {
+  ponyfillGlobal.__MUI_STYLES__.withTheme = withThemeOld;
+}
+
+export default ponyfillGlobal.__MUI_STYLES__.withTheme;

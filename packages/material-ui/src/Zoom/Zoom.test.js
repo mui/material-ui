@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
@@ -87,7 +87,6 @@ describe('<Zoom />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         transform: 'scale(0)',
-        willChange: 'transform',
       });
     });
 
@@ -99,7 +98,6 @@ describe('<Zoom />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         transform: 'scale(0)',
-        willChange: 'transform',
       });
     });
   });

@@ -1,9 +1,10 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
+import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
 import Portal from '../Portal';
 import Backdrop from '../Backdrop';
@@ -82,14 +83,10 @@ describe('<Modal />', () => {
 
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find(Backdrop);
-      assert.strictEqual(
-        backdrop.prop('onClick'),
-        handler,
-        'should attach the handleBackdropClick handler',
-      );
+      assert.strictEqual(backdrop.props().onClick, handler);
 
       handler({});
-      assert.strictEqual(onClose.callCount, 1, 'should fire the onClose callback');
+      assert.strictEqual(onClose.callCount, 1);
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
@@ -99,7 +96,7 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
+      assert.strictEqual(onClose.callCount, 0);
     });
 
     it('should call through to the user specified onBackdropClick callback', () => {
@@ -109,7 +106,7 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+      assert.strictEqual(onBackdropClick.callCount, 1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
@@ -126,11 +123,7 @@ describe('<Modal />', () => {
           /* another dom node */
         },
       });
-      assert.strictEqual(
-        onBackdropClick.callCount,
-        0,
-        'should not fire the onBackdropClick callback',
-      );
+      assert.strictEqual(onBackdropClick.callCount, 0);
     });
   });
 
@@ -274,19 +267,21 @@ describe('<Modal />', () => {
       topModalStub.returns(false);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
 
-      instance.handleDocumentKeyDown(undefined);
+      instance.handleDocumentKeyDown({
+        keyCode: keycode('esc'),
+      });
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
 
-    it('when mounted, TopModal and event not esc should not call given funcs', () => {
+    it('when mounted, TopModal and event not esc should not call given functions', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
       event = { keyCode: keycode('j') }; // Not 'esc'
 
       instance.handleDocumentKeyDown(event);
-      assert.strictEqual(topModalStub.callCount, 1);
+      assert.strictEqual(topModalStub.callCount, 0);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
@@ -347,6 +342,16 @@ describe('<Modal />', () => {
         </Modal>,
       );
       assert.strictEqual(wrapper.contains(children), false);
+    });
+
+    it('should mount', () => {
+      mount(
+        <Modal keepMounted open={false}>
+          <div />
+        </Modal>,
+      );
+      const modalNode = document.querySelector('[data-mui-test="Modal"]');
+      assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
   });
 
@@ -509,5 +514,54 @@ describe('<Modal />', () => {
       );
       assert.strictEqual(handleRendered.callCount, 1);
     });
+  });
+
+  describe('two modal at the same time', () => {
+    it('should open and close', () => {
+      const TestCase = props => (
+        <React.Fragment>
+          <Modal open={props.open}>
+            <div>Hello</div>
+          </Modal>
+          <Modal open={props.open}>
+            <div>World</div>
+          </Modal>
+        </React.Fragment>
+      );
+
+      TestCase.propTypes = {
+        open: PropTypes.bool,
+      };
+
+      const wrapper = mount(<TestCase open={false} />);
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+      assert.strictEqual(document.body.style.overflow, 'hidden');
+      wrapper.setProps({ open: false });
+      assert.strictEqual(document.body.style.overflow, '');
+    });
+  });
+
+  it('should support open abort', () => {
+    class TestCase extends React.Component {
+      state = {
+        open: true,
+      };
+
+      componentDidMount() {
+        this.setState({
+          open: false,
+        });
+      }
+
+      render() {
+        return (
+          <Modal open={this.state.open}>
+            <div>Hello</div>
+          </Modal>
+        );
+      }
+    }
+    mount(<TestCase />);
   });
 });

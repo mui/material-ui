@@ -30,10 +30,9 @@ export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 export interface GridProps
   extends StandardProps<
-      React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
-      GridClassKey,
-      'hidden'
-    > {
+    React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
+    GridClassKey
+  > {
   alignContent?: GridContentAlignment;
   alignItems?: GridItemsAlignment;
   component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;

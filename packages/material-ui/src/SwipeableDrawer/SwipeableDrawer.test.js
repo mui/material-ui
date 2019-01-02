@@ -2,20 +2,21 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import ReactDOM from 'react-dom';
-import { createMount, unwrap } from '../test-utils';
+import { createMount, unwrap } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import createMuiTheme from '../styles/createMuiTheme';
 
-function fireBodyMouseEvent(name, properties) {
+function fireBodyMouseEvent(name, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
   Object.keys(properties).forEach(key => {
     event[key] = properties[key];
   });
   document.body.dispatchEvent(event);
+  return event;
 }
 
 describe('<SwipeableDrawer />', () => {
@@ -258,7 +259,7 @@ describe('<SwipeableDrawer />', () => {
           wrapper.setProps({ disableDiscovery: true });
 
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          if (['left', 'right'].includes(params.anchor)) {
+          if (['left', 'right'].indexOf(params.anchor) !== -1) {
             fireBodyMouseEvent('touchmove', {
               touches: [
                 {
@@ -352,7 +353,7 @@ describe('<SwipeableDrawer />', () => {
       assert.strictEqual(wrapper.state().maybeSwiping, false);
     });
 
-    it('should wait for a clear signal to determin this.isSwiping', () => {
+    it('should wait for a clear signal to determine this.isSwiping', () => {
       assert.strictEqual(instance.isSwiping, null);
       fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
       assert.strictEqual(instance.isSwiping, null);

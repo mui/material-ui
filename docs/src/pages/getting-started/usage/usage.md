@@ -46,7 +46,7 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 <meta
   name="viewport"
   content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-/>
+>
 ```
 
 ### CssBaseline
@@ -62,6 +62,7 @@ You can find older versions of the documentation on a [separate page](/versions/
 ## Next steps
 
 Now that you have an idea of the basic setup, it's time to learn more about:
+
 - How to provide [the Material Design font and typography](/style/typography/).
 - How to take advantage of the [theming solution](/customization/themes/).
 - How to [override](/customization/overrides/) the look and feel of the components.

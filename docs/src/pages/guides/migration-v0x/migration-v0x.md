@@ -111,6 +111,8 @@ This will apply a change such as the following:
 
 ### Raised Button
 
+RaisedButton upgrade path:
+
 ```diff
 -import RaisedButton from 'material-ui/RaisedButton';
 +import Button from '@material-ui/core/Button';
@@ -165,6 +167,16 @@ This will apply a change such as the following:
 +<Icon>home</Icon>
 ```
 
+### Circular Progress
+
+```diff
+-import CircularProgress from 'material-ui/CircularProgress';
++import CircularProgress from '@material-ui/core/CircularProgress';
+
+-<CircularProgress mode="indeterminate" />
++<CircularProgress variant="indeterminate" />
+```
+
 ### Drop Down Menu
 
 ```diff
@@ -174,7 +186,6 @@ This will apply a change such as the following:
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>
 ```
-
 
 ### To be continued…
 

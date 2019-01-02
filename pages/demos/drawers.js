@@ -1,66 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/demos/drawers', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/drawers', false, /\.js$/);
+const reqPrefix = 'pages/demos/drawers';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./drawers${props.lang}.md`)}
-      demos={{
-        'pages/demos/drawers/TemporaryDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/TemporaryDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/TemporaryDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/SwipeableTemporaryDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/PermanentDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/PermanentDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PermanentDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/PersistentDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/PersistentDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/PersistentDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/MiniDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/MiniDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/MiniDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/ResponsiveDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/ResponsiveDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ResponsiveDrawer'), 'utf8')
-`,
-        },
-        'pages/demos/drawers/ClippedDrawer.js': {
-          js: require('docs/src/pages/demos/drawers/ClippedDrawer').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ClippedDrawer'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

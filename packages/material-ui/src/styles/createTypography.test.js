@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-import { mock } from 'sinon';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('createTypography', () => {
   let palette;
@@ -72,68 +72,35 @@ describe('createTypography', () => {
   });
 
   describe('typography v2 migration', () => {
-    let warning;
-
     beforeEach(() => {
-      warning = mock(console).expects('error');
+      // eslint-disable-next-line no-underscore-dangle
+      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = false;
+      consoleErrorMock.spy();
     });
 
     afterEach(() => {
-      warning.restore();
+      // eslint-disable-next-line no-underscore-dangle
+      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+      consoleErrorMock.reset();
     });
 
-    const testTypography = (options, expectDeprecation) => {
-      warning.resetHistory();
+    const testTypography = (options, expectWarning) => {
+      createTypography(palette, options);
 
-      const typography = createTypography(palette, options);
-
-      if (expectDeprecation) {
-        assert.strictEqual(warning.calledOnce, true);
-        assert.include(warning.firstCall.args[0], 'Material-UI:');
+      if (expectWarning) {
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(consoleErrorMock.args()[0][0], 'Material-UI:');
+      } else {
+        assert.strictEqual(consoleErrorMock.callCount(), 0);
       }
-
-      return typography;
     };
 
-    it('warns if deprecated variants are overwritten', () => {
-      const customFontSize = '1px';
-      const typography = testTypography(
-        {
-          display1: {
-            fontSize: customFontSize,
-          },
-        },
-        true,
-      );
-      assert.strictEqual(typography.display1.fontSize, customFontSize);
+    it('warns if the old typography is used', () => {
+      testTypography({}, true);
     });
 
     it('warns if deprecated variants are overwritten even if typography v2 is enabled', () => {
-      testTypography({ display1: { fontSize: '1px' }, useNextVariants: true }, true);
-    });
-
-    it('warns if restyled variants are overwritten', () => {
-      const customFontSize = '1px';
-      const typography = testTypography(
-        {
-          body1: {
-            fontSize: customFontSize,
-          },
-          useNextVariants: false,
-        },
-        true,
-      );
-
-      assert.strictEqual(typography.body1.fontSize, customFontSize);
-    });
-
-    it('does not warn if restyled variants are overwritten in typography v2', () => {
-      testTypography({ body1: { fontSize: '1px' }, useNextVariants: true }, false);
-    });
-
-    it('overwrites restyled variants with `useNextVariants: true`', () => {
-      const typography = testTypography({ useNextVariants: true }, false);
-      assert.strictEqual(typography.body1, typography.body1Next);
+      testTypography({ useNextVariants: true }, false);
     });
   });
 });

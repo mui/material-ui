@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import warning from 'warning';
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
@@ -31,34 +29,17 @@ export default function createGenerateClassName(options = {}) {
       ].join(''),
     );
 
-    // Code branch the whole block at the expense of more code.
-    if (dangerouslyUseGlobalCSS) {
-      if (styleSheet) {
-        if (styleSheet.options.name) {
-          return `${styleSheet.options.name}-${rule.key}`;
-        }
-
-        if (styleSheet.options.classNamePrefix && process.env.NODE_ENV !== 'production') {
-          const prefix = safePrefix(styleSheet.options.classNamePrefix);
-          return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
-        }
-      }
-
-      if (process.env.NODE_ENV === 'production') {
-        return `${productionPrefix}${seed}${ruleCounter}`;
-      }
-
-      return `${rule.key}-${seed}${ruleCounter}`;
+    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
+      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
       return `${productionPrefix}${seed}${ruleCounter}`;
     }
 
+    // Help with debuggability.
     if (styleSheet && styleSheet.options.classNamePrefix) {
-      const prefix = safePrefix(styleSheet.options.classNamePrefix);
-
-      return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
+      return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${ruleCounter}`;
     }
 
     return `${rule.key}-${seed}${ruleCounter}`;

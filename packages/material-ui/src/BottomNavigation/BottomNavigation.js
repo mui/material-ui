@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
@@ -19,6 +20,7 @@ function BottomNavigation(props) {
     children: childrenProp,
     classes,
     className: classNameProp,
+    component: Component,
     onChange,
     showLabels,
     value,
@@ -50,9 +52,9 @@ function BottomNavigation(props) {
   });
 
   return (
-    <div className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-    </div>
+    </Component>
   );
 }
 
@@ -70,6 +72,11 @@ BottomNavigation.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: componentPropType,
   /**
    * Callback fired when the value changes.
    *
@@ -89,6 +96,7 @@ BottomNavigation.propTypes = {
 };
 
 BottomNavigation.defaultProps = {
+  component: 'div',
   showLabels: false,
 };
 

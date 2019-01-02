@@ -1,10 +1,8 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -40,12 +38,25 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
     assert.strictEqual(wrapper.type(), React.Fragment);
     assert.strictEqual(wrapper.childAt(0).name(), 'RootRef');
-    assert.strictEqual(wrapper.childAt(1).name(), 'WithTheme(Popper)');
+    assert.strictEqual(wrapper.childAt(1).name(), 'Popper');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.popper), true);
   });
 
+  describe('prop: disableHoverListener', () => {
+    it('should hide the native title', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World" disableHoverListener>
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('button');
+      assert.strictEqual(children.props().title, null);
+    });
+  });
+
   describe('prop: title', () => {
-    it('should display if the title is presetn', () => {
+    it('should display if the title is present', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} open />);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
@@ -53,6 +64,17 @@ describe('<Tooltip />', () => {
     it('should not display if the title is an empty string', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} title="" open />);
       assert.strictEqual(wrapper.find(Popper).props().open, false);
+    });
+
+    it('should be passed down to the child as a native title', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World">
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('button');
+      assert.strictEqual(children.props().title, 'Hello World');
     });
   });
 
@@ -218,6 +240,17 @@ describe('<Tooltip />', () => {
       consoleErrorMock.reset();
     });
 
+    it('should not raise a warning if title is empty', () => {
+      mount(
+        <Tooltip title="">
+          <button type="submit" disabled>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
+    });
+
     it('should raise a warning when we can listen to events', () => {
       mount(
         <Tooltip title="Hello World">
@@ -234,12 +267,44 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should forward properties to the child element', () => {
-    const wrapper = shallow(
-      <Tooltip className="foo" {...defaultProps}>
-        <h1>H1</h1>
-      </Tooltip>,
-    );
-    assert.strictEqual(wrapper.find('h1').props().className, 'foo');
+  describe('prop: interactive', () => {
+    it('should keep the overlay open if the popper element is hovered', () => {
+      const wrapper = mount(
+        <Tooltip title="Hello World" interactive leaveDelay={111}>
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+      const tooltipNaked = wrapper.find(TooltipNaked);
+      const children = wrapper.childAt(0).childAt(0);
+      children.simulate('mouseOver', { type: 'mouseOver' });
+      clock.tick(0);
+      assert.strictEqual(tooltipNaked.state().open, true);
+      const popper = wrapper.find(Popper);
+      children.simulate('mouseLeave', { type: 'mouseleave' });
+      assert.strictEqual(tooltipNaked.state().open, true);
+      popper.simulate('mouseOver', { type: 'mouseover' });
+      clock.tick(111);
+      assert.strictEqual(tooltipNaked.state().open, true);
+    });
+  });
+
+  describe('forward', () => {
+    it('should forward properties to the child element', () => {
+      const wrapper = shallow(
+        <Tooltip className="foo" {...defaultProps}>
+          <h1 className="bar">H1</h1>
+        </Tooltip>,
+      );
+      assert.strictEqual(wrapper.find('h1').props().className, 'foo bar');
+    });
+
+    it('should respect the properties priority', () => {
+      const wrapper = shallow(
+        <Tooltip hidden {...defaultProps}>
+          <h1 hidden={false}>H1</h1>
+        </Tooltip>,
+      );
+      assert.strictEqual(wrapper.find('h1').props().hidden, false);
+    });
   });
 });

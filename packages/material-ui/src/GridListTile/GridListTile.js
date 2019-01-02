@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -18,14 +19,14 @@ export const styles = {
     height: '100%',
     overflow: 'hidden',
   },
-  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
   imgFullHeight: {
     height: '100%',
     transform: 'translateX(-50%)',
     position: 'relative',
     left: '50%',
   },
-  /* Styles applied to an `ing` element child, if if needed to ensure it covers the tile. */
+  /* Styles applied to an `img` element child, if needed to ensure it covers the tile. */
   imgFullWidth: {
     width: '100%',
     position: 'relative',
@@ -35,9 +36,15 @@ export const styles = {
 };
 
 class GridListTile extends React.Component {
-  handleResize = debounce(() => {
-    this.fit();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.fit();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   componentDidMount() {
     this.ensureImageCover();
@@ -136,7 +143,7 @@ GridListTile.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * Height of the tile in number of grid cells.
    */

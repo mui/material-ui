@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import {
   MuiThemeProvider,
@@ -42,6 +42,9 @@ function handleRender(req, res) {
       accent: red,
       type: 'light',
     },
+    typography: {
+      useNextVariants: true,
+    },
   });
 
   // Create a new class name generator.
@@ -67,7 +70,7 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;

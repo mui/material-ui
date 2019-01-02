@@ -1,9 +1,11 @@
+// @inheritedComponent Tooltip
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export const styles = theme => ({
@@ -73,6 +75,7 @@ class SpeedDialAction extends React.Component {
       onKeyDown,
       open,
       tooltipTitle,
+      TooltipClasses,
       tooltipPlacement,
       tooltipOpen,
       ...other
@@ -102,11 +105,11 @@ class SpeedDialAction extends React.Component {
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={open && this.state.tooltipOpen}
+        classes={TooltipClasses}
         {...other}
       >
-        <Button
-          variant="fab"
-          mini
+        <Fab
+          size="small"
           className={classNames(className, classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
           tabIndex={-1}
@@ -116,7 +119,7 @@ class SpeedDialAction extends React.Component {
           {...clickProp}
         >
           {icon}
-        </Button>
+        </Fab>
       </Tooltip>
     );
   }
@@ -160,6 +163,10 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * Classes applied to the [`Tooltip`](/api/tooltip/) element.
+   */
+  TooltipClasses: PropTypes.object,
+  /**
    * Make the tooltip always visible when the SpeedDial is open.
    */
   tooltipOpen: PropTypes.bool,
@@ -190,6 +197,7 @@ SpeedDialAction.defaultProps = {
   delay: 0,
   open: false,
   tooltipPlacement: 'left',
+  tooltipOpen: false,
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);

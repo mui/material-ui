@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types, import/prefer-default-export */
-
 // It's not ready yet: https://github.com/gatsbyjs/gatsby/issues/8237.
 //
 // import React from 'react';

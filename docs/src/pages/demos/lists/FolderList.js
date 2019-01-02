@@ -20,28 +20,26 @@ const styles = theme => ({
 function FolderList(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <List>
-        <ListItem>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-          <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-        </ListItem>
-        <ListItem>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-          <ListItemText primary="Work" secondary="Jan 7, 2014" />
-        </ListItem>
-        <ListItem>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
-          <ListItemText primary="Vacation" secondary="July 20, 2014" />
-        </ListItem>
-      </List>
-    </div>
+    <List className={classes.root}>
+      <ListItem>
+        <Avatar>
+          <ImageIcon />
+        </Avatar>
+        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+      </ListItem>
+      <ListItem>
+        <Avatar>
+          <WorkIcon />
+        </Avatar>
+        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+      </ListItem>
+      <ListItem>
+        <Avatar>
+          <BeachAccessIcon />
+        </Avatar>
+        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+      </ListItem>
+    </List>
   );
 }
 

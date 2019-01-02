@@ -4,7 +4,11 @@ export { StyledComponentProps };
 
 export type PropsOf<C> = C extends new (props: infer P) => React.Component
   ? P
-  : C extends (props: infer P) => React.ReactElement<any> | null ? P : never;
+  : C extends (props: infer P) => React.ReactElement<any> | null
+  ? P
+  : C extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[C]
+  : never;
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
@@ -134,6 +138,7 @@ export { default as ExpansionPanel } from './ExpansionPanel';
 export { default as ExpansionPanelActions } from './ExpansionPanelActions';
 export { default as ExpansionPanelDetails } from './ExpansionPanelDetails';
 export { default as ExpansionPanelSummary } from './ExpansionPanelSummary';
+export { default as Fab } from './Fab';
 export { default as Fade } from './Fade';
 export { default as FilledInput } from './FilledInput';
 export { default as FormControl } from './FormControl';

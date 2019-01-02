@@ -3,29 +3,41 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   '@global': {
-    '#cf_ad': {
-      padding: theme.spacing.unit,
-      backgroundColor: theme.palette.background.paper,
+    '#cf': {
+      overflow: 'hidden',
+      backgroundColor: `${theme.palette.background.paper} !important`,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
+        .spacing.unit + 130}px`,
       borderRadius: theme.shape.borderRadius,
-      '&& .cf-wrapper': {
-        padding: 0,
-        backgroundColor: 'transparent',
+      width: 'initial !important',
+      margin: '0 !important', // Reset
+      maxWidth: 'none !important', // Reset
+      '& img': {
+        verticalAlign: 'middle',
       },
-      '&& .cf-img-wrapper': {
-        float: 'none',
-        display: 'block',
+      '& .cf-wrapper.cf-wrapper': {
+        overflow: 'visible', // Reset
+        backgroundColor: 'transparent', // Reset
       },
-      '&& .cf-text': {
+      '& .cf-img-wrapper.cf-img-wrapper': {
+        float: 'left',
+        marginLeft: -130,
+        marginRight: theme.spacing.unit,
+        marginBottom: '0px !important', // Reset
+      },
+      '& .cf-text.cf-text': {
         ...theme.typography.body2,
+        color: `${theme.typography.body2.color} !important`,
         display: 'block',
-        margin: `${theme.spacing.unit}px 0`,
         '& strong': {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
-      '&& .cf-powered-by': {
+      '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
-        marginTop: 0,
+        fontSize: `${theme.typography.caption.fontSize} !important`,
+        color: `${theme.palette.text.secondary} !important`,
+        marginTop: '0px! important', // Reset
       },
     },
   },
@@ -33,18 +45,24 @@ const styles = theme => ({
 
 class CodeFund extends React.Component {
   componentDidMount() {
+    const scriptSlot = document.querySelector('#code-fund-script-slot');
+
+    // Concurrence issues
+    if (!scriptSlot) {
+      return;
+    }
+
     const script = document.createElement('script');
     script.setAttribute('async', '');
-    script.src = '//codefund.io/scripts/71fdcb01-40be-4590-af75-cd1bd4773c2a/embed.js';
-    const scriptSlot = document.querySelector('#code-fund-script-slot');
+    script.src = '//codefund.io/properties/137/funder.js';
     scriptSlot.appendChild(script);
   }
 
   render() {
     return (
       <React.Fragment>
-        <div id="code-fund-script-slot" />
-        <div id="codefund_ad" />
+        <span id="code-fund-script-slot" />
+        <span id="codefund" />
       </React.Fragment>
     );
   }

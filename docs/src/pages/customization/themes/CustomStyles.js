@@ -35,6 +35,7 @@ const theme = createMuiTheme({
     // My business variables
     danger: orange[500],
   },
+  typography: { useNextVariants: true },
 });
 
 function CustomStyles() {

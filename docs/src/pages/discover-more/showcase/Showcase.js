@@ -13,14 +13,19 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     // Hide the demo container padding
     margin: -theme.spacing.unit * 3,
-    width: 'calc(100% + 48px)',
     // Maintain alignment with the markdown text
     [theme.breakpoints.down('xs')]: {
       padding: 30,
     },
   },
+  title: {
+    marginBottom: theme.spacing.unit * 2,
+  },
   card: {
-    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit,
+    maxWidth: 600,
+  },
+  description: {
     marginBottom: theme.spacing.unit * 6,
   },
   cardMedia: {
@@ -30,12 +35,72 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'Onepixel',
+    description: 'Beautiful Stock Photos for $1.',
+    image: '/static/images/showcase/onepixel.jpg',
+    link: 'https://www.onepixel.com/',
+  },
+  {
     title: 'SFR Presse',
     description:
       '"SFR Presse" provides the best access to the french newspapers, ' +
       'magazines and real time streams, personalized for you.',
     image: '/static/images/showcase/sfrpresse.jpg',
-    link: 'https://magazine-presse.sfr.fr/',
+    link: 'https://sfrpresse.sfr.fr/',
+  },
+  {
+    title: 'react-admin',
+    description:
+      'The admin of an imaginary poster shop, used as a demo for the react-admin framework. ' +
+      'Uses many material-ui components, including tables, forms, snackbars, buttons, and ' +
+      'theming. The UI is responsive. The code is open-source!',
+    image: '/static/images/showcase/posters-galore.jpg',
+    link: 'https://marmelab.com/react-admin-demo/',
+    source:
+      'https://github.com/marmelab/react-admin/tree/be23a1a8ebc4e2293b57898adcb2f359e836f0fd/examples/demo',
+  },
+  {
+    title: 'Hijup',
+    description: 'A pioneering Muslim Fashion e-commerce site.',
+    image: '/static/images/showcase/hijup.jpg',
+    link: 'https://www.hijup.com/',
+  },
+  {
+    title: 'AospExtended Download center',
+    description:
+      'A download center that hosts all the official builds of AospExtended ROM, ' +
+      'for supported devices for different android versions.',
+    image: '/static/images/showcase/aexdownloadcenter.jpg',
+    link: 'https://downloads.aospextended.com',
+  },
+  {
+    title: 'Venumob',
+    description:
+      'A platform for individuals and businesses to find and book the perfect venue for any event.',
+    image: '/static/images/showcase/venuemob.jpg',
+    link: 'https://venuemob.com.au/',
+  },
+  {
+    title: 'Builder Book',
+    description:
+      'Open source web app to write and host documentation or sell books. ' +
+      'Built with React, Material-UI, Next, Express, Mongoose, MongoDB.',
+    image: '/static/images/showcase/builderbook.jpg',
+    link: 'https://builderbook.org/',
+    source: 'https://github.com/builderbook/builderbook',
+  },
+  {
+    title: 'SlidesUp',
+    description: 'SlidesUp is a platform to help conference organizers plan their events.',
+    image: '/static/images/showcase/slidesup.jpg',
+    link: 'https://slidesup.com/',
+  },
+  {
+    title: 'npm registry browser',
+    description: 'A web app that lets you search the npm registry and browse packages details.',
+    image: '/static/images/showcase/npm-registry-browser.jpg',
+    link: 'https://topheman.github.io/npm-registry-browser/',
+    source: 'https://github.com/topheman/npm-registry-browser',
   },
   {
     title: 'Insights',
@@ -49,17 +114,6 @@ const appList = [
     link: 'https://justaskusers.com/',
   },
   {
-    title: 'Posters Galore',
-    description:
-      'The admin of an imaginary poster shop, used as a demo for the react-admin framework. ' +
-      'Uses many material-ui components, including tables, forms, snackbars, buttons, and ' +
-      'theming. The UI is responsive. The code is open-source!',
-    image: '/static/images/showcase/posters-galore.jpg',
-    link: 'https://marmelab.com/react-admin-demo/',
-    source:
-      'https://github.com/marmelab/react-admin/tree/be23a1a8ebc4e2293b57898adcb2f359e836f0fd/examples/demo',
-  },
-  {
     title: 'Trafikito',
     description:
       'Free servers monitoring solution which can track any output of any command and do ' +
@@ -69,25 +123,12 @@ const appList = [
     link: 'https://trafikito.com/',
   },
   {
-    title: 'Venumob',
-    description:
-      'A platform for individuals and businesses to find and book the perfect venue for any event.',
-    image: '/static/images/showcase/venuemob.jpg',
-    link: 'https://venuemob.com.au/',
-  },
-  {
     title: 'Local Insights',
     description:
       'A real estate data provider that aggregates and analyzes property records, ' +
       'permits, and tax documents.',
     image: '/static/images/showcase/localinsights.jpg',
     link: 'https://localinsights.io',
-  },
-  {
-    title: 'Hijup',
-    description: 'A pioneering Muslim Fashion e-commerce site.',
-    image: '/static/images/showcase/hijup.jpg',
-    link: 'https://hijup.com',
   },
   {
     title: 'Johnny Metrics',
@@ -102,28 +143,6 @@ const appList = [
       'with a carefully designed interface and animation.',
     image: '/static/images/showcase/sc.bnu.edu.cn.jpg',
     link: 'http://sc.bnu.edu.cn',
-  },
-  {
-    title: 'npm registry browser',
-    description: 'A web app that lets you search the npm registry and browse packages details.',
-    image: '/static/images/showcase/npm-registry-browser.jpg',
-    link: 'https://topheman.github.io/npm-registry-browser/',
-    source: 'https://github.com/topheman/npm-registry-browser',
-  },
-  {
-    title: 'SlidesUp',
-    description: 'SlidesUp is a platform to help conference organizers plan their events.',
-    image: '/static/images/showcase/slidesup.jpg',
-    link: 'https://slidesup.com/',
-  },
-  {
-    title: 'Builder Book',
-    description:
-      'Open source web app to write and host documentation or sell books. ' +
-      'Built with React, Material-UI, Next, Express, Mongoose, MongoDB.',
-    image: '/static/images/showcase/builderbook.jpg',
-    link: 'https://builderbook.org/',
-    source: 'https://github.com/builderbook/builderbook',
   },
   {
     title: 'LocalMonero',
@@ -149,12 +168,6 @@ const appList = [
       '(in French).',
     image: '/static/images/showcase/manty.jpg',
     link: 'https://app.manty.eu/',
-  },
-  {
-    title: 'Meetingku',
-    description: 'A tool for controlling the meeting time.',
-    image: '/static/images/showcase/meetingku.jpg',
-    link: 'https://www.meetingku.com/',
   },
   {
     title: 'Modole Language Exchange',
@@ -194,6 +207,19 @@ const appList = [
     source: 'https://github.com/richardscarrott/snippets',
   },
   {
+    title: 'SelfEducation.app',
+    description: 'Watch short videos and develop your skills',
+    image: '/static/images/showcase/selfeducationapp.jpg',
+    link: 'https://selfeducation.app/',
+  },
+  {
+    title: 'Swimmy',
+    description: 'An open source forum PWA.',
+    image: '/static/images/showcase/swimmy.jpg',
+    link: 'https://swimmy.io/',
+    source: 'https://github.com/swimmy/swimmy.io',
+  },
+  {
     title: 'Componofy: Spotify Playlist Combination',
     description:
       'A web app that allows a Spotify user to combine private and public playlists ' +
@@ -224,7 +250,7 @@ const appList = [
   {
     title: 'Tentu',
     description:
-      'A web app built with Material UI v1 and Firebase that offers the ' +
+      'A web app built with Material-UI v1 and Firebase that offers the ' +
       'user news and events of his interest.',
     link: 'https://tentu.eus/',
     image: '/static/images/showcase/tentu.jpg',
@@ -245,7 +271,7 @@ function Showcase(props) {
     <div className={classes.root}>
       {appList.map(app => (
         <div key={app.image}>
-          <Typography component="h2" variant="h4" gutterBottom>
+          <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
             <span>{app.title}</span>
             {app.source ? (
               <IconButton href={app.source} target="_blank" aria-label={`${app.title} source code`}>
@@ -253,14 +279,12 @@ function Showcase(props) {
               </IconButton>
             ) : null}
           </Typography>
-          <Typography variant="subtitle1" gutterBottom>
-            {app.description}
-          </Typography>
           <Card className={classes.card}>
-            <Link href={app.link} target="_blank" rel="nofollow noopener">
-              <CardMedia className={classes.cardMedia} image={app.image} title={app.title} />
+            <Link href={app.link} target="_blank" rel="noopener">
+              <CardMedia image={app.image} title={app.title} className={classes.cardMedia} />
             </Link>
           </Card>
+          <Typography className={classes.description}>{app.description}</Typography>
         </div>
       ))}
     </div>

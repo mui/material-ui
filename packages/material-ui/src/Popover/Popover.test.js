@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Grow from '../Grow';
 import Paper from '../Paper';
 import Popover from './Popover';
@@ -14,6 +14,7 @@ describe('<Popover />', () => {
   const defaultProps = {
     open: false,
   };
+  const PopoverNaked = unwrap(Popover);
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -232,7 +233,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         8,
         'should be 8 elevation by default',
       );
@@ -241,7 +242,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         16,
         'should be 16 elevation',
       );
@@ -260,18 +261,18 @@ describe('<Popover />', () => {
       },
     };
 
-    describe('handleEnter(element)', () => {
+    describe('handleEntering(element)', () => {
       let wrapper;
-      let handleEnter;
+      let handleEntering;
 
       before(() => {
-        handleEnter = spy();
+        handleEntering = spy();
         wrapper = shallow(
-          <Popover {...defaultProps} onEnter={handleEnter}>
+          <Popover {...defaultProps} onEntering={handleEntering}>
             <div />
           </Popover>,
         );
-        wrapper.instance().handleEnter(element);
+        wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the enter phase', () => {
@@ -450,7 +451,7 @@ describe('<Popover />', () => {
       });
     });
 
-    it('should not pass container to Modal if container or anchorEl props are notprovided', () => {
+    it('should not pass container to Modal if container or anchorEl props are not provided', () => {
       const shallowWrapper = shallow(<Popover open />);
       assert.strictEqual(
         shallowWrapper
@@ -602,24 +603,21 @@ describe('<Popover />', () => {
         .at(0)
         .simulate('resize');
       clock.tick(166);
-      assert.strictEqual(
-        instance.setPositioningStyles.called,
-        true,
-        'position styles recalculated',
-      );
+      assert.strictEqual(instance.setPositioningStyles.called, true);
     });
 
     it('should not recalculate position if the popover is closed', () => {
       const wrapper = mount(
-        <Popover {...defaultProps} transitionDuration={0}>
+        <PopoverNaked {...defaultProps} classes={{}} transitionDuration={0}>
           <div />
-        </Popover>,
+        </PopoverNaked>,
       );
-      assert.strictEqual(
-        wrapper.contains('EventListener'),
-        false,
-        'no component listening on resize',
-      );
+      const instance = wrapper.instance();
+      assert.strictEqual(wrapper.contains('EventListener'), false);
+      stub(instance, 'setPositioningStyles');
+      wrapper.instance().handleResize();
+      clock.tick(166);
+      assert.strictEqual(instance.setPositioningStyles.called, false);
     });
   });
 
@@ -845,6 +843,22 @@ describe('<Popover />', () => {
         </Popover>,
       );
       assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
+    });
+  });
+
+  describe('prop: TransitionProp', () => {
+    it('should fire Popover transition event callbacks', () => {
+      const handler1 = spy();
+      const handler2 = spy();
+      const wrapper = shallow(
+        <Popover {...defaultProps} TransitionProps={{ onEntering: handler2 }} onEntering={handler1}>
+          <div />
+        </Popover>,
+      );
+
+      wrapper.find(Grow).simulate('entering', { style: {} });
+      assert.strictEqual(handler1.callCount, 1);
+      assert.strictEqual(handler2.callCount, 1);
     });
   });
 });
