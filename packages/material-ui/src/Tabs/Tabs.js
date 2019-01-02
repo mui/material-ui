@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals max-len */
+/* eslint-disable no-restricted-globals, max-len */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -297,6 +297,7 @@ class Tabs extends React.Component {
 
   render() {
     const {
+      action,
       centered,
       children: childrenProp,
       classes,
@@ -306,8 +307,11 @@ class Tabs extends React.Component {
       indicatorColor,
       onChange,
       scrollable: deprecatedScrollable = false,
+      ScrollButtonComponent,
+      scrollButtons,
       TabIndicatorProps = {},
       textColor,
+      theme,
       value,
       variant,
       ...other
@@ -433,7 +437,7 @@ Tabs.propTypes = {
    */
   component: componentPropType,
   /**
-   * If `true` the tabs will grow to use all the available space.
+   * If `true,` the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
    */
   fullWidth: deprecatedPropType(PropTypes.bool, 'Instead use the `variant="fullWidth"` property.'),
@@ -449,9 +453,10 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true` it invokes scrolling properties and allow for horizontally scrolling
+   * If `true,` it invokes scrolling properties and allow for horizontally scrolling
    * (or swiping) of the tab bar.
    */
+  // prettier-ignore
   scrollable: deprecatedPropType(PropTypes.bool, 'Instead use the `variant="scrollable"` property.'),
   /**
    * The component used to render the scroll buttons.
