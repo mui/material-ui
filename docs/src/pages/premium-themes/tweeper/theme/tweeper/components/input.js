@@ -1,17 +1,17 @@
-export default ({ primary, white, attach, nest, ICON, INPUT_ADORNMENT }) => ({
+export default ({ theme, white, attach, nest, ICON, INPUT_ADORNMENT }) => ({
   MuiInput: {
     root: {
       borderRadius: 100,
-      backgroundColor: '#E6ECF0',
+      backgroundColor: '#e6ecf0',
       [`& .${ICON.root}, & input::placeholder`]: {
-        color: 'rgb(101, 119, 134)',
+        color: '#657786',
         opacity: 1,
       },
       '&$focused': {
         backgroundColor: white.text,
-        border: `1px solid ${primary.main}`,
+        border: `1px solid ${theme.palette.primary.main}`,
         [`& input, & .${ICON.root}`]: {
-          color: primary.main,
+          color: theme.palette.primary.main,
         },
       },
     },

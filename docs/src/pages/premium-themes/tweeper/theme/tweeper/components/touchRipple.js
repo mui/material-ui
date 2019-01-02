@@ -1,7 +1,7 @@
 export default () => ({
   MuiTouchRipple: {
     child: {
-      backgroundColor: 'rgb(204,214,221)',
+      backgroundColor: '#657786',
     },
   },
 });

@@ -5,7 +5,6 @@ import { AVATAR } from '../../theme/core';
 
 const Avatar = ({ className, bordered, link, small, medium, ultraLarge, ...props }) => (
   <MuiAvatar
-    src={'http://i.pravatar.cc/300'}
     className={cx(
       AVATAR.root,
       className,

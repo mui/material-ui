@@ -1,22 +1,22 @@
-export default ({ primary, muiBaseTheme, attach, nest, ICON, TABS, TAB }) => ({
+export default ({ theme, attach, nest, ICON, TABS, TAB }) => ({
   MuiTabs: {
     root: {
       [attach(TABS.underline)]: {
-        borderBottom: '1px solid #E6ECF0',
+        borderBottom: '1px solid #e6ecf0',
       },
       [`& .${TAB.selected} .${TAB.wrapper} *`]: {
-        color: primary.main,
+        color: theme.palette.primary.main,
       },
     },
     indicator: {
-      backgroundColor: primary.main,
+      backgroundColor: theme.palette.primary.main,
     },
   },
   MuiTab: {
     root: {
       minHeight: 53,
       minWidth: 0,
-      [muiBaseTheme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('md')]: {
         minWidth: 0,
       },
       [attach(TAB.onlyIcon)]: {
@@ -26,7 +26,7 @@ export default ({ primary, muiBaseTheme, attach, nest, ICON, TABS, TAB }) => ({
           borderRadius: 25,
           color: '#657786',
           '&:hover': {
-            color: primary.main,
+            color: theme.palette.primary.main,
             backgroundColor: 'rgba(29, 161, 242, 0.1)',
           },
         },
@@ -43,7 +43,7 @@ export default ({ primary, muiBaseTheme, attach, nest, ICON, TABS, TAB }) => ({
     labelContainer: {
       width: '100%',
       padding: 15,
-      [muiBaseTheme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('md')]: {
         padding: 15,
       },
       '&:hover': {

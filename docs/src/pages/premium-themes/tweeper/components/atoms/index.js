@@ -1,12 +1,8 @@
 const cache = {};
-
-const req = require.context('./', true, /(?!index\.js$).js$/);
+const req = require.context('./', false, /\.js$/);
 
 req.keys().forEach(filename => {
-  const module = req(filename).default;
-  if (module) {
-    cache[filename.replace('./', '').replace('.js', '')] = module;
-  }
+  cache[filename.replace(/\.\/|\.js/g, '')] = req(filename).default;
 });
 
 export default cache;

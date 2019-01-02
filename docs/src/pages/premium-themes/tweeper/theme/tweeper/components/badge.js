@@ -1,10 +1,10 @@
-export default ({ white, primary, nest, BADGE }) => ({
+export default ({ white, theme, nest, BADGE }) => ({
   MuiBadge: {
     root: {
       [`&.${BADGE.dotted}, &.${BADGE.number}`]: {
         [nest(BADGE.badge)]: {
           color: white.text,
-          backgroundColor: primary.main,
+          backgroundColor: theme.palette.primary.main,
         },
       },
       [`&.${BADGE.dotted} .${BADGE.badge}`]: {
@@ -16,7 +16,7 @@ export default ({ white, primary, nest, BADGE }) => ({
       [`&.${BADGE.number} .${BADGE.badge}`]: {
         top: -6,
         right: -2,
-        boxShadow: 'rgb(255, 255, 255) 0px 0px 0px 0.14rem',
+        boxShadow: '#fff 0px 0px 0px 0.14rem',
         width: 15,
         height: 15,
         fontSize: 10.7,

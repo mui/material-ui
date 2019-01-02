@@ -11,31 +11,31 @@ const { Avatar, Typography } = atoms;
 
 const twitterList = [
   {
-    image: 'http://i.pravatar.cc/300?img=7',
+    image: 'https://randomuser.me/api/portraits/women/1.jpg',
     primary: 'Never stop thinking',
     secondary: '@never_stop',
   },
   {
-    image: 'http://i.pravatar.cc/300?img=9',
+    image: 'https://randomuser.me/api/portraits/men/1.jpg',
     primary: 'React Geek',
     secondary: '@react',
   },
   {
-    image: 'http://i.pravatar.cc/300?img=10',
+    image: 'https://randomuser.me/api/portraits/women/2.jpg',
     primary: 'Thailand',
     secondary: '@wonderful_th',
   },
 ];
 
-const TrackWho = () => {
+function AccordingWhom() {
   return (
     <List subheader={<ListSubheader>According to whom</ListSubheader>}>
       {twitterList.map(({ image, primary, secondary }) => (
         <React.Fragment key={primary}>
-          <ListItem key={primary} button>
+          <ListItem button>
             <Avatar link src={image} />
             <ListItemText primary={primary} secondary={secondary} />
-            <Button variant={'outlined'} color={'primary'}>
+            <Button variant="outlined" color="primary">
               Follow
             </Button>
           </ListItem>
@@ -43,12 +43,12 @@ const TrackWho = () => {
         </React.Fragment>
       ))}
       <ListItem button>
-        <ListItemText disableTypography>
+        <ListItemText>
           <Typography link>Show More</Typography>
         </ListItemText>
       </ListItem>
     </List>
   );
-};
+}
 
-export default TrackWho;
+export default AccordingWhom;

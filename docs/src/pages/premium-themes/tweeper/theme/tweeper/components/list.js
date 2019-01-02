@@ -1,16 +1,16 @@
-export default ({ muiBaseTheme, white, nest, ICON, TEXT }) => ({
+export default ({ theme, white, nest, ICON, TEXT }) => ({
   MuiListSubheader: {
     root: {
       fontSize: 19,
       fontWeight: 700,
-      color: muiBaseTheme.palette.text.primary,
+      color: theme.palette.text.primary,
       padding: '0 15px',
       textAlign: 'left',
       lineHeight: '25px',
-      borderBottom: '1px solid rgb(230, 236, 240)',
+      borderBottom: '1px solid #e6ecf0',
     },
     gutters: {
-      [muiBaseTheme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('sm')]: {
         padding: '10px 15px',
         paddingLeft: 10,
         paddingRight: 10,
@@ -34,15 +34,18 @@ export default ({ muiBaseTheme, white, nest, ICON, TEXT }) => ({
     },
     secondary: {
       lineHeight: 1.3125,
-      color: 'rgb(101, 119, 134)',
+      color: '#657786',
     },
   },
   MuiListItem: {
+    root: {
+      userSelect: 'initial',
+    },
     gutters: {
       padding: '15px 10px',
       paddingLeft: 10,
       paddingRight: 10,
-      [muiBaseTheme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('sm')]: {
         padding: '15px 10px',
         paddingLeft: 10,
         paddingRight: 10,
@@ -50,7 +53,7 @@ export default ({ muiBaseTheme, white, nest, ICON, TEXT }) => ({
     },
     button: {
       '&:hover': {
-        backgroundColor: '#F5F8FA',
+        backgroundColor: '#f5f8fa',
       },
     },
     focusVisible: {

@@ -1,6 +1,5 @@
 export default () => ({
   MuiAvatar: {
-    // size: 34px, 44px, 50px, 152px,
     root: {
       width: 44,
       height: 44,
@@ -9,7 +8,7 @@ export default () => ({
         border: '1px solid rgba(0,0,0,0.0975)',
         borderRadius: '50%',
         bottom: 0,
-        content: '" "',
+        content: '""',
         left: 0,
         pointerEvents: 'none',
         position: 'absolute',

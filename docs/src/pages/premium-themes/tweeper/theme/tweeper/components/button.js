@@ -1,4 +1,4 @@
-export default ({ primary, muiBaseTheme, red, white, attach, nest, BUTTON, ICON }) => ({
+export default ({ theme, red, white, attach, nest, BUTTON, ICON }) => ({
   MuiButton: {
     label: {
       textTransform: 'none',
@@ -8,10 +8,10 @@ export default ({ primary, muiBaseTheme, red, white, attach, nest, BUTTON, ICON 
         fontSize: 20,
       },
       [nest(ICON.left)]: {
-        marginRight: muiBaseTheme.spacing.unit,
+        marginRight: theme.spacing.unit,
       },
       [nest(ICON.right)]: {
-        marginLeft: muiBaseTheme.spacing.unit,
+        marginLeft: theme.spacing.unit,
       },
     },
     outlined: {
@@ -29,18 +29,18 @@ export default ({ primary, muiBaseTheme, red, white, attach, nest, BUTTON, ICON 
       [attach(BUTTON.large)]: {
         minHeight: 39,
       },
-      borderColor: primary.main,
+      borderColor: theme.palette.primary.main,
     },
     contained: {
-      boxShadow: muiBaseTheme.shadows[0],
+      boxShadow: theme.shadows[0],
       '&$focusVisible': {
-        boxShadow: muiBaseTheme.shadows[0],
+        boxShadow: theme.shadows[0],
       },
       '&:active': {
-        boxShadow: muiBaseTheme.shadows[0],
+        boxShadow: theme.shadows[0],
       },
       '&$disabled': {
-        boxShadow: muiBaseTheme.shadows[0],
+        boxShadow: theme.shadows[0],
       },
       [attach(BUTTON.danger)]: {
         color: white.text,
@@ -51,11 +51,11 @@ export default ({ primary, muiBaseTheme, red, white, attach, nest, BUTTON, ICON 
       },
     },
     containedPrimary: {
-      color: muiBaseTheme.palette.common.white,
+      color: theme.palette.common.white,
     },
     extendedFab: {
       [nest(ICON.root)]: {
-        marginRight: muiBaseTheme.spacing.unit,
+        marginRight: theme.spacing.unit,
       },
     },
   },

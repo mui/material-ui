@@ -1,15 +1,14 @@
 export default ({ attach, AVATAR }) => ({
   MuiAvatar: {
-    // size: 26.25px, 41.25px, 49px, 137px,
     root: {
-      width: 41.25,
-      height: 41.25,
+      width: 42,
+      height: 42,
       backgroundColor: '#fafafa',
       '&:after': {
         border: '1px solid rgba(0,0,0,0.0975)',
         borderRadius: '50%',
         bottom: 0,
-        content: '" "',
+        content: '""',
         left: 0,
         pointerEvents: 'none',
         position: 'absolute',
@@ -20,19 +19,19 @@ export default ({ attach, AVATAR }) => ({
         cursor: 'pointer',
       },
       [attach(AVATAR.small)]: {
-        width: 26.25,
-        height: 26.25,
+        width: 26,
+        height: 26,
       },
       [attach(AVATAR.medium)]: {
-        width: 49,
-        height: 49,
+        width: 50,
+        height: 50,
       },
       [attach(AVATAR.ultraLarge)]: {
-        width: 137,
-        height: 137,
+        width: 138,
+        height: 138,
       },
       [attach(AVATAR.bordered)]: {
-        boxShadow: '0 0 0 4px #ffffff',
+        boxShadow: '0 0 0 4px #fff',
       },
     },
   },

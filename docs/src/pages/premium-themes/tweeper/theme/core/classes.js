@@ -73,11 +73,6 @@ export const DIVIDER = {
   vertical: 'divider--vertical',
 };
 
-export const GRID = {
-  root: 'grid__root',
-  flex: 'grid--flex',
-};
-
 export const ICON_BUTTON = {
   root: 'icon-button__root',
   shaded: 'icon-button--shaded',
@@ -125,7 +120,6 @@ export const LIST_ITEM = {
   active: 'list-item--active',
   category: 'list-item__category',
   subcategory: 'list-item__subcategory',
-  noPadY: 'list-item--no-pad-y',
 };
 
 export const LIST_ITEM_TEXT = {
@@ -205,7 +199,6 @@ export default {
   CARD_CONTENT,
   CARD_ACTION_AREA,
   DIVIDER,
-  GRID,
   LIST,
   LIST_ITEM,
   LIST_ITEM_TEXT,

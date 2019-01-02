@@ -28,13 +28,13 @@ const twitterList2 = [
   },
 ];
 
-const TrackWho = () => {
+function PopularNow() {
   return (
     <List subheader={<ListSubheader>Popular Now</ListSubheader>}>
       {twitterList2.map(({ primary, secondary, tertiary }) => (
         <React.Fragment key={primary}>
-          <ListItem key={primary} button>
-            <ListItemText disableTypography>
+          <ListItem button>
+            <ListItemText>
               <Typography primary>{primary}</Typography>
               <Typography secondary light={!tertiary}>
                 {secondary}
@@ -50,12 +50,12 @@ const TrackWho = () => {
         </React.Fragment>
       ))}
       <ListItem button>
-        <ListItemText disableTypography>
+        <ListItemText>
           <Typography link>Show More</Typography>
         </ListItemText>
       </ListItem>
     </List>
   );
-};
+}
 
-export default TrackWho;
+export default PopularNow;

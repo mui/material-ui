@@ -11,7 +11,6 @@ const ListItem = ({
   category,
   subcategory,
   active,
-  noPadY,
   ...props
 }) => (
   <MuiListItem
@@ -24,7 +23,6 @@ const ListItem = ({
       subcategory && LIST_ITEM.subcategory,
       category && LIST_ITEM.category,
       active && LIST_ITEM.active,
-      noPadY && LIST_ITEM.noPadY,
     )}
     {...props}
   />

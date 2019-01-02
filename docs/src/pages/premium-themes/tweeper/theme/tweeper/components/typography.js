@@ -1,4 +1,4 @@
-export default ({ linked, linkInverted, muiBaseTheme, primary, attach, nest, TEXT, ICON }) => ({
+export default ({ linked, linkInverted, theme, attach, nest, TEXT, ICON }) => ({
   MuiTypography: {
     root: {
       [attach(TEXT.link)]: {
@@ -8,7 +8,7 @@ export default ({ linked, linkInverted, muiBaseTheme, primary, attach, nest, TEX
         display: 'inline-block',
       },
       [attach(TEXT.indented)]: {
-        marginLeft: muiBaseTheme.spacing.unit,
+        marginLeft: theme.spacing.unit,
       },
       [attach(TEXT.indentedLarge)]: {
         marginLeft: 20,
@@ -17,17 +17,17 @@ export default ({ linked, linkInverted, muiBaseTheme, primary, attach, nest, TEX
         fontWeight: 700,
       },
       [attach(TEXT.inverted)]: {
-        color: muiBaseTheme.palette.common.white,
+        color: theme.palette.common.white,
       },
       [attach(TEXT.linkInverted)]: linkInverted,
       [attach(TEXT.light)]: {
-        color: 'rgb(101, 119, 134)',
+        color: '#657786',
       },
       [attach(TEXT.icon)]: {
         display: 'flex',
         alignItems: 'flex-end',
         [nest(ICON.root)]: {
-          marginRight: muiBaseTheme.spacing.unit / 2,
+          marginRight: theme.spacing.unit / 2,
         },
       },
       [attach(TEXT.icon, TEXT.inline)]: {
@@ -35,7 +35,7 @@ export default ({ linked, linkInverted, muiBaseTheme, primary, attach, nest, TEX
       },
       [`${attach(TEXT.link)}:hover`]: {
         cursor: 'pointer',
-        color: primary.main,
+        color: theme.palette.primary.main,
       },
       [attach(TEXT.primary)]: {
         fontSize: 19,
@@ -46,10 +46,10 @@ export default ({ linked, linkInverted, muiBaseTheme, primary, attach, nest, TEX
         fontSize: 13,
       },
       [attach(TEXT.success)]: {
-        color: 'rgb(23, 191, 99)',
+        color: '#17bf63',
       },
       [attach(TEXT.danger)]: {
-        color: 'rgb(224, 36, 94)',
+        color: '#e0245e',
       },
     },
   },
