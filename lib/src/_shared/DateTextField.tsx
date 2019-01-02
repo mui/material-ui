@@ -1,6 +1,8 @@
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment, {
+  InputAdornmentProps as MuiInputAdornmentProps,
+} from '@material-ui/core/InputAdornment';
 import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
@@ -78,7 +80,7 @@ export interface DateTextFieldProps
     ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
   variant?: TextFieldProps['variant'];
-  InputProps?: Partial<TextFieldProps>;
+  InputProps?: TextFieldProps['InputProps'];
   inputProps?: TextFieldProps['inputMode'];
   value: DateType;
   minDate?: DateType;
@@ -118,9 +120,9 @@ export interface DateTextFieldProps
     | React.ComponentType<TextFieldProps>
     | React.ReactType<React.HTMLAttributes<any>>;
   /** Props to pass to keyboard input adornment */
-  InputAdornmentProps?: object;
+  InputAdornmentProps?: Partial<MuiInputAdornmentProps>;
   /** Specifies position of keyboard button adornment */
-  adornmentPosition?: 'start' | 'end';
+  adornmentPosition?: MuiInputAdornmentProps['position'];
   onClick: (e: React.SyntheticEvent) => void;
   /* Callback firing when date that applied in the keyboard is invalid **/
   onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
@@ -194,7 +196,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     maxDateMessage: 'Date should not be after maximal date',
     TextFieldComponent: TextField,
     InputAdornmentProps: {},
-    adornmentPosition: 'end',
+    adornmentPosition: 'end' as MuiInputAdornmentProps['position'],
     pipe: undefined,
     keepCharPositions: false,
   };
@@ -358,7 +360,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       localInputProps[`${adornmentPosition}Adornment`] = (
         <InputAdornment position={adornmentPosition!} {...InputAdornmentProps}>
           <IconButton disabled={disabled} onClick={this.openPicker}>
-            <Icon> {keyboardIcon} </Icon>
+            <Icon>{keyboardIcon}</Icon>
           </IconButton>
         </InputAdornment>
       );
@@ -388,5 +390,4 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
   }
 }
 
-// @ts-ignore ts requires to duplicate proptypes of textfield
 export default withUtils()(DateTextField);

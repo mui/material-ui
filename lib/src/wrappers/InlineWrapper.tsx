@@ -1,3 +1,4 @@
+import { Omit } from '@material-ui/core';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import keycode from 'keycode';
@@ -7,7 +8,7 @@ import EventListener from 'react-event-listener';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
-export interface OuterInlineWrapperProps extends Partial<DateTextFieldProps> {
+export interface OuterInlineWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */

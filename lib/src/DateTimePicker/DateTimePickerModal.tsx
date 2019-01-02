@@ -1,16 +1,16 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import { Omit } from '@material-ui/core';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
 import DomainPropTypes from '../constants/prop-types';
+import { ExtendWrapper } from '../wrappers/ExtendWrapper';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import DateTimePicker, { BaseDateTimePickerProps } from './DateTimePicker';
 
 export interface DateTimePickerModalProps
   extends BasePickerProps,
     BaseDateTimePickerProps,
-    Omit<ModalWrapperProps, 'onChange' | 'value'> {}
+    ExtendWrapper<ModalWrapperProps> {}
 
 export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props => {
   const {

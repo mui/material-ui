@@ -7,7 +7,7 @@ import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
 import DomainPropTypes from '../constants/prop-types';
 
-export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
+export interface ModalWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
   onAccept?: () => void;
   onDismiss?: () => void;
   onClear?: () => void;

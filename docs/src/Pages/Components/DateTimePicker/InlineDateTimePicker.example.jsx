@@ -31,8 +31,8 @@ class InlineDateTimePickerDemo extends PureComponent {
             value={selectedDate}
             onChange={this.handleDateChange}
             format={this.props.getFormatString({
-              moment: 'YYYY/MM/DD hh:mm A',
-              dateFns: 'yyyy/MM/dd hh:mm A',
+              moment: 'YYYY/MM/DD hh:mm a',
+              dateFns: 'yyyy/MM/dd hh:mm a',
             })}
             mask={[
               /\d/,

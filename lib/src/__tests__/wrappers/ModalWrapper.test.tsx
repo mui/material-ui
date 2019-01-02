@@ -16,6 +16,8 @@ describe('ModalWrapper', () => {
         onDismiss={jest.fn()}
         onAccept={jest.fn()}
         onClear={jest.fn()}
+        onChange={jest.fn()}
+        format="mm dd"
       >
         <div>foo</div>
       </ModalWrapper>

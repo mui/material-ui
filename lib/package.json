@@ -39,6 +39,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
+    "@types/react-text-mask": "^5.4.2",
     "classnames": "^2.2.6",
     "keycode": "^2.2.0",
     "react-event-listener": "^0.6.4",
@@ -89,7 +90,6 @@
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
     "@types/react-event-listener": "^0.4.7",
-    "@types/react-text-mask": "^5.4.2",
     "@types/react-transition-group": "^2.0.15",
     "classnames": "^2.2.6",
     "codecov": "^3.1.0",
