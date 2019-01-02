@@ -11,6 +11,7 @@ interface FindClosestDateParams {
   disablePast: boolean;
   shouldDisableDate: (date: MaterialUiPickersDate) => boolean;
 }
+
 export const findClosestEnabledDate = ({
   date,
   utils,
