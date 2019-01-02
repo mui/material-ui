@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals, max-len */
+/* eslint-disable no-restricted-globals */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -414,7 +414,7 @@ Tabs.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * If `true,` the tabs will be centered.
+   * If `true`, the tabs will be centered.
    * This property is intended for large views.
    */
   centered: PropTypes.bool,
@@ -437,10 +437,10 @@ Tabs.propTypes = {
    */
   component: componentPropType,
   /**
-   * If `true,` the tabs will grow to use all the available space.
+   * If `true`, the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
    */
-  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead use the `variant="fullWidth"` property.'),
+  fullWidth: deprecatedPropType(PropTypes.bool, 'Instead, use the `variant="fullWidth"` property.'),
   /**
    * Determines the color of the indicator.
    */
@@ -453,11 +453,13 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true,` it invokes scrolling properties and allow for horizontally scrolling
-   * (or swiping) of the tab bar.
+   * If `true`, it will invoke scrolling properties and allow for horizontally
+   * scrolling (or swiping) of the tab bar.
    */
-  // prettier-ignore
-  scrollable: deprecatedPropType(PropTypes.bool, 'Instead use the `variant="scrollable"` property.'),
+  scrollable: deprecatedPropType(
+    PropTypes.bool,
+    'Instead, use the `variant="scrollable"` property.',
+  ),
   /**
    * The component used to render the scroll buttons.
    */
