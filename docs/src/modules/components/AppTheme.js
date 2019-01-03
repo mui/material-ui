@@ -30,7 +30,7 @@ function AppTheme(props) {
           [classes.hideCredit]: hideCredit,
         })}
       >
-        {'Build with '}
+        {'Built with '}
         <span role="img" aria-label="Love">
           ❤️
         </span>
