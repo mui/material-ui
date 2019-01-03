@@ -22,14 +22,15 @@ Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 ```sh
 yarn styles
 
-Box x 3,854 ops/sec ±1.73% (189 runs sampled)
-JSS naked x 35,830 ops/sec ±1.30% (186 runs sampled)
-WithStylesButton x 15,551 ops/sec ±1.86% (189 runs sampled)
-HookButton x 21,649 ops/sec ±0.63% (190 runs sampled)
-StyledComponentsButton x 7,728 ops/sec ±1.46% (189 runs sampled)
-EmotionButton x 8,821 ops/sec ±7.96% (149 runs sampled)
-Naked x 31,835 ops/sec ±7.60% (167 runs sampled)
-hashing x 171,955 ops/sec ±5.22% (164 runs sampled)
+Box x 3,850 ops/sec ±3.58% (178 runs sampled)
+JSS naked x 35,493 ops/sec ±2.29% (183 runs sampled)
+WithStylesButton x 16,844 ops/sec ±0.34% (191 runs sampled)
+HookButton x 23,213 ops/sec ±0.88% (191 runs sampled)
+StyledComponentsButton x 7,442 ops/sec ±2.09% (180 runs sampled)
+EmotionButton x 11,345 ops/sec ±2.45% (185 runs sampled)
+EmotionCssButton x 53,807 ops/sec ±0.40% (191 runs sampled)
+EmotionServerCssButton x 43,701 ops/sec ±1.04% (190 runs sampled)
+Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 ```
 
 ## `@material-ui/system`

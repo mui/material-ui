@@ -26,6 +26,8 @@
   "dependencies": {
     "benchmark": "^2.1.4",
     "nodemod": "^1.5.19",
-    "styled-system": "^3.1.11"
+    "styled-system": "^3.1.11",
+    "emotion": "10.0.5",
+    "emotion-server": "10.0.5"
   }
 }

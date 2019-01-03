@@ -1,12 +1,13 @@
-/* eslint-disable no-console, no-underscore-dangle */
+/* eslint-disable no-console */
 
 import './bootstrap';
 import Benchmark from 'benchmark';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
-import hash from '@emotion/hash';
 import styledEmotion from '@emotion/styled';
+import { css } from '@emotion/core';
+import { renderStylesToString } from 'emotion-server';
 import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
 import { withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
 import jss, { getDynamicStyles } from 'jss';
@@ -19,9 +20,25 @@ const suite = new Benchmark.Suite('styles', {
 });
 Benchmark.options.minSamples = 100;
 
-global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+const cssContent = `
+display: inline-flex;
+align-items: center;
+justify-content: center;
+position: relative;
+background-color: transparent;
+outline: none;
+border: 0;
+margin: 0;
+border-radius: 0;
+padding: 0;
+cursor: pointer;
+user-select: none;
+vertical-align: middle;
+-moz-appearance: none;
+-webkit-appearance: none;
+text-decoration: none`;
 
-const WithStylesButton = withStyles({
+const cssObject = {
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -44,149 +61,34 @@ const WithStylesButton = withStyles({
   // system: () => ({
   //   color: 'blue',
   // }),
-})(props => <button type="button" className={props.classes.root} {...props} />);
+};
 
-const JSSButton = injectSheet({
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent',
-    outline: 'none',
-    border: 0,
-    margin: 0,
-    borderRadius: 0,
-    padding: 0,
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none',
-    '-webkit-appearance': 'none',
-    textDecoration: 'none',
-  },
-  // system: () => ({
-  //   color: 'blue',
-  // }),
-})(props => <button type="button" className={props.classes.root} {...props} />);
+const emotionCss = css`
+  ${cssContent}
+`;
 
-const useStyles = makeStyles({
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent',
-    outline: 'none',
-    border: 0,
-    margin: 0,
-    borderRadius: 0,
-    padding: 0,
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none',
-    '-webkit-appearance': 'none',
-    textDecoration: 'none',
-  },
-  // system: () => ({
-  //   color: 'blue',
-  // }),
-});
+const JSSButton = injectSheet(cssObject)(props => (
+  <button type="button" className={props.classes.root} {...props} />
+));
 
+const WithStylesButton = withStyles(cssObject)(props => (
+  <button type="submit" className={props.classes.root} {...props} />
+));
+
+const EmotionButton = styledEmotion('button')(cssObject.root);
+
+const StyledComponentsButton = styledComponents.button`${cssContent}`;
+
+const useStyles = makeStyles(cssObject);
 function HookButton(props) {
   const classes = useStyles();
   return <button type="button" className={classes.root} {...props} />;
 }
 
-const StyledComponentsButton = styledComponents.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-color: transparent;
-  outline: none;
-  border: 0;
-  margin: 0;
-  border-radius: 0;
-  padding: 0;
-  cursor: pointer;
-  user-select: none;
-  vertical-align: middle;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  text-decoration: none;
-`;
-// ${() => ({
-//   color: 'blue',
-// })}
-
-const EmotionButton = styledEmotion('button')(
-  {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent',
-    outline: 'none',
-    border: 0,
-    margin: 0,
-    borderRadius: 0,
-    padding: 0,
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none',
-    '-webkit-appearance': 'none',
-    textDecoration: 'none',
-  },
-  // () => ({
-  //   color: 'blue',
-  // }),
-);
-
-const rawJSS = () => ({
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent',
-    outline: 'none',
-    border: 0,
-    margin: 0,
-    borderRadius: 0,
-    padding: 0,
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    '-moz-appearance': 'none',
-    '-webkit-appearance': 'none',
-    textDecoration: 'none',
-  },
-  // system: () => ({
-  //   color: 'blue',
-  // }),
-});
+const NakedButton = props => <button type="submit" {...props} />;
+const EmotionCssButton = props => <button type="submit" css={emotionCss} {...props} />;
 
 suite
-  .add('JSSButton', () => {
-    const sheetsRegistry = new SheetsRegistry();
-    ReactDOMServer.renderToString(
-      <JssProvider registry={sheetsRegistry}>
-        <React.Fragment>
-          {Array.from(new Array(5)).map((_, index) => (
-            <JSSButton key={String(index)}>Material-UI</JSSButton>
-          ))}
-        </React.Fragment>
-      </JssProvider>,
-    );
-    sheetsRegistry.toString();
-  })
   .add('Box', () => {
     const sheetsRegistry = new SheetsRegistry();
     ReactDOMServer.renderToString(
@@ -203,7 +105,7 @@ suite
   .add('JSS naked', () => {
     const sheetsRegistry = new SheetsRegistry();
 
-    const staticStyles = rawJSS();
+    const staticStyles = cssObject;
     const dynamicStyles = getDynamicStyles(staticStyles);
 
     const staticSheet = jss.createStyleSheet(staticStyles);
@@ -222,11 +124,22 @@ suite
 
     ReactDOMServer.renderToString(
       <JssProvider registry={sheetsRegistry}>
+        {Array.from(new Array(5)).map((_, index) => (
+          <button key={String(index)} type="submit">
+            Material-UI
+          </button>
+        ))}
+      </JssProvider>,
+    );
+    sheetsRegistry.toString();
+  })
+  .add('JSSButton', () => {
+    const sheetsRegistry = new SheetsRegistry();
+    ReactDOMServer.renderToString(
+      <JssProvider registry={sheetsRegistry}>
         <React.Fragment>
           {Array.from(new Array(5)).map((_, index) => (
-            <button key={String(index)} type="submit">
-              Material-UI
-            </button>
+            <JSSButton key={String(index)}>Material-UI</JSSButton>
           ))}
         </React.Fragment>
       </JssProvider>,
@@ -277,20 +190,34 @@ suite
       </StylesProvider>,
     );
   })
-  .add('Naked', () => {
-    const Raw = props => <button type="submit" {...props} />;
+  .add('EmotionCssButton', () => {
     ReactDOMServer.renderToString(
       <StylesProvider>
-        <React.Fragment>
-          {Array.from(new Array(5)).map((_, index) => (
-            <Raw key={String(index)}>Material-UI</Raw>
-          ))}
-        </React.Fragment>
+        {Array.from(new Array(5)).map((_, index) => (
+          <EmotionCssButton key={String(index)}>Material-UI</EmotionCssButton>
+        ))}
       </StylesProvider>,
     );
   })
-  .add('hashing', () => {
-    hash(JSON.stringify(rawJSS()));
+  .add('EmotionServerCssButton', () => {
+    renderStylesToString(
+      ReactDOMServer.renderToString(
+        <StylesProvider>
+          {Array.from(new Array(5)).map((_, index) => (
+            <EmotionCssButton key={String(index)}>Material-UI</EmotionCssButton>
+          ))}
+        </StylesProvider>,
+      ),
+    );
+  })
+  .add('Naked', () => {
+    ReactDOMServer.renderToString(
+      <StylesProvider>
+        {Array.from(new Array(5)).map((_, index) => (
+          <NakedButton key={String(index)}>Material-UI</NakedButton>
+        ))}
+      </StylesProvider>,
+    );
   })
   .on('cycle', event => {
     console.log(String(event.target));
