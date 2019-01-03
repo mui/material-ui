@@ -54,14 +54,15 @@ JSS uses the concept of plugins to extend its core, allowing people to cherry-pi
 You pay the performance overhead for only what's you are using.
 All the plugins aren't available by default. We have added the following list:
 
-- [jss-global](http://cssinjs.org/jss-global/)
-- [jss-nested](http://cssinjs.org/jss-nested/)
-- [jss-camel-case](http://cssinjs.org/jss-camel-case/)
-- [jss-default-unit](http://cssinjs.org/jss-default-unit/)
-- [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer/)
-- [jss-props-sort](http://cssinjs.org/jss-props-sort/)
+- [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
+- [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
+- [jss-plugin-nested](https://cssinjs.org/jss-plugin-nested/)
+- [jss-plugin-camel-case](https://cssinjs.org/jss-plugin-camel-case/)
+- [jss-plugin-default-unit](https://cssinjs.org/jss-plugin-default-unit/)
+- [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
+- [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
+It's a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/).
 Of course, you are free to add a new plugin. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
 
 ```jsx
@@ -109,8 +110,8 @@ const useStyles = makeStyles({
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
 You might, however, also want to override these styles, for example with styled-components.
-If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
-By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to handle this situation.
+By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML comment
 
@@ -215,10 +216,10 @@ const useStyles = makeStyles({
 });
 ```
 
-It will generate a `AppBar-root-12` class name. However, the following CSS won't work:
+It will generate a `AppBar-root-5pbwdt` class name. However, the following CSS won't work:
 
 ```css
-.AppBar-root-12 {
+.AppBar-root-5pbwdt {
   opacity: 0.6;
 }
 ```
@@ -228,31 +229,31 @@ Thanks to the non-deterministic nature of our class names, we
 can implement optimizations for development and production.
 They are easy to debug in development and as short as possible in production:
 
-- In **development**, the class name will be: `.AppBar-root-12`, following this logic:
+- In **development**, the class name will be: `.AppBar-root-5pbwdt`, following this logic:
 
 ```js
 const sheetName = 'AppBar';
 const ruleName = 'root';
-const identifier = 12;
+const identifier = 5pbwdt;
 
 const className = `${sheetName}-${ruleName}-${identifier}`;
 ```
 
-- In **production**, the class name will be: `.jss12`, following this logic:
+- In **production**, the class name will be: `.jss5pbwdt`, following this logic:
 
 ```js
 const productionPrefix = 'jss';
-const identifier = 12;
+const identifier = 5pbwdt;
 
 const className = `${productionPrefix}-${identifier}`;
 ```
 
 If you don't like this default behavior, you can change it.
-JSS relies on the concept of [class name generator](http://cssinjs.org/js-api/#generate-your-own-class-names).
+JSS relies on the concept of [class name generator](https://cssinjs.org/jss-api/#generate-your-class-names).
 
 ## Global CSS
 
-We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname--options----class-name-generator) option. When turned on, the class names will look like this:
+We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
 
 - development: `.AppBar-root`
 - production: `.AppBar-root`
