@@ -24,6 +24,7 @@ class DemoFrame extends React.Component {
 
   handleRef = ref => {
     this.contentDocument = ref ? ref.node.contentDocument : null;
+    this.contentWindow = ref ? ref.node.contentWindow : null;
   };
 
   onContentDidMount = () => {
@@ -31,7 +32,7 @@ class DemoFrame extends React.Component {
       ready: true,
       jss: create({
         plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: this.contentDocument.querySelector('#demo-frame-jss'),
+        insertionPoint: this.contentWindow['demo-frame-jss'],
       }),
       sheetsManager: new Map(),
       container: this.contentDocument.body,
