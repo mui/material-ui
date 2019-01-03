@@ -18,7 +18,7 @@ export interface TabsProps
   TabIndicatorProps?: Partial<TabIndicatorProps>;
   textColor?: 'secondary' | 'primary' | 'inherit' | string;
   value: any;
-  variant?: 'scrollable' | 'fullWidth';
+  variant?: 'standard' | 'scrollable' | 'fullWidth';
   width?: string;
 }
 

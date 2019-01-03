@@ -27,7 +27,7 @@ function IconLabelTabs() {
       <Tabs
         value={value}
         onChange={handleChange}
-        fullWidth
+        variant="fullWidth"
         indicatorColor="secondary"
         textColor="secondary"
       >
