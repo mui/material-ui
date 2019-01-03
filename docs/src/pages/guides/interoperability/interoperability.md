@@ -454,7 +454,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [ 'babel-loader', 'css-to-mui-loader' ]
+        use: [ 'css-to-mui-loader' ]
       }
     ]
   }
