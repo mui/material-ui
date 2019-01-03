@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface InputBaseProps
   extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement>,
+    React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
     InputBaseClassKey,
     'onChange' | 'onKeyUp' | 'onKeyDown' | 'defaultValue'
   > {
