@@ -453,8 +453,8 @@ Tabs.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * True invokes scrolling properties and allow for horizontally scrolling
-   * (or swiping) the tab bar.
+   * If `true`, it will invoke scrolling properties and allow for horizontally
+   * scrolling (or swiping) of the tab bar.
    */
   scrollable: deprecatedPropType(
     PropTypes.bool,
