@@ -9,8 +9,11 @@ const Formik = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      We are providing inbound validating dates and triggering date's on accept. And also there are
-      quite a lot ways to submit the date, so we cannot provide the event for onChange handler.
+      Pickers are quite complex controls, where date can be submitted 
+      from different places, so we can't provide event as argument in
+      onChange callback. Also we are providing date validation out of 
+      the box, so it may be tricky to integrate pickers to the form. 
+      Here are some examples!
     </Typography>
 
     <SourcablePanel
