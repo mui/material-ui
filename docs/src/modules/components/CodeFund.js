@@ -54,7 +54,7 @@ class CodeFund extends React.Component {
 
     const script = document.createElement('script');
     script.setAttribute('async', '');
-    script.src = '//codefund.io/properties/137/funder.js';
+    script.src = 'https://codefund.io/properties/137/funder.js?theme=unstyled';
     scriptSlot.appendChild(script);
   }
 
