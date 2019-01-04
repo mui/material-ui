@@ -513,7 +513,7 @@ const appList = [
   {
     title: 'Fluxguard',
     description:
-      'Fluxguard monitors Web site changes for defacement &amp; tamper protection, visual ' +
+      'Fluxguard monitors Web site changes for defacement & tamper protection, visual ' +
       'regression testing, synthetic transaction monitoring, and more.',
     image: '/static/images/showcase/fluxguard.jpg',
     link: 'https://www.fluxguard.com/',
