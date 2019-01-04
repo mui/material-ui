@@ -186,7 +186,7 @@ const appList = [
   {
     title: 'Numerai',
     description: ' Earn cryptocurrency in weekly data science competitions.',
-    image: '/static/images/showcase/numberai.jpg',
+    image: '/static/images/showcase/numerai.jpg',
     link: 'https://numer.ai/homepage',
     alexa: 270,
   },
