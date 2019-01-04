@@ -7,7 +7,7 @@ title: Media queries in React for responsive design
 <p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
 
 > ⚠️ `useMediaQuery` is unstable as hooks aren't stable yet, therefore it is exported with an unstable prefix.
-It depends on react >= 16.7.0-alpha.0, react-dom >= 16.7.0-alpha.0.
+It depends on react >= 16.7.0-alpha.2, react-dom >= 16.7.0-alpha.2.
 
 Some of the key features:
 - ⚛️ It has an idiomatic React API.
