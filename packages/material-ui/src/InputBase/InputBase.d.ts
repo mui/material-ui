@@ -54,7 +54,10 @@ export interface InputBaseProps
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
-export interface InputBaseComponentProps extends React.HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+export interface InputBaseComponentProps
+  extends React.HTMLAttributes<
+    HTMLInputElement | HTMLTextAreaElement
+  > {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
