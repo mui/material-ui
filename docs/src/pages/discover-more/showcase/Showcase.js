@@ -256,6 +256,15 @@ const appList = [
     alexa: 950,
   },
   {
+    title: 'comet',
+    description:
+      'Comet lets you track code, experiments, and results on ML projects. ' +
+      'It’s fast, simple, and free for open source projects.',
+    image: '/static/images/showcase/comet.jpg',
+    link: 'https://www.comet.ml/',
+    alexa: 974,
+  },
+  {
     title: 'Pointer',
     description:
       'Revestimentos cerâmicos para pisos e paredes com qualidade e design acessível. ' +
