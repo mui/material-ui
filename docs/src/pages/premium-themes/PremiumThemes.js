@@ -88,6 +88,16 @@ const themes = [
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/instapaper',
   },
+  {
+    name: 'Tweeper',
+    description: "Twitter's profile page by customizing Material-UI theme.",
+    src: '/static/themes/tweeper.png',
+    price: 'FREE',
+    category: 'Profile page',
+    href: '/premium-themes/tweeper',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/tweeper',
+  },
 ];
 
 function PremiumThemes(props) {

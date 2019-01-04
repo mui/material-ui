@@ -2,11 +2,14 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import classes from '../core/classes';
 
 const primary = {
-  main: '#3897f0',
+  main: '#1da1f2',
+  dark: '#1a91da',
 };
 
 const theme = createMuiTheme({
   typography: {
+    fontSize: 15,
+    fontWeightRegular: 500,
     useNextVariants: true,
     // Use the system font instead of the default Roboto font.
     fontFamily: [
@@ -21,39 +24,34 @@ const theme = createMuiTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
+    body1: {
+      fontSize: '1rem',
+    },
   },
   palette: {
     primary,
   },
-  shape: {
-    borderRadius: 4,
+  spacing: {
+    unit: 4,
   },
   props: {
-    MuiTab: {
+    MuiButtonBase: {
       disableRipple: true,
     },
   },
 });
 
 const white = {
-  text: '#fff',
+  text: '#ffffff',
   primary: 'rgba(255, 255, 255, 0.7)',
   secondary: 'rgba(255, 255, 255, 0.54)',
   disabled: 'rgba(255, 255, 255, 0.38)',
   hint: 'rgba(255, 255, 255, 0.24)',
 };
 
-const shade = {
-  light: '#f5f5f5',
-};
-
 const red = {
   main: '#ff5252',
   dark: '#e04848',
-};
-
-const drawer = {
-  header: '#232f3e',
 };
 
 const linked = {
@@ -66,17 +64,15 @@ const linkInverted = {
   ...linked,
   color: white.primary,
   '&:hover': {
-    color: '#fff',
+    color: theme.palette.common.white,
   },
 };
 
 export default {
   ...classes,
   theme,
-  drawer,
   primary,
   red,
-  shade,
   linked,
   linkInverted,
   white,
