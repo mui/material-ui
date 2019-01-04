@@ -96,7 +96,7 @@ You can change the placement of the label:
 
 ## Accessibility
 
-All form controls should have a label to identify it, this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
 
 When a label can't be used, it's necessary to add an attribute directly to the input component.
 In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
