@@ -27,6 +27,10 @@ components: Breadcrumbs, Breadcrumb
 
 {{"demo": "pages/lab/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Styled Breadcrumbs
+## Customized Breadcrumbs
 
-{{"demo": "pages/lab/breadcrumbs/StyledBreadcrumbs.js"}}
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here is one example of how you can change the badge position.
+
+{{"demo": "pages/lab/breadcrumbs/CustomizedBreadcrumbs.js"}}

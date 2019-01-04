@@ -27,11 +27,11 @@ const styles = theme => ({
     fontWeight: theme.typography.fontWeightMedium,
   },
   gutters: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
+    paddingLeft: 8,
+    paddingRight: 8,
   },
   icon: {
-    marginRight: theme.spacing.unit / 2,
+    marginRight: 4,
     width: height / 1.2,
     height: height / 1.2,
     color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],

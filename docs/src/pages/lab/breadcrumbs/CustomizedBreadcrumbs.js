@@ -49,7 +49,7 @@ function CustomBreadcrumb({ classes, className, ...rest }) {
 
 const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
 
-function MoreBreadcrumbs(props) {
+function CustomizedBreadcrumbs(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
@@ -77,8 +77,8 @@ function MoreBreadcrumbs(props) {
   );
 }
 
-MoreBreadcrumbs.propTypes = {
+CustomizedBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MoreBreadcrumbs);
+export default withStyles(styles)(CustomizedBreadcrumbs);

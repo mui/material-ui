@@ -19,10 +19,10 @@ const styles = theme => ({
     height,
     lineHeight: `${height}px`,
     color: theme.palette.grey[400],
-    marginLeft: theme.spacing.unit / 2,
-    marginRight: theme.spacing.unit / 2,
-    paddingLeft: theme.spacing.unit / 4,
-    paddingRight: theme.spacing.unit / 4,
+    marginLeft: 4,
+    marginRight: 4,
+    paddingLeft: 2,
+    paddingRight: 2,
   },
 });
 
