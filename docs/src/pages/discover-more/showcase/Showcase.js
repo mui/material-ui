@@ -281,7 +281,7 @@ const appList = [
   {
     title: 'ODIGEO Connect',
     description:
-      'Connect your hotel, B&amp;B and apartment with Europe’s #1 flight OTA ' +
+      'Connect your hotel, B&B and apartment with Europe’s #1 flight OTA ' +
       'and distribute it to millions of travellers.',
     image: '/static/images/showcase/odigeo.jpg',
     link: 'https://odigeoconnect.com/',
