@@ -595,6 +595,12 @@ const appList = [
     alexa: 0,
     stars: 3,
   },
+  {
+    title: 'Code Typing Tutor',
+    description: 'Keyboard simulator that helps to write code quickly and without errors.',
+    image: '/static/images/showcase/code-typing-tutor.png',
+    link: 'https://code-typing-tutor.com/',
+  },
 ];
 
 function Showcase(props) {
