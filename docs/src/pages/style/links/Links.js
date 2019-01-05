@@ -17,17 +17,23 @@ function Links(props) {
   const { classes } = props;
   return (
     <div>
-      <Link href={dudUrl} color="primary" className={classes.link}>
+      <Link href={dudUrl} className={classes.link}>
         Primary
       </Link>
       <Link href={dudUrl} color="secondary" className={classes.link}>
         Secondary
       </Link>
-      <Link href={dudUrl} color="secondary" disabled className={classes.link}>
-        Disabled
+      <Link href={dudUrl} color="error" className={classes.link}>
+        Error
       </Link>
-      <Link href={dudUrl} className={classes.link}>
-        Link
+      <Link href={dudUrl} color="textPrimary" className={classes.link}>
+        Text Primary
+      </Link>
+      <Link href={dudUrl} color="textSecondary" className={classes.link}>
+        Text Secondary
+      </Link>
+      <Link href={dudUrl} color="inherit" className={classes.link}>
+        Inherit
       </Link>
     </div>
   );

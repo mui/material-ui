@@ -1,31 +1,19 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { TypographyProps } from '../Typography';
 
 export interface LinkProps
   extends StandardProps<
-    React.HTMLAttributes<HTMLAnchorElement> & ButtonBaseProps,
+    React.HTMLAttributes<HTMLAnchorElement> & TypographyProps,
     LinkClassKey,
     'component'
   > {
   color?: PropTypes.Color;
   component?: React.ReactType<LinkProps>;
-  disabled?: boolean;
-  disableFocusRipple?: boolean;
-  disableRipple?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  TypographyClasses?: TypographyProps['classes'];
 }
 
-export type LinkClassKey =
-  | 'root'
-  | 'label'
-  | 'primary'
-  | 'secondary'
-  | 'colorInherit'
-  | 'focusVisible'
-  | 'disabled'
-  | 'sizeSmall'
-  | 'sizeLarge';
+export type LinkClassKey = 'root';
 
 declare const Link: React.ComponentType<LinkProps>;
 

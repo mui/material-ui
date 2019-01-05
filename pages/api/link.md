@@ -18,16 +18,13 @@ import Link from '@material-ui/core/Link';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the link. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">string</span> |   | The content of the link. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br></span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default', 'error', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary'<br></span> | <span class="prop-default">'primary'</span> | The color of the link. |
 | <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'a'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
-| <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
-| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |   | If `true`, the ripple effect will be disabled. |
-| <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br></span> | <span class="prop-default">'medium'</span> | The size of the link. `small` is equivalent to the dense button styling. |
+| <span class="prop-name">TypographyClasses</span> | <span class="prop-type">object</span> |   | `classes` property applied to the [`Typography`](/api/typography/) element. |
 
-Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
+Any other properties supplied will be spread to the root element ([Typography](/api/typography/)).
 
 ## CSS
 
@@ -38,14 +35,6 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">label</span> | Styles applied to the span element that wraps the children.
-| <span class="prop-name">primary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">secondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">focusVisible</span> | Styles applied to the ButtonBase root element if the link is keyboard focused.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Link/Link.js)
@@ -56,10 +45,10 @@ you need to use the following style sheet name: `MuiLink`.
 
 ## Inheritance
 
-The properties of the [ButtonBase](/api/button-base/) component are also available.
+The properties of the [Typography](/api/typography/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 
-- [Links](/demos/links/)
+- [Links](/style/links/)
 
