@@ -9,13 +9,14 @@ import { createChainedFunction, find } from '../utils/helpers';
 class RadioGroup extends React.Component {
   radios = [];
 
-  state = {
-    value: null,
-  };
-
   constructor(props) {
-    super();
-    this.isControlled = props.value != null;
+    super(props);
+
+    this.isControlled = !props.hasOwnProperty('defaultValue') && !props.hasOwnProperty('value');
+
+    this.state = {
+      value: this.isControlled ? props.value : props.defaultValue,
+    };
   }
 
   focus = () => {
