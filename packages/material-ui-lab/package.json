@@ -37,7 +37,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.2.0",
+    "@babel/runtime": "^7.2.0",
     "@material-ui/utils": "^3.0.0-alpha.2",
     "classnames": "^2.2.5",
     "keycode": "^2.1.9",
