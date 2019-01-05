@@ -14,7 +14,7 @@ to discuss the approach before submitting a pull request.
 
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
-  - [Bottom](https://material.io/design/components/app-bars-bottom.html)
+  - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
@@ -27,7 +27,7 @@ to discuss the approach before submitting a pull request.
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
-  - [Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab)
+  - **[Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) ✓**
     - Speed dial
 - **[Cards](https://material.io/design/components/cards.html) ✓**
 - **[Chips](https://material.io/design/components/chips.html) ✓**
@@ -47,8 +47,8 @@ to discuss the approach before submitting a pull request.
 - **[Dividers](https://material.io/design/components/dividers.html) ✓**
   - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-  - [Middle](https://material.io/design/components/dividers.html#types)
-  - [Subheader](https://material.io/design/components/dividers.html#types)
+  - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
+  - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
 - **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legacy Material v1*)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓**
