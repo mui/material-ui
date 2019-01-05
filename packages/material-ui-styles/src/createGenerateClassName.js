@@ -23,14 +23,16 @@ export default function createGenerateClassName(options = {}) {
   let ruleCounter = 0;
 
   return (rule, styleSheet) => {
-    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
+    const isStatic = !styleSheet.options.link;
+
+    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name && isStatic) {
       return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
     }
 
     let suffix;
 
     // It's a static rule.
-    if (!styleSheet.options.link) {
+    if (isStatic) {
       let themeHash = themeHashCache[styleSheet.options.theme];
       if (!themeHash) {
         themeHash = hash(JSON.stringify(styleSheet.options.theme));
