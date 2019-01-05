@@ -11,12 +11,13 @@ class RadioGroup extends React.Component {
 
   constructor(props) {
     super();
+    this.isControlled = props.value != null;
 
-    this.isControlled = !props.hasOwnProperty('defaultValue') && !props.hasOwnProperty('value');
-
-    this.state = {
-      value: this.isControlled ? props.value : props.defaultValue,
-    };
+    if (!this.isControlled) {
+      this.state = {
+        value: props.defaultValue,
+      };
+    }
   }
 
   focus = () => {
