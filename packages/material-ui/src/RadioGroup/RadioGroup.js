@@ -10,7 +10,7 @@ class RadioGroup extends React.Component {
   radios = [];
 
   constructor(props) {
-    super(props);
+    super();
 
     this.isControlled = !props.hasOwnProperty('defaultValue') && !props.hasOwnProperty('value');
 

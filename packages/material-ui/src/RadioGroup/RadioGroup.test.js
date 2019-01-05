@@ -39,6 +39,25 @@ describe('<RadioGroup />', () => {
 
   it('should support uncontrolled mode', () => {
     const wrapper = shallow(
+      <RadioGroup name="group">
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    const radio = wrapper.children().first();
+    const event = { target: { value: 'one' } };
+    radio.simulate('change', event, true);
+    assert.strictEqual(
+      wrapper
+        .children()
+        .first()
+        .props().checked,
+      true,
+    );
+  });
+
+  it('should support default value in uncontrolled mode', () => {
+    const wrapper = shallow(
       <RadioGroup name="group" defaultValue="zero">
         <Radio value="zero" />
         <Radio value="one" />
