@@ -62,7 +62,7 @@ const theme = createMuiTheme({
   },
 });
 
-function CustomizedInputs(props) {
+function CustomizedButtons(props) {
   const { classes } = props;
 
   return (
@@ -91,8 +91,8 @@ function CustomizedInputs(props) {
   );
 }
 
-CustomizedInputs.propTypes = {
+CustomizedButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CustomizedInputs);
+export default withStyles(styles)(CustomizedButtons);
