@@ -601,6 +601,12 @@ const appList = [
     image: '/static/images/showcase/code-typing-tutor.png',
     link: 'https://code-typing-tutor.com/',
   },
+  {
+    title: 'PhotoUtils',
+    description: 'Online photo editor. 6 simple and free image editing tools.',
+    image: '/static/images/showcase/photoutils.jpg',
+    link: 'https://photoutils.com/',
+  },
 ];
 
 function Showcase(props) {
