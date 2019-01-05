@@ -36,7 +36,7 @@
     "react-dom": "^16.7.0-alpha.2"
   },
   "dependencies": {
-    "@babel/runtime": "7.2.0",
+    "@babel/runtime": "^7.2.0",
     "@emotion/hash": "^0.7.1",
     "@material-ui/utils": "^3.0.0-alpha.2",
     "classnames": "^2.2.5",

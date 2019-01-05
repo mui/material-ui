@@ -39,7 +39,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.2.0",
+    "@babel/runtime": "^7.2.0",
     "recompose": "0.28.0 - 0.30.0"
   },
   "devDependencies": {
