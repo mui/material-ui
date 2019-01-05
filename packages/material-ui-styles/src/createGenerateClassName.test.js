@@ -3,6 +3,44 @@ import createGenerateClassName from './createGenerateClassName';
 
 describe('createGenerateClassName', () => {
   const generateClassName = createGenerateClassName();
+  const generateClassNameGlobal = createGenerateClassName({ dangerouslyUseGlobalCSS: true });
+
+  describe('dangerouslyUseGlobalCSS', () => {
+    it('should have a stable classname', () => {
+      assert.strictEqual(
+        generateClassNameGlobal(
+          {
+            key: 'key',
+          },
+          {
+            options: {
+              name: 'MuiGrid',
+            },
+          },
+        ),
+        'MuiGrid-key',
+      );
+      assert.strictEqual(
+        generateClassNameGlobal(
+          {
+            key: 'key',
+          },
+          {
+            rules: {
+              raw: {
+                key: () => ({}),
+              },
+            },
+            options: {
+              link: true,
+              classNamePrefix: 'classNamePrefix',
+            },
+          },
+        ),
+        'classNamePrefix-key-1',
+      );
+    });
+  });
 
   it('should generate a class name', () => {
     assert.strictEqual(
@@ -63,7 +101,6 @@ describe('createGenerateClassName', () => {
           },
           options: {
             link: true,
-            theme: {},
             classNamePrefix: 'classNamePrefix',
           },
         },
@@ -83,7 +120,6 @@ describe('createGenerateClassName', () => {
           },
           options: {
             link: true,
-            theme: {},
             classNamePrefix: 'classNamePrefix',
           },
         },
