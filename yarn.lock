@@ -8446,6 +8446,14 @@ jss-plugin-camel-case@^10.0.0-alpha.3:
     "@babel/runtime" "^7.0.0"
     hyphenate-style-name "^1.0.2"
 
+jss-plugin-camel-case@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-camel-case/-/jss-plugin-camel-case-10.0.0-alpha.7.tgz#7dcbd9acb6682f3102cb2d3356b4fd9642d93f17"
+  integrity sha512-Bwrav1ZB0XywdJW6TaEuFhKe1ZpZvUlESh3jsFOvebA9aFTYNCkmHMEqjA5+u9VMxksl3u77nnZHtukpxkzrBA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    hyphenate-style-name "^1.0.2"
+
 jss-plugin-compose@^10.0.0-alpha.3:
   version "10.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/jss-plugin-compose/-/jss-plugin-compose-10.0.0-alpha.3.tgz#a9000744679839019246246d1d3724c419deab69"
@@ -8458,6 +8466,13 @@ jss-plugin-default-unit@^10.0.0-alpha.3:
   version "10.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.0.0-alpha.3.tgz#bf29bec9edf8a95a8b9ddb77eb181bfa9e446a4b"
   integrity sha512-++6g2FJG0FVq+w+k6u19iEUKKcDy07hASKNiOLg/Z0SD43z6FrzSLsxJ/LqR+vyBQ2xbjHi3RmaVy88hAbjlpA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
+jss-plugin-default-unit@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-default-unit/-/jss-plugin-default-unit-10.0.0-alpha.7.tgz#f6dd0a03d545e7bf243c062bae3a832ac8c5ff6d"
+  integrity sha512-auuJUbQaWMxoHOVFPrfZNZpZm9ab8PZeDyvey8nMt2lbokkmZ53UyAnM/1kNsg5BdAXTItcLDxDB3I4gwNU84g==
   dependencies:
     "@babel/runtime" "^7.0.0"
 
@@ -8483,6 +8498,13 @@ jss-plugin-global@^10.0.0-alpha.3:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
+jss-plugin-global@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-global/-/jss-plugin-global-10.0.0-alpha.7.tgz#38ca390802b62da490afbaafc581552a81977729"
+  integrity sha512-OWeoW4szLDgRUKviST+xfilqa8O5uXJCW+O3YonheCRTRJg6rRzlE/b5pfYPoU9UtwvY9n7JvwBX5r3c1lMsEQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 jss-plugin-nested@^10.0.0-alpha.3:
   version "10.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.0.0-alpha.3.tgz#15122a55a36aca8cd69d7ae3161f5b2b28a5df23"
@@ -8491,6 +8513,14 @@ jss-plugin-nested@^10.0.0-alpha.3:
     "@babel/runtime" "^7.0.0"
     warning "^3.0.0"
 
+jss-plugin-nested@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-nested/-/jss-plugin-nested-10.0.0-alpha.7.tgz#03a89c8f7c1d570a3d5f16dae3e61f7f2edb0316"
+  integrity sha512-wsRzuIZXAc6WMjc61mREW9cUrDxgSI7dK/fx5c7a06IDUfSn+83NJ30J/RB4oBnbQW9SijV/muujz7IJqpn9Gw==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    tiny-warning "^1.0.2"
+
 jss-plugin-props-sort@^10.0.0-alpha.3:
   version "10.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/jss-plugin-props-sort/-/jss-plugin-props-sort-10.0.0-alpha.3.tgz#a71ef39f077385e6624d0ac4d2dac1e36ccedf8f"
@@ -8498,10 +8528,24 @@ jss-plugin-props-sort@^10.0.0-alpha.3:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
+jss-plugin-props-sort@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-props-sort/-/jss-plugin-props-sort-10.0.0-alpha.7.tgz#46f1809fcae0acc048d0047aa54a4b9b6973597d"
+  integrity sha512-KXOCaHUk1+KXqE0z3q66/w1fDoy+VsZvI77gLxOqTsTrvIKFLX0jarwXogW3CDlaPQQFTZ6JykJJXtPRTBlstA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
 jss-plugin-rule-value-function@^10.0.0-alpha.3:
   version "10.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-function/-/jss-plugin-rule-value-function-10.0.0-alpha.3.tgz#2dbd360ca42fa7a1dc7799ec5b4ca33c8ba75d68"
   integrity sha512-Xmw+ZdDqTkeolUjEt9CFk5uOS3NRhsI4nzVGUU+RgaQ5VU07b0Q8Xc5wd1/GBxlpDSPQrafiQJnWUas/VG0KMA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+
+jss-plugin-rule-value-function@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-rule-value-function/-/jss-plugin-rule-value-function-10.0.0-alpha.7.tgz#63df1078ac361dda67996e25291d90f7226ae59a"
+  integrity sha512-ett83hvIM69/LknmrWndrrdiDlfLfP+rneU5qP7gTOWJ7g1P9GuEL1Tc4CWdZUWBX+T58tgIBP0V1pzWCkP0QA==
   dependencies:
     "@babel/runtime" "^7.0.0"
 
@@ -8525,6 +8569,14 @@ jss-plugin-vendor-prefixer@^10.0.0-alpha.3:
   version "10.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.0.0-alpha.3.tgz#9402007555542ad810a66a5c2b7527683c8dc719"
   integrity sha512-8sTKmwBropRK30dJonJ5YTetftEEXyFznNMNdoIluzDtqV/LjWj5ppBOnNSUrWOnZJarrdeGc5k02vEgKNKf1A==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    css-vendor "^1.1.0"
+
+jss-plugin-vendor-prefixer@^10.0.0-alpha.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss-plugin-vendor-prefixer/-/jss-plugin-vendor-prefixer-10.0.0-alpha.7.tgz#caa34eb0bc39f0c98f425e174fc220d1f1a8760a"
+  integrity sha512-YbIVgqq+dLimOBOEYggho1Iuc0roz4PJSZYyaok9n8JnXVIqPnxYJbr8+bMbvzJ5CL3eeJij/e7L2IPCceRKrA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     css-vendor "^1.1.0"
@@ -8567,15 +8619,15 @@ jss-vendor-prefixer@^7.0.0:
   dependencies:
     css-vendor "^0.3.8"
 
-jss@^10.0.0-alpha.3, jss@^9.8.7:
-  version "10.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.3.tgz#e7c9d8f45337f2278e2879bb1c6ac5fd16a63c08"
-  integrity sha512-7KNgne2ZDG6Bq9a7Yays9XmFzaPgky30seHgJqfl5Qa2RYf4fQ9B/iqNBjU/c+xuOOok/KQ0aIUpDyID25CT0w==
+jss@^10.0.0-alpha.3, jss@^10.0.0-alpha.7, jss@^9.8.7:
+  version "10.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.7.tgz#ee9909f3a97c9370fa120b50929a79b2caed8536"
+  integrity sha512-nxCfzcL9KzJEpxmSfozCzj5xgRvINF/g1ryHH/sgHeHcleFvY6mzo9D1VuhkUYF1mdEpcoprAjdqFYlsi8gRsQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     is-in-browser "^1.1.3"
     symbol-observable "^1.2.0"
-    warning "^3.0.0"
+    tiny-warning "^1.0.2"
 
 jsx-ast-utils@^2.0.1:
   version "2.0.1"
@@ -13644,6 +13696,11 @@ tiny-emitter@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
   integrity sha512-2NM0auVBGft5tee/OxP4PI3d8WItkDM+fPnaRAVo6xTDI2knbz9eC5ArWGqtGlYqiH3RU5yMpdyTTO7MguC4ow==
+
+tiny-warning@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.2.tgz#1dfae771ee1a04396bdfde27a3adcebc6b648b28"
+  integrity sha512-rru86D9CpQRLvsFG5XFdy0KdLAvjdQDyZCsRcuu60WtzFylDM3eAWSxEVz5kzL2Gp544XiUvPbVKtOA/txLi9Q==
 
 tmp@0.0.23:
   version "0.0.23"

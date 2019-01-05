@@ -184,7 +184,7 @@
   },
   "resolutions": {
     "**/hoist-non-react-statics": "^3.2.1",
-    "jss": "^10.0.0-alpha.3"
+    "jss": "^10.0.0-alpha.7"
   },
   "sideEffects": false,
   "nyc": {
