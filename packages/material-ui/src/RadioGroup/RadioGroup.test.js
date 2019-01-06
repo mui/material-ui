@@ -56,6 +56,35 @@ describe('<RadioGroup />', () => {
     );
   });
 
+  it('should support default value in uncontrolled mode', () => {
+    const wrapper = shallow(
+      <RadioGroup name="group" defaultValue="zero">
+        <Radio value="zero" />
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .children()
+        .first()
+        .props().checked,
+      true,
+    );
+
+    const radio = wrapper.children().last();
+    const event = { target: { value: 'one' } };
+    radio.simulate('change', event, true);
+
+    assert.strictEqual(
+      wrapper
+        .children()
+        .last()
+        .props().checked,
+      true,
+    );
+  });
+
   describe('imperative focus()', () => {
     let wrapper;
 
