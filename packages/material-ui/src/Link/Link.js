@@ -26,12 +26,6 @@ export const styles = {
   underlineAlways: {
     textDecoration: 'underline',
   },
-  /* Styles applied to the root element if `block={false}` */
-  inline: {
-    display: 'inline-block',
-  },
-  /* Styles applied to the root element if `block={true}` */
-  block: {},
   // Same reset as ButtonBase.root
   /* Styles applied to the root element if `component="button"`. */
   button: {
@@ -73,15 +67,14 @@ function Link(props) {
       className={classNames(
         classes.root,
         {
-          [classes.block]: block,
           [classes.button]: component === 'button',
-          [classes.inline]: !block,
         },
         classes[`underline${capitalize(underline)}`],
         classNameProp,
       )}
       classes={TypographyClasses}
       component={component}
+      inline={!block}
       {...other}
     >
       {children}
@@ -91,8 +84,8 @@ function Link(props) {
 
 Link.propTypes = {
   /**
-   *  Controls whether the link is inline or not. When block is true the link is not inline
-   *  when block is false it is.
+   *  Controls whether the link is inline or not. When `block` is true the link is not inline
+   *  when `block` is false it is.
    */
   block: PropTypes.bool,
   /**
@@ -144,9 +137,9 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
+  block: false,
   color: 'primary',
   component: 'a',
-  block: false,
   target: '_self',
   underline: 'hover',
   variant: 'inherit',

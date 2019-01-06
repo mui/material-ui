@@ -18,7 +18,7 @@ import Link from '@material-ui/core/Link';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">block</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the link is inline or not. When block is true the link is not inline  when block is false it is. |
+| <span class="prop-name">block</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the link is inline or not. When `block` is true the link is not inline  when `block` is false it is. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the link. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'error', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary'<br></span> | <span class="prop-default">'primary'</span> | The color of the link. |
@@ -42,8 +42,6 @@ This property accepts the following keys:
 | <span class="prop-name">underlineNone</span> | Styles applied to the root element if `underline="none"`
 | <span class="prop-name">underlineHover</span> | Styles applied to the root element if `underline="hover"`
 | <span class="prop-name">underlineAlways</span> | Styles applied to the root element if `underline="always"`
-| <span class="prop-name">inline</span> | Styles applied to the root element if `block={false}`
-| <span class="prop-name">block</span> | Styles applied to the root element if `block={true}`
 | <span class="prop-name">button</span> | Styles applied to the root element if `component="button"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

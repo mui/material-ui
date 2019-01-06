@@ -20,8 +20,6 @@ export type LinkClassKey =
   | 'underlineNone'
   | 'underlineHover'
   | 'underlineAlways'
-  | 'inline'
-  | 'block'
   | 'button';
 
 declare const Link: React.ComponentType<LinkProps>;
