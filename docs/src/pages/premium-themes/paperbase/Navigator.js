@@ -82,7 +82,7 @@ const styles = theme => ({
   },
   textDense: {},
   divider: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 

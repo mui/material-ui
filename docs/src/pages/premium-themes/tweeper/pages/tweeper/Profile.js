@@ -19,7 +19,7 @@ const { Tabs, Tab } = molecules;
 
 const Content = styled('div')({
   maxWidth: 1000,
-  padding: theme.spacing.unit * 4,
+  padding: theme.spacing(4),
   margin: 'auto',
 });
 

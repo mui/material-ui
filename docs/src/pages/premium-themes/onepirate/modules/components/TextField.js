@@ -9,11 +9,11 @@ const styles = theme => ({
   root: {
     padding: 0,
     'label + &': {
-      marginTop: theme.spacing.unit * 3,
+      marginTop: theme.spacing(3),
     },
   },
   input: {
-    minWidth: theme.spacing.unit * 6,
+    minWidth: theme.spacing(6),
     backgroundColor: theme.palette.common.white,
     '&$disabled': {
       backgroundColor: theme.palette.divider,
@@ -28,13 +28,13 @@ const styles = theme => ({
   disabled: {},
   inputSizeSmall: {
     fontSize: 14,
-    padding: theme.spacing.unit,
-    width: `calc(100% - ${theme.spacing.unit * 2}px)`,
+    padding: theme.spacing(1),
+    width: `calc(100% - ${theme.spacing(2)}px)`,
   },
   inputSizeMedium: {
     fontSize: 16,
-    padding: theme.spacing.unit * 2,
-    width: `calc(100% - ${theme.spacing.unit * 4}px)`,
+    padding: theme.spacing(2),
+    width: `calc(100% - ${theme.spacing(4)}px)`,
   },
   inputSizeLarge: {
     fontSize: 18,

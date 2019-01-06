@@ -18,10 +18,10 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   withoutLabel: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   textField: {
     flexBasis: 200,

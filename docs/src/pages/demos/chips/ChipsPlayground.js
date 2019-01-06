@@ -19,10 +19,10 @@ const styles = theme => ({
     flexGrow: 1,
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   chipWrapper: {
-    marginBottom: theme.spacing.unit * 5,
+    marginBottom: theme.spacing(5),
   },
 });
 

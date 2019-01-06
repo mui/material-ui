@@ -18,7 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 const styles = theme => ({
   buttonWrapper: {
     position: 'relative',
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing(4),
   },
   anchor: {
     backgroundColor: green[500],
@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   checked: {},
   typography: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
 });
 

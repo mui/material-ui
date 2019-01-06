@@ -15,19 +15,19 @@ const styles = theme => ({
     minHeight: 116,
     maxWidth: 345,
     display: 'block',
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 3,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(3),
   },
   info: {
     ...theme.typography.caption,
     position: 'absolute',
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     cursor: 'default',
     bottom: 0,
     right: 0,
   },
   paper: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     display: 'block',
   },
 });

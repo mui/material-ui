@@ -15,7 +15,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   wrapper: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     position: 'relative',
   },
   buttonSuccess: {

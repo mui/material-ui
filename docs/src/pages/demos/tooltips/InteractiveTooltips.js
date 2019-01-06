@@ -6,7 +6,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 

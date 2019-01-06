@@ -7,7 +7,7 @@ import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shadows from './shadows';
 import shape from './shape';
-import defaultSpacing from './spacing';
+import createSpacing from './createSpacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
@@ -17,14 +17,14 @@ function createMuiTheme(options = {}) {
     mixins: mixinsInput = {},
     palette: paletteInput = {},
     shadows: shadowsInput,
-    spacing: spacingInput = {},
+    spacing: spacingInput,
     typography: typographyInput = {},
     ...other
   } = options;
 
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
-  const spacing = { ...defaultSpacing, ...spacingInput };
+  const spacing = createSpacing(spacingInput);
 
   const muiTheme = {
     breakpoints,
@@ -35,10 +35,10 @@ function createMuiTheme(options = {}) {
     props: {}, // Inject custom properties
     shadows: shadowsInput || shadows,
     typography: createTypography(palette, typographyInput),
+    spacing,
     ...deepmerge(
       {
         shape,
-        spacing,
         transitions,
         zIndex,
       },

@@ -39,7 +39,7 @@ const useStyles1 = makeStyles(theme => ({
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   message: {
     display: 'flex',
@@ -87,7 +87,7 @@ MySnackbarContentWrapper.propTypes = {
 
 const useStyles2 = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 }));
 

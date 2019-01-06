@@ -17,7 +17,7 @@ const styles = theme => ({
     width: 100,
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 
@@ -68,6 +68,8 @@ class GuttersGrid extends React.Component {
                   <FormControlLabel value="6" control={<Radio />} label="6" />
                   <FormControlLabel value="7" control={<Radio />} label="7" />
                   <FormControlLabel value="8" control={<Radio />} label="8" />
+                  <FormControlLabel value="9" control={<Radio />} label="9" />
+                  <FormControlLabel value="10" control={<Radio />} label="10" />
                 </RadioGroup>
               </Grid>
             </Grid>

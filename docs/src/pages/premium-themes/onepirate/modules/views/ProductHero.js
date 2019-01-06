@@ -19,14 +19,14 @@ const styles = theme => ({
     minWidth: 200,
   },
   h5: {
-    marginBottom: theme.spacing.unit * 4,
-    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing(4),
+    marginTop: theme.spacing(4),
     [theme.breakpoints.up('sm')]: {
-      marginTop: theme.spacing.unit * 10,
+      marginTop: theme.spacing(10),
     },
   },
   more: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 

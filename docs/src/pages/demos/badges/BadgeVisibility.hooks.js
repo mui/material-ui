@@ -15,13 +15,13 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
   },
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   divider: {
     width: '100%',
   },
   row: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 }));
 

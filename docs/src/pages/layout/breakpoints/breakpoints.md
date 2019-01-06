@@ -35,7 +35,7 @@ In the following demo, we change the background color (red, blue & green) based 
 ```jsx
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.main,
     },

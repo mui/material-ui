@@ -24,13 +24,13 @@ const payments = [
 
 const styles = theme => ({
   listItem: {
-    padding: `${theme.spacing.unit}px 0`,
+    padding: `${theme.spacing(1)}px 0`,
   },
   total: {
     fontWeight: '700',
   },
   title: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 

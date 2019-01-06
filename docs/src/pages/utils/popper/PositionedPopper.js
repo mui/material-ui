@@ -13,7 +13,7 @@ const styles = theme => ({
     width: 500,
   },
   typography: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 

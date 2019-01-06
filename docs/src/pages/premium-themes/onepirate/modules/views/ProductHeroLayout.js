@@ -17,8 +17,8 @@ const styles = theme => ({
     },
   },
   layoutBody: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 14,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(14),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -45,7 +45,7 @@ const styles = theme => ({
   },
   arrowDown: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 4,
+    bottom: theme.spacing(4),
   },
 });
 

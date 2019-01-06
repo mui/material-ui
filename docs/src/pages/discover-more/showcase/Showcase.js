@@ -19,25 +19,25 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.default,
     // Hide the demo container padding
-    margin: -theme.spacing.unit * 3,
+    margin: -theme.spacing(3),
     // Maintain alignment with the markdown text
     [theme.breakpoints.down('xs')]: {
       padding: 30,
     },
   },
   formControl: {
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing(4),
     minWidth: 120,
   },
   title: {
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing(2),
   },
   card: {
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing(1),
     maxWidth: 600,
   },
   description: {
-    marginBottom: theme.spacing.unit * 6,
+    marginBottom: theme.spacing(6),
   },
   cardMedia: {
     paddingTop: '75%', // 4:3

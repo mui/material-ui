@@ -7,7 +7,7 @@ import Popover from '@material-ui/core/Popover';
 
 const styles = theme => ({
   typography: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
 });
 

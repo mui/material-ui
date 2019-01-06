@@ -10,12 +10,12 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     overflow: 'hidden',
-    padding: `0 ${theme.spacing.unit * 3}px`,
+    padding: `0 ${theme.spacing(3)}px`,
   },
   paper: {
     maxWidth: 400,
-    margin: `${theme.spacing.unit}px auto`,
-    padding: theme.spacing.unit * 2,
+    margin: `${theme.spacing(1)}px auto`,
+    padding: theme.spacing(2),
   },
 });
 

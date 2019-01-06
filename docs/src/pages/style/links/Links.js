@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   link: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 

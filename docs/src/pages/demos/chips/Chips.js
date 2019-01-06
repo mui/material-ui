@@ -13,7 +13,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   chip: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 

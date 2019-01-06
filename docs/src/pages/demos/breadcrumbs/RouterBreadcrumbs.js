@@ -52,10 +52,10 @@ const styles = theme => ({
   },
   lists: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing(4),
   },
 });
 

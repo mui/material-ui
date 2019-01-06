@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   typography: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 

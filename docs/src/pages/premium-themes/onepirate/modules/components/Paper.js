@@ -16,7 +16,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.dark,
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 
