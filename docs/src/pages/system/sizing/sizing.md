@@ -37,5 +37,5 @@ import { sizing } from '@material-ui/system';
 | `maxWidth` | `maxWidth` | `max-width` | none |
 | `minWidth` | `minWidth` | `min-width` | none |
 | `height` | `height` | `height` | none |
-| `maxHeight` | `axHeight`| `max-height` | none |
-| `minHeight` | `inHeight`| `min-height` | none |
+| `maxHeight` | `maxHeight`| `max-height` | none |
+| `minHeight` | `minHeight`| `min-height` | none |
