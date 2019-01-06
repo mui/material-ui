@@ -15,25 +15,17 @@ const dudUrl = 'javascript:;';
 
 function Links(props) {
   const { classes } = props;
+
   return (
     <div>
       <Link href={dudUrl} className={classes.link}>
-        Primary
-      </Link>
-      <Link href={dudUrl} color="secondary" className={classes.link}>
-        Secondary
-      </Link>
-      <Link href={dudUrl} color="error" className={classes.link}>
-        Error
-      </Link>
-      <Link href={dudUrl} color="textPrimary" className={classes.link}>
-        Text Primary
-      </Link>
-      <Link href={dudUrl} color="textSecondary" className={classes.link}>
-        Text Secondary
+        Link
       </Link>
       <Link href={dudUrl} color="inherit" className={classes.link}>
-        Inherit
+        {'color="inherit"'}
+      </Link>
+      <Link href={dudUrl} variant="body1" className={classes.link}>
+        {'variant="body1"'}
       </Link>
     </div>
   );

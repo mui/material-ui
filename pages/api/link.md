@@ -18,9 +18,9 @@ import Link from '@material-ui/core/Link';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">string</span> |   | The content of the link. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the link. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default', 'error', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary'<br></span> | <span class="prop-default">'primary'</span> | The color of the link. |
+| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'<br></span> | <span class="prop-default">'primary'</span> | The color of the link. |
 | <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'a'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">TypographyClasses</span> | <span class="prop-type">object</span> |   | `classes` property applied to the [`Typography`](/api/typography/) element. |
 
@@ -35,6 +35,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">button</span> | Styles applied to the root element if `component="button"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Link/Link.js)

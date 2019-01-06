@@ -4,31 +4,75 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { componentPropType } from '@material-ui/utils';
 import classNames from 'classnames';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
+import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
+import { capitalize } from '../utils/helpers';
 
-export const styles = {
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    textDecoration: 'none',
     display: 'inline-block',
+    textDecoration: 'none',
     '&:hover': {
-      opacity: 0.7,
-    },
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      opacity: 1,
+      textDecoration: 'underline',
     },
   },
-};
+  /* Styles applied to the root element if `color="primary"`. */
+  colorPrimary: {
+    color: theme.palette.primary.main,
+    '&:hover': {
+      color: theme.palette.primary.dark,
+    },
+  },
+  // Same reset as ButtonBase.root
+  /* Styles applied to the root element if `component="button"`. */
+  button: {
+    position: 'relative',
+    // Remove grey highlight
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent', // Reset default value
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
+    border: 0,
+    margin: 0, // Remove the margin in Safari
+    borderRadius: 0,
+    padding: 0, // Remove the padding in Firefox
+    cursor: 'pointer',
+    userSelect: 'none',
+    verticalAlign: 'middle',
+    '-moz-appearance': 'none', // Reset
+    '-webkit-appearance': 'none', // Reset
+    '&::-moz-focus-inner': {
+      borderStyle: 'none', // Remove Firefox dotted outline.
+    },
+  },
+});
 
 function Link(props) {
-  const { children, classes, className: classNameProp, TypographyClasses, ...other } = props;
-
-  const className = classNames(classes.root, classNameProp);
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    color,
+    component,
+    TypographyClasses,
+    ...other
+  } = props;
 
   return (
-    <Typography className={className} classes={TypographyClasses} {...other}>
+    <Typography
+      className={classNames(
+        classes.root,
+        {
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          [classes.button]: component === 'button',
+        },
+        classNameProp,
+      )}
+      classes={TypographyClasses}
+      component={component}
+      {...other}
+    >
       {children}
     </Typography>
   );
@@ -38,7 +82,7 @@ Link.propTypes = {
   /**
    * The content of the link.
    */
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -51,15 +95,7 @@ Link.propTypes = {
   /**
    * The color of the link.
    */
-  color: PropTypes.oneOf([
-    'default',
-    'error',
-    'inherit',
-    'primary',
-    'secondary',
-    'textPrimary',
-    'textSecondary',
-  ]),
+  color: PropTypes.oneOf(['inherit', 'primary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
