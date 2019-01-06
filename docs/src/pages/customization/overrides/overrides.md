@@ -17,9 +17,9 @@ You might need to change the style of a component in some very specific situatio
 The first way to override the style of a component is to use **class names**.
 Every component provides a `className` property which is always applied to the root element.
 
-In this example, we are using the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order
-component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via
-its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to
+In this example, its using the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order
+component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property.
+You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM
 by Material-UI to style a component has the highest specificity possible since the `<link>` is injected at the bottom
 of the `<head />` to ensure the components always render correctly.
@@ -35,13 +35,29 @@ For instance, you can have a look at the [Button CSS API](/api/button/#css).
 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to
-provide an object that maps the **names of classes to override** (keys) to the **CSS class names to apply** (values).
+provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values).
 The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles
 you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
+
+### Using the dev tools
+
+The browser dev tools can save you a lot of time.
+The Material-UI's class names [follow a simple pattern](/customization/css-in-js/#class-names) in development mode:
+`Mui[component name]-[style rule name]-[UUID]`.
+
+Let's go back to the above demo. How can you override the button label?
+
+![dev-tools](/static/images/customization/dev-tools.png)
+
+Using the dev tools, you know that you need to target the `Button` component and the `label` style rule:
+
+```jsx
+<Button classes={{ label: 'my-class-name' }} />
+```
 
 ### Shorthand
 
