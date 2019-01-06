@@ -2,17 +2,16 @@
 
 <p class="description">Convey meaning through color. Out of the box you get access to all colors in the Material Design spec.</p>
 
-[Color](https://material.io/design/color/) in material design is inspired by bold hues juxtaposed with muted environments, deep shadows, and bright highlights.
+The Material Design [color system](https://material.io/design/color/) can be used to create a color theme that reflects your brand or style.
 
 ## Color system
-
-The Material Design color system can be used to create a color theme that reflects your brand or style.
 
 ### Important Terms
 
 #### "Palette"
 
 A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines.
+[This color palette](#color-palette) have been designed to work harmoniously with each other.
 
 #### "Hue" & "Shade"
 
@@ -33,12 +32,24 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
-const accent2 = purple.A200; // #E040FB (alternative method)
+const accent = purple.A200; // #E040FB (alternative method)
 ```
+
+### Color palette
+
+Given a *HUE* (red, pink, etc.) and a *SHADE* (500, 600, etc.) you can import the color like this:
+
+```jsx
+import HUE from '@material-ui/core/colors/HUE';
+
+const color = HUE[SHADE];
+```
+
+{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
 
 ## Color tool
 
-To test a [material.io/color](https://material.io/design/color/) color scheme with the Material-UI
+To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI
 documentation, simply select colors using the palette and sliders below.
 Alternatively, you can enter hex values in the Primary and Secondary text fields.
 
@@ -100,9 +111,4 @@ const theme = createMuiTheme({
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Is an online tool for creating Material-UI themes via Material Design Color Tool.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
-
-## Color palette
-
-This color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
-
-{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
+- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
