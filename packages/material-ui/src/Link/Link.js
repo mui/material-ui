@@ -118,8 +118,8 @@ Link.propTypes = {
    */
   component: componentPropType,
   /**
-   *  The target of the link. You can read about this property on the
-   *  [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes)
+   * The target of the link. You can read about this property on the
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes)
    */
   target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
   /**
