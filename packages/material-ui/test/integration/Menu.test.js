@@ -52,8 +52,13 @@ describe('<Menu> integration', () => {
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
-    it('should keep focus on the 3rd item (last item) when down arrow is pressed', () => {
+    it('should switch focus from the 3rd item to the 1st item when down arrow is pressed', () => {
       TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('down') });
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
+    });
+
+    it('should switch focus from the 1st item to the 3rd item when up arrow is pressed', () => {
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('up') });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
