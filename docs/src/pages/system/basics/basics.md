@@ -339,10 +339,11 @@ The `style()` helper can also be used to maps properties to style objects in a t
 In this example, the `variant` property supports all the keys present in `theme.typography`.
 
 ```jsx
-import { style } from '@material-ui/system';
-import styled from 'styled-components';
+import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { style, typography } from '@material-ui/system';
 
-const typography = style({
+const variant = style({
   prop: 'variant',
   cssProperty: false,
   themeKey: 'typography',
@@ -350,12 +351,27 @@ const typography = style({
 
 // ⚠ Text is already defined in the global context:
 // https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
-const Text = styled.div`
+const Text = styled.span`
+  font-family: Helvetica;
+  ${variant}
   ${typography}
 `;
 
-// Renders the theme.typography.h5 style object.
-<Text variant="h5">variant=h5</Text>
+const theme = {
+  typography: {
+    h1: {
+      fontSize: 30,
+      lineHeight: 1.5,
+    },
+    h2: {
+      fontSize: 25,
+      lineHeight: 1.5,
+    },
+  },
+};
+
+// Renders the theme.typography.h1 style object.
+<Text variant="h1">variant=h1</Text>
 ```
 
 {{"demo": "pages/system/basics/Variant.js"}}
@@ -401,11 +417,13 @@ In this example, we demonstrate how to reproduce a Banner component.
 
 `@material-ui/system` synthesizes ideas & APIs from several different sources:
 
-- Concept: [Tailwind CSS](https://tailwindcss.com/)
-- Properties grouping: [Bootstrap CSS helpers](https://getbootstrap.com/docs/4.1/utilities/borders/)
-- Pioneers:
-  - [Styled System Box](https://github.com/jxnblk/styled-system)
-  - [Primer Box](https://primer.style/components/docs/Box)
-  - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
+- [Tachyons](https://tachyons.io/) was one of the first (2014) CSS libraries to promote the [Atomic CSS pattern](https://css-tricks.com/lets-define-exactly-atomic-css/) (or Functional CSS).
+- Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
+- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
+- In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions.
+It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
+- Large companies like Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
-- Object responsive API: [Smooth-UI Box](https://smooth-ui.smooth-code.com/docs-basics-system)
+  - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
+  - [Primer Box](https://primer.style/components/docs/Box)
+- The actual implementation and the object responsive API was inspired by the [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system).

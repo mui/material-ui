@@ -5,29 +5,23 @@ const styles = theme => ({
   '@global': {
     '#cf': {
       overflow: 'hidden',
-      backgroundColor: `${theme.palette.background.paper} !important`,
+      backgroundColor: theme.palette.background.paper,
       padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
         .spacing.unit + 130}px`,
       borderRadius: theme.shape.borderRadius,
-      width: 'initial !important',
-      margin: '0 !important', // Reset
-      maxWidth: 'none !important', // Reset
-      '& img': {
-        verticalAlign: 'middle',
-      },
-      '& .cf-wrapper.cf-wrapper': {
-        overflow: 'visible', // Reset
-        backgroundColor: 'transparent', // Reset
-      },
       '& .cf-img-wrapper.cf-img-wrapper': {
         float: 'left',
         marginLeft: -130,
         marginRight: theme.spacing.unit,
-        marginBottom: '0px !important', // Reset
+      },
+      '& img': {
+        verticalAlign: 'middle',
+      },
+      '& a': {
+        textDecoration: 'none',
       },
       '& .cf-text.cf-text': {
         ...theme.typography.body2,
-        color: `${theme.typography.body2.color} !important`,
         display: 'block',
         '& strong': {
           fontWeight: theme.typography.fontWeightMedium,
@@ -35,9 +29,8 @@ const styles = theme => ({
       },
       '& .cf-powered-by.cf-powered-by': {
         ...theme.typography.caption,
-        fontSize: `${theme.typography.caption.fontSize} !important`,
-        color: `${theme.palette.text.secondary} !important`,
-        marginTop: '0px! important', // Reset
+        color: theme.palette.text.secondary,
+        display: 'block',
       },
     },
   },

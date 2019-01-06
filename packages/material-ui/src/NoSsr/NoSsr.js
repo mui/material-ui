@@ -24,10 +24,16 @@ class NoSsr extends React.Component {
     if (this.props.defer) {
       // Wondering why we use two RAFs? Check this video out:
       // https://www.youtube.com/watch?v=cCOL7MC4Pl0
+      //
+      // The componentDidMount() method is called after the DOM nodes are inserted.
+      // The UI might not have rendering the changes. We request a frame.
       requestAnimationFrame(() => {
-        // The browser should be about to render the DOM that React committed at this point.
-        // We don't want to interrupt. Let's wait the next raf.
+        // The browser should be about to render the DOM nodes
+        // that React committed at this point.
+        // We don't want to interrupt. Let's wait the next frame.
         requestAnimationFrame(() => {
+          // The UI is up-to-date at this point.
+          // We can continue rendering the children.
           if (this.mounted) {
             this.setState({ mounted: true });
           }
