@@ -35,13 +35,6 @@ const styles = theme => ({
 
 const appList = [
   {
-    title: 'Onepixel',
-    description: 'Beautiful Stock Photos for $1.',
-    image: '/static/images/showcase/onepixel.jpg',
-    link: 'https://www.onepixel.com/',
-    alexa: 85,
-  },
-  {
     title: 'Bethseda Game Studios',
     description:
       'The official site for Bethesda, publisher of Fallout, DOOM, Dishonored, ' +
@@ -69,13 +62,6 @@ const appList = [
     alexa: 4,
   },
   {
-    title: 'BARKS',
-    description: 'Japan Music Network. 🇯🇵',
-    image: '/static/images/showcase/barks.jpg',
-    link: 'https://www.barks.jp/',
-    alexa: 33,
-  },
-  {
     title: 'Leroy Merlin',
     description:
       'Per i vostri progetti di bricolage, giardinaggio e miglioramento della casa, ' +
@@ -86,7 +72,22 @@ const appList = [
     link: 'https://www.leroymerlin.it/',
     alexa: 13,
   },
-
+  {
+    title: 'BARKS',
+    description: 'Japan Music Network. 🇯🇵',
+    image: '/static/images/showcase/barks.jpg',
+    link: 'https://www.barks.jp/',
+    alexa: 34,
+  },
+  {
+    title: 'GovX',
+    description:
+      'Current & former uniformed professionals get exclusive access to deals ' +
+      'on gear, apparel, tickets, travel and more.',
+    image: '/static/images/showcase/govx.jpg',
+    link: 'https://www.govx.com/',
+    alexa: 54,
+  },
   {
     title: 'LessWrong',
     description: 'LessWrong is a community blog devoted to the art of human rationality.',
@@ -109,6 +110,13 @@ const appList = [
     image: '/static/images/showcase/aexdownloadcenter.jpg',
     link: 'https://downloads.aospextended.com/',
     alexa: 76,
+  },
+  {
+    title: 'Onepixel',
+    description: 'Beautiful Stock Photos for $1.',
+    image: '/static/images/showcase/onepixel.jpg',
+    link: 'https://www.onepixel.com/',
+    alexa: 85,
   },
   {
     title: 'iFit',
