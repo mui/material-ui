@@ -43,7 +43,7 @@ function Content(props) {
     <Paper className={classes.paper}>
       <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
         <Toolbar>
-          <Grid container spacing={16} alignItems="center">
+          <Grid container spacing={2} alignItems="center">
             <Grid item>
               <SearchIcon className={classes.block} color="inherit" />
             </Grid>

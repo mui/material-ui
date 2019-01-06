@@ -81,7 +81,7 @@ class ProductCTA extends React.Component {
 
     return (
       <LayoutBody className={classes.root} component="section" width="large">
-        <Grid container spacing={0}>
+        <Grid container>
           <Grid item xs={12} md={6} className={classes.cardWrapper}>
             <div className={classes.card}>
               <form onSubmit={this.handleSubmit} className={classes.cardContent}>

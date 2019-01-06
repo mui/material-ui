@@ -67,7 +67,7 @@ function ProductHowItWorks(props) {
           How it works
         </Typography>
         <div>
-          <Grid container spacing={40}>
+          <Grid container spacing={5}>
             <Grid item xs={12} md={4}>
               <div className={classes.item}>
                 <div className={classes.number}>1.</div>

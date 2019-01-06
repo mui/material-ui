@@ -32,7 +32,7 @@ function CSSGrid(props) {
       <Typography variant="subtitle1" gutterBottom>
         Material-UI Grid:
       </Typography>
-      <Grid container spacing={24}>
+      <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>xs=3</Paper>
         </Grid>

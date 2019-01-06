@@ -91,7 +91,7 @@ function Album(props) {
               entirely.
             </Typography>
             <div className={classes.heroButtons}>
-              <Grid container spacing={16} justify="center">
+              <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
                     Main call to action
@@ -108,7 +108,7 @@ function Album(props) {
         </div>
         <div className={clsx(classes.layout, classes.cardGrid)}>
           {/* End hero unit */}
-          <Grid container spacing={40}>
+          <Grid container spacing={5}>
             {cards.map(card => (
               <Grid item key={card} sm={6} md={4} lg={3}>
                 <Card className={classes.card}>

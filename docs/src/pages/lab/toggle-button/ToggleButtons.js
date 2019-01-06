@@ -42,7 +42,7 @@ class ToggleButtons extends React.Component {
     const { alignment, formats } = this.state;
 
     return (
-      <Grid container spacing={16}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>

@@ -146,7 +146,7 @@ function Pricing(props) {
           </Typography>
         </div>
         {/* End hero unit */}
-        <Grid container spacing={40} alignItems="flex-end">
+        <Grid container spacing={5} alignItems="flex-end">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -186,7 +186,7 @@ function Pricing(props) {
       </main>
       {/* Footer */}
       <footer className={clsx(classes.footer, classes.layout)}>
-        <Grid container spacing={32} justify="space-evenly">
+        <Grid container spacing={4} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>

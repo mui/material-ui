@@ -88,7 +88,7 @@ function PageLayoutExamples(props) {
   const { classes, t } = props;
 
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       {layouts(t).map(layout => (
         <Grid item sm={6} md={4} className={classes.item} key={layout.title}>
           <Card className={classes.card}>

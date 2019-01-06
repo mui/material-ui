@@ -17,7 +17,7 @@ import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 
-const GUTTERS = [0, 8, 16, 24, 32, 40];
+const GUTTERS = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function generateGrid(globalStyles, theme, breakpoint) {
@@ -74,11 +74,13 @@ function generateGutter(theme, breakpoint) {
       return;
     }
 
+    const themeSpacing = spacing * theme.spacing.unit;
+
     styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: -spacing / 2,
-      width: `calc(100% + ${spacing}px)`,
+      margin: -themeSpacing / 2,
+      width: `calc(100% + ${themeSpacing}px)`,
       '& > $item': {
-        padding: spacing / 2,
+        padding: themeSpacing / 2,
       },
     };
   });

@@ -108,7 +108,7 @@ const styles = theme => ({
 function Team(props) {
   const { classes } = props;
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       {members.map(member => (
         <Grid key={member.name} item xs={12} md={6}>
           <Paper>

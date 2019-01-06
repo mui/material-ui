@@ -27,7 +27,7 @@ function GridIntegration(props) {
       <Typography variant="subtitle1" gutterBottom>
         Current width: {props.width}
       </Typography>
-      <Grid container spacing={24}>
+      <Grid container spacing={3}>
         <Hidden xsUp>
           <Grid item xs>
             <Paper className={classes.paper}>xsUp</Paper>

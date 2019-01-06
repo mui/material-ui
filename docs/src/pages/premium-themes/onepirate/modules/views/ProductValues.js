@@ -48,7 +48,7 @@ function ProductValues(props) {
           className={classes.curvyLines}
           alt="curvy lines"
         />
-        <Grid container spacing={40}>
+        <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <div className={classes.item}>
               <img

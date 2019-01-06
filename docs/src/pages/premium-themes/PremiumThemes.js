@@ -105,7 +105,7 @@ function themes(t) {
 function PremiumThemes(props) {
   const { classes, t } = props;
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       {themes(t).map(theme => (
         <Grid key={theme.name} item xs={12} md={6}>
           <Card className={classes.card}>

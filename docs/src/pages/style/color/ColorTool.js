@@ -243,7 +243,7 @@ class ColorTool extends React.Component {
     };
 
     return (
-      <Grid container spacing={40} className={classes.root}>
+      <Grid container spacing={5} className={classes.root}>
         {colorPicker('primary')}
         {colorPicker('secondary')}
         <Grid item xs={12} sm={6} md={4}>

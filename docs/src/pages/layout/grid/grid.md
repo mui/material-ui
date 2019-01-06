@@ -93,7 +93,7 @@ There are 3 available workarounds:
 ```jsx
   <body>
     <div style={{ padding: 20 }}>
-      <Grid container spacing={40}>
+      <Grid container spacing={4}>
         //...
       </Grid>
     </div>
