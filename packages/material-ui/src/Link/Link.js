@@ -6,22 +6,14 @@ import { componentPropType } from '@material-ui/utils';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
-import { capitalize } from '../utils/helpers';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
-    },
-  },
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    color: theme.palette.primary.main,
-    '&:hover': {
-      color: theme.palette.primary.dark,
     },
   },
   // Same reset as ButtonBase.root
@@ -46,7 +38,7 @@ export const styles = theme => ({
       borderStyle: 'none', // Remove Firefox dotted outline.
     },
   },
-});
+};
 
 function Link(props) {
   const {
@@ -64,13 +56,13 @@ function Link(props) {
       className={classNames(
         classes.root,
         {
-          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
           [classes.button]: component === 'button',
         },
         classNameProp,
       )}
       classes={TypographyClasses}
       component={component}
+      color={color}
       {...other}
     >
       {children}
@@ -95,7 +87,14 @@ Link.propTypes = {
   /**
    * The color of the link.
    */
-  color: PropTypes.oneOf(['inherit', 'primary']),
+  color: PropTypes.oneOf([
+    'error',
+    'inherit',
+    'primary',
+    'secondary',
+    'textPrimary',
+    'textSecondary',
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
@@ -105,11 +104,16 @@ Link.propTypes = {
    * `classes` property applied to the [`Typography`](/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
+  /**
+   * Applies the theme typography styles.
+   */
+  variant: PropTypes.string,
 };
 
 Link.defaultProps = {
   color: 'primary',
   component: 'a',
+  variant: 'inherit',
 };
 
 export default withStyles(styles, { name: 'MuiLink' })(Link);

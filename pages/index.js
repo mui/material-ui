@@ -122,7 +122,7 @@ class HomePage extends React.Component {
                 <Button
                   component={buttonProps => (
                     <Link
-                      variant="button"
+                      naked
                       prefetch
                       href="/getting-started/installation"
                       {...buttonProps}

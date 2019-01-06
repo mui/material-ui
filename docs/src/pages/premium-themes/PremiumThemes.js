@@ -111,6 +111,7 @@ function PremiumThemes(props) {
               component="a"
               href={theme.href}
               rel="noopener nofollow"
+              target="_blank"
               className={classes.media}
               image={theme.src}
               title={theme.name}
