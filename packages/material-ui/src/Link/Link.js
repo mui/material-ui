@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { componentPropType } from '@material-ui/utils';
 import classNames from 'classnames';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
@@ -11,10 +12,18 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
+  },
+  underlineNone: {
+    textDecoration: 'none',
+  },
+  underlineHover: {
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
     },
+  },
+  underlineAlways: {
+    textDecoration: 'underline',
   },
   // Same reset as ButtonBase.root
   /* Styles applied to the root element if `component="button"`. */
@@ -48,6 +57,7 @@ function Link(props) {
     color,
     component,
     TypographyClasses,
+    underline,
     ...other
   } = props;
 
@@ -58,6 +68,7 @@ function Link(props) {
         {
           [classes.button]: component === 'button',
         },
+        classes[`underline${capitalize(underline)}`],
         classNameProp,
       )}
       classes={TypographyClasses}
@@ -100,6 +111,7 @@ Link.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: componentPropType,
+  underline: PropTypes.oneOf(['none', 'hover', 'always']),
   /**
    * `classes` property applied to the [`Typography`](/api/typography/) element.
    */
@@ -113,6 +125,7 @@ Link.propTypes = {
 Link.defaultProps = {
   color: 'primary',
   component: 'a',
+  underline: 'hover',
   variant: 'inherit',
 };
 
