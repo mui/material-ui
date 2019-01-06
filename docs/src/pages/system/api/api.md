@@ -33,9 +33,9 @@
 | [positions](/system/positions/) | `top` | `top` | `top` | none |
 | [positions](/system/positions/) | `zIndex` | `zIndex` | `z-index` | `zIndex` |
 | [sizing](/system/sizing/) | `height` | `height` | `height` | none |
-| [sizing](/system/sizing/) | `maxHeight` | `axHeight`| `max-height` | none |
+| [sizing](/system/sizing/) | `maxHeight` | `maxHeight`| `max-height` | none |
 | [sizing](/system/sizing/) | `maxWidth` | `maxWidth` | `max-width` | none |
-| [sizing](/system/sizing/) | `minHeight` | `inHeight`| `min-height` | none |
+| [sizing](/system/sizing/) | `minHeight` | `minHeight`| `min-height` | none |
 | [sizing](/system/sizing/) | `minWidth` | `minWidth` | `min-width` | none |
 | [sizing](/system/sizing/) | `width` | `width` | `width` | none |
 | [spacing](/system/spacing/) | `spacing` | `m` | `margin` | `spacing` |
