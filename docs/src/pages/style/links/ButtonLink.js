@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid, no-alert */
 
 import React from 'react';
 import Link from '@material-ui/core/Link';

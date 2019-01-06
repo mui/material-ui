@@ -25,7 +25,6 @@ function NextWrapper(props) {
   );
 }
 
-
 NextWrapper.defaultProps = {
   activeClassName: 'active',
 };
@@ -39,7 +38,6 @@ NextWrapper.propTypes = {
     pathname: PropTypes.string.isRequired,
   }).isRequired,
 };
-
 
 function Link(props) {
   const { naked, ...other } = props;

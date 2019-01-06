@@ -10,21 +10,28 @@ import Typography from '../Typography';
 
 export const styles = {
   /* Styles applied to the root element. */
-  root: {
-    display: 'inline-block',
-  },
+  root: {},
+  /* Styles applied to the root element if `underline="none"` */
   underlineNone: {
     textDecoration: 'none',
   },
+  /* Styles applied to the root element if `underline="hover"` */
   underlineHover: {
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
     },
   },
+  /* Styles applied to the root element if `underline="always"` */
   underlineAlways: {
     textDecoration: 'underline',
   },
+  /* Styles applied to the root element if `block={false}` */
+  inline: {
+    display: 'inline-block',
+  },
+  /* Styles applied to the root element if `block={true}` */
+  block: {},
   // Same reset as ButtonBase.root
   /* Styles applied to the root element if `component="button"`. */
   button: {
@@ -51,10 +58,10 @@ export const styles = {
 
 function Link(props) {
   const {
+    block,
     children,
     classes,
     className: classNameProp,
-    color,
     component,
     TypographyClasses,
     underline,
@@ -66,14 +73,15 @@ function Link(props) {
       className={classNames(
         classes.root,
         {
+          [classes.block]: block,
           [classes.button]: component === 'button',
+          [classes.inline]: !block,
         },
         classes[`underline${capitalize(underline)}`],
         classNameProp,
       )}
       classes={TypographyClasses}
       component={component}
-      color={color}
       {...other}
     >
       {children}
@@ -82,6 +90,11 @@ function Link(props) {
 }
 
 Link.propTypes = {
+  /**
+   *  Controls whether the link is inline or not. When block is true the link is not inline
+   *  when block is false it is.
+   */
+  block: PropTypes.bool,
   /**
    * The content of the link.
    */
@@ -111,11 +124,19 @@ Link.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: componentPropType,
-  underline: PropTypes.oneOf(['none', 'hover', 'always']),
+  /**
+   *  The target of the link. You can read about this property on the
+   *  [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes)
+   */
+  target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
   /**
    * `classes` property applied to the [`Typography`](/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
+  /**
+   *  Controls when the link should have an underline.
+   */
+  underline: PropTypes.oneOf(['none', 'hover', 'always']),
   /**
    * Applies the theme typography styles.
    */
@@ -125,6 +146,8 @@ Link.propTypes = {
 Link.defaultProps = {
   color: 'primary',
   component: 'a',
+  block: false,
+  target: '_self',
   underline: 'hover',
   variant: 'inherit',
 };

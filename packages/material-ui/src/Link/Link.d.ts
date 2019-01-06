@@ -8,12 +8,21 @@ export interface LinkProps
     LinkClassKey,
     'component'
   > {
+  block?: boolean;
   color?: PropTypes.Color;
   component?: React.ReactType<LinkProps>;
   TypographyClasses?: TypographyProps['classes'];
+  underline?: 'none' | 'hover' | 'always';
 }
 
-export type LinkClassKey = 'root';
+export type LinkClassKey =
+  | 'root'
+  | 'underlineNone'
+  | 'underlineHover'
+  | 'underlineAlways'
+  | 'inline'
+  | 'block'
+  | 'button';
 
 declare const Link: React.ComponentType<LinkProps>;
 
