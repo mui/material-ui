@@ -12,8 +12,8 @@ If you notice an inaccuracy or something that doesn’t seem quite right, please
 We cover the following libraries:
 
 - [Material-UI](#material-ui)
-- [Material Design Lite (MDL)](#material-design-lite-mdl-)
-- [Material Components Web (MDC-web)](#material-components-web-mdc-web-)
+- [Material Design Lite (MDL)](#material-design-lite-mdl)
+- [Material Components Web (MDC-web)](#material-components-web-mdc-web)
 - [Materialize](#materialize)
 - [React Toolbox](#react-toolbox)
 
