@@ -114,7 +114,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `inline={true}`. */
   inline: {
-    display: 'inline-block',
+    display: 'inline',
   },
 });
 
