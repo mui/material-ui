@@ -153,3 +153,8 @@ Thank you to [BrowserStack](https://www.browserstack.com/) for providing the inf
 
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
+
+## Security
+
+To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
+Tidelift will coordinate the fix and disclosure.
