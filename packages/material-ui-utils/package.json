@@ -2,7 +2,7 @@
   "name": "@material-ui/utils",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
   "main": "./src/index.js",
   "keywords": [

@@ -2,7 +2,7 @@
   "name": "@material-ui/system",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "Material-UI System - Design system for Material-UI.",
   "main": "./src/index.js",
   "keywords": [

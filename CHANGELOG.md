@@ -20,6 +20,10 @@ Here are some highlights ✨:
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 - [MenuList] Wrap focus by default, add disableListWrap (#14100) @dallin-christensen
 
+### `@material-ui/icons@v3.0.2`
+
+- [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
+
 ### `@material-ui/lab@v3.0.0-alpha.28`
 
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
@@ -31,7 +35,7 @@ Here are some highlights ✨:
 - [styles] Upgrade JSS to 10.0.0-alpha.7 (#14090) @oliviertassinari
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 
-### `@material-ui/system@v3.0.0-alpha.0`
+### `@material-ui/system@v3.0.0-alpha.1`
 
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 
