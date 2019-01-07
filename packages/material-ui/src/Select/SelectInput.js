@@ -318,6 +318,7 @@ class SelectInput extends React.Component {
           {...MenuProps}
           MenuListProps={{
             role: 'listbox',
+            disableListWrap: true,
             ...MenuProps.MenuListProps,
           }}
           PaperProps={{
