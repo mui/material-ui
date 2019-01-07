@@ -30,4 +30,4 @@ export { default as TimePickerView } from './TimePicker/components/TimePickerVie
 
 export { default as Clock } from './TimePicker/components/Clock';
 
-export { default as MuiPickersUtilsProvider } from './MuiPickersUtilsProvider';
+export { default as MuiPickersUtilsProvider, MuiPickersContextConsumer  } from './MuiPickersUtilsProvider';
