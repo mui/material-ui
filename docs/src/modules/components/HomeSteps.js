@@ -130,7 +130,7 @@ function HomeSteps(props) {
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/getting-started/installation" {...buttonProps} />
+            <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
           )}
         >
           Read installation docs
@@ -164,7 +164,7 @@ function HomeSteps(props) {
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/getting-started/usage" {...buttonProps} />
+            <Link naked prefetch href="/getting-started/usage" {...buttonProps} />
           )}
         >
           Explore the docs
@@ -188,9 +188,7 @@ function HomeSteps(props) {
         </div>
         <Divider className={classes.divider} />
         <Button
-          component={buttonProps => (
-            <Link variant="button" prefetch href="/premium-themes" {...buttonProps} />
-          )}
+          component={buttonProps => <Link naked prefetch href="/premium-themes" {...buttonProps} />}
         >
           Browse themes
         </Button>

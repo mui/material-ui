@@ -5,7 +5,6 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Link from 'docs/src/modules/components/Link';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 
 const styles = theme => ({
@@ -646,9 +645,15 @@ function Showcase(props) {
             ) : null}
           </Typography>
           <Card className={classes.card}>
-            <Link href={app.link} target="_blank" rel="noopener">
-              <CardMedia image={app.image} title={app.title} className={classes.cardMedia} />
-            </Link>
+            <CardMedia
+              component="a"
+              href={app.link}
+              rel="noopener nofollow"
+              target="_blank"
+              className={classes.cardMedia}
+              image={app.image}
+              title={app.title}
+            />
           </Card>
           <Typography className={classes.description}>{app.description}</Typography>
         </div>
