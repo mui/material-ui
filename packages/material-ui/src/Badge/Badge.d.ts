@@ -8,6 +8,8 @@ export interface BadgeProps
   color?: PropTypes.Color | 'error';
   component?: React.ReactType<BadgeProps>;
   invisible?: boolean;
+  max?: number;
+  showZero?: boolean;
 }
 
 export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorSecondary' | 'invisible';

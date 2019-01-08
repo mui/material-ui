@@ -5,7 +5,7 @@ import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
-const RADIUS = 11;
+const RADIUS = 10;
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -24,22 +24,23 @@ export const styles = theme => ({
     alignContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: -RADIUS,
-    right: -RADIUS,
+    top: 0,
+    right: 0,
     fontFamily: theme.typography.fontFamily,
-    fontWeight: theme.typography.fontWeight,
+    fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(12),
-    width: RADIUS * 2,
+    minWidth: RADIUS * 2,
+    padding: '0 4px',
     height: RADIUS * 2,
-    borderRadius: '50%',
+    borderRadius: RADIUS,
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
+    transform: 'scale(1) translate(50%, -50%)',
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    transform: 'scale(1)',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -75,18 +76,29 @@ function Badge(props) {
     color,
     component: ComponentProp,
     invisible,
+    showZero,
+    max,
     ...other
   } = props;
 
+  let hidden = false;
+  const isZero = badgeContent === 0 || badgeContent === '0';
+
+  if (isZero && !showZero) {
+    hidden = true;
+  }
+
   const badgeClassName = classNames(classes.badge, {
     [classes[`color${capitalize(color)}`]]: color !== 'default',
-    [classes.invisible]: invisible,
+    [classes.invisible]: invisible || hidden,
   });
+
+  const displayValue = badgeContent > max ? `${max}+` : badgeContent;
 
   return (
     <ComponentProp className={classNames(classes.root, className)} {...other}>
       {children}
-      <span className={badgeClassName}>{badgeContent}</span>
+      <span className={badgeClassName}>{displayValue}</span>
     </ComponentProp>
   );
 }
@@ -122,12 +134,22 @@ Badge.propTypes = {
    * If `true`, the badge will be invisible.
    */
   invisible: PropTypes.bool,
+  /**
+   * Max count to show
+   */
+  max: PropTypes.number,
+  /**
+   * Controls whether the badge is hidden when `badgeContent` is zero
+   */
+  showZero: PropTypes.bool,
 };
 
 Badge.defaultProps = {
   color: 'default',
   component: 'span',
   invisible: false,
+  max: 99,
+  showZero: false,
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);
