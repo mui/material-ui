@@ -16,7 +16,7 @@ You can use it, but you don't have to. This styling solution is [interoperable w
 In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the
 components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
 a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
-We think that it's the future:
+We think that this is the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
@@ -61,8 +61,7 @@ Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@
 
 ## Getting started
 
-Because taste and colours are not always the same, we are proving 3 different APIs.
-They all share the same underlying logic.
+We provide 3 different APIs. They all share the same underlying logic.
 
 ### Hook API
 
