@@ -71,7 +71,7 @@ export default withStyles(styles)(MyComponent);
 
 ## `makeStyles(styles, [options]) => hook`
 
-Link a style sheet with a functional component using the **hook** pattern.
+Link a style sheet with a function component using the **hook** pattern.
 
 #### Arguments
 
@@ -88,7 +88,7 @@ Use the function signature if you need to have access to the theme. It's provide
 
 #### Returns
 
-`hook`: A hook. This hook can be used in a functional component.
+`hook`: A hook. This hook can be used in a function component.
 It accepts one argument: the properties that will be used for "interpolation" in
 the style sheet.
 
@@ -112,7 +112,7 @@ export default function MyComponent() {
 
 ## `styled(styles, [options])(Component) => Component`
 
-Link a style sheet with a functional component using the **styled components** pattern.
+Link a style sheet with a function component using the **styled components** pattern.
 
 #### Arguments
 
@@ -194,7 +194,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-This hook returns the `theme` object so it can be used inside a functional component.
+This hook returns the `theme` object so it can be used inside a function component.
 
 #### Returns
 
