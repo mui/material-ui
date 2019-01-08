@@ -1,4 +1,4 @@
-import { GenerateId } from 'jss';
+import { GenerateClassName } from 'jss';
 
 export interface GenerateClassNameOptions {
   dangerouslyUseGlobalCSS?: boolean;
@@ -6,4 +6,6 @@ export interface GenerateClassNameOptions {
   seed?: string;
 }
 
-export default function createGenerateClassName(options?: GenerateClassNameOptions): GenerateId;
+export default function createGenerateClassName(
+  options?: GenerateClassNameOptions,
+): GenerateClassName;
