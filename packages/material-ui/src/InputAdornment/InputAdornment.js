@@ -109,6 +109,7 @@ InputAdornment.propTypes = {
 
 InputAdornment.defaultProps = {
   component: 'div',
+  disablePointerEvents: false,
   disableTypography: false,
 };
 
