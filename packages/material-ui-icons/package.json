@@ -31,7 +31,8 @@
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:typings && yarn build:copy-files",
-    "release": "yarn build && npm publish build"
+    "release": "yarn build && npm publish build",
+    "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
