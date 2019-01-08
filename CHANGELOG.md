@@ -1,5 +1,23 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.8.3
+###### *Jan 9, 2019*
+
+Big thanks to the 5 contributors who made this release possible!
+
+We are making a quick release to fix an important TypeScript regression.
+
+### `@material-ui/core@v3.8.3`
+
+- [InputBase] Fix the `InputBaseComponentProps` type (#14082) @franklixuefei
+- [Link] Add a Link component (#14093) @joshwooding
+- [core] Fix jss v10 types being used (#14117) @eps1lon
+
+### Docs
+
+- [themes] Fix typo on Onepirate Forgot Password page (#14112) @mbrookes
+- [docs] Fix codesandbox examples with React Hooks (#14116) @asokani
+
 ## 3.8.2
 ###### *Jan 7, 2019*
 
