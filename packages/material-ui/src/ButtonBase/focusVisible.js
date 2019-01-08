@@ -51,7 +51,7 @@ const handleKeyUpEvent = event => {
     clearTimeout(internal.keyUpEventTimeout);
     internal.keyUpEventTimeout = setTimeout(() => {
       internal.focusKeyPressed = false;
-    }, 5e2);
+    }, 500);
   }
 };
 
