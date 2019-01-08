@@ -27,6 +27,10 @@ export const styles = {
   positionEnd: {
     marginLeft: 8,
   },
+  /* Styles applied to the root element if `disablePointerEvents=true` */
+  disabledPointerEvents: {
+    pointerEvents: 'none',
+  },
 };
 
 function InputAdornment(props) {
@@ -35,6 +39,7 @@ function InputAdornment(props) {
     component: Component,
     classes,
     className,
+    disablePointerEvents,
     disableTypography,
     position,
     variant,
@@ -49,6 +54,7 @@ function InputAdornment(props) {
           [classes.filled]: variant === 'filled',
           [classes.positionStart]: position === 'start',
           [classes.positionEnd]: position === 'end',
+          [classes.disabledPointerEvents]: disablePointerEvents,
         },
         className,
       )}
@@ -82,6 +88,11 @@ InputAdornment.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: componentPropType,
+  /**
+   * Disable pointer events on the root.
+   * This allows for the text in the adornment to focus the input on click.
+   */
+  disablePointerEvents: PropTypes.bool,
   /**
    * If children is a string then disable wrapping in a Typography component.
    */
