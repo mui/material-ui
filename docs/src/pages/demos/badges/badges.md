@@ -19,6 +19,12 @@ You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/demos/badges/BadgeMax.js"}}
 
+## Dot Badge
+
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+
+{{"demo": "pages/demos/badges/DotBadge.js"}}
+
 ## Badge visibility
 
 The visibility of badges can be controlled using the `invisible` property.

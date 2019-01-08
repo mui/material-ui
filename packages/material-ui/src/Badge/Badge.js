@@ -37,6 +37,7 @@ export const styles = theme => ({
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
     transform: 'scale(1) translate(50%, -50%)',
+    transformOrigin: '100% 0%',
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -63,7 +64,14 @@ export const styles = theme => ({
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    transform: 'scale(0)',
+    transform: 'scale(0) translate(50%, -50%)',
+    transformOrigin: '100% 0%',
+  },
+  /* Styles applied to the root element if `dot={true}`. */
+  dot: {
+    height: 6,
+    minWidth: 6,
+    padding: 0,
   },
 });
 
@@ -75,6 +83,7 @@ function Badge(props) {
     className,
     color,
     component: ComponentProp,
+    dot,
     invisible,
     showZero,
     max,
@@ -91,9 +100,13 @@ function Badge(props) {
   const badgeClassName = classNames(classes.badge, {
     [classes[`color${capitalize(color)}`]]: color !== 'default',
     [classes.invisible]: invisible || hidden,
+    [classes.dot]: dot,
   });
+  let displayValue = '';
 
-  const displayValue = badgeContent > max ? `${max}+` : badgeContent;
+  if (!dot) {
+    displayValue = badgeContent > max ? `${max}+` : badgeContent;
+  }
 
   return (
     <ComponentProp className={classNames(classes.root, className)} {...other}>
@@ -131,15 +144,19 @@ Badge.propTypes = {
    */
   component: componentPropType,
   /**
+   * Show dot instead.
+   */
+  dot: PropTypes.bool,
+  /**
    * If `true`, the badge will be invisible.
    */
   invisible: PropTypes.bool,
   /**
-   * Max count to show
+   * Max count to show.
    */
   max: PropTypes.number,
   /**
-   * Controls whether the badge is hidden when `badgeContent` is zero
+   * Controls whether the badge is hidden when `badgeContent` is zero.
    */
   showZero: PropTypes.bool,
 };
@@ -147,6 +164,7 @@ Badge.propTypes = {
 Badge.defaultProps = {
   color: 'default',
   component: 'span',
+  dot: false,
   invisible: false,
   max: 99,
   showZero: false,
