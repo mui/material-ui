@@ -90,7 +90,8 @@ function forcePageReload(registration) {
         // A new service worker is available, inform the user
         registration.waiting.postMessage('skipWaiting');
       } else if (event.target.state === 'activated') {
-        // window.location.reload();
+        // Force the control of the page by the activated service worker.
+        window.location.reload();
       }
     });
   }

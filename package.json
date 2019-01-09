@@ -179,8 +179,7 @@
     "webfontloader": "^1.6.28",
     "webpack": "4.20.2",
     "webpack-bundle-analyzer": "^3.0.0",
-    "webpack-cli": "^3.1.0",
-    "workbox-build": "^3.6.3"
+    "webpack-cli": "^3.1.0"
   },
   "resolutions": {
     "**/hoist-non-react-statics": "^3.2.1",
