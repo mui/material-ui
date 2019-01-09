@@ -59,8 +59,7 @@ class RootRef extends React.Component {
   }
 
   render() {
-    const { rootRef, children, ...remainingProps } = this.props;
-    return React.cloneElement(children, remainingProps);
+    return this.props.children;
   }
 }
 

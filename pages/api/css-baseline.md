@@ -20,7 +20,6 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | You can wrap a node. |
 
-Any other properties supplied will be spread to the root element (native element).
 
 ## Demos
 
