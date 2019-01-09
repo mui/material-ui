@@ -86,6 +86,10 @@ Icons can be specified as prepended or appended.
 
 {{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
+By default when using adornment in the begining `InputLabel` will be shrinked. In some cases this behaviour may not be desired. We can always restore default behaviour by setting `shrink='auto'`
+
+{{"demo": "pages/demos/text-fields/ShrinkAuto.js"}}
+
 ## Layout
 
 `TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using

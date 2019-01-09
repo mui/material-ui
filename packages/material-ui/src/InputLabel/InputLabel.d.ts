@@ -9,7 +9,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   FormLabelClasses?: FormLabelProps['classes'];
   focused?: boolean;
   required?: boolean;
-  shrink?: boolean;
+  shrink?: true | false | 'auto';
   variant?: 'standard' | 'outlined' | 'filled';
 }
 

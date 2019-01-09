@@ -27,7 +27,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 | <span class="prop-name">FormLabelClasses</span> | <span class="prop-type">object</span> |   | `classes` property applied to the [`FormLabel`](/api/form-label/) element. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br></span> |   | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |   | if `true`, the label will indicate that the input is required. |
-| <span class="prop-name">shrink</span> | <span class="prop-type">bool</span> |   | If `true`, the label is shrunk. |
+| <span class="prop-name">shrink</span> | <span class="prop-type">enum:&nbsp;true&nbsp;&#124;<br>&nbsp;false&nbsp;&#124;<br>&nbsp;'auto'<br></span> |   | If `true`, the label is shrunk. `'auto'` can be used to restore default behaviour and leave shrink handling to FormControl. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br></span> |   | The variant to use. |
 
 Any other properties supplied will be spread to the root element ([FormLabel](/api/form-label/)).

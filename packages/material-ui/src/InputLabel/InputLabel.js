@@ -95,8 +95,13 @@ function InputLabel(props) {
   } = props;
 
   let shrink = shrinkProp;
-  if (typeof shrink === 'undefined' && muiFormControl) {
-    shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
+
+  if (muiFormControl) {
+    if (typeof shrink === 'undefined') {
+      shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
+    } else if (shrink === 'auto') {
+      shrink = muiFormControl.filled || muiFormControl.focused;
+    }
   }
 
   const fcs = formControlState({
@@ -185,8 +190,9 @@ InputLabel.propTypes = {
   required: PropTypes.bool,
   /**
    * If `true`, the label is shrunk.
+   * `'auto'` can be used to restore default behaviour and leave shrink handling to FormControl.
    */
-  shrink: PropTypes.bool,
+  shrink: PropTypes.oneOf([true, false, 'auto']),
   /**
    * The variant to use.
    */
