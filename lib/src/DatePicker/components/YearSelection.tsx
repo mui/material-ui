@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import DomainPropTypes, { DateType } from '../../constants/prop-types';
+import { DateType, DomainPropTypes } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import Year from './Year';
 
@@ -23,17 +23,15 @@ export class YearSelection extends React.PureComponent<YearSelectionProps> {
     date: PropTypes.shape({}).isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    disablePast: PropTypes.bool,
-    disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
-    utils: PropTypes.object.isRequired,
     innerRef: PropTypes.any,
   };
 
   public static defaultProps = {
     animateYearScrolling: false,
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
   };
 
   public selectedYearRef?: React.ReactInstance = undefined;

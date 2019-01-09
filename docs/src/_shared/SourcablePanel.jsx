@@ -14,10 +14,6 @@ class SourcablePanel extends PureComponent {
     sourceFile: PropTypes.string.isRequired,
   };
 
-  static defaultProps = {
-    description: undefined,
-  };
-
   state = {
     sourceExpanded: false,
   };

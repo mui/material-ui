@@ -5,7 +5,6 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
-import DomainPropTypes from '../constants/prop-types';
 
 export interface ModalWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
   onAccept?: () => void;
@@ -44,11 +43,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     todayLabel: PropTypes.string,
     showTodayButton: PropTypes.bool,
     onOpen: PropTypes.func,
-    format: PropTypes.string,
     DialogProps: PropTypes.object,
-    value: DomainPropTypes.date,
-    invalidLabel: PropTypes.node,
-    labelFunc: PropTypes.func,
     onClose: PropTypes.func,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
@@ -59,23 +54,13 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
   };
 
   public static defaultProps = {
-    invalidLabel: undefined,
     value: new Date(),
-    labelFunc: undefined,
     okLabel: 'OK',
     cancelLabel: 'Cancel',
     clearLabel: 'Clear',
     todayLabel: 'Today',
     clearable: false,
     showTodayButton: false,
-    format: undefined,
-    onAccept: undefined,
-    onDismiss: undefined,
-    onClear: undefined,
-    onOpen: undefined,
-    onClose: undefined,
-    onSetToday: undefined,
-    DialogProps: undefined,
     isAccepted: false,
   };
 

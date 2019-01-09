@@ -41,16 +41,11 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
 );
 
 (SlideTransition as any).propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
   transKey: PropTypes.string.isRequired,
   innerRef: PropTypes.any,
-};
-
-SlideTransition.defaultProps = {
-  className: undefined,
 };
 
 export const styles = (theme: Theme) => {

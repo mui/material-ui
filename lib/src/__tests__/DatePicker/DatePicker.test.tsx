@@ -8,12 +8,7 @@ describe('DatePicker', () => {
 
   beforeEach(() => {
     component = shallow(
-      <DatePicker
-        classes={{}}
-        date={utilsToUse.date('01-01-2017')}
-        utils={utilsToUse}
-        onChange={jest.fn()}
-      />
+      <DatePicker date={utilsToUse.date('01-01-2017')} utils={utilsToUse} onChange={jest.fn()} />
     );
   });
 

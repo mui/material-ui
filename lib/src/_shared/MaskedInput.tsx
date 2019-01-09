@@ -13,10 +13,6 @@ export default class Input extends React.PureComponent<CustomMaskedInputProps> {
     inputRef: PropTypes.func.isRequired,
   };
 
-  public static defaultProps = {
-    mask: undefined,
-  };
-
   public createInputRef = (ref: MaskedInput | null) => {
     const { inputRef } = this.props;
 

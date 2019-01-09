@@ -62,9 +62,6 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
 
 (DateTimePickerTabs as any).propTypes = {
   view: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
   dateRangeIcon: PropTypes.node.isRequired,
   timeIcon: PropTypes.node.isRequired,
 };

@@ -105,8 +105,6 @@ NavItem.propTypes = {
 
 NavItem.defaultProps = {
   depth: 0,
-  children: undefined,
-  href: undefined,
 };
 
 export default withStyles(styles)(NavItem);

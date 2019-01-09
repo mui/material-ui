@@ -1,6 +1,8 @@
-import { IUtils } from '@date-io/core/IUtils';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { DateType } from '../constants/prop-types';
+
+import { IUtils } from '@date-io/core/IUtils';
+import { DateType, DomainPropTypes } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
@@ -52,6 +54,19 @@ const getInitialDate = ({ utils, value, initialFocusedDate }: OuterBasePickerPro
 };
 
 export class BasePicker extends React.Component<OuterBasePickerProps & WithUtilsProps> {
+  public static propTypes = {
+    value: DomainPropTypes.date,
+    onChange: PropTypes.func.isRequired,
+    autoOk: PropTypes.bool,
+    initialFocusedDate: PropTypes.any,
+  };
+
+  public static defaultProps = {
+    value: new Date(),
+    autoOK: false,
+    ampm: true,
+  };
+
   public state = {
     date: getInitialDate(this.props),
     isAccepted: false,

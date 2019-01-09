@@ -8,72 +8,13 @@ import InputAdornment, {
 } from '@material-ui/core/InputAdornment';
 import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import { MaskedInputProps } from 'react-text-mask';
-import DomainPropTypes, { DateType } from '../constants/prop-types';
+import { getDisplayDate, getError } from '../_helpers/text-field-helper';
+import { DateType, DomainPropTypes } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { ExtendMui } from '../typings/extendMui';
 import { KeyboardIcon } from './icons/KeyboardIcon';
 import MaskedInput from './MaskedInput';
 import { withUtils, WithUtilsProps } from './WithUtils';
-
-const getDisplayDate = ({
-  utils,
-  value,
-  format,
-  invalidLabel,
-  emptyLabel,
-  labelFunc,
-}: DateTextFieldProps) => {
-  const isEmpty = value === null;
-  const date = utils.date(value);
-
-  if (labelFunc) {
-    return labelFunc(isEmpty ? null : date, invalidLabel!);
-  }
-
-  if (isEmpty) {
-    return emptyLabel;
-  }
-
-  return utils.isValid(date) ? utils.format(date, format) : invalidLabel;
-};
-
-const getError = (value: MaterialUiPickersDate, props: DateTextFieldProps): React.ReactNode => {
-  const {
-    utils,
-    maxDate,
-    minDate,
-    disablePast,
-    disableFuture,
-    maxDateMessage,
-    minDateMessage,
-    invalidDateMessage,
-  } = props;
-
-  if (!utils.isValid(value)) {
-    // if null - do not show error
-    if (utils.isNull(value)) {
-      return '';
-    }
-
-    return invalidDateMessage;
-  }
-
-  if (
-    (maxDate && utils.isAfter(value, utils.endOfDay(utils.date(maxDate)))) ||
-    (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
-  ) {
-    return maxDateMessage;
-  }
-
-  if (
-    (minDate && utils.isBefore(value, utils.startOfDay(utils.date(minDate)))) ||
-    (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
-  ) {
-    return minDateMessage;
-  }
-
-  return '';
-};
 
 export interface DateTextFieldProps
   extends WithUtilsProps,
@@ -149,7 +90,6 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     onClick: PropTypes.func.isRequired,
     clearable: PropTypes.bool,
     utils: PropTypes.object.isRequired,
-    disabled: PropTypes.bool,
     InputProps: PropTypes.shape({}),
     mask: PropTypes.any,
     minDateMessage: PropTypes.node,
@@ -174,22 +114,13 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     disabled: false,
     invalidLabel: 'Unknown',
     emptyLabel: '',
-    value: new Date(),
-    labelFunc: undefined,
-    format: undefined,
-    InputProps: undefined,
     keyboard: false,
-    mask: undefined,
     keyboardIcon: <KeyboardIcon />,
     disableOpenOnEnter: false,
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
-    onBlur: undefined,
-    onClear: undefined,
     disablePast: false,
     disableFuture: false,
-    onError: undefined,
-    onInputChange: undefined,
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     minDateMessage: 'Date should not be before minimal date',
@@ -197,17 +128,16 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     TextFieldComponent: TextField,
     InputAdornmentProps: {},
     adornmentPosition: 'end' as MuiInputAdornmentProps['position'],
-    pipe: undefined,
     keepCharPositions: false,
   };
 
-  public static updateState = (props: DateTextFieldProps) => ({
+  public static getStateFromProps = (props: DateTextFieldProps) => ({
     value: props.value,
     displayValue: getDisplayDate(props),
     error: getError(props.utils.date(props.value), props),
   });
 
-  public state = DateTextField.updateState(this.props);
+  public state = DateTextField.getStateFromProps(this.props);
 
   public componentDidUpdate(prevProps: DateTextFieldProps) {
     if (
@@ -218,7 +148,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       prevProps.emptyLabel !== this.props.emptyLabel ||
       prevProps.utils !== this.props.utils
     ) {
-      this.setState(DateTextField.updateState(this.props));
+      this.setState(DateTextField.getStateFromProps(this.props));
     }
   }
 
@@ -227,7 +157,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
 
     if (value === '') {
       if (this.props.value === null) {
-        this.setState(DateTextField.updateState(this.props));
+        this.setState(DateTextField.getStateFromProps(this.props));
       } else if (clearable && onClear) {
         onClear();
       }

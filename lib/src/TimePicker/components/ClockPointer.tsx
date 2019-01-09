@@ -15,11 +15,9 @@ export interface ClockPointerProps extends WithStyles<typeof styles> {
 
 export class ClockPointer extends React.Component<ClockPointerProps> {
   public static propTypes: any = {
-    classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
     isInner: PropTypes.bool.isRequired,
-    innerRef: PropTypes.any,
     type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
   };
 
@@ -42,7 +40,7 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
 
   public state = {
     toAnimateTransform: false,
-    previousType: undefined, // eslint-disable-line
+    previousType: undefined,
   };
 
   public getAngleStyle = () => {

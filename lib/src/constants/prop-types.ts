@@ -9,4 +9,4 @@ const date = PropTypes.oneOfType([
 
 export type DateType = object | string | number | Date | null | undefined;
 
-export default { date };
+export const DomainPropTypes = { date };

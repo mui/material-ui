@@ -1,10 +1,8 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
-import DomainPropTypes, { DateType } from '../constants/prop-types';
+import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import Calendar, { RenderDay } from './components/Calendar';
 import YearSelection from './components/YearSelection';
@@ -41,38 +39,10 @@ export interface DatePickerProps extends BaseDatePickerProps {
 }
 
 export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsProps> {
-  public static propTypes: any = {
-    date: PropTypes.object.isRequired,
-    minDate: DomainPropTypes.date,
-    maxDate: DomainPropTypes.date,
-    onChange: PropTypes.func.isRequired,
-    disablePast: PropTypes.bool,
-    disableFuture: PropTypes.bool,
-    animateYearScrolling: PropTypes.bool,
-    openToYearSelection: PropTypes.bool,
-    children: PropTypes.node,
-    leftArrowIcon: PropTypes.node,
-    rightArrowIcon: PropTypes.node,
-    renderDay: PropTypes.func,
-    utils: PropTypes.object.isRequired,
-    shouldDisableDate: PropTypes.func,
-    allowKeyboardControl: PropTypes.bool,
-    initialFocusedDate: DomainPropTypes.date,
-  };
-
   public static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
-    disablePast: false,
-    disableFuture: false,
-    allowKeyboardControl: false,
-    animateYearScrolling: undefined,
     openToYearSelection: false,
-    children: null,
-    leftArrowIcon: undefined,
-    rightArrowIcon: undefined,
-    renderDay: undefined,
-    shouldDisableDate: undefined,
   };
 
   public state = {

@@ -87,13 +87,10 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 (CalendarHeader as any).propTypes = {
   currentMonth: PropTypes.object.isRequired,
   onMonthChange: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
   disablePrevMonth: PropTypes.bool,
   disableNextMonth: PropTypes.bool,
-  utils: PropTypes.object.isRequired,
   slideDirection: PropTypes.oneOf(['right', 'left']).isRequired,
   innerRef: PropTypes.any,
 };

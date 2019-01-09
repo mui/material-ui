@@ -136,16 +136,9 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
   date: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   meridiemMode: PropTypes.string.isRequired,
-  openView: PropTypes.string.isRequired,
-  onOpenViewChange: PropTypes.func.isRequired,
-  setMeridiemMode: PropTypes.func.isRequired,
   utils: PropTypes.object.isRequired,
   ampm: PropTypes.bool,
   innerRef: PropTypes.any,
-};
-
-DateTimePickerHeader.defaultProps = {
-  ampm: true,
 };
 
 export default withStyles(styles, { name: 'MuiPickerDTHeader' })(withUtils()(DateTimePickerHeader));

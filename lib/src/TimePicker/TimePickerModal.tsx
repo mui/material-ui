@@ -1,8 +1,6 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import DomainPropTypes from '../constants/prop-types';
 import { ExtendWrapper } from '../wrappers/ExtendWrapper';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import TimePicker, { BaseTimePickerProps } from './TimePicker';
@@ -46,25 +44,6 @@ export const TimePickerModal: React.SFC<TimePickerModalProps> = props => {
       )}
     </BasePicker>
   );
-};
-
-(TimePickerModal as any).propTypes = {
-  value: DomainPropTypes.date,
-  format: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  autoOk: PropTypes.bool,
-  ampm: PropTypes.bool,
-  seconds: PropTypes.bool,
-  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-};
-
-TimePickerModal.defaultProps = {
-  value: new Date(),
-  format: undefined,
-  autoOk: false,
-  ampm: true,
-  forwardedRef: undefined,
-  seconds: false,
 };
 
 export default React.forwardRef((props: TimePickerModalProps, ref) => (

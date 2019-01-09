@@ -8,7 +8,7 @@ import { Theme } from '@material-ui/core';
 import { IconButtonProps } from '@material-ui/core/IconButton';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import DomainPropTypes, { DateType } from '../../constants/prop-types';
+import { DateType, DomainPropTypes } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import CalendarHeader from './CalendarHeader';
 import Day from './Day';
@@ -47,14 +47,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
-    leftArrowIcon: PropTypes.node,
-    rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    theme: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
     utils: PropTypes.object.isRequired,
     allowKeyboardControl: PropTypes.bool,
@@ -66,11 +62,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     maxDate: '2100-01-01',
     disablePast: false,
     disableFuture: false,
-    leftArrowIcon: undefined,
-    rightArrowIcon: undefined,
-    renderDay: undefined,
-    allowKeyboardControl: false,
-    shouldDisableDate: () => false,
+    allowKeyboardControl: true,
   };
 
   public static getDerivedStateFromProps(nextProps: CalendarProps, state: CalendarState) {

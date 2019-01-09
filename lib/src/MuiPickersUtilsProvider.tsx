@@ -22,11 +22,6 @@ export default class MuiPickersUtilsProvider extends React.Component<MuiPickersU
     moment: PropTypes.func,
   };
 
-  public static defaultProps = {
-    locale: undefined,
-    moment: undefined,
-  };
-
   public static getDerivedStateFromProps({
     utils: Utils,
     locale,

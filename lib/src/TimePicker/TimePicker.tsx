@@ -38,9 +38,6 @@ export class TimePicker extends React.Component<TimePickerProps> {
   public static propTypes: any = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
-    children: PropTypes.node,
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     seconds: PropTypes.bool,

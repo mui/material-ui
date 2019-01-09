@@ -1,8 +1,5 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
-
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import DomainPropTypes from '../constants/prop-types';
 import { ExtendWrapper } from '../wrappers/ExtendWrapper';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
@@ -84,47 +81,6 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
       )}
     </BasePicker>
   );
-};
-
-(DatePickerModal as any).propTypes = {
-  value: DomainPropTypes.date,
-  minDate: DomainPropTypes.date,
-  maxDate: DomainPropTypes.date,
-  initialFocusedDate: DomainPropTypes.date,
-  format: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  autoOk: PropTypes.bool,
-  disablePast: PropTypes.bool,
-  disableFuture: PropTypes.bool,
-  animateYearScrolling: PropTypes.bool,
-  openToYearSelection: PropTypes.bool,
-  labelFunc: PropTypes.func,
-  leftArrowIcon: PropTypes.node,
-  rightArrowIcon: PropTypes.node,
-  renderDay: PropTypes.func,
-  shouldDisableDate: PropTypes.func,
-  allowKeyboardControl: PropTypes.bool,
-  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-};
-
-DatePickerModal.defaultProps = {
-  value: new Date(),
-  format: undefined,
-  autoOk: false,
-  minDate: '1900-01-01',
-  maxDate: '2100-01-01',
-  initialFocusedDate: undefined,
-  disableFuture: false,
-  disablePast: false,
-  animateYearScrolling: false,
-  openToYearSelection: false,
-  allowKeyboardControl: true,
-  leftArrowIcon: undefined,
-  rightArrowIcon: undefined,
-  renderDay: undefined,
-  labelFunc: undefined,
-  shouldDisableDate: undefined,
-  forwardedRef: undefined,
 };
 
 export default React.forwardRef((props: DatePickerModalProps, ref) => (
