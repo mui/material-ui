@@ -37,7 +37,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`
+| <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
 | <span class="prop-name">positionStart</span> | Styles applied to the root element if `position="start"`.
 | <span class="prop-name">positionEnd</span> | Styles applied to the root element if `position="end"`.
 | <span class="prop-name">disablePointerEvents</span> | Styles applied to the root element if `disablePointerEvents=true`.
