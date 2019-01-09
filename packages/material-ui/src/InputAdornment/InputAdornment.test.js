@@ -61,7 +61,7 @@ describe('<InputAdornment />', () => {
         foo
       </InputAdornment>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.disabledPointerEvents), true);
+    assert.strictEqual(wrapper.hasClass(classes.disablePointerEvents), true);
   });
 
   it('should not wrap text children in a Typography when disableTypography true', () => {

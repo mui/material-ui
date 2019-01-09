@@ -27,8 +27,8 @@ export const styles = {
   positionEnd: {
     marginLeft: 8,
   },
-  /* Styles applied to the root element if `disablePointerEvents=true` */
-  disabledPointerEvents: {
+  /* Styles applied to the root element if `disablePointerEvents=true`. */
+  disablePointerEvents: {
     pointerEvents: 'none',
   },
 };
@@ -54,7 +54,7 @@ function InputAdornment(props) {
           [classes.filled]: variant === 'filled',
           [classes.positionStart]: position === 'start',
           [classes.positionEnd]: position === 'end',
-          [classes.disabledPointerEvents]: disablePointerEvents,
+          [classes.disablePointerEvents]: disablePointerEvents,
         },
         className,
       )}
@@ -90,7 +90,7 @@ InputAdornment.propTypes = {
   component: componentPropType,
   /**
    * Disable pointer events on the root.
-   * This allows for the text in the adornment to focus the input on click.
+   * This allows for the content of the adornment to focus the input on click.
    */
   disablePointerEvents: PropTypes.bool,
   /**
