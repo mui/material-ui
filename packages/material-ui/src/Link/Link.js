@@ -11,18 +11,18 @@ import Typography from '../Typography';
 export const styles = {
   /* Styles applied to the root element. */
   root: {},
-  /* Styles applied to the root element if `underline="none"` */
+  /* Styles applied to the root element if `underline="none"`. */
   underlineNone: {
     textDecoration: 'none',
   },
-  /* Styles applied to the root element if `underline="hover"` */
+  /* Styles applied to the root element if `underline="hover"`. */
   underlineHover: {
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
     },
   },
-  /* Styles applied to the root element if `underline="always"` */
+  /* Styles applied to the root element if `underline="always"`. */
   underlineAlways: {
     textDecoration: 'underline',
   },

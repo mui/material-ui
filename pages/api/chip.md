@@ -53,12 +53,12 @@ This property accepts the following keys:
 | <span class="prop-name">outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">avatar</span> | Styles applied to the `avatar` element.
-| <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`
-| <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`
+| <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`.
+| <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`.
 | <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
 | <span class="prop-name">icon</span> | Styles applied to the `icon` element.
-| <span class="prop-name">iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`
-| <span class="prop-name">iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`
+| <span class="prop-name">iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`.
+| <span class="prop-name">iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`.
 | <span class="prop-name">label</span> | Styles applied to the label `span` element`.
 | <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
 | <span class="prop-name">deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.

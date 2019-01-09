@@ -10,7 +10,12 @@ export interface InputAdornmentProps
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd' | 'filled';
+export type InputAdornmentClassKey =
+  | 'root'
+  | 'filled'
+  | 'positionStart'
+  | 'positionEnd'
+  | 'disablePointerEvents';
 
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 
