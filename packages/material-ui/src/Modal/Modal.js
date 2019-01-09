@@ -113,7 +113,6 @@ class Modal extends React.Component {
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
-    doc.addEventListener('keydown', this.handleDocumentKeyDown);
     doc.addEventListener('focus', this.enforceFocus, true);
 
     if (this.dialogRef) {
@@ -145,7 +144,6 @@ class Modal extends React.Component {
     this.props.manager.remove(this);
 
     const doc = ownerDocument(this.mountNode);
-    doc.removeEventListener('keydown', this.handleDocumentKeyDown);
     doc.removeEventListener('focus', this.enforceFocus, true);
 
     this.restoreLastFocus();
@@ -310,6 +308,8 @@ class Modal extends React.Component {
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
+          onKeyDown={this.handleDocumentKeyDown}
+          role="presentation"
           className={classNames('mui-fixed', classes.root, className, {
             [classes.hidden]: exited,
           })}
