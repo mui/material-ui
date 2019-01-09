@@ -34,6 +34,16 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'Gadr.io - Follow top performing crypto traders',
+    description:
+      'Get notifications from your favorite traders. Get a full overview of your crypto assets.' +
+      'Share your portfolio with the world and see how you stack up to the best',
+    image: '/static/images/showcase/gadr.png',
+    link: 'https://gadr.io/',
+    similarWebGlobal: 'N/A',
+    similarWebVisits: 'N/A',
+  },
+  {
     title: 'Bethesda Game Studios',
     description:
       'The official site for Bethesda, publisher of Fallout, DOOM, Dishonored, ' +
