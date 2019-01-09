@@ -7,10 +7,10 @@ export interface BadgeProps
   children: React.ReactNode;
   color?: PropTypes.Color | 'error';
   component?: React.ReactType<BadgeProps>;
-  dot?: boolean;
   invisible?: boolean;
   max?: number;
   showZero?: boolean;
+  variant?: 'standard' | 'dot';
 }
 
 export type BadgeClassKey =

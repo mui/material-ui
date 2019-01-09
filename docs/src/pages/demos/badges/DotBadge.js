@@ -16,14 +16,14 @@ function DotBadge(props) {
   return (
     <div>
       <div>
-        <Badge className={classes.margin} color="primary" dot>
+        <Badge className={classes.margin} color="primary" variant="dot">
           <MailIcon />
         </Badge>
-        <Badge className={classes.margin} color="secondary" dot>
+        <Badge className={classes.margin} color="secondary" variant="dot">
           <MailIcon />
         </Badge>
       </div>
-      <Badge color="primary" className={classes.margin} dot>
+      <Badge color="primary" className={classes.margin} variant="dot">
         <Typography>Typography</Typography>
       </Badge>
     </div>

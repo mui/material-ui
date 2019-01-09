@@ -67,7 +67,7 @@ export const styles = theme => ({
     transform: 'scale(0) translate(50%, -50%)',
     transformOrigin: '100% 0%',
   },
-  /* Styles applied to the root element if `dot={true}`. */
+  /* Styles applied to the root element if `variant="dot"`. */
   dot: {
     height: 6,
     minWidth: 6,
@@ -83,10 +83,10 @@ function Badge(props) {
     className,
     color,
     component: ComponentProp,
-    dot,
     invisible,
     showZero,
     max,
+    variant,
     ...other
   } = props;
 
@@ -100,11 +100,11 @@ function Badge(props) {
   const badgeClassName = classNames(classes.badge, {
     [classes[`color${capitalize(color)}`]]: color !== 'default',
     [classes.invisible]: invisible || hidden,
-    [classes.dot]: dot,
+    [classes.dot]: variant === 'dot',
   });
   let displayValue = '';
 
-  if (!dot) {
+  if (variant !== 'dot') {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
@@ -144,10 +144,6 @@ Badge.propTypes = {
    */
   component: componentPropType,
   /**
-   * Show dot instead.
-   */
-  dot: PropTypes.bool,
-  /**
    * If `true`, the badge will be invisible.
    */
   invisible: PropTypes.bool,
@@ -159,15 +155,19 @@ Badge.propTypes = {
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
   showZero: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'dot']),
 };
 
 Badge.defaultProps = {
   color: 'default',
   component: 'span',
-  dot: false,
   invisible: false,
   max: 99,
   showZero: false,
+  variant: 'standard',
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);
