@@ -1,8 +1,6 @@
-/* eslint-disable no-param-reassign */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import moment from 'moment';
 
 import { DatePicker } from 'material-ui-pickers';
 import { IconButton, withStyles } from '@material-ui/core';

@@ -1,17 +1,17 @@
-import Icon from '@material-ui/core/Icon';
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+
 import IconButton from '@material-ui/core/IconButton';
+import { InputProps as InputPropsType } from '@material-ui/core/Input';
 import InputAdornment, {
   InputAdornmentProps as MuiInputAdornmentProps,
 } from '@material-ui/core/InputAdornment';
 import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
-
-import { InputProps as InputPropsType } from '@material-ui/core/Input';
 import { MaskedInputProps } from 'react-text-mask';
 import DomainPropTypes, { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 import { ExtendMui } from '../typings/extendMui';
+import { KeyboardIcon } from './icons/KeyboardIcon';
 import MaskedInput from './MaskedInput';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
@@ -180,7 +180,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     InputProps: undefined,
     keyboard: false,
     mask: undefined,
-    keyboardIcon: 'event',
+    keyboardIcon: <KeyboardIcon />,
     disableOpenOnEnter: false,
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
@@ -360,7 +360,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       localInputProps[`${adornmentPosition}Adornment`] = (
         <InputAdornment position={adornmentPosition!} {...InputAdornmentProps}>
           <IconButton disabled={disabled} onClick={this.openPicker}>
-            <Icon>{keyboardIcon}</Icon>
+            {keyboardIcon}
           </IconButton>
         </InputAdornment>
       );

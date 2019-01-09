@@ -1,11 +1,13 @@
+import * as PropTypes from 'prop-types';
+import * as React from 'react';
+
 import { Theme } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import * as PropTypes from 'prop-types';
-import * as React from 'react';
+import { ArrowLeftIcon } from '../../_shared/icons/ArrowLeftIcon';
+import { ArrowRightIcon } from '../../_shared/icons/ArrowRightIcon';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import SlideTransition, { SlideDirection } from './SlideTransition';
@@ -45,7 +47,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           onClick={selectPreviousMonth}
           className={classes.iconButton}
         >
-          <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
+          {rtl ? rightArrowIcon : leftArrowIcon}
         </IconButton>
 
         <SlideTransition
@@ -63,7 +65,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           onClick={selectNextMonth}
           className={classes.iconButton}
         >
-          <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
+          {rtl ? leftArrowIcon : rightArrowIcon}
         </IconButton>
       </div>
 
@@ -97,8 +99,8 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
 };
 
 CalendarHeader.defaultProps = {
-  leftArrowIcon: 'keyboard_arrow_left',
-  rightArrowIcon: 'keyboard_arrow_right',
+  leftArrowIcon: <ArrowLeftIcon />,
+  rightArrowIcon: <ArrowRightIcon />,
   disablePrevMonth: false,
   disableNextMonth: false,
 };

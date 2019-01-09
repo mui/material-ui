@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import { Icon, IconButton, Menu, MenuItem } from '@material-ui/core';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 
 import frLocale from 'date-fns/locale/fr';
@@ -57,7 +58,7 @@ export default class DateFnsLocalizationExample extends PureComponent {
                   aria-owns={this.state.anchorEl ? 'locale-menu' : null}
                   onClick={this.handleMenuOpen}
                 >
-                  <Icon> more_vert </Icon>
+                  <MoreIcon />
                 </IconButton>
               ),
             }}

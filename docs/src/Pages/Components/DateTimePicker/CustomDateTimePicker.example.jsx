@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import { DateTimePicker } from 'material-ui-pickers';
-import { IconButton, Icon, InputAdornment } from '@material-ui/core';
-import { withUtilsService } from '../../../_shared/UtilsServiceContext';
+import { IconButton, InputAdornment } from '@material-ui/core';
+import { withUtilsService } from '_shared/UtilsServiceContext';
+import AlarmIcon from '@material-ui/icons/AddAlarm';
+import SnoozeIcon from '@material-ui/icons/Snooze';
 
 class CustomDateTimePicker extends PureComponent {
   state = {
@@ -33,13 +35,13 @@ class CustomDateTimePicker extends PureComponent {
             value={selectedDate}
             onChange={this.handleDateChange}
             helperText="Hardcoded helper text"
-            leftArrowIcon={<Icon> add_alarm </Icon>}
-            rightArrowIcon={<Icon> snooze </Icon>}
+            leftArrowIcon={<AlarmIcon />}
+            rightArrowIcon={<SnoozeIcon />}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton>
-                    <Icon>add_alarm</Icon>
+                    <AlarmIcon />
                   </IconButton>
                 </InputAdornment>
               ),

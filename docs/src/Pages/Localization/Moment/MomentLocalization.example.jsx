@@ -3,7 +3,8 @@ import moment from 'moment';
 import 'moment/locale/fr';
 import 'moment/locale/ru';
 import MomentUtils from '@date-io/moment';
-import { Icon, IconButton, Menu, MenuItem } from '@material-ui/core';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 
 moment.locale('fr');
@@ -56,10 +57,10 @@ export default class MomentLocalizationExample extends PureComponent {
               endAdornment: (
                 <IconButton
                   aria-label="Select locale"
-                  aria-owns={this.state.anchorEl ? 'locale-menu' : null}
                   onClick={this.handleMenuOpen}
+                  aria-owns={this.state.anchorEl ? 'locale-menu' : null}
                 >
-                  <Icon> more_vert </Icon>
+                  <MoreIcon />
                 </IconButton>
               ),
             }}

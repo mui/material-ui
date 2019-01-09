@@ -330,7 +330,7 @@
         "name": "DateTextFieldProps"
       },
       "required": false,
-      "type": { "name": "object" }
+      "type": { "name": "Partial<InputAdornmentProps>" }
     },
     "adornmentPosition": {
       "defaultValue": null,
@@ -642,7 +642,7 @@
         "name": "DateTextFieldProps"
       },
       "required": false,
-      "type": { "name": "object" }
+      "type": { "name": "Partial<InputAdornmentProps>" }
     },
     "adornmentPosition": {
       "defaultValue": null,
@@ -1119,7 +1119,7 @@
         "name": "DateTextFieldProps"
       },
       "required": false,
-      "type": { "name": "object" }
+      "type": { "name": "Partial<InputAdornmentProps>" }
     },
     "adornmentPosition": {
       "defaultValue": null,

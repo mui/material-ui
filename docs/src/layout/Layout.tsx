@@ -7,7 +7,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Icon,
   withStyles,
   Tooltip,
   WithStyles,
@@ -17,9 +16,15 @@ import {
   MenuItem,
 } from '@material-ui/core';
 
-import Github from '../_shared/GithubIcon';
+import Github from '../_shared/svgIcons/GithubIcon';
 import DrawerMenu from './DrawerMenu';
 import { utilsMap, UtilsLib } from '../App';
+
+import MenuIcon from '@material-ui/icons/Menu';
+import SettingsIcon from '@material-ui/icons/Settings';
+import TextDirectionLtrIcon from '@material-ui/icons/FormatTextdirectionLToR';
+import TextDirectionRtLIcon from '@material-ui/icons/FormatTextdirectionRToL';
+import LightbulbOutlineIcon from '../_shared/svgIcons/LightbulbIcon';
 
 interface LayoutProps extends RouteComponentProps, WithStyles<typeof styles, true> {
   toggleThemeType: () => void;
@@ -80,14 +85,14 @@ class Layout extends Component<LayoutProps> {
               aria-label="Menu"
               onClick={this.handleDrawerToggle}
             >
-              <Icon>menu</Icon>
+              <MenuIcon />
             </IconButton>
 
             <div className={classes.flex} />
 
             <Tooltip title="Change library that will work with date under the hood">
               <IconButton color="inherit" onClick={this.handleUtilsMenuOpen}>
-                <Icon>settings</Icon>
+                <SettingsIcon />
               </IconButton>
             </Tooltip>
             <Menu
@@ -110,13 +115,13 @@ class Layout extends Component<LayoutProps> {
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleThemeType}>
-                <Icon>lightbulb_outline</Icon>
+                <LightbulbOutlineIcon />
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle direction" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleDirection}>
-                <Icon>format_textdirection_l_to_r</Icon>
+                {theme.direction === 'rtl' ? <TextDirectionLtrIcon /> : <TextDirectionRtLIcon />}
               </IconButton>
             </Tooltip>
             <Tooltip title="Github" enterDelay={300}>
