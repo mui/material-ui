@@ -69,8 +69,13 @@ describe('<MenuList> integration', () => {
       assertMenuItemFocused(wrapper, 0);
     });
 
-    it('should still have the first item tabIndexed', () => {
+    it('should select the last item when pressing up', () => {
       wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemTabIndexed(wrapper, 3);
+    });
+
+    it('should select the first item when pressing dowm', () => {
+      wrapper.simulate('keyDown', { which: keycode('down') });
       assertMenuItemTabIndexed(wrapper, 0);
     });
 

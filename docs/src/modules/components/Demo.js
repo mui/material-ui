@@ -38,7 +38,7 @@ function addHiddenInput(form, name, value) {
 }
 
 function getDemo(props, raw) {
-  return {
+  const demo = {
     title: 'Material demo',
     description: props.githubLocation,
     dependencies: getDependencies(raw, props.demoOptions.react),
@@ -60,6 +60,30 @@ ReactDOM.render(<Demo />, document.querySelector('#root'));
       `,
     },
   };
+
+  if (props.codeVariant === CODE_VARIANTS.HOOK) {
+    demo.dependencies.react = 'next';
+    demo.dependencies['react-dom'] = 'next';
+    demo.dependencies['@material-ui/styles'] = 'latest';
+    demo.files['index.js'] = `
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Demo from './demo';
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+const theme = createMuiTheme();
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <Demo />
+  </ThemeProvider>,
+  document.querySelector("#root")
+);
+    `;
+  }
+
+  return demo;
 }
 
 const styles = theme => ({

@@ -28,7 +28,8 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
+export interface WithStylesOptions<ClassKey extends string = string>
+  extends JSS.CreateStyleSheetOptions<ClassKey> {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -57,7 +58,10 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<ClassKey extends string, Options extends WithStylesOptions = {}>(
+export default function withStyles<
+  ClassKey extends string,
+  Options extends WithStylesOptions<ClassKey> = {}
+>(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
 ): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

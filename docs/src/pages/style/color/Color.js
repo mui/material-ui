@@ -86,7 +86,7 @@ function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
       {blockTitle}
       <div className={classes.colorContainer}>
         <span>{colorValue}</span>
-        <span className={classes.colorValue}>{bgColor.toUpperCase()}</span>
+        <span className={classes.colorValue}>{bgColor}</span>
       </div>
     </li>
   );

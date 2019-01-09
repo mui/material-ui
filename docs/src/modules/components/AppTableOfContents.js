@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'docs/src/modules/components/Link';
 import marked from 'marked';
 import warning from 'warning';
 import throttle from 'lodash/throttle';
@@ -10,6 +9,7 @@ import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
+import Link from 'docs/src/modules/components/Link';
 
 let itemsCollector;
 const renderer = new marked.Renderer();
@@ -163,41 +163,37 @@ class AppTableOfContents extends React.Component {
               Contents
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />
-            <ul className={classes.ul}>
+            <Typography component="ul" className={classes.ul}>
               {this.itemsServer.map(item2 => (
                 <li key={item2.text}>
-                  <Typography
+                  <Link
                     color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
+                    href={`#${item2.hash}`}
                     className={classes.item}
-                    component={linkProps => (
-                      <Link {...linkProps} variant="inherit" href={`#${item2.hash}`} />
-                    )}
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
-                  </Typography>
+                  </Link>
                   {item2.children.length > 0 ? (
                     <ul className={classes.ul}>
                       {item2.children.map(item3 => (
                         <li key={item3.text}>
-                          <Typography
+                          <Link
+                            color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
+                            href={`#${item3.hash}`}
                             className={classes.item}
                             style={{
                               paddingLeft: 8 * 2,
                             }}
-                            color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
-                            component={linkProps => (
-                              <Link {...linkProps} variant="inherit" href={`#${item3.hash}`} />
-                            )}
                           >
                             <span dangerouslySetInnerHTML={{ __html: item3.text }} />
-                          </Typography>
+                          </Link>
                         </li>
                       ))}
                     </ul>
                   ) : null}
                 </li>
               ))}
-            </ul>
+            </Typography>
           </React.Fragment>
         ) : null}
       </nav>

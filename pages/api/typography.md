@@ -25,6 +25,7 @@ import Typography from '@material-ui/core/Typography';
 | <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> |   | The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component. |
 | <span class="prop-name">gutterBottom</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
 | <span class="prop-name">headlineMapping</span> | <span class="prop-type">object</span> | <span class="prop-default">{  h1: 'h1',  h2: 'h2',  h3: 'h3',  h4: 'h4',  h5: 'h5',  h6: 'h6',  subtitle1: 'h6',  subtitle2: 'h6',  body1: 'p',  body2: 'p',  // deprecated  display4: 'h1',  display3: 'h1',  display2: 'h1',  display1: 'h1',  headline: 'h1',  title: 'h2',  subheading: 'h3',}</span> | We are empirically mapping the variant property to a range of different DOM element types. For instance, subtitle1 to `<h6>`. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` property. The default mapping is the following: |
+| <span class="prop-name">inline</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the Typography is inline or not. |
 | <span class="prop-name">internalDeprecatedVariant</span> | <span class="prop-type">bool</span> |   | A deprecated variant is used from an internal component. Users don't need a deprecation warning here if they switched to the v2 theme. They already get the mapping that will be applied in the next major release. |
 | <span class="prop-name">noWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
 | <span class="prop-name">paragraph</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
@@ -75,6 +76,7 @@ This property accepts the following keys:
 | <span class="prop-name">colorTextPrimary</span> | Styles applied to the root element if `color="textPrimary"`.
 | <span class="prop-name">colorTextSecondary</span> | Styles applied to the root element if `color="textSecondary"`.
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
+| <span class="prop-name">inline</span> | Styles applied to the root element if `inline={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Typography/Typography.js)

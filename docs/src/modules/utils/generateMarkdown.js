@@ -20,12 +20,14 @@ function generateHeader(reactAPI) {
 }
 
 function getDeprecatedInfo(type) {
-  const marker = 'deprecatedPropType(PropTypes.';
-  const indexStart = type.raw.indexOf(marker);
+  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
+  const match = type.raw.match(marker);
+  const startIndex = type.raw.search(marker);
+  if (match) {
+    const offset = match[0].length;
 
-  if (indexStart !== -1) {
     return {
-      propTypes: type.raw.substring(indexStart + marker.length, type.raw.indexOf(',')),
+      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
       explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
     };
   }

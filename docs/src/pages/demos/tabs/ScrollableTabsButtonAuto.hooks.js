@@ -42,7 +42,7 @@ function ScrollableTabsButtonAuto() {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          scrollable
+          variant="scrollable"
           scrollButtons="auto"
         >
           <Tab label="Item One" />

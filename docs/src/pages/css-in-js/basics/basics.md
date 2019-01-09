@@ -39,7 +39,7 @@ npm install @material-ui/styles
 yarn add @material-ui/styles
 ```
 
-Please note that [react](https://www.npmjs.com/package/react) >= 16.7.0-alpha.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.7.0-alpha.0 are peer dependencies.
+Please note that [react](https://www.npmjs.com/package/react) >= 16.7.0-alpha.2 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.7.0-alpha.2 are peer dependencies.
 
 ### Migration for `@material-ui/core` users
 

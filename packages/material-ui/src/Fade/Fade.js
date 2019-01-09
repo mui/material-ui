@@ -63,7 +63,6 @@ class Fade extends React.Component {
           return React.cloneElement(children, {
             style: {
               opacity: 0,
-              willChange: 'opacity',
               ...styles[state],
               ...style,
             },

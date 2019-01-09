@@ -2,7 +2,7 @@
   "name": "@material-ui/workspace",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.8.1",
+  "version": "3.8.2",
   "description": "Material-UI's workspace package",
   "keywords": [
     "react",
@@ -48,7 +48,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
+    "typescript": "lerna run typescript",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN"
   },
   "peerDependencies": {
@@ -184,7 +184,7 @@
   },
   "resolutions": {
     "**/hoist-non-react-statics": "^3.2.1",
-    "jss": "^10.0.0-alpha.3"
+    "jss": "^10.0.0-alpha.7"
   },
   "sideEffects": false,
   "nyc": {

@@ -13,7 +13,7 @@ export const styles = {
     maxHeight: '2em',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `variant="filled"` */
+  /* Styles applied to the root element if `variant="filled"`. */
   filled: {
     '&$positionStart': {
       marginTop: 16,

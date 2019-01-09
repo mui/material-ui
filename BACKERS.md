@@ -78,7 +78,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
 | Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
 | Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
-| Manuel U Grullon | Skaronator |
+| Manuel U Grullon | Skaronator | Peter James | Vincz |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 

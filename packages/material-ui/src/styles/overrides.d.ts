@@ -50,6 +50,7 @@ import { InputBaseClassKey } from '../InputBase';
 import { InputLabelClassKey } from '../InputLabel';
 import { SwitchBaseClassKey } from '../internal/SwitchBase';
 import { LinearProgressClassKey } from '../LinearProgress';
+import { LinkClassKey } from '../Link';
 import { ListClassKey } from '../List';
 import { ListItemClassKey } from '../ListItem';
 import { ListItemAvatarClassKey } from '../ListItemAvatar';
@@ -145,6 +146,7 @@ export interface ComponentNameToClassKey {
   MuiInputBase: InputBaseClassKey;
   MuiInputLabel: InputLabelClassKey;
   MuiLinearProgress: LinearProgressClassKey;
+  MuiLink: LinkClassKey;
   MuiList: ListClassKey;
   MuiListItem: ListItemClassKey;
   MuiListItemAvatar: ListItemAvatarClassKey;

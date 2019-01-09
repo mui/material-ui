@@ -44,7 +44,7 @@ class Carbon extends React.Component {
 
     const script = document.createElement('script');
     script.setAttribute('async', '');
-    script.src = '//cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
+    script.src = 'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
     script.id = '_carbonads_js';
     scriptSlot.appendChild(script);
   }
