@@ -99,7 +99,7 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
   };
 
   public handleYearChange = (date: MaterialUiPickersDate) => {
-    this.onChange(date, false, DateTimePickerView.DATE);
+    this.onChange(date, true, DateTimePickerView.DATE);
   };
 
   public handleDayChange = (date: MaterialUiPickersDate, isFinish?: boolean) => {

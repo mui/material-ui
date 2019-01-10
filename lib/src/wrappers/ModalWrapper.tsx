@@ -35,7 +35,7 @@ export interface ModalWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'o
 }
 
 export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
-  public static propTypes: any = {
+  public static propTypes = {
     okLabel: PropTypes.node,
     cancelLabel: PropTypes.node,
     clearLabel: PropTypes.node,
@@ -45,13 +45,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     onOpen: PropTypes.func,
     DialogProps: PropTypes.object,
     onClose: PropTypes.func,
-    onAccept: PropTypes.func,
-    onDismiss: PropTypes.func,
-    onClear: PropTypes.func,
-    onSetToday: PropTypes.func,
-    children: PropTypes.node.isRequired,
-    isAccepted: PropTypes.bool.isRequired,
-  };
+  } as any;
 
   public static defaultProps = {
     value: new Date(),

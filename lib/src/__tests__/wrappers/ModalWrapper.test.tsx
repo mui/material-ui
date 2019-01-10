@@ -30,28 +30,28 @@ describe('ModalWrapper', () => {
 
   it('Should dispatch onOpen callback', () => {
     component.find('WithUtils(DateTextField)').simulate('click');
-    expect((component.state() as ModalDialog).open).toBeTruthy();
-    expect((component.instance() as ModalDialog).props.onOpen).toHaveBeenCalled();
+    expect((component.state() as ModalWrapper['state']).open).toBeTruthy();
+    expect((component.instance() as ModalWrapper).props.onOpen).toHaveBeenCalled();
   });
 
   it('Should dispatch onClose callback', () => {
     component.setState({ open: true });
     component.find('WithStyles(ModalDialog)').simulate('dismiss');
-    expect((component.state() as ModalDialog).open).toBeFalsy();
-    expect((component.instance() as ModalDialog).props.onClose).toHaveBeenCalled();
+    expect((component.state() as ModalWrapper['state']).open).toBeFalsy();
+    expect((component.instance() as ModalWrapper).props.onClose).toHaveBeenCalled();
   });
 
   it('Should dispatch onAccept when accepted', () => {
     component.setState({ open: true });
     component.find('WithStyles(ModalDialog)').simulate('accept');
-    expect((component.state() as ModalDialog).open).toBeFalsy();
-    expect((component.instance() as ModalDialog).props.onAccept).toHaveBeenCalled();
+    expect((component.state() as ModalWrapper['state']).open).toBeFalsy();
+    expect((component.instance() as ModalWrapper).props.onAccept).toHaveBeenCalled();
   });
 
   it('Should dispatch onClear', () => {
     component.setState({ open: true });
     component.find('WithStyles(ModalDialog)').simulate('clear');
-    expect((component.state() as ModalDialog).open).toBeFalsy();
-    expect((component.instance() as ModalDialog).props.onClear).toHaveBeenCalled();
+    expect((component.state() as ModalWrapper['state']).open).toBeFalsy();
+    expect((component.instance() as ModalWrapper).props.onClear).toHaveBeenCalled();
   });
 });

@@ -6,6 +6,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
+import { DIALOG_WIDTH } from '../constants/dimensions';
 
 export interface OuterInlineWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
   /** On open callback */
@@ -149,8 +150,7 @@ export class InlineWrapper extends React.PureComponent<
 
 export const styles = {
   popoverPaper: {
-    maxWidth: 310,
-    minWidth: 300,
+    width: DIALOG_WIDTH,
     paddingBottom: 8,
   },
 };

@@ -1,3 +1,4 @@
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
@@ -39,6 +40,10 @@ export interface DatePickerProps extends BaseDatePickerProps {
 }
 
 export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsProps> {
+  public static propTypes = {
+    openToYearSelection: PropTypes.bool,
+  };
+
   public static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',

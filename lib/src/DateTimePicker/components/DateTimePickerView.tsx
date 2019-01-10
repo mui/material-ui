@@ -1,4 +1,3 @@
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
 export interface DateTimePickerViewProps {
@@ -12,11 +11,6 @@ export const DateTimePickerView: React.SFC<DateTimePickerViewProps> = ({ selecte
   }
 
   return <div children={children} />;
-};
-
-(DateTimePickerView as any).propTypes = {
-  selected: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default DateTimePickerView;

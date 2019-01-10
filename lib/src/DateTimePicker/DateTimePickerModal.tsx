@@ -36,7 +36,7 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
   } = props;
 
   // do not show tabs for small screens
-  const toShowTabs = showTabs && typeof window !== 'undefined' && window.innerHeight > 667;
+  const toShowTabs = Boolean(showTabs && typeof window !== 'undefined' && window.innerHeight > 667);
   return (
     <BasePicker {...props}>
       {({
@@ -92,6 +92,10 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
       )}
     </BasePicker>
   );
+};
+
+DateTimePickerModal.defaultProps = {
+  showTabs: true,
 };
 
 export default React.forwardRef((props: DateTimePickerModalProps, ref) => (
