@@ -39,9 +39,9 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">underlineNone</span> | Styles applied to the root element if `underline="none"`
-| <span class="prop-name">underlineHover</span> | Styles applied to the root element if `underline="hover"`
-| <span class="prop-name">underlineAlways</span> | Styles applied to the root element if `underline="always"`
+| <span class="prop-name">underlineNone</span> | Styles applied to the root element if `underline="none"`.
+| <span class="prop-name">underlineHover</span> | Styles applied to the root element if `underline="hover"`.
+| <span class="prop-name">underlineAlways</span> | Styles applied to the root element if `underline="always"`.
 | <span class="prop-name">button</span> | Styles applied to the root element if `component="button"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

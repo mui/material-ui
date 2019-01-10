@@ -38,7 +38,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`
+| <span class="prop-name">colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
 | <span class="prop-name">img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
