@@ -69,7 +69,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     if (!nextProps.utils.isEqual(nextProps.date, state.lastDate)) {
       return {
         lastDate: nextProps.date,
-        currentMonth: nextProps.utils.getStartOfMonth(nextProps.date),
+        currentMonth: nextProps.utils.startOfMonth(nextProps.date),
       };
     }
 
@@ -78,7 +78,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
   public state: CalendarState = {
     slideDirection: 'left',
-    currentMonth: this.props.utils.getStartOfMonth(this.props.date),
+    currentMonth: this.props.utils.startOfMonth(this.props.date),
   };
 
   public componentDidMount() {
@@ -122,7 +122,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const { utils, disablePast, minDate } = this.props;
     const now = utils.date();
     return !utils.isBefore(
-      utils.getStartOfMonth(disablePast && utils.isAfter(now, minDate) ? now : utils.date(minDate)),
+      utils.startOfMonth(disablePast && utils.isAfter(now, minDate) ? now : utils.date(minDate)),
       this.state.currentMonth
     );
   };
@@ -131,9 +131,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
     const { utils, disableFuture, maxDate } = this.props;
     const now = utils.date();
     return !utils.isAfter(
-      utils.getStartOfMonth(
-        disableFuture && utils.isBefore(now, maxDate) ? now : utils.date(maxDate)
-      ),
+      utils.startOfMonth(disableFuture && utils.isBefore(now, maxDate) ? now : utils.date(maxDate)),
       this.state.currentMonth
     );
   };

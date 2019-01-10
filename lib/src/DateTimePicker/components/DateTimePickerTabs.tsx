@@ -47,7 +47,7 @@ export const DateTimePickerTabs: React.SFC<DateTimePickerTabsProps> = props => {
   return (
     <Paper>
       <Tabs
-        fullWidth
+        variant="fullWidth"
         value={viewToTabIndex(view)}
         onChange={handleChange}
         className={classes.tabs}

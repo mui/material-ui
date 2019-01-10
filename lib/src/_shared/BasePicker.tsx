@@ -50,7 +50,7 @@ const getInitialDate = ({ utils, value, initialFocusedDate }: OuterBasePickerPro
   const initialDate = value || initialFocusedDate || utils.date();
   const date = utils.date(initialDate);
 
-  return utils.isValid(date) ? date : utils.date();
+  return date && utils.isValid(date) ? date : utils.date();
 };
 
 export class BasePicker extends React.Component<OuterBasePickerProps & WithUtilsProps> {

@@ -140,8 +140,9 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
   public state = DateTextField.getStateFromProps(this.props);
 
   public componentDidUpdate(prevProps: DateTextFieldProps) {
+    const { utils } = this.props;
     if (
-      !this.props.utils.isEqual(this.props.value, prevProps.value) ||
+      !utils.isEqual(utils.date(this.props.value), utils.date(prevProps.value)) ||
       prevProps.format !== this.props.format ||
       prevProps.maxDate !== this.props.maxDate ||
       prevProps.minDate !== this.props.minDate ||

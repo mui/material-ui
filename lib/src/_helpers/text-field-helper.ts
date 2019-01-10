@@ -38,12 +38,12 @@ export const getError = (
     invalidDateMessage,
   } = props;
 
-  if (!utils.isValid(value)) {
-    // if null - do not show error
-    if (utils.isNull(value)) {
-      return '';
-    }
+  // if null - do not show error
+  if (utils.isNull(value)) {
+    return '';
+  }
 
+  if (!utils.isValid(value)) {
     return invalidDateMessage;
   }
 
