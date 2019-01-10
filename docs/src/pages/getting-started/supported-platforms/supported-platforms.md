@@ -16,6 +16,12 @@ Because Googlebot uses a web rendering service (WRS) to index the page content, 
 [WRS is based on Chrome 41](https://developers.google.com/search/docs/guides/rendering).
 You can expect Material-UI's components to render without major issues.
 
+### Server-Side rendering
+Be aware that some CSS features might require an additional postprocessing step
+that adds vendor specific prefixes. These prefixes are automatically added on the
+client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer). 
+The CSS served on this documentation is processed with [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
+
 ## Server
 
 Because Material-UI supports server-side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node).
