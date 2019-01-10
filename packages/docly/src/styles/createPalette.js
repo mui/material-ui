@@ -1,10 +1,10 @@
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
-import indigo from '../colors/indigo';
-import pink from '../colors/pink';
-import grey from '../colors/grey';
-import red from '../colors/red';
-import common from '../colors/common';
+import indigo from '../material-core/colors/indigo';
+import pink from '../material-core/colors/pink';
+import grey from '../material-core/colors/grey';
+import red from '../material-core/colors/red';
+import common from '../material-core/colors/common';
 import { getContrastRatio, darken, lighten } from './colorManipulator';
 
 export const light = {
