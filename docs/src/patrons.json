@@ -15,13 +15,13 @@
       "deviantart": null,
       "discord": null,
       "facebook": null,
-      "reddit": null,
+      "reddit": { "url": "https://www.reddit.com/u/oliviertassinari", "user_id": "t2_x0klq" },
       "spotify": null,
       "twitch": null,
       "twitter": null,
       "youtube": null
     },
-    "thumb_url": "https://c10.patreonusercontent.com/3/eyJoIjoxMDAsInciOjEwMH0%3D/patreon-media/p/user/1003328/2a4cb816e19644b09a8fdb6ebecc9c50/1?token-time=2145916800&token-hash=oNRQ9Iavfo7uMWKD4Nv0KZ265oFU1daoy7oqZlvH8BQ%3D",
+    "thumb_url": "https://c10.patreonusercontent.com/3/eyJ3IjoyMDB9/patreon-media/p/user/1003328/2a4cb816e19644b09a8fdb6ebecc9c50/1?token-time=2145916800&token-hash=0DiJJn-f5LwYfD7yO9lOTXY7xzn0X3DTDjEDzCzpN0g%3D",
     "twitch": null,
     "twitter": "olivtassinari",
     "url": "https://www.patreon.com/oliviertassinari",
@@ -50,7 +50,7 @@
       "twitter": null,
       "youtube": null
     },
-    "thumb_url": "https://c10.patreonusercontent.com/3/eyJoIjoxMDAsInciOjEwMH0%3D/patreon-media/p/user/11934057/26f642fffedb4c6197f2dc318c00aafa/1?token-time=2145916800&token-hash=rJqG8xl-8Dz_W2zJLz3sR6Cj7AP2QsnwFLkbw5R2pgs%3D",
+    "thumb_url": "https://c10.patreonusercontent.com/3/eyJ3IjoyMDB9/patreon-media/p/user/11934057/26f642fffedb4c6197f2dc318c00aafa/1?token-time=2145916800&token-hash=e_Oz096kXeRvqz-xpdU6tRsyhQMIUP3SKrmUGe_ty-E%3D",
     "twitch": null,
     "twitter": null,
     "url": "https://www.patreon.com/P4ulBr4ndt",
@@ -79,7 +79,7 @@
       "twitter": null,
       "youtube": null
     },
-    "thumb_url": "https://c8.patreon.com/2/100/12676333",
+    "thumb_url": "https://c8.patreon.com/2/200/12676333",
     "twitch": null,
     "twitter": null,
     "url": "https://www.patreon.com/mohamedirvine",

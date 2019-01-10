@@ -834,7 +834,7 @@
       "type": { "name": "boolean" }
     },
     "showTabs": {
-      "defaultValue": null,
+      "defaultValue": { "value": "true" },
       "description": "Show or hide tabs switching between date and time",
       "name": "showTabs",
       "parent": {
