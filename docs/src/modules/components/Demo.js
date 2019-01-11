@@ -72,7 +72,7 @@ import Demo from './demo';
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
