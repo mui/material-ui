@@ -54,7 +54,7 @@ const Installation = () => (
       Note, that we support only 2.0.0-alpha versions of date-fns for now.
     </Typography>
 
-    <Code withMargin text={installLibCode} />
+    <Code withMargin language="markup" text={installLibCode} />
     <Typography variant="body1">
       Teach pickers how to use one of that library using
       <span className="inline-code">MuiPickersUtilsProvider</span>. This component takes an utils

@@ -23,6 +23,8 @@ interface AppState {
   utils: UtilsLib;
 }
 
+export const ThemeContext = React.createContext<'light' | 'dark'>('light');
+
 class App extends React.Component<{}, AppState> {
   state: AppState = {
     direction: 'ltr',
@@ -62,15 +64,17 @@ class App extends React.Component<{}, AppState> {
     return (
       <MuiThemeProvider theme={this.createMuiTheme()}>
         <MuiPickersUtilsProvider utils={utilsMap[this.state.utils]}>
-          <UtilsServiceContextProvider value={createUtilsService(this.state.utils)}>
-            <Layout
-              toggleThemeType={this.toggleTheme}
-              toggleDirection={this.toggleDirection}
-              onChangeUtils={this.handleChangeUtils}
-            >
-              <Router />
-            </Layout>
-          </UtilsServiceContextProvider>
+          <ThemeContext.Provider value={this.state.theme}>
+            <UtilsServiceContextProvider value={createUtilsService(this.state.utils)}>
+              <Layout
+                toggleThemeType={this.toggleTheme}
+                toggleDirection={this.toggleDirection}
+                onChangeUtils={this.handleChangeUtils}
+              >
+                <Router />
+              </Layout>
+            </UtilsServiceContextProvider>
+          </ThemeContext.Provider>
         </MuiPickersUtilsProvider>
       </MuiThemeProvider>
     );

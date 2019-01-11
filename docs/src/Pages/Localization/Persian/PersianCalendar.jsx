@@ -23,7 +23,7 @@ const PersianCalendar = () => (
       package from npm.
     </Typography>
 
-    <Code language="markup" text="npm install material-ui-pickers-jalali-utils" />
+    <Code text="npm install material-ui-pickers-jalali-utils" />
 
     <SourcablePanel
       title="Samples"

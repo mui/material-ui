@@ -20,9 +20,7 @@ export default class App extends PureComponent {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker value={selectedDate} onChange={this.handleDateChange} />
-
         <TimePicker value={selectedDate} onChange={this.handleDateChange} />
-
         <DateTimePicker value={selectedDate} onChange={this.handleDateChange} />
       </MuiPickersUtilsProvider>
     );
