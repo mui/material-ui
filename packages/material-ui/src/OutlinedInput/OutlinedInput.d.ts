@@ -3,8 +3,9 @@ import { StandardProps, PropTypes } from '..';
 import { InputBaseProps } from '../InputBase';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps, OutlinedInputClassKey> {
-  notched?: boolean;
+  labelOffset?: number;
   labelWidth: number;
+  notched?: boolean;
 }
 
 export type OutlinedInputClassKey =

@@ -83,18 +83,19 @@ export const styles = theme => {
 };
 
 function OutlinedInput(props) {
-  const { classes, labelWidth, notched, ...other } = props;
+  const { classes, labelOffset, labelWidth, notched, ...other } = props;
 
   return (
     <InputBase
       renderPrefix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
+          labelOffset={labelOffset}
           labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
               ? notched
-              : Boolean(state.startAdornment || state.filled || state.focused)
+              : Boolean((state.startAdornment && !labelOffset) || state.filled || state.focused)
           }
         />
       )}
@@ -175,6 +176,10 @@ OutlinedInput.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * The offset of the label, in pixels.
+   */
+  labelOffset: PropTypes.number,
   /**
    * The width of the legend.
    */

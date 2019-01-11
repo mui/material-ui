@@ -86,7 +86,10 @@ Icons can be specified as prepended or appended.
 
 {{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
-By default when using adornment in the begining `InputLabel` will be shrinked. In some cases this behaviour may not be desired. We can always restore default behaviour by setting `shrink='auto'`
+### Label offset
+
+When using an InputAdornment at the start of the Input, by default the `InputLabel` will be shrunk to avoid a text overlap.
+In some cases this behavior may not be desired. You can offset the label position with the `labelOffset` property.
 
 {{"demo": "pages/demos/text-fields/ShrinkAuto.js"}}
 

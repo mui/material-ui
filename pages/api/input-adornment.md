@@ -18,6 +18,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">align</span> | <span class="prop-type">enum:&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'&nbsp;&#124;<br>&nbsp;'auto'<br></span> | <span class="prop-default">'auto'</span> | The alignment of the adornment. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the component, normally an `IconButton` or string. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">Component</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
@@ -38,6 +39,9 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
+| <span class="prop-name">alignAuto</span> | Styles applied to the root element if `align="auto"`.
+| <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <span class="prop-name">alignBottom</span> | Styles applied to the root element if `align="bottom"`.
 | <span class="prop-name">positionStart</span> | Styles applied to the root element if `position="start"`.
 | <span class="prop-name">positionEnd</span> | Styles applied to the root element if `position="end"`.
 | <span class="prop-name">disablePointerEvents</span> | Styles applied to the root element if `disablePointerEvents=true`.

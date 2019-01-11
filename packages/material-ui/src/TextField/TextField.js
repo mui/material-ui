@@ -76,6 +76,7 @@ class TextField extends React.Component {
       InputProps,
       inputRef,
       label,
+      labelOffset,
       multiline,
       name,
       onBlur,
@@ -106,6 +107,7 @@ class TextField extends React.Component {
       }
 
       InputMore.labelWidth = (this.labelNode && this.labelNode.offsetWidth) || 0;
+      InputMore.labelOffset = labelOffset;
     }
 
     const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
@@ -145,7 +147,12 @@ class TextField extends React.Component {
         {...other}
       >
         {label && (
-          <InputLabel htmlFor={id} ref={this.labelRef} {...InputLabelProps}>
+          <InputLabel
+            htmlFor={id}
+            ref={this.labelRef}
+            labelOffset={labelOffset}
+            {...InputLabelProps}
+          >
             {label}
           </InputLabel>
         )}
@@ -240,6 +247,10 @@ TextField.propTypes = {
    * The label content.
    */
   label: PropTypes.node,
+  /**
+   * The offset of the label, in pixels.
+   */
+  labelOffset: PropTypes.number,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */

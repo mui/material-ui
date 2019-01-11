@@ -87,21 +87,22 @@ function InputLabel(props) {
     className: classNameProp,
     disableAnimation,
     FormLabelClasses,
+    labelOffset,
     margin,
     muiFormControl,
     shrink: shrinkProp,
+    style,
+    theme,
     variant,
     ...other
   } = props;
 
   let shrink = shrinkProp;
-
-  if (muiFormControl) {
-    if (typeof shrink === 'undefined') {
-      shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
-    } else if (shrink === 'auto') {
-      shrink = muiFormControl.filled || muiFormControl.focused;
-    }
+  if (typeof shrink === 'undefined' && muiFormControl) {
+    shrink =
+      muiFormControl.filled ||
+      muiFormControl.focused ||
+      (!labelOffset && muiFormControl.adornedStart);
   }
 
   const fcs = formControlState({
@@ -133,6 +134,10 @@ function InputLabel(props) {
         error: classes.error,
         required: classes.required,
         ...FormLabelClasses,
+      }}
+      style={{
+        [theme.direction === 'rtl' ? 'right' : 'left']: labelOffset,
+        ...style,
       }}
       {...other}
     >
@@ -176,6 +181,10 @@ InputLabel.propTypes = {
    */
   FormLabelClasses: PropTypes.object,
   /**
+   * The offset of the label, in pixels.
+   */
+  labelOffset: PropTypes.number,
+  /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
@@ -190,9 +199,16 @@ InputLabel.propTypes = {
   required: PropTypes.bool,
   /**
    * If `true`, the label is shrunk.
-   * `'auto'` can be used to restore default behaviour and leave shrink handling to FormControl.
    */
-  shrink: PropTypes.oneOf([true, false, 'auto']),
+  shrink: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object,
   /**
    * The variant to use.
    */
@@ -203,4 +219,6 @@ InputLabel.defaultProps = {
   disableAnimation: false,
 };
 
-export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));
+export default withStyles(styles, { name: 'MuiInputLabel', withTheme: true })(
+  withFormControlContext(InputLabel),
+);

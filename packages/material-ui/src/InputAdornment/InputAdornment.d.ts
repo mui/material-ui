@@ -13,6 +13,9 @@ export interface InputAdornmentProps
 export type InputAdornmentClassKey =
   | 'root'
   | 'filled'
+  | 'alignAuto'
+  | 'alignCenter'
+  | 'alignBottom'
   | 'positionStart'
   | 'positionEnd'
   | 'disablePointerEvents';

@@ -48,6 +48,7 @@ function NotchedOutline(props) {
     children,
     classes,
     className,
+    labelOffset,
     labelWidth: labelWidthProp,
     notched,
     style,
@@ -62,7 +63,7 @@ function NotchedOutline(props) {
     <fieldset
       aria-hidden
       style={{
-        [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
+        [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2) + labelOffset,
         ...style,
       }}
       className={classNames(classes.root, className)}
@@ -100,6 +101,10 @@ NotchedOutline.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The offset of the label, in pixels.
+   */
+  labelOffset: PropTypes.number,
+  /**
    * The width of the legend.
    */
   labelWidth: PropTypes.number.isRequired,
@@ -115,6 +120,10 @@ NotchedOutline.propTypes = {
    * @ignore
    */
   theme: PropTypes.object,
+};
+
+NotchedOutline.defaultProps = {
+  labelOffset: 0,
 };
 
 export default withStyles(styles, { name: 'MuiPrivateNotchedOutline', withTheme: true })(

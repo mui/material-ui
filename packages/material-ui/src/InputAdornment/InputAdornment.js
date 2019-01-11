@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
+import { capitalize } from '../utils/helpers';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -16,10 +17,18 @@ export const styles = {
     alignItems: 'center',
   },
   /* Styles applied to the root element if `variant="filled"`. */
-  filled: {
-    '&$positionStart': {
+  filled: {},
+  /* Styles applied to the root element if `align="auto"`. */
+  alignAuto: {
+    '&$filled&$positionStart': {
       marginTop: 16,
     },
+  },
+  /* Styles applied to the root element if `align="center"`. */
+  alignCenter: {},
+  /* Styles applied to the root element if `align="bottom"`. */
+  alignBottom: {
+    marginTop: 16,
   },
   /* Styles applied to the root element if `position="start"`. */
   positionStart: {
@@ -37,6 +46,7 @@ export const styles = {
 
 function InputAdornment(props) {
   const {
+    align,
     children,
     component: Component,
     classes,
@@ -73,6 +83,7 @@ function InputAdornment(props) {
           [classes.positionEnd]: position === 'end',
           [classes.disablePointerEvents]: disablePointerEvents,
         },
+        classes[`align${capitalize(align)}`],
         className,
       )}
       {...other}
@@ -87,6 +98,10 @@ function InputAdornment(props) {
 }
 
 InputAdornment.propTypes = {
+  /**
+   * The alignment of the adornment.
+   */
+  align: PropTypes.oneOf(['center', 'bottom', 'auto']),
   /**
    * The content of the component, normally an `IconButton` or string.
    */
@@ -131,6 +146,7 @@ InputAdornment.propTypes = {
 };
 
 InputAdornment.defaultProps = {
+  align: 'auto',
   component: 'div',
   disablePointerEvents: false,
   disableTypography: false,
