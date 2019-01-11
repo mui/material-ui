@@ -2705,15 +2705,6 @@ babel-plugin-emotion@^9.2.11:
     source-map "^0.5.7"
     touch "^2.0.1"
 
-babel-plugin-generator-prettier@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-generator-prettier/-/babel-plugin-generator-prettier-1.1.0.tgz#05ca3e28932ad5d16e523bc5c72930a8840a03e2"
-  integrity sha512-G+v0Lbw2pPIPeYlDeg1lttOsKoPW/0/9RO+hiAtmvWqRnrB2Hp1rMvjz3ROps94NBU/+uHHF0YIPr9s+FpihbQ==
-  dependencies:
-    has "^1.0.3"
-    prettier "^1.13.6"
-    source-map "^0.5.7"
-
 babel-plugin-istanbul@^5.0.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-5.1.0.tgz#6892f529eff65a3e2d33d87dc5888ffa2ecd4a30"
@@ -10240,7 +10231,7 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.13.6, prettier@^1.8.2:
+prettier@^1.8.2:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.2.tgz#d31abe22afa4351efa14c7f8b94b58bb7452205e"
   integrity sha512-YgPLFFA0CdKL4Eg2IHtUSjzj/BWgszDHiNQAe0VAIBse34148whfdzLagRL+QiKS+YfK5ftB6X4v/MBw8yCoug==

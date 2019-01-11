@@ -1,5 +1,4 @@
 const path = require('path');
-const prettier = require('prettier');
 const ignoredDemos = require('./ts-demo-ignore.json');
 
 /**
@@ -13,18 +12,12 @@ const ignoredDemos = require('./ts-demo-ignore.json');
  */
 
 const workspaceRoot = path.join(__dirname, '../');
-const prettierConfig = prettier.resolveConfig.sync(workspaceRoot);
-if (prettierConfig == null) {
-  throw new Error('Could not find prettier config file from workspace root.');
-}
-
 const ignore = ignoredDemos.map(demoPath =>
   path.join(workspaceRoot, 'docs/src/pages/demos', `${demoPath}.tsx`),
 );
 
 module.exports = {
   presets: ['@babel/preset-typescript'],
-  plugins: ['generator-prettier', 'unwrap-createStyles'],
-  generatorOpts: prettierConfig,
+  plugins: ['unwrap-createStyles'],
   ignore,
 };
