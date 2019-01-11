@@ -27,12 +27,15 @@ class InlineDateTimePickerDemo extends PureComponent {
         <div className="picker">
           <InlineDateTimePicker
             keyboard
+            ampm={false}
             label="With keyboard"
             value={selectedDate}
             onChange={this.handleDateChange}
+            onError={console.log}
+            disablePast
             format={this.props.getFormatString({
               moment: 'YYYY/MM/DD hh:mm A',
-              dateFns: 'yyyy/MM/dd hh:mm a',
+              dateFns: 'yyyy/MM/dd HH:mm',
             })}
             mask={[
               /\d/,
@@ -51,9 +54,6 @@ class InlineDateTimePickerDemo extends PureComponent {
               ':',
               /\d/,
               /\d/,
-              ' ',
-              /a|p/i,
-              'M',
             ]}
           />
         </div>

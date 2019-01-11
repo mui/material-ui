@@ -7,7 +7,7 @@ import SnoozeIcon from '@material-ui/icons/Snooze';
 
 class CustomDateTimePicker extends PureComponent {
   state = {
-    selectedDate: new Date('2018-01-01T18:54'),
+    selectedDate: new Date('2019-01-01T18:54'),
     clearedDate: null,
   };
 
@@ -32,6 +32,7 @@ class CustomDateTimePicker extends PureComponent {
             autoSubmit={false}
             allowKeyboardControl={false}
             disableFuture
+            minDate="2018-01-01"
             value={selectedDate}
             onChange={this.handleDateChange}
             helperText="Hardcoded helper text"
