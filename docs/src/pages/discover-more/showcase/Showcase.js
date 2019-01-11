@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   root: {
@@ -32,6 +33,18 @@ const styles = theme => ({
   },
 });
 
+/**
+ * The app structure:
+ *
+ * {
+ *   title: string;
+ *   description: string;
+ *   image?: string;
+ *   link: string;
+ *   source?: string;
+ *   similarWebVisits?: number;
+ * }
+ */
 const appList = [
   {
     title: 'Bethesda Game Studios',
@@ -40,8 +53,7 @@ const appList = [
       'Skyrim, Wolfenstein, The Elder Scrolls, more. Your source for news, features & community.',
     image: '/static/images/showcase/bethesda.jpg',
     link: 'https://bethesda.net/',
-    similarWebGlobal: 2,
-    similarWebVisits: 283100,
+    similarWebVisits: 18000,
   },
   {
     title: 'Better Business Bureau',
@@ -50,8 +62,7 @@ const appList = [
       'can trust.',
     image: '/static/images/showcase/bbb.jpg',
     link: 'https://bbb.org/',
-    similarWebGlobal: 6,
-    similarWebVisits: 11210,
+    similarWebVisits: 11000,
   },
   {
     title: 'Leroy Merlin',
@@ -62,16 +73,14 @@ const appList = [
       'idraulica… Ritira in negozio o ricevi comodamente a casa. 🇮🇹',
     image: '/static/images/showcase/leroymerlin.jpg',
     link: 'https://www.leroymerlin.it/',
-    similarWebGlobal: 9,
-    similarWebVisits: 5390,
+    similarWebVisits: 4400,
   },
   {
     title: 'BARKS',
     description: 'Japan Music Network. 🇯🇵',
     image: '/static/images/showcase/barks.jpg',
     link: 'https://www.barks.jp/',
-    similarWebGlobal: 30,
-    similarWebVisits: 2780,
+    similarWebVisits: 2700,
   },
   {
     title: 'GovX',
@@ -80,8 +89,7 @@ const appList = [
       'on gear, apparel, tickets, travel and more.',
     image: '/static/images/showcase/govx.jpg',
     link: 'https://www.govx.com/',
-    similarWebGlobal: 38,
-    similarWebVisits: 1240,
+    similarWebVisits: 1200,
   },
   {
     title: 'Housecall Pro',
@@ -91,8 +99,7 @@ const appList = [
       'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
     image: '/static/images/showcase/housecall.jpg',
     link: 'https://pro.housecall.io/pro/dashboard',
-    similarWebGlobal: 75,
-    similarWebVisits: 396,
+    similarWebVisits: 390,
   },
   {
     title: 'SFR Presse',
@@ -101,7 +108,6 @@ const appList = [
       'magazines and real time streams, personalized for you. 🇫🇷',
     image: '/static/images/showcase/sfrpresse.jpg',
     link: 'https://sfrpresse.sfr.fr/',
-    similarWebGlobal: 0,
     similarWebVisits: 710,
   },
   {
@@ -111,16 +117,13 @@ const appList = [
       'for supported devices for different android versions.',
     image: '/static/images/showcase/aexdownloadcenter.jpg',
     link: 'https://downloads.aospextended.com/',
-    similarWebGlobal: 86,
-    similarWebVisits: 731,
+    similarWebVisits: 730,
   },
   {
     title: 'LessWrong',
     description: 'LessWrong is a community blog devoted to the art of human rationality.',
     image: '/static/images/showcase/lesswrong.jpg',
     link: 'https://lesswrong.com/',
-    similarWebGlobal: 89,
-    similarWebVisits: 'N/A',
   },
   {
     title: 'Sweek',
@@ -130,24 +133,21 @@ const appList = [
       'Join the global community of readers and writers!',
     image: '/static/images/showcase/sweek.jpg',
     link: 'https://sweek.com/',
-    similarWebGlobal: 105,
-    similarWebVisits: 483,
+    similarWebVisits: 480,
   },
   {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: '/static/images/showcase/hijup.jpg',
     link: 'https://www.hijup.com/',
-    similarWebGlobal: 120,
-    similarWebVisits: 388,
+    similarWebVisits: 380,
   },
   {
     title: 'Onepixel',
     description: 'Beautiful Stock Photos for $1.',
     image: '/static/images/showcase/onepixel.jpg',
     link: 'https://www.onepixel.com/',
-    similarWebGlobal: 124,
-    similarWebVisits: 343,
+    similarWebVisits: 340,
   },
   {
     title: 'iFit',
@@ -156,16 +156,14 @@ const appList = [
       'unique health tips, and expert advice that will lead you to a healthier lifestyle.',
     image: '/static/images/showcase/ifit.jpg',
     link: 'https://www.ifit.com/',
-    similarWebGlobal: 136,
-    similarWebVisits: 311,
+    similarWebVisits: 310,
   },
   {
     title: 'NEO Tracker',
     description: 'NEO blockchain explorer and wallet.',
     image: '/static/images/showcase/neotracker.jpg',
     link: 'https://neotracker.io/',
-    similarWebGlobal: 140,
-    similarWebVisits: 357,
+    similarWebVisits: 350,
   },
   {
     title: 'CityAds',
@@ -174,8 +172,7 @@ const appList = [
       'powered by big data',
     image: '/static/images/showcase/cityads.jpg',
     link: 'https://cityads.com/main',
-    similarWebGlobal: 163,
-    similarWebVisits: 155,
+    similarWebVisits: 150,
   },
   {
     title: 'EOS Toolkit',
@@ -185,8 +182,7 @@ const appList = [
     image: '/static/images/showcase/eostoolkit.jpg',
     link: 'https://www.eostoolkit.io/',
     source: 'https://github.com/generEOS/eostoolkit',
-    similarWebGlobal: 218,
-    similarWebVisits: 161,
+    similarWebVisits: 160,
   },
   {
     title: 'BitCambio',
@@ -195,16 +191,14 @@ const appList = [
       'de forma direta e segura no Brasil. 🇧🇷',
     image: '/static/images/showcase/bitcambio.jpg',
     link: 'https://bitcambio.com.br/',
-    similarWebGlobal: 289,
-    similarWebVisits: 168,
+    similarWebVisits: 160,
   },
   {
     title: 'Numerai',
     description: ' Earn cryptocurrency in weekly data science competitions.',
     image: '/static/images/showcase/numerai.jpg',
     link: 'https://numer.ai/homepage',
-    similarWebGlobal: 395,
-    similarWebVisits: 101,
+    similarWebVisits: 100,
   },
   {
     title: 'The Media Ant',
@@ -213,8 +207,7 @@ const appList = [
       'with more than 200K advertising options, and more than 1M satisfied customers.',
     image: '/static/images/showcase/themediaant.jpg',
     link: 'https://themediaant.com/',
-    similarWebGlobal: 438,
-    similarWebVisits: 89,
+    similarWebVisits: 80,
   },
   {
     title: 'LocalMonero',
@@ -223,14 +216,13 @@ const appList = [
       'to trade their local currency for Monero, anywhere.',
     image: '/static/images/showcase/localmonero.jpg',
     link: 'https://localmonero.co/?rc=ogps',
-    similarWebGlobal: 635,
+    similarWebVisits: 40,
   },
   {
     title: 'Fizix',
     description: 'Coaching sportif à domicile. 🇫🇷',
     image: '/static/images/showcase/fizix.jpg',
     link: 'https://www.fizix.io/',
-    similarWebGlobal: 668,
   },
   {
     title: 'Venuemob',
@@ -238,7 +230,6 @@ const appList = [
       'A platform for individuals and businesses to find and book the perfect venue for any event.',
     image: '/static/images/showcase/venuemob.jpg',
     link: 'https://venuemob.com.au/',
-    similarWebGlobal: 776,
   },
   {
     title: 'ODIGEO Connect',
@@ -247,7 +238,6 @@ const appList = [
       'and distribute it to millions of travellers.',
     image: '/static/images/showcase/odigeo.jpg',
     link: 'https://odigeoconnect.com/',
-    similarWebGlobal: 925,
   },
   {
     title: 'comet',
@@ -256,7 +246,6 @@ const appList = [
       'It’s fast, simple, and free for open source projects.',
     image: '/static/images/showcase/comet.jpg',
     link: 'https://www.comet.ml/',
-    similarWebGlobal: 937,
   },
   {
     title: 'Pointer',
@@ -265,7 +254,6 @@ const appList = [
       'A Pointer faz parte da Portobello e atua no Nordeste do Brasil. 🇧🇷',
     image: '/static/images/showcase/pointer.jpg',
     link: 'https://www.pointer.com.br/',
-    similarWebGlobal: 984,
   },
   {
     title: 'Oneplanetcrowd',
@@ -273,7 +261,6 @@ const appList = [
       'Oneplanetcrowd is Europe’s leading sustainable crowdfunding platform for People & Planet.',
     image: '/static/images/showcase/oneplanetcrowd.jpg',
     link: 'https://oneplanetcrowd.com/en',
-    similarWebGlobal: 995,
   },
   {
     title: 'CollegeAI',
@@ -284,7 +271,6 @@ const appList = [
       'planner, and college chance calculator.',
     image: '/static/images/showcase/collegeai.jpg',
     link: 'https://collegeai.com',
-    similarWebGlobal: 1075,
   },
   {
     title: 'react-admin',
@@ -305,14 +291,12 @@ const appList = [
     image: '/static/images/showcase/builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
-    similarWebGlobal: 1081,
   },
   {
     title: 'Commit Swimming',
     description: 'The #1 workout journal for coaches and swimmers.',
     image: '/static/images/showcase/commitswimming.jpg',
     link: 'https://www.commitswimming.com/',
-    similarWebGlobal: 1100,
   },
   {
     title: 'EventHi',
@@ -321,7 +305,6 @@ const appList = [
       'community. Use our easy ticketing system, sponsor, and sell merchandise.',
     image: '/static/images/showcase/eventhi.jpg',
     link: 'https://eventhi.io/',
-    similarWebGlobal: 1768,
   },
   {
     title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
@@ -331,14 +314,12 @@ const appList = [
       'news related to cryptocurrencies, and more. (demo:demo)',
     image: '/static/images/showcase/cryptoverview.jpg',
     link: 'https://cryptoverview.com/',
-    similarWebGlobal: 2046,
   },
   {
     title: 'TuDiscovery',
     description: 'Discovery Channel Latin America. 🇪🇸',
     image: '/static/images/showcase/tudiscovery.jpg',
     link: 'https://www.tudiscovery.com/',
-    similarWebGlobal: 2947,
   },
   {
     title: 'Iceberg Finder',
@@ -347,21 +328,18 @@ const appList = [
       'IcebergFinder.com is your premier place for finding bergs in Newfoundland and Labrador.',
     image: '/static/images/showcase/icebergfinder.jpg',
     link: 'https://icebergfinder.com/',
-    similarWebGlobal: 3064,
   },
   {
     title: 'Rare Bits',
     description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: '/static/images/showcase/rarebits.jpg',
     link: 'https://rarebits.io/',
-    similarWebGlobal: 3116,
   },
   {
     title: 'Roast',
     description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: '/static/images/showcase/roast.jpg',
     link: 'https://roast.io/',
-    similarWebGlobal: 3137,
   },
   {
     title: 'Melbourne Mint',
@@ -370,14 +348,12 @@ const appList = [
       'for over 100 years.',
     image: '/static/images/showcase/melbournemint.jpg',
     link: 'https://melbournemint.com.au/',
-    similarWebGlobal: 4182,
   },
   {
     title: 'Pilcro',
     description: 'A free brand management software for the Google Suite.',
     image: '/static/images/showcase/pilcro.jpg',
     link: 'https://www.pilcro.com/',
-    similarWebGlobal: 5096,
   },
   {
     title: 'Rung - Exceptionality Management',
@@ -385,7 +361,6 @@ const appList = [
       'Rung alerts you about the exceptionalities of your personal and professional life.',
     image: '/static/images/showcase/rung.jpg',
     link: 'https://app.rung.com.br/',
-    similarWebGlobal: 5194,
   },
   {
     title: 'MetaFact',
@@ -394,14 +369,12 @@ const appList = [
       'It’s a platform to ask questions, learn the facts and share the truth.',
     image: '/static/images/showcase/metafact.jpg',
     link: 'metafact.io/',
-    similarWebGlobal: 5294,
   },
   {
     title: 'Arkopharma',
     description: 'Arkopharma Laboritories customer loyalty site. 🇫🇷',
     image: '/static/images/showcase/arkoclub.jpg',
     link: 'https://www.arkoclub.com/',
-    similarWebGlobal: 7071,
   },
   {
     title: 'Modole Language Exchange',
@@ -410,7 +383,6 @@ const appList = [
       'and have it corrected by native speakers.',
     image: '/static/images/showcase/modole.jpg',
     link: 'https://en.modole.io/',
-    similarWebGlobal: 7354,
   },
   {
     title: 'Manty Vision',
@@ -418,14 +390,12 @@ const appList = [
       'An Open Data tool showing financial and demographic data for all the towns in France.',
     image: '/static/images/showcase/manty.jpg',
     link: 'https://app.manty.eu/',
-    similarWebGlobal: 7783,
   },
   {
     title: 'Johnny Metrics',
     description: 'Upload your trades, and analyze your crypto portfolio.',
     link: 'https://app.johnnymetrics.com/demo',
     image: '/static/images/showcase/johnnymetrics.jpg',
-    similarWebGlobal: 8926,
   },
   {
     title: 'AudioNodes',
@@ -434,26 +404,12 @@ const appList = [
       'parameter automation, MIDI editing, synthesis, cloud production, and more.',
     image: '/static/images/showcase/audionodes.jpg',
     link: 'https://audionodes.com/',
-    similarWebGlobal: 9013,
-  },
-  {
-    title: 'Insights',
-    description:
-      '"Insights" by Just Ask Users helps user experience research teams ' +
-      "make sense of their user study findings. Teams can see their users' pains and needs " +
-      'easily so that they can enhance the product that they are designing. ' +
-      'Material-UI is used both on the website (with server-side rendering) and ' +
-      'within the interactive app itself.',
-    image: '/static/images/showcase/justaskusers.jpg',
-    link: 'https://justaskusers.com/',
-    similarWebGlobal: 10013,
   },
   {
     title: 'SlidesUp',
     description: 'SlidesUp is a platform to help conference organizers plan their events.',
     image: '/static/images/showcase/slidesup.jpg',
     link: 'https://slidesup.com/',
-    similarWebGlobal: 10560,
   },
   {
     title: 'Trafikito',
@@ -463,7 +419,6 @@ const appList = [
       'something is going wrong.',
     image: '/static/images/showcase/trafikito-monitoring.jpg',
     link: 'https://trafikito.com/',
-    similarWebGlobal: 10748,
   },
   {
     title: 'Hokan',
@@ -471,14 +426,12 @@ const appList = [
       'Customer management and contract management we service for the insurance industry. 🇯🇵',
     image: '/static/images/showcase/hkn.jpg',
     link: 'https://hkn.jp/',
-    similarWebGlobal: 11707,
   },
   {
     title: 'One Shot Move',
     description: 'An LA based moving company.',
     image: '/static/images/showcase/oneshotmove.jpg',
     link: 'https://oneshotmove.com/',
-    similarWebGlobal: 11716,
   },
   {
     title: 'Fluxguard',
@@ -487,7 +440,6 @@ const appList = [
       'regression testing, synthetic transaction monitoring, and more.',
     image: '/static/images/showcase/fluxguard.jpg',
     link: 'https://www.fluxguard.com/',
-    similarWebGlobal: 13041,
   },
   {
     title: 'Magic Mondayz',
@@ -496,7 +448,6 @@ const appList = [
       'the human way.',
     image: '/static/images/showcase/magicmondayz.jpg',
     link: 'https://magicmondayz.com/',
-    similarWebGlobal: 13199,
   },
   {
     title: 'Typekev',
@@ -505,7 +456,6 @@ const appList = [
     image: '/static/images/showcase/typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
-    similarWebGlobal: 13511,
   },
   {
     title: 'Flink',
@@ -516,7 +466,6 @@ const appList = [
       'And the simplest.',
     image: '/static/images/showcase/flink.jpg',
     link: 'https://goflink.ch/',
-    similarWebGlobal: 17366,
   },
   {
     title: 'DropDesk',
@@ -525,7 +474,6 @@ const appList = [
       'coworking spaces. Meet, work and gain a sense of community.',
     image: '/static/images/showcase/dropdesk.jpg',
     link: 'https://drop-desk.com/',
-    similarWebGlobal: 17626,
   },
   {
     title: 'Tentu',
@@ -534,7 +482,6 @@ const appList = [
       'of interest. 🇪🇸',
     link: 'https://tentu.eus/',
     image: '/static/images/showcase/tentu.jpg',
-    similarWebGlobal: 27137,
   },
   {
     title: 'Swimmy',
@@ -543,7 +490,6 @@ const appList = [
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
     stars: 3,
-    similarWebGlobal: 28034,
   },
   {
     title: 'Planalyze',
@@ -552,14 +498,12 @@ const appList = [
       "& ahead of each day's workload.",
     image: '/static/images/showcase/planalyze.jpg',
     link: 'https://www.planalyze.io/',
-    similarWebGlobal: 34392,
   },
   {
     title: 'PhotoUtils',
     description: 'Online photo editor. 6 simple and free image editing tools.',
     image: '/static/images/showcase/photoutils.jpg',
     link: 'https://photoutils.com/',
-    similarWebGlobal: 36341,
   },
   {
     title: 'Local Insights',
@@ -568,14 +512,12 @@ const appList = [
       'permits, and tax documents.',
     image: '/static/images/showcase/localinsights.jpg',
     link: 'https://localinsights.io/',
-    similarWebGlobal: 'no data',
   },
   {
     title: 'Code Typing Tutor',
     description: 'Keyboard simulator that helps to write code quickly and without errors.',
     image: '/static/images/showcase/code-typing-tutor.png',
     link: 'https://code-typing-tutor.com/',
-    similarWebGlobal: 'no data',
   },
   {
     title: 'Team SC',
@@ -584,7 +526,6 @@ const appList = [
       'with a carefully designed interface and animation. 🇨🇳',
     image: '/static/images/showcase/sc.bnu.edu.cn.jpg',
     link: 'http://sc.bnu.edu.cn/',
-    similarWebGlobal: 'n/a - subdomain',
   },
   {
     title: 'npm registry browser',
@@ -613,7 +554,6 @@ const appList = [
       'Check out the theming page, which leverages `MuiThemeProvider` ' +
       'to allow for live theme changes.',
     link: 'https://jdupont.github.io/',
-    image: '/static/images/showcase/jdupont.jpg',
     source: 'https://github.com/jdupont/jdupont.github.io',
     stars: 14,
   },
@@ -623,10 +563,27 @@ const appList = [
       'An open source web app that allows a Spotify user to combine private and public playlists ' +
       'and either create a new one or merge with existing playlist. ' +
       'You can also reorder your playlist tracks and upload new playlist cover images.',
-    image: '/static/images/showcase/componofy.jpg',
     link: 'https://componofy.herokuapp.com/',
     source: 'https://github.com/DalerAsrorov/componofy',
     stars: 5,
+  },
+  {
+    title: 'Insights',
+    description:
+      '"Insights" by Just Ask Users helps user experience research teams ' +
+      "make sense of their user study findings. Teams can see their users' pains and needs " +
+      'easily so that they can enhance the product that they are designing. ' +
+      'Material-UI is used both on the website (with server-side rendering) and ' +
+      'within the interactive app itself.',
+    link: 'https://justaskusers.com/',
+  },
+  {
+    title: 'Gadr',
+    description:
+      'Follow top performing crypto traders. ' +
+      'Get notifications from your favorite traders. Get a full overview of your crypto assets.' +
+      'Share your portfolio with the world and see how you stack up to the best',
+    link: 'https://gadr.io/',
   },
 ];
 
@@ -644,17 +601,29 @@ function Showcase(props) {
               </IconButton>
             ) : null}
           </Typography>
-          <Card className={classes.card}>
-            <CardMedia
-              component="a"
-              href={app.link}
-              rel="noopener nofollow"
+          {app.image ? (
+            <Card className={classes.card}>
+              <CardMedia
+                component="a"
+                href={app.link}
+                rel="noopener"
+                target="_blank"
+                className={classes.cardMedia}
+                image={app.image}
+                title={app.title}
+              />
+            </Card>
+          ) : (
+            <Link
+              variant="body2"
               target="_blank"
-              className={classes.cardMedia}
-              image={app.image}
-              title={app.title}
-            />
-          </Card>
+              rel="noopener nofollow"
+              href={app.link}
+              gutterBottom
+            >
+              Visit the website
+            </Link>
+          )}
           <Typography className={classes.description}>{app.description}</Typography>
         </div>
       ))}
