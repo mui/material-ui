@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -65,7 +65,7 @@ export class ClockNumber extends React.Component<ClockNumberProps> {
   public render() {
     const { selected, label, index, classes, isInner } = this.props;
 
-    const className = classnames(classes.clockNumber, {
+    const className = clsx(classes.clockNumber, {
       [classes.selected]: selected,
     });
 

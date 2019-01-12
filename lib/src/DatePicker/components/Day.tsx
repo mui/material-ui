@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -35,7 +35,7 @@ class Day extends React.PureComponent<DayProps> {
   public render() {
     const { children, classes, disabled, hidden, current, selected, ...other } = this.props;
 
-    const className = classnames(classes.day, {
+    const className = clsx(classes.day, {
       [classes.hidden]: hidden,
       [classes.current]: current,
       [classes.selected]: selected,

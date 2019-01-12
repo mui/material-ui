@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import lightStyle from 'react-syntax-highlighter/dist/styles/prism/prism';
 import darkStyle from 'react-syntax-highlighter/dist/styles/prism/darcula';
@@ -44,7 +44,7 @@ type CodeProps = {
 
 const Code: React.SFC<CodeProps> = ({ classes, language, text, withMargin }) => {
   return (
-    <div className={classnames(classes.root, { [classes.margin]: withMargin })}>
+    <div className={clsx(classes.root, { [classes.margin]: withMargin })}>
       <ThemeContext.Consumer>
         {theme => (
           <SyntaxHighlighter language={language} style={theme === 'light' ? lightStyle : darkStyle}>

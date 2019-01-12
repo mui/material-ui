@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { ExtendMui } from '../typings/extendMui';
@@ -15,11 +15,11 @@ const ToolbarButton: React.SFC<ToolbarButtonProps> = ({
   classes,
   selected,
   label,
-  className,
+  className = null,
   ...other
 }) => (
   <Typography
-    className={classnames(classes.toolbarBtn, className, {
+    className={clsx(classes.toolbarBtn, className, {
       [classes.toolbarBtnSelected]: selected,
     })}
     {...other}

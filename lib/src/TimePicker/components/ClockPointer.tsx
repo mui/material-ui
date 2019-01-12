@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import ClockType, { ClockTypeType } from '../../constants/ClockType';
@@ -65,12 +65,12 @@ export class ClockPointer extends React.Component<ClockPointerProps> {
     return (
       <div
         style={this.getAngleStyle()}
-        className={classnames(classes.pointer, {
+        className={clsx(classes.pointer, {
           [classes.animateTransform]: this.state.toAnimateTransform,
         })}
       >
         <div
-          className={classnames(classes.thumb, {
+          className={clsx(classes.thumb, {
             [classes.noPoint]: hasSelected,
           })}
         />

@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core';
 import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { ExtendMui } from '../typings/extendMui';
@@ -13,12 +13,12 @@ export interface PickerToolbarProps extends ExtendMui<ToolbarProps>, WithStyles<
 
 const PickerToolbar: React.SFC<PickerToolbarProps> = ({
   children,
-  className,
+  className = null,
   classes,
   ...other
 }) => {
   return (
-    <Toolbar className={classnames(classes.toolbar, className)} {...other}>
+    <Toolbar className={clsx(classes.toolbar, className)} {...other}>
       {children}
     </Toolbar>
   );

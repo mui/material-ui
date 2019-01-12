@@ -3,7 +3,7 @@ import Dialog, { DialogProps } from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
 import { DIALOG_WIDTH } from '../constants/dimensions';
@@ -44,7 +44,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     role="dialog"
     onClose={onDismiss}
     classes={{
-      paper: classnames(classes.dialogRoot, {
+      paper: clsx(classes.dialogRoot, {
         [classes.dialogWithTabs]: showTabs,
       }),
     }}
@@ -53,7 +53,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     <EventListener target="window" onKeyDown={onKeyDownInner} />
     <DialogContent
       children={children}
-      className={classnames(classes.dialog, {
+      className={clsx(classes.dialog, {
         [classes.dialogWithTabs]: showTabs,
       })}
     />
@@ -61,7 +61,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     <DialogActions
       classes={{
         root: clearable || showTodayButton ? classes.dialogActions : undefined,
-        action: classnames(classes.dialogAction, {
+        action: clsx(classes.dialogAction, {
           [classes.clearableDialogAction]: clearable,
           [classes.todayDialogAction]: !clearable && showTodayButton,
         }),

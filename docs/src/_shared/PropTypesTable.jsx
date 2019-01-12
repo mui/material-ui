@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import {
   Table,
   Typography,
@@ -59,7 +59,7 @@ class PropTypesTable extends React.PureComponent {
                 .map(prop => (
                   <TableRow key={prop}>
                     <TableCell
-                      className={classnames({
+                      className={clsx({
                         [classes.required]: propsDoc[prop].required,
                       })}
                     >

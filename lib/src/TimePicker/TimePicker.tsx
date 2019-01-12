@@ -1,5 +1,5 @@
 import withStyles from '@material-ui/core/styles/withStyles';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -152,7 +152,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     return (
       <React.Fragment>
         <PickerToolbar
-          className={classnames(classes.toolbar, {
+          className={clsx(classes.toolbar, {
             [classes.toolbarLeftPadding]: ampm,
           })}
         >

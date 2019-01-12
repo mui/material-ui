@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 import { DatePicker } from 'material-ui-pickers';
 import { IconButton, withStyles } from '@material-ui/core';
@@ -46,13 +46,13 @@ class CustomElements extends PureComponent {
     const isFirstDay = isSameDay(dateClone, start);
     const isLastDay = isSameDay(dateClone, end);
 
-    const wrapperClassName = classNames({
+    const wrapperClassName = clsx({
       [classes.highlight]: dayIsBetween,
       [classes.firstHighlight]: isFirstDay,
       [classes.endHighlight]: isLastDay,
     });
 
-    const dayClassName = classNames(classes.day, {
+    const dayClassName = clsx(classes.day, {
       [classes.nonCurrentMonthDay]: !dayInCurrentMonth,
       [classes.highlightNonCurrentMonthDay]: !dayInCurrentMonth && dayIsBetween,
     });

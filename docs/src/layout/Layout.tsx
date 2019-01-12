@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -74,7 +74,7 @@ class Layout extends Component<LayoutProps> {
       <React.Fragment>
         <AppBar
           position="fixed"
-          className={classnames(classes.appBar, {
+          className={clsx(classes.appBar, {
             [classes.landingAppBar]: isLanding,
           })}
         >
@@ -162,12 +162,12 @@ class Layout extends Component<LayoutProps> {
         </Hidden>
 
         <main
-          className={classnames(classes.main, {
+          className={clsx(classes.main, {
             [classes.landingMain]: isLanding,
           })}
         >
           <div
-            className={classnames(classes.content, {
+            className={clsx(classes.content, {
               [classes.landingMain]: isLanding,
             })}
           >

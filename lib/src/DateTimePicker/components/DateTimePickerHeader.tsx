@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
@@ -79,7 +79,7 @@ export const DateTimePickerHeader: React.SFC<DateTimePickerHeaderProps> = ({
   ampm,
 }) => {
   return (
-    <PickerToolbar className={classnames(classes.toolbar, { [classes.toolBar24h]: !ampm })}>
+    <PickerToolbar className={clsx(classes.toolbar, { [classes.toolBar24h]: !ampm })}>
       <div className={classes.dateHeader}>
         <ToolbarButton
           variant="subtitle1"
