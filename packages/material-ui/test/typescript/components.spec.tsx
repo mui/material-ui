@@ -103,7 +103,7 @@ const AvatarTest = () => (
   <div>
     <Avatar
       onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLDivElement>
+        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
         log(e);
       }}
       alt="Image Alt"
@@ -112,7 +112,7 @@ const AvatarTest = () => (
     <Avatar<'button'>
       component="button"
       onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement>
+        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
         log(e);
       }}
       alt="Image Alt"
@@ -178,7 +178,7 @@ const ButtonTest = () => (
     // By default the underlying component is a button element:
     <Button
       onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLButtonElement>
+        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
         log(e);
       }}
     >
@@ -188,7 +188,7 @@ const ButtonTest = () => (
     <Button
       href="/open-collective"
       onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLAnchorElement>
+        e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
         log(e);
       }}
     >
@@ -198,7 +198,7 @@ const ButtonTest = () => (
     <Button<'div'>
       component="div"
       onClick={e => {
-        e; // $ExpectType MouseEvent<HTMLDivElement>
+        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
         log(e);
       }}
     >
