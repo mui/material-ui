@@ -75,4 +75,4 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 ## Custom child elements
 
-Gor the Tooltip to work, its props are spread to the child element. If the child is a custom React component, [props must be spread manually](/guides/composition/#wrapping-components).
+For the Tooltip to work, its props are spread to the child element. If the child is a custom React component, [props must be spread manually](/guides/composition/#wrapping-components).
