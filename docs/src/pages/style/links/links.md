@@ -13,7 +13,7 @@ You can leverage its properties.
 
 {{"demo": "pages/style/links/Links.js"}}
 
-However, the link has different default properties than the typography:
+However, the Link has different default properties than the Typography:
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typograpy component.
 
