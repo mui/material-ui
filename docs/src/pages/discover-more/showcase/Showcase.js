@@ -603,6 +603,15 @@ const appList = [
     stars: 14,
   },
   {
+    title: 'Tree',
+    description:
+      'An open source top 100 documentaries (personal opinion) app ' +
+      'with React Hooks and Material-UI.',
+    link: 'https://tree.valleyease.me/',
+    image: '/static/images/showcase/tree.jpg',
+    source: 'https://github.com/ValleyZw/tree',
+  },
+  {
     title: 'Componofy: Spotify Playlist Combination',
     description:
       'An open source web app that allows a Spotify user to combine private and public playlists ' +
