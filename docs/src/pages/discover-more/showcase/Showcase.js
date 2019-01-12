@@ -593,6 +593,15 @@ const appList = [
     stars: 36,
   },
   {
+    title: 'Tree',
+    description:
+      'An open source top 100 documentaries (personal opinion) app ' +
+      'with React Hooks and Material-UI.',
+    link: 'https://tree.valleyease.me/',
+    image: 'tree.jpg',
+    source: 'https://github.com/ValleyZw/tree',
+  },
+  {
     title: 'Material Blog',
     description:
       'An open source blog with a UI built entirely using material-ui v1. ' +
@@ -601,15 +610,6 @@ const appList = [
     link: 'https://jdupont.github.io/',
     source: 'https://github.com/jdupont/jdupont.github.io',
     stars: 14,
-  },
-  {
-    title: 'Tree',
-    description:
-      'An open source top 100 documentaries (personal opinion) app ' +
-      'with React Hooks and Material-UI.',
-    link: 'https://tree.valleyease.me/',
-    image: '/static/images/showcase/tree.jpg',
-    source: 'https://github.com/ValleyZw/tree',
   },
   {
     title: 'Componofy: Spotify Playlist Combination',
@@ -646,7 +646,7 @@ function Showcase(props) {
   return (
     <div className={classes.root}>
       {appList.map(app => (
-        <div key={app.image}>
+        <div key={app.title}>
           <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
             <span>{app.title}</span>
             {app.source ? (
