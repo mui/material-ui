@@ -7,6 +7,7 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). 
 Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
+
 ## Usage of `withStyles`
 
 Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
@@ -247,3 +248,69 @@ import createMyTheme from './styles/createMyTheme';
 
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
+
+## Usage of `component` property
+
+Material-UI allows you to replace a component's root node via a `component` prop.  For example, a `Button`'s root node can be replaced with a React Router `Link`, and all extra props that are passed to `Button`, like `to`, will be spread down to the `Link` component, so you can do this: `<Button component={Link} to="/">Go Home</Button>`
+
+However, Typescript will complain about this, because `to` is not part of the `ButtonProps` interface, and it has no way of inferring what props are what was passed in `component`.
+
+The current workaround is to spread these extra props down:
+
+```js
+interface LinkButtonProps extends ButtonProps {
+  to: LocationDescriptor,
+  replace?: boolean,
+}
+
+const renderLink = (props: any) => <Link {...props}/>
+
+const LinkButton = (props: LinkButtonProps) => (
+  <Button {...props} component={renderLink}/>
+)
+
+// usage:
+<LinkButton color="primary" to="/">Go Home</LinkButton>
+```
+
+Note that `renderLink`'s props param has a type of `any`.  Material-UI components pass some basic event handler props (`onClick`, `onDoubleClick`, etc.) to their root nodes.  These handlers have a signature of `(event: MouseEvent<HTMLElement, MouseEvent>) => void`, which is incompatible with the event handler signatures that `Link` expects, which are `(event: MouseEvent<AnchorElement>) => void`.
+
+Any element/component that you pass into `component` will have this problem if the signatures of their event handler props don't match.
+
+There is an open PR that will fix this by adding Typescript generics for component props.
+
+### Using React Router `Link` with `component` prop
+
+There are some other typing issues when using React Router's `Link` with the `component` property.
+
+Typescript will throw an error if you try to pass `Link` in directly: `<ListItem component={Link}>`.  Instead, `Link` should be wrapped in a functional component that is declared outside of the `render` before being passed in.
+
+> **NOTE:** There is currently an open issue that will require you to replace `ListItemLinkProps` with `any` in the signature for `createLink` below.  There is [an open PR](https://github.com/mui-org/material-ui/pull/13868) to fix this issue.
+
+To replace the root element of `ListItem`:
+
+```js
+import * as React from 'react'
+import { ListItem } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { ListItemProps } from '@material-ui/core/ListItem';
+import { LocationDescriptor } from 'history';
+
+interface ListItemLinkProps extends ListItemProps {
+  to: LocationDescriptor
+  replace?: boolean
+}
+
+// Note: you must replace `ListItemLinkProps` with `any` here for the moment.
+const createLink = ({ innerRef, ...props }: ListItemLinkProps) => <Link {...props}>;
+
+const ListItemLink = ({ to, replace, primary }: ListItemLinkProps) => (
+  <ListItem {...props} component={createLink}>
+    <ListItemText primary={primary}/>
+  </ListItem>
+);
+```
+
+In our `createLink` function, we need to remove `innerRef` from the props because `ListItemProps` and `LinkProps` both define an `innerRef` property which are incompatible with each other.  However, the property `innerRef` shouldn't be needed, as the `ListItem` component already provides that feature with a different interface.  Note that removing `innerRef` only needs to be done when overriding a `ListItem` component.
+
+Prop interfaces can be imported from their respective component's path, eg: `import { ButtonProps } from '@material-ui/core/Button`.
