@@ -2,7 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -227,6 +229,15 @@ class InputBase extends React.Component {
 
   handleRefInput = ref => {
     this.inputRef = ref;
+
+    warning(
+      !ref || ref instanceof HTMLInputElement || ref.focus,
+      [
+        'Material-UI: you have provided a `inputComponent` to the input component',
+        'that does not correctly handle the `inputRef` property.',
+        'Make sure the `inputRef` property is called with a HTMLInputElement.',
+      ].join('\n'),
+    );
 
     let refProp;
 
@@ -477,7 +488,7 @@ InputBase.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  inputComponent: componentPropType,
   /**
    * Attributes applied to the `input` element.
    */

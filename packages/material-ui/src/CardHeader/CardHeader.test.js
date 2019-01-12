@@ -105,7 +105,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(title.props().variant, 'body2');
     });
 
-    it('should render the subeader as body2 secondary text inside the second child', () => {
+    it('should render the subheader as body2 secondary text inside the second child', () => {
       const container = wrapper.childAt(1);
       assert.strictEqual(
         container.hasClass(classes.content),

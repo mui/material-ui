@@ -21,7 +21,7 @@ import AppBar from '@material-ui/core/AppBar';
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'default'<br></span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">position</span> | <span class="prop-type">enum:&nbsp;'fixed', 'absolute', 'sticky', 'static', 'relative'<br></span> | <span class="prop-default">'fixed'</span> | The positioning type. The behavior of the different options is described [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
+| <span class="prop-name">position</span> | <span class="prop-type">enum:&nbsp;'fixed', 'absolute', 'sticky', 'static', 'relative'<br></span> | <span class="prop-default">'fixed'</span> | The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
@@ -44,11 +44,10 @@ This property accepts the following keys:
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/AppBar/AppBar.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/AppBar/AppBar.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiAppBar`.
 
 ## Inheritance

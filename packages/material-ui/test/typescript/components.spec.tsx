@@ -131,7 +131,7 @@ const AvatarTest = () => (
   </div>
 );
 
-const AvaterClassName = () => <Avatar className="foo" />;
+const AvatarClassName = () => <Avatar className="foo" />;
 
 const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
@@ -166,7 +166,7 @@ const ButtonTest = () => (
       Raised
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complexe Link</Button>
+    <Button component={props => <a {...props} />}>Complex Link</Button>
     <Button component={Link} to="/open-collective">
       Link
     </Button>
@@ -579,7 +579,7 @@ const PaperTest = () => (
   </Paper>
 );
 
-const CircularProgessTest = () => (
+const CircularProgressTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
@@ -893,6 +893,7 @@ const TextFieldTest = () => (
         },
       }}
     />
+    <Input inputComponent="input" />
   </div>
 );
 

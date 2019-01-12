@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import getDynamicStyles from 'jss/lib/utils/getDynamicStyles';
+import { getDynamicStyles } from 'jss';
 import { getDisplayName } from '@material-ui/utils';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 import { increment } from './indexCounter';
 import mergeClasses from './mergeClasses';
 import multiKeyStore from './multiKeyStore';
 import getStylesCreator from './getStylesCreator';
 import getThemeProps from './getThemeProps';
+import hoistStatics from './hoistInternalStatics';
 import { StylesContext } from './StylesProvider';
-import { ThemeContext } from './ThemeProvider';
+import ThemeContext from './ThemeContext';
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};
@@ -74,8 +74,10 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
   const options = {
     ...stylesCreator.options,
     ...stylesOptions,
+    theme,
     flip: typeof stylesOptions.flip === 'boolean' ? stylesOptions.flip : theme.direction === 'rtl',
   };
+  options.generateId = options.generateClassName;
 
   const sheetsRegistry = stylesOptions.sheetsRegistry;
 
@@ -94,15 +96,15 @@ export function attach({ state, props, theme, stylesOptions, stylesCreator, name
         ...options,
       });
 
-      if (sheetsRegistry) {
-        sheetsRegistry.add(staticSheet);
-      }
-
       staticSheet.attach();
 
       if (stylesOptions.sheetsCache) {
         multiKeyStore.set(stylesOptions.sheetsCache, stylesCreator, theme, staticSheet);
       }
+    }
+
+    if (sheetsRegistry) {
+      sheetsRegistry.add(staticSheet);
     }
 
     sheetManager.dynamicStyles = getDynamicStyles(styles);
@@ -173,9 +175,10 @@ export function detach({ state, theme, stylesOptions, stylesCreator }) {
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
-  const { withTheme = false, name, defaultTheme, ...stylesOptions2 } = options;
+  const { withTheme = false, name, defaultTheme: defaultThemeOption, ...stylesOptions2 } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
+  const defaultTheme = defaultThemeOption || noopTheme;
 
   let meta = name;
 
@@ -301,7 +304,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
               <WithStylesInner
                 stylesOptions={stylesOptions}
                 ref={ref}
-                theme={theme || defaultTheme || noopTheme}
+                theme={theme || defaultTheme}
                 {...props}
               />
             )}
@@ -310,7 +313,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
           <WithStylesInner
             stylesOptions={stylesOptions}
             ref={ref}
-            theme={defaultTheme || noopTheme}
+            theme={defaultTheme}
             {...props}
           />
         );
@@ -333,7 +336,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
-  hoistNonReactStatics(WithStyles, Component);
+  hoistStatics(WithStyles, Component);
 
   if (process.env.NODE_ENV !== 'production') {
     // Exposed for test purposes.

@@ -44,8 +44,8 @@ function AddressForm() {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="addiress2"
-            name="addiress2"
+            id="address2"
+            name="address2"
             label="Address line 2"
             fullWidth
             autoComplete="billing address-line2"

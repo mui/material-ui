@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { JssProvider } from 'react-jss';
 import { create, SheetsRegistry } from 'jss';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import jssPreset from './jssPreset';
@@ -153,7 +153,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
-          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateId={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,
@@ -199,7 +199,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
-          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateId={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,

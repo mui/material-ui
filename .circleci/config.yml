@@ -13,13 +13,13 @@ install_js: &install_js
     name: Install js dependencies
     command: |
       yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
-      yarn
+      yarn --frozen-lockfile
 restore_yarn_cache: &restore_yarn_cache
   restore_cache:
-    key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+    key: v2-yarn-sha-{{ checksum "yarn.lock" }}
 restore_yarn_offline_mirror: &restore_yarn_offline_mirror
   restore_cache:
-    key: v1-npm-packages-offline-cache
+    key: v2-npm-packages-offline-cache
 version: 2
 jobs:
   checkout:
@@ -42,11 +42,11 @@ jobs:
           name: Should not have any git not staged
           command: git diff --exit-code
       - save_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn/v1
+            - ~/.cache/yarn/v4
       - save_cache:
-          key: v1-npm-packages-offline-cache
+          key: v2-npm-packages-offline-cache
           paths:
             - ~/.cache/npm-packages-offline-cache/v1
   test_unit:
@@ -169,6 +169,9 @@ jobs:
           name: Can we generate the @material-ui/utils build?
           command: cd packages/material-ui-utils && yarn build
       - run:
+          name: Can we generate the @material-ui/system build?
+          command: cd packages/material-ui-system && yarn build
+      - run:
           name: Can we build the docs?
           command: yarn docs:build
       - run:
@@ -185,7 +188,7 @@ jobs:
           name: Can we generate the documentation?
           command: yarn docs:api
       - run:
-          name: "`yarn docs:api` changes commited?"
+          name: '`yarn docs:api` changes commited?'
           command: git diff --exit-code
       - run:
           name: Install dependencies for Chrome Headless

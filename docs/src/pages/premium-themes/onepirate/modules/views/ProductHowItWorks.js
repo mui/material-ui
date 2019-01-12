@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import LayoutBody from '../components/LayoutBody';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
-import Link from '../next/Link';
 
 const styles = theme => ({
   root: {
@@ -76,7 +76,9 @@ function ProductHowItWorks(props) {
                   alt="suitcase"
                   className={classes.image}
                 />
-                <Typography variant="h5">Appointment every Wednesday 9am.</Typography>
+                <Typography variant="h5" align="center">
+                  Appointment every Wednesday 9am.
+                </Typography>
               </div>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -87,7 +89,7 @@ function ProductHowItWorks(props) {
                   alt="graph"
                   className={classes.image}
                 />
-                <Typography variant="h5">
+                <Typography variant="h5" align="center">
                   First come, first served. Our offers are in limited quantities, so be quick.
                 </Typography>
               </div>
@@ -100,7 +102,7 @@ function ProductHowItWorks(props) {
                   alt="clock"
                   className={classes.image}
                 />
-                <Typography variant="h5">
+                <Typography variant="h5" align="center">
                   {'New offers every week. New experiences, new surprises. '}
                   {'Your Sundays will no longer be alike.'}
                 </Typography>

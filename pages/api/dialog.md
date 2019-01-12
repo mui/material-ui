@@ -26,7 +26,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog stretches to `maxWidth`. |
 | <span class="prop-name">maxWidth</span> | <span class="prop-type">enum:&nbsp;'xs', 'sm', 'md', 'lg', 'xl', false<br></span> | <span class="prop-default">'sm'</span> | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. Set to `false` to disable `maxWidth`. |
 | <span class="prop-name">onBackdropClick</span> | <span class="prop-type">func</span> |   | Callback fired when the backdrop is clicked. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"` |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |   | Callback fired before the dialog enters. |
 | <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |   | Callback fired when the dialog has entered. |
 | <span class="prop-name">onEntering</span> | <span class="prop-type">func</span> |   | Callback fired when the dialog is entering. |
@@ -35,9 +35,10 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |   | Callback fired when the dialog has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |   | Callback fired when the dialog is exiting. |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool</span> |   | If `true`, the Dialog is open. |
-| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Paper`](/api/paper/) element. If you want to add a class to the `Paper` component use `classes.paper` in the `Dialog` props instead. |
+| <span class="prop-name">PaperComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
+| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">scroll</span> | <span class="prop-type">enum:&nbsp;'body'&nbsp;&#124;<br>&nbsp;'paper'<br></span> | <span class="prop-default">'paper'</span> | Determine the container for scrolling the dialog. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">Fade</span> | Transition component. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">Fade</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Transition` element. |
 
@@ -67,11 +68,10 @@ This property accepts the following keys:
 | <span class="prop-name">paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Dialog/Dialog.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiDialog`.
 
 ## Inheritance

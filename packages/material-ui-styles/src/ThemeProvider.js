@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
-
-export const ThemeContext = React.createContext(null);
+import ThemeContext from './ThemeContext';
 
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {
@@ -64,6 +63,8 @@ ThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
+}
 
 export default ThemeProvider;

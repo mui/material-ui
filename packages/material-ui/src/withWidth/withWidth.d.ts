@@ -2,7 +2,10 @@ import { Breakpoint } from '../styles/createBreakpoints';
 import { PropInjector } from '..';
 
 export interface WithWidthOptions {
-  resizeInterval: number;
+  withTheme?: boolean;
+  noSSR?: boolean;
+  initialWidth?: Breakpoint;
+  resizeInterval?: number;
 }
 
 export interface WithWidth {

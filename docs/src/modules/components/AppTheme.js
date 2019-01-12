@@ -30,12 +30,14 @@ function AppTheme(props) {
           [classes.hideCredit]: hideCredit,
         })}
       >
-        {'Build with '}
+        {'Built with '}
         <span role="img" aria-label="Love">
           ❤️
         </span>
         {' by the '}
-        <Link href="/">Material-UI</Link>
+        <Link color="inherit" href="/">
+          Material-UI
+        </Link>
         {' team.'}
       </Typography>
     </React.Fragment>

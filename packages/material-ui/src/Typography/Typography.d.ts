@@ -11,6 +11,7 @@ export interface TypographyProps
   component?: React.ReactType<TypographyProps>;
   gutterBottom?: boolean;
   headlineMapping?: { [type in Style]: string };
+  inline?: boolean;
   noWrap?: boolean;
   paragraph?: boolean;
   variant?: Style | 'inherit';
@@ -42,6 +43,8 @@ export type TypographyClassKey =
   | 'colorInherit'
   | 'colorSecondary'
   | 'colorTextSecondary'
+  | 'colorError'
+  | 'inline'
   | 'display4' // deprecated
   | 'display3'
   | 'display2'

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -19,7 +20,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     userSelect: 'none',
   },
-  /* Styles applied to the root element if there are children and not `src` or `srcSet` */
+  /* Styles applied to the root element if there are children and not `src` or `srcSet`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
@@ -76,6 +77,7 @@ function Avatar(props) {
     <Component
       className={classNames(
         classes.root,
+        classes.system,
         {
           [classes.colorDefault]: !img,
         },
@@ -121,7 +123,7 @@ Avatar.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * Attributes applied to the `img` element if the component
    * is used to display an image.

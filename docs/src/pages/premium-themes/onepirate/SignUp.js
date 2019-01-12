@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
-import Link from './modules/next/Link';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
@@ -62,7 +62,7 @@ class SignUp extends React.Component {
               Sign Up
             </Typography>
             <Typography variant="body2" align="center">
-              <Link href="/premium-themes/onepirate/sign-in" variant="underline">
+              <Link href="/premium-themes/onepirate/sign-in" underline="always">
                 Already have an account?
               </Link>
             </Typography>

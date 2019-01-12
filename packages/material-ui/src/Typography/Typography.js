@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import chainPropTypes from '../utils/chainPropTypes';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -112,6 +112,10 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
+  /* Styles applied to the root element if `inline={true}`. */
+  inline: {
+    display: 'inline',
+  },
 });
 
 const nextVariants = {
@@ -170,6 +174,7 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
+    inline,
     internalDeprecatedVariant,
     noWrap,
     paragraph,
@@ -188,6 +193,7 @@ function Typography(props) {
       [classes.gutterBottom]: gutterBottom,
       [classes.paragraph]: paragraph,
       [classes[`align${capitalize(align)}`]]: align !== 'inherit',
+      [classes.inline]: inline,
     },
     classNameProp,
   );
@@ -235,7 +241,7 @@ Typography.propTypes = {
    * Either a string to use a DOM element or a component.
    * By default, it maps the variant to a good default headline component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the text will have a bottom margin.
    */
@@ -248,6 +254,10 @@ Typography.propTypes = {
    * The default mapping is the following:
    */
   headlineMapping: PropTypes.object,
+  /**
+   *  Controls whether the Typography is inline or not.
+   */
+  inline: PropTypes.bool,
   /**
    * A deprecated variant is used from an internal component. Users don't need
    * a deprecation warning here if they switched to the v2 theme. They already
@@ -310,9 +320,9 @@ Typography.propTypes = {
         deprecatedVariants.indexOf(props.variant) !== -1
       ) {
         return new Error(
-          'You are using a deprecated typography variant: ' +
-            `\`${props.variant}\` that will be removed in the next major release.` +
-            '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2',
+          'Material-UI: you are using a deprecated typography variant: ' +
+            `\`${props.variant}\` that will be removed in the next major release.\n` +
+            'Please read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2.',
         );
       }
 
@@ -326,6 +336,7 @@ Typography.defaultProps = {
   color: 'default',
   gutterBottom: false,
   headlineMapping: defaultHeadlineMapping,
+  inline: false,
   noWrap: false,
   paragraph: false,
 };

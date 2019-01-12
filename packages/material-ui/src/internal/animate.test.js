@@ -38,7 +38,7 @@ describe('animate', () => {
     });
   });
 
-  it('should be able to cancel the animatation', done => {
+  it('should be able to cancel the animation', done => {
     container.scrollLeft = 200;
     const cancel = animate('scrollLeft', container, 300, {}, () => {
       assert.strictEqual(container.scrollLeft, 200);

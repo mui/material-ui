@@ -141,7 +141,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   handleBodyTouchStart = event => {
-    // We are not supposed to hanlde this touch move.
+    // We are not supposed to handle this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
     }

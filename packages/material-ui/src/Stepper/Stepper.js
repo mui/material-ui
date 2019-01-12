@@ -141,6 +141,4 @@ Stepper.defaultProps = {
   orientation: 'horizontal',
 };
 
-Stepper.muiName = 'Stepper';
-
 export default withStyles(styles, { name: 'MuiStepper' })(Stepper);

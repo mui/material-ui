@@ -30,8 +30,8 @@ function ClassesState(props) {
     <Button
       disabled
       classes={{
-        root: classes.root, // class name, e.g. `classes-state-root-x`
-        disabled: classes.disabled, // class name, e.g. `classes-state-disabled-x`
+        root: classes.root, // class name, e.g. `root-x`
+        disabled: classes.disabled, // class name, e.g. `disabled-x`
       }}
     >
       classes state
