@@ -75,10 +75,7 @@ describe('spacing', () => {
         consoleWarnMock.args()[0][0],
         /the `theme.spacing` value \(\[object Object\]\) is invalid\./,
       );
-      assert.match(
-        consoleWarnMock.args()[0][0],
-        /It should be a number, an array or a function\./,
-      );
+      assert.match(consoleWarnMock.args()[0][0], /It should be a number, an array or a function\./);
     });
   });
 
