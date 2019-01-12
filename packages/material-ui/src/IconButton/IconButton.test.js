@@ -119,11 +119,13 @@ describe('<IconButton />', () => {
     });
 
     it('should raise a warning', () => {
-      shallow(
+      mount(
         <IconButton>
           <svg onClick={() => {}} />
         </IconButton>,
       );
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(consoleErrorMock.args()[0][0], 'you are providing an onClick event listener');
     });
   });
 });
