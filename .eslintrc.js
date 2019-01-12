@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['babel', 'import', 'jsx-a11y', 'mocha', 'material-ui'],
+  plugins: ['babel', 'mocha', 'material-ui'],
   settings: {
     'import/resolver': {
       webpack: {
