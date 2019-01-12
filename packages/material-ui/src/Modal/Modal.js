@@ -173,6 +173,8 @@ class Modal extends React.Component {
       return;
     }
 
+    event.stopPropagation();
+
     if (this.props.onEscapeKeyDown) {
       this.props.onEscapeKeyDown(event);
     }
@@ -305,6 +307,9 @@ class Modal extends React.Component {
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
+        {/* Marking an element with the role presentation indicates to assistive technology
+         that this element should be ignored; it exists to support the web application and
+        is not meant for humans to interact with directly. */}
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
