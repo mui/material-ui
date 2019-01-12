@@ -55,8 +55,6 @@ export type WithStyles<
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
-  className?: string;
-  style?: React.CSSProperties;
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 

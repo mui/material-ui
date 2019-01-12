@@ -6,7 +6,9 @@ import {
   MuiThemeProvider,
   Theme,
   withTheme,
+  StyleRules,
   StyleRulesCallback,
+  StyledComponentProps,
   WithStyles,
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button/Button';

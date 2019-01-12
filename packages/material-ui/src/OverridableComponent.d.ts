@@ -13,7 +13,7 @@ export type OverrideProps<
   C extends AnyReactType
 > = (
   & BaseProps<M>
-  & Omit<PropsOf<C>, keyof StyledComponentProps<M['classKey']>>
+  & Omit<PropsOf<C>, keyof UniversalProps<M>>
 );
 
 // prettier-ignore
@@ -24,7 +24,12 @@ export type DefaultProps<M extends OverridableTypeMap> =
 // prettier-ignore
 export type BaseProps<M extends OverridableTypeMap> =
   & M['props']
-  & StyledComponentProps<M['classKey']>;
+  & UniversalProps<M>;
+
+export interface UniversalProps<M extends OverridableTypeMap> extends StyledComponentProps<M['classKey']> {
+  className?: string;
+  style?: React.CSSProperties;
+}
 
 export interface OverridableTypeMap {
   props: {};
