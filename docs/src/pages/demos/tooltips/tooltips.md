@@ -72,3 +72,7 @@ The tooltip is normally shown immediately when the user's mouse hovers over the 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 
 {{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
+
+## Custom child elements
+
+Gor the Tooltip to work, its props are spread to the child element. If the child is a custom React component, [props must be spread manually](/guides/composition/#wrapping-components).
