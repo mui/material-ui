@@ -1,6 +1,6 @@
 // The API is inspired by console.time
 // The implementation is isomorphic.
-import warning from 'warning';
+import warning from 'tiny-warning';
 
 const times = new Map();
 

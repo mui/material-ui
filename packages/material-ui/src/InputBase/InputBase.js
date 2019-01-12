@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import classNames from 'classnames';
 import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';

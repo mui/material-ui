@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import {
   recomposeColor,
   convertHexToRGB,
@@ -15,11 +15,11 @@ import {
 
 describe('utils/colorManipulator', () => {
   beforeEach(() => {
-    consoleErrorMock.spy();
+    consoleWarnMock.spy();
   });
 
   afterEach(() => {
-    consoleErrorMock.reset();
+    consoleWarnMock.reset();
   });
 
   describe('recomposeColor', () => {
@@ -212,12 +212,12 @@ describe('utils/colorManipulator', () => {
 
     it("doesn't overshoot if an above-range coefficient is supplied", () => {
       assert.strictEqual(darken('rgb(0, 127, 255)', 1.5), 'rgb(0, 0, 0)');
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
     });
 
     it("doesn't overshoot if a below-range coefficient is supplied", () => {
       assert.strictEqual(darken('rgb(0, 127, 255)', -0.1), 'rgb(0, 127, 255)');
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
     });
 
     it('darkens rgb white to black when coefficient is 1', () => {
@@ -264,12 +264,12 @@ describe('utils/colorManipulator', () => {
 
     it("doesn't overshoot if an above-range coefficient is supplied", () => {
       assert.strictEqual(lighten('rgb(0, 127, 255)', 1.5), 'rgb(255, 255, 255)');
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
     });
 
     it("doesn't overshoot if a below-range coefficient is supplied", () => {
       assert.strictEqual(lighten('rgb(0, 127, 255)', -0.1), 'rgb(0, 127, 255)');
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
     });
 
     it('lightens rgb black to white when coefficient is 1', () => {

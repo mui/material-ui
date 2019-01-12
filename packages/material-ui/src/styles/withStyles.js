@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getDisplayName, ponyfillGlobal } from '@material-ui/utils';
 import { create } from 'jss';

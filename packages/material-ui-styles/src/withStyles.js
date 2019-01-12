@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import { getDynamicStyles } from 'jss';
 import { getDisplayName } from '@material-ui/utils';
 import { increment } from './indexCounter';

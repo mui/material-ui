@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
@@ -233,11 +233,11 @@ describe('<Tooltip />', () => {
 
   describe('disabled button warning', () => {
     before(() => {
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     after(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('should not raise a warning if title is empty', () => {
@@ -248,7 +248,7 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
+      assert.strictEqual(consoleWarnMock.callCount(), 0, 'should not call console.error');
     });
 
     it('should raise a warning when we can listen to events', () => {
@@ -259,9 +259,9 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
+      assert.strictEqual(consoleWarnMock.callCount(), 1, 'should call console.error');
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleWarnMock.args()[0][0],
         /Material-UI: you are providing a disabled `button` child to the Tooltip component/,
       );
     });

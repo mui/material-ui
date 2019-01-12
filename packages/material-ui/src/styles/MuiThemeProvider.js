@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import createBroadcast from 'brcast';
 import { exactProp, ponyfillGlobal } from '@material-ui/utils';
 import themeListener, { CHANNEL } from './themeListener';

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import keycode from 'keycode';
 import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';

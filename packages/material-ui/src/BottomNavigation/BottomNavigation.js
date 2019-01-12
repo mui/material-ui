@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { componentPropType } from '@material-ui/utils';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({

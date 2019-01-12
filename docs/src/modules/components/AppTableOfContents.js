@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';

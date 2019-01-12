@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
 import Portal from '../Portal';
@@ -402,11 +402,11 @@ describe('<Modal />', () => {
       document.body.appendChild(focusContainer);
       focusContainer.focus();
       assert.strictEqual(document.activeElement, focusContainer);
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     afterEach(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
       wrapper.unmount();
       document.body.removeChild(focusContainer);
     });
@@ -489,8 +489,8 @@ describe('<Modal />', () => {
           <Dialog />
         </Modal>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /the modal content node does not accept focus/);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
+      assert.match(consoleWarnMock.args()[0][0], /the modal content node does not accept focus/);
     });
 
     it('should not attempt to focus nonexistent children', () => {

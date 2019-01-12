@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 
-import warning from 'warning';
+import warning from 'tiny-warning';
 
 /**
  * Returns a number whose value is limited to the given range.

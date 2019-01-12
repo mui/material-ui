@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import getStylesCreator from './getStylesCreator';
 
 describe('getStylesCreator', () => {
@@ -29,11 +29,11 @@ describe('getStylesCreator', () => {
 
   describe('overrides', () => {
     before(() => {
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     after(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('should be able to overrides some rules, deep', () => {
@@ -68,8 +68,8 @@ describe('getStylesCreator', () => {
         },
       };
       stylesCreator.create(theme, name);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /Fix the `bubu` key of `theme\.overrides\.name`/);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
+      assert.match(consoleWarnMock.args()[0][0], /Fix the `bubu` key of `theme\.overrides\.name`/);
     });
 
     it('should support jss-expand', () => {

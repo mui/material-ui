@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import warning from 'warning';
+import warning from 'tiny-warning';
 
 // Global index counter to preserve source order.
 // We create the style sheet during at the creation of the component,

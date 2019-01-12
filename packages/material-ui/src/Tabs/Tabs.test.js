@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { ShallowWrapper } from 'enzyme';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Tab from '../Tab';
 import Tabs from './Tabs';
@@ -51,17 +51,17 @@ describe('<Tabs />', () => {
 
   describe('warning', () => {
     before(() => {
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     after(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('should warn if the input is invalid', () => {
       shallow(<Tabs onChange={noop} value={0} centered variant="scrollable" />);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleWarnMock.args()[0][0],
         /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
       );
     });
@@ -150,7 +150,7 @@ describe('<Tabs />', () => {
     });
 
     after(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('should pass selected prop to children', () => {
@@ -311,16 +311,16 @@ describe('<Tabs />', () => {
     });
 
     it('should warn when the value is invalid', () => {
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
       mount(
         <Tabs width="md" onChange={noop} value={2}>
           <Tab value={1} />
           <Tab value={3} />
         </Tabs>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 3);
+      assert.strictEqual(consoleWarnMock.callCount(), 3);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleWarnMock.args()[0][0],
         /You can provide one of the following values: 1, 3/,
       );
     });

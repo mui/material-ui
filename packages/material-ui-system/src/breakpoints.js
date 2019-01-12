@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from 'tiny-warning';
 import PropTypes from 'prop-types';
 import merge from './merge';
 

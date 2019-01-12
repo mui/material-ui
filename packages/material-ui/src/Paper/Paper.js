@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 

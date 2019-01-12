@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import PropTypes from 'prop-types';
 import Input from '../Input';
 import FilledInput from '../FilledInput';

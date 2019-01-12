@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import { JssProvider } from 'react-jss';
 import { create, SheetsRegistry } from 'jss';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import jssPreset from './jssPreset';
 import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
@@ -48,32 +48,32 @@ describe('withStyles', () => {
 
     describe('prop: classes', () => {
       before(() => {
-        consoleErrorMock.spy();
+        consoleWarnMock.spy();
       });
 
       after(() => {
-        consoleErrorMock.reset();
+        consoleWarnMock.reset();
       });
 
       it('should accept a classes property', () => {
         const wrapper = shallow(<StyledComponent1 classes={{ root: 'h1' }} />);
         assert.deepEqual(wrapper.props().classes, { root: `${classes.root} h1` });
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
+        assert.strictEqual(consoleWarnMock.callCount(), 0);
       });
 
       it('should ignore undefined property', () => {
         const wrapper = shallow(<StyledComponent1 classes={{ root: undefined }} />);
         assert.deepEqual(wrapper.props().classes, { root: classes.root });
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
+        assert.strictEqual(consoleWarnMock.callCount(), 0);
       });
 
       it('should warn if providing a unknown key', () => {
         const wrapper = shallow(<StyledComponent1 classes={{ bar: 'foo' }} />);
 
         assert.deepEqual(wrapper.props().classes, { root: classes.root, bar: 'undefined foo' });
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.strictEqual(consoleWarnMock.callCount(), 1);
         assert.match(
-          consoleErrorMock.args()[0][0],
+          consoleWarnMock.args()[0][0],
           /Material-UI: the key `bar` provided to the classes property is not implemented/,
         );
       });
@@ -82,9 +82,9 @@ describe('withStyles', () => {
         const wrapper = shallow(<StyledComponent1 classes={{ root: {} }} />);
 
         assert.deepEqual(wrapper.props().classes, { root: `${classes.root} [object Object]` });
-        assert.strictEqual(consoleErrorMock.callCount(), 2);
+        assert.strictEqual(consoleWarnMock.callCount(), 2);
         assert.match(
-          consoleErrorMock.args()[1][0],
+          consoleWarnMock.args()[1][0],
           /Material-UI: the key `root` provided to the classes property is not valid/,
         );
       });

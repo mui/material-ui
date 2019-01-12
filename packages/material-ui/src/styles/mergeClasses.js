@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from 'tiny-warning';
 import { getDisplayName } from '@material-ui/utils';
 
 function mergeClasses(options = {}) {

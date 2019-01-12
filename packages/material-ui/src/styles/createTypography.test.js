@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 
 describe('createTypography', () => {
   let palette;
@@ -75,23 +75,23 @@ describe('createTypography', () => {
     beforeEach(() => {
       // eslint-disable-next-line no-underscore-dangle
       global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = false;
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     afterEach(() => {
       // eslint-disable-next-line no-underscore-dangle
       global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     const testTypography = (options, expectWarning) => {
       createTypography(palette, options);
 
       if (expectWarning) {
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(consoleErrorMock.args()[0][0], 'Material-UI:');
+        assert.strictEqual(consoleWarnMock.callCount(), 1);
+        assert.include(consoleWarnMock.args()[0][0], 'Material-UI:');
       } else {
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
+        assert.strictEqual(consoleWarnMock.callCount(), 0);
       }
     };
 

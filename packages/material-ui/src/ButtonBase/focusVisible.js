@@ -1,5 +1,5 @@
 import keycode from 'keycode';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import ownerDocument from '../utils/ownerDocument';
 
 const internal = {

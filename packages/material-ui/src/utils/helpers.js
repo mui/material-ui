@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from 'tiny-warning';
 
 // It should to be noted that this function isn't equivalent to `text-transform: capitalize`.
 //

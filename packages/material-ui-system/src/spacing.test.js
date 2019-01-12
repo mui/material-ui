@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import spacing from './spacing';
 
 describe('spacing', () => {
@@ -41,11 +41,11 @@ describe('spacing', () => {
 
   describe('warnings', () => {
     beforeEach(() => {
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     afterEach(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('should warn if the value overflow', () => {
@@ -56,10 +56,10 @@ describe('spacing', () => {
         p: 3,
       });
       assert.deepEqual(output, { padding: undefined });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(consoleErrorMock.args()[0][0], /the value provided \(3\) overflows\./);
-      assert.match(consoleErrorMock.args()[0][0], /The supported values are: \[0,3,5\]\./);
-      assert.match(consoleErrorMock.args()[0][0], /3 > 2, you need to add the missing values\./);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
+      assert.match(consoleWarnMock.args()[0][0], /the value provided \(3\) overflows\./);
+      assert.match(consoleWarnMock.args()[0][0], /The supported values are: \[0,3,5\]\./);
+      assert.match(consoleWarnMock.args()[0][0], /3 > 2, you need to add the missing values\./);
     });
 
     it('should warn if the theme transformer is invalid', () => {
@@ -70,13 +70,13 @@ describe('spacing', () => {
         p: 3,
       });
       assert.deepEqual(output, { padding: undefined });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleWarnMock.args()[0][0],
         /the `theme.spacing` value \(\[object Object\]\) is invalid\./,
       );
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleWarnMock.args()[0][0],
         /It should be a number, an array or a function\./,
       );
     });

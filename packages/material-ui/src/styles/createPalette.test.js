@@ -1,16 +1,16 @@
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import { indigo, pink, deepOrange, green, red } from '../colors';
 import { lighten, darken } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {
   before(() => {
-    consoleErrorMock.spy();
+    consoleWarnMock.spy();
   });
 
   after(() => {
-    consoleErrorMock.reset();
+    consoleWarnMock.reset();
   });
 
   it('should create a material design palette according to spec', () => {
@@ -348,14 +348,14 @@ describe('createPalette()', () => {
       'should use pink as the default secondary color',
     );
     assert.strictEqual(palette.text, dark.text, 'should use dark theme text');
-    assert.strictEqual(consoleErrorMock.callCount(), 0);
+    assert.strictEqual(consoleWarnMock.callCount(), 0);
   });
 
   it('should throw an exception when an invalid type is specified', () => {
     createPalette({ type: 'foo' });
-    assert.strictEqual(consoleErrorMock.callCount(), 1);
+    assert.strictEqual(consoleWarnMock.callCount(), 1);
     assert.match(
-      consoleErrorMock.args()[0][0],
+      consoleWarnMock.args()[0][0],
       /Material-UI: the palette type `foo` is not supported/,
     );
   });

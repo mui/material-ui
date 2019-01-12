@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
+import consoleWarnMock from 'test/utils/consoleWarnMock';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import LinearProgress from './LinearProgress';
 
@@ -166,28 +166,28 @@ describe('<LinearProgress />', () => {
 
   describe('prop: value', () => {
     before(() => {
-      consoleErrorMock.spy();
+      consoleWarnMock.spy();
     });
 
     after(() => {
-      consoleErrorMock.reset();
+      consoleWarnMock.reset();
     });
 
     it('should warn when not used as expected', () => {
       shallow(<LinearProgress variant="determinate" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.strictEqual(consoleWarnMock.callCount(), 1);
       assert.match(
-        consoleErrorMock.args()[0][0],
+        consoleWarnMock.args()[0][0],
         /Warning: Material-UI: you need to provide a value property/,
       );
       shallow(<LinearProgress variant="buffer" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 3);
+      assert.strictEqual(consoleWarnMock.callCount(), 3);
       assert.match(
-        consoleErrorMock.args()[1][0],
+        consoleWarnMock.args()[1][0],
         /Warning: Material-UI: you need to provide a value property/,
       );
       assert.match(
-        consoleErrorMock.args()[2][0],
+        consoleWarnMock.args()[2][0],
         /Warning: Material-UI: you need to provide a valueBuffer property/,
       );
     });

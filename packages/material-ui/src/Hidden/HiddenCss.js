@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';

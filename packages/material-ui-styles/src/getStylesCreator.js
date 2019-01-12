@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from 'tiny-warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 
 // Support for the jss-expand plugin.

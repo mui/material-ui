@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
-import warning from 'warning';
+import warning from 'tiny-warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 

@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from 'tiny-warning';
 import hash from '@emotion/hash';
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;

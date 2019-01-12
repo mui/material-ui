@@ -1,5 +1,5 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
-import warning from 'warning';
+import warning from 'tiny-warning';
 import { ponyfillGlobal } from '@material-ui/utils';
 
 function round(value) {

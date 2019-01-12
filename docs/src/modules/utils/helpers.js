@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from 'tiny-warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
