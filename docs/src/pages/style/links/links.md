@@ -28,7 +28,7 @@ Instead, use [specific descriptions](https://developers.google.com/web/tools/lig
 
 ## Security
 
-When you use `target="_blank"` with Links it is [recom](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md)[mended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
+When you use `target="_blank"` with Links it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
 - `rel="noopener"` prevents the new page from being able to access the window.opener property and ensures it runs in a separate process.
 Without this the target page can potentially redirect your page to a malicious URL.
