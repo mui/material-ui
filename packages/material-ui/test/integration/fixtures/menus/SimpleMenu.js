@@ -22,17 +22,15 @@ class SimpleMenu extends React.Component {
     return (
       <div>
         <Menu id="simple-menu" open={this.state.open} onClose={this.handleClose} {...this.props}>
-          {options.map((label, index) => {
-            return (
-              <MenuItem
-                key={label}
-                selected={index === this.state.selectedIndex}
-                onClick={event => this.handleMenuItemClick(event, index)}
-              >
-                {label}
-              </MenuItem>
-            );
-          })}
+          {options.map((label, index) => (
+            <MenuItem
+              key={label}
+              selected={index === this.state.selectedIndex}
+              onClick={event => this.handleMenuItemClick(event, index)}
+            >
+              {label}
+            </MenuItem>
+          ))}
         </Menu>
       </div>
     );

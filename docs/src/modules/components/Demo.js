@@ -235,16 +235,14 @@ class Demo extends React.Component {
       });
     }
 
-    this.setState(prevState => {
-      return {
-        /**
-         * if the the same code type is open,
-         * toggle the state, otherwise if it is
-         * another code type always open it. i.e, true
-         */
-        codeOpen: this.props.codeVariant === codeVariant ? !prevState.codeOpen : true,
-      };
-    });
+    this.setState(prevState => ({
+      /**
+       * if the the same code type is open,
+       * toggle the state, otherwise if it is
+       * another code type always open it. i.e, true
+       */
+      codeOpen: this.props.codeVariant === codeVariant ? !prevState.codeOpen : true,
+    }));
   };
 
   handleClickCodeOpen = () => {

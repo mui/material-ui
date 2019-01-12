@@ -79,7 +79,7 @@ describe('<Zoom />', () => {
   });
 
   describe('prop: appear', () => {
-    it('should work when initially hidden', () => {
+    it('should work when initially hidden: appear=true', () => {
       const wrapper = mount(
         <Zoom in={false} appear>
           <div>Foo</div>
@@ -90,7 +90,7 @@ describe('<Zoom />', () => {
       });
     });
 
-    it('should work when initially hidden', () => {
+    it('should work when initially hidden: appear=false', () => {
       const wrapper = mount(
         <Zoom in={false} appear={false}>
           <div>Foo</div>

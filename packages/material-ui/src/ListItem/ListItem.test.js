@@ -77,12 +77,12 @@ describe('<ListItem />', () => {
   });
 
   describe('prop: component', () => {
-    it('should change the component', () => {
+    it('should change the component to a', () => {
       const wrapper = mount(<ListItem button component="a" />);
       assert.strictEqual(wrapper.getDOMNode().nodeName, 'A');
     });
 
-    it('should change the component', () => {
+    it('should change the component to li', () => {
       const wrapper = mount(<ListItem button component="li" />);
       assert.strictEqual(wrapper.getDOMNode().nodeName, 'LI');
     });
