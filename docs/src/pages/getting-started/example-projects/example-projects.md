@@ -18,12 +18,14 @@ This is a slightly more complex project.
 Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for
 build instructions.
 
-# More advanced example projects
+## More advanced example projects
 
-<p class="description">Looking for a more advanced example project?</p>
+Looking for a more advanced example project?
 
-If you want to start with a more complete and real world example, you may need to include a set of tools and packages that could take your application one step further and ready for production, you should consider [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
-- Graph using recharts
-- React Router included with a navigation example
-- A docker container with an Nginx server for production build
-- Created with Create react app
+If you want to start with a more complete and real world example, you may need to include a set of tools and packages that could take your application one step further and ready for production, you should consider:
+
+- [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
+  - Graph using recharts
+  - React Router included with a navigation example
+  - A docker container with an Nginx server for production build
+  - Created with Create react app
