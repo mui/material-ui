@@ -167,6 +167,7 @@ class AppTableOfContents extends React.Component {
               {this.itemsServer.map(item2 => (
                 <li key={item2.text}>
                   <Link
+                    block
                     color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
                     href={`#${item2.hash}`}
                     className={classes.item}
@@ -178,6 +179,7 @@ class AppTableOfContents extends React.Component {
                       {item2.children.map(item3 => (
                         <li key={item3.text}>
                           <Link
+                            block
                             color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
                             href={`#${item3.hash}`}
                             className={classes.item}
