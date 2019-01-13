@@ -26,7 +26,8 @@ export type BaseProps<M extends OverridableTypeMap> =
   & M['props']
   & UniversalProps<M>;
 
-export interface UniversalProps<M extends OverridableTypeMap> extends StyledComponentProps<M['classKey']> {
+export interface UniversalProps<M extends OverridableTypeMap>
+  extends StyledComponentProps<M['classKey']> {
   className?: string;
   style?: React.CSSProperties;
 }
