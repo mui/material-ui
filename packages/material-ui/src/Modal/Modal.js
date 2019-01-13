@@ -140,7 +140,10 @@ class Modal extends React.Component {
   };
 
   handleClose = () => {
-    this.props.manager.remove(this);
+    const hasTransition = getHasTransition(this.props);
+    if (!hasTransition) {
+      this.props.manager.remove(this);
+    }
 
     const doc = ownerDocument(this.mountNode);
     doc.removeEventListener('focus', this.enforceFocus, true);
@@ -149,6 +152,7 @@ class Modal extends React.Component {
   };
 
   handleExited = () => {
+    this.props.manager.remove(this);
     this.setState({ exited: true });
   };
 
@@ -326,7 +330,7 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={classNames('mui-fixed', classes.root, className, {
+          className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
