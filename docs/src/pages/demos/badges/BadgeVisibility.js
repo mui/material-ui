@@ -42,7 +42,15 @@ class BadgeVisibility extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.row}>
-          <Badge color="secondary" badgeContent={4} invisible={invisible}>
+          <Badge
+            color="secondary"
+            badgeContent={4}
+            invisible={invisible}
+            className={classes.margin}
+          >
+            <MailIcon />
+          </Badge>
+          <Badge color="secondary" variant="dot" invisible={invisible} className={classes.margin}>
             <MailIcon />
           </Badge>
         </div>

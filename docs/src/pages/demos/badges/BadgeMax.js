@@ -13,20 +13,19 @@ const styles = theme => ({
 
 function BadgeMax(props) {
   const { classes } = props;
+
   return (
-    <div>
-      <div>
-        <Badge className={classes.margin} badgeContent={99} color="primary">
-          <MailIcon />
-        </Badge>
-        <Badge className={classes.margin} badgeContent={100} color="primary">
-          <MailIcon />
-        </Badge>
-        <Badge className={classes.margin} badgeContent={1000} max={999} color="primary">
-          <MailIcon />
-        </Badge>
-      </div>
-    </div>
+    <React.Fragment>
+      <Badge className={classes.margin} badgeContent={99} color="primary">
+        <MailIcon />
+      </Badge>
+      <Badge className={classes.margin} badgeContent={100} color="primary">
+        <MailIcon />
+      </Badge>
+      <Badge className={classes.margin} badgeContent={1000} max={999} color="primary">
+        <MailIcon />
+      </Badge>
+    </React.Fragment>
   );
 }
 

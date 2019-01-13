@@ -26,6 +26,7 @@ export const styles = theme => ({
     position: 'absolute',
     top: 0,
     right: 0,
+    boxSizing: 'border-box',
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(12),
@@ -83,23 +84,22 @@ function Badge(props) {
     className,
     color,
     component: ComponentProp,
-    invisible,
+    invisible: invisibleProp,
     showZero,
     max,
     variant,
     ...other
   } = props;
 
-  let hidden = false;
-  const isZero = badgeContent === 0 || badgeContent === '0';
+  let invisible = invisibleProp;
 
-  if (isZero && !showZero) {
-    hidden = true;
+  if (invisibleProp == null && Number(badgeContent) === 0 && !showZero) {
+    invisible = true;
   }
 
   const badgeClassName = classNames(classes.badge, {
     [classes[`color${capitalize(color)}`]]: color !== 'default',
-    [classes.invisible]: invisible || hidden,
+    [classes.invisible]: invisible,
     [classes.dot]: variant === 'dot',
   });
   let displayValue = '';
@@ -120,7 +120,7 @@ Badge.propTypes = {
   /**
    * The content rendered within the badge.
    */
-  badgeContent: PropTypes.node.isRequired,
+  badgeContent: PropTypes.node,
   /**
    * The badge will be added relative to this node.
    */
@@ -164,7 +164,6 @@ Badge.propTypes = {
 Badge.defaultProps = {
   color: 'default',
   component: 'span',
-  invisible: false,
   max: 99,
   showZero: false,
   variant: 'standard',

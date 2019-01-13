@@ -13,6 +13,7 @@ const styles = theme => ({
 
 function DotBadge(props) {
   const { classes } = props;
+
   return (
     <div>
       <div>
