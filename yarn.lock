@@ -3329,8 +3329,9 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-"babel-plugin-unwrap-createStyles@file:packages/babel-plugin-unwrap-createStyles":
-  version "0.0.1"
+"babel-plugin-unwrap-createStyles@link:packages/babel-plugin-unwrap-createStyles":
+  version "0.0.0"
+  uid ""
 
 babel-preset-es2015@^6.9.0:
   version "6.24.1"
