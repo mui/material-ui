@@ -28,4 +28,4 @@ If you want to start with a more complete and real world example, you could take
   - Graph using recharts
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build
-  - Created with Create react app
+  - Created with [Create React App](https://facebook.github.io/create-react-app/)
