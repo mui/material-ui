@@ -250,7 +250,8 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## Usage of `component` property
 
-Material-UI allows you to replace a component's root node via a `component` prop.  For example, a `Button`'s root node can be replaced with a React Router `Link`, and all extra props that are passed to `Button`, like `to`, will be spread down to the `Link` component, so you can do this: `<Button component={Link} to="/">Go Home</Button>`
+Material-UI allows you to replace a component's root node via a `component` prop.
+For example, a `Button`'s root node can be replaced with a React Router `Link`, and all extra props that are passed to `Button`, like `to`, will be spread down to the `Link` component, so you can do this: `<Button component={Link} to="/">Go Home</Button>`
 
 However, Typescript will complain about this, because `to` is not part of the `ButtonProps` interface, and it has no way of inferring what props are what was passed in `component`.
 
@@ -272,7 +273,9 @@ const LinkButton = (props: LinkButtonProps) => (
 <LinkButton color="primary" to="/">Go Home</LinkButton>
 ```
 
-Note that `renderLink`'s props param has a type of `any`.  Material-UI components pass some basic event handler props (`onClick`, `onDoubleClick`, etc.) to their root nodes.  These handlers have a signature of `(event: MouseEvent<HTMLElement, MouseEvent>) => void`, which is incompatible with the event handler signatures that `Link` expects, which are `(event: MouseEvent<AnchorElement>) => void`.
+Note that `renderLink`'s props param has a type of `any`.
+Material-UI components pass some basic event handler props (`onClick`, `onDoubleClick`, etc.) to their root nodes.
+These handlers have a signature of `(event: MouseEvent<HTMLElement, MouseEvent>) => void`, which is incompatible with the event handler signatures that `Link` expects, which are `(event: MouseEvent<AnchorElement>) => void`.
 
 Any element/component that you pass into `component` will have this problem if the signatures of their event handler props don't match.
 
@@ -282,7 +285,8 @@ There is an open PR that will fix this by adding Typescript generics for compone
 
 There are some other typing issues when using React Router's `Link` with the `component` property.
 
-Typescript will throw an error if you try to pass `Link` in directly: `<ListItem component={Link}>`.  Instead, `Link` should be wrapped in a functional component that is declared outside of the `render` before being passed in.
+Typescript will throw an error if you try to pass `Link` in directly: `<ListItem component={Link}>`.
+Instead, `Link` should be wrapped in a functional component that is declared outside of the `render` before being passed in.
 
 > **NOTE:** There is currently an open issue that will require you to replace `ListItemLinkProps` with `any` in the signature for `createLink` below.  There is [an open PR](https://github.com/mui-org/material-ui/pull/13868) to fix this issue.
 
@@ -310,6 +314,8 @@ const ListItemLink = ({ to, replace, primary }: ListItemLinkProps) => (
 );
 ```
 
-In our `createLink` function, we need to remove `innerRef` from the props because `ListItemProps` and `LinkProps` both define an `innerRef` property which are incompatible with each other.  However, the property `innerRef` shouldn't be needed, as the `ListItem` component already provides that feature with a different interface.  Note that removing `innerRef` only needs to be done when overriding a `ListItem` component.
+In our `createLink` function, we need to remove `innerRef` from the props because `ListItemProps` and `LinkProps` both define an `innerRef` property which are incompatible with each other.
+However, the property `innerRef` shouldn't be needed, as the `ListItem` component already provides that feature with a different interface.
+Note that removing `innerRef` only needs to be done when overriding a `ListItem` component.
 
 Prop interfaces can be imported from their respective component's path, eg: `import { ButtonProps } from '@material-ui/core/Button`.
