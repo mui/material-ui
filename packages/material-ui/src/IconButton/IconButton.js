@@ -105,9 +105,9 @@ IconButton.propTypes = {
    * The icon element.
    */
   children: chainPropTypes(PropTypes.node, props => {
-    const found = React.Children.toArray(props.children).some(child => {
-      return React.isValidElement(child) && child.props.onClick;
-    });
+    const found = React.Children.toArray(props.children).some(
+      child => React.isValidElement(child) && child.props.onClick,
+    );
 
     if (found) {
       return new Error(
