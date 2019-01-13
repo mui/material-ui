@@ -35,8 +35,8 @@ exec('yarn docs:typescript')
 
     return Promise.all([getUnstagedGitFiles(), prettierConfig]);
   })
-  .then(([changedDemos, prettierConfig]) => {
-    return Promise.all(
+  .then(([changedDemos, prettierConfig]) =>
+    Promise.all(
       changedDemos.map(filename => {
         const filepath = path.join(process.cwd(), filename);
 
@@ -47,8 +47,8 @@ exec('yarn docs:typescript')
           return fse.writeFile(filepath, formatted);
         });
       }),
-    );
-  })
+    ),
+  )
   .then(() => getUnstagedGitFiles())
   .then(unstagedFiles => {
     if (unstagedFiles.length > 0) {
