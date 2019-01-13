@@ -288,7 +288,7 @@ There are some other typing issues when using React Router's `Link` with the `co
 Typescript will throw an error if you try to pass `Link` in directly: `<ListItem component={Link}>`.
 Instead, `Link` should be wrapped in a functional component that is declared outside of the `render` before being passed in.
 
-> **NOTE:** There is currently an open issue that will require you to replace `ListItemLinkProps` with `any` in the signature for `createLink` below.  There is [an open PR](https://github.com/mui-org/material-ui/pull/13868) to fix this issue.
+> **NOTE:** There is currently an open issue that will require you to replace `ListItemLinkProps` with `any` in the signature for `createLink` below.
 
 To replace the root element of `ListItem`:
 
