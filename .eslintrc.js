@@ -26,11 +26,6 @@ module.exports = {
     },
   },
   rules: {
-    // Incompatible with prettier
-    'react/jsx-wrap-multilines': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/jsx-indent': 'off',
-
     // It's buggy
     'react/jsx-curly-brace-presence': 'off',
     'react/require-default-props': 'off',
