@@ -97,15 +97,13 @@ function HorizontalNonLinearStepper() {
   return (
     <div className={classes.root}>
       <Stepper nonLinear activeStep={activeStep}>
-        {steps.map((label, index) => {
-          return (
-            <Step key={label}>
-              <StepButton onClick={handleStep(index)} completed={completed[index]}>
-                {label}
-              </StepButton>
-            </Step>
-          );
-        })}
+        {steps.map((label, index) => (
+          <Step key={label}>
+            <StepButton onClick={handleStep(index)} completed={completed[index]}>
+              {label}
+            </StepButton>
+          </Step>
+        ))}
       </Stepper>
       <div>
         {allStepsCompleted() ? (

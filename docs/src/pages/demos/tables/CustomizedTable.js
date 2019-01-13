@@ -64,19 +64,17 @@ function CustomizedTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow className={classes.row} key={row.id}>
-                <CustomTableCell component="th" scope="row">
-                  {row.name}
-                </CustomTableCell>
-                <CustomTableCell align="right">{row.calories}</CustomTableCell>
-                <CustomTableCell align="right">{row.fat}</CustomTableCell>
-                <CustomTableCell align="right">{row.carbs}</CustomTableCell>
-                <CustomTableCell align="right">{row.protein}</CustomTableCell>
-              </TableRow>
-            );
-          })}
+          {rows.map(row => (
+            <TableRow className={classes.row} key={row.id}>
+              <CustomTableCell component="th" scope="row">
+                {row.name}
+              </CustomTableCell>
+              <CustomTableCell align="right">{row.calories}</CustomTableCell>
+              <CustomTableCell align="right">{row.fat}</CustomTableCell>
+              <CustomTableCell align="right">{row.carbs}</CustomTableCell>
+              <CustomTableCell align="right">{row.protein}</CustomTableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

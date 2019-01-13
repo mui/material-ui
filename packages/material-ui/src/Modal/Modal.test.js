@@ -190,7 +190,7 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('backdrop', () => {
+  describe('backdrop 2', () => {
     it('should render a backdrop component into the portal before the modal content', () => {
       mount(
         <Modal open id="modal">

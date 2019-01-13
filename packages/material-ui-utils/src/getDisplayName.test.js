@@ -25,9 +25,7 @@ describe('utils/getDisplayName.js', () => {
         return <div />;
       }
 
-      const AndAnotherComponent = () => {
-        return <div />;
-      };
+      const AndAnotherComponent = () => <div />;
 
       assert.strictEqual(getDisplayName(SomeComponent), 'SomeComponent');
       assert.strictEqual(getDisplayName(SomeOtherComponent), 'CustomDisplayName');
@@ -45,9 +43,7 @@ describe('utils/getDisplayName.js', () => {
         return <div />;
       }
 
-      const SomeOtherFunction = () => {
-        return <div />;
-      };
+      const SomeOtherFunction = () => <div />;
 
       assert.strictEqual(getFunctionName(SomeFunction), 'SomeFunction');
       assert.strictEqual(getFunctionName(SomeOtherFunction), 'SomeOtherFunction');

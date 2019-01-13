@@ -22,16 +22,16 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-icons",
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-icons/**/*.test.js'",
-    "src:download": "cd ../../ && babel-node --config-file ../../babel.config.js packages/material-ui-icons/scripts/download.js",
-    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ../../babel.config.js packages/material-ui-icons/builder.js --output-dir packages/material-ui-icons/src --svg-dir packages/material-ui-icons/material-io-tools-icons --renameFilter ./renameFilters/material-design-icons.js",
-    "prebuild": "rimraf material-design-icons && rimraf build",
+    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:typings && yarn build:copy-files",
+    "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
-    "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:typings && yarn build:copy-files",
+    "prebuild": "rimraf material-design-icons && rimraf build",
     "release": "yarn build && npm publish build",
+    "src:download": "cd ../../ && babel-node --config-file ../../babel.config.js packages/material-ui-icons/scripts/download.js",
+    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ../../babel.config.js packages/material-ui-icons/builder.js --output-dir packages/material-ui-icons/src --svg-dir packages/material-ui-icons/material-io-tools-icons --renameFilter ./renameFilters/material-design-icons.js",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-icons/**/*.test.js' --exclude '**/node_modules/**'",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {

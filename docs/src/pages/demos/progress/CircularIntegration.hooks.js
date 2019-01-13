@@ -50,11 +50,12 @@ function CircularIntegration() {
     [classes.buttonSuccess]: success,
   });
 
-  React.useEffect(() => {
-    return () => {
+  React.useEffect(
+    () => () => {
       clearInterval(timer);
-    };
-  }, []);
+    },
+    [],
+  );
 
   function handleButtonClick() {
     if (!loading) {

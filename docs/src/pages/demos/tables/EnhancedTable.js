@@ -75,8 +75,8 @@ class EnhancedTableHead extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {rows.map(row => {
-            return (
+          {rows.map(
+            row => (
               <TableCell
                 key={row.id}
                 align={row.numeric ? 'right' : 'left'}
@@ -97,8 +97,9 @@ class EnhancedTableHead extends React.Component {
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-            );
-          }, this)}
+            ),
+            this,
+          )}
         </TableRow>
       </TableHead>
     );

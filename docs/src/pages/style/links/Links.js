@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   link: {
@@ -17,7 +18,7 @@ function Links(props) {
   const { classes } = props;
 
   return (
-    <div>
+    <Typography>
       <Link href={dudUrl} className={classes.link}>
         Link
       </Link>
@@ -27,7 +28,7 @@ function Links(props) {
       <Link href={dudUrl} variant="body1" className={classes.link}>
         {'variant="body1"'}
       </Link>
-    </div>
+    </Typography>
   );
 }
 

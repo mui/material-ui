@@ -13,9 +13,7 @@ export function capitalize(string) {
 }
 
 export function contains(obj, pred) {
-  return Object.keys(pred).every(key => {
-    return obj.hasOwnProperty(key) && obj[key] === pred[key];
-  });
+  return Object.keys(pred).every(key => obj.hasOwnProperty(key) && obj[key] === pred[key]);
 }
 
 export function findIndex(arr, pred) {

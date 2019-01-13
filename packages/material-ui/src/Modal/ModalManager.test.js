@@ -60,7 +60,7 @@ describe('ModalManager', () => {
       assert.strictEqual(idx, 1, 'should be the second modal');
     });
 
-    it('should add modal2', () => {
+    it('should add modal2 2', () => {
       const idx = modalManager.add(modal2, container1);
       modalManager.mount(modal2);
       assert.strictEqual(idx, 2, 'should be the "third" modal');
@@ -77,7 +77,7 @@ describe('ModalManager', () => {
       assert.strictEqual(idx, 1);
     });
 
-    it('should remove modal2', () => {
+    it('should remove modal2 2', () => {
       const idx = modalManager.remove(modal2);
       assert.strictEqual(idx, 1);
       assert.strictEqual(modalManager.isTopModal(modal1), true);
