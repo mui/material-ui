@@ -118,11 +118,6 @@ Link.propTypes = {
    */
   component: componentPropType,
   /**
-   * The target of the link. You can read about this property on the
-   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes)
-   */
-  target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
-  /**
    * `classes` property applied to the [`Typography`](/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
@@ -140,7 +135,6 @@ Link.defaultProps = {
   block: false,
   color: 'primary',
   component: 'a',
-  target: '_self',
   underline: 'hover',
   variant: 'inherit',
 };

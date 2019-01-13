@@ -206,6 +206,7 @@ class AppFrame extends React.Component {
                       color="inherit"
                       aria-label="Edit docs colors"
                       component={Link}
+                      naked
                       href="/style/color/#color-tool"
                       data-ga-event-category="AppBar"
                       data-ga-event-action="colors"
