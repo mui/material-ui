@@ -1,11 +1,16 @@
 import React from 'react';
 import { JssProvider } from 'react-jss';
 import { SheetsRegistry } from 'jss';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  MuiThemeProvider,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 import CssInJs from './CssInJs';
 
 const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme({ typography: { useNextVariants: true } });
+const generateClassName = createGenerateClassName();
 
 class JssRegistry extends React.Component {
   state = {
@@ -45,7 +50,7 @@ class JssRegistry extends React.Component {
   render() {
     return (
       <div>
-        <JssProvider registry={sheetsRegistry}>
+        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme}>
             <CssInJs />
             <br />
