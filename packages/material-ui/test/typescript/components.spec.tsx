@@ -348,13 +348,43 @@ const DialogTest = () => {
               <ListItemText primary={email} />
             </ListItem>
           ))}
-          <ListItem button onClick={e => log(e)}>
+          <ListItem
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+              log(e);
+            }}
+          >
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+          <ListItem
+            button
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+              log(e);
+            }}
+          >
             <ListItemAvatar>
               <Avatar>
                 <FakeIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="add account" />
+          </ListItem>
+          <ListItem<'a'>
+            component="a"
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+              log(e);
+            }}
+            button
+          >
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -560,10 +590,26 @@ const MenuTest = () => {
       PopoverClasses={{ paper: 'foo' }}
     >
       {options.map((option, index) => (
-        <MenuItem key={option} selected={false} onClick={e => log(e)}>
+        <MenuItem
+          key={option}
+          selected={false}
+          onClick={e => {
+            e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+            log(e);
+          }}
+        >
           {option}
         </MenuItem>
       ))}
+      <MenuItem<'a'>
+        component="a"
+        onClick={e => {
+          e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+          log(e);
+        }}
+      >
+        Link Item
+      </MenuItem>
     </Menu>
   );
 };
