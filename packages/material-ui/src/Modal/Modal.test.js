@@ -13,12 +13,18 @@ describe('<Modal />', () => {
   let shallow;
   let mount;
   let classes;
+  let savedBodyStyle;
   const ModalNaked = unwrap(Modal);
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(<Modal open={false} />);
     mount = createMount();
+    savedBodyStyle = document.body.style;
+  });
+
+  beforeEach(() => {
+    document.body.setAttribute('style', savedBodyStyle);
   });
 
   after(() => {
@@ -517,10 +523,14 @@ describe('<Modal />', () => {
 
   describe('two modal at the same time', () => {
     it('should open and close', () => {
+      // Using a Fade component here to run checks after the Modal has mounted and unmounted
+
       const TestCase = props => (
         <React.Fragment>
           <Modal open={props.open}>
-            <div>Hello</div>
+            <Fade onEntered={props.onEntered} onExited={props.onExited}>
+              <div>Hello</div>
+            </Fade>
           </Modal>
           <Modal open={props.open}>
             <div>World</div>
@@ -529,15 +539,24 @@ describe('<Modal />', () => {
       );
 
       TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
         open: PropTypes.bool,
       };
 
-      const wrapper = mount(<TestCase open={false} />);
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+      };
+
+      wrapper = mount(<TestCase onEntered={onEntered} onExited={onExited} open={false} />);
       assert.strictEqual(document.body.style.overflow, '');
       wrapper.setProps({ open: true });
-      assert.strictEqual(document.body.style.overflow, 'hidden');
-      wrapper.setProps({ open: false });
-      assert.strictEqual(document.body.style.overflow, '');
     });
   });
 
