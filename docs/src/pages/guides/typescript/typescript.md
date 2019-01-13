@@ -7,7 +7,6 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). 
 Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
-
 ## Usage of `withStyles`
 
 Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
