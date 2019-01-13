@@ -153,7 +153,7 @@ describe('<ButtonBase />', () => {
       );
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 1', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -167,7 +167,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 2', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -181,7 +181,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 3', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 

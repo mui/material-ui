@@ -43,13 +43,9 @@ class HorizontalNonLinearStepperWithError extends React.Component {
     skipped: new Set(),
   };
 
-  isStepOptional = step => {
-    return step === 1;
-  };
+  isStepOptional = step => step === 1;
 
-  isStepFailed = step => {
-    return step === 1;
-  };
+  isStepFailed = step => step === 1;
 
   handleNext = () => {
     const { activeStep } = this.state;

@@ -20,7 +20,7 @@ const styles = theme => ({
   formContro
 `;
 
-  it('generates the right npm dependencies', () => {
+  it('should handle @ dependencies', () => {
     assert.deepEqual(getDependencies(s1), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
@@ -30,7 +30,7 @@ const styles = theme => ({
     });
   });
 
-  it('generates the right npm dependencies', () => {
+  it('should handle * dependencies', () => {
     const s2 = `
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -56,7 +56,7 @@ const suggestions = [
     });
   });
 
-  it('generates the right npm dependencies', () => {
+  it('should support next dependencies', () => {
     assert.deepEqual(getDependencies(s1, 'next'), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
@@ -66,7 +66,7 @@ const suggestions = [
     });
   });
 
-  it('generates the right npm dependencies', () => {
+  it('should support direct import', () => {
     const s3 = `
 import 'date-fns';
 import React from 'react';

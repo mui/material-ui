@@ -45,9 +45,7 @@ function getOffsetLeft(rect, horizontal) {
 
 function getTransformOriginValue(transformOrigin) {
   return [transformOrigin.horizontal, transformOrigin.vertical]
-    .map(n => {
-      return typeof n === 'number' ? `${n}px` : n;
-    })
+    .map(n => (typeof n === 'number' ? `${n}px` : n))
     .join(' ');
 }
 

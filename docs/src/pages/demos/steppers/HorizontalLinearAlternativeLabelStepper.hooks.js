@@ -56,13 +56,11 @@ function HorizontalLabelPositionBelowStepper() {
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map(label => {
-          return (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          );
-        })}
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
       </Stepper>
       <div>
         {activeStep === steps.length ? (

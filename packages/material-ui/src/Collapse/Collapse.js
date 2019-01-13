@@ -150,33 +150,31 @@ class Collapse extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, childProps) => {
-          return (
-            <Component
-              className={classNames(
-                classes.container,
-                {
-                  [classes.entered]: state === 'entered',
-                },
-                className,
-              )}
-              style={{
-                ...style,
-                minHeight: collapsedHeight,
+        {(state, childProps) => (
+          <Component
+            className={classNames(
+              classes.container,
+              {
+                [classes.entered]: state === 'entered',
+              },
+              className,
+            )}
+            style={{
+              ...style,
+              minHeight: collapsedHeight,
+            }}
+            {...childProps}
+          >
+            <div
+              className={classes.wrapper}
+              ref={ref => {
+                this.wrapperRef = ref;
               }}
-              {...childProps}
             >
-              <div
-                className={classes.wrapper}
-                ref={ref => {
-                  this.wrapperRef = ref;
-                }}
-              >
-                <div className={classes.wrapperInner}>{children}</div>
-              </div>
-            </Component>
-          );
-        }}
+              <div className={classes.wrapperInner}>{children}</div>
+            </div>
+          </Component>
+        )}
       </Transition>
     );
   }

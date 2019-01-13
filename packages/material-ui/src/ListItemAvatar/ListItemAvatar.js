@@ -33,8 +33,8 @@ function ListItemAvatar(props) {
 
   return (
     <ListContext.Consumer>
-      {context => {
-        return React.cloneElement(children, {
+      {context =>
+        React.cloneElement(children, {
           className: classNames(
             {
               [classes.root]: context.dense,
@@ -48,8 +48,8 @@ function ListItemAvatar(props) {
             children.props.childrenClassName,
           ),
           ...other,
-        });
-      }}
+        })
+      }
     </ListContext.Consumer>
   );
 }

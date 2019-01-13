@@ -74,16 +74,15 @@ function makeStyles(stylesOrCreator, options = {}) {
 
     // Execute asynchronously every time the theme changes.
     React.useEffect(
-      () => {
-        return function cleanup() {
+      () =>
+        function cleanup() {
           detach({
             state,
             stylesCreator,
             stylesOptions,
             theme,
           });
-        };
-      },
+        },
       [theme],
     );
 
