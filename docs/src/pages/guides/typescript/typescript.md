@@ -279,7 +279,7 @@ These handlers have a signature of `(event: MouseEvent<HTMLElement, MouseEvent>)
 
 Any element/component that you pass into `component` will have this problem if the signatures of their event handler props don't match.
 
-There is an open PR that will fix this by adding Typescript generics for component props.
+There is an ongoing effort to fix this by making component props generic.
 
 ### Using React Router `Link` with `component` prop
 
