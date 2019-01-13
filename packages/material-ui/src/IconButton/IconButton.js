@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -103,7 +104,28 @@ IconButton.propTypes = {
   /**
    * The icon element.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const found = React.Children.toArray(props.children).some(child => {
+      return React.isValidElement(child) && child.props.onClick;
+    });
+
+    if (found) {
+      return new Error(
+        [
+          'Material-UI: you are providing an onClick event listener ' +
+            'to a child of a button element.',
+          'Firefox will never trigger the event.',
+          'You should move the onClick listener to the parent button element.',
+          'https://github.com/mui-org/material-ui/issues/13957',
+          // Change error message slightly on every check to prevent caching when testing
+          // which would not trigger console errors on subsequent fails
+          process.env.NODE_ENV === 'test' ? Date.now() : '',
+        ].join('\n'),
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
