@@ -20,4 +20,5 @@ module.exports = {
   presets: ['@babel/preset-typescript'],
   plugins: ['unwrap-createStyles'],
   ignore,
+  generatorOpts: { retainLines: true },
 };

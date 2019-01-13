@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
@@ -31,15 +30,11 @@ function TSLogo({ color, ...props }) {
     </SvgIcon>
   );
 }
-
 TSLogo.propTypes = {
   color: PropTypes.oneOf(['inherit', 'official']),
 };
-
 TSLogo.defaultProps = {
   color: 'official',
 };
-
 TSLogo.muiName = 'SvgIcon';
-
 export default TSLogo;

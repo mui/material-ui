@@ -74,6 +74,7 @@ class InputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         />
+
         <TextField
           select
           label="With Select"
@@ -112,6 +113,7 @@ class InputAdornments extends React.Component {
               'aria-label': 'Weight',
             }}
           />
+
           <FormHelperText id="weight-helper-text">Weight</FormHelperText>
         </FormControl>
         <FormControl className={classNames(classes.margin, classes.textField)}>

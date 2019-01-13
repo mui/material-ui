@@ -72,6 +72,7 @@ class FilledInputAdornments extends React.Component {
             ),
           }}
         />
+
         <TextField
           select
           className={classNames(classes.margin, classes.textField)}
@@ -108,6 +109,7 @@ class FilledInputAdornments extends React.Component {
             ),
           }}
         />
+
         <TextField
           id="filled-adornment-weight"
           className={classNames(classes.margin, classes.textField)}
@@ -124,6 +126,7 @@ class FilledInputAdornments extends React.Component {
             ),
           }}
         />
+
         <TextField
           id="filled-adornment-password"
           className={classNames(classes.margin, classes.textField)}

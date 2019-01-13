@@ -1,12 +1,9 @@
-/* eslint-disable react/prefer-stateless-function */
-
 import React from 'react';
 import MaskedInput from 'react-text-mask';
-import NumberFormat, { NumberFormatProps } from 'react-number-format';
-import PropTypes, { string } from 'prop-types';
+import NumberFormat from 'react-number-format';
+import PropTypes from 'prop-types';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -22,10 +19,8 @@ const styles = (theme: Theme) =>
     },
   });
 
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
 export interface TextMaskCustomProps {
-  inputRef: React.Ref<any>;
+  inputRef: (ref: HTMLInputElement | null) => void;
 }
 
 function TextMaskCustom(props: TextMaskCustomProps) {
@@ -34,7 +29,9 @@ function TextMaskCustom(props: TextMaskCustomProps) {
   return (
     <MaskedInput
       {...other}
-      ref={inputRef}
+      ref={(ref: any) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
       mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={'\u2000'}
       showMask
