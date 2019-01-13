@@ -11,7 +11,7 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: ['plugin:import/recommended', 'airbnb', 'prettier'],
+  extends: ['plugin:import/recommended', 'airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
@@ -31,6 +31,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/label-has-for': 'off', // deprecated
+    'linebreak-style': 'off', // Don't play nicely with Windows
 
     // Strict, airbnb is using warn
     'no-console': 'error',
