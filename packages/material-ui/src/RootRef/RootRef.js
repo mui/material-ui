@@ -75,6 +75,8 @@ RootRef.propTypes = {
   rootRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
 };
 
-RootRef.propTypes = exactProp(RootRef.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  RootRef.propTypes = exactProp(RootRef.propTypes);
+}
 
 export default RootRef;

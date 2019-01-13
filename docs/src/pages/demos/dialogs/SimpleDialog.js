@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -95,7 +93,9 @@ class SimpleDialogDemo extends React.Component {
       <div>
         <Typography variant="subtitle1">Selected: {this.state.selectedValue}</Typography>
         <br />
-        <Button onClick={this.handleClickOpen}>Open simple dialog</Button>
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Open simple dialog
+        </Button>
         <SimpleDialogWrapped
           selectedValue={this.state.selectedValue}
           open={this.state.open}

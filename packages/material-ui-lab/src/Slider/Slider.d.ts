@@ -25,6 +25,8 @@ export type SliderClassKey =
   | 'trackBefore'
   | 'trackAfter'
   | 'thumb'
+  | 'thumbIconWrapper'
+  | 'thumbIcon'
   | 'focused'
   | 'activated'
   | 'disabled'

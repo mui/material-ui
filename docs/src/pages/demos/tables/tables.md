@@ -39,11 +39,15 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Spanning Table
+## Customized Tables
 
-A simple example with spanning rows & columns.
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here are examples of how you can change the look of a `TableCell`.
 
-{{"demo": "pages/demos/tables/SpanningTable.js"}}
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
+
+{{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
 ## Custom Table Pagination Action
 
@@ -52,11 +56,17 @@ custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Customized Tables
+## Spanning Table
 
-You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
+A simple example with spanning rows & columns.
 
-{{"demo": "pages/demos/tables/CustomizedTable.js"}}
+{{"demo": "pages/demos/tables/SpanningTable.js"}}
+
+## Virtualized Table
+
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
+
+{{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 
 ## Complementary projects
 

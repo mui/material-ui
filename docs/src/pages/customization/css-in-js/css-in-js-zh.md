@@ -20,7 +20,7 @@ Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见
 
 Material-UI 的样式解决方案的核心处是使用[JSS](https://github.com/cssinjs/jss)。 它是一个[高性能](https://github.com/cssinjs/jss/blob/master/docs/performance.md)JS到CSS编译器，它在运行时和服务器端工作。 它大约是8kb（缩小和压缩）并且可以通过[插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md)的API扩展。
 
-如果您最终在代码库中使用此样式解决方案，则需要*学习API*。 最好的起点是查看每个[插件](http://cssinjs.org/plugins/)提供的功能。 Material-UI 使用了[其中的几个](#plugins)。 如果需要，您可以随时使用[`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup)帮助程序添加新插件。
+如果您最终在代码库中使用此样式解决方案，则需要*学习API*。 最好的起点是查看每个[插件](https://cssinjs.org/plugins/)提供的功能。 Material-UI 使用了[其中的几个](#plugins)。 如果需要，您可以随时使用[`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup)帮助程序添加新插件。
 
 如果您希望构建自己的`jss`**和**支持*rtl*的实例，请确保您还包含[jss-rtl](https://github.com/alitaheri/jss-rtl)的插件。 请查阅jss-rtl的[Readme](https://github.com/alitaheri/jss-rtl#simple-usage)去了解如何使用。
 
@@ -55,7 +55,7 @@ Sheets 管理器使用[引用计数](https://en.wikipedia.org/wiki/Reference_cou
 
 ### 全局CSS
 
-我们为Material-UI 需要提供类名称生成器的自定义实现: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator)。 以及使用`dangerouslyUseGlobalCSS `选项使类名**确定性</ 0>的选项。 打开后, 类名将如下所:</p> 
+我们为Material-UI 需要提供类名称生成器的自定义实现: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator)。 以及使用`dangerouslyUseGlobalCSS `选项使类名**确定性</ 0>的选项。 打开后, 类名将如下所:</p>
 
 - 开发：`.MuiAppBar-root-`
 - 生产: `.MuiAppBar-root`
@@ -232,7 +232,7 @@ JSS使用插件的概念来扩展其核心，允许人们挑选他们需要的�
 #### 参数
 
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
-2. `选项` (*Object* [optional]): 
+2. `选项` (*Object* [optional]):
     - `options.withTheme` (*Boolean* [optional]): 默认值为`false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
     - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
@@ -289,7 +289,7 @@ export default MyComponent
 
 #### 参数
 
-1. `选项` (*Object* [optional]): 
+1. `选项` (*Object* [optional]):
     - ` options.dangerouslyUseGlobalCSS ` (*Boolean* [optional]): Defaults to `false`。 使Material-UI 类名称具有确定性。
     - `options.productionPrefix` (*String* [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
     - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 当使用多个生成器时，它可用于避免类名冲突。

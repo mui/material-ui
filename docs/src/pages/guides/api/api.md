@@ -133,6 +133,6 @@ For example, let's take a button that has different types. Each option has its p
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 - A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possbility that additional degrees of freedom may be required in the future.
+- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
 
 Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.

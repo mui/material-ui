@@ -187,6 +187,7 @@ class Slide extends React.Component {
   render() {
     const {
       children,
+      direction,
       onEnter,
       onEntering,
       onExit,

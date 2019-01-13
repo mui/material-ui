@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -38,7 +39,7 @@ export const styles = {
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
- * Relying on the context provides high flexibilty and ensures that the state always stays
+ * Relying on the context provides high flexibility and ensures that the state always stays
  * consistent across the children of the `FormControl`.
  * This context is used by the following components:
  *  - FormLabel
@@ -66,7 +67,7 @@ class FormControl extends React.Component {
     };
 
     // We need to iterate through the children and find the Input in order
-    // to fully support server side rendering.
+    // to fully support server-side rendering.
     const { children } = props;
     if (children) {
       React.Children.forEach(children, child => {
@@ -173,7 +174,7 @@ FormControl.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */

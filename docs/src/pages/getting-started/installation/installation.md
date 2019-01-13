@@ -9,7 +9,11 @@ Material-UI is available as an [npm package](https://www.npmjs.com/package/@mate
 To install and save in your `package.json` dependencies, run:
 
 ```sh
+// with npm
 npm install @material-ui/core
+
+// with yarn
+yarn add @material-ui/core
 ```
 
 Please note that [react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 are peer dependencies.
@@ -23,6 +27,11 @@ For instance, via Google Web Fonts:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
+Alternatively, if you are using JSX over HTML to render the head:
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+```
+
 ## Font Icons
 
 In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font.
@@ -33,10 +42,15 @@ For instance, via Google Web Fonts:
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
+Alternatively, if you are using JSX over HTML to render the head:
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
 ## SVG Icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/)
-you must first install the [@material-ui/icons](https://www.npmjs.com/package@material-ui/icons) package:
+you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh
 npm install @material-ui/icons

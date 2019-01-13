@@ -9,13 +9,14 @@ import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import createMuiTheme from '../styles/createMuiTheme';
 
-function fireBodyMouseEvent(name, properties) {
+function fireBodyMouseEvent(name, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
   Object.keys(properties).forEach(key => {
     event[key] = properties[key];
   });
   document.body.dispatchEvent(event);
+  return event;
 }
 
 describe('<SwipeableDrawer />', () => {
@@ -352,7 +353,7 @@ describe('<SwipeableDrawer />', () => {
       assert.strictEqual(wrapper.state().maybeSwiping, false);
     });
 
-    it('should wait for a clear signal to determin this.isSwiping', () => {
+    it('should wait for a clear signal to determine this.isSwiping', () => {
       assert.strictEqual(instance.isSwiping, null);
       fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
       assert.strictEqual(instance.isSwiping, null);

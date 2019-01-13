@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { componentPropType } from '@material-ui/utils';
 import clamp from '../utils/clamp';
 
 export const styles = theme => {
@@ -67,7 +68,6 @@ export const styles = theme => {
       transition: trackTransitions,
       '&$activated': {
         transition: 'none',
-        willChange: 'transform',
       },
       '&$disabled': {
         backgroundColor: colors.disabled,
@@ -104,7 +104,6 @@ export const styles = theme => {
       transition: thumbTransitions,
       '&$activated': {
         transition: 'none',
-        willChange: 'transform',
       },
       '&$vertical': {
         bottom: 0,
@@ -557,7 +556,7 @@ Slider.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the slider will be disabled.
    */

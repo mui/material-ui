@@ -1,18 +1,11 @@
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
 
 const mapping = {
-  [actionTypes.THEME_CHANGE_PALETTE_TYPE]: (state, action) => ({
-    ...state,
-    paletteType: action.payload.paletteType,
-  }),
-  [actionTypes.THEME_CHANGE_DIRECTION]: (state, action) => ({
-    ...state,
-    direction: action.payload.direction,
-  }),
-  [actionTypes.THEME_CHANGE_PALETTE_COLORS]: (state, action) => ({
-    ...state,
-    paletteColors: action.payload.paletteColors,
+  [ACTION_TYPES.THEME_CHANGE]: (state, action) => ({
+    paletteType: action.payload.paletteType || state.paletteType,
+    direction: action.payload.direction || state.direction,
+    paletteColors: action.payload.paletteColors || state.paletteColors,
   }),
 };
 

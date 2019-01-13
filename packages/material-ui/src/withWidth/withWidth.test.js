@@ -33,7 +33,7 @@ describe('withWidth', () => {
     mount.cleanUp();
   });
 
-  describe('server side rendering', () => {
+  describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       assert.strictEqual(wrapper.type(), null);

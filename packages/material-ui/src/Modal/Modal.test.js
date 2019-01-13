@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
+import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
@@ -274,7 +275,7 @@ describe('<Modal />', () => {
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
 
-    it('when mounted, TopModal and event not esc should not call given funcs', () => {
+    it('when mounted, TopModal and event not esc should not call given functions', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
       event = { keyCode: keycode('j') }; // Not 'esc'
@@ -513,5 +514,54 @@ describe('<Modal />', () => {
       );
       assert.strictEqual(handleRendered.callCount, 1);
     });
+  });
+
+  describe('two modal at the same time', () => {
+    it('should open and close', () => {
+      const TestCase = props => (
+        <React.Fragment>
+          <Modal open={props.open}>
+            <div>Hello</div>
+          </Modal>
+          <Modal open={props.open}>
+            <div>World</div>
+          </Modal>
+        </React.Fragment>
+      );
+
+      TestCase.propTypes = {
+        open: PropTypes.bool,
+      };
+
+      const wrapper = mount(<TestCase open={false} />);
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+      assert.strictEqual(document.body.style.overflow, 'hidden');
+      wrapper.setProps({ open: false });
+      assert.strictEqual(document.body.style.overflow, '');
+    });
+  });
+
+  it('should support open abort', () => {
+    class TestCase extends React.Component {
+      state = {
+        open: true,
+      };
+
+      componentDidMount() {
+        this.setState({
+          open: false,
+        });
+      }
+
+      render() {
+        return (
+          <Modal open={this.state.open}>
+            <div>Hello</div>
+          </Modal>
+        );
+      }
+    }
+    mount(<TestCase />);
   });
 });

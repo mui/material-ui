@@ -1,4 +1,5 @@
 import { getDependencies } from './helpers';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function jsDemo(props) {
   return {
@@ -12,6 +13,34 @@ import Demo from './demo';
 
 ReactDOM.render(<Demo />, document.querySelector('#root'));
     `,
+    },
+  };
+}
+
+function hooksDemo(props) {
+  return {
+    dependencies: {
+      ...getDependencies(props.raw),
+      'react-dom': 'next',
+      '@material-ui/styles': 'latest',
+    },
+    files: {
+      'index.js': `
+      import React from 'react';
+      import ReactDOM from 'react-dom';
+      import Demo from './demo';
+      import { createMuiTheme } from "@material-ui/core/styles";
+      import { ThemeProvider } from "@material-ui/styles";
+      
+      const theme = createMuiTheme({ typography: { useNextVariants: true } });
+      
+      ReactDOM.render(
+        <ThemeProvider theme={theme}>
+          <Demo />
+        </ThemeProvider>,
+        document.querySelector("#root")
+      );
+          `,
     },
   };
 }
@@ -44,6 +73,17 @@ ReactDOM.render(<Demo />, document.querySelector('#root'));
   };
 }
 
+function getLanguageConfigFactory(language) {
+  switch (language) {
+    case CODE_VARIANTS.TS:
+      return tsDemo;
+    case CODE_VARIANTS.HOOKS:
+      return hooksDemo;
+    default:
+      return jsDemo;
+  }
+}
+
 export default function getDemo(props, codeLanguage = 'JS') {
   const baseConfig = {
     title: 'Material demo',
@@ -58,7 +98,7 @@ export default function getDemo(props, codeLanguage = 'JS') {
       `,
     },
   };
-  const languageConfig = codeLanguage === 'TS' ? tsDemo(props) : jsDemo(props);
+  const languageConfig = getLanguageConfigFactory(codeLanguage)(props);
 
   return {
     ...baseConfig,

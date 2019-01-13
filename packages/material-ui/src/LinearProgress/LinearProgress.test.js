@@ -25,9 +25,10 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  it('should render intermediate variant by default', () => {
+  it('should render indeterminate variant by default', () => {
     const wrapper = shallow(<LinearProgress />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.indeterminate), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Indeterminate), true);
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorPrimary), true);
@@ -51,6 +52,7 @@ describe('<LinearProgress />', () => {
   it('should render with determinate classes for the primary color by default', () => {
     const wrapper = shallow(<LinearProgress value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
   });
@@ -58,6 +60,7 @@ describe('<LinearProgress />', () => {
   it('should render with determinate classes for the primary color', () => {
     const wrapper = shallow(<LinearProgress color="primary" value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorPrimary), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
   });
@@ -65,6 +68,7 @@ describe('<LinearProgress />', () => {
   it('should render with determinate classes for the secondary color', () => {
     const wrapper = shallow(<LinearProgress color="secondary" value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorSecondary), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
   });
@@ -72,6 +76,7 @@ describe('<LinearProgress />', () => {
   it('should set width of bar1 on determinate variant', () => {
     const wrapper = shallow(<LinearProgress variant="determinate" value={77} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(
       wrapper.childAt(0).props().style.transform,
       'scaleX(0.77)',

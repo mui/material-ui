@@ -1,55 +1,8 @@
 import * as React from 'react';
 import { Theme } from '@material-ui/core';
 import { AppBarProps } from '@material-ui/core/AppBar';
-import { createStyled, createStyles, getThemeProps, makeStyles } from '@material-ui/styles';
+import { createStyles, getThemeProps, makeStyles } from '@material-ui/styles';
 import styled, { StyledProps } from '@material-ui/styles/styled';
-
-// createStyled
-{
-  const Styled = createStyled(
-    (theme: Theme) => ({
-      root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        borderRadius: 3,
-        border: 0,
-        color: 'white',
-        height: 48,
-        padding: `0 ${theme.spacing.unit * 4}px`,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      },
-    }),
-    { withTheme: true },
-  );
-
-  const ValidRenderProps = () => {
-    return (
-      <Styled>
-        {({ classes, theme }) => (
-          <button type="button" className={classes.root}>
-            Render props with a spacing of {theme.spacing.unit}
-          </button>
-        )}
-      </Styled>
-    );
-  };
-
-  const NoRenderProps = () => {
-    // $ExpectError
-    return <Styled>I didn't provide a function as a child :(</Styled>;
-  };
-
-  const IncompatibleTheme = () => {
-    // Object literal may only specify known types
-    // $ExpectError
-    return <Styled theme={{ foo: 'bar' }}>{({ theme }) => theme.spacing.unit}</Styled>;
-  };
-
-  const unusedClassKey = createStyled({
-    // `foo` does not exist on type Styles
-    // $ExpectError
-    foo: {},
-  });
-}
 
 function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   const overriddenProps: AppBarProps = getThemeProps({ name: 'MuiAppBar', props, theme });
@@ -83,6 +36,8 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
 
   const MyComponent = (props: MyComponentProps) => {
     const { color, message } = props;
+    // Expected 1 argument, but got 0
+    const emptyClasses = useMyStyles(); // $ExpectError
     const classes = useMyStyles(props);
     // $ExpectError
     const invalidClasses = useMyStyles({ colourTypo: 'red' });
@@ -94,6 +49,55 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
         {color}: {message}
       </div>
     );
+  };
+
+  // testing options
+  makeStyles(styles, {
+    flip: true,
+    name: 'some-sheet',
+    generateId: (_, sheet) => (sheet ? sheet.classes.root : 'no-sheet'),
+  });
+  makeStyles(styles, {
+    // rules are added at runtime so no compile time error
+    generateId: (_, sheet) => (sheet ? sheet.classes.toot : 'no-sheet'),
+  });
+
+  // optional props
+  const useWithoutProps = makeStyles((theme: Theme) =>
+    createStyles({
+      root: {
+        background: 'none',
+      },
+    }),
+  );
+  const chartStyles = {
+    chart: {
+      width: '100%',
+      height: 70,
+      backgroundColor: '#f9f9f9',
+    },
+  };
+  const useChartClasses = makeStyles(chartStyles);
+  const NoPropsComponent = () => {
+    const classes = useWithoutProps();
+    const chartClasses = useChartClasses();
+    const alsoClasses = useWithoutProps(5);
+  };
+
+  // unsafe any props make the param optional
+  const useUnsafeProps = makeStyles(
+    createStyles({
+      root: (props: any) => ({
+        backgroundColor: props.deep.color,
+      }),
+    }),
+  );
+
+  const UnsafeProps = (props: StyleProps) => {
+    // would be nice to have at least a compile time error because we forgot the argument
+    const classes = useUnsafeProps(); // runtime: Can't read property color of undefined
+    // but this would pass anyway
+    const alsoClasses = useUnsafeProps(undefined); // runtime: Can't read property color of undefined
   };
 }
 
@@ -108,9 +112,9 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   });
-  const renderedStyledButton = <StyledButton classes={{ root: 'additonal-root-class' }} />;
+  const renderedStyledButton = <StyledButton classes={{ root: 'additional-root-class' }} />;
   // $ExpectError
-  const nonExistingClassKey = <StyledButton classes={{ notRoot: 'additonal-root-class' }} />;
+  const nonExistingClassKey = <StyledButton classes={{ notRoot: 'additional-root-class' }} />;
 
   interface MyTheme {
     fontFamily: string;

@@ -47,6 +47,7 @@ module.exports = {
       },
     ], // airbnb is allowing some edge cases
     'no-console': 'error', // airbnb is using warn
+    'template-curly-spacing': 'off', // Crash
     'prefer-destructuring': 'off', // airbnb is using error. destructuring harm grep potential.
     'no-alert': 'error', // airbnb is using warn
     'no-param-reassign': 'off', // airbnb use error

@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import {
-  withStyles,
-  createGenerateClassName,
-  jssPreset,
-  MuiThemeProvider,
-} from '@material-ui/core/styles';
+import { withStyles, jssPreset } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
+import NoSsr from '@material-ui/core/NoSsr';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
 
@@ -21,8 +17,6 @@ const styles = theme => ({
   },
 });
 
-const generateClassName = createGenerateClassName();
-
 class DemoFrame extends React.Component {
   state = {
     ready: false,
@@ -30,6 +24,7 @@ class DemoFrame extends React.Component {
 
   handleRef = ref => {
     this.contentDocument = ref ? ref.node.contentDocument : null;
+    this.contentWindow = ref ? ref.node.contentWindow : null;
   };
 
   onContentDidMount = () => {
@@ -37,7 +32,7 @@ class DemoFrame extends React.Component {
       ready: true,
       jss: create({
         plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: this.contentDocument.querySelector('#demo-frame-jss'),
+        insertionPoint: this.contentWindow['demo-frame-jss'],
       }),
       sheetsManager: new Map(),
       container: this.contentDocument.body,
@@ -49,28 +44,27 @@ class DemoFrame extends React.Component {
   };
 
   render() {
-    const { children, classes, theme } = this.props;
+    const { children, classes } = this.props;
 
-    const inIframe = this.state.ready ? (
-      <StylesProvider jss={this.state.jss} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme} sheetsManager={this.state.sheetsManager}>
-          {React.cloneElement(children, {
-            container: this.state.container,
-          })}
-        </MuiThemeProvider>
-      </StylesProvider>
-    ) : null;
-
+    // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
     return (
-      <Frame
-        ref={this.handleRef}
-        className={classes.root}
-        contentDidMount={this.onContentDidMount}
-        contentDidUpdate={this.onContentDidUpdate}
-      >
-        <div id="demo-frame-jss" />
-        {inIframe}
-      </Frame>
+      <NoSsr>
+        <Frame
+          ref={this.handleRef}
+          className={classes.root}
+          contentDidMount={this.onContentDidMount}
+          contentDidUpdate={this.onContentDidUpdate}
+        >
+          <div id="demo-frame-jss" />
+          {this.state.ready ? (
+            <StylesProvider jss={this.state.jss} sheetsManager={this.state.sheetsManager}>
+              {React.cloneElement(children, {
+                container: this.state.container,
+              })}
+            </StylesProvider>
+          ) : null}
+        </Frame>
+      </NoSsr>
     );
   }
 }

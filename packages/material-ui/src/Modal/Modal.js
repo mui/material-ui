@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import keycode from 'keycode';
+import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import RootRef from '../RootRef';
 import Portal from '../Portal';
@@ -44,6 +45,16 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 /**
+ * Modal is a lower-level construct that is leveraged by the following components:
+ *
+ * - [Dialog](/api/dialog/)
+ * - [Drawer](/api/drawer/)
+ * - [Menu](/api/menu/)
+ * - [Popover](/api/popover/)
+ *
+ * If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+ * rather than directly using Modal.
+ *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
@@ -124,6 +135,7 @@ class Modal extends React.Component {
 
   handleOpened = () => {
     this.autoFocus();
+    this.props.manager.mount(this);
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     this.modalRef.scrollTop = 0;
@@ -298,7 +310,7 @@ class Modal extends React.Component {
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
-          className={classNames(classes.root, className, {
+          className={classNames('mui-fixed', classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
@@ -317,7 +329,7 @@ Modal.propTypes = {
   /**
    * A backdrop component. This property enables custom backdrop rendering.
    */
-  BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  BackdropComponent: componentPropType,
   /**
    * Properties applied to the [`Backdrop`](/api/backdrop/) element.
    */

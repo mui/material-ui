@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
-import withTheme from '../styles/withTheme';
 import Portal from '../Portal';
 
-function flipPlacement(theme, placement) {
-  if (theme.direction !== 'rtl') {
+function flipPlacement(placement) {
+  const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
+
+  if (direction !== 'rtl') {
     return placement;
   }
 
@@ -80,15 +81,7 @@ class Popper extends React.Component {
   }
 
   handleOpen = () => {
-    const {
-      anchorEl,
-      modifiers,
-      open,
-      placement,
-      popperOptions = {},
-      theme,
-      disablePortal,
-    } = this.props;
+    const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
     const popperNode = ReactDOM.findDOMNode(this);
 
     if (!popperNode || !anchorEl || !open) {
@@ -101,7 +94,7 @@ class Popper extends React.Component {
     }
 
     this.popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
-      placement: flipPlacement(theme, placement),
+      placement: flipPlacement(placement),
       ...popperOptions,
       modifiers: {
         ...(disablePortal
@@ -166,7 +159,7 @@ class Popper extends React.Component {
     }
 
     const childProps = {
-      placement: placement || flipPlacement(theme, placementProps),
+      placement: placement || flipPlacement(placementProps),
     };
 
     if (transition) {
@@ -259,10 +252,6 @@ Popper.propTypes = {
    */
   popperOptions: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * Help supporting a react-transition-group/Transition component.
    */
   transition: PropTypes.bool,
@@ -274,4 +263,4 @@ Popper.defaultProps = {
   transition: false,
 };
 
-export default withTheme()(Popper);
+export default Popper;

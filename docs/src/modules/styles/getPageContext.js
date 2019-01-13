@@ -1,8 +1,7 @@
-/* eslint-disable no-underscore-dangle */
-
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import themeInitialState from './themeInitialState';
 
 function getTheme(uiTheme) {
@@ -43,12 +42,13 @@ function createPageContext() {
   };
 }
 
+let pageContext;
+
 export function updatePageContext(uiTheme) {
-  const pageContext = {
-    ...global.__MUI_PAGE_CONTEXT__,
+  pageContext = {
+    ...pageContext,
     theme: getTheme(uiTheme),
   };
-  global.__MUI_PAGE_CONTEXT__ = pageContext;
 
   return pageContext;
 }
@@ -61,9 +61,9 @@ export default function getPageContext() {
   }
 
   // Reuse context on the client-side
-  if (!global.__MUI_PAGE_CONTEXT__) {
-    global.__MUI_PAGE_CONTEXT__ = createPageContext();
+  if (!pageContext) {
+    pageContext = createPageContext();
   }
 
-  return global.__MUI_PAGE_CONTEXT__;
+  return pageContext;
 }

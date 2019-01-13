@@ -26,6 +26,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.
 - [react-media-material-ui](https://github.com/jcoreio/react-media-material-ui) Easily use breakpoints from your Material-UI theme with [react-media](https://github.com/ReactTraining/react-media).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms.
 - [Wertarbyte](https://mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
 - [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) Component will help your users create powerful filter criterias.
 
@@ -41,3 +42,4 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) A React component for swipeable views. Plays well with the `Tabs` component.
 - [react-text-mask](https://github.com/text-mask/text-mask) Input mask for React, Angular, Ember, Vue, & plain JavaScript.
 - [redux-form](https://redux-form.com/7.3.0/examples/material-ui/) Manage your form state in Redux.
+- [uniforms](https://github.com/vazco/uniforms) A set of React libraries for building forms.

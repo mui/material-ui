@@ -38,11 +38,11 @@ class Menu extends React.Component {
   }
 
   getContentAnchorEl = () => {
-    if (!this.menuListRef || !this.menuListRef.selectedItemRef) {
-      return ReactDOM.findDOMNode(this.menuListRef).firstChild;
+    if (this.menuListRef.selectedItemRef) {
+      return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
     }
 
-    return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
+    return ReactDOM.findDOMNode(this.menuListRef).firstChild;
   };
 
   focus = () => {
@@ -55,6 +55,10 @@ class Menu extends React.Component {
     if (menuList && menuList.firstChild) {
       menuList.firstChild.focus();
     }
+  };
+
+  handleMenuListRef = ref => {
+    this.menuListRef = ref;
   };
 
   handleEntering = element => {
@@ -84,7 +88,7 @@ class Menu extends React.Component {
       event.preventDefault();
 
       if (this.props.onClose) {
-        this.props.onClose(event);
+        this.props.onClose(event, 'tabKeyDown');
       }
     }
   };
@@ -122,9 +126,7 @@ class Menu extends React.Component {
           data-mui-test="Menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
-          ref={ref => {
-            this.menuListRef = ref;
-          }}
+          ref={this.handleMenuListRef}
         >
           {children}
         </MenuList>
@@ -159,6 +161,7 @@ Menu.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`
    */
   onClose: PropTypes.func,
   /**

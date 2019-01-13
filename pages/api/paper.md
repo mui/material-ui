@@ -20,7 +20,7 @@ import Paper from '@material-ui/core/Paper';
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Shadow depth, corresponds to `dp` in the spec. It's accepting values between 0 and 24 inclusive. |
 | <span class="prop-name">square</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, rounded corners are disabled. |
 
@@ -63,11 +63,10 @@ This property accepts the following keys:
 | <span class="prop-name">elevation24</span> | 
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Paper/Paper.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Paper/Paper.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiPaper`.
 
 ## Demos

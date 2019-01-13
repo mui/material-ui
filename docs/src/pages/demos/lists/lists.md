@@ -29,30 +29,23 @@ function ListItemLink(props) {
 
 You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
 
-## Folder List
-
-{{"demo": "pages/demos/lists/FolderList.js"}}
-
-## Inset List
-
-{{"demo": "pages/demos/lists/InsetList.js"}}
-
 ## Nested List
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
+## Folder List
+
+{{"demo": "pages/demos/lists/FolderList.js"}}
+
+## Interactive
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
+
+{{"demo": "pages/demos/lists/InteractiveList.js"}}
+
 ## Selected ListItem
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
-
-## Pinned Subheader List
-
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
-
-This feature is relying on the CSS sticky positioning.
-Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
-
-{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
 ## Align list items
 
@@ -80,8 +73,15 @@ The switch is the secondary action and a separate target.
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Interactive
+## Pinned Subheader List
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+This feature is relying on the CSS sticky positioning.
+Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+
+{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+
+## Inset List
+
+{{"demo": "pages/demos/lists/InsetList.js"}}

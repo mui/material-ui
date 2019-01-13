@@ -97,15 +97,6 @@ describe('<InputBase />', () => {
     });
   });
 
-  it('should disable the underline', () => {
-    const wrapper = mount(<InputBase disableUnderline />);
-    const input = wrapper.find('input');
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.inkbar), false);
-    assert.strictEqual(input.name(), 'input');
-    assert.strictEqual(input.hasClass(classes.input), true);
-    assert.strictEqual(input.hasClass(classes.underline), false);
-  });
-
   it('should fire event callbacks', () => {
     const events = ['onChange', 'onFocus', 'onBlur', 'onKeyUp', 'onKeyDown'];
     const handlers = events.reduce((result, n) => {

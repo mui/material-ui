@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import NotchedOutline from './NotchedOutline';
 import withStyles from '../styles/withStyles';
@@ -99,7 +100,7 @@ function OutlinedInput(props) {
       )}
       classes={{
         ...classes,
-        root: classNames(classes.root, classes.underline, {}),
+        root: classNames(classes.root, classes.underline),
         notchedOutline: null,
       }}
       {...other}
@@ -131,7 +132,15 @@ OutlinedInput.propTypes = {
   /**
    * The default input value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
+  ]),
   /**
    * If `true`, the input will be disabled.
    */
@@ -157,7 +166,7 @@ OutlinedInput.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  inputComponent: componentPropType,
   /**
    * Attributes applied to the `input` element.
    */
@@ -230,7 +239,10 @@ OutlinedInput.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
 };
 

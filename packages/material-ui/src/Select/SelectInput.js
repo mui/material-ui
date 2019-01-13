@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { setRef } from '../utils/reactHelpers';
@@ -55,7 +56,7 @@ class SelectInput extends React.Component {
     }
 
     this.setState({
-      // Perfom the layout computation outside of the render method.
+      // Perform the layout computation outside of the render method.
       menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
       open,
     });
@@ -297,7 +298,7 @@ class SelectInput extends React.Component {
           onFocus={onFocus}
           {...SelectDisplayProps}
         >
-          {/* So the vertical align positioning algorithm quicks in. */}
+          {/* So the vertical align positioning algorithm kicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
           {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
@@ -317,6 +318,7 @@ class SelectInput extends React.Component {
           {...MenuProps}
           MenuListProps={{
             role: 'listbox',
+            disableListWrap: true,
             ...MenuProps.MenuListProps,
           }}
           PaperProps={{
@@ -369,7 +371,7 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * Use that property to pass a ref callback to the native select element.
    */

@@ -3,6 +3,8 @@ import LZString from 'lz-string';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import copy from 'clipboard-copy';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -13,12 +15,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
-import JSLogo from '@material-ui/docs/svgIcons/JSLogo';
-import TSLogo from '@material-ui/docs/svgIcons/TSLogo';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
+import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemo from 'docs/src/modules/utils/demoConfig';
-import TSCodeBadge from 'docs/src/modules/components/TSCodeBadge';
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -81,13 +82,14 @@ const styles = theme => ({
   code: {
     display: 'none',
     padding: 0,
-    margin: 0,
+    marginRight: 0,
     [theme.breakpoints.up('sm')]: {
       display: 'block',
       paddingTop: theme.spacing.unit * 6,
     },
     '& pre': {
       overflow: 'auto',
+      paddingTop: theme.spacing.unit * 5,
       margin: '0px !important',
       borderRadius: '0px !important',
     },
@@ -97,16 +99,19 @@ const styles = theme => ({
 class Demo extends React.Component {
   state = {
     anchorEl: null,
-    codeLanguage: 'JS',
     codeOpen: false,
   };
 
-  getTSTooltip() {
-    if (this.hasTSVersion()) {
-      const { outdatedTS } = this.props;
-      return `Source in TypeScript${outdatedTS ? ' (outdated)' : ''}`;
+  getGithubLocation(codeVariant) {
+    const { githubLocation: githubLocationJS } = this.props;
+    switch (codeVariant) {
+      case CODE_VARIANTS.HOOK:
+        return githubLocationJS.replace(/\.jsx?$/, '.hooks.js');
+      case CODE_VARIANTS.TS:
+        return githubLocationJS.replace(/\.jsx?$/, '.tsx');
+      default:
+        return githubLocationJS;
     }
-    return 'No code in TypeScript available';
   }
 
   handleClickMore = event => {
@@ -117,15 +122,8 @@ class Demo extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleClickCodeOpen = () => {
-    this.setState(state => ({
-      codeOpen: !state.codeOpen,
-    }));
-  };
-
   handleClickCodeSandbox = () => {
-    const { codeLanguage } = this.state;
-    const demo = getDemo(this.props, codeLanguage);
+    const demo = getDemo(this.props, this.getDemoData().raw);
     const parameters = compress({
       files: {
         'package.json': {
@@ -134,7 +132,7 @@ class Demo extends React.Component {
             description: demo.description,
             dependencies: demo.dependencies,
             devDependencies: demo.devDependencies,
-            main: `index.${codeLanguage === 'TS' ? 'tsx' : 'js'}`,
+            main: `index.${demo.codeVariant === 'TS' ? 'tsx' : 'js'}`,
           },
         },
         ...Object.keys(demo.files).reduce((files, name) => {
@@ -155,21 +153,16 @@ class Demo extends React.Component {
   };
 
   handleClickCopy = async () => {
-    const { raw: rawJS, rawTS } = this.props;
-    const { codeLanguage } = this.state;
-
-    const raw = codeLanguage === 'TS' ? rawTS : rawJS;
-
     try {
-      await copy(raw);
+      await copy(this.getDemoData().raw);
     } finally {
       this.handleCloseMore();
     }
   };
 
   handleClickStackBlitz = () => {
-    const { codeLanguage } = this.state;
-    const demo = getDemo(this.props, codeLanguage);
+    const { codeVariant } = this.state;
+    const demo = getDemo(this.props, codeVariant);
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -190,75 +183,90 @@ class Demo extends React.Component {
   };
 
   handleCodeLanguageClick = event => {
-    const { name } = this.props;
-    const { value: codeLanguage } = event.currentTarget;
-    const { ga = () => {} } = window;
+    const codeVariant = event.currentTarget.value;
 
-    ga('send', 'event', 'Demo', 'codeLanguageClick', name, codeLanguage);
-    this.setState({
-      codeLanguage,
-      codeOpen: true,
+    if (this.props.codeVariant !== codeVariant) {
+      document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
+
+      this.props.dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: {
+          codeVariant,
+        },
+      });
+    }
+
+    this.setState(prevState => {
+      return {
+        /**
+         * if the the same code type is open,
+         * toggle the state, otherwise if it is
+         * another code type always open it. i.e, true
+         */
+        codeOpen: this.props.codeVariant === codeVariant ? !prevState.codeOpen : true,
+      };
     });
   };
 
-  hasTSVersion() {
-    return Boolean(this.props.rawTS);
-  }
+  handleClickCodeOpen = () => {
+    this.setState(state => ({
+      codeOpen: !state.codeOpen,
+    }));
+  };
+
+  getDemoData = () => {
+    const { codeVariant, demo } = this.props;
+    if (codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks) {
+      return {
+        codeVariant: CODE_VARIANTS.HOOK,
+        raw: demo.rawHooks,
+        js: demo.jsHooks,
+      };
+    }
+    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+      return {
+        codeVariant: CODE_VARIANTS.TS,
+        raw: demo.rawTS,
+        js: demo.js,
+      };
+    }
+
+    return {
+      codeVariant: CODE_VARIANTS.JS,
+      raw: demo.raw,
+      js: demo.js,
+    };
+  };
 
   render() {
-    const {
-      classes,
-      demoOptions,
-      enableCodeLanguageSwitch,
-      githubLocation: githubLocationJS,
-      index,
-      js: DemoComponent,
-      outdatedTS,
-      rawJS,
-      rawTS,
-    } = this.props;
-    const { anchorEl, codeLanguage, codeOpen } = this.state;
+    const { classes, demo, demoOptions, outdatedTS } = this.props;
+    const { anchorEl, codeOpen } = this.state;
     const category = demoOptions.demo;
-
-    const hasTSVersion = this.hasTSVersion();
-    const tsTooltip = this.getTSTooltip();
-
-    const githubLocation =
-      codeLanguage === 'TS' ? githubLocationJS.replace(/\.jsx?$/, '.tsx') : githubLocationJS;
-    const raw = codeLanguage === 'TS' && hasTSVersion ? rawTS : rawJS;
+    const demoData = this.getDemoData();
+    const DemoComponent = demoData.js;
+    const githubLocation = this.getGithubLocation(demoData.codeVariant);
+    const sourceLanguage = demoData.codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'jsx';
 
     return (
       <div className={classes.root}>
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              {enableCodeLanguageSwitch && (
-                <>
-                  <Tooltip title="Display source in JavaScript" placement="top">
-                    <IconButton
-                      aria-label="Display source in JavaScript"
-                      onClick={this.handleCodeLanguageClick}
-                      value="JS"
-                    >
-                      <JSLogo />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={tsTooltip} placement="top">
-                    <span>
-                      <IconButton
-                        aria-label={tsTooltip}
-                        disabled={!hasTSVersion}
-                        onClick={this.handleCodeLanguageClick}
-                        value="TS"
-                      >
-                        <TSCodeBadge outdatedTS={outdatedTS}>
-                          <TSLogo color={hasTSVersion ? 'official' : 'inherit'} />
-                        </TSCodeBadge>
-                      </IconButton>
-                    </span>
-                  </Tooltip>
-                </>
-              )}
+              <DemoLanguages
+                demo={demo}
+                onLanguageClick={this.handleCodeLanguageClick}
+                outdatedTS={outdatedTS}
+              />
+              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
+                <IconButton
+                  data-ga-event-category={category}
+                  data-ga-event-action="expand"
+                  onClick={this.handleClickCodeOpen}
+                  aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
+                >
+                  <CodeIcon />
+                </IconButton>
+              </Tooltip>
               <Tooltip title="See the source on GitHub" placement="top">
                 <IconButton
                   data-ga-event-category={category}
@@ -282,16 +290,6 @@ class Demo extends React.Component {
                   </IconButton>
                 </Tooltip>
               )}
-              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
-                <IconButton
-                  data-ga-event-category={category}
-                  data-ga-event-action="expand"
-                  onClick={this.handleClickCodeOpen}
-                  aria-label={`Source of demo n°${index}`}
-                >
-                  <CodeIcon />
-                </IconButton>
-              </Tooltip>
               <IconButton
                 onClick={this.handleClickMore}
                 aria-owns={anchorEl ? 'demo-menu-more' : undefined}
@@ -337,7 +335,7 @@ class Demo extends React.Component {
               <MarkdownElement
                 dir="ltr"
                 className={classes.code}
-                text={`\`\`\`jsx\n${raw}\n\`\`\``}
+                text={`\`\`\`${sourceLanguage}\n${demoData.raw}\n\`\`\``}
               />
             </Collapse>
           </div>
@@ -362,15 +360,17 @@ class Demo extends React.Component {
 
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
+  codeVariant: PropTypes.string.isRequired,
+  demo: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
-  enableCodeLanguageSwitch: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  js: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  name: PropTypes.string.isRequired,
   outdatedTS: PropTypes.bool,
-  rawJS: PropTypes.string.isRequired,
-  rawTS: PropTypes.string,
 };
 
-export default withStyles(styles)(Demo);
+export default compose(
+  connect(state => ({
+    codeVariant: state.options.codeVariant,
+  })),
+  withStyles(styles),
+)(Demo);

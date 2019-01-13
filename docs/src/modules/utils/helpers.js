@@ -65,21 +65,37 @@ function addTypeDeps(deps) {
 
 /**
  * @param {string} raw - ES6 source with es module imports
- * @param {'JS' | 'TS'} codeLanguage
+ * @param {objects} options
+ * @param {'JS' | 'TS'} options.codeLanguage
+ * @param {'next' | 'latest'} options.reactVersion
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
-export function getDependencies(raw, codeLanguage = 'JS') {
+export function getDependencies(raw, options = {}) {
+  const { codeLanguage = 'JS', reactVersion = 'latest' } = options;
   const deps = {
-    'react-dom': 'latest',
-    react: 'latest',
+    'react-dom': reactVersion,
+    react: reactVersion,
   };
-  const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
+  const versions = {
+    'date-fns': 'next',
+  };
+  const re = /^import\s.*\sfrom\s+'([^']+)|import\s'([^']+)'/gm;
   let m;
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(raw))) {
-    // handle scope names
-    const name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
-    deps[name] = deps[name] || 'latest';
+    let name;
+
+    if (m[1]) {
+      // full import
+      // handle scope names
+      name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
+    } else {
+      name = m[2];
+    }
+
+    if (!deps[name]) {
+      deps[name] = versions[name] ? versions[name] : 'latest';
+    }
   }
 
   if (codeLanguage === 'TS') {

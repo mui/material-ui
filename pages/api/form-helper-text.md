@@ -20,7 +20,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'p'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'p'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, the helper text should be displayed in a disabled state. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> |   | If `true`, helper text should be displayed in an error state. |
 | <span class="prop-name">filled</span> | <span class="prop-type">bool</span> |   | If `true`, the helper text should use filled classes key. |
@@ -49,11 +49,10 @@ This property accepts the following keys:
 | <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/FormHelperText/FormHelperText.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormHelperText/FormHelperText.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiFormHelperText`.
 
 ## Demos

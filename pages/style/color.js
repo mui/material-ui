@@ -1,31 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('markdown', true, /.md$/);
+const req = require.context('docs/src/pages/style/color', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/style/color', false, /\.js$/);
+const reqPrefix = 'pages/style/color';
 
-function Page(props) {
-  return (
-    <MarkdownDocs
-      markdown={req(`./color${props.lang}.md`)}
-      demos={{
-        'pages/style/color/Color.js': {
-          js: require('docs/src/pages/style/color/Color').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/color/Color'), 'utf8')
-`,
-        },
-        'pages/style/color/ColorTool.js': {
-          js: require('docs/src/pages/style/color/ColorTool').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/color/ColorTool'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

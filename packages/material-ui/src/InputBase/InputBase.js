@@ -2,7 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -152,8 +154,8 @@ class InputBase extends React.Component {
     return null;
   }
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.isControlled = props.value != null;
     if (this.isControlled) {
       this.checkDirty(props);
@@ -228,6 +230,15 @@ class InputBase extends React.Component {
   handleRefInput = ref => {
     this.inputRef = ref;
 
+    warning(
+      !ref || ref instanceof HTMLInputElement || ref.focus,
+      [
+        'Material-UI: you have provided a `inputComponent` to the input component',
+        'that does not correctly handle the `inputRef` property.',
+        'Make sure the `inputRef` property is called with a HTMLInputElement.',
+      ].join('\n'),
+    );
+
     let refProp;
 
     if (this.props.inputRef) {
@@ -278,7 +289,6 @@ class InputBase extends React.Component {
       className: classNameProp,
       defaultValue,
       disabled,
-      disableUnderline,
       endAdornment,
       error,
       fullWidth,
@@ -444,7 +454,15 @@ InputBase.propTypes = {
   /**
    * The default input value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
+  ]),
   /**
    * If `true`, the input will be disabled.
    */
@@ -470,7 +488,7 @@ InputBase.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  inputComponent: componentPropType,
   /**
    * Attributes applied to the `input` element.
    */
@@ -567,7 +585,10 @@ InputBase.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
 };
 

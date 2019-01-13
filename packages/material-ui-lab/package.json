@@ -2,7 +2,7 @@
   "name": "@material-ui/lab",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.23",
+  "version": "3.0.0-alpha.28",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -29,7 +29,8 @@
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
-    "release": "yarn build && npm publish build"
+    "release": "yarn build && npm publish build",
+    "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
@@ -37,9 +38,11 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.1.2",
+    "@babel/runtime": "^7.2.0",
+    "@material-ui/utils": "^3.0.0-alpha.2",
     "classnames": "^2.2.5",
-    "keycode": "^2.1.9"
+    "keycode": "^2.1.9",
+    "prop-types": "^15.6.0"
   },
   "devDependencies": {},
   "sideEffects": false,

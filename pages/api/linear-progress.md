@@ -41,6 +41,8 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
+| <span class="prop-name">determinate</span> | Styles applied to the root element if `variant="determinate"`.
+| <span class="prop-name">indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
 | <span class="prop-name">buffer</span> | Styles applied to the root element if `variant="buffer"`.
 | <span class="prop-name">query</span> | Styles applied to the root element if `variant="query"`.
 | <span class="prop-name">dashed</span> | Styles applied to the additional bar element if `variant="buffer"`.
@@ -53,15 +55,13 @@ This property accepts the following keys:
 | <span class="prop-name">bar1Determinate</span> | Styles applied to the bar1 element if `variant="determinate"`.
 | <span class="prop-name">bar1Buffer</span> | Styles applied to the bar1 element if `variant="buffer"`.
 | <span class="prop-name">bar2Indeterminate</span> | Styles applied to the bar2 element if `variant="indeterminate or query"`.
-| <span class="prop-name">bar2Determinate</span> | Styles applied to the bar2 element if `variant="determinate"`.
 | <span class="prop-name">bar2Buffer</span> | Styles applied to the bar2 element if `variant="buffer"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/LinearProgress/LinearProgress.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/LinearProgress/LinearProgress.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiLinearProgress`.
 
 ## Demos

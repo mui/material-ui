@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
@@ -112,7 +113,7 @@ SvgIcon.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
@@ -122,8 +123,8 @@ SvgIcon.propTypes = {
    */
   nativeColor: PropTypes.string,
   /**
-   * The shape-rendering attribute. The behavior of the different options is described
-   * [here](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * The shape-rendering attribute. The behavior of the different options is described on the
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this property.
    */
   shapeRendering: PropTypes.string,
