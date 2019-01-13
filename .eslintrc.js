@@ -31,7 +31,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/label-has-for': 'off', // deprecated
-    'linebreak-style': 'off', // Don't play nicely with Windows
+    'linebreak-style': 'off', // Doesn't play nicely with Windows
 
     // Strict, airbnb is using warn
     'no-console': 'error',
