@@ -22,7 +22,7 @@ build instructions.
 
 Looking for a more advanced example project?
 
-If you want to start with a more complete and real world example, you may need to include a set of tools and packages that could take your application one step further and ready for production, you should consider:
+If you want to start with a more complete and real world example, you could take a look at:
 
 - [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
   - Graph using recharts
