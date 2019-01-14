@@ -42,8 +42,7 @@ class Breadcrumb extends React.PureComponent {
   render() {
     const {
       classes,
-      className,
-      component: Component,
+      className: classNameProp,
       icon: iconProp,
       label,
       active,
@@ -65,6 +64,15 @@ class Breadcrumb extends React.PureComponent {
         className: classNames(classes.icon, iconProp.props.className),
       });
     }
+
+    const className = classNames(
+      {
+        [classes.gutters]: !disableGutters,
+        [classes.active]: active,
+      },
+      classNameProp,
+    );
+
     return (
       <ButtonBase
         variant="default"
@@ -72,19 +80,13 @@ class Breadcrumb extends React.PureComponent {
         tabIndex={tabIndex}
         onClick={onClick}
         disabled={active}
-        className={classNames(
-          {
-            [classes.gutters]: !disableGutters,
-            [classes.active]: active,
-          },
-          className,
-        )}
+        className={className}
         {...other}
       >
         {icon}
         {label}
       </ButtonBase>
-    )
+    );
   }
 }
 
@@ -94,6 +96,11 @@ Breadcrumb.propTypes = {
    * Usually set on the last element in the breadcrumb
    */
   active: PropTypes.bool,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */

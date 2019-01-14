@@ -112,6 +112,7 @@ class Breadcrumbs extends React.Component {
   render() {
     const {
       classes,
+      className: classNameProp,
       children,
       maxItems,
       itemsBeforeCollapse,
@@ -121,7 +122,9 @@ class Breadcrumbs extends React.Component {
       ...rest
     } = this.props;
 
-    if (!children) return <div className={classes.root} {...rest} />;
+    const className = classNames(classes.root, classNameProp);
+
+    if (!children) return <div className={className} {...rest} />;
 
     return (
       <div className={classes.root} {...rest}>
@@ -143,6 +146,10 @@ Breadcrumbs.propTypes = {
    * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If max items is exceeded, the number of items to show after the ellipsis.
    */
