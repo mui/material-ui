@@ -203,11 +203,7 @@ class Dialog extends React.Component {
           {...TransitionProps}
         >
           <div
-            className={classNames(
-              'mui-fixed',
-              classes.container,
-              classes[`scroll${capitalize(scroll)}`],
-            )}
+            className={classNames(classes.container, classes[`scroll${capitalize(scroll)}`])}
             onClick={this.handleBackdropClick}
             onMouseDown={this.handleMouseDown}
             role="document"
