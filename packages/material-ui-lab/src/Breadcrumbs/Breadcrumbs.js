@@ -36,7 +36,7 @@ DefaultSeparator.propTypes = {
   separatorText: PropTypes.string.isRequired,
 };
 
-class Breadcrumbs extends React.PureComponent {
+class Breadcrumbs extends React.Component {
   state = {
     expanded: false,
   };
@@ -59,16 +59,15 @@ class Breadcrumbs extends React.PureComponent {
     return <DefaultSeparator {...props} />;
   }
 
-  expand(e) {
-    e.preventDefault();
+  handleClickExpand = event => {
+    event.preventDefault();
     this.setState({ expanded: true });
-  }
+  };
 
   insertSeparators(items) {
     const { classes, separatorText, separator } = this.props;
 
-    return items.reduce((arr, v, i, source) => {
-      return i < source.length - 1
+    return items.reduce((arr, v, i, source) => i < source.length - 1
         ? arr.concat(
             v,
             this.getSeparator(
@@ -84,8 +83,7 @@ class Breadcrumbs extends React.PureComponent {
                   },
             ),
           )
-        : arr.concat(v);
-    }, []);
+        : arr.concat(v), []);
   }
 
   renderItemsBeforeAndAfter() {
@@ -102,14 +100,13 @@ class Breadcrumbs extends React.PureComponent {
 
     return [
       ...beforeItems,
-      <BreadcrumbCollapsed key="ellipsis" onClick={e => this.expand(e)} />,
+      <BreadcrumbCollapsed key="ellipsis" onClick={this.handleClickExpand} />,
       ...afterItems,
     ];
   }
 
   renderAllItems() {
-    const allNonEmptyItems = Children.toArray(this.props.children);
-    return allNonEmptyItems.map(child => React.cloneElement(child, {}));
+    return Children.toArray(this.props.children);
   }
 
   render() {
@@ -128,7 +125,7 @@ class Breadcrumbs extends React.PureComponent {
 
     return (
       <div className={classes.root} {...rest}>
-        {this.state.expanded || (maxItems && Children.toArray(children).length <= maxItems)
+        {!this.state.expanded && (maxItems && Children.toArray(children).length <= maxItems)
           ? this.insertSeparators(this.renderAllItems())
           : this.insertSeparators(this.renderItemsBeforeAndAfter())}
       </div>

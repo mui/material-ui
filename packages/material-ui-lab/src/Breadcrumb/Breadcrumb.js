@@ -60,7 +60,7 @@ class Breadcrumb extends React.PureComponent {
     }
 
     let icon = null;
-    if (iconProp && React.isValidElement(iconProp)) {
+    if (React.isValidElement(iconProp)) {
       icon = React.cloneElement(iconProp, {
         className: classNames(classes.icon, iconProp.props.className),
       });
@@ -103,7 +103,7 @@ Breadcrumb.propTypes = {
    */
   disableGutters: PropTypes.bool,
   /**
-   * The URL to link to when the button is clicked.
+   * The URL to link to when the breadcrumb is clicked.
    * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
