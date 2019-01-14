@@ -11,7 +11,7 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: ['plugin:import/recommended', 'airbnb', 'prettier'],
+  extends: ['plugin:import/recommended', 'airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
@@ -26,16 +26,12 @@ module.exports = {
     },
   },
   rules: {
-    // Incompatible with prettier
-    'react/jsx-wrap-multilines': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/jsx-indent': 'off',
-
     // It's buggy
     'react/jsx-curly-brace-presence': 'off',
     'react/require-default-props': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/label-has-for': 'off', // deprecated
+    'linebreak-style': 'off', // Doesn't play nicely with Windows
 
     // Strict, airbnb is using warn
     'no-console': 'error',
