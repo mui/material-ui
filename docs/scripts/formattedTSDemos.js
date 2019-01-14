@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * Transpiles and formats TS demos.
  * Can be used to verify that JS and TS demos are equivalent. No introduced change
