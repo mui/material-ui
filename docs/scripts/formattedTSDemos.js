@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 /**
- * Checks if TS demos are equivalent to their JS counterparts.
- * Equivalent means that the transpiled and formatted TS source is equal to the
- * JS source.
+ * Transpiles and formats TS demos.
+ * Can be used to verify that JS and TS demos are equivalent. No introduced change
+ * would indicate equivalence.
  */
 const childProcess = require('child_process');
 const fse = require('fs-extra');
@@ -48,18 +48,4 @@ exec('yarn docs:typescript')
         });
       }),
     ),
-  )
-  .then(() => getUnstagedGitFiles())
-  .then(unstagedFiles => {
-    if (unstagedFiles.length > 0) {
-      console.error(
-        [
-          'Some demos in TypeScript do not match their counterparts in js.',
-          'See CONTRIBUTING.md#About TypeScript demos for further information.',
-          'Try fixing the following demos:',
-          unstagedFiles.map(jsSourcePath => jsSourcePath.replace(/\.js$/, '.tsx')).join('\n'),
-        ].join('\n'),
-      );
-      process.exit(1);
-    }
-  });
+  );

@@ -40,7 +40,7 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - If API documentation is being changed in the source, `yarn docs:api` was run.
 - If prop types were changed, the TypeScript declarations were updated.
 - If TypeScript declarations were changed, `yarn typescript` passed.
-- If demos were changed, make sure `yarn docs:typescript` does not introduce changes.
+- If demos were changed, make sure `yarn docs:typescript:check` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
@@ -117,7 +117,7 @@ that language try writing that demo in TypeScript in a *.tsx file. When you're d
 run `yarn docs:typescript` to automatically add a JavaScript version.
 
 Apart from the inherent pros and cons of TypeScript the demos are also used to test our
-type declarations. This helps alot in catching regressions when updating our type
+type declarations. This helps a lot in catching regressions when updating our type
 declarations.
 
 #### 2. Edit the page Markdown file.
@@ -153,14 +153,6 @@ Then, you will need to add the following code:
 +        },
 ```
 
-If the demo has a version in TypeScript add 
-```diff
-+   rawTS: preval`
-+ module.exports = require('fs')
-+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SuperButtons.tsx'), 'utf8')
-+`,
-```
-
 #### 4. You are done 🎉!
 In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
 
@@ -170,14 +162,13 @@ To help people use this library with TypeScript we try to provide equivalent dem
 in TypeScript. 
 
 Changing demos in JavaScript requires a manual update of the TypeScript
-version. If you are not familiar with this language you can set the `outdatedTS` 
-flag for a given demo in the corresponding demo entry e.g. `pages/demos/button.js` in the 
-`demo` prop of the `MarkdownDocs` component. Otherwise our CI will fail on `test_build`
-on the `Transpile TypeScript demos` task. A contributor can later update the TypeScript
-version of that demo.
+version. If you are not familiar with this language you can add the filepath
+of the TS demo to `docs/ts-demo-ignore.json`. See `docs/babel.config.ts.js` for more
+information. Otherwise our CI will fail the `test_build` job. 
+A contributor can later update the TypeScript version of that demo.
 
 If you are already familiar with TypeScript you can simply write the demo in TypeScript.
-`yarn docs:typescript` will transpile it down to JavaScript.
+`yarn docs:typescript:formatted` will transpile it down to JavaScript.
 
 If you add a TypeScript version of a demo make sure that the `enableCodeLanguageSwitch`
 prop on the `MarkdownDocs` is set so that this version is visible in the docs.
