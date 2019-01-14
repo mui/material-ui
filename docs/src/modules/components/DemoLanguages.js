@@ -57,7 +57,6 @@ function DemoLanguages(props) {
 DemoLanguages.propTypes = {
   demo: PropTypes.object.isRequired,
   onLanguageClick: PropTypes.func,
-  outdatedTS: PropTypes.bool,
 };
 
 export default DemoLanguages;

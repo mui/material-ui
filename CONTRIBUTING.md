@@ -40,7 +40,7 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - If API documentation is being changed in the source, `yarn docs:api` was run.
 - If prop types were changed, the TypeScript declarations were updated.
 - If TypeScript declarations were changed, `yarn typescript` passed.
-- If demos were changed, make sure `yarn docs:typescript:check` does not introduce changes.
+- If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
