@@ -242,7 +242,11 @@ class Demo extends React.Component {
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              <DemoLanguages demo={demo} onLanguageClick={this.handleCodeLanguageClick} />
+              <DemoLanguages
+                demo={demo}
+                gaEventCategory={category}
+                onLanguageClick={this.handleCodeLanguageClick}
+              />
               <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
                   data-ga-event-category={category}

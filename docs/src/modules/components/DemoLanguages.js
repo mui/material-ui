@@ -8,7 +8,7 @@ import HookLogo from '@material-ui/docs/svgIcons/HookLogo';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function DemoLanguages(props) {
-  const { demo, onLanguageClick } = props;
+  const { demo, gaEventCategory, onLanguageClick } = props;
   const hasHooksVariant = demo.rawHooks;
   const hasTSVariant = demo.rawTS;
   const hasMultipleLanguages = hasHooksVariant || hasTSVariant;
@@ -23,6 +23,8 @@ function DemoLanguages(props) {
         <Tooltip title="Set source using React Hooks" placement="top">
           <IconButton
             aria-label="Set source using React Hooks"
+            data-ga-event-category={gaEventCategory}
+            data-ga-event-action="source-hooks"
             onClick={onLanguageClick}
             value={CODE_VARIANTS.HOOK}
           >
@@ -33,6 +35,8 @@ function DemoLanguages(props) {
       <Tooltip title="Set source in JavaScript" placement="top">
         <IconButton
           aria-label="Set source in JavaScript"
+          data-ga-event-category={gaEventCategory}
+          data-ga-event-action="source-js"
           onClick={onLanguageClick}
           value={CODE_VARIANTS.JS}
         >
@@ -43,6 +47,8 @@ function DemoLanguages(props) {
         <Tooltip title="Set source in TypeScript" placement="top">
           <IconButton
             aria-label="Set source in TypeScript"
+            data-ga-event-category={gaEventCategory}
+            data-ga-event-action="source-ts"
             onClick={onLanguageClick}
             value={CODE_VARIANTS.TS}
           >
@@ -56,6 +62,7 @@ function DemoLanguages(props) {
 
 DemoLanguages.propTypes = {
   demo: PropTypes.object.isRequired,
+  gaEventCategory: PropTypes.string.isRequired,
   onLanguageClick: PropTypes.func,
 };
 
