@@ -2,6 +2,7 @@
   "extends": "../tslint.json",
   "rules": {
     "no-irregular-whitespace": false,
-    "no-object-literal-type-assertion": false
+    "no-object-literal-type-assertion": false,
+    "no-trailing-whitespace": [true, "ignore-template-strings"]
   }
 }

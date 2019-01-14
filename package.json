@@ -51,7 +51,7 @@
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript"
+    "typescript": "lerna run typescript && tslint -p docs/tsconfig.json"
   },
   "peerDependencies": {
     "react": "*",
