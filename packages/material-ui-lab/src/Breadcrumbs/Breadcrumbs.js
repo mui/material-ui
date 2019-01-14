@@ -67,23 +67,27 @@ class Breadcrumbs extends React.Component {
   insertSeparators(items) {
     const { classes, separatorText, separator } = this.props;
 
-    return items.reduce((arr, v, i, source) => i < source.length - 1
-        ? arr.concat(
-            v,
-            this.getSeparator(
-              separator
-                ? {
-                    key: `separator-${i}`,
-                    className: classes.separator,
-                  }
-                : {
-                    key: `separator-${i}`,
-                    className: classes.separator,
-                    separatorText,
-                  },
-            ),
-          )
-        : arr.concat(v), []);
+    return items.reduce(
+      (arr, v, i, source) =>
+        i < source.length - 1
+          ? arr.concat(
+              v,
+              this.getSeparator(
+                separator
+                  ? {
+                      key: `separator-${i}`,
+                      className: classes.separator,
+                    }
+                  : {
+                      key: `separator-${i}`,
+                      className: classes.separator,
+                      separatorText,
+                    },
+              ),
+            )
+          : arr.concat(v),
+      [],
+    );
   }
 
   renderItemsBeforeAndAfter() {
