@@ -18,7 +18,7 @@ import Github from '@material-ui/docs/svgIcons/GitHub';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
-import getDemo from 'docs/src/modules/utils/demoConfig';
+import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function compress(object) {
@@ -101,18 +101,6 @@ class Demo extends React.Component {
     codeOpen: false,
   };
 
-  getGithubLocation(codeVariant) {
-    const { githubLocation: githubLocationJS } = this.props;
-    switch (codeVariant) {
-      case CODE_VARIANTS.HOOK:
-        return githubLocationJS.replace(/\.jsx?$/, '.hooks.js');
-      case CODE_VARIANTS.TS:
-        return githubLocationJS.replace(/\.jsx?$/, '.tsx');
-      default:
-        return githubLocationJS;
-    }
-  }
-
   handleClickMore = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -122,20 +110,24 @@ class Demo extends React.Component {
   };
 
   handleClickCodeSandbox = () => {
-    const demo = getDemo(this.props, this.getDemoData().raw);
+    const demoConfig = getDemoConfig(this.getDemoData());
     const parameters = compress({
       files: {
         'package.json': {
           content: {
-            title: demo.title,
-            description: demo.description,
-            dependencies: demo.dependencies,
-            devDependencies: demo.devDependencies,
-            main: `index.${demo.codeVariant === 'TS' ? 'tsx' : 'js'}`,
+            title: demoConfig.title,
+            description: demoConfig.description,
+            dependencies: demoConfig.dependencies,
+            devDependencies: {
+              'react-scripts': 'latest',
+              ...demoConfig.devDependencies,
+            },
+            main: demoConfig.main,
+            scripts: demoConfig.scripts,
           },
         },
-        ...Object.keys(demo.files).reduce((files, name) => {
-          files[name] = { content: demo.files[name] };
+        ...Object.keys(demoConfig.files).reduce((files, name) => {
+          files[name] = { content: demoConfig.files[name] };
           return files;
         }, {}),
       },
@@ -160,8 +152,7 @@ class Demo extends React.Component {
   };
 
   handleClickStackBlitz = () => {
-    const { codeVariant } = this.state;
-    const demo = getDemo(this.props, codeVariant);
+    const demo = getDemoConfig(this.getDemoData());
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
@@ -212,10 +203,11 @@ class Demo extends React.Component {
   };
 
   getDemoData = () => {
-    const { codeVariant, demo } = this.props;
+    const { codeVariant, demo, githubLocation } = this.props;
     if (codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks) {
       return {
         codeVariant: CODE_VARIANTS.HOOK,
+        githubLocation: githubLocation.replace(/\.jsx?$/, '.hooks.js'),
         raw: demo.rawHooks,
         js: demo.jsHooks,
       };
@@ -223,6 +215,7 @@ class Demo extends React.Component {
     if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
       return {
         codeVariant: CODE_VARIANTS.TS,
+        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
         raw: demo.rawTS,
         js: demo.js,
       };
@@ -230,6 +223,7 @@ class Demo extends React.Component {
 
     return {
       codeVariant: CODE_VARIANTS.JS,
+      githubLocation,
       raw: demo.raw,
       js: demo.js,
     };
@@ -241,7 +235,6 @@ class Demo extends React.Component {
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
     const DemoComponent = demoData.js;
-    const githubLocation = this.getGithubLocation(demoData.codeVariant);
     const sourceLanguage = demoData.codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'jsx';
 
     return (
@@ -264,7 +257,7 @@ class Demo extends React.Component {
                 <IconButton
                   data-ga-event-category={category}
                   data-ga-event-action="github"
-                  href={githubLocation}
+                  href={demoData.githubLocation}
                   target="_blank"
                   aria-label="GitHub"
                 >

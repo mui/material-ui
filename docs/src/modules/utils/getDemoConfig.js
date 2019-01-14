@@ -1,11 +1,11 @@
 import { getDependencies } from './helpers';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
-function jsDemo(props) {
+function jsDemo(demoData) {
   return {
-    dependencies: getDependencies(props.raw),
+    dependencies: getDependencies(demoData.raw),
     files: {
-      'demo.js': props.raw,
+      'demo.js': demoData.raw,
       'index.js': `
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -17,13 +17,9 @@ ReactDOM.render(<Demo />, document.querySelector('#root'));
   };
 }
 
-function hooksDemo(props) {
+function hooksDemo(demoData) {
   return {
-    dependencies: {
-      ...getDependencies(props.raw),
-      'react-dom': 'next',
-      '@material-ui/styles': 'latest',
-    },
+    dependencies: getDependencies(demoData.rawHooks, { reactVersion: 'next' }),
     files: {
       'index.js': `
       import React from 'react';
@@ -41,16 +37,16 @@ function hooksDemo(props) {
         document.querySelector("#root")
       );
           `,
+      'demo.js': demoData.raw,
     },
   };
 }
 
-function tsDemo(props) {
+function tsDemo(demoData) {
   return {
-    dependencies: getDependencies(props.rawTS, 'TS'),
-    devDependencies: { 'react-scripts-ts': 'latest' },
+    dependencies: getDependencies(demoData.raw, { codeLanguage: 'TS' }),
     files: {
-      'demo.tsx': props.rawTS,
+      'demo.tsx': demoData.raw,
       'index.tsx': `
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -70,24 +66,28 @@ ReactDOM.render(<Demo />, document.querySelector('#root'));
       }
     }`,
     },
+    main: 'index.tsx',
+    scripts: {
+      start: 'react-scripts start',
+    },
   };
 }
 
-function getLanguageConfigFactory(language) {
-  switch (language) {
+function getLanguageConfig(demoData) {
+  switch (demoData.codeVariant) {
     case CODE_VARIANTS.TS:
-      return tsDemo;
+      return tsDemo(demoData);
     case CODE_VARIANTS.HOOKS:
-      return hooksDemo;
+      return hooksDemo(demoData);
     default:
-      return jsDemo;
+      return jsDemo(demoData);
   }
 }
 
-export default function getDemo(props, codeLanguage = 'JS') {
+export default function getDemo(demoData) {
   const baseConfig = {
     title: 'Material demo',
-    description: props.githubLocation,
+    description: demoData.githubLocation,
     files: {
       'index.html': `
 <body>
@@ -98,7 +98,7 @@ export default function getDemo(props, codeLanguage = 'JS') {
       `,
     },
   };
-  const languageConfig = getLanguageConfigFactory(codeLanguage)(props);
+  const languageConfig = getLanguageConfig(demoData);
 
   return {
     ...baseConfig,
