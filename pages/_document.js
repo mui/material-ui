@@ -24,7 +24,13 @@ const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA
 
 class MyDocument extends Document {
   render() {
-    const { canonical, pageContext } = this.props;
+    const { canonical, pageContext, url } = this.props;
+
+    let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+    if (url.match(/onepirate/)) {
+      font = 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400';
+    }
 
     return (
       <html lang="en" dir="ltr">
@@ -40,13 +46,13 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={pageContext ? pageContext.theme.palette.primary.main : null}
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
+          <link rel="stylesheet" href={font} />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -109,16 +115,21 @@ MyDocument.getInitialProps = async ctx => {
     return WrappedComponent;
   });
 
-  let css = pageContext.sheetsRegistry.toString();
-  if (process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
+  let css;
+  // It might be undefined, e.g. after an error.
+  if (pageContext) {
+    css = pageContext.sheetsRegistry.toString();
+    if (process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
   }
 
   return {
     ...page,
     pageContext,
+    url: ctx.req.url,
     canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style

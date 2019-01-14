@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { componentPropType } from '@material-ui/utils';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -53,13 +54,13 @@ function Select(props) {
       IconComponent,
       variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+      multiple,
       ...(native
         ? {}
         : {
             autoWidth,
             displayEmpty,
             MenuProps,
-            multiple,
             onClose,
             onOpen,
             open,
@@ -104,7 +105,7 @@ Select.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
@@ -120,7 +121,6 @@ Select.propTypes = {
   MenuProps: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
-   * You can only use it when the `native` property is `false` (default).
    */
   multiple: PropTypes.bool,
   /**
@@ -196,6 +196,4 @@ Select.defaultProps = {
 
 Select.muiName = 'Select';
 
-export default withStyles(nativeSelectStyles, { name: 'MuiSelect' })(
-  withFormControlContext(Select),
-);
+export default withStyles(styles, { name: 'MuiSelect' })(withFormControlContext(Select));

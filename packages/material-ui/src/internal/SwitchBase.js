@@ -87,6 +87,7 @@ class SwitchBase extends React.Component {
       checkedIcon,
       classes,
       className: classNameProp,
+      defaultChecked,
       disabled: disabledProp,
       icon,
       id,
@@ -137,7 +138,8 @@ class SwitchBase extends React.Component {
         {checked ? checkedIcon : icon}
         <input
           autoFocus={autoFocus}
-          checked={checked}
+          checked={checkedProp}
+          defaultChecked={defaultChecked}
           className={classes.input}
           disabled={disabled}
           id={hasLabelFor && id}

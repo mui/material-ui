@@ -1,5 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
@@ -134,7 +132,7 @@ const withWidth = (options = {}) => Component => {
     /**
      * As `window.innerWidth` is unavailable on the server,
      * we default to rendering an empty component during the first mount.
-     * In some situation, you might want to use an heuristic to approximate
+     * You might want to use an heuristic to approximate
      * the screen width of the client browser screen width.
      *
      * For instance, you could be using the user-agent or the client-hints.

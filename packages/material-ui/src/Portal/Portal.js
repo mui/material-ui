@@ -57,9 +57,7 @@ class Portal extends React.Component {
   /**
    * @public
    */
-  getMountNode = () => {
-    return this.mountNode;
-  };
+  getMountNode = () => this.mountNode;
 
   render() {
     const { children, disablePortal } = this.props;
@@ -99,6 +97,8 @@ Portal.defaultProps = {
   disablePortal: false,
 };
 
-Portal.propTypes = exactProp(Portal.propTypes);
+if (process.env.NODE_ENV !== 'production') {
+  Portal.propTypes = exactProp(Portal.propTypes);
+}
 
 export default Portal;

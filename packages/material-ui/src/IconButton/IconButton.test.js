@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
@@ -105,6 +106,26 @@ describe('<IconButton />', () => {
       mount(<IconButtonRef rootRef={ref} />);
       assert.strictEqual(ref.callCount, 1);
       assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
+    });
+  });
+
+  describe('Firefox onClick', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should raise a warning', () => {
+      mount(
+        <IconButton>
+          <svg onClick={() => {}} />
+        </IconButton>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(consoleErrorMock.args()[0][0], 'you are providing an onClick event listener');
     });
   });
 });

@@ -25,7 +25,7 @@ describe('<StepIcon />', () => {
     assert.strictEqual(checkCircle.length, 1, 'should have an <CheckCircle />');
   });
 
-  it('renders <Warning> when error occured', () => {
+  it('renders <Warning> when error occurred', () => {
     const wrapper = mount(<StepIcon icon={1} error />);
     const warning = wrapper.find(Warning);
     assert.strictEqual(warning.length, 1, 'should have an <Warning />');

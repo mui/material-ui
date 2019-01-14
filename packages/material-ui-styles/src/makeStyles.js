@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeContext } from './ThemeProvider';
+import ThemeContext from './ThemeContext';
 import { StylesContext } from './StylesProvider';
 import { attach, update, detach, getClasses } from './withStyles';
 import { increment } from './indexCounter';
@@ -12,9 +12,10 @@ const noopTheme = {};
 // let id = 0;
 
 function makeStyles(stylesOrCreator, options = {}) {
-  const { withTheme = false, name, ...stylesOptions2 } = options;
+  const { withTheme = false, name, defaultTheme: defaultThemeOption, ...stylesOptions2 } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
+  const defaultTheme = defaultThemeOption || noopTheme;
 
   const meta = name || 'Hook';
 
@@ -28,7 +29,7 @@ function makeStyles(stylesOrCreator, options = {}) {
   };
 
   return (props = {}) => {
-    const theme = listenToTheme ? React.useContext(ThemeContext) : noopTheme;
+    const theme = listenToTheme ? React.useContext(ThemeContext) || defaultTheme : defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
       ...stylesOptions2,
@@ -44,7 +45,7 @@ function makeStyles(stylesOrCreator, options = {}) {
       };
     });
 
-    // Execute synchronously everytime the theme changes.
+    // Execute synchronously every time the theme changes.
     React.useMemo(
       () => {
         attach({
@@ -71,18 +72,17 @@ function makeStyles(stylesOrCreator, options = {}) {
       }
     });
 
-    // Execute asynchronously everytime the theme changes.
+    // Execute asynchronously every time the theme changes.
     React.useEffect(
-      () => {
-        return function cleanup() {
+      () =>
+        function cleanup() {
           detach({
             state,
             stylesCreator,
             stylesOptions,
             theme,
           });
-        };
-      },
+        },
       [theme],
     );
 

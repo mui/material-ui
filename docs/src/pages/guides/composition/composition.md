@@ -34,7 +34,7 @@ return React.createElement(this.props.component, props)
 ```
 
 
-For example, by default a `List` will render a `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#functional-and-class-components) to the `component` property.
+For example, by default a `List` will render a `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` property.
 The following example will render the `List` component with a `<nav>` element as root node instead:
 
 ```jsx
@@ -48,7 +48,7 @@ The following example will render the `List` component with a `<nav>` element as
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libaries, such as `react-router` or your favorite forms library. But it also **comes with a small caveat!**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as `react-router` or your favorite forms library. But it also **comes with a small caveat!**
 
 ### Caveat with inlining
 

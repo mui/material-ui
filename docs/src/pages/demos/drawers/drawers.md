@@ -50,26 +50,6 @@ A `temporary` drawer is shown for small screens while a `permanent` drawer is sh
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
 
-## Permanent drawer
-
-Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
-
-Permanent navigation drawers are the **recommended default for desktop**.
-
-### Full-height navigation
-
-Apps focused on information consumption that use a left-to-right hierarchy.
-
-{{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
-
-{{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
-
-### Clipped under the app bar
-
-Apps focused on productivity that require balance across the screen.
-
-{{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}
-
 ## Persistent drawer
 
 Persistent navigation drawers can toggle open or closed.
@@ -95,3 +75,23 @@ When expanded, it appears as the standard persistent navigation drawer.
 The mini variant is recommended for apps sections that need quick selection access alongside content.
 
 {{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
+
+## Permanent drawer
+
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+
+Permanent navigation drawers are the **recommended default for desktop**.
+
+### Full-height navigation
+
+Apps focused on information consumption that use a left-to-right hierarchy.
+
+{{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
+
+{{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
+
+### Clipped under the app bar
+
+Apps focused on productivity that require balance across the screen.
+
+{{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}

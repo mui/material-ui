@@ -12,4 +12,4 @@ components: ClickAwayListener
 
 {{"demo": "pages/utils/click-away-listener/ClickAway.js"}}
 
-你可以在 [Munu 的文档](/demos/menus/#menulist-composition)找到更高级的应用。
+你可以在 [Menu 的文档](/demos/menus/#menulist-composition)找到更高级的应用。

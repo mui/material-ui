@@ -153,7 +153,7 @@ describe('<ButtonBase />', () => {
       );
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 1', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -167,7 +167,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 2', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -181,7 +181,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
     });
 
-    it('should start the ripple when the mouse is pressed', () => {
+    it('should start the ripple when the mouse is pressed 3', () => {
       wrapper.instance().ripple = { start: spy() };
       wrapper.simulate('mouseDown', {});
 
@@ -442,7 +442,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
 
-    it('onFocusVisibleHandler() should propogate call to onFocusVisible prop', () => {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const eventMock = 'woofButtonBase';
       const onFocusVisibleSpy = spy();
       const wrapper = mount(
@@ -461,7 +461,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(onFocusVisibleSpy.calledWith(eventMock), true);
     });
 
-    it('should work with a functionnal component', () => {
+    it('should work with a functional component', () => {
       const MyLink = props => (
         <a href="/foo" {...props}>
           bar
@@ -555,7 +555,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(onClickSpy.calledWith(event), true);
       });
 
-      it('should hanlde the link with no href', () => {
+      it('should handle a link with no href', () => {
         const onClickSpy = spy();
         wrapper = mount(
           <ButtonBaseNaked theme={{}} classes={{}} component="a" onClick={onClickSpy}>

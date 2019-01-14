@@ -29,7 +29,7 @@ const generateClassName = createGenerateClassName();
 // We create the style sheet during at the creation of the component,
 // children are handled after the parents, so the order of style elements would be parent->child.
 // It is a problem though when a parent passes a className
-// which needs to override any childs styles.
+// which needs to override any child's styles.
 // StyleSheet of the child has a higher specificity, because of the source order.
 // So our solution is to render sheets them in the reverse order child->sheet, so
 // that parent has a higher specificity.
@@ -42,22 +42,11 @@ export const sheetsManager = new Map();
 const noopTheme = {};
 
 // In order to have self-supporting components, we rely on default theme when not provided.
-let defaultTheme;
-
-function getDefaultTheme() {
-  if (defaultTheme) {
-    return defaultTheme;
-  }
-
-  defaultTheme = createMuiTheme({
-    typography: {
-      suppressWarning: true,
-    },
-  });
-  return defaultTheme;
-}
-
-ponyfillGlobal.__MUI_DEFAULT_THEME__ = getDefaultTheme();
+const defaultTheme = createMuiTheme({
+  typography: {
+    suppressWarning: true,
+  },
+});
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
@@ -103,7 +92,7 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
         ...context[ns.sheetOptions],
       };
       // We use || as the function call is lazy evaluated.
-      this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
+      this.theme = listenToTheme ? themeListener.initial(context) || defaultTheme : noopTheme;
 
       this.attach(this.theme);
 
@@ -169,6 +158,7 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
         this.stylesCreatorSaved,
         this.theme,
       );
+
       if (sheetManager.sheet.classes !== this.cacheClasses.lastJSS) {
         this.cacheClasses.lastJSS = sheetManager.sheet.classes;
         generate = true;
@@ -339,4 +329,8 @@ if (!ponyfillGlobal.__MUI_STYLES__.withStyles) {
   ponyfillGlobal.__MUI_STYLES__.withStyles = withStylesOld;
 }
 
-export default ponyfillGlobal.__MUI_STYLES__.withStyles;
+export default (styles, options) =>
+  ponyfillGlobal.__MUI_STYLES__.withStyles(styles, {
+    defaultTheme,
+    ...options,
+  });

@@ -57,20 +57,14 @@ describe('<FormControl />', () => {
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginDense), true);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.marginNormal), false);
     });
-  });
-
-  describe('initial state', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = mount(<FormControl />);
-    });
 
     it('should not be filled initially', () => {
+      const wrapper = mount(<FormControl />);
       assert.strictEqual(getState(wrapper).filled, false);
     });
 
     it('should not be focused initially', () => {
+      const wrapper = mount(<FormControl />);
       assert.strictEqual(getState(wrapper).focused, false);
     });
   });

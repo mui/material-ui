@@ -1,5 +1,4 @@
 export { default as createGenerateClassName } from './createGenerateClassName';
-export { default as createStyled } from './createStyled';
 export { default as createStyles } from './createStyles';
 export { default as install } from './install';
 export { default as jssPreset } from './jssPreset';

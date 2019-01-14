@@ -50,13 +50,9 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
     skipped: new Set(),
   };
 
-  totalSteps = () => {
-    return getSteps().length;
-  };
+  totalSteps = () => getSteps().length;
 
-  isStepOptional = step => {
-    return step === 1;
-  };
+  isStepOptional = step => step === 1;
 
   handleSkip = () => {
     const { activeStep } = this.state;
@@ -188,7 +184,7 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
           {this.allStepsCompleted() ? (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
+                All steps completed - you&apos;re finished
               </Typography>
               <Button onClick={this.handleReset}>Reset</Button>
             </div>

@@ -12,7 +12,6 @@ export const styles = theme => ({
     bottom: 0,
     width: '100%',
     transition: theme.transitions.create(),
-    willChange: 'left, width',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {

@@ -32,7 +32,7 @@ class IconTabs extends React.Component {
         <Tabs
           value={this.state.value}
           onChange={this.handleChange}
-          fullWidth
+          variant="fullWidth"
           indicatorColor="primary"
           textColor="primary"
         >

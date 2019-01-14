@@ -33,6 +33,7 @@ const defaultAlias = {
   '@material-ui/lab': './packages/material-ui-lab/src',
   '@material-ui/styles': './packages/material-ui-styles/src',
   '@material-ui/utils': './packages/material-ui-utils/src',
+  '@material-ui/system': './packages/material-ui-system/src',
 };
 
 module.exports = {
@@ -43,6 +44,7 @@ module.exports = {
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],
+  ignore: [/@babel[\\|/]runtime/],
   env: {
     test: {
       sourceMaps: 'both',
@@ -130,7 +132,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -146,7 +148,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],
@@ -162,7 +164,7 @@ module.exports = {
         [
           'transform-react-remove-prop-types',
           {
-            mode: 'wrap',
+            mode: 'unsafe-wrap',
           },
         ],
       ],

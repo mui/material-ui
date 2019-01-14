@@ -217,20 +217,18 @@ describe('<SpeedDial />', () => {
           icon={icon}
           onKeyDown={onkeydown}
         >
-          {Array.from({ length: actionCount }, (_, i) => {
-            return (
-              <SpeedDialAction
-                key={i}
-                ButtonProps={{
-                  buttonRef: ref => {
-                    actionRefs[i] = ref;
-                  },
-                }}
-                icon={icon}
-                tooltipTitle={`action${i}`}
-              />
-            );
-          })}
+          {Array.from({ length: actionCount }, (_, i) => (
+            <SpeedDialAction
+              key={i}
+              ButtonProps={{
+                buttonRef: ref => {
+                  actionRefs[i] = ref;
+                },
+              }}
+              icon={icon}
+              tooltipTitle={`action${i}`}
+            />
+          ))}
         </SpeedDial>,
       );
     };

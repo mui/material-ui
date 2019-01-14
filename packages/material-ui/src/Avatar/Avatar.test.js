@@ -134,4 +134,31 @@ describe('<Avatar />', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
   });
+
+  describe('falsey avatar', () => {
+    let wrapper;
+
+    before(() => {
+      wrapper = shallow(
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
+          {0}
+        </Avatar>,
+      );
+    });
+
+    it('should render with defaultColor class when supplied with a child with falsey value', () => {
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.text(), '0');
+    });
+
+    it('should merge user classes & spread custom props to the root node', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+    });
+
+    it('should apply the colorDefault class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
+    });
+  });
 });

@@ -122,7 +122,7 @@ describe('<Slider />', () => {
 
       wrapper.unmount();
 
-      // After unmounting global listeners should not be registered aynmore since that would
+      // After unmounting global listeners should not be registered anymore since that would
       // break component encapsulation. If they are still mounted either react will throw warnings
       // or other component logic throws.
       // post condition: the dispatched events dont cause errors/warnings
