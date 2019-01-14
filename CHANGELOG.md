@@ -1,5 +1,55 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.9.0
+###### *Jan 14, 2019*
+
+Big thanks to the 17 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 💄 Add a new Link component (#14093) @joshwooding
+- 💄 Important update of the Badge component (#14121) @joshwooding
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.9.0`
+
+- [ButtonBase] Reduce keyup timeout interval to 500ms (#14120) @rfbotto
+- [InputAdornment] Add disablePointerEvents prop (#14123) @rfbotto
+- [Chip] Fix wrong font color for default variant with secondary color (#14125) @bjm904
+- [IconButton] Warn when providing onClick to a child of a button (#14160) @
+- [Link] Refinement (#14162) @
+- [Modal] Change keydown handling to use synthetic event (#14134) @rfbotto
+- [Badge] Give Badge dynamic width and other improvements (#14121) @joshwooding
+
+### `@material-ui/styles@v3.0.0-alpha.8`
+
+- [styles] Add test case for class extension with classes prop (#14127) @eps1lon
+- [styles] Document the CSS prefixing strategy on the server (#14139) @eps1lon
+- [styles] Add missing dependency hoist-non-react-statics (#14164) @joglr
+
+### Docs
+
+- [docs] Fix select multiple prop description (#13923) @AkselsLedins
+- [docs] Reduce by /50 the website traffic (#14122) @
+- [docs] Handle the exactProp usage in the API generation (#14130) @tallpants
+- [docs] Fix minor wording/typo issues (#14142) @eps1lon
+- [docs] Add gadr.io in the showcase (#14128) @clabbeaf
+- [docs] Fix deprecated Typography variants warning in demos (#14156) @joshwooding
+- [docs] Add 5 sites to Showcase, simplify image paths (#14154) @mbrookes
+- [docs] Add polyfill suggestion to ButtonBase (#14158) @ianschmitz
+- [docs] Add a new site to showcase (#14163) @ValleyZw
+- [docs] Update Tooltip info on prop spread (#14165) @e-x-wilson
+- [docs] Fix typo in click-anyway-listener-zh.md (#14118) @Wu-Qijun
+- [docs] Update example projects with Material Sense (#14168) @alexanmtz
+- [docs] Icon name consistency (#14171) @harvey56
+- [docs] Add notes about next branch (#14151) @eps1lon
+- [docs] Add Yakaz to homepage, backers & readme (#14180) @mbrookes
+
+### Core
+
+- [core] Remove unnecessary plugins in .eslintrc (#14161) @WebDeg-Brian
+- [core] Fix the CDN release (#14172) @
+- [core] Remove unnecessary rules in .eslintrc (#14173) @WebDeg-Brian
+
 ## 3.8.3
 ###### *Jan 9, 2019*
 
