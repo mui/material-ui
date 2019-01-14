@@ -43,7 +43,8 @@ function handleClick() {
   alert('You clicked a Breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function CustomBreadcrumb({ classes, className, ...rest }) {
+function CustomBreadcrumb(props) {
+  const { classes, className, active, ...rest } = props;
   return <Chip className={classNames(className, classes.chip)} {...rest} />;
 }
 

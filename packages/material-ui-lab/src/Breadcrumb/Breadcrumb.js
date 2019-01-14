@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -84,28 +85,12 @@ class Breadcrumb extends React.PureComponent {
         className: classNames(classes.icon, iconProp.props.className),
       });
     }
-    return Component ? (
+    return (
       <Component
-        icon={icon}
-        label={label}
-        className={classNames(
-          {
-            [classes.gutters]: !disableGutters,
-            [classes.active]: active,
-          },
-          className,
-        )}
-        tabIndex={newTabIndex}
-        onClick={onClick}
-        {...other}
-      />
-    ) : (
-      <DefaultComponent
         icon={icon}
         label={label}
         active={active}
         className={classNames(
-          classes.button,
           {
             [classes.gutters]: !disableGutters,
             [classes.active]: active,
@@ -116,7 +101,7 @@ class Breadcrumb extends React.PureComponent {
         onClick={onClick}
         {...other}
       />
-    );
+    )
   }
 }
 
@@ -132,7 +117,7 @@ Breadcrumb.propTypes = {
   /**
    * The label to appear in the breadcrumb.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * Handler to be called on click.
    */
@@ -161,6 +146,7 @@ Breadcrumb.propTypes = {
 };
 
 Breadcrumb.defaultProps = {
+  component: DefaultComponent,
   disableGutters: false,
   active: false,
 };
