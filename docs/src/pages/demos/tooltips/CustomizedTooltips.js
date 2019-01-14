@@ -162,6 +162,22 @@ class CustomizedTooltips extends React.Component {
         >
           <Button className={classes.button}>Bootstrap</Button>
         </Tooltip>
+        <Tooltip
+          title={
+            <React.Fragment>
+              <p>
+                <b>Anything can go here</b>
+              </p>
+              <ul>
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+              </ul>
+            </React.Fragment>
+          }
+        >
+          <Button className={classes.button}>HTML</Button>
+        </Tooltip>
       </div>
     );
   }
