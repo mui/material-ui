@@ -15,8 +15,8 @@ Here are some highlights ✨:
 - [ButtonBase] Reduce keyup timeout interval to 500ms (#14120) @rfbotto
 - [InputAdornment] Add disablePointerEvents prop (#14123) @rfbotto
 - [Chip] Fix wrong font color for default variant with secondary color (#14125) @bjm904
-- [IconButton] Warn when providing onClick to a child of a button (#14160) @
-- [Link] Refinement (#14162) @
+- [IconButton] Warn when providing onClick to a child of a button (#14160) @oliviertassinari
+- [Link] Refinement (#14162) @oliviertassinari
 - [Modal] Change keydown handling to use synthetic event (#14134) @rfbotto
 - [Badge] Give Badge dynamic width and other improvements (#14121) @joshwooding
 
@@ -29,7 +29,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [docs] Fix select multiple prop description (#13923) @AkselsLedins
-- [docs] Reduce by /50 the website traffic (#14122) @
+- [docs] Reduce by /50 the website traffic (#14122) @oliviertassinari
 - [docs] Handle the exactProp usage in the API generation (#14130) @tallpants
 - [docs] Fix minor wording/typo issues (#14142) @eps1lon
 - [docs] Add gadr.io in the showcase (#14128) @clabbeaf
@@ -47,7 +47,7 @@ Here are some highlights ✨:
 ### Core
 
 - [core] Remove unnecessary plugins in .eslintrc (#14161) @WebDeg-Brian
-- [core] Fix the CDN release (#14172) @
+- [core] Fix the CDN release (#14172) @oliviertassinari
 - [core] Remove unnecessary rules in .eslintrc (#14173) @WebDeg-Brian
 
 ## 3.8.3
