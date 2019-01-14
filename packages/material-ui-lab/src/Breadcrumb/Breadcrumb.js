@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -39,25 +38,6 @@ const styles = theme => ({
   },
 });
 
-function DefaultComponent(props) {
-  const { className, label, icon, active, tabIndex, onClick, ...rest } = props;
-
-  return (
-    <ButtonBase
-      variant="default"
-      color="primary"
-      className={className}
-      tabIndex={tabIndex}
-      onClick={onClick}
-      disabled={active}
-      {...rest}
-    >
-      {icon}
-      {label}
-    </ButtonBase>
-  );
-}
-
 class Breadcrumb extends React.PureComponent {
   render() {
     const {
@@ -68,15 +48,15 @@ class Breadcrumb extends React.PureComponent {
       label,
       active,
       disableGutters,
-      tabIndex,
+      tabIndex: tabIndexProp,
       onClick,
       ...other
     } = this.props;
 
-    let newTabIndex = tabIndex;
+    let tabIndex = tabIndexProp;
 
-    if (!newTabIndex) {
-      newTabIndex = onClick ? 0 : -1;
+    if (!tabIndex) {
+      tabIndex = onClick ? 0 : -1;
     }
 
     let icon = null;
@@ -86,10 +66,12 @@ class Breadcrumb extends React.PureComponent {
       });
     }
     return (
-      <Component
-        icon={icon}
-        label={label}
-        active={active}
+      <ButtonBase
+        variant="default"
+        color="primary"
+        tabIndex={tabIndex}
+        onClick={onClick}
+        disabled={active}
         className={classNames(
           {
             [classes.gutters]: !disableGutters,
@@ -97,56 +79,49 @@ class Breadcrumb extends React.PureComponent {
           },
           className,
         )}
-        tabIndex={newTabIndex}
-        onClick={onClick}
         {...other}
-      />
+      >
+        {icon}
+        {label}
+      </ButtonBase>
     )
   }
 }
 
 Breadcrumb.propTypes = {
   /**
-   * @ignore
-   */
-  active: PropTypes.bool,
-  /**
-   * An icon to display before the breadcrumb.
-   */
-  className: PropTypes.string,
-  /**
-   * The label to appear in the breadcrumb.
-   */
-  component: componentPropType,
-  /**
-   * Handler to be called on click.
-   */
-  disableGutters: PropTypes.bool,
-  /**
    * Indicates if the breadcrumb is the active one.
    * Usually set on the last element in the breadcrumb
    */
-  href: PropTypes.string,
+  active: PropTypes.bool,
   /**
-   * The component used instead of the default breadcrumb item.
-   * Either a string to use a DOM element or a component.
-   * The custom component should accept a className prop and a click event
+   * @ignore
    */
-  icon: PropTypes.node,
+  className: PropTypes.string,
   /**
    * If `true`, disables gutter padding.
    */
-  label: PropTypes.string,
+  disableGutters: PropTypes.bool,
   /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */
+  href: PropTypes.string,
+  /**
+   * An icon to display before the breadcrumb.
+   */
+  icon: PropTypes.node,
+  /**
+   * The label to appear in the breadcrumb.
+   */
+  label: PropTypes.string,
+  /**
+   * @ignore
+   */
   onClick: PropTypes.func,
-  target: PropTypes.oneOf(['_blank', '_parent', '_self', '_top', '']),
 };
 
 Breadcrumb.defaultProps = {
-  component: DefaultComponent,
   disableGutters: false,
   active: false,
 };

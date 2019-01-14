@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Breadcrumb from '@material-ui/lab/Breadcrumb';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
@@ -44,7 +43,7 @@ function handleClick() {
 }
 
 function CustomBreadcrumb(props) {
-  const { classes, className, active, ...rest } = props;
+  const { classes, className, ...rest } = props;
   return <Chip className={classNames(className, classes.chip)} {...rest} />;
 }
 
@@ -55,23 +54,21 @@ function CustomizedBreadcrumbs(props) {
   return (
     <Paper className={classes.root}>
       <Breadcrumbs>
-        <Breadcrumb
+        <StyledBreadcrumb
           label="Home"
           avatar={
             <Avatar className={classes.avatar}>
               <HomeIcon />
             </Avatar>
           }
-          component={StyledBreadcrumb}
           onClick={handleClick}
         />
-        <Breadcrumb label="Catalog" component={StyledBreadcrumb} onClick={handleClick} />
-        <Breadcrumb
+        <StyledBreadcrumb label="Catalog" onClick={handleClick} />
+        <StyledBreadcrumb
           label="Accessories"
           deleteIcon={<ExpandMoreIcon />}
           onClick={handleClick}
           onDelete={handleClick}
-          component={StyledBreadcrumb}
         />
       </Breadcrumbs>
     </Paper>
