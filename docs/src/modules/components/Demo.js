@@ -85,7 +85,6 @@ const styles = theme => ({
     marginRight: 0,
     [theme.breakpoints.up('sm')]: {
       display: 'block',
-      paddingTop: theme.spacing.unit * 6,
     },
     '& pre': {
       overflow: 'auto',
@@ -237,7 +236,7 @@ class Demo extends React.Component {
   };
 
   render() {
-    const { classes, demo, demoOptions, outdatedTS } = this.props;
+    const { classes, demo, demoOptions } = this.props;
     const { anchorEl, codeOpen } = this.state;
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
@@ -250,11 +249,7 @@ class Demo extends React.Component {
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              <DemoLanguages
-                demo={demo}
-                onLanguageClick={this.handleCodeLanguageClick}
-                outdatedTS={outdatedTS}
-              />
+              <DemoLanguages demo={demo} onLanguageClick={this.handleCodeLanguageClick} />
               <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
                   data-ga-event-category={category}
@@ -363,7 +358,6 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  outdatedTS: PropTypes.bool,
 };
 
 export default compose(

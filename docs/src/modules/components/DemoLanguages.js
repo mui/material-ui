@@ -8,7 +8,7 @@ import HookLogo from '@material-ui/docs/svgIcons/HookLogo';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function DemoLanguages(props) {
-  const { demo, onLanguageClick, outdatedTS } = props;
+  const { demo, onLanguageClick } = props;
   const hasHooksVariant = demo.rawHooks;
   const hasTSVariant = demo.rawTS;
   const hasMultipleLanguages = hasHooksVariant || hasTSVariant;
@@ -16,8 +16,6 @@ function DemoLanguages(props) {
   if (!hasMultipleLanguages) {
     return null;
   }
-
-  const tsToolTip = `Set source in TypeScript${outdatedTS ? ' (outdate)' : ''}`;
 
   return (
     <>
@@ -42,8 +40,12 @@ function DemoLanguages(props) {
         </IconButton>
       </Tooltip>
       {hasTSVariant && (
-        <Tooltip title={tsToolTip} placement="top">
-          <IconButton aria-label={tsToolTip} onClick={onLanguageClick} value={CODE_VARIANTS.TS}>
+        <Tooltip title="Set source in TypeScript" placement="top">
+          <IconButton
+            aria-label="Set source in TypeScript"
+            onClick={onLanguageClick}
+            value={CODE_VARIANTS.TS}
+          >
             <TSLogo />
           </IconButton>
         </Tooltip>
