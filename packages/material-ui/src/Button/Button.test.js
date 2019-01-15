@@ -277,9 +277,27 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.props().focusRipple, false);
   });
 
-  it('should pass disableFocusRipple to ButtonBase', () => {
-    const wrapper = shallow(<Button disableFocusRipple>Hello World</Button>);
-    assert.strictEqual(wrapper.props().focusRipple, false);
+  describe('disableFocusRipple', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should disable focusRipple in ButtonBase', () => {
+      const wrapper = shallow(<Button disableFocusRipple>Hello World</Button>);
+      assert.strictEqual(wrapper.props().focusRipple, false);
+    });
+
+    it('is deprecated', () => {
+      shallow(<Button disableFocusRipple>Hello World</Button>);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'The prop `disableFocusRipple` in `Button` is deprecated.',
+      );
+    });
   });
 
   it('should render Icon children with right classes', () => {

@@ -281,8 +281,9 @@ function Button(props) {
     <ButtonBase
       className={className}
       disabled={disabled}
-      focusRipple={!disableFocusRipple}
       focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      // using defaultProps will trigger deprecationWarnings
+      focusRipple={disableFocusRipple == null ? other.focusRipple : !disableFocusRipple}
       {...other}
     >
       <span className={classes.label}>{children}</span>
@@ -323,7 +324,8 @@ Button.propTypes = {
    */
   disableFocusRipple: deprecated(
     PropTypes.bool,
-    'Focus ripple will be removed because it does not follow Material design.',
+    'Focus ripple will be removed because it does not follow Material design.' +
+      'If you want to enable it use `focusRipple` which is passed to `ButtonBase`',
   ),
   /**
    * If `true`, the ripple effect will be disabled.
@@ -385,7 +387,6 @@ Button.defaultProps = {
   color: 'default',
   component: 'button',
   disabled: false,
-  disableFocusRipple: true,
   fullWidth: false,
   mini: false,
   size: 'medium',

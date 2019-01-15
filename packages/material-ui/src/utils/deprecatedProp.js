@@ -1,20 +1,35 @@
-import deprecated from 'prop-types-extra/lib/deprecated';
-
+import chainPropTypes from './chainPropTypes';
 /**
- * Logs deprecation warnings if this prop is used unless MUI_SUPPRESS_DEPRECATION_WARNINGS
- * is set to a truthy value.
+ * Logs deprecation warnings if this prop is used
  *
  * @param {PropTypes.Validator} validator
  * @param {string} reason
+ * @param {boolean?} suppressDeprecation
  */
-export default function muiDeprecated(
-  validator,
+export default function deprecatedProp(
+  origPropType,
   reason,
-  // this is only for testing purposes. Changing env variables during tests is not possible
-  deprecate = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
+  // this is only for testing purposes
+  suppressDeprecation,
 ) {
-  if (deprecate) {
-    return validator;
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV === 'production') {
+    return () => null;
   }
-  return deprecated(validator, reason);
+
+  if (suppressDeprecation) {
+    return origPropType;
+  }
+  return chainPropTypes(origPropType, (props, propName, componentName) => {
+    if (props[propName] == null) {
+      return null;
+    }
+    return new Error(
+      [
+        `Material-UI: The prop \`${propName}\` in \`${componentName}\` is deprecated. ${reason}`,
+        // prevent message caching for testing purposes
+        process.env.NODE_ENV === 'test' ? Date.now().toString() : '',
+      ].join(''),
+    );
+  });
 }

@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { mock } from 'sinon';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import deprecated from './deprecatedProp';
 
 describe('deprecatedProp', () => {
@@ -8,29 +8,29 @@ describe('deprecatedProp', () => {
   const componentName = 'ComponentName';
   const location = 'prop';
 
-  let warning;
   beforeEach(() => {
-    warning = mock(console).expects('error');
+    consoleErrorMock.spy();
   });
 
   afterEach(() => {
-    warning.restore();
+    consoleErrorMock.reset();
   });
 
   it('logs a deprecation warning', () => {
     const propTypes = {
-      [propName]: deprecated(PropTypes.string, 'Because reasons', false),
+      [propName]: deprecated(PropTypes.string, 'Because reasons.', false),
     };
 
     PropTypes.checkPropTypes(propTypes, { [propName]: "I'm deprecated" }, location, componentName);
 
-    assert.ok(warning.calledOnce);
+    assert.strictEqual(consoleErrorMock.callCount(), 1);
     assert.include(
-      warning.firstCall.args[0],
-      'Warning: The prop `legacy` of `ComponentName` is deprecated. Because reasons.',
+      consoleErrorMock.args()[0][0],
+      'Material-UI: The prop `legacy` in `ComponentName` is deprecated. Because reasons.',
     );
   });
-  it('is the identity function with MUI_SUPPRESS_DEPRECATION_WARNINGS ', () => {
-    assert.strictEqual(deprecated(PropTypes.string), PropTypes.string);
+
+  it('is the identity function with `suppressDeprecation` ', () => {
+    assert.strictEqual(deprecated(PropTypes.string, '', true), PropTypes.string);
   });
 });
