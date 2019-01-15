@@ -59,17 +59,16 @@ class Fade extends React.Component {
 
     return (
       <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) => {
-          return React.cloneElement(children, {
+        {(state, childProps) =>
+          React.cloneElement(children, {
             style: {
               opacity: 0,
-              willChange: 'opacity',
               ...styles[state],
               ...style,
             },
             ...childProps,
-          });
-        }}
+          })
+        }
       </Transition>
     );
   }

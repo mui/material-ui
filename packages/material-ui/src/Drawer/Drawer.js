@@ -26,6 +26,8 @@ export function getAnchor(props) {
 }
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
+  root: {},
   /* Styles applied to the root element if `variant="permanent or persistent"`. */
   docked: {
     flex: '0 0 auto',
@@ -144,7 +146,7 @@ class Drawer extends React.Component {
 
     if (variant === 'permanent') {
       return (
-        <div className={classNames(classes.docked, className)} {...other}>
+        <div className={classNames(classes.root, classes.docked, className)} {...other}>
           {drawer}
         </div>
       );
@@ -164,7 +166,7 @@ class Drawer extends React.Component {
 
     if (variant === 'persistent') {
       return (
-        <div className={classNames(classes.docked, className)} {...other}>
+        <div className={classNames(classes.root, classes.docked, className)} {...other}>
           {slidingDrawer}
         </div>
       );
@@ -178,7 +180,7 @@ class Drawer extends React.Component {
           ...BackdropPropsProp,
           transitionDuration,
         }}
-        className={classNames(classes.modal, className)}
+        className={classNames(classes.root, classes.modal, className)}
         open={open}
         onClose={onClose}
         {...other}

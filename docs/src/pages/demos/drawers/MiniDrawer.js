@@ -47,24 +47,27 @@ const styles = theme => ({
   hide: {
     display: 'none',
   },
-  drawerPaper: {
-    position: 'relative',
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
     whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawerPaperClose: {
-    overflowX: 'hidden',
+  drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing.unit * 7,
+    overflowX: 'hidden',
+    width: theme.spacing.unit * 7 + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9,
+      width: theme.spacing.unit * 9 + 1,
     },
   },
   toolbar: {
@@ -123,8 +126,15 @@ class MiniDrawer extends React.Component {
         </AppBar>
         <Drawer
           variant="permanent"
+          className={classNames(classes.drawer, {
+            [classes.drawerOpen]: this.state.open,
+            [classes.drawerClose]: !this.state.open,
+          })}
           classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+            paper: classNames({
+              [classes.drawerOpen]: this.state.open,
+              [classes.drawerClose]: !this.state.open,
+            }),
           }}
           open={this.state.open}
         >

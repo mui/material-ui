@@ -4,14 +4,17 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
-import withWidth from '@material-ui/core/withWidth';
 import CodeFund from 'docs/src/modules/components/CodeFund';
 import Carbon from 'docs/src/modules/components/Carbon';
 
 const styles = theme => ({
   root: {
     position: 'relative',
-    minHeight: 180,
+    minHeight: 116,
+    maxWidth: 350,
+    display: 'block',
+    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 3,
   },
   info: {
     ...theme.typography.caption,
@@ -22,19 +25,22 @@ const styles = theme => ({
     right: 0,
   },
   paper: {
-    padding: 8,
+    padding: theme.spacing.unit,
+    display: 'block',
   },
 });
 
 function getAdblock(classes) {
   return (
-    <Paper elevation={0} className={classes.paper}>
-      <Typography gutterBottom>Like Material-UI?</Typography>
-      <Typography gutterBottom>
+    <Paper component="span" elevation={0} className={classes.paper}>
+      <Typography component="span" gutterBottom>
+        Like Material-UI?
+      </Typography>
+      <Typography component="span" gutterBottom>
         {`If you don't mind tech-related ads, and want to support Open Source,
             please whitelist Material-UI in your ad blocker.`}
       </Typography>
-      <Typography>
+      <Typography component="span">
         Thank you!{' '}
         <span role="img" aria-label="Love">
           ❤️
@@ -53,7 +59,7 @@ class Ad extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.width === 'xs' || this.state.disable) {
+    if (this.state.disable) {
       return;
     }
     this.checkAdblock();
@@ -77,7 +83,7 @@ class Ad extends React.Component {
       }, 500);
     }
 
-    if (attempt > 10 && this.state.adblock !== true) {
+    if (attempt > 6 && this.state.adblock !== true) {
       this.setState({
         adblock: true,
       });
@@ -89,12 +95,12 @@ class Ad extends React.Component {
     const { adblock, disable } = this.state;
 
     if (disable) {
-      return getAdblock(classes);
+      return <span className={classes.root}>{getAdblock(classes)}</span>;
     }
 
     return (
-      <div className={classes.root}>
-        {this.random >= 0.5 ? <CodeFund /> : <Carbon />}
+      <span className={classes.root}>
+        {this.random >= 0.75 ? <CodeFund /> : <Carbon />}
         {adblock === true ? getAdblock(classes) : null}
         {adblock === false ? (
           <Tooltip
@@ -105,14 +111,13 @@ class Ad extends React.Component {
             <span className={classes.info}>i</span>
           </Tooltip>
         ) : null}
-      </div>
+      </span>
     );
   }
 }
 
 Ad.propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
 };
 
-export default withWidth()(withStyles(styles)(Ad));
+export default withStyles(styles)(Ad);

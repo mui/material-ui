@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Grow from '../Grow';
 import Paper from '../Paper';
 import Popover from './Popover';
@@ -14,6 +14,7 @@ describe('<Popover />', () => {
   const defaultProps = {
     open: false,
   };
+  const PopoverNaked = unwrap(Popover);
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -232,7 +233,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         8,
         'should be 8 elevation by default',
       );
@@ -241,7 +242,7 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .prop('elevation'),
+          .props().elevation,
         16,
         'should be 16 elevation',
       );
@@ -260,18 +261,18 @@ describe('<Popover />', () => {
       },
     };
 
-    describe('handleEnter(element)', () => {
+    describe('handleEntering(element)', () => {
       let wrapper;
-      let handleEnter;
+      let handleEntering;
 
       before(() => {
-        handleEnter = spy();
+        handleEntering = spy();
         wrapper = shallow(
-          <Popover {...defaultProps} onEnter={handleEnter}>
+          <Popover {...defaultProps} onEntering={handleEntering}>
             <div />
           </Popover>,
         );
-        wrapper.instance().handleEnter(element);
+        wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the enter phase', () => {
@@ -367,61 +368,55 @@ describe('<Popover />', () => {
       window.document.body.removeChild(anchorEl);
     });
 
-    it('should be positioned over the top left of the anchor', () => {
-      return openPopover({ vertical: 'top', horizontal: 'left' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
-        const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the top left of the anchor', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the center left of the anchor', () => {
-      return openPopover({ vertical: 'center', horizontal: 'left' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const anchorTop = anchorRect.top + anchorRect.height / 2;
-        const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
-        const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the center left of the anchor', async () => {
+      await openPopover({ vertical: 'center', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const anchorTop = anchorRect.top + anchorRect.height / 2;
+      const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the bottom left of the anchor', () => {
-      return openPopover({ vertical: 'bottom', horizontal: 'left' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
-        const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the bottom left of the anchor', async () => {
+      await openPopover({ vertical: 'bottom', horizontal: 'left' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
+      const expectedLeft = anchorRect.left <= 16 ? 16 : anchorRect.left;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the center center of the anchor', () => {
-      return openPopover({ vertical: 'center', horizontal: 'center' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const anchorTop = anchorRect.top + anchorRect.height / 2;
-        const anchorLeft = anchorRect.left + anchorRect.height / 2;
-        const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
-        const expectedLeft = anchorLeft <= 16 ? 16 : anchorLeft;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the center center of the anchor', async () => {
+      await openPopover({ vertical: 'center', horizontal: 'center' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const anchorTop = anchorRect.top + anchorRect.height / 2;
+      const anchorLeft = anchorRect.left + anchorRect.height / 2;
+      const expectedTop = anchorTop <= 16 ? 16 : anchorTop;
+      const expectedLeft = anchorLeft <= 16 ? 16 : anchorLeft;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the top right of the anchor', () => {
-      return openPopover({ vertical: 'top', horizontal: 'right' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
-        const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the top right of the anchor', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'right' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.top <= 16 ? 16 : anchorRect.top;
+      const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
+      expectPopover(expectedTop, expectedLeft);
     });
 
-    it('should be positioned over the bottom right of the anchor', () => {
-      return openPopover({ vertical: 'bottom', horizontal: 'right' }).then(() => {
-        const anchorRect = anchorEl.getBoundingClientRect();
-        const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
-        const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
-        expectPopover(expectedTop, expectedLeft);
-      });
+    it('should be positioned over the bottom right of the anchor', async () => {
+      await openPopover({ vertical: 'bottom', horizontal: 'right' });
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
+      const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
+      expectPopover(expectedTop, expectedLeft);
     });
 
     it('should pass through container prop if container and anchorEl props are provided', () => {
@@ -437,8 +432,8 @@ describe('<Popover />', () => {
       );
     });
 
-    it("should use anchorEl's parent body as container if container prop not provided", () => {
-      return openPopover(undefined, true).then(() => {
+    it("should use anchorEl's parent body as container if container not provided", async () => {
+      openPopover(undefined, true).then(() => {
         assert.strictEqual(
           wrapper
             .dive()
@@ -450,7 +445,7 @@ describe('<Popover />', () => {
       });
     });
 
-    it('should not pass container to Modal if container or anchorEl props are notprovided', () => {
+    it('should not pass container to Modal if container or anchorEl props are not provided', () => {
       const shallowWrapper = shallow(<Popover open />);
       assert.strictEqual(
         shallowWrapper
@@ -472,8 +467,8 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = anchorOrigin => {
-        return new Promise(resolve => {
+      openPopover = anchorOrigin =>
+        new Promise(resolve => {
           wrapper = mount(
             <Popover
               {...defaultProps}
@@ -491,7 +486,6 @@ describe('<Popover />', () => {
           );
           wrapper.setProps({ open: true });
         });
-      };
 
       expectPopover = (top, left) => {
         assert.strictEqual(
@@ -509,16 +503,15 @@ describe('<Popover />', () => {
       };
     });
 
-    it('should be positioned according to the passed coordinates', () => {
-      return openPopover().then(() => {
+    it('should be positioned according to the passed coordinates', async () => {
+      openPopover().then(() => {
         expectPopover(anchorPosition.top, anchorPosition.left);
       });
     });
 
-    it('should ignore the anchorOrigin prop when being positioned', () => {
-      return openPopover({ vertical: 'top', horizontal: 'right' }).then(() => {
-        expectPopover(anchorPosition.top, anchorPosition.left);
-      });
+    it('should ignore the anchorOrigin prop when being positioned', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'right' });
+      expectPopover(anchorPosition.top, anchorPosition.left);
     });
   });
 
@@ -529,8 +522,8 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = () => {
-        return new Promise(resolve => {
+      openPopover = () =>
+        new Promise(resolve => {
           wrapper = mount(
             <Popover
               {...defaultProps}
@@ -552,7 +545,6 @@ describe('<Popover />', () => {
           );
           wrapper.setProps({ open: true });
         });
-      };
 
       expectPopover = (top, left) => {
         assert.strictEqual(
@@ -570,8 +562,8 @@ describe('<Popover />', () => {
       };
     });
 
-    it('should not try to change the position', () => {
-      return openPopover().then(() => {
+    it('should not try to change the position', async () => {
+      openPopover().then(() => {
         expectPopover(11, 12);
       });
     });
@@ -602,24 +594,21 @@ describe('<Popover />', () => {
         .at(0)
         .simulate('resize');
       clock.tick(166);
-      assert.strictEqual(
-        instance.setPositioningStyles.called,
-        true,
-        'position styles recalculated',
-      );
+      assert.strictEqual(instance.setPositioningStyles.called, true);
     });
 
     it('should not recalculate position if the popover is closed', () => {
       const wrapper = mount(
-        <Popover {...defaultProps} transitionDuration={0}>
+        <PopoverNaked {...defaultProps} classes={{}} transitionDuration={0}>
           <div />
-        </Popover>,
+        </PopoverNaked>,
       );
-      assert.strictEqual(
-        wrapper.contains('EventListener'),
-        false,
-        'no component listening on resize',
-      );
+      const instance = wrapper.instance();
+      assert.strictEqual(wrapper.contains('EventListener'), false);
+      stub(instance, 'setPositioningStyles');
+      wrapper.instance().handleResize();
+      clock.tick(166);
+      assert.strictEqual(instance.setPositioningStyles.called, false);
     });
   });
 
@@ -845,6 +834,22 @@ describe('<Popover />', () => {
         </Popover>,
       );
       assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
+    });
+  });
+
+  describe('prop: TransitionProp', () => {
+    it('should fire Popover transition event callbacks', () => {
+      const handler1 = spy();
+      const handler2 = spy();
+      const wrapper = shallow(
+        <Popover {...defaultProps} TransitionProps={{ onEntering: handler2 }} onEntering={handler1}>
+          <div />
+        </Popover>,
+      );
+
+      wrapper.find(Grow).simulate('entering', { style: {} });
+      assert.strictEqual(handler1.callCount, 1);
+      assert.strictEqual(handler2.callCount, 1);
     });
   });
 });

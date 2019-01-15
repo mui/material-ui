@@ -1,10 +1,10 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
@@ -121,12 +121,7 @@ class HomePage extends React.Component {
                 </Typography>
                 <Button
                   component={buttonProps => (
-                    <Link
-                      variant="button"
-                      prefetch
-                      href="/getting-started/installation"
-                      {...buttonProps}
-                    />
+                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
                   )}
                   className={classes.button}
                   variant="outlined"
@@ -170,7 +165,7 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withRoot,
-  withStyles(styles),
-)(HomePage);
+const Page = withStyles(styles)(HomePage);
+
+// Hack for https://github.com/zeit/next.js/pull/5857
+export default () => <Page />;

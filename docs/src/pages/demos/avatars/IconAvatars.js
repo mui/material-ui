@@ -7,6 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
   avatar: {
@@ -22,16 +23,12 @@ const styles = {
     color: '#fff',
     backgroundColor: green[500],
   },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
 };
 
 function IconAvatars(props) {
   const { classes } = props;
   return (
-    <div className={classes.row}>
+    <Grid container justify="center" alignItems="center">
       <Avatar className={classes.avatar}>
         <FolderIcon />
       </Avatar>
@@ -41,7 +38,7 @@ function IconAvatars(props) {
       <Avatar className={classes.greenAvatar}>
         <AssignmentIcon />
       </Avatar>
-    </div>
+    </Grid>
   );
 }
 

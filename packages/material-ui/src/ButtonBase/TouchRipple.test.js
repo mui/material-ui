@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
@@ -163,7 +163,7 @@ describe('<TouchRipple />', () => {
       assert.strictEqual(wrapper.state().ripples.length, 0);
     });
 
-    it('should interupt the ripple schedule', () => {
+    it('should interrupt the ripple schedule', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Zoom from './Zoom';
 
 describe('<Zoom />', () => {
@@ -79,7 +79,7 @@ describe('<Zoom />', () => {
   });
 
   describe('prop: appear', () => {
-    it('should work when initially hidden', () => {
+    it('should work when initially hidden: appear=true', () => {
       const wrapper = mount(
         <Zoom in={false} appear>
           <div>Foo</div>
@@ -87,11 +87,10 @@ describe('<Zoom />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         transform: 'scale(0)',
-        willChange: 'transform',
       });
     });
 
-    it('should work when initially hidden', () => {
+    it('should work when initially hidden: appear=false', () => {
       const wrapper = mount(
         <Zoom in={false} appear={false}>
           <div>Foo</div>
@@ -99,7 +98,6 @@ describe('<Zoom />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         transform: 'scale(0)',
-        willChange: 'transform',
       });
     });
   });

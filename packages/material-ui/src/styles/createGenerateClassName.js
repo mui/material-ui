@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import warning from 'warning';
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
@@ -32,16 +30,16 @@ export default function createGenerateClassName(options = {}) {
     );
 
     if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
-      return `${styleSheet.options.name}-${rule.key}`;
+      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
       return `${productionPrefix}${seed}${ruleCounter}`;
     }
 
+    // Help with debuggability.
     if (styleSheet && styleSheet.options.classNamePrefix) {
-      const prefix = safePrefix(styleSheet.options.classNamePrefix);
-      return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
+      return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${ruleCounter}`;
     }
 
     return `${rule.key}-${seed}${ruleCounter}`;

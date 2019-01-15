@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
@@ -70,7 +71,7 @@ Paper.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It's accepting values between 0 and 24 inclusive.

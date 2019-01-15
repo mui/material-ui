@@ -20,6 +20,7 @@ describe('ModalManager', () => {
     const modal = {};
     const modalManager2 = new ModalManager();
     const idx = modalManager2.add(modal, container1);
+    modalManager2.mount(modal);
     assert.strictEqual(modalManager2.add(modal, container1), idx);
     modalManager2.remove(modal);
   });
@@ -37,6 +38,7 @@ describe('ModalManager', () => {
 
     it('should add modal1', () => {
       const idx = modalManager.add(modal1, container1);
+      modalManager.mount(modal1);
       assert.strictEqual(idx, 0, 'should be the first modal');
       assert.strictEqual(modalManager.isTopModal(modal1), true);
     });
@@ -58,8 +60,9 @@ describe('ModalManager', () => {
       assert.strictEqual(idx, 1, 'should be the second modal');
     });
 
-    it('should add modal2', () => {
+    it('should add modal2 2', () => {
       const idx = modalManager.add(modal2, container1);
+      modalManager.mount(modal2);
       assert.strictEqual(idx, 2, 'should be the "third" modal');
       assert.strictEqual(modalManager.isTopModal(modal2), true);
       assert.strictEqual(
@@ -74,7 +77,7 @@ describe('ModalManager', () => {
       assert.strictEqual(idx, 1);
     });
 
-    it('should remove modal2', () => {
+    it('should remove modal2 2', () => {
       const idx = modalManager.remove(modal2);
       assert.strictEqual(idx, 1);
       assert.strictEqual(modalManager.isTopModal(modal1), true);
@@ -111,6 +114,7 @@ describe('ModalManager', () => {
       const modal = {};
       const paddingRightBefore = container1.style.paddingRight;
       modalManager.add(modal, container1);
+      modalManager.mount(modal);
       assert.strictEqual(container1.style.overflow, 'hidden');
       assert.strictEqual(container1.style.paddingRight, `${getScrollbarSize()}px`);
       assert.strictEqual(fixedNode.style.paddingRight, `${14 + getScrollbarSize()}px`);
@@ -140,9 +144,11 @@ describe('ModalManager', () => {
       const modal1 = {};
       const modal2 = {};
       modalManager.add(modal1, container3);
+      modalManager.mount(modal1);
       assert.strictEqual(container3.children[0].getAttribute('aria-hidden'), 'true');
 
       modalManager.add(modal2, container4);
+      modalManager.mount(modal2);
       assert.strictEqual(container4.children[0].getAttribute('aria-hidden'), 'true');
 
       modalManager.remove(modal2);
@@ -212,6 +218,7 @@ describe('ModalManager', () => {
       const modal = { modalRef: container2.children[0] };
 
       modalManager.add(modal, container2);
+      modalManager.mount(modal);
       assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), null);
       modalManager.remove(modal, container2);
       assert.strictEqual(container2.children[0].getAttribute('aria-hidden'), 'true');

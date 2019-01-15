@@ -11,7 +11,7 @@ A [Menu](https://material.io/design/components/menus.html) displays a list of ch
 
 ## Simple Menu
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make all menu items are completely visible.
+Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
 Choosing an option should immediately ideally commit the option and close the menu.
 
@@ -26,14 +26,6 @@ The currently selected menu item is set using the `selected` property (from [Lis
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
-If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
-
-## Max height menus
-
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
-
-{{"demo": "pages/demos/menus/LongMenu.js"}}
-
 ## MenuList composition
 
 The `Menu` component uses the `Popover` component internally.
@@ -46,16 +38,22 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Customized MenuItem
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles.
-You can use the same list composition features with the `MenuItem` component:
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here is one example of how you can customize the `MenuItem`.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-## Change Transition
+The `MenuItem` is a wrapper around `ListItem` with some additional styles.
+You can use the same list composition features with the `MenuItem` component:
 
-Use a different transition altogether.
+## Max height menus
 
-{{"demo": "pages/demos/menus/FadeMenu.js"}}
+If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+
+{{"demo": "pages/demos/menus/LongMenu.js"}}
 
 ## Render Props
 
@@ -63,3 +61,26 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that
 keeps track of the local state for a single menu.
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
+
+## Limitations
+
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout.
+You can use the `Typography` component to workaround this issue:
+
+{{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
+## Change Transition
+
+Use a different transition altogether.
+
+{{"demo": "pages/demos/menus/FadeMenu.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+### PopupState helper
+
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+
+{{"demo": "pages/demos/menus/MenuPopupState.js"}}

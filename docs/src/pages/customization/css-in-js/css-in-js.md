@@ -2,6 +2,10 @@
 
 <p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
+> ⚠️ We are working on extracting the styling solution into it's own package: [`@material-ui/styles`](/css-in-js/basics/).
+It's an unstable project (alpha version).
+Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
+
 Material-UI aims to provide strong foundations for building dynamic UIs.
 For the sake of simplicity, **we expose our styling solution to users**.
 You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
@@ -29,7 +33,7 @@ It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/perfor
 It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins).
+The best place to start is by looking at the features that each [plugin](https://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins).
 You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
 
 If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
@@ -40,8 +44,6 @@ Check the jss-rtl [readme](https://github.com/alitaheri/jss-rtl#simple-usage) to
 When rendering on the server, you will need to get all rendered styles as a CSS string.
 The `SheetsRegistry` class allows you to manually aggregate and stringify them.
 Read more about [Server Rendering](/guides/server-rendering/).
-
-{{"demo": "pages/customization/css-in-js/JssRegistry.js", "hideEditButton": true}}
 
 ## Sheets manager
 
@@ -243,7 +245,7 @@ Given `withStyles` is our internal styling solution, all the plugins aren't avai
 - [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
 It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
-Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3-jss-rtl).
+Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3--jss-rtl).
 
 ## API
 

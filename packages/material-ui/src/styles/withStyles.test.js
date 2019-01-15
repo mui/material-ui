@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { JssProvider } from 'react-jss';
 import { create, SheetsRegistry } from 'jss';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import jssPreset from './jssPreset';
@@ -9,7 +9,7 @@ import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Empty extends React.Component {
@@ -150,7 +150,6 @@ describe('withStyles', () => {
     it('should run lifecycles with no theme', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles)(Empty);
-
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
           <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>

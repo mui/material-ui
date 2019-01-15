@@ -57,26 +57,24 @@ function CustomizedTable(props) {
         <TableHead>
           <TableRow>
             <CustomTableCell>Dessert (100g serving)</CustomTableCell>
-            <CustomTableCell numeric>Calories</CustomTableCell>
-            <CustomTableCell numeric>Fat (g)</CustomTableCell>
-            <CustomTableCell numeric>Carbs (g)</CustomTableCell>
-            <CustomTableCell numeric>Protein (g)</CustomTableCell>
+            <CustomTableCell align="right">Calories</CustomTableCell>
+            <CustomTableCell align="right">Fat (g)</CustomTableCell>
+            <CustomTableCell align="right">Carbs (g)</CustomTableCell>
+            <CustomTableCell align="right">Protein (g)</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow className={classes.row} key={row.id}>
-                <CustomTableCell component="th" scope="row">
-                  {row.name}
-                </CustomTableCell>
-                <CustomTableCell numeric>{row.calories}</CustomTableCell>
-                <CustomTableCell numeric>{row.fat}</CustomTableCell>
-                <CustomTableCell numeric>{row.carbs}</CustomTableCell>
-                <CustomTableCell numeric>{row.protein}</CustomTableCell>
-              </TableRow>
-            );
-          })}
+          {rows.map(row => (
+            <TableRow className={classes.row} key={row.id}>
+              <CustomTableCell component="th" scope="row">
+                {row.name}
+              </CustomTableCell>
+              <CustomTableCell align="right">{row.calories}</CustomTableCell>
+              <CustomTableCell align="right">{row.fat}</CustomTableCell>
+              <CustomTableCell align="right">{row.carbs}</CustomTableCell>
+              <CustomTableCell align="right">{row.protein}</CustomTableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </Paper>

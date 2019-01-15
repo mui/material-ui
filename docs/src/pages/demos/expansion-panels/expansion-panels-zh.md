@@ -6,7 +6,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 <p class="description">扩展面板包含创建流程，允许轻量编辑元素。</p>
 
-[扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以连接到更大的表面， 比如卡片。
+[扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
 ## 简单的扩展面板
 
@@ -20,6 +20,6 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 受控手风琴
 
-扩展默认面板行为以使用 ExpansionPanel </ code>组件创建手风琴。</p>
+扩展默认面板行为以使用` ExpansionPanel `组件创建手风琴。
 
-<p>{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}</p>
+{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}

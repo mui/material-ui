@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -10,28 +12,23 @@ export const styles = {
   },
 };
 
-class TableHead extends React.Component {
-  getChildContext() {
-    // eslint-disable-line class-methods-use-this
-    return {
-      tablelvl2: {
-        variant: 'head',
-      },
-    };
-  }
+const contextValue = { variant: 'head' };
 
-  render() {
-    const { classes, className, component: Component, ...other } = this.props;
+function TableHead(props) {
+  const { classes, className, component: Component, ...other } = props;
 
-    return <Component className={classNames(classes.root, className)} {...other} />;
-  }
+  return (
+    <Tablelvl2Context.Provider value={contextValue}>
+      <Component className={classNames(classes.root, className)} {...other} />
+    </Tablelvl2Context.Provider>
+  );
 }
 
 TableHead.propTypes = {
   /**
    * The content of the component, normally `TableRow`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -45,15 +42,11 @@ TableHead.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
 };
 
 TableHead.defaultProps = {
   component: 'thead',
-};
-
-TableHead.childContextTypes = {
-  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);

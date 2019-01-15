@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
+import ListContext from './ListContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -27,41 +29,37 @@ export const styles = {
   },
 };
 
-class List extends React.Component {
-  getChildContext() {
-    return {
-      dense: this.props.dense,
-    };
-  }
+function List(props) {
+  const {
+    children,
+    classes,
+    className,
+    component: Component,
+    dense,
+    disablePadding,
+    subheader,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      component: Component,
-      dense,
-      disablePadding,
-      subheader,
-      ...other
-    } = this.props;
-    const className = classNames(
-      classes.root,
-      {
-        [classes.dense]: dense && !disablePadding,
-        [classes.padding]: !disablePadding,
-        [classes.subheader]: subheader,
-      },
-      classNameProp,
-    );
-
-    return (
-      <Component className={className} {...other}>
+  return (
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.dense]: dense && !disablePadding,
+          [classes.padding]: !disablePadding,
+          [classes.subheader]: subheader,
+        },
+        className,
+      )}
+      {...other}
+    >
+      <ListContext.Provider value={{ dense }}>
         {subheader}
         {children}
-      </Component>
-    );
-  }
+      </ListContext.Provider>
+    </Component>
+  );
 }
 
 List.propTypes = {
@@ -82,7 +80,7 @@ List.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the
@@ -103,10 +101,6 @@ List.defaultProps = {
   component: 'ul',
   dense: false,
   disablePadding: false,
-};
-
-List.childContextTypes = {
-  dense: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiList' })(List);

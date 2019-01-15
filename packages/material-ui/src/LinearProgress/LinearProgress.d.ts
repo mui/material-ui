@@ -13,6 +13,8 @@ export type LinearProgressClassKey =
   | 'root'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'determinate'
+  | 'indeterminate'
   | 'buffer'
   | 'query'
   | 'dashed'
@@ -24,6 +26,7 @@ export type LinearProgressClassKey =
   | 'bar1Indeterminate'
   | 'bar2Indeterminate'
   | 'bar1Determinate'
+  | 'bar2Determinate'
   | 'bar1Buffer'
   | 'bar2Buffer';
 

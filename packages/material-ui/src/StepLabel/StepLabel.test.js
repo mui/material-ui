@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 import StepLabel from './StepLabel';

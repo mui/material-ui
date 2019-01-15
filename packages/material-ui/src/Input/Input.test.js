@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
 import InputBase from '../InputBase';
 import Input from './Input';
 

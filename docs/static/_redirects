@@ -1,3 +1,6 @@
+# Current
+/page-layout-examples/* /getting-started/page-layout-examples/:splat 301
+
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0
 /v0.19.4 https://v0.material-ui.com/v0.19.4

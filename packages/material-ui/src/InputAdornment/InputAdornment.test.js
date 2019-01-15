@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
 
@@ -53,6 +53,15 @@ describe('<InputAdornment />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.positionStart), true);
     assert.strictEqual(wrapper.hasClass(classes.filled), true);
+  });
+
+  it('should have the disabled pointer events class when disabledPointerEvents true', () => {
+    const wrapper = shallow(
+      <InputAdornment disablePointerEvents position="start">
+        foo
+      </InputAdornment>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.disablePointerEvents), true);
   });
 
   it('should not wrap text children in a Typography when disableTypography true', () => {

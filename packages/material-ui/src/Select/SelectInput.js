@@ -3,9 +3,18 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { setRef } from '../utils/reactHelpers';
+
+function areEqualValues(a, b) {
+  if (typeof b === 'object' && b !== null) {
+    return a === b;
+  }
+
+  return String(a) === String(b);
+}
 
 /**
  * @ignore - internal component.
@@ -47,7 +56,7 @@ class SelectInput extends React.Component {
     }
 
     this.setState({
-      // Perfom the layout computation outside of the render method.
+      // Perform the layout computation outside of the render method.
       menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
       open,
     });
@@ -225,12 +234,12 @@ class SelectInput extends React.Component {
           );
         }
 
-        selected = value.indexOf(child.props.value) !== -1;
+        selected = value.some(v => areEqualValues(v, child.props.value));
         if (selected && computeDisplay) {
           displayMultiple.push(child.props.children);
         }
       } else {
-        selected = value === child.props.value;
+        selected = areEqualValues(value, child.props.value);
         if (selected && computeDisplay) {
           displaySingle = child.props.children;
         }
@@ -281,7 +290,7 @@ class SelectInput extends React.Component {
           aria-pressed={open ? 'true' : 'false'}
           tabIndex={tabIndex}
           role="button"
-          aria-owns={open ? `menu-${name || ''}` : null}
+          aria-owns={open ? `menu-${name || ''}` : undefined}
           aria-haspopup="true"
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
@@ -289,7 +298,7 @@ class SelectInput extends React.Component {
           onFocus={onFocus}
           {...SelectDisplayProps}
         >
-          {/* So the vertical align positioning algorithm quicks in. */}
+          {/* So the vertical align positioning algorithm kicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
           {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
@@ -309,6 +318,7 @@ class SelectInput extends React.Component {
           {...MenuProps}
           MenuListProps={{
             role: 'listbox',
+            disableListWrap: true,
             ...MenuProps.MenuListProps,
           }}
           PaperProps={{
@@ -361,7 +371,7 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * Use that property to pass a ref callback to the native select element.
    */
@@ -446,7 +456,10 @@ SelectInput.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]).isRequired,
   /**
    * The variant to use.

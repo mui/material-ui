@@ -7,6 +7,14 @@ const internal = {
   keyUpEventTimeout: -1,
 };
 
+function findActiveElement(doc) {
+  let activeElement = doc.activeElement;
+  while (activeElement && activeElement.shadowRoot && activeElement.shadowRoot.activeElement) {
+    activeElement = activeElement.shadowRoot.activeElement;
+  }
+  return activeElement;
+}
+
 export function detectFocusVisible(instance, element, callback, attempt = 1) {
   warning(instance.focusVisibleCheckTime, 'Material-UI: missing instance.focusVisibleCheckTime.');
   warning(
@@ -16,10 +24,11 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
 
   instance.focusVisibleTimeout = setTimeout(() => {
     const doc = ownerDocument(element);
+    const activeElement = findActiveElement(doc);
 
     if (
       internal.focusKeyPressed &&
-      (doc.activeElement === element || element.contains(doc.activeElement))
+      (activeElement === element || element.contains(activeElement))
     ) {
       callback();
     } else if (attempt < instance.focusVisibleMaxCheckTimes) {
@@ -38,11 +47,11 @@ const handleKeyUpEvent = event => {
   if (isFocusKey(event)) {
     internal.focusKeyPressed = true;
 
-    // Let's consider that the user is using a keyboard during a window frame of 1s.
+    // Let's consider that the user is using a keyboard during a window frame of 500ms.
     clearTimeout(internal.keyUpEventTimeout);
     internal.keyUpEventTimeout = setTimeout(() => {
       internal.focusKeyPressed = false;
-    }, 1e3);
+    }, 500);
   }
 };
 

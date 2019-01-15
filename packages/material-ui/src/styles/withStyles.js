@@ -1,8 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import { getDisplayName, ponyfillGlobal } from '@material-ui/utils';
 import { create } from 'jss';
 import ns from './reactJssContext';
 import jssPreset from './jssPreset';
@@ -12,7 +14,6 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
-import getDisplayName from '../utils/getDisplayName';
 import getThemeProps from './getThemeProps';
 
 // Default JSS instance.
@@ -28,7 +29,7 @@ const generateClassName = createGenerateClassName();
 // We create the style sheet during at the creation of the component,
 // children are handled after the parents, so the order of style elements would be parent->child.
 // It is a problem though when a parent passes a className
-// which needs to override any childs styles.
+// which needs to override any child's styles.
 // StyleSheet of the child has a higher specificity, because of the source order.
 // So our solution is to render sheets them in the reverse order child->sheet, so
 // that parent has a higher specificity.
@@ -41,25 +42,16 @@ export const sheetsManager = new Map();
 const noopTheme = {};
 
 // In order to have self-supporting components, we rely on default theme when not provided.
-let defaultTheme;
-
-function getDefaultTheme() {
-  if (defaultTheme) {
-    return defaultTheme;
-  }
-
-  defaultTheme = createMuiTheme({
-    typography: {
-      suppressWarning: true,
-    },
-  });
-  return defaultTheme;
-}
+const defaultTheme = createMuiTheme({
+  typography: {
+    suppressWarning: true,
+  },
+});
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
-const withStyles = (stylesOrCreator, options = {}) => Component => {
+const withStylesOld = (stylesOrCreator, options = {}) => Component => {
   const { withTheme = false, flip = null, name, ...styleSheetOptions } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
@@ -100,7 +92,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         ...context[ns.sheetOptions],
       };
       // We use || as the function call is lazy evaluated.
-      this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
+      this.theme = listenToTheme ? themeListener.initial(context) || defaultTheme : noopTheme;
 
       this.attach(this.theme);
 
@@ -166,6 +158,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         this.stylesCreatorSaved,
         this.theme,
       );
+
       if (sheetManager.sheet.classes !== this.cacheClasses.lastJSS) {
         this.cacheClasses.lastJSS = sheetManager.sheet.classes;
         generate = true;
@@ -313,7 +306,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    WithStyles.displayName = wrapDisplayName(Component, 'WithStyles');
+    WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithStyles, Component);
@@ -327,4 +320,17 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   return WithStyles;
 };
 
-export default withStyles;
+/* istanbul ignore if */
+if (!ponyfillGlobal.__MUI_STYLES__) {
+  ponyfillGlobal.__MUI_STYLES__ = {};
+}
+
+if (!ponyfillGlobal.__MUI_STYLES__.withStyles) {
+  ponyfillGlobal.__MUI_STYLES__.withStyles = withStylesOld;
+}
+
+export default (styles, options) =>
+  ponyfillGlobal.__MUI_STYLES__.withStyles(styles, {
+    defaultTheme,
+    ...options,
+  });

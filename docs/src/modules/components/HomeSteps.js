@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
-import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
+import BuildIcon from '@material-ui/icons/Build';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -130,7 +130,7 @@ function HomeSteps(props) {
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/getting-started/installation" {...buttonProps} />
+            <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
           )}
         >
           Read installation docs
@@ -164,7 +164,7 @@ function HomeSteps(props) {
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/getting-started/usage" {...buttonProps} />
+            <Link naked prefetch href="/getting-started/usage" {...buttonProps} />
           )}
         >
           Explore the docs
@@ -188,9 +188,7 @@ function HomeSteps(props) {
         </div>
         <Divider className={classes.divider} />
         <Button
-          component={buttonProps => (
-            <Link variant="button" prefetch href="/premium-themes" {...buttonProps} />
-          )}
+          component={buttonProps => <Link naked prefetch href="/premium-themes" {...buttonProps} />}
         >
           Browse themes
         </Button>

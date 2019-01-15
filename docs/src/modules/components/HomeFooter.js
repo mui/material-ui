@@ -41,13 +41,20 @@ function HomeFooter(props) {
           <Grid item xs={12} sm={6}>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="https://github.com/mui-org/material-ui">GitHub</Link>
+                <Link color="inherit" href="https://github.com/mui-org/material-ui">
+                  GitHub
+                </Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="https://twitter.com/MaterialUI">Twitter</Link>
+                <Link color="inherit" href="https://twitter.com/MaterialUI">
+                  Twitter
+                </Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="https://github.com/mui-org/material-ui/tree/master/examples">
+                <Link
+                  color="inherit"
+                  href="https://github.com/mui-org/material-ui/tree/master/examples"
+                >
                   Examples
                 </Link>
               </li>
@@ -56,13 +63,19 @@ function HomeFooter(props) {
           <Grid item xs={12} sm={6}>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="/style/icons">Icons</Link>
+                <Link color="inherit" href="/style/icons">
+                  Icons
+                </Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/style/color">Color</Link>
+                <Link color="inherit" href="/style/color">
+                  Color
+                </Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/discover-more/team">Team</Link>
+                <Link color="inherit" href="/discover-more/team">
+                  Team
+                </Link>
               </li>
             </ul>
           </Grid>
@@ -70,7 +83,9 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         {`Currently v${process.env.LIB_VERSION}. Released under the `}
-        <Link href="https://github.com/mui-org/material-ui/blob/master/LICENSE">MIT License</Link>
+        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/master/LICENSE">
+          MIT License
+        </Link>
         {'.'}
       </Typography>
     </footer>

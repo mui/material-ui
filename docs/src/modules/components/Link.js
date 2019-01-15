@@ -1,118 +1,63 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-has-content */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import compose from 'recompose/compose';
 import { withRouter } from 'next/router';
 import NextLink from 'next/link';
-import { withStyles } from '@material-ui/core/styles';
+import MuiLink from '@material-ui/core/Link';
 
-const styles = theme => ({
-  root: {
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-  default: {
-    color: 'inherit',
-  },
-  primary: {
-    color: theme.palette.primary.main,
-  },
-  secondary: {
-    color: theme.palette.secondary.main,
-  },
-  button: {
-    '&:hover': {
-      textDecoration: 'inherit',
-    },
-  },
-});
+function NextWrapper(props) {
+  const { className, activeClassName, onClick, router, href, prefetch, ...other } = props;
 
-function Link(props) {
-  const {
-    activeClassName,
-    children: childrenProp,
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    href,
-    onClick,
-    prefetch,
-    router,
-    variant,
-    ...other
-  } = props;
-
-  let ComponentRoot;
-  const className = classNames(
-    classes.root,
-    {
-      [classes[variant]]: variant !== 'inherit',
-    },
-    classNameProp,
-  );
-  let RootProps;
-  let children = childrenProp;
-
-  if (ComponentProp) {
-    ComponentRoot = ComponentProp;
-    RootProps = {
-      ...other,
-      className,
-    };
-  } else if (href) {
-    ComponentRoot = NextLink;
-    RootProps = {
-      href,
-      prefetch,
-      passHref: true,
-    };
-    children = (
+  return (
+    <NextLink href={href} prefetch={prefetch}>
       <a
+        onClick={onClick}
         className={classNames(className, {
           [activeClassName]: router.pathname === href && activeClassName,
         })}
-        onClick={onClick}
         {...other}
-      >
-        {children}
-      </a>
-    );
-  } else {
-    ComponentRoot = 'a';
-    RootProps = {
-      ...other,
-      className,
-    };
-  }
-
-  return <ComponentRoot {...RootProps}>{children}</ComponentRoot>;
+      />
+    </NextLink>
+  );
 }
 
-Link.defaultProps = {
-  variant: 'default',
+NextWrapper.defaultProps = {
   activeClassName: 'active',
 };
 
-Link.propTypes = {
+NextWrapper.propTypes = {
   activeClassName: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  component: PropTypes.any,
   href: PropTypes.string,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
   router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button', 'inherit']),
 };
 
-export default compose(
-  withRouter,
-  withStyles(styles),
-)(Link);
+function Link(props) {
+  const { naked, ...other } = props;
+
+  const ToRender = {
+    component: NextWrapper,
+    ...other,
+  };
+
+  if (naked) {
+    const { component: Component, ...rest } = ToRender;
+
+    return <Component {...rest} />;
+  }
+
+  return <MuiLink {...ToRender} />;
+}
+
+Link.propTypes = {
+  naked: PropTypes.bool,
+};
+
+export default withRouter(Link);

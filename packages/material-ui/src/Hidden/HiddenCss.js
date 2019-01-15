@@ -99,8 +99,8 @@ HiddenCss.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Specify which implementation to use.  'js' is the default, 'css' works better for server
-   * side rendering.
+   * Specify which implementation to use.  'js' is the default, 'css' works better for
+   * server-side rendering.
    */
   implementation: PropTypes.oneOf(['js', 'css']),
   /**
@@ -152,4 +152,4 @@ HiddenCss.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiHiddenCss' })(HiddenCss);
+export default withStyles(styles, { name: 'MuiPrivateHiddenCss' })(HiddenCss);

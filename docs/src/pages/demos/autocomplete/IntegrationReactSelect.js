@@ -68,6 +68,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
+    overflow: 'hidden',
   },
   chip: {
     margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
@@ -244,6 +245,7 @@ class IntegrationReactSelect extends React.Component {
             value={this.state.single}
             onChange={this.handleChange('single')}
             placeholder="Search a country (start with a)"
+            isClearable
           />
           <div className={classes.divider} />
           <Select

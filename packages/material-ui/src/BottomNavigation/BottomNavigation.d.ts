@@ -3,11 +3,12 @@ import { StandardProps } from '..';
 
 export interface BottomNavigationProps
   extends StandardProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      BottomNavigationClassKey,
-      'onChange'
-    > {
+    React.HTMLAttributes<HTMLDivElement>,
+    BottomNavigationClassKey,
+    'onChange'
+  > {
   children: React.ReactNode;
+  component?: React.ReactType<BottomNavigationProps>;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   showLabels?: boolean;
   value?: any;

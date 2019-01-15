@@ -31,10 +31,6 @@ Outlined chips offer an alternative style.
 
 {{"demo": "pages/demos/chips/OutlinedChips.js"}}
 
-## Chip Playground
-
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
-
 ## Chip array
 
 An example of rendering multiple Chips from an array of values.
@@ -43,3 +39,7 @@ Deleting a chip removes it from the array. Note that since no
 gain depth while clicked or touched.
 
 {{"demo": "pages/demos/chips/ChipsArray.js"}}
+
+## Chip Playground
+
+{{"demo": "pages/demos/chips/ChipsPlayground.js"}}

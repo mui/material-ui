@@ -12,7 +12,6 @@ export const styles = theme => ({
     bottom: 0,
     width: '100%',
     transition: theme.transitions.create(),
-    willChange: 'left, width',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -55,4 +54,4 @@ TabIndicator.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
 };
 
-export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);
+export default withStyles(styles, { name: 'MuiPrivateTabIndicator' })(TabIndicator);

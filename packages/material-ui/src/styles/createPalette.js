@@ -146,6 +146,8 @@ export default function createPalette(palette) {
     if (!color.contrastText) {
       color.contrastText = getContrastText(color.main);
     }
+
+    return color;
   }
 
   augmentColor(primary);

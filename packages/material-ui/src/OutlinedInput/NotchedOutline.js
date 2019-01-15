@@ -5,17 +5,15 @@ import { withStyles } from '../styles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => {
-  const light = theme.palette.type === 'light';
   const align = theme.direction === 'rtl' ? 'right' : 'left';
 
   return {
     /* Styles applied to the root element. */
     root: {
       position: 'absolute',
-      width: '100%',
-      height: '100%',
-      boxSizing: 'border-box',
-      top: 0,
+      bottom: 0,
+      right: 0,
+      top: -5,
       left: 0,
       margin: 0,
       padding: 0,
@@ -23,7 +21,6 @@ export const styles = theme => {
       borderRadius: theme.shape.borderRadius,
       borderStyle: 'solid',
       borderWidth: 1,
-      borderColor: light ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
       // Match the Input Label
       transition: theme.transitions.create([`padding-${align}`, 'border-color', 'border-width'], {
         duration: theme.transitions.duration.shorter,
@@ -34,29 +31,11 @@ export const styles = theme => {
     legend: {
       textAlign: 'left',
       padding: 0,
+      lineHeight: '11px',
       transition: theme.transitions.create('width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
-      // Firefox workaround. Firefox will only obscure the
-      // rendered height of the legend and, unlike other browsers,
-      // will not push fieldset contents.
-      '@supports (-moz-appearance:none)': {
-        height: 2,
-      },
-    },
-    /* Styles applied to the root element if the control is focused. */
-    focused: {
-      borderColor: theme.palette.primary.main,
-      borderWidth: 2,
-    },
-    /* Styles applied to the root element if `error={true}`. */
-    error: {
-      borderColor: theme.palette.error.main,
-    },
-    /* Styles applied to the root element if `disabled={true}`. */
-    disabled: {
-      borderColor: theme.palette.action.disabled,
     },
   };
 };
@@ -69,9 +48,6 @@ function NotchedOutline(props) {
     children,
     classes,
     className,
-    disabled,
-    error,
-    focused,
     labelWidth: labelWidthProp,
     notched,
     style,
@@ -89,15 +65,7 @@ function NotchedOutline(props) {
         [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
         ...style,
       }}
-      className={classNames(
-        classes.root,
-        {
-          [classes.focused]: focused,
-          [classes.error]: error,
-          [classes.disabled]: disabled,
-        },
-        className,
-      )}
+      className={classNames(classes.root, className)}
       {...other}
     >
       <legend
@@ -108,7 +76,11 @@ function NotchedOutline(props) {
           // by always having a legend rendered
           width: notched ? labelWidth : 0.01,
         }}
-      />
+      >
+        {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
+        {/* eslint-disable-next-line react/no-danger */}
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+      </legend>
     </fieldset>
   );
 }
@@ -123,18 +95,6 @@ NotchedOutline.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * If `true`, the outline should be displayed in a disabled state.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the outline should be displayed in an error state.
-   */
-  error: PropTypes.bool,
-  /**
-   * If `true`, the outline should be displayed in a focused state.
-   */
-  focused: PropTypes.bool,
   /**
    * The width of the legend.
    */
@@ -153,4 +113,6 @@ NotchedOutline.propTypes = {
   theme: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiNotchedOutline', withTheme: true })(NotchedOutline);
+export default withStyles(styles, { name: 'MuiPrivateNotchedOutline', withTheme: true })(
+  NotchedOutline,
+);

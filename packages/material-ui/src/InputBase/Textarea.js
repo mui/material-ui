@@ -31,7 +31,7 @@ export const styles = {
     // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
     overflow: 'hidden',
-    // Visibility needed to hide the extra text area on ipads
+    // Visibility needed to hide the extra text area on iPads
     visibility: 'hidden',
     position: 'absolute',
     height: 'auto',
@@ -234,4 +234,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiTextarea' })(Textarea);
+export default withStyles(styles, { name: 'MuiPrivateTextarea' })(Textarea);

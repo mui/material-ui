@@ -70,7 +70,7 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;

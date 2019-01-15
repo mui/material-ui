@@ -8,6 +8,7 @@ export interface SpeedDialActionProps
   ButtonProps?: Partial<ButtonProps>;
   delay?: number;
   icon: React.ReactNode;
+  TooltipClasses?: TooltipProps['classes'];
   tooltipPlacement?: TooltipProps['placement'];
   tooltipTitle?: React.ReactNode;
   tooltipOpen?: boolean;

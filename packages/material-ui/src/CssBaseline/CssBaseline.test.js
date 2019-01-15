@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from '../test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import CssBaseline from './CssBaseline';
 
 describe('<CssBaseline />', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Popover from '../Popover';
 import Menu from './Menu';
 
@@ -162,17 +162,17 @@ describe('<Menu />', () => {
       selectedItemFocusSpy.resetHistory();
     });
 
-    it('should call props.onEnter with element if exists', () => {
-      const onEnterSpy = spy();
-      wrapper.setProps({ onEnter: onEnterSpy });
-      instance.handleEnter(elementForHandleEnter);
-      assert.strictEqual(onEnterSpy.callCount, 1);
-      assert.strictEqual(onEnterSpy.calledWith(elementForHandleEnter), true);
+    it('should call props.onEntering with element if exists', () => {
+      const onEnteringSpy = spy();
+      wrapper.setProps({ onEntering: onEnteringSpy });
+      instance.handleEntering(elementForHandleEnter);
+      assert.strictEqual(onEnteringSpy.callCount, 1);
+      assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
     });
 
     it('should call menuList focus when no menuList', () => {
       delete instance.menuListRef;
-      instance.handleEnter(elementForHandleEnter);
+      instance.handleEntering(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
       assert.strictEqual(menuListFocusSpy.callCount, 1);
     });
@@ -180,7 +180,7 @@ describe('<Menu />', () => {
     it('should call menuList focus when menuList but no menuList.selectedItemRef ', () => {
       instance.menuListRef = {};
       delete instance.menuListRef.selectedItemRef;
-      instance.handleEnter(elementForHandleEnter);
+      instance.handleEntering(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
       assert.strictEqual(menuListFocusSpy.callCount, 1);
     });
@@ -192,21 +192,21 @@ describe('<Menu />', () => {
       });
 
       it('should call selectedItem focus when there is a menuList.selectedItemRef', () => {
-        instance.handleEnter(elementForHandleEnter);
+        instance.handleEntering(elementForHandleEnter);
         assert.strictEqual(selectedItemFocusSpy.callCount, 1);
         assert.strictEqual(menuListFocusSpy.callCount, 0);
       });
 
       it('should not set style on list when element.clientHeight > list.clientHeight', () => {
         elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT + 1;
-        instance.handleEnter(elementForHandleEnter);
+        instance.handleEntering(elementForHandleEnter);
         assert.strictEqual(menuListSpy.style.paddingRight, undefined);
         assert.strictEqual(menuListSpy.style.width, undefined);
       });
 
       it('should not set style on list when element.clientHeight == list.clientHeight', () => {
         elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT;
-        instance.handleEnter(elementForHandleEnter);
+        instance.handleEntering(elementForHandleEnter);
         assert.strictEqual(menuListSpy.style.paddingRight, undefined);
         assert.strictEqual(menuListSpy.style.width, undefined);
       });
@@ -215,7 +215,7 @@ describe('<Menu />', () => {
         assert.strictEqual(menuListSpy.style.paddingRight, undefined);
         assert.strictEqual(menuListSpy.style.width, undefined);
         elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT - 1;
-        instance.handleEnter(elementForHandleEnter);
+        instance.handleEntering(elementForHandleEnter);
         assert.notStrictEqual(menuListSpy.style.paddingRight, undefined);
         assert.notStrictEqual(menuListSpy.style.width, undefined);
       });

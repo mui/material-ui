@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import BottomNavigationAction from '../BottomNavigationAction';
 import Icon from '../Icon';
 import BottomNavigation from './BottomNavigation';
@@ -79,7 +79,7 @@ describe('<BottomNavigation />', () => {
     assert.strictEqual(wrapper.childAt(1).props().showLabel, false);
   });
 
-  it('should pass selected prop to children', () => {
+  it('should forward the click', () => {
     const handleChange = spy();
     const wrapper = mount(
       <BottomNavigation showLabels value={0} onChange={handleChange}>

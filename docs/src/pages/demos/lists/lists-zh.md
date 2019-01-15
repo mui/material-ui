@@ -12,7 +12,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-The last item of the previous demo shows how you can render a link:
+上一个样例的最后一项展示了如何渲染一个链接：
 
 ```jsx
 function ListItemLink(props) {
@@ -26,7 +26,7 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+你可以从这里查看[React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)
 
 ## 文件夹列表
 
@@ -46,9 +46,9 @@ You can find a [demo with React Router following this section](/guides/compositi
 
 ## 固定 Subheader 列表
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+滚动列表时，子标题保持固定在屏幕的顶端，直到被下一个子标题推离屏幕。
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+此功能依赖于 CSS sticky 定位。 不幸的是, 这一功能并未在我们支持的所有浏览器中 [实现](https://caniuse.com/#search=sticky) 。 如果不支持, 则默认为 `disableSticky`。
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
@@ -56,19 +56,19 @@ This feature is relying on the CSS sticky positioning. Unfortunately it's [not i
 
 ### 复选框
 
-A checkbox can either be a primary action or a secondary action.
+复选框可以是主操作或辅助操作。
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+复选框是列表项的主要操作和状态指示器。 评论按钮是辅助操作和单独的目标。
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-The checkbox is the secondary action for the list item and a separate target.
+复选框是列表项的辅助操作和单独的目标。
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
 ### 开关
 
-The switch is the secondary action and a separate target.
+开关是辅助操作和单独的目标。
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 

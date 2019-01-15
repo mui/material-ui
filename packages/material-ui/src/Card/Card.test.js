@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Card from './Card';
 import Paper from '../Paper';
 
@@ -32,6 +32,6 @@ describe('<Card />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<Card data-my-prop="woofCard" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woofCard', 'custom prop should be woofCard');
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofCard');
   });
 });

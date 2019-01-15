@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
@@ -292,8 +293,7 @@ Snackbar.propTypes = {
    */
   autoHideDuration: PropTypes.number,
   /**
-   * If you wish the take control over the children of the component you can use this property.
-   * When used, you replace the `SnackbarContent` component with the children.
+   * Replace the `SnackbarContent` component.
    */
   children: PropTypes.element,
   /**
@@ -383,9 +383,9 @@ Snackbar.propTypes = {
    */
   resumeHideDuration: PropTypes.number,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

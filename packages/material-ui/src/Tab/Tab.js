@@ -13,8 +13,9 @@ export const styles = theme => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
-    position: 'relative',
     minWidth: 72,
+    position: 'relative',
+    boxSizing: 'border-box',
     padding: 0,
     minHeight: 48,
     flexShrink: 0,
@@ -29,6 +30,13 @@ export const styles = theme => ({
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: {
     minHeight: 72,
+    // paddingTop supposed to be 12px
+    // - 3px from the paddingBottom
+    paddingTop: 9,
+    // paddingBottom supposed to be 12px
+    // -3px for line-height of the label
+    // -6px for label padding
+    // = 3px
   },
   /* Styles applied to the root element if `textColor="inherit"`. */
   textColorInherit: {
@@ -83,23 +91,15 @@ export const styles = theme => ({
   labelContainer: {
     width: '100%', // Fix an IE 11 issue
     boxSizing: 'border-box',
-    paddingTop: 6,
-    paddingBottom: 6,
-    paddingLeft: 12,
-    paddingRight: 12,
+    padding: '6px 12px',
     [theme.breakpoints.up('md')]: {
-      paddingLeft: 24,
-      paddingRight: 24,
+      padding: '6px 24px',
     },
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
   label: {},
-  /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
-  labelWrapped: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: theme.typography.pxToRem(12),
-    },
-  },
+  /* Deprecated, the styles will be removed in v4. */
+  labelWrapped: {},
 });
 
 class Tab extends React.Component {
@@ -116,7 +116,7 @@ class Tab extends React.Component {
       /**
        * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
        * font size still only requires one line.  This check will prevent an infinite render loop
-       * fron occurring in that scenario.
+       * from occurring in that scenario.
        */
       this.checkTextWrap();
     }
@@ -146,7 +146,7 @@ class Tab extends React.Component {
   render() {
     const {
       classes,
-      className: classNameProp,
+      className,
       disabled,
       fullWidth,
       icon,
@@ -178,22 +178,20 @@ class Tab extends React.Component {
       );
     }
 
-    const className = classNames(
-      classes.root,
-      classes[`textColor${capitalize(textColor)}`],
-      {
-        [classes.disabled]: disabled,
-        [classes.selected]: selected,
-        [classes.labelIcon]: icon && label,
-        [classes.fullWidth]: fullWidth,
-      },
-      classNameProp,
-    );
-
     return (
       <ButtonBase
         focusRipple
-        className={className}
+        className={classNames(
+          classes.root,
+          classes[`textColor${capitalize(textColor)}`],
+          {
+            [classes.disabled]: disabled,
+            [classes.selected]: selected,
+            [classes.labelIcon]: icon && label,
+            [classes.fullWidth]: fullWidth,
+          },
+          className,
+        )}
         role="tab"
         aria-selected={selected}
         disabled={disabled}
@@ -239,7 +237,7 @@ Tab.propTypes = {
   icon: PropTypes.node,
   /**
    * @ignore
-   * For server side rendering consideration, we let the selected tab
+   * For server-side rendering consideration, we let the selected tab
    * render the indicator.
    */
   indicator: PropTypes.node,

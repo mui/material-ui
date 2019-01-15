@@ -6,7 +6,7 @@ import { parse as docgenParse } from 'react-docgen';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const TRANSLATIONS = ['zh'];
@@ -16,22 +16,18 @@ function normalizePath(path) {
 }
 
 function generateHeader(reactAPI) {
-  return [
-    '---',
-    `filename: ${normalizePath(reactAPI.filename)}`,
-    `title: ${reactAPI.name} API`,
-    '---',
-  ].join('\n');
+  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
 }
 
 function getDeprecatedInfo(type) {
-  const deprecatedMatch = /deprecated\(\s*PropTypes\./.exec(type.raw);
+  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
+  const match = type.raw.match(marker);
+  const startIndex = type.raw.search(marker);
+  if (match) {
+    const offset = match[0].length;
 
-  if (deprecatedMatch !== null) {
-    const { index: indexStart } = deprecatedMatch;
-    const [deprecatedPropType] = deprecatedMatch;
     return {
-      propTypes: type.raw.substring(indexStart + deprecatedPropType.length, type.raw.indexOf(',')),
+      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
       explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
     };
   }
@@ -98,7 +94,7 @@ function generatePropDescription(description, type) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach(tag => {
       if (tag.description) {
-        tag.description = tag.description.replace(/\n/g, ' ');
+        tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
     });
 
@@ -153,6 +149,10 @@ function generatePropType(type) {
       const chained = getChained(type);
       if (chained !== false) {
         return generatePropType(chained);
+      }
+
+      if (type.raw === 'componentProp') {
+        return 'Component';
       }
 
       return type.raw;
@@ -226,7 +226,7 @@ function generateProps(reactAPI) {
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(
-        prop.defaultValue.value.replace(/\n/g, ''),
+        prop.defaultValue.value.replace(/\r*\n/g, ''),
       )}</span>`;
     }
 
@@ -244,19 +244,21 @@ function generateProps(reactAPI) {
 
     textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
       prop.type,
-    )} | ${defaultValue} | ${description} |\n`;
+    )}</span> | ${defaultValue} | ${description} |\n`;
 
     return textProps;
   }, text);
 
-  text = `${text}
+  if (reactAPI.spread) {
+    text = `${text}
 Any other properties supplied will be spread to the root element (${
-    reactAPI.inheritance
-      ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
-          reactAPI.inheritance.pathname,
-        )})`
-      : 'native element'
-  }).`;
+      reactAPI.inheritance
+        ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+            reactAPI.inheritance.pathname,
+          )})`
+        : 'native element'
+    }).`;
+  }
 
   return text;
 }
@@ -289,7 +291,7 @@ function generateClasses(reactAPI) {
     text = reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n');
   }
 
-  return `## CSS API
+  return `## CSS
 
 You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
@@ -302,8 +304,7 @@ and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath
   )})
 for more detail.
 
-If using the \`overrides\` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the \`overrides\` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 
 `;
@@ -367,7 +368,7 @@ ${pagesMarkdown
 }
 
 function generateImportStatement(reactAPI) {
-  const source = reactAPI.filename
+  const source = normalizePath(reactAPI.filename)
     // determine the published package name
     .replace(
       /\/packages\/material-ui(-(.+?))?\/src/,
@@ -388,7 +389,7 @@ export default function generateMarkdown(reactAPI) {
     '',
     '<!--- This documentation is automatically generated, do not try to edit it. -->',
     '',
-    `# ${reactAPI.name}`,
+    `# ${reactAPI.name} API`,
     '',
     `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
       'Learn more about the properties and the CSS customization points.</p>',

@@ -18,6 +18,7 @@ we govern ourselves, how decisions are made, and how someone could engage with t
 Users are members of the community that are using Material-UI or one of Mui-Org's projects. Anyone
 can be a user and we encourage users to participate in the community as much as possible in the
 following ways.
+
 - Evangelize Material-UI by [linking to our website](https://material-ui.com/),
 [following us on twitter](https://twitter.com/MaterialUI), or just talking about us with your
 friends.
@@ -30,6 +31,7 @@ friends.
 Contributors are members of the community who contribute to Material-UI or one of Mui-Org's projects
 in concrete ways. Anyone can be a contributor. In addition to their participation as a user, they
 also contribute in the following ways.
+
 - Support new users by answering questions on
 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) and
 [Gitter](https://gitter.im/mui-org/material-ui).
@@ -46,6 +48,7 @@ Committers are members of the community who are committed to the development, su
 of Material-UI or one of Mui-Org's projects. New committers are nominated and voted on by existing
 committers. Under rare circumstances, the Core Team can vote to revoke a committer's privilege. In
 addition to their participation as a contributor, committers have the following privileges.
+
 - Access to a private Gitter room to talk about issues and coordinate development.
 - Ability to label, close, and manage [Github issues](https://github.com/mui-org/material-ui/issues).
 - Ability to [close and merge pull requests](https://github.com/mui-org/material-ui/pulls?q=is%3Apr+is%3Aclosed).
@@ -69,6 +72,7 @@ agreed upon by the Core Team and all committers with whom any payment may be owe
 are aimed to [increase the sustainability of our organization](https://medium.com/call-em-all/material-ui-the-move-to-a-sustainable-open-source-project-5261d07b5067) by supporting committers.
 
 In addition to their participation as a committer, Core Team members have the following privileges.
+
 - Ability to [publish a release](https://github.com/mui-org/material-ui/releases).
 - Access to Material-UI's [Twitter](https://twitter.com/MaterialUI) and Medium account.
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
