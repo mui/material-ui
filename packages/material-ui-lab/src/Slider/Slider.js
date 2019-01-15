@@ -179,9 +179,10 @@ function getOffset(node) {
 
 function getMousePosition(event, touchId) {
   if (event.changedTouches) {
+    // event.changedTouches.findIndex(touch => touch.identifier === touchId)
     let touchIndex = 0;
     for (let i = 0; i < event.changedTouches.length; i += 1) {
-      const touch = event.changedTouches.item(i);
+      const touch = event.changedTouches[i];
       if (touch.identifier === touchId) {
         touchIndex = i;
         break;
