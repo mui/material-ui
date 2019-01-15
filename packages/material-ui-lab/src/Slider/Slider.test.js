@@ -3,7 +3,7 @@ import { codes } from 'keycode';
 import { spy, useFakeTimers } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import Slider from './Slider';
+import Slider, { defaultValueReducer } from './Slider';
 
 describe('<Slider />', () => {
   let mount;
@@ -197,11 +197,44 @@ describe('<Slider />', () => {
     });
 
     before(() => {
-      wrapper = mount(<Slider value={90} min={0} max={104} step={10} />);
+      function valueReducer(rawValue, props, event) {
+        const { disabled, max, min, step } = props;
+
+        function roundToStep(number) {
+          return Math.round(number / step) * step;
+        }
+
+        if (!disabled && step) {
+          if (rawValue > min && rawValue < max) {
+            if (rawValue === max - step) {
+              // If moving the Slider using arrow keys and value is formerly an maximum edge value
+              return roundToStep(rawValue + step / 2);
+            }
+            if (rawValue === min + step) {
+              // Same for minimum edge value
+              return roundToStep(rawValue - step / 2);
+            }
+            return roundToStep(rawValue);
+          }
+          return rawValue;
+        }
+
+        return defaultValueReducer(rawValue, props, event);
+      }
+
       const onChange = (_, value) => {
         wrapper.setProps({ value });
       };
-      wrapper = mount(<Slider value={90} min={6} max={108} step={10} onChange={onChange} />);
+      wrapper = mount(
+        <Slider
+          value={90}
+          valueReducer={valueReducer}
+          min={6}
+          max={108}
+          step={10}
+          onChange={onChange}
+        />,
+      );
     });
 
     it('should reach right edge value', () => {

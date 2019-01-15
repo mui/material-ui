@@ -43,6 +43,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/lab/slider/ReverseSlider'), 'utf8')
 `,
         },
+        'pages/lab/slider/CustomizedSlider.js': {
+          js: require('docs/src/pages/lab/slider/CustomizedSlider').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/lab/slider/CustomizedSlider'), 'utf8')
+`,
+        },
       }}
     />
   );
