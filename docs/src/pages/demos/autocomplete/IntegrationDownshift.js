@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
-import keycode from 'keycode';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -118,7 +117,7 @@ class DownshiftMultiple extends React.Component {
 
   handleKeyDown = event => {
     const { inputValue, selectedItem } = this.state;
-    if (selectedItem.length && !inputValue.length && keycode(event) === 'backspace') {
+    if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
       this.setState({
         selectedItem: selectedItem.slice(0, selectedItem.length - 1),
       });

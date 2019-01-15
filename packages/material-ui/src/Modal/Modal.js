@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import keycode from 'keycode';
 import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import RootRef from '../RootRef';
@@ -167,7 +166,7 @@ class Modal extends React.Component {
     }
   };
 
-  handleDocumentKeyDown = event => {
+  handleKeyDown = event => {
     // event.defaultPrevented:
     //
     // Ignore events that have been `event.preventDefault()` marked.
@@ -177,7 +176,7 @@ class Modal extends React.Component {
     // Only special HTML elements have these default bahaviours.
     //
     // To remove in v4.
-    if (keycode(event) !== 'esc' || !this.isTopModal() || event.defaultPrevented) {
+    if (event.key !== 'Escape' || !this.isTopModal() || event.defaultPrevented) {
       return;
     }
 
@@ -325,7 +324,7 @@ class Modal extends React.Component {
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
-          onKeyDown={this.handleDocumentKeyDown}
+          onKeyDown={this.handleKeyDown}
           role="presentation"
           className={classNames('mui-fixed', classes.root, className, {
             [classes.hidden]: exited,

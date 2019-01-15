@@ -1,5 +1,4 @@
 import React from 'react';
-import keycode from 'keycode';
 import { assert } from 'chai';
 import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'packages/material-ui/src/test-utils';
@@ -43,42 +42,58 @@ describe('<Menu> integration', () => {
     });
 
     it('should change focus to the 2nd item when down arrow is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('down') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'ArrowDown',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
     });
 
     it('should change focus to the 3rd item when down arrow is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('down') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'ArrowDown',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should switch focus from the 3rd item to the 1st item when down arrow is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('down') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'ArrowDown',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
     });
 
     it('should switch focus from the 1st item to the 3rd item when up arrow is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('up') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'ArrowUp',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should switch focus from the 3rd item to the 1st item when home key is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('home') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'Home',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
     });
 
     it('should switch focus from the 1st item to the 3rd item when end key is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('end') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'End',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should keep focus on the last item when a key with no associated action is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('right') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'ArrowRight',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
     it('should change focus to the 2nd item when up arrow is pressed', () => {
-      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('up') });
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
+        key: 'ArrowUp',
+      });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
     });
 
@@ -157,7 +172,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(wrapper.state().open, true);
       const list = portalLayer.querySelector('ul');
       TestUtils.Simulate.keyDown(list, {
-        which: keycode('tab'),
+        key: 'Tab',
       });
       assert.strictEqual(wrapper.state().open, false);
     });

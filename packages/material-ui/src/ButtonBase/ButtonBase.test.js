@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import keycode from 'keycode';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
@@ -239,7 +238,10 @@ describe('<ButtonBase />', () => {
 
     it('should stop pulsate and start a ripple when the space button is pressed', () => {
       wrapper.instance().ripple = { stop: spy((event, cb) => cb()), start: spy() };
-      wrapper.simulate('keyDown', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
+      wrapper.simulate('keyDown', {
+        key: ' ',
+        persist: () => {},
+      });
 
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
       assert.strictEqual(wrapper.instance().ripple.start.callCount, 1);
@@ -247,10 +249,12 @@ describe('<ButtonBase />', () => {
 
     it('should stop and re-pulsate when space bar is released', () => {
       wrapper.instance().ripple = { stop: spy((event, cb) => cb()), pulsate: spy() };
-      wrapper.simulate('keyUp', { which: 32, keyCode: 32, key: ' ', persist: () => {} });
+      wrapper.simulate('keyUp', {
+        key: ' ',
+        persist: () => {},
+      });
 
       assert.strictEqual(wrapper.instance().ripple.stop.callCount, 1);
-
       assert.strictEqual(wrapper.instance().ripple.pulsate.callCount, 1);
     });
 
@@ -305,7 +309,7 @@ describe('<ButtonBase />', () => {
       }
 
       const event = new window.Event('keyup');
-      event.which = keycode('tab');
+      event.keyCode = 9; // Tab
       window.dispatchEvent(event);
     });
 
@@ -343,7 +347,7 @@ describe('<ButtonBase />', () => {
       button.focus();
 
       const event = new window.Event('keyup');
-      event.which = keycode('tab');
+      event.keyCode = 9; // Tab
       window.dispatchEvent(event);
     });
 
@@ -493,7 +497,7 @@ describe('<ButtonBase />', () => {
         wrapper.setState({ focusVisible: true });
 
         const eventPersistSpy = spy();
-        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+        event = { persist: eventPersistSpy, key: ' ' };
 
         instance = wrapper.instance();
         instance.keyDown = false;
@@ -516,7 +520,7 @@ describe('<ButtonBase />', () => {
         );
 
         const eventPersistSpy = spy();
-        event = { persist: eventPersistSpy, keyCode: undefined };
+        event = { persist: eventPersistSpy, key: undefined };
 
         instance = wrapper.instance();
         instance.keyDown = false;
@@ -540,7 +544,7 @@ describe('<ButtonBase />', () => {
 
         event = {
           preventDefault: spy(),
-          keyCode: keycode('space'),
+          key: ' ',
           target: 'target',
           currentTarget: 'target',
         };
@@ -564,7 +568,7 @@ describe('<ButtonBase />', () => {
         );
         event = {
           preventDefault: spy(),
-          keyCode: keycode('enter'),
+          key: 'Enter',
           target: 'target',
           currentTarget: 'target',
         };
@@ -583,7 +587,7 @@ describe('<ButtonBase />', () => {
         );
         event = {
           preventDefault: spy(),
-          keyCode: keycode('enter'),
+          key: 'Enter',
           target: 'target',
           currentTarget: 'target',
         };
@@ -624,7 +628,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(wrapper.find(TouchRipple).length, 0);
 
         const eventPersistSpy = spy();
-        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+        event = { persist: eventPersistSpy, key: ' ' };
 
         instance = wrapper.instance();
         instance.keyDown = false;

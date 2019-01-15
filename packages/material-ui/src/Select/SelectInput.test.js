@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import keycode from 'keycode';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Menu from '../Menu';
 import Portal from '../Portal';
@@ -97,9 +96,7 @@ describe('<SelectInput />', () => {
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} readOnly />);
-      wrapper
-        .find(`.${defaultProps.classes.select}`)
-        .simulate('keyDown', { which: keycode('down') });
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key: 'ArrowDown' });
       assert.strictEqual(wrapper.state().open, false);
     });
   });
@@ -223,11 +220,9 @@ describe('<SelectInput />', () => {
       assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
     });
 
-    ['space', 'up', 'down'].forEach(key => {
+    [' ', 'ArrowUp', 'ArrowDown'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
-        wrapper
-          .find(`.${defaultProps.classes.select}`)
-          .simulate('keyDown', { which: keycode(key) });
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key });
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(instance.ignoreNextBlur, true);
       });

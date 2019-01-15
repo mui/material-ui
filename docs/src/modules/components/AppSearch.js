@@ -1,5 +1,4 @@
 import React from 'react';
-import keycode from 'keycode';
 import compose from 'recompose/compose';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
@@ -141,8 +140,12 @@ const styles = theme => ({
 
 class AppSearch extends React.Component {
   handleKeyDown = event => {
+    // Use event.keyCode to support IE 11
     if (
-      ['/', 's'].indexOf(keycode(event)) !== -1 &&
+      [
+        191, // '/'
+        83, // 's'
+      ].indexOf(event.keyCode) !== -1 &&
       document.activeElement.nodeName.toLowerCase() === 'body' &&
       document.activeElement !== this.inputRef
     ) {

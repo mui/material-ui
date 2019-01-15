@@ -2,7 +2,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
@@ -234,7 +233,7 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('handleDocumentKeyDown()', () => {
+  describe('handleKeyDown()', () => {
     let wrapper;
     let instance;
     let onEscapeKeyDownSpy;
@@ -252,13 +251,13 @@ describe('<Modal />', () => {
       instance = wrapper.instance();
     });
 
-    it('should have handleDocumentKeyDown', () => {
-      assert.notStrictEqual(instance.handleDocumentKeyDown, undefined);
-      assert.strictEqual(typeof instance.handleDocumentKeyDown, 'function');
+    it('should have handleKeyDown', () => {
+      assert.notStrictEqual(instance.handleKeyDown, undefined);
+      assert.strictEqual(typeof instance.handleKeyDown, 'function');
     });
 
     it('when not mounted should not call onEscapeKeyDown and onClose', () => {
-      instance.handleDocumentKeyDown(undefined);
+      instance.handleKeyDown({});
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
@@ -267,8 +266,8 @@ describe('<Modal />', () => {
       topModalStub.returns(false);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
 
-      instance.handleDocumentKeyDown({
-        keyCode: keycode('esc'),
+      instance.handleKeyDown({
+        key: 'Escape',
       });
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
@@ -278,9 +277,9 @@ describe('<Modal />', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('j') }; // Not 'esc'
+      event = { key: 'j' }; // Not 'esc'
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 0);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
@@ -289,9 +288,9 @@ describe('<Modal />', () => {
     it('should call onEscapeKeyDown and onClose', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc'), stopPropagation: () => {} };
+      event = { key: 'Escape', stopPropagation: () => {} };
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.calledWith(event), true);
@@ -302,9 +301,9 @@ describe('<Modal />', () => {
     it('when disableEscapeKeyDown should call only onClose', () => {
       topModalStub.returns(true);
       wrapper.setProps({ disableEscapeKeyDown: true, manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc'), stopPropagation: () => {} };
+      event = { key: 'Escape', stopPropagation: () => {} };
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.calledWith(event), true);
@@ -314,9 +313,9 @@ describe('<Modal />', () => {
     it('should not be call when defaultPrevented', () => {
       topModalStub.returns(true);
       wrapper.setProps({ disableEscapeKeyDown: true, manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc'), defaultPrevented: true };
+      event = { key: 'Escape', defaultPrevented: true };
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
