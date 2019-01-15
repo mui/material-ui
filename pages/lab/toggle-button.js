@@ -1,23 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/lab/toggle-button/toggle-button.md';
+
+const req = require.context('docs/src/pages/lab/toggle-button', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/lab/toggle-button',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/lab/toggle-button';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/lab/toggle-button/ToggleButtons.js': {
-          js: require('docs/src/pages/lab/toggle-button/ToggleButtons').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/lab/toggle-button/ToggleButtons'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

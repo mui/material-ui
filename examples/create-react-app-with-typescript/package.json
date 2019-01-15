@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-with-typescript",
-  "version": "0.1.0",
+  "version": "3.2.2",
   "private": true,
   "main": "src/index.tsx",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@types/react-dom": "*",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts-ts": "latest"
+    "react-scripts": "latest"
   },
   "devDependencies": {
     "@types/jest": "*",
@@ -17,9 +17,18 @@
     "typescript": "latest"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  }
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

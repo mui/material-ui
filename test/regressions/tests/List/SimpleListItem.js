@@ -17,6 +17,9 @@ export default function SimpleListItem() {
       <ListItem dense>
         <ListItemText primary="Primary" secondary="Secondary" />
       </ListItem>
+      <ListItem selected>
+        <ListItemText primary="Primary" />
+      </ListItem>
     </div>
   );
 }

@@ -1,10 +1,10 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
@@ -90,24 +90,6 @@ class HomePage extends React.Component {
     return (
       <AppFrame>
         <div className={classes.root}>
-          <script
-            type="application/ld+json"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "Material-UI",
-  "url": "https://material-ui.com",
-  "logo": "https://material-ui.com/static/brand.png",
-  "sameAs": [
-    "https://twitter.com/materialUI"
-  ]
-}
-            `,
-            }}
-          />
           <Head />
           <Tidelift />
           <div className={classes.hero}>
@@ -119,7 +101,7 @@ class HomePage extends React.Component {
               />
               <div className={classes.text}>
                 <Typography
-                  variant="display2"
+                  variant="h3"
                   align="center"
                   component="h1"
                   color="inherit"
@@ -129,7 +111,7 @@ class HomePage extends React.Component {
                   {'MATERIAL-UI'}
                 </Typography>
                 <Typography
-                  variant="headline"
+                  variant="h5"
                   component="h2"
                   color="inherit"
                   gutterBottom
@@ -139,12 +121,7 @@ class HomePage extends React.Component {
                 </Typography>
                 <Button
                   component={buttonProps => (
-                    <Link
-                      variant="button"
-                      prefetch
-                      href="/getting-started/installation"
-                      {...buttonProps}
-                    />
+                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
                   )}
                   className={classes.button}
                   variant="outlined"
@@ -159,6 +136,26 @@ class HomePage extends React.Component {
           <HomeBackers />
           <HomeFooter />
         </div>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com/",
+  "logo": "https://material-ui.com/static/brand.png",
+  "sameAs": [
+    "https://twitter.com/materialUI",
+    "https://github.com/mui-org/material-ui",
+    "https://opencollective.com/material-ui"
+  ]
+}
+          `,
+          }}
+        />
       </AppFrame>
     );
   }
@@ -168,7 +165,7 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withRoot,
-  withStyles(styles),
-)(HomePage);
+const Page = withStyles(styles)(HomePage);
+
+// Hack for https://github.com/zeit/next.js/pull/5857
+export default () => <Page />;

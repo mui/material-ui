@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Grid from './Grid';
 
 describe('<Grid />', () => {
@@ -15,7 +15,7 @@ describe('<Grid />', () => {
   it('should render', () => {
     const wrapper = shallow(<Grid className="woofGrid" />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woofGrid'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofGrid'), true);
   });
 
   describe('prop: container', () => {

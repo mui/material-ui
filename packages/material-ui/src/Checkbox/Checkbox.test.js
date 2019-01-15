@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
-import { createShallow, getClasses, createMount } from '../test-utils';
+import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Checkbox from './Checkbox';
 

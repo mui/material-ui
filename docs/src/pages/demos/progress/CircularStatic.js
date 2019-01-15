@@ -10,8 +10,6 @@ const styles = theme => ({
 });
 
 class CircularStatic extends React.Component {
-  timer = null;
-
   state = {
     completed: 0,
   };

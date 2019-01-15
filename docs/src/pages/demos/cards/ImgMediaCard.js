@@ -14,7 +14,7 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-    // ⚠️ object-fit is not supported by IE11.
+    // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
   },
 };
@@ -26,13 +26,14 @@ function ImgMediaCard(props) {
       <CardActionArea>
         <CardMedia
           component="img"
+          alt="Contemplative Reptile"
           className={classes.media}
           height="140"
           image="/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
+          <Typography gutterBottom variant="h5" component="h2">
             Lizard
           </Typography>
           <Typography component="p">

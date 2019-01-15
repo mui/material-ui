@@ -11,18 +11,34 @@ The [top App Bar](https://material.io/design/components/app-bars-top.html) provi
 
 It can transform into a contextual action bar or used as a navbar.
 
+## App Bar with buttons
+
+{{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
+
 ## Simple App Bar
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with buttons
+## App Bar with a primary search field
 
-{{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
+A primary searchbar.
+
+{{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
 ## App Bar with menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
+## App Bar with search field
+
+A side searchbar.
+
+{{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
+
 ## Dense (desktop only)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
+
+## Bottom App Bar
+
+{{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}

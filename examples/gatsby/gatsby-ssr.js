@@ -2,34 +2,35 @@
 
 const React = require('react');
 const { renderToString } = require('react-dom/server');
-const { JssProvider } = require('react-jss');
-const getPageContext = require('./src/getPageContext');
+const JssProvider = require('react-jss/lib/JssProvider').default;
+const getPageContext = require('./src/getPageContext').default;
 
 function replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) {
   // Get the context of the page to collected side effects.
-  // Ternary to support Gatsby@1 and Gatsby@2 at the same time.
-  const muiPageContext = getPageContext.default ? getPageContext.default() : getPageContext();
+  const muiPageContext = getPageContext();
 
   const bodyHTML = renderToString(
-    <JssProvider
-      registry={muiPageContext.sheetsRegistry}
-      generateClassName={muiPageContext.generateClassName}
-    >
-      {React.cloneElement(bodyComponent, {
-        muiPageContext,
-      })}
-    </JssProvider>,
+    <JssProvider registry={muiPageContext.sheetsRegistry}>{bodyComponent}</JssProvider>,
   );
 
   replaceBodyHTMLString(bodyHTML);
   setHeadComponents([
     <style
       type="text/css"
-      id="server-side-jss"
-      key="server-side-jss"
+      id="jss-server-side"
+      key="jss-server-side"
       dangerouslySetInnerHTML={{ __html: muiPageContext.sheetsRegistry.toString() }}
     />,
   ]);
 }
 
 exports.replaceRenderer = replaceRenderer;
+
+// It's not ready yet: https://github.com/gatsbyjs/gatsby/issues/8237.
+//
+// const withRoot = require('./src/withRoot').default;
+// const WithRoot = withRoot(props => props.children);
+
+// exports.wrapRootElement = ({ element }) => {
+//   return <WithRoot>{element}</WithRoot>;
+// };

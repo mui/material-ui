@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
@@ -25,13 +25,13 @@ describe('<TouchRipple />', () => {
   it('should render a <ReactTransitionGroup> component', () => {
     const wrapper = shallow(<TouchRipple />);
     assert.strictEqual(wrapper.name(), 'TransitionGroup');
-    assert.strictEqual(wrapper.props().component, 'span', 'should be pass a span as the component');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.props().component, 'span');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render the custom className', () => {
     const wrapper = shallow(<TouchRipple className="test-class-name" />);
-    assert.strictEqual(wrapper.is('.test-class-name'), true, 'should contain the test className');
+    assert.strictEqual(wrapper.is('.test-class-name'), true);
   });
 
   describe('prop: center', () => {
@@ -46,7 +46,7 @@ describe('<TouchRipple />', () => {
         cb,
       );
       wrapper.update();
-      assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1, 'should be odd');
+      assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1);
     });
   });
 
@@ -54,25 +54,25 @@ describe('<TouchRipple />', () => {
     const wrapper = mount(<TouchRippleNaked classes={{}} />);
     const instance = wrapper.instance();
 
-    assert.strictEqual(wrapper.state().ripples.length, 0, 'should start with no ripples');
+    assert.strictEqual(wrapper.state().ripples.length, 0);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 1, 'should create a ripple');
+    assert.strictEqual(wrapper.state().ripples.length, 1);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 2, 'should create another ripple');
+    assert.strictEqual(wrapper.state().ripples.length, 2);
 
     instance.start({ clientX: 0, clientY: 0 }, cb);
-    assert.strictEqual(wrapper.state().ripples.length, 3, 'should create another ripple');
+    assert.strictEqual(wrapper.state().ripples.length, 3);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 2, 'should remove a ripple');
+    assert.strictEqual(wrapper.state().ripples.length, 2);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 1, 'should remove a ripple');
+    assert.strictEqual(wrapper.state().ripples.length, 1);
 
     instance.stop({ type: 'mouseup' });
-    assert.strictEqual(wrapper.state().ripples.length, 0, 'should remove all the ripples');
+    assert.strictEqual(wrapper.state().ripples.length, 0);
   });
 
   describe('creating unique ripples', () => {
@@ -101,7 +101,7 @@ describe('<TouchRipple />', () => {
     it('should set ignoringMouseDown to true', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
-      assert.strictEqual(instance.ignoringMouseDown, false);
+      assert.strictEqual(instance.ignoringMouseDown === true, false);
       instance.start({ type: 'touchstart' }, { fakeElement: true }, cb);
       assert.strictEqual(wrapper.state().ripples.length, 1);
       assert.strictEqual(instance.ignoringMouseDown, true);
@@ -163,7 +163,7 @@ describe('<TouchRipple />', () => {
       assert.strictEqual(wrapper.state().ripples.length, 0);
     });
 
-    it('should interupt the ripple schedule', () => {
+    it('should interrupt the ripple schedule', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
 

@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -14,10 +15,9 @@ export const styles = theme => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    width: 48,
-    height: 48,
-    padding: 0,
+    padding: 12,
     borderRadius: '50%',
+    overflow: 'visible', // Explicitly set the default value to solve a bug on IE 11.
     color: theme.palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -74,7 +74,7 @@ export const styles = theme => ({
 });
 
 /**
- * Refer to the [Icons](/style/icons) section of the documentation
+ * Refer to the [Icons](/style/icons/) section of the documentation
  * regarding the available icon options.
  */
 function IconButton(props) {
@@ -104,7 +104,28 @@ IconButton.propTypes = {
   /**
    * The icon element.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const found = React.Children.toArray(props.children).some(
+      child => React.isValidElement(child) && child.props.onClick,
+    );
+
+    if (found) {
+      return new Error(
+        [
+          'Material-UI: you are providing an onClick event listener ' +
+            'to a child of a button element.',
+          'Firefox will never trigger the event.',
+          'You should move the onClick listener to the parent button element.',
+          'https://github.com/mui-org/material-ui/issues/13957',
+          // Change error message slightly on every check to prevent caching when testing
+          // which would not trigger console errors on subsequent fails
+          process.env.NODE_ENV === 'test' ? Date.now() : '',
+        ].join('\n'),
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.

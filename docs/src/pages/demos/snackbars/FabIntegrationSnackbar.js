@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 
@@ -84,14 +85,14 @@ class FabIntegrationSnackbar extends React.Component {
               <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit">
+              <Typography variant="h6" color="inherit">
                 Out of my way!
               </Typography>
             </Toolbar>
           </AppBar>
-          <Button variant="fab" color="secondary" className={fabClassName}>
+          <Fab color="secondary" className={fabClassName}>
             <AddIcon />
-          </Button>
+          </Fab>
           <Snackbar
             open={open}
             autoHideDuration={4000}

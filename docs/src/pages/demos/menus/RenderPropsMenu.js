@@ -19,7 +19,7 @@ function RenderPropsMenu() {
         return (
           <React.Fragment>
             <Button
-              aria-owns={open ? 'render-props-menu' : null}
+              aria-owns={open ? 'render-props-menu' : undefined}
               aria-haspopup="true"
               onClick={event => {
                 updateAnchorEl(event.currentTarget);

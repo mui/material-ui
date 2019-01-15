@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ListItem from '../ListItem';
 
@@ -14,28 +15,37 @@ export const styles = theme => ({
     boxSizing: 'content-box',
     width: 'auto',
     overflow: 'hidden',
-    textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    '&$selected': {},
+  },
+  /* Styles applied to the root element if `disableGutters={false}`. */
+  gutters: {
     paddingLeft: 16,
     paddingRight: 16,
-    '&$selected': {
-      backgroundColor: theme.palette.action.selected,
-    },
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
 
 function MenuItem(props) {
-  const { classes, className, component, selected, role, ...other } = props;
+  const { classes, className, component, disableGutters, role, selected, ...other } = props;
 
   return (
     <ListItem
       button
       role={role}
       tabIndex={-1}
-      className={classNames(classes.root, { [classes.selected]: selected }, className)}
       component={component}
+      selected={selected}
+      disableGutters={disableGutters}
+      className={classNames(
+        classes.root,
+        {
+          [classes.selected]: selected,
+          [classes.gutters]: !disableGutters,
+        },
+        className,
+      )}
       {...other}
     />
   );
@@ -59,21 +69,25 @@ MenuItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
+  /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: PropTypes.bool,
   /**
    * @ignore
    */
   role: PropTypes.string,
   /**
-   * Use to apply selected styling.
+   * @ignore
    */
   selected: PropTypes.bool,
 };
 
 MenuItem.defaultProps = {
   component: 'li',
+  disableGutters: false,
   role: 'menuitem',
-  selected: false,
 };
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

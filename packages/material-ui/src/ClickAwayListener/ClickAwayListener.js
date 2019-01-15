@@ -11,9 +11,9 @@ import ownerDocument from '../utils/ownerDocument';
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 class ClickAwayListener extends React.Component {
-  node = null;
+  mounted = false;
 
-  mounted = null;
+  moved = false;
 
   componentDidMount() {
     // Finds the first child when a component returns a fragment.
@@ -32,8 +32,14 @@ class ClickAwayListener extends React.Component {
       return;
     }
 
-    // IE11 support, which trigger the handleClickAway even after the unbind
+    // IE 11 support, which trigger the handleClickAway even after the unbind
     if (!this.mounted) {
+      return;
+    }
+
+    // Do not act if user performed touchmove
+    if (this.moved) {
+      this.moved = false;
       return;
     }
 
@@ -53,6 +59,10 @@ class ClickAwayListener extends React.Component {
     }
   };
 
+  handleTouchMove = () => {
+    this.moved = true;
+  };
+
   render() {
     const { children, mouseEvent, touchEvent, onClickAway, ...other } = this.props;
     const listenerProps = {};
@@ -61,6 +71,7 @@ class ClickAwayListener extends React.Component {
     }
     if (touchEvent !== false) {
       listenerProps[touchEvent] = this.handleClickAway;
+      listenerProps.onTouchMove = this.handleTouchMove;
     }
 
     return (

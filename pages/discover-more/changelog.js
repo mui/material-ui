@@ -1,10 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/discover-more/changelog/changelog.md';
+
+const req = require.context('docs/src/pages/discover-more/changelog', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/discover-more/changelog',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/discover-more/changelog';
 
 function Page() {
-  return <MarkdownDocs markdown={markdown} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

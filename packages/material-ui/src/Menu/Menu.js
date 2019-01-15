@@ -31,8 +31,6 @@ export const styles = {
 };
 
 class Menu extends React.Component {
-  menuListRef = null;
-
   componentDidMount() {
     if (this.props.open && this.props.disableAutoFocusItem !== true) {
       this.focus();
@@ -40,11 +38,11 @@ class Menu extends React.Component {
   }
 
   getContentAnchorEl = () => {
-    if (!this.menuListRef || !this.menuListRef.selectedItemRef) {
-      return ReactDOM.findDOMNode(this.menuListRef).firstChild;
+    if (this.menuListRef.selectedItemRef) {
+      return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
     }
 
-    return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
+    return ReactDOM.findDOMNode(this.menuListRef).firstChild;
   };
 
   focus = () => {
@@ -59,7 +57,11 @@ class Menu extends React.Component {
     }
   };
 
-  handleEnter = element => {
+  handleMenuListRef = ref => {
+    this.menuListRef = ref;
+  };
+
+  handleEntering = element => {
     const { disableAutoFocusItem, theme } = this.props;
     const menuList = ReactDOM.findDOMNode(this.menuListRef);
 
@@ -76,8 +78,8 @@ class Menu extends React.Component {
       menuList.style.width = `calc(100% + ${size})`;
     }
 
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
+    if (this.props.onEntering) {
+      this.props.onEntering(element);
     }
   };
 
@@ -86,7 +88,7 @@ class Menu extends React.Component {
       event.preventDefault();
 
       if (this.props.onClose) {
-        this.props.onClose(event);
+        this.props.onClose(event, 'tabKeyDown');
       }
     }
   };
@@ -97,7 +99,7 @@ class Menu extends React.Component {
       classes,
       disableAutoFocusItem,
       MenuListProps,
-      onEnter,
+      onEntering,
       PaperProps = {},
       PopoverClasses,
       theme,
@@ -108,7 +110,7 @@ class Menu extends React.Component {
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
-        onEnter={this.handleEnter}
+        onEntering={this.handleEntering}
         anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         PaperProps={{
@@ -124,9 +126,7 @@ class Menu extends React.Component {
           data-mui-test="Menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
-          ref={ref => {
-            this.menuListRef = ref;
-          }}
+          ref={this.handleMenuListRef}
         >
           {children}
         </MenuList>
@@ -154,13 +154,14 @@ Menu.propTypes = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Properties applied to the [`MenuList`](/api/menu-list) element.
+   * Properties applied to the [`MenuList`](/api/menu-list/) element.
    */
   MenuListProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`
    */
   onClose: PropTypes.func,
   /**
@@ -196,7 +197,7 @@ Menu.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` property applied to the [`Popover`](/api/popover) element.
+   * `classes` property applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**

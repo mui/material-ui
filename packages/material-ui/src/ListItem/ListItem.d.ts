@@ -4,10 +4,10 @@ import { ButtonBaseProps } from '../ButtonBase';
 
 export interface ListItemProps
   extends StandardProps<
-      ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
-      ListItemClassKey,
-      'component'
-    > {
+    ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
+    ListItemClassKey,
+    'component'
+  > {
   button?: boolean;
   component?: React.ReactType<ListItemProps>;
   ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
@@ -17,6 +17,7 @@ export interface ListItemProps
   disableGutters?: boolean;
   divider?: boolean;
   focusVisibleClassName?: string;
+  selected?: boolean;
 }
 
 export type ListItemClassKey =
@@ -29,7 +30,8 @@ export type ListItemClassKey =
   | 'divider'
   | 'gutters'
   | 'button'
-  | 'secondaryAction';
+  | 'secondaryAction'
+  | 'selected';
 
 declare const ListItem: React.ComponentType<ListItemProps>;
 

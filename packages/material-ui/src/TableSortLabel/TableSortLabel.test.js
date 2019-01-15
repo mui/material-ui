@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import TableSortLabel from './TableSortLabel';
 import Sort from '@material-ui/icons/Sort';
 
@@ -21,7 +21,7 @@ describe('<TableSortLabel />', () => {
 
   it('should render TableSortLabel', () => {
     const wrapper = shallow(<TableSortLabel />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should set the active class when active', () => {
@@ -65,10 +65,29 @@ describe('<TableSortLabel />', () => {
     });
 
     it('should accept a custom icon for the sort icon', () => {
-      shallow = createShallow({ untilSelector: 'Sort' });
       const wrapper = mount(<TableSortLabel IconComponent={Sort} />);
       assert.strictEqual(wrapper.props().IconComponent, Sort);
       assert.strictEqual(wrapper.find(Sort).length, 1);
+    });
+  });
+
+  describe('prop: hideSortIcon', () => {
+    it('can hide icon when not active', () => {
+      const wrapper = shallow(<TableSortLabel active={false} hideSortIcon />);
+      const iconChildren = wrapper.find(`.${classes.icon}`).first();
+      assert.strictEqual(iconChildren.length, 0);
+    });
+
+    it('does not hide icon by default when not active', () => {
+      const wrapper = shallow(<TableSortLabel active={false} />);
+      const iconChildren = wrapper.find(`.${classes.icon}`).first();
+      assert.strictEqual(iconChildren.length, 1);
+    });
+
+    it('does not hide icon when active', () => {
+      const wrapper = shallow(<TableSortLabel active hideSortIcon />);
+      const iconChildren = wrapper.find(`.${classes.icon}`).first();
+      assert.strictEqual(iconChildren.length, 1);
     });
   });
 

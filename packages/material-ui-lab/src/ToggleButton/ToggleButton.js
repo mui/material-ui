@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
@@ -16,8 +16,17 @@ export const styles = theme => ({
     margin: 0,
     padding: `${theme.spacing.unit - 4}px ${theme.spacing.unit * 1.5}px`,
     borderRadius: 2,
-    willChange: 'opacity',
     color: fade(theme.palette.action.active, 0.38),
+    '&$selected': {
+      color: theme.palette.action.active,
+      backgroundColor: fade(theme.palette.action.active, 0.2),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.action.active, 0.25),
+      },
+    },
+    '&$disabled': {
+      color: fade(theme.palette.action.disabled, 0.12),
+    },
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
@@ -39,42 +48,9 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the root element if `disabled={true}`. */
-  disabled: {
-    color: fade(theme.palette.action.disabled, 0.12),
-  },
+  disabled: {},
   /* Styles applied to the root element if `selected={true}`. */
-  selected: {
-    color: theme.palette.action.active,
-    '&:after': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      overflow: 'hidden',
-      borderRadius: 'inherit',
-      width: '100%',
-      height: '100%',
-      left: 0,
-      top: 0,
-      pointerEvents: 'none',
-      zIndex: 0,
-      backgroundColor: 'currentColor',
-      opacity: 0.38,
-    },
-    '& + &:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      overflow: 'hidden',
-      width: 1,
-      height: '100%',
-      left: 0,
-      top: 0,
-      pointerEvents: 'none',
-      zIndex: 0,
-      backgroundColor: 'currentColor',
-      opacity: 0.12,
-    },
-  },
+  selected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {
     width: '100%',
@@ -89,14 +65,14 @@ class ToggleButton extends React.Component {
     const { onChange, onClick, value } = this.props;
 
     if (onClick) {
-      onClick(event);
+      onClick(event, value);
       if (event.isDefaultPrevented()) {
         return;
       }
     }
 
     if (onChange) {
-      onChange(value);
+      onChange(event, value);
     }
   };
 

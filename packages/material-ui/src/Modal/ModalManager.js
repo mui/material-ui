@@ -2,7 +2,7 @@ import css from 'dom-helpers/style';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
-import { ariaHidden, hideSiblings, showSiblings } from './manageAriaHidden';
+import { ariaHidden, ariaHiddenSiblings } from './manageAriaHidden';
 
 function findIndexOf(data, callback) {
   let idx = -1;
@@ -20,23 +20,23 @@ function getPaddingRight(node) {
   return parseInt(css(node, 'paddingRight') || 0, 10);
 }
 
-function setContainerStyle(data, container) {
+function setContainerStyle(data) {
   const style = { overflow: 'hidden' };
 
   // We are only interested in the actual `style` here because we will override it.
   data.style = {
-    overflow: container.style.overflow,
-    paddingRight: container.style.paddingRight,
+    overflow: data.container.style.overflow,
+    paddingRight: data.container.style.paddingRight,
   };
 
   if (data.overflowing) {
     const scrollbarSize = getScrollbarSize();
 
     // Use computed style, here to get the real padding to add our scrollbar width.
-    style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
+    style.paddingRight = `${getPaddingRight(data.container) + scrollbarSize}px`;
 
     // .mui-fixed is a global helper.
-    const fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
+    const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
     for (let i = 0; i < fixedNodes.length; i += 1) {
       const paddingRight = getPaddingRight(fixedNodes[i]);
       data.prevPaddings.push(paddingRight);
@@ -45,16 +45,19 @@ function setContainerStyle(data, container) {
   }
 
   Object.keys(style).forEach(key => {
-    container.style[key] = style[key];
+    data.container.style[key] = style[key];
   });
 }
 
-function removeContainerStyle(data, container) {
-  Object.keys(data.style).forEach(key => {
-    container.style[key] = data.style[key];
-  });
+function removeContainerStyle(data) {
+  // The modal might be closed before it had the chance to be mounted in the DOM.
+  if (data.style) {
+    Object.keys(data.style).forEach(key => {
+      data.container.style[key] = data.style[key];
+    });
+  }
 
-  const fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
+  const fixedNodes = ownerDocument(data.container).querySelectorAll('.mui-fixed');
   for (let i = 0; i < fixedNodes.length; i += 1) {
     fixedNodes[i].style.paddingRight = `${data.prevPaddings[i]}px`;
   }
@@ -63,7 +66,7 @@ function removeContainerStyle(data, container) {
 /**
  * @ignore - do not document.
  *
- * Proper state managment for containers and the modals in those containers.
+ * Proper state management for containers and the modals in those containers.
  * Simplified, but inspired by react-overlay's ModalManager class.
  * Used by the Modal to ensure proper styling of containers.
  */
@@ -76,10 +79,11 @@ class ModalManager {
 
     // this.modals[modalIdx] = modal
     this.modals = [];
-    // this.containers[containerIdx] = container
-    this.containers = [];
     // this.data[containerIdx] = {
     //   modals: [],
+    //   container,
+    //   overflowing,
+    //   prevPaddings,
     // }
     this.data = [];
   }
@@ -93,11 +97,15 @@ class ModalManager {
     modalIdx = this.modals.length;
     this.modals.push(modal);
 
+    // If the modal we are adding is already in the DOM.
+    if (modal.modalRef) {
+      ariaHidden(modal.modalRef, false);
+    }
     if (this.hideSiblingNodes) {
-      hideSiblings(container, modal.mountNode);
+      ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, true);
     }
 
-    const containerIdx = this.containers.indexOf(container);
+    const containerIdx = findIndexOf(this.data, item => item.container === container);
     if (containerIdx !== -1) {
       this.data[containerIdx].modals.push(modal);
       return modalIdx;
@@ -105,18 +113,23 @@ class ModalManager {
 
     const data = {
       modals: [modal],
+      container,
       overflowing: isOverflowing(container),
       prevPaddings: [],
     };
 
-    if (this.handleContainerOverflow) {
-      setContainerStyle(data, container);
-    }
-
-    this.containers.push(container);
     this.data.push(data);
 
     return modalIdx;
+  }
+
+  mount(modal) {
+    const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
+    const data = this.data[containerIdx];
+
+    if (!data.style && this.handleContainerOverflow) {
+      setContainerStyle(data);
+    }
   }
 
   remove(modal) {
@@ -128,7 +141,6 @@ class ModalManager {
 
     const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
     const data = this.data[containerIdx];
-    const container = this.containers[containerIdx];
 
     data.modals.splice(data.modals.indexOf(modal), 1);
     this.modals.splice(modalIdx, 1);
@@ -136,17 +148,26 @@ class ModalManager {
     // If that was the last modal in a container, clean up the container.
     if (data.modals.length === 0) {
       if (this.handleContainerOverflow) {
-        removeContainerStyle(data, container);
+        removeContainerStyle(data);
       }
 
-      if (this.hideSiblingNodes) {
-        showSiblings(container, modal.mountNode);
+      // In case the modal wasn't in the DOM yet.
+      if (modal.modalRef) {
+        ariaHidden(modal.modalRef, true);
       }
-      this.containers.splice(containerIdx, 1);
+      if (this.hideSiblingNodes) {
+        ariaHiddenSiblings(data.container, modal.mountNode, modal.modalRef, false);
+      }
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
-      // Otherwise make sure the next top modal is visible to a screan reader.
-      ariaHidden(false, data.modals[data.modals.length - 1].mountNode);
+      // Otherwise make sure the next top modal is visible to a screen reader.
+      const nextTop = data.modals[data.modals.length - 1];
+      // as soon as a modal is adding its modalRef is undefined. it can't set
+      // aria-hidden because the dom element doesn't exist either
+      // when modal was unmounted before modalRef gets null
+      if (nextTop.modalRef) {
+        ariaHidden(nextTop.modalRef, false);
+      }
     }
 
     return modalIdx;

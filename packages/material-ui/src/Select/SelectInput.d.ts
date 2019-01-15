@@ -23,7 +23,8 @@ export interface SelectInputProps {
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   tabIndex?: number;
-  value?: string | number | boolean | Array<string | number | boolean>;
+  value: string | number | boolean | Array<string | number | boolean>;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 declare const SelectInput: React.ComponentType<SelectInputProps>;

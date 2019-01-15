@@ -37,6 +37,7 @@ import {
   IconButton,
   Input,
   InputAdornment,
+  InputLabel,
   LinearProgress,
   List,
   ListItem,
@@ -48,6 +49,7 @@ import {
   MenuItem,
   MobileStepper,
   Paper,
+  Popover,
   Select,
   Snackbar,
   SnackbarContent,
@@ -86,7 +88,7 @@ const AppBarTest = () => (
       <IconButton color="inherit" aria-label="Menu">
         <FakeIcon />
       </IconButton>
-      <Typography variant="title" color="inherit">
+      <Typography variant="h6" color="inherit">
         Title
       </Typography>
       <Button color="inherit">Login</Button>
@@ -96,7 +98,7 @@ const AppBarTest = () => (
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
-const AvaterClassName = () => <Avatar className="foo" />;
+const AvatarClassName = () => <Avatar className="foo" />;
 
 const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
@@ -123,7 +125,7 @@ const ButtonTest = () => (
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="raised">Raised</Button>
+    <Button variant="contained">Contained</Button>
     <Button variant="fab" color="primary" aria-label="add">
       <FakeIcon />
     </Button>
@@ -131,7 +133,7 @@ const ButtonTest = () => (
       Raised
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complexe Link</Button>
+    <Button component={props => <a {...props} />}>Complex Link</Button>
   </div>
 );
 
@@ -159,7 +161,7 @@ const CardTest = () => (
   <Card>
     <CardContent>
       <Typography variant="body1">Word of the Day</Typography>
-      <Typography variant="headline" component="h2">
+      <Typography variant="h5" component="h2">
         be-nev-o-lent
       </Typography>
       <Typography variant="body1">adjective</Typography>
@@ -425,7 +427,7 @@ const GridListTest = () => (
 const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map(value => (
-      <ListItem dense button key={value} onClick={log}>
+      <ListItem dense button selected={false} key={value} onClick={log}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -450,7 +452,13 @@ const MenuTest = () => {
   ];
 
   return (
-    <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={log}>
+    <Menu
+      id="lock-menu"
+      anchorEl={anchorEl}
+      open={true}
+      onClose={log}
+      PopoverClasses={{ paper: 'foo' }}
+    >
       {options.map((option, index) => (
         <MenuItem key={option} selected={false} onClick={log}>
           {option}
@@ -462,7 +470,7 @@ const MenuTest = () => {
 
 const PaperTest = () => (
   <Paper elevation={4}>
-    <Typography variant="headline" component="h3">
+    <Typography variant="h5" component="h3">
       This is a sheet of paper.
     </Typography>
     <Typography variant="body1" component="p">
@@ -471,7 +479,7 @@ const PaperTest = () => (
   </Paper>
 );
 
-const CircularProgessTest = () => (
+const CircularProgressTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
@@ -679,7 +687,7 @@ const TableTest = () => {
         <Table>
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
               <TableCell numeric>Fat (g)</TableCell>
               <TableCell numeric>Carbs (g)</TableCell>
@@ -789,6 +797,7 @@ const TextFieldTest = () => (
         },
       }}
     />
+    <Input inputComponent="input" />
   </div>
 );
 
@@ -848,3 +857,19 @@ const TransitionTest = () => (
 );
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
+
+const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'bar' }} />;
+
+const InputLabelTest = () => (
+  <InputLabel
+    FormLabelClasses={{
+      root: 'foo',
+      asterisk: 'foo',
+      disabled: 'foo',
+      error: 'foo',
+      filled: 'foo',
+      focused: 'foo',
+      required: 'foo',
+    }}
+  />
+);

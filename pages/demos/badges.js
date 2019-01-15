@@ -1,30 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/badges/badges.md';
+
+const req = require.context('docs/src/pages/demos/badges', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/badges', false, /\.js$/);
+const reqPrefix = 'pages/demos/badges';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/demos/badges/SimpleBadge.js': {
-          js: require('docs/src/pages/demos/badges/SimpleBadge').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/badges/SimpleBadge'), 'utf8')
-`,
-        },
-        'pages/demos/badges/CustomizedBadge.js': {
-          js: require('docs/src/pages/demos/badges/CustomizedBadge').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/badges/CustomizedBadge'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

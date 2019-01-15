@@ -35,7 +35,7 @@ Yes, this really is all you need to get started, as you can see in this live and
 
 ## Globals
 
-Material-UI usage experience can be improved with a handful of important global that you’ll need to be aware of.
+Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
 
 ### Responsive meta tag
 
@@ -46,22 +46,23 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 <meta
   name="viewport"
   content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-/>
+>
 ```
 
 ### CssBaseline
 
-Material-UI provides an optional [CssBaseline](/style/css-baseline) component.
+Material-UI provides an optional [CssBaseline](/style/css-baseline/) component.
 It's fixing some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
 ## Versioned Documentation
 
 This documentation always reflects the latest stable version of Material-UI.
-You can find older versions of the documentation on a [separate page](/versions).
+You can find older versions of the documentation on a [separate page](/versions/).
 
 ## Next steps
 
 Now that you have an idea of the basic setup, it's time to learn more about:
-- How to provide [the Material Design font and typography](/style/typography).
-- How to take advantage of the [theming solution](/customization/themes).
-- How to [override](/customization/overrides) the look and feel of the components.
+
+- How to provide [the Material Design font and typography](/style/typography/).
+- How to take advantage of the [theming solution](/customization/themes/).
+- How to [override](/customization/overrides/) the look and feel of the components.

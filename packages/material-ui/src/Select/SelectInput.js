@@ -3,8 +3,18 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
-import { isFilled } from '../Input/utils';
+import { isFilled } from '../InputBase/utils';
+import { setRef } from '../utils/reactHelpers';
+
+function areEqualValues(a, b) {
+  if (typeof b === 'object' && b !== null) {
+    return a === b;
+  }
+
+  return String(a) === String(b);
+}
 
 /**
  * @ignore - internal component.
@@ -12,14 +22,14 @@ import { isFilled } from '../Input/utils';
 class SelectInput extends React.Component {
   ignoreNextBlur = false;
 
-  displayRef = null;
-
-  isOpenControlled = this.props.open !== undefined;
-
-  state = {
-    menuMinWidth: null,
-    open: false,
-  };
+  constructor(props) {
+    super();
+    this.isOpenControlled = props.open !== undefined;
+    this.state = {
+      menuMinWidth: null,
+      open: false,
+    };
+  }
 
   componentDidMount() {
     if (this.isOpenControlled && this.props.open) {
@@ -46,7 +56,7 @@ class SelectInput extends React.Component {
     }
 
     this.setState({
-      // Perfom the layout computation outside of the render method.
+      // Perform the layout computation outside of the render method.
       menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
       open,
     });
@@ -146,13 +156,12 @@ class SelectInput extends React.Component {
       node: ref,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
+      focus: () => {
+        this.displayRef.focus();
+      },
     };
 
-    if (typeof inputRef === 'function') {
-      inputRef(nodeProxy);
-    } else {
-      inputRef.current = nodeProxy;
-    }
+    setRef(inputRef, nodeProxy);
   };
 
   render() {
@@ -181,6 +190,7 @@ class SelectInput extends React.Component {
       tabIndex: tabIndexProp,
       type = 'hidden',
       value,
+      variant,
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
@@ -224,12 +234,12 @@ class SelectInput extends React.Component {
           );
         }
 
-        selected = value.indexOf(child.props.value) !== -1;
+        selected = value.some(v => areEqualValues(v, child.props.value));
         if (selected && computeDisplay) {
           displayMultiple.push(child.props.children);
         }
       } else {
-        selected = value === child.props.value;
+        selected = areEqualValues(value, child.props.value);
         if (selected && computeDisplay) {
           displaySingle = child.props.children;
         }
@@ -270,6 +280,8 @@ class SelectInput extends React.Component {
             classes.selectMenu,
             {
               [classes.disabled]: disabled,
+              [classes.filled]: variant === 'filled',
+              [classes.outlined]: variant === 'outlined',
             },
             className,
           )}
@@ -278,7 +290,7 @@ class SelectInput extends React.Component {
           aria-pressed={open ? 'true' : 'false'}
           tabIndex={tabIndex}
           role="button"
-          aria-owns={open ? `menu-${name || ''}` : null}
+          aria-owns={open ? `menu-${name || ''}` : undefined}
           aria-haspopup="true"
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
@@ -286,7 +298,7 @@ class SelectInput extends React.Component {
           onFocus={onFocus}
           {...SelectDisplayProps}
         >
-          {/* So the vertical align positioning algorithm quicks in. */}
+          {/* So the vertical align positioning algorithm kicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
           {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
@@ -306,6 +318,7 @@ class SelectInput extends React.Component {
           {...MenuProps}
           MenuListProps={{
             role: 'listbox',
+            disableListWrap: true,
             ...MenuProps.MenuListProps,
           }}
           PaperProps={{
@@ -358,13 +371,13 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * Use that property to pass a ref callback to the native select element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -443,8 +456,15 @@ SelectInput.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]).isRequired,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 export default SelectInput;

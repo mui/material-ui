@@ -22,7 +22,9 @@ class AlertDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Open alert dialog
+        </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

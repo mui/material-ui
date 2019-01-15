@@ -29,6 +29,15 @@ export default function PrimaryActionCheckboxListItem() {
             </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
+        <ListItem button selected>
+          <Checkbox tabIndex={-1} disableRipple />
+          <ListItemText primary="Primary" />
+          <ListItemSecondaryAction>
+            <IconButton>
+              <Icon>comment</Icon>
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
       </List>
     </div>
   );

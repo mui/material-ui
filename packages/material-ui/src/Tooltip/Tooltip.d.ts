@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
-import { PortalProps } from '../Portal';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
@@ -12,6 +11,7 @@ export interface TooltipProps
   enterDelay?: number;
   enterTouchDelay?: number;
   id?: string;
+  interactive?: boolean;
   leaveDelay?: number;
   leaveTouchDelay?: number;
   onClose?: (event: React.ChangeEvent<{}>) => void;
@@ -38,6 +38,7 @@ export interface TooltipProps
 
 export type TooltipClassKey =
   | 'popper'
+  | 'popperInteractive'
   | 'tooltip'
   | 'touch'
   | 'tooltipPlacementLeft'

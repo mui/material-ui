@@ -14,18 +14,23 @@ import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
 import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import { capitalize } from '@material-ui/core/utils/helpers';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 import ColorDemo from './ColorDemo';
+import themeInitialState from 'docs/src/modules/styles/themeInitialState';
 
+const defaults = { primary: '#2196f3', secondary: '#f50057' };
 const hues = Object.keys(colors).slice(1, 17);
 const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400', 'A200', 'A100'];
 
 const styles = theme => ({
   radio: {
+    padding: 0,
+  },
+  radioIcon: {
     width: 48,
     height: 48,
   },
-  radioSelected: {
+  radioIconSelected: {
     width: 48,
     height: 48,
     border: '1px solid white',
@@ -41,10 +46,12 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 2,
   },
   slider: {
     width: 'calc(100% - 80px)',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
   },
   colorBar: {
     marginTop: theme.spacing.unit * 2,
@@ -56,14 +63,17 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  button: {
+    marginLeft: theme.spacing.unit,
+  },
 });
 
 class ColorTool extends React.Component {
   state = {
-    primary: '#2196f3',
-    secondary: '#f50057',
-    primaryInput: '#2196f3',
-    secondaryInput: '#f50057',
+    primary: defaults.primary,
+    secondary: defaults.secondary,
+    primaryInput: defaults.primary,
+    secondaryInput: defaults.secondary,
     primaryHue: 'blue',
     secondaryHue: 'pink',
     primaryShade: 4,
@@ -115,15 +125,31 @@ class ColorTool extends React.Component {
   };
 
   handleChangeDocsColors = () => {
+    const paletteColors = {
+      primary: { main: this.state.primary },
+      secondary: { main: this.state.secondary },
+    };
+
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
-      payload: {
-        paletteColors: {
-          primary: { main: this.state.primary },
-          secondary: { main: this.state.secondary },
-        },
-      },
+      type: ACTION_TYPES.THEME_CHANGE,
+      payload: { paletteColors },
     });
+
+    document.cookie = `paletteColors=${JSON.stringify(paletteColors)};path=/;max-age=31536000`;
+  };
+
+  handleResetDocsColors = () => {
+    const paletteColors = {
+      primary: themeInitialState.paletteColors.primary,
+      secondary: themeInitialState.paletteColors.secondary,
+    };
+
+    this.props.dispatch({
+      type: ACTION_TYPES.THEME_CHANGE,
+      payload: { paletteColors },
+    });
+
+    document.cookie = 'paletteColors=;path=/;max-age=0';
   };
 
   render() {
@@ -161,7 +187,7 @@ class ColorTool extends React.Component {
 
       return (
         <Grid item xs={12} sm={6} md={4}>
-          <Typography gutterBottom variant="title">
+          <Typography gutterBottom variant="h6">
             {capitalize(intent)}
           </Typography>
           <Input
@@ -194,15 +220,16 @@ class ColorTool extends React.Component {
               return (
                 <Tooltip placement="right" title={hue} key={hue}>
                   <Radio
+                    className={classes.radio}
                     color="default"
                     checked={this.state[intent] === backgroundColor}
                     onChange={this.handleChangeHue(intent)}
                     value={hue}
                     name={intent}
                     aria-labelledby={`tooltip-${intent}-${hue}`}
-                    icon={<div className={classes.radio} style={{ backgroundColor }} />}
+                    icon={<div className={classes.radioIcon} style={{ backgroundColor }} />}
                     checkedIcon={
-                      <div className={classes.radioSelected} style={{ backgroundColor }}>
+                      <div className={classes.radioIconSelected} style={{ backgroundColor }}>
                         <CheckIcon style={{ fontSize: 30 }} />
                       </div>
                     }
@@ -226,6 +253,14 @@ class ColorTool extends React.Component {
         <Grid item xs={12}>
           <Button variant="contained" color="primary" onClick={this.handleChangeDocsColors}>
             Set Docs Colors
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleResetDocsColors}
+            className={classes.button}
+          >
+            Reset Docs Colors
           </Button>
         </Grid>
       </Grid>

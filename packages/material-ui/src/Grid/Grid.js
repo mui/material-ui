@@ -12,6 +12,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
@@ -44,8 +45,8 @@ function generateGrid(globalStyles, theme, breakpoint) {
       return;
     }
 
-    // Only keep 6 significant numbers.
-    const width = `${Math.round((size / 12) * 10e6) / 10e4}%`;
+    // Keep 7 significant numbers.
+    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
@@ -274,7 +275,7 @@ Grid.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.

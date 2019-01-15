@@ -10,8 +10,6 @@ const styles = {
 };
 
 class LinearBuffer extends React.Component {
-  timer = null;
-
   state = {
     completed: 0,
     buffer: 10,

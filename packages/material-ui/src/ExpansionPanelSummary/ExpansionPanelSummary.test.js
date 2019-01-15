@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
@@ -54,10 +54,10 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(iconWrap.hasClass(classes.expandIcon), true);
   });
 
-  it('handleFocus() should set focused state', () => {
+  it('handleFocusVisible() should set focused state', () => {
     const eventMock = 'woofExpansionPanelSummary';
     const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} />);
-    wrapper.instance().handleFocus(eventMock);
+    wrapper.instance().handleFocusVisible(eventMock);
     assert.strictEqual(wrapper.state().focused, true);
   });
 
@@ -67,6 +67,25 @@ describe('<ExpansionPanelSummary />', () => {
     wrapper.setState({ focused: true });
     wrapper.instance().handleBlur(eventMock);
     assert.strictEqual(wrapper.state().focused, false);
+  });
+
+  describe('event callbacks', () => {
+    it('should fire event callbacks', () => {
+      const events = ['onClick', 'onFocusVisible', 'onBlur'];
+
+      const handlers = events.reduce((result, n) => {
+        result[n] = spy();
+        return result;
+      }, {});
+
+      const wrapper = shallow(<ExpansionPanelSummary {...handlers} />);
+
+      events.forEach(n => {
+        const event = n.charAt(2).toLowerCase() + n.slice(3);
+        wrapper.simulate(event, { persist: () => {} });
+        assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+      });
+    });
   });
 
   describe('prop: onChange', () => {

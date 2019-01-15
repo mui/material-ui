@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TablePaginationActionsProps } from './TablePaginationActions';
 import { StandardProps } from '..';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
@@ -12,8 +13,8 @@ export interface LabelDisplayedRowsArgs {
 }
 
 export interface TablePaginationProps
-  extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
-  ActionsComponent?: React.ReactType<TablePaginationBaseProps>;
+  extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey, 'component'> {
+  ActionsComponent?: React.ReactType<TablePaginationActionsProps>;
   backIconButtonProps?: Partial<IconButtonProps>;
   component?: React.ReactType<TablePaginationBaseProps>;
   count: number;

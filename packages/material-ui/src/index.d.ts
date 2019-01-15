@@ -2,13 +2,13 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
-export type AnyComponent<P = any> =
-  | (new (props: P) => React.Component)
-  | ((props: P & { children?: React.ReactNode }) => React.ReactElement<any> | null);
-
-export type PropsOf<C extends AnyComponent> = C extends new (props: infer P) => React.Component
+export type PropsOf<C> = C extends new (props: infer P) => React.Component
   ? P
-  : C extends (props: infer P) => React.ReactElement<any> | null ? P : never;
+  : C extends (props: infer P) => React.ReactElement<any> | null
+  ? P
+  : C extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[C]
+  : never;
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
@@ -55,7 +55,26 @@ export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof
  *
  * @internal
  */
-export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
+export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
+  [P in keyof DecorationTargetProps]: P extends keyof InjectedProps
+    ? InjectedProps[P] extends DecorationTargetProps[P]
+      ? DecorationTargetProps[P]
+      : InjectedProps[P]
+    : DecorationTargetProps[P]
+};
+
+/**
+ * a function that takes {component} and returns a component that passes along
+ * all the props to {component} except the {InjectedProps} and will accept
+ * additional {AdditionalProps}
+ */
+export type PropInjector<InjectedProps, AdditionalProps = {}> = <
+  C extends React.ComponentType<ConsistentWith<PropsOf<C>, InjectedProps>>
+>(
+  component: C,
+) => React.ComponentType<
+  Omit<JSX.LibraryManagedAttributes<C, PropsOf<C>>, keyof InjectedProps> & AdditionalProps
+>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
@@ -119,7 +138,9 @@ export { default as ExpansionPanel } from './ExpansionPanel';
 export { default as ExpansionPanelActions } from './ExpansionPanelActions';
 export { default as ExpansionPanelDetails } from './ExpansionPanelDetails';
 export { default as ExpansionPanelSummary } from './ExpansionPanelSummary';
+export { default as Fab } from './Fab';
 export { default as Fade } from './Fade';
+export { default as FilledInput } from './FilledInput';
 export { default as FormControl } from './FormControl';
 export { default as FormControlLabel } from './FormControlLabel';
 export { default as FormGroup } from './FormGroup';
@@ -135,8 +156,10 @@ export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
 export { default as Input } from './Input';
 export { default as InputAdornment } from './InputAdornment';
+export { default as InputBase } from './InputBase';
 export { default as InputLabel } from './InputLabel';
 export { default as LinearProgress } from './LinearProgress';
+export { default as Link } from './Link';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as ListItemAvatar } from './ListItemAvatar';
@@ -151,6 +174,7 @@ export { default as MobileStepper } from './MobileStepper';
 export { default as Modal, ModalManager } from './Modal';
 export { default as NativeSelect } from './NativeSelect';
 export { default as NoSsr } from './NoSsr';
+export { default as OutlinedInput } from './OutlinedInput';
 export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
 export { default as Popper } from './Popper';
@@ -172,6 +196,7 @@ export { default as Stepper } from './Stepper';
 export { default as SvgIcon } from './SvgIcon';
 export { default as SwipeableDrawer } from './SwipeableDrawer';
 export { default as Switch } from './Switch';
+export { default as Tab } from './Tab';
 export { default as Table } from './Table';
 export { default as TableBody } from './TableBody';
 export { default as TableCell } from './TableCell';
@@ -181,7 +206,6 @@ export { default as TablePagination } from './TablePagination';
 export { default as TableRow } from './TableRow';
 export { default as TableSortLabel } from './TableSortLabel';
 export { default as Tabs } from './Tabs';
-export { default as Tab } from './Tab';
 export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
 export { default as Tooltip } from './Tooltip';

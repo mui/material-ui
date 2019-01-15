@@ -1,6 +1,11 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import ReactDOM from 'react-dom';
+import JssProvider from 'react-jss/lib/JssProvider';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
@@ -26,11 +31,19 @@ const theme = createMuiTheme({
     accent: red,
     type: 'light',
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
-hydrate(
-  <MuiThemeProvider theme={theme}>
-    <Main />
-  </MuiThemeProvider>,
+// Create a new class name generator.
+const generateClassName = createGenerateClassName();
+
+ReactDOM.hydrate(
+  <JssProvider generateClassName={generateClassName}>
+    <MuiThemeProvider theme={theme}>
+      <Main />
+    </MuiThemeProvider>
+  </JssProvider>,
   document.querySelector('#root'),
 );

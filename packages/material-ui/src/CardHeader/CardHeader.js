@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
-  root: theme.mixins.gutters({
+  root: {
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 16,
-    paddingBottom: 16,
-  }),
+    padding: 16,
+  },
   /* Styles applied to the avatar element. */
   avatar: {
     flex: '0 0 auto',
@@ -22,10 +22,7 @@ export const styles = theme => ({
     flex: '0 0 auto',
     alignSelf: 'flex-start',
     marginTop: -8,
-    marginRight: -12,
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -20,
-    },
+    marginRight: -8,
   },
   /* Styles applied to the content wrapper element. */
   content: {
@@ -35,7 +32,7 @@ export const styles = theme => ({
   title: {},
   /* Styles applied to the subheader Typography element. */
   subheader: {},
-});
+};
 
 function CardHeader(props) {
   const {
@@ -57,6 +54,7 @@ function CardHeader(props) {
     title = (
       <Typography
         variant={avatar ? 'body2' : 'headline'}
+        internalDeprecatedVariant
         className={classes.title}
         component="span"
         {...titleTypographyProps}
@@ -115,7 +113,7 @@ CardHeader.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the children won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping

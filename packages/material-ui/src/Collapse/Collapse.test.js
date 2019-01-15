@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
@@ -35,7 +35,7 @@ describe('<Collapse />', () => {
     const children = <h1>Hello</h1>;
     const wrapper = shallow(<Collapse {...props}>{children}</Collapse>);
     const child = new ReactWrapper(wrapper.props().children('entered'));
-    assert.strictEqual(child.childAt(0).is('div'), true, 'should be a div');
+    assert.strictEqual(child.childAt(0).name(), 'div');
     assert.strictEqual(
       child
         .childAt(0)
@@ -43,7 +43,6 @@ describe('<Collapse />', () => {
         .children()
         .type(),
       'h1',
-      'should wrap the children',
     );
   });
 
@@ -379,7 +378,7 @@ describe('<Collapse />', () => {
     });
 
     it('instance should have a wrapper property', () => {
-      assert.notStrictEqual(mountInstance.wrapper, undefined);
+      assert.notStrictEqual(mountInstance.wrapperRef, undefined);
     });
   });
 

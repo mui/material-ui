@@ -24,7 +24,7 @@ class FadeMenu extends React.Component {
     return (
       <div>
         <Button
-          aria-owns={open ? 'fade-menu' : null}
+          aria-owns={open ? 'fade-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
         >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { JssProvider } from 'react-jss';
 import { create, SheetsRegistry } from 'jss';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import jssPreset from './jssPreset';
@@ -9,7 +9,7 @@ import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Empty extends React.Component {
@@ -98,7 +98,7 @@ describe('withStyles', () => {
       });
     });
 
-    describe('cache', () => {
+    describe('classes memoization', () => {
       it('should recycle with no classes property', () => {
         const wrapper = mount(<StyledComponent1 />);
         const classes1 = wrapper.find(Empty).props().classes;
@@ -150,7 +150,6 @@ describe('withStyles', () => {
     it('should run lifecycles with no theme', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles)(Empty);
-
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
           <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
@@ -169,6 +168,28 @@ describe('withStyles', () => {
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);
+    });
+
+    it('should support theme.props', () => {
+      const styles = { root: { display: 'flex' } };
+      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(Empty);
+
+      const wrapper = mount(
+        <MuiThemeProvider
+          theme={createMuiTheme({
+            props: {
+              MuiFoo: {
+                foo: 'bar',
+              },
+            },
+          })}
+        >
+          <StyledComponent foo={undefined} />
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(wrapper.find(Empty).props().foo, 'bar');
+      wrapper.unmount();
     });
 
     it('should work when depending on a theme', () => {
@@ -253,6 +274,45 @@ describe('withStyles', () => {
       const classes2 = wrapper.childAt(0).props().classes.root;
 
       assert.notStrictEqual(classes1, classes2, 'should generate new classes');
+    });
+  });
+
+  describe('options', () => {
+    let jss;
+    let generateClassName;
+    let sheetsRegistry;
+
+    beforeEach(() => {
+      jss = create(jssPreset());
+      generateClassName = createGenerateClassName();
+      sheetsRegistry = new SheetsRegistry();
+    });
+
+    it('should use the displayName', () => {
+      // Uglified
+      const a = () => <div />;
+      const StyledComponent1 = withStyles({ root: { padding: 1 } })(a);
+      const fooo = () => <div />;
+      const StyledComponent2 = withStyles({ root: { padding: 1 } })(fooo);
+      const AppFrame = () => <div />;
+      AppFrame.displayName = 'AppLayout';
+      const StyledComponent3 = withStyles({ root: { padding: 1 } })(AppFrame);
+
+      mount(
+        <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+          <div>
+            <StyledComponent1 />
+            <StyledComponent2 />
+            <StyledComponent3 />
+          </div>
+        </JssProvider>,
+      );
+      assert.strictEqual(sheetsRegistry.registry[0].options.classNamePrefix, 'a');
+      assert.strictEqual(sheetsRegistry.registry[0].options.name, undefined);
+      assert.strictEqual(sheetsRegistry.registry[1].options.classNamePrefix, 'fooo');
+      assert.strictEqual(sheetsRegistry.registry[1].options.name, undefined);
+      assert.strictEqual(sheetsRegistry.registry[2].options.classNamePrefix, 'AppLayout');
+      assert.strictEqual(sheetsRegistry.registry[2].options.name, 'AppLayout');
     });
   });
 });

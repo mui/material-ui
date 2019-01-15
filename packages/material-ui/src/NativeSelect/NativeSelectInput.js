@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 
 /**
  * @ignore - internal component.
@@ -16,6 +17,7 @@ function NativeSelectInput(props) {
     name,
     onChange,
     value,
+    variant,
     ...other
   } = props;
 
@@ -25,6 +27,8 @@ function NativeSelectInput(props) {
         className={classNames(
           classes.select,
           {
+            [classes.filled]: variant === 'filled',
+            [classes.outlined]: variant === 'outlined',
             [classes.disabled]: disabled,
           },
           className,
@@ -65,7 +69,7 @@ NativeSelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * Use that property to pass a ref callback to the native select element.
    */
@@ -84,7 +88,16 @@ NativeSelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+  ]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 export default NativeSelectInput;

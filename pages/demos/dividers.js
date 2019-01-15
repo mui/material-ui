@@ -1,30 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/dividers/dividers.md';
+
+const req = require.context('docs/src/pages/demos/dividers', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/demos/dividers',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/demos/dividers';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/demos/dividers/ListDividers.js': {
-          js: require('docs/src/pages/demos/dividers/ListDividers').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/dividers/ListDividers'), 'utf8')
-`,
-        },
-        'pages/demos/dividers/InsetDividers.js': {
-          js: require('docs/src/pages/demos/dividers/InsetDividers').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/dividers/InsetDividers'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

@@ -17,4 +17,7 @@
       "@material-ui/lab/*": ["./material-ui-lab/src/*"]
     }
   },
+  "exclude": [
+    "**/build/"
+  ]
 }

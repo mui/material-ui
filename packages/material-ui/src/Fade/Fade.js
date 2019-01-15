@@ -17,7 +17,7 @@ const styles = {
 };
 
 /**
- * The Fade transition is used by the [Modal](/utils/modal) component.
+ * The Fade transition is used by the [Modal](/utils/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Fade extends React.Component {
@@ -59,17 +59,16 @@ class Fade extends React.Component {
 
     return (
       <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) => {
-          return React.cloneElement(children, {
+        {(state, childProps) =>
+          React.cloneElement(children, {
             style: {
               opacity: 0,
-              willChange: 'opacity',
               ...styles[state],
               ...style,
             },
             ...childProps,
-          });
-        }}
+          })
+        }
       </Transition>
     );
   }

@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -56,7 +57,16 @@ export const styles = theme => ({
  * A button based label for placing inside `TableCell` for column sorting.
  */
 function TableSortLabel(props) {
-  const { active, classes, className, children, direction, IconComponent, ...other } = props;
+  const {
+    active,
+    children,
+    classes,
+    className,
+    direction,
+    hideSortIcon,
+    IconComponent,
+    ...other
+  } = props;
 
   return (
     <ButtonBase
@@ -66,9 +76,11 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      <IconComponent
-        className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
-      />
+      {hideSortIcon && !active ? null : (
+        <IconComponent
+          className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+        />
+      )}
     </ButtonBase>
   );
 }
@@ -96,14 +108,19 @@ TableSortLabel.propTypes = {
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
   /**
+   * Hide sort icon when active is false.
+   */
+  hideSortIcon: PropTypes.bool,
+  /**
    * Sort icon to use.
    */
-  IconComponent: PropTypes.func,
+  IconComponent: componentPropType,
 };
 
 TableSortLabel.defaultProps = {
   active: false,
   direction: 'desc',
+  hideSortIcon: false,
   IconComponent: ArrowDownwardIcon,
 };
 

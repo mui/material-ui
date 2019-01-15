@@ -7,14 +7,11 @@
 [Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size.
 We provide the following helpers to make the UI responsive:
 
-- [Grid](/layout/grid):
-The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-
-- [Hidden](/layout/hidden):
+- [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+- [Breakpoints](/layout/breakpoints/): We provide a low-level API that enables the use of breakpoints in a wide variety of contexts.
+- [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React.
+- [Hidden](/layout/hidden/):
 The hidden component can be used to change the visibility of the elements.
-
-- [Breakpoints](/layout/breakpoints):
-We provide a low-level API for using the breakpoints in a wide variery of context.
 
 ## z-index
 
@@ -32,5 +29,5 @@ modals, snackbars, tooltips, and more.
 - tooltip: 1500
 
 These values can always be customized.
-You will find them in the theme under the [`zIndex`](/customization/default-theme?expend-path=$.zIndex) key.
+You will find them in the theme under the [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) key.
 We don’t encourage customization of individual values; should you change one, you likely need to change them all.

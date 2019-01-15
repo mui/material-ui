@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import DialogContent from './DialogContent';
 
 describe('<DialogContent />', () => {
@@ -20,7 +20,7 @@ describe('<DialogContent />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<DialogContent data-my-prop="woofDialogContent" />);
     assert.strictEqual(
-      wrapper.prop('data-my-prop'),
+      wrapper.props()['data-my-prop'],
       'woofDialogContent',
       'custom prop should be woofDialogContent',
     );

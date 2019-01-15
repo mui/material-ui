@@ -25,9 +25,11 @@ and (string) Avatar.
 
 {{"demo": "pages/demos/chips/Chips.js"}}
 
-## Chip Playground
+### Outlined Chips
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+Outlined chips offer an alternative style.
+
+{{"demo": "pages/demos/chips/OutlinedChips.js"}}
 
 ## Chip array
 
@@ -37,3 +39,7 @@ Deleting a chip removes it from the array. Note that since no
 gain depth while clicked or touched.
 
 {{"demo": "pages/demos/chips/ChipsArray.js"}}
+
+## Chip Playground
+
+{{"demo": "pages/demos/chips/ChipsPlayground.js"}}

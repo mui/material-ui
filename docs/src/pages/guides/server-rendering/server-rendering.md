@@ -16,7 +16,7 @@ To inject the style down to the client, we need to:
 3. Pull the CSS out of the `sheetsRegistry`.
 4. Pass the CSS along to the client.
 
-On the client side, the CSS will be injected a second time before removing the server side injected CSS.
+On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
 
 ## Setting Up
 
@@ -24,7 +24,7 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 ### The Server Side
 
-The following is the outline for what our server side is going to look like.
+The following is the outline for what our server-side is going to look like.
 We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server.
 If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
 
@@ -46,7 +46,7 @@ function handleRender(req, res) {
 
 const app = express();
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;
@@ -58,15 +58,15 @@ app.listen(port);
 The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
 
 When rendering, we will wrap `App`, our root component,
-inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
+inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider/) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
-The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
 ```jsx
-import { renderToString } from 'react-dom/server'
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import ReactDOMServer from 'react-dom/server'
+import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import {
   MuiThemeProvider,
@@ -96,7 +96,7 @@ function handleRender(req, res) {
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <App />
@@ -114,7 +114,7 @@ function handleRender(req, res) {
 
 ### Inject Initial Component HTML and CSS
 
-The final step on the server side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
 
 ```js
 function renderFullPage(html, css) {
@@ -142,8 +142,13 @@ Let's take a look at our client file:
 
 ```jsx
 import React from 'react';
-import { hydrate } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import ReactDOM from 'react-dom';
+import JssProvider from 'react-jss/lib/JssProvider';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
@@ -171,10 +176,15 @@ const theme = createMuiTheme({
   },
 });
 
-hydrate(
-  <MuiThemeProvider theme={theme}>
-    <Main />
-  </MuiThemeProvider>,
+// Create a new class name generator.
+const generateClassName = createGenerateClassName();
+
+ReactDOM.hydrate(
+  <JssProvider generateClassName={generateClassName}>
+    <MuiThemeProvider theme={theme}>
+      <Main />
+    </MuiThemeProvider>
+  </JssProvider>,
   document.querySelector('#root'),
 );
 ```
@@ -216,17 +226,17 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
 ```
 
 ### React class name hydration mismatch
 
 There is a class name mismatch between the client and the server. It might work for the first request.
-Another symptom is that the styling changes between initial page load and the downloading of the client scripts. 
+Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
+The class names value relies on the concept of [class name generator](/customization/css-in-js/#creategenerateclassname-options-class-name-generator).
 The whole page needs to be rendered with **a single generator**.
 This generator needs to behave identically on the server and on the client. For instance:
 
@@ -244,7 +254,7 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
 ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.
@@ -262,3 +272,5 @@ To check version numbers, run `npm list @material-ui/core` in the environment wh
     ...
   },
 ```
+
+- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.

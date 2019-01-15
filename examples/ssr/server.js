@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import ReactDOMServer from 'react-dom/server';
+import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import {
   MuiThemeProvider,
@@ -42,13 +42,16 @@ function handleRender(req, res) {
       accent: red,
       type: 'light',
     },
+    typography: {
+      useNextVariants: true,
+    },
   });
 
   // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <App />
@@ -67,7 +70,7 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;

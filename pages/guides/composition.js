@@ -1,30 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/composition/composition.md';
+
+const req = require.context('docs/src/pages/guides/composition', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/guides/composition',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/guides/composition';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/guides/composition/Composition.js': {
-          js: require('docs/src/pages/guides/composition/Composition').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/guides/composition/Composition'), 'utf8')
-`,
-        },
-        'pages/guides/composition/ComponentProperty.js': {
-          js: require('docs/src/pages/guides/composition/ComponentProperty').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/guides/composition/ComponentProperty'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import ListSubheader from './ListSubheader';
 
 describe('<ListSubheader />', () => {
@@ -35,7 +35,7 @@ describe('<ListSubheader />', () => {
 
   it('should display inset class', () => {
     const wrapper = shallow(<ListSubheader inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

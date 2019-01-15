@@ -1,19 +1,30 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { FormLabelProps, FormLabelClassKey } from '../FormLabel';
-import { ClassNameMap } from '../styles/withStyles';
+import { FormLabelProps } from '../FormLabel';
 
 export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabelClassKey> {
   disableAnimation?: boolean;
   disabled?: boolean;
   error?: boolean;
-  FormLabelClasses?: Partial<ClassNameMap<FormLabelClassKey>>;
+  FormLabelClasses?: FormLabelProps['classes'];
   focused?: boolean;
   required?: boolean;
   shrink?: boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type InputLabelClassKey = 'root' | 'formControl' | 'marginDense' | 'shrink' | 'animated';
+export type InputLabelClassKey =
+  | 'root'
+  | 'focused'
+  | 'disabled'
+  | 'error'
+  | 'required'
+  | 'formControl'
+  | 'marginDense'
+  | 'shrink'
+  | 'animated'
+  | 'filled'
+  | 'outlined';
 
 declare const InputLabel: React.ComponentType<InputLabelProps>;
 

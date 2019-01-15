@@ -1,23 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/utils/modal/modal.md';
+
+const req = require.context('docs/src/pages/utils/modal', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/utils/modal', false, /\.js$/);
+const reqPrefix = 'pages/utils/modal';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/utils/modal/SimpleModal.js': {
-          js: require('docs/src/pages/utils/modal/SimpleModal').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/modal/SimpleModal'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

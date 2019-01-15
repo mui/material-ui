@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
-import { createMount, createShallow } from '../test-utils';
+import EventListener from 'react-event-listener';
+import { createMount, createShallow } from '@material-ui/core/test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createBreakpoints from '../styles/createBreakpoints';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -32,7 +33,7 @@ describe('withWidth', () => {
     mount.cleanUp();
   });
 
-  describe('server side rendering', () => {
+  describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       assert.strictEqual(wrapper.type(), null);
@@ -118,7 +119,7 @@ describe('withWidth', () => {
     it('should handle resize event', () => {
       const wrapper = shallow(<EmptyWithWidth width="sm" />);
       assert.strictEqual(wrapper.state().width, undefined);
-      wrapper.simulate('resize');
+      wrapper.find(EventListener).simulate('resize');
       clock.tick(166);
       assert.strictEqual(wrapper.state().width, TEST_ENV_WIDTH);
     });

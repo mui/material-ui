@@ -1,9 +1,11 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
-import getDisplayName from 'recompose/getDisplayName';
+import { getDisplayName } from '@material-ui/utils';
 
 function createComponentDidUpdate(instance) {
   return function componentDidUpdate() {
-    const displayName = getDisplayName(this);
+    const displayName = getDisplayName(this._reactInternalFiber.type);
     instance.updates.push({
       displayName,
     });

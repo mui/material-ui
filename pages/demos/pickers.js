@@ -1,37 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/pickers/pickers.md';
+
+const req = require.context('docs/src/pages/demos/pickers', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/pickers', false, /\.js$/);
+const reqPrefix = 'pages/demos/pickers';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/demos/pickers/DatePickers.js': {
-          js: require('docs/src/pages/demos/pickers/DatePickers').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/pickers/DatePickers'), 'utf8')
-`,
-        },
-        'pages/demos/pickers/TimePickers.js': {
-          js: require('docs/src/pages/demos/pickers/TimePickers').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/pickers/TimePickers'), 'utf8')
-`,
-        },
-        'pages/demos/pickers/DateAndTimePickers.js': {
-          js: require('docs/src/pages/demos/pickers/DateAndTimePickers').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/pickers/DateAndTimePickers'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

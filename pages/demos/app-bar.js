@@ -1,44 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/app-bar/app-bar.md';
+
+const req = require.context('docs/src/pages/demos/app-bar', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/app-bar', false, /\.js$/);
+const reqPrefix = 'pages/demos/app-bar';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/demos/app-bar/SimpleAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/SimpleAppBar').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/SimpleAppBar'), 'utf8')
-`,
-        },
-        'pages/demos/app-bar/ButtonAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/ButtonAppBar').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/ButtonAppBar'), 'utf8')
-`,
-        },
-        'pages/demos/app-bar/MenuAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/MenuAppBar').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
-`,
-        },
-        'pages/demos/app-bar/DenseAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/DenseAppBar').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/DenseAppBar'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

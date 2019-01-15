@@ -43,15 +43,15 @@ export const styles = theme => {
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-child': {
-        borderTopLeftRadius: 2,
-        borderTopRightRadius: 2,
+        borderTopLeftRadius: theme.shape.borderRadius,
+        borderTopRightRadius: theme.shape.borderRadius,
         '&:before': {
           display: 'none',
         },
       },
       '&:last-child': {
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
+        borderBottomLeftRadius: theme.shape.borderRadius,
+        borderBottomRightRadius: theme.shape.borderRadius,
         ...edgeFix,
       },
       '&$expanded + &': {
@@ -81,18 +81,15 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
-  isControlled = null;
-
   constructor(props) {
     super();
     this.isControlled = props.expanded != null;
+    this.state = {};
     if (!this.isControlled) {
       // not controlled, use internal state
       this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
     }
   }
-
-  state = {};
 
   handleChange = event => {
     const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
@@ -188,7 +185,7 @@ ExpansionPanel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the [`Collapse`](/api/collapse) element.
+   * Properties applied to the [`Collapse`](/api/collapse/) element.
    */
   CollapseProps: PropTypes.object,
   /**

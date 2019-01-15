@@ -63,14 +63,19 @@ describe('<MenuList> integration', () => {
       assertMenuItemTabIndexed(wrapper, 0);
     });
 
-    it('should select/focus the first item', () => {
+    it('should select/focus the first item 1', () => {
       wrapper.instance().focus();
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
 
-    it('should still have the first item tabIndexed', () => {
+    it('should select the last item when pressing up', () => {
       wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemTabIndexed(wrapper, 3);
+    });
+
+    it('should select the first item when pressing dowm', () => {
+      wrapper.simulate('keyDown', { which: keycode('down') });
       assertMenuItemTabIndexed(wrapper, 0);
     });
 
@@ -80,7 +85,7 @@ describe('<MenuList> integration', () => {
       assertMenuItemFocused(wrapper, 0);
     });
 
-    it('should focus the second item', () => {
+    it('should focus the second item 1', () => {
       wrapper.instance().focus();
       wrapper.simulate('keyDown', { which: keycode('down') });
       assertMenuItemTabIndexed(wrapper, 1);
@@ -116,13 +121,13 @@ describe('<MenuList> integration', () => {
       resetWrapper();
     });
 
-    it('should select/focus the first item', () => {
+    it('should select/focus the first item 2', () => {
       wrapper.instance().focus();
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
 
-    it('should focus the second item', () => {
+    it('should focus the second item 2', () => {
       wrapper.simulate('keyDown', { which: keycode('down') });
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);

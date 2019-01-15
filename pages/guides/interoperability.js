@@ -1,23 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/interoperability/interoperability.md';
+
+const req = require.context('docs/src/pages/guides/interoperability', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/guides/interoperability',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/guides/interoperability';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/guides/interoperability/ReactJss.js': {
-          js: require('docs/src/pages/guides/interoperability/ReactJss').default,
-          raw: preval`
-module.exports = require('fs')
-.readFileSync(require.resolve('docs/src/pages/guides/interoperability/ReactJss'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

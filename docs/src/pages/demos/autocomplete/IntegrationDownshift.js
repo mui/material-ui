@@ -56,6 +56,7 @@ function renderInput(inputProps) {
         inputRef: ref,
         classes: {
           root: classes.inputRoot,
+          input: classes.inputInput,
         },
         ...InputProps,
       }}
@@ -234,6 +235,10 @@ const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
   },
+  inputInput: {
+    width: 'auto',
+    flexGrow: 1,
+  },
   divider: {
     height: theme.spacing.unit * 2,
   },
@@ -247,7 +252,15 @@ function IntegrationDownshift(props) {
   return (
     <div className={classes.root}>
       <Downshift id="downshift-simple">
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
           <div className={classes.container}>
             {renderInput({
               fullWidth: true,
@@ -256,19 +269,21 @@ function IntegrationDownshift(props) {
                 placeholder: 'Search a country (start with a)',
               }),
             })}
-            {isOpen ? (
-              <Paper className={classes.paper} square>
-                {getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
-            ) : null}
+            <div {...getMenuProps()}>
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
           </div>
         )}
       </Downshift>
@@ -276,7 +291,15 @@ function IntegrationDownshift(props) {
       <DownshiftMultiple classes={classes} />
       <div className={classes.divider} />
       <Downshift id="downshift-popper">
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
           <div className={classes.container}>
             {renderInput({
               fullWidth: true,
@@ -289,17 +312,22 @@ function IntegrationDownshift(props) {
               },
             })}
             <Popper open={isOpen} anchorEl={popperNode}>
-              <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
-                {getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
+              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                <Paper
+                  square
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                >
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              </div>
             </Popper>
           </div>
         )}

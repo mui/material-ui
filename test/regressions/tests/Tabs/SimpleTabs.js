@@ -38,21 +38,21 @@ function SimpleTabs(props) {
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs onChange={noop} value={2} textColor="secondary" fullWidth>
+        <Tabs onChange={noop} value={2} textColor="secondary" variant="fullWidth">
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs onChange={noop} value={0} textColor="secondary" fullWidth>
+        <Tabs onChange={noop} value={0} textColor="secondary" variant="fullWidth">
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs onChange={noop} value={1} fullWidth textColor="secondary">
+        <Tabs onChange={noop} value={1} variant="fullWidth" textColor="secondary">
           <Tab icon={<Icon>phone</Icon>} label="RECENTS" />
           <Tab icon={<Icon>favorite</Icon>} label="FAVORITES" />
           <Tab icon={<Icon>person_pin</Icon>} label="NEARBY" disabled />

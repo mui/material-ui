@@ -1,10 +1,22 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/getting-started/supported-platforms/supported-platforms.md';
+
+const req = require.context(
+  'docs/src/pages/getting-started/supported-platforms',
+  true,
+  /\.md|\.js$/,
+);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/getting-started/supported-platforms',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/getting-started/supported-platforms';
 
 function Page() {
-  return <MarkdownDocs markdown={markdown} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

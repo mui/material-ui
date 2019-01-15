@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
+import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -27,8 +28,13 @@ const styles = theme => ({
       borderBottomColor: purple[500],
     },
   },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: purple[500],
+    },
+  },
+  notchedOutline: {},
   bootstrapRoot: {
-    padding: 0,
     'label + &': {
       marginTop: theme.spacing.unit * 3,
     },
@@ -39,8 +45,8 @@ const styles = theme => ({
     border: '1px solid #ced4da',
     fontSize: 16,
     padding: '10px 12px',
-    width: 'calc(100% - 24px)',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -67,6 +73,7 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  typography: { useNextVariants: true },
 });
 
 function CustomizedInputs(props) {
@@ -76,44 +83,67 @@ function CustomizedInputs(props) {
     <div className={classes.container}>
       <FormControl className={classes.margin}>
         <InputLabel
-          FormLabelClasses={{
+          htmlFor="custom-css-standard-input"
+          classes={{
             root: classes.cssLabel,
             focused: classes.cssFocused,
           }}
-          htmlFor="custom-css-input"
         >
           Custom CSS
         </InputLabel>
         <Input
+          id="custom-css-standard-input"
           classes={{
             underline: classes.cssUnderline,
           }}
-          id="custom-css-input"
         />
       </FormControl>
+      <TextField
+        className={classes.margin}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
+        InputProps={{
+          classes: {
+            root: classes.cssOutlinedInput,
+            focused: classes.cssFocused,
+            notchedOutline: classes.notchedOutline,
+          },
+        }}
+        label="Custom CSS"
+        variant="outlined"
+        id="custom-css-outlined-input"
+      />
       <MuiThemeProvider theme={theme}>
         <TextField
           className={classes.margin}
           label="MuiThemeProvider"
-          id="mui-theme-provider-input"
+          id="mui-theme-provider-standard-input"
+        />
+        <TextField
+          className={classes.margin}
+          label="MuiThemeProvider"
+          variant="outlined"
+          id="mui-theme-provider-outlined-input"
         />
       </MuiThemeProvider>
-      <TextField
-        defaultValue="react-bootstrap"
-        label="Bootstrap"
-        id="bootstrap-input"
-        InputProps={{
-          disableUnderline: true,
-          classes: {
+      <FormControl className={classes.margin}>
+        <InputLabel shrink htmlFor="bootstrap-input" className={classes.bootstrapFormLabel}>
+          Bootstrap
+        </InputLabel>
+        <InputBase
+          id="bootstrap-input"
+          defaultValue="react-bootstrap"
+          classes={{
             root: classes.bootstrapRoot,
             input: classes.bootstrapInput,
-          },
-        }}
-        InputLabelProps={{
-          shrink: true,
-          className: classes.bootstrapFormLabel,
-        }}
-      />
+          }}
+        />
+      </FormControl>
+      <InputBase className={classes.margin} defaultValue="Naked input" />
     </div>
   );
 }

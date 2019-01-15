@@ -26,6 +26,8 @@ export function getAnchor(props) {
 }
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
+  root: {},
   /* Styles applied to the root element if `variant="permanent or persistent"`. */
   docked: {
     flex: '0 0 auto',
@@ -96,7 +98,7 @@ export const styles = theme => ({
 });
 
 /**
- * The properties of the [Modal](/api/modal) component are available
+ * The properties of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 class Drawer extends React.Component {
@@ -112,6 +114,7 @@ class Drawer extends React.Component {
   render() {
     const {
       anchor: anchorProp,
+      BackdropProps,
       children,
       classes,
       className,
@@ -143,7 +146,7 @@ class Drawer extends React.Component {
 
     if (variant === 'permanent') {
       return (
-        <div className={classNames(classes.docked, className)} {...other}>
+        <div className={classNames(classes.root, classes.docked, className)} {...other}>
           {drawer}
         </div>
       );
@@ -163,7 +166,7 @@ class Drawer extends React.Component {
 
     if (variant === 'persistent') {
       return (
-        <div className={classNames(classes.docked, className)} {...other}>
+        <div className={classNames(classes.root, classes.docked, className)} {...other}>
           {slidingDrawer}
         </div>
       );
@@ -173,10 +176,11 @@ class Drawer extends React.Component {
     return (
       <Modal
         BackdropProps={{
+          ...BackdropProps,
           ...BackdropPropsProp,
           transitionDuration,
         }}
-        className={classNames(classes.modal, className)}
+        className={classNames(classes.root, classes.modal, className)}
         open={open}
         onClose={onClose}
         {...other}
@@ -211,7 +215,7 @@ Drawer.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Properties applied to the [`Modal`](/api/modal) element.
+   * Properties applied to the [`Modal`](/api/modal/) element.
    */
   ModalProps: PropTypes.object,
   /**
@@ -225,11 +229,11 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the [`Slide`](/api/slide) element.
+   * Properties applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**

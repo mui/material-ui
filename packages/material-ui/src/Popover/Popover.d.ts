@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { ModalProps, ModalClassKey } from '../Modal';
+import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface PopoverOrigin {
@@ -28,7 +28,7 @@ export interface PopoverProps
   getContentAnchorEl?: null | ((element: HTMLElement) => HTMLElement);
   marginThreshold?: number;
   modal?: boolean;
-  ModalClasses?: ModalClassKey;
+  ModalClasses?: ModalProps['classes'];
   PaperProps?: Partial<PaperProps>;
   role?: string;
   transformOrigin?: PopoverOrigin;

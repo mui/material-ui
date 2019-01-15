@@ -6,8 +6,10 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -43,9 +45,7 @@ function getOffsetLeft(rect, horizontal) {
 
 function getTransformOriginValue(transformOrigin) {
   return [transformOrigin.horizontal, transformOrigin.vertical]
-    .map(n => {
-      return typeof n === 'number' ? `${n}px` : n;
-    })
+    .map(n => (typeof n === 'number' ? `${n}px` : n))
     .join(' ');
 }
 
@@ -83,15 +83,25 @@ export const styles = {
 };
 
 class Popover extends React.Component {
-  paperRef = null;
-
   handleGetOffsetTop = getOffsetTop;
 
   handleGetOffsetLeft = getOffsetLeft;
 
-  handleResize = debounce(() => {
-    this.setPositioningStyles(this.paperRef);
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  constructor() {
+    super();
+
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        // Because we debounce the event, the open property might no longer be true
+        // when the callback resolves.
+        if (!this.props.open) {
+          return;
+        }
+
+        this.setPositioningStyles(this.paperRef);
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   componentDidMount() {
     if (this.props.action) {
@@ -106,16 +116,14 @@ class Popover extends React.Component {
   };
 
   setPositioningStyles = element => {
-    if (element && element.style) {
-      const positioning = this.getPositioningStyle(element);
-      if (positioning.top !== null) {
-        element.style.top = positioning.top;
-      }
-      if (positioning.left !== null) {
-        element.style.left = positioning.left;
-      }
-      element.style.transformOrigin = positioning.transformOrigin;
+    const positioning = this.getPositioningStyle(element);
+    if (positioning.top !== null) {
+      element.style.top = positioning.top;
     }
+    if (positioning.left !== null) {
+      element.style.left = positioning.left;
+    }
+    element.style.transformOrigin = positioning.transformOrigin;
   };
 
   getPositioningStyle = element => {
@@ -124,8 +132,8 @@ class Popover extends React.Component {
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
     const elemRect = {
-      width: element.clientWidth,
-      height: element.clientHeight,
+      width: element.offsetWidth,
+      height: element.offsetHeight,
     };
 
     // Get the transform origin point on the element itself
@@ -258,9 +266,9 @@ class Popover extends React.Component {
     };
   }
 
-  handleEnter = element => {
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
+  handleEntering = element => {
+    if (this.props.onEntering) {
+      this.props.onEntering(element);
     }
 
     this.setPositioningStyles(element);
@@ -292,7 +300,7 @@ class Popover extends React.Component {
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
-      TransitionProps,
+      TransitionProps = {},
       ...other
     } = this.props;
 
@@ -319,15 +327,15 @@ class Popover extends React.Component {
         <TransitionComponent
           appear
           in={open}
-          onEnter={this.handleEnter}
+          onEnter={onEnter}
           onEntered={onEntered}
-          onEntering={onEntering}
           onExit={onExit}
           onExited={onExited}
           onExiting={onExiting}
           role={role}
           timeout={transitionDuration}
           {...TransitionProps}
+          onEntering={createChainedFunction(this.handleEntering, TransitionProps.onEntering)}
         >
           <Paper
             className={classes.paper}
@@ -353,7 +361,7 @@ Popover.propTypes = {
    * This is useful when you want to trigger an action programmatically.
    * It currently only supports updatePosition() action.
    *
-   * @param {object} actions This object contains all posible actions
+   * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
   action: PropTypes.func,
@@ -428,13 +436,14 @@ Popover.propTypes = {
    */
   marginThreshold: PropTypes.number,
   /**
-   * `classes` property applied to the [`Modal`](/api/modal) element.
+   * `classes` property applied to the [`Modal`](/api/modal/) element.
    */
   ModalClasses: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`
    */
   onClose: PropTypes.func,
   /**
@@ -466,7 +475,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the [`Paper`](/api/paper) element.
+   * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
@@ -490,9 +499,9 @@ Popover.propTypes = {
       .isRequired,
   }),
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */

@@ -43,13 +43,9 @@ class HorizontalNonLinearStepperWithError extends React.Component {
     skipped: new Set(),
   };
 
-  isStepOptional = step => {
-    return step === 1;
-  };
+  isStepOptional = step => step === 1;
 
-  isStepFailed = step => {
-    return step === 1;
-  };
+  isStepFailed = step => step === 1;
 
   handleNext = () => {
     const { activeStep } = this.state;
@@ -65,10 +61,9 @@ class HorizontalNonLinearStepperWithError extends React.Component {
   };
 
   handleBack = () => {
-    const { activeStep } = this.state;
-    this.setState({
-      activeStep: activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleSkip = () => {
@@ -134,7 +129,7 @@ class HorizontalNonLinearStepperWithError extends React.Component {
           {activeStep === steps.length ? (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
+                All steps completed - you&apos;re finished
               </Typography>
               <Button onClick={this.handleReset} className={classes.button}>
                 Reset

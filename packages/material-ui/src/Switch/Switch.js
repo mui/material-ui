@@ -12,6 +12,7 @@ export const styles = theme => ({
     width: 62,
     position: 'relative',
     flexShrink: 0,
+    zIndex: 0, // Reset the stacking context.
     // For correct alignment with the text.
     verticalAlign: 'middle',
   },
@@ -29,7 +30,9 @@ export const styles = theme => ({
   },
   /* Styles applied to the internal `SwitchBase` component's `root` class. */
   switchBase: {
-    zIndex: 1,
+    padding: 0,
+    height: 48,
+    width: 48,
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
@@ -81,6 +84,7 @@ export const styles = theme => ({
     borderRadius: 14 / 2,
     display: 'block',
     position: 'absolute',
+    zIndex: -1,
     width: 34,
     height: 14,
     top: '50%',
@@ -182,7 +186,7 @@ Switch.propTypes = {
   /**
    * The value of the component.
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 Switch.defaultProps = {

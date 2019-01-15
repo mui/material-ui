@@ -11,10 +11,13 @@ const theme = createMuiTheme({
     primary: purple,
     secondary: green,
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
-function withRoot(Component: React.ComponentType) {
-  function WithRoot(props: object) {
+function withRoot<P>(Component: React.ComponentType<P>) {
+  function WithRoot(props: P) {
     // MuiThemeProvider makes the theme available down the React tree
     // thanks to React context.
     return (
