@@ -1,6 +1,5 @@
 import { Omit } from '@material-ui/core';
 import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
-import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
@@ -78,12 +77,12 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
   };
 
   public handleKeyDown = (event: KeyboardEvent) => {
-    switch (keycode(event)) {
-      case 'enter':
+    switch (event.key) {
+      case 'Enter':
         this.handleAccept();
         break;
       default:
-        // if keycode is not handled, stop execution
+        // if key is not handled, stop execution
         return;
     }
 

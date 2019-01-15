@@ -70,7 +70,7 @@ describe('e2e - DateTimePickerModal', () => {
     }
 
     onKeyDown({
-      keyCode: 13, // enter
+      key: 'Enter',
       preventDefault: jest.fn(),
     } as any);
 

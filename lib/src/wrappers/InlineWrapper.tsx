@@ -1,7 +1,6 @@
 import { Omit } from '@material-ui/core';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
@@ -78,15 +77,15 @@ export class InlineWrapper extends React.PureComponent<
     }
   };
 
-  public handleKeyDown = (event: Event) => {
-    switch (keycode(event)) {
-      case 'enter': {
+  public handleKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'Enter': {
         this.props.handleAccept();
         this.close();
         break;
       }
       default:
-        // if keycode is not handled, stop execution
+        // if key is not handled, stop execution
         return;
     }
 

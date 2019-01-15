@@ -41,7 +41,6 @@
   "dependencies": {
     "@types/react-text-mask": "^5.4.3",
     "clsx": "^1.0.1",
-    "keycode": "^2.2.0",
     "react-event-listener": "^0.6.5",
     "react-text-mask": "=5.4.1",
     "react-transition-group": "^2.5.2",

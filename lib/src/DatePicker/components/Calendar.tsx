@@ -1,5 +1,4 @@
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import keycode from 'keycode';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
@@ -156,25 +155,25 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   public handleKeyDown = (event: KeyboardEvent) => {
     const { theme, date, utils } = this.props;
 
-    switch (keycode(event)) {
-      case 'up':
+    switch (event.key) {
+      case 'ArrowUp':
         this.moveToDay(utils.addDays(date, -7));
         break;
-      case 'down':
+      case 'ArrowDown':
         this.moveToDay(utils.addDays(date, 7));
         break;
-      case 'left':
+      case 'ArrowLeft':
         theme.direction === 'ltr'
           ? this.moveToDay(utils.addDays(date, -1))
           : this.moveToDay(utils.addDays(date, 1));
         break;
-      case 'right':
+      case 'ArrowRight':
         theme.direction === 'ltr'
           ? this.moveToDay(utils.addDays(date, 1))
           : this.moveToDay(utils.addDays(date, -1));
         break;
       default:
-        // if keycode is not handled, stop execution
+        // if key is not handled, stop execution
         return;
     }
 
