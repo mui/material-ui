@@ -1,3 +1,5 @@
+export { default as Breadcrumb } from './Breadcrumb';
+export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Slider } from './Slider';
 export { default as SpeedDial } from './SpeedDial';
 export { default as SpeedDialAction } from './SpeedDialAction';

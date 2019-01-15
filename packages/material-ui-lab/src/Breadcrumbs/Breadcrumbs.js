@@ -3,37 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import BreadcrumbCollapsed from '@material-ui/lab/BreadcrumbCollapsed';
+import BreadcrumbSeparator from '@material-ui/lab/BreadcrumbSeparator';
 
-const height = 24;
 const defaultMaxItems = 8;
 
-const styles = theme => ({
+const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
   },
-  separator: {
-    userSelect: 'none',
-    display: 'inline-block',
-    height,
-    lineHeight: `${height}px`,
-    color: theme.palette.grey[400],
-    marginLeft: 4,
-    marginRight: 4,
-    paddingLeft: 2,
-    paddingRight: 2,
-  },
-});
-
-function DefaultSeparator(props) {
-  const { className, separatorText } = props;
-  return <div className={className}>{separatorText}</div>;
-}
-
-DefaultSeparator.propTypes = {
-  className: PropTypes.object.isRequired,
-  separatorText: PropTypes.string.isRequired,
 };
 
 class Breadcrumbs extends React.Component {
@@ -56,7 +35,7 @@ class Breadcrumbs extends React.Component {
         });
       }
     }
-    return <DefaultSeparator {...props} />;
+    return <BreadcrumbSeparator {...props} />;
   }
 
   handleClickExpand = event => {
