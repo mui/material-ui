@@ -11,7 +11,9 @@ function deprecatedPropType(validator, reason) {
     if (typeof props[propName] !== 'undefined') {
       return new Error(
         `The ${location} \`${propFullNameSafe}\` of ` +
-          `\`${componentNameSafe}\` is deprecated. ${reason}`,
+          `\`${componentNameSafe}\` is deprecated. ${reason}${
+            process.env.NODE_ENV === 'test' ? Date.now() : ''
+          }`,
       );
     }
 

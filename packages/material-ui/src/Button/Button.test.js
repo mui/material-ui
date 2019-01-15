@@ -298,7 +298,7 @@ describe('<Button />', () => {
 
   it('should have no focusRipple by default', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.props().focusRipple, false);
+    assert.isNotOk(wrapper.props().focusRipple);
   });
 
   describe('disableFocusRipple', () => {
@@ -319,7 +319,7 @@ describe('<Button />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'The prop `disableFocusRipple` in `Button` is deprecated.',
+        'The prop `disableFocusRipple` of `Button` is deprecated.',
       );
     });
   });

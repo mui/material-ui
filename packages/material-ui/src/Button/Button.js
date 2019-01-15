@@ -336,7 +336,7 @@ Button.propTypes = {
    */
   disableFocusRipple: deprecatedPropType(
     PropTypes.bool,
-    'Focus ripple will be removed because it does not follow Material design.' +
+    'Focus ripple is not part of Material design. ' +
       'If you want to enable it use `focusRipple` which is passed to `ButtonBase`',
   ),
   /**
