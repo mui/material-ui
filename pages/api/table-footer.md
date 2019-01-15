@@ -20,7 +20,7 @@ import TableFooter from '@material-ui/core/TableFooter';
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component, normally `TableRow`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'tfoot'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">Component</span> | <span class="prop-default">'tfoot'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 
 Any other properties supplied will be spread to the root element (native element).
 
