@@ -4,7 +4,7 @@ import { TypographyProps } from '../Typography';
 
 export interface LinkProps
   extends StandardProps<
-    React.HTMLAttributes<HTMLAnchorElement> & TypographyProps,
+    React.AnchorHTMLAttributes<HTMLAnchorElement> & TypographyProps,
     LinkClassKey,
     'component'
   > {
