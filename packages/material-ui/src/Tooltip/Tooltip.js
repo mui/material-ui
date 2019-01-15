@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import RootRef from '../RootRef';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -13,6 +14,11 @@ export const styles = theme => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     opacity: 0.9,
+    pointerEvents: 'none',
+  },
+  /* Styles applied to the Popper component if `interactive={true}`. */
+  popperInteractive: {
+    pointerEvents: 'auto',
   },
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
@@ -83,7 +89,9 @@ class Tooltip extends React.Component {
 
   componentDidMount() {
     warning(
-      !this.childrenRef.disabled || !this.childrenRef.tagName.toLowerCase() === 'button',
+      !this.childrenRef.disabled ||
+        (this.childrenRef.disabled && this.props.title === '') ||
+        this.childrenRef.tagName.toLowerCase() !== 'button',
       [
         'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
         'A disabled element does not fire events.',
@@ -95,7 +103,7 @@ class Tooltip extends React.Component {
 
     // Fallback to this default id when possible.
     // Use the random value for client side rendering only.
-    // We can't use it server side.
+    // We can't use it server-side.
     this.defaultId = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
 
     // Rerender with this.defaultId and this.childrenRef.
@@ -273,15 +281,23 @@ class Tooltip extends React.Component {
 
     let open = this.isControlled ? openProp : this.state.open;
 
-    // There is no point at displaying an empty tooltip.
+    // There is no point in displaying an empty tooltip.
     if (title === '') {
       open = false;
     }
 
+    // For accessibility and SEO concerns, we render the title to the DOM node when
+    // the tooltip is hidden. However, we have made a tradeoff when
+    // `disableHoverListener` is set. This title logic is disabled.
+    // It's allowing us to keep the implementation size minimal.
+    // We are open to change the tradeoff.
+    const shouldShowNativeTitle = !open && !disableHoverListener;
     const childrenProps = {
       'aria-describedby': open ? id || this.defaultId : null,
-      title: !open && typeof title === 'string' ? title : null,
+      title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
       ...other,
+      ...children.props,
+      className: classNames(other.className, children.props.className),
     };
 
     if (!disableTouchListener) {
@@ -320,7 +336,9 @@ class Tooltip extends React.Component {
       <React.Fragment>
         <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
-          className={classes.popper}
+          className={classNames(classes.popper, {
+            [classes.popperInteractive]: interactive,
+          })}
           placement={placement}
           anchorEl={this.childrenRef}
           open={open}
@@ -388,7 +406,7 @@ Tooltip.propTypes = {
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
    * This property is used with aria-describedby to solve the accessibility issue.
-   * If you don't provide this property. It fallback to a random generated id.
+   * If you don't provide this property. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
@@ -451,9 +469,9 @@ Tooltip.propTypes = {
    */
   title: PropTypes.node.isRequired,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Properties applied to the `Transition` element.
    */

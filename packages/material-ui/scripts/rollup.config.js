@@ -2,6 +2,7 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
+import nodeGlobals from 'rollup-plugin-node-globals';
 import { uglify } from 'rollup-plugin-uglify';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
@@ -20,6 +21,9 @@ const babelOptions = {
 const commonjsOptions = {
   ignoreGlobal: true,
   include: /node_modules/,
+  namedExports: {
+    '../../node_modules/react-is/index.js': ['isValidElementType'],
+  },
 };
 
 export default [
@@ -31,6 +35,7 @@ export default [
       nodeResolve(),
       babel(babelOptions),
       commonjs(commonjsOptions),
+      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
   },
@@ -42,6 +47,7 @@ export default [
       nodeResolve(),
       babel(babelOptions),
       commonjs(commonjsOptions),
+      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot(),
       uglify(),

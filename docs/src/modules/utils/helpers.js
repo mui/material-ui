@@ -28,18 +28,36 @@ export function pageToTitle(page) {
   return titleize(name);
 }
 
-export function getDependencies(raw) {
+export function getDependencies(raw, reactVersion = 'latest') {
   const deps = {
-    'react-dom': 'latest',
-    react: 'latest',
+    'react-dom': reactVersion,
+    react: reactVersion,
   };
-  const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
+  const versions = {
+    'date-fns': 'next',
+  };
+  const re = /^import\s.*\sfrom\s+'([^']+)|import\s'([^']+)'/gm;
   let m;
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(raw))) {
-    // handle scope names
-    const name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
-    deps[name] = deps[name] || 'latest';
+    let name;
+
+    if (m[1]) {
+      // full import
+      // handle scope names
+      name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
+    } else {
+      name = m[2];
+    }
+
+    if (!deps[name]) {
+      deps[name] = versions[name] ? versions[name] : 'latest';
+    }
   }
   return deps;
+}
+
+export function getCookie(name) {
+  const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
+  return document.cookie.replace(regex, '$1');
 }

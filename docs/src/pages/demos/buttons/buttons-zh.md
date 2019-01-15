@@ -1,12 +1,18 @@
 ---
 title: React 按钮组件
-components: Button, IconButton, ButtonBase, Zoom
+components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
 # 按钮
 
 <p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 它们通常放置在整个UI中，例如： - 对话 - 模态窗口 - 表单 - 卡片 - 工具栏
+[按钮](https://material.io/design/components/buttons.html) 传达了用户可以采取的行动，它们一般被放置在你的界面中的以下位置：
+
+- 对话框
+- 模态窗口
+- 表单
+- 卡片
+- 工具栏
 
 ## 文本按钮
 

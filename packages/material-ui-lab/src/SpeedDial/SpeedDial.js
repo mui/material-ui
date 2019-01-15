@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { isMuiElement, setRef } from '@material-ui/core/utils/reactHelpers';
 import * as utils from './utils';
 import clamp from '../utils/clamp';
@@ -95,7 +96,7 @@ class SpeedDial extends React.Component {
 
   /**
    * refs to the Button that have an action associated to them in this SpeedDial
-   * [FAB, ...(SpeeDialActions > Button)]
+   * [Fab, ...(SpeedDialActions > Button)]
    * @type {HTMLButtonElement[]}
    */
   actions = [];
@@ -245,8 +246,7 @@ class SpeedDial extends React.Component {
           unmountOnExit
           {...TransitionProps}
         >
-          <Button
-            variant="fab"
+          <Fab
             color="primary"
             onKeyDown={this.handleKeyboardNavigation}
             aria-label={ariaLabel}
@@ -262,7 +262,7 @@ class SpeedDial extends React.Component {
             }}
           >
             {icon()}
-          </Button>
+          </Fab>
         </TransitionComponent>
         <div
           id={`${id}-actions`}
@@ -341,9 +341,9 @@ SpeedDial.propTypes = {
    */
   openIcon: PropTypes.node,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: componentPropType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

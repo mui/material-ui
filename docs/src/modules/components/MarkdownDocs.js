@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { _rewriteUrlForNextExport } from 'next/router';
-import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
-import Button from '@material-ui/core/Button';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
@@ -13,11 +12,13 @@ import Demo from 'docs/src/modules/components/Demo';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
+import EditPage from 'docs/src/modules/components/EditPage';
+import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
 import {
   getHeaders,
-  getContents,
   getTitle,
   getDescription,
+  demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
 
 const styles = theme => ({
@@ -36,123 +37,127 @@ const styles = theme => ({
   },
 });
 
-const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 
-function MarkdownDocs(props, context) {
-  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
-  const contents = getContents(markdown);
+function MarkdownDocs(props) {
+  const {
+    classes,
+    disableAd,
+    markdown: markdownProp,
+    markdownLocation: markdownLocationProp,
+    req,
+    reqPrefix,
+    reqSource,
+    userLanguage,
+  } = props;
+
+  let demos;
+  let markdown = markdownProp;
+
+  if (req) {
+    demos = {};
+    const markdowns = {};
+    req.keys().forEach(filename => {
+      if (filename.indexOf('.md') !== -1) {
+        if (filename.indexOf('-zh.md') !== -1) {
+          markdowns.zh = req(filename);
+        } else {
+          markdowns.en = req(filename);
+        }
+      } else {
+        const demoName = `${reqPrefix}/${filename.replace(/.\/|.hooks/g, '')}`;
+        const isHooks = filename.indexOf('.hooks.js') !== -1;
+        const jsType = isHooks ? 'jsHooks' : 'js';
+        const rawType = isHooks ? 'rawHooks' : 'raw';
+        demos[demoName] = {
+          ...(demos[demoName] ? demos[demoName] : {}),
+          [jsType]: req(filename).default,
+          [rawType]: reqSource(filename),
+        };
+      }
+    });
+    markdown = markdowns[userLanguage] || markdowns.en;
+  }
+
   const headers = getHeaders(markdown);
 
-  let markdownLocation = markdownLocationProp || context.activePage.pathname;
-
-  if (!markdownLocationProp) {
-    const token = markdownLocation.split('/');
-    token.push(token[token.length - 1]);
-    markdownLocation = token.join('/');
-
-    if (headers.filename) {
-      markdownLocation = headers.filename;
-    } else {
-      markdownLocation = `/docs/src/pages${markdownLocation}.md`;
-    }
-  }
-
-  if (headers.components.length > 0) {
-    const section = markdownLocation.split('/')[4];
-    contents.push(`
-## API
-
-${headers.components
-      .map(
-        component =>
-          `- [&lt;${component} /&gt;](${
-            section === 'lab' ? '/lab/api' : '/api'
-          }/${_rewriteUrlForNextExport(kebabCase(component))})`,
-      )
-      .join('\n')}
-        `);
-  }
-
-  const button =
-    context.userLanguage === 'zh' ? (
-      <Button component="a" href="https://translate.material-ui.com/project/material-ui-docs">
-        {'将此页面翻译成中文'}
-      </Button>
-    ) : (
-      <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
-        {'Edit this page'}
-      </Button>
-    );
-
   return (
-    <AppFrame>
-      <Head
-        title={`${headers.title || getTitle(markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdown)}
-      />
-      {disableAd ? null : (
-        <Portal container={() => document.querySelector('.description')}>
-          <Ad />
-        </Portal>
-      )}
-      <AppTableOfContents contents={contents} />
-      <AppContent className={classes.root}>
-        <div className={classes.header}>{button}</div>
-        {contents.map((content, index) => {
-          const match = content.match(demoRegexp);
-
-          if (match && demos) {
-            let demoOptions;
-            try {
-              demoOptions = JSON.parse(`{${content}}`);
-            } catch (err) {
-              console.error(err); // eslint-disable-line no-console
-              return null;
-            }
-
-            const name = demoOptions.demo;
-            warning(demos && demos[name], `Missing demo: ${name}.`);
-            return (
-              <Demo
-                key={content}
-                js={demos[name].js}
-                raw={demos[name].raw}
-                index={index}
-                demoOptions={demoOptions}
-                githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+    <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
+      {({ contents, markdownLocation }) => (
+        <AppFrame>
+          <Head
+            title={`${headers.title || getTitle(markdown)} - Material-UI`}
+            description={headers.description || getDescription(markdown)}
+          />
+          <AppTableOfContents contents={contents} />
+          {disableAd ? null : (
+            <Portal container={() => document.querySelector('.description')}>
+              <Ad />
+            </Portal>
+          )}
+          <AppContent className={classes.root}>
+            <div className={classes.header}>
+              <EditPage
+                markdownLocation={markdownLocation}
+                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
               />
-            );
-          }
+            </div>
+            {contents.map(content => {
+              if (demos && demoRegexp.test(content)) {
+                let demoOptions;
+                try {
+                  demoOptions = JSON.parse(`{${content}}`);
+                } catch (err) {
+                  console.error(err); // eslint-disable-line no-console
+                  return null;
+                }
 
-          return (
-            <MarkdownElement className={classes.markdownElement} key={content} text={content} />
-          );
-        })}
-      </AppContent>
-    </AppFrame>
+                const name = demoOptions.demo;
+                warning(
+                  demos && demos[name],
+                  `Missing demo: ${name}. You can use one of the following:\n${Object.keys(demos)}`,
+                );
+                return (
+                  <Demo
+                    key={content}
+                    demo={demos[name]}
+                    demoOptions={demoOptions}
+                    githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+                  />
+                );
+              }
+
+              return (
+                <MarkdownElement className={classes.markdownElement} key={content} text={content} />
+              );
+            })}
+          </AppContent>
+        </AppFrame>
+      )}
+    </MarkdownDocsContents>
   );
 }
 
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
-  demos: PropTypes.object,
   disableAd: PropTypes.bool,
-  markdown: PropTypes.string.isRequired,
+  markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
   markdownLocation: PropTypes.string,
+  req: PropTypes.func,
+  reqPrefix: PropTypes.string,
+  reqSource: PropTypes.func,
+  userLanguage: PropTypes.string.isRequired,
 };
 
 MarkdownDocs.defaultProps = {
   disableAd: false,
 };
 
-MarkdownDocs.contextTypes = {
-  activePage: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-  userLanguage: PropTypes.string.isRequired,
-};
-
-export default withStyles(styles)(MarkdownDocs);
+export default compose(
+  connect(state => ({
+    userLanguage: state.options.userLanguage,
+  })),
+  withStyles(styles),
+)(MarkdownDocs);

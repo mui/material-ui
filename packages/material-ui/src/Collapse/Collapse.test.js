@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Collapse from './Collapse';
 
 describe('<Collapse />', () => {

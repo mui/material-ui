@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createMuiTheme from '../styles/createMuiTheme';
-import { createMount, createShallow, getClasses } from '../test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Typography from './Typography';
 
 describe('<Typography />', () => {
@@ -72,6 +72,13 @@ describe('<Typography />', () => {
     it('should inherit the color', () => {
       const wrapper = shallow(<Typography color="inherit">Hello</Typography>);
       assert.strictEqual(wrapper.hasClass(classes.colorInherit), true);
+    });
+  });
+
+  describe('prop: inline', () => {
+    it('should render with the inline class', () => {
+      const wrapper = shallow(<Typography inline>Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.inline), true);
     });
   });
 

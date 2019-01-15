@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/ClickAwayListener/ClickAwayListener.js
-title: ClickAwayListener API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# ClickAwayListener
+# ClickAwayListener API
 
 <p class="description">The API documentation of the ClickAwayListener React component. Learn more about the properties and the CSS customization points.</p>
 

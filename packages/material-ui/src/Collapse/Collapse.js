@@ -4,6 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -149,33 +150,31 @@ class Collapse extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, childProps) => {
-          return (
-            <Component
-              className={classNames(
-                classes.container,
-                {
-                  [classes.entered]: state === 'entered',
-                },
-                className,
-              )}
-              style={{
-                ...style,
-                minHeight: collapsedHeight,
+        {(state, childProps) => (
+          <Component
+            className={classNames(
+              classes.container,
+              {
+                [classes.entered]: state === 'entered',
+              },
+              className,
+            )}
+            style={{
+              ...style,
+              minHeight: collapsedHeight,
+            }}
+            {...childProps}
+          >
+            <div
+              className={classes.wrapper}
+              ref={ref => {
+                this.wrapperRef = ref;
               }}
-              {...childProps}
             >
-              <div
-                className={classes.wrapper}
-                ref={ref => {
-                  this.wrapperRef = ref;
-                }}
-              >
-                <div className={classes.wrapperInner}>{children}</div>
-              </div>
-            </Component>
-          );
-        }}
+              <div className={classes.wrapperInner}>{children}</div>
+            </div>
+          </Component>
+        )}
       </Transition>
     );
   }
@@ -203,7 +202,7 @@ Collapse.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the component will transition in.
    */

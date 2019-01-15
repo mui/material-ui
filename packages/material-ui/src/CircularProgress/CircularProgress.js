@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
@@ -35,6 +36,9 @@ export const styles = theme => ({
   /* Styles applied to the root element if `variant="indeterminate"`. */
   indeterminate: {
     animation: 'mui-progress-circular-rotate 1.4s linear infinite',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-progress-circular-rotate',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -59,6 +63,9 @@ export const styles = theme => ({
   /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
   circleIndeterminate: {
     animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-progress-circular-dash',
     // Some default value that looks fine waiting for the animation to kicks in.
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
@@ -82,6 +89,10 @@ export const styles = theme => ({
       strokeDashoffset: '-120px',
     },
   },
+  /* Styles applied to the `circle` svg path if `disableShrink={true}`. */
+  circleDisableShrink: {
+    animation: 'none',
+  },
 });
 
 /**
@@ -92,7 +103,18 @@ export const styles = theme => ({
  * attribute to `true` on that region until it has finished loading.
  */
 function CircularProgress(props) {
-  const { classes, className, color, size, style, thickness, value, variant, ...other } = props;
+  const {
+    classes,
+    className,
+    color,
+    disableShrink,
+    size,
+    style,
+    thickness,
+    value,
+    variant,
+    ...other
+  } = props;
 
   const circleStyle = {};
   const rootStyle = {};
@@ -135,6 +157,7 @@ function CircularProgress(props) {
           className={classNames(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
+            [classes.circleDisableShrink]: disableShrink,
           })}
           style={circleStyle}
           cx={SIZE}
@@ -163,6 +186,21 @@ CircularProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
+   * If `true`, the shrink animation is disabled.
+   * This only works if variant is `indeterminate`.
+   */
+  disableShrink: chainPropTypes(PropTypes.bool, props => {
+    /* istanbul ignore if */
+    if (props.disableShrink && props.variant !== 'indeterminate') {
+      return new Error(
+        'Material-UI: you have provided the `disableShrink` property ' +
+          'with a variant other than `indeterminate`. This will have no effect.',
+      );
+    }
+
+    return null;
+  }),
+  /**
    * The size of the circle.
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -188,6 +226,7 @@ CircularProgress.propTypes = {
 
 CircularProgress.defaultProps = {
   color: 'primary',
+  disableShrink: false,
   size: 40,
   thickness: 3.6,
   value: 0,

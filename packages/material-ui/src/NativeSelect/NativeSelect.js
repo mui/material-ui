@@ -2,9 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { componentPropType } from '@material-ui/utils';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
-import { formControlState } from '../InputBase/InputBase';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
@@ -39,6 +41,9 @@ export const styles = theme => ({
     },
     '&$disabled': {
       cursor: 'default',
+    },
+    '&[multiple]': {
+      height: 'auto',
     },
   },
   /* Styles applied to the `Input` component if `variant="filled"`. */
@@ -76,11 +81,20 @@ export const styles = theme => ({
 /**
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
-function NativeSelect(props, context) {
-  const { children, classes, IconComponent, input, inputProps, variant, ...other } = props;
+function NativeSelect(props) {
+  const {
+    children,
+    classes,
+    IconComponent,
+    input,
+    inputProps,
+    muiFormControl,
+    variant,
+    ...other
+  } = props;
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['variant'],
   });
 
@@ -115,7 +129,7 @@ NativeSelect.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
@@ -124,6 +138,10 @@ NativeSelect.propTypes = {
    * Attributes applied to the `select` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
   /**
    * Callback function fired when a menu item is selected.
    *
@@ -134,7 +152,12 @@ NativeSelect.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+  ]),
   /**
    * The variant to use.
    */
@@ -146,10 +169,8 @@ NativeSelect.defaultProps = {
   input: <Input />,
 };
 
-NativeSelect.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
 NativeSelect.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiNativeSelect' })(NativeSelect);
+export default withStyles(styles, { name: 'MuiNativeSelect' })(
+  withFormControlContext(NativeSelect),
+);

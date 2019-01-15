@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/SnackbarContent/SnackbarContent.js
-title: SnackbarContent API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# SnackbarContent
+# SnackbarContent API
 
 <p class="description">The API documentation of the SnackbarContent React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -25,7 +24,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -38,11 +37,10 @@ This property accepts the following keys:
 | <span class="prop-name">action</span> | Styles applied to the action wrapper element if `action` is provided.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSnackbarContent`.
 
 ## Inheritance

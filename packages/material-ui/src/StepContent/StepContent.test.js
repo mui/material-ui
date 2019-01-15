@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Collapse from '../Collapse';
 import StepContent from './StepContent';
 

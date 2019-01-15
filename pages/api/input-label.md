@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/InputLabel/InputLabel.js
-title: InputLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# InputLabel
+# InputLabel API
 
 <p class="description">The API documentation of the InputLabel React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -33,7 +32,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 Any other properties supplied will be spread to the root element ([FormLabel](/api/form-label/)).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -42,6 +41,10 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">focused</span> | Styles applied to the root element if `focused={true}`.
+| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
 | <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">shrink</span> | Styles applied to the `input` element if `shrink={true}`.
@@ -50,11 +53,10 @@ This property accepts the following keys:
 | <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/InputLabel/InputLabel.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputLabel/InputLabel.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiInputLabel`.
 
 ## Inheritance

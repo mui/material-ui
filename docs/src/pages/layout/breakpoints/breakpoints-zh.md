@@ -1,32 +1,32 @@
-# Breakpoints
+# 断点
 
-<p class="description">A breakpoint is the range of predetermined screen sizes that have specific layout requirements.</p>
+<p class="description">断点是为了满足特定的布局需要而对预设的各种屏幕大小进行标识的范围。</p>
 
-For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+为了获得最佳的用户体验，material design 的接口需要在各种断点范围下自适应布局需要。 Material-UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
 
-Each breakpoint matches with a *fixed* screen width:
+每个断点都与 * 固定 * 屏幕宽度匹配:
 
-- **xs**, extra-small: 0px or larger
-- **sm**, small: 600px or larger
-- **md**, medium: 960px or larger
-- **lg**, large: 1280px or larger
-- **xl**, extra-large: 1920px or larger
+- ** xs **, 超小: 0px 或更大
+- ** sm **, 小: 600px 或更大
+- ** xs **, 超小: 960px 或更大
+- ** sm **, 小: 1280px 或更大
+- ** xs **, 超小: 1920px 或更大
 
-这些值可以自定义。 You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
+这些值可以自定义。 这些值被用于主题设定，你可以在 [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) 对象上找到它们。
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/layout/grid/) and [Hidden](/layout/hidden/) components.
+许多组件内部都使用了断点来实现响应式要求，同时你也可以利用断点来控制应用的布局，这可借助于 [Grid](/layout/grid/) 和 [Hidden](/layout/hidden/) 组件。
 
-## Media Queries
+## 媒体查询
 
-CSS media queries is the idiomatic approach to make your UI responsive. We provide some [CSS-in-JS](/customization/css-in-js/) helpers to do so.
+CSS 媒体查询是让 UI 具有响应性的惯用做法。 我们提供了一些 [ CSS-in-JS ](/customization/css-in-js/) 的工具函数来实现媒体查询。
 
-In the following demo, we change the background color (red, blue & green) based on the screen width.
+在下面的演示中, 我们根据屏幕宽度更改背景颜色 (红色、蓝色和绿色)。
 
 {{"demo": "pages/layout/breakpoints/MediaQuery.js"}}
 
 ## withWidth()
 
-Sometimes, using CSS isn't enough. You might want to change the React rendering tree based on the breakpoint value, in JavaScript. We provide a `withWidth()` higher-order component for this use case.
+有时, 使用 CSS 是不够的。 您可能希望基于 JavaScript 中的断点值更改 React 渲染树。 We provide a `withWidth()` higher-order component for this use case.
 
 ```js
 import withWidth from '@material-ui/core/withWidth';
@@ -75,14 +75,14 @@ Inject a `width` property. It does not modify the component passed to it; instea
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 ```
 
-Some implementation details that might be interesting to being aware of:
+一些可能有趣的实现细节：
 
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- 它将转发 *non React static* 属性, 以便 HOC 更 "透明"。 例如, 它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
 
-#### Arguments
+#### 参数
 
-1. `options` (*Object* [optional]): 
-    - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+1. `选项` (*Object* [optional]): 
+    - `options.withTheme` (*Boolean* [optional]): 默认值为`false`。 将 ` theme ` 对象作为属性提供给组件。
     - `options.noSSR` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, we need to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
     - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. In some situation, you might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#properties) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
@@ -100,11 +100,11 @@ const theme = createMuiTheme({
 
 - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
-#### Returns
+#### 返回结果
 
-`higher-order component`: Should be used to wrap a component.
+`higher-order component`：应用于包装组件。
 
-#### Examples
+#### 例子
 
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
@@ -124,15 +124,15 @@ export default withWidth()(MyComponent);
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Arguments
+#### 参数
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### 返回结果
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例子
 
 ```js
 const styles = theme => ({
@@ -149,15 +149,15 @@ const styles = theme => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
-#### Arguments
+#### 参数
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### 返回结果
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例子
 
 ```js
 const styles = theme => ({
@@ -175,15 +175,15 @@ const styles = theme => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
-#### Arguments
+#### 参数
 
 1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### 返回结果
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例子
 
 ```js
 const styles = theme => ({
@@ -201,16 +201,16 @@ const styles = theme => ({
 
 ### `theme.breakpoints.between(start, end) => media query`
 
-#### Arguments
+#### 参数
 
 1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### 返回结果
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例子
 
 ```js
 const styles = theme => ({

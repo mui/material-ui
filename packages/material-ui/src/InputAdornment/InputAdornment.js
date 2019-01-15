@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 
@@ -12,7 +13,7 @@ export const styles = {
     maxHeight: '2em',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `variant="filled"` */
+  /* Styles applied to the root element if `variant="filled"`. */
   filled: {
     '&$positionStart': {
       marginTop: 16,
@@ -26,6 +27,10 @@ export const styles = {
   positionEnd: {
     marginLeft: 8,
   },
+  /* Styles applied to the root element if `disablePointerEvents=true`. */
+  disablePointerEvents: {
+    pointerEvents: 'none',
+  },
 };
 
 function InputAdornment(props) {
@@ -34,6 +39,7 @@ function InputAdornment(props) {
     component: Component,
     classes,
     className,
+    disablePointerEvents,
     disableTypography,
     position,
     variant,
@@ -48,6 +54,7 @@ function InputAdornment(props) {
           [classes.filled]: variant === 'filled',
           [classes.positionStart]: position === 'start',
           [classes.positionEnd]: position === 'end',
+          [classes.disablePointerEvents]: disablePointerEvents,
         },
         className,
       )}
@@ -80,7 +87,12 @@ InputAdornment.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
+  /**
+   * Disable pointer events on the root.
+   * This allows for the content of the adornment to focus the input on click.
+   */
+  disablePointerEvents: PropTypes.bool,
   /**
    * If children is a string then disable wrapping in a Typography component.
    */
@@ -97,6 +109,7 @@ InputAdornment.propTypes = {
 
 InputAdornment.defaultProps = {
   component: 'div',
+  disablePointerEvents: false,
   disableTypography: false,
 };
 

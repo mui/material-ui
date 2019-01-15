@@ -91,23 +91,15 @@ export const styles = theme => ({
   labelContainer: {
     width: '100%', // Fix an IE 11 issue
     boxSizing: 'border-box',
-    paddingTop: 6,
-    paddingBottom: 6,
-    paddingLeft: 12,
-    paddingRight: 12,
+    padding: '6px 12px',
     [theme.breakpoints.up('md')]: {
-      paddingLeft: 24,
-      paddingRight: 24,
+      padding: '6px 24px',
     },
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
   label: {},
-  /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
-  labelWrapped: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: theme.typography.pxToRem(12),
-    },
-  },
+  /* Deprecated, the styles will be removed in v4. */
+  labelWrapped: {},
 });
 
 class Tab extends React.Component {
@@ -124,7 +116,7 @@ class Tab extends React.Component {
       /**
        * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
        * font size still only requires one line.  This check will prevent an infinite render loop
-       * fron occurring in that scenario.
+       * from occurring in that scenario.
        */
       this.checkTextWrap();
     }
@@ -245,7 +237,7 @@ Tab.propTypes = {
   icon: PropTypes.node,
   /**
    * @ignore
-   * For server side rendering consideration, we let the selected tab
+   * For server-side rendering consideration, we let the selected tab
    * render the indicator.
    */
   indicator: PropTypes.node,

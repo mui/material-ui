@@ -19,7 +19,7 @@ If you wish to customize the theme, you need to use the `MuiThemeProvider` compo
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
 - [Palette](#palette)
-- [Type (light / dark theme)](#type-light-dark-theme-)
+- [Type (light / dark theme)](#type-light-dark-theme)
 - [Typography](#typography)
 - [Other variables](#other-variables)
 - [Custom variables](#custom-variables)
@@ -288,7 +288,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css-api). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 ### Properties
 
@@ -300,7 +300,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application
     },
   },
 });
@@ -310,7 +310,7 @@ const theme = createMuiTheme({
 
 ## Accessing the theme in a component
 
-You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. Here is an example:
+You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. 下面是一个示例：
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
@@ -335,7 +335,7 @@ This component takes a `theme` property, and makes the `theme` available down th
 
 You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
-#### Examples
+#### 例子
 
 ```jsx
 import React from 'react';
@@ -360,15 +360,15 @@ render(<App />, document.querySelector('#app'));
 
 Generate a theme base on the options received.
 
-#### Arguments
+#### 参数
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Returns
+#### 返回结果
 
 `theme` (*Object*): A complete, ready to use theme object.
 
-#### Examples
+#### 例子
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -390,15 +390,15 @@ const theme = createMuiTheme({
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
-#### Arguments
+#### 参数
 
 1. `Component`: The component that will be wrapped.
 
-#### Returns
+#### 返回结果
 
 `Component`: The new component created.
 
-#### Examples
+#### 例子
 
 ```js
 import { withTheme } from '@material-ui/core/styles';

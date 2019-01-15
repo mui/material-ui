@@ -1,13 +1,14 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses } from '../test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Fade from '../Fade';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
 describe('<Dialog />', () => {
+  let mount;
   let shallow;
   let classes;
   const defaultProps = {
@@ -15,8 +16,13 @@ describe('<Dialog />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Modal', () => {
@@ -232,6 +238,19 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
       assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+    });
+  });
+
+  describe('prop: PaperProps.className', () => {
+    it('should merge the className', () => {
+      const wrapper = mount(
+        <Dialog open PaperProps={{ className: 'custom-paper-class' }}>
+          foo
+        </Dialog>,
+      );
+
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paper), true);
+      assert.strictEqual(wrapper.find(Paper).hasClass('custom-paper-class'), true);
     });
   });
 });

@@ -33,7 +33,7 @@ function getStepContent(stepIndex) {
     case 2:
       return 'This is the bit I really care about!';
     default:
-      return 'Uknown stepIndex';
+      return 'Unknown stepIndex';
   }
 }
 
@@ -68,13 +68,11 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
     return (
       <div className={classes.root}>
         <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map(label => {
-            return (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            );
-          })}
+          {steps.map(label => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
         </Stepper>
         <div>
           {this.state.activeStep === steps.length ? (

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Zoom/Zoom.js
-title: Zoom API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Zoom
+# Zoom API
 
 <p class="description">The API documentation of the Zoom React component. Learn more about the properties and the CSS customization points.</p>
 

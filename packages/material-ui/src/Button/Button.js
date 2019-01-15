@@ -3,20 +3,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import chainPropTypes from '../utils/chainPropTypes';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    lineHeight: 1.75, // To remove with v4.
     ...theme.typography.button,
     boxSizing: 'border-box',
     minWidth: 64,
-    minHeight: 36,
-    padding: '8px 16px',
+    padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
@@ -45,7 +45,9 @@ export const styles = theme => ({
     justifyContent: 'inherit',
   },
   /* Styles applied to the root element if `variant="text"`. */
-  text: {},
+  text: {
+    padding: '6px 8px',
+  },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
@@ -76,6 +78,7 @@ export const styles = theme => ({
   flatSecondary: {},
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
+    padding: '5px 16px',
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
@@ -197,23 +200,20 @@ export const styles = theme => ({
   colorInherit: {
     color: 'inherit',
   },
-  /* Styles applied to the root element if `size="mini"` & `variant="[fab | extendedFab]"`. */
+  /* Styles applied to the root element if `mini={true}` & `variant="[fab | extendedFab]"`. */
   mini: {
     width: 40,
     height: 40,
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: '7px 8px',
+    padding: '4px 8px',
     minWidth: 64,
-    minHeight: 32,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     padding: '8px 24px',
-    minWidth: 112,
-    minHeight: 40,
     fontSize: theme.typography.pxToRem(15),
   },
   /* Styles applied to the root element if `fullWidth={true}`. */
@@ -250,9 +250,9 @@ function Button(props) {
       [classes.text]: text,
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
-      [classes.flat]: variant === 'text' || variant === 'flat',
-      [classes.flatPrimary]: (variant === 'text' || variant === 'flat') && color === 'primary',
-      [classes.flatSecondary]: (variant === 'text' || variant === 'flat') && color === 'secondary',
+      [classes.flat]: text,
+      [classes.flatPrimary]: text && color === 'primary',
+      [classes.flatSecondary]: text && color === 'secondary',
       [classes.contained]: contained || fab,
       [classes.containedPrimary]: (contained || fab) && color === 'primary',
       [classes.containedSecondary]: (contained || fab) && color === 'secondary',
@@ -305,7 +305,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -349,20 +349,35 @@ Button.propTypes = {
    * The variant to use.
    * __WARNING__: `flat` and `raised` are deprecated.
    * Instead use `text` and `contained` respectively.
+   * `fab` and `extendedFab` are deprecated.
+   * Instead use `<Fab>` and `<Fab variant="extended">`
    */
   variant: chainPropTypes(
-    PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab']),
+    PropTypes.oneOf(['text', 'outlined', 'contained', 'fab', 'extendedFab', 'flat', 'raised']),
     props => {
       if (props.variant === 'flat') {
         return new Error(
-          'The `flat` variant will be removed in the next major release. ' +
+          'Material-UI: the `flat` variant will be removed in the next major release. ' +
             '`text` is equivalent and should be used instead.',
         );
       }
       if (props.variant === 'raised') {
         return new Error(
-          'The `raised` variant will be removed in the next major release. ' +
+          'Material-UI: the `raised` variant will be removed in the next major release. ' +
             '`contained` is equivalent and should be used instead.',
+        );
+      }
+      if (props.variant === 'fab') {
+        return new Error(
+          'Material-UI: the `fab` variant will be removed in the next major release. ' +
+            'The `<Fab>` component is equivalent and should be used instead.',
+        );
+      }
+      if (props.variant === 'extendedFab') {
+        return new Error(
+          'Material-UI: the `fab` variant will be removed in the next major release. ' +
+            'The `<Fab>` component with `variant="extended"` is equivalent ' +
+            'and should be used instead.',
         );
       }
 

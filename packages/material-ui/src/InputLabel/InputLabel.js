@@ -3,15 +3,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
-import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     transformOrigin: 'top left',
   },
+  /* Styles applied to the root element if `focused={true}`. */
+  focused: {},
+  /* Styles applied to the root element if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to the root element if `error={true}`. */
+  error: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
@@ -45,9 +54,9 @@ export const styles = theme => ({
     // zIndex: 1 will raise the label above opaque background-colors of input.
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(12px, 22px) scale(1)',
+    transform: 'translate(12px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(12px, 19px) scale(1)',
+      transform: 'translate(12px, 17px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(12px, 10px) scale(0.75)',
@@ -61,9 +70,9 @@ export const styles = theme => ({
     // see comment above on filled.zIndex
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(14px, 22px) scale(1)',
+    transform: 'translate(14px, 20px) scale(1)',
     '&$marginDense': {
-      transform: 'translate(14px, 17.5px) scale(1)',
+      transform: 'translate(14px, 17px) scale(1)',
     },
     '&$shrink': {
       transform: 'translate(14px, -6px) scale(0.75)',
@@ -71,7 +80,7 @@ export const styles = theme => ({
   },
 });
 
-function InputLabel(props, context) {
+function InputLabel(props) {
   const {
     children,
     classes,
@@ -79,12 +88,11 @@ function InputLabel(props, context) {
     disableAnimation,
     FormLabelClasses,
     margin,
+    muiFormControl,
     shrink: shrinkProp,
     variant,
     ...other
   } = props;
-
-  const { muiFormControl } = context;
 
   let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
@@ -93,7 +101,7 @@ function InputLabel(props, context) {
 
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['margin', 'variant'],
   });
 
@@ -111,7 +119,18 @@ function InputLabel(props, context) {
   );
 
   return (
-    <FormLabel data-shrink={shrink} className={className} classes={FormLabelClasses} {...other}>
+    <FormLabel
+      data-shrink={shrink}
+      className={className}
+      classes={{
+        focused: classes.focused,
+        disabled: classes.disabled,
+        error: classes.error,
+        required: classes.required,
+        ...FormLabelClasses,
+      }}
+      {...other}
+    >
       {children}
     </FormLabel>
   );
@@ -157,6 +176,10 @@ InputLabel.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * if `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
@@ -174,8 +197,4 @@ InputLabel.defaultProps = {
   disableAnimation: false,
 };
 
-InputLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);
+export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));

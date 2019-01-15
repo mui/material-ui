@@ -65,7 +65,7 @@ function RTL(props) {
 
 ## Opting out of rtl transformation
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the begining:
+If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
 
 *Use the direction toggle button on the top right corner to see the effect*
 

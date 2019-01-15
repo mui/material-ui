@@ -3,10 +3,10 @@ import { StandardProps } from '..';
 
 export interface TextareaProps
   extends StandardProps<
-      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-      TextareaClassKey,
-      'rows'
-    > {
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    TextareaClassKey,
+    'rows'
+  > {
   defaultValue?: any;
   disabled?: boolean;
   rows?: string | number;

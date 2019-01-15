@@ -1,7 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getPageContext from 'docs/src/modules/styles/getPageContext';
-import config from 'docs/src/config';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -21,9 +20,17 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
+const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
+
 class MyDocument extends Document {
   render() {
-    const { canonical, pageContext } = this.props;
+    const { canonical, pageContext, url } = this.props;
+
+    let font = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+    if (url.match(/onepirate/)) {
+      font = 'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400';
+    }
 
     return (
       <html lang="en" dir="ltr">
@@ -39,13 +46,13 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={pageContext ? pageContext.theme.palette.primary.main : null}
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
+          <link rel="stylesheet" href={font} />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -64,7 +71,7 @@ class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', '${config.google.id}', 'material-ui.com');
+window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
@@ -93,22 +100,36 @@ MyDocument.getInitialProps = async ctx => {
   // 1. page.getInitialProps
   // 3. page.render
 
-  // Get the context of the page to collected side effects.
-  const pageContext = getPageContext();
-  const page = ctx.renderPage(Component => props => (
-    <Component pageContext={pageContext} {...props} />
-  ));
+  // Render app and page and get the context of the page with collected side effects.
+  let pageContext;
+  const page = ctx.renderPage(Component => {
+    const WrappedComponent = props => {
+      pageContext = props.pageContext;
+      return <Component {...props} />;
+    };
 
-  let css = pageContext.sheetsRegistry.toString();
-  if (process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
+    WrappedComponent.propTypes = {
+      pageContext: PropTypes.object.isRequired,
+    };
+
+    return WrappedComponent;
+  });
+
+  let css;
+  // It might be undefined, e.g. after an error.
+  if (pageContext) {
+    css = pageContext.sheetsRegistry.toString();
+    if (process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
   }
 
   return {
     ...page,
     pageContext,
+    url: ctx.req.url,
     canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style

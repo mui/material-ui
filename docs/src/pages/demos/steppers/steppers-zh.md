@@ -1,93 +1,93 @@
 ---
-title: Stepper React component
+title: 步进器React组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
-# Steppers
+# 步进器
 
-<p class="description">Steppers convey progress through numbered steps.</p>
+<p class="description">步进器通过数字编号表示进度。</p>
 
-[Steppers](https://material.io/archive/guidelines/components/steppers.html) display progress through a sequence of logical and numbered steps. They may also be used for navigation. Steppers may display a transient feedback message after a step is saved.
+[步进器](https://material.io/archive/guidelines/components/steppers.html) 通过一系列逻辑和编号步骤显示当前操作的进度。 它们也可用于导航。 在保存状态后，步进器可能会显示短暂的反馈信息。
 
-**Types of Steps**
+**步骤类型**
 
-- Editable
-- Non-editable
-- Mobile
-- Optional
+- 可编辑
+- 不可编辑
+- 可移动
+- 可选的
 
-**Types of Steppers**
+**步进器类型**
 
-- Horizontal
-- Vertical
+- 水平的
+- 垂直的
 - 线状
-- Non-linear
+- 非线性的
 
-## Horizontal Linear
+## 水平的步进器
 
-The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `Stepper` orientation is set using the `orientation` property.
+可以通过更改一个初始值为0的当前步骤值`activeStep`来控制`Stepper` 使用` orientation </ code>属性设置<code> Stepper </ code>方向。</p>
 
-This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+<p>使用<code> orientation `属性设置`Step`组件方向。 请注意，您可以在跳过可选步骤时进行管理。 一旦为特定步骤确定了这一点，就必须设置` completed = {false} `以表示即使活动步骤索引超出了可选步骤，它也不会实际完成。
 
 {{"demo": "pages/demos/steppers/HorizontalLinearStepper.js"}}
 
-## Horizontal Non-linear
+## 水平非线性的步进器
 
-Non-linear steppers allow users to enter a multi-step flow at any point.
+非线性步进器允许用户在任何点输入多步流程。
 
-This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` property.
+此示例类似于常规的水平步进器，但步骤不再基于` activeStep `属性自动设置` disabled = {true} `。
 
-We've used the `StepButton` here to demonstrate clickable step labels as well as setting the `completed` flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
+我们在这里使用` StepButton `来演示可点击的步骤标签以及设置` completed `。但是因为可以以非线性方式访问步骤，所以这取决于您自己的实现确定所有步骤何时完成（或者甚至是否需要完成）。
 
 {{"demo": "pages/demos/steppers/HorizontalNonLinearStepper.js"}}
 
-## Horizontal Linear - Alternative Label
+## 水平线性 - 可替换标签
 
-Labels can be placed below the step icon by setting the `alternativeLabel` property on the `Stepper` component.
+通过在` Stepper `组件上设置` alternativeLabel `属性，可以将标签放置在步骤图标下方。
 
 {{"demo": "pages/demos/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
-## Horizontal Non Linear - Alternative Label
+## 水平非线性 - 可替换标签
 
 {{"demo": "pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
-## Horizontal Non Linear - Error Step
+## 水平非线性 - 错误步骤展示
 
 {{"demo": "pages/demos/steppers/HorizontalNonLinearStepperWithError.js"}}
 
-## Vertical Stepper
+## 垂直步进器
 
 {{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}
 
-## Customized Stepper
+## 定制步进器
 
-This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
+此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 ` completed ` 状态。
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 
-## Mobile Stepper
+## 移动设备上的步进器
 
-This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+该组件实现了适用于移动设备的紧凑型步进器。 有关其详情, 请参阅 [移动步骤](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
-### Mobile Stepper - Text
+### 移动设备的步进器 - 文字
 
-This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
+这本质上是被定位是一个后退/前进按钮。您必须自己实现文本描述，不过下面提供了一个示例供参考。
 
 {{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
 
-### Mobile Stepper - Text with Carousel effect
+### 移动设备步进器 - 带轮播效果
 
-This demo is very similar to the previous, the difference is the usage of [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
+这个实例与之前的非常相似，不同之处在于使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)以进行步骤转换。
 
 {{"demo": "pages/demos/steppers/SwipeableTextMobileStepper.js"}}
 
-### Mobile Stepper - Dots
+### 移动设备的步进器 - 指示点
 
-Use dots when the number of steps isn’t large.
+当步骤的数字不是特别明显时使用点状标记。
 
 {{"demo": "pages/demos/steppers/DotsMobileStepper.js"}}
 
-### Mobile Stepper - Progress
+### 移动设备步进器 - 进度条
 
-Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
+当有许多步骤时，或者如果在此过程中需要插入步骤（基于对早期步骤的响应），请使用进度条。
 
 {{"demo": "pages/demos/steppers/ProgressMobileStepper.js"}}

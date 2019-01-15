@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
 import GridList from './GridList';
 
 const tilesData = [
@@ -32,13 +32,13 @@ describe('<GridList />', () => {
     assert.strictEqual(wrapper.name(), 'ul');
   });
 
-  it('should render a ul', () => {
+  it('should accept a component property', () => {
     const wrapper = shallow(
-      <GridList component="ul">
+      <GridList component="li">
         <br />
       </GridList>,
     );
-    assert.strictEqual(wrapper.name(), 'ul');
+    assert.strictEqual(wrapper.name(), 'li');
   });
 
   it('should render children and change cellHeight', () => {

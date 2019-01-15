@@ -67,7 +67,6 @@ The progress components accept a value in the range 0 - 100. This simplifies thi
 ```jsx
 // MIN = Minimum expected value
 // MAX = Maximium expected value
-
 // Function to normalise the values (MIN / MAX could be integrated)
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
 
@@ -81,6 +80,17 @@ function Progress(props) {
   )
 }
 ```
+
+## Customized Progress
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in,
+here is one example of how you can customize the components.
+The last demo demonstrates how you can build a Facebook like spinner.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
 ## Delaying appearance
 
@@ -98,4 +108,7 @@ You should run processor intensive operations in a web worker or by batch in ord
 
 ![heavy load](/static/images/progress/heavy-load.gif)
 
+When it's not possible, you can leverage the `disableShrink` property to mitigate the issue.
 See https://github.com/mui-org/material-ui/issues/10327
+
+{{"demo": "pages/demos/progress/CircularUnderLoad.js"}}

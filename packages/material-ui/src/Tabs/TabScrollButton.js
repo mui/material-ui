@@ -10,7 +10,8 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     color: 'inherit',
-    flex: '0 0 56px',
+    width: 56,
+    flexShrink: 0,
   },
 };
 

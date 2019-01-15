@@ -75,11 +75,11 @@ class EnhancedTableHead extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {rows.map(row => {
-            return (
+          {rows.map(
+            row => (
               <TableCell
                 key={row.id}
-                numeric={row.numeric}
+                align={row.numeric ? 'right' : 'left'}
                 padding={row.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === row.id ? order : false}
               >
@@ -97,8 +97,9 @@ class EnhancedTableHead extends React.Component {
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
-            );
-          }, this)}
+            ),
+            this,
+          )}
         </TableRow>
       </TableHead>
     );
@@ -312,10 +313,10 @@ class EnhancedTable extends React.Component {
                       <TableCell component="th" scope="row" padding="none">
                         {n.name}
                       </TableCell>
-                      <TableCell numeric>{n.calories}</TableCell>
-                      <TableCell numeric>{n.fat}</TableCell>
-                      <TableCell numeric>{n.carbs}</TableCell>
-                      <TableCell numeric>{n.protein}</TableCell>
+                      <TableCell align="right">{n.calories}</TableCell>
+                      <TableCell align="right">{n.fat}</TableCell>
+                      <TableCell align="right">{n.carbs}</TableCell>
+                      <TableCell align="right">{n.protein}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -328,6 +329,7 @@ class EnhancedTable extends React.Component {
           </Table>
         </div>
         <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={data.length}
           rowsPerPage={rowsPerPage}

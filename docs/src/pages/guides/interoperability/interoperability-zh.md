@@ -11,7 +11,7 @@ We have provided examples for the following styling solutions:
 - [Emotion](#emotion)
 - [React Emotion](#react-emotion)
 - [CSS Modules](#css-modules)
-- [Global CSS](#global-css)
+- [全局CSS](#global-css)
 - [React JSS](#react-jss)
 - [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
@@ -340,7 +340,7 @@ export default CssModulesButton;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-## Global CSS
+## 全局CSS
 
 Explicitly providing the class names to the component is too much effort? Rest assured, we provide an option to make the class names **deterministic** for quick prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css).
 

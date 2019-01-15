@@ -13,6 +13,8 @@ import ownerDocument from '../utils/ownerDocument';
 class ClickAwayListener extends React.Component {
   mounted = false;
 
+  moved = false;
+
   componentDidMount() {
     // Finds the first child when a component returns a fragment.
     // https://github.com/facebook/react/blob/036ae3c6e2f056adffc31dfb78d1b6f0c63272f0/packages/react-dom/src/__tests__/ReactDOMFiber-test.js#L105
@@ -35,6 +37,12 @@ class ClickAwayListener extends React.Component {
       return;
     }
 
+    // Do not act if user performed touchmove
+    if (this.moved) {
+      this.moved = false;
+      return;
+    }
+
     // The child might render null.
     if (!this.node) {
       return;
@@ -51,6 +59,10 @@ class ClickAwayListener extends React.Component {
     }
   };
 
+  handleTouchMove = () => {
+    this.moved = true;
+  };
+
   render() {
     const { children, mouseEvent, touchEvent, onClickAway, ...other } = this.props;
     const listenerProps = {};
@@ -59,6 +71,7 @@ class ClickAwayListener extends React.Component {
     }
     if (touchEvent !== false) {
       listenerProps[touchEvent] = this.handleClickAway;
+      listenerProps.onTouchMove = this.handleTouchMove;
     }
 
     return (

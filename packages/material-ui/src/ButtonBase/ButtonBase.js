@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
+import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
@@ -87,6 +88,8 @@ class ButtonBase extends React.Component {
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
 
   handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
+
+  handleContextMenu = createRippleHandler(this, 'ContextMenu', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     clearTimeout(this.focusVisibleTimeout);
@@ -297,6 +300,7 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
+        onContextMenu={this.handleContextMenu}
         ref={buttonRef}
         tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
@@ -350,7 +354,7 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the base button will be disabled.
    */
@@ -371,8 +375,10 @@ ButtonBase.propTypes = {
   /**
    * This property can help a person know which element has the keyboard focus.
    * The class name will be applied when the element gain the focus through a keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
    */
   focusVisibleClassName: PropTypes.string,
   /**

@@ -95,3 +95,11 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 ```jsx
 <InputLabel shrink>Count</InputLabel>
 ```
+
+## 补充项目
+
+对于更高级的用例，您可以利用：
+
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与Redux Form配搭来使用Material UI的一组包装组件。
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合formik来使用Material-UI的绑定。
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) 用于更加方便地与Final Form配搭来使用Material UI的一组包装组件。

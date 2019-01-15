@@ -4,9 +4,9 @@ import { TouchRippleProps } from './TouchRipple';
 
 export interface ButtonBaseProps
   extends StandardProps<
-      React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
-      ButtonBaseClassKey
-    > {
+    React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
+    ButtonBaseClassKey
+  > {
   action?: (actions: ButtonBaseActions) => void;
   buttonRef?: React.Ref<any> | React.RefObject<any>;
   centerRipple?: boolean;

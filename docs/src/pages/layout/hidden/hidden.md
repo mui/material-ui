@@ -37,7 +37,7 @@ This has the benefit of not rendering any content at all unless the breakpoint i
 
 ### css
 
-If you are using server side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
+If you are using server-side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
 
 ## Breakpoint up
 

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { componentPropType } from '@material-ui/utils';
 import clamp from '../utils/clamp';
 
 export const styles = theme => {
@@ -67,7 +68,6 @@ export const styles = theme => {
       transition: trackTransitions,
       '&$activated': {
         transition: 'none',
-        willChange: 'transform',
       },
       '&$disabled': {
         backgroundColor: colors.disabled,
@@ -101,11 +101,9 @@ export const styles = theme => {
     thumbWrapper: {
       position: 'relative',
       zIndex: 2,
-      pointerEvents: 'none',
       transition: thumbTransitions,
       '&$activated': {
         transition: 'none',
-        willChange: 'transform',
       },
       '&$vertical': {
         bottom: 0,
@@ -246,6 +244,8 @@ class Slider extends React.Component {
     if (this.containerRef) {
       this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
     }
+    document.body.removeEventListener('mouseenter', this.handleMouseEnter);
+    document.body.removeEventListener('mouseleave', this.handleMouseLeave);
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
     clearTimeout(this.jumpAnimationTimeoutId);
@@ -326,6 +326,20 @@ class Slider extends React.Component {
     });
   };
 
+  handleMouseEnter = event => {
+    // If the slider was being interacted with but the mouse went off the window
+    // and then re-entered while unclicked then end the interaction.
+    if (event.buttons === 0) {
+      this.handleDragEnd(event);
+    }
+  };
+
+  handleMouseLeave = event => {
+    // The mouse will have moved between the last mouse move event
+    // this mouse leave event
+    this.handleMouseMove(event);
+  };
+
   handleTouchStart = event => {
     event.preventDefault();
     const touch = event.changedTouches.item(0);
@@ -345,6 +359,8 @@ class Slider extends React.Component {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
 
+    document.body.addEventListener('mouseenter', this.handleMouseEnter);
+    document.body.addEventListener('mouseleave', this.handleMouseLeave);
     document.body.addEventListener('mousemove', this.handleMouseMove);
     document.body.addEventListener('mouseup', this.handleMouseUp);
 
@@ -368,15 +384,7 @@ class Slider extends React.Component {
   };
 
   handleMouseUp = event => {
-    this.setState({ currentState: 'normal' });
-
-    document.body.removeEventListener('mousemove', this.handleMouseMove);
-    document.body.removeEventListener('mouseup', this.handleMouseUp);
-    document.body.removeEventListener('touchend', this.handleTouchEnd);
-
-    if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragEnd(event);
-    }
+    this.handleDragEnd(event);
   };
 
   handleTouchMove = event => {
@@ -406,6 +414,20 @@ class Slider extends React.Component {
 
     this.emitChange(event, value);
   };
+
+  handleDragEnd(event) {
+    this.setState({ currentState: 'normal' });
+
+    document.body.removeEventListener('mouseenter', this.handleMouseEnter);
+    document.body.removeEventListener('mouseleave', this.handleMouseLeave);
+    document.body.removeEventListener('mousemove', this.handleMouseMove);
+    document.body.removeEventListener('mouseup', this.handleMouseUp);
+    document.body.removeEventListener('touchend', this.handleTouchEnd);
+
+    if (typeof this.props.onDragEnd === 'function') {
+      this.props.onDragEnd(event);
+    }
+  }
 
   emitChange(event, rawValue, callback) {
     const { step, value: previousValue, onChange, disabled } = this.props;
@@ -540,6 +562,7 @@ class Slider extends React.Component {
       <Component
         role="slider"
         className={className}
+        aria-disabled={disabled}
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}
@@ -558,6 +581,7 @@ class Slider extends React.Component {
           <div className={thumbWrapperClasses} style={inlineThumbStyles}>
             <ButtonBase
               className={thumbClasses}
+              disabled={disabled}
               disableRipple
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
@@ -589,7 +613,7 @@ Slider.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, the slider will be disabled.
    */

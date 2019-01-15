@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, getClasses, createMount } from '../test-utils';
+import { createShallow, getClasses, createMount } from '@material-ui/core/test-utils';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
@@ -70,7 +70,7 @@ describe('<Ripple />', () => {
     });
   });
 
-  describe('pulsating and stopping', () => {
+  describe('pulsating and stopping 1', () => {
     let wrapper;
 
     before(() => {
@@ -116,7 +116,7 @@ describe('<Ripple />', () => {
     });
   });
 
-  describe('pulsating and stopping', () => {
+  describe('pulsating and stopping 2', () => {
     let wrapper;
     let clock;
     let callbackSpy;

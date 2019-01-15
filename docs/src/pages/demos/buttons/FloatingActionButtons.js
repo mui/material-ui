@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
 const styles = theme => ({
-  button: {
+  fab: {
     margin: theme.spacing.unit,
   },
   extendedIcon: {
@@ -20,19 +20,19 @@ function FloatingActionButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button variant="fab" color="primary" aria-label="Add" className={classes.button}>
+      <Fab color="primary" aria-label="Add" className={classes.fab}>
         <AddIcon />
-      </Button>
-      <Button variant="fab" color="secondary" aria-label="Edit" className={classes.button}>
+      </Fab>
+      <Fab color="secondary" aria-label="Edit" className={classes.fab}>
         <Icon>edit_icon</Icon>
-      </Button>
-      <Button variant="extendedFab" aria-label="Delete" className={classes.button}>
+      </Fab>
+      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
         <NavigationIcon className={classes.extendedIcon} />
         Extended
-      </Button>
-      <Button variant="fab" disabled aria-label="Delete" className={classes.button}>
+      </Fab>
+      <Fab disabled aria-label="Delete" className={classes.fab}>
         <DeleteIcon />
-      </Button>
+      </Fab>
     </div>
   );
 }

@@ -1,11 +1,10 @@
 ---
 filename: /packages/material-ui/src/Modal/Modal.js
-title: Modal API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Modal
+# Modal API
 
 <p class="description">The API documentation of the Modal React component. Learn more about the properties and the CSS customization points.</p>
 
@@ -13,13 +12,23 @@ title: Modal API
 import Modal from '@material-ui/core/Modal';
 ```
 
+Modal is a lower-level construct that is leveraged by the following components:
+
+- [Dialog](/api/dialog/)
+- [Drawer](/api/drawer/)
+- [Menu](/api/menu/)
+- [Popover](/api/popover/)
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+rather than directly using Modal.
+
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">Backdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
+| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">Backdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
 | <span class="prop-name">BackdropProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Backdrop`](/api/backdrop/) element. |
 | <span class="prop-name">children</span> | <span class="prop-type">element</span> |   | A single child content element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
@@ -41,7 +50,7 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 
 Any other properties supplied will be spread to the root element (native element).
 
-## CSS API
+## CSS
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
@@ -53,11 +62,10 @@ This property accepts the following keys:
 | <span class="prop-name">hidden</span> | Styles applied to the root element if the `Modal` has exited.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Modal/Modal.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Modal/Modal.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiModal`.
 
 ## Demos

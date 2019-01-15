@@ -11,6 +11,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   onClose: React.ReactEventHandler<{}>;
   onOpen: React.ReactEventHandler<{}>;
   open: boolean;
+  SwipeAreaProps?: object;
   swipeAreaWidth?: number;
 }
 

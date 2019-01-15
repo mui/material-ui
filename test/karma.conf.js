@@ -27,8 +27,8 @@ module.exports = function setKarmaConfig(config) {
       },
     ],
     plugins: [
-      'karma-chrome-launcher',
       'karma-mocha',
+      'karma-chrome-launcher',
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-mocha-reporter',
@@ -62,7 +62,8 @@ module.exports = function setKarmaConfig(config) {
           {
             test: /\.js$/,
             loader: 'babel-loader',
-            exclude: /node_modules/,
+            // https://github.com/sinonjs/sinon/issues/1951
+            exclude: /node_modules(\\|\/)(?!(sinon)(\\|\/)).*/,
           },
         ],
       },
@@ -95,7 +96,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Sierra',
           browser: 'Chrome',
-          browser_version: '45.0',
+          browser_version: '41.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',

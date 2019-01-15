@@ -8,57 +8,55 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
+    flexGrow: 1,
     overflow: 'hidden',
     padding: `0 ${theme.spacing.unit * 3}px`,
   },
-  wrapper: {
-    maxWidth: 400,
-  },
   paper: {
-    margin: theme.spacing.unit,
+    maxWidth: 400,
+    margin: `${theme.spacing.unit}px auto`,
     padding: theme.spacing.unit * 2,
   },
 });
 
+const message = `Truncation should be conditionally applicable on this long line of text
+ as this is a much longer line than what the container can support. `;
+
 function AutoGridNoWrap(props) {
   const { classes } = props;
-  const message = `Truncation should be conditionally applicable on this long line of text
-                    as this is a much longer line than what the container can support. `;
 
   return (
     <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <Paper className={classes.paper}>
-          <Grid container wrap="nowrap" spacing={16}>
-            <Grid item>
-              <Avatar>W</Avatar>
-            </Grid>
-            <Grid item xs zeroMinWidth>
-              <Typography noWrap>{message}</Typography>
-            </Grid>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap" spacing={16}>
+          <Grid item>
+            <Avatar>W</Avatar>
           </Grid>
-        </Paper>
-        <Paper className={classes.paper}>
-          <Grid container wrap="nowrap" spacing={16}>
-            <Grid item>
-              <Avatar>W</Avatar>
-            </Grid>
-            <Grid item xs>
-              <Typography noWrap>{message}</Typography>
-            </Grid>
+          <Grid item xs zeroMinWidth>
+            <Typography noWrap>{message}</Typography>
           </Grid>
-        </Paper>
-        <Paper className={classes.paper}>
-          <Grid container wrap="nowrap" spacing={16}>
-            <Grid item>
-              <Avatar>W</Avatar>
-            </Grid>
-            <Grid item xs>
-              <Typography>{message}</Typography>
-            </Grid>
+        </Grid>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap" spacing={16}>
+          <Grid item>
+            <Avatar>W</Avatar>
           </Grid>
-        </Paper>
-      </div>
+          <Grid item xs>
+            <Typography noWrap>{message}</Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap" spacing={16}>
+          <Grid item>
+            <Avatar>W</Avatar>
+          </Grid>
+          <Grid item xs>
+            <Typography>{message}</Typography>
+          </Grid>
+        </Grid>
+      </Paper>
     </div>
   );
 }

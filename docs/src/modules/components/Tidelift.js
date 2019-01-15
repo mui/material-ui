@@ -11,6 +11,7 @@ const styles = theme => ({
     right: 0,
     left: 0,
     display: 'flex',
+    color: theme.palette.common.white,
     backgroundColor: '#626980', // Tidelift color.
     position: 'relative',
     top: 56,
@@ -24,13 +25,10 @@ const styles = theme => ({
   },
   logo: {
     background: 'url(/static/images/tidelift.svg) no-repeat 50%',
-    content: "''",
+    content: '""',
     width: 20,
     height: 20,
     margin: `0 ${theme.spacing.unit}px 0 0`,
-  },
-  label: {
-    color: theme.palette.common.white,
   },
 });
 
@@ -40,13 +38,12 @@ function Tidelift(props) {
   return (
     <Link
       className={classes.root}
-      variant="button"
       href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage"
       target="_blank"
       rel="noopener"
     >
       <span className={classes.logo} />
-      <Typography className={classes.label}>Get Professionally Supported Material-UI</Typography>
+      <Typography color="inherit">Get Professionally Supported Material-UI</Typography>
     </Link>
   );
 }

@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import { darken, fade, lighten } from '../styles/colorManipulator';
+import TableContext from '../Table/TableContext';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -65,63 +69,102 @@ export const styles = theme => ({
       padding: 0,
     },
   },
+  /* Styles applied to the root element if `align="left"`. */
+  alignLeft: {
+    textAlign: 'left',
+  },
+  /* Styles applied to the root element if `align="center"`. */
+  alignCenter: {
+    textAlign: 'center',
+  },
+  /* Styles applied to the root element if `align="right"`. */
+  alignRight: {
+    textAlign: 'right',
+    flexDirection: 'row-reverse',
+  },
+  /* Styles applied to the root element if `align="justify"`. */
+  alignJustify: {
+    textAlign: 'justify',
+  },
 });
 
-function TableCell(props, context) {
+function TableCell(props) {
   const {
+    align,
     children,
     classes,
     className: classNameProp,
     component,
     sortDirection,
-    numeric,
+    numeric = false,
     padding: paddingProp,
     scope: scopeProp,
     variant,
     ...other
   } = props;
 
-  const { table, tablelvl2 } = context;
-  let Component;
-  if (component) {
-    Component = component;
-  } else {
-    Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
-  }
-
-  let scope = scopeProp;
-  if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
-    scope = 'col';
-  }
-  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.head]: variant ? variant === 'head' : tablelvl2 && tablelvl2.variant === 'head',
-      [classes.body]: variant ? variant === 'body' : tablelvl2 && tablelvl2.variant === 'body',
-      [classes.footer]: variant
-        ? variant === 'footer'
-        : tablelvl2 && tablelvl2.variant === 'footer',
-      [classes.numeric]: numeric,
-      [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
-    },
-    classNameProp,
-  );
-
-  let ariaSort = null;
-  if (sortDirection) {
-    ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
-  }
-
   return (
-    <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
-      {children}
-    </Component>
+    <TableContext.Consumer>
+      {table => (
+        <Tablelvl2Context.Consumer>
+          {tablelvl2 => {
+            let Component;
+            if (component) {
+              Component = component;
+            } else {
+              Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
+            }
+
+            let scope = scopeProp;
+            if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
+              scope = 'col';
+            }
+            const padding = paddingProp || (table && table.padding ? table.padding : 'default');
+
+            const className = classNames(
+              classes.root,
+              {
+                [classes.head]: variant
+                  ? variant === 'head'
+                  : tablelvl2 && tablelvl2.variant === 'head',
+                [classes.body]: variant
+                  ? variant === 'body'
+                  : tablelvl2 && tablelvl2.variant === 'body',
+                [classes.footer]: variant
+                  ? variant === 'footer'
+                  : tablelvl2 && tablelvl2.variant === 'footer',
+                [classes[`align${capitalize(align)}`]]: align !== 'inherit',
+                [classes.numeric]: numeric,
+                [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
+              },
+              classNameProp,
+            );
+
+            let ariaSort = null;
+            if (sortDirection) {
+              ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
+            }
+
+            return (
+              <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
+                {children}
+              </Component>
+            );
+          }}
+        </Tablelvl2Context.Consumer>
+      )}
+    </TableContext.Consumer>
   );
 }
 
 TableCell.propTypes = {
+  /**
+   * Set the text-align on the table cell content.
+   *
+   * Monetary or generally number fields **should be right aligned** as that allows
+   * you to add them up quickly in your head without having to worry about decimals.
+   */
+  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
   /**
    * The table cell contents.
    */
@@ -139,11 +182,11 @@ TableCell.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * If `true`, content will align to the right.
    */
-  numeric: PropTypes.bool,
+  numeric: deprecatedPropType(PropTypes.bool, 'Instead, use the `align` property.'),
   /**
    * Sets the padding applied to the cell.
    * By default, the Table parent component set the value.
@@ -165,12 +208,7 @@ TableCell.propTypes = {
 };
 
 TableCell.defaultProps = {
-  numeric: false,
-};
-
-TableCell.contextTypes = {
-  table: PropTypes.object,
-  tablelvl2: PropTypes.object,
+  align: 'inherit',
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
