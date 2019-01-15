@@ -421,6 +421,10 @@ SwipeableDrawer.propTypes = {
    */
   disableSwipeToOpen: PropTypes.bool,
   /**
+   * @ignore
+   */
+  hideBackdrop: PropTypes.bool,
+  /**
    * Affects how far the drawer must be opened/closed to change his state.
    * Specified as percent (0-1) of the width of the drawer
    */

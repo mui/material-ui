@@ -87,6 +87,10 @@ function NotchedOutline(props) {
 
 NotchedOutline.propTypes = {
   /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
    */

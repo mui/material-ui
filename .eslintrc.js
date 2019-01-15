@@ -37,6 +37,7 @@ module.exports = {
     'no-console': 'error',
     'no-alert': 'error',
     'react/no-danger': 'error',
+    'no-constant-condition': 'error',
 
     // Strict, airbnb is using off
     'react/no-direct-mutation-state': 'error',

@@ -147,9 +147,9 @@ class Textarea extends React.Component {
       onChange,
       rows,
       rowsMax,
+      style,
       textareaRef,
       value,
-      style,
       ...other
     } = this.props;
 
@@ -220,6 +220,10 @@ Textarea.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native textarea element.
    */
