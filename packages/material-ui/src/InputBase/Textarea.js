@@ -115,7 +115,11 @@ class Textarea extends React.Component {
       this.shadowRef.value = props.value == null ? '' : String(props.value);
     }
 
-    const lineHeight = this.singlelineShadowRef.scrollHeight;
+    let lineHeight = this.singlelineShadowRef.scrollHeight;
+    // The Textarea might not be visible (p.ex: display: none).
+    // In this case, the layout values read from the DOM will be 0.
+    lineHeight = lineHeight === 0 ? ROWS_HEIGHT : lineHeight;
+
     let newHeight = this.shadowRef.scrollHeight;
 
     // Guarding for jsdom, where scrollHeight isn't present.
