@@ -19,7 +19,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'div'</span> | Component for rendering image. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">Component</span> | <span class="prop-default">'div'</span> | Component for rendering image. Either a string to use a DOM element or a component. |
 | <span class="prop-name">image</span> | <span class="prop-type">string</span> |   | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |   | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
 

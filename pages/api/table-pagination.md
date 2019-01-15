@@ -18,10 +18,10 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">ActionsComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
+| <span class="prop-name">ActionsComponent</span> | <span class="prop-type">Component</span> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
 | <span class="prop-name">backIconButtonProps</span> | <span class="prop-type">object</span> |   | Properties applied to the back arrow [`IconButton`](/api/icon-button/) component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">Component</span> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name required">count *</span> | <span class="prop-type">number</span> |   | The total number of rows. |
 | <span class="prop-name">labelDisplayedRows</span> | <span class="prop-type">func</span> | <span class="prop-default">({ from, to, count }) => `${from}-${to} of ${count}`</span> | Customize the displayed rows label. |
 | <span class="prop-name">labelRowsPerPage</span> | <span class="prop-type">node</span> | <span class="prop-default">'Rows per page:'</span> | Customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
