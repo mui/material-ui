@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import Checkbox from '../Checkbox';
@@ -96,6 +97,9 @@ describe('<FormControlLabel />', () => {
           </FormControlContext.Provider>
         );
       }
+      Provider.propTypes = {
+        context: PropTypes.object,
+      };
 
       wrapper = mount(<Provider />);
     });
@@ -134,7 +138,7 @@ describe('<FormControlLabel />', () => {
   });
 
   it('should not inject extra properties', () => {
-    const Control = ({ inputRef, ...props }) => <div name="name" {...props} />;
+    const Control = props => <div name="name" {...props} />;
     const wrapper = mount(<FormControlLabel label="Pizza" control={<Control />} />);
     assert.strictEqual(wrapper.find('div').props().name, 'name');
   });
