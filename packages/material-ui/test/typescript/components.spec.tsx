@@ -83,7 +83,9 @@ import { DialogProps } from '@material-ui/core/Dialog';
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
 
-const TestOverride = (props: { x?: number }) => <div />;
+const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, ref) => (
+  <div ref={ref} />
+));
 
 const AppBarTest = () => (
   <AppBar position="static">
@@ -102,6 +104,9 @@ const AppBarTest = () => (
 const AvatarTest = () => (
   <div>
     <Avatar
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
         log(e);
@@ -111,6 +116,9 @@ const AvatarTest = () => (
     />
     <Avatar<'button'>
       component="button"
+      ref={elem => {
+        elem; // $ExpectType HTMLButtonElement | null
+      }}
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
         log(e);
@@ -120,11 +128,21 @@ const AvatarTest = () => (
     />
     <Avatar
       component="button"
+      ref={(elem: HTMLButtonElement) => {}}
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)}
       alt="Image Alt"
       src="example.jpg"
     />
     <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
+    <Avatar<typeof TestOverride>
+      component={TestOverride}
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
+      x={3}
+      alt="Image Alt"
+      src="example.jpg"
+    />
     // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
     // $ExpectError
     <Avatar component={TestOverride} onClick={log} />
@@ -177,6 +195,9 @@ const ButtonTest = () => (
     <Button href="/open-collective">Link</Button>
     // By default the underlying component is a button element:
     <Button
+      ref={elem => {
+        elem; // $ExpectType HTMLButtonElement | null
+      }}
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
         log(e);
@@ -187,6 +208,9 @@ const ButtonTest = () => (
     // If an href is provided, an anchor is used:
     <Button
       href="/open-collective"
+      ref={elem => {
+        elem; // $ExpectType HTMLAnchorElement | null
+      }}
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
         log(e);
@@ -197,6 +221,9 @@ const ButtonTest = () => (
     // If a component prop is specified, use that:
     <Button<'div'>
       component="div"
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
       onClick={e => {
         e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
         log(e);
@@ -204,8 +231,8 @@ const ButtonTest = () => (
     >
       Div
     </Button>
-    // Can't have an onClick handler if the overriding component doesn't specify one:
     {
+      // Can't have an onClick handler if the overriding component doesn't specify one:
       // $ExpectError
       <Button<typeof TestOverride> component={TestOverride} onClick={log}>
         TestOverride
@@ -349,6 +376,9 @@ const DialogTest = () => {
             </ListItem>
           ))}
           <ListItem
+            ref={elem => {
+              elem; // $ExpectType HTMLLIElement | null
+            }}
             onClick={e => {
               e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
               log(e);
@@ -361,6 +391,9 @@ const DialogTest = () => {
           </ListItem>
           <ListItem
             button
+            ref={elem => {
+              elem; // $ExpectType HTMLButtonElement | null
+            }}
             onClick={e => {
               e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
               log(e);
@@ -375,6 +408,9 @@ const DialogTest = () => {
           </ListItem>
           <ListItem<'a'>
             component="a"
+            ref={elem => {
+              elem; // $ExpectType HTMLAnchorElement | null
+            }}
             onClick={e => {
               e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
               log(e);
@@ -593,6 +629,9 @@ const MenuTest = () => {
         <MenuItem
           key={option}
           selected={false}
+          ref={elem => {
+            elem; // $ExpectType HTMLLIElement | null
+          }}
           onClick={e => {
             e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
             log(e);
@@ -603,6 +642,9 @@ const MenuTest = () => {
       ))}
       <MenuItem<'a'>
         component="a"
+        ref={elem => {
+          elem; // $ExpectType HTMLAnchorElement | null
+        }}
         onClick={e => {
           e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
           log(e);
