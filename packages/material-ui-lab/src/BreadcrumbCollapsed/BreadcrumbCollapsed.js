@@ -24,6 +24,9 @@ const styles = theme => ({
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
 function BreadcrumbCollapsed(props) {
   const { classes, ...rest } = props;
   return <MoreHorizIcon className={classes.collapsed} {...rest} />;
