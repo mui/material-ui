@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
@@ -37,9 +36,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-  },
-  anchor: {
-    color: theme.palette.text.secondary,
   },
 });
 
@@ -102,14 +98,22 @@ function AppDrawer(props) {
         <div className={classes.nav}>
           <div className={classes.toolbarIe11}>
             <div className={classes.toolbar}>
-              <Link className={classes.title} href="/" onClick={onClose}>
-                <Typography variant="h6" color="inherit">
-                  Material-UI
-                </Typography>
+              <Link
+                className={classes.title}
+                href="/"
+                onClick={onClose}
+                variant="h6"
+                color="inherit"
+              >
+                Material-UI
               </Link>
               {process.env.LIB_VERSION ? (
-                <Link className={classes.anchor} href={_rewriteUrlForNextExport('/versions')}>
-                  <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
+                <Link
+                  color="textSecondary"
+                  variant="caption"
+                  href={_rewriteUrlForNextExport('/versions')}
+                >
+                  {`v${process.env.LIB_VERSION}`}
                 </Link>
               ) : null}
             </div>

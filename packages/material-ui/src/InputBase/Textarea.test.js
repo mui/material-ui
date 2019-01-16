@@ -113,6 +113,12 @@ describe('<Textarea />', () => {
       mount(<Textarea textareaRef={handleRef} />);
       assert.strictEqual(handleRef.callCount, 1);
     });
+
+    it('should be able to return the input node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<Textarea textareaRef={ref} />);
+      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
+    });
   });
 
   describe('prop: onChange', () => {
@@ -153,14 +159,6 @@ describe('<Textarea />', () => {
       assert.strictEqual(wrapper.state().height, 19);
       clock.tick(166);
       assert.strictEqual(wrapper.state().height, 43);
-    });
-  });
-
-  describe('prop: textareaRef', () => {
-    it('should be able to return the input node via a ref object', () => {
-      const ref = React.createRef();
-      mount(<Textarea textareaRef={ref} />);
-      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
     });
   });
 });

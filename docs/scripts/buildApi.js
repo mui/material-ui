@@ -81,6 +81,8 @@ function buildDocs(options) {
     return;
   }
 
+  const spread = !src.match(/ = exactProp\(/);
+
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
@@ -137,6 +139,7 @@ function buildDocs(options) {
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
+  reactAPI.spread = spread;
 
   // if (reactAPI.name !== 'TableCell') {
   //   return;

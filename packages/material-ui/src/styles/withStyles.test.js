@@ -150,10 +150,9 @@ describe('withStyles', () => {
     it('should run lifecycles with no theme', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles)(Empty);
-
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
-          <JssProvider registry={sheetsRegistry} jss={jss} generateId={generateClassName}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,
@@ -199,7 +198,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
-          <JssProvider registry={sheetsRegistry} jss={jss} generateId={generateClassName}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,

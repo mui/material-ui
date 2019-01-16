@@ -24,7 +24,6 @@ that exists outside the DOM hierarchy of the parent component.
 | <span class="prop-name">disablePortal</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Disable the portal behavior. The children stay within it's parent DOM hierarchy. |
 | <span class="prop-name">onRendered</span> | <span class="prop-type">func</span> |   | Callback fired once the children has been mounted into the `container`. |
 
-Any other properties supplied will be spread to the root element (native element).
 
 ## Demos
 

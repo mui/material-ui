@@ -96,6 +96,10 @@ RadioGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * The default input value, useful when not controlling the component.
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  /**
    * The name used to reference the value of the control.
    */
   name: PropTypes.string,

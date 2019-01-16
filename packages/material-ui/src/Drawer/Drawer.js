@@ -198,6 +198,10 @@ Drawer.propTypes = {
    */
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   /**
+   * @ignore
+   */
+  BackdropProps: PropTypes.object,
+  /**
    * The contents of the drawer.
    */
   children: PropTypes.node,

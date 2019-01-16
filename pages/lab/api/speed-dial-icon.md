@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">iconOpen</span> | Styles applied to the icon component if `open={true}`.
 | <span class="prop-name">iconWithOpenIconOpen</span> | Styles applied to the icon when and `openIcon` is provided & if `open={true}`.
 | <span class="prop-name">openIcon</span> | Styles applied to the `openIcon` if provided.
-| <span class="prop-name">openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`
+| <span class="prop-name">openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js)

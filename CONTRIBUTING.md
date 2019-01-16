@@ -10,7 +10,7 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/mui-org/material-ui/blob/master/test/README.md).
+When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
 When migrating a component to master, or submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 
@@ -20,15 +20,25 @@ All stable releases are tagged ([view tags](https://github.com/mui-org/material-
 At any given time, `master` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
-#### `master` is unsafe
+#### `next` is unsafe
 
-We will do our best to keep `master` in good shape, with tests passing at all times.
+We will do our best to keep `next` in good shape, with tests passing at all times.
 However, in order to move fast, we will make API changes that your application might not be compatible with.
+
+#### `master` is for 3.x
+
+Only important bug fixes should be applied to `master` at this point.
 
 ### How to increase the chance of being accepted?
 
 We will only accept a pull request for which all tests pass. Make sure the following is true:
-- The branch is not behind master.
+- The branch is targeted at: 
+  - `master` for important fixes.
+  - `next` for everything else including breaking changes.
+- The branch is not behind its target.
+- If a breaking change is introduced:
+  - There is an open RFC issue that the PR addresses.
+  - The issue and the PR should be included in [#13663](https://github.com/mui-org/material-ui/issues/13663).
 - If a feature is being added:
    - If the result was already achievable with the core library, explain why this
       feature needs to be added to the core.

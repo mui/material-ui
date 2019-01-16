@@ -4,11 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
-import Link from './modules/next/Link';
 import AppForm from './modules/views/AppForm';
 import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
@@ -62,7 +62,7 @@ class SignIn extends React.Component {
             </Typography>
             <Typography variant="body2" align="center">
               {'Not a member yet? '}
-              <Link href="/premium-themes/onepirate/sign-up" variant="underline">
+              <Link href="/premium-themes/onepirate/sign-up" align="center" underline="always">
                 Sign Up here
               </Link>
             </Typography>
@@ -119,17 +119,10 @@ class SignIn extends React.Component {
               </form>
             )}
           </Form>
-          <Typography
-            component={linkProps => (
-              <Link
-                {...linkProps}
-                variant="underline"
-                href="/premium-themes/onepirate/forgot-password"
-              />
-            )}
-            align="center"
-          >
-            Forgot password?
+          <Typography align="center">
+            <Link underline="always" href="/premium-themes/onepirate/forgot-password">
+              Forgot password?
+            </Link>
           </Typography>
         </AppForm>
         <AppFooter />

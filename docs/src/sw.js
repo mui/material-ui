@@ -10,7 +10,7 @@ workbox.core.setCacheNameDetails({
   prefix: 'mui',
 });
 
-workbox.precaching.precacheAndRoute([]);
+workbox.routing.registerRoute(/(\/|\.js)$/, workbox.strategies.cacheFirst());
 
 self.addEventListener('message', event => {
   switch (event.data) {

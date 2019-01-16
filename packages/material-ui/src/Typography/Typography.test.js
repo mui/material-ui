@@ -75,6 +75,13 @@ describe('<Typography />', () => {
     });
   });
 
+  describe('prop: inline', () => {
+    it('should render with the inline class', () => {
+      const wrapper = shallow(<Typography inline>Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.inline), true);
+    });
+  });
+
   describe('headline', () => {
     it('should render a span by default', () => {
       const wrapper = shallow(<Typography variant="button">Hello</Typography>);

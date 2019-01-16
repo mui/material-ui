@@ -53,9 +53,7 @@ async function run() {
     await fse.ensureDir(path.join(__dirname, '../material-io-tools-icons'));
     const response = await fetch('https://material.io/tools/icons/static/data.json');
     const data = await response.json();
-    let icons = data.categories.reduce((acc, item) => {
-      return acc.concat(item.icons);
-    }, []);
+    let icons = data.categories.reduce((acc, item) => acc.concat(item.icons), []);
     icons = icons.map((icon, index) => ({ index, ...icon }));
     icons = icons.splice(argv.startAfter || 0);
     console.log(`${icons.length} icons to download`);

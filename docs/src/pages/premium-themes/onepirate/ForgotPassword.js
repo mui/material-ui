@@ -60,7 +60,7 @@ class ForgotPassword extends React.Component {
               Forgot your password?
             </Typography>
             <Typography variant="body2" align="center">
-              {"Enter your email address below and we we'll" +
+              {"Enter your email address below and we'll " +
                 'send you a link to reset your password.'}
             </Typography>
           </React.Fragment>

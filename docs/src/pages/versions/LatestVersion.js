@@ -25,34 +25,22 @@ function LatestVersion(props) {
         <TableBody>
           <TableRow>
             <TableCell padding="dense">
-              <Typography>master branch</Typography>
+              <Typography variant="body2">master branch</Typography>
             </TableCell>
             <TableCell padding="dense">
-              <Typography
-                component={props2 => (
-                  <Link
-                    {...props2}
-                    variant="secondary"
-                    rel="nofollow"
-                    href="https://material-ui.netlify.com/"
-                  />
-                )}
+              <Link
+                variant="body2"
+                color="secondary"
+                rel="nofollow"
+                href="https://material-ui.netlify.com/"
               >
                 Documentation
-              </Typography>
+              </Link>
             </TableCell>
             <TableCell padding="dense">
-              <Typography
-                component={props2 => (
-                  <Link
-                    {...props2}
-                    variant="secondary"
-                    href="https://github.com/mui-org/material-ui"
-                  />
-                )}
-              >
+              <Link variant="body2" color="secondary" href="https://github.com/mui-org/material-ui">
                 Source code
-              </Typography>
+              </Link>
             </TableCell>
           </TableRow>
         </TableBody>

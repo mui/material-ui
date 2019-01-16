@@ -14,7 +14,6 @@ function normalizeFileName(file) {
 
 function createIconTyping(file) {
   const name = normalizeFileName(file);
-  /* eslint-disable-next-line quotes */
   const contents = `export { default } from '@material-ui/core/SvgIcon';`;
   return fse.writeFile(path.resolve(TARGET_DIR, `${name}.d.ts`), contents, 'utf8');
 }

@@ -32,7 +32,7 @@ export const styles = theme => ({
     opacity: 0,
     transform: 'rotate(-45deg)',
   },
-  /* Styles applied to the `openIcon` if provided & if `open={true}` */
+  /* Styles applied to the `openIcon` if provided & if `open={true}`. */
   openIconOpen: {
     transform: 'rotate(0deg)',
     opacity: 1,

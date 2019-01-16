@@ -2,61 +2,69 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  lightTooltip: {
-    background: theme.palette.common.white,
-    color: theme.palette.text.primary,
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-  arrowPopper: {
-    '&[x-placement*="bottom"] $arrowArrow': {
+function arrowGenerator(color) {
+  return {
+    '&[x-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
-      marginTop: '-0.9em',
+      marginTop: '-0.95em',
       width: '3em',
       height: '1em',
       '&::before': {
         borderWidth: '0 1em 1em 1em',
-        borderColor: `transparent transparent ${theme.palette.grey[700]} transparent`,
+        borderColor: `transparent transparent ${color} transparent`,
       },
     },
-    '&[x-placement*="top"] $arrowArrow': {
+    '&[x-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
-      marginBottom: '-0.9em',
+      marginBottom: '-0.95em',
       width: '3em',
       height: '1em',
       '&::before': {
         borderWidth: '1em 1em 0 1em',
-        borderColor: `${theme.palette.grey[700]} transparent transparent transparent`,
+        borderColor: `${color} transparent transparent transparent`,
       },
     },
-    '&[x-placement*="right"] $arrowArrow': {
+    '&[x-placement*="right"] $arrow': {
       left: 0,
-      marginLeft: '-0.9em',
+      marginLeft: '-0.95em',
       height: '3em',
       width: '1em',
       '&::before': {
         borderWidth: '1em 1em 1em 0',
-        borderColor: `transparent ${theme.palette.grey[700]} transparent transparent`,
+        borderColor: `transparent ${color} transparent transparent`,
       },
     },
-    '&[x-placement*="left"] $arrowArrow': {
+    '&[x-placement*="left"] $arrow': {
       right: 0,
-      marginRight: '-0.9em',
+      marginRight: '-0.95em',
       height: '3em',
       width: '1em',
       '&::before': {
         borderWidth: '1em 0 1em 1em',
-        borderColor: `transparent transparent transparent ${theme.palette.grey[700]}`,
+        borderColor: `transparent transparent transparent ${color}`,
       },
     },
+  };
+}
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing.unit,
   },
-  arrowArrow: {
+  lightTooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+  arrowPopper: arrowGenerator(theme.palette.grey[700]),
+  arrow: {
     position: 'absolute',
-    fontSize: 7,
+    fontSize: 6,
     width: '3em',
     height: '3em',
     '&::before': {
@@ -68,20 +76,41 @@ const useStyles = makeStyles(theme => ({
       borderStyle: 'solid',
     },
   },
-  button: {
-    margin: theme.spacing.unit,
+  bootstrapPopper: arrowGenerator(theme.palette.common.black),
+  bootstrapTooltip: {
+    backgroundColor: theme.palette.common.black,
+  },
+  bootstrapPlacementLeft: {
+    margin: '0 8px',
+  },
+  bootstrapPlacementRight: {
+    margin: '0 8px',
+  },
+  bootstrapPlacementTop: {
+    margin: '8px 0',
+  },
+  bootstrapPlacementBottom: {
+    margin: '8px 0',
+  },
+  htmlPopper: arrowGenerator('#dadde9'),
+  htmlTooltip: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+    '& b': {
+      fontWeight: theme.typography.fontWeightMedium,
+    },
   },
 }));
 
 function CustomizedTooltips() {
   const classes = useStyles();
-  const arrowRef = React.useRef();
+  const [arrowRef, setArrowRef] = React.useState(null);
 
   return (
     <div>
-      <Tooltip title="Add">
-        <Button className={classes.button}>Default</Button>
-      </Tooltip>
       <Tooltip title="Add" classes={{ tooltip: classes.lightTooltip }}>
         <Button className={classes.button}>Light</Button>
       </Tooltip>
@@ -89,7 +118,7 @@ function CustomizedTooltips() {
         title={
           <React.Fragment>
             Add
-            <span className={classes.arrowArrow} ref={arrowRef} />
+            <span className={classes.arrow} ref={setArrowRef} />
           </React.Fragment>
         }
         classes={{ popper: classes.arrowPopper }}
@@ -97,14 +126,68 @@ function CustomizedTooltips() {
           popperOptions: {
             modifiers: {
               arrow: {
-                enabled: Boolean(arrowRef.current),
-                element: arrowRef.current,
+                enabled: Boolean(arrowRef),
+                element: arrowRef,
               },
             },
           },
         }}
       >
         <Button className={classes.button}>Arrow</Button>
+      </Tooltip>
+      <Tooltip
+        title={
+          <React.Fragment>
+            Add
+            <span className={classes.arrow} ref={setArrowRef} />
+          </React.Fragment>
+        }
+        classes={{
+          tooltip: classes.bootstrapTooltip,
+          popper: classes.bootstrapPopper,
+          tooltipPlacementLeft: classes.bootstrapPlacementLeft,
+          tooltipPlacementRight: classes.bootstrapPlacementRight,
+          tooltipPlacementTop: classes.bootstrapPlacementTop,
+          tooltipPlacementBottom: classes.bootstrapPlacementBottom,
+        }}
+        PopperProps={{
+          popperOptions: {
+            modifiers: {
+              arrow: {
+                enabled: Boolean(arrowRef),
+                element: arrowRef,
+              },
+            },
+          },
+        }}
+      >
+        <Button className={classes.button}>Bootstrap</Button>
+      </Tooltip>
+      <Tooltip
+        classes={{
+          popper: classes.htmlPopper,
+          tooltip: classes.htmlTooltip,
+        }}
+        PopperProps={{
+          popperOptions: {
+            modifiers: {
+              arrow: {
+                enabled: Boolean(arrowRef),
+                element: arrowRef,
+              },
+            },
+          },
+        }}
+        title={
+          <React.Fragment>
+            <Typography color="inherit">Tooltip with HTML</Typography>
+            <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
+            {"It's very engaging. Right?"}
+            <span className={classes.arrow} ref={setArrowRef} />
+          </React.Fragment>
+        }
+      >
+        <Button className={classes.button}>HTML</Button>
       </Tooltip>
     </div>
   );

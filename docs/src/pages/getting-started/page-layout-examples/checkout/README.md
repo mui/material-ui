@@ -4,7 +4,7 @@
 
 Simply copy the files into your project, or one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples), and import and use the `Checkout` component.
 
-You can customise the Stepper logic and steps to suit your specific checkout workflow and data requirements.
+You can customize the Stepper logic and steps to suit your specific checkout workflow and data requirements.
 
 ## Files
 

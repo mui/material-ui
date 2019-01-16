@@ -151,7 +151,7 @@ function generatePropType(type) {
         return generatePropType(chained);
       }
 
-      if (type.raw === 'componentProp') {
+      if (type.raw === 'componentPropType') {
         return 'Component';
       }
 
@@ -249,14 +249,16 @@ function generateProps(reactAPI) {
     return textProps;
   }, text);
 
-  text = `${text}
+  if (reactAPI.spread) {
+    text = `${text}
 Any other properties supplied will be spread to the root element (${
-    reactAPI.inheritance
-      ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
-          reactAPI.inheritance.pathname,
-        )})`
-      : 'native element'
-  }).`;
+      reactAPI.inheritance
+        ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+            reactAPI.inheritance.pathname,
+          )})`
+        : 'native element'
+    }).`;
+  }
 
   return text;
 }

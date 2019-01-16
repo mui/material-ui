@@ -1,6 +1,7 @@
-import Button from '@material-ui/core/Button';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 // Like https://github.com/brunobertolini/styled-by
 const styledBy = (property, mapping) => props => mapping[props[property]];
@@ -28,6 +29,10 @@ function MyButton(props) {
   const classes = useStyles(props);
   return <Button className={classes.root} {...other} />;
 }
+
+MyButton.propTypes = {
+  color: PropTypes.string.isRequired,
+};
 
 function AdaptingHook() {
   return (

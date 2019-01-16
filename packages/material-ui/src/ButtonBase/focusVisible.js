@@ -47,11 +47,11 @@ const handleKeyUpEvent = event => {
   if (isFocusKey(event)) {
     internal.focusKeyPressed = true;
 
-    // Let's consider that the user is using a keyboard during a window frame of 1s.
+    // Let's consider that the user is using a keyboard during a window frame of 500ms.
     clearTimeout(internal.keyUpEventTimeout);
     internal.keyUpEventTimeout = setTimeout(() => {
       internal.focusKeyPressed = false;
-    }, 1e3);
+    }, 500);
   }
 };
 

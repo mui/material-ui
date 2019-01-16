@@ -71,6 +71,9 @@ const pages = [
         pathname: '/style/typography',
       },
       {
+        pathname: '/style/links',
+      },
+      {
         pathname: '/style/css-baseline',
         title: 'CSS Baseline',
       },

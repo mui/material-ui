@@ -58,7 +58,7 @@ You might want to change the React rendering tree based on the breakpoint value,
 
 ### useMediaQuery hook
 
-You can learn more about this hook [here](/layout/use-media-query/).
+You can learn more on the [useMediaQuery](/layout/use-media-query/) page.
 
 ### withWidth()
 

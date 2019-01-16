@@ -35,7 +35,9 @@ function AppTheme(props) {
           ❤️
         </span>
         {' by the '}
-        <Link href="/">Material-UI</Link>
+        <Link color="inherit" href="/">
+          Material-UI
+        </Link>
         {' team.'}
       </Typography>
     </React.Fragment>

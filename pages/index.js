@@ -121,12 +121,7 @@ class HomePage extends React.Component {
                 </Typography>
                 <Button
                   component={buttonProps => (
-                    <Link
-                      variant="button"
-                      prefetch
-                      href="/getting-started/installation"
-                      {...buttonProps}
-                    />
+                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
                   )}
                   className={classes.button}
                   variant="outlined"
