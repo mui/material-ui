@@ -113,10 +113,30 @@ function MarkdownDocs(props) {
                 }
 
                 const name = demoOptions.demo;
-                warning(
-                  demos && demos[name],
-                  `Missing demo: ${name}. You can use one of the following:\n${Object.keys(demos)}`,
-                );
+                if (!demos || !demos[name]) {
+                  const errorMessage = [
+                    `Missing demo: ${name}. You can use one of the following:`,
+                    Object.keys(demos),
+                  ].join('\n');
+
+                  if (userLanguage === 'en') {
+                    throw new Error(errorMessage);
+                  }
+
+                  warning(false, errorMessage);
+
+                  const warnIcon = (
+                    <span role="img" aria-label="warning">
+                      ⚠️
+                    </span>
+                  );
+                  return (
+                    <div key={content}>
+                      {warnIcon} Missing demo `{name}` {warnIcon}
+                    </div>
+                  );
+                }
+
                 return (
                   <Demo
                     key={content}
