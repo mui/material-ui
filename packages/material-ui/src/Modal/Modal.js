@@ -141,8 +141,9 @@ class Modal extends React.Component {
 
   handleClose = reason => {
     const hasTransition = getHasTransition(this.props);
-    /* If the component has a transition and is not unmounting let the transition handle
-    removing the style this prevents elements moving around when the Modal is closed. */
+    /* If the component does not have a transition or is unmounting remove the Modal
+    otherwise let the transition handle removing the style, this prevents elements
+    moving around when the Modal is closed. */
     if (!hasTransition || reason === 'unmount') {
       this.props.manager.remove(this);
     }

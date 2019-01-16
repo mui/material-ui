@@ -523,8 +523,30 @@ describe('<Modal />', () => {
 
   describe('two modal at the same time', () => {
     it('should open and close', () => {
-      // Using a Fade component here to run checks after the Modal has mounted and unmounted
+      const TestCase = props => (
+        <React.Fragment>
+          <Modal open={props.open}>
+            <div>Hello</div>
+          </Modal>
+          <Modal open={props.open}>
+            <div>World</div>
+          </Modal>
+        </React.Fragment>
+      );
 
+      TestCase.propTypes = {
+        open: PropTypes.bool,
+      };
+
+      const wrapper = mount(<TestCase open={false} />);
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+      assert.strictEqual(document.body.style.overflow, 'hidden');
+      wrapper.setProps({ open: false });
+      assert.strictEqual(document.body.style.overflow, '');
+    });
+
+    it('should open and close with Transitions', () => {
       const TestCase = props => (
         <React.Fragment>
           <Modal open={props.open}>
