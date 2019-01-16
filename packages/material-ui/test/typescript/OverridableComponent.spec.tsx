@@ -71,7 +71,17 @@ shouldSucceed = (
 
 // Can get inferred type for events by providing a component type parameter.
 shouldSucceed = (
-  <Foo<'button'> component="button" numberProp={3} onClick={e => e.currentTarget.checkValidity()} />
+  <Foo<'button'>
+    component="button"
+    numberProp={3}
+    ref={elem => {
+      elem; // $ExpectType HTMLButtonElement | null
+    }}
+    onClick={e => {
+      e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+      e.currentTarget.checkValidity();
+    }}
+  />
 );
 
 let shouldFail;
@@ -127,5 +137,13 @@ shouldFail = (
     // event type doesn't match component type
     // $ExpectError
     onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+  />
+);
+
+shouldFail = (
+  // $ExpectError
+  <Foo<typeof MyOverrideComponent>
+    component={MyOverrideComponent}
+    ref={() => {}} // MyOverrideComponent doesn't forward refs
   />
 );
