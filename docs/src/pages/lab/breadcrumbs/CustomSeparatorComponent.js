@@ -20,7 +20,7 @@ function CustomSeparatorComponent(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
-      <Breadcrumbs separator={<NavigateNextIcon className={classes.separator} />}>
+      <Breadcrumbs separator={<NavigateNextIcon />}>
         <Breadcrumb label="Material-UI" onClick={handleClick} />
         <Breadcrumb label="Component Demos" onClick={handleClick} />
         <Breadcrumb label="Breadcrumb" active />

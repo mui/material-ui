@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-
 
 const height = 24;
 
@@ -20,21 +18,25 @@ const styles = theme => ({
   },
 });
 
-
 /**
  * @ignore - internal component.
  */
 function BreadcrumbSeparator(props) {
-  const { classes, className: classNameProp, separatorText } = props;
-  const className = classNames(classes.root, classNameProp,);
+  const { classes, separator: Separator, separatorText, ...other } = props;
 
-  return <div className={className}>{separatorText}</div>;
+  return Separator ? (
+    React.cloneElement(Separator, { className: classes.root, ...other })
+  ) : (
+    <div className={classes.root} {...other}>
+      {separatorText}
+    </div>
+  );
 }
 
 BreadcrumbSeparator.propTypes = {
   classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  separatorText: PropTypes.string.isRequired,
+  separator: PropTypes.element,
+  separatorText: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiBreadcrumbSeparator' })(BreadcrumbSeparator);

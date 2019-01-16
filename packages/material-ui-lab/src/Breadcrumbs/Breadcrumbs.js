@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import BreadcrumbCollapsed from '@material-ui/lab/BreadcrumbCollapsed';
 import BreadcrumbSeparator from '@material-ui/lab/BreadcrumbSeparator';
 
-const defaultMaxItems = 8;
-
 const styles = {
   root: {
     display: 'flex',
@@ -20,51 +18,26 @@ class Breadcrumbs extends React.Component {
     expanded: false,
   };
 
-  getSeparator(props) {
-    const { separator: Separator } = this.props;
-    if (Separator) {
-      let className = props.className;
-      if (typeof Separator === 'function') {
-        return <Separator {...props} className={className} />;
-      }
-      if (React.isValidElement(Separator)) {
-        className = classNames(className, Separator.props.className);
-        return React.cloneElement(Separator, {
-          ...props,
-          className,
-        });
-      }
-    }
-    return <BreadcrumbSeparator {...props} />;
-  }
-
   handleClickExpand = event => {
     event.preventDefault();
     this.setState({ expanded: true });
   };
 
   insertSeparators(items) {
-    const { classes, separatorText, separator } = this.props;
+    const { separator, separatorText } = this.props;
 
     return items.reduce(
-      (arr, v, i, source) =>
-        i < source.length - 1
-          ? arr.concat(
-              v,
-              this.getSeparator(
-                separator
-                  ? {
-                      key: `separator-${i}`,
-                      className: classes.separator,
-                    }
-                  : {
-                      key: `separator-${i}`,
-                      className: classes.separator,
-                      separatorText,
-                    },
-              ),
+      (acc, cur, idx, src) =>
+        idx < src.length - 1
+          ? acc.concat(
+              cur,
+              <BreadcrumbSeparator
+                key={`separator-${idx}`}
+                separator={separator}
+                separatorText={separatorText}
+              />,
             )
-          : arr.concat(v),
+          : acc.concat(cur),
       [],
     );
   }
@@ -150,7 +123,7 @@ Breadcrumbs.propTypes = {
   /**
    * Custom separator component.
    */
-  separator: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.element]),
+  separator: PropTypes.element,
   /**
    * Custom text separator.
    */
@@ -159,7 +132,7 @@ Breadcrumbs.propTypes = {
 
 Breadcrumbs.defaultProps = {
   children: null,
-  maxItems: defaultMaxItems,
+  maxItems: 8,
   itemsBeforeCollapse: 1,
   itemsAfterCollapse: 1,
   separatorText: '/',
