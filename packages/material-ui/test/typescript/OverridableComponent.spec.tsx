@@ -27,7 +27,9 @@ class MyOverrideClassComponent extends React.Component<MyOverrideProps> {
     return null;
   }
 }
-const MyOverrideRefForwardingComponent = React.forwardRef<HTMLLegendElement>((props, ref) => <div ref={ref} />);
+const MyOverrideRefForwardingComponent = React.forwardRef<HTMLLegendElement>((props, ref) => (
+  <div ref={ref} />
+));
 declare const MyIncompatibleComponent1: React.ComponentType<{ inconsistentProp?: number }>;
 
 // Can provide basic props; callback parameter types will be inferred.
@@ -100,10 +102,7 @@ declare const MyIncompatibleComponent1: React.ComponentType<{ inconsistentProp?:
 
 // ... but for an arbitrary ComponentType
 // $ExpectError
-<Foo<typeof MyOverrideComponent>
-  component={MyOverrideComponent}
-  ref={() => {}}
-/>;
+<Foo<typeof MyOverrideComponent> component={MyOverrideComponent} ref={() => {}} />;
 
 // $ExpectError
 <Foo
