@@ -18,9 +18,9 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 11, // To use 10px in v4.0.0
-    paddingBottom: 11, // To use 10px in v4.0.0
-    '&$selected, &$selected:hover': {
+    paddingTop: 11, // To use 10px in v4
+    paddingBottom: 11, // To use 10px in v4
+    '&$selected, &$selected:hover, &$selected:focus': {
       backgroundColor: theme.palette.action.selected,
     },
   },
@@ -28,11 +28,9 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  // TODO: Sanity check this - why is focusVisibleClassName prop apparently applied to a div?
+  // To remove in v4
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {
-    backgroundColor: theme.palette.action.hover,
-  },
+  focusVisible: {},
   /* Legacy styles applied to the root element. Use `root` instead. */
   default: {},
   /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
@@ -70,6 +68,9 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
+    },
+    '&:focus': {
+      backgroundColor: theme.palette.action.hover,
     },
   },
   /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */

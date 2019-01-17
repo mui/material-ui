@@ -8,7 +8,7 @@ import Typography from '../Typography';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    // Should use variant="body1" in v4.0.0
+    // Should use variant="body1" in v4
     lineHeight: 1.5,
   },
 };
