@@ -62,6 +62,16 @@ describe('<Menu> integration', () => {
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
     });
 
+    it('should switch focus from the 3rd item to the 1st item when home key is pressed', () => {
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('home') });
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
+    });
+
+    it('should switch focus from the 1st item to the 3rd item when end key is pressed', () => {
+      TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('end') });
+      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
+    });
+
     it('should keep focus on the last item when a key with no associated action is pressed', () => {
       TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), { which: keycode('right') });
       assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
