@@ -167,7 +167,6 @@ Then, you will need to add the following code:
 
 In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
 
-
 ### About TypeScript demos
 
 To help people use this library with TypeScript we try to provide equivalent demos
