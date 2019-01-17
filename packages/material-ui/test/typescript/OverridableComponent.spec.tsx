@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { PropsOf } from '@material-ui/core';
 
 declare const Foo: OverridableComponent<{
   props: {
@@ -20,6 +21,7 @@ interface MyOverrideProps {
   myCallback?(n: number): void;
 }
 declare const MyOverrideComponent: React.ComponentType<MyOverrideProps>;
+declare const MyOverrideClassComponent: React.ComponentClass<MyOverrideProps>;
 declare const MyIncompatibleComponent1: React.ComponentType<{ inconsistentProp?: number }>;
 
 let shouldSucceed;
@@ -72,14 +74,24 @@ shouldSucceed = (
 // Can get inferred type for events by providing a component type parameter.
 shouldSucceed = (
   <Foo<'button'>
-    component="button"
     numberProp={3}
+    component="button"
     ref={elem => {
       elem; // $ExpectType HTMLButtonElement | null
     }}
     onClick={e => {
       e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
       e.currentTarget.checkValidity();
+    }}
+  />
+);
+
+shouldSucceed = (
+  <Foo<typeof MyOverrideClassComponent>
+    numberProp={3}
+    component={MyOverrideClassComponent}
+    ref={elem => {
+      elem; // $ExpectType Component<MyOverrideProps, any, any> | null
     }}
   />
 );

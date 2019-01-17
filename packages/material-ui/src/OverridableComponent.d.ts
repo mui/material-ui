@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ConsistentWith, PropsOf, Omit } from '.';
+import { Omit } from '.';
 import { StyledComponentProps } from './styles';
 
 export interface OverridableComponent<M extends OverridableTypeMap> {
@@ -13,13 +13,13 @@ export type OverrideProps<
   C extends AnyReactType
 > = (
   & BaseProps<M>
-  & Omit<PropsOf<C>, keyof UniversalProps<M>>
+  & Omit<React.ComponentPropsWithRef<C>, keyof UniversalProps<M>>
 );
 
 // prettier-ignore
 export type DefaultProps<M extends OverridableTypeMap> =
   & BaseProps<M>
-  & Omit<PropsOf<M['defaultComponent']>, keyof BaseProps<M>>;
+  & Omit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
 
 // prettier-ignore
 export type BaseProps<M extends OverridableTypeMap> =
@@ -42,4 +42,4 @@ export type AnyReactType<P = any> = keyof JSX.IntrinsicElements | React.Componen
 
 export type Simplify<T> = { [K in keyof T]: T[K] };
 
-export type SimplifiedPropsOf<C> = Simplify<PropsOf<C>>;
+export type SimplifiedPropsOf<C extends React.ReactType> = Simplify<React.ComponentProps<C>>;
