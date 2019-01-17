@@ -152,12 +152,13 @@ describe('<InputAdornment />', () => {
   });
 
   it('should have the disabled pointer events class when disabledPointerEvents true', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <InputAdornment disablePointerEvents position="start">
         foo
       </InputAdornment>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.disablePointerEvents), true);
+    const adornment = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(adornment.hasClass(classes.disablePointerEvents), true);
   });
 
   it('should not wrap text children in a Typography when disableTypography true', () => {
