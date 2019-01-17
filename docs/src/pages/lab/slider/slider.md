@@ -35,10 +35,10 @@ Sliders reflect the current state of the settings they control.
 
 {{"demo": "pages/lab/slider/VerticalSlider.js"}}
 
-## Customized slider
-
-{{"demo": "pages/lab/slider/CustomizedSlider.js"}}
-
 ## Custom thumb
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}
+
+## Custom value reducer
+
+{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}
