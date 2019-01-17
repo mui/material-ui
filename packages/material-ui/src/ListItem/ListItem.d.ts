@@ -5,10 +5,9 @@ import {
   OverridableComponent,
   SimplifiedPropsOf,
   OverrideProps,
-  AnyReactType,
 } from '../OverridableComponent';
 
-export interface ListItemTypeMap<P, D extends AnyReactType> {
+export interface ListItemTypeMap<P, D extends React.ReactType> {
   props: P & {
     ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;

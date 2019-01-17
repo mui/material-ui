@@ -3,14 +3,14 @@ import { Omit } from '.';
 import { StyledComponentProps } from './styles';
 
 export interface OverridableComponent<M extends OverridableTypeMap> {
-  <C extends AnyReactType>(props: { component: C } & OverrideProps<M, C>): JSX.Element;
+  <C extends React.ReactType>(props: { component: C } & OverrideProps<M, C>): JSX.Element;
   (props: DefaultProps<M>): JSX.Element;
 }
 
 // prettier-ignore
 export type OverrideProps<
   M extends OverridableTypeMap,
-  C extends AnyReactType
+  C extends React.ReactType
 > = (
   & BaseProps<M>
   & Omit<React.ComponentPropsWithRef<C>, keyof UniversalProps<M>>
@@ -34,11 +34,9 @@ export interface UniversalProps<M extends OverridableTypeMap>
 
 export interface OverridableTypeMap {
   props: {};
-  defaultComponent: AnyReactType;
+  defaultComponent: React.ReactType;
   classKey: string;
 }
-
-export type AnyReactType<P = any> = keyof JSX.IntrinsicElements | React.ComponentType<P>;
 
 export type Simplify<T> = { [K in keyof T]: T[K] };
 
