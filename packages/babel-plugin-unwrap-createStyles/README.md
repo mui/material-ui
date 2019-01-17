@@ -29,10 +29,12 @@ export default withStyles(styles)(Component);
 ```
 
 ### Missing
+
 - default import from `createStyles`
 - aliased imports
 
 ## Why not as a typescript transformer?
+
 Face these issues in chronological order
 1. no config API i.e. transformers are only supported for programmatic transpilation/compilation
 2. since we need to pipe prettier we might as well use a programmatic approach so back to transformer
