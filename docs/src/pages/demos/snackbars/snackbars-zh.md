@@ -20,52 +20,60 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
-## 消息长度
+## Customized Snackbars
 
-不同消息长度的消息条(Snackbar)。
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
 
-{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
 ## 定位消息条(Snackbar)
 
-在很多情况下消息条(Snackbar)的位置需要更灵活些。
+There may be circumstances when the placement of the snackbar needs to be more flexible.
 
 {{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
 
+## Message Length
+
+Some snackbars with varying message length.
+
+{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+
 ## 过渡动画
 
-### 控制方向
+### Consecutive Snackbars
 
-控制过渡动画的方向。幻灯片效果是默认的过渡动画。
+Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
+
+{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
+
+### Don't block the floating action button
+
+Move the floating action button vertically to accommodate the snackbar height.
+
+{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
+
+### Control Direction
+
+Change the direction of the transition. Slide is the default transition.
 
 {{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
 
 ### 更改过渡动画
 
-同时使用不同的过渡动画。
+Use a different transition all together.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
-
-### 不要遮住其他浮动的操作按钮。
-
-当出现消息条(Snackbar)时底部的浮动按钮自动上升一个消息条高度。
-
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
-
-### 连续的消息条(Snackbar)
-
-按照[Google的指引](https://material.io/design/components/snackbars.html#snackbars-toasts-usage),当第一个消息条(Snackbar)还在显示时如果第二条消息条(Snackbar)被触发的话, 第一条消息条(Snackbar)应该在第二条消息条(Snackbar)开始上浮出现时往下方收缩消失.
-
-{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
-
-## 自定义的消息条(Snackbar)
-
-如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Snackbar)的主要颜色的示例
-
-{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
 ## 补充项目
 
 对于更高级的用例，您可以利用：
 
-- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other.
+### notistack
+
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+
+In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
+
+{{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}

@@ -8,11 +8,12 @@ While we strive to follow the guidelines where practical (applying common sense 
 
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
-  - [Bottom](https://material.io/design/components/app-bars-bottom.html)
+  - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
+- **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
-  - [Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons)
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/lab/about/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - Transitions: 
@@ -20,7 +21,7 @@ While we strive to follow the guidelines where practical (applying common sense 
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
-  - [Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) 
+  - **[Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) ✓** 
     - Speed dial
 - **[Cards](https://material.io/design/components/cards.html) ✓**
 - **[Chips](https://material.io/design/components/chips.html) ✓** 
@@ -34,14 +35,14 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **Pagination ✓**
 - **[Dialogs](https://material.io/design/components/dialogs.html) ✓** 
   - **[Alert dialog](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
-  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Can be constructed with Dialog and List.)
+  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Can be composed with Dialog and List.)
   - **[Confirmation dialogs](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
   - **[Full screen dialogs](https://material.io/design/components/dialogs.html#full-screen-dialog) ✓**
 - **[Dividers](https://material.io/design/components/dividers.html) ✓** 
   - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-  - [Middle](https://material.io/design/components/dividers.html#types)
-  - [Subheader](https://material.io/design/components/dividers.html#types)
+  - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
+  - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
 - **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legacy Material v1*)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓** 
@@ -58,7 +59,7 @@ While we strive to follow the guidelines where practical (applying common sense 
     - **Switch ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
-  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be constructed) 
+  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed) 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)

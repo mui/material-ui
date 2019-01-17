@@ -12,14 +12,14 @@ components: Avatar
 
 {{"demo": "pages/demos/avatars/ImageAvatars.js"}}
 
-## 图标头像
+## Letter avatars
 
-通过将图标作为` children `传递来创建图标头像。
-
-{{"demo": "pages/demos/avatars/IconAvatars.js"}}
-
-## 字母头像
-
-可以通过将字符串作为` children `传递来创建包含简单字符的头像。
+Avatars containing simple characters can be created by passing your string as `children`.
 
 {{"demo": "pages/demos/avatars/LetterAvatars.js"}}
+
+## Icon avatars
+
+Icon avatars are created by passing an icon as `children`.
+
+{{"demo": "pages/demos/avatars/IconAvatars.js"}}

@@ -10,43 +10,43 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 这里将覆盖三种不同种类的选择控件：
 
-- **[复选框](#checkboxes)**允许从一组中选择多个选项。
-- **[单选按钮](#radio-buttons)** 允许从一组中选择一个选项。
+- **[Radio Buttons](#radio-buttons)** allow the selection of a single option from a set.
+- **[Checkboxes](#checkboxes)** allow the selection of multiple options from a set.
 - **[开关控件](#switches)** 允许打开或关闭选项。
 
-## 复选框
+## Radio Buttons
 
-[ 复选框 ](https://material.io/design/components/selection-controls.html#checkboxes) 允许用户从集合中选择一个或多个项。 复选框可用于打开或关闭选项。
+[Radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
 
-如果列表中有多个选择项, 则可以使用复选框替代开关控件来节省空间。 如果只有单个选择项, 请避免使用复选框, 改用开关控件。
+Radio buttons should have the most commonly used option selected by default.
 
-{{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
-
-通过 `FormControlLabel` 组件, `复选框` 也可与标签描述一起使用。
-
-{{"demo": "pages/demos/selection-controls/CheckboxLabels.js"}}
-
-## 使用FromGroup控制多个Checkbox
-
-`FormGroup`提供相对简单的 API 对选择控件进行分组。
-
-{{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
-
-## 单选按钮
-
-[ 单选按钮](https://material.io/design/components/selection-controls.html#radio-buttons)允许用户从集合中选择一个或多个项。 当用户需要查看所有可用选项时, 请使用单选按钮。 如果可用选项可以折叠，请考虑使用占用空间更少的下拉菜单。
-
-单选按钮在一般默认选中最常用的选项。
-
-`RadioGroup `适用于一组` Radio `，它提供相对简单的 API 并且能够使用键盘对该RadioGroup进行控制。
+`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
 {{"demo": "pages/demos/selection-controls/RadioButtonsGroup.js"}}
 
 ### 独立的单选按钮
 
-`Radio` 也可以单独使用，无需额外包装。
+`Radio` can also be used standalone, without the wrapper.
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
+
+## Checkboxes
+
+[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
+
+If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.
+
+{{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
+
+`Checkbox` can also be used with a label description thanks to the `FormControlLabel` component.
+
+{{"demo": "pages/demos/selection-controls/CheckboxLabels.js"}}
+
+## Checkboxes with FormGroup
+
+`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+
+{{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
 ## 开关控件
 
@@ -72,10 +72,25 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 如果您有阅读[覆盖样式文档](/customization/overrides/)，但你还没有完全掌握方法，可以查看以下这个更改一个输入的主要颜色的示例，包括如何更改 Switch 的样式和自定义出一个 iOS 风格的 Switch
 
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
 ## 标签放置
 
-你可以更改标签放置的位置:
+You can change the placement of the label:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
+
+## 无障碍功能
+
+All form controls should have a label to identify it, this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+
+When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+
+```jsx
+<Checkbox
+  value="checkedA"
+  inputProps={{ 'aria-label': 'Checkbox A' } }
+/>
+```

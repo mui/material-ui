@@ -20,14 +20,14 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 {{"demo": "pages/demos/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
-## 高级网格列表
+## Single line Grid list
 
-此示例演示了“精选”磁贴，使用` rows `和` cols ` props 来调整磁贴的大小，并使用` padding ` prop 来调整间距。 磁贴有一个自定义标题栏，位于顶部，并带有自定义渐变` titleBackground `。 辅助操作` IconButton `位于左侧。
-
-{{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}
-
-## 单行网格列表
-
-此示例演示了水平可滚动的单行网格图像列表。 不鼓励水平滚动网格列表，因为滚动会干扰典型的阅读模式，从而影响理解。 一个值得注意的例外是水平滚动的单行网格图像列表，例如图库。
+This example demonstrates a horizontal scrollable single-line grid list of images. Horizontally scrolling grid lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension. One notable exception is a horizontally-scrolling, single-line grid list of images, such as a gallery.
 
 {{"demo": "pages/demos/grid-list/SingleLineGridList.js", "hideEditButton": true}}
+
+## Advanced Grid list
+
+This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing. The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`. The secondary action `IconButton` is positioned on the left.
+
+{{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}

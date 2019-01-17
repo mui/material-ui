@@ -4,7 +4,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 ---
 # 卡片
 
-<p class="description">卡片包含和一个主题相关的内容和操作。</p>
+<p class="description">卡片包含有关单个主题的内容和操作。</p>
 
 [卡片](https://material.io/design/components/cards.html) 是显示一个主题下内容和操作的容器。
 
@@ -16,26 +16,26 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
 
-## 多媒体内容
+## Complex Interaction
 
-下面是一个使用图像来增强内容的卡片示例。
+On desktop, card content can expand.
+
+{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
+
+## Media
+
+Example of a card using an image to reinforce the content.
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-默认情况下，我们使用给`<div>` 元素加一个 *背景图片* 的方式来显示多媒体元素。 但在某些情况下，可能会产生一些不可预知的问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 对于这些用例, 请使用 `component` 属性:
+By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
-## UI控件
+## UI Controls
 
-卡片中的补充操作可使用图标、文本和 UI 控件显式调用, 通常放在一个卡片的底部。
+Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.
 
-下面是一个媒体控制卡片的例子。
+Here's an example of a media control card.
 
 {{"demo": "pages/demos/cards/MediaControlCard.js"}}
-
-## 复杂交互
-
-在桌面上, 卡片内容可以展开。
-
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}

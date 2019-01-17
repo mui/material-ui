@@ -26,16 +26,16 @@ components: Select, NativeSelect
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
-## 与对话框组件使用
+## Controlled open Select
 
-虽然Material Design的规范不鼓励，但您可以在对话框组件中使用选择。
+{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
+
+## With a Dialog
+
+While it's discouraged by the Material Design specification, you can use a select inside a dialog.
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
 ## Text Fields
 
-` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/demos/text-fields/#textfield)的示例
-
-## 受控的选择器
-
-{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
+` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。 You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

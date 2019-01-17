@@ -2,13 +2,13 @@
 
 <p class="description">立刻使用React和Material-UI。</p>
 
-Material-UI components work in isolation. **They are self-supporting**, and will inject, and only inject, the styles they need to display. They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/),
+Material-UI 组件是独立工作的。 它们是**自我支持**的，并只要注入而且仅注入它们需要显示的样式。 他们不依赖任何全局的样式表, 如 [normalize.css](https://github.com/necolas/normalize.css/),
 
-You can use any of the components as demonstrated in the documentation. Please refer to each component's [demo page](/demos/buttons/) to see how they should be imported.
+您可以使用文档中演示的任何组件。 请参阅每个组件的 [demo 页 ](/demos/buttons/), 以了解应如何导入它们。
 
-## Quick start
+## 快速开始
 
-Here's a quick example to get you started, **it's literally all you need**:
+下面是一个快速的示例来帮助您入门, **这是您需要的所有操作 **:
 
 ```jsx
 import React from 'react';
@@ -41,8 +41,7 @@ Material-UI is developed mobile first, a strategy in which we first write code f
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-/>
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
 ```
 
 ### CssBaseline
