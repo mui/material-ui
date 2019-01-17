@@ -14,7 +14,7 @@ const styles = {
 
 class StepSlider extends React.Component {
   state = {
-    value: 30,
+    value: 3,
   };
 
   handleChange = (event, value) => {
