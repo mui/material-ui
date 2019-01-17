@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
-import {
-  OverridableComponent,
-  SimplifiedPropsOf,
-  OverrideProps,
-} from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
 
 export interface ListItemTypeMap<P, D extends React.ReactType> {
   props: P & {
