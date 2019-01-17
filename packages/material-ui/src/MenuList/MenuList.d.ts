@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { ListProps, ListClassKey } from '../List';
 
 export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey, 'onKeyDown'> {
-  disableListWrap?: boolean;
+  disablelistwrap?: boolean;
   onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
 }
 

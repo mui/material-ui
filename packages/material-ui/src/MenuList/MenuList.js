@@ -59,14 +59,14 @@ class MenuList extends React.Component {
       event.preventDefault();
       if (currentFocus.nextElementSibling) {
         currentFocus.nextElementSibling.focus();
-      } else if (!this.props.disableListWrap) {
+      } else if (!this.props.disablelistwrap) {
         list.firstChild.focus();
       }
     } else if (key === 'up') {
       event.preventDefault();
       if (currentFocus.previousElementSibling) {
         currentFocus.previousElementSibling.focus();
-      } else if (!this.props.disableListWrap) {
+      } else if (!this.props.disablelistwrap) {
         list.lastChild.focus();
       }
     }
@@ -125,7 +125,7 @@ class MenuList extends React.Component {
   }
 
   render() {
-    const { children, className, onBlur, onKeyDown, disableListWrap, ...other } = this.props;
+    const { children, className, onBlur, onKeyDown, disablelistwrap, ...other } = this.props;
 
     return (
       <List
@@ -178,7 +178,7 @@ MenuList.propTypes = {
   /**
    * If `true`, the menu items will not wrap focus.
    */
-  disableListWrap: PropTypes.bool,
+  disablelistwrap: PropTypes.bool,
   /**
    * @ignore
    */
@@ -190,7 +190,7 @@ MenuList.propTypes = {
 };
 
 MenuList.defaultProps = {
-  disableListWrap: false,
+  disablelistwrap: false,
 };
 
 export default MenuList;
