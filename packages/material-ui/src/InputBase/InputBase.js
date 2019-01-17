@@ -528,6 +528,10 @@ InputBase.propTypes = {
   /**
    * @ignore
    */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
   onEmpty: PropTypes.func,
   /**
    * @ignore

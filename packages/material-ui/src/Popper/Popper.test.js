@@ -9,8 +9,8 @@ const PopperNaked = unwrap(Popper);
 
 describe('<Popper />', () => {
   const defaultProps = {
-    open: true,
     children: <span>Hello World</span>,
+    open: true,
   };
   let shallow;
   let mount;

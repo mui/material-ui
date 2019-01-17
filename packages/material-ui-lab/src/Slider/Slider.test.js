@@ -4,6 +4,11 @@ import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Slider from './Slider';
 
+function touchList(touchArray) {
+  touchArray.item = idx => touchArray[idx];
+  return touchArray;
+}
+
 describe('<Slider />', () => {
   let mount;
   let shallow;
@@ -49,6 +54,47 @@ describe('<Slider />', () => {
     wrapper.simulate('mousedown');
     // document.simulate('mouseup')
     document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+
+    assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+  });
+
+  it('should only listen to changes from the same touchpoint', () => {
+    const handleChange = spy();
+    const handleDragStart = spy();
+    const handleDragEnd = spy();
+    let touchEvent;
+
+    const wrapper = mount(
+      <Slider
+        onChange={handleChange}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        value={0}
+      />,
+    );
+
+    wrapper.simulate('touchstart', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 2 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 2 }]);
+    document.body.dispatchEvent(touchEvent);
+
+    assert.strictEqual(handleChange.callCount, 0, 'should not have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 0, 'should not have called the handleDragEnd cb');
+
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 1 }]);
+    document.body.dispatchEvent(touchEvent);
 
     assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');

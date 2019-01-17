@@ -289,7 +289,7 @@ describe('<Modal />', () => {
     it('should call onEscapeKeyDown and onClose', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc') };
+      event = { keyCode: keycode('esc'), stopPropagation: () => {} };
 
       instance.handleDocumentKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
@@ -302,7 +302,7 @@ describe('<Modal />', () => {
     it('when disableEscapeKeyDown should call only onClose', () => {
       topModalStub.returns(true);
       wrapper.setProps({ disableEscapeKeyDown: true, manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc') };
+      event = { keyCode: keycode('esc'), stopPropagation: () => {} };
 
       instance.handleDocumentKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);

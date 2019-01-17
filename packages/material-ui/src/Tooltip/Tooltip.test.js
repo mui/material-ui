@@ -18,8 +18,9 @@ describe('<Tooltip />', () => {
   let classes;
   let clock;
   const defaultProps = {
-    title: 'Hello World',
     children: <span>Hello World</span>,
+    theme,
+    title: 'Hello World',
   };
 
   before(() => {
@@ -45,7 +46,7 @@ describe('<Tooltip />', () => {
   describe('prop: disableHoverListener', () => {
     it('should hide the native title', () => {
       const wrapper = shallow(
-        <Tooltip title="Hello World" disableHoverListener>
+        <Tooltip {...defaultProps} title="Hello World" disableHoverListener>
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
@@ -68,7 +69,7 @@ describe('<Tooltip />', () => {
 
     it('should be passed down to the child as a native title', () => {
       const wrapper = shallow(
-        <Tooltip title="Hello World">
+        <Tooltip {...defaultProps} title="Hello World">
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
@@ -173,9 +174,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
-      const wrapper = mount(
-        <TooltipNaked classes={{}} theme={theme} enterDelay={111} {...defaultProps} />,
-      );
+      const wrapper = mount(<TooltipNaked classes={{}} enterDelay={111} {...defaultProps} />);
       const childrenRef = wrapper.instance().childrenRef;
       childrenRef.tabIndex = 0;
       childrenRef.focus();
@@ -186,9 +185,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should take the leaveDelay into account', () => {
-      const wrapper = mount(
-        <TooltipNaked classes={{}} theme={theme} leaveDelay={111} {...defaultProps} />,
-      );
+      const wrapper = mount(<TooltipNaked classes={{}} leaveDelay={111} {...defaultProps} />);
       const childrenRef = wrapper.instance().childrenRef;
       childrenRef.tabIndex = 0;
       childrenRef.focus();
@@ -215,7 +212,7 @@ describe('<Tooltip />', () => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
         const wrapper = shallow(
-          <Tooltip title="Hello World">
+          <Tooltip {...defaultProps} title="Hello World">
             <button type="submit" {...{ [name]: handler }}>
               Hello World
             </button>
