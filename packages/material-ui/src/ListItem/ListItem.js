@@ -23,9 +23,6 @@ export const styles = theme => ({
     '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
     },
-    '&:focus': {
-      backgroundColor: theme.palette.action.hover,
-    },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
   container: {
