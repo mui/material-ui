@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "unwraps createStyles call",
   "main": "src/index.js",
-  "author": "Sebastian Silbermann",
+  "author": "Material-UI Team",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,7 +14,6 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "scripts": {
-    "build": "",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha packages/babel-plugin-unwrap-createStyles/test"
   }
 }
