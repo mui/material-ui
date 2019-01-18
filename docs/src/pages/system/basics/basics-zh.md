@@ -330,27 +330,27 @@ const palette = compose(textColor, bgcolor);
 该 `style()` 帮助也可用于地图中性风格的对象，在一个主题。 在这个例子中， `变` 性支持所有的钥匙存在 `的主题。排版`的。
 
 ```jsx
-进口作出反应，从'应';
-导风格， { ThemeProvider } 从'的风格-成分';
-进 { style, typography } 从'@材料-ui/系统';
+import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { style, typography } from '@material-ui/system';
 
-const变=风格({
-  支柱:'变的'，
-  cssProperty:假，
-  themeKey:'排版',
+const variant = style({
+  prop: 'variant',
+  cssProperty: false,
+  themeKey: 'typography',
 });
 
-// ⚠ 文本已经定义是在全球背景下:
-//https://developer.mozilla.org/en-US/docs/Web/API/Text/Text中。
-const Text=风格。跨越`
-  字体的家庭：黑体；以
+// ⚠ Text is already defined in the global context:
+// https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
+const Text = styled.span`
+  font-family: Helvetica;
   ${variant}
   ${typography}
 `;
 
-const主题={
-  版：{
-    h1： {
+const theme = {
+  typography: {
+    h1: {
       fontSize: 30,
       lineHeight: 1.5,
     },
@@ -362,7 +362,7 @@ const主题={
 };
 
 // 呈现的主题。排版。h1式的对象。
-<Text variant="h1">变=h1</Text>
+<Text variant="h1">variant=h1</Text>
 ```
 
 {{"demo": "pages/system/basics/Variant.js"}}
@@ -372,14 +372,14 @@ const主题={
 如果你想要支持的定义CSS值，可以使用我们的 `css()` 帮手。 它将处理的 `css` 财产。
 
 ```jsx
-进口{撰写、间隔、调色板、css}从'@材料-ui/系统';
-导风格，从'的风格-成分';
+import { compose, spacing, palette, css } from '@material-ui/system';
+import styled from 'styled-components';
 
-const框=风格。div`
+const Box = styled.div`
   ${css(
-    撰写(
-      间隔，
-      调色板,
+    compose(
+      spacing,
+      palette,
     ),
   )}
 `;
