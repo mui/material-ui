@@ -253,7 +253,7 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 Material-UI allows you to replace a component's root node via a `component` prop.
 For example, a `Button`'s root node can be replaced with a React Router `Link`, and all extra props that are passed to `Button`, like `to`, will be spread down to the `Link` component, so you can do this: `<Button component={Link} to="/">Go Home</Button>`
 
-However, TypeScript will complain about this, because `to` is not part of the `ButtonProps` interface, and it has no way of inferring what props are what was passed in `component`.
+However, TypeScript will complain about this, because `to` is not part of the `ButtonProps` interface, and with the current type declarations it has no way of inferring what props can be passed to `component`.
 
 The current workaround is to spread these extra props down:
 
