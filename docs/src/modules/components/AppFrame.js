@@ -200,6 +200,12 @@ class AppFrame extends React.Component {
                     >
                       中文
                     </MenuItem>
+                    <MenuItem
+                      selected={userLanguage === 'pt'}
+                      onClick={this.handleLanguageMenuItemClick('pt')}
+                    >
+                      Português
+                    </MenuItem>
                   </Menu>
                   <Tooltip title="Edit docs colors" enterDelay={300}>
                     <IconButton

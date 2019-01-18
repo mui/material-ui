@@ -8,8 +8,16 @@ function EditPage(props) {
 
   if (options.userLanguage === 'zh') {
     return (
-      <Button component="a" href="https://translate.material-ui.com/project/material-ui-docs">
+      <Button component="a" href="https://translate.material-ui.com/">
         {'将此页面翻译成中文'}
+      </Button>
+    );
+  }
+
+  if (options.userLanguage === 'pt') {
+    return (
+      <Button component="a" href="https://translate.material-ui.com/">
+        {'Ajude a traduzir esta página'}
       </Button>
     );
   }
