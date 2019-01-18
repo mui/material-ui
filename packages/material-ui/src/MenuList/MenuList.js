@@ -69,6 +69,12 @@ class MenuList extends React.Component {
       } else if (!this.props.disableListWrap) {
         list.lastChild.focus();
       }
+    } else if (key === 'home') {
+      event.preventDefault();
+      list.firstChild.focus();
+    } else if (key === 'end') {
+      event.preventDefault();
+      list.lastChild.focus();
     }
 
     if (this.props.onKeyDown) {
