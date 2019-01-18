@@ -17,7 +17,7 @@ export interface SpeedDialProps
   onClose?: React.ReactEventHandler<{}>;
   open: boolean;
   openIcon?: React.ReactNode;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
 }
