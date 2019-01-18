@@ -392,16 +392,16 @@ class InputBase extends React.Component {
     }
 
     return (
-      <FormControlContext.Provider value={null}>
-        <div className={className} onClick={this.handleClick} {...other}>
-          {renderPrefix
-            ? renderPrefix({
-                ...fcs,
-                startAdornment,
-                focused,
-              })
-            : null}
-          {startAdornment}
+      <div className={className} onClick={this.handleClick} {...other}>
+        {renderPrefix
+          ? renderPrefix({
+              ...fcs,
+              startAdornment,
+              focused,
+            })
+          : null}
+        {startAdornment}
+        <FormControlContext.Provider value={null}>
           <InputComponent
             aria-invalid={fcs.error}
             autoComplete={autoComplete}
@@ -423,9 +423,9 @@ class InputBase extends React.Component {
             value={value}
             {...inputProps}
           />
-          {endAdornment}
-        </div>
-      </FormControlContext.Provider>
+        </FormControlContext.Provider>
+        {endAdornment}
+      </div>
     );
   }
 }
