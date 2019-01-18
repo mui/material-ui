@@ -2,7 +2,7 @@
 
 <p class="description">风格的功能对于建设强大的设计系统。</p>
 
-> 这两个英语希腊每天都会 `@材料-ui/系统` 是实验性的(阿尔法版)。 我们正在努力使它稳定的材料-UI v4。
+> 这两个英语希腊每天都会 `@material-ui/system` 是实验性的(阿尔法版)。 我们正在努力使它稳定的材料-UI v4。
 
 ## 开始
 
@@ -57,12 +57,12 @@ npm install@材料-ui/系统
 为了使用 `框` 成分，首先需要创建它。 开始，增加一个 `间隔` 和 `色` 功能的风参数。
 
 ```jsx
-进口的风格从'的风格-成分';
-进 { spacing, palette } 从'@材料-ui/系统';
+import styled from 'styled-components';
+import { spacing, palette } from '@material-ui/system';
 
-const框=风格。div`${spacing}${palette}`;
+const Box = styled.div`${spacing}${palette}`;
 
-出口默认箱；
+export default Box;
 ```
 
 这个盒子组件现在支持新 [距性](/system/spacing/#api) 和 [色性](/system/palette/#api)的。 例如，可以提供一种填补财产： `p` 和一个颜色的财产： `色`的。
@@ -73,30 +73,30 @@ const框=风格。div`${spacing}${palette}`;
 
 组件可以被风格提供任何有效的CSS值。
 
-### Theming
+### 主题
 
 但大部分时间，你想依靠一个主题的价值增加UI的一致性。 这是最好有一个预设的填充和色彩的价值观。 进口的主题提供者的定型解决方案。
 
 ```jsx
-进口作出反应，从'应'
-进 { ThemeProvider } 从'的风格-成分'
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
 
-const主题={
-  间距：4,
-  的调色板： {
+const theme = {
+  spacing: 4,
+  palette: {
     primary: '#007bff',
   },
 };
 
-功能的应用程序(){
-  返回(
+function App() {
+  return (
     <ThemeProvider theme={theme}>
-      {/*儿童*/}
+      {/* children */}
     </ThemeProvider>
   )
 }
 
-出口默认程序
+export default App
 ```
 
 现在，你可以提供一个间距乘数值:
@@ -130,65 +130,65 @@ const主题={
 如果你已经在使用 `@材料-ui/核心`，你可以用我们的 [预先包装的盒](/utils/box/) 部件(用调内部):
 
 ```jsx
-进口 { unstable_Box as Box } 从'@材料-ui/core/框';
+import { unstable_Box as Box } from '@material-ui/core/Box';
 ```
 
 ## 互操作性
 
-`@材料-ui/系统` 适用于大多数CSS-在-JS库，包括调，风格的部件和情感。
+`@material-ui/system` 适用于大多数CSS-在-JS库，包括调，风格的部件和情感。
 
-如果你已经在使用 `@材料-ui/核心`，我们鼓励你开始与 **调** 解决方案，以尽量减少束的大小。
+如果你已经在使用 `@material-ui/core`，我们鼓励你开始与 **JSS** 解决方案，以尽量减少束的大小。
 
 ### JSS
 
 ```jsx
-进口 { palette, spacing, compose } 从'@材料-ui/系统';
-进 { styled } 从'@材料-ui/式';
+import { palette, spacing, compose } from '@material-ui/system';
+import { styled } from '@material-ui/styles';
 
-const框=风格(撰写(间隔板));
+const Box = styled(compose(spacing, palette));
 ```
 
-{{"演示":"pages/system/basics/JSS.js"}}
+{{"demo": "pages/system/basics/JSS.js"}}
 
 ### 风格的部件
 
 ```jsx
-进口 { palette, spacing } 从'@材料-ui/系统';
-导风格，从'的风格-成分';
+import { palette, spacing } from '@material-ui/system';
+import styled from 'styled-components';
 
-const框=风格。div`${palette}${spacing}`;
+const Box = styled.div`${palette}${spacing}`;
 ```
 
-{{"演示":"pages/system/basics/StyledComponents.js"}}
+{{"demo": "pages/system/basics/StyledComponents.js"}}
 
 ### Emotion
 
 ```jsx
-进口 { spacing, palette } 从'@材料-ui/系统';
-导风格，从'@情绪/风格的';
+import { spacing, palette } from '@material-ui/system';
+import styled from '@emotion/styled';
 
-const框=风格。div`${palette}${spacing}`;
+const Box = styled.div`${palette}${spacing}`;
 ```
 
-{{"演示":"pages/system/basics/Emotion.js"}}
+{{"demo": "pages/system/basics/Emotion.js"}}
 
 ## 响应
 
 **所有** 的性质敏感，我们支持3个不同的Api。 它使用这种默认，但是定制的，断点的主题结构：
 
 ```js
-const值={
-  xs:0,
-  sm：600,
-  md:960,
-  lg：1280年，
-  xl：1920年，
+const values = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920,
 };
 
-const主题={
-  断点:{
-    键：['x','sm','md','lg','xl'],
-    ：key=> `@媒体(min-宽:${值[key]}px)`,
+const theme = {
+  breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+    up: key => `@media (min-width:${values[key]}px)`,
   },
 };
 ```
@@ -199,16 +199,16 @@ const主题={
 <Box p={[2, 3, 4]} />
 
 /**
- * 产出：
+ * Outputs:
  *
- *填充:16像素；以
- *@媒体(最宽：600像素){
- *填充：24px;
- *}
- *@媒体(最宽：960px){
- *填充:32;
- *}
-*/
+ * padding: 16px;
+ * @media (min-width: 600px) {
+ *   padding: 24px;
+ * }
+ * @media (min-width: 960px) {
+ *   padding: 32px;
+ * }
+ */
 ```
 
 ### 对象
@@ -217,31 +217,31 @@ const主题={
 <Box p={{ xs: 2, sm: 3, md: 4 }} />
 
 /**
- * 产出：
+ * Outputs:
  *
- *填充:16像素；以
- *@媒体(最宽：600像素){
- *填充：24px;
- *}
- *@媒体(最宽：960px){
- *填充:32;
- *}
-*/
+ * padding: 16px;
+ * @media (min-width: 600px) {
+ *   padding: 24px;
+ * }
+ * @media (min-width: 960px) {
+ *   padding: 32px;
+ * }
+ */
 ```
 
 ### 搭配
 
-如果你想要小组断点的价值观，可以使用我们的 `断点()` 帮手。
+如果你想要小组断点的价值观，可以使用我们的 `breakpoints()` 帮手。
 
 ```jsx
-进口{撰写、间隔、调色板、断点}从'@材料-ui/系统';
-导风格，从'的风格-成分';
+import { compose, spacing, palette, breakpoints } from '@material-ui/system';
+import styled from 'styled-components';
 
-const框=风格。div`
-  ${断点(
-    撰写(
-      间隔，
-      调色板,
+const Box = styled.div`
+  ${breakpoints(
+    compose(
+      spacing,
+      palette,
     ),
   )}
 `;
@@ -253,21 +253,21 @@ const框=风格。div`
 />
 
 /**
- * 产出：
+ * Outputs:
  *
- *填充:16像素；以
- *@媒体(最宽：600像素){
- *填充：24px;
- *}
- *@媒体(最宽：960px){
- *填充:32;
- *}
-*/
+ * padding: 16px;
+ * @media (min-width: 600px) {
+ *   padding: 24px;
+ * }
+ * @media (min-width: 960px) {
+ *   padding: 32px;
+ * }
+ */
 ```
 
 ## 定风格的道具
 
-### `风格(选择)=> 风格的功能`
+### `style(options) => style function`
 
 使用这种帮助来创建自己风格的功能。
 
