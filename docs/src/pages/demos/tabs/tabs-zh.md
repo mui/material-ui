@@ -32,7 +32,7 @@ components: Tabs, Tab
 
 ### 100%宽度
 
-The `variant="fullWidth"` property should be used for smaller views. 此演示还使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)来设置 Tab 过渡动画，并允许在触摸设备上滑动标签。
+`variant="fullWidth"` 属性应该用于较小的视图。 此演示还使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)来设置 Tab 过渡动画，并允许在触摸设备上滑动标签。
 
 {{"demo": "pages/demos/tabs/FullWidthTabs.js"}}
 
@@ -62,9 +62,9 @@ The `variant="fullWidth"` property should be used for smaller views. 此演示�
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## Customized Tabs
+## 自定义的选项卡
 
-If you have read the [overrides documentation page](/customization/overrides/) but aren't confident jumping in, here's an example of how you can change the main color of the Tabs.
+如果您已阅读[覆盖文档页面](/customization/overrides/) 但是不自信地跳进来，这里是一个如何改变 Tabs 主色的例子。
 
 ⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
@@ -76,9 +76,9 @@ If you have read the [overrides documentation page](/customization/overrides/) b
 
 {{"demo": "pages/demos/tabs/NavTabs.js"}}
 
-## Icon Tabs
+## 图标选项卡
 
-Tab labels may be either all icons or all text.
+标签标签可以是所有图标或全文。
 
 {{"demo": "pages/demos/tabs/IconTabs.js"}}
 

@@ -17,25 +17,25 @@ We are falling back to **native input controls**. 如果你有兴趣实现或者
 
 ## 日期选择器
 
-A native date picker example with `type="date"`, it can be used as a calendar too.
+一个原生的 `type="date"` 日期选择器示例 ，它也可以用作日历：
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## Date & Time pickers
+## 日期和时间选择器
 
-A native date & time picker example with `type="datetime-local"`.
+一个原生的 `type="datetime-local"` 日期和时间选择器示例。
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
 
-## Time pickers
+## 时间选择器
 
-A native time picker example with `type="time"`.
+一个原生的 `type="time"` 时间选择器示例 。
 
 {{"demo": "pages/demos/pickers/TimePickers.js"}}
 
 ## 补充项目
 
-For more advanced use cases you might be able to take advantage of.
+对于更高级的用例，您可以利用：
 
 ### material-ui-pickers
 
@@ -47,5 +47,5 @@ For more advanced use cases you might be able to take advantage of.
 
 ### Other
 
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.
+- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker)：时间选择器。
+- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers)：日期和时间选择器。

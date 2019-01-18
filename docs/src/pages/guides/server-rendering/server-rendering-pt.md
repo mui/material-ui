@@ -265,3 +265,4 @@ function handleRender(req, res) {
 ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
+- The react-jss dependency version should match the ^8.0.0 semantic versioning.

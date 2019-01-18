@@ -20,7 +20,7 @@ Material-UI不提供任何高级 API 来解决此问题。 我们鼓励人们依
 
 ![stars](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-select.svg)
 
-In the following example, we demonstrate how to use [react-select](https://github.com/JedWatson/react-select).
+在下面的示例中, 我们演示如何使用 \[react-select\](https://github. com/JedWatson/react-select)。
 
 {{"demo": "pages/demos/autocomplete/IntegrationReactSelect.js"}}
 
@@ -28,6 +28,6 @@ In the following example, we demonstrate how to use [react-select](https://githu
 
 ![stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-In the following example, we demonstrate how to use [react-autosuggest](https://github.com/moroshko/react-autosuggest). It's also using [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) for the highlighting logic.
+在下面的示例中, 我们演示如何使用 \[react-autosuggest\](https://github.com/moroshko/react-autosuggest) 它还使用 \[autosuggest-highlight\](https://www.npmjs.com/package/autosuggest-highlight)来完成突出显示的逻辑。
 
 {{"demo": "pages/demos/autocomplete/IntegrationAutosuggest.js"}}

@@ -28,11 +28,11 @@ function ListItemLink(props) {
 
 你可以从这里查看[React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)
 
-## Nested List
+## 嵌套列表
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Folder List
+## 文件夹列表
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
@@ -72,14 +72,14 @@ You should change the list item alignment when displaying 3 lines or more, set t
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Pinned Subheader List
+## 固定 Subheader 列表
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+滚动列表时，子标题保持固定在屏幕的顶端，直到被下一个子标题推离屏幕。
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+此功能依赖于 CSS sticky 定位。 不幸的是, 这一功能并未在我们支持的所有浏览器中 [实现](https://caniuse.com/#search=sticky) 。 如果不支持, 则默认为 `disableSticky`。
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Inset List
+## 嵌入列表
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

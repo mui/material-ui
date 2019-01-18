@@ -24,15 +24,15 @@ The `dot` property changes a badge into a small dot. This can be used as a notif
 
 {{"demo": "pages/demos/badges/DotBadge.js"}}
 
-## Badge visibility
+## 徽章的可视性
 
-The visibility of badges can be controlled using the `invisible` property.
+徽章的可视性是可以通过`invisible`属性来控制。
 
 The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Customized Badge
+## 自定义徽章
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
 

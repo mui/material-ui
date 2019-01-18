@@ -38,9 +38,9 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Customized Tables
+## 自定义表格
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a `TableCell`.
+如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Tablecell)的主要颜色的示例
 
 ⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
@@ -48,13 +48,13 @@ If you have been reading the [overrides documentation page](/customization/overr
 
 ## 自定义表格分页行为
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+`TablePagination` 组件的 `Action` 属性允许实现自定义行为。
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Spanning Table
+## 跨越表格
 
-A simple example with spanning rows & columns.
+一个行 & 列跨越的简单例子
 
 {{"demo": "pages/demos/tables/SpanningTable.js"}}
 
@@ -69,6 +69,6 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 对于更高级的用例，您可以利用：
 
 - [ dx-react-grid-material-ui ](https://devexpress.github.io/devextreme-reactive/react/grid/) Material-UI 的一种数据表格, 具有分页，排序功能, 过滤, 分组和编辑功能([自定义许可](https://js.devexpress.com/licensing/))。
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Material-UI 的响应式数据表格, 包括过滤, 排序, 搜索等功能.
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Material-UI 的响应式数据表格,包括过滤,排序,搜索等功能.
 - - [material-table](https://github.com/mbrn/material-table) DataTable 是基于表格组件, 具有搜索,过滤,排序等附加功能。
 - [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) 虚拟化的Material-UI表格.

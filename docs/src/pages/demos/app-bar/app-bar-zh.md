@@ -10,27 +10,27 @@ components: AppBar, Toolbar, Menu
 
 它可以转换为上下文相关的操作栏或直接用作导航栏。
 
-## App Bar with buttons
+## 带有按钮的应用栏
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## Simple App Bar
+## 简单的应用栏
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with a primary search field
+## 搜索输入框为主的应用栏
 
-A primary searchbar.
+一个居中搜索栏
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## 带有菜单的应用栏
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## 带有搜索输入框的应用栏
 
-A side searchbar.
+一个靠边搜索栏。
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 

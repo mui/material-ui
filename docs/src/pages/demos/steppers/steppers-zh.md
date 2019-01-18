@@ -62,9 +62,9 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ## 定制步进器
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a stepper.
+如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Stepperr)的主要颜色的示例
 
-This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
+此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 ` completed ` 状态。
 
 ⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
@@ -72,28 +72,28 @@ This component uses a customized `StepConnector` element that changes border col
 
 ## 移动设备上的步进器
 
-This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+该组件实现了适用于移动设备的紧凑型步进器。 有关其详情, 请参阅 [移动步骤](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
 ### 移动设备的步进器 - 文字
 
-This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
+这本质上是被定位是一个后退/前进按钮。您必须自己实现文本描述，不过下面提供了一个示例供参考。
 
 {{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
 
 ### 移动设备步进器 - 带轮播效果
 
-This demo is very similar to the previous, the difference is the usage of [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
+这个实例与之前的非常相似，不同之处在于使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)以进行步骤转换。
 
 {{"demo": "pages/demos/steppers/SwipeableTextMobileStepper.js"}}
 
 ### 移动设备的步进器 - 指示点
 
-Use dots when the number of steps isn’t large.
+当步骤的数字不是特别明显时使用点状标记。
 
 {{"demo": "pages/demos/steppers/DotsMobileStepper.js"}}
 
 ### 移动设备步进器 - 进度条
 
-Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
+当有许多步骤时，或者如果在此过程中需要插入步骤（基于对早期步骤的响应），请使用进度条。
 
 {{"demo": "pages/demos/steppers/ProgressMobileStepper.js"}}

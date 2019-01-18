@@ -78,26 +78,26 @@ function Progress(props) {
 }
 ```
 
-## Customized Progress
+## 自定义进度
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. The last demo demonstrates how you can build a Facebook like spinner.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
 
 ⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 {{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
-## Delaying appearance
+## 延迟展现
 
-There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time. The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second. After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
+关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase`组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
 
 ## 局限性
 
-Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
+在特别慢的加载时，可能丢失stroke dash动画或看到环形进度的半径随机的情况。 为了不阻塞主渲染进程，应该在web worker中或批处理中执行密集操作的处理器。
 
-![heavy load](/static/images/progress/heavy-load.gif)
+![慢加载](/static/images/progress/heavy-load.gif)
 
-When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See https://github.com/mui-org/material-ui/issues/10327
+当不能这样做的时候，你可以借助 `disableShrink` 特性来减轻这个问题。 见 https://github.com/mui-org/material-ui/issues/10327
 
 {{"demo": "pages/demos/progress/CircularUnderLoad.js"}}

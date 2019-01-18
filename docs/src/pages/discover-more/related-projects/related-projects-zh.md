@@ -18,7 +18,7 @@
 - [material-ui-popup-state](https://github.com/jcoreio/material-ui-popup-state) Render props component that manages state for menus, popovers, and poppers, cutting down on boilerplate significantly.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Material-UI 的响应式数据表格, 包括过滤, 排序, 搜索等功能.
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Material-UI 的响应式数据表格,包括过滤,排序,搜索等功能.
 - [mui-downshift](https://github.com/techniq/mui-downshift) Thin layer over paypal's downshift to use Material-UI visual components.
 - [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.

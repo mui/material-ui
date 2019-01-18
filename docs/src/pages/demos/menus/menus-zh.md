@@ -24,15 +24,15 @@ Simple menus open over the anchor element by default (this option can be changed
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
-## MenuList composition
+## MenuList 组件
 
-The `Menu` component uses the `Popover` component internally. However, you might want to use a different positioning strategy, or not blocking the scroll. For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+`Menu`组件内部使用`Popver`组件 但是，您可能想药使用不同的定位策略，或者你不想禁止滚动。 为了满足这些需求，我们公开了一个`MenuList`组件，让你可以像下面例子中这样组合`Popper`来编写自己的菜单组件。
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+`MenuList`组件的主要职责是处理焦点。
 
 {{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
-## Customized MenuItem
+## 定制菜单项
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
 
@@ -42,27 +42,27 @@ If you have been reading the [overrides documentation page](/customization/overr
 
 `MenuItem`实际上是在`ListItem`之上增加了一些样式的封装。 所以你可以靠`MenuItem`来使用相同的列表组合特性：
 
-## Max height menus
+## 限高菜单
 
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+如果菜单的最大高度仍无法显示所有菜单项，则菜单可以在内部滚动。
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 
 ## Render Props
 
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single menu.
+这是[render props](https://reactjs.org/docs/render-props.html) 的例子。保持跟踪单个菜单的本地状态。
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
 
 ## 局限性
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout. You can use the `Typography` component to workaround this issue:
+这里有 [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，这个bug会让`text-overflow: ellipse`在 flexbox 布局中失去效果 你可以使用`Typography`组件做替代方案绕过这个问题：
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
 ## 更改过渡动画
 
-Use a different transition altogether.
+使用不同的过渡动画。
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
@@ -72,6 +72,6 @@ Use a different transition altogether.
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单状态
 
 {{"demo": "pages/demos/menus/MenuPopupState.js"}}

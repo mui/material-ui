@@ -14,15 +14,15 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
 
-## Controlled Accordion
+## 受控手风琴
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+扩展默认面板行为以使用` ExpansionPanel `组件创建手风琴。
 
 {{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns
+## 次要标题和列
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+可以使用多列来构造内容，并且可以将辅助文本添加到面板以帮助用户。
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 

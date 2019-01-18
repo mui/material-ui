@@ -18,7 +18,7 @@ components: Divider
 
 We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
 
-## Inset Dividers
+## 内嵌分隔线
 
 The `inset` property has now been deprecated. You should now use `variant="inset"`
 
