@@ -2,7 +2,7 @@
 
 <p class="description">风格的功能对于建设强大的设计系统。</p>
 
-> 这两个英语希腊每天都会 `@material-ui/system` 是实验性的(阿尔法版)。 我们正在努力使它稳定的材料-UI v4。
+> ⚠️ `@material-ui/system` is experimental (alpha version). 我们正在努力使它稳定的材料-UI v4。
 
 ## 开始
 
