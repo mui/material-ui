@@ -47,7 +47,7 @@ const styles = theme => ({
  */
 const appList = [
   {
-    title: 'Bethesda Game Studios',
+    title: 'Bethesda.net',
     description:
       'The official site for Bethesda, publisher of Fallout, DOOM, Dishonored, ' +
       'Skyrim, Wolfenstein, The Elder Scrolls, more. Your source for news, features & community.',
