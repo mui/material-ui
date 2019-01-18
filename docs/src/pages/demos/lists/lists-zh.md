@@ -28,29 +28,29 @@ function ListItemLink(props) {
 
 你可以从这里查看[React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)
 
+## 嵌套列表
+
+{{"demo": "pages/demos/lists/NestedList.js"}}
+
 ## 文件夹列表
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
-## 嵌入列表
+## 交互式
 
-{{"demo": "pages/demos/lists/InsetList.js"}}
+下面是一个交互式演示，可让您探索不同设置的可视结果：
 
-## 嵌套列表
-
-{{"demo": "pages/demos/lists/NestedList.js"}}
+{{"demo": "pages/demos/lists/InteractiveList.js"}}
 
 ## 可选的 ListItem
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## 固定 Subheader 列表
+## Align list items
 
-滚动列表时，子标题保持固定在屏幕的顶端，直到被下一个子标题推离屏幕。
+You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
 
-此功能依赖于 CSS sticky 定位。 不幸的是, 这一功能并未在我们支持的所有浏览器中 [实现](https://caniuse.com/#search=sticky) 。 如果不支持, 则默认为 `disableSticky`。
-
-{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+{{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
 ## 列表控件
 
@@ -72,8 +72,14 @@ function ListItemLink(props) {
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## 交互式
+## 固定 Subheader 列表
 
-下面是一个交互式演示，可让您探索不同设置的可视结果：
+滚动列表时，子标题保持固定在屏幕的顶端，直到被下一个子标题推离屏幕。
 
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+此功能依赖于 CSS sticky 定位。 不幸的是, 这一功能并未在我们支持的所有浏览器中 [实现](https://caniuse.com/#search=sticky) 。 如果不支持, 则默认为 `disableSticky`。
+
+{{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
+
+## 嵌入列表
+
+{{"demo": "pages/demos/lists/InsetList.js"}}

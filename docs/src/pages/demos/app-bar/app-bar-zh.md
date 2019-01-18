@@ -1,5 +1,5 @@
 ---
-title: 应用栏React组件
+title: React 应用栏组件
 components: AppBar, Toolbar, Menu
 ---
 # 应用栏
@@ -10,13 +10,19 @@ components: AppBar, Toolbar, Menu
 
 它可以转换为上下文相关的操作栏或直接用作导航栏。
 
+## 带有按钮的应用栏
+
+{{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
+
 ## 简单的应用栏
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## 带有按钮的应用栏
+## 搜索输入框为主的应用栏
 
-{{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
+一个居中搜索栏
+
+{{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
 ## 带有菜单的应用栏
 
@@ -27,12 +33,6 @@ components: AppBar, Toolbar, Menu
 一个靠边搜索栏。
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
-
-## 搜索输入框为主的应用栏
-
-一个居中搜索栏
-
-{{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
 ## Dense (仅限桌面)
 

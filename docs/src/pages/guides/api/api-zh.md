@@ -112,6 +112,6 @@ const styles = {
 Material-UI组件根据以下规则使用两种方法的组合：
 
 - 当需要** 2 **自由度时，使用*布尔*。
-- 当需要**> 2 **自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
+- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
 
 回到上一个按钮示例; 因为它需要3个自由度，所以我们使用* enum *。

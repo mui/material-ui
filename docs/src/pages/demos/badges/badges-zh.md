@@ -12,12 +12,30 @@ components: Badge
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Badge visibility
+## Maximum Value
 
-The visibility of badges can be controlled using the `invisible` property.
+You can use the `max` property to cap the value of the badge content.
+
+{{"demo": "pages/demos/badges/BadgeMax.js"}}
+
+## Dot Badge
+
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+
+{{"demo": "pages/demos/badges/DotBadge.js"}}
+
+## 徽章的可视性
+
+徽章的可视性是可以通过`invisible`属性来控制。
+
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Customized Badge
+## 自定义徽章
+
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

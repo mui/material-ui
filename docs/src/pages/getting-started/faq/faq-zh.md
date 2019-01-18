@@ -1,6 +1,6 @@
 # 常见问题解答
 
-<p class="description">Stuck on a particular problem? Check some of these common gotchas first.</p>
+<p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
 
 如果您仍然无法找到您想要的内容, 您可以在[ gitter ](https://gitter.im/mui-org/material-ui)中询问社区。 对于怎么去做的问题和其他非问题，请使用[ StackOverflow ](https://stackoverflow.com/questions/tagged/material-ui)而不是Github issues。 有一个名为` material-ui `的StackOverflow标签, 可用于标记您的问题。
 
@@ -26,9 +26,40 @@ Overall, it's simple to recover from this problem by wrapping each Material-UI a
 
 We block the scroll as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
-## How can I disable the ripple effect on the whole app?
+## How can I disable the ripple effect globally?
 
-The best solution at present is to write wrapping components for all the Material-UI components showing a ripple. The ripple effect is exclusively coming from the `BaseButton` component. You can find the components using the ButtonBase [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22). Then, all you have to do is to provide the `disableRipple` property.
+The ripple effect is exclusively coming from the `BaseButton` component. You can disable the ripple effect globally by providing the following in your theme:
+
+```js
+import { createMuiTheme } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 
+    },
+  },
+});
+```
+
+## How can I disable animations globally?
+
+You can disable animations globally by providing the following in your theme:
+
+```js
+import { createMuiTheme } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => 'none',
+  },
+});
+```
+
+Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices, in these cases, you can dynamically change the theme value.
 
 ## Do I have to use JSS to style my app?
 

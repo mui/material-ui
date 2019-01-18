@@ -10,17 +10,13 @@ To promote greater consistency between apps, light and dark theme types are avai
 
 ## Theme provider
 
-If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application.
-However, this is optional; Material-UI components come with a default theme.
+If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
 
-`MuiThemeProvider` relies on the context feature of React to pass the theme down to the components,
-so you need to make sure that `MuiThemeProvider` is a parent of the components you are trying to customize.
-You can learn more about this in [the API section](#muithemeprovider).
+`MuiThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `MuiThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](#muithemeprovider).
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
-The following sections cover the most important theme variables:
+Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
 - [Palette](#palette)
 - [Type (light / dark theme)](#type-light-dark-theme)
@@ -40,8 +36,7 @@ The theme exposes the following color intentions:
 - secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be made aware of.
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
-and the un-prefixed shades for the other intentions.
+The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
 
 If you want to learn more about color, you can check out [the color section](/style/color/).
 
@@ -49,10 +44,7 @@ If you want to learn more about color, you can check out [the color section](/st
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary),
-[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or
-[`palette.error`](/customization/default-theme/?expend-path=$.palette.error)
-'intention' objects are provided, they will replace the defaults.
+If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'intention' objects are provided, they will replace the defaults.
 
 The intention value can either be a [color](/style/color/) object, or an object with one or more of the following keys:
 
@@ -67,8 +59,7 @@ interface PaletteIntention {
 
 **Using a color object**
 
-The simplest way to customize an intention is to import one or more of the provided colors
-and apply them to a palette intention:
+The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -81,8 +72,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If the intention key receives a color object as in the example above,
-the following mapping is used to populate the required keys:
+If the intention key receives a color object as in the example above, the following mapping is used to populate the required keys:
 
 ```js
 palette: {
@@ -135,8 +125,7 @@ const theme = createMuiTheme({
 
 **Providing the colors directly**
 
-If you wish to provide more customized colors, you can either create your own color object,
-or directly supply colors to some or all of the intention's keys:
+If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -160,19 +149,13 @@ const theme = createMuiTheme({
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the
-`main`, `light`, `dark` or `contrastText` keys, these map as follows:
+As in the example above, if the intention object contains custom colors using any of the `main`, `light`, `dark` or `contrastText` keys, these map as follows:
 
-- If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`,
-according to the `tonalOffset` value.
+- If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, according to the `tonalOffset` value.
 
-- If `contrastText` is omitted, its value will be calculated to contrast with `main`,
-according to the`contrastThreshold` value.
+- If `contrastText` is omitted, its value will be calculated to contrast with `main`, according to the`contrastThreshold` value.
 
-Both the `tonalOffset` and `contrastThreshold` values may be customized as needed.
-A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker.
-A higher value for `contrastThreshold` increases the point at which a background color is considered
-light, and given a dark `contrastText`.
+Both the `tonalOffset` and `contrastThreshold` values may be customized as needed. A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker. A higher value for `contrastThreshold` increases the point at which a background color is considered light, and given a dark `contrastText`.
 
 Note that `contrastThreshold` follows a non-linear curve.
 
@@ -186,8 +169,7 @@ Need inspiration? The Material Design team has built an awesome [palette configu
 
 ### Type (light /dark theme)
 
-You can make the theme dark by setting `type` to `dark`.
-While it's only a single property value change, internally it modifies the value of the following keys:
+You can make the theme dark by setting `type` to `dark`. While it's only a single property value change, internally it modifies the value of the following keys:
 
 - `palette.text`
 - `palette.divider`
@@ -206,12 +188,9 @@ const theme = createMuiTheme({
 
 ### Typography
 
-Too many type sizes and styles at once can spoil any layout.
-The theme provides a **limited set of type sizes** that work well together along with the layout grid.
-These sizes are used across the components.
+Too many type sizes and styles at once can spoil any layout. The theme provides a **limited set of type sizes** that work well together along with the layout grid. These sizes are used across the components.
 
-Have a look at the following example regarding changing the default values, such as the font family.
-If you want to learn more about typography, you can check out [the typography section](/style/typography/).
+Have a look at the following example regarding changing the default values, such as the font family. If you want to learn more about typography, you can check out [the typography section](/style/typography/).
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
@@ -239,14 +218,9 @@ const theme = createMuiTheme({
 
 ### Typography - Font size
 
-Material-UI uses `rem` units for the font size.
-The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
-so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience.
-Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
-for devices that can be vastly different in size and viewing distance.
+Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material-UI you can provide a `fontSize` property.
-The default value is `14px`.
+To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
 
 ```js
 const theme = createMuiTheme({
@@ -259,15 +233,11 @@ const theme = createMuiTheme({
 
 The computed font size by the browser follows this mathematical equation:
 
-![font-size](/static/images/font-size.gif)
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
 ### Typography - HTML font size
 
-You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
-We provide a `htmlFontSize` theme property for this use case.
-It's telling Material-UI what's the font-size on the `<html>` element is.
-It's used to adjust the `rem` value so the calculated font-size always match the specification.
+You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). We provide a `htmlFontSize` theme property for this use case. It's telling Material-UI what's the font-size on the `<html>` element is. It's used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
@@ -290,15 +260,11 @@ html {
 
 ### Other variables
 
-In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc. You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
 ### Custom variables
 
-When using Material-UI's [styling solution](/customization/css-in-js/) with your own components,
-you can also take advantage of the theme.
-It can be convenient to add additional variables to the theme so you can use them everywhere.
-For instance:
+When using Material-UI's [styling solution](/customization/css-in-js/) with your own components, you can also take advantage of the theme. It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
@@ -306,9 +272,7 @@ For instance:
 
 ### CSS
 
-When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key of the `theme` to potentially change every single **style** injected by Material-UI into the DOM.
-That's a really powerful feature.
+When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change every single **style** injected by Material-UI into the DOM. That's a really powerful feature.
 
 ```js
 const theme = createMuiTheme({
@@ -324,14 +288,11 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section.
-For instance, you can have a look at the [Button](/api/button/#css).
-Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
 ### Properties
 
-You can also apply properties on all the instances of a component type.
-We expose a `props` key in the `theme` for this use case.
+You can also apply properties on all the instances of a component type. We expose a `props` key in the `theme` for this use case.
 
 ```js
 const theme = createMuiTheme({
@@ -339,7 +300,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -349,27 +310,24 @@ const theme = createMuiTheme({
 
 ## Accessing the theme in a component
 
-You might need to access the theme variables inside your React components.
-Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. Here is an example:
+You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. 下面是一个示例：
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
 ## Nesting the theme
 
-The theming solution is very flexible, as [you can nest](/css-in-js/advanced/#theme-nesting) multiple theme providers.
-This can be really useful when dealing with different area of your application that have distinct appearance from each other.
+The theming solution is very flexible, as [you can nest](/css-in-js/advanced/#theme-nesting) multiple theme providers. This can be really useful when dealing with different area of your application that have distinct appearance from each other.
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme.
-You can extend the outer theme by providing a function:
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
 #### A note on performance
 
-The performance implications of nesting the `MuiThemeProvider` component are linked to JSS's work behind the scenes.
-The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
+The performance implications of nesting the `MuiThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
+
 - `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
 - `styles`: The larger the styles object is, the more work is needed.
 
@@ -377,12 +335,11 @@ The main point to understand is that we cache the injected CSS with the followin
 
 ### `MuiThemeProvider`
 
-This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context.
-It should preferably be used at **the root of your component tree**.
+This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context. It should preferably be used at **the root of your component tree**.
 
 You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
-#### Examples
+#### 例子
 
 ```jsx
 import React from 'react';
@@ -407,15 +364,15 @@ render(<App />, document.querySelector('#app'));
 
 Generate a theme base on the options received.
 
-#### Arguments
+#### 参数
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Returns
+#### 返回结果
 
 `theme` (*Object*): A complete, ready to use theme object.
 
-#### Examples
+#### 例子
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -435,18 +392,17 @@ const theme = createMuiTheme({
 
 ### `withTheme()(Component) => Component`
 
-Provide the `theme` object as a property of the input component so it can be used
-in the render method.
+Provide the `theme` object as a property of the input component so it can be used in the render method.
 
-#### Arguments
+#### 参数
 
 1. `Component`: The component that will be wrapped.
 
-#### Returns
+#### 返回结果
 
 `Component`: The new component created.
 
-#### Examples
+#### 例子
 
 ```js
 import { withTheme } from '@material-ui/core/styles';

@@ -18,17 +18,62 @@ components: Tooltip
 
 {{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
 
-## 控制文字提示
+## 自定义文字提示
 
-你可以使用 `open`， `onOpen` 和`onClose` 属性来控制工具提示的行为。
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can theme a tooltip.
 
-{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
+
+## Custom child element
+
+The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+
+```jsx
+function MyComponent(props) {
+  // We spread the properties to the underlying DOM element.
+  return <div {...props}>Bin</div>
+}
+
+// ...
+
+<Tooltip title="Delete">
+  <MyComponent>
+</Tooltip>
+```
+
+You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
 
 ## 触发器
 
 你可以定义各种类型的事件让一个文字提示显示。
 
 {{"demo": "pages/demos/tooltips/TriggersTooltips.js"}}
+
+## 控制文字提示
+
+你可以使用 `open`， `onOpen` 和`onClose` 属性来控制工具提示的行为。
+
+{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
+
+## 可变的容器宽度
+
+`Tooltip` 为了保证较好的阅读星，会自动将较长的文字折行。
+
+{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
+
+## 交互式
+
+文字提示可以是交互式的。当用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时, 它不会关闭。
+
+{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
+
+## 对于 disabled 的元素
+
+默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 To accommodate disabled elements, add a simple wrapper element like a `span`.
+
+{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
 ## 过渡动画
 
@@ -43,25 +88,3 @@ components: Tooltip
 在移动设备上，当用户长按元素并在延迟1500ms后，将显示文字提示。 您可以使用`disableTouchListener`属性禁用此功能。
 
 {{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
-
-## 对于 disabled 的元素
-
-默认情况下，` Button `等disabled的元素不会触发用户交互，因此` Tooltip `不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如` span `。
-
-{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
-
-## 自定义文字提示
-
-{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
-
-## 可变的容器宽度
-
-`Tooltip` 为了保证较好的阅读星，会自动将较长的文字折行。
-
-{{"demo": "pages/demos/tooltips/VariableWidth.js"}}
-
-## 交互式
-
-文字提示可以是交互式的。当用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时, 它不会关闭。
-
-{{"demo": "pages/demos/tooltips/InteractiveTooltips.js"}}
