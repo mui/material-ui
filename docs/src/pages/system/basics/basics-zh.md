@@ -367,7 +367,7 @@ const theme = {
 
 {{"demo": "pages/system/basics/Variant.js"}}
 
-## CSS property
+## CSS 属性
 
 如果你想要支持的定义CSS值，可以使用我们的 `css()` 帮手。 它将处理的 `css` 财产。
 
@@ -409,8 +409,8 @@ const Box = styled.div`
 - Tachyons后来在(2017年)，其次是 [顺风CSS](https://tailwindcss.com/)的。 他们已经由原子CSS更受欢迎。
 - [Twitter的引导](https://getbootstrap.com/docs/4.1/utilities/borders/) 已经慢慢介绍了原子类名在v2，v3,和v4。 我们必须用他们的集团，他们的"助手类"作为灵感。
 - 在作出反应的世界， [风格系统](https://github.com/jxnblk/styled-system) 是一个第(2017年)，以促进风格的功能。 它可以作为一个通用框部件替换原子CSS佣工及佣工中写入新的组成。
-- 这样的大公司访问网站审查，并且段。io都使用同样的方法在不同的口味的： 
-  - [绿箱](https://evergreen.segment.com/components/layout-primitives)
-  - [完形盒](https://pinterest.github.io/gestalt/#/Box)
-  - [底涂框](https://primer.style/components/docs/Box)
-- 实际执行情况和对象响应API的灵感来自于 [顺利-UI的系统](https://smooth-ui.smooth-code.com/docs-basics-system)的。
+- 这样的大公司访问网站审查，Segment.io都使用同样的方法在不同的口味的： 
+  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
+  - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
+  - [Primer Box](https://primer.style/components/docs/Box)
+- 实际执行情况和对象响应API的灵感来自于 [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system)的。
