@@ -288,17 +288,17 @@ const Box = styled.div`
 #### 例子
 
 ```js
-进口 { style } 从'@材料-ui/系统'
+import { style } from '@material-ui/system'
 
-const属性=风格({
-  支柱:'bc',
-  cssProperty:'的属性',
-  themeKey:'的调色板',
-  转变：数值=> `${value} !重要`时，
+const borderColor = style({
+  prop: 'bc',
+  cssProperty: 'borderColor',
+  themeKey: 'palette',
+  transform: value => `${value} !important`,
 });
 ```
 
-### `组成(...风格的功能)=> 风格的功能`
+### `compose(...style functions) => style function`
 
 合并的多式的功能合为一体。
 
@@ -309,20 +309,20 @@ const属性=风格({
 #### 例子
 
 ```js
-进口 { style, compose } 从'@材料-ui/系统'
+import { style, compose } from '@material-ui/system'
 
-出口const文字颜色=风格({
-  支柱:'color',
-  themeKey:'的调色板',
+export const textColor = style({
+  prop: 'color',
+  themeKey: 'palette',
 });
 
-出口const bgcolor=风格({
-  支柱:'bgcolor',
-  cssProperty:'backgroundColor',
-  themeKey:'的调色板',
+export const bgcolor = style({
+  prop: 'bgcolor',
+  cssProperty: 'backgroundColor',
+  themeKey: 'palette',
 });
 
-const色=撰写(文字颜色的，bgcolor);
+const palette = compose(textColor, bgcolor);
 ```
 
 ## 变种
