@@ -2,7 +2,7 @@
 title: 文本框 React 组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
-# Text Fields
+# 文字字段
 
 <p class="description">用户可以在文本框内输入或编辑文字</p>
 
@@ -44,7 +44,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
