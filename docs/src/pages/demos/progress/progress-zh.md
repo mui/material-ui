@@ -82,7 +82,7 @@ function Progress(props) {
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
