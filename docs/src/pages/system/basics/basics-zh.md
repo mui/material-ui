@@ -199,7 +199,7 @@ const theme = {
 <Box p={[2, 3, 4]} />
 
 /**
- * Outputs:
+ * 输出:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -217,7 +217,7 @@ const theme = {
 <Box p={{ xs: 2, sm: 3, md: 4 }} />
 
 /**
- * Outputs:
+ * 输出:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -340,7 +340,7 @@ const variant = style({
   themeKey: 'typography',
 });
 
-// ⚠ Text is already defined in the global context:
+// ⚠ 文本已在全局上下文中定义:
 // https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
 const Text = styled.span`
   font-family: Helvetica;
@@ -361,7 +361,7 @@ const theme = {
   },
 };
 
-// 呈现的主题。排版。h1式的对象。
+// 呈现theme.typography.h1样式对象。
 <Text variant="h1">variant=h1</Text>
 ```
 
