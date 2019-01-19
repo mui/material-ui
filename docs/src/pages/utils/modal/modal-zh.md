@@ -27,7 +27,7 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/demos
 
 {{"demo": "pages/utils/modal/SimpleModal.js"}}
 
-## Performance
+## 性能
 
 The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modal in your React tree won't slow down your page.
 
