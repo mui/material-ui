@@ -11,7 +11,7 @@ components: TextField
 
 #### 注意
 
-We are falling back to **native input controls**. 如果你有兴趣实现或者已经实现了一个符合 Material Design 的且用户体验良好的富选择器，请在[ #4787 ](https://github.com/mui-org/material-ui/issues/4787)和[ #4796 ](https://github.com/mui-org/material-ui/issues/4796)告诉我们。 We could add [a link to or a demo](#complementary-projects) of your project in the documentation.
+我们回归到 **原生输入控件**。 如果你有兴趣实现或者已经实现了一个符合 Material Design 的且用户体验良好的富选择器，请在[ #4787 ](https://github.com/mui-org/material-ui/issues/4787)和[ #4796 ](https://github.com/mui-org/material-ui/issues/4796)告诉我们。 我们可以在文档中添加 [链接或项目的演示](#complementary-projects)。
 
 ⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。
 
@@ -41,11 +41,11 @@ We are falling back to **native input controls**. 如果你有兴趣实现或者
 
 ![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) provides date and time controls that follow the Material Design spec.
+[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) 提供遵循Material Design规范的日期和时间控件。
 
 {{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
 
-### Other
+### 其他
 
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker)：时间选择器。
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers)：日期和时间选择器。
