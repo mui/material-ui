@@ -80,7 +80,7 @@ function Progress(props) {
 
 ## 自定义进度
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个如何自定义组件的示例。 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
 
 ⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
