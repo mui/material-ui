@@ -36,7 +36,7 @@ Simple menus open over the anchor element by default (this option can be changed
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
