@@ -13,8 +13,8 @@ To correct this issue, all components on the page need to be initialized such th
 You could end up accidentally using two class name generators in a variety of scenarios:
 
 - You accidentally **bundle** two versions of Material-UI. You might have a dependency not correctly setting Material-UI as a peer dependency.
-- You are using `JssProvider` for a **subset** of your React Tree.
-- You are using a bundler and it is splitting code in a way results in multiple class name generator instances to be created. > If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+- 您正在使用`JssProvider`对于**子集**你的React Tree。
+- You are using a bundler and it is splitting code in a way results in multiple class name generator instances to be created. >如果您使用带有[ SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，尝试配置[ `runtimeChunk`在`优化下设置`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
 
 Overall, it's simple to recover from this problem by wrapping each Material-UI application with [`JssProvider`](/customization/css-in-js/#jssprovider) components at the top of their component trees **and using a single class name generator shared between them**.
 
@@ -35,10 +35,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // 组件的名称 ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      // 要应用的属性
+      disableRipple: true, // Zài zhěnggè yìngyòng chéngxù zhōng méiyǒu gèng duō de liányī
     },
   },
 });
@@ -53,7 +53,7 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // So we have `transition: none;` everywhere
+    // 所以我们到处都有 `transition: none;`
     create: () => 'none',
   },
 });
