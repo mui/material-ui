@@ -45,7 +45,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## 浮动操作按钮
 
-[浮动动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FABs come in two types: regular, and extended.
+[浮动动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB有两种类型：常规和扩展。
 
 只在它是最适合呈现屏幕主要操作的方式时使用FAB。
 
@@ -85,7 +85,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 如果您有阅读[“重写”文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是一些示例，包括使用 classes 属性更改 Button 的主要颜色、 使用主题和使用 Bootstrap 样式按钮。
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [composition guide](/guides/composition/#component-property).*
+*注意：创建 `MyLink` 是必要的，以防止意外卸载。您可以在我们的 [组成指南](/guides/composition/#component-property)阅读更多相关信息。*
