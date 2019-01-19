@@ -53,7 +53,7 @@ function MyComponent() {
 
 ## Server-side rendering
 
-You will need to use a [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ponyfill on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
+An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
 We also encourage the usage of the `unstable_useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
 
 {{"demo": "pages/layout/use-media-query/ServerSide.js", "react": "next"}}
