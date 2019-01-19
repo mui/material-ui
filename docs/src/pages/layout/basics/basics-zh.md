@@ -6,10 +6,10 @@
 
 Material Design中的[响应式布局](https://material.io/design/layout/responsive-layout-grid.html)可适配任何可能的屏幕尺寸。 我们提供以下工具以实现响应式UI：
 
-- [网格](/layout/grid/)：网格在布局之间创建视觉一致性，同时允许各种设计的灵活性。
-- [断点](/layout/breakpoints/)：我们提供了一个低级API，可以在各种环境中使用断点。
+- [Grid](/layout/grid/)：网格在布局之间创建视觉一致性，同时允许各种设计的灵活性。
+- [Breakpoints](/layout/breakpoints/)：我们提供了一个低级API，可以在各种环境中使用断点。
 - [useMediaQuery](/layout/use-media-query/)：这是React的CSS媒体查询钩子。
-- [隐藏](/layout/hidden/)： 隐藏的组件可用于更改元素的可见性。
+- [Hidden](/layout/hidden/)： 隐藏的组件可用于更改元素的可见性。
 
 ## z-index
 
@@ -17,8 +17,8 @@ Material Design中的[响应式布局](https://material.io/design/layout/respons
 
 [这些值](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
 
-- 移动设备起步: 1000
-- 应用栏：1100
+- mobile stepper（移动设备起步）: 1000
+- app bar（应用栏）：1100
 - drawer（抽屉）：1200
 - modal（浮层）：1300
 - snackbar：1400
