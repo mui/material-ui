@@ -10,9 +10,10 @@ export interface DialogProps
   fullScreen?: boolean;
   fullWidth?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+  PaperComponent?: React.ComponentType<PaperProps>;
   PaperProps?: Partial<PaperProps>;
   scroll?: 'body' | 'paper';
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
 }
