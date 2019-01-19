@@ -11,6 +11,7 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+import withStyles from '../styles/withStyles';
 
 const variantComponent = {
   standard: Input,
@@ -317,4 +318,4 @@ TextField.defaultProps = {
   variant: 'standard',
 };
 
-export default TextField;
+export default withStyles({}, { name: 'MuiTextField' })(TextField);
