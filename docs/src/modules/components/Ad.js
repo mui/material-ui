@@ -11,7 +11,7 @@ const styles = theme => ({
   root: {
     position: 'relative',
     minHeight: 116,
-    maxWidth: 350,
+    maxWidth: 345,
     display: 'block',
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 3,

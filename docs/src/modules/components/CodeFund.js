@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import loadScript from 'docs/src/modules/utils/loadScript';
 
 const styles = theme => ({
   '@global': {
@@ -45,10 +46,7 @@ class CodeFund extends React.Component {
       return;
     }
 
-    const script = document.createElement('script');
-    script.setAttribute('async', '');
-    script.src = 'https://codefund.io/properties/137/funder.js?theme=unstyled';
-    scriptSlot.appendChild(script);
+    loadScript('https://codefund.io/properties/137/funder.js?theme=unstyled', scriptSlot);
   }
 
   render() {
