@@ -12,7 +12,7 @@
 - **[Banners](https://material.io/design/components/banners.html)** ([可以组成](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
-  - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
+  - **[Text & contained buttons (先前 flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/lab/about/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
@@ -44,7 +44,7 @@
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
 - **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧 Material v1*)
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -55,7 +55,7 @@
   - Thumbnail
   - **Controls ✓** 
     - **Checkbox ✓**
-    - **Expand/collapse ✓** (AKA Nested)
+    - **Expand/collapse ✓** (又名 Nested)
     - **Switch ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
@@ -68,7 +68,7 @@
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
   - **[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legacy Material v1*)
+  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*旧 Material v1*)
 - **[Selection controls](https://material.io/design/components/selection-controls.html) ✓** 
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -76,12 +76,12 @@
 - **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/lab/about/)) 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
-- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*旧 Material v1*)
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*旧 Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*旧 Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
@@ -89,7 +89,7 @@
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields](https://material.io/design/components/text-fields.html) ✓** 
-  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (旧 Material v1)
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/design/components/text-fields.html#input-types): 
@@ -102,7 +102,7 @@
     - **Error message ✓**
     - **Icons ✓**
     - Character counter
-- **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Legacy Material v1)
+- **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (旧 Material v1)
 - **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 
   - **Desktop ✓**
   - **Mobile ✓**
