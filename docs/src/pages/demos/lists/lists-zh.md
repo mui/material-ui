@@ -46,9 +46,9 @@ function ListItemLink(props) {
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## 对齐列表项
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+您应该在显示3行或更多行时更改列表项对齐，设置 `alignItems="flex-start"` 属性。
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
