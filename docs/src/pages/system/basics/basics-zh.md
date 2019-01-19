@@ -2,7 +2,7 @@
 
 <p class="description">风格的功能对于建设强大的设计系统。</p>
 
-> ⚠️ `@material-ui/system` is experimental (alpha version). 我们正在努力使它稳定的材料-UI v4。
+> ⚠️`@material-ui/system`是实验性的（alpha版）。 我们正在努力使它稳定Material-UI v4。
 
 ## 开始
 
@@ -18,7 +18,7 @@
 
 重要的是要明白，这包暴露了纯(副作用)风格的功能，与此签署： `({ theme, ...style })=> 式`, **就是这**的。
 
-### Demo
+### 演示
 
 在剩下的这 *开始* 部分，我们正在使用 **风格的部件** 作为参考的例子(强调的普遍性，这包)。 Alternativaly，你可以 [使用调](#interoperability)的。 该演示，也是基于 **默认** 材料-UI [主题对象](/customization/default-theme/)的。
 
