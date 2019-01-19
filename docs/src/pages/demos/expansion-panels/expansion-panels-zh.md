@@ -2,13 +2,13 @@
 title: 扩展面板 React 组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
-# Expansion Panels
+# 扩展面板
 
 <p class="description">扩展面板包含创建流程，允许轻量编辑元素。</p>
 
 [扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
-> **Note:** Expansion panels are no longer documented in the Material Design documentation.
+> **注意：** 材料设计文档中不再记录</strong>扩展面板。
 
 ## 简单的扩展面板
 
@@ -26,10 +26,10 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
-## Customized Expansion Panel
+## 定制扩展面板
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the background color of the `ExpansionPanelSummary` and padding of `ExpansionPanelDetails`.
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心跳入， 这里是一个示例，说明如何自定义 `ExpansionPanelSummary` 的背景颜色和 `ExpansionPanelDetails`填充。
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}
