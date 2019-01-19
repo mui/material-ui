@@ -1,5 +1,5 @@
 ---
-title: React 应用栏组件
+title: Componente React para Barra de Menu <AppBar/>
 components: AppBar, Toolbar, Menu
 ---
 # App Bar
