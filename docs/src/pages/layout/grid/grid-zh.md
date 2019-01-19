@@ -10,9 +10,9 @@ components: Grid
 
 ## 工作方式
 
-The grid system is implemented with the `Grid` component:
+网格系统使用 `Grid` 组件实现：
 
-- It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+- 它使用 [CSS的灵活盒模块](https://www.w3.org/TR/css-flexbox-1/) ，具有很高的灵活性。
 - There are two types of layout: *containers* and *items*.
 - Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
@@ -92,7 +92,7 @@ There is one limitation with the negative margin we use to implement the spacing
   </body>
 ```
 
-1. Adding `overflow-x: hidden;` to the parent.
+1. 在父元素上设置`overflow-x: hidden;`
 
 ### white-space: nowrap;
 
