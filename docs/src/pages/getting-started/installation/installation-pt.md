@@ -26,13 +26,13 @@ O Material-UI foi desenvolvido pensando na fonte [Roboto](https://fonts.google.c
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+Como alternativa, se você estiver utilizando o JSX, use:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-## Font Icons
+## Ícones
 
 In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. Por exemplo, instale-a através do Google Web Fonts:
 
@@ -40,7 +40,7 @@ In order to use the font `Icon` component you must first add the [Material icons
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+Como alternativa, se você estiver utilizando o JSX, use:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
