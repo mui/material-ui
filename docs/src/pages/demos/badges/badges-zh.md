@@ -12,15 +12,15 @@ components: Badge
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Maximum Value
+## 最大价值
 
-You can use the `max` property to cap the value of the badge content.
+您可以使用 `max` 属性来限制徽章内容的值。
 
 {{"demo": "pages/demos/badges/BadgeMax.js"}}
 
-## Dot Badge
+## 圆点徽章
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+`dot` 属性将徽章更改为小点。这可以用作通知，在没有计数的情况下，某些内容已发生变化。
 
 {{"demo": "pages/demos/badges/DotBadge.js"}}
 
@@ -28,14 +28,14 @@ The `dot` property changes a badge into a small dot. This can be used as a notif
 
 徽章的可视性是可以通过`invisible`属性来控制。
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+带有badgeContent的徽章自动隐藏为零。您可以使用 `showZero` 属性覆盖它。
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
 ## 自定义徽章
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有自信地跳入， 这里是一个如何更改徽章位置的示例。
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}
