@@ -1,8 +1,8 @@
-# Installation
+# Instalação
 
-<p class="description">Install Material-UI, the world's most popular React UI framework.</p>
+<p class="description">Instale o Material-UI, o framework React UI mais popular do mundo.</p>
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/package/@material-ui/core).
 
 ## npm
 
