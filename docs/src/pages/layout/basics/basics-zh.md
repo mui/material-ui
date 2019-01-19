@@ -6,10 +6,10 @@
 
 Material Design中的[响应式布局](https://material.io/design/layout/responsive-layout-grid.html)可适配任何可能的屏幕尺寸。 我们提供以下工具以实现响应式UI：
 
-- [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-- [Breakpoints](/layout/breakpoints/): We provide a low-level API that enables the use of breakpoints in a wide variety of contexts.
-- [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React.
-- [Hidden](/layout/hidden/): The hidden component can be used to change the visibility of the elements.
+- [网格](/layout/grid/)：网格在布局之间创建视觉一致性，同时允许各种设计的灵活性。
+- [断点](/layout/breakpoints/)：我们提供了一个低级API，可以在各种环境中使用断点。
+- [useMediaQuery](/layout/use-media-query/)：这是React的CSS媒体查询钩子。
+- [隐藏](/layout/hidden/)： 隐藏的组件可用于更改元素的可见性。
 
 ## z-index
 
