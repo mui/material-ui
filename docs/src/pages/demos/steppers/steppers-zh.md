@@ -22,7 +22,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 - 线状
 - 非线性的
 
-> **Note:** Steppers are no longer documented in the Material Design documentation.
+> **注意：材料设计文档中不再记录** 步进器。
 
 ## 水平的步进器
 
