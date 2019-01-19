@@ -52,7 +52,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 ## API
 
 ```jsx
-进口 { unstable_Box as Box } 从'@材料-ui/core/框';
+import { unstable_Box as Box } from '@material-ui/core/Box';
 ```
 
 | Name                                               | Type                                                                                                              | Default                                 | Description                                                                                            |
