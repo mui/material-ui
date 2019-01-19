@@ -99,11 +99,11 @@ export default function MyComponent() {
 
 #### 参数
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` （*String* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS.
+`media query` ：准备与JSS一起使用的媒体查询字符串。
 
 #### 例子
 
@@ -124,11 +124,11 @@ const styles = theme => ({
 
 #### 参数
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` （*String* | *Number* ）：断点键（`xs` ，`sm`等等）或以像素为单位的屏幕宽度数。
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS.
+`media query` ：准备与JSS一起使用的媒体查询字符串。
 
 #### 例子
 
@@ -154,7 +154,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS.
+`media query` ：准备与JSS一起使用的媒体查询字符串。
 
 #### 例子
 
@@ -176,12 +176,12 @@ const styles = theme => ({
 
 #### 参数
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` （*String*）：断点键（`xs` ，`sm`等）。
+2. `end` （*String*）：断点键（`xs` ，`sm`等）。
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS.
+`media query` ：准备与JSS一起使用的媒体查询字符串。
 
 #### 例子
 
@@ -215,7 +215,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 1. `选项` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): 默认值为`false`。 将 ` theme ` 对象作为属性提供给组件。
-    - `options.noSSR` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
+    - `options.noSSR` (*Boolean* [可选的]): 默认值为`false`。 In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
     - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#properties) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
