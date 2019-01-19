@@ -2,14 +2,14 @@
 
 <p class="description">以下是Material Design组件和功能的列表. 当前由Material-UI支持的那些被高亮显示✓.</p>
 
-While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, or every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
+虽然我们努力遵循实践中的指导原则（在指导原则相互矛盾的情况下应用 常识 - 比 可能预期的更常见），但我们不希望支持每个组件，或每个组件的每 特征，而是提供构建块 允许开发人员创建引人注目的用户界面和体验。
 
 如果您希望在此处添加对组件或功能未高亮显示的支持, 请搜索相关的 [ GitHub 问题 ](https://github.com/mui-org/material-ui/issues), 或创建一个新的问题 来讨论该方法, 然后再提交pull请求。
 
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
-- **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
+- **[Banners](https://material.io/design/components/banners.html)** ([可以组成](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
@@ -35,7 +35,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **Pagination ✓**
 - **[Dialogs](https://material.io/design/components/dialogs.html) ✓** 
   - **[Alert dialog](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
-  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Can be composed with Dialog and List.)
+  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** （可以用Dialog和List组成。）
   - **[Confirmation dialogs](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
   - **[Full screen dialogs](https://material.io/design/components/dialogs.html#full-screen-dialog) ✓**
 - **[Dividers](https://material.io/design/components/dividers.html) ✓** 
@@ -43,7 +43,7 @@ While we strive to follow the guidelines where practical (applying common sense 
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legacy Material v1*)
+- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧 Material v1*)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓** 
   - [Types:](https://material.io/design/components/lists.html#types) 
@@ -59,7 +59,7 @@ While we strive to follow the guidelines where practical (applying common sense 
     - **Switch ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
-  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed) 
+  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (可以组成) 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)
