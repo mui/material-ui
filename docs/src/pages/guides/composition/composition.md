@@ -27,14 +27,17 @@ WrappedIcon.muiName = 'Icon';
 ## Component property
 
 Material-UI allows you to change the root node that will be rendered via a property called `component`.
+
+### How does it work?
+
 The component will render like this:
 
 ```js
 return React.createElement(this.props.component, props)
 ```
 
-
-For example, by default a `List` will render a `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` property.
+For example, by default a `List` component will render a `<ul>` element.
+This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` property.
 The following example will render the `List` component with a `<nav>` element as root node instead:
 
 ```jsx
@@ -48,7 +51,7 @@ The following example will render the `List` component with a `<nav>` element as
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as `react-router` or your favorite forms library. But it also **comes with a small caveat!**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as [`react-router`](#react-router-demo) or your favorite forms library. But it also **comes with a small caveat!**
 
 ### Caveat with inlining
 
@@ -56,6 +59,8 @@ Using an inline function as an argument for the `component` property may result 
 For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
 
 ```jsx
+import { Link } from 'react-router-dom';
+
 const ListItemLink = ({ icon, primary, secondary, to }) => (
   <li>
     <ListItem button component={props => <Link to={to} {...props} />}>
@@ -66,12 +71,14 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 );
 ```
 
-However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
+⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead.
 Let's change our `ListItemLink` to the following:
 
 ```jsx
+import { Link } from 'react-router-dom';
+
 class ListItemLink extends React.Component {
   renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
 
@@ -91,8 +98,26 @@ class ListItemLink extends React.Component {
 
 `renderLink` will now always reference the same component.
 
-### React Router
+### Caveat with shorthand
 
-Here is a demo with [React Router](https://github.com/ReactTraining/react-router):
+You can take advantage of the properties forwarding to simplify the code.
+In this example, we don't create any intermediary component:
+
+```jsx
+import { Link } from 'react-router-dom';
+
+<ListItem button component={Link} to="/">
+```
+
+⚠️ However, this strategy suffers from a little limitation: properties collision.
+The component providing the `component` property (e.g. ListItem) might not forward all its properties to the root element (e.g. dense).
+
+### React Router Demo
+
+Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-router):
 
 {{"demo": "pages/guides/composition/ComponentProperty.js"}}
+
+### With TypeScript
+
+You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).

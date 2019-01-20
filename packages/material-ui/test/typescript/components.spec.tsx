@@ -78,6 +78,8 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import { DialogProps } from '@material-ui/core/Dialog';
+import { ButtonProps } from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -872,4 +874,25 @@ const InputLabelTest = () => (
       required: 'foo',
     }}
   />
+);
+
+interface ButtonLinkProps extends ButtonProps {
+  to: string;
+  replace?: boolean;
+}
+
+const ButtonLink = (props: ButtonLinkProps) => <Button {...props} component={Link as any} />;
+
+const reactRouterButtonLink1 = (
+  <ButtonLink color="primary" to="/">
+    Go Home
+  </ButtonLink>
+);
+
+const MyLink = (props: any) => <Link to="/" {...props} />;
+
+const reactRouterButtonLink2 = (
+  <Button color="primary" component={MyLink}>
+    Go Home
+  </Button>
 );

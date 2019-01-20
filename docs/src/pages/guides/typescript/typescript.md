@@ -253,17 +253,22 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 Material-UI allows you to replace a component's root node via a `component` property.
 For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component, meaning you can do this:
 ```jsx
+import { Link } from 'react-router-dom';
+
 <Button component={Link} to="/">Go Home</Button>
 ```
 
 However, TypeScript will complain about it, because `to` is not part of the `ButtonProps` interface, and with the current type declarations it has no way of inferring what props can be passed to `component`.
 
-The current workaround is to spread these extra props down:
+The current workaround is to cast Link to `any`:
 
 ```tsx
+import { Link } from 'react-router-dom';
+import Button, { ButtonProps } from '@material-ui/core/Button';
+
 interface LinkButtonProps extends ButtonProps {
-  to: string,
-  replace?: boolean,
+  to: string;
+  replace?: boolean;
 }
 
 const LinkButton = (props: LinkButtonProps) => (
@@ -274,7 +279,6 @@ const LinkButton = (props: LinkButtonProps) => (
 <LinkButton color="primary" to="/">Go Home</LinkButton>
 ```
 
-Note that `Link` has a type of `any`.
 Material-UI components pass some basic event handler props (`onClick`, `onDoubleClick`, etc.) to their root nodes.
 These handlers have a signature of:
 ```ts
@@ -289,3 +293,19 @@ which is incompatible with the event handler signatures that `Link` expects, whi
 Any element or component that you pass into `component` will have this problem if the signatures of their event handler props don't match.
 
 There is an ongoing effort to fix this by making component props generic.
+
+### Avoiding properties collision
+
+The previous strategy suffers from a little limitation: properties collision.
+The component providing the `component` property might not forward all its properties to the root element.
+To workaround this issue, you can create a custom component:
+
+```tsx
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
+const MyLink = (props: any) => <Link to="/" {...props} />;
+
+// usage:
+<Button color="primary" component={MyLink}>Go Home</Button>
+```
