@@ -42,7 +42,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Tablecell)的主要颜色的示例
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
@@ -58,9 +58,9 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 {{"demo": "pages/demos/tables/SpanningTable.js"}}
 
-## Virtualized Table
+## 虚拟化表
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
+在下面的示例中，我们演示了如何将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用。 它渲染了200行，可以轻松处理更多行。
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 

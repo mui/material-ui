@@ -1,12 +1,12 @@
-# Borders
+# 边距
 
-<p class="description">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
+<p class="description">使用边框实用程序快速设置元素的边框和边框半径的样式。 非常适合图像，按钮或任何其他元素。</p>
 
-## Border
+## 描边
 
-Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.
+使用边框实用程序添加或删除元素的边框。 选择所有边框或一次一个。
 
-### Additive
+### 添加剂
 
 ```jsx
 <Box border={1}>…
@@ -18,7 +18,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 {{"demo": "pages/system/borders/BorderAdditive.js"}}
 
-### Subtractive
+### 减法
 
 ```jsx
 <Box border={0}>…
@@ -30,7 +30,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 {{"demo": "pages/system/borders/BorderSubtractive.js"}}
 
-## Border color
+## 描边颜色
 
 ```jsx
 <Box borderColor="primary.main">…
@@ -42,7 +42,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 {{"demo": "pages/system/borders/BorderColor.js"}}
 
-## Border-radius
+## 边界半径
 
 ```jsx
 <Box borderRadius="50%">…
@@ -58,7 +58,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 import { borders } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key                                                        |
+| 导入名称           | Prop           | CSS 属性          | 主题键                                                              |
 |:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
 | `border`       | `border`       | `border`        | `borders`                                                        |
 | `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |

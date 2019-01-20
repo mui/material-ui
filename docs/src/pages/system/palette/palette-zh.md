@@ -1,6 +1,6 @@
-# Palette
+# 调色板
 
-<p class="description">Convey meaning through color with a handful of color utility classes. Includes support for styling links with hover states, too.</p>
+<p class="description">通过一些颜色实用程序类的颜色传达意义。 还包括支持带悬停状态的样式链接。</p>
 
 ## 颜色
 
@@ -16,7 +16,7 @@
 
 {{"demo": "pages/system/palette/Color.js"}}
 
-## Background color
+## 背景颜色
 
 ```jsx
 <Box bgcolor="primary.main">…
@@ -36,7 +36,7 @@
 import { palette } from '@material-ui/system';
 ```
 
-| Import name | Prop      | CSS property      | Theme key                                                        |
-|:----------- |:--------- |:----------------- |:---------------------------------------------------------------- |
-| `color`     | `color`   | `color`           | [`palette`](/customization/default-theme/?expend-path=$.palette) |
-| `bgcolor`   | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| 导入名称      | Prop      | CSS 属性            | 主题键                                                              |
+|:--------- |:--------- |:----------------- |:---------------------------------------------------------------- |
+| `color`   | `color`   | `color`           | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `bgcolor` | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expend-path=$.palette) |

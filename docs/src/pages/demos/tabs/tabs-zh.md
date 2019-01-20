@@ -62,24 +62,24 @@ components: Tabs, Tab
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## 自定义的选项卡
+## 定制选项卡
 
 如果您已阅读[覆盖文档页面](/customization/overrides/) 但是不自信地跳进来，这里是一个如何改变 Tabs 主色的例子。
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 
 ## 导航选项卡
 
-默认情况下，选项卡使用` button `元素，但您可以提供自己的自定义标记或组件。 以下是实现选项卡式导航的示例：
+默认情况下，选项卡使用 button </ code>元素，但您可以提供自己的自定义标记或组件。 以下是实现选项卡式导航的示例：</p>
 
-{{"demo": "pages/demos/tabs/NavTabs.js"}}
+<p>{{"demo": "pages/demos/tabs/NavTabs.js"}}</p>
 
-## 图标选项卡
+<h2>图标选项卡</h2>
 
-标签标签可以是所有图标或全文。
+<p>标签标签可以是所有图标或全文。</p>
 
-{{"demo": "pages/demos/tabs/IconTabs.js"}}
+<p>{{"demo": "pages/demos/tabs/IconTabs.js"}}</p>
 
-{{"demo": "pages/demos/tabs/IconLabelTabs.js"}}
+<p>{{"demo": "pages/demos/tabs/IconLabelTabs.js"}}</p>

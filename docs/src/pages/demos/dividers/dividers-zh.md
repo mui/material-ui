@@ -14,20 +14,20 @@ components: Divider
 
 {{"demo": "pages/demos/dividers/ListDividers.js"}}
 
-## HTML5 Specification
+## HTML5规范
 
-We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
+我们需要确保将 `Divider` 渲染为 `li` 以匹配HTML5规范。 以下示例显示了实现此目的的两种方法。
 
 ## 内嵌分隔线
 
-The `inset` property has now been deprecated. You should now use `variant="inset"`
+现在已弃用 `inset` 属性。你现在应该使用 `variant="inset"`
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
-## Subheader Dividers
+## 副标题分隔符
 
 {{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
 
-## Middle Dividers
+## 中间分隔线
 
 {{"demo": "pages/demos/dividers/MiddleDividers.js"}}

@@ -1,31 +1,31 @@
 # 间距
 
-<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element’s appearance.</p>
+<p class="description">各种简写响应边距和填充实用程序类，用于修改元素的外观。</p>
 
-## Notation
+## 符号
 
-The space utility converts shorthand margin and padding props to margin and padding CSS declarations. The props are named using the format `{property}{sides}`.
+空间实用程序将速记边距和填充道具转换为边距和填充CSS声明。 道具使用格式`{property}{sides}` 命名。
 
-Where *property* is one of:
+其中*属性*是其中之一：
 
-- `m` - for classes that set *margin*
-- `p` - for classes that set *padding*
+- `m` - 对于设置*margin*
+- `p` - 对于设置*padding*
 
-Where *sides* is one of:
+哪边*边*是其中之一：
 
-- `t` - for classes that set *margin-top* or *padding-top*
-- `b` - for classes that set *margin-bottom* or *padding-bottom*
-- `l` - for classes that set *margin-left* or *padding-left*
-- `r` - for classes that set *margin-right* or *padding-right*
-- `x` - for classes that set both **-left* and **-right*
-- `y` - for classes that set both **-top* and **-bottom*
-- blank - for classes that set a margin or padding on all 4 sides of the element
+- `t` - 对于设置* margin-top*或*padding-top*的类
+- `b` - 对于设置*margin-bottom的类*或*padding-bottom*的类
+- `l` - 对于设置*margin-left*或*padding-left*的类
+- `r` - 对于设置*margin-right*或*padding-right*的类
+- `x` - 对于设置** -left*和** -right*的类
+- `x` - 对于设置** -top*和** -bottom*的类
+- 空白 - 用于在元素的所有4个边上设置边距或填充的类
 
-## Transformation
+## 转型
 
-Depending on the input and the theme configuration, the following transformation is applied:
+根据输入和主题配置，应用以下转换：
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- 输入：`数字` & 主题：`数字` ：该属性乘以主题值。
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box m={2} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the property is value is used as the array index.
+- 输入：`数字` & 主题：`数组` ：属性值用作数组索引。
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box m={2} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the property value.
+- 输入：`数字` & 主题：`功能` ：使用属性值调用该函数。
 
 ```jsx
 const theme = {
@@ -61,14 +61,14 @@ const theme = {
 <Box m={2} /> // margin: 4px;
 ```
 
-- input: `string`: the property is passed as raw CSS value.
+- input: `string`: 该属性作为原始CSS值传递。
 
 ```jsx
 <Box m="2rem" /> // margin: 2rem;
 <Box mx="auto" /> // margin-left: auto; margin-right: auto;
 ```
 
-## Example
+## 例
 
 ```jsx
 <Box p={1}>…
@@ -78,7 +78,7 @@ const theme = {
 
 {{"demo": "pages/system/spacing/Demo.js"}}
 
-## Horizontal centering
+## 水平居中
 
 ```jsx
 <Box mx="auto">…
@@ -92,24 +92,24 @@ const theme = {
 import { spacing } from '@material-ui/system';
 ```
 
-| Import name | Prop | CSS property                    | Theme key                                                        |
-|:----------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
-| `spacing`   | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `mb` | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `ml` | `margin-left`                   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `mx` | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `p`  | `padding`                       | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `pt` | `padding-top`                   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `pr` | `padding-right`                 | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `pb` | `padding-bottom`                | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `pl` | `padding-left`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| 导入名称      | Prop | CSS 属性                          | 主题键                                                              |
+|:--------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
+| `spacing` | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mb` | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `ml` | `margin-left`                   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mx` | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `p`  | `padding`                       | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pt` | `padding-top`                   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pr` | `padding-right`                 | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pb` | `padding-bottom`                | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pl` | `padding-left`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
-*Some people find the property shorthand confusing, you can use the full version if you prefer:*
+*有些人发现该属性简写令人困惑，如果您愿意，可以使用完整版：*
 
 ```diff
 -<Box pt={2} />

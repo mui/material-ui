@@ -12,7 +12,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 - 可编辑
 - 不可编辑
-- 可移动
+- Mobile
 - 可选的
 
 **步进器类型**
@@ -22,7 +22,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 - 线状
 - 非线性的
 
-> **Note:** Steppers are no longer documented in the Material Design documentation.
+> **注意：材料设计文档中不再记录** 步进器。
 
 ## 水平的步进器
 
@@ -66,7 +66,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 ` completed ` 状态。
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 

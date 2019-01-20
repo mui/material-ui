@@ -1,57 +1,57 @@
-# Minimizing Bundle Size
+# 最小化捆绑包大小
 
-<p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
+<p class="description">了解有关可用于减少捆绑包大小的工具的详细信息。</p>
 
-## Bundle size matters
+## 捆绑尺寸很重要
 
-The bundle size of Material-UI is taken very seriously, so [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression. The size of the bundle is checked at each commit:
+Material-UI的包大小非常严重，因此使用 [大小限制](https://github.com/ai/size-limit) 来防止引入任何大小的回归。 每次提交时都会检查包的大小：
 
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24). (styling, theming, etc.: ~18 kB gzipped)
+- 导入 **所有组件**。 这让我们可以发现任何 [不需要的包大小增加](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30)。
+- 导入 **单个组件**。 这让我们估计 [核心依赖关系](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24)的开销。 （样式，主题等：~18 kB gzipped）
 
-## How to reduce the bundle size?
+## 如何减少捆绑尺寸？
 
-For convenience, Material-UI exposes its full API on the top-level `material-ui` import. Using this is fine if you have tree shaking working, however, in the case where tree shaking is not supported or configured in your build chain, **this causes the entire library and its dependencies to be included** in your client bundle.
+为方便起见，Material-UI在顶级 `material-ui` 导入上公开其完整API。 使用这是好的，如果你有树摇工作， 然而，在树上摇晃不支持或在构建链构成的情况下， **这将导致整个库及其依赖要包含** 在您的客户端包。
 
-You have couple of options to overcome this situation:
+您有几种方法可以克服这种情况：
 
-### Option 1
+### 选项1
 
-You can import directly from `material-ui/` to avoid pulling in unused modules. For instance, instead of:
+您可以直接从 `material-ui /` 导入，以避免拉入未使用的模块。 例如，而不是：
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-use:
+使用：
 
 ```js
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public. Anything not listed there should be considered **private**, and subject to change without notice. For example, the `Tabs` component is a public module while `TabIndicator` is private.
+虽然以这种方式直接导入不使用 [`material-ui / index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js)的导出，但此文件可以作为公共哪些模块的方便参考。 任何未在此处列出的内容都应被视为 **私有**，如有更改，恕不另行通知。 例如， `Tabs` 组件是公共模块，而 `TabIndicator` 是私有模块。
 
-### Option 2
+### 选项2
 
-Another option is to keep using the shortened import like the following, but still have the size of the bundle optimized thanks to a **Babel plugin**:
+另一种选择是继续使用缩短的导入，如下所示，但由于 **Babel插件**，仍然优化了捆绑的大小：
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-Pick one of the following plugins:
+选择以下插件之一：
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) is quite customizable and with enough tweaks works with Material-UI.
-- [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
-- [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 可以自定义，并且有足够的调整与Material-UI一起使用。
+- [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) 有一个不同的api而不是 `babel-plugin-import` 但是做同样的事情。
+- [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) 旨在开箱即用，包含所有 `package.json`。
 
-**Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
+**重要说明**：在向项目添加树摇动功能之前，这两个选项 *都应该是临时的*。
 
-## ECMAScript
+## ECMAScript中
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+在npm上发布的包是 **转换为**，带有 [Babel](https://github.com/babel/babel)，以考虑 [支持的平台](/getting-started/supported-platforms/)。
 
-We also publish a second version of the components to target **evergreen browsers**. You can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+我们还发布了第二个版本的组件，以针对 **常绿浏览器**。 您可以在 [`/ es` 文件夹](https://unpkg.com/@material-ui/core/es/)下找到此版本。 所有非官方语法都被转换为 [ECMA-262标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这可用于制作针对不同浏览器的单独捆绑包。 较旧的浏览器将需要更多的JavaScript功能进行转换， 会增加捆绑包的大小。 ES2015运行时功能不包含任何填充。 IE11 +和常绿的浏览器支持所有的 必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel / polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
 
-⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.
+⚠️为了最小化在用户的束的重复代码，我们 **强烈阻止** 从使用库作者 `/ ES` 的文件夹。

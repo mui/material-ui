@@ -1,8 +1,8 @@
-# Shadows
+# 阴影
 
-<p class="description">Add or remove shadows to elements with box-shadow utilities.</p>
+<p class="description">使用box-shadow实用程序为元素添加或删除阴影。</p>
 
-## Example
+## 例
 
 ```jsx
 <Box boxShadow={0}>…
@@ -19,6 +19,6 @@
 import { shadows } from '@material-ui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key |
+| 导入名称        | Prop        | CSS 属性       | 主题键       |
 |:----------- |:----------- |:------------ |:--------- |
 | `boxShadow` | `boxShadow` | `box-shadow` | `shadows` |

@@ -1,11 +1,11 @@
 ---
 components: Typography
 ---
-# Typography
+# 活版印刷
 
-<p class="description">使用Typography可以尽可能清晰、高效地呈现您的设计和内容。</p>
+<p class="description">使用活版印刷可以尽可能清晰、高效地呈现您的设计和内容。</p>
 
-Too many type sizes and styles at once can spoil any layout. [版式比例](https://material.io/design/typography/#type-scale)是一组有限的类型大小, 与布局网格一起工作很好。
+一次太多的类型大小和样式会破坏任何布局。 [版式比例](https://material.io/design/typography/#type-scale)是一组有限的类型大小, 与布局网格一起工作很好。
 
 ## 常规
 
@@ -43,9 +43,9 @@ import 'typeface-roboto';
 
 {{"demo": "pages/style/typography/DeprecatedTypes.js"}}
 
-## Theme
+## 主题
 
-In some situations you might not be able to use the `Typography` component. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
+在某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用主题的 [`排版`](/customization/default-theme/?expend-path=$.typography) 键。
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
 

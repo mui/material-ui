@@ -1,10 +1,10 @@
 # Flexbox
 
-<p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities.</p>
+<p class="description">使用一整套响应式Flexbox实用程序，快速管理网格列，导航，组件等的布局，对齐和大小调整。</p>
 
-The documentation page is highly inspired by [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/). We highly encourage you to read and memorize it.
+文档页面的灵感来自[ Flexbox完整指南](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 。 我们强烈建议您阅读并记住它。
 
-## Properties for the Parent
+## 父母的属性
 
 ### display
 
@@ -61,7 +61,7 @@ The documentation page is highly inspired by [A Complete Guide to Flexbox](https
 
 {{"demo": "pages/system/flexbox/AlignContent.js"}}
 
-## Properties for the Children
+## 儿童的属性
 
 ### order
 
@@ -109,15 +109,15 @@ The documentation page is highly inspired by [A Complete Guide to Flexbox](https
 import { flexbox } from '@material-ui/system';
 ```
 
-| Import name      | Prop             | CSS property      | Theme key |
-|:---------------- |:---------------- |:----------------- |:--------- |
-| `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
-| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
-| `justifyContent` | `justifyContent` | `justify-content` | none      |
-| `alignItems`     | `alignItems`     | `align-items`     | none      |
-| `alignContent`   | `alignContent`   | `align-content`   | none      |
-| `order`          | `order`          | `order`           | none      |
-| `flex`           | `flex`           | `flex`            | none      |
-| `flexGrow`       | `flexGrow`       | `flex-grow`       | none      |
-| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none      |
-| `alignSelf`      | `alignSelf`      | `align-self`      | none      |
+| 导入名称             | Prop             | CSS 属性            | 主题键  |
+|:---------------- |:---------------- |:----------------- |:---- |
+| `flexDirection`  | `flexDirection`  | `flex-direction`  | none |
+| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none |
+| `justifyContent` | `justifyContent` | `justify-content` | none |
+| `alignItems`     | `alignItems`     | `align-items`     | none |
+| `alignContent`   | `alignContent`   | `align-content`   | none |
+| `order`          | `order`          | `order`           | none |
+| `flex`           | `flex`           | `flex`            | none |
+| `flexGrow`       | `flexGrow`       | `flex-grow`       | none |
+| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none |
+| `alignSelf`      | `alignSelf`      | `align-self`      | none |
