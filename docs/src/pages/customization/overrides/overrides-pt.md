@@ -1,18 +1,18 @@
-# Overrides
+# Substituições
 
-<p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
+<p class="description">Como os componentes podem ser usados em diferentes contextos, o Material-UI suporta diferentes tipos de requisitos de personalização, desde os mais específicos até os mais genéricos.</p>
 
-1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-2. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
+1. [Variação específica para uma situação única](#1-specific-variation-for-a-one-time-situation)
+2. [Variação dinâmica para uma situação única](#2-dynamic-variation-for-a-one-time-situation)
 3. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
 4. [Material Design variations](#4-material-design-variations) such as with the button component
 5. [Global theme variation](#5-global-theme-variation)
 
-## 1. Specific variation for a one-time situation
+## 1. Variação específica para uma situação única
 
-You might need to change the style of a component in some very specific situation, for which you have the following solutions available:
+Pode ser necessário alterar o estilo de um componente em alguma situação muito específica, para a qual você tem as seguintes soluções disponíveis:
 
-### Overriding with class names
+### Substituir por nomes de classes
 
 The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
 
@@ -20,7 +20,7 @@ In this example, its using the [`withStyles()`](/customization/css-in-js/#withst
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
-### Overriding with classes
+### Substituindo com classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
@@ -67,7 +67,7 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
-### Internal states
+### Estados internos
 
 The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity. [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
 
@@ -144,7 +144,7 @@ compiles to:
 
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
 
-### Overriding with inline-style
+### Substituindo com estilo inline
 
 The second way to override the style of a component is to use the **inline-style** approach. Every component provides a `style` property. These properties are always applied to the root element.
 
@@ -154,11 +154,11 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 [When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
 
-## 2. Dynamic variation for a one-time situation
+## 2. Variação dinâmica para uma situação única
 
-You have learned how to override the style of the Material-UI components in the previous sections. Now, let's see how we can make these overrides dynamic. We demonstrate 5 alternatives, each has it's pros and cons.
+Você aprendeu a substituir o estilo dos componentes de UI de material nas seções anteriores. Now, let's see how we can make these overrides dynamic. We demonstrate 5 alternatives, each has it's pros and cons.
 
-### Dynamic CSS
+### CSS Dinâmico
 
 {{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
@@ -172,7 +172,7 @@ You have learned how to override the style of the Material-UI components in the 
 
 {{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
 
-### Inline-style
+### Estilo Inline
 
 {{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
 
@@ -180,7 +180,7 @@ You have learned how to override the style of the Material-UI components in the 
 
 {{"demo": "pages/customization/overrides/DynamicThemeNesting.js"}}
 
-## 3. Specific variation of a component
+## 3. Variação específica de um componente
 
 You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
@@ -188,7 +188,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 {{"demo": "pages/customization/overrides/Component.js", "hideEditButton": true}}
 
-## 4. Material Design variations
+## 4. Variações de material design
 
 The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (formerly "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (formerly "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
