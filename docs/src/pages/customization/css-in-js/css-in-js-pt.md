@@ -1,44 +1,44 @@
 # CSS in JS
 
-<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+<p class="description">Você pode aproveitar nossa solução de estilo, mesmo se não estiver usando nossos componentes.</p>
 
-> ⚠️ We are working on extracting the styling solution into it's own package: [`@material-ui/styles`](/css-in-js/basics/). It's an unstable project (alpha version). Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
+> ⚠️ Estamos trabalhando na extração da solução de estilo em seu próprio pacote: [`@material-ui/styles`](/css-in-js/basics/). É um projeto instável (versão alfa). Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
 
-Material-UI aims to provide strong foundations for building dynamic UIs. For the sake of simplicity, **we expose our styling solution to users**. You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
+Material-UI tem como objetivo fornecer bases sólidas para a construção de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos nossa solução de estilo aos usuários**. Você pode usá-lo, mas você não precisa. Esta solução de estilo é [interoperável com](/guides/interoperability/) todas as outras soluções principais.
 
-## Material-UI's styling solution
+## Solução de estilo do Material-UI
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that it's the future:
+Nas versões anteriores, o Material-UI usava o LESS e, em seguida, uma solução personalizada no estilo inline para escrever o estilo dos componentes, mas essas abordagens provaram ser limitadas. Mais recentemente, temos [movido para](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solução. **desbloqueia muitos ótimos recursos** (aninhamento de temas, estilos dinâmicos, auto-suporte, etc.). Nós pensamos que é o futuro:
 
-- [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [The future of component-based styling](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
-- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+- [Um idioma de estilo unificado](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
+- [O futuro do estilo baseado em componentes](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
+- [Converter SCSS (Sass) para CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-So, you may have noticed in the demos what *CSS-in-JS* looks like. We use the higher-order component created by [`withStyles`](#api) to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
+Então, você deve ter notado nas demos que *CSS-in-JS* parece. Usamos o componente de ordem superior criado por [`withStyles`](#api) para injetar uma matriz de estilos no DOM como CSS, usando o JSS. Aqui está um exemplo:
 
 {{"demo": "pages/customization/css-in-js/CssInJs.js"}}
 
 ## JSS
 
-Material-UI's styling solution uses [JSS](https://github.com/cssinjs/jss) at its core. It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS to CSS compiler which works at runtime and server-side. It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+A solução de estilo do Material-UI usa [JSS](https://github.com/cssinjs/jss) em seu núcleo. É um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS ao compilador CSS que trabalha em tempo de execução e no lado do servidor. É cerca de 8 kB (minificado e gzipped) e é extensível através de um [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
-If you end up using this styling solution in your codebase, you're going to need to *learn the API*. The best place to start is by looking at the features that each [plugin](https://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins). You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
+Se você acabar usando essa solução de estilo na sua base de código, precisará *aprender a API*. O melhor lugar para começar é observar os recursos que cada um dos [plugins](https://cssinjs.org/plugins/) fornece. Material-UI usa [alguns deles](#plugins). Você sempre pode adicionar novos plugins, se necessário, com o [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) ajudante.
 
-If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin. Check the jss-rtl [readme](https://github.com/alitaheri/jss-rtl#simple-usage) to learn how.
+Se você deseja construir sua própria instância de `jss` **e** suporte *rtl* Certifique-se de incluir também o [jss-rtl](https://github.com/alitaheri/jss-rtl) plugar. Verifique o [readme](https://github.com/alitaheri/jss-rtl#simple-usage) do jss-rtl para aprender como.
 
 ## Sheets registry
 
-When rendering on the server, you will need to get all rendered styles as a CSS string. The `SheetsRegistry` class allows you to manually aggregate and stringify them. Read more about [Server Rendering](/guides/server-rendering/).
+Ao renderizar no servidor, você precisará obter todos os estilos renderizados como uma string CSS. O `SheetsRegistry` A classe permite que você agregue e restrinja-os manualmente. Leia mais sobre [Renderização de Servidores](/guides/server-rendering/).
 
 ## Sheets manager
 
-The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple. This technique provides an important performance boost when re-rendering instances of a component.
+O gerenciador de folhas usa uma [contagem de referência](https://en.wikipedia.org/wiki/Reference_counting) Algoritmo para anexar e separar as folhas de estilo apenas uma vez por casal (estilos, tema). Essa técnica fornece um importante aumento de desempenho ao renderizar novamente as instâncias de um componente.
 
-When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering/).
+Quando apenas renderização no cliente, isso não é algo que você precisa estar ciente. No entanto, ao renderizar no servidor, você faz. Leia mais sobre [Renderização de Servidores](/guides/server-rendering/).
 
 ## Class names
 
-You may have noticed that the class names generated by our styling solution are **non-deterministic**, so you can't rely on them to stay the same. The following CSS won't work:
+You may have noticed that the class names generated by our styling solution are **non-deterministic**, so you can't rely on them to stay the same. O seguinte CSS não funciona:
 
 ```css
 .MuiAppBar-root-12 {
@@ -46,16 +46,16 @@ You may have noticed that the class names generated by our styling solution are 
 }
 ```
 
-Instead, you have to use the `classes` property of a component to override them. On the other hand, thanks to the non-deterministic nature of our class names, we can implement optimizations for development and production. They are easy to debug in development and as short as possible in production:
+Em vez disso, você tem que usar as `classes` propriedade de um componente para substituí-los. Por outro lado, graças à natureza não-determinístico dos nossos nomes de classe, que pode implementar otimizações para o desenvolvimento e produção. They are easy to debug in development and as short as possible in production:
 
-- development: `.MuiAppBar-root-12`
-- production: `.jss12`
+- desenvolvimento: `.MuiAppBar-root-12`
+- produção: `.jss12`
 
-If you don't like this default behavior, you can change it. JSS relies on the concept of [class name generator](http://cssinjs.org/js-api/#generate-your-own-class-names).
+If you don't like this default behavior, you can change it. O JSS conta com o conceito de [gerador de nome de classe](http://cssinjs.org/js-api/#generate-your-own-class-names).
 
 ### Global CSS
 
-We provide a custom implementation of the class name generator for Material-UI needs: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator). As well as the option to make the class names **deterministic** with the `dangerouslyUseGlobalCSS` option. When turned on, the class names will look like this:
+Fornecemos uma implementação personalizada do gerador de nome de classe para as necessidades de Material-UI: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator). As well as the option to make the class names **deterministic** with the `dangerouslyUseGlobalCSS` option. When turned on, the class names will look like this:
 
 - development: `.MuiAppBar-root`
 - production: `.MuiAppBar-root`
@@ -357,7 +357,7 @@ function RenderProps() {
 
 {{"demo": "pages/customization/css-in-js/RenderProps.js"}}
 
-You can access the theme the same way you would do it with `withStyles`:
+Você pode acessar o tema da mesma maneira que faria com `withStyles`:
 
 ```js
 const Styled = createStyled(theme => ({
@@ -367,9 +367,9 @@ const Styled = createStyled(theme => ({
 }));
 ```
 
-[@jedwards1211](https://github.com/jedwards1211) Has taken the time to move this module into a package: [material-ui-render-props-styles](https://github.com/jcoreio/material-ui-render-props-styles). Feel free to use it.
+[@jedwards1211](https://github.com/jedwards1211) Has taken the time to move this module into a package: [material-ui-render-props-styles](https://github.com/jcoreio/material-ui-render-props-styles). Sinta-se livre para usá-lo.
 
-### styled-components API (+15 lines)
+### styled-components API (+15 linhas)
 
 styled-components's API removes the mapping between components and styles. Using components as a low-level styling construct can be simpler.
 
@@ -393,7 +393,7 @@ function StyledComponents() {
 
 {{"demo": "pages/customization/css-in-js/StyledComponents.js"}}
 
-You can access the theme the same way you would do it with `withStyles`:
+Você pode acessar o tema da mesma maneira que faria com `withStyles`:
 
 ```js
 const MyButton = styled(Button)(theme => ({

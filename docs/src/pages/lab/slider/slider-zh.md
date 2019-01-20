@@ -1,39 +1,39 @@
 ---
-title: Slider React component
+title: 滑块反应组件
 components: Slider
 ---
-# Slider
+# 滑条
 
-<p class="description">Sliders allow users to make selections from a range of values.</p>
+<p class="description">滑块允许用户从一系列值中进行选择。</p>
 
-[Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
+[滑块](https://material.io/design/components/sliders.html) 反映了条形图上的一系列值，用户可以从中选择单个值。 它们非常适合调整音量，亮度或应用图像滤镜等设置。
 
-Sliders can have icons on both ends of the bar that reflect a range of values.
+滑块可以在条形图的两端具有反映一系列值的图标。
 
-#### Immediate effects
+#### 即时效果
 
-Changes made with sliders are immediate, allowing a user to make slider adjustments until finding their preference. They shouldn’t be paired with settings that have even minor delays in providing user feedback.
+使用滑块进行的更改是即时的，允许用户进行滑块调整，直到找到他们的偏好。 它们不应与在提供用户反馈方面有轻微延迟的设置配对。
 
-#### Current state
+#### 当前状态
 
-Sliders reflect the current state of the settings they control.
+滑块反映了它们控制的设置的当前状态。
 
-## Simple slider
+## 简单的滑块
 
 {{"demo": "pages/lab/slider/SimpleSlider.js"}}
 
-## Slider with steps
+## 滑块与步骤
 
 {{"demo": "pages/lab/slider/StepSlider.js"}}
 
-## Disabled slider
+## 禁用滑块
 
 {{"demo": "pages/lab/slider/DisabledSlider.js"}}
 
-## Vertical slider
+## 垂直滑块
 
 {{"demo": "pages/lab/slider/VerticalSlider.js"}}
 
-## Custom thumb
+## 自定义拇指
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}

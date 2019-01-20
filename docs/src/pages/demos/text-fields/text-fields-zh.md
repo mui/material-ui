@@ -14,7 +14,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
-> **Note:** This version of the text field is no longer documented in the Material Design documentation.
+> **注意：** 材料设计文档中不再记录此版本的文本字段。
 
 ## 轮廓
 
@@ -44,11 +44,11 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+自定义不会停留在CSS，您可以使用组合来构建自定义组件并为您的应用程序提供独特的感觉。 以下是使用受Google地图启发的 [`InputBase`](/api/input-base/) 组件的示例。
 
 {{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
@@ -98,7 +98,7 @@ Customization does not stop at CSS, you can use composition to build custom comp
 
 ## 格式化输入
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property. The provided input component should handle the `inputRef` property. The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
+您可以使用第三方库格式化输入。 您必须使用 `inputComponent` 属性提供 `<input>` 元素的自定义实现。 提供的输入组件应该处理 `inputRef` 属性。 应使用实现 [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) 接口的值调用该属性。
 
 下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask)和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。
 
@@ -111,4 +111,4 @@ You can use third-party libraries to format an input. You have to provide a cust
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与Redux Form配搭来使用Material UI的一组包装组件。
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合formik来使用Material-UI的绑定。
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) 用于更加方便地与Final Form配搭来使用Material UI的一组包装组件。
-- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms, a set of React libraries for building forms.
+- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Uniforms的Material-UI包装器组件，一组用于构建表单的React库。

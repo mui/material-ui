@@ -27,16 +27,16 @@ export default MyApp;
 
 ### 页面
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+更新 `<html>` 和 `<body>` 元素以提供更好的页面范围默认值。进一步来说：
 
-- The margin in all browsers is removed.
-- The default Material Design background color is applied. It's using [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) for standard devices and a white background for print devices.
+- 删除所有浏览器中的边距。
+- 默认使用Material Design的背景颜色。 它使用 [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) 在标准设备上而在打印设备上使用白色背景。
 
 ### 布局
 
-- `box-sizing` is set globally on the `<html>` element to `border-box`. Every element—including `*::before` and `*::after` are declared to inherit this property, which ensures that the declared width of the element is never exceeded due to padding or border.
+- `box-sizing` 在 `<html>` 元素上全局设置为 `border-box`。 每个元素 包括 `*:: before` 和 `*:: after` 被声明去继承这个属性，它确保元素的声明宽度永远不会超过padding或者border。
 
-### Typography
+### 活版印刷
 
-- Font antialiasing is enabled for better display of the Roboto font.
-- No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/themes/#typography-html-font-size) page.
+- 字体抗锯齿功能可以更好地显示Roboto字体
+- 没有声明基础font-size在`<html>`上，但是假定是16px (浏览器的默认设置)。 您可以了解更多有关更改 `<html>` 默认字体大小的含义 [主题文档](/customization/themes/#typography-html-font-size) 页。

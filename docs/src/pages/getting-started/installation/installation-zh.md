@@ -9,10 +9,10 @@ Material-UI 可作为 [npm](https://www.npmjs.com/package/@material-ui/core) 包
 下载并保存到你的 `package.json` 依赖，运行
 
 ```sh
-// with npm
+// 用npm安装
 npm install @material-ui/core
 
-// with yarn
+// 用yarn安装
 yarn add @material-ui/core
 ```
 
@@ -26,7 +26,7 @@ Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+或者，如果您使用JSX而不是HTML来呈现头部：
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -34,13 +34,13 @@ Alternatively, if you are using JSX over HTML to render the head:
 
 ## 字体图标
 
-In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. 例如，通过Google Web Fonts引入：
+为了使用字体`Icon` 组件, 你必须添加[Material icons](https://material.io/tools/icons/)字体. 这是如何去做的 [一些说明](/style/icons/#font-icons) 例如，通过Google Web Fonts引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+或者，如果您使用JSX而不是HTML来呈现头部：
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -48,7 +48,7 @@ Alternatively, if you are using JSX over HTML to render the head:
 
 ## SVG 图标
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+为了使用预构建的SVG Material icons，例如在[组件演示](/demos/app-bar/)中找到的那些, 你必须先安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)包
 
 ```sh
 npm install @material-ui/icons
@@ -56,13 +56,13 @@ npm install @material-ui/icons
 
 ## CDN
 
-You can start using Material-UI with minimal Front-end infrastructure, which is great for prototyping. We discourage using this approach in production though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilisation.
+您可以使用最少的前端基础架构开始使用Material-UI，这对于原型设计很有用 我们不鼓励在生产中使用这种方法, 客户端必须下载整个库, 而不管实际使用哪些组件, 影响性能和带宽利用率。
 
 #### UMD 版本
 
-We are providing two Universal Module Definition (UMD) files:
+我们提供两个通用模块定义 (UMD) 文件:
 
 - 一个用于开发: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
 - 一个用于生产: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+您可以按照[此CDN示例](https://github.com/mui-org/material-ui/tree/master/examples/cdn)快速开始。

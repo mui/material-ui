@@ -16,14 +16,14 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 
 ## 自定义关闭图标
 
-You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
+您可以使用 `SpeedDialIcon` 组件的 `图标` 和 `openIcon` 道具 为关闭和打开状态提供备用图标。
 
 {{"demo": "pages/lab/speed-dial/OpenIconSpeedDial.js"}}
 
-## Persistent action tooltips
+## 持久性动作工具提示
 
-The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
+SpeedDialActions工具提示可以持久显示，这样用户无需长按即可在触摸设备上查看工具提示。
 
-It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
+它在所有设备上都可以用于演示目的，但在生产中它可以使用 `isTouch` 逻辑来有条件地设置属性。
 
 {{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}

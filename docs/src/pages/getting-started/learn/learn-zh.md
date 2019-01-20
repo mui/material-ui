@@ -2,34 +2,34 @@
 
 <p class="description">第一次接触Material-UI? 如果你知道从哪里开始, 就很容易学会! 接下来的教程将帮助你快速入门。</p>
 
-People come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you’ll find this section helpful. Like any unfamiliar technology, Material-UI does have a learning curve. With practice and some patience, you will soon get the hang of it.
+人们来自不同背景和不同学习风格的Material-UI。 无论您是喜欢更理论还是实用的方法，我们希望您会发现本节很有帮助。 与任何不熟悉的技术一样，Material-UI确实具有学习曲线。 通过练习和一些耐心，你很快就会掌握它。
 
-## First Example
+## 第一个例子
 
-The [usage page](/getting-started/usage/#quick-start) contains a small Material-UI example with a live editor. Even if you don’t know anything about Material-UI yet, try changing the code and see how it affects the result.
+[用法页面](/getting-started/usage/#quick-start) 包含一个带有实时编辑器的小型Material-UI示例。 即使您还不了解有关Material-UI的任何信息，请尝试更改代码并查看它对结果的影响。
 
 ## 示例项目
 
-We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
+我们 [举办一些示例项目](/getting-started/example-projects/) 提供在应对开发和部署网站所需的基础设施。
 
-## Page layout examples
+## 页面布局示例
 
-We have a [selection of basic page layouts](/getting-started/page-layout-examples/) to help you get started building your app.
+我们有 [种基本页面布局](/getting-started/page-layout-examples/) 可帮助您开始构建应用程序。
 
-## Recommended resources
+## 推荐资源
 
-When first learning Material-UI, you might find third-party blog posts, books and video courses more helpful than the official documentation. We maintain a list of commonly recommended resources, some of which are free.
+首次学习Material-UI时，您可能会发现第三方博客文章，书籍和视频课程比官方文档更有帮助。 我们维护一份通常推荐的资源列表，其中一些资源是免费的。
 
-### Free
+### 自由
 
-- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
- - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555) - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
- - 📝 [The blog post](https://alligator.io/react/material-ui/)
+- **Meet Material-UI - 您最喜欢的用户界面库**：一篇博客文章，指导您构建Todo MVC，同时涵盖Material-UI的一些重要概念。 
+ - 📝 [博客文章](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
+- **Learn React & Material-UI**：一系列视频，涵盖所有重要的Material-UI组件。 - 📹 [的视频](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
+- **Material-UI入门React**：一篇博客文章，指导您构建简单的卡片列表。 - 📝 [的博客文章](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555) - 📹 [所述的视频](https://www.youtube.com/watch?v=PWadEeOuv5o)
+- **Elegant UX in React with Material-UI**：一篇博文，内容涵盖一些重要的Material-UI概念。 
+ - 📝 [博客文章](https://alligator.io/react/material-ui/)
 
-### Paid
+### 付费
 
-- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
- - 📘 [The book](https://builderbook.org/book)
+- **Builder Book**：了解如何使用Modern JavaScript堆栈和Material-UI从头开始构建全栈JavaScript Web应用程序。 
+ - 📘 [书](https://builderbook.org/book)

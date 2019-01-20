@@ -20,30 +20,30 @@ components: Tooltip
 
 ## 自定义文字提示
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can theme a tooltip.
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入，这里有一个如何为主题提供工具提示的示例。
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
-## Custom child element
+## 自定义子元素
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+工具提示需要将DOM事件侦听器应用于其子元素。 如果子项是自定义的React元素，则需要确保它将其属性传播到基础DOM元素。
 
 ```jsx
 function MyComponent(props) {
-  // We spread the properties to the underlying DOM element.
+  // 我们将属性扩展到底层DOM元素。
   return <div {...props}>Bin</div>
 }
 
 // ...
 
-<Tooltip title="Delete">
+<Tooltip title="删除">
   <MyComponent>
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+您可以在 [包装组件](/guides/composition/#wrapping-components) 指南中找到类似的概念。
 
 ## 触发器
 
@@ -71,7 +71,7 @@ You can find a similar concept in the [wrapping components](/guides/composition/
 
 ## 对于 disabled 的元素
 
-默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 To accommodate disabled elements, add a simple wrapper element like a `span`.
+默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如`span`。
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 

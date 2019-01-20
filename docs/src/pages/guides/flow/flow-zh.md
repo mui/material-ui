@@ -1,9 +1,9 @@
 # Flow
 
-<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to Flow.</p>
+<p class="description">您可以向JavaScript添加静态类型，以提高开发人员的工作效率和代码质量。</p>
 
-Have a look at the [Create React App with Flow](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-flow) example.
+看一下使用Flow</a> 示例的 Create React App。</p> 
 
 ## flow-typed
 
-[flow-typed](https://github.com/flowtype/flow-typed) is a repository of third-party library interface definitions for use with Flow. The community is maintaining [the definitions under this project](https://github.com/flowtype/flow-typed/tree/master/definitions/npm/%40material-ui/core_v1.x.x).
+[flow-typed](https://github.com/flowtype/flow-typed) 是用于Flow的第三方库接口定义的存储库。 社区是维持 [这个项目下的定义](https://github.com/flowtype/flow-typed/tree/master/definitions/npm/%40material-ui/core_v1.x.x)。

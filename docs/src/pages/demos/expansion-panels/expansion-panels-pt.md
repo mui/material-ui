@@ -30,6 +30,6 @@ Multiple columns can be used to structure the content, and a helper text may be 
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the background color of the `ExpansionPanelSummary` and padding of `ExpansionPanelDetails`.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
 
 {{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}

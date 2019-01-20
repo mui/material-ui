@@ -18,9 +18,9 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## 搜索输入框为主的应用栏
+## 搜索输入框居中的应用栏
 
-一个居中搜索栏
+一个主搜索栏
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
@@ -30,7 +30,7 @@ components: AppBar, Toolbar, Menu
 
 ## 带有搜索输入框的应用栏
 
-一个靠边搜索栏。
+一个侧搜索栏。
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 

@@ -1,12 +1,12 @@
 ---
-title: Text Field React component
+title: Componente React de Campo de Texto
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
-# Text Fields
+# Campos de Texto
 
-<p class="description">Text fields let users enter and edit text.</p>
+<p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Campos de Texto](https://material.io/design/components/text-fields.html) permitem que os usuários insiram texto em uma interface de usuário. Eles geralmente aparecem em formulários e diálogos.
 
 ## TextField
 
@@ -44,7 +44,7 @@ You might also have noticed that some native HTML input properties are missing f
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 

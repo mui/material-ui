@@ -1,5 +1,5 @@
 ---
-title: Transition React component
+title: Transition React组件
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 # 过渡动画
@@ -54,7 +54,7 @@ export default Main() {
 
 从屏幕的边缘滑入。`direction` 属性控制动画开始时，元素往哪个方向过渡。
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
+Transition组件的 `mountOnEnter` 属性可防止子组件安装 直到 `in` 为 `true`。 这可以防止相对定位的组件从其屏幕外位置滚动到视图 。 类似地， `unmountOnExit` 属性在从屏幕转换到屏幕后从DOM中删除组件 。
 
 {{"demo": "pages/utils/transitions/SimpleSlide.js"}}
 

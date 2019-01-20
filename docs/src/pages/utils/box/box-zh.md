@@ -1,21 +1,21 @@
 ---
-title: Box React component
+title: Box React组件
 ---
-# Box (unstable)
+# 盒子（不稳定）
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">Box组件充当大多数CSS实用程序需求的包装器组件。</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/css-in-js/api/#styled-style-function-component) function of `@material-ui/styles`.
+所述盒组件包 [的所有样式的功能](/system/basics/#all-inclusive) 被暴露在 `@材料-UI /系统`。 它是使用 `@material-ui/styles`的 [`styled()`](/css-in-js/api/#styled-style-function-component) 函数创建的。
 
-> ⚠️ "unstable_" APIs may change in any version without respecting semver.
+> ⚠️“unstable_”API可能会在任何版本中发生变化而不尊重semver。
 
-## Example
+## 例
 
-[The palette](/system/palette/) style function.
+[调色板](/system/palette/) 样式功能。
 
-## Overriding Material-UI components
+## 覆盖Material-UI组件
 
-The Box component wraps your component. It creates a new DOM element, a `<div>` by default that can be changed with the `component` property. Let's say you want to use a `<span>` instead:
+Box组件包装您的组件。 它创建了一个新的DOM元素，默认情况下为 `<div>` ，可以使用 `组件` 属性进行更改。 假设您想使用 `<span>` 代替：
 
 ```jsx
 <Box component="span" m={1}>
@@ -23,13 +23,13 @@ The Box component wraps your component. It creates a new DOM element, a `<div>` 
 </Box>
 ```
 
-This works great when the changes can be isolated to a new DOM element. For instance, you can change the margin this way.
+当更改可以隔离到新的DOM元素时，这很有用。 例如，您可以通过这种方式更改保证金。
 
-However, sometimes you have to target the underlying DOM element. For instance, you want to change the text color of the button. The Button component defines its own color. CSS inheritance doesn't help. To workaround the problem, you have two options:
+但是，有时您必须定位底层DOM元素。 例如，您想要更改按钮的文本颜色。 Button组件定义自己的颜色。 CSS继承没有帮助。 要解决此问题，您有两种选择：
 
-1. Use [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
+1. 使用 [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
-The Box component has a `clone` property to enable the usage of the clone element method of React.
+Box组件具有 `clone` 属性，以允许使用React的clone元素方法。
 
 ```jsx
 <Box color="text.primary" clone>
@@ -37,9 +37,9 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 </Box>
 ```
 
-1. Use render props
+1. 使用渲染道具
 
-The Box children accepts a render props function. You can pull out the `className`.
+Box儿童接受渲染道具功能。 你可以拉出 `className`。
 
 ```jsx
 <Box color="text.primary">
@@ -47,7 +47,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 </Box>
 ```
 
-> ⚠️ The CSS specificity relies on the import order. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> ⚠️CSS特异性依赖于导入顺序。 如果你想在保证包装的组件的样式将被改写， 您需要导入盒最后。
 
 ## API
 
@@ -55,10 +55,10 @@ The Box children accepts a render props function. You can pull out the `classNam
 import { unstable_Box as Box } from '@material-ui/core/Box';
 ```
 
-| Name                                               | Type                                                                                                              | Default                                 | Description                                                                                            |
-|:-------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------------------------------------------------------------------ |
-| <span class="prop-name required">children *</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                           |
-| <span class="prop-name">clone</span>               | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle it's children DOM element. It's using `React.cloneElement` internally. |
-| <span class="prop-name">component</span>           | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.             |
+| 名称                                                 | 类型                                                                                                                | 默认                                      | 描述                                                   |
+|:-------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:---------------------------------------------------- |
+| <span class="prop-name required">children *</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | 框渲染功能或节点。                                            |
+| <span class="prop-name">clone</span>               | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | 如果 `true`，盒子将回收的儿童DOM元。 它在内部使用 `React.cloneElement`。 |
+| <span class="prop-name">组件</span>                  | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | 用于根节点的组件。 要么是使用DOM元素的字符串，要么是组件。                      |
 
-Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.
+所提供的任何其它性质将被使用 [的样式功能](/system/basics/#all-inclusive) 或扩散到根元素。

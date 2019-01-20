@@ -1,52 +1,52 @@
 # 文本替换
 
-<p class="description">由于组件可以在不同的上下文中使用, material-ui 支持不同类型的自定义要求, 从最特定到最通用。</p>
+<p class="description">由于组件可以在不同的上下文中使用, Material-UI 支持不同类型的自定义要求, 从最特定到最通用。</p>
 
-1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-2. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
-3. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
-4. [Material Design variations](#4-material-design-variations) such as with the button component
-5. [Global theme variation](#5-global-theme-variation)
+1. [一次性情况的具体变化](#1-specific-variation-for-a-one-time-situation)
+2. [一次性情况的动态变化](#2-dynamic-variation-for-a-one-time-situation)
+3. [在不同环境中重复使用的组件](#3-specific-variation-of-a-component) 特定变体
+4. [材料设计变体](#4-material-design-variations) 例如按钮组件
+5. [全球主题变化](#5-global-theme-variation)
 
-## 1. Specific variation for a one-time situation
+## 1。 一次性情况的具体变化
 
-You might need to change the style of a component in some very specific situation, for which you have the following solutions available:
+您可能需要在某些特定情况下更改组件的样式，您可以使用以下解决方案：
 
-### Overriding with class names
+### 覆盖类名
 
-The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
+覆盖组件样式的第一种方法是使用 **类名**。 每个组件都提供一个 `className` 属性，该属性始终应用于根元素。
 
-In this example, its using the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
+在这个例子中，它使用 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶 组件将自定义样式注入DOM，并通过其 `类` 属性将类名传递给 `ClassNames` 组件。 您可以选择[任何其他样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[CSS注射顺序](/customization/css-in-js/#css-injection-order) ，由于`<link>`注入`<4>`的底部 ，因此通过Material-UI注入DOM 以对组件进行样式化的CSS具有最高的特异性。确保组件始终正确呈现。
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
-### Overriding with classes
+### 覆盖类
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+当 `className` 属性不够，并且您需要访问更深层元素时，您可以利用 `类` 属性来自定义Material-UI为给定组件注入的所有CSS。 每个 组件的类列表记录在 **Component API** 部分中。 例如，您可以查看 [Button CSS API](/api/button/#css)。 或者，您可以随时查看 [实现细节](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
 
-This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
+这个例子也使用 `withStyles（）` （见上文），但是这里， `ClassesNesting` 使用 `Button`的 `类` prop到 提供了一个对象，它映射了 **个类的名称以覆盖** （样式规则） **CSS类名称应用** （值）。 组件的现有类将继续注入，因此只需要提供要添加或覆盖的特定样式 。
 
-Notice that in addition to the button styling, the button label's capitalization has been changed:
+请注意，除按钮样式外，按钮标签的大小写也已更改：
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
-### Using the dev tools
+### 使用开发工具
 
-The browser dev tools can save you a lot of time. The Material-UI's class names [follow a simple pattern](/customization/css-in-js/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
+浏览器开发工具可以为您节省大量时间。 Material-UI的类名 [遵循开发模式中的简单模式](/customization/css-in-js/#class-names) ： `Mui [组件名称] - [样式规则名称] -[UUID]`。
 
-Let's go back to the above demo. How can you override the button label?
+让我们回到上面的演示。 你怎么能覆盖按钮标签？
 
 ![dev-tools](/static/images/customization/dev-tools.png)
 
-Using the dev tools, you know that you need to target the `Button` component and the `label` style rule:
+使用开发工具，您知道需要定位 `按钮` 组件和 `标签` 样式规则：
 
 ```jsx
 <Button classes={{ label: 'my-class-name' }} />
 ```
 
-### Shorthand
+### 速记
 
-The above code example can be condensed by using **the same CSS API** as the child component. In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
+上面的代码示例可以通过使用缩合 **相同的CSS API** 作为子组件。 在此示例中， `withStyles()` 高阶分量正在注入由 [`Button` 组件](/api/button/#css)使用的 `classes` 属性。
 
 ```jsx
 const StyledButton = withStyles({
@@ -67,17 +67,17 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
-### Internal states
+### 内部状态
 
-The components internal states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity. [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+组件内部状态，如 *hover* (悬停)， *focus* (焦点)， *disabled* (禁用) 和 *selected* (中选择)中，风格具有较高CSS特异性。 [特异性是一种重量](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)这适用于给定的CSS声明。
 
-In order to override the components internal states, **you need to increase specificity**. Here is an example with the *disable* state and the button component using a **pseudo-class** (`:disabled`):
+为了覆盖组件内部状态， **需要增加特异性**。 下面是一个示例，其中 *disabled* 状态，按钮组件使用 **伪类** （`disabled`）：
 
 ```css
 .button {
   color: black;
 }
-/* We increase the specificity */
+/* 我们增加了特异性 */
 .button:disabled {
   color: white;
 }
@@ -87,13 +87,13 @@ In order to override the components internal states, **you need to increase spec
 <Button disabled className="button">
 ```
 
-Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the platform. Let's take the menu item component and the *selected* state as an example. Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components:
+有时，您不能使用 **伪类** 因为平台中不存在状态。 我们以菜单项组件和 *selected* 状态为例。 除了访问嵌套元素之外， `classes` 属性还可用于自定义Material-UI组件的内部状态：
 
 ```css
 .menu-item {
   color: black;
 }
-/* We increase the specificity */
+/* 我们增加了特异性 */
 .menu-item.selected {
   color: blue;
 }
@@ -103,13 +103,13 @@ Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the pl
 <MenuItem selected classes={{ root: 'menu-item', selected: 'selected' }}>
 ```
 
-##### Why do I need to increase specificity to override one component state?
+##### 为什么我需要增加特异性以覆盖一个组件状态？
 
-By design, the CSS specification makes the pseudo-classes increase the specificity. For consistency, Material-UI increases the specificity of its custom states. This has one important advantage, it's allowing you to cherry-pick the state you want to customize.
+通过设计，CSS规范使伪类增加了特异性。 为了保持一致性，Material-UI增加了其自定义状态的特异性。 这有一个重要的优点，它允许您挑选您想要自定义的状态。
 
-### Use `$ruleName` to reference a local rule within the same style sheet
+### 使用 `$ruleName` 引用同一样式表中的本地规则
 
-The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+[jss-nested](https://github.com/cssinjs/jss-nested) 插件（默认情况下可用）可以使增加特异性的过程更容易。
 
 ```js
 const styles = {
@@ -122,7 +122,7 @@ const styles = {
 };
 ```
 
-compiles to:
+编译为：
 
 ```css
 .root-x.disable-x {
@@ -130,7 +130,7 @@ compiles to:
 }
 ```
 
-⚠️ You need to apply the two generated class names (`root` & `disabled`) to the DOM to make it work.
+⚠️您需要将两个生成的类名称（`root` & `disabled`）应用于DOM以使其工作。
 
 ```jsx
 <Button
@@ -144,25 +144,25 @@ compiles to:
 
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
 
-### Overriding with inline-style
+### 覆盖内联样式
 
-The second way to override the style of a component is to use the **inline-style** approach. Every component provides a `style` property. These properties are always applied to the root element.
+覆盖组件样式的第二种方法是使用 **inline-style** 方法。 每个组件都提供 `style` 属性。 这些属性始终应用于根元素。
 
-You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
+您不必担心CSS特性，因为内联样式优先于常规CSS。
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
+[我什么时候应该使用 inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes-)
 
-## 2. Dynamic variation for a one-time situation
+## 2。 一次性情况的动态变化
 
-You have learned how to override the style of the Material-UI components in the previous sections. Now, let's see how we can make these overrides dynamic. We demonstrate 5 alternatives, each has it's pros and cons.
+您已经学习了如何覆盖前面部分中的Material-UI组件的样式。 现在，让我们看看我们如何使这些覆盖动态化。 我们展示了5种替代方案，每种方案都有其优缺点。
 
-### Dynamic CSS
+### 动态CSS
 
 {{"demo": "pages/customization/overrides/DynamicCSS.js"}}
 
-⚠️ This demo relies on the [`@material-ui/styles`](/css-in-js/basics/) package. It doesn't work with the stable version.
+⚠️这个演示依赖于[`@material-ui/styles`](/css-in-js/basics/)包。 它不适用于稳定版本。
 
 ### Class name branch
 
@@ -172,40 +172,40 @@ You have learned how to override the style of the Material-UI components in the 
 
 {{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
 
-### Inline-style
+### 内联样式
 
 {{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
 
-### Theme nesting
+### 主题嵌套
 
 {{"demo": "pages/customization/overrides/DynamicThemeNesting.js"}}
 
-## 3. Specific variation of a component
+## 3。 组件的具体变化
 
-You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+您可能需要创建组件的变体并在不同的上下文中使用它，例如产品页面上的彩色按钮，但是您可能希望保留代码 [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。
 
-The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
+最好的方法是遵循选项1，然后通过导出自定义组件来利用React的组合功能，以便在任何需要的地方使用。
 
 {{"demo": "pages/customization/overrides/Component.js", "hideEditButton": true}}
 
-## 4. Material Design variations
+## 4。 材料设计变化
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (formerly "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (formerly "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
+材料设计规范记录了某些组件的不同变化，例如按钮如何形成不同的形状： [文本](https://material.io/design/components/buttons.html#text-button) （以前称为“平面”）， [包含](https://material.io/design/components/buttons.html#contained-button) （以前称为“凸起”）， [FAB](https://material.io/design/components/buttons-floating-action-button.html) 及更多。
 
-Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
+Material-UI尝试实现所有这些变体。 请参阅 [支持的组件](/getting-started/supported-components/) 文档，以了解所有支持的Material Design组件的当前状态。
 
-## 5. Global theme variation
+## 5。 全球主题变化
 
-### Theme variables
+### 主题变量
 
-In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes by adjusting the [theme configuration variables](/customization/themes/#theme-configuration-variables).
+为了提高组件之间的一致性，并整体管理用户界面外观，Material-UI提供了一种通过调整 [主题配置变量来应用全局更改的机制](/customization/themes/#theme-configuration-variables)。
 
-### Global theme override
+### 全局主题覆盖
 
-Do you want to customize **all the instances** of a component type?
+是否要自定义 **组件类型的所有实例**？
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM. Learn more about it in the [themes section](/customization/themes/#customizing-all-instances-of-a-component-type) of the documentation.
+当配置变量不够强大时， 可以利用 `overrides` 的 `theme` 键来潜在地将Material-UI注入的每个样式更改为DOM。 在文档的 [主题部分](/customization/themes/#customizing-all-instances-of-a-component-type) 中了解有关它的更多信息。
 
-### Global CSS override
+### 全局CSS覆盖
 
-You can also customize all instances of a component with CSS. We expose a `dangerouslyUseGlobalCSS` option to do so. Learn more about it in the [CSS in JS section](/customization/css-in-js/#global-css) of the documentation. It's very similar to how you would customize Bootstrap.
+您还可以使用CSS自定义组件的所有实例。 我们公开了一个 `dangerouslyUseGlobalCSS` 选项来执行此操作。 在文档的JS第</a> 部分的 CSS中了解它的更多信息。 它与您自定义Bootstrap的方式非常相似。</p>

@@ -2,42 +2,42 @@
 
 <p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
 
-> ⚠️ `@material-ui/styles` is unstable (alpha version). Hopefully, we will make it the default style implementation for the core components in Material-UI v4. [Follow this path](/customization/css-in-js/) to read the documentation of the default style implementation.
+> ⚠️`@material-ui/styles`是实验性的（alpha版）。 希望我们将它作为Material-UI v4中核心组件的默认样式实现。 [遵循此路径](/customization/css-in-js/)阅读默认样式实现的文档 。
 
 Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见, **我们向用户公开我们的样式解决方案 **。 你可以使用它，但是你不需要这样做。 该样式解决方案可[与所有其他主要解决方案](/guides/interoperability/)互操作
 
 ## Material-UI 的样式解决方案
 
-在以前的版本中，Material-UI 使用 LESS，然后是自定义内嵌式的解决方案来编写组件的样式，但是这些方法已被证明是有限制的。 最近，我们[迁移](https://github.com/oliviertassinari/a-journey-toward-better-style)到*CSS-in-JS*的解决方案中去。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） We think that this is the future:
+在以前的版本中，Material-UI 使用 LESS，然后是自定义内嵌式的解决方案来编写组件的样式，但是这些方法已被证明是有限制的。 最近，我们[迁移](https://github.com/oliviertassinari/a-journey-toward-better-style)到*CSS-in-JS*的解决方案中去。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [将SCSS（Sass）转换为CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other CSS-in-JS libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
-- 🚀 Is [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles). x2.6 faster than emotion on the server for rendering static style sheets.
-- 🧩 Is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core. It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles).
+- 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
+- 🚀是 [极快](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles)。 x2.6比服务器上的情感更快，用于渲染静态样式表。
+- 🧩可通过 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API进行扩展。
+- ⚡️它的核心使用 [JSS](https://github.com/cssinjs/jss)。 这是一个 [高性能](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript来CSS编译器，在运行时和服务器端的工作。
+- 📦小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)。
 
 ## 安装
 
 下载并保存到你的 `package.json` 依赖，运行
 
 ```sh
-// with npm
+// 用npm安装
 npm install @material-ui/styles
 
-// with yarn
+// 用yarn安装
 yarn add @material-ui/styles
 ```
 
-> Please note that it depends on *react@next* and *react-dom@next*.
+> 请注意，它取决于 *react@next* 和 *react-dom@next*。
 
-### Migration for `@material-ui/core` users
+### 迁移`@material-ui/core`用户
 
-To switch from the default style implementation to this newest version, you need to execute the following code **before importing any** Material-UI's components:
+要从默认样式实现切换到此最新版本，您需要在导入任何</strong> Material-UI组件之前执行以下代码 **：</p> 
 
 ```js
 import { install } from '@material-ui/styles';
@@ -45,15 +45,15 @@ import { install } from '@material-ui/styles';
 install();
 ```
 
-It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`). This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
+它是 **推荐** 放置上述代码在一个单独的文件中（例如 `bootstrap.js`）和将其导入在你的应用程序的入口点（例如 `index.js`）。 这可以确保安装在其他任何操作之前执行，因为ECMAScript导入被提升到模块的顶部。 如果未正确执行安装步骤，则生成的构建可能具有冲突的类名。
 
-We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**. Behind the scenes, the `install()` function switches the styling engine the core components use.
+我们将 `@material-ui/styles` 作为Material-UI v4中核心组件的默认样式实现。 此安装步骤为 **临时**。 在幕后，`install()` 函数切换核心组件使用的样式引擎。
 
-Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@material-ui/styles/ThemeProvider`. We will remove this component in v4.
+此外， `@ material-ui / core / MuiThemeProvider` 组件可以替换为 `@ material-ui / styles / ThemeProvider`。 我们将在v4中删除此组件。
 
-## Getting started
+## 入门
 
-We provide 3 different APIs. They all share the same underlying logic.
+我们提供3种不同的API。 它们都具有相同的基础逻辑。
 
 ### Hook API
 
@@ -140,18 +140,18 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/css-in-js/basics/HigherOrderComponent.js", "react": "next"}}
 
-## Adapting based on props
+## 适应基于道具
 
-You can pass a function ("interpolations") to a style property to adapt it based on its props. This button component has a color property that changes its color:
+您可以将函数（“插值”）传递给样式属性，以根据其道具对其进行调整。 此按钮组件具有更改其颜色的颜色属性：
 
-### Adapting hook API
+### 适应 hook API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHook.js", "react":"next"}}
 
-### Adapting styled components API
+### 适应 styled components API
 
 {{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js", "react": "next"}}
 
-### Adapting higher-order component API
+### 适应 higher-order component API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHOC.js", "react": "next"}}

@@ -23,19 +23,19 @@ When displaying progress for a sequence of processes, indicate overall progress 
 - **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
 - **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
 
-### Circular Indeterminate
+### Circular Indeterminado
 
 {{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
 
-### Interactive Integration
+### Integração Interativa
 
 {{"demo": "pages/demos/progress/CircularIntegration.js"}}
 
-### Circular Determinate
+### Determinado Circular
 
 {{"demo": "pages/demos/progress/CircularDeterminate.js"}}
 
-### Circular Static
+### Fatia Circular
 
 {{"demo": "pages/demos/progress/CircularStatic.js"}}
 
@@ -43,23 +43,23 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 [Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
 
-### Linear Indeterminate
+### Indeterminado Linear
 
 {{"demo": "pages/demos/progress/LinearIndeterminate.js"}}
 
-### Linear Determinate
+### Linear Determinado
 
 {{"demo": "pages/demos/progress/LinearDeterminate.js"}}
 
-### Linear Buffer
+### Buffer Linear
 
 {{"demo": "pages/demos/progress/LinearBuffer.js"}}
 
-### Linear Query
+### Consulta Linear
 
 {{"demo": "pages/demos/progress/LinearQuery.js"}}
 
-## Non-standard ranges
+## Gamas não padronizadas
 
 The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
 
@@ -84,7 +84,7 @@ function Progress(props) {
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. The last demo demonstrates how you can build a Facebook like spinner.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
 
 {{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 

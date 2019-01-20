@@ -34,48 +34,55 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## 响应式抽屉
+## 响应抽屉
 
-利用` Hidden `组件，可以根据屏幕宽度显示不同类型的抽屉。 小屏幕显示 `temporary` 抽屉，较宽的屏幕显示 `permanent` 抽屉。
+ Hidden </ code>响应式帮助程序组件允许根据屏幕宽度显示不同类型的抽屉。
+显示小屏幕的<code> temporary </ code>抽屉，而更宽屏幕显示<code> permanent </ code>抽屉。</p>
 
-{{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}</p>
 
-## 持久抽屉
+<h2>持久抽屉</h2>
 
-持久抽屉可以打开或关闭。 抽屉与内容位于同一表面的高度上。 它默认情况下是关闭的，可通过选择菜单图标打开，它会保持打开状态，直到用户关闭。 从操作到操作和会话到会话记住抽屉的状态。
+<p>持久抽屉可以打开或关闭。
+抽屉与内容位于同一表面的高度上。
+它默认情况下是关闭的，可通过选择菜单图标打开，它会保持打开状态，直到用户关闭。
+从操作到操作和会话到会话记住抽屉的状态。</p>
 
-当抽屉位于页面网格之外并打开时，抽屉会强制其他内容更改大小并适应较小的视口。
+<p>当抽屉位于页面网格之外并打开时，抽屉会强制其他内容更改大小并适应较小的视口。</p>
 
-对于比移动设备更大的尺寸，可以使用持久性导航抽屉。 对于具有多级层次结构且需要使用向上箭头进行导航的应用，建议不要使用它们。
+<p>对于比移动设备更大的尺寸，可以使用持久性导航抽屉。
+对于具有多级层次结构且需要使用向上箭头进行导航的应用，建议不要使用它们。</p>
 
-{{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}</p>
 
-{{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}</p>
 
-## 迷你变体抽屉
+<h2>迷你变体抽屉</h2>
 
-在此变体中，持久性导航抽屉会更改其宽度。 它的静止状态是一个迷你抽屉，与内容相同，由应用栏夹住。 展开后，它将显示为标准持久性导航抽屉。
+<p>在此变体中，持久性导航抽屉会更改其宽度。
+它的静止状态是一个迷你抽屉，与内容相同，由应用栏夹住。
+展开后，它将显示为标准持久性导航抽屉。</p>
 
-对于需要快速选择访问内容的应用部分，建议使用迷你变体。
+<p>对于需要快速选择访问内容的应用部分，建议使用迷你变体。</p>
 
-{{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}</p>
 
-## 永久抽屉
+<h2>永久抽屉</h2>
 
-永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。他们无法被关闭。
+<p>永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。他们无法被关闭。</p>
 
-永久抽屉是桌面**推荐的默认值**。
+<p>永久抽屉是桌面<strong>推荐的默认值</strong>。</p>
 
-### 全高度导航栏
+<h3>全高度导航栏</h3>
 
-应用程序侧重与从左到右层次结构的信息消费。
+<p>应用程序侧重与从左到右层次结构的信息消费。</p>
 
-{{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}</p>
 
-{{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}</p>
 
-### 从应用栏下开始分割
+<h3>从应用栏下开始分割</h3>
 
-应用专注于生产力，需要在整个屏幕上保持平衡。
+<p>应用专注于生产力，需要在整个屏幕上保持平衡。</p>
 
-{{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}
+<p>{{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}</p>

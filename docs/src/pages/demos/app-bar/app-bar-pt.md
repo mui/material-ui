@@ -1,5 +1,5 @@
 ---
-title: React 应用栏组件
+title: Componente React para Barra de Menu <AppBar/>
 components: AppBar, Toolbar, Menu
 ---
 # App Bar
@@ -10,31 +10,31 @@ O [App Bar superior](https://material.io/design/components/app-bars-top.html) pr
 
 Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
 
-## App Bar with buttons
+## App Bar com botões
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## Simple App Bar
+## App Bar simples
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with a primary search field
+## App Bar com um campo de busca principal
 
-A primary searchbar.
+Um campo de busca principal.
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## App Bar com menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## App Bar com campo de busca
 
-A side searchbar.
+Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Denso (apenas para desktop)
+## Densa (apenas para desktop)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
