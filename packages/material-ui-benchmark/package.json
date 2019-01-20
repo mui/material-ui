@@ -12,11 +12,12 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-benchmark",
   "scripts": {
-    "test": "exit 0",
     "core": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/core.js --inspect=0.0.0.0:9229",
+    "docs": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/docs.js --inspect=0.0.0.0:9229",
+    "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js --inspect=0.0.0.0:9229",
     "styles": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/styles.js --inspect=0.0.0.0:9229",
     "system": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/system.js --inspect=0.0.0.0:9229",
-    "server": "cd ../../ && NODE_ENV=production BABEL_ENV=docs-production babel-node packages/material-ui-benchmark/src/server.js --inspect=0.0.0.0:9229"
+    "test": "exit 0"
   },
   "devDependencies": {},
   "engines": {

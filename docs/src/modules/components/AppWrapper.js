@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import url from 'url';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
+import acceptLanguage from 'accept-language';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
-import acceptLanguage from 'accept-language';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -35,11 +35,14 @@ class SideEffectsRaw extends React.Component {
     acceptLanguage.languages(['en', 'pt', 'zh']);
     const URL = url.parse(document.location.href, true);
     const userLanguage = acceptLanguage.get(
-      URL.query.lang || getCookie('lang') || navigator.language || 'en',
+      URL.query.lang || getCookie('lang') || navigator.language,
     );
     const codeVariant = getCookie('codeVariant');
 
-    if (options.userLanguage !== userLanguage || options.codeVariant !== codeVariant) {
+    if (
+      (userLanguage && options.userLanguage !== userLanguage) ||
+      (codeVariant && options.codeVariant !== codeVariant)
+    ) {
       this.props.dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
         payload: {
@@ -136,7 +139,10 @@ class AppWrapper extends React.Component {
     const paletteType = getCookie('paletteType');
     const paletteColors = getCookie('paletteColors');
 
-    if (reduxTheme.paletteType !== paletteType || reduxTheme.paletteColors !== paletteColors) {
+    if (
+      (paletteType && reduxTheme.paletteType !== paletteType) ||
+      (paletteColors && JSON.stringify(reduxTheme.paletteColors) !== paletteColors)
+    ) {
       this.props.dispatch({
         type: ACTION_TYPES.THEME_CHANGE,
         payload: {
