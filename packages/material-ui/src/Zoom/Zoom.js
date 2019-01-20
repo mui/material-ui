@@ -60,16 +60,16 @@ class Zoom extends React.Component {
 
     return (
       <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) => {
-          return React.cloneElement(children, {
+        {(state, childProps) =>
+          React.cloneElement(children, {
             style: {
               transform: 'scale(0)',
               ...styles[state],
               ...style,
             },
             ...childProps,
-          });
-        }}
+          })
+        }
       </Transition>
     );
   }

@@ -200,11 +200,19 @@ ExpansionPanelSummary.propTypes = {
   /**
    * @ignore
    */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
   onChange: PropTypes.func,
   /**
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocusVisible: PropTypes.func,
 };
 
 ExpansionPanelSummary.defaultProps = {

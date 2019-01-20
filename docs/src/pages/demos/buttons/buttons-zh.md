@@ -14,9 +14,17 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 - 卡片
 - 工具栏
 
+## 实心按钮
+
+\[实心按钮\](https://material.io/design/components/buttons.html#contained-button) 表示高度强调, 按照不同的填充颜色和立体效果来表示强调程度。 它们包含对应用程序具有主要作用的操作。
+
+此演示的最后一个示例显示了如何使用上传按钮。
+
+{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
+
 ## 文本按钮
 
-[文本按钮](https://material.io/design/components/buttons.html#text-button) 通常用于不太明显的操作, 包括那些位于:
+\[文本按钮\](https://material.io/design/components/buttons.html#text-button) 通常用于不太明显的操作, 包括那些位于:
 
 - 在对话框中
 - 在卡片
@@ -27,7 +35,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## 描边按钮
 
-[描边按钮](https://material.io/design/components/buttons.html#outlined-button) 是中等强调按钮。 它们包含重要的操作， 但不是应用程序中的主要操作。
+\[描边按钮\](https://material.io/design/components/buttons.html#outlined-button) 是中等强调按钮。 它们包含重要的操作， 但不是应用程序中的主要操作。
 
 ### 备选方案
 
@@ -35,17 +43,9 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## 实心按钮
-
-[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度强调, 按照不同的填充颜色和立体效果来表示强调程度。 它们包含对应用程序具有主要作用的操作。
-
-此演示的最后一个示例显示了如何使用上传按钮。
-
-{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
-
 ## 浮动操作按钮
 
-[浮动动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 工厂有三种类型: 常规、迷你和扩展。
+[浮动动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FABs come in two types: regular, and extended.
 
 只在它是最适合呈现屏幕主要操作的方式时使用FAB。
 
@@ -61,6 +61,18 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
+## 尺寸
+
+喜欢更大或更小的按钮？ 使用 `size` 或 `mini` 属性。
+
+{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
+
+## 带有图标和标签的按钮
+
+有时您可能希望为某个按钮添加图标以增强应用程序的用户体验，因为我们识别徽标比纯文本更容易。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
+
+{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
+
 ## 图标按钮
 
 图标按钮通常位于应用栏和工具栏中。
@@ -69,21 +81,11 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
-## 尺寸
-
-喜欢更大或更小的按钮？ 使用 `size` 或 `mini` 属性。
-
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
-
-### 带有图标和标签的按钮
-
-有时您可能希望为某个按钮添加图标以增强应用程序的用户体验，因为我们识别徽标比纯文本更容易。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
-
-{{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
-
 ## 自定义按钮
 
 如果您有阅读[“重写”文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是一些示例，包括使用 classes 属性更改 Button 的主要颜色、 使用主题和使用 Bootstrap 样式按钮。
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
@@ -119,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*注意：必须创建 `MyLink` 以防止意外卸载。 您可以在[此处](/guides/composition/#component-property)了解有关它的更多信息。*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [composition guide](/guides/composition/#component-property).*

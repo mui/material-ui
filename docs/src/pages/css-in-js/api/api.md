@@ -4,7 +4,7 @@
 
 ## `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
+A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-class-names).
 
 #### Arguments
 
@@ -84,7 +84,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 
@@ -125,7 +125,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 3. `Component`: The component that will be wrapped.
 
 #### Returns
@@ -236,7 +236,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 

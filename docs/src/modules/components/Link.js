@@ -31,6 +31,7 @@ NextWrapper.defaultProps = {
 
 NextWrapper.propTypes = {
   activeClassName: PropTypes.string,
+  className: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,

@@ -275,6 +275,10 @@ Typography.propTypes = {
    */
   paragraph: PropTypes.bool,
   /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
    * Applies the theme typography styles.
    * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
    */

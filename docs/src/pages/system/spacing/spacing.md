@@ -94,20 +94,20 @@ import { spacing } from '@material-ui/system';
 
 | Import name | Prop | CSS property | Theme key |
 |:------------|:-----|:-------------|:----------|
-| `spacing` | `m` | `margin` | `spacing` |
-| `spacing` | `mt` | `margin-top` | `spacing` |
-| `spacing` | `mr` | `margin-right` | `spacing` |
-| `spacing` | `mb` | `margin-bottom` | `spacing` |
-| `spacing` | `ml` | `margin-left` | `spacing` |
-| `spacing` | `mx` | `margin-left`, `margin-right` | `spacing` |
-| `spacing` | `my` | `margin-top`, `margin-bottom` | `spacing` |
-| `spacing` | `p` | `padding` | `spacing` |
-| `spacing` | `pt` | `padding-top` | `spacing` |
-| `spacing` | `pr` | `padding-right` | `spacing` |
-| `spacing` | `pb` | `padding-bottom` | `spacing` |
-| `spacing` | `pl` | `padding-left` | `spacing` |
-| `spacing` | `px` | `padding-left`, `padding-right` | `spacing` |
-| `spacing` | `py` | `padding-top`, `padding-bottom` | `spacing` |
+| `spacing` | `m` | `margin` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mt` | `margin-top` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mr` | `margin-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mb` | `margin-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `ml` | `margin-left` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `mx` | `margin-left`, `margin-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `my` | `margin-top`, `margin-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `p` | `padding` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pt` | `padding-top` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pr` | `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pb` | `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `pl` | `padding-left` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
 *Some people find the property shorthand confusing, you can use the full version if you prefer:*
 

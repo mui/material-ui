@@ -20,11 +20,13 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
-## 消息长度
+## 自定义的消息条(Snackbar)
 
-不同消息长度的消息条(Snackbar)。
+如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Snackbar)的主要颜色的示例
 
-{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
 ## 定位消息条(Snackbar)
 
@@ -32,7 +34,25 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
 
+## 消息长度
+
+不同消息长度的消息条(Snackbar)。
+
+{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
+
 ## 过渡动画
+
+### 连续的消息条(Snackbar)
+
+按照[Google的指引](https://material.io/design/components/snackbars.html#snackbars-toasts-usage),当第一个消息条(Snackbar)还在显示时如果第二条消息条(Snackbar)被触发的话, 第一条消息条(Snackbar)应该在第二条消息条(Snackbar)开始上浮出现时往下方收缩消失.
+
+{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
+
+### 不要遮住其他浮动的操作按钮。
+
+当出现消息条(Snackbar)时底部的浮动按钮自动上升一个消息条高度。
+
+{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
 
 ### 控制方向
 
@@ -46,26 +66,14 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 
-### 不要遮住其他浮动的操作按钮。
-
-当出现消息条(Snackbar)时底部的浮动按钮自动上升一个消息条高度。
-
-{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
-
-### 连续的消息条(Snackbar)
-
-按照[Google的指引](https://material.io/design/components/snackbars.html#snackbars-toasts-usage),当第一个消息条(Snackbar)还在显示时如果第二条消息条(Snackbar)被触发的话, 第一条消息条(Snackbar)应该在第二条消息条(Snackbar)开始上浮出现时往下方收缩消失.
-
-{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
-
-## 自定义的消息条(Snackbar)
-
-如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Snackbar)的主要颜色的示例
-
-{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
-
 ## 补充项目
 
 对于更高级的用例，您可以利用：
 
-- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other.
+### notistack
+
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+
+在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
+
+{{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}

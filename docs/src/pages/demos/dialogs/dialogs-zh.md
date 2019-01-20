@@ -43,6 +43,36 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
+## 表单对话框
+
+表单对话框允许用户通过一个弹出的对话框，对表单进行填写。 在下面的例子中，你的网站提示那些潜在用户填写他们的电子邮箱，他们可以在点击之后填写email区域，并点击'提交'按钮以提交。
+
+{{"demo": "pages/demos/dialogs/FormDialog.js"}}
+
+## Customized dialog
+
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
+
+{{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
+
+## 全屏对话框
+
+{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
+
+## Optional sizes
+
+You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+
+{{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
+
+## 响应式全屏
+
+You may make a dialog responsively full screen the dialog using `withMobileDialog`. 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/layout/basics/)*小于等于* `sm`时响应式全屏。 你可以通过传递 `breakpoint`参数来选择你自己的全屏切换点，比如 `xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
+
+{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
+
 ## 确认对话框
 
 确认对话框要求用户在提交选项之前显式确认他们的选择。 例如, 用户可以聆听多个铃声, 但只在触摸 "OK" 时进行最后的选择。
@@ -50,22 +80,6 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 在确认对话框中触摸 "取消", 或按后退, 将会取消当前操作, 放弃任何更改, 并关闭对话框。
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
-
-## 全屏对话框
-
-{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
-
-## 表单对话框
-
-表单对话框允许用户通过一个弹出的对话框，对表单进行填写。 在下面的例子中，你的网站提示那些潜在用户填写他们的电子邮箱，他们可以在点击之后填写email区域，并点击'提交'按钮以提交。
-
-{{"demo": "pages/demos/dialogs/FormDialog.js"}}
-
-## 响应式全屏
-
-您可以使用 `withMobileDialog`, 使 `对话框` 响应式的全屏显示该对话框。 默认情况下, `withMobileDialog() (Dialog)` 在 [屏幕大小](/layout/basics/)*小于等于* `sm`时响应式全屏。 你可以通过传递 `breakpoint`参数来选择你自己的全屏切换点，比如 `xs`：`withMobileDialog({breakpoint: 'xs'})(Dialog)`。
-
-{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
 ## 无障碍功能
 
@@ -81,3 +95,13 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 请尝试下面的例子来加深理解：
 
 {{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
+
+## Draggable dialog
+
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+
+{{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+
+## Performance
+
+Follow the [Modal performance section](/utils/modal/#performance).

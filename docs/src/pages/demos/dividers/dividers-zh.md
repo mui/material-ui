@@ -1,21 +1,33 @@
 ---
-title: 分割线组件
+title: React 分隔线组件
 components: Divider
 ---
-# 分割线
+# 分隔线
 
-<p class="description">分割线用于分组列表和版面的内容</p>
+<p class="description">分隔线是对列表和布局中的内容进行分组的细线。</p>
 
-[分割线](https://material.io/design/components/dividers.html) 可以清晰地将内容分组
+[分隔线](https://material.io/design/components/dividers.html) 可以清晰地将内容分组
 
-## 列表分割线
+## 列表分隔线
 
-分割线默认渲染为 `<hr>`。 您可以使用`ListItem`组件的`divider`属性保存渲染的DOM元素
+分隔线默认渲染为 `<hr>`。 您可以使用`ListItem`组件的`divider`属性保存渲染的DOM元素
 
 {{"demo": "pages/demos/dividers/ListDividers.js"}}
 
-## 内嵌分割线
+## HTML5 Specification
 
-下面的例子展示了`inset`属性 我们需要保证`Divider`被渲染为`li`以便遵循HTML5规范 这个例子展示了两种实现这个需求的方法
+We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
+
+## 内嵌分隔线
+
+The `inset` property has now been deprecated. You should now use `variant="inset"`
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
+
+## Subheader Dividers
+
+{{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
+
+## Middle Dividers
+
+{{"demo": "pages/demos/dividers/MiddleDividers.js"}}

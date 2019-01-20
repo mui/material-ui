@@ -76,10 +76,7 @@ export default function transformer(fileInfo, api) {
 
   return j(fileInfo.source)
     .find(j.ImportDeclaration)
-    .filter(path => {
-      // Only consider Material-UI imports
-      return path.value.source.value.indexOf('material-ui/') === 0;
-    })
+    .filter(path => path.value.source.value.indexOf('material-ui/') === 0)
     .replaceWith(path => {
       const pathOld = path.value.source.value;
       const pathsBase = getPathsBase(pathOld);

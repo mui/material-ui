@@ -14,6 +14,8 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
+> **Note:** This version of the text field is no longer documented in the Material Design documentation.
+
 ## 轮廓
 
 边框样式的`文本框`
@@ -38,11 +40,17 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/demos/text-fields/Inputs.js"}}
 
-## 布局
+## 自定义输入
 
-`TextField`, `FormControl` 允许指定`margin`来改变输入的垂直间距。 使用`none` (默认), 将不会在`FormControl`添加margins, 而 `dense`和`normal`也会改变其他样式以符合规范.
+如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
-{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
+
+Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+
+{{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
 ## 修饰输入
 
@@ -50,33 +58,25 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
-## 修饰填充
-
-{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
-
-## 修饰轮廓
-
-{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
-
-## 格式化输入
-
-您可以使用第三方库来格式化输入.您必须使用` inputComponent `属性提供`<input>` 元素的自定义实现.
-
-下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask)和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。
-
-{{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
-
-## 自定义输入
-
-如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
-
-{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
-
-## 使用图标
+### 使用图标
 
 图标可以指定为预置或追加。
 
 {{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
+
+### 修饰填充
+
+{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
+
+### 修饰轮廓
+
+{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
+
+## 布局
+
+`TextField`, `FormControl` 允许指定`margin`来改变输入的垂直间距。 使用`none` (默认), 将不会在`FormControl`添加margins, 而 `dense`和`normal`也会改变其他样式以符合规范.
+
+{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
 ## 局限性
 
@@ -96,6 +96,14 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 <InputLabel shrink>Count</InputLabel>
 ```
 
+## 格式化输入
+
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property. The provided input component should handle the `inputRef` property. The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
+
+下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask)和 [react-number-format](https://github.com/s-yadav/react-number-format) 库。
+
+{{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
+
 ## 补充项目
 
 对于更高级的用例，您可以利用：
@@ -103,3 +111,4 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) 用于更加方便地与Redux Form配搭来使用Material UI的一组包装组件。
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) 用于结合formik来使用Material-UI的绑定。
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) 用于更加方便地与Final Form配搭来使用Material UI的一组包装组件。
+- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms, a set of React libraries for building forms.

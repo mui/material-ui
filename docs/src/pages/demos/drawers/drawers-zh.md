@@ -40,15 +40,35 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
 
+## 持久抽屉
+
+持久抽屉可以打开或关闭。 抽屉与内容位于同一表面的高度上。 它默认情况下是关闭的，可通过选择菜单图标打开，它会保持打开状态，直到用户关闭。 从操作到操作和会话到会话记住抽屉的状态。
+
+当抽屉位于页面网格之外并打开时，抽屉会强制其他内容更改大小并适应较小的视口。
+
+对于比移动设备更大的尺寸，可以使用持久性导航抽屉。 对于具有多级层次结构且需要使用向上箭头进行导航的应用，建议不要使用它们。
+
+{{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
+
+{{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
+
+## 迷你变体抽屉
+
+在此变体中，持久性导航抽屉会更改其宽度。 它的静止状态是一个迷你抽屉，与内容相同，由应用栏夹住。 展开后，它将显示为标准持久性导航抽屉。
+
+对于需要快速选择访问内容的应用部分，建议使用迷你变体。
+
+{{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
+
 ## 永久抽屉
 
 永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。他们无法被关闭。
 
-推荐在**桌面环境上默认**使用永久抽屉。
+永久抽屉是桌面**推荐的默认值**。
 
 ### 全高度导航栏
 
-这种情况下应用程序侧重与从左到右层次结构的信息消费。
+应用程序侧重与从左到右层次结构的信息消费。
 
 {{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
 
@@ -59,23 +79,3 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 应用专注于生产力，需要在整个屏幕上保持平衡。
 
 {{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}
-
-## 持久抽屉
-
-持久抽屉在打开和关闭的状态中相互切换 抽屉与内容位于同一平面的高度上。 它默认情况下是关闭的，可通过选择菜单图标打开，它会保持打开状态，直到用户关闭。 操作和切换都会记住抽屉的状态。
-
-当抽屉位于页面网格之外并打开时，抽屉会强制其他内容更改大小并适应较小的视口。
-
-对于比移动设备更大的尺寸，可以使用持久性导航抽屉。 对于具有多级层次结构且需要使用向上箭头进行导航的应用，建议不要使用它们。
-
-{{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
-
-{{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
-
-## 迷你变型抽屉
-
-在这种情况下，持久抽屉会更改其宽度。 它的静止状态是一个迷你抽屉，与内容相同面，由应用栏遮盖住。 展开后，它将显示为标准的持久抽屉。
-
-对于需要快速切换访问内容的应用部分，建议使用迷你变形抽屉。
-
-{{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}

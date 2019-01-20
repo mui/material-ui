@@ -73,8 +73,8 @@ function EnhancedTableHead(props) {
             onChange={onSelectAllClick}
           />
         </TableCell>
-        {rows.map(row => {
-          return (
+        {rows.map(
+          row => (
             <TableCell
               key={row.id}
               numeric={row.numeric}
@@ -95,8 +95,9 @@ function EnhancedTableHead(props) {
                 </TableSortLabel>
               </Tooltip>
             </TableCell>
-          );
-        }, this)}
+          ),
+          this,
+        )}
       </TableRow>
     </TableHead>
   );

@@ -4,10 +4,10 @@ components: ToggleButton, ToggleButtonGroup
 ---
 # Toggle Buttons
 
-<p class="description">Toggle buttons can be used to group related options.</p>
+<p class="description">Toggle Buttons 可用于对相关选项进行分组。</p>
 
-To emphasize groups of related [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button), a group should share a common container.
+为了强调组合之间的关联，每一组 [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button) 应该共享一个容器。
 
-The `ToggleButtonGroup` will control the selected of its child buttons when given its own `value` prop.
+当给 `ToggleButtonGroup` 自身的 `value` 属性赋值时，它可以控制哪个子按钮被选中。
 
 {{"demo": "pages/lab/toggle-button/ToggleButtons.js"}}

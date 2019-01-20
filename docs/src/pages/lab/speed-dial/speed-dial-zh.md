@@ -1,20 +1,20 @@
 ---
-title: Speed Dial React component
+title: 快速拨号React组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
-# Speed Dial
+# 快速拨号
 
-<p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
+<p class="description">当按下的时候，一个浮动按钮可以弹出3到6个相关联的按钮。</p>
 
-If more than six actions are needed, something other than a FAB should be used to present them.
+如果需要超过六个操作，则应使用除浮动按钮之外的其他操作来呈现它们。
 
-## Simple Speed Dial
+## 快速拨号实例
 
-The floating action button can display related actions.
+浮动操作按钮可以显示相关操作。
 
 {{"demo": "pages/lab/speed-dial/SpeedDials.js"}}
 
-## Custom close icon
+## 自定义关闭图标
 
 You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
 

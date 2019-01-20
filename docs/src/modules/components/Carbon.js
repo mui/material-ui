@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import loadScript from 'docs/src/modules/utils/loadScript';
 
 const styles = theme => ({
   '@global': {
@@ -42,11 +43,11 @@ class Carbon extends React.Component {
       return;
     }
 
-    const script = document.createElement('script');
-    script.setAttribute('async', '');
-    script.src = 'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
+    const script = loadScript(
+      'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
+      scriptSlot,
+    );
     script.id = '_carbonads_js';
-    scriptSlot.appendChild(script);
   }
 
   render() {

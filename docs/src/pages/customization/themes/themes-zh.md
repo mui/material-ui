@@ -278,7 +278,7 @@ When the configuration variables aren't powerful enough, you can take advantage 
 const theme = createMuiTheme({
   overrides: {
     MuiButton: { // Name of the component ⚛️ / style sheet
-      root: { // Name of the rule
+      text: { // Name of the rule
         color: 'white', // Some CSS
       },
     },
@@ -300,7 +300,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -316,9 +316,13 @@ You might need to access the theme variables inside your React components. Let's
 
 ## Nesting the theme
 
-The theming solution is very flexible, as you can nest multiple theme providers. This can be really useful when dealing with different area of your application that have distinct appearance from each other.
+The theming solution is very flexible, as [you can nest](/css-in-js/advanced/#theme-nesting) multiple theme providers. This can be really useful when dealing with different area of your application that have distinct appearance from each other.
 
-{{"demo": "pages/customization/themes/Nested.js"}}
+{{"demo": "pages/customization/themes/ThemeNesting.js"}}
+
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+
+{{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
 #### A note on performance
 

@@ -113,7 +113,6 @@ class Modal extends React.Component {
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
-    doc.addEventListener('keydown', this.handleDocumentKeyDown);
     doc.addEventListener('focus', this.enforceFocus, true);
 
     if (this.dialogRef) {
@@ -145,7 +144,6 @@ class Modal extends React.Component {
     this.props.manager.remove(this);
 
     const doc = ownerDocument(this.mountNode);
-    doc.removeEventListener('keydown', this.handleDocumentKeyDown);
     doc.removeEventListener('focus', this.enforceFocus, true);
 
     this.restoreLastFocus();
@@ -170,10 +168,21 @@ class Modal extends React.Component {
   };
 
   handleDocumentKeyDown = event => {
+    // event.defaultPrevented:
+    //
     // Ignore events that have been `event.preventDefault()` marked.
+    // preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default bahaviours.
+    //
+    // To remove in v4.
     if (keycode(event) !== 'esc' || !this.isTopModal() || event.defaultPrevented) {
       return;
     }
+
+    // Swallow the event, in case someone is listening for the escape key on the body.
+    event.stopPropagation();
 
     if (this.props.onEscapeKeyDown) {
       this.props.onEscapeKeyDown(event);
@@ -307,9 +316,17 @@ class Modal extends React.Component {
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
+        {/*
+          Marking an element with the role presentation indicates to assistive technology
+          that this element should be ignored; it exists to support the web application and
+          is not meant for humans to interact with directly.
+          https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+        */}
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
+          onKeyDown={this.handleDocumentKeyDown}
+          role="presentation"
           className={classNames('mui-fixed', classes.root, className, {
             [classes.hidden]: exited,
           })}

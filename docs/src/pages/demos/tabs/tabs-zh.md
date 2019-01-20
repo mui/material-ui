@@ -10,7 +10,7 @@ components: Tabs, Tab
 
 ## 简单选项卡
 
-一个简单例子
+一个没有多余装饰的简单例子
 
 {{"demo": "pages/demos/tabs/SimpleTabs.js"}}
 
@@ -32,7 +32,7 @@ components: Tabs, Tab
 
 ### 100%宽度
 
-`fullWidth` 属性应该用于较小的视图。 此演示还使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)来设置 Tab 过渡动画，并允许在触摸设备上滑动标签。
+`variant="fullWidth"` 属性应该用于较小的视图。 此演示还使用[ react-swipeable-views ](https://github.com/oliviertassinari/react-swipeable-views)来设置 Tab 过渡动画，并允许在触摸设备上滑动标签。
 
 {{"demo": "pages/demos/tabs/FullWidthTabs.js"}}
 
@@ -62,13 +62,13 @@ components: Tabs, Tab
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## 图标选项卡
+## 自定义的选项卡
 
-标签标签可以是所有图标或全文。
+如果您已阅读[覆盖文档页面](/customization/overrides/) 但是不自信地跳进来，这里是一个如何改变 Tabs 主色的例子。
 
-{{"demo": "pages/demos/tabs/IconTabs.js"}}
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
-{{"demo": "pages/demos/tabs/IconLabelTabs.js"}}
+{{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 
 ## 导航选项卡
 
@@ -76,8 +76,10 @@ components: Tabs, Tab
 
 {{"demo": "pages/demos/tabs/NavTabs.js"}}
 
-## 定制选项卡
+## 图标选项卡
 
-如果您已阅读[重写文档页面](/customization/overrides/) 但是不自信能够完全掌握，这里是一个如何改变 选项卡 主色的示例。 以下演示与[ Ant Design UI ](https://ant.design/components/tabs/)相匹配
+标签标签可以是所有图标或全文。
 
-{{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
+{{"demo": "pages/demos/tabs/IconTabs.js"}}
+
+{{"demo": "pages/demos/tabs/IconLabelTabs.js"}}

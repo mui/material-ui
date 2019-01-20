@@ -77,33 +77,31 @@ class StableVersions extends React.Component {
       <Paper className={classes.root}>
         <Table>
           <TableBody>
-            {docs.map(doc => {
-              return (
-                <TableRow key={doc.version}>
-                  <TableCell padding="dense">
-                    <Typography variant="body2">
-                      {doc.version}
-                      {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
-                    </Typography>
-                  </TableCell>
-                  <TableCell padding="dense">
-                    <Link variant="body2" color="secondary" rel="nofollow" href={doc.url}>
-                      Documentation
-                    </Link>
-                  </TableCell>
-                  <TableCell padding="dense">
-                    <Link
-                      variant="body2"
-                      color="secondary"
-                      rel="nofollow"
-                      href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
-                    >
-                      Release notes
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {docs.map(doc => (
+              <TableRow key={doc.version}>
+                <TableCell padding="dense">
+                  <Typography variant="body2">
+                    {doc.version}
+                    {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
+                  </Typography>
+                </TableCell>
+                <TableCell padding="dense">
+                  <Link variant="body2" color="secondary" rel="nofollow" href={doc.url}>
+                    Documentation
+                  </Link>
+                </TableCell>
+                <TableCell padding="dense">
+                  <Link
+                    variant="body2"
+                    color="secondary"
+                    rel="nofollow"
+                    href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
+                  >
+                    Release notes
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </Paper>

@@ -10,7 +10,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 基本菜单
 
-默认情况下, 基本菜单会在锚点元素上打开 (此选项可通过props更改)。当靠近屏幕边缘时, 简单菜单会垂直调整以使所有菜单项完全可见。
+Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
 选择一个选项后, 最好立即提交该选项并关闭菜单。
 
@@ -24,14 +24,6 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
-如果基本菜单中的文本一行无法显示完，则使用基本对话框来代替。基本对话框可以有不同高度的行。
-
-## 限高菜单
-
-如果菜单的最大高度仍无法显示所有菜单项，则菜单可以在内部滚动。
-
-{{"demo": "pages/demos/menus/LongMenu.js"}}
-
 ## MenuList 组件
 
 `Menu`组件内部使用`Popver`组件 但是，您可能想药使用不同的定位策略，或者你不想禁止滚动。 为了满足这些需求，我们公开了一个`MenuList`组件，让你可以像下面例子中这样组合`Popper`来编写自己的菜单组件。
@@ -42,15 +34,19 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 定制菜单项
 
-`MenuItem`实际上是在`ListItem`之上增加了一些样式的封装。 所以你可以靠`MenuItem`来使用相同的列表组合特性：
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
+
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-## 更改过渡动画
+`MenuItem`实际上是在`ListItem`之上增加了一些样式的封装。 所以你可以靠`MenuItem`来使用相同的列表组合特性：
 
-使用不同的过渡动画。
+## 限高菜单
 
-{{"demo": "pages/demos/menus/FadeMenu.js"}}
+如果菜单的最大高度仍无法显示所有菜单项，则菜单可以在内部滚动。
+
+{{"demo": "pages/demos/menus/LongMenu.js"}}
 
 ## Render Props
 
@@ -63,6 +59,12 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 这里有 [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，这个bug会让`text-overflow: ellipse`在 flexbox 布局中失去效果 你可以使用`Typography`组件做替代方案绕过这个问题：
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
+
+## 更改过渡动画
+
+使用不同的过渡动画。
+
+{{"demo": "pages/demos/menus/FadeMenu.js"}}
 
 ## 补充项目
 

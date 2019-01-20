@@ -70,7 +70,7 @@ describe('<Ripple />', () => {
     });
   });
 
-  describe('pulsating and stopping', () => {
+  describe('pulsating and stopping 1', () => {
     let wrapper;
 
     before(() => {
@@ -116,7 +116,7 @@ describe('<Ripple />', () => {
     });
   });
 
-  describe('pulsating and stopping', () => {
+  describe('pulsating and stopping 2', () => {
     let wrapper;
     let clock;
     let callbackSpy;

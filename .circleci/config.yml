@@ -5,6 +5,8 @@ defaults: &defaults
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
+# https://discuss.circleci.com/t/saving-cache-stopped-working-warning-skipping-this-step-disabled-in-configuration/24423/21
+#
 # restore_repo: &restore_repo
 #   restore_cache:
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
@@ -171,12 +173,22 @@ jobs:
       - run:
           name: Can we generate the @material-ui/system build?
           command: cd packages/material-ui-system && yarn build
+      # Netlify already do it for us but we need to check the size.
       - run:
           name: Can we build the docs?
           command: yarn docs:build
       - run:
           name: Is the size acceptable?
           command: yarn lerna bootstrap && yarn size
+      - run:
+          name: Install dependencies for Chrome Headless
+          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - run:
+          name: Test umd release
+          command: yarn test:umd
   test_browser:
     <<: *defaults
     steps:

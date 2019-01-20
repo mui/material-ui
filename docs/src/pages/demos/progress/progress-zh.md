@@ -1,5 +1,5 @@
 ---
-title: 环形、线装进度 React 组件
+title: React 环形、线装进度组件
 components: CircularProgress, LinearProgress
 ---
 # 进度
@@ -78,17 +78,19 @@ function Progress(props) {
 }
 ```
 
+## 自定义进度
+
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
+
 ## 延迟展现
 
 关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase`组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
-
-## 自定义进度
-
-最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
-
-{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
 ## 局限性
 

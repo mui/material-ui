@@ -2,6 +2,19 @@
 
 <p class="description">Easily make an element as wide or as tall (relative to its parent) with our width and height utilities.</p>
 
+## Supported values
+
+The sizing style functions support different property input type:
+
+```jsx
+<Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.
+<Box width={300}> // Numbers are converted to pixel values.
+<Box width="75%"> // String values are used as raw CSS.
+<Box width={1}>   // 100%
+```
+
+{{"demo": "pages/system/sizing/Values.js"}}
+
 ## Width
 
 ```jsx

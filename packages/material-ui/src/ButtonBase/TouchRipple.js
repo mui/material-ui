@@ -115,7 +115,6 @@ class TouchRipple extends React.PureComponent {
   // startTimerCommit = null;
 
   state = {
-    // eslint-disable-next-line react/no-unused-state
     nextKey: 0,
     ripples: [],
   };
@@ -209,8 +208,8 @@ class TouchRipple extends React.PureComponent {
   startCommit = params => {
     const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
 
-    this.setState(state => {
-      return {
+    this.setState(
+      state => ({
         nextKey: state.nextKey + 1,
         ripples: [
           ...state.ripples,
@@ -227,8 +226,9 @@ class TouchRipple extends React.PureComponent {
             rippleSize={rippleSize}
           />,
         ],
-      };
-    }, cb);
+      }),
+      cb,
+    );
   };
 
   stop = (event, cb) => {
