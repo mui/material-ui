@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 // @inheritedComponent Modal
 
@@ -116,19 +117,23 @@ export const styles = theme => ({
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 class Dialog extends React.Component {
-  handleMouseDown = e => {
-    this.clickTarget = e.target;
+  handleMouseDown = event => {
+    this.mouseDownTarget = event.target;
   };
 
   handleBackdropClick = event => {
+    // Ignore the events not coming from the "backdrop"
+    // We don't want to close the dialog when clicking the dialog content.
     if (event.target !== event.currentTarget) {
       return;
     }
 
-    if (event.target !== this.clickTarget) {
+    // Make sure the event starts and ends on the same DOM element.
+    if (event.target !== this.mouseDownTarget) {
       return;
     }
-    this.clickTarget = null;
+
+    this.mouseDownTarget = null;
 
     if (this.props.onBackdropClick) {
       this.props.onBackdropClick(event);
@@ -182,6 +187,7 @@ class Dialog extends React.Component {
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         open={open}
+        role="dialog"
         {...other}
       >
         <TransitionComponent
@@ -202,13 +208,12 @@ class Dialog extends React.Component {
               classes.container,
               classes[`scroll${capitalize(scroll)}`],
             )}
-            onMouseUp={this.handleBackdropClick}
+            onClick={this.handleBackdropClick}
             onMouseDown={this.handleMouseDown}
             role="document"
           >
             <PaperComponent
               elevation={24}
-              role="dialog"
               {...PaperProps}
               className={classNames(
                 classes.paper,
