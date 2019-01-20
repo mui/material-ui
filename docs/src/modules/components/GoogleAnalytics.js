@@ -1,5 +1,13 @@
 import React from 'react';
 
+// So we can write code like:
+//
+// <Button
+//   ga-event-category="demo"
+//   ga-event-action="expand"
+// >
+//   Foo
+// </Button>
 function handleClick(event) {
   const rootNode = document;
   let element = event.target;
@@ -24,33 +32,19 @@ function handleClick(event) {
 
 let binded = false;
 
-// So we can write code like:
-//
-// <Button
-//   ga-event-category="demo"
-//   ga-event-action="expand"
-// >
-//   Foo
-// </Button>
-function bindEvents() {
-  if (binded) {
-    return;
-  }
-
-  binded = true;
-  document.addEventListener('click', handleClick);
-}
-
 class GoogleAnalytics extends React.Component {
-  googleTimer = null;
-
   componentDidMount() {
-    bindEvents();
     // Wait for the title to be updated.
     setTimeout(() => {
       window.ga('set', { page: window.location.pathname });
       window.ga('send', { hitType: 'pageview' });
     });
+
+    if (binded) {
+      return;
+    }
+    binded = true;
+    document.addEventListener('click', handleClick);
   }
 
   render() {

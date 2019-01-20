@@ -26,6 +26,7 @@ import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
+import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 
@@ -153,6 +154,8 @@ class AppFrame extends React.Component {
             <div className={classes.root}>
               <NProgressBar />
               <CssBaseline />
+              <Notifications />
+              <MarkdownLinks />
               <AppBar className={appBarClassName}>
                 <Toolbar>
                   <IconButton
@@ -264,7 +267,6 @@ class AppFrame extends React.Component {
                   </Tooltip>
                 </Toolbar>
               </AppBar>
-              <Notifications />
               <AppDrawer
                 className={classes.drawer}
                 disablePermanent={disablePermanent}
