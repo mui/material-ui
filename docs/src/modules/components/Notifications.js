@@ -60,14 +60,14 @@ class Notifications extends React.Component {
     const lastSeen = getLastSeenNotification();
     const unseenMessages = messages.filter(message => {
       if (message.id <= lastSeen) {
-        return false
+        return false;
       }
 
       if (message.userLanguage && this.props.userLanguage !== message.userLanguage) {
-        return false
+        return false;
       }
 
-      return true
+      return true;
     });
     if (unseenMessages.length > 0 && this.mounted) {
       this.setState({ message: unseenMessages[0], open: true });
@@ -106,7 +106,7 @@ class Notifications extends React.Component {
 
 Notifications.propTypes = {
   userLanguage: PropTypes.string.isRequired,
-}
+};
 
 export default connect(state => ({
   userLanguage: state.options.userLanguage,

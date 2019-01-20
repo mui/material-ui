@@ -30,7 +30,7 @@ function handleClick(event) {
   }
 }
 
-let binded = false;
+let bound = false;
 
 class GoogleAnalytics extends React.Component {
   componentDidMount() {
@@ -40,10 +40,10 @@ class GoogleAnalytics extends React.Component {
       window.ga('send', { hitType: 'pageview' });
     });
 
-    if (binded) {
+    if (bound) {
       return;
     }
-    binded = true;
+    bound = true;
     document.addEventListener('click', handleClick);
   }
 

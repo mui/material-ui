@@ -32,14 +32,14 @@ async function handleClick(event) {
   document.body.focus();
 }
 
-let binded = false;
+let bound = false;
 
 class MarkdownLinks extends React.Component {
   componentDidMount() {
-    if (binded) {
+    if (bound) {
       return;
     }
-    binded = true;
+    bound = true;
     document.addEventListener('click', handleClick);
   }
 
