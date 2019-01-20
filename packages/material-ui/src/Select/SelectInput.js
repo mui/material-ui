@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import keycode from 'keycode';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
@@ -130,7 +129,7 @@ class SelectInput extends React.Component {
       return;
     }
 
-    if (['space', 'up', 'down'].indexOf(keycode(event)) !== -1) {
+    if ([' ', 'ArrowUp', 'ArrowDown'].indexOf(event.key) !== -1) {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;

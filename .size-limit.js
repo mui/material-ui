@@ -22,7 +22,7 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '95.3 KB',
+    limit: '94.5 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -41,6 +41,19 @@ module.exports = [
     webpack: true,
     path: 'packages/material-ui/build/styles/colorManipulator.js',
     limit: '900 B',
+  },
+  {
+    name: 'The size of the @material-ui/core/Button component',
+    webpack: true,
+    path: 'packages/material-ui/build/Button/index.js',
+    limit: '27.0 KB',
+  },
+  {
+    // vs https://bundlephobia.com/result?p=react-modal
+    name: 'The size of the @material-ui/core/Modal component',
+    webpack: true,
+    path: 'packages/material-ui/build/Modal/index.js',
+    limit: '27.0 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper

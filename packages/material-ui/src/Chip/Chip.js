@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import keycode from 'keycode';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import CancelIcon from '../internal/svg-icons/Cancel';
@@ -248,8 +247,8 @@ class Chip extends React.Component {
       return;
     }
 
-    const key = keycode(event);
-    if (key === 'space' || key === 'enter' || key === 'backspace' || key === 'esc') {
+    const key = event.key;
+    if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
       event.preventDefault();
     }
   };
@@ -266,13 +265,12 @@ class Chip extends React.Component {
       return;
     }
 
-    const key = keycode(event);
-
-    if (onClick && (key === 'space' || key === 'enter')) {
+    const key = event.key;
+    if (onClick && (key === ' ' || key === 'Enter')) {
       onClick(event);
-    } else if (onDelete && key === 'backspace') {
+    } else if (onDelete && key === 'Backspace') {
       onDelete(event);
-    } else if (key === 'esc' && this.chipRef) {
+    } else if (key === 'Escape' && this.chipRef) {
       this.chipRef.blur();
     }
   };
