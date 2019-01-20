@@ -16,9 +16,7 @@
 
 覆盖组件样式的第一种方法是使用 **类名**。 每个组件都提供一个 `className` 属性，该属性始终应用于根元素。
 
-在这个例子中，它使用 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶 组件将自定义样式注入DOM，并通过其 `类` 属性将类名传递给 `ClassNames` 组件。 您可以选择[任何其他样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[ CSS注射顺序](/customization/css-in-js/#css-injection-order) ，由于`<link>`注入` <4>的底部
-，因此通过Material-UI注入DOM
-以对组件进行样式化的CSS具有最高的特异性。 `确保组件始终正确呈现。
+在这个例子中，它使用 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶 组件将自定义样式注入DOM，并通过其 `类` 属性将类名传递给 `ClassNames` 组件。 您可以选择[任何其他样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[CSS注射顺序](/customization/css-in-js/#css-injection-order) ，由于`<link>`注入`<4>`的底部 ，因此通过Material-UI注入DOM 以对组件进行样式化的CSS具有最高的特异性。确保组件始终正确呈现。
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
