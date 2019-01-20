@@ -2,7 +2,7 @@
 
 <p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
 
-> ⚠️我们正在努力将样式解决方案提取到它自己的包中：<0 @material-ui/styles</code></a> 。 这是一个不稳定的项目（alpha版本）。 希望我们将它作为Material-UI v4中核心组件的默认样式实现。
+> ⚠️我们正在努力将样式解决方案提取到它自己的包中：[`@material-ui/styles`](/css-in-js/basics/) 。 这是一个不稳定的项目（alpha版本）。 希望我们将它作为Material-UI v4中核心组件的默认样式实现。
 
 Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见, **我们向用户公开我们的样式解决方案 **。 你可以使用它，但是你不需要这样做。 该样式解决方案可[与所有其他主要解决方案](/guides/interoperability/)互操作
 
@@ -55,7 +55,7 @@ Sheets 管理器使用[引用计数](https://en.wikipedia.org/wiki/Reference_cou
 
 ### 全局CSS
 
-我们为Material-UI 需要提供类名称生成器的自定义实现: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator)。 以及使用`dangerouslyUseGlobalCSS `选项使类名**确定性</ 0>的选项。 打开后, 类名将如下所:</p> 
+我们为Material-UI 需要提供类名称生成器的自定义实现: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator)。 以及使用`dangerouslyUseGlobalCSS`选项使类名**确定性**的选项。 打开后, 类名将如下所:
 
 - 开发：`.MuiAppBar-root-`
 - 生产: `.MuiAppBar-root`
@@ -206,7 +206,7 @@ export default App;
 
 ## 插件
 
-JSS使用插件的概念来扩展其核心，允许人们挑选他们需要的功能。 你仅为你正在使用的内容支付性能开销。 给定<0 withStyles</ 0>是我们的内部样式解决方案，默认情况下所有插件都不可用。 我们添加了以下列表：
+JSS使用插件的概念来扩展其核心，允许人们挑选他们需要的功能。 你仅为你正在使用的内容支付性能开销。 给定`withStyles`是我们的内部样式解决方案，默认情况下所有插件都不可用。 我们添加了以下列表：
 
 - [jss-global](http://cssinjs.org/jss-global/)
 - [jss-nested](http://cssinjs.org/jss-nested/)
@@ -233,7 +233,7 @@ JSS使用插件的概念来扩展其核心，允许人们挑选他们需要的�
 
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
 2. `选项` (*Object* [optional]): 
-    - ` options.withTheme ` (*Boolean* [optional]): Defaults to `false`。 将 ` theme ` 对象作为属性提供给组件。
+    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
     - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
     - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet)。
