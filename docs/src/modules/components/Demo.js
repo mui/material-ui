@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
-import CodeIcon from '@material-ui/icons/Code';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -247,17 +246,7 @@ class Demo extends React.Component {
                 gaEventCategory={category}
                 onLanguageClick={this.handleCodeLanguageClick}
               />
-              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
-                <IconButton
-                  data-ga-event-category={category}
-                  data-ga-event-action="expand"
-                  onClick={this.handleClickCodeOpen}
-                  aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
-                >
-                  <CodeIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="See the source on GitHub" placement="top">
+              <Tooltip title="View the source on GitHub" placement="top">
                 <IconButton
                   data-ga-event-category={category}
                   data-ga-event-action="github"

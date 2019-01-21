@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import JSLogo from '@material-ui/docs/svgIcons/JSLogo';
-import TSLogo from '@material-ui/docs/svgIcons/TSLogo';
-import HookLogo from '@material-ui/docs/svgIcons/HookLogo';
+import JavascriptIcon from '@material-ui/docs/svgIcons/Javascript';
+import TypescriptIcon from '@material-ui/docs/svgIcons/Typescript';
+import HooksIcon from '@material-ui/docs/svgIcons/Hooks';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function DemoLanguages(props) {
@@ -18,45 +18,45 @@ function DemoLanguages(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       {hasHooksVariant && (
-        <Tooltip title="Set source using React Hooks" placement="top">
+        <Tooltip title="Show React Hooks source" placement="top">
           <IconButton
-            aria-label="Set source using React Hooks"
+            aria-label="Show React Hooks source"
             data-ga-event-category={gaEventCategory}
             data-ga-event-action="source-hooks"
             onClick={onLanguageClick}
             value={CODE_VARIANTS.HOOK}
           >
-            <HookLogo />
+            <HooksIcon />
           </IconButton>
         </Tooltip>
       )}
-      <Tooltip title="Set source in JavaScript" placement="top">
+      <Tooltip title="Show JavaScript source" placement="top">
         <IconButton
-          aria-label="Set source in JavaScript"
+          aria-label="Show JavaScript source"
           data-ga-event-category={gaEventCategory}
           data-ga-event-action="source-js"
           onClick={onLanguageClick}
           value={CODE_VARIANTS.JS}
         >
-          <JSLogo />
+          <JavascriptIcon />
         </IconButton>
       </Tooltip>
       {hasTSVariant && (
-        <Tooltip title="Set source in TypeScript" placement="top">
+        <Tooltip title="Show TypeScript source" placement="top">
           <IconButton
-            aria-label="Set source in TypeScript"
+            aria-label="ShowType Script source"
             data-ga-event-category={gaEventCategory}
             data-ga-event-action="source-ts"
             onClick={onLanguageClick}
             value={CODE_VARIANTS.TS}
           >
-            <TSLogo />
+            <TypescriptIcon />
           </IconButton>
         </Tooltip>
       )}
-    </>
+    </React.Fragment>
   );
 }
 
