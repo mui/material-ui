@@ -22,7 +22,9 @@ function ResponsiveDialog(props) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Open responsive dialog</Button>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open responsive dialog
+      </Button>
       <Dialog
         fullScreen={fullScreen}
         open={open}

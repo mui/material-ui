@@ -421,6 +421,9 @@ Modal.propTypes = {
   keepMounted: PropTypes.bool,
   /**
    * @ignore
+   *
+   * A modal manager used to track and manage the state of open
+   * Modals. This enables customizing how modals interact within a container.
    */
   manager: PropTypes.object,
   /**
