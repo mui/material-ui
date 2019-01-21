@@ -34,3 +34,31 @@ When you use `target="_blank"` with Links it is [recommended](https://developers
 Without this the target page can potentially redirect your page to a malicious URL.
 - `rel="noreferrer""` has the same effect, but also prevents the *Referer* header from being sent to the new page.
 ⚠️ Removing the referrer header will affect analytics.
+
+## Third-party routing library
+
+One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
+
+```jsx
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
+
+<Link component={RouterLink} to="/open-collective">
+  Link
+</Link>
+```
+
+or if you want to avoid properties collision:
+
+```jsx
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
+
+const MyLink = props => <RouterLink to="/open-collective" {...props} />
+
+<Link component={MyLink}>
+  Link
+</Link>
+```
+
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
