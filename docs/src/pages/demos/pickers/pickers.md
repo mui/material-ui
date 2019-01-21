@@ -1,5 +1,5 @@
 ---
-title: Date Picker, Time Picker React component
+title: Date Picker, Time Picker React components
 components: TextField
 ---
 
