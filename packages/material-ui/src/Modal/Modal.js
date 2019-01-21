@@ -326,7 +326,7 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={classNames('mui-fixed', classes.root, className, {
+          className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
