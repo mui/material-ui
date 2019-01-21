@@ -2,10 +2,8 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
 import App, { Container } from 'next/app';
-import Router from 'next/router';
 import find from 'lodash/find';
 import { Provider } from 'react-redux';
-import EventListener from 'react-event-listener';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
@@ -15,31 +13,20 @@ import getPageContext from 'docs/src/modules/styles/getPageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
 
-if (process.browser) {
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
   loadCSS(
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     document.querySelector('#insertion-point-jss'),
   );
-  loadCSS(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-    document.querySelector('#insertion-point-jss'),
-  );
-}
-
-let scriptsLoaded = false;
-
-function loadScripts() {
-  if (scriptsLoaded) {
-    return;
-  }
-
   loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
-  loadScript(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js',
-    document.querySelector('head'),
-  );
-
-  scriptsLoaded = true;
 }
 
 const pages = [
@@ -372,25 +359,8 @@ class MyApp extends App {
   }
 
   componentDidMount() {
-    loadScripts();
+    loadDependencies();
   }
-
-  handleClick = event => {
-    const activeElement = document.activeElement;
-    if (
-      activeElement.nodeName.toLowerCase() === 'a' &&
-      activeElement.getAttribute('href').indexOf('/') === 0
-    ) {
-      event.preventDefault();
-      Router.push(activeElement.getAttribute('href')).then(success => {
-        if (!success) {
-          return;
-        }
-        window.scrollTo(0, 0);
-        document.body.focus();
-      });
-    }
-  };
 
   render() {
     const { Component, pageProps, router } = this.props;
@@ -419,7 +389,6 @@ class MyApp extends App {
           </PageContext.Provider>
         </Provider>
         <GoogleAnalytics key={router.route} />
-        <EventListener target="document" onClick={this.handleClick} />
       </Container>
     );
   }

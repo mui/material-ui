@@ -3,14 +3,34 @@ import compose from 'recompose/compose';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
+import loadScript from 'docs/src/modules/utils/loadScript';
 
 let searchTimer;
 let initialized = false;
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
+  loadCSS(
+    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
+    document.querySelector('#insertion-point-jss'),
+  );
+  loadScript(
+    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js',
+    document.querySelector('head'),
+  );
+}
 
 function initDocsearch() {
   if (!process.browser) {
@@ -139,6 +159,10 @@ const styles = theme => ({
 });
 
 class AppSearch extends React.Component {
+  componentDidMount() {
+    loadDependencies();
+  }
+
   handleKeyDown = event => {
     // Use event.keyCode to support IE 11
     if (
@@ -146,7 +170,7 @@ class AppSearch extends React.Component {
         191, // '/'
         83, // 's'
       ].indexOf(event.keyCode) !== -1 &&
-      document.activeElement.nodeName.toLowerCase() === 'body' &&
+      document.activeElement.nodeName === 'BODY' &&
       document.activeElement !== this.inputRef
     ) {
       event.preventDefault();

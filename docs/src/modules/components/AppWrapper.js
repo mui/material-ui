@@ -28,11 +28,12 @@ function themeSideEffect(reduxTheme) {
   document.body.dir = reduxTheme.direction;
 }
 
+acceptLanguage.languages(['en', 'pt', 'zh']);
+
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
     const { options } = this.props;
 
-    acceptLanguage.languages(['en', 'pt', 'zh']);
     const URL = url.parse(document.location.href, true);
     const userLanguage = acceptLanguage.get(
       URL.query.lang || getCookie('lang') || navigator.language,
