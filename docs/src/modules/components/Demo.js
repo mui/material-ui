@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
+import CodeIcon from '@material-ui/icons/Code';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -73,10 +74,11 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       flip: false,
-      position: 'absolute',
+      // position: 'absolute',
       top: 0,
       right: theme.spacing.unit,
     },
+    justifyContent: 'space-between',
   },
   code: {
     display: 'none',
@@ -171,9 +173,7 @@ class Demo extends React.Component {
     this.handleCloseMore();
   };
 
-  handleCodeLanguageClick = event => {
-    const codeVariant = event.currentTarget.value;
-
+  handleCodeLanguageClick = (event, codeVariant) => {
     if (this.props.codeVariant !== codeVariant) {
       document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
 
@@ -184,15 +184,6 @@ class Demo extends React.Component {
         },
       });
     }
-
-    this.setState(prevState => ({
-      /**
-       * if the the same code type is open,
-       * toggle the state, otherwise if it is
-       * another code type always open it. i.e, true
-       */
-      codeOpen: this.props.codeVariant === codeVariant ? !prevState.codeOpen : true,
-    }));
   };
 
   handleClickCodeOpen = () => {
@@ -229,7 +220,7 @@ class Demo extends React.Component {
   };
 
   render() {
-    const { classes, demo, demoOptions } = this.props;
+    const { classes, codeVariant, demo, demoOptions } = this.props;
     const { anchorEl, codeOpen } = this.state;
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
@@ -243,72 +234,86 @@ class Demo extends React.Component {
             <div className={classes.header}>
               <DemoLanguages
                 demo={demo}
+                codeOpen={codeOpen}
+                codeVariant={codeVariant}
                 gaEventCategory={category}
                 onLanguageClick={this.handleCodeLanguageClick}
               />
-              <Tooltip title="View the source on GitHub" placement="top">
-                <IconButton
-                  data-ga-event-category={category}
-                  data-ga-event-action="github"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  aria-label="GitHub"
-                >
-                  <Github />
-                </IconButton>
-              </Tooltip>
-              {demoOptions.hideEditButton ? null : (
-                <Tooltip title="Edit in CodeSandbox" placement="top">
+              <div>
+                <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                   <IconButton
                     data-ga-event-category={category}
-                    data-ga-event-action="codesandbox"
-                    onClick={this.handleClickCodeSandbox}
-                    aria-label="CodeSandbox"
+                    data-ga-event-action="expand"
+                    onClick={this.handleClickCodeOpen}
+                    aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
                   >
-                    <EditIcon />
+                    <CodeIcon />
                   </IconButton>
                 </Tooltip>
-              )}
-              <IconButton
-                onClick={this.handleClickMore}
-                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-                aria-haspopup="true"
-                aria-label="See more"
-              >
-                <MoreVertIcon />
-              </IconButton>
-              <Menu
-                id="demo-menu-more"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={this.handleCloseMore}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem
-                  data-ga-event-category={category}
-                  data-ga-event-action="copy"
-                  onClick={this.handleClickCopy}
-                >
-                  Copy the source
-                </MenuItem>
+                <Tooltip title="View the source on GitHub" placement="top">
+                  <IconButton
+                    data-ga-event-category={category}
+                    data-ga-event-action="github"
+                    href={demoData.githubLocation}
+                    target="_blank"
+                    aria-label="GitHub"
+                  >
+                    <Github />
+                  </IconButton>
+                </Tooltip>
                 {demoOptions.hideEditButton ? null : (
+                  <Tooltip title="Edit in CodeSandbox" placement="top">
+                    <IconButton
+                      data-ga-event-category={category}
+                      data-ga-event-action="codesandbox"
+                      onClick={this.handleClickCodeSandbox}
+                      aria-label="CodeSandbox"
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
+                <IconButton
+                  onClick={this.handleClickMore}
+                  aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+                  aria-haspopup="true"
+                  aria-label="See more"
+                >
+                  <MoreVertIcon />
+                </IconButton>
+                <Menu
+                  id="demo-menu-more"
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={this.handleCloseMore}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                >
                   <MenuItem
                     data-ga-event-category={category}
-                    data-ga-event-action="stackblitz"
-                    onClick={this.handleClickStackBlitz}
+                    data-ga-event-action="copy"
+                    onClick={this.handleClickCopy}
                   >
-                    Edit in StackBlitz (JS only)
+                    Copy the source
                   </MenuItem>
-                )}
-              </Menu>
+                  {demoOptions.hideEditButton ? null : (
+                    <MenuItem
+                      data-ga-event-category={category}
+                      data-ga-event-action="stackblitz"
+                      onClick={this.handleClickStackBlitz}
+                    >
+                      Edit in StackBlitz (JS only)
+                    </MenuItem>
+                  )}
+                </Menu>
+              </div>
             </div>
             <Collapse in={codeOpen} unmountOnExit>
               <MarkdownElement
