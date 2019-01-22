@@ -13,6 +13,7 @@ components: TextField
 #### Notice
 
 We are falling back to **native input controls**.
+
 ⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
 Have a look at the [complementary projects](#complementary-projects) for richer solutions.
 
