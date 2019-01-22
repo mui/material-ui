@@ -181,6 +181,7 @@ class Dialog extends React.Component {
           transitionDuration,
           ...BackdropProps,
         }}
+        closeAfterTransition
         disableBackdropClick={disableBackdropClick}
         disableEscapeKeyDown={disableEscapeKeyDown}
         onBackdropClick={onBackdropClick}
@@ -204,7 +205,6 @@ class Dialog extends React.Component {
         >
           <div
             className={classNames(
-              'mui-fixed',
               classes.container,
               classes[`scroll${capitalize(scroll)}`],
             )}
