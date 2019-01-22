@@ -18,6 +18,7 @@ export type GridListTileBarClassKey =
   | 'titleWrapActionPosRight'
   | 'title'
   | 'subtitle'
+  | 'titleWrap'
   | 'actionIcon'
   | 'actionIconActionPosLeft';
 
