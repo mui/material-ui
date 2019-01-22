@@ -41,9 +41,14 @@ class ComposedTextField extends React.Component {
           <InputLabel htmlFor="component-simple">Name</InputLabel>
           <Input id="component-simple" value={this.state.name} onChange={this.handleChange} />
         </FormControl>
-        <FormControl className={classes.formControl} aria-describedby="component-helper-text">
+        <FormControl className={classes.formControl}>
           <InputLabel htmlFor="component-helper">Name</InputLabel>
-          <Input id="component-helper" value={this.state.name} onChange={this.handleChange} />
+          <Input
+            id="component-helper"
+            value={this.state.name}
+            onChange={this.handleChange}
+            aria-describedby="component-helper-text"
+          />
           <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} disabled>
@@ -51,9 +56,14 @@ class ComposedTextField extends React.Component {
           <Input id="component-disabled" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Disabled</FormHelperText>
         </FormControl>
-        <FormControl className={classes.formControl} error aria-describedby="component-error-text">
+        <FormControl className={classes.formControl} error>
           <InputLabel htmlFor="component-error">Name</InputLabel>
-          <Input id="component-error" value={this.state.name} onChange={this.handleChange} />
+          <Input
+            id="component-error"
+            value={this.state.name}
+            onChange={this.handleChange}
+            aria-describedby="component-error-text"
+          />
           <FormHelperText id="component-error-text">Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} variant="outlined">

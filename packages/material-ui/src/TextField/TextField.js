@@ -217,7 +217,7 @@ TextField.propTypes = {
   helperText: PropTypes.node,
   /**
    * The id of the `input` element.
-   * Use that property to make `label` and `helperText` accessible for screen readers.
+   * Use this property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
@@ -233,7 +233,7 @@ TextField.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Use this property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**

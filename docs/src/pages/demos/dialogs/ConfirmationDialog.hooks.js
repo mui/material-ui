@@ -34,12 +34,9 @@ function ConfirmationDialogRaw(props) {
   const [value, setValue] = React.useState(props.value);
   const radioGroupRef = React.useRef(null);
 
-  React.useEffect(
-    () => {
-      setValue(props.value);
-    },
-    [props.value],
-  );
+  React.useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
 
   function handleEntering() {
     radioGroupRef.current.focus();
