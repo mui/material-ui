@@ -204,9 +204,7 @@ class Dialog extends React.Component {
         >
           <div
             className={classNames(
-              {
-                'mui-fixed': !fullScreen,
-              },
+              'mui-fixed',
               classes.container,
               classes[`scroll${capitalize(scroll)}`],
             )}

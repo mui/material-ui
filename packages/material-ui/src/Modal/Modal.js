@@ -86,7 +86,7 @@ class Modal extends React.Component {
     this.mounted = false;
 
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
-      this.handleClose('unmount');
+      this.handleClose();
     }
   }
 
@@ -139,14 +139,8 @@ class Modal extends React.Component {
     this.modalRef.scrollTop = 0;
   };
 
-  handleClose = reason => {
-    const hasTransition = getHasTransition(this.props);
-    /* If the component does not have a transition or is unmounting remove the Modal
-    otherwise let the transition handle removing the style, this prevents elements
-    moving around when the Modal is closed. */
-    if (!hasTransition || reason === 'unmount') {
-      this.props.manager.remove(this);
-    }
+  handleClose = () => {
+    this.props.manager.remove(this);
 
     const doc = ownerDocument(this.mountNode);
     doc.removeEventListener('focus', this.enforceFocus, true);
@@ -155,7 +149,6 @@ class Modal extends React.Component {
   };
 
   handleExited = () => {
-    this.props.manager.remove(this);
     this.setState({ exited: true });
   };
 
@@ -333,7 +326,7 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={classNames(classes.root, className, {
+          className={classNames('mui-fixed', classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
