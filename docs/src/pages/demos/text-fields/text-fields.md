@@ -122,6 +122,29 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
+## Accessibility
+
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+
+```jsx
+<div class="form-control">
+  <label for="my-input">Email address</label>
+  <input id="my-input" aria-describedby="my-helper-text" />
+  <span id="my-helper-text">We'll never share your email.</span>
+</div>
+```
+
+- If you are using the `TextField` component, you just have to provide a unique `id`.
+- If you are composing the component:
+
+```jsx
+<FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+</FormControl>
+```
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:

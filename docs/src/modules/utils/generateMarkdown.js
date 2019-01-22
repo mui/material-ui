@@ -361,8 +361,8 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-    .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
-    .join('\n')}
+  .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
+  .join('\n')}
 
 `;
 }

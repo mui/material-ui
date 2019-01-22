@@ -46,19 +46,16 @@ function makeStyles(stylesOrCreator, options = {}) {
     });
 
     // Execute synchronously every time the theme changes.
-    React.useMemo(
-      () => {
-        attach({
-          name,
-          props,
-          state,
-          stylesCreator,
-          stylesOptions,
-          theme,
-        });
-      },
-      [theme],
-    );
+    React.useMemo(() => {
+      attach({
+        name,
+        props,
+        state,
+        stylesCreator,
+        stylesOptions,
+        theme,
+      });
+    }, [theme]);
 
     React.useEffect(() => {
       if (!firstRender) {

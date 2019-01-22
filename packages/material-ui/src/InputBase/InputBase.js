@@ -319,6 +319,9 @@ class InputBase extends React.Component {
       ...other
     } = this.props;
 
+    const ariaDescribedby = other['aria-describedby'];
+    delete other['aria-describedby'];
+
     const fcs = formControlState({
       props: this.props,
       muiFormControl,
@@ -404,6 +407,7 @@ class InputBase extends React.Component {
         <FormControlContext.Provider value={null}>
           <InputComponent
             aria-invalid={fcs.error}
+            aria-describedby={ariaDescribedby}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             className={inputClassName}
