@@ -22,23 +22,33 @@ const SlideTransition: React.SFC<SlideTransitionProps> = ({
   children,
   transKey,
   slideDirection,
-}) => (
-  <TransitionGroup className={clsx(classes.transitionContainer, className)}>
-    <CSSTransition
-      key={transKey}
-      mountOnEnter
-      unmountOnExit
-      timeout={animationDuration}
-      children={children}
-      classNames={{
-        enter: classes[`slideEnter-${slideDirection}`],
-        enterActive: classes.slideEnterActive,
-        exit: classes.slideExit,
-        exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
-      }}
-    />
-  </TransitionGroup>
-);
+}) => {
+  const transitionClasses = {
+    enter: classes['slideEnter-' + slideDirection],
+    enterActive: classes.slideEnterActive,
+    exit: classes.slideExit,
+    exitActive: classes['slideExitActiveLeft-' + slideDirection],
+  };
+  return (
+    <TransitionGroup
+      className={clsx(classes.transitionContainer, className)}
+      childFactory={element =>
+        React.cloneElement(element, {
+          classNames: transitionClasses,
+        })
+      }
+    >
+      <CSSTransition
+        key={transKey}
+        mountOnEnter
+        unmountOnExit
+        timeout={animationDuration}
+        children={children}
+        classNames={transitionClasses}
+      />
+    </TransitionGroup>
+  );
+};
 
 (SlideTransition as any).propTypes = {
   children: PropTypes.node.isRequired,
