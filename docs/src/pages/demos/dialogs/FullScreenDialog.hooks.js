@@ -40,7 +40,9 @@ function FullScreenDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Open full-screen dialog</Button>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open full-screen dialog
+      </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar>

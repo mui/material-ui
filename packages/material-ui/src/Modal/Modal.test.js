@@ -13,12 +13,18 @@ describe('<Modal />', () => {
   let shallow;
   let mount;
   let classes;
+  let savedBodyStyle;
   const ModalNaked = unwrap(Modal);
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(<Modal open={false} />);
     mount = createMount();
+    savedBodyStyle = document.body.style;
+  });
+
+  beforeEach(() => {
+    document.body.setAttribute('style', savedBodyStyle);
   });
 
   after(() => {
@@ -538,6 +544,41 @@ describe('<Modal />', () => {
       assert.strictEqual(document.body.style.overflow, 'hidden');
       wrapper.setProps({ open: false });
       assert.strictEqual(document.body.style.overflow, '');
+    });
+
+    it('should open and close with Transitions', () => {
+      const TestCase = props => (
+        <React.Fragment>
+          <Modal open={props.open}>
+            <Fade onEntered={props.onEntered} onExited={props.onExited}>
+              <div>Hello</div>
+            </Fade>
+          </Modal>
+          <Modal open={props.open}>
+            <div>World</div>
+          </Modal>
+        </React.Fragment>
+      );
+
+      TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
+        open: PropTypes.bool,
+      };
+
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+      };
+
+      wrapper = mount(<TestCase onEntered={onEntered} onExited={onExited} open={false} />);
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
     });
   });
 
