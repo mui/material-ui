@@ -14,11 +14,11 @@ export type GridListTileBarClassKey =
   | 'titlePositionBottom'
   | 'titlePositionTop'
   | 'rootSubtitle'
+  | 'titleWrap'
   | 'titleWrapActionPosLeft'
   | 'titleWrapActionPosRight'
   | 'title'
   | 'subtitle'
-  | 'titleWrap'
   | 'actionIcon'
   | 'actionIconActionPosLeft';
 
