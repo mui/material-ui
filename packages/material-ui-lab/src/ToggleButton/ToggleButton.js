@@ -11,17 +11,16 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    height: 32,
-    minWidth: 48,
+    height: 48,
+    width: 48,
     margin: 0,
-    padding: '4px 12px',
     borderRadius: 2,
     color: fade(theme.palette.action.active, 0.38),
     '&$selected': {
       color: theme.palette.action.active,
-      backgroundColor: fade(theme.palette.action.active, 0.2),
+      backgroundColor: fade(theme.palette.action.active, 0.12),
       '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, 0.25),
+        backgroundColor: fade(theme.palette.action.active, 0.15),
       },
     },
     '&$disabled': {
@@ -30,7 +29,7 @@ export const styles = theme => ({
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
-      backgroundColor: fade(theme.palette.text.primary, 0.12),
+      backgroundColor: fade(theme.palette.text.primary, 0.05),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -45,6 +44,8 @@ export const styles = theme => ({
     '&:not(:last-child)': {
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
+      boxSizing: 'content-box', // Add the right border to the default button size as a spacer
+      borderRight: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     },
   },
   /* Styles applied to the root element if `disabled={true}`. */

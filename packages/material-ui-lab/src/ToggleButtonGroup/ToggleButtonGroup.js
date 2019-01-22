@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import hasValue from './hasValue';
 import isValueSelected from './isValueSelected';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    transition: theme.transitions.create('background,box-shadow'),
     background: 'transparent',
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     borderRadius: 2,
     overflow: 'hidden',
   },
   /* Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set. */
   selected: {
     background: theme.palette.background.paper,
-    boxShadow: theme.shadows[2],
   },
 });
 
