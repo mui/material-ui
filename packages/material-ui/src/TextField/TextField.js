@@ -112,6 +112,7 @@ class TextField extends React.Component {
     const InputComponent = variantComponent[variant];
     const InputElement = (
       <InputComponent
+        aria-describedby={helperTextId}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
         defaultValue={defaultValue}
@@ -136,7 +137,6 @@ class TextField extends React.Component {
 
     return (
       <FormControl
-        aria-describedby={helperTextId}
         className={className}
         error={error}
         fullWidth={fullWidth}
@@ -150,7 +150,12 @@ class TextField extends React.Component {
           </InputLabel>
         )}
         {select ? (
-          <Select value={value} input={InputElement} {...SelectProps}>
+          <Select
+            aria-describedby={helperTextId}
+            value={value}
+            input={InputElement}
+            {...SelectProps}
+          >
             {children}
           </Select>
         ) : (
