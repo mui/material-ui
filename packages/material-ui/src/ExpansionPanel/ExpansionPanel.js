@@ -228,7 +228,7 @@ ExpansionPanel.propTypes = {
 ExpansionPanel.defaultProps = {
   defaultExpanded: false,
   disabled: false,
-  square: true,
+  square: false,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);
