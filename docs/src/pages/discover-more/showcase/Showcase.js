@@ -46,16 +46,6 @@ const styles = theme => ({
  * }
  */
 const appList = [
-   {
-    title: 'Misheneye',
-    description:
-      'Creates custom brand guides for companies. It walks you through creating your ' +
-      'mission, vision, values, colors, typography and imagery choices, then displays them in ' + 
-      'a beautiful brand guide for your organization.',
-    image: 'misheneye.jpeg',
-    link: 'https://www.misheneye.com',
-    similarWebVisits: 18000,
-  },
   {
     title: 'Bethesda.net',
     description:
@@ -537,6 +527,15 @@ const appList = [
       'of interest. 🇪🇸',
     link: 'https://tentu.eus/',
     image: 'tentu.jpg',
+  },
+  {
+    title: 'Misheneye',
+    description:
+      'Creates custom brand guides for companies. It walks you through creating your ' +
+      'mission, vision, values, colors, typography and imagery choices, then displays them in ' +
+      'a beautiful brand guide for your organization.',
+    image: 'misheneye.jpg',
+    link: 'https://www.misheneye.com',
   },
   {
     title: 'Swimmy',
