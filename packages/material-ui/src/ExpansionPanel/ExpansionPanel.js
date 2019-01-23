@@ -53,6 +53,7 @@ export const styles = theme => {
         },
       },
     },
+    /* Styles applied to the root element if `square={false}`. */
     rounded: {
       borderRadius: 0,
       '&:first-child': {
