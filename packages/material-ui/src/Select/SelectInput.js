@@ -295,6 +295,7 @@ class SelectInput extends React.Component {
           onBlur={this.handleBlur}
           onClick={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
+          id={`select-${name || ''}`}
           {...SelectDisplayProps}
         >
           {/* So the vertical align positioning algorithm kicks in. */}
