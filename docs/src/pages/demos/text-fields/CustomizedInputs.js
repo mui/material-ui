@@ -10,7 +10,7 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -80,7 +80,7 @@ function CustomizedInputs(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       <FormControl className={classes.margin}>
         <InputLabel
           htmlFor="custom-css-standard-input"
