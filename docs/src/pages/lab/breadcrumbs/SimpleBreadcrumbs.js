@@ -11,17 +11,13 @@ const styles = theme => ({
   },
 });
 
-function handleClick() {
-  alert('You clicked a Breadcrumb.'); // eslint-disable-line no-alert
-}
-
 function SimpleBreadcrumbs(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
       <Breadcrumbs>
-        <Breadcrumb label="Material-UI" onClick={handleClick} />
-        <Breadcrumb label="Component Demos" onClick={handleClick} />
+        <Breadcrumb label="Material-UI" href="/" />
+        <Breadcrumb label="Lab" href="/lab/about/" />
         <Breadcrumb label="Breadcrumb" active />
       </Breadcrumbs>
     </Paper>

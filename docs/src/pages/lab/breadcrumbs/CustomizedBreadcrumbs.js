@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
@@ -43,9 +42,13 @@ function handleClick() {
 }
 
 function CustomBreadcrumb(props) {
-  const { classes, className, ...rest } = props;
-  return <Chip className={classNames(className, classes.chip)} {...rest} />;
+  const { classes, ...rest } = props;
+  return <Chip className={classes.chip} {...rest} />;
 }
+
+CustomBreadcrumb.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
 

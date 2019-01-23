@@ -22,7 +22,7 @@ function CustomSeparatorComponent(props) {
     <Paper className={classes.root}>
       <Breadcrumbs separator={<NavigateNextIcon />}>
         <Breadcrumb label="Material-UI" onClick={handleClick} />
-        <Breadcrumb label="Component Demos" onClick={handleClick} />
+        <Breadcrumb label="Lab" onClick={handleClick} />
         <Breadcrumb label="Breadcrumb" active />
       </Breadcrumbs>
     </Paper>

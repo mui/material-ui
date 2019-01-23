@@ -26,7 +26,7 @@ function CustomSeparatorText(props) {
       <Paper className={classes.paper}>
         <Breadcrumbs separatorText="›">
           <Breadcrumb label="Material-UI" onClick={handleClick} />
-          <Breadcrumb label="Component Demos" onClick={handleClick} />
+          <Breadcrumb label="Lab" onClick={handleClick} />
           <Breadcrumb label="Breadcrumb" active />
         </Breadcrumbs>
       </Paper>
@@ -34,7 +34,7 @@ function CustomSeparatorText(props) {
       <Paper className={classes.paper}>
         <Breadcrumbs separatorText="-">
           <Breadcrumb label="Material-UI" onClick={handleClick} />
-          <Breadcrumb label="Component Demos" onClick={handleClick} />
+          <Breadcrumb label="Lab" onClick={handleClick} />
           <Breadcrumb label="Breadcrumb" active />
         </Breadcrumbs>
       </Paper>

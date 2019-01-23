@@ -15,7 +15,7 @@ function handleClick() {
   alert('You clicked a Breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function MoreBreadcrumbs(props) {
+function CollapsedBreadcrumbs(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
@@ -30,8 +30,8 @@ function MoreBreadcrumbs(props) {
   );
 }
 
-MoreBreadcrumbs.propTypes = {
+CollapsedBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MoreBreadcrumbs);
+export default withStyles(styles)(CollapsedBreadcrumbs);

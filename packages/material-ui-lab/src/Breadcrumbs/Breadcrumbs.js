@@ -32,6 +32,7 @@ class Breadcrumbs extends React.Component {
           ? acc.concat(
               cur,
               <BreadcrumbSeparator
+                // eslint-disable-next-line react/no-array-index-key
                 key={`separator-${idx}`}
                 separator={separator}
                 separatorText={separatorText}
@@ -83,8 +84,8 @@ class Breadcrumbs extends React.Component {
     if (!children) return <div className={className} {...rest} />;
 
     return (
-      <div className={classes.root} {...rest}>
-        {!this.state.expanded && (maxItems && Children.toArray(children).length <= maxItems)
+      <div aria-label="breadcrumb" className={classes.root} {...rest}>
+        {this.state.expanded || (maxItems && Children.toArray(children).length <= maxItems)
           ? this.insertSeparators(this.renderAllItems())
           : this.insertSeparators(this.renderItemsBeforeAndAfter())}
       </div>

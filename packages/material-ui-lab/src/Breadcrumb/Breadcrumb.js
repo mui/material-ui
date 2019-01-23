@@ -8,7 +8,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 const height = 24;
 
 const styles = theme => ({
-  button: {
+  root: {
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
     height,
@@ -41,21 +41,20 @@ const styles = theme => ({
 class Breadcrumb extends React.PureComponent {
   render() {
     const {
+      active,
       classes,
       className: classNameProp,
+      disableGutters,
       icon: iconProp,
       label,
-      active,
-      disableGutters,
       tabIndex: tabIndexProp,
-      onClick,
       ...other
     } = this.props;
 
     let tabIndex = tabIndexProp;
 
     if (!tabIndex) {
-      tabIndex = onClick ? 0 : -1;
+      tabIndex = other.onClick || (other.href && !active) ? 0 : -1;
     }
 
     let icon = null;
@@ -66,6 +65,7 @@ class Breadcrumb extends React.PureComponent {
     }
 
     const className = classNames(
+      classes.root,
       {
         [classes.gutters]: !disableGutters,
         [classes.active]: active,
@@ -74,15 +74,7 @@ class Breadcrumb extends React.PureComponent {
     );
 
     return (
-      <ButtonBase
-        variant="default"
-        color="primary"
-        tabIndex={tabIndex}
-        onClick={onClick}
-        disabled={active}
-        className={className}
-        {...other}
-      >
+      <ButtonBase tabIndex={tabIndex} disabled={active} className={className} {...other}>
         {icon}
         {label}
       </ButtonBase>
@@ -126,6 +118,10 @@ Breadcrumb.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Breadcrumb.defaultProps = {

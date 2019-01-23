@@ -5,7 +5,7 @@ import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const styles = theme => ({
-  collapsed: {
+  root: {
     width: 24,
     height: 16,
     backgroundColor: theme.palette.grey[100],
@@ -28,8 +28,8 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { classes, ...rest } = props;
-  return <MoreHorizIcon className={classes.collapsed} {...rest} />;
+  const { classes, ...other } = props;
+  return <MoreHorizIcon className={classes.root} {...other} />;
 }
 
 BreadcrumbCollapsed.propTypes = {
