@@ -13,9 +13,9 @@ components: TextField
 #### Notice
 
 We are falling back to **native input controls**.
-If you are interested in implementing or have implemented a rich Material Design Picker with an awesome UX, please, let us know on [#4787](https://github.com/mui-org/material-ui/issues/4787) and [#4796](https://github.com/mui-org/material-ui/issues/4796)! We could add [a link to or a demo](#complementary-projects) of your project in the documentation.
 
 ⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
+Have a look at the [complementary projects](#complementary-projects) for richer solutions.
 
 ## Date pickers
 
