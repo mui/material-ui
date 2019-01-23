@@ -546,11 +546,11 @@ describe('<Modal />', () => {
       assert.strictEqual(document.body.style.overflow, '');
     });
 
-    it('should open and close with Transitions', () => {
+    it('should open and close with Transitions', done => {
       const TestCase = props => (
         <React.Fragment>
           <Modal open={props.open}>
-            <Fade onEntered={props.onEntered} onExited={props.onExited}>
+            <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
               <div>Hello</div>
             </Fade>
           </Modal>
@@ -574,6 +574,7 @@ describe('<Modal />', () => {
 
       const onExited = () => {
         assert.strictEqual(document.body.style.overflow, '');
+        done();
       };
 
       wrapper = mount(<TestCase onEntered={onEntered} onExited={onExited} open={false} />);
@@ -603,5 +604,93 @@ describe('<Modal />', () => {
       }
     }
     mount(<TestCase />);
+  });
+
+  describe('prop: closeAfterTransition', () => {
+    it('when true it should close after Transition has finished', done => {
+      const TestCase = props => (
+        <Modal open={props.open} closeAfterTransition>
+          <Fade
+            onEntered={props.onEntered}
+            onExiting={props.onExiting}
+            onExited={props.onExited}
+            in={props.open}
+          >
+            <div>Hello</div>
+          </Fade>
+        </Modal>
+      );
+
+      TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
+        onExiting: PropTypes.func,
+        open: PropTypes.bool,
+      };
+
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+        done();
+      };
+
+      const onExiting = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+      };
+
+      wrapper = mount(
+        <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
+      );
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+    });
+
+    it('when false it should close before Transition has finished', done => {
+      const TestCase = props => (
+        <Modal open={props.open} closeAfterTransition={false}>
+          <Fade
+            onEntered={props.onEntered}
+            onExiting={props.onExiting}
+            onExited={props.onExited}
+            in={props.open}
+          >
+            <div>Hello</div>
+          </Fade>
+        </Modal>
+      );
+
+      TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
+        onExiting: PropTypes.func,
+        open: PropTypes.bool,
+      };
+
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+        done();
+      };
+
+      const onExiting = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+      };
+
+      wrapper = mount(
+        <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
+      );
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+    });
   });
 });
