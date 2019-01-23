@@ -41,9 +41,11 @@ const styles = theme => ({
   },
   bootstrapInput: {
     borderRadius: 4,
+    position: 'relative',
     backgroundColor: theme.palette.common.white,
     border: '1px solid #ced4da',
     fontSize: 16,
+    width: 'auto',
     padding: '10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
@@ -60,6 +62,7 @@ const styles = theme => ({
       '"Segoe UI Symbol"',
     ].join(','),
     '&:focus': {
+      borderRadius: 4,
       borderColor: '#80bdff',
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },

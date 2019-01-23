@@ -8,21 +8,15 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
-const styles = theme => ({
+const BootstrapInput = withStyles(theme => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing.unit,
-  },
-  bootstrapRoot: {
-    'label  &': {
+    'label + &': {
       marginTop: theme.spacing.unit * 3,
     },
   },
-  bootstrapInput: {
+  input: {
     borderRadius: 4,
+    position: 'relative',
     backgroundColor: theme.palette.common.white,
     border: '1px solid #ced4da',
     fontSize: 16,
@@ -48,6 +42,16 @@ const styles = theme => ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
   },
+}))(InputBase);
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
   bootstrapFormLabel: {
     fontSize: 18,
   },
@@ -71,21 +75,16 @@ class CustomizedSelects extends React.Component {
           <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
             Age
           </InputLabel>
+          <BootstrapInput />
+        </FormControl>
+        <FormControl className={classes.margin}>
+          <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
+            Age
+          </InputLabel>
           <Select
             value={this.state.age}
             onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'age-customized-select',
-            }}
-            input={
-              <InputBase
-                classes={{
-                  root: classes.bootstrapRoot,
-                  input: classes.bootstrapInput,
-                }}
-              />
-            }
+            input={<BootstrapInput name="age" id="age-customized-select" />}
           >
             <MenuItem value="">
               <em>None</em>
@@ -102,18 +101,7 @@ class CustomizedSelects extends React.Component {
           <NativeSelect
             value={this.state.age}
             onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'age-customized-native-simple',
-            }}
-            input={
-              <InputBase
-                classes={{
-                  root: classes.bootstrapRoot,
-                  input: classes.bootstrapInput,
-                }}
-              />
-            }
+            input={<BootstrapInput name="age" id="age-customized-native-simple" />}
           >
             <option value="" />
             <option value={10}>Ten</option>
