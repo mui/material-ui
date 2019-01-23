@@ -43,21 +43,26 @@ export const styles = theme => {
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-child': {
-        borderTopLeftRadius: theme.shape.borderRadius,
-        borderTopRightRadius: theme.shape.borderRadius,
         '&:before': {
           display: 'none',
         },
-      },
-      '&:last-child': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-        borderBottomRightRadius: theme.shape.borderRadius,
-        ...edgeFix,
       },
       '&$expanded + &': {
         '&:before': {
           display: 'none',
         },
+      },
+    },
+    rounded: {
+      borderRadius: 0,
+      '&:first-child': {
+        borderTopLeftRadius: theme.shape.borderRadius,
+        borderTopRightRadius: theme.shape.borderRadius,
+      },
+      '&:last-child': {
+        borderBottomLeftRadius: theme.shape.borderRadius,
+        borderBottomRightRadius: theme.shape.borderRadius,
+        ...edgeFix,
       },
     },
     /* Styles applied to the root element if `expanded={true}`. */
@@ -113,18 +118,10 @@ class ExpansionPanel extends React.Component {
       disabled,
       expanded: expandedProp,
       onChange,
+      square,
       ...other
     } = this.props;
     const expanded = this.isControlled ? expandedProp : this.state.expanded;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.expanded]: expanded,
-        [classes.disabled]: disabled,
-      },
-      classNameProp,
-    );
 
     let summary = null;
 
@@ -160,7 +157,20 @@ class ExpansionPanel extends React.Component {
       : null;
 
     return (
-      <Paper className={className} elevation={1} square {...other}>
+      <Paper
+        className={classNames(
+          classes.root,
+          {
+            [classes.expanded]: expanded,
+            [classes.disabled]: disabled,
+            [classes.rounded]: !square,
+          },
+          classNameProp,
+        )}
+        elevation={1}
+        square={square}
+        {...other}
+      >
         {summary}
         <Collapse in={expanded} timeout="auto" {...CollapseProps} {...CollapsePropsProp}>
           {children}
@@ -208,11 +218,16 @@ ExpansionPanel.propTypes = {
    * @param {boolean} expanded The `expanded` state of the panel
    */
   onChange: PropTypes.func,
+  /**
+   * If `true`, rounded corners are disabled.
+   */
+  square: PropTypes.bool,
 };
 
 ExpansionPanel.defaultProps = {
   defaultExpanded: false,
   disabled: false,
+  square: true,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);
