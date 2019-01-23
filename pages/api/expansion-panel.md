@@ -37,6 +37,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">rounded</span> | Styles applied to the root element if `square={false}`.
 | <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 
