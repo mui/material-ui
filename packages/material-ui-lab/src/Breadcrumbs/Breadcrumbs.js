@@ -84,7 +84,7 @@ class Breadcrumbs extends React.Component {
     if (!children) return <div className={className} {...rest} />;
 
     return (
-      <div aria-label="breadcrumb" className={classes.root} {...rest}>
+      <div aria-label="breadcrumb" className={className} {...rest}>
         {this.state.expanded || (maxItems && Children.toArray(children).length <= maxItems)
           ? this.insertSeparators(this.renderAllItems())
           : this.insertSeparators(this.renderItemsBeforeAndAfter())}
