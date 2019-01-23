@@ -529,6 +529,15 @@ const appList = [
     image: 'tentu.jpg',
   },
   {
+    title: 'Misheneye',
+    description:
+      'Creates custom brand guides for companies. It walks you through creating your ' +
+      'mission, vision, values, colors, typography and imagery choices, then displays them in ' +
+      'a beautiful brand guide for your organization.',
+    image: 'misheneye.jpg',
+    link: 'https://www.misheneye.com',
+  },
+  {
     title: 'Swimmy',
     description: 'An open source forum PWA. 🇯🇵 (Github docs are in English)',
     image: 'swimmy.jpg',
