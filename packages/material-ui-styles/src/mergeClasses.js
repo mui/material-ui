@@ -10,6 +10,19 @@ function mergeClasses(options = {}) {
 
   const nextClasses = { ...baseClasses };
 
+  if (process.env.NODE_ENV !== 'production' && typeof newClasses === 'string') {
+    warning(
+      false,
+      [
+        `Material-UI: the value \`${newClasses}\` ` +
+          `provided to the classes property of ${getDisplayName(Component)} is incorrect.`,
+        'You might want to use the className property instead.',
+      ].join('\n'),
+    );
+
+    return baseClasses;
+  }
+
   Object.keys(newClasses).forEach(key => {
     warning(
       baseClasses[key] || !newClasses[key],
