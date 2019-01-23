@@ -155,7 +155,9 @@ class Modal extends React.Component {
   };
 
   handleExited = () => {
-    this.props.manager.remove(this);
+    if (this.props.closeAfterTransition) {
+      this.props.manager.remove(this);
+    }
     this.setState({ exited: true });
   };
 
