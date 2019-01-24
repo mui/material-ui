@@ -4,10 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 import Breadcrumb from '@material-ui/lab/Breadcrumb';
+import Link from '@material-ui/core/Link';
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
 });
 
@@ -15,10 +16,18 @@ function SimpleBreadcrumbs(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
-      <Breadcrumbs>
-        <Breadcrumb label="Material-UI" href="/" />
-        <Breadcrumb label="Lab" href="/lab/about/" />
-        <Breadcrumb label="Breadcrumb" active />
+      <Breadcrumbs arial-label="Breadcrumb navigation">
+        <Breadcrumb>
+          <Link color="inherit" href="/">
+            Material-UI
+          </Link>
+        </Breadcrumb>
+        <Breadcrumb>
+          <Link color="inherit" href="/lab/about/">
+            Lab
+          </Link>
+        </Breadcrumb>
+        <Breadcrumb color="textPrimary">Breadcrumb</Breadcrumb>
       </Breadcrumbs>
     </Paper>
   );

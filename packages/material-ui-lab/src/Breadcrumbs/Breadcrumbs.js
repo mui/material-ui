@@ -1,16 +1,27 @@
-import React, { Children } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import BreadcrumbCollapsed from '@material-ui/lab/BreadcrumbCollapsed';
-import BreadcrumbSeparator from '@material-ui/lab/BreadcrumbSeparator';
+import { withStyles } from '@material-ui/core/styles';
+import { componentPropType } from '@material-ui/utils';
+import BreadcrumbCollapsed from './BreadcrumbCollapsed';
+import BreadcrumbSeparator from './BreadcrumbSeparator';
 
 const styles = {
-  root: {
+  /* Styles applied to the root element. */
+  root: {},
+  /* Styles applied to the ol element. */
+  ol: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
+    padding: 0, // Reset
+    margin: 0, // Reset
+    '& li': {
+      listStyle: 'none',
+    },
   },
+  /* Styles applied to the separator element. */
+  separator: {},
 };
 
 class Breadcrumbs extends React.Component {
@@ -18,86 +29,83 @@ class Breadcrumbs extends React.Component {
     expanded: false,
   };
 
-  handleClickExpand = event => {
-    event.preventDefault();
+  handleClickExpand = () => {
     this.setState({ expanded: true });
   };
 
   insertSeparators(items) {
-    const { separator, separatorText } = this.props;
+    return items.reduce((acc, current, index) => {
+      if (index < items.length - 1) {
+        acc = acc.concat(
+          current,
+          <BreadcrumbSeparator
+            // eslint-disable-next-line react/no-array-index-key
+            key={`separator-${index}`}
+            separator={this.props.separator}
+            className={this.props.classes.separator}
+          />,
+        );
+      } else {
+        acc.push(current);
+      }
 
-    return items.reduce(
-      (acc, cur, idx, src) =>
-        idx < src.length - 1
-          ? acc.concat(
-              cur,
-              <BreadcrumbSeparator
-                // eslint-disable-next-line react/no-array-index-key
-                key={`separator-${idx}`}
-                separator={separator}
-                separatorText={separatorText}
-              />,
-            )
-          : acc.concat(cur),
-      [],
-    );
+      return acc;
+    }, []);
   }
 
-  renderItemsBeforeAndAfter() {
+  renderItemsBeforeAndAfter(allItems) {
     const { itemsBeforeCollapse, itemsAfterCollapse } = this.props;
-    const allItems = this.renderAllItems();
+
     // This defends against someone passing weird data, to ensure that if all
     // items would be shown anyway, we just show all items without the EllipsisItem
     if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
       return allItems;
     }
 
-    const beforeItems = allItems.slice(0, itemsBeforeCollapse);
-    const afterItems = allItems.slice(allItems.length - itemsAfterCollapse, allItems.length);
-
     return [
-      ...beforeItems,
+      ...allItems.slice(0, itemsBeforeCollapse),
       <BreadcrumbCollapsed key="ellipsis" onClick={this.handleClickExpand} />,
-      ...afterItems,
+      ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
-  }
-
-  renderAllItems() {
-    return Children.toArray(this.props.children);
   }
 
   render() {
     const {
+      children,
       classes,
       className: classNameProp,
-      children,
-      maxItems,
-      itemsBeforeCollapse,
+      component: Component,
       itemsAfterCollapse,
+      itemsBeforeCollapse,
+      maxItems,
       separator,
-      separatorText,
-      ...rest
+      ...other
     } = this.props;
-
-    const className = classNames(classes.root, classNameProp);
-
-    if (!children) return <div className={className} {...rest} />;
+    const allItems = React.Children.toArray(children);
 
     return (
-      <div aria-label="breadcrumb" className={className} {...rest}>
-        {this.state.expanded || (maxItems && Children.toArray(children).length <= maxItems)
-          ? this.insertSeparators(this.renderAllItems())
-          : this.insertSeparators(this.renderItemsBeforeAndAfter())}
-      </div>
+      <Component
+        aria-label="Breadcrumb navigation"
+        className={classNames(classes.root, classNameProp)}
+        {...other}
+      >
+        <ol className={classes.ol}>
+          {this.insertSeparators(
+            this.state.expanded || (maxItems && allItems.length <= maxItems)
+              ? allItems
+              : this.renderItemsBeforeAndAfter(allItems),
+          )}
+        </ol>
+      </Component>
     );
   }
 }
 
 Breadcrumbs.propTypes = {
   /**
-   * A single `Breadcrumb` or an array of `Breadcrumb`s.
+   * The breadcrumb children.
    */
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -107,6 +115,12 @@ Breadcrumbs.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * By default, it maps the variant to a good default headline component.
+   */
+  component: componentPropType,
   /**
    * If max items is exceeded, the number of items to show after the ellipsis.
    */
@@ -122,21 +136,17 @@ Breadcrumbs.propTypes = {
    */
   maxItems: PropTypes.number,
   /**
-   * Custom separator component.
+   * Custom separator node.
    */
-  separator: PropTypes.element,
-  /**
-   * Custom text separator.
-   */
-  separatorText: PropTypes.string,
+  separator: PropTypes.node,
 };
 
 Breadcrumbs.defaultProps = {
-  children: null,
-  maxItems: 8,
-  itemsBeforeCollapse: 1,
+  component: 'nav',
   itemsAfterCollapse: 1,
-  separatorText: '/',
+  itemsBeforeCollapse: 1,
+  maxItems: 8,
+  separator: '/',
 };
 
 export default withStyles(styles, { name: 'MuiBreadcrumbs' })(Breadcrumbs);

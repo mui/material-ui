@@ -2,92 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import Typography from '@material-ui/core/Typography';
 
-const height = 24;
+const styles = {
+  /* Styles applied to the root element. */
+  root: {},
+};
 
-const styles = theme => ({
-  root: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.fontSize,
-    height,
-    lineHeight: `${height}px`,
-    color: theme.palette.grey[800],
-    borderRadius: 2,
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.grey[100],
-    },
-    '&:active': {
-      boxShadow: theme.shadows[0],
-      backgroundColor: emphasize(theme.palette.grey[100], 0.12),
-    },
-  },
-  active: {
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  gutters: {
-    paddingLeft: 8,
-    paddingRight: 8,
-  },
-  icon: {
-    marginRight: 4,
-    width: height / 1.2,
-    height: height / 1.2,
-    color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
-  },
-});
+function Breadcrumb(props) {
+  const { classes, className, ...other } = props;
 
-class Breadcrumb extends React.PureComponent {
-  render() {
-    const {
-      active,
-      classes,
-      className: classNameProp,
-      disableGutters,
-      icon: iconProp,
-      label,
-      tabIndex: tabIndexProp,
-      ...other
-    } = this.props;
-
-    let tabIndex = tabIndexProp;
-
-    if (!tabIndex) {
-      tabIndex = other.onClick || (other.href && !active) ? 0 : -1;
-    }
-
-    let icon = null;
-    if (React.isValidElement(iconProp)) {
-      icon = React.cloneElement(iconProp, {
-        className: classNames(classes.icon, iconProp.props.className),
-      });
-    }
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.gutters]: !disableGutters,
-        [classes.active]: active,
-      },
-      classNameProp,
-    );
-
-    return (
-      <ButtonBase tabIndex={tabIndex} disabled={active} className={className} {...other}>
-        {icon}
-        {label}
-      </ButtonBase>
-    );
-  }
+  return (
+    <Typography
+      component="li"
+      color="textSecondary"
+      className={classNames(classes.root, className)}
+      {...other}
+    />
+  );
 }
 
 Breadcrumb.propTypes = {
-  /**
-   * Indicates if the breadcrumb is the active one.
-   * Usually set on the last element in the breadcrumb
-   */
-  active: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -97,36 +32,6 @@ Breadcrumb.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * If `true`, disables gutter padding.
-   */
-  disableGutters: PropTypes.bool,
-  /**
-   * The URL to link to when the breadcrumb is clicked.
-   * If defined, an `a` element will be used as the root node.
-   */
-  href: PropTypes.string,
-  /**
-   * An icon to display before the breadcrumb.
-   */
-  icon: PropTypes.node,
-  /**
-   * The label to appear in the breadcrumb.
-   */
-  label: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-Breadcrumb.defaultProps = {
-  disableGutters: false,
-  active: false,
 };
 
 export default withStyles(styles, { name: 'MuiBreadcrumb' })(Breadcrumb);

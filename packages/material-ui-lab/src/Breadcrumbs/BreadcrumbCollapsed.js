@@ -6,6 +6,9 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const styles = theme => ({
   root: {
+    display: 'flex',
+  },
+  icon: {
     width: 24,
     height: 16,
     backgroundColor: theme.palette.grey[100],
@@ -29,7 +32,11 @@ const styles = theme => ({
  */
 function BreadcrumbCollapsed(props) {
   const { classes, ...other } = props;
-  return <MoreHorizIcon className={classes.root} {...other} />;
+  return (
+    <li className={classes.root} {...other}>
+      <MoreHorizIcon className={classes.icon} />
+    </li>
+  );
 }
 
 BreadcrumbCollapsed.propTypes = {
@@ -39,4 +46,4 @@ BreadcrumbCollapsed.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BreadcrumbCollapsed);
+export default withStyles(styles, { name: 'MuiPrivateBreadcrumbCollapsed' })(BreadcrumbCollapsed);

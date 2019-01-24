@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Breadcrumb from '@material-ui/lab/Breadcrumb';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
@@ -13,13 +16,8 @@ const styles = theme => ({
   root: {
     padding: theme.spacing.unit,
   },
-  separator: {
-    marginLeft: -theme.spacing.unit / 2,
-    marginRight: -theme.spacing.unit / 2,
-  },
   chip: {
     backgroundColor: theme.palette.grey[100],
-    // fontSize: theme.typography.pxToRem(13),
     height: 24,
     color: theme.palette.grey[800],
     fontWeight: theme.typography.fontWeightRegular,
@@ -54,25 +52,34 @@ const StyledBreadcrumb = withStyles(styles)(CustomBreadcrumb);
 
 function CustomizedBreadcrumbs(props) {
   const { classes } = props;
+
   return (
     <Paper className={classes.root}>
-      <Breadcrumbs>
-        <StyledBreadcrumb
-          label="Home"
-          avatar={
-            <Avatar className={classes.avatar}>
-              <HomeIcon />
-            </Avatar>
-          }
-          onClick={handleClick}
-        />
-        <StyledBreadcrumb label="Catalog" onClick={handleClick} />
-        <StyledBreadcrumb
-          label="Accessories"
-          deleteIcon={<ExpandMoreIcon />}
-          onClick={handleClick}
-          onDelete={handleClick}
-        />
+      <Breadcrumbs arial-label="Breadcrumb navigation">
+        <Breadcrumb>
+          <StyledBreadcrumb
+            component="a"
+            href="#"
+            label="Home"
+            avatar={
+              <Avatar className={classes.avatar}>
+                <HomeIcon />
+              </Avatar>
+            }
+            onClick={handleClick}
+          />
+        </Breadcrumb>
+        <Breadcrumb>
+          <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
+        </Breadcrumb>
+        <Breadcrumb>
+          <StyledBreadcrumb
+            label="Accessories"
+            deleteIcon={<ExpandMoreIcon />}
+            onClick={handleClick}
+            onDelete={handleClick}
+          />
+        </Breadcrumb>
       </Breadcrumbs>
     </Paper>
   );

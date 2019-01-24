@@ -18,13 +18,13 @@ import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">union:&nbsp;arrayOf&nbsp;&#124;<br>&nbsp;node<br></span> | <span class="prop-default">null</span> | A single `Breadcrumb` or an array of `Breadcrumb`s. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The breadcrumb children. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">component</span> | <span class="prop-type">Component</span> | <span class="prop-default">'nav'</span> | The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component. |
 | <span class="prop-name">itemsAfterCollapse</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | If max items is exceeded, the number of items to show after the ellipsis. |
 | <span class="prop-name">itemsBeforeCollapse</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | If max items is exceeded, the number of items to show before the ellipsis. |
 | <span class="prop-name">maxItems</span> | <span class="prop-type">number</span> | <span class="prop-default">8</span> | Specifies the maximum number of breadcrumbs to display. When there are more than the maximum number, only the first and last will be shown, with an ellipsis in between. |
-| <span class="prop-name">separator</span> | <span class="prop-type">element</span> |   | Custom separator component. |
-| <span class="prop-name">separatorText</span> | <span class="prop-type">string</span> | <span class="prop-default">'/'</span> | Custom text separator. |
+| <span class="prop-name">separator</span> | <span class="prop-type">node</span> | <span class="prop-default">'/'</span> | Custom separator node. |
 
 Any other properties supplied will be spread to the root element (native element).
 

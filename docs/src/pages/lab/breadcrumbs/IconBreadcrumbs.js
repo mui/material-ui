@@ -1,16 +1,27 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 import Breadcrumb from '@material-ui/lab/Breadcrumb';
+import Link from '@material-ui/core/Link';
 import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GroupIcon from '@material-ui/icons/Group';
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+  },
+  link: {
+    display: 'flex',
+  },
+  icon: {
+    marginRight: theme.spacing.unit / 2,
+    width: 20,
+    height: 20,
   },
 });
 
@@ -22,10 +33,25 @@ function IconBreadcrumbs(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
-      <Breadcrumbs>
-        <Breadcrumb label="Home" icon={<HomeIcon />} onClick={handleClick} />
-        <Breadcrumb label="Settings" icon={<SettingsIcon />} onClick={handleClick} />
-        <Breadcrumb label="Users" icon={<GroupIcon />} active />
+      <Breadcrumbs arial-label="Breadcrumb navigation">
+        <Breadcrumb>
+          <Link color="inherit" href="#" onClick={handleClick} className={classes.link}>
+            <HomeIcon className={classes.icon} />
+            Home
+          </Link>
+        </Breadcrumb>
+        <Breadcrumb>
+          <Link color="inherit" href="#" onClick={handleClick} className={classes.link}>
+            <SettingsIcon className={classes.icon} />
+            Settings
+          </Link>
+        </Breadcrumb>
+        <Breadcrumb>
+          <Link color="inherit" href="#" className={classes.link}>
+            <GroupIcon className={classes.icon} />
+            Users
+          </Link>
+        </Breadcrumb>
       </Breadcrumbs>
     </Paper>
   );
