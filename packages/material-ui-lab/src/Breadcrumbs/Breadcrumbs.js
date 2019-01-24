@@ -41,9 +41,10 @@ class Breadcrumbs extends React.Component {
           <BreadcrumbSeparator
             // eslint-disable-next-line react/no-array-index-key
             key={`separator-${index}`}
-            separator={this.props.separator}
             className={this.props.classes.separator}
-          />,
+          >
+            {this.props.separator}
+          </BreadcrumbSeparator>,
         );
       } else {
         acc.push(current);

@@ -27,7 +27,7 @@ components: Breadcrumbs, Breadcrumb
 
 If you have been reading the [overrides documentation page](/customization/overrides/)
 but you are not confident jumping in,
-here is one example of how you can change the badge position.
+here is one example of how you can change the breadcrumb link design.
 
 {{"demo": "pages/lab/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

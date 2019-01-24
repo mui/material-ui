@@ -17,13 +17,13 @@ describe('<Breadcrumbs />', () => {
     );
   });
 
-  it('should render a <div> element', () => {
+  it('should render a <nav> element', () => {
     const wrapper = shallow(
       <Breadcrumbs>
         <Breadcrumb label="Hello World" />
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.type(), 'div');
+    assert.strictEqual(wrapper.type(), 'nav');
   });
 
   it('should render the root class', () => {

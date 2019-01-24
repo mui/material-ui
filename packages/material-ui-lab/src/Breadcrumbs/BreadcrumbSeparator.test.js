@@ -9,17 +9,17 @@ describe('<BreadcrumbSeparator />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<BreadcrumbSeparator />);
+    classes = getClasses(<BreadcrumbSeparator>/</BreadcrumbSeparator>);
   });
 
-  it('should render a <div> element', () => {
-    const wrapper = shallow(<BreadcrumbSeparator />);
+  it('should render a <li> element', () => {
+    const wrapper = shallow(<BreadcrumbSeparator>/</BreadcrumbSeparator>);
 
-    assert.strictEqual(wrapper.type(), 'div');
+    assert.strictEqual(wrapper.type(), 'li');
   });
 
   it('should render the root class', () => {
-    const wrapper = shallow(<BreadcrumbSeparator />);
+    const wrapper = shallow(<BreadcrumbSeparator>/</BreadcrumbSeparator>);
 
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
