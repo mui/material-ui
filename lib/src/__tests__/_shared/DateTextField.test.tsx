@@ -1,3 +1,4 @@
+import { WithStyles } from '@material-ui/core';
 import { createMount } from '@material-ui/core/test-utils';
 import { ShallowWrapper } from 'enzyme';
 import * as React from 'react';
@@ -42,6 +43,7 @@ describe('DateTextField keyboard mode', () => {
         format="dd/MM/yyyy"
         classes={{}}
         keyboard
+        KeyboardButtonProps={{ 'aria-label': 'bar' }}
         clearable
         onClear={jest.fn()}
         onChange={jest.fn()}
@@ -67,6 +69,15 @@ describe('DateTextField keyboard mode', () => {
     expect(
       component.find('TextField').prop<any>('InputProps').endAdornment.props.children.props.disabled
     ).toBe(true);
+  });
+
+  it('Should spread properties onto the InputAdornmentButton', () => {
+    expect(
+      component
+        .render()
+        .find('button')
+        .attr('aria-label')
+    ).toBe('bar');
   });
 });
 

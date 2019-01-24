@@ -1,7 +1,7 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
-import IconButton from '@material-ui/core/IconButton';
+import IconButton, { IconButtonProps as MuiIconButtonProps } from '@material-ui/core/IconButton';
 import { InputProps as InputPropsType } from '@material-ui/core/Input';
 import InputAdornment, {
   InputAdornmentProps as MuiInputAdornmentProps,
@@ -62,6 +62,8 @@ export interface DateTextFieldProps
     | React.ReactType<React.HTMLAttributes<any>>;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: Partial<MuiInputAdornmentProps>;
+  /** Props to pass to keyboard adornment button */
+  KeyboardButtonProps?: Partial<MuiIconButtonProps>;
   /** Specifies position of keyboard button adornment */
   adornmentPosition?: MuiInputAdornmentProps['position'];
   onClick: (e: React.SyntheticEvent) => void;
@@ -103,6 +105,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     invalidDateMessage: PropTypes.node,
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     InputAdornmentProps: PropTypes.object,
+    KeyboardButtonProps: PropTypes.object,
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
     onError: PropTypes.func,
     onInputChange: PropTypes.func,
@@ -127,6 +130,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     maxDateMessage: 'Date should not be after maximal date',
     TextFieldComponent: TextField,
     InputAdornmentProps: {},
+    KeyboardButtonProps: {},
     adornmentPosition: 'end' as MuiInputAdornmentProps['position'],
     keepCharPositions: false,
   };
@@ -257,6 +261,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       invalidDateMessage,
       invalidLabel,
       keyboard,
+      KeyboardButtonProps,
       keyboardIcon,
       labelFunc,
       mask,
@@ -290,7 +295,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     if (keyboard) {
       localInputProps[`${adornmentPosition}Adornment`] = (
         <InputAdornment position={adornmentPosition!} {...InputAdornmentProps}>
-          <IconButton disabled={disabled} onClick={this.openPicker}>
+          <IconButton disabled={disabled} onClick={this.openPicker} {...KeyboardButtonProps}>
             {keyboardIcon}
           </IconButton>
         </InputAdornment>

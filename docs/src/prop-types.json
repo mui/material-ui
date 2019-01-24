@@ -332,6 +332,17 @@
       "required": false,
       "type": { "name": "Partial<InputAdornmentProps>" }
     },
+    "KeyboardButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to keyboard adornment button",
+      "name": "KeyboardButtonProps",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
+        "name": "DateTextFieldProps"
+      },
+      "required": false,
+      "type": { "name": "Partial<KeyboardButtonProps>" }
+    },
     "adornmentPosition": {
       "defaultValue": null,
       "description": "Specifies position of keyboard button adornment",
