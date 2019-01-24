@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "dependencies": {
     "@date-io/core": "^1.0.1",
