@@ -22,7 +22,7 @@ export interface DateTextFieldProps
   // Properly extend different variants from mui textfield
   variant?: TextFieldProps['variant'];
   InputProps?: TextFieldProps['InputProps'];
-  inputProps?: TextFieldProps['inputMode'];
+  inputProps?: TextFieldProps['inputProps'];
   value: DateType;
   minDate?: DateType;
   /** Error message, shown if date is less then minimal date */

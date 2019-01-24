@@ -68,6 +68,9 @@ describe('e2e -- DatePicker keyboard input', () => {
         InputAdornmentProps={{
           disableTypography: true,
         }}
+        InputLabelProps={{
+          htmlFor: 'your-id',
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
