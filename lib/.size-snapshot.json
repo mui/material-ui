@@ -9,18 +9,18 @@
         "import_statements": 1312
       },
       "webpack": {
-        "code": 55379
+        "code": 55339
       }
     }
   },
   "build/dist/material-ui-pickers.umd.js": {
-    "bundled": 214832,
-    "minified": 93567,
-    "gzipped": 24671
+    "bundled": 214300,
+    "minified": 93629,
+    "gzipped": 24626
   },
   "build/dist/material-ui-pickers.umd.min.js": {
-    "bundled": 195060,
-    "minified": 87882,
-    "gzipped": 23459
+    "bundled": 193934,
+    "minified": 87517,
+    "gzipped": 23315
   }
 }
