@@ -295,6 +295,8 @@ class SelectInput extends React.Component {
           onBlur={this.handleBlur}
           onClick={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
+          // The id can help with end-to-end testing automation.
+          id={`select-${name || ''}`}
           {...SelectDisplayProps}
         >
           {/* So the vertical align positioning algorithm kicks in. */}
