@@ -86,7 +86,7 @@ class Modal extends React.Component {
     this.mounted = false;
 
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
-      this.handleClose();
+      this.handleClose('unmount');
     }
   }
 
@@ -139,8 +139,14 @@ class Modal extends React.Component {
     this.modalRef.scrollTop = 0;
   };
 
-  handleClose = () => {
-    this.props.manager.remove(this);
+  handleClose = reason => {
+    const hasTransition = getHasTransition(this.props);
+    /* If the component does not have a transition or is unmounting remove the Modal
+    otherwise let the transition handle removing the style, this prevents elements
+    moving around when the Modal is closed. */
+    if (!(hasTransition && this.props.closeAfterTransition) || reason === 'unmount') {
+      this.props.manager.remove(this);
+    }
 
     const doc = ownerDocument(this.mountNode);
     doc.removeEventListener('focus', this.enforceFocus, true);
@@ -149,6 +155,9 @@ class Modal extends React.Component {
   };
 
   handleExited = () => {
+    if (this.props.closeAfterTransition) {
+      this.props.manager.remove(this);
+    }
     this.setState({ exited: true });
   };
 
@@ -269,6 +278,7 @@ class Modal extends React.Component {
       children,
       classes,
       className,
+      closeAfterTransition,
       container,
       disableAutoFocus,
       disableBackdropClick,
@@ -326,7 +336,7 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={classNames('mui-fixed', classes.root, className, {
+          className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
@@ -363,6 +373,10 @@ Modal.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * When set to true the Modal waits until a nested Transition is completed before closing.
+   */
+  closeAfterTransition: PropTypes.bool,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -449,6 +463,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   BackdropComponent: Backdrop,
+  closeAfterTransition: false,
   disableAutoFocus: false,
   disableBackdropClick: false,
   disableEnforceFocus: false,
