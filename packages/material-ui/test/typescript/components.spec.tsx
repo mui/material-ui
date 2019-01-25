@@ -38,6 +38,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Link,
   LinearProgress,
   List,
   ListItem,
@@ -79,7 +80,7 @@ import {
 } from '@material-ui/core/styles';
 import { DialogProps } from '@material-ui/core/Dialog';
 import { ButtonProps } from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -876,23 +877,42 @@ const InputLabelTest = () => (
   />
 );
 
-interface ButtonLinkProps extends ButtonProps {
-  to: string;
-  replace?: boolean;
-}
+const ReactRouterLinkTest = () => {
+  interface ButtonLinkProps extends ButtonProps {
+    to: string;
+    replace?: boolean;
+  }
 
-const ButtonLink = (props: ButtonLinkProps) => <Button {...props} component={Link as any} />;
+  const ButtonLink = (props: ButtonLinkProps) => (
+    <Button {...props} component={ReactRouterLink as any} />
+  );
 
-const reactRouterButtonLink1 = (
-  <ButtonLink color="primary" to="/">
-    Go Home
-  </ButtonLink>
-);
+  const reactRouterButtonLink1 = (
+    <ButtonLink color="primary" to="/">
+      Go Home
+    </ButtonLink>
+  );
 
-const MyLink = (props: any) => <Link to="/" {...props} />;
+  const MyLink = (props: any) => <ReactRouterLink to="/" {...props} />;
 
-const reactRouterButtonLink2 = (
-  <Button color="primary" component={MyLink}>
-    Go Home
-  </Button>
-);
+  const reactRouterButtonLink2 = (
+    <Button color="primary" component={MyLink}>
+      Go Home
+    </Button>
+  );
+};
+
+const LinkTest = () => {
+  const dudUrl = 'javascript:;';
+  return (
+    <Typography>
+      <Link href={dudUrl}>Link</Link>
+      <Link href={dudUrl} color="inherit">
+        {'color="inherit"'}
+      </Link>
+      <Link href={dudUrl} variant="body1">
+        {'variant="body1"'}
+      </Link>
+    </Typography>
+  );
+};
