@@ -113,7 +113,7 @@ MobileStepper.propTypes = {
    */
   activeStep: PropTypes.number,
   /**
-   * A back button element. For instance, it can be be a `Button` or a `IconButton`.
+   * A back button element. For instance, it can be a `Button` or an `IconButton`.
    */
   backButton: PropTypes.node,
   /**
