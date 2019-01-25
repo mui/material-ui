@@ -130,7 +130,7 @@ MobileStepper.propTypes = {
    */
   LinearProgressProps: PropTypes.object,
   /**
-   * A next button element. For instance, it can be be a `Button` or a `IconButton`.
+   * A next button element. For instance, it can be a `Button` or an `IconButton`.
    */
   nextButton: PropTypes.node,
   /**
