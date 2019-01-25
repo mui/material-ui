@@ -9,7 +9,15 @@ function getTheme(uiTheme) {
     direction: uiTheme.direction,
     nprogress: { color: uiTheme.paletteType === 'light' ? '#000' : '#fff' },
     palette: { ...uiTheme.paletteColors, type: uiTheme.paletteType },
-    typography: { useNextVariants: true },
+    typography: {
+      useNextVariants: true,
+      allVariants: {
+        fontFamily: '"Helvetica", "Arial", sans-serif',
+        '.font-loaded &': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        },
+      },
+    },
   });
 
   // Expose the theme as a global variable so people can play with it.

@@ -12,6 +12,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import FontFaceObserver from 'fontfaceobserver';
 
 let dependenciesLoaded = false;
 
@@ -27,6 +28,12 @@ function loadDependencies() {
     document.querySelector('#insertion-point-jss'),
   );
   loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
+}
+
+if (process.browser) {
+  new FontFaceObserver('Roboto').load().then(() => {
+    document.body.classList.add('font-loaded');
+  });
 }
 
 const pages = [

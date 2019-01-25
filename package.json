@@ -114,6 +114,7 @@
     "fg-loadcss": "^2.0.1",
     "file-loader": "^2.0.0",
     "final-form": "^4.11.0",
+    "fontfaceobserver": "^2.1.0",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
