@@ -139,10 +139,11 @@ const appList = [
     similarWebVisits: 730,
   },
   {
-    title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
-    image: 'lesswrong.jpg',
-    link: 'https://lesswrong.com/',
+    title: 'Onepixel',
+    description: 'Beautiful Stock Photos for $1.',
+    image: 'onepixel.jpg',
+    link: 'https://www.onepixel.com/',
+    similarWebVisits: 552,
   },
   {
     title: 'Sweek',
@@ -152,21 +153,14 @@ const appList = [
       'Join the global community of readers and writers!',
     image: 'sweek.jpg',
     link: 'https://sweek.com/',
-    similarWebVisits: 480,
+    similarWebVisits: 383,
   },
   {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
     link: 'https://www.hijup.com/',
-    similarWebVisits: 380,
-  },
-  {
-    title: 'Onepixel',
-    description: 'Beautiful Stock Photos for $1.',
-    image: 'onepixel.jpg',
-    link: 'https://www.onepixel.com/',
-    similarWebVisits: 340,
+    similarWebVisits: 328,
   },
   {
     title: 'iFit',
@@ -175,7 +169,7 @@ const appList = [
       'unique health tips, and expert advice that will lead you to a healthier lifestyle.',
     image: 'ifit.jpg',
     link: 'https://www.ifit.com/',
-    similarWebVisits: 310,
+    similarWebVisits: 304,
   },
   {
     title: 'NEO Tracker',
@@ -185,21 +179,49 @@ const appList = [
     similarWebVisits: 350,
   },
   {
+    title: 'EQ3',
+    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
+    image: 'eq3.jpg',
+    link: 'https://www.eq3.com/ca/en/',
+    similarWebVisits: 256,
+  },
+  {
     title: 'Housecall Pro',
     description:
       'The #1 rated mobile software to run your home service business. ' +
       'Schedule, dispatch, GPS track employees, invoice, accept credit cards and get booked ' +
       'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
     image: 'housecall.jpg',
-    link: 'https://www.eq3.com/en/ca',
-    similarWebVisits: 390,
+    link: 'https://pro.housecall.io/pro/log_in',
+    similarWebVisits: 214,
   },
   {
-    title: 'EQ3',
-    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
-    image: 'eq3.jpg',
-    link: 'https://www.eq3.com/ca/en/',
-    similarWebVisits: 256,
+    title: 'BitCambio',
+    description:
+      'A BitCambio oferece a facilidade de comprar e vender a moeda virtual bitcoin ' +
+      'de forma direta e segura no Brasil. 🇧🇷',
+    image: 'bitcambio.jpg',
+    link: 'https://bitcambio.com.br/',
+    similarWebVisits: 148,
+  },
+  {
+    title: 'VMware CloudHealth',
+    description:
+      'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
+      'cost, usage and performance in one place. ' +
+      '(Used for the business application, but not the marketing website.)',
+    image: 'cloudhealth.jpg',
+    link: 'https://www.cloudhealthtech.com/',
+    similarWebVisits: 132,
+  },
+  {
+    title: 'CityAds',
+    description:
+      'CityAds Media: global technology platform for online performance marketing ' +
+      'powered by big data',
+    image: 'cityads.jpg',
+    link: 'https://cityads.com/main',
+    similarWebVisits: 132,
   },
   {
     title: 'EOS Toolkit',
@@ -209,32 +231,16 @@ const appList = [
     image: 'eostoolkit.jpg',
     link: 'https://www.eostoolkit.io/',
     source: 'https://github.com/generEOS/eostoolkit',
-    similarWebVisits: 160,
+    similarWebVisits: 123,
   },
   {
-    title: 'BitCambio',
+    title: 'The Media Ant',
     description:
-      'A BitCambio oferece a facilidade de comprar e vender a moeda virtual bitcoin ' +
-      'de forma direta e segura no Brasil. 🇧🇷',
-    image: 'bitcambio.jpg',
-    link: 'https://bitcambio.com.br/',
-    similarWebVisits: 160,
-  },
-  {
-    title: 'CityAds',
-    description:
-      'CityAds Media: global technology platform for online performance marketing ' +
-      'powered by big data',
-    image: 'cityads.jpg',
-    link: 'https://cityads.com/main',
-    similarWebVisits: 150,
-  },
-  {
-    title: 'Numerai',
-    description: ' Earn cryptocurrency in weekly data science competitions.',
-    image: 'numerai.jpg',
-    link: 'https://numer.ai/homepage',
-    similarWebVisits: 100,
+      "India's Largest online marketing service provider, " +
+      'with more than 200K advertising options, and more than 1M satisfied customers.',
+    image: 'themediaant.jpg',
+    link: 'https://themediaant.com/',
+    similarWebVisits: 112,
   },
   {
     title: 'Forex Bank',
@@ -246,13 +252,11 @@ const appList = [
     similarWebVisits: 95,
   },
   {
-    title: 'The Media Ant',
-    description:
-      "India's Largest online marketing service provider, " +
-      'with more than 200K advertising options, and more than 1M satisfied customers.',
-    image: 'themediaant.jpg',
-    link: 'https://themediaant.com/',
-    similarWebVisits: 80,
+    title: 'Numerai',
+    description: ' Earn cryptocurrency in weekly data science competitions.',
+    image: 'numerai.jpg',
+    link: 'https://numer.ai/homepage',
+    similarWebVisits: 65,
   },
   {
     title: 'LocalMonero',
@@ -261,7 +265,12 @@ const appList = [
       'to trade their local currency for Monero, anywhere.',
     image: 'localmonero.jpg',
     link: 'https://localmonero.co/?rc=ogps',
-    similarWebVisits: 40,
+  },
+  {
+    title: 'LessWrong',
+    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    image: 'lesswrong.jpg',
+    link: 'https://lesswrong.com/',
   },
   {
     title: 'Fizix',
