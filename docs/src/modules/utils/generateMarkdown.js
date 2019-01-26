@@ -5,11 +5,12 @@ import recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
+import { LANGUAGES } from 'docs/src/modules/constants';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
-const TRANSLATIONS = ['pt', 'zh'];
+const DEMO_IGNORE = LANGUAGES.map(language => `-${language}.md`);
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
@@ -344,10 +345,7 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 function generateDemos(reactAPI) {
   const pagesMarkdown = reactAPI.pagesMarkdown.reduce((accumulator, page) => {
-    if (
-      !TRANSLATIONS.includes(page.filename.slice(-5, -3)) &&
-      page.components.includes(reactAPI.name)
-    ) {
+    if (!DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)) {
       accumulator.push(page);
     }
 
