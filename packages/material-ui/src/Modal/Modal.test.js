@@ -1,3 +1,5 @@
+/* eslint-disable react/no-multi-comp */
+
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
@@ -691,6 +693,48 @@ describe('<Modal />', () => {
       );
       assert.strictEqual(document.body.style.overflow, '');
       wrapper.setProps({ open: true });
+    });
+  });
+
+  describe('prop: container', () => {
+    it('should be able to change the container', () => {
+      class TestCase extends React.Component {
+        state = {
+          anchorEl: null,
+        };
+
+        componentDidMount() {
+          this.setState(
+            () => ({
+              anchorEl: document.body,
+            }),
+            () => {
+              this.setState(
+                {
+                  anchorEl: null,
+                },
+                () => {
+                  this.setState({
+                    anchorEl: document.body,
+                  });
+                },
+              );
+            },
+          );
+        }
+
+        render() {
+          const { anchorEl } = this.state;
+          return (
+            <Modal open={Boolean(anchorEl)} container={anchorEl} {...this.props}>
+              <Fade in={Boolean(anchorEl)}>
+                <div>Hello</div>
+              </Fade>
+            </Modal>
+          );
+        }
+      }
+      mount(<TestCase />);
     });
   });
 });
