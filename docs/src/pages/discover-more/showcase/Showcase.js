@@ -188,9 +188,9 @@ const appList = [
   {
     title: 'Housecall Pro',
     description:
-    'The #1 rated mobile software to run your home service business. ' +
-    'Schedule, dispatch, GPS track employees, invoice, accept credit cards and get booked ' +
-    'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
+      'The #1 rated mobile software to run your home service business. ' +
+      'Schedule, dispatch, GPS track employees, invoice, accept credit cards and get booked ' +
+      'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
     image: 'housecall.jpg',
     link: 'https://pro.housecall.io/pro/log_in',
     similarWebVisits: 214,
@@ -198,8 +198,8 @@ const appList = [
   {
     title: 'BitCambio',
     description:
-    'A BitCambio oferece a facilidade de comprar e vender a moeda virtual bitcoin ' +
-    'de forma direta e segura no Brasil. 🇧🇷',
+      'A BitCambio oferece a facilidade de comprar e vender a moeda virtual bitcoin ' +
+      'de forma direta e segura no Brasil. 🇧🇷',
     image: 'bitcambio.jpg',
     link: 'https://bitcambio.com.br/',
     similarWebVisits: 148,
@@ -207,9 +207,9 @@ const appList = [
   {
     title: 'VMware CloudHealth',
     description:
-    'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
-    'cost, usage and performance in one place. ' +
-    '(Used for the business application, but not the marketing website.)',
+      'The most trusted cloud management platform that enables users to analyze and manage cloud ' +
+      'cost, usage and performance in one place. ' +
+      '(Used for the business application, but not the marketing website.)',
     image: 'cloudhealth.jpg',
     link: 'https://www.cloudhealthtech.com/',
     similarWebVisits: 132,
@@ -217,8 +217,8 @@ const appList = [
   {
     title: 'CityAds',
     description:
-    'CityAds Media: global technology platform for online performance marketing ' +
-    'powered by big data',
+      'CityAds Media: global technology platform for online performance marketing ' +
+      'powered by big data',
     image: 'cityads.jpg',
     link: 'https://cityads.com/main',
     similarWebVisits: 132,
@@ -236,8 +236,8 @@ const appList = [
   {
     title: 'The Media Ant',
     description:
-    "India's Largest online marketing service provider, " +
-    'with more than 200K advertising options, and more than 1M satisfied customers.',
+      "India's Largest online marketing service provider, " +
+      'with more than 200K advertising options, and more than 1M satisfied customers.',
     image: 'themediaant.jpg',
     link: 'https://themediaant.com/',
     similarWebVisits: 112,
