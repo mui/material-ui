@@ -42,6 +42,41 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
+const languages = [
+  {
+    code: 'en',
+    text: '🇺🇸 English',
+  },
+  {
+    code: 'zh',
+    text: '🇨🇳 中文',
+  },
+  // {
+  //   code: 'ru',
+  //   text: '🇷🇺 Русский',
+  // },
+  {
+    code: 'pt',
+    text: '🇧🇷 Português',
+  },
+  {
+    code: 'fr',
+    text: '🇫🇷 Français',
+  },
+  // {
+  //   code: 'es',
+  //   text: '🇪🇸 Español',
+  // },
+  // {
+  //   code: 'de',
+  //   text: '🇩🇪 Deutsch',
+  // },
+  // {
+  //   code: 'ja',
+  //   text: '🇯🇵 日本語',
+  // },
+];
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -191,24 +226,14 @@ class AppFrame extends React.Component {
                     open={Boolean(languageMenu)}
                     onClose={this.handleLanguageMenuClose}
                   >
-                    <MenuItem
-                      selected={userLanguage === 'en'}
-                      onClick={this.handleLanguageMenuItemClick('en')}
-                    >
-                      English
-                    </MenuItem>
-                    <MenuItem
-                      selected={userLanguage === 'zh'}
-                      onClick={this.handleLanguageMenuItemClick('zh')}
-                    >
-                      中文
-                    </MenuItem>
-                    <MenuItem
-                      selected={userLanguage === 'pt'}
-                      onClick={this.handleLanguageMenuItemClick('pt')}
-                    >
-                      Português
-                    </MenuItem>
+                    {languages.map(language => (
+                      <MenuItem
+                        selected={userLanguage === language.code}
+                        onClick={this.handleLanguageMenuItemClick(language.code)}
+                      >
+                        {language.text}
+                      </MenuItem>
+                    ))}
                   </Menu>
                   <Tooltip title="Edit docs colors" enterDelay={300}>
                     <IconButton
