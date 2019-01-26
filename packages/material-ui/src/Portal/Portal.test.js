@@ -185,7 +185,7 @@ describe('<Portal />', () => {
       assert.strictEqual(container.querySelectorAll('#test2').length, 1);
     });
 
-    it('should change container on prop change', () => {
+    it('should change container on prop change', done => {
       class ContainerTest extends React.Component {
         state = {
           container: null,
@@ -211,7 +211,10 @@ describe('<Portal />', () => {
 
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY');
       wrapper.setState({ container: wrapper.instance().containerRef });
-      assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
+      setTimeout(() => {
+        assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
+        done();
+      });
     });
 
     it('should call onRendered', () => {
