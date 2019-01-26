@@ -1,8 +1,8 @@
 ---
-title: Componente React para Barra de Menu <AppBar/>
+title: Componente React para Barra de Aplicativos
 components: AppBar, Toolbar, Menu
 ---
-# App Bar
+# App Bar (Barra de Aplicativos)
 
 <p class="description">O App Bar exibe informação e ações relacionadas à tela atual.</p>
 
@@ -10,7 +10,7 @@ O [App Bar superior](https://material.io/design/components/app-bars-top.html) pr
 
 Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
 
-## App Bar com botões
+## Barra de Aplicativos com botões
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
@@ -18,17 +18,17 @@ Ele pode se transformar em uma barra de ações contextual ou utilizado como uma
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar com um campo de busca principal
+## Barra de Aplicativos com um campo de busca principal
 
 Um campo de busca principal.
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar com menu
+## Barra de Aplicativos com menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar com campo de busca
+## Barra de Aplicativos com campo de busca
 
 Uma barra de pesquisa na lateral.
 
@@ -38,6 +38,6 @@ Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
-## App Bar inferior
+## Barra de Aplicativos inferior
 
 {{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}

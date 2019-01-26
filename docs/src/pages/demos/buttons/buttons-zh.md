@@ -63,7 +63,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## 尺寸
 
-喜欢更大或更小的按钮？ 使用 `size` 或 `mini` 属性。
+花式更大或更小的按钮？使用 `size` 属性。
 
 {{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
@@ -108,7 +108,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-或者如果您想避免属性冲突：
+or if you want to avoid properties collision:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*注意：创建 `MyLink` 是必要的，以防止意外卸载。您可以在我们的 [组成指南](/guides/composition/#component-property)阅读更多相关信息。*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of the @material-ui/styles package.</p>
+<p class="description">A referência da API do pacote @material-ui/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 

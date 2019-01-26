@@ -146,7 +146,7 @@ import Typography from '@material-ui/core/Typography';
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Create a user</Typography>
+<Typography variant="srOnly">Crie um usuário</Typography>
 ```
 
 ### Reference

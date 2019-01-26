@@ -9,10 +9,10 @@ O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/pa
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// npm
+// usando npm
 npm install @material-ui/core
 
-// yarn
+// usando yarn
 yarn add @material-ui/core
 ```
 
@@ -34,7 +34,7 @@ Como alternativa, se você estiver utilizando o JSX, use:
 
 ## Ícones
 
-In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. Por exemplo, instale-a através do Google Web Fonts:
+Para utilizar o `Icon` componente, você deve primeiro adicionar o pacote [Material icons](https://material.io/tools/icons/). Aqui estão [ algumas instruções ](/style/icons/#font-icons) sobre como fazer isso. Por exemplo, instale-a através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

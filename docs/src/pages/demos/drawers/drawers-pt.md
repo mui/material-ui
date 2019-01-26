@@ -2,7 +2,7 @@
 title: Drawer React component
 components: Drawer, SwipeableDrawer
 ---
-# Drawer
+# Drawer (Gaveta)
 
 <p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
 

@@ -1,18 +1,18 @@
 ---
-title: Transition React component
+title: Componentes de Transição React
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
-# Transitions
+# Transições
 
-<p class="description">Transition helps make a UI expressive and easy to use.</p>
+<p class="description">Transições ajudam a fazer a INTERFACE expressiva e fácil de usar.</p>
 
 Material-UI provides a number of transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications components.
 
-To better support server rendering Material-UI provides a `style` property to the children of some transition components (Fade, Grow, Zoom, Slide). The `style` property must be applied to the DOM for the animation to work as expected.
+To better support server rendering Material-UI provides a `style` property to the children of some transition components (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 
 ```jsx
-// The `props` object contains a `style` property.
-// You need to provide it to the `div` element as shown here.
+// O objeto `props` contém uma propriedade` style`.
+// Você precisa fornecê-lo ao elemento `div` como mostrado aqui.
 function MyComponent(props) {
   return (
     <div {...props}>
@@ -38,7 +38,7 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 ## Fade
 
-Fade in from transparent to opaque.
+Fade in de transparente para opaco.
 
 {{"demo": "pages/utils/transitions/SimpleFade.js"}}
 
@@ -60,8 +60,8 @@ The Transition component's `mountOnEnter` property prevents the child component 
 
 ## Zoom
 
-Expand outwards from the center of the child element.
+Expandir para fora partindo do centro do elemento filho.
 
-This example also demonstrates how to delay the enter transition.
+Este exemplo também demonstra como atrasar a transição de entrada.
 
 {{"demo": "pages/utils/transitions/SimpleZoom.js"}}

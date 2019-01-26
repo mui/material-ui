@@ -1,14 +1,14 @@
 ---
-title: Menu React component
+title: Componente Menu React
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
-# Menus
+# Menus (Ações)
 
-<p class="description">Menus display a list of choices on temporary surfaces.</p>
+<p class="description">Os menus exibem uma lista de opções em superfícies temporárias.</p>
 
 A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
 
-## Simple Menu
+## Menu simples
 
 Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
@@ -18,7 +18,7 @@ Choosing an option should immediately ideally commit the option and close the me
 
 {{"demo": "pages/demos/menus/SimpleMenu.js"}}
 
-## Selected menus
+## Menus Seleccionados
 
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)).
 
@@ -32,11 +32,11 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
-## Customized MenuItem
+## MenuItem Costumizado
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, este exemplo está fora do caminho comum.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
@@ -66,7 +66,7 @@ Use a different transition altogether.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
-## Complementary projects
+## Projetos Complementares
 
 For more advanced use cases you might be able to take advantage of:
 

@@ -2,13 +2,13 @@
 title: Speed Dial React component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
-# Speed Dial
+# Discagem Rápida
 
 <p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-## Simple Speed Dial
+## Discagem rápida simples
 
 The floating action button can display related actions.
 

@@ -2,7 +2,7 @@
 title: React 徽章组件
 components: Badge
 ---
-# 徽章
+# Badges
 
 <p class="description">徽章会在其子项的右上角生成一个小徽章。</p>
 

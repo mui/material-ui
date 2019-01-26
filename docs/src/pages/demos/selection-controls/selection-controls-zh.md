@@ -91,6 +91,6 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': '复选框 A' } }
+  inputProps={{ 'aria-label': '复选框 A' }}
 />
 ```

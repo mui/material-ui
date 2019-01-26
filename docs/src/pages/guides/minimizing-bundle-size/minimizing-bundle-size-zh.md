@@ -54,4 +54,4 @@ import { Button, TextField } from '@material-ui/core';
 
 我们还发布了第二个版本的组件，以针对 **常绿浏览器**。 您可以在 [`/ es` 文件夹](https://unpkg.com/@material-ui/core/es/)下找到此版本。 所有非官方语法都被转换为 [ECMA-262标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这可用于制作针对不同浏览器的单独捆绑包。 较旧的浏览器将需要更多的JavaScript功能进行转换， 会增加捆绑包的大小。 ES2015运行时功能不包含任何填充。 IE11 +和常绿的浏览器支持所有的 必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel / polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
 
-⚠️为了最小化在用户的束的重复代码，我们 **强烈阻止** 从使用库作者 `/ ES` 的文件夹。
+⚠️为了最小化在用户的束的重复代码，我们 **强烈阻止** 从使用库作者 `/es` 的文件夹。

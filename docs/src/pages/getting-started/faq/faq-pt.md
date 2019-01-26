@@ -35,10 +35,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      // As propriedades a serem aplicadas
+      disableRipple: true, // Sem mais ripple, em todo o aplicativo
     },
   },
 });
@@ -53,7 +53,7 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // So we have `transition: none;` everywhere
+    // Então temos `transition: none;` everywhere
     create: () => 'none',
   },
 });

@@ -1,5 +1,5 @@
 ---
-title: React 日期、时间选择器组件
+title: Date Picker, Time Picker React components
 components: TextField
 ---
 # 选择器
@@ -11,9 +11,9 @@ components: TextField
 
 #### 注意
 
-我们回归到 **原生输入控件**。 如果你有兴趣实现或者已经实现了一个符合 Material Design 的且用户体验良好的富选择器，请在[ #4787 ](https://github.com/mui-org/material-ui/issues/4787)和[ #4796 ](https://github.com/mui-org/material-ui/issues/4796)告诉我们。 我们可以在文档中添加 [链接或项目的演示](#complementary-projects)。
+我们回归到 **原生输入控件**。
 
-⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。
+⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。 Have a look at the [complementary projects](#complementary-projects) for richer solutions.
 
 ## 日期选择器
 

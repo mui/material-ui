@@ -2,7 +2,7 @@
 title: Select React component
 components: Select, NativeSelect
 ---
-# Selects
+# Selects (Seleciona)
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
@@ -17,6 +17,14 @@ Menus are positioned over their emitting elements such that the currently select
 As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
+
+## Customized selects
+
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+
+⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
+
+{{"demo": "pages/demos/selects/CustomizedSelects.js"}}
 
 ## Multiple Select
 
@@ -36,6 +44,6 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
-## Campos de Texto
+## Text Fields (Campos de Texto)
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).
+O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

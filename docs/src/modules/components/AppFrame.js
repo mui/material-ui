@@ -55,14 +55,14 @@ const languages = [
   //   code: 'ru',
   //   text: '🇷🇺 Русский',
   // },
-  {
-    code: 'pt',
-    text: '🇧🇷 Português',
-  },
-  {
-    code: 'fr',
-    text: '🇫🇷 Français',
-  },
+  // {
+  //   code: 'pt',
+  //   text: '🇧🇷 Português',
+  // },
+  // {
+  //   code: 'fr',
+  //   text: '🇫🇷 Français',
+  // },
   // {
   //   code: 'es',
   //   text: '🇪🇸 Español',

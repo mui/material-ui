@@ -6,14 +6,14 @@
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-正如Sebastian Markbage 指出</ 0>，没有抽象优于错误的抽象。 我们提供低级组件以最大化组合功能。</p> 
+正如Sebastian Markbage [指出](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html)，没有抽象优于错误的抽象。 我们提供低级组件以最大化组合功能。
 
 ## 构成
 
 您可能已经注意到API中有关组合组件的一些不一致之处。 为了提供一些透明度，我们在设计API时一直使用以下规则：
 
 1. 使用` children `属性是使用React进行合成的惯用方法。
-2. 有时我们只需要有限的子组成，例如当我们不需要允许子顺序排列时。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab `采用`icon</ 0>和<code>label`属性。
+2. 有时我们只需要有限的子组成，例如当我们不需要允许子顺序排列时。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab`采用`icon`和`label`属性。
 3. API一致性很重要。
 
 ## 规则
@@ -111,7 +111,7 @@ const styles = {
 
 Material-UI组件根据以下规则使用两种方法的组合：
 
-- 当需要** 2 **自由度时，使用*布尔*。
-- 当需要**> 2 **自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
+- 当需要**2**自由度时，使用*布尔*。
+- 当需要**>2**自由度时，或者如果将来可能需要额外的自由度，则使用*枚举*。
 
 回到上一个按钮示例; 因为它需要3个自由度，所以我们使用* enum *。

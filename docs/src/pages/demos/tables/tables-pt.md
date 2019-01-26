@@ -1,74 +1,74 @@
 ---
-title: Table React component
+title: Componente React Table
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
-# Tables
+# Tables (Tabelas)
 
-<p class="description">Data tables display sets of data. They can be fully customized.</p>
+<p class="description">Tabelas de dados exibem conjuntos de dados. Eles podem ser totalmente personalizados.</p>
 
-[Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
+[Tabelas de Dados](https://material.io/design/components/data-tables.html) apresentar as informações de uma forma fácil de verificar, de modo que os usuários podem procurar por padrões e insights. Elas podem ser incorporadas no conteúdo principal, como Cards.
 
-Data tables can include:
+Tabelas de dados podem incluir:
 
-- A corresponding visualization
-- Navigation
-- Tools to query and manipulate data
+- Uma visualização correspondente
+- Navegação
+- Ferramentas para consultar e manipular dados
 
-When including tools, they should be placed directly above or below the table.
+Ao incluir ferramentas, elas devem ser colocadas diretamente acima ou abaixo da tabela.
 
-## Structure
+## Estrutura
 
-A data table contains a header row at the top that lists column names, followed by rows for data.
+Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
-Checkboxes should accompany each row if the user needs to select or manipulate data.
+Caixas de seleção devem acompanhar cada linha se o usuário precisar selecionar ou manipular dados.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. This enables screen readers to identify a cell's value by it's row and column name.
+Para acessibilidade, a primeira coluna é ajustada para ser um `<th>` elemento, com um `âmbito` de `"linha"`. Isso permite que os leitores de tela identifiquem o valor de uma célula por seu nome de linha e coluna.
 
-## Simple Table
+## Tabela Simples
 
-A simple example with no frills.
+Um exemplo simples sem frescuras.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
-## Sorting & Selecting
+## Classificando & Selecionando
 
-This example demonstrates the use of `Checkbox` and clickable rows for selection, with a custom `Toolbar`. It uses the `TableSortLabel` component to help style column headings.
+Este exemplo demonstra o uso de linhas clicáveis e `Checkbox` para a seleção, com uma barra de ferramentas personalizada ``. Ele usa o componente `TableSortLabel` para ajudar no estilo dos cabeçalhos das colunas.
 
-The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-table-pagination-action) below shows the pagination within the TableFooter.)
+A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para impedir que os controles de paginação rolem, o componente TablePagination é usado fora da tabela. (O [Exemplo 'da ação de paginação personalizada'](#custom-table-pagination-action) abaixo mostra a paginação dentro de TableFooter.)
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Customized Tables
+## Tabelas Customizadas
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a `TableCell`.
+Se você já leu a página de [documentação de sobreposição (Overrides)](/customization/overrides/) mas não se sente confiante em como utilizar, seguem alguns exemplos em como você pode mudar a aparência de uma `TableCell`.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, este exemplo está fora do caminho comum.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
-## Custom Table Pagination Action
+## Ação de paginação de tabela personalizada
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+A propriedade `Action` do componente `TablePagination` permite a implementação de ações customizadas.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Spanning Table
+## Tabela de abrangência
 
-A simple example with spanning rows & columns.
+Um exemplo simples com abrangência de linhas & colunas.
 
 {{"demo": "pages/demos/tables/SpanningTable.js"}}
 
-## Virtualized Table
+## Tabela Virtualizada
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
+No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) com o componente `Table`. São renderizadas 200 linhas e pode facilmente lidar com mais.
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 
-## Complementary projects
+## Projetos Complementares
 
 For more advanced use cases you might be able to take advantage of:
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
-- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Tabelas de dados responsivos para Material-UI com filtro, ordenação, pesquisa e muito mais.
+- [material-table](https://github.com/mbrn/material-table) DataTable baseado no componente table com recursos adicionais como: pesquisa, filtro, ordenação e muito mais.
+- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Tabela Material-UI Virtualizada.

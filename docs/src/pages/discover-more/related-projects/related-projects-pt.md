@@ -11,14 +11,14 @@ Because the scope of problems Material-UI solves is limited, we try to play nice
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
-- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
+- [material-table](https://github.com/mbrn/material-table) DataTable baseado no componente table com recursos adicionais como: pesquisa, filtro, ordenação e muito mais.
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers) A datepicker or timepicker in Material UI Next or can be imported as a clock or calendar component.
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
 - [material-ui-popup-state](https://github.com/jcoreio/material-ui-popup-state) Render props component that manages state for menus, popovers, and poppers, cutting down on boilerplate significantly.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Tabelas de dados responsivos para Material-UI com filtro, ordenação, pesquisa e muito mais.
 - [mui-downshift](https://github.com/techniq/mui-downshift) Thin layer over paypal's downshift to use Material-UI visual components.
 - [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.

@@ -18,9 +18,9 @@
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
-### Demo
+### Demonstração
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternativaly, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
+In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
 
 ```jsx
 import { palette, spacing, typography } from '@material-ui/system';
@@ -45,10 +45,10 @@ const Box = styled.div`${palette}${spacing}${typography}`;
 ### Instalação
 
 ```jsx
-// with npm
+// usando npm
 npm install @material-ui/system
 
-// with yarn
+// usando yarn
 yarn add @material-ui/system
 ```
 
@@ -68,7 +68,7 @@ export default Box;
 This Box component now supports new [spacing properties](/system/spacing/#api) and [color properties](/system/palette/#api). For instance, you can provide a padding property: `p` and a color property: `color`.
 
 ```jsx
-<Box p="1rem" color="grey">Let me some space!</Box>
+<Box p="1rem" color="grey">Give me some space!</Box>
 ```
 
 The component can be styled providing any valid CSS values.
@@ -199,7 +199,7 @@ const theme = {
 <Box p={[2, 3, 4]} />
 
 /**
- * Outputs:
+ * Saídas:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -217,7 +217,7 @@ const theme = {
 <Box p={{ xs: 2, sm: 3, md: 4 }} />
 
 /**
- * Outputs:
+ * Saídas:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -253,7 +253,7 @@ const Box = styled.div`
 />
 
 /**
- * Outputs:
+ * Saídas:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -340,7 +340,7 @@ const variant = style({
   themeKey: 'typography',
 });
 
-// ⚠ Text is already defined in the global context:
+// ⚠ O texto já está definido no contexto global:
 // https://developer.mozilla.org/en-US/docs/Web/API/Text/Text.
 const Text = styled.span`
   font-family: Helvetica;

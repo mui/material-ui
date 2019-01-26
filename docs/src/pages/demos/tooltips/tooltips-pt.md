@@ -31,14 +31,14 @@ If you have been reading the [overrides documentation page](/customization/overr
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  // We spread the properties to the underlying DOM element.
+function MyComponent (props) {
+  // Distribuímos as propriedades para o elemento DOM subjacente.
   return <div {...props}>Bin</div>
 }
 
 // ...
 
-<Tooltip title="Delete">
+<Tooltip title="Excluir">
   <MyComponent>
 </Tooltip>
 ```
@@ -75,7 +75,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
-## Transitions
+## Transições
 
 Use a different transition.
 

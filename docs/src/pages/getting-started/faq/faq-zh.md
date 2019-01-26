@@ -16,7 +16,7 @@
 - 您正在使用`JssProvider`对于**子集**你的React Tree。
 - 您正在使用捆绑器，它以某种方式拆分代码，从而导致创建多个类名生成器实例。 >如果您使用带有[ SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，尝试配置[ `runtimeChunk`在`优化下设置`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
 
-总的来说，通过将每个Material-UI应用程序包含在其组件树 **顶部的 [`JssProvider`](/customization/css-in-js/#jssprovider) 组件并使用它们之间共享的单个类名生成器**，可以很容易地从这个问题中恢复。
+总的来说，通过将每个Material-UI应用程序包含在其组件树 顶部的 [`JssProvider`](/customization/css-in-js/#jssprovider)**组件并使用它们之间共享的单个类名生成器**，可以很容易地从这个问题中恢复。
 
 [分辨率示例](/customization/css-in-js/#jssprovider)。 任何解决方案的最后一部分将根据您使用的Bundler而有所不同，但总体目标是确保包含上述第一个代码段的公共模块仅加载并运行一次。
 

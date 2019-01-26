@@ -2,83 +2,83 @@
 title: Tabs React component
 components: Tabs, Tab
 ---
-# Tabs
+# Tabs (Abas)
 
-<p class="description">Tabs make it easy to explore and switch between different views.</p>
+<p class="description">As guias facilitam a exploração e alternam entre diferentes visualizações.</p>
 
-[Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+[Tabs](https://material.io/design/components/tabs.html) organizam e permitem a navegação entre grupos de conteúdo relacionados o no mesmo nível hierárquico.
 
-## Simple Tabs
+## Guias Simples
 
-A simple example with no frills.
+Um exemplo simples sem frescuras.
 
 {{"demo": "pages/demos/tabs/SimpleTabs.js"}}
 
-### Wrapped Labels
+### Etiquetas embrulhadas
 
-Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
+Os rótulos longos serão agrupados automaticamente nas guias. Se o marcador for muito longo para a guia, ele será excedido e o texto não ficará visível.
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 
-### Disabled Tab
+### Guia desativado
 
 A Tab can be disabled by setting `disabled` property.
 
 {{"demo": "pages/demos/tabs/DisabledTabs.js"}}
 
-## Fixed Tabs
+## Corrigido Tabs
 
-Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
+As guias fixas devem ser usadas com um número limitado de guias e quando o posicionamento consistente ajudar a memória muscular.
 
 ### Full width
 
-The `variant="fullWidth"` property should be used for smaller views. This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
+A propriedade `variant="fullWidth"` deve ser usada em views menores. Esta demo também usa [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) para animar a transição de Guias e permite que estas sejam trocadas ao toque nos dispositivos.
 
 {{"demo": "pages/demos/tabs/FullWidthTabs.js"}}
 
 ### Centered
 
-The `centered` property should be used for larger views.
+A propriedade `centered` deve ser usada para views maiores.
 
 {{"demo": "pages/demos/tabs/CenteredTabs.js"}}
 
-## Scrollable Tabs
+## Guias Roláveis
 
-### Automatic Scroll Buttons
+### Botões de Rolagem Automática
 
-Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
+Botões de rolagem para esquerda e direita serão apresentados automaticamente em dispositivos desktop e ocultados em dispositivos mobile. (baseado na largura de exibição do dispositivo)
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonAuto.js"}}
 
-### Forced Scroll Buttons
+### Botões de Rolagem Forçados
 
-Left and right scroll buttons will be presented regardless of the viewport width.
+Botões de rolagem para esquerda e direita serão apresentados independente da largura de exibição do dispositivo.
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonForce.js"}}
 
-### Prevent Scroll Buttons
+### Oculta Botões de Rolagem
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Botões de rolagem para esquerda e direita nunca serão exibidos. Toda e qualquer rolagem será iniciada através dos mecanismos do navegador do dispositivo (exemplo: arrastar para direita ou esquerda, roda do mouse + shipt, etc.)
 
 {{"demo": "pages/demos/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## Customized Tabs
+## Guias Personalizadas
 
-If you have read the [overrides documentation page](/customization/overrides/) but aren't confident jumping in, here's an example of how you can change the main color of the Tabs.
+Se você leu a [página de abertura da documentação](/customization/overrides/) mas não está confiante para cair dentro, aqui vai um exemplo de como trocar a cor principal das Guias.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, este exemplo está fora do caminho comum.
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 
-## Nav Tabs
+## Guias Nav
 
-By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+Por padrão as guias usam um elemento `button`, mas você pode definir sua própria tag ou seu próprio componente. Aqui vai um exemplo de implementação de guia de navegação:
 
 {{"demo": "pages/demos/tabs/NavTabs.js"}}
 
-## Icon Tabs
+## Guias de ícones
 
-Tab labels may be either all icons or all text.
+Os rótulos de guias podem ser todos os ícones ou todo o texto.
 
 {{"demo": "pages/demos/tabs/IconTabs.js"}}
 

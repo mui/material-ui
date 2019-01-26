@@ -2,7 +2,7 @@
 title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
-# Dialogs
+# Dialogs (Diálogos)
 
 <p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
@@ -53,7 +53,7 @@ Form dialogs allow users to fill out form fields within a dialog. For example, i
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, este exemplo está fora do caminho comum.
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 

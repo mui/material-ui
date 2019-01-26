@@ -112,8 +112,7 @@ export default StyledComponents;
 
 ### 更深层的元素
 
-在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent/1>，
-，你可能会需要影响抽屉的孩子 <code>paper` 元。
+在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent`， ，你可能会需要影响抽屉的孩子 `paper` 元。
 
 但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/customization/css-in-js/#global-css)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
 
@@ -161,7 +160,7 @@ export default StyledComponentsDeep;
 
 材料的UI具有丰富的主题，结构，您可以利用为 的颜色的处理，过渡，媒体查询等。
 
-{{“demo”：“pages / guides / interoperability / StyledComponentsTheme.js”}}
+{{“demo”：“pages/guides/interoperability/StyledComponentsTheme.js”}}
 
 ## CSS Modules
 
@@ -249,7 +248,7 @@ function EmotionCSS() {
 export default EmotionCSS;
 ```
 
-{{“demo”：“pages / guides / interoperability / EmotionCSS.js”，“hideHeader”：true}}
+{{“demo”：“pages/guides/interoperability/EmotionCSS.js”，“hideHeader”：true}}
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
 
@@ -298,8 +297,7 @@ export default EmotionStyled;
 
 ### E. 更深层的元素
 
-在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent/1>，
-，你可能会需要影响抽屉的孩子 <code>paper` 元。
+在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent`， ，你可能会需要影响抽屉的孩子 `paper` 元。
 
 但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/customization/css-in-js/#global-css)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
 

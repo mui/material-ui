@@ -8,7 +8,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 [扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
-> **注意：** 材料设计文档中不再记录</strong>扩展面板。
+> **注意：** 材料设计文档中不再记录扩展面板。
 
 ## 简单的扩展面板
 
