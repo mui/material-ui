@@ -133,7 +133,7 @@ class Tooltip extends React.Component {
       if (this.childrenRef === document.activeElement) {
         this.handleEnter(event);
       }
-    }, 0);
+    });
 
     const childrenProps = this.props.children.props;
     if (childrenProps.onFocus) {
