@@ -30,7 +30,7 @@ import express from 'express';
 import React from 'react';
 import App from './App';
 
-// We are going to fill these out in the sections to follow.
+// Vamos preenchê-las nas seções a seguir.
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -41,7 +41,7 @@ function handleRender(req, res) {
 
 const app = express();
 
-// This is fired every time the server-side receives a request.
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
 app.use(handleRender);
 
 const port = 3000;
@@ -71,13 +71,13 @@ import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
 function handleRender(req, res) {
-  // Create a sheetsRegistry instance.
+  // Crie uma instância de sheetsRegistry.
   const sheetsRegistry = new SheetsRegistry();
 
-  // Create a sheetsManager instance.
+  // Crie uma instância do sheetsManager.
   const sheetsManager = new Map();
 
-  // Create a theme instance.
+  // Crie uma instância do theme.
   const theme = createMuiTheme({
     palette: {
       primary: green,
@@ -86,7 +86,7 @@ function handleRender(req, res) {
     },
   });
 
-  // Create a new class name generator.
+  // Crie um novo gerador de nome de classe.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
@@ -98,10 +98,10 @@ function handleRender(req, res) {
     </JssProvider>
   )
 
-  // Grab the CSS from our sheetsRegistry.
+  // Pegue o CSS do nosso sheetsRegistry.
   const css = sheetsRegistry.toString()
 
-  // Send the rendered page back to the client.
+  // Envie a página renderizada de volta ao cliente.
   res.send(renderFullPage(html, css))
 }
 ```
@@ -117,10 +117,10 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>Material-UI</title>
+        <style id="jss-server-side">${css}</style>
       </head>
       <body>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;
@@ -147,7 +147,7 @@ import red from '@material-ui/core/colors/red';
 import App from './App';
 
 class Main extends React.Component {
-  // Remove the server-side injected CSS.
+  // Remova o CSS injetado no lado do servidor.
   componentDidMount() {
     const jssStyles = document.getElementById('jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
@@ -160,7 +160,7 @@ class Main extends React.Component {
   }
 }
 
-// Create a theme instance.
+// Crie uma instância do tema.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -169,7 +169,7 @@ const theme = createMuiTheme({
   },
 });
 
-// Create a new class name generator.
+// Crie um novo gerador de nome de classe.
 const generateClassName = createGenerateClassName();
 
 ReactDOM.hydrate(
@@ -207,17 +207,17 @@ You can learn more about [the sheets manager concept in the documentation](/cust
 *example of fix:*
 
 ```diff
--// Create a sheetsManager instance.
+- // Cria uma instância do sheetsManager.
 -const sheetsManager = new Map();
 
 function handleRender(req, res) {
 
-+ // Create a sheetsManager instance.
++ // Crie uma instância de sheetsManager.
 + const sheetsManager = new Map();
 
   //…
 
-  // Render the component to a string.
+  // Renderize o componente para uma string.
   const html = ReactDOMServer.renderToString(
 ```
 
@@ -234,17 +234,17 @@ The class names value relies on the concept of [class name generator](/customiza
 *example of fix:*
 
 ```diff
--// Create a new class name generator.
+- // Cria um novo gerador de nome de classe.
 -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
-+ // Create a new class name generator.
++ // Cria um novo gerador de nome de classe.
 + const generateClassName = createGenerateClassName();
 
   //…
 
-  // Render the component to a string.
+  // Renderize o componente para uma string.
   const html = ReactDOMServer.renderToString(
 ```
 

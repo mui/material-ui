@@ -40,7 +40,7 @@ Some snackbars with varying message length.
 
 {{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
 
-## Transitions
+## Transições
 
 ### Consecutive Snackbars
 
@@ -66,7 +66,7 @@ Use a different transition all together.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 
-## Complementary projects
+## Projetos Complementares
 
 For more advanced use cases you might be able to take advantage of:
 

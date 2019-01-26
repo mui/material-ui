@@ -123,7 +123,7 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
-  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  // Definimos um ponto de inserção personalizado que o JSS procurará injetando os estilos no DOM.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -153,7 +153,7 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
-  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  // Definimos um ponto de inserção personalizado que o JSS procurará injetando os estilos no DOM.
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -177,7 +177,7 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
-  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  // Definimos um ponto de inserção personalizado que o JSS procurará injetando os estilos no DOM.
   insertionPoint: 'jss-insertion-point',
 });
 

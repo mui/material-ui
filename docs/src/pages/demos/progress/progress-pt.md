@@ -2,7 +2,7 @@
 title: Progresso
 components: CircularProgress, LinearProgress
 ---
-# Progresso
+# Progress (Progresso)
 
 <p class="description">Os indicadores de progresso expressam um tempo de espera não especificado ou exibem a duração de um processo.</p>
 
@@ -64,12 +64,12 @@ When displaying progress for a sequence of processes, indicate overall progress 
 The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
 
 ```jsx
-// MIN = Minimum expected value
-// MAX = Maximium expected value
-// Function to normalise the values (MIN / MAX could be integrated)
+// MIN = Valor mínimo esperado
+// MAX = Valor esperado Maximium
+// Função para normalizar os valores (MIN / MAX pode ser integrado)
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
 
-// Example component that utilizes the `normalise` function at the point of render.
+// Exemplo de componente que utiliza a função `normalise` no ponto de renderização.
 function Progress(props) {
   return (
     <React.Fragment>

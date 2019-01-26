@@ -7,19 +7,19 @@
 Install the package in your project directory with:
 
 ```sh
-// with npm
+// usando npm
 npm install @material-ui/lab
 
-// with yarn
+// usando yarn
 yarn add @material-ui/lab
 ```
 
 The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
 
 ```sh
-// npm
+// usando npm
 npm install @material-ui/core
 
-// yarn
+// usando yarn
 yarn add @material-ui/core
 ```

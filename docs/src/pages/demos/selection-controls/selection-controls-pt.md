@@ -2,7 +2,7 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Selection Controls
+# Controles de Seleção
 
 <p class="description">Selection controls allow the user to select options.</p>
 
@@ -14,7 +14,7 @@ Three types of selection controls are covered in this section:
 - **[Checkboxes](#checkboxes)** allow the selection of multiple options from a set.
 - **[Switches](#switches)** allow a selection to be turned on or off.
 
-## Radio Buttons
+## Butões de Rádio
 
 [Radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
 
@@ -30,7 +30,7 @@ Radio buttons should have the most commonly used option selected by default.
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
-## Checkboxes
+## Caixas de Seleção
 
 [Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
 
@@ -48,7 +48,7 @@ If you have multiple options appearing in a list, you can preserve space by usin
 
 {{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
-## Switches
+## Opções
 
 [Switches](https://material.io/design/components/selection-controls.html#switches) toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
 
@@ -91,6 +91,6 @@ When a label can't be used, it's necessary to add an attribute directly to the i
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
+  inputProps={{ 'aria-label': 'Caixa de seleção A' } }
 />
 ```

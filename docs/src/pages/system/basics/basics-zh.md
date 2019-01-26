@@ -20,7 +20,7 @@
 
 ### 演示
 
-在剩下的这 *开始* 部分，我们正在使用 **风格的部件** 作为参考的例子(强调的普遍性，这包)。 Alternativaly，你可以 [使用调](#interoperability)的。 该演示，也是基于 **默认** 材料-UI [主题对象](/customization/default-theme/)的。
+在剩下的这 *开始* 部分，我们正在使用 **风格的部件** 作为参考的例子(强调的普遍性，这包)。 Alternatively, you can [use JSS](#interoperability). 该演示，也是基于 **默认** 材料-UI [主题对象](/customization/default-theme/)的。
 
 ```jsx
 进口 { palette, spacing, typography } 从'@材料-ui/系统';
@@ -68,7 +68,7 @@ export default Box;
 这个盒子组件现在支持新 [距性](/system/spacing/#api) 和 [色性](/system/palette/#api)的。 例如，可以提供一种填补财产： `p` 和一个颜色的财产： `色`的。
 
 ```jsx
-<Box p="1rem" color="grey">让我点空间!</Box>
+<Box p="1rem" color="grey">Give me some space!</Box>
 ```
 
 组件可以被风格提供任何有效的CSS值。

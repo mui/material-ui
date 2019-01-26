@@ -26,7 +26,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ## 水平的步进器
 
-可以通过更改一个初始值为0的当前步骤值`activeStep`来控制`Stepper` 使用` orientation </ code>属性设置<code> Stepper </ code>方向。</p>
+可以通过更改一个初始值为0的当前步骤值`activeStep`来控制`Stepper` 使用`orientation`属性设置` Stepper </ code>方向。</p>
 
 <p>使用<code> orientation `属性设置`Step`组件方向。 请注意，您可以在跳过可选步骤时进行管理。 一旦为特定步骤确定了这一点，就必须设置` completed = {false} `以表示即使活动步骤索引超出了可选步骤，它也不会实际完成。
 

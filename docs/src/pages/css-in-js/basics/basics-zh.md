@@ -37,7 +37,7 @@ yarn add @material-ui/styles
 
 ### 迁移`@material-ui/core`用户
 
-要从默认样式实现切换到此最新版本，您需要在导入任何</strong> Material-UI组件之前执行以下代码 **：</p> 
+要从默认样式实现切换到此最新版本，**您需要在导入任何** Material-UI组件之前执行以下代码 ：
 
 ```js
 import { install } from '@material-ui/styles';

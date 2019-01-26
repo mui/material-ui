@@ -22,13 +22,17 @@ WrappedIcon.muiName = 'Icon';
 
 ## 组件属性
 
-Material-UI允许您更改将通过名为 `component`的属性呈现的根节点。 该组件将呈现如下：
+Material-UI allows you to change the root node that will be rendered via a property called `component`.
+
+### How does it work?
+
+The component will render like this:
 
 ```js
 return React.createElement(this.props.component, props)
 ```
 
-例如，默认情况下， `List` 将呈现 `<ul>` 元素。 这可以通过将 [React组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components) 传递给 `component` 属性来更改。 以下示例将使用 `<nav>` 元素作为根节点呈现 `List` 组件：
+For example, by default a `List` component will render a `<ul>` element. 这可以通过将 [React组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components) 传递给 `component` 属性来更改。 The following example will render the `List` component with a `<nav>` element as root node instead:
 
 ```jsx
 <List component="nav">
@@ -41,13 +45,15 @@ return React.createElement(this.props.component, props)
 </List>
 ```
 
-这种模式非常强大，允许很大的灵活性，以及与其他库互操作的方式，例如 `react-router` 或您喜欢的表单库。 但是，这也 **带有一个小的警告！**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as [`react-router`](#react-router-demo) or your favorite forms library. But it also **comes with a small caveat!**
 
-### 注意内联
+### Caveat with inlining
 
-使用内联函数作为 `component` 属性的参数可能会导致 **意外的卸载**，因为每次React呈现时都会将新组件传递给 `component` 属性。 例如，如果要创建充当链接的自定义 `ListItem` ，则可以执行以下操作：
+使用内联函数作为 `component` 属性的参数可能会导致 **意外的卸载**，因为每次React呈现时都会将新组件传递给 `component` 属性。 For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
 
 ```jsx
+import { Link } from 'react-router-dom';
+
 const ListItemLink = ({ icon, primary, secondary, to }) => (
   <li>
     <ListItem button component={props => <Link to={to} {...props} />}>
@@ -58,11 +64,13 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 );
 ```
 
-但是，由于我们使用内联函数来更改呈现的组件，因此每次呈现 `ListItemLink` 时，React都将卸载链接。 不仅React不必要地更新DOM， `ListItem` 的连锁效果也将无法正常工作。
+⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
-解决方案很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 让我们将 `ListItemLink` 更改为以下内容：
+解决方案很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 Let's change our `ListItemLink` to the following:
 
 ```jsx
+import { Link } from 'react-router-dom';
+
 class ListItemLink extends React.Component {
   renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
 
@@ -80,10 +88,26 @@ class ListItemLink extends React.Component {
 }
 ```
 
-`renderLink` 现在将始终引用相同的组件。
+`renderLink` will now always reference the same component.
 
-### React Router
+### Caveat with shorthand
 
-这是一个带有 [React Router](https://github.com/ReactTraining/react-router)的演示：
+You can take advantage of the properties forwarding to simplify the code. In this example, we don't create any intermediary component:
+
+```jsx
+import { Link } from 'react-router-dom';
+
+<ListItem button component={Link} to="/">
+```
+
+⚠️ However, this strategy suffers from a little limitation: properties collision. The component providing the `component` property (e.g. ListItem) might not forward all its properties to the root element (e.g. dense).
+
+### React Router Demo
+
+Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-router):
 
 {{"demo": "pages/guides/composition/ComponentProperty.js"}}
+
+### With TypeScript
+
+You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).

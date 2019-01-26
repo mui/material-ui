@@ -52,11 +52,11 @@ JSS使用插件的概念来扩展其核心，允许人们挑选他们需要的�
 
 - [JSS-插件规则价值功能](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [JSS-插件全局](https://cssinjs.org/jss-plugin-global/)
-- [JSS-插件嵌套](https://cssinjs.org/jss-plugin-nested/)
-- [JSS-插件 - 驼峰](https://cssinjs.org/jss-plugin-camel-case/)
-- [JSS-插件 - 缺省 - 单元](https://cssinjs.org/jss-plugin-default-unit/)
-- [JSS-插件厂商-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
-- [JSS-插件道具排序](https://cssinjs.org/jss-plugin-props-sort/)
+- [jss-plugin-nested](https://cssinjs.org/jss-plugin-nested/)
+- [jss-plugin-camel-case](https://cssinjs.org/jss-plugin-camel-case/)
+- [jss-plugin-default-unit](https://cssinjs.org/jss-plugin-default-unit/)
+- [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
+- [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
 它是[jss-preset-default](https://cssinjs.org/jss-preset-default/)的子集。 当然，你可以自由的添加新插件。 以下是 [jss-rtl](https://github.com/alitaheri/jss-rtl) 插件的示例。
 
@@ -277,7 +277,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase);
 
 ### 如何实现CSP？
 
-为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。 JSS有一个很棒的教程</a>关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
+为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。 JSS有一[个很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
 
 CSP nonce是Base 64编码的字符串。 你可以这样生成一个：
 

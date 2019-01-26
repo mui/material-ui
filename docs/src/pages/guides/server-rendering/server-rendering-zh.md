@@ -117,10 +117,10 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>Material-UI</title>
+        <style id="jss-server-side">${css}</style>
       </head>
       <body>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;
@@ -200,7 +200,7 @@ CSS仅在页面的第一次加载时生成。 然后，服务器上缺少连续�
 
 #### 要采取的行动
 
-我们依赖缓存（工作表管理器），每个组件类型 只注入一次CSS（如果你使用两个按钮，你只需要一次按钮的CSS）。 您需要为每个请求</strong>提供 **个新的 `sheetsManager`。</p> 
+我们依赖缓存（工作表管理器），每个组件类型 只注入一次CSS（如果你使用两个按钮，你只需要一次按钮的CSS）。 您需要为每个请求**提供 **个新的 `sheetsManager`。
 
 您可以了解更多关于 [的文档中的张经理概念](/customization/css-in-js/#sheets-manager)。
 

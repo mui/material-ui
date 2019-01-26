@@ -214,7 +214,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 #### 参数
 
 1. `选项` (*Object* [optional]): 
-    - ` options.withTheme ` (*Boolean* [optional]): Defaults to `false`。 将 ` theme ` 对象作为属性提供给组件。
+    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - `options.noSSR` (*Boolean* [optional]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 用户界面可能会闪烁。 如果不进行服务器端渲染，可以将此标志设置为 `true`。
     - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint，我们还可以在主题上使用 [`自定义属性`](/customization/themes/#properties) 全局设置初始宽度 。 为了设置initialWidth，我们需要传递一个具有以下形状的自定义属性：
 

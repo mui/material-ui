@@ -18,6 +18,14 @@ components: Select, NativeSelect
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
+## Customized selects
+
+如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
+
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+
+{{"demo": "pages/demos/selects/CustomizedSelects.js"}}
+
 ## 多选
 
 `Select`组件可以处理多个选择，可以使用`multiple` 属性启用

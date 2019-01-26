@@ -77,7 +77,7 @@ export default withStyles(styles)(MyComponent);
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
 2. `选项` (*Object* [optional]): 
     - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-    - ` options.withTheme ` (*Boolean* [optional]): Defaults to `false`。 将 ` theme ` 对象作为属性提供给组件。
+    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
     - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
     - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
@@ -113,7 +113,7 @@ export default function MyComponent() {
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
 2. `选项` (*Object* [optional]): 
     - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-    - ` options.withTheme ` (*Boolean* [optional]): Defaults to `false`。 将 ` theme ` 对象作为属性提供给组件。
+    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
     - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
     - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
@@ -218,7 +218,7 @@ export default function MyComponent() {
 1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
 2. `选项` (*Object* [optional]): 
     - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-    - ` options.withTheme ` (*Boolean* [optional]): Defaults to `false`。 将 ` theme ` 对象作为属性提供给组件。
+    - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
     - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
     - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。

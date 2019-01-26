@@ -28,7 +28,7 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
-const accent = purple.A200; // #E040FB (alternative method)
+const accent = purple.A200; // #E040FB (método alternativo)
 ```
 
 ### Color palette

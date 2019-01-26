@@ -5,7 +5,7 @@ title: Box React组件
 
 <p class="description">Box组件充当大多数CSS实用程序需求的包装器组件。</p>
 
-所述盒组件包 [的所有样式的功能](/system/basics/#all-inclusive) 被暴露在 `@材料-UI /系统`。 它是使用 `@material-ui/styles`的 [`styled()`](/css-in-js/api/#styled-style-function-component) 函数创建的。
+所述盒组件包 [的所有样式的功能](/system/basics/#all-inclusive) 被暴露在 `@material-ui/system`。 它是使用 `@material-ui/styles`的 [`styled()`](/css-in-js/api/#styled-style-function-component) 函数创建的。
 
 > ⚠️“unstable_”API可能会在任何版本中发生变化而不尊重semver。
 

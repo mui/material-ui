@@ -1,10 +1,10 @@
 # Borders
 
-<p class="description">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
+<p class="description">Use os utilitários de borda para rapidamente estilizar "border" e "border-radius" de um elemento. Ótimo para imagens, botões ou qualquer outro elemento.</p>
 
 ## Border
 
-Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.
+Use os utilitários de borda para adicionar ou remover as bordas de um elemento. Escolha para todas as bordas ou separadamente.
 
 ### Additive
 

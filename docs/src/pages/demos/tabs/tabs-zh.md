@@ -72,14 +72,14 @@ components: Tabs, Tab
 
 ## 导航选项卡
 
-默认情况下，选项卡使用 button </ code>元素，但您可以提供自己的自定义标记或组件。 以下是实现选项卡式导航的示例：</p>
+默认情况下，选项卡使用`button`元素，但您可以提供自己的自定义标记或组件。 以下是实现选项卡式导航的示例：
 
-<p>{{"demo": "pages/demos/tabs/NavTabs.js"}}</p>
+{{"demo": "pages/demos/tabs/NavTabs.js"}}
 
-<h2>图标选项卡</h2>
+## 图标选项卡
 
-<p>标签标签可以是所有图标或全文。</p>
+标签标签可以是所有图标或全文。
 
-<p>{{"demo": "pages/demos/tabs/IconTabs.js"}}</p>
+{{"demo": "pages/demos/tabs/IconTabs.js"}}
 
-<p>{{"demo": "pages/demos/tabs/IconLabelTabs.js"}}</p>
+{{"demo": "pages/demos/tabs/IconLabelTabs.js"}}
