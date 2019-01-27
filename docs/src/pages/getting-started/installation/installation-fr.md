@@ -48,7 +48,7 @@ Sinon, si vous utilisez JSX sur HTML pour rendre la tête:
 
 ## Icônes SVG
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+Pour utiliser des icônes Material SVG prédéfinies, telles que celles trouvées dans [les démos de composants](/demos/app-bar/) vous devez d’abord installer le paquet [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
 npm install @material-ui/icons
@@ -56,13 +56,13 @@ npm install @material-ui/icons
 
 ## CDN
 
-You can start using Material-UI with minimal Front-end infrastructure, which is great for prototyping. We discourage using this approach in production though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilisation.
+Vous pouvez commencer à utiliser Material-UI avec une infrastructure frontale minimale, idéale pour le prototypage. Nous déconseillons toutefois d'utiliser cette approche en production - le client doit télécharger la bibliothèque entière, quels que soient les composants réellement utilisés, qui affecte les performances et l'utilisation de la bande passante.
 
 #### Versions UMD
 
 Nous fournissons deux fichiers UMD (Universal Module Definition):
 
-- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- un pour le développement: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- un pour la production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
 Vous pouvez suivre [cet exemple CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) pour commencer rapidement.
