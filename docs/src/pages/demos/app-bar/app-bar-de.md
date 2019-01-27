@@ -4,40 +4,40 @@ components: AppBar, Toolbar, Menu
 ---
 # App Bar
 
-<p class="description">The App Bar displays information and actions relating to the current screen.</p>
+<p class="description">In der App-Bar werden Informationen und Aktionen angezeigt, die sich auf den aktuellen Bildschirm beziehen.</p>
 
-The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+Die [Top-App Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. Es wird für Branding, Bildschirmtitel, Navigation und Aktionen verwendet.
 
-It can transform into a contextual action bar or used as a navbar.
+Es kann sich in eine kontextabhängige Aktionsleiste verwandeln oder als Navigationsleiste verwendet werden.
 
-## App Bar with buttons
+## App Bar mit Tasten
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## Simple App Bar
+## Einfache App Bar
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with a primary search field
+## App-Bar mit einem Hauptsuchfeld
 
 A primary searchbar.
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## App Bar mit Menü
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## App Bar mit Suchfeld
 
-A side searchbar.
+Ein seitliches Suchfeld.
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Verdichtet (nur für Desktop)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## Untere App Bar
 
 {{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}
