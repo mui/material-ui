@@ -243,7 +243,7 @@ class TouchRipple extends React.PureComponent {
       this.startTimerCommit = null;
       this.startTimer = setTimeout(() => {
         this.stop(event, cb);
-      }, 0);
+      });
       return;
     }
 

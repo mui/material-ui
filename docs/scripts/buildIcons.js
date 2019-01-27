@@ -30,5 +30,5 @@ Promise.all(promises).catch(err => {
   setTimeout(() => {
     console.log(err);
     throw err;
-  }, 0);
+  });
 });

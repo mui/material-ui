@@ -53,7 +53,7 @@ class DelayingAppearance extends React.Component {
       this.setState({
         query: 'success',
       });
-    }, 2e3);
+    }, 2000);
   };
 
   render() {
