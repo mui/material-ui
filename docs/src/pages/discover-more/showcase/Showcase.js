@@ -46,26 +46,19 @@ function byTitle(a, b) {
   return a.title.localeCompare(b.title);
 }
 
-function byVisits(a, b) {
-  if (!b.similarWebVisits) {
-    return -1;
-  }
-  return a.similarWebVisits ? b.similarWebVisits - a.similarWebVisits : 1;
+// Returns a function that sorts reverse numerically by value of `key`
+function sortFactory(key) {
+  return function sortNumeric(a, b) {
+    if (!b[key]) {
+      return -1;
+    }
+    return a[key] ? b[key] - a[key] : 1;
+  };
 }
 
-function byStars(a, b) {
-  if (!b.stars) {
-    return -1;
-  }
-  return a.stars ? b.stars - a.stars : 1;
-}
-
-function byNewest(a, b) {
-  if (!b.index) {
-    return -1;
-  }
-  return a.index ? b.index - a.index : 1;
-}
+const byNewest = sortFactory('index');
+const byVisits = sortFactory('similarWebVisits');
+const byStars = sortFactory('stars');
 
 function Showcase(props) {
   const { classes } = props;
