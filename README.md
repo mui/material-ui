@@ -148,9 +148,29 @@ The future plans and high priority features and enhancements can be found in the
 
 ## Thanks
 
+Material-UI is only made possible thanks to these great services that sponsor our core infrastructure:
+
+- GitHub allows us to host the Git repository
+
+[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="120">](https://github.com/)
+
+- CircleCI allows us to run the test suite
+
+[<img src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" width="120">](https://circleci.com/)
+
+- Netfliy allows us to distribute the documentation
+
+[<img src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
+
+- Crowdin allows us to translate the documentation
+
+[<img src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
+
+- BrowserStack allows us to test in real browsers
+
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
 
-Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test in real browsers.
+- CodeCov allows us to monitor the test coverage
 
 ## License
 
