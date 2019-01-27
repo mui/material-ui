@@ -162,7 +162,7 @@ Material-UI was only made possible thanks to these great services that are spons
 
 [<img src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
 
-- Crowdin allows us to translation the documentation
+- Crowdin allows us to translate the documentation
 
 [<img src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
 
