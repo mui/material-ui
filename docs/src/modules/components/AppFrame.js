@@ -51,22 +51,22 @@ const languages = [
     code: 'zh',
     text: '🇨🇳 中文',
   },
-  // {
-  //   code: 'ru',
-  //   text: '🇷🇺 Русский',
-  // },
-  // {
-  //   code: 'pt',
-  //   text: '🇧🇷 Português',
-  // },
-  // {
-  //   code: 'fr',
-  //   text: '🇫🇷 Français',
-  // },
-  // {
-  //   code: 'es',
-  //   text: '🇪🇸 Español',
-  // },
+  {
+    code: 'ru',
+    text: '🇷🇺 Русский',
+  },
+  {
+    code: 'pt',
+    text: '🇧🇷 Português',
+  },
+  {
+    code: 'fr',
+    text: '🇫🇷 Français',
+  },
+  {
+    code: 'es',
+    text: '🇪🇸 Español',
+  },
   // {
   //   code: 'de',
   //   text: '🇩🇪 Deutsch',
@@ -228,6 +228,7 @@ class AppFrame extends React.Component {
                   >
                     {languages.map(language => (
                       <MenuItem
+                        key={language.code}
                         selected={userLanguage === language.code}
                         onClick={this.handleLanguageMenuItemClick(language.code)}
                       >
