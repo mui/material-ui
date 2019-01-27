@@ -2,88 +2,88 @@
 title: Button React component
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
-# Buttons
+# Кнопки
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
 
-[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+[Кнопки](https://material.io/design/components/buttons.html) сообщают о действиях, которые могут выполнять пользователи. Они обычно размещаются в вашем интерфейсе, например:
 
 - Dialogs
-- Modal windows
-- Forms
-- Cards
-- Toolbars
+- Всплывающие окно
+- Формы
+- Карты
+- Панели инструментов
 
-## Contained Buttons
+## Блочные кнопки
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.
+[Блочные кнопки](https://material.io/design/components/buttons.html#contained-button) имеют высокий акцент, отличаются использованием возвышения и заполнения. Они содержат действия, которые являются основными для вашего приложения.
 
-The last example of this demo show how to use an upload button.
+Этот пример показывает, как использовать кнопку загрузки.
 
 {{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
-## Text Buttons
+## Текстовые кнопки
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) are typically used for less-pronounced actions, including those located:
+[Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее выраженных действий, в том числе расположенных:
 
-- In dialogs
-- In cards
+- В диалогах
+- В cards
 
-In cards, text buttons help maintain an emphasis on card content.
+В Cards текстовые кнопки помогают сохранить акцент на содержании карточки.
 
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
-## Outlined Buttons
+## Контурные кнопки
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+[Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. Они содержат действия, которые важны, но не являются основными действиеми в приложении.
 
-### Alternatives
+### Альтернатива
 
-Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
+Выделенные кнопки также являются альтернативой выделенным кнопкам или более высокая альтернатива текстовым кнопкам.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## Floating Action Buttons
+## Плавающие кнопки действий
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended.
+[Плавающие кнопки действий](https://material.io/design/components/buttons-floating-action-button.html) выполняет основное или наиболее распространенное действие на экране. Они отображаются над всем содержимым экрана, обычно в виде круглой формы со значком в центре. FABs бывают двух типов: обычные и расширенные.
 
-Only use a FAB if it is the most suitable way to present a screen’s primary action.
+Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана.
 
-Only one floating action button is recommended per screen to represent the most common action.
+Для отображения наиболее распространенных действий рекомендуется использовать только одну кнопку с плавающим действием.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
 
-The floating action button animates onto the screen as an expanding piece of material, by default.
+По умолчанию анимация кнопки с плавающим действием на экране является expanding.
 
-A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes.
+Кнопка с плавающим действием, которая охватывает несколько боковых экранов (например, экраны с вкладками), должна анимироватьза при пререходах.
 
-The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's animation to finish before the new one enters.
+Переход Zoom может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироватьза постепенно.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
-## Sizes
+## Размеры
 
-Fancy larger or smaller buttons? Use the `size` property.
+Хотите изменить размеры? Используйте параметр `size`.
 
 {{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Кнопки с иконками и текстом
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Иногда вы можете захотеть добавить текст для определенной кнопки, чтобы улучшить UX, поскольку мы распознаем логотипы легче, чем обычный текст. Например, если у вас есть кнопка удаления, вы можете пометить ее значком мусорной корзины.
 
 {{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Кнопки с иконками
 
-Icon buttons are commonly found in app bars and toolbars.
+Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
 Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
-## Customized Buttons
+## Индивидуальные кнопки
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the main color of a Button using classes, and using a theme; and of a Bootstrap style Button.
+Если вы читали [overrides documentation page](/customization/overrides/) но вы не уверены, вот примеры того, как вы можете изменить основной цвет кнопки, используя классы, и используя тему; и кнопки в стиле Bootstrap.
 
 ⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
