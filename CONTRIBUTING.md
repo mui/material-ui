@@ -5,6 +5,38 @@ The following is a set of guidelines for contributing to material-ui-pickers. Th
 guidelines is to maintain a high quality of code *and* traceability. Please respect these 
 guidelines.
 
+
+## Setting up
+Please make sure that we are using `develop` branch for active development. So your branches must be created from *develop* and not from the ~~master~~. Here is a short step-by-step guide how to get started
+
+1. Fork the material-ui-pickers repository on Github
+2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui-pickers.git`
+3. Checkout develop `git checkout develop`
+4. Create a branch `git checkout -b feature/my-topic-branch`
+5. Make your changes, lint, run tests, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.
+6. Visit GitHub and make your pull request.
+
+If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
+```sh
+git remote add upstream git@github.com:dmtrKovalenko/material-ui-pickers.git
+git checkout develop
+git pull upstream develop
+git checkout -b my-topic-branch
+```
+
+## Dev environment
+We are using lerna for development environment so it should be enough to make 
+```sh
+npm install
+npm start
+```
+
+To start development environment and be sure the `lib` folder is linked properly to the `docs` and your changes will be applied to the docs website. If you faced some problems with symlinking please do the following:
+```sh
+npx lerna clean
+npx lerna bootstrap
+```
+
 ## General
 This repository use tests and a linter as automatic tools to maintain the quality of the code. 
 These two tasks are run locally on your machine before every commit (as a pre-commit git hook), 
