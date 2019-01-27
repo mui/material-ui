@@ -34,15 +34,17 @@ class Portal extends React.Component {
     ) {
       this.setMountNode(this.props.container);
 
-      clearTimeout(this.renderedTimer);
-      // This might be triggered earlier than the componentDidUpdate of a child
-      // We need to account for this.
-      this.renderedTimer = setTimeout(() => {
-        // Only rerender if needed
-        if (!this.props.disablePortal) {
-          this.forceUpdate(this.props.onRendered);
-        }
-      });
+      // Only rerender if needed
+      if (!this.props.disablePortal) {
+        this.forceUpdate(() => {
+          if (this.props.onRendered) {
+            // This might be triggered earlier than the componentDidUpdate of a parent element.
+            // We need to account for it.
+            clearTimeout(this.renderedTimer);
+            this.renderedTimer = setTimeout(this.props.onRendered);
+          }
+        });
+      }
     }
   }
 
