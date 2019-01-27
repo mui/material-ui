@@ -230,7 +230,10 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - checkout
+      - checkout:
+          filters:
+            branches:
+              ignore: l10n
       - test_unit:
           requires:
             - checkout
