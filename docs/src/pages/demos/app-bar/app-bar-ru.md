@@ -2,35 +2,35 @@
 title: App Bar React component
 components: AppBar, Toolbar, Menu
 ---
-# App Bar
+# Панель навигации
 
-<p class="description">The App Bar displays information and actions relating to the current screen.</p>
+<p class="description">Панель навигации отображает информацию и действия, относящиеся к текущему экрану.</p>
 
-The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Он используется для брендинга, заголовков экрана, навигации и действий.
 
-It can transform into a contextual action bar or used as a navbar.
+Может трансформироваться в контекстную панель действий или использоваться в качестве панели навигации.
 
-## App Bar with buttons
+## Панель навигации с кнопками
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## Simple App Bar
+## Простая панель навигации
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with a primary search field
+## Панель навигации с основным полем поиска
 
-A primary searchbar.
+Основная панель поиска.
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## Панель навигации с меню
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## Панель навигации с полем для поиска
 
-A side searchbar.
+Боковая панель поиска.
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
@@ -38,6 +38,6 @@ A side searchbar.
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## Нижняя панели навигации
 
 {{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}
