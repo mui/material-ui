@@ -148,7 +148,7 @@ The future plans and high priority features and enhancements can be found in the
 
 ## Thanks
 
-Material-UI was only made possible thanks to these great services that are sponsoring our code infrastructure:
+Material-UI is only made possible thanks to these great services that sponsor our core infrastructure:
 
 - GitHub allows us to host the Git repository
 
