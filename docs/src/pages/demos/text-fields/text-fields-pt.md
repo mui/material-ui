@@ -24,7 +24,7 @@ O componente wrapper `TextField` é um controle de formulário completo, incluin
 
 ## Filled
 
-`TextField` supports filled styling.
+`TextField` suporta estilo preenchido.
 
 {{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
 
@@ -60,7 +60,7 @@ Customization does not stop at CSS, you can use composition to build custom comp
 
 ### Com icon
 
-Icons can be specified as prepended or appended.
+Os ícones podem ser especificados como anexados ou anexados.
 
 {{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
 

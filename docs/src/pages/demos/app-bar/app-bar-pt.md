@@ -34,7 +34,7 @@ Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Densa (apenas para desktop)
+## Denso (apenas para desktop)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
