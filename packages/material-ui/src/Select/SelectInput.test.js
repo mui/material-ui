@@ -438,7 +438,7 @@ describe('<SelectInput />', () => {
   describe('prop: name', () => {
     it('should have no id when name is not provided', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} />);
-      assert.isUndefined(wrapper.find('.select').props().id);
+      assert.strictEqual(wrapper.find('.select').props().id, undefined);
     });
 
     it('should have select-`name` id when name is provided', () => {
