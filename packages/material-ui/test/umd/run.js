@@ -79,7 +79,10 @@ async function startBrowser() {
     msg: 'start',
   });
   const browser = await puppeteer.launch({
-    args: ['--single-process'],
+    args: [
+      '--single-process', // Solve mono-thread issue on CircleCI
+      '--disable-web-security', // Solve weird crossorigin anonymous issue on CircleCI
+    ],
   });
   const page = await browser.newPage();
   page.on('pageerror', err => {
