@@ -41,6 +41,7 @@ describe('e2e - DatePicker', () => {
       .find('ToolbarButton')
       .first()
       .simulate('click');
+
     expect(component.find('Year').length).toBe(201);
 
     component

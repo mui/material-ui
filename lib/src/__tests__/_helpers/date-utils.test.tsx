@@ -20,8 +20,8 @@ describe('findClosestEnabledDate', () => {
   it('Should return given date if it is enabled', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: () => false,
       disableFuture: false,
@@ -33,8 +33,8 @@ describe('findClosestEnabledDate', () => {
   it('Should return next 18th going from 10th', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2018-08-10'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: only18th,
       disableFuture: false,
@@ -46,8 +46,8 @@ describe('findClosestEnabledDate', () => {
   it('Should return previous 18th going from 1st', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2018-08-01'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: only18th,
       disableFuture: false,
@@ -60,8 +60,8 @@ describe('findClosestEnabledDate', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: only18th,
       disableFuture: false,
@@ -76,8 +76,8 @@ describe('findClosestEnabledDate', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2099-01-01'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: only18th,
       disableFuture: true,
@@ -92,8 +92,8 @@ describe('findClosestEnabledDate', () => {
     const today = utilsToUse.startOfDay(utilsToUse.date());
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: () => false,
       disableFuture: true,
@@ -106,8 +106,8 @@ describe('findClosestEnabledDate', () => {
     const today = utilsToUse.date();
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
-      minDate: '1900-01-01',
-      maxDate: '2100-01-01',
+      minDate: new Date('1900-01-01'),
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: date => utilsToUse.isSameDay(date, today),
       disableFuture: true,
@@ -120,7 +120,7 @@ describe('findClosestEnabledDate', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
       minDate: '2018-08-18',
-      maxDate: '2100-01-01',
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: only18th,
       disableFuture: false,
@@ -133,7 +133,7 @@ describe('findClosestEnabledDate', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
       minDate: '2018-08-01',
-      maxDate: '2100-01-01',
+      maxDate: new Date('2100-01-01'),
       utils: utilsToUse,
       shouldDisableDate: only18th,
       disableFuture: false,
@@ -145,7 +145,7 @@ describe('findClosestEnabledDate', () => {
   it('Should return maxDate if it is before the date and valid', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2050-01-01'),
-      minDate: '1900-01-01',
+      minDate: new Date('1900-01-01'),
       maxDate: '2018-07-18',
       utils: utilsToUse,
       shouldDisableDate: only18th,
@@ -158,7 +158,7 @@ describe('findClosestEnabledDate', () => {
   it('Should return previous 18th before maxDate', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2050-01-01'),
-      minDate: '1900-01-01',
+      minDate: new Date('1900-01-01'),
       maxDate: '2018-08-17',
       utils: utilsToUse,
       shouldDisableDate: only18th,

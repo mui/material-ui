@@ -32,7 +32,7 @@ class CustomDateTimePicker extends PureComponent {
             autoSubmit={false}
             allowKeyboardControl={false}
             disableFuture
-            minDate="2018-01-01"
+            minDate={new Date('2018-01-01')}
             value={selectedDate}
             onChange={this.handleDateChange}
             helperText="Hardcoded helper text"
@@ -60,7 +60,7 @@ class CustomDateTimePicker extends PureComponent {
             onChange={this.handleDateChange}
             format={this.props.getFormatString({
               moment: 'YYYY/MM/DD hh:mm A',
-              dateFns: 'yyyy/MM/dd hh:mm A',
+              dateFns: 'yyyy/MM/dd hh:mm a',
             })}
             disableOpenOnEnter
             mask={[

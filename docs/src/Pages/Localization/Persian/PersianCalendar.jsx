@@ -10,20 +10,18 @@ const PersianCalendar = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      <p key="persian-desc">
-        Make sure you have read the{' '}
-        <a href="https://material-ui-next.com/guides/right-to-left/">right to left section</a> of
-        the material-ui documentation page before proceeding.
-      </p>
+      Make sure you have read the{' '}
+      <a href="https://material-ui-next.com/guides/right-to-left/">right to left section</a> of the
+      material-ui documentation page before proceeding.
     </Typography>
 
     <Typography variant="body1" gutterBottom>
       You will also need to install the
-      <code> material-ui-pickers-jalali-utils </code>
+      <code> @date-io/jalaali </code>
       package from npm.
     </Typography>
 
-    <Code text="npm install material-ui-pickers-jalali-utils" />
+    <Code text="npm install @date-io/jalaali" />
 
     <SourcablePanel
       title="Samples"

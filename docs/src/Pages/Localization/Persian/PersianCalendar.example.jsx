@@ -8,7 +8,7 @@ import {
   DatePicker,
   MuiPickersUtilsProvider,
 } from 'material-ui-pickers';
-import JalaliUtils from 'material-ui-pickers-jalali-utils';
+import JalaliUtils from '@date-io/jalaali';
 
 jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 

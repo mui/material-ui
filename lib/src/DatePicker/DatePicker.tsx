@@ -45,8 +45,8 @@ export class DatePicker extends React.PureComponent<DatePickerProps & WithUtilsP
   };
 
   public static defaultProps = {
-    minDate: '1900-01-01',
-    maxDate: '2100-01-01',
+    minDate: new Date('1900-01-01'),
+    maxDate: new Date('2100-01-01'),
     openToYearSelection: false,
   };
 
