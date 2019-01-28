@@ -7,6 +7,7 @@ async function handleClick(event) {
   // Ignore non link clicks
   if (
     activeElement.nodeName !== 'A' ||
+    activeElement.getAttribute('target') === '_blank' ||
     activeElement.getAttribute('data-next') === 'true' ||
     activeElement.getAttribute('href').indexOf('/') !== 0
   ) {
