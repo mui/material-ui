@@ -296,7 +296,7 @@ class SelectInput extends React.Component {
           onClick={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
           // The id can help with end-to-end testing automation.
-          id={`select-${name || ''}`}
+          id={name ? `select-${name}` : undefined}
           {...SelectDisplayProps}
         >
           {/* So the vertical align positioning algorithm kicks in. */}

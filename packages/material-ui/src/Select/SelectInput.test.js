@@ -434,4 +434,16 @@ describe('<SelectInput />', () => {
       assert.strictEqual(onFocus.called, true);
     });
   });
+
+  describe('prop: name', () => {
+    it('should have no id when name is not provided', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} />);
+      assert.strictEqual(wrapper.find('.select').props().id, undefined);
+    });
+
+    it('should have select-`name` id when name is provided', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} name="foo" />);
+      assert.strictEqual(wrapper.find('.select').props().id, 'select-foo');
+    });
+  });
 });
