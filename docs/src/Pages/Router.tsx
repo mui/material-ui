@@ -16,6 +16,7 @@ import Usage from './GettingStarted/Usage';
 import ParsingDates from './GettingStarted/ParsingDates';
 import Landing from '../Landing/Landing';
 import Formik from './Guides/Formik';
+import { Regression } from './Regression/Regression';
 
 export default () => (
   <Switch>
@@ -37,5 +38,7 @@ export default () => (
     <Route path="/installation" component={Installation} />
     <Route path="/usage" component={Usage} />
     <Route path="/parsing" component={ParsingDates} />
+
+    <Route path="/regression" component={Regression} />
   </Switch>
 );

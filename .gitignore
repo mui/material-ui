@@ -18,6 +18,7 @@ coverage
 
 # Optional npm cache directory
 .npm
+cypress
 
 # Optional eslint cache
 .eslintcache

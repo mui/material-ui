@@ -3,7 +3,7 @@ import { DatePicker } from 'material-ui-pickers';
 
 export default class BasicDatePicker extends PureComponent {
   state = {
-    selectedDate: '2018-01-01T00:00:00.000Z',
+    selectedDate: new Date(),
   };
 
   handleDateChange = date => {
@@ -30,7 +30,6 @@ export default class BasicDatePicker extends PureComponent {
             label="Clearable"
             clearable
             disableFuture
-            maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
           />
@@ -40,7 +39,6 @@ export default class BasicDatePicker extends PureComponent {
           <DatePicker
             label="With today button"
             showTodayButton
-            maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
           />

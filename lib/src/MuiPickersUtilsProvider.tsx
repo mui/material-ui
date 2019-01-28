@@ -1,8 +1,11 @@
+import { IUtils } from '@date-io/core/IUtils';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { MaterialUiPickersDate } from './typings/date';
 
-const { Consumer, Provider } = React.createContext(null as any);
-export const MuiPickersContextConsumer = Consumer;
+export const MuiPickersContext = React.createContext<IUtils<MaterialUiPickersDate> | null>(null);
+// TODO remove in v3.0
+export const MuiPickersContextConsumer = MuiPickersContext.Consumer;
 
 export interface MuiPickersUtilsProviderProps {
   utils: any;
@@ -37,6 +40,6 @@ export default class MuiPickersUtilsProvider extends React.Component<MuiPickersU
   };
 
   public render() {
-    return <Provider value={this.state.utils} children={this.props.children} />;
+    return <MuiPickersContext.Provider value={this.state.utils} children={this.props.children} />;
   }
 }

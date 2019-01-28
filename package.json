@@ -14,7 +14,9 @@
     "release": "lerna run release --scope --parallel material-ui-pickers && lerna run deploy --scope --parallel docs",
     "release:patch": "npm run bump:patch && npm run release",
     "release:minor": "npm run bump:minor && npm run release",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "e2e:open": "cypress open",
+    "e2e:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -43,5 +45,9 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "cypress": "^3.1.4",
+    "wait-on": "^3.2.0"
   }
 }

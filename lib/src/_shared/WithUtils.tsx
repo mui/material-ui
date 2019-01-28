@@ -1,7 +1,7 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { Omit } from '@material-ui/core';
 import * as React from 'react';
-import { MuiPickersContextConsumer } from '../MuiPickersUtilsProvider';
+import { MuiPickersContext } from '../MuiPickersUtilsProvider';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export interface WithUtilsProps {
@@ -19,12 +19,12 @@ const checkUtils = (utils: IUtils<MaterialUiPickersDate> | null | undefined) => 
 
 export const withUtils = () => <P extends WithUtilsProps>(Component: React.ComponentType<P>) => {
   const WithUtils: React.SFC<Omit<P, keyof WithUtilsProps>> = props => (
-    <MuiPickersContextConsumer>
+    <MuiPickersContext.Consumer>
       {utils => {
         checkUtils(utils);
         return <Component utils={utils} {...props as any} />;
       }}
-    </MuiPickersContextConsumer>
+    </MuiPickersContext.Consumer>
   );
 
   WithUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
