@@ -20,7 +20,9 @@ function FormDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Open form dialog</Button>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open form dialog
+      </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
         <DialogContent>

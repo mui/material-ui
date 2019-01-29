@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -57,6 +58,9 @@ describe('<InputLabel />', () => {
           </FormControlContext.Provider>
         );
       }
+      Provider.propTypes = {
+        context: PropTypes.object,
+      };
 
       wrapper = mount(<Provider />);
     });

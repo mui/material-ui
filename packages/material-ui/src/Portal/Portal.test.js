@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
+import PropTypes from 'prop-types';
 import { createMount, createRender } from '@material-ui/core/test-utils';
 import Portal from './Portal';
 import Select from '../Select';
@@ -185,7 +186,7 @@ describe('<Portal />', () => {
       assert.strictEqual(container.querySelectorAll('#test2').length, 1);
     });
 
-    it('should change container on prop change', () => {
+    it('should change container on prop change', done => {
       class ContainerTest extends React.Component {
         state = {
           container: null,
@@ -211,7 +212,10 @@ describe('<Portal />', () => {
 
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY');
       wrapper.setState({ container: wrapper.instance().containerRef });
-      assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
+      setTimeout(() => {
+        assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
+        done();
+      });
     });
 
     it('should call onRendered', () => {
@@ -222,6 +226,53 @@ describe('<Portal />', () => {
         </Portal>,
       );
       assert.strictEqual(handleRendered.callCount, 1);
+    });
+  });
+
+  it('should call onRendered after child componentDidUpdate', done => {
+    class Test extends React.Component {
+      componentDidUpdate(prevProps) {
+        if (prevProps.container !== this.props.container) {
+          this.props.updateFunction();
+        }
+      }
+
+      render() {
+        return (
+          <Portal onRendered={this.props.onRendered} container={this.props.container}>
+            <div />
+          </Portal>
+        );
+      }
+    }
+    Test.propTypes = {
+      container: PropTypes.object,
+      onRendered: PropTypes.func,
+      updateFunction: PropTypes.func,
+    };
+
+    const callOrder = [];
+    const onRendered = () => {
+      callOrder.push('onRendered');
+    };
+    const updateFunction = () => {
+      callOrder.push('cDU');
+    };
+
+    const container1 = document.createElement('div');
+    const container2 = document.createElement('div');
+
+    const wrapper = mount(
+      <Test onRendered={onRendered} updateFunction={updateFunction} container={container1} />,
+    );
+
+    wrapper.setProps({ container: null });
+    wrapper.setProps({ container: container2 });
+    wrapper.setProps({ container: null });
+
+    setTimeout(() => {
+      assert.deepEqual(callOrder, ['onRendered', 'cDU', 'cDU', 'cDU', 'onRendered']);
+      done();
     });
   });
 });

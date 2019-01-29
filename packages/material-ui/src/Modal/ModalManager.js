@@ -21,12 +21,14 @@ function getPaddingRight(node) {
 }
 
 function setContainerStyle(data) {
-  const style = { overflow: 'hidden' };
-
   // We are only interested in the actual `style` here because we will override it.
   data.style = {
     overflow: data.container.style.overflow,
     paddingRight: data.container.style.paddingRight,
+  };
+
+  const style = {
+    overflow: 'hidden',
   };
 
   if (data.overflowing) {

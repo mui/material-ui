@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
-import keycode from 'keycode';
 import Downshift from 'downshift';
 import { makeStyles } from '@material-ui/styles';
 import TextField from '@material-ui/core/TextField';
@@ -116,7 +115,7 @@ function DownshiftMultiple(props) {
   const [selectedItem, setSelectedItem] = React.useState([]);
 
   function handleKeyDown(event) {
-    if (selectedItem.length && !inputValue.length && keycode(event) === 'backspace') {
+    if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
       setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
     }
   }

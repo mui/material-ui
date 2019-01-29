@@ -48,6 +48,9 @@ class ThemeDefault extends React.Component {
     const { checked, expandPaths } = this.state;
 
     const theme = createMuiTheme({
+      typography: {
+        useNextVariants: true,
+      },
       palette: {
         type: docsTheme.palette.type,
       },

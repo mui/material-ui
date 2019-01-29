@@ -46,26 +46,23 @@ function unstable_useMediaQuery(queryInput, options = {}) {
 
   const [matches, setMatches] = React.useState(defaultMatches);
 
-  React.useEffect(
-    () => {
-      hydrationCompleted = true;
+  React.useEffect(() => {
+    hydrationCompleted = true;
 
-      const queryList = window.matchMedia(query);
-      if (matches !== queryList.matches) {
-        setMatches(queryList.matches);
-      }
+    const queryList = window.matchMedia(query);
+    if (matches !== queryList.matches) {
+      setMatches(queryList.matches);
+    }
 
-      function handleMatchesChange(event) {
-        setMatches(event.matches);
-      }
+    function handleMatchesChange(event) {
+      setMatches(event.matches);
+    }
 
-      queryList.addListener(handleMatchesChange);
-      return () => {
-        queryList.removeListener(handleMatchesChange);
-      };
-    },
-    [query],
-  );
+    queryList.addListener(handleMatchesChange);
+    return () => {
+      queryList.removeListener(handleMatchesChange);
+    };
+  }, [query]);
 
   return matches;
 }

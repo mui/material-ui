@@ -64,8 +64,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script defer src="https://www.google-analytics.com/analytics.js" />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
@@ -75,7 +73,6 @@ window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
-          <script defer src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );

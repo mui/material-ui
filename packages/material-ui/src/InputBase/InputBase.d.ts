@@ -24,17 +24,15 @@ export interface InputBaseProps
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
-  renderPrefix?: (
-    state: {
-      disabled?: boolean;
-      error?: boolean;
-      filled?: boolean;
-      focused?: boolean;
-      margin?: 'dense' | 'none' | 'normal';
-      required?: boolean;
-      startAdornment?: React.ReactNode;
-    },
-  ) => React.ReactNode;
+  renderPrefix?: (state: {
+    disabled?: boolean;
+    error?: boolean;
+    filled?: boolean;
+    focused?: boolean;
+    margin?: 'dense' | 'none' | 'normal';
+    required?: boolean;
+    startAdornment?: React.ReactNode;
+  }) => React.ReactNode;
   rows?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;

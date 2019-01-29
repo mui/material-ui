@@ -35,10 +35,10 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">onExited</span> | <span class="prop-type">func</span> |   | Callback fired when the dialog has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func</span> |   | Callback fired when the dialog is exiting. |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool</span> |   | If `true`, the Dialog is open. |
-| <span class="prop-name">PaperComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
+| <span class="prop-name">PaperComponent</span> | <span class="prop-type">Component</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">scroll</span> | <span class="prop-type">enum:&nbsp;'body'&nbsp;&#124;<br>&nbsp;'paper'<br></span> | <span class="prop-default">'paper'</span> | Determine the container for scrolling the dialog. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">Fade</span> | The component used for the transition. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">Component</span> | <span class="prop-default">Fade</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Transition` element. |
 

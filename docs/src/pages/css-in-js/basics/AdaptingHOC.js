@@ -31,6 +31,7 @@ function MyButtonRaw(props) {
 
 MyButtonRaw.propTypes = {
   classes: PropTypes.object.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 const MyButton = withStyles(styles)(MyButtonRaw);

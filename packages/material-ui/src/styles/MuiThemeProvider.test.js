@@ -92,7 +92,7 @@ describe('<MuiThemeProvider />', () => {
       const generateClassName = createGenerateClassName();
 
       const markup = ReactDOMServer.renderToString(
-        <JssProvider registry={sheetsRegistry} generateId={generateClassName}>
+        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>
           </MuiThemeProvider>
@@ -108,7 +108,7 @@ describe('<MuiThemeProvider />', () => {
 
       const sheetsRegistry1 = new SheetsRegistry();
       const markup1 = ReactDOMServer.renderToString(
-        <JssProvider registry={sheetsRegistry1} generateId={generateClassName}>
+        <JssProvider registry={sheetsRegistry1} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
             <Button>Hello World</Button>
           </MuiThemeProvider>
@@ -118,7 +118,7 @@ describe('<MuiThemeProvider />', () => {
 
       const sheetsRegistry2 = new SheetsRegistry();
       const markup2 = ReactDOMServer.renderToString(
-        <JssProvider registry={sheetsRegistry2} generateId={generateClassName}>
+        <JssProvider registry={sheetsRegistry2} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()} sheetsCache={sheetsCache}>
             <Button>Hello World</Button>
           </MuiThemeProvider>

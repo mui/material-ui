@@ -20,6 +20,7 @@ import {
   getDescription,
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
+import { LANGUAGES } from 'docs/src/modules/constants';
 
 const styles = theme => ({
   root: {
@@ -59,8 +60,10 @@ function MarkdownDocs(props) {
     const markdowns = {};
     req.keys().forEach(filename => {
       if (filename.indexOf('.md') !== -1) {
-        if (filename.indexOf('-zh.md') !== -1) {
-          markdowns.zh = req(filename);
+        const match = filename.match(/-([a-z]{2})\.md$/);
+
+        if (match && LANGUAGES.indexOf(match[1]) !== -1) {
+          markdowns[match[1]] = req(filename);
         } else {
           markdowns.en = req(filename);
         }
@@ -113,10 +116,30 @@ function MarkdownDocs(props) {
                 }
 
                 const name = demoOptions.demo;
-                warning(
-                  demos && demos[name],
-                  `Missing demo: ${name}. You can use one of the following:\n${Object.keys(demos)}`,
-                );
+                if (!demos || !demos[name]) {
+                  const errorMessage = [
+                    `Missing demo: ${name}. You can use one of the following:`,
+                    Object.keys(demos),
+                  ].join('\n');
+
+                  if (userLanguage === 'en') {
+                    throw new Error(errorMessage);
+                  }
+
+                  warning(false, errorMessage);
+
+                  const warnIcon = (
+                    <span role="img" aria-label="warning">
+                      ⚠️
+                    </span>
+                  );
+                  return (
+                    <div key={content}>
+                      {warnIcon} Missing demo `{name}` {warnIcon}
+                    </div>
+                  );
+                }
+
                 return (
                   <Demo
                     key={content}

@@ -32,7 +32,7 @@ export interface TooltipProps
     | 'top';
   PopperProps?: object;
   title: React.ReactNode;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   TransitionProps?: TransitionProps;
 }
 

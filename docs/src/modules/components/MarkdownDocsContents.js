@@ -33,13 +33,13 @@ function MarkdownDocsContents(props) {
 ## API
 
 ${headers.components
-            .map(
-              component =>
-                `- [&lt;${component} /&gt;](${
-                  section === 'lab' ? '/lab/api' : '/api'
-                }/${_rewriteUrlForNextExport(kebabCase(component))})`,
-            )
-            .join('\n')}
+  .map(
+    component =>
+      `- [&lt;${component} /&gt;](${
+        section === 'lab' ? '/lab/api' : '/api'
+      }/${_rewriteUrlForNextExport(kebabCase(component))})`,
+  )
+  .join('\n')}
         `);
         }
 

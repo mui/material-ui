@@ -63,6 +63,10 @@ function SimpleSpeedDial(props) {
   );
 }
 
+SimpleSpeedDial.propTypes = {
+  direction: PropTypes.string.isRequired,
+};
+
 function Directions({ classes }) {
   const speedDialClassName = direction =>
     classNames(classes.speedDial, classes[`direction${capitalize(direction)}`]);

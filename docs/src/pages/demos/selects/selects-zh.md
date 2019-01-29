@@ -18,6 +18,14 @@ components: Select, NativeSelect
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
+## Customized selects
+
+如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
+
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+
+{{"demo": "pages/demos/selects/CustomizedSelects.js"}}
+
 ## 多选
 
 `Select`组件可以处理多个选择，可以使用`multiple` 属性启用
@@ -25,6 +33,10 @@ components: Select, NativeSelect
 与单项选择一样，您可以通过访问` onChange `属性中的回调` event.target.value `来提取新值。它总是一个数组。
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
+
+## 受控的选择器
+
+{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
 
 ## 与对话框组件使用
 
@@ -35,7 +47,3 @@ components: Select, NativeSelect
 ## Text Fields
 
 ` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/demos/text-fields/#textfield)的示例
-
-## 受控的选择器
-
-{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}

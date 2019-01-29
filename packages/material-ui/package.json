@@ -2,7 +2,7 @@
   "name": "@material-ui/core",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.8.3",
+  "version": "3.9.1",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -56,7 +56,6 @@
     "jss-nested": "^6.0.1",
     "jss-props-sort": "^6.0.0",
     "jss-vendor-prefixer": "^7.0.0",
-    "keycode": "^2.1.9",
     "normalize-scroll-left": "^0.1.2",
     "popper.js": "^1.14.1",
     "prop-types": "^15.6.0",

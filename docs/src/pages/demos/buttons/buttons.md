@@ -129,7 +129,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-or if you want to avoid properties collisions:
+or if you want to avoid properties collision:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -142,4 +142,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [composition guide](/guides/composition/#component-property).*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

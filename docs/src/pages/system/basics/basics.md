@@ -21,7 +21,7 @@ It's important to understand that this package exposes pure (side-effect free) s
 
 ### Demo
 
-In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternativaly, you can [use JSS](#interoperability).
+In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability).
 The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
 
 ```jsx
@@ -72,7 +72,7 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 For instance, you can provide a padding property: `p` and a color property: `color`.
 
 ```jsx
-<Box p="1rem" color="grey">Let me some space!</Box>
+<Box p="1rem" color="grey">Give me some space!</Box>
 ```
 
 The component can be styled providing any valid CSS values.

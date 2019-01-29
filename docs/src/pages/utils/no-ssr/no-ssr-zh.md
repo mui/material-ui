@@ -1,25 +1,25 @@
 ---
-title: No SSR React component
+title: 没有SSR React组件
 components: NoSsr
 ---
-# No SSR
+# 没有SSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+<p class="description">NoSsr故意从服务器端渲染（SSR）主题中删除组件。</p>
 
-This component can be useful in a variety of situations:
+该组件可用于各种情况：
 
-- Escape hatch for broken dependencies not supporting SSR.
-- Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
-- Under too heavy server load, you can turn on service degradation.
-- Improve the time-to-interactive by only rendering what's important (with the `defer` property).
+- 逃避破坏依赖性的孵化不支持SSR。
+- 通过仅在首屏上呈现来改善客户端上的首次绘制时间。
+- 减少服务器上的渲染时间。
+- 在过重的服务器负载下，您可以打开服务降级。
+- 仅通过渲染重要内容（使用 `defer` 属性）来改善交互时间。
 
-## Client side deferring
+## 客户方推迟
 
 {{"demo": "pages/utils/no-ssr/SimpleNoSsr.js"}}
 
-## Frame deferring
+## 帧推迟
 
-In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
+在它的核心，NoSsr组件的目的是 **延迟渲染**。 如上一个演示中所示，您可以使用它将渲染从服务器推迟到客户端。
 
-But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children.
+但您也可以使用它来推迟客户端本身的渲染。 您可以 **等待具有 `defer` 属性的屏幕帧** 来渲染子项。

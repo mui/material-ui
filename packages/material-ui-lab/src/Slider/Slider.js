@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -177,12 +176,24 @@ function getOffset(node) {
   };
 }
 
-function getMousePosition(event) {
-  if (event.changedTouches && event.changedTouches[0]) {
-    return {
-      x: event.changedTouches[0].pageX,
-      y: event.changedTouches[0].pageY,
-    };
+function getMousePosition(event, touchId) {
+  if (event.changedTouches) {
+    // event.changedTouches.findIndex(touch => touch.identifier === touchId)
+    let touchIndex = 0;
+    for (let i = 0; i < event.changedTouches.length; i += 1) {
+      const touch = event.changedTouches[i];
+      if (touch.identifier === touchId) {
+        touchIndex = i;
+        break;
+      }
+    }
+
+    if (event.changedTouches[touchIndex]) {
+      return {
+        x: event.changedTouches[touchIndex].pageX,
+        y: event.changedTouches[touchIndex].pageY,
+      };
+    }
   }
 
   return {
@@ -191,10 +202,10 @@ function getMousePosition(event) {
   };
 }
 
-function calculatePercent(node, event, isVertical, isRtl) {
+function calculatePercent(node, event, isVertical, isRtl, touchId) {
   const { width, height } = node.getBoundingClientRect();
   const { bottom, left } = getOffset(node);
-  const { x, y } = getMousePosition(event);
+  const { x, y } = getMousePosition(event, touchId);
 
   const value = isVertical ? bottom - y : x - left;
   const onePercent = (isVertical ? height : width) / 100;
@@ -217,6 +228,8 @@ class Slider extends React.Component {
   };
 
   jumpAnimationTimeoutId = -1;
+
+  touchId = undefined;
 
   componentDidMount() {
     if (this.containerRef) {
@@ -257,25 +270,25 @@ class Slider extends React.Component {
     const step = this.props.step || onePercent;
     let value;
 
-    switch (keycode(event)) {
-      case 'home':
+    switch (event.key) {
+      case 'Home':
         value = min;
         break;
-      case 'end':
+      case 'End':
         value = max;
         break;
-      case 'page up':
+      case 'PageUp':
         value = currentValue + onePercent * 10;
         break;
-      case 'page down':
+      case 'PageDown':
         value = currentValue - onePercent * 10;
         break;
-      case 'right':
-      case 'up':
+      case 'ArrowRight':
+      case 'ArrowUp':
         value = currentValue + step;
         break;
-      case 'left':
-      case 'down':
+      case 'ArrowLeft':
+      case 'ArrowDown':
         value = currentValue - step;
         break;
       default:
@@ -299,7 +312,13 @@ class Slider extends React.Component {
 
   handleClick = event => {
     const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
+    const percent = calculatePercent(
+      this.containerRef,
+      event,
+      vertical,
+      this.isReverted(),
+      this.touchId,
+    );
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value, () => {
@@ -323,9 +342,13 @@ class Slider extends React.Component {
 
   handleTouchStart = event => {
     event.preventDefault();
+    const touch = event.changedTouches.item(0);
+    if (touch != null) {
+      this.touchId = touch.identifier;
+    }
     this.setState({ currentState: 'activated' });
 
-    document.body.addEventListener('touchend', this.handleMouseUp);
+    document.body.addEventListener('touchend', this.handleTouchEnd);
 
     if (typeof this.props.onDragStart === 'function') {
       this.props.onDragStart(event);
@@ -346,13 +369,47 @@ class Slider extends React.Component {
     }
   };
 
+  handleTouchEnd = event => {
+    if (this.touchId === undefined) {
+      this.handleMouseUp(event);
+    }
+
+    for (let i = 0; i < event.changedTouches.length; i += 1) {
+      const touch = event.changedTouches.item(i);
+      if (touch.identifier === this.touchId) {
+        this.handleMouseUp(event);
+        break;
+      }
+    }
+  };
+
   handleMouseUp = event => {
     this.handleDragEnd(event);
   };
 
+  handleTouchMove = event => {
+    if (this.touchId === undefined) {
+      this.handleMouseMove(event);
+    }
+
+    for (let i = 0; i < event.changedTouches.length; i += 1) {
+      const touch = event.changedTouches.item(i);
+      if (touch.identifier === this.touchId) {
+        this.handleMouseMove(event);
+        break;
+      }
+    }
+  };
+
   handleMouseMove = event => {
     const { min, max, vertical } = this.props;
-    const percent = calculatePercent(this.containerRef, event, vertical, this.isReverted());
+    const percent = calculatePercent(
+      this.containerRef,
+      event,
+      vertical,
+      this.isReverted(),
+      this.touchId,
+    );
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value);
@@ -365,7 +422,7 @@ class Slider extends React.Component {
     document.body.removeEventListener('mouseleave', this.handleMouseLeave);
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
-    document.body.removeEventListener('touchend', this.handleMouseUp);
+    document.body.removeEventListener('touchend', this.handleTouchEnd);
 
     if (typeof this.props.onDragEnd === 'function') {
       this.props.onDragEnd(event);
@@ -513,7 +570,7 @@ class Slider extends React.Component {
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
-        onTouchMove={this.handleMouseMove}
+        onTouchMove={this.handleTouchMove}
         ref={ref => {
           this.containerRef = ReactDOM.findDOMNode(ref);
         }}
@@ -529,7 +586,7 @@ class Slider extends React.Component {
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
               onTouchStartCapture={this.handleTouchStart}
-              onTouchMove={this.handleMouseMove}
+              onTouchMove={this.handleTouchMove}
               onFocusVisible={this.handleFocus}
             >
               {ThumbIcon}

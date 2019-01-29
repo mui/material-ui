@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
@@ -286,6 +287,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
      * Override or extend the styles applied to the component.
      */
     classes: PropTypes.object,
+    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     stylesOptions: PropTypes.object.isRequired,
     theme: PropTypes.object,
   };

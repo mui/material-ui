@@ -45,8 +45,6 @@ When rendering on the server, you will need to get all rendered styles as a CSS 
 The `SheetsRegistry` class allows you to manually aggregate and stringify them.
 Read more about [Server Rendering](/guides/server-rendering/).
 
-{{"demo": "pages/customization/css-in-js/JssRegistry.js", "hideEditButton": true}}
-
 ## Sheets manager
 
 The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.

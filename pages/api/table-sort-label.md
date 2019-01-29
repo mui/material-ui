@@ -23,7 +23,7 @@ A button based label for placing inside `TableCell` for column sorting.
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'<br></span> | <span class="prop-default">'desc'</span> | The current sort direction. |
 | <span class="prop-name">hideSortIcon</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Hide sort icon when active is false. |
-| <span class="prop-name">IconComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">ArrowDownwardIcon</span> | Sort icon to use. |
+| <span class="prop-name">IconComponent</span> | <span class="prop-type">Component</span> | <span class="prop-default">ArrowDownwardIcon</span> | Sort icon to use. |
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 

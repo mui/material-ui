@@ -123,10 +123,10 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>Material-UI</title>
+        <style id="jss-server-side">${css}</style>
       </head>
       <body>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;
@@ -274,3 +274,4 @@ To check version numbers, run `npm list @material-ui/core` in the environment wh
 ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
+- The react-jss dependency version should match the ^8.0.0 semantic versioning.

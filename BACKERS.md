@@ -37,6 +37,9 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <a href="https://localizejs.com" rel="noopener" target="_blank" style="margin-right: 8px;">
     <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=70" alt="localize" title="Application translation & localization platform">
   </a>
+  <a href="https://yakaz.com" rel="noopener" target="_blank" style="margin-right: 8px;">
+    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Fb47b9630-1586-11e9-a4d4-47c0a7133bdc.png&height=70" alt="localize" title="Search classified ads">
+  </a>
 </p>
 
 ## Silver Sponsors
@@ -78,7 +81,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
 | Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
 | Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
-| Manuel U Grullon | Skaronator | Peter James | Vincz |
+| Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 

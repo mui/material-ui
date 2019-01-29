@@ -2,7 +2,7 @@
   "name": "@material-ui/workspace",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.8.3",
+  "version": "3.9.1",
   "description": "Material-UI's workspace package",
   "keywords": [
     "react",
@@ -44,11 +44,12 @@
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' && nyc report -r lcovonly",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' && nyc report --reporter=html",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' --exclude '**/node_modules/**' && nyc report -r lcovonly",
+    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js'",
+    "test:umd": "yarn babel-node packages/material-ui/test/umd/run.js",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
     "typescript": "lerna run typescript"
   },
@@ -57,21 +58,22 @@
     "react-dom": "*"
   },
   "devDependencies": {
-    "@babel/cli": "7.2.0",
-    "@babel/core": "7.2.2",
-    "@babel/node": "7.2.2",
-    "@babel/plugin-proposal-class-properties": "7.2.1",
-    "@babel/plugin-proposal-object-rest-spread": "7.2.0",
-    "@babel/plugin-transform-object-assign": "7.2.0",
-    "@babel/plugin-transform-runtime": "7.2.0",
-    "@babel/preset-env": "7.2.0",
-    "@babel/preset-react": "7.0.0",
-    "@babel/register": "7.0.0",
-    "@date-io/date-fns": "^0.0.2",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@date-io/date-fns": "^1.0.0",
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
     "@types/enzyme": "^3.1.4",
     "@types/react": "^16.7.10",
+    "@types/react-router-dom": "^4.3.1",
     "@weco/next-plugin-transpile-modules": "0.0.2",
     "accept-language": "^3.0.18",
     "argos-cli": "^0.0.9",
@@ -109,6 +111,7 @@
     "eslint-plugin-material-ui": "file:packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-react": "^7.4.0",
+    "expect-puppeteer": "^3.5.1",
     "fg-loadcss": "^2.0.1",
     "file-loader": "^2.0.0",
     "final-form": "^4.11.0",
@@ -143,15 +146,15 @@
     "prettier": "^1.8.2",
     "puppeteer": "^1.5.0",
     "raw-loader": "^0.5.1",
-    "react": "next",
+    "react": "^16.8.0-alpha.1",
     "react-autosuggest": "^9.3.2",
     "react-docgen": "^3.0.0-beta10",
-    "react-dom": "next",
+    "react-dom": "^16.8.0-alpha.1",
     "react-draggable": "^3.0.5",
     "react-final-form": "^4.0.2",
     "react-frame-component": "^4.0.2",
     "react-inspector": "^2.2.2",
-    "react-jss": "^10.0.0-alpha.3",
+    "react-jss": "^8.6.1",
     "react-number-format": "^4.0.0",
     "react-redux": "^6.0.0",
     "react-router": "^4.2.0",
@@ -187,7 +190,7 @@
   },
   "resolutions": {
     "**/hoist-non-react-statics": "^3.2.1",
-    "jss": "^10.0.0-alpha.7"
+    "react-jss/jss": "^10.0.0-alpha.3"
   },
   "sideEffects": false,
   "nyc": {
@@ -207,6 +210,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {}
+  ]
 }
