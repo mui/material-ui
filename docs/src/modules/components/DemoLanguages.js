@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-// import Tooltip from '@material-ui/core/Tooltip';
 import JavascriptIcon from '@material-ui/docs/svgIcons/Javascript';
 import TypescriptIcon from '@material-ui/docs/svgIcons/Typescript';
 import HooksIcon from '@material-ui/docs/svgIcons/Hooks';
@@ -13,12 +13,21 @@ function DemoLanguages(props) {
   const hasHooksVariant = demo.rawHooks;
   const hasTSVariant = demo.rawTS;
 
+  function renderedCodeVariant() {
+    if (codeVariant === 'TS' && hasTSVariant) {
+      return 'TS';
+    }
+    if (codeVariant === 'HOOK' && hasHooksVariant) {
+      return 'HOOK';
+    }
+    return 'JS';
+  }
+
   return (
     <React.Fragment>
-      {codeOpen ? (
+      <Fade in={codeOpen}>
         <div style={{ padding: '8px 0px' }}>
-          <ToggleButtonGroup exclusive value={codeVariant} onChange={onLanguageClick}>
-            {/* <Tooltip title="Show JavaScript source" placement="top"> */}
+          <ToggleButtonGroup exclusive value={renderedCodeVariant()} onChange={onLanguageClick}>
             <ToggleButton
               value={CODE_VARIANTS.JS}
               aria-label="Show JavaScript source"
@@ -52,9 +61,7 @@ function DemoLanguages(props) {
             {/* </Tooltip> */}
           </ToggleButtonGroup>
         </div>
-      ) : (
-        <div />
-      )}
+      </Fade>
     </React.Fragment>
   );
 }
