@@ -82,29 +82,27 @@ export const styles = theme => ({
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
     color: theme.palette.primary.main,
-    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    border: '1px solid currentColor',
     '&:hover': {
-      border: `1px solid ${theme.palette.primary.main}`,
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
-    '&$disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`,
-    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
     color: theme.palette.secondary.main,
-    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    border: '1px solid currentColor',
     '&:hover': {
-      border: `1px solid ${theme.palette.secondary.main}`,
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -199,6 +197,7 @@ export const styles = theme => ({
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
+    borderColor: 'currentColor',
   },
   /* Styles applied to the root element if `mini={true}` & `variant="[fab | extendedFab]"`. */
   mini: {
