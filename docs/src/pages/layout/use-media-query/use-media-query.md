@@ -7,9 +7,10 @@ title: Media queries in React for responsive design
 <p class="description">This is a CSS media query hook for React. It listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
 
 > ⚠️ `useMediaQuery` is unstable as hooks aren't stable yet, therefore it is exported with an unstable prefix.
-It depends on react >= 16.7.0-alpha.2, react-dom >= 16.7.0-alpha.2.
+Please note that it depends on *react@next* and *react-dom@next*.
 
 Some of the key features:
+
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
 - 📦 Less than [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
@@ -53,7 +54,7 @@ function MyComponent() {
 
 ## Server-side rendering
 
-You will need to use a [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ponyfill on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
+An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server, we recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery).
 We also encourage the usage of the `unstable_useMediaQueryTheme` version of the hook that fetches properties from the theme. This way, you can provide a `ssrMatchMedia` option once for all your React tree.
 
 {{"demo": "pages/layout/use-media-query/ServerSide.js", "react": "next"}}

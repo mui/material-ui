@@ -2,7 +2,7 @@
   "name": "@material-ui/workspace",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "description": "Material-UI's workspace package",
   "keywords": [
     "react",
@@ -77,6 +77,7 @@
     "@types/enzyme": "^3.1.4",
     "@types/react": "^16.7.10",
     "@types/react-dom": "^16.0.9",
+    "@types/react-router-dom": "^4.3.1",
     "@types/react-text-mask": "^5.4.2",
     "@weco/next-plugin-transpile-modules": "0.0.2",
     "accept-language": "^3.0.18",
@@ -151,10 +152,10 @@
     "prettier": "^1.8.2",
     "puppeteer": "^1.5.0",
     "raw-loader": "^0.5.1",
-    "react": "next",
+    "react": "^16.8.0-alpha.1",
     "react-autosuggest": "^9.3.2",
     "react-docgen": "^3.0.0-beta10",
-    "react-dom": "next",
+    "react-dom": "^16.8.0-alpha.1",
     "react-draggable": "^3.0.5",
     "react-final-form": "^4.0.2",
     "react-frame-component": "^4.0.2",
@@ -215,6 +216,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {}
+  ]
 }

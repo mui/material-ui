@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import keycode from 'keycode';
 import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
@@ -164,10 +163,15 @@ class ButtonBase extends React.Component {
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
-    const key = keycode(event);
 
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !this.keyDown && this.state.focusVisible && this.ripple && key === 'space') {
+    if (
+      focusRipple &&
+      !this.keyDown &&
+      this.state.focusVisible &&
+      this.ripple &&
+      event.key === ' '
+    ) {
       this.keyDown = true;
       event.persist();
       this.ripple.stop(event, () => {
@@ -184,7 +188,7 @@ class ButtonBase extends React.Component {
       event.target === event.currentTarget &&
       component &&
       component !== 'button' &&
-      (key === 'space' || key === 'enter') &&
+      (event.key === ' ' || event.key === 'Enter') &&
       !(this.button.tagName === 'A' && this.button.href)
     ) {
       event.preventDefault();
@@ -195,12 +199,7 @@ class ButtonBase extends React.Component {
   };
 
   handleKeyUp = event => {
-    if (
-      this.props.focusRipple &&
-      keycode(event) === 'space' &&
-      this.ripple &&
-      this.state.focusVisible
-    ) {
+    if (this.props.focusRipple && event.key === ' ' && this.ripple && this.state.focusVisible) {
       this.keyDown = false;
       event.persist();
       this.ripple.stop(event, () => {

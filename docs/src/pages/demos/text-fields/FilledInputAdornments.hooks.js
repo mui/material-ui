@@ -62,11 +62,7 @@ function FilledInputAdornments() {
         variant="filled"
         label="With filled TextField"
         InputProps={{
-          startAdornment: (
-            <InputAdornment variant="filled" position="start">
-              Kg
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
       />
       <TextField
@@ -77,11 +73,7 @@ function FilledInputAdornments() {
         value={values.weightRange}
         onChange={handleChange('weightRange')}
         InputProps={{
-          startAdornment: (
-            <InputAdornment variant="filled" position="start">
-              Kg
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
       >
         {ranges.map(option => (
@@ -98,11 +90,7 @@ function FilledInputAdornments() {
         value={values.amount}
         onChange={handleChange('amount')}
         InputProps={{
-          startAdornment: (
-            <InputAdornment variant="filled" position="start">
-              $
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start">$</InputAdornment>,
         }}
       />
       <TextField
@@ -114,11 +102,7 @@ function FilledInputAdornments() {
         onChange={handleChange('weight')}
         helperText="Weight"
         InputProps={{
-          endAdornment: (
-            <InputAdornment variant="filled" position="end">
-              Kg
-            </InputAdornment>
-          ),
+          endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
         }}
       />
       <TextField
@@ -131,7 +115,7 @@ function FilledInputAdornments() {
         onChange={handleChange('password')}
         InputProps={{
           endAdornment: (
-            <InputAdornment variant="filled" position="end">
+            <InputAdornment position="end">
               <IconButton aria-label="Toggle password visibility" onClick={handleClickShowPassword}>
                 {values.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>

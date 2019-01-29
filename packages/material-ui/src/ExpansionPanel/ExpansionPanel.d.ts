@@ -12,7 +12,7 @@ export interface ExpansionPanelProps
   onChange?: (event: React.ChangeEvent<{}>, expanded: boolean) => void;
 }
 
-export type ExpansionPanelClassKey = 'root' | 'expanded' | 'disabled';
+export type ExpansionPanelClassKey = 'root' | 'rounded' | 'expanded' | 'disabled';
 
 declare const ExpansionPanel: React.ComponentType<ExpansionPanelProps>;
 

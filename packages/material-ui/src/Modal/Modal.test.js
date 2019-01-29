@@ -1,8 +1,9 @@
+/* eslint-disable react/no-multi-comp */
+
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
@@ -14,12 +15,18 @@ describe('<Modal />', () => {
   let shallow;
   let mount;
   let classes;
+  let savedBodyStyle;
   const ModalNaked = unwrap(Modal);
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(<Modal open={false} />);
     mount = createMount();
+    savedBodyStyle = document.body.style;
+  });
+
+  beforeEach(() => {
+    document.body.setAttribute('style', savedBodyStyle);
   });
 
   after(() => {
@@ -234,7 +241,7 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('handleDocumentKeyDown()', () => {
+  describe('handleKeyDown()', () => {
     let wrapper;
     let instance;
     let onEscapeKeyDownSpy;
@@ -252,13 +259,13 @@ describe('<Modal />', () => {
       instance = wrapper.instance();
     });
 
-    it('should have handleDocumentKeyDown', () => {
-      assert.notStrictEqual(instance.handleDocumentKeyDown, undefined);
-      assert.strictEqual(typeof instance.handleDocumentKeyDown, 'function');
+    it('should have handleKeyDown', () => {
+      assert.notStrictEqual(instance.handleKeyDown, undefined);
+      assert.strictEqual(typeof instance.handleKeyDown, 'function');
     });
 
     it('when not mounted should not call onEscapeKeyDown and onClose', () => {
-      instance.handleDocumentKeyDown(undefined);
+      instance.handleKeyDown({});
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
     });
@@ -267,8 +274,8 @@ describe('<Modal />', () => {
       topModalStub.returns(false);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
 
-      instance.handleDocumentKeyDown({
-        keyCode: keycode('esc'),
+      instance.handleKeyDown({
+        key: 'Escape',
       });
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
@@ -278,9 +285,9 @@ describe('<Modal />', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('j') }; // Not 'esc'
+      event = { key: 'j' }; // Not 'esc'
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 0);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
@@ -289,9 +296,9 @@ describe('<Modal />', () => {
     it('should call onEscapeKeyDown and onClose', () => {
       topModalStub.returns(true);
       wrapper.setProps({ manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc'), stopPropagation: () => {} };
+      event = { key: 'Escape', stopPropagation: () => {} };
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.calledWith(event), true);
@@ -302,9 +309,9 @@ describe('<Modal />', () => {
     it('when disableEscapeKeyDown should call only onClose', () => {
       topModalStub.returns(true);
       wrapper.setProps({ disableEscapeKeyDown: true, manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc'), stopPropagation: () => {} };
+      event = { key: 'Escape', stopPropagation: () => {} };
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.calledWith(event), true);
@@ -314,9 +321,9 @@ describe('<Modal />', () => {
     it('should not be call when defaultPrevented', () => {
       topModalStub.returns(true);
       wrapper.setProps({ disableEscapeKeyDown: true, manager: { isTopModal: topModalStub } });
-      event = { keyCode: keycode('esc'), defaultPrevented: true };
+      event = { key: 'Escape', defaultPrevented: true };
 
-      instance.handleDocumentKeyDown(event);
+      instance.handleKeyDown(event);
       assert.strictEqual(topModalStub.callCount, 1);
       assert.strictEqual(onEscapeKeyDownSpy.callCount, 0);
       assert.strictEqual(onCloseSpy.callCount, 0);
@@ -540,6 +547,42 @@ describe('<Modal />', () => {
       wrapper.setProps({ open: false });
       assert.strictEqual(document.body.style.overflow, '');
     });
+
+    it('should open and close with Transitions', done => {
+      const TestCase = props => (
+        <React.Fragment>
+          <Modal open={props.open}>
+            <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
+              <div>Hello</div>
+            </Fade>
+          </Modal>
+          <Modal open={props.open}>
+            <div>World</div>
+          </Modal>
+        </React.Fragment>
+      );
+
+      TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
+        open: PropTypes.bool,
+      };
+
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+        done();
+      };
+
+      wrapper = mount(<TestCase onEntered={onEntered} onExited={onExited} open={false} />);
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+    });
   });
 
   it('should support open abort', () => {
@@ -563,5 +606,135 @@ describe('<Modal />', () => {
       }
     }
     mount(<TestCase />);
+  });
+
+  describe('prop: closeAfterTransition', () => {
+    it('when true it should close after Transition has finished', done => {
+      const TestCase = props => (
+        <Modal open={props.open} closeAfterTransition>
+          <Fade
+            onEntered={props.onEntered}
+            onExiting={props.onExiting}
+            onExited={props.onExited}
+            in={props.open}
+          >
+            <div>Hello</div>
+          </Fade>
+        </Modal>
+      );
+
+      TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
+        onExiting: PropTypes.func,
+        open: PropTypes.bool,
+      };
+
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+        done();
+      };
+
+      const onExiting = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+      };
+
+      wrapper = mount(
+        <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
+      );
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+    });
+
+    it('when false it should close before Transition has finished', done => {
+      const TestCase = props => (
+        <Modal open={props.open} closeAfterTransition={false}>
+          <Fade
+            onEntered={props.onEntered}
+            onExiting={props.onExiting}
+            onExited={props.onExited}
+            in={props.open}
+          >
+            <div>Hello</div>
+          </Fade>
+        </Modal>
+      );
+
+      TestCase.propTypes = {
+        onEntered: PropTypes.func,
+        onExited: PropTypes.func,
+        onExiting: PropTypes.func,
+        open: PropTypes.bool,
+      };
+
+      let wrapper;
+      const onEntered = () => {
+        assert.strictEqual(document.body.style.overflow, 'hidden');
+        wrapper.setProps({ open: false });
+      };
+
+      const onExited = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+        done();
+      };
+
+      const onExiting = () => {
+        assert.strictEqual(document.body.style.overflow, '');
+      };
+
+      wrapper = mount(
+        <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
+      );
+      assert.strictEqual(document.body.style.overflow, '');
+      wrapper.setProps({ open: true });
+    });
+  });
+
+  describe('prop: container', () => {
+    it('should be able to change the container', () => {
+      class TestCase extends React.Component {
+        state = {
+          anchorEl: null,
+        };
+
+        componentDidMount() {
+          this.setState(
+            () => ({
+              anchorEl: document.body,
+            }),
+            () => {
+              this.setState(
+                {
+                  anchorEl: null,
+                },
+                () => {
+                  this.setState({
+                    anchorEl: document.body,
+                  });
+                },
+              );
+            },
+          );
+        }
+
+        render() {
+          const { anchorEl } = this.state;
+          return (
+            <Modal open={Boolean(anchorEl)} container={anchorEl} {...this.props}>
+              <Fade in={Boolean(anchorEl)}>
+                <div>Hello</div>
+              </Fade>
+            </Modal>
+          );
+        }
+      }
+      mount(<TestCase />);
+    });
   });
 });

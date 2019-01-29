@@ -51,11 +51,11 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">FormHelperTextProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`FormHelperText`](/api/form-helper-text/) element. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> |   | If `true`, the input will take up the full width of its container. |
 | <span class="prop-name">helperText</span> | <span class="prop-type">node</span> |   | The helper text content. |
-| <span class="prop-name">id</span> | <span class="prop-type">string</span> |   | The id of the `input` element. Use that property to make `label` and `helperText` accessible for screen readers. |
+| <span class="prop-name">id</span> | <span class="prop-type">string</span> |   | The id of the `input` element. Use this property to make `label` and `helperText` accessible for screen readers. |
 | <span class="prop-name">InputLabelProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`InputLabel`](/api/input-label/) element. |
 | <span class="prop-name">InputProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Input` element. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |   | Attributes applied to the native `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |   | Use that property to pass a ref callback to the native input component. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |   | Use this property to pass a ref callback to the native input component. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |   | The label content. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br></span> |   | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool</span> |   | If `true`, a textarea element will be rendered instead of an input. |

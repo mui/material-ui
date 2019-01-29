@@ -1,24 +1,23 @@
-# Style Library Interoperability
+# 样式库互操作性
 
-<p class="description">While it is simple to use the JSS based styling solution provided by Material-UI to style your application, it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.</p>
+<p class="description">虽然使用Material-UI提供的基于JSS的样式解决方案来设置应用程序样式很简单，但可以使用您喜欢的任何样式解决方案，从纯CSS到任意数量的CSS-in-JS库。</p>
 
-This guide aims to document the most popular alternatives, but you should find that the principals applied here can be adapted to other libraries.
+本指南旨在记录最流行的替代方案， 但您应该发现此处应用的原理可以适用于其他库。
 
-We have provided examples for the following styling solutions:
+我们提供了以下样式解决方案的示例：
 
-- [Raw CSS](#raw-css)
+- [原始CSS](#raw-css)
 - [Styled Components](#styled-components)
-- [Emotion](#emotion)
-- [React Emotion](#react-emotion)
 - [CSS Modules](#css-modules)
+- [Emotion](#emotion)
 - [全局CSS](#global-css)
 - [React JSS](#react-jss)
-- [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
+- [CSS到MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
-## Raw CSS
+## 原始CSS
 
-Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been working for decades?
+没什么特别的，只是简单的旧CSS。 为什么重新发明轮子已经工作了几十年？
 
 **RawCssButton.css**
 
@@ -56,15 +55,15 @@ function RawCssButton() {
 export default RawCssButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
 
 ## Styled Components
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-The `styled()` method works perfectly on all of our components.
+`styled()` 方法适用于我们所有的组件。
 
 ```jsx
 import React from 'react';
@@ -81,7 +80,7 @@ const StyledButton = styled(Button)`
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 `;
 
-function StyledComponentsButton() {
+function StyledComponents() {
   return (
     <div>
       <Button>
@@ -94,59 +93,30 @@ function StyledComponentsButton() {
   );
 }
 
-export default StyledComponentsButton;
+export default StyledComponents;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
 
-### Controlling Priority
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
 
-Both styled-components and JSS inject their styles at the bottom of the `<head>`. One approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
 
-Another approach is to use the `&` character in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. Use this to ensure styled-components styles are applied before JSS styles. An example of this solution:
+### 控制优先权
 
-```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+样式组件和JSS都将样式注入 `<head>`的底部。 确保样式组件样式最后加载的一种方法是将CSS注入顺序</a>更改为 ，如演示中所示。</p> 
 
-const StyledButton = styled(Button)`
-  && {
-    background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-    border-radius: 3px;
-    border: 0;
-    color: white;
-    height: 48px;
-    padding: 0 30px;
-    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
-  }
-`;
+另一种方法是使用 `&&` 在风格的组件字符 [颠簸起来特异性](https://www.styled-components.com/docs/advanced#issues-with-specificity) 通过重复类名。 使用此选项可确保在JSS样式之前应用样式化组件样式。 此解决方案的一个示例：
 
-function StyledComponentsButton() {
-  return (
-    <div>
-      <Button>
-        Material-UI
-      </Button>
-      <StyledButton>
-        Styled Components
-      </StyledButton>
-    </div>
-  );
-}
+{{"demo": "pages/guides/interoperability/StyledComponentsPriority.js"}}
 
-export default StyledComponentsButton;
-```
+### 更深层的元素
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xpp5oj9o0z)
+在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent`， ，你可能会需要影响抽屉的孩子 `paper` 元。
 
-### Deeper elements
+但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/customization/css-in-js/#global-css)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
 
-In some cases, the approaches above will not work. For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `permanent`, you will likely need to affect the Drawer's underlying `paper` style.
-
-However, this is not the root element of `Drawer` and therefore styled-components customization as above will not work. You can workaround this by using [stable JSS class names](/customization/css-in-js/#global-css), but the most reliable approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
-
-The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself. It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" properties that should not be passed on to the underlying component.
+以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。 它还解决了 [这个styled-components问题](https://github.com/styled-components/styled-components/issues/439) 由不应该在底层组件来通过“消耗”的特性。
 
 ```jsx
 import React from 'react';
@@ -154,7 +124,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => (
-  <Button {...other} classes={{ label: 'label' }} />
+  <Button classes={{ label: 'label' }} {...other} />
 ))`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
   border: 0;
@@ -168,7 +138,7 @@ const StyledButton = styled(({ color, ...other }) => (
   }
 `;
 
-function StyledComponentsButton() {
+function StyledComponentsDeep() {
   return (
     <div>
       <Button>Material-UI</Button>
@@ -177,126 +147,26 @@ function StyledComponentsButton() {
   );
 }
 
-export default StyledComponentsButton;
+export default StyledComponentsDeep;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideHeader": true}}
 
-## Emotion
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
 
-Emotion's **css()** method works seamlessly with Material-UI. The class names returned by **css()** can be directly passed to a component's `className` prop to override the root styles.
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
 
-```jsx
-import React from 'react';
-import { css } from 'emotion';
-import Button from '@material-ui/core/Button';
+### ThemeProvider
 
-const buttonStyles = css`
-  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-  border-radius: 3;
-  border: 0;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
-`;
+材料的UI具有丰富的主题，结构，您可以利用为 的颜色的处理，过渡，媒体查询等。
 
-// We just assign them the Button's className attribute
-function EmotionButton() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <Button className={buttonStyles}>Emotion</Button>
-    </div>
-  );
-}
-
-export default EmotionButton
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
-
-### Deeper elements
-
-The styles created with **css()** can also be mapped to class names using the `classes` prop. This is useful when you want to customize the styles of deeper elements within a component.
-
-```jsx
-import React from 'react';
-import { css } from 'emotion';
-import Button from '@material-ui/core/Button';
-
-const styles = {
-  button: css({
-    background: 'linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)',
-    borderRadius: 3,
-    border: 0,
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
-  }),
-  label: css({
-    color: 'papayawhip',
-  }),
-};
-
-function EmotionButton() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <Button className={styles.button} classes={{ label: styles.label }}>
-        Emotion
-      </Button>
-    </div>
-  );
-}
-
-export default EmotionButton
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4q8o1y975w)
-
-**Note:** By default Emotion and JSS both inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the examples.
-
-## React Emotion
-
-The **styled()** function can be used to customize the root styles of any Material-UI component.
-
-```jsx
-import React from 'react';
-import styled from 'react-emotion';
-import Button from '@material-ui/core/Button';
-
-const StyledButton = styled(Button)`
-  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-  border-radius: 3;
-  border: 0;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
-`;
-
-function ReactEmotionButton() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <StyledButton>React Emotion</StyledButton>
-    </div>
-  );
-}
-
-export default ReactEmotionButton;
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xj81yqx504)
-
-**Note:** By default Emotion and JSS both inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the examples.
+{{“demo”：“pages/guides/interoperability/StyledComponentsTheme.js”}}
 
 ## CSS Modules
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the bundling solution people are using.
+这是很难知道的市场份额 [这个造型的解决方案](https://github.com/css-modules/css-modules) ，因为它是依赖于 人都在用捆绑的解决方案。
 
 **CssModulesButton.css**
 
@@ -336,13 +206,150 @@ function CssModulesButton() {
 export default CssModulesButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+
+## Emotion
+
+![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+
+### css Prop
+
+Emotion的 **css()** 方法与Material-UI无缝协作。
+
+```jsx
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
+import Button from "@material-ui/core/Button";
+
+// 我们只是为它们分配Button的className属性
+function EmotionCSS() {
+  return (
+    <div>
+      <Button>Material-UI</Button>
+      <Button
+        css={css`
+          background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+          border-radius: 3px;
+          border: 0;
+          color: white;
+          height: 48px;
+          padding: 0 30px;
+          box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+        `}
+      >
+        Emotion
+      </Button>
+    </div>
+  );
+}
+
+export default EmotionCSS;
+```
+
+{{“demo”：“pages/guides/interoperability/EmotionCSS.js”，“hideHeader”：true}}
+
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
+
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+
+### E. Styled Components
+
+`styled()` 方法适用于我们所有的组件。
+
+```jsx
+import React from 'react';
+import styled from '@emotion/styled';
+import Button from '@material-ui/core/Button';
+
+const StyledButton = styled(Button)`
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+`;
+
+function EmotionStyled() {
+  return (
+    <div>
+      <Button>
+        Material-UI
+      </Button>
+      <StyledButton>
+        Emotion
+      </StyledButton>
+    </div>
+  );
+}
+
+export default EmotionStyled;
+```
+
+{{“demo”：“pages / guides / interoperability / EmotionStyled.js”，“hideHeader”：true}}
+
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4q8o1y975w)
+
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+
+### E. 更深层的元素
+
+在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent`， ，你可能会需要影响抽屉的孩子 `paper` 元。
+
+但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/customization/css-in-js/#global-css)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
+
+以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。
+
+```jsx
+import React from 'react';
+import styled from '@emotion/styled';
+import Button from '@material-ui/core/Button';
+
+const StyledButton = styled(({ color, ...other }) => (
+  <Button classes={{ label: 'label' }} {...other} />
+))`
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+
+  & .label {
+    color: ${props => props.color};
+  }
+`;
+
+function EmotionDeep() {
+  return (
+    <div>
+      <Button>Material-UI</Button>
+      <StyledButton color="papayawhip">Styled Components</StyledButton>
+    </div>
+  );
+}
+
+export default EmotionDeep;
+```
+
+{{"demo": "pages/guides/interoperability/EmotionDeep.js", "hideHeader": true}}
+
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xj81yqx504)
+
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+
+### E. ThemeProvider
+
+材料的UI具有丰富的主题，结构，您可以利用为 的颜色的处理，过渡，媒体查询等。
+
+{{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
 
 ## 全局CSS
 
-Explicitly providing the class names to the component is too much effort? Rest assured, we provide an option to make the class names **deterministic** for quick prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css).
+明确地为组件提供类名是否太费力了？ 请放心，我们提供了一个选项，使类名为 **确定性** 用于快速 原型设计： [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css)。
 
 **GlobalCssButton.css**
 
@@ -377,15 +384,15 @@ function GlobalCssButton() {
 export default GlobalCssButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
 
 ## React JSS
 
 ![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
-Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss). We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+Material-UI的样式解决方案与 [react-jss](https://github.com/cssinjs/react-jss)共享许多构建块。 我们继续分叉项目以处理我们的独特需求，但我们正在努力将Material-UI中的更改和修复合并到react-jss。
 
 ```jsx
 import React from 'react';
@@ -421,11 +428,11 @@ ReactJssButton.propTypes = {
 export default injectSheet(styles)(ReactJssButton);
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/219x6qqx0p)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/219x6qqx0p)
 
-## CSS to MUI webpack Loader
+## CSS到MUI webpack Loader
 
-The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order component. It provides a few hooks for accessing the theme from within the CSS.
+用于webpack的 [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) 允许您编写可以转换为JS的CSS，以便与 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶组件一起使用。 它提供了一些用于从CSS中访问主题的钩子。
 
 **webpack.config.js**
 
@@ -435,7 +442,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [ 'babel-loader', 'css-to-mui-loader' ]
+        use: [ 'css-to-mui-loader' ]
       }
     ]
   }
@@ -479,7 +486,7 @@ const CssToMuiButton = withStyles(styles)(({ classes }) => (
 
 ![stars](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
 
-A good way to apply styles with Glamor is using the **css()** function and then **classnames** to get them as strings:
+使用Glamour应用样式的好方法是使用 **css()** 函数，然后使用 **classnames** 将它们作为字符串：
 
 ```jsx
 import React from 'react';
@@ -498,13 +505,13 @@ const buttonStyles = {
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-// First we get the classNames with Glamor css function
+// 首先，我们使用Glamor css函数获取classNames
 const buttonClasses = css(buttonStyles);
 
-// We need the class names to be strings
+// 我们需要类名是字符串
 const className = buttonClasses.toString();
 
-// Then we just assign them the Button's className attribute
+// 然后我们只为它们分配Button的className属性
 function GlamorButton() {
   return (
     <div>
@@ -521,6 +528,6 @@ function GlamorButton() {
 export default GlamorButton;
 ```
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
-**Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**注意：** Glamour和JSS都在 `<head>`的底部注入了他们的风格。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。

@@ -117,10 +117,23 @@ export const styles = theme => ({
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 class Dialog extends React.Component {
+  handleMouseDown = event => {
+    this.mouseDownTarget = event.target;
+  };
+
   handleBackdropClick = event => {
+    // Ignore the events not coming from the "backdrop"
+    // We don't want to close the dialog when clicking the dialog content.
     if (event.target !== event.currentTarget) {
       return;
     }
+
+    // Make sure the event starts and ends on the same DOM element.
+    if (event.target !== this.mouseDownTarget) {
+      return;
+    }
+
+    this.mouseDownTarget = null;
 
     if (this.props.onBackdropClick) {
       this.props.onBackdropClick(event);
@@ -168,6 +181,7 @@ class Dialog extends React.Component {
           transitionDuration,
           ...BackdropProps,
         }}
+        closeAfterTransition
         disableBackdropClick={disableBackdropClick}
         disableEscapeKeyDown={disableEscapeKeyDown}
         onBackdropClick={onBackdropClick}
@@ -192,6 +206,7 @@ class Dialog extends React.Component {
           <div
             className={classNames(classes.container, classes[`scroll${capitalize(scroll)}`])}
             onClick={this.handleBackdropClick}
+            onMouseDown={this.handleMouseDown}
             role="document"
           >
             <PaperComponent

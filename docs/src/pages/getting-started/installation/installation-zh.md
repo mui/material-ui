@@ -1,6 +1,6 @@
 # 安装
 
-<p class="description">安装Material-UI——这个世界上最受欢迎的React UI框架.</p>
+<p class="description">安装Material-UI, 这个世界上最受欢迎的React UI框架.</p>
 
 Material-UI 可作为 [npm](https://www.npmjs.com/package/@material-ui/core) 包使用。
 
@@ -9,7 +9,11 @@ Material-UI 可作为 [npm](https://www.npmjs.com/package/@material-ui/core) 包
 下载并保存到你的 `package.json` 依赖，运行
 
 ```sh
+// 用npm安装
 npm install @material-ui/core
+
+// 用yarn安装
+yarn add @material-ui/core
 ```
 
 请注意 [react](https://www.npmjs.com/package/react) >= 16.3.0和[react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 是对等依赖
@@ -22,12 +26,24 @@ Material-UI的设计考虑了 [Roboto](https://fonts.google.com/specimen/Roboto)
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
+或者，如果您使用JSX而不是HTML来呈现头部：
+
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+```
+
 ## 字体图标
 
 为了使用字体`Icon` 组件, 你必须添加[Material icons](https://material.io/tools/icons/)字体. 这是如何去做的 [一些说明](/style/icons/#font-icons) 例如，通过Google Web Fonts引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+```
+
+或者，如果您使用JSX而不是HTML来呈现头部：
+
+```jsx
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
 ## SVG 图标

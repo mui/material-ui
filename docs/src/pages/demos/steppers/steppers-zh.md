@@ -12,7 +12,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 - 可编辑
 - 不可编辑
-- 可移动
+- Mobile
 - 可选的
 
 **步进器类型**
@@ -22,9 +22,11 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 - 线状
 - 非线性的
 
+> **注意：材料设计文档中不再记录** 步进器。
+
 ## 水平的步进器
 
-可以通过更改一个初始值为0的当前步骤值`activeStep`来控制`Stepper` 使用` orientation </ code>属性设置<code> Stepper </ code>方向。</p>
+可以通过更改一个初始值为0的当前步骤值`activeStep`来控制`Stepper` 使用`orientation`属性设置` Stepper </ code>方向。</p>
 
 <p>使用<code> orientation `属性设置`Step`组件方向。 请注意，您可以在跳过可选步骤时进行管理。 一旦为特定步骤确定了这一点，就必须设置` completed = {false} `以表示即使活动步骤索引超出了可选步骤，它也不会实际完成。
 
@@ -60,7 +62,11 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ## 定制步进器
 
+如果您有阅读[重写样式文档页面](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个消息条(Stepperr)的主要颜色的示例
+
 此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 ` completed ` 状态。
+
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 

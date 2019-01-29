@@ -2,13 +2,13 @@
 
 <p class="description">立刻使用React和Material-UI。</p>
 
-Material-UI components work in isolation. **They are self-supporting**, and will inject, and only inject, the styles they need to display. They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/),
+Material-UI 组件是独立工作的。 它们是**自我支持**的，并只要注入而且仅注入它们需要显示的样式。 他们不依赖任何全局的样式表, 如 [normalize.css](https://github.com/necolas/normalize.css/),
 
-You can use any of the components as demonstrated in the documentation. Please refer to each component's [demo page](/demos/buttons/) to see how they should be imported.
+您可以使用文档中演示的任何组件。 请参阅每个组件的 [demo 页 ](/demos/buttons/), 以了解应如何导入它们。
 
-## Quick start
+## 快速开始
 
-Here's a quick example to get you started, **it's literally all you need**:
+下面是一个快速的示例来帮助您入门, **这是您需要的所有操作 **:
 
 ```jsx
 import React from 'react';
@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 function App() {
   return (
     <Button variant="contained" color="primary">
-      Hello World
+      你好，世界
     </Button>
   );
 }
@@ -26,37 +26,36 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Yes, this really is all you need to get started, as you can see in this live and interactive demo:
+是的，这就是您开始使用所需的一切，正如您在此实时和交互式演示中所看到的：
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
-## Globals
+## 全局
 
-Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
+使用一些您需要注意的重要全局变量可以改善Material-UI使用体验。
 
-### Responsive meta tag
+### 响应元标记
 
-Material-UI is developed mobile first, a strategy in which we first write code for mobile devices and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element.
+Material-UI首先是移动开发的，我们首先为移动设备编写代码，然后根据需要使用CSS媒体查询扩展组件。 要确保所有设备的正确渲染和触摸缩放，请将响应式视口元标记添加到 `<head>` 元素。
 
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-/>
+  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
 ```
 
 ### CssBaseline
 
-Material-UI provides an optional [CssBaseline](/style/css-baseline/) component. It's fixing some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI提供可选的 [CssBaseline](/style/css-baseline/) 组件。 它修复了浏览器和设备之间的一些不一致性，同时为常见的HTML元素提供了更多看法的重置。
 
-## Versioned Documentation
+## 版本化文档
 
-This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a [separate page](/versions/).
+本文档始终反映Material-UI的最新稳定版本。 您可以在 [单独的页面上找到旧版本的文档](/versions/)。
 
-## Next steps
+## 下一步
 
-Now that you have an idea of the basic setup, it's time to learn more about:
+现在您已经了解了基本设置，现在是时候了解更多信息：
 
-- How to provide [the Material Design font and typography](/style/typography/).
-- How to take advantage of the [theming solution](/customization/themes/).
-- How to [override](/customization/overrides/) the look and feel of the components.
+- 如何提供 [Material Design字体和排版](/style/typography/)。
+- 如何利用 [主题解决方案](/customization/themes/)。
+- 如何 [覆盖](/customization/overrides/) 组件的外观。

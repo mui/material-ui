@@ -18,11 +18,11 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>Material-UI</title>
+        <style id="jss-server-side">${css}</style>
       </head>
       <body>
         <script async src="build/bundle.js"></script>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;

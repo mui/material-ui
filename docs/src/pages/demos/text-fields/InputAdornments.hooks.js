@@ -96,15 +96,13 @@ function InputAdornments() {
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
         />
       </FormControl>
-      <FormControl
-        className={classNames(classes.margin, classes.withoutLabel, classes.textField)}
-        aria-describedby="weight-helper-text"
-      >
+      <FormControl className={classNames(classes.margin, classes.withoutLabel, classes.textField)}>
         <Input
           id="adornment-weight"
           value={values.weight}
           onChange={handleChange('weight')}
           endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+          aria-describedby="weight-helper-text"
           inputProps={{
             'aria-label': 'Weight',
           }}

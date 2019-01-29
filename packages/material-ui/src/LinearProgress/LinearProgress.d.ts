@@ -26,7 +26,6 @@ export type LinearProgressClassKey =
   | 'bar1Indeterminate'
   | 'bar2Indeterminate'
   | 'bar1Determinate'
-  | 'bar2Determinate'
   | 'bar1Buffer'
   | 'bar2Buffer';
 

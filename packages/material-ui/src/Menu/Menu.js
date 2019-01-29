@@ -83,8 +83,8 @@ class Menu extends React.Component {
     }
   };
 
-  handleListKeyDown = (event, key) => {
-    if (key === 'tab') {
+  handleListKeyDown = event => {
+    if (event.key === 'Tab') {
       event.preventDefault();
 
       if (this.props.onClose) {

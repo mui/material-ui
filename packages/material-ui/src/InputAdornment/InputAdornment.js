@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { componentPropType } from '@material-ui/utils';
+import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
+import withFormControlContext from '../FormControl/withFormControlContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -41,10 +43,25 @@ function InputAdornment(props) {
     className,
     disablePointerEvents,
     disableTypography,
+    muiFormControl,
     position,
-    variant,
+    variant: variantProp,
     ...other
   } = props;
+
+  let variant = variantProp;
+
+  if (variantProp && muiFormControl) {
+    warning(
+      variantProp !== muiFormControl.variant,
+      'Material-UI: The `InputAdornment` variant infers the variant property ' +
+        'you do not have to provide one.',
+    );
+  }
+
+  if (muiFormControl && !variant) {
+    variant = muiFormControl.variant;
+  }
 
   return (
     <Component
@@ -98,11 +115,17 @@ InputAdornment.propTypes = {
    */
   disableTypography: PropTypes.bool,
   /**
+   * @ignore
+   */
+  muiFormControl: PropTypes.object,
+  /**
    * The position this adornment should appear relative to the `Input`.
    */
   position: PropTypes.oneOf(['start', 'end']),
   /**
    * The variant to use.
+   * Note: If you are using the `TextField` component or the `FormControl` component
+   * you do not have to set this manually.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
@@ -113,4 +136,6 @@ InputAdornment.defaultProps = {
   disableTypography: false,
 };
 
-export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);
+export default withStyles(styles, { name: 'MuiInputAdornment' })(
+  withFormControlContext(InputAdornment),
+);

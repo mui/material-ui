@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -271,25 +270,25 @@ class Slider extends React.Component {
     const step = this.props.step || onePercent;
     let value;
 
-    switch (keycode(event)) {
-      case 'home':
+    switch (event.key) {
+      case 'Home':
         value = min;
         break;
-      case 'end':
+      case 'End':
         value = max;
         break;
-      case 'page up':
+      case 'PageUp':
         value = currentValue + onePercent * 10;
         break;
-      case 'page down':
+      case 'PageDown':
         value = currentValue - onePercent * 10;
         break;
-      case 'right':
-      case 'up':
+      case 'ArrowRight':
+      case 'ArrowUp':
         value = currentValue + step;
         break;
-      case 'left':
-      case 'down':
+      case 'ArrowLeft':
+      case 'ArrowDown':
         value = currentValue - step;
         break;
       default:

@@ -22,12 +22,10 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   anchorEl?: null | HTMLElement | ReferenceObject | ((element: HTMLElement) => HTMLElement);
   children:
     | React.ReactNode
-    | ((
-        props: {
-          placement: PopperPlacementType;
-          TransitionProps?: TransitionProps;
-        },
-      ) => React.ReactNode);
+    | ((props: {
+        placement: PopperPlacementType;
+        TransitionProps?: TransitionProps;
+      }) => React.ReactNode);
   container?: PortalProps['container'];
   disablePortal?: PortalProps['disablePortal'];
   keepMounted?: boolean;
