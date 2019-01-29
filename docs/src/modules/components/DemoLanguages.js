@@ -36,8 +36,6 @@ function DemoLanguages(props) {
             >
               <JavascriptIcon />
             </ToggleButton>
-            {/* </Tooltip> */}
-            {/* <Tooltip title="Show TypeScript source" placement="top"> */}
             <ToggleButton
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
@@ -47,8 +45,6 @@ function DemoLanguages(props) {
             >
               <TypescriptIcon />
             </ToggleButton>
-            {/* </Tooltip> */}
-            {/* <Tooltip title="Show Hooks source" placement="top"> */}
             <ToggleButton
               value={CODE_VARIANTS.HOOK}
               disabled={!hasHooksVariant}
@@ -58,7 +54,6 @@ function DemoLanguages(props) {
             >
               <HooksIcon />
             </ToggleButton>
-            {/* </Tooltip> */}
           </ToggleButtonGroup>
         </div>
       </Fade>
