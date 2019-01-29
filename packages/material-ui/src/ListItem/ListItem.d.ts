@@ -18,6 +18,7 @@ export interface ListItemProps
   divider?: boolean;
   focusVisibleClassName?: string;
   selected?: boolean;
+  alignItems?: 'flex-start' | 'center';
 }
 
 export type ListItemClassKey =
