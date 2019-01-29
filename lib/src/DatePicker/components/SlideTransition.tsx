@@ -15,49 +15,6 @@ interface SlideTransitionProps extends WithStyles<typeof styles> {
 }
 
 const animationDuration = 350;
-
-const SlideTransition: React.SFC<SlideTransitionProps> = ({
-  classes,
-  className = null,
-  children,
-  transKey,
-  slideDirection,
-}) => {
-  const transitionClasses = {
-    enter: classes['slideEnter-' + slideDirection],
-    enterActive: classes.slideEnterActive,
-    exit: classes.slideExit,
-    exitActive: classes['slideExitActiveLeft-' + slideDirection],
-  };
-  return (
-    <TransitionGroup
-      className={clsx(classes.transitionContainer, className)}
-      childFactory={element =>
-        React.cloneElement(element, {
-          classNames: transitionClasses,
-        })
-      }
-    >
-      <CSSTransition
-        key={transKey}
-        mountOnEnter
-        unmountOnExit
-        timeout={animationDuration}
-        children={children}
-        classNames={transitionClasses}
-      />
-    </TransitionGroup>
-  );
-};
-
-(SlideTransition as any).propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
-  transKey: PropTypes.string.isRequired,
-  innerRef: PropTypes.any,
-};
-
 export const styles = (theme: Theme) => {
   const slideTransition = theme.transitions.create('transform', {
     duration: animationDuration,
@@ -101,6 +58,49 @@ export const styles = (theme: Theme) => {
       transition: slideTransition,
     },
   });
+};
+
+const SlideTransition: React.SFC<SlideTransitionProps> = ({
+  classes,
+  className = null,
+  children,
+  transKey,
+  slideDirection,
+}) => {
+  const transitionClasses = {
+    enter: classes['slideEnter-' + slideDirection],
+    enterActive: classes.slideEnterActive,
+    exit: classes.slideExit,
+    exitActive: classes['slideExitActiveLeft-' + slideDirection],
+  };
+
+  return (
+    <TransitionGroup
+      className={clsx(classes.transitionContainer, className)}
+      childFactory={element =>
+        React.cloneElement(element, {
+          classNames: transitionClasses,
+        })
+      }
+    >
+      <CSSTransition
+        key={transKey + slideDirection}
+        mountOnEnter
+        unmountOnExit
+        timeout={animationDuration}
+        children={children}
+        classNames={transitionClasses}
+      />
+    </TransitionGroup>
+  );
+};
+
+(SlideTransition as any).propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
+  transKey: PropTypes.string.isRequired,
+  innerRef: PropTypes.any,
 };
 
 export default withStyles(styles, {

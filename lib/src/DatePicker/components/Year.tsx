@@ -50,10 +50,9 @@ export class Year extends React.PureComponent<YearProps> {
         onKeyPress={this.handleClick}
         color={selected ? 'primary' : 'default'}
         variant={selected ? 'h5' : 'subtitle1'}
+        children={children}
         {...other}
-      >
-        {children}
-      </Typography>
+      />
     );
   }
 }

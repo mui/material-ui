@@ -103,7 +103,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
     keyboardIcon: PropTypes.node,
     disableOpenOnEnter: PropTypes.bool,
     invalidDateMessage: PropTypes.node,
-    TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.node]),
     InputAdornmentProps: PropTypes.object,
     KeyboardButtonProps: PropTypes.object,
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
