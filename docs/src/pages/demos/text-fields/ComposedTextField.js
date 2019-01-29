@@ -51,6 +51,7 @@ class ComposedTextField extends React.Component {
             onChange={this.handleChange}
             aria-describedby="component-helper-text"
           />
+
           <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} disabled>
@@ -66,6 +67,7 @@ class ComposedTextField extends React.Component {
             onChange={this.handleChange}
             aria-describedby="component-error-text"
           />
+
           <FormHelperText id="component-error-text">Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} variant="outlined">
