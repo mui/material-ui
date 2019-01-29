@@ -197,6 +197,11 @@ declare const themed: boolean;
   // Test that withTheme: true guarantees the presence of the theme
   const Foo = withStyles({}, { withTheme: true })(
     class extends React.Component<WithTheme> {
+      hasRef() {
+        // innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
+        return Boolean(this.props.innerRef); // $ExpectError
+      }
+
       render() {
         return <div style={{ margin: this.props.theme.spacing.unit }} />;
       }
