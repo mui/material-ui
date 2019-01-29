@@ -13,6 +13,7 @@ export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
 export interface Options {
   defaultMatches?: boolean;
   matchMedia?: (query: string) => MuiMediaQueryList;
+  noSsr? : boolean;
 }
 
 export default function unstable_useMediaQuery(query: string, options?: Options): boolean;
