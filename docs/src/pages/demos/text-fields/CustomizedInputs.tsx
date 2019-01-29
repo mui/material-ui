@@ -18,7 +18,7 @@ import green from '@material-ui/core/colors/green';
 
 const styles = (theme: Theme) =>
   createStyles({
-    container: {
+    root: {
       display: 'flex',
       flexWrap: 'wrap',
     },
@@ -49,9 +49,11 @@ const styles = (theme: Theme) =>
     },
     bootstrapInput: {
       borderRadius: 4,
+      position: 'relative',
       backgroundColor: theme.palette.common.white,
       border: '1px solid #ced4da',
       fontSize: 16,
+      width: 'auto',
       padding: '10px 12px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
       // Use the system font instead of the default Roboto font.
@@ -68,6 +70,7 @@ const styles = (theme: Theme) =>
         '"Segoe UI Symbol"',
       ].join(','),
       '&:focus': {
+        borderRadius: 4,
         borderColor: '#80bdff',
         boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
       },
@@ -90,7 +93,7 @@ function CustomizedInputs(props: Props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       <FormControl className={classes.margin}>
         <InputLabel
           htmlFor="custom-css-standard-input"
