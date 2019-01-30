@@ -58,8 +58,8 @@ To solve that problem we use [karma](https://github.com/karma-runner/karma),
 which is almost a drop in replacement of [jsdom](https://github.com/tmpvar/jsdom).
 Our tests run on different browsers to increase the coverage:
 
-- [PhantomJS](https://github.com/ariya/phantomjs) - Scriptable Headless WebKit
-- Firefox, Chrome and Safari thanks to [BrowserStack](https://www.browserstack.com)
+- [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
+- Chrome, Firefox, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
 
 ### Browser API level
 
