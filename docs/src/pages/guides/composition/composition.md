@@ -10,9 +10,10 @@ To solve this problem we tag some of our components when needed
 with a `muiName` static property.
 
 However, users like to wrap components in order to enhance them.
-That can conflict with our `muiName` solution.
+That can conflict with our `muiName` solution. If you wrap a component verify if
+that component has this static property set.
 If you encounter this issue, you need to:
-1. Forward the properties.
+1. Hoist these properties.
 2. Use the same tag for your wrapping component that is used with the wrapped component.
 
 Let's see an example:
