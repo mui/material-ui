@@ -8,6 +8,7 @@ export interface ListItemProps
     ListItemClassKey,
     'component'
   > {
+  alignItems?: 'flex-start' | 'center';
   button?: boolean;
   component?: React.ReactType<ListItemProps>;
   ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
