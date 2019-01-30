@@ -12,8 +12,7 @@ filename: /packages/material-ui/src/ListItem/ListItem.js
 import ListItem from '@material-ui/core/ListItem';
 ```
 
-Uses an additional container component if `ListItemSecondaryAction` is the
-last child.
+Uses an additional container component if `ListItemSecondaryAction` is the last child.
 
 ## Props
 
