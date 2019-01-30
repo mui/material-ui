@@ -13,6 +13,15 @@ components: Breadcrumbs, Breadcrumb
 
 ## Custom separator
 
+The seperator can be any valid React node.
+In the following examples, we are using `"›"`, `"-"` and
+
+```jsx
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+// …
+seperator={<NavigateNextIcon fontSize="small" />}
+```
+
 {{"demo": "pages/lab/breadcrumbs/CustomSeparator.js"}}
 
 ## Breadcrumbs with icons

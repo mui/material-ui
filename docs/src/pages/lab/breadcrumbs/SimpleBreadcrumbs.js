@@ -12,18 +12,23 @@ const styles = theme => ({
   },
 });
 
+function handleClick(event) {
+  event.preventDefault();
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
+}
+
 function SimpleBreadcrumbs(props) {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
       <Breadcrumbs arial-label="Breadcrumb navigation">
         <Breadcrumb>
-          <Link color="inherit" href="/">
+          <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
         </Breadcrumb>
         <Breadcrumb>
-          <Link color="inherit" href="/lab/about/">
+          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
             Lab
           </Link>
         </Breadcrumb>

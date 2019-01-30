@@ -7,9 +7,9 @@ const styles = theme => ({
   root: {
     color: theme.palette.grey[400],
     display: 'flex',
+    userSelect: 'none',
     marginLeft: 8,
     marginRight: 8,
-    userSelect: 'none',
   },
 });
 

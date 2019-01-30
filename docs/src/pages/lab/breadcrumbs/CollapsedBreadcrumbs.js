@@ -18,8 +18,9 @@ const styles = theme => ({
   },
 });
 
-function handleClick() {
-  alert('You clicked a Breadcrumb.'); // eslint-disable-line no-alert
+function handleClick(event) {
+  event.preventDefault();
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function CollapsedBreadcrumbs(props) {

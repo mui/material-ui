@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,8 +6,8 @@ import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 import Breadcrumb from '@material-ui/lab/Breadcrumb';
 import Link from '@material-ui/core/Link';
 import HomeIcon from '@material-ui/icons/Home';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GroupIcon from '@material-ui/icons/Group';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import GrainIcon from '@material-ui/icons/Grain';
 
 const styles = theme => ({
   root: {
@@ -25,8 +23,9 @@ const styles = theme => ({
   },
 });
 
-function handleClick() {
-  alert('You clicked a Breadcrumb.'); // eslint-disable-line no-alert
+function handleClick(event) {
+  event.preventDefault();
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function IconBreadcrumbs(props) {
@@ -35,22 +34,20 @@ function IconBreadcrumbs(props) {
     <Paper className={classes.root}>
       <Breadcrumbs arial-label="Breadcrumb navigation">
         <Breadcrumb>
-          <Link color="inherit" href="#" onClick={handleClick} className={classes.link}>
+          <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
             <HomeIcon className={classes.icon} />
-            Home
+            Material-UI
           </Link>
         </Breadcrumb>
         <Breadcrumb>
-          <Link color="inherit" href="#" onClick={handleClick} className={classes.link}>
-            <SettingsIcon className={classes.icon} />
-            Settings
+          <Link color="inherit" href="/lab/about/" onClick={handleClick} className={classes.link}>
+            <WhatshotIcon className={classes.icon} />
+            Lab
           </Link>
         </Breadcrumb>
-        <Breadcrumb>
-          <Link color="inherit" href="#" className={classes.link}>
-            <GroupIcon className={classes.icon} />
-            Users
-          </Link>
+        <Breadcrumb color="textPrimary" className={classes.link}>
+          <GrainIcon className={classes.icon} />
+          Breadcrumb
         </Breadcrumb>
       </Breadcrumbs>
     </Paper>

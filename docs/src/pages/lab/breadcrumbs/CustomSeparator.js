@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,8 +17,9 @@ const styles = theme => ({
   },
 });
 
-function handleClick() {
-  alert('You clicked a Breadcrumb.'); // eslint-disable-line no-alert
+function handleClick(event) {
+  event.preventDefault();
+  alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
 function CustomSeparator(props) {
@@ -31,12 +30,12 @@ function CustomSeparator(props) {
       <Paper className={classes.paper}>
         <Breadcrumbs separator="›" arial-label="Breadcrumb navigation">
           <Breadcrumb>
-            <Link color="inherit" href="#" onClick={handleClick}>
+            <Link color="inherit" href="/" onClick={handleClick}>
               Material-UI
             </Link>
           </Breadcrumb>
           <Breadcrumb>
-            <Link color="inherit" href="#" onClick={handleClick}>
+            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
               Lab
             </Link>
           </Breadcrumb>
@@ -47,12 +46,12 @@ function CustomSeparator(props) {
       <Paper className={classes.paper}>
         <Breadcrumbs separator="-" arial-label="Breadcrumb navigation">
           <Breadcrumb>
-            <Link color="inherit" href="#" onClick={handleClick}>
+            <Link color="inherit" href="/" onClick={handleClick}>
               Material-UI
             </Link>
           </Breadcrumb>
           <Breadcrumb>
-            <Link color="inherit" href="#" onClick={handleClick}>
+            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
               Lab
             </Link>
           </Breadcrumb>
@@ -61,14 +60,17 @@ function CustomSeparator(props) {
       </Paper>
       <br />
       <Paper className={classes.paper}>
-        <Breadcrumbs separator={<NavigateNextIcon />} arial-label="Breadcrumb navigation">
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          arial-label="Breadcrumb navigation"
+        >
           <Breadcrumb>
-            <Link color="inherit" href="#" onClick={handleClick}>
+            <Link color="inherit" href="/" onClick={handleClick}>
               Material-UI
             </Link>
           </Breadcrumb>
           <Breadcrumb>
-            <Link color="inherit" href="#" onClick={handleClick}>
+            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
               Lab
             </Link>
           </Breadcrumb>
