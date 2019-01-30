@@ -188,7 +188,7 @@ describe('<ListItem />', () => {
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(
           consoleErrorMock.args()[0][0],
-          'Warning: Failed prop type: Material-UI: You used an element',
+          'Warning: Failed prop type: Material-UI: you used an element',
         );
       });
     });
