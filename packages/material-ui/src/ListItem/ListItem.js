@@ -84,8 +84,7 @@ export const styles = theme => ({
 });
 
 /**
- * Uses an additional container component if `ListItemSecondaryAction` is the
- * last child.
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
 function ListItem(props) {
   const {
@@ -189,7 +188,7 @@ ListItem.propTypes = {
   children: chainPropTypes(PropTypes.node, props => {
     const children = React.Children.toArray(props.children);
 
-    // React.children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
+    // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
     let secondaryActionIndex = -1;
     for (let i = children.length - 1; i >= 0; i -= 1) {
       const child = children[i];
@@ -202,7 +201,7 @@ ListItem.propTypes = {
     //  is ListItemSecondaryAction the last child of ListItem
     if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
       return new Error(
-        'Material-UI: You used an element after ListItemSecondaryAction. ' +
+        'Material-UI: you used an element after ListItemSecondaryAction. ' +
           'For ListItem to detect that it has a secondary action ' +
           `you must pass it has the last children to ListItem.${
             process.env.NODE_ENV === 'test' ? Date.now() : ''
