@@ -74,7 +74,6 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       flip: false,
-      // position: 'absolute',
       top: 0,
       right: theme.spacing.unit,
     },
