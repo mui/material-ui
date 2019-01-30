@@ -18,14 +18,18 @@ component and some styles:
   and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
+
+> **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
+A Modal window describes parts of a UI.
+An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal.
 Modal is a lower-level construct that is leveraged by the following components:
 
 - [Dialog](/demos/dialogs/)
 - [Drawer](/demos/drawers/)
 - [Menu](/demos/menus/)
 - [Popover](/utils/popover/)
-
-If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal.
 
 ## Simple modal
 

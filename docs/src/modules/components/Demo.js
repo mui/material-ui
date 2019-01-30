@@ -175,6 +175,7 @@ class Demo extends React.Component {
   handleCodeLanguageClick = (event, codeVariant) => {
     if (this.props.codeVariant !== codeVariant) {
       document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
+      window.ga('set', 'dimension1', codeVariant);
 
       this.props.dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
