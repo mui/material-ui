@@ -124,7 +124,7 @@ And let's give it a name: `SuperButtons.js`.
 
 We try to also document how to use this library with TypeScript. If you are familiar with
 that language try writing that demo in TypeScript in a *.tsx file. When you're done
-run `yarn docs:typescript` to automatically add a JavaScript version.
+run `yarn docs:typescript:formatted` to automatically add a JavaScript version.
 
 Apart from the inherent pros and cons of TypeScript the demos are also used to test our
 type declarations. This helps a lot in catching regressions when updating our type
@@ -180,9 +180,6 @@ A contributor can later update the TypeScript version of that demo.
 
 If you are already familiar with TypeScript you can simply write the demo in TypeScript.
 `yarn docs:typescript:formatted` will transpile it down to JavaScript.
-
-If you add a TypeScript version of a demo make sure that the `enableCodeLanguageSwitch`
-prop on the `MarkdownDocs` is set so that this version is visible in the docs.
 
 ## How do I use my local distribution of material-ui in any project?
 
