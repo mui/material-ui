@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import { chainPropTypes, componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
@@ -181,7 +181,32 @@ ListItem.propTypes = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const children = React.Children.toArray(props.children);
+
+    // React.children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
+    let secondaryActionIndex = -1;
+    for (let i = children.length - 1; i >= 0; i -= 1) {
+      const child = children[i];
+      if (isMuiElement(child, ['ListItemSecondaryAction'])) {
+        secondaryActionIndex = i;
+        break;
+      }
+    }
+
+    //  is ListItemSecondaryAction the last child of ListItem
+    if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
+      return new Error(
+        'Material-UI: You used an element after ListItemSecondaryAction. ' +
+          'For ListItem to detect that it has a secondary action ' +
+          `you must pass it has the last children to ListItem.${
+            process.env.NODE_ENV === 'test' ? Date.now() : ''
+          }`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
