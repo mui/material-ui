@@ -20,7 +20,7 @@ Let's see an example:
 
 ```jsx
 const WrappedIcon = props => <Icon {...props} />;
-WrappedIcon.muiName = 'Icon';
+WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}
