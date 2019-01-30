@@ -23,11 +23,13 @@ trade-off, mainly completeness vs. speed.
 ### React API level
 
 #### Run the core mocha unit/integration test suite.
+
 To run all of the unit tests just run  `yarn test:unit`
 
 If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.
 
 #### Watch the core mocha unit/integration test suite.
+
 `yarn test:watch`
 
 First, we have the **unit test** suite.
@@ -50,6 +52,7 @@ When running this command you should get under `coverage/index.html` a full cove
 ### DOM API level
 
 #### Run the mocha test suite using the karma runner.
+
 `yarn test:karma`
 
 Testing the components at the React level isn't enough;
@@ -68,6 +71,7 @@ The DOM is just one dimension of that environment,
 so we also need to take into account the rendering engine.
 
 #### Run the visual regression tests
+
 `yarn test:regressions`
 
 Next, we are using [docker](https://github.com/docker/docker) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
