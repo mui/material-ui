@@ -45,7 +45,7 @@ export const styles = theme => ({
     '&[multiple]': {
       height: 'auto',
     },
-    '& option, & optgroup': {
+    '&:not([multiple]) option, & optgroup': {
       backgroundColor: theme.palette.background.paper,
     },
   },
