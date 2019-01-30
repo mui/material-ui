@@ -1,6 +1,6 @@
 import { install } from '@material-ui/styles';
 
-// WARNING: this step be done in a separate file like in this example.
+// WARNING: this step must be done in a separate file like in this example.
 // ES imports are hoisted to the top of the module.
 //
 // We will make @material-ui/styles the default style implementation
