@@ -1,5 +1,7 @@
 import { install } from '@material-ui/styles';
 
+// WARNING: this must be done in a separate file, as imports are hoisted.
+//
 // We will make @material-ui/styles the default style implementation
 // for the core components in Material-UI v4.
 // This installation step is temporary.
