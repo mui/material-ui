@@ -50,7 +50,6 @@ export type WithStyles<
       ? K
       : never
   >;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
 };
 
 export interface StyledComponentProps<ClassKey extends string = string> {
