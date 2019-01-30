@@ -13,6 +13,9 @@ export const styles = {
   },
 };
 
+/**
+ * Must be used as the last child of ListItem to function properly.
+ */
 function ListItemSecondaryAction(props) {
   const { children, classes, className, ...other } = props;
 

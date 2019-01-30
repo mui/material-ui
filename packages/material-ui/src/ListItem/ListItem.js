@@ -83,6 +83,10 @@ export const styles = theme => ({
   selected: {},
 });
 
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the
+ * last child.
+ */
 function ListItem(props) {
   const {
     alignItems,
@@ -179,7 +183,8 @@ ListItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * The content of the component.
+   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * be the last child.
    */
   children: chainPropTypes(PropTypes.node, props => {
     const children = React.Children.toArray(props.children);
@@ -223,12 +228,11 @@ ListItem.propTypes = {
    */
   component: componentPropType,
   /**
-   * The container component used when a `ListItemSecondaryAction` is rendered.
+   * The container component used when a `ListItemSecondaryAction` is the last child.
    */
   ContainerComponent: componentPropType,
   /**
-   * Properties applied to the container element when the component
-   * is used to display a `ListItemSecondaryAction`.
+   * Properties applied to the container component if used.
    */
   ContainerProps: PropTypes.object,
   /**
