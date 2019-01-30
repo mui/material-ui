@@ -30,13 +30,14 @@ export function pageToTitle(page) {
 
 /**
  * @var
- * set of packages that bundle their only typings
+ * set of packages that ship their own typings instead of using @types/ namespace
  * Array because Set([iterable]) is not supported in IE11
  */
 const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
 
 /**
- * WARNING: Always uses `latest` typings. Does not work with scoped packages.
+ * WARNING: Always uses `latest` typings.
+ *
  * Adds dependencies to @types packages only for packages that are not listed
  * in packagesWithBundledTypes
  *
