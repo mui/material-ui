@@ -24,40 +24,38 @@ function DemoLanguages(props) {
   }
 
   return (
-    <React.Fragment>
-      <Fade in={codeOpen}>
-        <div style={{ padding: '8px 0px' }}>
-          <ToggleButtonGroup exclusive value={renderedCodeVariant()} onChange={onLanguageClick}>
-            <ToggleButton
-              value={CODE_VARIANTS.JS}
-              aria-label="Show JavaScript source"
-              data-ga-event-category={gaEventCategory}
-              data-ga-event-action="source-js"
-            >
-              <JavascriptIcon />
-            </ToggleButton>
-            <ToggleButton
-              value={CODE_VARIANTS.TS}
-              disabled={!hasTSVariant}
-              aria-label="Show TypeScript source"
-              data-ga-event-category={gaEventCategory}
-              data-ga-event-action="source-ts"
-            >
-              <TypescriptIcon />
-            </ToggleButton>
-            <ToggleButton
-              value={CODE_VARIANTS.HOOK}
-              disabled={!hasHooksVariant}
-              aria-label="Show Hooks source"
-              data-ga-event-category={gaEventCategory}
-              data-ga-event-action="source-hooks"
-            >
-              <HooksIcon />
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
-      </Fade>
-    </React.Fragment>
+    <Fade in={codeOpen}>
+      <div style={{ padding: '8px 0px' }}>
+        <ToggleButtonGroup exclusive value={renderedCodeVariant()} onChange={onLanguageClick}>
+          <ToggleButton
+            value={CODE_VARIANTS.JS}
+            aria-label="Show JavaScript source"
+            data-ga-event-category={gaEventCategory}
+            data-ga-event-action="source-js"
+          >
+            <JavascriptIcon />
+          </ToggleButton>
+          <ToggleButton
+            value={CODE_VARIANTS.TS}
+            disabled={!hasTSVariant}
+            aria-label="Show TypeScript source"
+            data-ga-event-category={gaEventCategory}
+            data-ga-event-action="source-ts"
+          >
+            <TypescriptIcon />
+          </ToggleButton>
+          <ToggleButton
+            value={CODE_VARIANTS.HOOK}
+            disabled={!hasHooksVariant}
+            aria-label="Show Hooks source"
+            data-ga-event-category={gaEventCategory}
+            data-ga-event-action="source-hooks"
+          >
+            <HooksIcon />
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </div>
+    </Fade>
   );
 }
 
