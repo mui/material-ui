@@ -14,13 +14,13 @@ function DemoLanguages(props) {
   const hasTSVariant = demo.rawTS;
 
   function renderedCodeVariant() {
-    if (codeVariant === 'TS' && hasTSVariant) {
-      return 'TS';
+    if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {
+      return CODE_VARIANTS.TS;
     }
-    if (codeVariant === 'HOOK' && hasHooksVariant) {
-      return 'HOOK';
+    if (codeVariant === CODE_VARIANTS.HOOK && hasHooksVariant) {
+      return CODE_VARIANTS.HOOK;
     }
-    return 'JS';
+    return CODE_VARIANTS.JS;
   }
 
   return (
