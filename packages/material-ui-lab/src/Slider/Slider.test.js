@@ -1,5 +1,4 @@
 import React from 'react';
-import { codes } from 'keycode';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
@@ -227,10 +226,10 @@ describe('<Slider />', () => {
     let wrapper;
 
     const moveLeftEvent = new window.KeyboardEvent('keydown', {
-      keyCode: codes.left,
+      key: 'ArrowLeft',
     });
     const moveRightEvent = new window.KeyboardEvent('keydown', {
-      keyCode: codes.right,
+      key: 'ArrowRight',
     });
 
     before(() => {
