@@ -29,6 +29,11 @@ export default function createGenerateClassName(options = {}) {
       ].join(''),
     );
 
+    // For testing, MUI produces duplicate results for Snapshots
+
+    if (process.env.NODE_ENV === 'test') {
+      return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
+    }
     if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
       return `${safePrefix(styleSheet.options.name)}-${rule.key}`;
     }
