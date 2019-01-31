@@ -364,7 +364,7 @@ class Chip extends React.Component {
 
     return (
       <Component
-        role={clickable ? 'button' : undefined}
+        role={clickable || onDelete ? 'button' : undefined}
         className={className}
         tabIndex={clickable || onDelete ? 0 : undefined}
         onClick={onClick}
