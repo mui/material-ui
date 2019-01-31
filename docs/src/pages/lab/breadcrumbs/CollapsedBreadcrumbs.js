@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Breadcrumb from '@material-ui/lab/Breadcrumb';
+import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 const styles = theme => ({
@@ -29,27 +29,19 @@ function CollapsedBreadcrumbs(props) {
   return (
     <Paper className={classes.paper}>
       <Breadcrumbs maxItems={2} arial-label="Breadcrumb">
-        <Breadcrumb>
-          <Link color="inherit" href="#" onClick={handleClick}>
-            Home
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb>
-          <Link color="inherit" href="#" onClick={handleClick}>
-            Catalog
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb>
-          <Link color="inherit" href="#" onClick={handleClick}>
-            Accessories
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb>
-          <Link color="inherit" href="#" onClick={handleClick}>
-            New Collection
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb color="textPrimary">Belts</Breadcrumb>
+        <Link color="inherit" href="#" onClick={handleClick}>
+          Home
+        </Link>
+        <Link color="inherit" href="#" onClick={handleClick}>
+          Catalog
+        </Link>
+        <Link color="inherit" href="#" onClick={handleClick}>
+          Accessories
+        </Link>
+        <Link color="inherit" href="#" onClick={handleClick}>
+          New Collection
+        </Link>
+        <Typography color="textPrimary">Belts</Typography>
       </Breadcrumbs>
     </Paper>
   );

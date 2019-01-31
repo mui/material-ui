@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Breadcrumb from '@material-ui/lab/Breadcrumb';
 import Link from '@material-ui/core/Link';
 import HomeIcon from '@material-ui/icons/Home';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
@@ -33,22 +33,18 @@ function IconBreadcrumbs(props) {
   return (
     <Paper className={classes.root}>
       <Breadcrumbs arial-label="Breadcrumb">
-        <Breadcrumb>
-          <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
-            <HomeIcon className={classes.icon} />
-            Material-UI
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb>
-          <Link color="inherit" href="/lab/about/" onClick={handleClick} className={classes.link}>
-            <WhatshotIcon className={classes.icon} />
-            Lab
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb color="textPrimary" className={classes.link}>
+        <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
+          <HomeIcon className={classes.icon} />
+          Material-UI
+        </Link>
+        <Link color="inherit" href="/lab/about/" onClick={handleClick} className={classes.link}>
+          <WhatshotIcon className={classes.icon} />
+          Lab
+        </Link>
+        <Typography color="textPrimary" className={classes.link}>
           <GrainIcon className={classes.icon} />
           Breadcrumb
-        </Breadcrumb>
+        </Typography>
       </Breadcrumbs>
     </Paper>
   );

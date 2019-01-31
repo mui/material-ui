@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = {
   root: {
-    color: theme.palette.grey[400],
     display: 'flex',
     userSelect: 'none',
     marginLeft: 8,
     marginRight: 8,
   },
-});
+};
 
 /**
  * @ignore - internal component.

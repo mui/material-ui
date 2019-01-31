@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { componentPropType } from '@material-ui/utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   /* Styles applied to the root element. */
@@ -20,6 +21,8 @@ const styles = {
       listStyle: 'none',
     },
   },
+  /* Styles applied to the li element. */
+  li: {},
   /* Styles applied to the separator element. */
   separator: {},
 };
@@ -82,10 +85,22 @@ class Breadcrumbs extends React.Component {
       separator,
       ...other
     } = this.props;
-    const allItems = React.Children.toArray(children);
+
+    const allItems = React.Children.toArray(children)
+      .filter(child => React.isValidElement(child))
+      .map((child, index) => (
+        <li className={classes.li} key={String(index)}>
+          {child}
+        </li>
+      ));
 
     return (
-      <Component className={classNames(classes.root, classNameProp)} {...other}>
+      <Typography
+        component={Component}
+        color="textSecondary"
+        className={classNames(classes.root, classNameProp)}
+        {...other}
+      >
         <ol className={classes.ol}>
           {this.insertSeparators(
             this.state.expanded || (maxItems && allItems.length <= maxItems)
@@ -93,7 +108,7 @@ class Breadcrumbs extends React.Component {
               : this.renderItemsBeforeAndAfter(allItems),
           )}
         </ol>
-      </Component>
+      </Typography>
     );
   }
 }

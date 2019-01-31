@@ -9,10 +9,10 @@ import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Breadcrumb from '@material-ui/lab/Breadcrumb';
 import MemoryRouter from 'react-router/MemoryRouter';
 import Route from 'react-router/Route';
 import { Link as RouterLink } from 'react-router-dom';
@@ -82,25 +82,21 @@ class RouterBreadcrumbs extends React.Component {
 
                 return (
                   <Breadcrumbs arial-label="Breadcrumb">
-                    <Breadcrumb>
-                      <Link component={RouterLink} color="inherit" to="/">
-                        Home
-                      </Link>
-                    </Breadcrumb>
+                    <Link component={RouterLink} color="inherit" to="/">
+                      Home
+                    </Link>
                     {pathnames.map((value, index) => {
                       const last = index === pathnames.length - 1;
                       const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
                       return last ? (
-                        <Breadcrumb color="textPrimary" key={to}>
+                        <Typography color="textPrimary" key={to}>
                           {breadcrumbNameMap[to]}
-                        </Breadcrumb>
+                        </Typography>
                       ) : (
-                        <Breadcrumb key={to}>
-                          <Link component={RouterLink} color="inherit" to={to}>
-                            {breadcrumbNameMap[to]}
-                          </Link>
-                        </Breadcrumb>
+                        <Link component={RouterLink} color="inherit" to={to} key={to}>
+                          {breadcrumbNameMap[to]}
+                        </Link>
                       );
                     })}
                   </Breadcrumbs>

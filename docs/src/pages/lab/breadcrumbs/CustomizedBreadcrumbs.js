@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Breadcrumb from '@material-ui/lab/Breadcrumb';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
@@ -55,30 +54,24 @@ function CustomizedBreadcrumbs(props) {
   return (
     <Paper className={classes.root}>
       <Breadcrumbs arial-label="Breadcrumb">
-        <Breadcrumb>
-          <StyledBreadcrumb
-            component="a"
-            href="#"
-            label="Home"
-            avatar={
-              <Avatar className={classes.avatar}>
-                <HomeIcon />
-              </Avatar>
-            }
-            onClick={handleClick}
-          />
-        </Breadcrumb>
-        <Breadcrumb>
-          <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
-        </Breadcrumb>
-        <Breadcrumb>
-          <StyledBreadcrumb
-            label="Accessories"
-            deleteIcon={<ExpandMoreIcon />}
-            onClick={handleClick}
-            onDelete={handleClick}
-          />
-        </Breadcrumb>
+        <StyledBreadcrumb
+          component="a"
+          href="#"
+          label="Home"
+          avatar={
+            <Avatar className={classes.avatar}>
+              <HomeIcon />
+            </Avatar>
+          }
+          onClick={handleClick}
+        />
+        <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
+        <StyledBreadcrumb
+          label="Accessories"
+          deleteIcon={<ExpandMoreIcon />}
+          onClick={handleClick}
+          onDelete={handleClick}
+        />
       </Breadcrumbs>
     </Paper>
   );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Breadcrumb from '@material-ui/lab/Breadcrumb';
+import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
@@ -29,49 +29,37 @@ function CustomSeparator(props) {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Breadcrumbs separator="›" arial-label="Breadcrumb">
-          <Breadcrumb>
-            <Link color="inherit" href="/" onClick={handleClick}>
-              Material-UI
-            </Link>
-          </Breadcrumb>
-          <Breadcrumb>
-            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-              Lab
-            </Link>
-          </Breadcrumb>
-          <Breadcrumb color="textPrimary">Breadcrumb</Breadcrumb>
+          <Link color="inherit" href="/" onClick={handleClick}>
+            Material-UI
+          </Link>
+          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
+            Lab
+          </Link>
+          <Typography color="textPrimary">Breadcrumb</Typography>
         </Breadcrumbs>
       </Paper>
       <br />
       <Paper className={classes.paper}>
         <Breadcrumbs separator="-" arial-label="Breadcrumb">
-          <Breadcrumb>
-            <Link color="inherit" href="/" onClick={handleClick}>
-              Material-UI
-            </Link>
-          </Breadcrumb>
-          <Breadcrumb>
-            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-              Lab
-            </Link>
-          </Breadcrumb>
-          <Breadcrumb color="textPrimary">Breadcrumb</Breadcrumb>
+          <Link color="inherit" href="/" onClick={handleClick}>
+            Material-UI
+          </Link>
+          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
+            Lab
+          </Link>
+          <Typography color="textPrimary">Breadcrumb</Typography>
         </Breadcrumbs>
       </Paper>
       <br />
       <Paper className={classes.paper}>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} arial-label="Breadcrumb">
-          <Breadcrumb>
-            <Link color="inherit" href="/" onClick={handleClick}>
-              Material-UI
-            </Link>
-          </Breadcrumb>
-          <Breadcrumb>
-            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-              Lab
-            </Link>
-          </Breadcrumb>
-          <Breadcrumb color="textPrimary">Breadcrumb</Breadcrumb>
+          <Link color="inherit" href="/" onClick={handleClick}>
+            Material-UI
+          </Link>
+          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
+            Lab
+          </Link>
+          <Typography color="textPrimary">Breadcrumb</Typography>
         </Breadcrumbs>
       </Paper>
     </div>
