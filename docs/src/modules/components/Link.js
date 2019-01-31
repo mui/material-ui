@@ -15,6 +15,7 @@ function NextWrapper(props) {
   return (
     <NextLink href={href} prefetch={prefetch}>
       <a
+        data-next="true"
         onClick={onClick}
         className={classNames(className, {
           [activeClassName]: router.pathname === href && activeClassName,
@@ -31,6 +32,7 @@ NextWrapper.defaultProps = {
 
 NextWrapper.propTypes = {
   activeClassName: PropTypes.string,
+  className: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,

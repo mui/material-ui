@@ -20,6 +20,15 @@ we allow such pattern.
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
+## Customized selects
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/selects/CustomizedSelects.js"}}
+
 ## Multiple Select
 
 The `Select` component can handle multiple selections.

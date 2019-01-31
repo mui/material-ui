@@ -12,7 +12,7 @@ filename: /packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAct
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 ```
 
-
+Must be used as the last child of ListItem to function properly.
 
 ## Props
 

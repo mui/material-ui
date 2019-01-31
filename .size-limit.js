@@ -22,7 +22,7 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '96.2 KB',
+    limit: '94.8 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -43,6 +43,19 @@ module.exports = [
     limit: '900 B',
   },
   {
+    name: 'The size of the @material-ui/core/Button component',
+    webpack: true,
+    path: 'packages/material-ui/build/Button/index.js',
+    limit: '27.0 KB',
+  },
+  {
+    // vs https://bundlephobia.com/result?p=react-modal
+    name: 'The size of the @material-ui/core/Modal component',
+    webpack: true,
+    path: 'packages/material-ui/build/Modal/index.js',
+    limit: '27.0 KB',
+  },
+  {
     // vs https://bundlephobia.com/result?p=react-popper
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
@@ -61,7 +74,7 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '189 KB',
+    limit: '193 KB',
   },
   {
     name: 'The docs home page',

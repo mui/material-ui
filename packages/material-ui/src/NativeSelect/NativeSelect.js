@@ -31,7 +31,7 @@ export const styles = theme => ({
     cursor: 'pointer',
     '&:focus': {
       // Show that it's not an text input
-      background:
+      backgroundColor:
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
       borderRadius: 0, // Reset Chrome style
     },
@@ -44,6 +44,9 @@ export const styles = theme => ({
     },
     '&[multiple]': {
       height: 'auto',
+    },
+    '&:not([multiple]) option, &:not([multiple]) optgroup': {
+      backgroundColor: theme.palette.background.paper,
     },
   },
   /* Styles applied to the `Input` component if `variant="filled"`. */

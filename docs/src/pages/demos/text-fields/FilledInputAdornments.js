@@ -65,13 +65,10 @@ class FilledInputAdornments extends React.Component {
           variant="filled"
           label="With filled TextField"
           InputProps={{
-            startAdornment: (
-              <InputAdornment variant="filled" position="start">
-                Kg
-              </InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         />
+
         <TextField
           select
           className={classNames(classes.margin, classes.textField)}
@@ -80,11 +77,7 @@ class FilledInputAdornments extends React.Component {
           value={this.state.weightRange}
           onChange={this.handleChange('weightRange')}
           InputProps={{
-            startAdornment: (
-              <InputAdornment variant="filled" position="start">
-                Kg
-              </InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         >
           {ranges.map(option => (
@@ -101,13 +94,10 @@ class FilledInputAdornments extends React.Component {
           value={this.state.amount}
           onChange={this.handleChange('amount')}
           InputProps={{
-            startAdornment: (
-              <InputAdornment variant="filled" position="start">
-                $
-              </InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
         />
+
         <TextField
           id="filled-adornment-weight"
           className={classNames(classes.margin, classes.textField)}
@@ -117,13 +107,10 @@ class FilledInputAdornments extends React.Component {
           onChange={this.handleChange('weight')}
           helperText="Weight"
           InputProps={{
-            endAdornment: (
-              <InputAdornment variant="filled" position="end">
-                Kg
-              </InputAdornment>
-            ),
+            endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
           }}
         />
+
         <TextField
           id="filled-adornment-password"
           className={classNames(classes.margin, classes.textField)}
@@ -134,7 +121,7 @@ class FilledInputAdornments extends React.Component {
           onChange={this.handleChange('password')}
           InputProps={{
             endAdornment: (
-              <InputAdornment variant="filled" position="end">
+              <InputAdornment position="end">
                 <IconButton
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword}

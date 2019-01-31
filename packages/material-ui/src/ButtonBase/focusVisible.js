@@ -1,4 +1,3 @@
-import keycode from 'keycode';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 
@@ -37,10 +36,20 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
   }, instance.focusVisibleCheckTime);
 }
 
-const FOCUS_KEYS = ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'];
+const FOCUS_KEYS = [
+  9, // 'Tab',
+  13, // 'Enter',
+  27, // 'Escape',
+  32, // ' ',
+  37, // 'ArrowLeft',
+  38, // 'ArrowUp',
+  39, // 'ArrowRight',
+  40, // 'ArrowDown',
+];
 
 function isFocusKey(event) {
-  return FOCUS_KEYS.indexOf(keycode(event)) > -1;
+  // Use event.keyCode to support IE 11
+  return FOCUS_KEYS.indexOf(event.keyCode) > -1;
 }
 
 const handleKeyUpEvent = event => {

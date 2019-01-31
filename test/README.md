@@ -23,24 +23,26 @@ trade-off, mainly completeness vs. speed.
 ### React API level
 
 #### Run the core mocha unit/integration test suite.
+
 To run all of the unit tests just run  `yarn test:unit`
 
 If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.
 
 #### Watch the core mocha unit/integration test suite.
+
 `yarn test:watch`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and the *shallow* API of [enzyme](https://github.com/airbnb/enzyme) to allow testing the components in isolation.
 It's the fastest approach, and is best suited for testing many combinations.
-Here is an [example](https://github.com/mui-org/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/src/Menu/Menu.spec.js#L18) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Menu/Menu.test.js#L27) with the `Menu` component.
 
 Next, we have the **integration** tests.
 We are using the *mount* API of [enzyme](https://github.com/airbnb/enzyme).
 It allows testing the integration of different components using a virtual DOM.
 This virtual DOM is provided by [jsdom](https://github.com/tmpvar/jsdom).
 It's here to make sure components work together.
-Here is an [example](https://github.com/mui-org/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/integration/Menu.spec.js#L29) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/test/integration/Menu.test.js#L28) with the `Menu` component.
 
 #### Create HTML coverage reports
 `yarn test:coverage:html`
@@ -50,6 +52,7 @@ When running this command you should get under `coverage/index.html` a full cove
 ### DOM API level
 
 #### Run the mocha test suite using the karma runner.
+
 `yarn test:karma`
 
 Testing the components at the React level isn't enough;
@@ -58,8 +61,8 @@ To solve that problem we use [karma](https://github.com/karma-runner/karma),
 which is almost a drop in replacement of [jsdom](https://github.com/tmpvar/jsdom).
 Our tests run on different browsers to increase the coverage:
 
-- [PhantomJS](https://github.com/ariya/phantomjs) - Scriptable Headless WebKit
-- Firefox, Chrome and Safari thanks to [BrowserStack](https://www.browserstack.com)
+- [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
+- Chrome, Firefox, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
 
 ### Browser API level
 
@@ -68,6 +71,7 @@ The DOM is just one dimension of that environment,
 so we also need to take into account the rendering engine.
 
 #### Run the visual regression tests
+
 `yarn test:regressions`
 
 Next, we are using [docker](https://github.com/docker/docker) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
@@ -75,7 +79,7 @@ Next, we are using [docker](https://github.com/docker/docker) to take screenshot
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)
 
-Here is an [example](https://github.com/mui-org/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/regressions/tests/Menu/SimpleMenuList.js#L7) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/master/test/regressions/tests/Menu/SimpleMenuList.js#L6) with the `Menu` component.
 
 #### Installation
 

@@ -11,16 +11,22 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import loadScript from 'docs/src/modules/utils/loadScript';
 
-if (process.browser) {
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
   loadCSS(
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     document.querySelector('#insertion-point-jss'),
   );
-  loadCSS(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-    document.querySelector('#insertion-point-jss'),
-  );
+  loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
 }
 
 const pages = [
@@ -350,6 +356,10 @@ class MyApp extends App {
     super();
     this.redux = initRedux(props.reduxServerState || {});
     this.pageContext = getPageContext();
+  }
+
+  componentDidMount() {
+    loadDependencies();
   }
 
   render() {

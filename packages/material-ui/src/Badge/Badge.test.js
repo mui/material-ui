@@ -268,24 +268,21 @@ describe('<Badge />', () => {
       );
     });
 
-    if (
-      ('should not render badgeContent',
-      () => {
-        const wrapper = shallow(
-          <Badge badgeContent={10} variant="dot">
-            {testChildren}
-          </Badge>,
-        );
+    it('should not render badgeContent', () => {
+      const wrapper = shallow(
+        <Badge badgeContent={10} variant="dot">
+          {testChildren}
+        </Badge>,
+      );
 
-        assert.strictEqual(
-          wrapper
-            .find('span')
-            .at(1)
-            .text(),
-          '',
-        );
-      })
-    );
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .at(1)
+          .text(),
+        '',
+      );
+    });
 
     it('should render with the dot class when variant="dot"', () => {
       const wrapper = shallow(

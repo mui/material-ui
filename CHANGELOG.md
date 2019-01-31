@@ -1,5 +1,80 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.9.1
+###### *Jan 26, 2019*
+
+Big thanks to the 30 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 🐛 Fix many Dialog issues (#13789, #14240, #14288) @joshwooding, @zharris6
+- 📝 Promote material-ui-pickers (#14277)
+- 🚀 Remove the keycode dependency (#14248)
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.9.1`
+
+- [Tooltip] Add example using node (#14182) @Varad25
+- [Badge] Make badgeContent optional in ts too (#14186) @kLabz
+- [CircularProgress] Fix animation jumps on indeterminate variant (#14198) @rfbotto
+- [Textarea] Fix line height visibility issue on SSR (#14197) @rfbotto
+- [Link] Fix type declaration for props (#14193) @lunaryorn
+- [useMediaQuery] Synchronize typescript definition with js one (#14214) @sthenault
+- [MenuList] Add `home` and `end` key support (#14212) @dallin-christensen
+- [InputAdornment] Automatically inherit the variant (#14023) @joshwooding
+- [Dialog] Add missing PaperComponent property in the definition (#14240) @zharris6
+- [Dialog] Check target has not changed before closing (#13789) @joshwooding
+- [TextField] Fix to expose helperText for accessibility (#14266) @mlenser
+- [Modal] Hide the manager property (#14273) @oliviertassinari
+- [GridListTileBar] Add missing titleWrap key (#14275) @nroot86vml
+- [Pickers] Promote material-ui-pickers (#14277) @oliviertassinari
+- [Select] Add customization demo (#14281) @bemineni
+- [ExpansionPanel] Fix square support (#14282) @brandonvilla21
+- [Dialog] Fix scrollbar (#14288) @joshwooding
+- [LinearProgress] Remove dead bar2Determinate CSS class (#14298) @lmcarreiro
+- [Select] Help automated UI testing (#14289) @oumaima1234
+- [MobileStepper] Fix typo CSS API (#14300) @DenrizSusam
+- [Link] Add ts test and distinguish from react-router link test (#14304) @rosskevin
+
+### `@material-ui/styles@v3.0.0-alpha.9`
+
+- [styles] Better warning message (#14290) @oliviertassinari
+- [styles] Document the right react-jss version for legacy style modules (#14237) @mrmedicine
+
+### `@material-ui/lab@v3.0.0-alpha.29`
+
+- [Slider] Support multitouch for dragging multiple sliders (#13320) @Pajn
+
+### `@material-ui/system@v3.0.0-alpha.2`
+
+- [system] Add fractions support (#14209) @oliviertassinari
+- [system] Better zindex documentation (#14229) @oliviertassinari
+
+### Docs
+
+- [docs] Update supported components page (#13905) @MidnightDesign
+- [docs] Fix componentPropType display (#14194) @eps1lon
+- [docs] Fix fade transition visual bug on codesandbox (#14200) @rfbotto
+- [docs] Handle missing errors more gracefully (#14210) @oliviertassinari
+- [docs] Fix grammar in related-projects.md (#14227) @jasonkylefrank
+- [docs] Add Portuguese translation notification (#14230) @mbrookes
+- [docs] New Crowdin translations (#14223) @muibot
+- [docs] Minor fix of selection control labels doc (#14238) @ccesare
+- [docs] Correct Bethesda.net title in app list (#14242) @sbolel
+- [docs] Change ponyfill to polyfill in use-media-query.md (#14215) @MathiasKandelborg
+- [docs] Fix typos on the links for the JSS docs (#14235) @viniciusCamargo
+- [docs] Improve the performance (#14250) @oliviertassinari
+- [docs] Notification by locale (#14256) @oliviertassinari
+- [docs] Add component prop and React Router usage to Typescript guide (#14170) @hedgerh
+- [docs] Tiny fixes (#14259) @mbrookes
+- [docs] Better server-side rendering example (#14269) @unalterable
+- [docs] Add Misheneye to the showcase (#14262) @gdub01
+
+### Core
+
+- [core] Upgrade the dependencies (#14196) @oliviertassinari
+- [core] Remove keycode() (#14248) @oliviertassinari
+- [core] Update the dev dependencies (#14261) @oliviertassinari
+
 ## 3.9.0
 ###### *Jan 14, 2019*
 

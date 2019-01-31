@@ -148,7 +148,6 @@ class Popper extends React.Component {
       open,
       placement: placementProps,
       popperOptions,
-      theme,
       transition,
       ...other
     } = this.props;

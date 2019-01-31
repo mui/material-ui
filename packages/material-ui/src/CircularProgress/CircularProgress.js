@@ -86,7 +86,7 @@ export const styles = theme => ({
     },
     '100%': {
       strokeDasharray: '100px, 200px',
-      strokeDashoffset: '-120px',
+      strokeDashoffset: '-125px',
     },
   },
   /* Styles applied to the `circle` svg path if `disableShrink={true}`. */

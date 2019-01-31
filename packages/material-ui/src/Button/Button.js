@@ -82,6 +82,9 @@ export const styles = theme => ({
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
@@ -94,9 +97,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-    },
-    '&$disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
@@ -199,6 +199,7 @@ export const styles = theme => ({
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
+    borderColor: 'currentColor',
   },
   /* Styles applied to the root element if `mini={true}` & `variant="[fab | extendedFab]"`. */
   mini: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import { chainPropTypes, componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
@@ -18,9 +18,9 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 11, // To use 10px in v4.0.0
-    paddingBottom: 11, // To use 10px in v4.0.0
-    '&$selected, &$selected:hover': {
+    paddingTop: 11, // To use 10px in v4
+    paddingBottom: 11, // To use 10px in v4
+    '&$selected, &$selected:hover, &$selected:focus': {
       backgroundColor: theme.palette.action.selected,
     },
   },
@@ -28,11 +28,9 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  // TODO: Sanity check this - why is focusVisibleClassName prop apparently applied to a div?
+  // To remove in v4
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {
-    backgroundColor: theme.palette.action.hover,
-  },
+  focusVisible: {},
   /* Legacy styles applied to the root element. Use `root` instead. */
   default: {},
   /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
@@ -71,6 +69,9 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
+    '&:focus': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
   secondaryAction: {
@@ -82,6 +83,9 @@ export const styles = theme => ({
   selected: {},
 });
 
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ */
 function ListItem(props) {
   const {
     alignItems,
@@ -178,9 +182,35 @@ ListItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * The content of the component.
+   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * be the last child.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const children = React.Children.toArray(props.children);
+
+    // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
+    let secondaryActionIndex = -1;
+    for (let i = children.length - 1; i >= 0; i -= 1) {
+      const child = children[i];
+      if (isMuiElement(child, ['ListItemSecondaryAction'])) {
+        secondaryActionIndex = i;
+        break;
+      }
+    }
+
+    //  is ListItemSecondaryAction the last child of ListItem
+    if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
+      return new Error(
+        'Material-UI: you used an element after ListItemSecondaryAction. ' +
+          'For ListItem to detect that it has a secondary action ' +
+          `you must pass it has the last children to ListItem.${
+            process.env.NODE_ENV === 'test' ? Date.now() : ''
+          }`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -197,12 +227,11 @@ ListItem.propTypes = {
    */
   component: componentPropType,
   /**
-   * The container component used when a `ListItemSecondaryAction` is rendered.
+   * The container component used when a `ListItemSecondaryAction` is the last child.
    */
   ContainerComponent: componentPropType,
   /**
-   * Properties applied to the container element when the component
-   * is used to display a `ListItemSecondaryAction`.
+   * Properties applied to the container component if used.
    */
   ContainerProps: PropTypes.object,
   /**

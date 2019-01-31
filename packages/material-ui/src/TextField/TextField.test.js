@@ -94,6 +94,11 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.childAt(0).type(), Input);
         assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
       });
+
+      it('should add accessibility labels to the input', () => {
+        wrapper.setProps({ id: 'aria-test' });
+        assert.strictEqual(wrapper.childAt(0).props()['aria-describedby'], 'aria-test-helper-text');
+      });
     });
 
     describe('with an outline', () => {

@@ -47,7 +47,7 @@ function DelayingAppearance() {
     setQuery('progress');
     timer = setTimeout(() => {
       setQuery('success');
-    }, 2e3);
+    }, 2000);
   }
 
   return (

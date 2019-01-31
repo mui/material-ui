@@ -3,7 +3,7 @@ title: Badge React component
 components: Badge
 ---
 
-# Badge
+# Badges
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
