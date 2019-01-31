@@ -403,8 +403,8 @@ class InputBase extends React.Component {
               focused,
             })
           : null}
-        {startAdornment}
         <FormControlContext.Provider value={null}>
+          {startAdornment}
           <InputComponent
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
@@ -427,8 +427,8 @@ class InputBase extends React.Component {
             value={value}
             {...inputProps}
           />
+          {endAdornment}
         </FormControlContext.Provider>
-        {endAdornment}
       </div>
     );
   }
