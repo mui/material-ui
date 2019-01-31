@@ -51,9 +51,7 @@ class TextFields extends React.Component {
   };
 
   handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+    this.setState({ [name]: event.target.value });
   };
 
   render() {
@@ -69,6 +67,7 @@ class TextFields extends React.Component {
           onChange={this.handleChange('name')}
           margin="normal"
         />
+
         <TextField
           id="standard-uncontrolled"
           label="Uncontrolled"
@@ -76,6 +75,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           required
           id="standard-required"
@@ -84,6 +84,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           error
           id="standard-error"
@@ -92,6 +93,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           disabled
           id="standard-disabled"
@@ -100,6 +102,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           id="standard-password-input"
           label="Password"
@@ -108,6 +111,7 @@ class TextFields extends React.Component {
           autoComplete="current-password"
           margin="normal"
         />
+
         <TextField
           id="standard-read-only-input"
           label="Read Only"
@@ -118,12 +122,14 @@ class TextFields extends React.Component {
             readOnly: true,
           }}
         />
+
         <TextField
           id="standard-dense"
           label="Dense"
           className={classNames(classes.textField, classes.dense)}
           margin="dense"
         />
+
         <TextField
           id="standard-multiline-flexible"
           label="Multiline"
@@ -134,6 +140,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           id="standard-multiline-static"
           label="Multiline"
@@ -143,6 +150,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           id="standard-helperText"
           label="Helper text"
@@ -151,6 +159,7 @@ class TextFields extends React.Component {
           helperText="Some important text"
           margin="normal"
         />
+
         <TextField
           id="standard-with-placeholder"
           label="With placeholder"
@@ -158,6 +167,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           id="standard-textarea"
           label="With placeholder multiline"
@@ -166,6 +176,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           id="standard-number"
           label="Number"
@@ -178,6 +189,7 @@ class TextFields extends React.Component {
           }}
           margin="normal"
         />
+
         <TextField
           id="standard-search"
           label="Search field"
@@ -185,6 +197,7 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+
         <TextField
           id="standard-select-currency"
           select
@@ -240,6 +253,7 @@ class TextFields extends React.Component {
             shrink: true,
           }}
         />
+
         <TextField
           id="standard-bare"
           className={classes.textField}

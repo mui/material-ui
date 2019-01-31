@@ -162,6 +162,12 @@ jobs:
       - *restore_yarn_cache
       - *install_js
       - run:
+          name: Transpile TypeScript demos
+          command: yarn docs:typescript:formatted
+      - run:
+          name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git diff --exit-code
+      - run:
           name: Can we generate the @material-ui/core build?
           command: cd packages/material-ui && yarn build
       - run:

@@ -58,6 +58,7 @@ function MarkdownDocs(props) {
   if (req) {
     demos = {};
     const markdowns = {};
+    const sourceFiles = reqSource.keys();
     req.keys().forEach(filename => {
       if (filename.indexOf('.md') !== -1) {
         const match = filename.match(/-([a-z]{2})\.md$/);
@@ -72,10 +73,20 @@ function MarkdownDocs(props) {
         const isHooks = filename.indexOf('.hooks.js') !== -1;
         const jsType = isHooks ? 'jsHooks' : 'js';
         const rawType = isHooks ? 'rawHooks' : 'raw';
+
+        const tsFilename = !isHooks
+          ? sourceFiles.find(sourceFileName => {
+              const isTSSourceFile = /\.tsx$/.test(sourceFileName);
+              const isTSVersionOfFile = sourceFileName.replace(/\.tsx$/, '.js') === filename;
+              return isTSSourceFile && isTSVersionOfFile;
+            })
+          : undefined;
+
         demos[demoName] = {
-          ...(demos[demoName] ? demos[demoName] : {}),
+          ...demos[demoName],
           [jsType]: req(filename).default,
           [rawType]: reqSource(filename),
+          rawTS: tsFilename ? reqSource(tsFilename) : undefined,
         };
       }
     });

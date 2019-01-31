@@ -28,7 +28,51 @@ export function pageToTitle(page) {
   return titleize(name);
 }
 
-export function getDependencies(raw, reactVersion = 'latest') {
+/**
+ * @var
+ * set of packages that ship their own typings instead of using @types/ namespace
+ * Array because Set([iterable]) is not supported in IE11
+ */
+const packagesWithBundledTypes = ['@material-ui/core', '@material-ui/lab'];
+
+/**
+ * WARNING: Always uses `latest` typings.
+ *
+ * Adds dependencies to @types packages only for packages that are not listed
+ * in packagesWithBundledTypes
+ *
+ * @see packagesWithBundledTypes in this module namespace
+ *
+ * @param {Record<string, string>} deps - list of dependency as `name => version`
+ */
+function addTypeDeps(deps) {
+  const packagesWithDTPackage = Object.keys(deps).filter(
+    name => packagesWithBundledTypes.indexOf(name) === -1,
+  );
+
+  packagesWithDTPackage.forEach(name => {
+    let resolvedName = name;
+    // scoped package?
+    if (name.startsWith('@')) {
+      // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
+      resolvedName = name.slice(1).replace('/', '__');
+    }
+
+    deps[`@types/${resolvedName}`] = 'latest';
+  });
+
+  return deps;
+}
+
+/**
+ * @param {string} raw - ES6 source with es module imports
+ * @param {objects} options
+ * @param {'JS' | 'TS'} options.codeLanguage
+ * @param {'next' | 'latest'} options.reactVersion
+ * @returns {Record<string, 'latest'>} map of packages with their required version
+ */
+export function getDependencies(raw, options = {}) {
+  const { codeLanguage = 'JS', reactVersion = 'latest' } = options;
   const deps = {
     'react-dom': reactVersion,
     react: reactVersion,
@@ -54,6 +98,11 @@ export function getDependencies(raw, reactVersion = 'latest') {
       deps[name] = versions[name] ? versions[name] : 'latest';
     }
   }
+
+  if (codeLanguage === 'TS') {
+    addTypeDeps(deps);
+  }
+
   return deps;
 }
 
