@@ -85,11 +85,7 @@ class Breadcrumbs extends React.Component {
     const allItems = React.Children.toArray(children);
 
     return (
-      <Component
-        aria-label="Breadcrumb navigation"
-        className={classNames(classes.root, classNameProp)}
-        {...other}
-      >
+      <Component className={classNames(classes.root, classNameProp)} {...other}>
         <ol className={classes.ol}>
           {this.insertSeparators(
             this.state.expanded || (maxItems && allItems.length <= maxItems)

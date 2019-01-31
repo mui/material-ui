@@ -8,6 +8,10 @@ import Link from '@material-ui/core/Link';
 
 const styles = theme => ({
   root: {
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  paper: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
 });
@@ -20,21 +24,43 @@ function handleClick(event) {
 function SimpleBreadcrumbs(props) {
   const { classes } = props;
   return (
-    <Paper className={classes.root}>
-      <Breadcrumbs arial-label="Breadcrumb navigation">
-        <Breadcrumb>
-          <Link color="inherit" href="/" onClick={handleClick}>
-            Material-UI
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb>
-          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-            Lab
-          </Link>
-        </Breadcrumb>
-        <Breadcrumb color="textPrimary">Breadcrumb</Breadcrumb>
-      </Breadcrumbs>
-    </Paper>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Breadcrumbs arial-label="Breadcrumb">
+          <Breadcrumb>
+            <Link color="inherit" href="/" onClick={handleClick}>
+              Material-UI
+            </Link>
+          </Breadcrumb>
+          <Breadcrumb>
+            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
+              Lab
+            </Link>
+          </Breadcrumb>
+          <Breadcrumb color="textPrimary">Breadcrumb</Breadcrumb>
+        </Breadcrumbs>
+      </Paper>
+      <br />
+      <Paper className={classes.paper}>
+        <Breadcrumbs arial-label="Breadcrumb">
+          <Breadcrumb>
+            <Link color="inherit" href="/" onClick={handleClick}>
+              Material-UI
+            </Link>
+          </Breadcrumb>
+          <Breadcrumb>
+            <Link color="inherit" href="/lab/about/" onClick={handleClick}>
+              Lab
+            </Link>
+          </Breadcrumb>
+          <Breadcrumb color="textPrimary">
+            <Link color="inherit" href="/lab/about/breadcrumbs" onClick={handleClick}>
+              Breadcrumb
+            </Link>
+          </Breadcrumb>
+        </Breadcrumbs>
+      </Paper>
+    </div>
   );
 }
 

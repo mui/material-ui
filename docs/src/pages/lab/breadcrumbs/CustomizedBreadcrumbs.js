@@ -54,7 +54,7 @@ function CustomizedBreadcrumbs(props) {
 
   return (
     <Paper className={classes.root}>
-      <Breadcrumbs arial-label="Breadcrumb navigation">
+      <Breadcrumbs arial-label="Breadcrumb">
         <Breadcrumb>
           <StyledBreadcrumb
             component="a"

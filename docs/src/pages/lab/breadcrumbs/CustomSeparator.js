@@ -28,7 +28,7 @@ function CustomSeparator(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Breadcrumbs separator="›" arial-label="Breadcrumb navigation">
+        <Breadcrumbs separator="›" arial-label="Breadcrumb">
           <Breadcrumb>
             <Link color="inherit" href="/" onClick={handleClick}>
               Material-UI
@@ -44,7 +44,7 @@ function CustomSeparator(props) {
       </Paper>
       <br />
       <Paper className={classes.paper}>
-        <Breadcrumbs separator="-" arial-label="Breadcrumb navigation">
+        <Breadcrumbs separator="-" arial-label="Breadcrumb">
           <Breadcrumb>
             <Link color="inherit" href="/" onClick={handleClick}>
               Material-UI
@@ -62,7 +62,7 @@ function CustomSeparator(props) {
       <Paper className={classes.paper}>
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
-          arial-label="Breadcrumb navigation"
+          arial-label="Breadcrumb"
         >
           <Breadcrumb>
             <Link color="inherit" href="/" onClick={handleClick}>

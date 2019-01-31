@@ -81,7 +81,7 @@ class RouterBreadcrumbs extends React.Component {
                 const pathnames = location.pathname.split('/').filter(x => x);
 
                 return (
-                  <Breadcrumbs arial-label="Breadcrumb navigation">
+                  <Breadcrumbs arial-label="Breadcrumb">
                     <Breadcrumb>
                       <Link component={RouterLink} color="inherit" to="/" data-next="true">
                         Home
