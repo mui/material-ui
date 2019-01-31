@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import { chainPropTypes, componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
@@ -83,6 +83,9 @@ export const styles = theme => ({
   selected: {},
 });
 
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ */
 function ListItem(props) {
   const {
     alignItems,
@@ -179,9 +182,35 @@ ListItem.propTypes = {
    */
   button: PropTypes.bool,
   /**
-   * The content of the component.
+   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * be the last child.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const children = React.Children.toArray(props.children);
+
+    // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
+    let secondaryActionIndex = -1;
+    for (let i = children.length - 1; i >= 0; i -= 1) {
+      const child = children[i];
+      if (isMuiElement(child, ['ListItemSecondaryAction'])) {
+        secondaryActionIndex = i;
+        break;
+      }
+    }
+
+    //  is ListItemSecondaryAction the last child of ListItem
+    if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
+      return new Error(
+        'Material-UI: you used an element after ListItemSecondaryAction. ' +
+          'For ListItem to detect that it has a secondary action ' +
+          `you must pass it has the last children to ListItem.${
+            process.env.NODE_ENV === 'test' ? Date.now() : ''
+          }`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -198,12 +227,11 @@ ListItem.propTypes = {
    */
   component: componentPropType,
   /**
-   * The container component used when a `ListItemSecondaryAction` is rendered.
+   * The container component used when a `ListItemSecondaryAction` is the last child.
    */
   ContainerComponent: componentPropType,
   /**
-   * Properties applied to the container element when the component
-   * is used to display a `ListItemSecondaryAction`.
+   * Properties applied to the container component if used.
    */
   ContainerProps: PropTypes.object,
   /**
