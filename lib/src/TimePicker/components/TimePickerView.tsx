@@ -11,6 +11,7 @@ export interface TimePickerViewProps extends WithUtilsProps {
   date: MaterialUiPickersDate;
   type: ClockTypeType;
   ampm?: boolean;
+  minutesStep?: number;
   onHourChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   onMinutesChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   onSecondsChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
@@ -23,11 +24,13 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
     onMinutesChange: PropTypes.func.isRequired,
     onSecondsChange: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number,
     type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key])).isRequired,
   };
 
   public static defaultProps = {
     ampm: true,
+    minutesStep: 1,
   };
 
   public getViewProps = () => {
@@ -84,10 +87,10 @@ export class TimePickerView extends React.PureComponent<TimePickerViewProps> {
   };
 
   public render() {
-    const { ampm, type } = this.props;
+    const { ampm, type, minutesStep } = this.props;
     const viewProps = this.getViewProps();
 
-    return <Clock type={type} ampm={ampm} {...viewProps} />;
+    return <Clock type={type} ampm={ampm} minutesStep={minutesStep} {...viewProps} />;
   }
 }
 

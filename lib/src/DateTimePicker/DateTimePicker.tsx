@@ -22,6 +22,8 @@ export interface BaseDateTimePickerProps extends Omit<BaseDatePickerProps, 'open
   showTabs?: boolean;
   /** Control 12h or 24h view mode for clock */
   ampm?: boolean;
+  /** Step over minutes */
+  minutesStep?: number;
   /** Initial view to show when datetime picker is open */
   openTo?: 'year' | 'date' | 'hours' | 'minutes';
   /** Date tab icon */
@@ -52,12 +54,14 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
       PropTypes.func,
       PropTypes.object,
     ]),
+    minutesStep: PropTypes.number,
   };
 
   public static defaultProps = {
     autoSubmit: true,
     showTabs: true,
     ampm: true,
+    minutesStep: 1,
     openTo: 'date' as DateTimePickerView,
     ViewContainerComponent: 'div',
   };
@@ -125,6 +129,7 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
       timeIcon,
       renderDay,
       ampm,
+      minutesStep,
       shouldDisableDate,
       animateYearScrolling,
       allowKeyboardControl,
@@ -196,6 +201,7 @@ export class DateTimePicker extends React.Component<DateTimePickerProps, DateTim
               onMinutesChange={this.handleChange}
               onSecondsChange={this.handleChange}
               ampm={ampm}
+              minutesStep={minutesStep}
             />
           </View>
         </Container>

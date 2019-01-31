@@ -19,6 +19,8 @@ export interface BaseTimePickerProps {
   ampm?: boolean;
   /** Show the seconds view */
   seconds?: boolean;
+  /** Step over minutes */
+  minutesStep?: number;
 }
 
 export interface TimePickerProps
@@ -41,6 +43,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     seconds: PropTypes.bool,
+    minutesStep: PropTypes.number,
     innerRef: PropTypes.any,
   };
 
@@ -48,6 +51,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
     children: null,
     ampm: true,
     seconds: false,
+    minutesStep: 1,
   };
 
   public state: TimePickerState = {
@@ -142,7 +146,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
   };
 
   public render() {
-    const { classes, theme, date, utils, ampm, seconds } = this.props;
+    const { classes, theme, date, utils, ampm, seconds, minutesStep } = this.props;
 
     const { meridiemMode, openView } = this.state;
 
@@ -219,6 +223,7 @@ export class TimePicker extends React.Component<TimePickerProps> {
           date={date}
           type={this.state.openView}
           ampm={ampm}
+          minutesStep={minutesStep}
           onHourChange={this.handleHourChange}
           onMinutesChange={this.handleMinutesChange}
           onSecondsChange={this.handleSecondsChange}

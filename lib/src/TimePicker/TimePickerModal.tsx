@@ -11,7 +11,7 @@ export interface TimePickerModalProps
     ExtendWrapper<ModalWrapperProps> {}
 
 export const TimePickerModal: React.SFC<TimePickerModalProps> = props => {
-  const { value, format, autoOk, onChange, ampm, forwardedRef, seconds, ...other } = props;
+  const { value, format, autoOk, onChange, ampm, forwardedRef, seconds, minutesStep, ...other } = props;
 
   return (
     <BasePicker mergePreviousDateOnChange {...props}>
@@ -39,7 +39,7 @@ export const TimePickerModal: React.SFC<TimePickerModalProps> = props => {
           format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
           {...other}
         >
-          <TimePicker date={date} onChange={handleChange} ampm={ampm} seconds={seconds} />
+          <TimePicker date={date} onChange={handleChange} ampm={ampm} seconds={seconds} minutesStep={minutesStep} />
         </ModalWrapper>
       )}
     </BasePicker>

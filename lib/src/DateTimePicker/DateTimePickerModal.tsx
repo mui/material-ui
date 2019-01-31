@@ -28,6 +28,7 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
     timeIcon,
     renderDay,
     ampm,
+    minutesStep,
     shouldDisableDate,
     animateYearScrolling,
     forwardedRef,
@@ -71,6 +72,7 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
           <DateTimePicker
             allowKeyboardControl={allowKeyboardControl}
             ampm={ampm}
+            minutesStep={minutesStep}
             animateYearScrolling={animateYearScrolling}
             autoSubmit={autoSubmit}
             date={date}

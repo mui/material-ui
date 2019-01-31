@@ -13,6 +13,7 @@ export interface ClockProps extends WithStyles<typeof styles> {
   value: number;
   onChange: (value: number, isFinish?: boolean) => void;
   ampm?: boolean;
+  minutesStep?: number;
   children: Array<React.ReactElement<any>>;
 }
 
@@ -23,11 +24,13 @@ export class Clock extends React.Component<ClockProps> {
     onChange: PropTypes.func.isRequired,
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
     ampm: PropTypes.bool,
+    minutesStep: PropTypes.number,
     innerRef: PropTypes.any,
   };
 
   public static defaultProps = {
     ampm: false,
+    minutesStep: 1,
   };
 
   public isMoving = false;
@@ -44,7 +47,7 @@ export class Clock extends React.Component<ClockProps> {
 
     const value =
       this.props.type === ClockType.SECONDS || this.props.type === ClockType.MINUTES
-        ? getMinutes(offsetX, offsetY)
+        ? getMinutes(offsetX, offsetY, this.props.minutesStep)
         : getHours(offsetX, offsetY, Boolean(this.props.ampm));
 
     this.props.onChange(value, isFinish);
