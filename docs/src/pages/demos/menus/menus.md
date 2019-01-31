@@ -71,7 +71,7 @@ You can use the `Typography` component to workaround this issue:
 
 ## Change Transition
 
-Use a different transition altogether.
+Use a different transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 

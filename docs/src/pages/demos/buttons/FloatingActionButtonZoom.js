@@ -44,6 +44,9 @@ const styles = theme => ({
   fabGreen: {
     color: theme.palette.common.white,
     backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[600],
+    },
   },
 });
 
