@@ -54,7 +54,12 @@ function SimpleBreadcrumbs(props) {
             </Link>
           </Breadcrumb>
           <Breadcrumb color="textPrimary">
-            <Link color="inherit" href="/lab/about/breadcrumbs" onClick={handleClick}>
+            <Link
+              color="inherit"
+              href="/lab/about/breadcrumbs"
+              onClick={handleClick}
+              aria-current="page"
+            >
               Breadcrumb
             </Link>
           </Breadcrumb>

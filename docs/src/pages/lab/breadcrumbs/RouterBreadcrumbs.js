@@ -31,7 +31,7 @@ function ListItemLink(props) {
 
   return (
     <li>
-      <ListItem button component={RouterLink} to={to} data-next="true" {...other}>
+      <ListItem button component={RouterLink} to={to} {...other}>
         <ListItemText primary={primary} />
         {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
       </ListItem>
@@ -83,7 +83,7 @@ class RouterBreadcrumbs extends React.Component {
                 return (
                   <Breadcrumbs arial-label="Breadcrumb">
                     <Breadcrumb>
-                      <Link component={RouterLink} color="inherit" to="/" data-next="true">
+                      <Link component={RouterLink} color="inherit" to="/">
                         Home
                       </Link>
                     </Breadcrumb>
@@ -97,7 +97,7 @@ class RouterBreadcrumbs extends React.Component {
                         </Breadcrumb>
                       ) : (
                         <Breadcrumb key={to}>
-                          <Link component={RouterLink} color="inherit" to={to} data-next="true">
+                          <Link component={RouterLink} color="inherit" to={to}>
                             {breadcrumbNameMap[to]}
                           </Link>
                         </Breadcrumb>

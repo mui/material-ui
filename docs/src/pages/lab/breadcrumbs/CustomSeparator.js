@@ -60,10 +60,7 @@ function CustomSeparator(props) {
       </Paper>
       <br />
       <Paper className={classes.paper}>
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          arial-label="Breadcrumb"
-        >
+        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} arial-label="Breadcrumb">
           <Breadcrumb>
             <Link color="inherit" href="/" onClick={handleClick}>
               Material-UI

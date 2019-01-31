@@ -8,7 +8,6 @@ async function handleClick(event) {
   if (
     activeElement.nodeName !== 'A' ||
     activeElement.getAttribute('target') === '_blank' ||
-    activeElement.getAttribute('data-next') === 'true' ||
     activeElement.getAttribute('href').indexOf('/') !== 0
   ) {
     return;
