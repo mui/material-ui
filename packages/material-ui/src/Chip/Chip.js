@@ -371,7 +371,7 @@ class Chip extends React.Component {
 
     return (
       <Component
-        role="button"
+        role={clickable ? 'button' : 'presentation'}
         className={className}
         tabIndex={tabIndex}
         onClick={onClick}
