@@ -138,7 +138,7 @@ class CustomPaginationActionsTable extends React.Component {
   };
 
   handleChangeRowsPerPage = event => {
-    this.setState({ rowsPerPage: event.target.value });
+    this.setState({ page: 0, rowsPerPage: event.target.value });
   };
 
   render() {
