@@ -38,5 +38,5 @@ assignees: ''
     Live examples help us to investigate bugs and save our time.
     Please try to make this example as simple as possible.
     To create an example you can use this playground:
-    https://codesandbox.io/s/6wxqo5mxnz
+    https://codesandbox.io/s/q9l2j10wr4
 -->
