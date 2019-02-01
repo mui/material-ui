@@ -49,23 +49,24 @@ module.exports = [
     limit: '900 B',
   },
   {
+    // why we use esm here: https://github.com/mui-org/material-ui/pull/13391#issuecomment-459692816
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
-    path: 'packages/material-ui/build/Button/index.js',
+    path: 'packages/material-ui/build/esm/Button/index.js',
     limit: '27.0 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
-    path: 'packages/material-ui/build/Modal/index.js',
+    path: 'packages/material-ui/build/esm/Modal/index.js',
     limit: '27.0 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
-    path: 'packages/material-ui/build/Popper/index.js',
+    path: 'packages/material-ui/build/esm/Popper/index.js',
     limit: '10.7 KB',
   },
   {
