@@ -21,7 +21,7 @@ function CircularDeterminate() {
     return () => {
       clearInterval(timer);
     };
-  });
+  }, []);
 
   return (
     <div>

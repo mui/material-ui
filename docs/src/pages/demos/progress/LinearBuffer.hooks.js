@@ -30,7 +30,7 @@ function LinearBuffer() {
     return () => {
       clearInterval(timer);
     };
-  });
+  }, []);
 
   return (
     <div className={classes.root}>

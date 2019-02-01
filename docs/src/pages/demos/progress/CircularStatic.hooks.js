@@ -16,7 +16,7 @@ function CircularStatic() {
     setCompleted(prevCompleted => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
   }
 
-  React.useState(() => {
+  React.useEffect(() => {
     const timer = setInterval(progress, 1000);
     return () => {
       clearInterval(timer);
