@@ -26,7 +26,7 @@ export const styles = theme => {
   };
 };
 
-function Paper(props) {
+const Paper = React.forwardRef((props, ref) => {
   const {
     classes,
     className: classNameProp,
@@ -50,8 +50,10 @@ function Paper(props) {
     classNameProp,
   );
 
-  return <Component className={className} {...other} />;
-}
+  return <Component className={className} ref={ref} {...other} />;
+});
+
+Paper.displayName = 'Paper';
 
 Paper.propTypes = {
   /**

@@ -154,7 +154,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.8.0-alpha.1",
     "react-autosuggest": "^9.3.2",
-    "react-docgen": "^3.0.0-beta10",
+    "react-docgen": "^3.0.0",
     "react-dom": "^16.8.0-alpha.1",
     "react-draggable": "^3.0.5",
     "react-final-form": "^4.0.2",
