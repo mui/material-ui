@@ -53,21 +53,21 @@ module.exports = [
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Button/index.js',
-    limit: '27.0 KB',
+    limit: '24.8 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Modal/index.js',
-    limit: '27.0 KB',
+    limit: '24.1 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Popper/index.js',
-    limit: '10.7 KB',
+    limit: '9.7 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-responsive
