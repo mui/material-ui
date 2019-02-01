@@ -46,7 +46,10 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={pageContext ? pageContext.theme.palette.primary.main : null}
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
           <link rel="stylesheet" href={font} />
@@ -61,8 +64,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script defer src="https://www.google-analytics.com/analytics.js" />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
@@ -72,7 +73,6 @@ window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
-          <script defer src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );
@@ -112,11 +112,15 @@ MyDocument.getInitialProps = async ctx => {
     return WrappedComponent;
   });
 
-  let css = pageContext.sheetsRegistry.toString();
-  if (process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css, { from: undefined });
-    css = result1.css;
-    css = cleanCSS.minify(css).styles;
+  let css;
+  // It might be undefined, e.g. after an error.
+  if (pageContext) {
+    css = pageContext.sheetsRegistry.toString();
+    if (process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
   }
 
   return {

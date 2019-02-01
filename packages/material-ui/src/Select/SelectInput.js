@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import keycode from 'keycode';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
@@ -56,7 +55,7 @@ class SelectInput extends React.Component {
     }
 
     this.setState({
-      // Perfom the layout computation outside of the render method.
+      // Perform the layout computation outside of the render method.
       menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
       open,
     });
@@ -130,7 +129,7 @@ class SelectInput extends React.Component {
       return;
     }
 
-    if (['space', 'up', 'down'].indexOf(keycode(event)) !== -1) {
+    if ([' ', 'ArrowUp', 'ArrowDown'].indexOf(event.key) !== -1) {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;
@@ -296,9 +295,11 @@ class SelectInput extends React.Component {
           onBlur={this.handleBlur}
           onClick={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
+          // The id can help with end-to-end testing automation.
+          id={name ? `select-${name}` : undefined}
           {...SelectDisplayProps}
         >
-          {/* So the vertical align positioning algorithm quicks in. */}
+          {/* So the vertical align positioning algorithm kicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
           {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
@@ -318,6 +319,7 @@ class SelectInput extends React.Component {
           {...MenuProps}
           MenuListProps={{
             role: 'listbox',
+            disableListWrap: true,
             ...MenuProps.MenuListProps,
           }}
           PaperProps={{

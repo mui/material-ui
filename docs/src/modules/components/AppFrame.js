@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import fromRenderProps from 'recompose/fromRenderProps';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,13 +22,13 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
-import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
+import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -42,6 +41,41 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
+
+const languages = [
+  {
+    code: 'en',
+    text: '🇺🇸 English',
+  },
+  {
+    code: 'zh',
+    text: '🇨🇳 中文',
+  },
+  // {
+  //   code: 'ru',
+  //   text: '🇷🇺 Русский',
+  // },
+  // {
+  //   code: 'pt',
+  //   text: '🇧🇷 Português',
+  // },
+  // {
+  //   code: 'fr',
+  //   text: '🇫🇷 Français',
+  // },
+  // {
+  //   code: 'es',
+  //   text: '🇪🇸 Español',
+  // },
+  // {
+  //   code: 'de',
+  //   text: '🇩🇪 Deutsch',
+  // },
+  // {
+  //   code: 'ja',
+  //   text: '🇯🇵 日本語',
+  // },
+];
 
 const styles = theme => ({
   root: {
@@ -102,7 +136,7 @@ class AppFrame extends React.Component {
     this.setState({ languageMenu: null });
   };
 
-  handleLanguageMenuItemClick = lang => {
+  handleLanguageMenuItemClick = lang => () => {
     if (lang !== this.props.userLanguage) {
       document.cookie = `lang=${lang};path=/;max-age=31536000`;
       window.location.reload();
@@ -111,11 +145,11 @@ class AppFrame extends React.Component {
   };
 
   handleTogglePaletteType = () => {
-    const paletteType = this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light';
+    const paletteType = this.props.reduxTheme.paletteType === 'light' ? 'dark' : 'light';
     document.cookie = `paletteType=${paletteType};path=/;max-age=31536000`;
 
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: {
         paletteType,
       },
@@ -124,15 +158,15 @@ class AppFrame extends React.Component {
 
   handleToggleDirection = () => {
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_DIRECTION,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: {
-        direction: this.props.uiTheme.direction === 'ltr' ? 'rtl' : 'ltr',
+        direction: this.props.reduxTheme.direction === 'ltr' ? 'rtl' : 'ltr',
       },
     });
   };
 
   render() {
-    const { children, classes, uiTheme, userLanguage } = this.props;
+    const { children, classes, reduxTheme, userLanguage } = this.props;
     const { languageMenu } = this.state;
 
     return (
@@ -155,6 +189,8 @@ class AppFrame extends React.Component {
             <div className={classes.root}>
               <NProgressBar />
               <CssBaseline />
+              <Notifications />
+              <MarkdownLinks />
               <AppBar className={appBarClassName}>
                 <Toolbar>
                   <IconButton
@@ -190,24 +226,22 @@ class AppFrame extends React.Component {
                     open={Boolean(languageMenu)}
                     onClose={this.handleLanguageMenuClose}
                   >
-                    <MenuItem
-                      selected={userLanguage === 'en'}
-                      onClick={() => this.handleLanguageMenuItemClick('en')}
-                    >
-                      English
-                    </MenuItem>
-                    <MenuItem
-                      selected={userLanguage === 'zh'}
-                      onClick={() => this.handleLanguageMenuItemClick('zh')}
-                    >
-                      中文
-                    </MenuItem>
+                    {languages.map(language => (
+                      <MenuItem
+                        key={language.code}
+                        selected={userLanguage === language.code}
+                        onClick={this.handleLanguageMenuItemClick(language.code)}
+                      >
+                        {language.text}
+                      </MenuItem>
+                    ))}
                   </Menu>
                   <Tooltip title="Edit docs colors" enterDelay={300}>
                     <IconButton
                       color="inherit"
                       aria-label="Edit docs colors"
                       component={Link}
+                      naked
                       href="/style/color/#color-tool"
                       data-ga-event-category="AppBar"
                       data-ga-event-action="colors"
@@ -223,7 +257,7 @@ class AppFrame extends React.Component {
                       data-ga-event-category="AppBar"
                       data-ga-event-action="dark"
                     >
-                      {uiTheme.paletteType === 'light' ? (
+                      {reduxTheme.paletteType === 'light' ? (
                         <LightbulbOutlineIcon />
                       ) : (
                         <LightbulbFullIcon />
@@ -238,7 +272,7 @@ class AppFrame extends React.Component {
                       data-ga-event-category="AppBar"
                       data-ga-event-action="rtl"
                     >
-                      {uiTheme.direction === 'rtl' ? (
+                      {reduxTheme.direction === 'rtl' ? (
                         <FormatTextdirectionLToR />
                       ) : (
                         <FormatTextdirectionRToL />
@@ -259,7 +293,6 @@ class AppFrame extends React.Component {
                   </Tooltip>
                 </Toolbar>
               </AppBar>
-              <Notifications />
               <AppDrawer
                 className={classes.drawer}
                 disablePermanent={disablePermanent}
@@ -280,16 +313,14 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  uiTheme: PropTypes.object.isRequired,
+  reduxTheme: PropTypes.object.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
-const pageContext = fromRenderProps(PageContext.Consumer, ({ userLanguage }) => ({ userLanguage }));
-
 export default compose(
   connect(state => ({
-    uiTheme: state.theme,
+    reduxTheme: state.theme,
+    userLanguage: state.options.userLanguage,
   })),
-  pageContext,
   withStyles(styles),
 )(AppFrame);

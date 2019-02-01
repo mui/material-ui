@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import keycode from 'keycode';
 import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import RootRef from '../RootRef';
@@ -45,6 +44,16 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 /**
+ * Modal is a lower-level construct that is leveraged by the following components:
+ *
+ * - [Dialog](/api/dialog/)
+ * - [Drawer](/api/drawer/)
+ * - [Menu](/api/menu/)
+ * - [Popover](/api/popover/)
+ *
+ * If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+ * rather than directly using Modal.
+ *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
@@ -77,7 +86,7 @@ class Modal extends React.Component {
     this.mounted = false;
 
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
-      this.handleClose();
+      this.handleClose('unmount');
     }
   }
 
@@ -103,7 +112,6 @@ class Modal extends React.Component {
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
-    doc.addEventListener('keydown', this.handleDocumentKeyDown);
     doc.addEventListener('focus', this.enforceFocus, true);
 
     if (this.dialogRef) {
@@ -131,17 +139,25 @@ class Modal extends React.Component {
     this.modalRef.scrollTop = 0;
   };
 
-  handleClose = () => {
-    this.props.manager.remove(this);
+  handleClose = reason => {
+    const hasTransition = getHasTransition(this.props);
+    /* If the component does not have a transition or is unmounting remove the Modal
+    otherwise let the transition handle removing the style, this prevents elements
+    moving around when the Modal is closed. */
+    if (!(hasTransition && this.props.closeAfterTransition) || reason === 'unmount') {
+      this.props.manager.remove(this);
+    }
 
     const doc = ownerDocument(this.mountNode);
-    doc.removeEventListener('keydown', this.handleDocumentKeyDown);
     doc.removeEventListener('focus', this.enforceFocus, true);
 
     this.restoreLastFocus();
   };
 
   handleExited = () => {
+    if (this.props.closeAfterTransition) {
+      this.props.manager.remove(this);
+    }
     this.setState({ exited: true });
   };
 
@@ -159,11 +175,22 @@ class Modal extends React.Component {
     }
   };
 
-  handleDocumentKeyDown = event => {
+  handleKeyDown = event => {
+    // event.defaultPrevented:
+    //
     // Ignore events that have been `event.preventDefault()` marked.
-    if (keycode(event) !== 'esc' || !this.isTopModal() || event.defaultPrevented) {
+    // preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default bahaviours.
+    //
+    // To remove in v4.
+    if (event.key !== 'Escape' || !this.isTopModal() || event.defaultPrevented) {
       return;
     }
+
+    // Swallow the event, in case someone is listening for the escape key on the body.
+    event.stopPropagation();
 
     if (this.props.onEscapeKeyDown) {
       this.props.onEscapeKeyDown(event);
@@ -251,6 +278,7 @@ class Modal extends React.Component {
       children,
       classes,
       className,
+      closeAfterTransition,
       container,
       disableAutoFocus,
       disableBackdropClick,
@@ -297,10 +325,18 @@ class Modal extends React.Component {
         disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
+        {/*
+          Marking an element with the role presentation indicates to assistive technology
+          that this element should be ignored; it exists to support the web application and
+          is not meant for humans to interact with directly.
+          https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+        */}
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
-          className={classNames('mui-fixed', classes.root, className, {
+          onKeyDown={this.handleKeyDown}
+          role="presentation"
+          className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
@@ -337,6 +373,10 @@ Modal.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * When set to true the Modal waits until a nested Transition is completed before closing.
+   */
+  closeAfterTransition: PropTypes.bool,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -387,6 +427,8 @@ Modal.propTypes = {
    */
   keepMounted: PropTypes.bool,
   /**
+   * @ignore
+   *
    * A modal manager used to track and manage the state of open
    * Modals. This enables customizing how modals interact within a container.
    */
@@ -421,6 +463,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   BackdropComponent: Backdrop,
+  closeAfterTransition: false,
   disableAutoFocus: false,
   disableBackdropClick: false,
   disableEnforceFocus: false,

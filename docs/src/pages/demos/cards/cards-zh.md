@@ -4,7 +4,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 ---
 # 卡片
 
-<p class="description">卡片包含和一个主题相关的内容和操作。</p>
+<p class="description">卡片包含有关单个主题的内容和操作。</p>
 
 [卡片](https://material.io/design/components/cards.html) 是显示一个主题下内容和操作的容器。
 
@@ -15,6 +15,12 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 尽管卡片支持多操作、多UI控件和过长的菜单，但请克制使用，切记，卡片只是那些复杂且详细信息的入口。
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
+
+## 复杂交互
+
+在桌面上, 卡片内容可以展开。
+
+{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
 
 ## 多媒体内容
 
@@ -33,9 +39,3 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 下面是一个媒体控制卡片的例子。
 
 {{"demo": "pages/demos/cards/MediaControlCard.js"}}
-
-## 复杂交互
-
-在桌面上, 卡片内容可以展开。
-
-{{"demo": "pages/demos/cards/RecipeReviewCard.js"}}

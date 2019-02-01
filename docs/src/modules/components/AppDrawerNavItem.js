@@ -83,7 +83,7 @@ class AppDrawerNavItem extends React.Component {
         <ListItem className={classes.itemLeaf} disableGutters {...other}>
           <Button
             component={props => (
-              <Link variant="button" activeClassName={classes.active} href={href} {...props} />
+              <Link naked activeClassName={classes.active} href={href} {...props} />
             )}
             className={classNames(classes.buttonLeaf, `depth-${depth}`)}
             disableRipple

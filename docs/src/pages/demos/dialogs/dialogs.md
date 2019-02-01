@@ -112,3 +112,7 @@ To do so, you can pass the the imported `Draggable` component as the `PaperCompo
 This will make the entire dialog draggable.
 
 {{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
+
+## Performance
+
+Follow the [Modal performance section](/utils/modal/#performance).

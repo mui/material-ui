@@ -37,15 +37,15 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">rounded</span> | Styles applied to the root element if `square={false}`.
 | <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiExpansionPanel`.
 
 ## Inheritance

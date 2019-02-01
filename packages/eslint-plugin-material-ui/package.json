@@ -5,7 +5,7 @@
   "description": "Custom eslint rules for Material-UI.",
   "main": "src/index.js",
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js' --exclude '**/node_modules/**'"
   },
   "repository": {
     "type": "git",

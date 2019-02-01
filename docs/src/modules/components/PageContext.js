@@ -7,7 +7,6 @@ const PageContext = React.createContext({
     pathname: '',
   },
   pages: [],
-  userLanguage: '',
 });
 
 export default PageContext;

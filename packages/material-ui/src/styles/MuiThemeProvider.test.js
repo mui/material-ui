@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { JssProvider } from 'react-jss';
 import ReactDOMServer from 'react-dom/server';
 import { createMount } from '@material-ui/core/test-utils';
 import createMuiTheme from './createMuiTheme';
@@ -62,7 +62,7 @@ describe('<MuiThemeProvider />', () => {
     mount.cleanUp();
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;

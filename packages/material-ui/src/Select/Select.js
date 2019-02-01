@@ -9,7 +9,7 @@ import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-// To replace with InputBase in v4.0.0
+// To replace with InputBase in v4
 import Input from '../Input';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
@@ -121,7 +121,6 @@ Select.propTypes = {
   MenuProps: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
-   * You can only use it when the `native` property is `false` (default).
    */
   multiple: PropTypes.bool,
   /**

@@ -1,7 +1,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import JssProvider from 'react-jss/lib/JssProvider';
+import { JssProvider } from 'react-jss';
 import { create, SheetsRegistry } from 'jss';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import jssPreset from './jssPreset';
@@ -47,11 +47,11 @@ describe('withStyles', () => {
     });
 
     describe('prop: classes', () => {
-      before(() => {
+      beforeEach(() => {
         consoleErrorMock.spy();
       });
 
-      after(() => {
+      afterEach(() => {
         consoleErrorMock.reset();
       });
 
@@ -78,13 +78,25 @@ describe('withStyles', () => {
         );
       });
 
+      it('should warn if providing a string', () => {
+        const wrapper = shallow(<StyledComponent1 classes="titi" />);
+
+        assert.deepEqual(wrapper.props().classes, { root: classes.root });
+        assert.strictEqual(consoleErrorMock.callCount() >= 1, true);
+        const args = consoleErrorMock.args();
+        assert.match(
+          consoleErrorMock.args()[args.length - 1][0],
+          /You might want to use the className property instead./,
+        );
+      });
+
       it('should warn if providing a non string', () => {
         const wrapper = shallow(<StyledComponent1 classes={{ root: {} }} />);
 
         assert.deepEqual(wrapper.props().classes, { root: `${classes.root} [object Object]` });
-        assert.strictEqual(consoleErrorMock.callCount(), 2);
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.match(
-          consoleErrorMock.args()[1][0],
+          consoleErrorMock.args()[0][0],
           /Material-UI: the key `root` provided to the classes property is not valid/,
         );
       });
@@ -150,7 +162,6 @@ describe('withStyles', () => {
     it('should run lifecycles with no theme', () => {
       const styles = { root: { display: 'flex' } };
       const StyledComponent = withStyles(styles)(Empty);
-
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
           <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>

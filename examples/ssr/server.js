@@ -18,11 +18,11 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>Material-UI</title>
+        <style id="jss-server-side">${css}</style>
       </head>
       <body>
         <script async src="build/bundle.js"></script>
         <div id="root">${html}</div>
-        <style id="jss-server-side">${css}</style>
       </body>
     </html>
   `;
@@ -70,7 +70,7 @@ const app = express();
 
 app.use('/build', express.static('build'));
 
-// This is fired every time the server side receives a request.
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;

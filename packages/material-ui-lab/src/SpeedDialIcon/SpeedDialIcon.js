@@ -32,7 +32,7 @@ export const styles = theme => ({
     opacity: 0,
     transform: 'rotate(-45deg)',
   },
-  /* Styles applied to the `openIcon` if provided & if `open={true}` */
+  /* Styles applied to the `openIcon` if provided & if `open={true}`. */
   openIconOpen: {
     transform: 'rotate(0deg)',
     opacity: 1,
@@ -66,7 +66,8 @@ function SpeedDialIcon(props) {
 
 SpeedDialIcon.propTypes = {
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

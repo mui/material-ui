@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import {
@@ -381,6 +382,9 @@ describe('<SwitchBase />', () => {
           </FormControlContext.Provider>
         );
       }
+      Provider.propTypes = {
+        context: PropTypes.object,
+      };
 
       wrapper = mount(<Provider />);
     });

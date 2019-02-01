@@ -20,7 +20,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     userSelect: 'none',
   },
-  /* Styles applied to the root element if there are children and not `src` or `srcSet` */
+  /* Styles applied to the root element if there are children and not `src` or `srcSet`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
@@ -77,6 +77,7 @@ function Avatar(props) {
     <Component
       className={classNames(
         classes.root,
+        classes.system,
         {
           [classes.colorDefault]: !img,
         },

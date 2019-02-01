@@ -125,7 +125,7 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = () => ({
+const styles = {
   root: {
     display: 'flex',
     minHeight: '100vh',
@@ -146,7 +146,7 @@ const styles = () => ({
     padding: '48px 36px 0',
     background: '#eaeff1',
   },
-});
+};
 
 class Paperbase extends React.Component {
   state = {

@@ -2,7 +2,12 @@ import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import Slider from './Slider';
+import Slider, { defaultValueReducer } from './Slider';
+
+function touchList(touchArray) {
+  touchArray.item = idx => touchArray[idx];
+  return touchArray;
+}
 
 describe('<Slider />', () => {
   let mount;
@@ -49,6 +54,47 @@ describe('<Slider />', () => {
     wrapper.simulate('mousedown');
     // document.simulate('mouseup')
     document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+
+    assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+  });
+
+  it('should only listen to changes from the same touchpoint', () => {
+    const handleChange = spy();
+    const handleDragStart = spy();
+    const handleDragEnd = spy();
+    let touchEvent;
+
+    const wrapper = mount(
+      <Slider
+        onChange={handleChange}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        value={0}
+      />,
+    );
+
+    wrapper.simulate('touchstart', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 2 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 2 }]);
+    document.body.dispatchEvent(touchEvent);
+
+    assert.strictEqual(handleChange.callCount, 0, 'should not have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 0, 'should not have called the handleDragEnd cb');
+
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 1 }]);
+    document.body.dispatchEvent(touchEvent);
 
     assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
@@ -122,7 +168,7 @@ describe('<Slider />', () => {
 
       wrapper.unmount();
 
-      // After unmounting global listeners should not be registered aynmore since that would
+      // After unmounting global listeners should not be registered anymore since that would
       // break component encapsulation. If they are still mounted either react will throw warnings
       // or other component logic throws.
       // post condition: the dispatched events dont cause errors/warnings
@@ -173,6 +219,91 @@ describe('<Slider />', () => {
 
     it('should signal that it is disabled', () => {
       assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
+    });
+  });
+
+  describe('prop: slider', () => {
+    let wrapper;
+
+    const moveLeftEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowLeft',
+    });
+    const moveRightEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowRight',
+    });
+
+    before(() => {
+      function valueReducer(rawValue, props, event) {
+        const { disabled, max, min, step } = props;
+
+        function roundToStep(number) {
+          return Math.round(number / step) * step;
+        }
+
+        if (!disabled && step) {
+          if (rawValue > min && rawValue < max) {
+            if (rawValue === max - step) {
+              // If moving the Slider using arrow keys and value is formerly an maximum edge value
+              return roundToStep(rawValue + step / 2);
+            }
+            if (rawValue === min + step) {
+              // Same for minimum edge value
+              return roundToStep(rawValue - step / 2);
+            }
+            return roundToStep(rawValue);
+          }
+          return rawValue;
+        }
+
+        return defaultValueReducer(rawValue, props, event);
+      }
+
+      const onChange = (_, value) => {
+        wrapper.setProps({ value });
+      };
+      wrapper = mount(
+        <Slider
+          value={90}
+          valueReducer={valueReducer}
+          min={6}
+          max={108}
+          step={10}
+          onChange={onChange}
+        />,
+      );
+    });
+
+    it('should reach right edge value', () => {
+      wrapper.setProps({ value: 90 });
+      const button = wrapper.find('button');
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 108);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 90);
+    });
+
+    it('should reach left edge value', () => {
+      wrapper.setProps({ value: 20 });
+      const button = wrapper.find('button');
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 6);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 20);
     });
   });
 });

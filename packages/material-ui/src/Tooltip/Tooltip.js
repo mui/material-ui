@@ -14,6 +14,11 @@ export const styles = theme => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     opacity: 0.9,
+    pointerEvents: 'none',
+  },
+  /* Styles applied to the Popper component if `interactive={true}`. */
+  popperInteractive: {
+    pointerEvents: 'auto',
   },
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
@@ -98,7 +103,7 @@ class Tooltip extends React.Component {
 
     // Fallback to this default id when possible.
     // Use the random value for client side rendering only.
-    // We can't use it server side.
+    // We can't use it server-side.
     this.defaultId = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
 
     // Rerender with this.defaultId and this.childrenRef.
@@ -128,7 +133,7 @@ class Tooltip extends React.Component {
       if (this.childrenRef === document.activeElement) {
         this.handleEnter(event);
       }
-    }, 0);
+    });
 
     const childrenProps = this.props.children.props;
     if (childrenProps.onFocus) {
@@ -331,7 +336,9 @@ class Tooltip extends React.Component {
       <React.Fragment>
         <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
-          className={classes.popper}
+          className={classNames(classes.popper, {
+            [classes.popperInteractive]: interactive,
+          })}
           placement={placement}
           anchorEl={this.childrenRef}
           open={open}

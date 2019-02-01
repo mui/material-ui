@@ -44,6 +44,9 @@ const styles = theme => ({
   fabGreen: {
     color: theme.palette.common.white,
     backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[600],
+    },
   },
 });
 
@@ -93,7 +96,7 @@ class FloatingActionButtonZoom extends React.Component {
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
-            fullWidth
+            variant="fullWidth"
           >
             <Tab label="Item One" />
             <Tab label="Item Two" />

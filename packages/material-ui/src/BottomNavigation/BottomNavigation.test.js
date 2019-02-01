@@ -79,7 +79,7 @@ describe('<BottomNavigation />', () => {
     assert.strictEqual(wrapper.childAt(1).props().showLabel, false);
   });
 
-  it('should pass selected prop to children', () => {
+  it('should forward the click', () => {
     const handleChange = spy();
     const wrapper = mount(
       <BottomNavigation showLabels value={0} onChange={handleChange}>

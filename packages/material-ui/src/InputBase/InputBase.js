@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import classNames from 'classnames';
 import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
@@ -229,6 +230,15 @@ class InputBase extends React.Component {
   handleRefInput = ref => {
     this.inputRef = ref;
 
+    warning(
+      !ref || ref instanceof HTMLInputElement || ref.focus,
+      [
+        'Material-UI: you have provided a `inputComponent` to the input component',
+        'that does not correctly handle the `inputRef` property.',
+        'Make sure the `inputRef` property is called with a HTMLInputElement.',
+      ].join('\n'),
+    );
+
     let refProp;
 
     if (this.props.inputRef) {
@@ -309,6 +319,9 @@ class InputBase extends React.Component {
       ...other
     } = this.props;
 
+    const ariaDescribedby = other['aria-describedby'];
+    delete other['aria-describedby'];
+
     const fcs = formControlState({
       props: this.props,
       muiFormControl,
@@ -382,18 +395,19 @@ class InputBase extends React.Component {
     }
 
     return (
-      <FormControlContext.Provider value={null}>
-        <div className={className} onClick={this.handleClick} {...other}>
-          {renderPrefix
-            ? renderPrefix({
-                ...fcs,
-                startAdornment,
-                focused,
-              })
-            : null}
-          {startAdornment}
+      <div className={className} onClick={this.handleClick} {...other}>
+        {renderPrefix
+          ? renderPrefix({
+              ...fcs,
+              startAdornment,
+              focused,
+            })
+          : null}
+        {startAdornment}
+        <FormControlContext.Provider value={null}>
           <InputComponent
             aria-invalid={fcs.error}
+            aria-describedby={ariaDescribedby}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             className={inputClassName}
@@ -413,9 +427,9 @@ class InputBase extends React.Component {
             value={value}
             {...inputProps}
           />
-          {endAdornment}
-        </div>
-      </FormControlContext.Provider>
+        </FormControlContext.Provider>
+        {endAdornment}
+      </div>
     );
   }
 }
@@ -515,6 +529,10 @@ InputBase.propTypes = {
    * You can pull out the new value by accessing `event.target.value`.
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * @ignore
    */

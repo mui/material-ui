@@ -8,9 +8,10 @@ export function cloneElementWithClassName(child, className) {
 }
 
 export function cloneChildrenWithClassName(children, className) {
-  return React.Children.map(children, child => {
-    return React.isValidElement(child) && cloneElementWithClassName(child, className);
-  });
+  return React.Children.map(
+    children,
+    child => React.isValidElement(child) && cloneElementWithClassName(child, className),
+  );
 }
 
 export function isMuiElement(element, muiNames) {

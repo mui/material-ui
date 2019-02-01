@@ -19,7 +19,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the button. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">exclusive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, only allow one of the child ToggleButton values to be selected. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: object) => void`<br>*event:* The event source of the callback<br>*value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. If no value is selected and `exclusive` is true the value is null; when false an empty array. |
 | <span class="prop-name">selected</span> | <span class="prop-type">union:&nbsp;bool&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br></span> | <span class="prop-default">'auto'</span> | If `true`, render the group in a selected state. If `auto` (the default) render in a selected state if `value` is not empty. |
@@ -39,11 +39,10 @@ This property accepts the following keys:
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiToggleButtonGroup`.
 
 ## Demos

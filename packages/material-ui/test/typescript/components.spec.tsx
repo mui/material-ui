@@ -38,6 +38,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Link,
   LinearProgress,
   List,
   ListItem,
@@ -78,6 +79,8 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import { DialogProps } from '@material-ui/core/Dialog';
+import { ButtonProps } from '@material-ui/core/Button';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -98,7 +101,7 @@ const AppBarTest = () => (
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
-const AvaterClassName = () => <Avatar className="foo" />;
+const AvatarClassName = () => <Avatar className="foo" />;
 
 const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
@@ -133,7 +136,7 @@ const ButtonTest = () => (
       Raised
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complexe Link</Button>
+    <Button component={props => <a {...props} />}>Complex Link</Button>
   </div>
 );
 
@@ -479,7 +482,7 @@ const PaperTest = () => (
   </Paper>
 );
 
-const CircularProgessTest = () => (
+const CircularProgressTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
@@ -797,6 +800,7 @@ const TextFieldTest = () => (
         },
       }}
     />
+    <Input inputComponent="input" />
   </div>
 );
 
@@ -872,3 +876,43 @@ const InputLabelTest = () => (
     }}
   />
 );
+
+const ReactRouterLinkTest = () => {
+  interface ButtonLinkProps extends ButtonProps {
+    to: string;
+    replace?: boolean;
+  }
+
+  const ButtonLink = (props: ButtonLinkProps) => (
+    <Button {...props} component={ReactRouterLink as any} />
+  );
+
+  const reactRouterButtonLink1 = (
+    <ButtonLink color="primary" to="/">
+      Go Home
+    </ButtonLink>
+  );
+
+  const MyLink = (props: any) => <ReactRouterLink to="/" {...props} />;
+
+  const reactRouterButtonLink2 = (
+    <Button color="primary" component={MyLink}>
+      Go Home
+    </Button>
+  );
+};
+
+const LinkTest = () => {
+  const dudUrl = 'javascript:;';
+  return (
+    <Typography>
+      <Link href={dudUrl}>Link</Link>
+      <Link href={dudUrl} color="inherit">
+        {'color="inherit"'}
+      </Link>
+      <Link href={dudUrl} variant="body1">
+        {'variant="body1"'}
+      </Link>
+    </Typography>
+  );
+};

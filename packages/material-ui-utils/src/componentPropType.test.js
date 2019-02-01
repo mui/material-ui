@@ -37,8 +37,8 @@ describe('componentPropType', () => {
     consoleErrorMock.reset();
   });
 
-  it('describe .isRequired', () => {
-    it('rejectes null', () => {
+  describe('describe .isRequired', () => {
+    it('rejects null', () => {
       testPropType(
         undefined,
         componentPropType.isRequired,

@@ -2,34 +2,34 @@
 title: 气泡卡片 React 组件
 components: Grow, Popover
 ---
-# 气泡卡片
+# 酥料饼
 
 <p class="description">弹出框可用于在元素边缘显示某些内容。</p>
 
-Things to know when using the `Popover` component:
+使用 `Popover` 组件时需要了解的事项：
 
-- The component is built on top of the [`Modal`](/utils/modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/utils/popper/) component.
+- 该组件构建在 [`Modal`](/utils/modal/) 组件之上。
+- 与 [`Popper`](/utils/popper/) 组件不同，滚动和单击将被阻止。
 
-## Simple Popover
+## 简单的弹出窗口
 
 {{"demo": "pages/utils/popover/SimplePopover.js" }}
 
-## Anchor playground
+## 锚操场
 
-Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions. You can also set the `anchorReference` to `anchorPosition` or `anchorEl`. When it is `anchorPosition`, the component will, instead of `anchorEl`, refer to the `anchorPosition` prop which you can adjust to set the position of the popover.
+使用单选按钮调整 `anchorOrigin` 和 `transformOrigin` 位置。 您还可以将 `anchorReference` 设置为 `anchorPosition` 或 `anchorEl`。 当它是 `anchorPosition`，该组件将代替 `anchorEl`， 指的是 `anchorPosition` 道具，其可以调整设置 的酥料饼的位置。
 
 {{"demo": "pages/utils/popover/AnchorPlayground.js"}}
 
-## Mouse over interaction
+## 鼠标悬停在互动上
 
-We demonstrate how to use the `Popover` component to implement a popover behavior based on the mouse over event.
+我们演示了如何使用 `Popover` 组件来实现基于鼠标悬停事件的弹出行为。
 
 {{"demo": "pages/utils/popover/MouseOverPopover.js"}}
 
 ## Render Props
 
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single popover.
+这是一个 [渲染道具](https://reactjs.org/docs/render-props.html) 演示， 跟踪单个弹出窗口的本地状态。
 
 {{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
 
@@ -39,6 +39,6 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
+在大多数情况下，有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popover 状态。
 
 {{"demo": "pages/utils/popover/PopoverPopupState.js"}}

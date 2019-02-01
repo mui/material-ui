@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import chainPropTypes from '../utils/chainPropTypes';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -113,6 +112,10 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
+  /* Styles applied to the root element if `inline={true}`. */
+  inline: {
+    display: 'inline',
+  },
 });
 
 const nextVariants = {
@@ -171,6 +174,7 @@ function Typography(props) {
     component: componentProp,
     gutterBottom,
     headlineMapping,
+    inline,
     internalDeprecatedVariant,
     noWrap,
     paragraph,
@@ -189,6 +193,7 @@ function Typography(props) {
       [classes.gutterBottom]: gutterBottom,
       [classes.paragraph]: paragraph,
       [classes[`align${capitalize(align)}`]]: align !== 'inherit',
+      [classes.inline]: inline,
     },
     classNameProp,
   );
@@ -250,6 +255,10 @@ Typography.propTypes = {
    */
   headlineMapping: PropTypes.object,
   /**
+   *  Controls whether the Typography is inline or not.
+   */
+  inline: PropTypes.bool,
+  /**
    * A deprecated variant is used from an internal component. Users don't need
    * a deprecation warning here if they switched to the v2 theme. They already
    * get the mapping that will be applied in the next major release.
@@ -265,6 +274,10 @@ Typography.propTypes = {
    * If `true`, the text will have a bottom margin.
    */
   paragraph: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
   /**
    * Applies the theme typography styles.
    * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
@@ -327,6 +340,7 @@ Typography.defaultProps = {
   color: 'default',
   gutterBottom: false,
   headlineMapping: defaultHeadlineMapping,
+  inline: false,
   noWrap: false,
   paragraph: false,
 };

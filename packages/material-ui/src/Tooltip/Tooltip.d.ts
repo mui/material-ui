@@ -32,12 +32,13 @@ export interface TooltipProps
     | 'top';
   PopperProps?: object;
   title: React.ReactNode;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   TransitionProps?: TransitionProps;
 }
 
 export type TooltipClassKey =
   | 'popper'
+  | 'popperInteractive'
   | 'tooltip'
   | 'touch'
   | 'tooltipPlacementLeft'

@@ -3,21 +3,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentPropType } from '@material-ui/utils';
+import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import chainPropTypes from '../utils/chainPropTypes';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    lineHeight: 1.75, // To remove with v4.
     ...theme.typography.button,
     boxSizing: 'border-box',
     minWidth: 64,
-    minHeight: 36,
-    padding: '8px 16px',
+    padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
@@ -47,7 +46,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="text"`. */
   text: {
-    padding: theme.spacing.unit,
+    padding: '6px 8px',
   },
   /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
@@ -79,9 +78,13 @@ export const styles = theme => ({
   flatSecondary: {},
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
+    padding: '5px 16px',
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
@@ -94,9 +97,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-    },
-    '&$disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
@@ -199,6 +199,7 @@ export const styles = theme => ({
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
+    borderColor: 'currentColor',
   },
   /* Styles applied to the root element if `mini={true}` & `variant="[fab | extendedFab]"`. */
   mini: {
@@ -207,16 +208,13 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
-    padding: '7px 8px',
+    padding: '4px 8px',
     minWidth: 64,
-    minHeight: 32,
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     padding: '8px 24px',
-    minWidth: 112,
-    minHeight: 40,
     fontSize: theme.typography.pxToRem(15),
   },
   /* Styles applied to the root element if `fullWidth={true}`. */

@@ -5,11 +5,12 @@ import recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
+import { LANGUAGES } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
-const TRANSLATIONS = ['zh'];
+const DEMO_IGNORE = LANGUAGES.map(language => `-${language}.md`);
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
@@ -20,12 +21,14 @@ function generateHeader(reactAPI) {
 }
 
 function getDeprecatedInfo(type) {
-  const marker = 'deprecatedPropType(PropTypes.';
-  const indexStart = type.raw.indexOf(marker);
+  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
+  const match = type.raw.match(marker);
+  const startIndex = type.raw.search(marker);
+  if (match) {
+    const offset = match[0].length;
 
-  if (indexStart !== -1) {
     return {
-      propTypes: type.raw.substring(indexStart + marker.length, type.raw.indexOf(',')),
+      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
       explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
     };
   }
@@ -92,7 +95,7 @@ function generatePropDescription(description, type) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach(tag => {
       if (tag.description) {
-        tag.description = tag.description.replace(/\n/g, ' ');
+        tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
     });
 
@@ -149,7 +152,7 @@ function generatePropType(type) {
         return generatePropType(chained);
       }
 
-      if (type.raw === 'componentProp') {
+      if (type.raw === 'componentPropType') {
         return 'Component';
       }
 
@@ -224,7 +227,7 @@ function generateProps(reactAPI) {
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(
-        prop.defaultValue.value.replace(/\n/g, ''),
+        prop.defaultValue.value.replace(/\r*\n/g, ''),
       )}</span>`;
     }
 
@@ -247,14 +250,16 @@ function generateProps(reactAPI) {
     return textProps;
   }, text);
 
-  text = `${text}
+  if (reactAPI.spread) {
+    text = `${text}
 Any other properties supplied will be spread to the root element (${
-    reactAPI.inheritance
-      ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
-          reactAPI.inheritance.pathname,
-        )})`
-      : 'native element'
-  }).`;
+      reactAPI.inheritance
+        ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+            reactAPI.inheritance.pathname,
+          )})`
+        : 'native element'
+    }).`;
+  }
 
   return text;
 }
@@ -300,8 +305,7 @@ and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath
   )})
 for more detail.
 
-If using the \`overrides\` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the \`overrides\` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 
 `;
@@ -341,10 +345,7 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 function generateDemos(reactAPI) {
   const pagesMarkdown = reactAPI.pagesMarkdown.reduce((accumulator, page) => {
-    if (
-      !TRANSLATIONS.includes(page.filename.slice(-5, -3)) &&
-      page.components.includes(reactAPI.name)
-    ) {
+    if (!DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)) {
       accumulator.push(page);
     }
 
@@ -358,8 +359,8 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-    .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
-    .join('\n')}
+  .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
+  .join('\n')}
 
 `;
 }

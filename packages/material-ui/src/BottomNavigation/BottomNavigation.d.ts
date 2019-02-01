@@ -8,6 +8,7 @@ export interface BottomNavigationProps
     'onChange'
   > {
   children: React.ReactNode;
+  component?: React.ReactType<BottomNavigationProps>;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   showLabels?: boolean;
   value?: any;

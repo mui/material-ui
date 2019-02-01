@@ -14,7 +14,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
 import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import { capitalize } from '@material-ui/core/utils/helpers';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 import ColorDemo from './ColorDemo';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
 
@@ -131,7 +131,7 @@ class ColorTool extends React.Component {
     };
 
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: { paletteColors },
     });
 
@@ -145,7 +145,7 @@ class ColorTool extends React.Component {
     };
 
     this.props.dispatch({
-      type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
+      type: ACTION_TYPES.THEME_CHANGE,
       payload: { paletteColors },
     });
 

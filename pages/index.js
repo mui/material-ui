@@ -1,7 +1,7 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
-import withRoot from 'docs/src/modules/components/withRoot';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -12,6 +12,20 @@ import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
+import loadScript from 'docs/src/modules/utils/loadScript';
+
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
+  loadScript('https://buttons.github.io/buttons.js', document.querySelector('head'));
+  loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
+}
 
 const styles = theme => ({
   root: {
@@ -64,17 +78,22 @@ const styles = theme => ({
     height: '35vw',
     maxHeight: 200,
   },
-  steps: {
-    maxWidth: theme.spacing.unit * 130,
-    margin: 'auto',
+  social: {
+    backgroundColor: theme.palette.background.paper,
+    padding: `${theme.spacing.unit * 2}px 0`,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 20,
+    boxSizing: 'content-box',
+    '& span': {
+      display: 'flex',
+      marginRight: theme.spacing.unit,
+    },
+    '& a': {
+      color: theme.palette.background.paper,
+    },
   },
-  step: {
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
-  },
-  stepIcon: {
-    marginBottom: theme.spacing.unit,
-  },
-  markdownElement: {},
 });
 
 class HomePage extends React.Component {
@@ -82,6 +101,8 @@ class HomePage extends React.Component {
     if (window.location.hash !== '') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
     }
+
+    loadDependencies();
   }
 
   render() {
@@ -121,12 +142,7 @@ class HomePage extends React.Component {
                 </Typography>
                 <Button
                   component={buttonProps => (
-                    <Link
-                      variant="button"
-                      prefetch
-                      href="/getting-started/installation"
-                      {...buttonProps}
-                    />
+                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
                   )}
                   className={classes.button}
                   variant="outlined"
@@ -136,6 +152,24 @@ class HomePage extends React.Component {
                 </Button>
               </div>
             </div>
+          </div>
+          <div className={classes.social}>
+            <a
+              className="github-button"
+              href="https://github.com/mui-org/material-ui"
+              data-icon="octicon-star"
+              data-show-count="true"
+              aria-label="Star mui-org/material-ui on GitHub"
+            >
+              Star
+            </a>
+            <a
+              className="twitter-follow-button"
+              href="https://twitter.com/@materialui"
+              data-show-screen-name="false"
+            >
+              Follow
+            </a>
           </div>
           <HomeSteps />
           <HomeBackers />
@@ -170,7 +204,7 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withRoot,
-  withStyles(styles),
-)(HomePage);
+const Page = withStyles(styles)(HomePage);
+
+// Hack for https://github.com/zeit/next.js/pull/5857
+export default () => <Page />;

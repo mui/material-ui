@@ -69,6 +69,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-uncontrolled"
           label="Uncontrolled"
@@ -77,6 +78,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           required
           id="filled-required"
@@ -86,6 +88,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           error
           id="filled-error"
@@ -95,6 +98,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           disabled
           id="filled-disabled"
@@ -104,6 +108,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-email-input"
           label="Email"
@@ -114,6 +119,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-password-input"
           label="Password"
@@ -123,6 +129,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-read-only-input"
           label="Read Only"
@@ -134,6 +141,7 @@ class FilledTextFields extends React.Component {
           }}
           variant="filled"
         />
+
         <TextField
           id="filled-dense"
           label="Dense"
@@ -141,6 +149,7 @@ class FilledTextFields extends React.Component {
           margin="dense"
           variant="filled"
         />
+
         <TextField
           id="filled-multiline-flexible"
           label="Multiline"
@@ -153,6 +162,7 @@ class FilledTextFields extends React.Component {
           helperText="hello"
           variant="filled"
         />
+
         <TextField
           id="filled-multiline-static"
           label="Multiline"
@@ -163,6 +173,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-helperText"
           label="Helper text"
@@ -172,6 +183,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-with-placeholder"
           label="With placeholder"
@@ -180,6 +192,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-textarea"
           label="Multiline Placeholder"
@@ -189,6 +202,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-number"
           label="Number"
@@ -202,6 +216,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-search"
           label="Search field"
@@ -210,6 +225,7 @@ class FilledTextFields extends React.Component {
           margin="normal"
           variant="filled"
         />
+
         <TextField
           id="filled-select-currency"
           select
@@ -268,6 +284,7 @@ class FilledTextFields extends React.Component {
             shrink: true,
           }}
         />
+
         <TextField
           id="filled-bare"
           className={classes.textField}

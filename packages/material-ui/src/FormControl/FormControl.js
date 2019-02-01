@@ -39,7 +39,7 @@ export const styles = {
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
- * Relying on the context provides high flexibilty and ensures that the state always stays
+ * Relying on the context provides high flexibility and ensures that the state always stays
  * consistent across the children of the `FormControl`.
  * This context is used by the following components:
  *  - FormLabel
@@ -67,7 +67,7 @@ class FormControl extends React.Component {
     };
 
     // We need to iterate through the children and find the Input in order
-    // to fully support server side rendering.
+    // to fully support server-side rendering.
     const { children } = props;
     if (children) {
       React.Children.forEach(children, child => {

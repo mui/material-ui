@@ -2,17 +2,15 @@
 
 <p class="description">通过颜色传达意义。 开箱即用，您可以访问Material Design规范中的所有颜色。</p>
 
-Material Design 中的 [ 颜色 ](https://material.io/design/color/) 灵感源自与静音环境、深阴影和明亮亮点并列的粗色调。
+Material Design [颜色系统](https://material.io/design/color/) 可用于创建反映您的品牌或风格的颜色主题。
 
 ## 颜色系统
-
-Material Design 颜色系统可用于创建反映您的品牌或风格的颜色主题。
 
 ### 重要的术语
 
 #### "调色板"
 
-调色板是颜色的集合, 即色调和它们的阴影. Material-UI 提供Material Design 指南中的所有颜色.
+调色板是颜色的集合, 即色调和它们的阴影. Material-UI 提供Material Design 指南中的所有颜色. [此调色板](#color-palette) 设计为彼此协调工作。
 
 #### “色彩”和“阴影”
 
@@ -30,12 +28,24 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
-const accent2 = purple.A200; // #E040FB (代替方法)
+const accent = purple.A200; // #E040FB (替代方法)
 ```
 
-## Color tool
+### 调色板
 
-使用Material-UI文档测试[material.io/color](https://material.io/design/color/)颜色方案,只需使用下面的调色板和滑块选择颜色. 或者, 您可以在“Primary”和“Secondary”文本字段中输入十六进制值.
+给定*HUE* （红色，粉红色等）和*SHADE* （500,600等）你可以导入这样的颜色：
+
+```jsx
+import HUE from '@material-ui/core/colors/HUE';
+
+const color = HUE[SHADE];
+```
+
+{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
+
+## 颜色工具
+
+使用Material-UI文档测试[material.io/design/color](https://material.io/design/color/)颜色方案,只需使用下面的调色板和滑块选择颜色. 或者, 您可以在“Primary”和“Secondary”文本字段中输入十六进制值.
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
@@ -55,7 +65,7 @@ const theme = createMuiTheme({
 });
 ```
 
-一般只需要提供 `主`阴影(除非你想进一步地自定义 `亮`，`暗` 或 ` 对比文本`)，同时其他的颜色将由 `createMuiTheme()` 进行计算，就像在 [主题自定义](/customization/themes/#palette) 里被描述的部分。
+只需要提供 `main` 阴影（除非您希望进一步自定义 `light` `dark` 或 `contrastText`），因为其他颜色将由 `createMuiTheme()`计算，如 [主题定制中所述](/customization/themes/#palette) 节。
 
 如果你通过提供 color object 的方式 使用默认的主要阴影 和/或 次要阴影，`createMuiTheme()` 将会根据 主、亮和暗 三种 material 颜色选择合适的阴影。
 
@@ -94,9 +104,4 @@ const theme = createMuiTheme({
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 是一款使用 Material Design 创建 Material-UI 主题的在线工具。
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
-
-## 调色板
-
-Material Design 调色板包括主要色彩和强调颜色，可用于插图或开发您的品牌颜色. 他们被设计成彼此和谐地工作.
-
-{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
+- [材质调色板生成器](https://material.io/inline-tools/color/)：“材质”调板生成器可用于为您输入的任何颜色生成调色板。

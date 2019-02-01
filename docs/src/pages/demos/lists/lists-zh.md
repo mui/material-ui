@@ -28,21 +28,49 @@ function ListItemLink(props) {
 
 你可以从这里查看[React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)
 
-## 文件夹列表
-
-{{"demo": "pages/demos/lists/FolderList.js"}}
-
-## 嵌入列表
-
-{{"demo": "pages/demos/lists/InsetList.js"}}
-
 ## 嵌套列表
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
+## 文件夹列表
+
+{{"demo": "pages/demos/lists/FolderList.js"}}
+
+## 交互式
+
+下面是一个交互式演示，可让您探索不同设置的可视结果：
+
+{{"demo": "pages/demos/lists/InteractiveList.js"}}
+
 ## 可选的 ListItem
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
+
+## 对齐列表项
+
+您应该在显示3行或更多行时更改列表项对齐，设置 `alignItems="flex-start"` 属性。
+
+{{"demo": "pages/demos/lists/AlignItemsList.js"}}
+
+## 列表控件
+
+### Checkbox
+
+复选框可以是主操作或辅助操作。
+
+该复选框是列表项的主要操作和状态指示器。 注释按钮是辅助操作和单独的目标。
+
+{{"demo": "pages/demos/lists/CheckboxList.js"}}
+
+该复选框是列表项的辅助操作和单独的目标。
+
+{{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
+
+### Switch
+
+该开关是辅助操作和单独的目标。
+
+{{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
 ## 固定 Subheader 列表
 
@@ -52,28 +80,6 @@ function ListItemLink(props) {
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## 列表控件
+## 嵌入列表
 
-### 复选框
-
-复选框可以是主操作或辅助操作。
-
-复选框是列表项的主要操作和状态指示器。 评论按钮是辅助操作和单独的目标。
-
-{{"demo": "pages/demos/lists/CheckboxList.js"}}
-
-复选框是列表项的辅助操作和单独的目标。
-
-{{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
-
-### 开关
-
-开关是辅助操作和单独的目标。
-
-{{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
-
-## 交互式
-
-下面是一个交互式演示，可让您探索不同设置的可视结果：
-
-{{"demo": "pages/demos/lists/InteractiveList.js"}}
+{{"demo": "pages/demos/lists/InsetList.js"}}

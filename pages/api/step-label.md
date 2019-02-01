@@ -24,7 +24,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |   | Override the default icon. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node</span> |   | The optional node to display. |
-| <span class="prop-name">StepIconComponent</span> | <span class="prop-type">componentPropType</span> |   | The component to render in place of the [`StepIcon`](/api/step-icon/). |
+| <span class="prop-name">StepIconComponent</span> | <span class="prop-type">Component</span> |   | The component to render in place of the [`StepIcon`](/api/step-icon/). |
 | <span class="prop-name">StepIconProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`StepIcon`](/api/step-icon/) element. |
 
 Any other properties supplied will be spread to the root element (native element).
@@ -38,7 +38,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horiizontal".
+| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal".
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical".
 | <span class="prop-name">label</span> | Styles applied to the `Typography` component which wraps `children`.
 | <span class="prop-name">active</span> | Styles applied to the `Typography` component if `active={true}`.
@@ -50,11 +50,10 @@ This property accepts the following keys:
 | <span class="prop-name">labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/StepLabel/StepLabel.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepLabel/StepLabel.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiStepLabel`.
 
 ## Demos

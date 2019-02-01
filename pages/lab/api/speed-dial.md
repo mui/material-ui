@@ -28,7 +28,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, key: string) => void`<br>*event:* The event source of the callback<br>*key:* The key pressed |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool</span> |   | If `true`, the SpeedDial is open. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |   | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">Zoom</span> | The component used for the transition. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">Component</span> | <span class="prop-default">Zoom</span> | The component used for the transition. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Transition` element. |
 
@@ -52,11 +52,10 @@ This property accepts the following keys:
 | <span class="prop-name">actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSpeedDial`.
 
 ## Demos

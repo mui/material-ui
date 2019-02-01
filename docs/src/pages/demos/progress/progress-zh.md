@@ -1,5 +1,5 @@
 ---
-title: 环形、线装进度 React 组件
+title: React 环形、线装进度组件
 components: CircularProgress, LinearProgress
 ---
 # 进度
@@ -64,10 +64,12 @@ components: CircularProgress, LinearProgress
 进度组件接受一个 0 - 100 范围的值。 作为默认的最小/最大值，这简化了屏幕阅读用户的使用。 但是有时，你可能会使用值超出这个范围的数据源。 这里告诉您如何轻松的将一个任意范围的值转换为0 - 100区间的值。
 
 ```jsx
-// MIN = 最小预期值
-// MAX = 最大预期值
-// 这是使数值标准化的一个函数（MIN 和 MAX 可以被整合）
+// MIN = 最小值
+// MAX = 最大值
+// 正常化值的函数（MIN / MAX 可相互协调）
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
+
+// 在 render 函数中，利用`正常化`函数的示例组件
 function Progress(props) {
   return (
     <React.Fragment>
@@ -78,17 +80,19 @@ function Progress(props) {
 }
 ```
 
+## 自定义进度
+
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个如何自定义组件的示例。 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
+
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+
+{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
+
 ## 延迟展现
 
 关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase`组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
-
-## 自定义进度
-
-最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
-
-{{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
 ## 局限性
 

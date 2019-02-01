@@ -25,7 +25,7 @@ const styles = theme => ({
   },
 });
 
-class ListItemLink1 extends React.Component {
+class ListItemLink extends React.Component {
   renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
 
   render() {
@@ -41,13 +41,13 @@ class ListItemLink1 extends React.Component {
   }
 }
 
-ListItemLink1.propTypes = {
+ListItemLink.propTypes = {
   icon: PropTypes.node.isRequired,
   primary: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
 };
 
-function ListItemLink2(props) {
+function ListItemLinkShorthand(props) {
   const { primary, to } = props;
   return (
     <li>
@@ -58,7 +58,7 @@ function ListItemLink2(props) {
   );
 }
 
-ListItemLink2.propTypes = {
+ListItemLinkShorthand.propTypes = {
   primary: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
 };
@@ -78,13 +78,13 @@ function ComponentProperty(props) {
           </Route>
           <div className={classes.lists}>
             <List component="nav">
-              <ListItemLink1 to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-              <ListItemLink1 to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+              <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+              <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
             </List>
             <Divider />
             <List component="nav">
-              <ListItemLink2 to="/trash" primary="Trash" />
-              <ListItemLink2 to="/spam" primary="Spam" />
+              <ListItemLinkShorthand to="/trash" primary="Trash" />
+              <ListItemLinkShorthand to="/spam" primary="Spam" />
             </List>
           </div>
         </div>

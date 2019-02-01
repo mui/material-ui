@@ -73,9 +73,7 @@ function getComponentName(destPath) {
   const parts = destPath
     .replace('.js', '')
     .split(splitregex)
-    .map(part => {
-      return part.charAt(0).toUpperCase() + part.substring(1);
-    });
+    .map(part => part.charAt(0).toUpperCase() + part.substring(1));
 
   return parts.join('');
 }
@@ -189,14 +187,13 @@ async function main(options) {
     ]);
 
     const queue = new Queue(
-      svgPath => {
-        return worker({
+      svgPath =>
+        worker({
           svgPath,
           options,
           renameFilter,
           template,
-        });
-      },
+        }),
       { concurrency: 8 },
     );
 

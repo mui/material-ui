@@ -163,7 +163,7 @@ describe('<TouchRipple />', () => {
       assert.strictEqual(wrapper.state().ripples.length, 0);
     });
 
-    it('should interupt the ripple schedule', () => {
+    it('should interrupt the ripple schedule', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
 

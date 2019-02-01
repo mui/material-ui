@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import keycode from 'keycode';
 import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
@@ -164,10 +163,15 @@ class ButtonBase extends React.Component {
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
-    const key = keycode(event);
 
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !this.keyDown && this.state.focusVisible && this.ripple && key === 'space') {
+    if (
+      focusRipple &&
+      !this.keyDown &&
+      this.state.focusVisible &&
+      this.ripple &&
+      event.key === ' '
+    ) {
       this.keyDown = true;
       event.persist();
       this.ripple.stop(event, () => {
@@ -184,7 +188,7 @@ class ButtonBase extends React.Component {
       event.target === event.currentTarget &&
       component &&
       component !== 'button' &&
-      (key === 'space' || key === 'enter') &&
+      (event.key === ' ' || event.key === 'Enter') &&
       !(this.button.tagName === 'A' && this.button.href)
     ) {
       event.preventDefault();
@@ -195,12 +199,7 @@ class ButtonBase extends React.Component {
   };
 
   handleKeyUp = event => {
-    if (
-      this.props.focusRipple &&
-      keycode(event) === 'space' &&
-      this.ripple &&
-      this.state.focusVisible
-    ) {
+    if (this.props.focusRipple && event.key === ' ' && this.ripple && this.state.focusVisible) {
       this.keyDown = false;
       event.persist();
       this.ripple.stop(event, () => {
@@ -375,8 +374,10 @@ ButtonBase.propTypes = {
   /**
    * This property can help a person know which element has the keyboard focus.
    * The class name will be applied when the element gain the focus through a keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
    */
   focusVisibleClassName: PropTypes.string,
   /**

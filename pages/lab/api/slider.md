@@ -19,7 +19,7 @@ import Slider from '@material-ui/lab/Slider';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">componentPropType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">Component</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, the slider will be disabled. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">100</span> | The maximum allowed value of the slider. Should not be equal to min. |
 | <span class="prop-name">min</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The minimum allowed value of the slider. Should not be equal to max. |
@@ -29,6 +29,7 @@ import Slider from '@material-ui/lab/Slider';
 | <span class="prop-name">step</span> | <span class="prop-type">number</span> |   | The granularity the slider can step through values. |
 | <span class="prop-name">thumb</span> | <span class="prop-type">element</span> |   | The component used for the slider icon. This is optional, if provided should be a react element. |
 | <span class="prop-name required">value *</span> | <span class="prop-type">number</span> |   | The value of the slider. |
+| <span class="prop-name">valueReducer</span> | <span class="prop-type">func</span> | <span class="prop-default">function defaultValueReducer(rawValue, props) {  const { disabled, step } = props;  if (disabled) {    return null;  }  if (step) {    return roundToStep(rawValue, step);  }  return Number(rawValue.toFixed(3));}</span> | the reducer used to process the value emitted from the slider. If `null` or the same value is returned no change is emitted.<br><br>**Signature:**<br>`function(rawValue: number, props: SliderProps, event: Event) => void`<br>*rawValue:* value in [min, max]<br>*props:* current props of the Slider<br>*event:* the event the change was triggered from |
 | <span class="prop-name">vertical</span> | <span class="prop-type">bool</span> |   | If `true`, the slider will be vertical. |
 
 Any other properties supplied will be spread to the root element (native element).
@@ -57,11 +58,10 @@ This property accepts the following keys:
 | <span class="prop-name">vertical</span> | Class applied to the root, track and container to trigger JSS nested styles if `vertical`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/Slider/Slider.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/Slider/Slider.js)
 for more detail.
 
-If using the `overrides` key of the theme as documented
-[here](/customization/themes/#customizing-all-instances-of-a-component-type),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiSlider`.
 
 ## Demos

@@ -249,6 +249,9 @@ describe('<InputBase />', () => {
           );
         }
       }
+      Provider.propTypes = {
+        context: PropTypes.object,
+      };
 
       wrapper = mount(<Provider />);
     });

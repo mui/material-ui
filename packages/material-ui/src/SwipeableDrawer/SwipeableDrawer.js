@@ -141,7 +141,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   handleBodyTouchStart = event => {
-    // We are not supposed to hanlde this touch move.
+    // We are not supposed to handle this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
     }
@@ -420,6 +420,10 @@ SwipeableDrawer.propTypes = {
    * navigation actions. Swipe to open is disabled on iOS browsers by default.
    */
   disableSwipeToOpen: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  hideBackdrop: PropTypes.bool,
   /**
    * Affects how far the drawer must be opened/closed to change his state.
    * Specified as percent (0-1) of the width of the drawer
