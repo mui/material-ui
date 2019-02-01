@@ -216,11 +216,21 @@ describe('createPalette()', () => {
   });
 
   it('should calculate light and dark colors if not provided', () => {
-    const palette = createPalette({
+    const paletteOptions = {
       primary: { main: deepOrange[500] },
       secondary: { main: green.A400 },
       error: { main: pink[500] },
-    });
+    };
+    const palette = createPalette(paletteOptions);
+    assert.deepEqual(
+      paletteOptions,
+      {
+        primary: { main: deepOrange[500] },
+        secondary: { main: green.A400 },
+        error: { main: pink[500] },
+      },
+      'should not mutate createPalette argument',
+    );
     assert.strictEqual(
       palette.primary.main,
       deepOrange[500],
