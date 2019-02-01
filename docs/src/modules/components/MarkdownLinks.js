@@ -8,7 +8,6 @@ async function handleClick(event) {
   if (
     activeElement.nodeName !== 'A' ||
     activeElement.getAttribute('target') === '_blank' ||
-    activeElement.getAttribute('data-next') === 'true' ||
     activeElement.getAttribute('href').indexOf('/') !== 0
   ) {
     return;
@@ -16,6 +15,7 @@ async function handleClick(event) {
 
   // Ignore click for new tab / new window behavior
   if (
+    event.defaultPrevented ||
     event.metaKey ||
     event.ctrlKey ||
     event.shiftKey ||

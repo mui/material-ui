@@ -289,6 +289,9 @@ const pages = [
         title: 'About The Lab',
       },
       {
+        pathname: '/lab/breadcrumbs',
+      },
+      {
         pathname: '/lab/slider',
       },
       {

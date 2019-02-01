@@ -26,7 +26,7 @@ const styles = theme => ({
 });
 
 class ListItemLink extends React.Component {
-  renderLink = itemProps => <Link to={this.props.to} {...itemProps} data-next="true" />;
+  renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
 
   render() {
     const { icon, primary } = this.props;
@@ -51,7 +51,7 @@ function ListItemLinkShorthand(props) {
   const { primary, to } = props;
   return (
     <li>
-      <ListItem button component={Link} to={to} data-next="true">
+      <ListItem button component={Link} to={to}>
         <ListItemText primary={primary} />
       </ListItem>
     </li>
