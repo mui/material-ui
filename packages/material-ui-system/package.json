@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-system",
   "scripts": {
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
+    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
+    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore \"**/*.test.js\"",
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es --ignore *.test.js",
-    "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore *.test.js",
-    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-system/**/*.test.js' --exclude '**/node_modules/**'"
