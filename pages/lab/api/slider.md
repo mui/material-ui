@@ -29,6 +29,7 @@ import Slider from '@material-ui/lab/Slider';
 | <span class="prop-name">step</span> | <span class="prop-type">number</span> |   | The granularity the slider can step through values. |
 | <span class="prop-name">thumb</span> | <span class="prop-type">element</span> |   | The component used for the slider icon. This is optional, if provided should be a react element. |
 | <span class="prop-name required">value *</span> | <span class="prop-type">number</span> |   | The value of the slider. |
+| <span class="prop-name">valueReducer</span> | <span class="prop-type">func</span> | <span class="prop-default">function defaultValueReducer(rawValue, props) {  const { disabled, step } = props;  if (disabled) {    return null;  }  if (step) {    return roundToStep(rawValue, step);  }  return Number(rawValue.toFixed(3));}</span> | the reducer used to process the value emitted from the slider. If `null` or the same value is returned no change is emitted.<br><br>**Signature:**<br>`function(rawValue: number, props: SliderProps, event: Event) => void`<br>*rawValue:* value in [min, max]<br>*props:* current props of the Slider<br>*event:* the event the change was triggered from |
 | <span class="prop-name">vertical</span> | <span class="prop-type">bool</span> |   | If `true`, the slider will be vertical. |
 
 Any other properties supplied will be spread to the root element (native element).
