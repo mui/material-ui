@@ -30,6 +30,7 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
       assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
+      assert.strictEqual(wrapper.props().tabIndex, undefined);
 
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
@@ -84,12 +85,11 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.props().tabIndex, 0);
     });
 
-    it('should apply user values of tabIndex and role', () => {
+    it('should apply user value of tabIndex', () => {
       wrapper = shallow(
         // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-        <Chip onClick={() => {}} role="presentation" tabIndex={5} />,
+        <Chip onClick={() => {}} tabIndex={5} />,
       );
-      assert.strictEqual(wrapper.props().role, 'presentation');
       assert.strictEqual(wrapper.props().tabIndex, 5);
     });
 
