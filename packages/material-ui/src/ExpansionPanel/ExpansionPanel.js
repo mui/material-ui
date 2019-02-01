@@ -9,18 +9,6 @@ import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
 
-// Workaround https://github.com/jsdom/jsdom/issues/2026
-const edgeFix =
-  typeof window !== 'undefined' && /jsdom/.test(window.navigator.userAgent)
-    ? {}
-    : {
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-        },
-      };
-
 export const styles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
@@ -63,7 +51,11 @@ export const styles = theme => {
       '&:last-child': {
         borderBottomLeftRadius: theme.shape.borderRadius,
         borderBottomRightRadius: theme.shape.borderRadius,
-        ...edgeFix,
+        // Fix a rendering issue on Edge
+        '@supports (-ms-ime-align: auto)': {
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+        },
       },
     },
     /* Styles applied to the root element if `expanded={true}`. */
