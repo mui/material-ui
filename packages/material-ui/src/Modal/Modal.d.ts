@@ -7,6 +7,7 @@ export interface ModalProps
   extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, ModalClassKey> {
   BackdropComponent?: React.ReactType<BackdropProps>;
   BackdropProps?: Partial<BackdropProps>;
+  closeAfterTransition?: boolean;
   container?: PortalProps['container'];
   disableAutoFocus?: boolean;
   disableBackdropClick?: boolean;

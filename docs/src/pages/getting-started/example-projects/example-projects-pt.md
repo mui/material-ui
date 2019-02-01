@@ -1,4 +1,4 @@
-# Example Projects
+# Exemplos de Projetos
 
 <p class="description">Are you looking for an example project to get started?</p>
 
@@ -8,7 +8,7 @@ We host some example projects which you can find in the [GitHub repository](http
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
-- And more
+- E mais
 
 Create React App is an awesome project for learning React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
 
@@ -24,4 +24,4 @@ If you want to start with a more complete and real world example, you could take
   - Graph using recharts
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build
-  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+  - Criado com o [Create React App](https://facebook.github.io/create-react-app/)

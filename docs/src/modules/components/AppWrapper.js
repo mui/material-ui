@@ -10,7 +10,7 @@ import acceptLanguage from 'accept-language';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES } from 'docs/src/modules/constants';
+import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -28,11 +28,12 @@ function themeSideEffect(reduxTheme) {
   document.body.dir = reduxTheme.direction;
 }
 
+acceptLanguage.languages(LANGUAGES);
+
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
     const { options } = this.props;
 
-    acceptLanguage.languages(['en', 'pt', 'zh']);
     const URL = url.parse(document.location.href, true);
     const userLanguage = acceptLanguage.get(
       URL.query.lang || getCookie('lang') || navigator.language,

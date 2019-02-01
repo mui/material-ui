@@ -1,41 +1,41 @@
 ---
-title: Badge React component
+title: Componente React Badge
 components: Badge
 ---
-# Badge
+# Badges
 
-<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
+<p class="description">Emblema gera um pequeno emblema para o canto superior direito do seu filho(s).</p>
 
-## Simple Badges
+## Emblemas Simples
 
-Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
+Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O crachá é aplicado aos seus filhos.
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Maximum Value
+## Valor Máximo
 
-You can use the `max` property to cap the value of the badge content.
+Você pode usar a propriedade `max` para limitar o valor do conteúdo do selo.
 
 {{"demo": "pages/demos/badges/BadgeMax.js"}}
 
-## Dot Badge
+## Ponto Emblema
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+A propriedade `ponto` altera um distintivo para um pequeno ponto. Isso pode ser usado como uma notificação de que algo mudou sem dar uma conta.
 
 {{"demo": "pages/demos/badges/DotBadge.js"}}
 
-## Badge visibility
+## Emblema visibilidade
 
-The visibility of badges can be controlled using the `invisible` property.
+A visibilidade dos emblemas pode ser controlada usando a propriedade `invisible`.
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+O emblema auto-esconde com badgeContent é zero. Você pode substituir isso com a propriedade `showZero`.
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Customized Badge
+## Emblema personalizado
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
+Se você tiver sido ler o [substitui a página de documentação do](/customization/overrides/) mas você não está confiante de saltar, aqui está um exemplo de como você pode mudar o emblema posição.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, este exemplo está fora do caminho comum.
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

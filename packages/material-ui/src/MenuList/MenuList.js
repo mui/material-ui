@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import keycode from 'keycode';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
@@ -43,11 +42,11 @@ class MenuList extends React.Component {
 
   handleKeyDown = event => {
     const list = this.listRef;
-    const key = keycode(event);
+    const key = event.key;
     const currentFocus = ownerDocument(list).activeElement;
 
     if (
-      (key === 'up' || key === 'down') &&
+      (key === 'ArrowUp' || key === 'ArrowDown') &&
       (!currentFocus || (currentFocus && !list.contains(currentFocus)))
     ) {
       if (this.selectedItemRef) {
@@ -55,30 +54,30 @@ class MenuList extends React.Component {
       } else {
         list.firstChild.focus();
       }
-    } else if (key === 'down') {
+    } else if (key === 'ArrowDown') {
       event.preventDefault();
       if (currentFocus.nextElementSibling) {
         currentFocus.nextElementSibling.focus();
       } else if (!this.props.disableListWrap) {
         list.firstChild.focus();
       }
-    } else if (key === 'up') {
+    } else if (key === 'ArrowUp') {
       event.preventDefault();
       if (currentFocus.previousElementSibling) {
         currentFocus.previousElementSibling.focus();
       } else if (!this.props.disableListWrap) {
         list.lastChild.focus();
       }
-    } else if (key === 'home') {
+    } else if (key === 'Home') {
       event.preventDefault();
       list.firstChild.focus();
-    } else if (key === 'end') {
+    } else if (key === 'End') {
       event.preventDefault();
       list.lastChild.focus();
     }
 
     if (this.props.onKeyDown) {
-      this.props.onKeyDown(event, key);
+      this.props.onKeyDown(event);
     }
   };
 

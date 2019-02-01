@@ -1,6 +1,6 @@
-# Positions
+# 位置
 
-<p class="description">Use these shorthand utilities for quickly configuring the position of an element.</p>
+<p class="description">使用这些速记实用程序快速配置元素的位置。</p>
 
 ## z-index
 
@@ -17,11 +17,11 @@
 import { positions } from '@material-ui/system';
 ```
 
-| Import name | Prop       | CSS property | Theme key                                                      |
-|:----------- |:---------- |:------------ |:-------------------------------------------------------------- |
-| `position`  | `position` | `position`   | none                                                           |
-| `zIndex`    | `zIndex`   | `z-index`    | [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) |
-| `top`       | `top`      | `top`        | none                                                           |
-| `right`     | `right`    | `right`      | none                                                           |
-| `bottom`    | `bottom`   | `bottom`     | none                                                           |
-| `left`      | `left`     | `left`       | none                                                           |
+| 导入名称       | Prop       | CSS 属性     | 主题键                                                            |
+|:---------- |:---------- |:---------- |:-------------------------------------------------------------- |
+| `position` | `position` | `position` | none                                                           |
+| `zIndex`   | `zIndex`   | `z-index`  | [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) |
+| `top`      | `top`      | `top`      | none                                                           |
+| `right`    | `right`    | `right`    | none                                                           |
+| `bottom`   | `bottom`   | `bottom`   | none                                                           |
+| `left`     | `left`     | `left`     | none                                                           |

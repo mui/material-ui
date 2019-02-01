@@ -1,68 +1,68 @@
-# Material-UI Versions
+# Versões de Material-UI
 
-<p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
+<p class="description">Pode, em qualquer altura, voltar a esta pagina e selecionar outra versāo da documentaçāo que esta lendo.</p>
 
-## Stable versions
+## Versão estavél
 
-The most recent version is recommended in production.
+É recomendado usar a versāo mais recente em ambiente de produção.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Latest version
+## Última versão
 
-Here you can find the latest unreleased documentation and code. You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
+Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá usar esta versão para ver quais alterações que estão a ser implementadas e fornecer um feedback melhor para os contribuidores de Material-UI.
 
 {{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
 
-## Versioning strategy
+## Estratégia de controle de versão
 
-We recognize that you need **stability** from the Material-UI library. Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+Reconhecemos que necessita de estabilidade da **bibloteca** Material-UI. A estabilidade garante que componentes e bibliotecas reutilizáveis, tutoriais, ferramentas e práticas aprendidas não se tornem obsoletos inesperadamente. A estabilidade é essencial para que o ecossistema em torno da Material-UI prospere.
 
-This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
+Este documento contém ** as práticas que seguimos ** para lhe fornecer uma biblioteca de interface moderna, balanceada com estabilidade. Nós nos esforçamos para garantir que mudanças futuras sejam sempre introduzidas de maneira previsível. Queremos que todos que dependem do Material-UI saibam quando e como os novos recursos são adicionados e que estejam bem preparados quando os obsoletos forem removidos.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
+Material-UI segue estritamente [Semântico de controle de versão 2.0.0](https://semver.org/). Os números de versão do material-UI têm três partes: ` major.minor.patch `. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
 
-- **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
-- **Minor releases** contain important new features. Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
-- **Patch releases** are low risk, contain bug fixes and small new features. No developer assistance is expected during update.
+- ** versões principais ** contém novos recursos significativos, alguma assistência, mas mínima, do desenvolvedor é esperada durante a atualização. Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender novas APIs.
+- **versões Menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e recursos que foram adicionados na versão.
+- ** Versões de patch ** são de baixo risco, contêm correções de bugs e pequenos novos recursos. Nenhuma assistência do desenvolvedor é esperado durante a atualização.
 
-## Release frequency
+## Frequência de atualização
 
-We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
+Trabalhamos em direção a um cronograma regular de lançamentos, para que você possa planejar e coordenar suas atualizações com a evolução contínua do Material-UI.
 
-In general, you can expect the following release cycle:
+Em geral, você pode esperar o seguinte ciclo de lançamento:
 
-- A **major** release every 6 months.
-- 1-3 **minor** releases for each major release.
-- A **patch** release every week (anytime for urgent bugfix).
+- A **principal** versão a cada 6 meses.
+- 1-3 ** menor ** lançamentos para cada versão principal.
+- Uma versão **patch** a cada semana (ou imediatamente para um bugfix urgente).
 
-## Release schedule
+## Cronograma de lançamento
 
-> Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
+> Isenção de responsabilidade: As datas são oferecidas como orientação geral e podem ser ajustadas por nós quando necessário para garantir a entrega de um código de alta qualidade.
 
-| Date         | Version                    |
-|:------------ |:-------------------------- |
-| January 2019 | `@material-ui/core` v4.0.0 |
-| July 2019    | `@material-ui/core` v5.0.0 |
+| Data            | Versão                     |
+|:--------------- |:-------------------------- |
+| Janeiro de 2019 | `@material-ui/core` v4.0.0 |
+| Julho de 2019   | `@material-ui/core` v5.0.0 |
 
-You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
-## Support policy
+## Política de suporte
 
-We only support the latest version of Material-UI. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Oferecemos suporte apenas à versão mais recente do Material-UI. Ainda não temos recursos para oferecer versões [ LTS ](https://en.wikipedia.org/wiki/Long-term_support).
 
-## Deprecation practices
+## Práticas de substituição
 
-Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
+Às vezes, **"alterações significativas"**, tais como a remoção do suporte para selecionar APIs e recursos, são necessários.
 
-To make these transitions as easy as possible, we make two commitments to you:
+Para fazer essas transições mais fácil possível, fazemos dois compromissos para você:
 
-- We work hard to minimize the number of breaking changes and to provide migration tools when possible.
-- We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
+- Trabalhamos arduamente para minimizar o número de alterações significativas e fornecer ferramentas de migração sempre que possível.
+- Seguimos a política de descontinuação descrita aqui, para que você tenha tempo de atualizar seus aplicativos para as APIs e práticas recomendadas mais recentes.
 
-To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
+Para ajudar a garantir que você tenha tempo suficiente e um caminho claro para atualizar, esta é nossa política de suspensão de uso:
 
-- We announce deprecated features in the changelog, and when possible, with warnings at runtime.
-- When we announce a deprecation, we also announce a recommended update path.
-- We support existing use of a stable API during the deprecation period, so your code will keep working during that period.
-- We only make peer dependency updates (React) that require changes to your apps in a major release.
+- Anunciamos recursos obsoletos no changelog e, quando possível, com avisos em tempo de execução.
+- Quando anunciamos uma reprovação, anunciamos também um caminho de atualização recomendado.
+- Oferecemos suporte existente do uso de uma API estável durante a descontinuação do período, portanto, seu código irá continuar a trabalhar durante esse período.
+- Fazemos apenas atualizações de dependências de pares (React) que exigem alterações em seus aplicativos em uma versão principal.

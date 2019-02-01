@@ -10,6 +10,7 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": "./packages",
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@material-ui/core": ["./material-ui/src"],
       "@material-ui/core/*": ["./material-ui/src/*"],

@@ -1,20 +1,20 @@
-# Right-to-left
+# 右到左
 
-<p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
+<p class="description">要更改Material-UI组件的方向，您必须执行以下步骤。 应该镜像从右到左（RTL）读取的语言的UI，例如阿拉伯语和希伯来语。</p>
 
-## Steps
+## 脚步
 
-### 1. HTML
+### 1。 HTML
 
-Make sure the `dir` attribute is set on the body, otherwise native components will break:
+确保在主体上设置了 `dir` 属性，否则本机组件将中断：
 
 ```html
 <body dir="rtl">
 ```
 
-### 2. Theme
+### 2。 Theme
 
-Set the direction in your custom theme:
+在自定义主题中设置方向：
 
 ```js
 const theme = createMuiTheme({
@@ -22,19 +22,19 @@ const theme = createMuiTheme({
 });
 ```
 
-### 3. jss-rtl
+### 3。 jss-rtl
 
-You need this JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+你需要这个JSS插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
 
 ```sh
 npm install jss-rtl
 ```
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below. Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
+在项目中安装了插件后，Material-UI组件仍然需要由jss实例加载，如下所述。 在内部，当withStyles使用该JSS插件 `direction: 'rtl'` 上设置的主题。
 
-The [CSS-in-JS documentation](/customization/css-in-js/#opting-out-of-rtl-transformation) explains a bit more about how this plugin works. Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
+[CSS-in-JS文档](/customization/css-in-js/#opting-out-of-rtl-transformation) 更详细地解释了这个插件的工作原理。 前往 [插件README](https://github.com/alitaheri/jss-rtl) 了解更多相关信息。
 
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. JSS has a [`JssProvider`](https://github.com/cssinjs/react-jss) component for this:
+使用插件创建新的JSS实例后，需要使其可用于组件树中的所有组件。 JSS有一个 [`JssProvider`](https://github.com/cssinjs/react-jss) 组件：
 
 ```jsx
 import { create } from 'jss';
@@ -57,16 +57,16 @@ function RTL(props) {
 }
 ```
 
-## Demo
+## 演示
 
-*Use the direction toggle button on the top right corner to flip the whole documentation*
+*使用右上角的方向切换按钮翻转整个文档*
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
-## Opting out of rtl transformation
+## 选择退出rtl转型
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
+如果您想阻止特定规则集受到 `rtl` 转换的影响，您可以在开头添加 `flip：false`：
 
-*Use the direction toggle button on the top right corner to see the effect*
+*使用右上角的方向切换按钮查看效果*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

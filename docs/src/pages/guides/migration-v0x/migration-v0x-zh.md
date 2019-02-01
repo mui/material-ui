@@ -1,52 +1,52 @@
-# Migration From v0.x
+# 从v0.x迁移
 
-<p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
+<p class="description">是的，v1已经发布了！ 利用2年的努力。</p>
 
-## FAQ
+## 常问问题
 
-### Woah - the API is way different! Does that mean 1.0 is completely different, I’ll have to learn the basics all over again, and migrating will be practically impossible?
+### 哇 - API有所不同！ 这是否意味着1.0完全不同，我将不得不重新学习基础知识，迁移几乎是不可能的？
 
-I’m glad you asked! The answer is no. The core concepts haven’t changed. You will notice that the API provides more flexibility, but this has a cost. We have been making lower-level components, abstracting less complexity.
+我很高兴你问！ 答案是不。核心概念没有改变。 您会注意到API提供了更大的灵活性，但这需要付出代价。 我们一直在制作较低级别的组件，从而减少了复杂性。
 
-### What motivated such a large change?
+### 是什么推动了这么大的变化？
 
-Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). The ecosystem has evolved a lot since then, we have also learned a lot. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
+材料的UI开始 [3年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)。 从那时起，生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动一项雄心勃勃的任务，从重建材料的UI **地面行动** 采取这方面的知识优势，以解决长期存在的问题。 列举一些主要变化：
 
-- New styling solution using CSS-in-JS (better [customization](/customization/overrides/) power, better performance)
-- New [theme handling](/customization/themes/) (nesting, self-supporting, etc.)
-- Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
-- Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
-- Full [server-side rendering](/guides/server-rendering/) support
-- Wide range of [supported browsers](/getting-started/supported-platforms/)
+- 使用CSS-在-JS新造型液（最好 [定制](/customization/overrides/) 功耗，性能越好）
+- 新 [主题处理](/customization/themes/) （嵌套，自支撑等）
+- 感谢 [Next.js](https://github.com/zeit/next.js)快速创建文档
+- 方式更好 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
+- 完全 [服务器端渲染](/guides/server-rendering/) 支持
+- 广泛的 [支持的浏览器](/getting-started/supported-platforms/)
 
-### Where should I start in a migration?
+### 我应该从哪里开始迁移？
 
-1. Start by installing the v1.x version of Material-UI along side the v0.x version.
+1. 首先在v0.x版本旁边安装v1.x版本的Material-UI。
     
-    With yarn:
+    带纱：
     
     ```sh
     yarn add material-ui
     yarn add @material-ui/core
     ```
     
-    Or with npm:
+    或者用npm：
     
     ```sh
     npm install material-ui
     npm install @material-ui/core
     ```
     
-    then
+    然后
     
     ```js
     import FlatButton from 'material-ui/FlatButton'; // v0.x
     import Button from '@material-ui/core/Button'; // v1.x
     ```
 
-2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+2. 在项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)。
 
-3. `MuiThemeProvider` is optional for v1.x., but if you have a custom theme, you are free to use v0.x and v1.x versions of the component at the same time, like this:
+3. `MuiThemeProvider` 对于v1.x.是可选的，但如果您有自定义主题，则可以同时使用该组件的v0.x和v1.x版本，如下所示：
     
     ```jsx
     import React from 'react';
@@ -74,21 +74,21 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
     export default App;
     ```
 
-4. After that, you are free to migrate one component instance at the time.
+4. 之后，您可以自由迁移一个组件实例。
 
 ## 组件
 
 ### 自动补全
 
-Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
+Material-UI不提供用于解决此问题的高级API。 你鼓励你去探索 [的解决方案做出反应的社区已建成](/demos/autocomplete/)。
 
-In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
+在未来，我们将研究提供一个简单的组件来解决简单的用例： [＃9997](https://github.com/mui-org/material-ui/issues/9997)。
 
-### Svg Icon
+### Svg图标
 
-Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+在项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)。
 
-This will apply a change such as the following:
+这将应用如下更改：
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
@@ -109,7 +109,7 @@ This will apply a change such as the following:
 
 ### Raised Button
 
-RaisedButton upgrade path:
+RaisedButton升级路径：
 
 ```diff
 -import RaisedButton from 'material-ui/RaisedButton';
@@ -156,7 +156,7 @@ RaisedButton upgrade path:
 +<MenuItem>Profile</MenuItem>
 ```
 
-### Font Icon
+### 字体图标
 
 ```diff
 -import FontIcon from 'material-ui/FontIcon';
@@ -186,6 +186,6 @@ RaisedButton upgrade path:
 +<Select value={this.state.value}></Select>
 ```
 
-### To be continued…
+### 继续…
 
-Have you successfully migrated your app, and wish to help the community? Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed
+您是否已成功迁移您的应用，并希望帮助社区？ 请帮助我们！ 我们有一个未解决的问题，以完成此迁移指南 [＃7195](https://github.com/mui-org/material-ui/issues/7195)。 Any pull request is welcomed

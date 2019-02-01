@@ -1,8 +1,8 @@
 ---
-title: Toggle Button React component
+title: 切换按钮React组件
 components: ToggleButton, ToggleButtonGroup
 ---
-# Toggle Buttons
+# 切换按钮
 
 <p class="description">Toggle Buttons 可用于对相关选项进行分组。</p>
 

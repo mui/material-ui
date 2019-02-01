@@ -2,13 +2,13 @@
 title: Chip React component
 components: Chip
 ---
-# Chips
+# Chips (Navios)
 
-<p class="description">Chips are compact elements that represent an input, attribute, or action.</p>
+<p class="description">Chips são elementos compactos que representam uma entrada, atributo ou ação.</p>
 
 [Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
 
-While included here as a standalone component, the most common use will be in some form of input, so some of the behaviour demonstrated here is not shown in context.
+Embora incluído aqui como um componente independente, o uso mais comum será em alguma forma de entrada, portanto, alguns dos comportamentos demonstrados aqui são não mostrados no contexto.
 
 ## Chip
 

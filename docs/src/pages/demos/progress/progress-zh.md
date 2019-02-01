@@ -64,10 +64,12 @@ components: CircularProgress, LinearProgress
 进度组件接受一个 0 - 100 范围的值。 作为默认的最小/最大值，这简化了屏幕阅读用户的使用。 但是有时，你可能会使用值超出这个范围的数据源。 这里告诉您如何轻松的将一个任意范围的值转换为0 - 100区间的值。
 
 ```jsx
-// MIN = 最小预期值
-// MAX = 最大预期值
-// 这是使数值标准化的一个函数（MIN 和 MAX 可以被整合）
+// MIN = 最小值
+// MAX = 最大值
+// 正常化值的函数（MIN / MAX 可相互协调）
 const normalise = value => (value - MIN) * 100 / (MAX - MIN);
+
+// 在 render 函数中，利用`正常化`函数的示例组件
 function Progress(props) {
   return (
     <React.Fragment>
@@ -80,9 +82,9 @@ function Progress(props) {
 
 ## 自定义进度
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个如何自定义组件的示例。 最后一个演示将给你示范如何构建类似 Facebook 的 spinner。
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 

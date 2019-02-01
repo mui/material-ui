@@ -22,7 +22,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can theme a tooltip.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
@@ -31,14 +31,14 @@ If you have been reading the [overrides documentation page](/customization/overr
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  // We spread the properties to the underlying DOM element.
+function MyComponent (props) {
+  // Distribuímos as propriedades para o elemento DOM subjacente.
   return <div {...props}>Bin</div>
 }
 
 // ...
 
-<Tooltip title="Delete">
+<Tooltip title="Excluir">
   <MyComponent>
 </Tooltip>
 ```
@@ -75,7 +75,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
-## Transitions
+## Transições
 
 Use a different transition.
 

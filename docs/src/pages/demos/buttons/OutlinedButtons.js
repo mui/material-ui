@@ -43,6 +43,9 @@ function OutlinedButtons(props) {
           Upload
         </Button>
       </label>
+      <Button variant="outlined" color="inherit" className={classes.button}>
+        Inherit
+      </Button>
     </div>
   );
 }

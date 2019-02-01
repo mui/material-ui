@@ -68,6 +68,7 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         />
+
         <TextField
           select
           className={classNames(classes.margin, classes.textField)}
@@ -96,6 +97,7 @@ class OutlinedInputAdornments extends React.Component {
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
         />
+
         <TextField
           id="outlined-adornment-weight"
           className={classNames(classes.margin, classes.textField)}
@@ -108,6 +110,7 @@ class OutlinedInputAdornments extends React.Component {
             endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
           }}
         />
+
         <TextField
           id="outlined-adornment-password"
           className={classNames(classes.margin, classes.textField)}

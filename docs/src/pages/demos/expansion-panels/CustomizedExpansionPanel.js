@@ -62,7 +62,11 @@ class CustomizedExpansionPanel extends React.Component {
     const { expanded } = this.state;
     return (
       <div>
-        <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
+        <ExpansionPanel
+          square
+          expanded={expanded === 'panel1'}
+          onChange={this.handleChange('panel1')}
+        >
           <ExpansionPanelSummary>
             <Typography>Collapsible Group Item #1</Typography>
           </ExpansionPanelSummary>
@@ -74,7 +78,11 @@ class CustomizedExpansionPanel extends React.Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')}>
+        <ExpansionPanel
+          square
+          expanded={expanded === 'panel2'}
+          onChange={this.handleChange('panel2')}
+        >
           <ExpansionPanelSummary>
             <Typography>Collapsible Group Item #2</Typography>
           </ExpansionPanelSummary>
@@ -86,7 +94,11 @@ class CustomizedExpansionPanel extends React.Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
+        <ExpansionPanel
+          square
+          expanded={expanded === 'panel3'}
+          onChange={this.handleChange('panel3')}
+        >
           <ExpansionPanelSummary>
             <Typography>Collapsible Group Item #3</Typography>
           </ExpansionPanelSummary>

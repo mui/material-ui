@@ -46,29 +46,29 @@ function ListItemLink(props) {
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## 对齐列表项
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+您应该在显示3行或更多行时更改列表项对齐，设置 `alignItems="flex-start"` 属性。
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
 ## 列表控件
 
-### 复选框
+### Checkbox
 
 复选框可以是主操作或辅助操作。
 
-复选框是列表项的主要操作和状态指示器。 评论按钮是辅助操作和单独的目标。
+该复选框是列表项的主要操作和状态指示器。 注释按钮是辅助操作和单独的目标。
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-复选框是列表项的辅助操作和单独的目标。
+该复选框是列表项的辅助操作和单独的目标。
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
-### 开关
+### Switch
 
-开关是辅助操作和单独的目标。
+该开关是辅助操作和单独的目标。
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 

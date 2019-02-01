@@ -2,9 +2,9 @@
 title: List React component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Lists
+# Lists (Listas)
 
-<p class="description">Lists are continuous, vertical indexes of text or images.</p>
+<p class="description">As listas são índices verticais contínuos de texto ou imagens.</p>
 
 [Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
@@ -12,7 +12,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-The last item of the previous demo shows how you can render a link:
+O último item da demonstração anterior mostra como você pode renderizar um link:
 
 ```jsx
 function ListItemLink(props) {
@@ -28,31 +28,31 @@ function ListItemLink(props) {
 
 You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
 
-## Nested List
+## Lista aninhada
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Folder List
+## Lista de pastas
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
-## Interactive
+## Interativo
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 
-## Selected ListItem
+## ListItem Selecionado
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## Alinhar itens da lista
 
 You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
-## List Controls
+## Controles de lista
 
 ### Checkbox
 
@@ -68,18 +68,18 @@ The checkbox is the secondary action for the list item and a separate target.
 
 ### Switch
 
-The switch is the secondary action and a separate target.
+O comutador é a ação secundária e um destino separado.
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Pinned Subheader List
+## Lista de Subpastas Fixadas
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da tela pelo próximo subtítulo.
 
 This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Inset List
+## Lista de Inserção
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

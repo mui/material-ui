@@ -1,8 +1,8 @@
 # API
 
-<p class="description">The API reference of the @material-ui/system package.</p>
+<p class="description">@material-ui/system包的API参考。</p>
 
-| Group                             | Import name      | Prop             | CSS property                    | Theme key                                                              |
+| 组                                 | 导入名称             | Prop             | CSS 属性                          | 主题键                                                                    |
 |:--------------------------------- |:---------------- |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`         | `border`         | `border`                        | `borders`                                                              |
 | [borders](/system/borders/)       | `borderBottom`   | `borderBottom`   | `border-bottom`                 | `borders`                                                              |

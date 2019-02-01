@@ -34,9 +34,9 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## 响应式抽屉
+## 响应抽屉
 
-利用` Hidden `组件，可以根据屏幕宽度显示不同类型的抽屉。 小屏幕显示 `temporary` 抽屉，较宽的屏幕显示 `permanent` 抽屉。
+`Hidden`响应式帮助程序组件允许根据屏幕宽度显示不同类型的抽屉。 显示小屏幕的`temporary`抽屉，而更宽屏幕显示`permanent`抽屉。
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
 

@@ -50,6 +50,8 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - If API documentation is being changed in the source, `yarn docs:api` was run.
 - If prop types were changed, the TypeScript declarations were updated.
 - If TypeScript declarations were changed, `yarn typescript` passed.
+- If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
+  See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
 ## Getting started
@@ -80,6 +82,8 @@ yarn
 yarn docs:dev
 ```
 You can now access the documentation site [locally](http://localhost:3000).
+Changes to the docs will hot reload the site. If you make changes to TypeScript files
+in the docs run `yarn docs:typescript --watch` in a separate terminal.
 
 Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `yarn test`.
 
@@ -118,6 +122,14 @@ docs/src/pages/demos/buttons/
 ```
 And let's give it a name: `SuperButtons.js`.
 
+We try to also document how to use this library with TypeScript. If you are familiar with
+that language try writing that demo in TypeScript in a *.tsx file. When you're done
+run `yarn docs:typescript:formatted` to automatically add a JavaScript version.
+
+Apart from the inherent pros and cons of TypeScript the demos are also used to test our
+type declarations. This helps a lot in catching regressions when updating our type
+declarations.
+
 #### 2. Edit the page Markdown file.
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
@@ -154,6 +166,20 @@ Then, you will need to add the following code:
 #### 4. You are done 🎉!
 
 In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
+
+### About TypeScript demos
+
+To help people use this library with TypeScript we try to provide equivalent demos
+in TypeScript. 
+
+Changing demos in JavaScript requires a manual update of the TypeScript
+version. If you are not familiar with this language you can add the filepath
+of the TS demo to `docs/ts-demo-ignore.json`. See `docs/babel.config.ts.js` for more
+information. Otherwise our CI will fail the `test_build` job. 
+A contributor can later update the TypeScript version of that demo.
+
+If you are already familiar with TypeScript you can simply write the demo in TypeScript.
+`yarn docs:typescript:formatted` will transpile it down to JavaScript.
 
 ## How do I use my local distribution of material-ui in any project?
 

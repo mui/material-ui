@@ -5,6 +5,8 @@ import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../Overr
 
 export interface ListItemTypeMap<P, D extends React.ReactType> {
   props: P & {
+    alignItems?: 'flex-start' | 'center';
+    button?: boolean;
     ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     dense?: boolean;

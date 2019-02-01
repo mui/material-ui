@@ -10,7 +10,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 基本菜单
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+默认情况下，简单菜单在锚元素上打开（此选项可以通过props更改）。 当靠近屏幕边缘时，简单的菜单会垂直重新对齐，以确保所有菜单项都完全可见。
 
 选择一个选项后, 最好立即提交该选项并关闭菜单。
 
@@ -34,9 +34,9 @@ Simple menus open over the anchor element by default (this option can be changed
 
 ## 定制菜单项
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
+如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心跳入， 这里是一个如何自定义 `MenuItem`示例。
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 

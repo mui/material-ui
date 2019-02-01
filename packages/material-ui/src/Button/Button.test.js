@@ -286,6 +286,22 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.fab), false);
   });
 
+  it('should render a inherit outlined button', () => {
+    const wrapper = shallow(
+      <Button variant="outlined" color="inherit">
+        Hello World
+      </Button>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlined), true);
+    assert.strictEqual(wrapper.hasClass(classes.colorInherit), true);
+    assert.strictEqual(wrapper.hasClass(classes.text), false);
+    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
+    assert.strictEqual(wrapper.hasClass(classes.contained), false);
+    assert.strictEqual(wrapper.hasClass(classes.raised), false);
+    assert.strictEqual(wrapper.hasClass(classes.fab), false);
+  });
+
   it('should have a ripple by default', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
     assert.strictEqual(wrapper.props().disableRipple, undefined);

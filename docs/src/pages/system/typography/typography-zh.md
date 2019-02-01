@@ -1,8 +1,8 @@
-# Typography
+# 活版印刷
 
-<p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
+<p class="description">用于控制对齐，包装，重量等的常用文本实用程序的文档和示例。</p>
 
-## Text alignment
+## 文本对齐
 
 ```jsx
 <Box textAlign="left">…
@@ -12,7 +12,7 @@
 
 {{"demo": "pages/system/typography/TextAlignment.js"}}
 
-## Font weight
+## 字体高度
 
 ```jsx
 <Box fontWeight="fontWeightLight">…
@@ -23,7 +23,7 @@
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
 
-## Font size
+## 字体大小 
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -33,7 +33,7 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
-## Font family
+## 字体系列
 
 ```jsx
 <Box fontFamily="fontFamily">…
@@ -48,7 +48,7 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Import name  | Prop         | CSS property  | Theme key                                                              |
+| 导入名称         | Prop         | CSS 属性        | 主题键                                                                    |
 |:------------ |:------------ |:------------- |:---------------------------------------------------------------------- |
 | `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |

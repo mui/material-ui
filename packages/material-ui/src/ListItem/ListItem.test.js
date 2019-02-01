@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';
@@ -165,6 +166,31 @@ describe('<ListItem />', () => {
       const listItem = findOutermostIntrinsic(wrapper);
       assert.strictEqual(listItem.hasClass(classes.container), true);
       assert.strictEqual(listItem.hasClass('bubu'), true);
+    });
+
+    describe('warnings', () => {
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      afterEach(() => {
+        consoleErrorMock.reset();
+      });
+
+      it('warns if it cant detect the secondary action properly', () => {
+        mount(
+          <ListItem>
+            <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>
+            <ListItemText>My position doesn not matter.</ListItemText>
+          </ListItem>,
+        );
+
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'Warning: Failed prop type: Material-UI: you used an element',
+        );
+      });
     });
   });
 

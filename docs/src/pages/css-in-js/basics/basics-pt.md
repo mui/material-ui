@@ -1,17 +1,17 @@
 # Basics
 
-<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+<p class="description">Você pode aproveitar nossa solução de estilo, mesmo se não estiver usando nossos componentes.</p>
 
 > ⚠️ `@material-ui/styles` is unstable (alpha version). Hopefully, we will make it the default style implementation for the core components in Material-UI v4. [Follow this path](/customization/css-in-js/) to read the documentation of the default style implementation.
 
-Material-UI aims to provide strong foundations for building dynamic UIs. For the sake of simplicity, **we expose our styling solution to users**. You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
+Material-UI tem como objetivo fornecer bases sólidas para a construção de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos nossa solução de estilo aos usuários**. Você pode usá-lo, mas você não precisa. Esta solução de estilo é [interoperável com](/guides/interoperability/) todas as outras soluções principais.
 
-## Material-UI's styling solution
+## Solução de estilo do Material-UI
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
+Nas versões anteriores, o Material-UI usava o LESS e, em seguida, uma solução personalizada no estilo inline para escrever o estilo dos componentes, mas essas abordagens provaram ser limitadas. Mais recentemente, temos [movido para](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solução. **desbloqueia muitos ótimos recursos** (aninhamento de temas, estilos dinâmicos, auto-suporte, etc.). We think that this is the future:
 
-- [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+- [Um idioma de estilo unificado](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
+- [Converter SCSS (Sass) para CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 Material-UI's styling solution is inspired by many other CSS-in-JS libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
@@ -21,15 +21,15 @@ Material-UI's styling solution is inspired by many other CSS-in-JS libraries lik
 - ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core. It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles).
 
-## Installation
+## Instalação
 
-To install and save in your `package.json` dependencies, run:
+Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// with npm
+// usando npm
 npm install @material-ui/styles
 
-// with yarn
+// usando yarn
 yarn add @material-ui/styles
 ```
 

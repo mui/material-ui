@@ -1,7 +1,7 @@
 ---
 components: Icon, SvgIcon
 ---
-# 图标
+# Icons
 
 <p class="description">在Material-UI中使用图标的建议和指导。</p>
 
@@ -22,7 +22,7 @@ Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径�
 拥有实现自定义图标所需的构建块很有意思，但如何实现预设图标呢？ 我们提供一个单独的 npm 包，[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)，其中包括 1000 + 已转换为`Svg 图标` 组件的官方 [Material图标](https://material.io/tools/icons/?style=baseline)
 
 <a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
-  <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
+  <img src="/static/images/icons/icons.png" alt="官方材料图标" style="width: 566px" />
 </a>
 
 #### 使用
@@ -37,7 +37,7 @@ Material-UI提供了两个组件来渲染系统图标：`SvgIcon` 用SVG路径�
 - 描边的 [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) 图标由 `@material-ui/icons/DeleteOutlined` 暴露
 - 圆角的 [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) 图标由 `@material-ui/icons/DeleteRounded` 暴露
 - 双色的 [`delete`](https://material.io/tools/icons/?icon=delete&style=twotone) 图标由 `@material-ui/icons/DeleteTwoTone` 暴露
-- The Sharp [`delete`](https://material.io/tools/icons/?icon=delete&style=sharp) icon is exposed as `@material-ui/icons/DeleteSharp`
+- 尖锐的 [`delete`](https://material.io/tools/icons/?icon=delete&style=sharp) 图标由 `@material-ui/icons/DeleteSharp` 暴露
 
 这条规则有三个例外情况：
 
@@ -88,7 +88,7 @@ import Icon from '@material-ui/core/Icon';
 
 图标默认继承当前的文本颜色。 或者，你可以使用以下主题色之一来设置颜色属性：`primary`, `secondary`, `action`, `error` & `disabled`。
 
-### Font Material icons
+### Font Material 图标
 
 {{"demo": "pages/style/icons/Icons.js"}}
 
@@ -106,17 +106,17 @@ import Icon from '@material-ui/core/Icon';
 
 ## 无障碍功能
 
-图标可以传达各种各样有意义的信息，所以将他们传递给尽可能多的人非常重要。 There are two use cases you’ll want to consider: - **Decorative Icons** are only being used for visual or branding reinforcement. If they were removed from the page, users would still understand and be able to use your page. - **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+图标可以传达各种各样有意义的信息，所以将他们传递给尽可能多的人非常重要。 您需要考虑两个用例： - **装饰图标** 仅用于视觉或品牌强化。 如果将它们从页面中删除，用户仍然可以理解并能够使用您的页面。 - **语义图标** 是您用来传达意义的，而不仅仅是纯粹的装饰。 这包括其旁边没有文本的图标，用作交互式控件 - 按钮，表单元素，切换等。
 
-### Decorative SVG Icons
+### 装饰SVG图标
 
-If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+如果您的图标纯粹是装饰性的，那么您已经完成了！ 我们添加 `aria-hidden=true` 属性，以便您的图标可以正常访问（不可见）。
 
-### Semantic SVG Icons
+### 语义SVG图标
 
-If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property. We add the `role="img"` attribute and the `<title>` element so that your icons are properly accessible.
+如果您的图标具有语义含义，那么您需要做的就是输入 `titleAccess =“含义”` 属性。 我们添加 `role="img"` 属性和 `<title>` 元素，以便您的图标可以正常访问。
 
-In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
+对于可聚焦的交互式元素，例如与图标按钮一起使用时，可以使用 `aria-label` 属性：
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -131,13 +131,13 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 </IconButton>
 ```
 
-### Decorative Font Icons
+### 装饰字体图标
 
-If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+如果您的图标纯粹是装饰性的，那么您已经完成了！ 我们添加 `aria-hidden=true` 属性，以便您的图标可以正常访问（不可见）。
 
-### Semantic Font Icons
+### 语义字体图标
 
-If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
+如果您的图标具有语义含义，则需要提供仅对辅助技术可见的文本替代方法。
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -146,9 +146,9 @@ import Typography from '@material-ui/core/Typography';
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Create a user</Typography>
+<Typography variant="srOnly">创建用户</Typography>
 ```
 
-### Reference
+### 参考
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/

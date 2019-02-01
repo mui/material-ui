@@ -13,7 +13,7 @@ declare module '@material-ui/styles' {
   export { default as StylesProvider } from '@material-ui/styles/StylesProvider';
   export { default as ThemeProvider } from '@material-ui/styles/ThemeProvider';
   export { default as useTheme } from '@material-ui/styles/useTheme';
-  export { default as withStyles, WithStyles } from '@material-ui/styles/withStyles';
+  export { default as withStyles, StyleRules, WithStyles } from '@material-ui/styles/withStyles';
   export { default as withTheme, WithTheme } from '@material-ui/styles/withTheme';
 }
 
@@ -227,7 +227,6 @@ declare module '@material-ui/styles/withStyles' {
   }
 
   /**
-   * @internal
    * This is basically the API of JSS. It defines a Map<string, CSS>,
    * where
    * - the `keys` are the class (names) that will be created

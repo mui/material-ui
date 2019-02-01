@@ -38,10 +38,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
-  hide on screens wider than md
+  ocultar em telas maiores que md
 </Box>
 <Box display={{ xs: 'none', md: 'block' }}>
-  hide on screens smaller than md
+  esconder em telas menores que md
 </Box>
 ```
 
@@ -51,10 +51,10 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ```jsx
 <Box display="block" displayPrint="none">
-  Screen Only (Hide on print only)
+  Somente tela (Ocultar somente na impressão)
 </Box>
 <Box display="none" displayPrint="block">
-  Print Only (Hide on screen only)
+  Somente impressão (somente na tela)
 </Box>
 ```
 
