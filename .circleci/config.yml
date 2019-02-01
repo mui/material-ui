@@ -24,4 +24,4 @@ jobs:
             - ~/.npm
             - ~/.cache
       - run: npx lerna run build
-      - run: npx lerna run serve & npx wait-on http://localhost:3002 && npm run e2e:run
+      - run: npx lerna run serve & npx wait-on http://localhost:3002 && npm run e2e:run -- --record
