@@ -28,7 +28,7 @@ module.exports = [
     name: 'The size of the @material-ui/styles modules',
     webpack: true,
     path: 'packages/material-ui-styles/build/index.js',
-    limit: '14.7 KB',
+    limit: '16.3 KB',
   },
   {
     name: 'The size of the @material-ui/system modules',
@@ -46,21 +46,21 @@ module.exports = [
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
     path: 'packages/material-ui/build/Button/index.js',
-    limit: '27.0 KB',
+    limit: '29.6 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
     path: 'packages/material-ui/build/Modal/index.js',
-    limit: '27.0 KB',
+    limit: '28.8 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
     path: 'packages/material-ui/build/Popper/index.js',
-    limit: '9.8 KB',
+    limit: '9.9 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-responsive
@@ -80,6 +80,6 @@ module.exports = [
     name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
-    limit: '5.7 KB',
+    limit: '6.2 KB',
   },
 ];
