@@ -118,7 +118,7 @@ RaisedButton upgrade path:
 +import Button from '@material-ui/core/Button';
 
 -<RaisedButton />
-+<Button variant="contained" />
++<Button variant="raised" />
 ```
 
 ### Subheader
