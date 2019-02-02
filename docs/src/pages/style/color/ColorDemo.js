@@ -43,7 +43,7 @@ const styles = theme => ({
 
 function ColorDemo(props) {
   const { classes, data, theme } = props;
-  const primary = {
+  const primary = theme.palette.augmentColor({
     main: data.primary,
     output:
       data.primaryShade === 4
@@ -51,8 +51,8 @@ function ColorDemo(props) {
         : `{
       main: '${data.primary}',
     }`,
-  };
-  const secondary = {
+  });
+  const secondary = theme.palette.augmentColor({
     main: data.secondary,
     output:
       data.secondaryShade === 11
@@ -60,10 +60,7 @@ function ColorDemo(props) {
         : `{
       main: '${data.secondary}',
     }`,
-  };
-
-  theme.palette.augmentColor(primary);
-  theme.palette.augmentColor(secondary);
+  });
 
   return (
     <div className={classes.root}>
