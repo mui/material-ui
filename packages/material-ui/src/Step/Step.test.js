@@ -21,15 +21,15 @@ describe('<Step />', () => {
       <Step
         index={1}
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
-        role="Menuitem"
+        data-role="Menuitem"
         orientation="horizontal"
       />,
     );
-    const { style, role } = wrapper.props();
-    assert.strictEqual(style.paddingRight, 200);
-    assert.strictEqual(style.color, 'purple');
-    assert.strictEqual(style.border, '1px solid tomato');
-    assert.strictEqual(role, 'Menuitem');
+    const props = wrapper.props();
+    assert.strictEqual(props.style.paddingRight, 200);
+    assert.strictEqual(props.style.color, 'purple');
+    assert.strictEqual(props.style.border, '1px solid tomato');
+    assert.strictEqual(props['data-role'], 'Menuitem');
   });
 
   describe('rendering children', () => {
