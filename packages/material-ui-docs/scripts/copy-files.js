@@ -38,7 +38,7 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['../build/index.js', '../build/index.es.js'].map(file =>
+    ['../build/index.js', '../build/esm/index.js'].map(file =>
       prepend(path.resolve(__dirname, file), license),
     ),
   );
