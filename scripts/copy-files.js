@@ -5,7 +5,7 @@ import fse from 'fs-extra';
 import glob from 'glob';
 
 async function copyFile(file) {
-  const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
+  const buildPath = path.resolve(process.cwd(), '../build/', path.basename(file));
   await fse.copy(file, buildPath);
   console.log(`Copied ${file} to ${buildPath}`);
 }
@@ -22,6 +22,7 @@ async function copyFile(file) {
  */
 function createModulePackages(srcDir, outDir) {
   const directoryPackages = glob.sync('*/index.js', { cwd: srcDir }).map(path.dirname);
+
   return Promise.all(
     directoryPackages.map(directoryPackage => {
       const packageJson = {
@@ -50,7 +51,7 @@ function typescriptCopy(from, to) {
 }
 
 async function createPackageFile() {
-  const packageData = await fse.readFile(path.resolve(__dirname, '../package.json'), 'utf8');
+  const packageData = await fse.readFile(path.resolve(process.cwd(), '../package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } = JSON.parse(
     packageData,
   );
@@ -58,9 +59,10 @@ async function createPackageFile() {
     ...packageDataOther,
     main: './index.js',
     module: './esm/index.js',
+    types: './index.d.ts',
     private: false,
   };
-  const buildPath = path.resolve(__dirname, '../build/package.json');
+  const buildPath = path.resolve(process.cwd(), '../build/package.json');
 
   await fse.writeFile(buildPath, JSON.stringify(newPackageData, null, 2), 'utf8');
   console.log(`Created package.json in ${buildPath}`);
@@ -86,7 +88,11 @@ async function addLicense(packageData) {
       '../build/esm/index.js',
       '../build/umd/material-ui.development.js',
       '../build/umd/material-ui.production.min.js',
-    ].map(file => prepend(path.resolve(__dirname, file), license)),
+    ].map(file =>
+      prepend(path.resolve(process.cwd(), file), license).catch(() =>
+        console.log(`Skipped license for ${file}`),
+      ),
+    ),
   );
 }
 
@@ -98,16 +104,19 @@ async function run() {
   await addLicense(packageData);
 
   // TypeScript
-  const from = path.resolve(__dirname, '../src');
+  const from = path.resolve(process.cwd(), '../src');
   await Promise.all([
-    typescriptCopy(from, path.resolve(__dirname, '../build')),
-    typescriptCopy(from, path.resolve(__dirname, '../build/es')),
+    typescriptCopy(from, path.resolve(process.cwd(), '../build')),
+    typescriptCopy(from, path.resolve(process.cwd(), '../build/es')),
   ]);
 
   await createModulePackages(
-    path.resolve(__dirname, '../src'),
-    path.resolve(__dirname, '../build'),
+    path.resolve(process.cwd(), '../src'),
+    path.resolve(process.cwd(), '../build'),
   );
 }
 
-run();
+run().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
