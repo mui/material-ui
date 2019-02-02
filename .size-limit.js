@@ -22,7 +22,7 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '95.4 KB',
+    limit: '95.2 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -46,7 +46,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
     path: 'packages/material-ui/build/Button/index.js',
-    limit: '27.0 KB',
+    limit: '26.7 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
