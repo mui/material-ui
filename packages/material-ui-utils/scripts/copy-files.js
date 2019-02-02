@@ -22,7 +22,7 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     main: './index.js',
-    module: './esm/index.jsindex.es.js',
+    module: './esm/index.js',
     private: false,
   };
   const buildPath = path.resolve(__dirname, '../build/package.json');
