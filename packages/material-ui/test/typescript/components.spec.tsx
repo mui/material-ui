@@ -126,14 +126,14 @@ const ButtonTest = () => (
     <Button>I am a button!</Button>
     <Button color="inherit">Contrast</Button>
     <Button disabled>Disabled</Button>
-    <Button href="#flat-buttons">Link</Button>
+    <Button href="#link-button">Link</Button>
     <Button size="small">Small</Button>
     <Button variant="contained">Contained</Button>
-    <Button variant="fab" color="primary" aria-label="add">
-      <FakeIcon />
+    <Button variant="outlined" color="primary" aria-label="add">
+      Outlined
     </Button>
     <Button tabIndex={1} title="some button">
-      Raised
+      Title
     </Button>
     <Button component="a">Simple Link</Button>
     <Button component={props => <a {...props} />}>Complex Link</Button>
