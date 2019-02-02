@@ -30,7 +30,7 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
       assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
-      assert.strictEqual(wrapper.props().tabIndex, -1);
+      assert.strictEqual(wrapper.props().tabIndex, undefined);
 
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
