@@ -19,6 +19,11 @@ const variantComponent = {
   outlined: OutlinedInput,
 };
 
+const styles = {
+  /* Styles applied to the root element. */
+  root: {},
+};
+
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
  * It cannot be all things to all people, otherwise the API would grow out of control.
@@ -318,4 +323,4 @@ TextField.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles({}, { name: 'MuiTextField' })(TextField);
+export default withStyles(styles, { name: 'MuiTextField' })(TextField);
