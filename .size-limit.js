@@ -16,19 +16,19 @@ module.exports = [
     name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '18.7 KB',
+    limit: '18.8 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '94.8 KB',
+    limit: '95.4 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
     webpack: true,
     path: 'packages/material-ui-styles/build/index.js',
-    limit: '16.6 KB',
+    limit: '16.3 KB',
   },
   {
     name: 'The size of the @material-ui/system modules',
@@ -60,7 +60,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
     path: 'packages/material-ui/build/Popper/index.js',
-    limit: '10.7 KB',
+    limit: '10.8 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-responsive
