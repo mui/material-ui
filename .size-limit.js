@@ -22,7 +22,7 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '95.2 KB',
+    limit: '94.6 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -53,7 +53,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
     path: 'packages/material-ui/build/Modal/index.js',
-    limit: '27.0 KB',
+    limit: '26.4 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
