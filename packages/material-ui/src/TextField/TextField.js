@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -70,9 +71,11 @@ class TextField extends React.Component {
       autoComplete,
       autoFocus,
       children,
-      className,
+      classes,
+      className: classNameProp,
       defaultValue,
       error,
+      FormControlClasses,
       FormHelperTextProps,
       fullWidth,
       helperText,
@@ -143,7 +146,8 @@ class TextField extends React.Component {
 
     return (
       <FormControl
-        className={className}
+        classes={FormControlClasses}
+        className={classNames(classes.root, classNameProp)}
         error={error}
         fullWidth={fullWidth}
         required={required}
@@ -194,6 +198,11 @@ TextField.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -209,6 +218,10 @@ TextField.propTypes = {
    * If `true`, the label will be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * Classes applied to the [`FormControl`](/api/form-control/) element.
+   */
+  FormControlClasses: PropTypes.object,
   /**
    * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */

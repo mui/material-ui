@@ -27,7 +27,7 @@ describe('<TextField />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<TextFieldNaked />);
+      wrapper = shallow(<TextFieldNaked classes={{}} />);
     });
 
     describe('structure', () => {
@@ -48,12 +48,12 @@ describe('<TextField />', () => {
       });
 
       it('should forward the multiline prop to Input', () => {
-        wrapper = shallow(<TextFieldNaked multiline />);
+        wrapper = shallow(<TextFieldNaked multiline classes={{}} />);
         assert.strictEqual(wrapper.childAt(0).props().multiline, true);
       });
 
       it('should forward the fullWidth prop to Input', () => {
-        wrapper = shallow(<TextFieldNaked fullWidth />);
+        wrapper = shallow(<TextFieldNaked fullWidth classes={{}} />);
         assert.strictEqual(wrapper.childAt(0).props().fullWidth, true);
       });
     });
@@ -105,7 +105,7 @@ describe('<TextField />', () => {
 
     describe('with an outline', () => {
       it('should set outline props', () => {
-        wrapper = shallow(<TextFieldNaked variant="outlined" />);
+        wrapper = shallow(<TextFieldNaked variant="outlined" classes={{}} />);
         assert.strictEqual(wrapper.props().variant, 'outlined');
         assert.strictEqual(
           wrapper.find('WithStyles(OutlinedInput)').props().labelWidth,
@@ -114,7 +114,9 @@ describe('<TextField />', () => {
       });
 
       it('should set shrink prop on outline from label', () => {
-        wrapper = shallow(<TextFieldNaked variant="outlined" InputLabelProps={{ shrink: true }} />);
+        wrapper = shallow(
+          <TextFieldNaked variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
+        );
         assert.strictEqual(wrapper.find('WithStyles(OutlinedInput)').props().notched, true);
       });
     });
@@ -139,7 +141,7 @@ describe('<TextField />', () => {
       const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
 
       const wrapper = shallow(
-        <TextFieldNaked select SelectProps={{ native: true }}>
+        <TextFieldNaked select SelectProps={{ native: true }} classes={{}}>
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -156,6 +158,13 @@ describe('<TextField />', () => {
           .every('option'),
         true,
       );
+    });
+  });
+
+  describe('prop: FormControlClasses', () => {
+    it('should be able to change the FormControl classes', () => {
+      const wrapper = mount(<TextField FormControlClasses={{ root: 'bar' }} />);
+      assert.strictEqual(wrapper.find(FormControl).props().classes.root, 'bar');
     });
   });
 });
