@@ -22,7 +22,7 @@ module.exports = [
     name: 'The initial cost paid for using one component with ES modules',
     webpack: true,
     path: 'packages/material-ui/build/esm/Paper/index.js',
-    limit: '17.8 KB',
+    limit: '17.9 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
