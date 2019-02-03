@@ -2,9 +2,9 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Selection Controls
+# Contrôles de sélection
 
-<p class="description">Selection controls allow the user to select options.</p>
+<p class="description">Les contrôles de sélection permettent à l'utilisateur de sélectionner des options.</p>
 
 [Selection controls](https://material.io/design/components/selection-controls.html) allow users to complete tasks that involve making choices such as selecting options, or switching settings on or off. Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
 
@@ -30,7 +30,7 @@ Radio buttons should have the most commonly used option selected by default.
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
-## Checkboxes
+## Cases à cocher
 
 [Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
 
@@ -42,7 +42,7 @@ If you have multiple options appearing in a list, you can preserve space by usin
 
 {{"demo": "pages/demos/selection-controls/CheckboxLabels.js"}}
 
-## Checkboxes with FormGroup
+## Cases à cocher avec FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
 
@@ -72,7 +72,7 @@ The option that the switch controls, as well as the state it’s in, should be m
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
-⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
@@ -82,7 +82,7 @@ You can change the placement of the label:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
 
-## Accessibility
+## Accessibilité
 
 All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
 
