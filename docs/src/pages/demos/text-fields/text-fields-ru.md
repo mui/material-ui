@@ -2,111 +2,111 @@
 title: Text Field React component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
-# Text Fields
+# Текстовые поля
 
-<p class="description">Text fields let users enter and edit text.</p>
+<p class="description">Текстовые поля позволяют пользователям вводить и редактировать текст.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Текстовые поля](https://material.io/design/components/text-fields.html) позволяют пользователям вводить текст в интерфейсe. Они обычно появляются в формах и диалогах.
 
 ## TextField
 
-The `TextField` wrapper component is a complete form control including a label, input and help text.
+`TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст.
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
-> **Note:** This version of the text field is no longer documented in the Material Design documentation.
+> **Примечание:** Эта версия текстового поля больше не документирована в спецификации Material Design.
 
-## Outlined
+## Контурный стиль
 
-`TextField` supports outlined styling.
+`TextField` поддерживает контурный стиль.
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
 
-## Filled
+## Заполненный стиль
 
-`TextField` supports filled styling.
+`TextField` поддерживает заполненный стиль.
 
 {{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
 
-## Components
+## Компоненты
 
-`TextField` is composed of smaller components ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
+`TextField` состоит из более мелких компонентов ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), и [`FormHelperText`](/api/form-helper-text/) ) которые вы можете использовать напрямую, чтобы значительно кастомизировать ваши поля ввода.
 
-You might also have noticed that some native HTML input properties are missing from the `TextField` component. This is on purpose. The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+Вы также могли заметить, что некоторые нативные свойства ввода HTML отсутствуют в компоненте `TextField`. Это сделано специально. Компонент включает в себя наиболее часто используемые свойства, а для расширенного использования можно использовать базовый компонент, показанный в следующей демонстрации. Вы все еще можете использовать `inputProps` (и `свойства InputProps`, `InputLabelProps`), если хотите избежать излишнего кода.
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
-## Inputs
+## Поля ввода
 
 {{"demo": "pages/demos/text-fields/Inputs.js"}}
 
-## Customized inputs
+## Кастомизированные поля ввода
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+Если вы читали [переписанную страницу документации](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот пример того, как изменить основной цвет Input-а.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+Настройка не ограничивается CSS, вы можете использовать композицию для создания пользовательских компонентов и придать вашему приложению уникальный стиль. Ниже приведен пример использования компонента [`InputBase`](/api/input-base/), вдохновленный Google Maps.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
-## Input Adornments
+## Украшения поля ввода (Input)
 
-`Input` allows the provision of `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
+`Input` позволяет использовать `InputAdornment`. Их можно использовать для добавления префикса, суффикса или действия к полю ввода. Например, вы можете использовать кнопку-иконку, чтобы скрыть или показать пароль.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
-### With icon
+### С иконкой
 
-Icons can be specified as prepended or appended.
+Иконки могут быть указаны как предварительно добавленные или добавленные.
 
 {{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
 
-### Filled Input Adornments
+### Украшение полей ввода с заполненным стилем
 
 {{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
 
-### Outlined Input Adornments
+### Украшение полей ввода с контурным стилем
 
 {{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
 ## Layout
 
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter other styles to meet the specification.
+`TextField`, `FormControl` позволяет спецификации `margin` изменять вертикальные отступы для полей ввода. Использование `none` (по умолчанию) не будет применять отступы для `FormControl`, тогда как `dense` и `normal` будут применять другие стили, которые соответствуют спецификации.
 
 {{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
-## Limitations
+## Ограничения
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+Состояние метки поля ввода (label) "shrink" не всегда корректно. Предполагается, что метка поля ввода уменьшается, как только в поле ввода что-нибудь отображается. В некоторых случаях мы не можем определить состояние "shrink" (числовое поле, поле даты, Stripe input). Вы могли заметить совпадения.
 
-![shrink](/static/images/text-fields/shrink.png)
+![сжатие](/static/images/text-fields/shrink.png)
 
-To workaround the issue, you can force the "shrink" state of the label.
+Чтобы решить эту проблему, вы можете принудительно изменить состояние метки.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-or
+или
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Formatted inputs
+## Форматированное поле ввода
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property. The provided input component should handle the `inputRef` property. The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
+Вы можете использовать сторонние библиотеки для форматирования ввода. Вы должны предоставить пользовательскую реализацию элемента `<input>` со свойством `inputComponent`. Предоставленный компонент ввода должен обрабатывать свойство `inputRef`. Свойство должно вызываться со значением, реализующим интерфейс [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+В следующем примере используются библиотеки [response-text-mask](https://github.com/text-mask/text-mask) и [response-number-format](https://github.com/s-yadav/react-number-format).
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
 ## Accessibility
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+Для того, чтобы текстовое поле было доступно, **поле ввода должно быть связано с меткой и вспомогательным текстом**. Базовые узлы DOM должны иметь эту структуру.
 
 ```jsx
 <div class="form-control">
@@ -116,8 +116,8 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id`.
-- If you are composing the component:
+- Если вы используете компонент `TextField`, вам просто нужно предоставить уникальный `id`.
+- Если вы составляете компонент:
 
 ```jsx
 <FormControl>
@@ -127,11 +127,11 @@ In order for the text field to be accessible, **the input should be linked to th
 </FormControl>
 ```
 
-## Complementary projects
+## Дополнительные проекты
 
 For more advanced use cases you might be able to take advantage of:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
-- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms, a set of React libraries for building forms.
+- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) компоненты оболочки Material-UI для Uniforms, набор библиотек React для создания форм.
