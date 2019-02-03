@@ -67,6 +67,34 @@ export function rgbToHex(color) {
 }
 
 /**
+ * Converts a color from hsl format to rgb format.
+ *
+ * @param {string} color - HSL color values
+ * @returns {string} rgb color values
+ */
+export function hslToRgb(color) {
+  const isRawColor = typeof color === 'string';
+  const decomposedColor = isRawColor && decomposeColor(color);
+  const hsl = isRawColor ? decomposedColor.values : color;
+
+  const h = hsl[0];
+  const s = hsl[1] / 100;
+  const l = hsl[2] / 100;
+
+  const a = s * Math.min(l, 1 - l);
+  const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+
+  const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+
+  if (!isRawColor) {
+    return rgb;
+  }
+
+  const type = decomposedColor.type.endsWith('a') ? 'rgba' : 'rgb';
+  return recomposeColor({ type, values: rgb });
+}
+
+/**
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.
@@ -158,20 +186,17 @@ export function getContrastRatio(foreground, background) {
  */
 export function getLuminance(color) {
   warning(color, `Material-UI: missing color argument in getLuminance(${color}).`);
+  const { type, values } = decomposeColor(color);
 
-  const decomposedColor = decomposeColor(color);
+  const rgb = type.indexOf('rgb') !== -1 ? values : hslToRgb(values);
 
-  if (decomposedColor.type.indexOf('rgb') !== -1) {
-    const rgb = decomposedColor.values.map(val => {
-      val /= 255; // normalized
-      return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
-    });
-    // Truncate at 3 digits
-    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
-  }
+  const [r, g, b] = rgb.map(val => {
+    val /= 255; // normalized
+    return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
+  });
 
-  // else if (decomposedColor.type.indexOf('hsl') !== -1)
-  return decomposedColor.values[2] / 100;
+  // Truncate at 3 digits
+  return Number((0.2126 * r + 0.7152 * g + 0.0722 * b).toFixed(3));
 }
 
 /**

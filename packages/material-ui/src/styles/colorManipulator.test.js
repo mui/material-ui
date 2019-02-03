@@ -4,6 +4,7 @@ import {
   recomposeColor,
   convertHexToRGB,
   rgbToHex,
+  hslToRgb,
   darken,
   decomposeColor,
   emphasize,
@@ -84,6 +85,16 @@ describe('utils/colorManipulator', () => {
     });
   });
 
+  describe('hslToRgb', () => {
+    it('converts an hsl color to an rgb color` ', () => {
+      assert.strictEqual(hslToRgb('hsl(281, 60%, 57%)'), 'rgb(169, 80, 211)');
+    });
+
+    it('allow to convert values only', () => {
+      assert.deepEqual(hslToRgb([281, 60, 57]), [169, 80, 211]);
+    });
+  });
+
   describe('decomposeColor', () => {
     it('converts an rgb color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('rgb(255, 255, 255)');
@@ -153,7 +164,13 @@ describe('utils/colorManipulator', () => {
     });
 
     it('returns a valid luminance from an hsl color', () => {
-      assert.strictEqual(getLuminance('hsl(100, 100%, 50%)'), 0.5);
+      assert.strictEqual(getLuminance('hsl(100, 100%, 50%)'), 0.735);
+    });
+
+    it('returns an equal luminance for the same color in different formats', () => {
+      const hsl = 'hsl(100, 100%, 50%)';
+      const rgb = 'rgb(85, 255, 0)';
+      assert.strictEqual(getLuminance(hsl), getLuminance(rgb));
     });
 
     it('throw on invalid colors', () => {
