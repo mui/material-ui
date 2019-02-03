@@ -39,9 +39,9 @@ function createModulePackages(srcDir, outDir) {
         fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
       ]).then(([typingsExist]) => {
         if (!typingsExist) {
-          return Promise.reject(new Error(`index.d.ts for ${directoryPackage} is missing`));
+          console.warn(`index.d.ts for ${directoryPackage} is missing`);
         }
-        return Promise.resolve(packageJsonPath);
+        return packageJsonPath;
       });
     }),
   );
