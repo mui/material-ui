@@ -68,29 +68,17 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 8px;">
-    <img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes">
-  </a>
-  <a href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 8px;">
-    <img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code">
-  </a>
+  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes"></a>
+  <a href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code"></a>
 </p>
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group">
-  </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="localize" href="https://localizejs.com" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=65" alt="localize" title="Application translation & localization platform">
-  </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="yakaz" href="https://yakaz.com" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Fb47b9630-1586-11e9-a4d4-47c0a7133bdc.png&height=80" alt="yakaz" title="Search classified ads">
-  </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="zinggrid" href="https://www.zinggrid.com/" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F453226e0-258a-11e9-ac89-996ff9caccb7.png&height=45" alt="zinggrid" title="Makes powerful grids easy">
-  </a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="localize" href="https://localizejs.com" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=65" alt="localize" title="Application translation & localization platform"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="yakaz" href="https://yakaz.com" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Fb47b9630-1586-11e9-a4d4-47c0a7133bdc.png&height=80" alt="yakaz" title="Search classified ads"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="zinggrid" href="https://www.zinggrid.com/" rel="noopener" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F453226e0-258a-11e9-ac89-996ff9caccb7.png&height=45" alt="zinggrid" title="Makes powerful grids easy"></a>
 </p>
 
 ### There is more!
@@ -153,27 +141,29 @@ The future plans and high priority features and enhancements can be found in the
 
 Material-UI is only made possible thanks to these great services that sponsor our core infrastructure:
 
-- GitHub allows us to host the Git repository
-
 [<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="120">](https://github.com/)
 
-- CircleCI allows us to run the test suite
+GitHub allows us to host the Git repository.
 
 [<img src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" width="120">](https://circleci.com/)
 
-- Netfliy allows us to distribute the documentation
+CircleCI allows us to run the test suite.
 
 [<img src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
 
-- Crowdin allows us to translate the documentation
+Netlify allows us to distribute the documentation.
 
 [<img src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
 
-- BrowserStack allows us to test in real browsers
+CrowdIn allows us to translate the documentation.
 
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
 
-- CodeCov allows us to monitor the test coverage
+BrowserStack allows us to test in real browsers.
+
+[<img src="https://raw.githubusercontent.com/codecov/media/master/logos/icon-50.png" height="30">](https://codecov.io/)
+
+CodeCov allows us to monitor the test coverage.
 
 ## License
 
@@ -182,5 +172,6 @@ This project is licensed under the terms of the
 
 ## Security
 
-To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
+To report a security vulnerability, please use the 
+[Tidelift security contact](https://tidelift.com/security).
 Tidelift will coordinate the fix and disclosure.

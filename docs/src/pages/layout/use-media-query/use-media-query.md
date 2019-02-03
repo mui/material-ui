@@ -91,7 +91,7 @@ function MyComponent() {
   - `options.defaultMatches` (*Boolean* [optional]):
   As `window.matchMedia()` is unavailable on the server,
   we return a default matches during the first mount. The default value is `false`.
-  - `options.noSSR` (*Boolean* [optional]): Defaults to `false`.
+  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. It's slower.

@@ -53,10 +53,5 @@ export default ({ theme, red, white, attach, nest, BUTTON, ICON }) => ({
     containedPrimary: {
       color: theme.palette.common.white,
     },
-    extendedFab: {
-      [nest(ICON.root)]: {
-        marginRight: theme.spacing.unit,
-      },
-    },
   },
 });

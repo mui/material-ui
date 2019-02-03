@@ -59,6 +59,7 @@ async function createPackageFile() {
     main: './index.js',
     module: './esm/index.js',
     private: false,
+    typings: './index.d.ts',
   };
   const buildPath = path.resolve(__dirname, '../build/package.json');
 
