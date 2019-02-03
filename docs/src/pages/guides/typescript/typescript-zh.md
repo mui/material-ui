@@ -247,9 +247,9 @@ import createMyTheme from './styles/createMyTheme';
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
 
-## Usage of `component` property
+## `组件的用法`属性
 
-Material-UI allows you to replace a component's root node via a `component` property. For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component, meaning you can do this:
+Material-UI允许您通过`组件替换组件的根节点`属性。 例如，一个`按钮`的根节点可以用React Router ` Link替换` ，以及传递给` Button的任何其他道具` ，例如`到` ，将传播到`链接`组件，意味着你可以这样做：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -257,9 +257,9 @@ import { Link } from 'react-router-dom';
 <Button component={Link} to="/">Go Home</Button>
 ```
 
-However, TypeScript will complain about it, because `to` is not part of the `ButtonProps` interface, and with the current type declarations it has no way of inferring what props can be passed to `component`.
+但是，TypeScript会抱怨它，因为`到`不属于` ButtonProps `接口，并且使用当前类型声明，它无法推断哪些道具可以传递给`组件` 。
 
-The current workaround is to cast Link to `any`:
+当前的解决方法是将链接转换为` any ` ：
 
 ```tsx
 import { Link } from 'react-router-dom';
@@ -278,25 +278,25 @@ const LinkButton = (props: LinkButtonProps) => (
 <LinkButton color="primary" to="/">Go Home</LinkButton>
 ```
 
-Material-UI components pass some basic event handler props (`onClick`, `onDoubleClick`, etc.) to their root nodes. These handlers have a signature of:
+Material-UI组件传递一些基本的事件处理程序道具（` onClick ` ，` onDoubleClick `等）到他们的根节点。 这些处理程序具有以下特征：
 
 ```ts
 (event: MouseEvent<HTMLElement, MouseEvent>) => void
 ```
 
-which is incompatible with the event handler signatures that `Link` expects, which are:
+这与`链接的事件处理程序签名不兼容`期望，这是：
 
 ```ts
 (event: MouseEvent<AnchorElement>) => void
 ```
 
-Any element or component that you pass into `component` will have this problem if the signatures of their event handler props don't match.
+传递到`组件的任何元素或组件`如果他们的事件处理程序道具的签名不匹配将会有这个问题。
 
-There is an ongoing effort to fix this by making component props generic.
+通过使组件道具具有通用性，一直在努力解决这个问题。
 
-### Avoiding properties collision
+### 避免属性冲突
 
-The previous strategy suffers from a little limitation: properties collision. The component providing the `component` property might not forward all its properties to the root element. To workaround this issue, you can create a custom component:
+之前的策略受到一些限制：属性冲突。 提供`组件的组件`属性可能不会将其所有属性转发到根元素。 要解决此问题，您可以创建自定义组件：
 
 ```tsx
 import { Link } from 'react-router-dom';
