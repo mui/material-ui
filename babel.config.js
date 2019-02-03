@@ -59,7 +59,7 @@ module.exports = {
   ignore: [/@babel[\\|/]runtime/],
   env: {
     cjs: {
-      plugins: [...productionPlugins],
+      plugins: productionPlugins,
     },
     coverage: {
       plugins: [
@@ -128,16 +128,16 @@ module.exports = {
       ],
     },
     esm: {
-      plugins: [...productionPlugins],
+      plugins: productionPlugins,
     },
     es: {
-      plugins: [...productionPlugins],
+      plugins: productionPlugins,
     },
     production: {
-      plugins: [...productionPlugins],
+      plugins: productionPlugins,
     },
     'production-umd': {
-      plugins: [...productionPlugins],
+      plugins: productionPlugins,
     },
     test: {
       sourceMaps: 'both',
