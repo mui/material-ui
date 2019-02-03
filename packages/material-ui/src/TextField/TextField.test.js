@@ -160,11 +160,4 @@ describe('<TextField />', () => {
       );
     });
   });
-
-  describe('prop: FormControlClasses', () => {
-    it('should be able to change the FormControl classes', () => {
-      const wrapper = mount(<TextField FormControlClasses={{ root: 'bar' }} />);
-      assert.strictEqual(wrapper.find(FormControl).props().classes.root, 'bar');
-    });
-  });
 });

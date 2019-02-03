@@ -75,7 +75,6 @@ class TextField extends React.Component {
       className: classNameProp,
       defaultValue,
       error,
-      FormControlClasses,
       FormHelperTextProps,
       fullWidth,
       helperText,
@@ -146,7 +145,6 @@ class TextField extends React.Component {
 
     return (
       <FormControl
-        classes={FormControlClasses}
         className={classNames(classes.root, classNameProp)}
         error={error}
         fullWidth={fullWidth}
@@ -218,10 +216,6 @@ TextField.propTypes = {
    * If `true`, the label will be displayed in an error state.
    */
   error: PropTypes.bool,
-  /**
-   * Classes applied to the [`FormControl`](/api/form-control/) element.
-   */
-  FormControlClasses: PropTypes.object,
   /**
    * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */

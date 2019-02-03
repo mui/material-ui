@@ -16,7 +16,6 @@ export interface BaseTextFieldProps
   defaultValue?: string | number;
   disabled?: boolean;
   error?: boolean;
-  FormControlClasses?: FormControlProps['classes'];
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
