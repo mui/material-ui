@@ -1,54 +1,54 @@
-# Installation
+# インストール
 
-<p class="description">Install Material-UI, the world's most popular React UI framework.</p>
+<p class="description">世界で最も人気のあるReact UIフレームワークMaterial-UIをインストールします。</p>
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/core) として入手可能です。
 
 ## npm
 
-To install and save in your `package.json` dependencies, run:
+インストールして`package.json` のdependenciesに保存します。次を実行してください。
 
 ```sh
-// with npm
+// npmの場合
 npm install @material-ui/core
 
-// with yarn
+// yarnの場合
 yarn add @material-ui/core
 ```
 
-Please note that [react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 are peer dependencies.
+[react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0がpeer dependenciesであることに注意してください。
 
-## Roboto Font
+## Robotoフォント
 
-Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/style/typography/#general). For instance, via Google Web Fonts:
+Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを考慮して設計されています。 その為、必ず[以下の手順](/style/typography/#general) に従ってください。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+あるいは、headタグをレンダリングするJSXを用いている場合は、
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-## Font Icons
+## フォントアイコン
 
-In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
+フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加します。 こちらは、その時の[手続き](/style/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+あるいは、headタグをレンダリングするJSXを用いている場合は、
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-## SVG Icons
+## SVGアイコン
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+[component demos](/demos/app-bar/)にあるような事前にビルドされたSVG Material iconsを使う為には、[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)パッケージをインストールします。
 
 ```sh
 npm install @material-ui/icons
@@ -56,13 +56,13 @@ npm install @material-ui/icons
 
 ## CDN
 
-You can start using Material-UI with minimal Front-end infrastructure, which is great for prototyping. We discourage using this approach in production though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilisation.
+プロトタイピングには最適な最小限のフロントエンド構造でMaterial-UIを使い始めることができます。 ただし、この方法をプロダクションで使用することはお勧めしません。どのコンポーネントが実際に使用されているかに関係なく、クライアントはライブラリ全てをダウンロードする必要があるので、パフォーマンスと帯域利用に影響します。
 
-#### UMD releases
+#### UMDリリース
 
-We are providing two Universal Module Definition (UMD) files:
+私たちは２つのUniversal Module Definition (UMD) ファイルを提供します。
 
-- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- 開発用: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- 本番用: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+[CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn)に従うことで、すぐに開発を始めることができます。
