@@ -37,3 +37,7 @@ components: Slider
 ## 自定义拇指
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}
+
+## Custom value reducer
+
+{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}
