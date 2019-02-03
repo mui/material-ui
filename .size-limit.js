@@ -19,10 +19,16 @@ module.exports = [
     limit: '18.8 KB',
   },
   {
+    name: 'The initial cost paid for using one component with ES modules',
+    webpack: true,
+    path: 'packages/material-ui/build/esm/Paper/index.js',
+    limit: '17.9 KB',
+  },
+  {
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '94.6 KB',
+    limit: '91.2 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -43,24 +49,25 @@ module.exports = [
     limit: '900 B',
   },
   {
+    // why we use esm here: https://github.com/mui-org/material-ui/pull/13391#issuecomment-459692816
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
-    path: 'packages/material-ui/build/Button/index.js',
-    limit: '26.7 KB',
+    path: 'packages/material-ui/build/esm/Button/index.js',
+    limit: '24.6 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
-    path: 'packages/material-ui/build/Modal/index.js',
-    limit: '26.4 KB',
+    path: 'packages/material-ui/build/esm/Modal/index.js',
+    limit: '24.1 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
-    path: 'packages/material-ui/build/Popper/index.js',
-    limit: '10.8 KB',
+    path: 'packages/material-ui/build/esm/Popper/index.js',
+    limit: '9.7 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-responsive
@@ -80,6 +87,6 @@ module.exports = [
     name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
-    limit: '7 KB',
+    limit: '6.2 KB',
   },
 ];

@@ -10,6 +10,39 @@ async function copyFile(file) {
   console.log(`Copied ${file} to ${buildPath}`);
 }
 
+/**
+ * Puts a package.json into every immediate child directory of rootDir.
+ * That package.json contains information about esm for bundlers so that imports
+ * like import Typography from '@material-ui/core/Typography' are tree-shakeable.
+ *
+ * It also tests that an this import can be used in typescript by checking
+ * if an index.d.ts is present at that path.
+ *
+ * @param {string} rootDir
+ */
+function createModulePackages(srcDir, outDir) {
+  const directoryPackages = glob.sync('*/index.js', { cwd: srcDir }).map(path.dirname);
+  return Promise.all(
+    directoryPackages.map(directoryPackage => {
+      const packageJson = {
+        sideEffects: false,
+        module: path.join('..', 'esm', directoryPackage, 'index.js'),
+      };
+      const packageJsonPath = path.join(outDir, directoryPackage, 'package.json');
+
+      return Promise.all([
+        fse.exists(path.join(outDir, directoryPackage, 'index.d.ts')),
+        fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
+      ]).then(([typingsExist]) => {
+        if (!typingsExist) {
+          return Promise.reject(new Error(`index.d.ts for ${directoryPackage} is missing`));
+        }
+        return Promise.resolve(packageJsonPath);
+      });
+    }),
+  );
+}
+
 function typescriptCopy(from, to) {
   const files = glob.sync('**/*.d.ts', { cwd: from });
   const cmds = files.map(file => fse.copy(path.resolve(from, file), path.resolve(to, file)));
@@ -22,7 +55,7 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     main: './index.js',
-    module: './index.es.js',
+    module: './esm/index.js',
     private: false,
     typings: './index.d.ts',
   };
@@ -47,7 +80,7 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['../build/index.js', '../build/index.es.js'].map(file =>
+    ['../build/index.js', '../build/esm/index.js'].map(file =>
       prepend(path.resolve(__dirname, file), license),
     ),
   );
@@ -64,6 +97,11 @@ async function run() {
     typescriptCopy(from, path.resolve(__dirname, '../build')),
     typescriptCopy(from, path.resolve(__dirname, '../build/es')),
   ]);
+
+  await createModulePackages(
+    path.resolve(__dirname, '../src'),
+    path.resolve(__dirname, '../build'),
+  );
 }
 
 run();
