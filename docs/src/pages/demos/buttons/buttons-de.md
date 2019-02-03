@@ -9,8 +9,8 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 [Buttons](https://material.io/design/components/buttons.html) kommunizieren Aktionen, die Benutzer ausführen können. Sie werden normalerweise in der gesamten Benutzeroberfläche platziert, beispielsweise an folgenden Orten:
 
 - Dialogs
-- Modal windows
-- Forms
+- Modale Fenster
+- Formulare
 - Cards
 - Toolbars
 
@@ -26,78 +26,78 @@ Das letzte Beispiel dieser Demo zeigt, wie Sie eine Schaltfläche zum Hochladen 
 
 [Text buttons](https://material.io/design/components/buttons.html#text-button) werden normalerweise für weniger ausgeprägte Aktionen verwendet, darunter auch solche, die Folgendes enthalten:
 
-- In dialogs
-- In cards
+- In Dialogen
+- In Karten
 
-In cards, text buttons help maintain an emphasis on card content.
+In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
 
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion in einer App.
 
-### Alternatives
+### Alternativen
 
-Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
+Outlined Buttons sind auch eine Alternative mit geringerer Betonung als Contained Buttons, oder eine Alternative mit höherer Betonung als Text Buttons.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
 ## Floating Action Buttons
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended.
+Ein [Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) führt die primäre oder gebräuchlichste Aktion auf einem Bildschirm aus. Es wird vor allen Bildschirminhalten angezeigt, normalerweise als Kreisform mit einem Symbol in der Mitte. Es gibt zwei Arten von FABs: normal und erweitert.
 
-Only use a FAB if it is the most suitable way to present a screen’s primary action.
+Verwenden Sie eine FAB nur, wenn dies für die Darstellung der Hauptaktion eines Bildschirms am besten geeignet ist.
 
-Only one floating action button is recommended per screen to represent the most common action.
+Es wird nur eine Floating Action Button pro Bildschirm empfohlen, um die am häufigsten verwendete Aktion darzustellen.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
 
-The floating action button animates onto the screen as an expanding piece of material, by default.
+Der floating-action-button, wird standardmäßig als expandierendes Material auf dem Bildschirm animiert.
 
-A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes.
+Ein floating-action-button, der sich über mehrere seitliche Bildschirme (wie tabbed-screens) erstreckt, sollte kurz verschwinden und dann wieder erscheinen, wenn sich seine Aktion ändert.
 
-The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's animation to finish before the new one enters.
+Hierzu kann der Zoom-Übergang verwendet werden. Da sowohl die vorhandenen als auch die eingegebenen Animationen gleichzeitig ausgelöst werden, verwenden wir `enterDelay`, um die Animation der ausgehenden Floating Action Buttons zu beenden, bevor die neue Animation eintritt.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
-## Sizes
+## Größen
 
-Fancy larger or smaller buttons? Use the `size` property.
+Lust auf größere oder kleinere Schaltflächen? Verwenden Sie die Eigenschaft `size`.
 
 {{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Buttons mit Symbolen und Beschriftung
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Manchmal möchten Sie möglicherweise Symbole für bestimmte Schaltflächen, um die UX der Anwendung zu verbessern, da Logos leichter als einfacher Text erkannt werden. Wenn Sie beispielsweise eine Schaltfläche zum Löschen haben, können Sie sie mit einem Mülleimer-Symbol kennzeichnen.
 
 {{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
 
 ## Icon Buttons
 
-Icon buttons are commonly found in app bars and toolbars.
+Icon Buttons finden Sie häufig in App-Bars und Toolbars.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+Icons eignen sich auch für Umschaltflächen, mit denen eine einzelne Auswahl ausgewählt oder die Auswahl auf z. B. das Hinzufügen oder Entfernen eines Sterns zu einem Element.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
 ## Customized Buttons
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the main color of a Button using classes, and using a theme; and of a Bootstrap style Button.
+Wenn Sie die Seite [overrides documentation page](/customization/overrides/) gelesen haben, aber Sie sich nicht sicher sind, dann finden Sie hier Beispiele dafür wie Sie die Hauptfarbe eines Buttons mit Klassen ändern können und für die Verwendung eines Themes.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
 ## Complex Buttons
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon Buttons basieren auf derselben Komponente: der `ButtonBase`. Sie können die Vorteile dieser grundlegenden Komponente zum erstellen von benutzerdefinierten Interaktionen nutzen.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}
 
-## Third-party routing library
+## Drittanbieter-Routing Bibliothek
 
-One common use case is to use the button to trigger a navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere:
+Ein häufiger Anwendungsfall ist die Verwendung eines Buttons, um eine Navigation zu einer neuen Seite auszulösen. Die `ButtonBase` Komponente stellt eine Eigenschaft für diesen Anwendungsfall bereit: `component`. Da eine Menge unserer interaktiven Komponenten auf der `ButtonBase` basieren, sollten Sie diese überall nutzen zu können:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -108,7 +108,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-or if you want to avoid properties collision:
+oder wenn Sie die Kollision von Eigenschaften vermeiden möchten:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Hinweis: Das Erstellen von `MyLink` ist erforderlich, um ein unerwartetes Aushängen zu verhindern. Weitere Informationen dazu finden Sie in unserem [Guide über Komponenten-Eigenschaften ](/guides/composition/#component-property).*
