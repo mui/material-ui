@@ -6,11 +6,11 @@ components: AppBar, Toolbar, Menu
 
 <p class="description">In der App-Bar werden Informationen und Aktionen angezeigt, die sich auf den aktuellen Bildschirm beziehen.</p>
 
-Die [Top-App Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. Es wird für Branding, Bildschirmtitel, Navigation und Aktionen verwendet.
+Die [obere App Leiste](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. Es wird für Branding, Bildschirmtitel, Navigation und Aktionen verwendet.
 
 Es kann sich in eine kontextabhängige Aktionsleiste verwandeln oder als Navigationsleiste verwendet werden.
 
-## App Bar mit Tasten
+## App Bar mit Schaltflächen
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
@@ -20,7 +20,7 @@ Es kann sich in eine kontextabhängige Aktionsleiste verwandeln oder als Navigat
 
 ## App-Bar mit einem Hauptsuchfeld
 
-A primary searchbar.
+Eine primäre Suchleiste.
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
