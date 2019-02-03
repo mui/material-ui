@@ -1,13 +1,16 @@
 /* eslint-disable no-console */
+const path = require('path');
+const fse = require('fs-extra');
+const glob = require('glob');
 
-import path from 'path';
-import fse from 'fs-extra';
-import glob from 'glob';
+const workspacePath = process.cwd();
+const buildPath = path.join(workspacePath, './build');
+const srcPath = path.join(workspacePath, './src');
 
 async function copyFile(file) {
-  const buildPath = path.resolve(process.cwd(), '../build/', path.basename(file));
-  await fse.copy(file, buildPath);
-  console.log(`Copied ${file} to ${buildPath}`);
+  const targetPath = path.resolve(buildPath, path.basename(file));
+  await fse.copy(file, targetPath);
+  console.log(`Copied ${file} to ${targetPath}`);
 }
 
 /**
@@ -27,7 +30,7 @@ function createModulePackages(srcDir, outDir) {
     directoryPackages.map(directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join('..', 'esm', directoryPackage, 'index.js'),
+        module: path.join(buildPath, 'esm', directoryPackage, 'index.js'),
       };
       const packageJsonPath = path.join(outDir, directoryPackage, 'package.json');
 
@@ -44,14 +47,19 @@ function createModulePackages(srcDir, outDir) {
   );
 }
 
-function typescriptCopy(from, to) {
+async function typescriptCopy(from, to) {
+  if (!(await fse.exists(to))) {
+    console.warn(`path ${to} does not exists`);
+    return [];
+  }
+
   const files = glob.sync('**/*.d.ts', { cwd: from });
   const cmds = files.map(file => fse.copy(path.resolve(from, file), path.resolve(to, file)));
   return Promise.all(cmds);
 }
 
 async function createPackageFile() {
-  const packageData = await fse.readFile(path.resolve(process.cwd(), '../package.json'), 'utf8');
+  const packageData = await fse.readFile(path.resolve(workspacePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } = JSON.parse(
     packageData,
   );
@@ -62,10 +70,10 @@ async function createPackageFile() {
     types: './index.d.ts',
     private: false,
   };
-  const buildPath = path.resolve(process.cwd(), '../build/package.json');
+  const targetPath = path.resolve(buildPath, './package.json');
 
-  await fse.writeFile(buildPath, JSON.stringify(newPackageData, null, 2), 'utf8');
-  console.log(`Created package.json in ${buildPath}`);
+  await fse.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8');
+  console.log(`Created package.json in ${targetPath}`);
 
   return newPackageData;
 }
@@ -84,12 +92,12 @@ async function addLicense(packageData) {
 `;
   await Promise.all(
     [
-      '../build/index.js',
-      '../build/esm/index.js',
-      '../build/umd/material-ui.development.js',
-      '../build/umd/material-ui.production.min.js',
+      './index.js',
+      './esm/index.js',
+      './umd/material-ui.development.js',
+      './umd/material-ui.production.min.js',
     ].map(file =>
-      prepend(path.resolve(process.cwd(), file), license).catch(() =>
+      prepend(path.resolve(buildPath, file), license).catch(() =>
         console.log(`Skipped license for ${file}`),
       ),
     ),
@@ -104,16 +112,13 @@ async function run() {
   await addLicense(packageData);
 
   // TypeScript
-  const from = path.resolve(process.cwd(), '../src');
+  const from = srcPath;
   await Promise.all([
-    typescriptCopy(from, path.resolve(process.cwd(), '../build')),
-    typescriptCopy(from, path.resolve(process.cwd(), '../build/es')),
+    typescriptCopy(from, buildPath),
+    typescriptCopy(from, path.resolve(buildPath, './es')),
   ]);
 
-  await createModulePackages(
-    path.resolve(process.cwd(), '../src'),
-    path.resolve(process.cwd(), '../build'),
-  );
+  await createModulePackages(srcPath, buildPath);
 }
 
 run().catch(error => {
