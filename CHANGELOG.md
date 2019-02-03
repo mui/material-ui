@@ -6,7 +6,7 @@
 Big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
-- ⚛️ Add a new Breadcrumb component to the lab (#14084) @mbrookes
+- ⚛️ Add a new Breadcrumb component to the lab (#14084) @simoami @mbrookes
 https://material-ui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon 
 - 📝 Prepare support for 5 new documentation languages 
@@ -31,7 +31,7 @@ https://translate.material-ui.com/project/material-ui-docs
 ### `@material-ui/lab@v3.0.0-alpha.30`
 
 - [Slider] Added valueReducer prop (#12665) @aseem191 
-- [lab] Add a Breadcrumb component (#14084) @mbrookes
+- [lab] Add a Breadcrumb component (#14084) @simoami @mbrookes
 
 ### Docs
 
