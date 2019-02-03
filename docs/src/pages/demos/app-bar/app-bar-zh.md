@@ -18,13 +18,13 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## 搜索输入框居中的应用栏
+## 带一个主搜索输入框的应用栏
 
 一个主搜索栏
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## 带菜单的应用栏
+## 带有菜单的应用栏
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
