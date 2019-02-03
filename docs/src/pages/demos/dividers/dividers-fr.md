@@ -20,7 +20,7 @@ Nous devons nous assurer que le `Divider` est rendu en tant que `li` pour corres
 
 ## Encart De Diviseurs
 
-The `inset` property has now been deprecated. You should now use `variant="inset"`
+The `inset` property has now been deprecated. You should now use `variant="inset"`.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
