@@ -36,7 +36,7 @@ export default Main() {
 
 {{"demo": "pages/utils/transitions/SimpleCollapse.js"}}
 
-## 淡入
+## 淡入淡出
 
 从透明淡入至不透明
 
