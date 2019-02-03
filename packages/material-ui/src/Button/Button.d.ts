@@ -10,10 +10,9 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
   disableRipple?: boolean;
   fullWidth?: boolean;
   href?: string;
-  mini?: boolean;
   size?: 'small' | 'medium' | 'large';
   type?: string;
-  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
+  variant?: 'text' | 'outlined' | 'contained';
 }
 
 export type ButtonClassKey =
@@ -22,24 +21,15 @@ export type ButtonClassKey =
   | 'text'
   | 'textPrimary'
   | 'textSecondary'
-  | 'flat'
-  | 'flatPrimary'
-  | 'flatSecondary'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
-  | 'colorInherit'
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
-  | 'raised'
-  | 'raisedPrimary'
-  | 'raisedSecondary'
   | 'focusVisible'
   | 'disabled'
-  | 'fab'
-  | 'extendedFab'
-  | 'mini'
+  | 'colorInherit'
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';

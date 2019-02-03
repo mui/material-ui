@@ -290,7 +290,6 @@ class Chip extends React.Component {
       onDelete,
       onKeyDown,
       onKeyUp,
-      tabIndex: tabIndexProp,
       variant,
       ...other
     } = this.props;
@@ -357,12 +356,6 @@ class Chip extends React.Component {
       });
     }
 
-    let tabIndex = tabIndexProp;
-
-    if (!tabIndex) {
-      tabIndex = onClick || onDelete || clickable ? 0 : -1;
-    }
-
     warning(
       !avatar || !icon,
       'Material-UI: the Chip component can not handle the avatar ' +
@@ -371,9 +364,9 @@ class Chip extends React.Component {
 
     return (
       <Component
-        role="button"
+        role={clickable || onDelete ? 'button' : undefined}
         className={className}
-        tabIndex={tabIndex}
+        tabIndex={clickable || onDelete ? 0 : undefined}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
         onKeyUp={this.handleKeyUp}
@@ -455,10 +448,6 @@ Chip.propTypes = {
    * @ignore
    */
   onKeyUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The variant to use.
    */

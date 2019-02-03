@@ -74,13 +74,13 @@ describe('<MuiThemeProvider />', () => {
       assert.notStrictEqual(markup.match('Hello World'), null);
       assert.strictEqual(sheetsRegistry.registry.length, 2);
       assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
-      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiButtonBase-root-27');
+      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiButtonBase-root-18');
       assert.deepEqual(
         sheetsRegistry.registry[0].classes,
         {
-          disabled: 'MuiButtonBase-disabled-28',
-          focusVisible: 'MuiButtonBase-focusVisible-29',
-          root: 'MuiButtonBase-root-27',
+          disabled: 'MuiButtonBase-disabled-19',
+          focusVisible: 'MuiButtonBase-focusVisible-20',
+          root: 'MuiButtonBase-root-18',
         },
         'the class names should be deterministic',
       );

@@ -63,11 +63,5 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
         opacity: 0.6,
       },
     },
-    fab: {
-      boxShadow: theme.shadows[2],
-      '&:active': {
-        boxShadow: theme.shadows[4],
-      },
-    },
   },
 });
