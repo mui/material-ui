@@ -23,7 +23,7 @@ Material-UI's styling solution is inspired by many other CSS-in-JS libraries lik
 
 ## Installation
 
-To install and save in your `package.json` dependencies, run:
+Pour installer et enregistrer dans votre `package.json` dépendances, exécutez:
 
 ```sh
 // with npm
