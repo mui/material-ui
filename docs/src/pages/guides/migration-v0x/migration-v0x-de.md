@@ -78,7 +78,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 
 ## Components
 
-### Autocomplete
+### Autovervollständigung
 
 Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
 

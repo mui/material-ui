@@ -1,4 +1,4 @@
-# CSS in JS
+# JS中的CSS
 
 <p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
 
@@ -8,7 +8,7 @@ Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见
 
 ## Material-UI 的样式解决方案
 
-在以前的版本中，Material-UI 使用 LESS，然后是自定义内嵌式的解决方案来编写组件的样式，但是这些方法已被证明是有限制的。 最近，我们[迁移](https://github.com/oliviertassinari/a-journey-toward-better-style)到*CSS-in-JS*的解决方案中去。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
+在以前的版本中，Material-UI 曾使用过 LESS，以及而后尝试的自定义内嵌式解决方案来编写组件的样式。但是这些方法已被证明不能满足我们的需要。 最近，我们开始向*CSS-in-JS*解决方案方向转移。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [基于组件样式的未来](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)

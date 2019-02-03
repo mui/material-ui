@@ -14,7 +14,7 @@ Ele pode se transformar em uma barra de ações contextual ou utilizado como uma
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## App Bar simples
+## Barra de Aplicativos simples
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
@@ -34,7 +34,7 @@ Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Denso (apenas para desktop)
+## Barra de Aplicativos densa (apenas para desktop)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 

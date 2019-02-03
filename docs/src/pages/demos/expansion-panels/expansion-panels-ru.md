@@ -1,10 +1,10 @@
 ---
-title: Expansion Panel React component
+title: Панель расширения (Компонент React)
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
-# Expansion Panels
+# Панель расширения
 
-<p class="description">Expansion panels contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>
 
 [An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
 
@@ -30,6 +30,6 @@ Multiple columns can be used to structure the content, and a helper text may be 
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the background color of the `ExpansionPanelSummary` and padding of `ExpansionPanelDetails`.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 
 {{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}

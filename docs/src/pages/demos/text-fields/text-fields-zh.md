@@ -106,7 +106,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 无障碍功能
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+为了使文本字段可访问， **输入要链接到标签和辅助文本**。底层DOM节点应具有此结构。
 
 ```jsx
 <div class="form-control">
@@ -116,8 +116,8 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id`.
-- If you are composing the component:
+- 如果您使用的是 `TextField` 组件，则只需提供唯一的 `id`。
+- 如果您正在编写组件：
 
 ```jsx
 <FormControl>

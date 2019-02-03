@@ -1,12 +1,12 @@
 ---
-title: Autocomplete React component
+title: Componente de Autocompletado de React
 components: TextField, Paper, MenuItem, Popper
 ---
-# Autocomplete
+# Autocompletado
 
-<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+<p class="description">El autocompletado es una caja de texto normal mejorada por un panel de opciones sugeridas.</p>
 
-Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
+Material-UI no provee ninguna API de alto nivel para resolver este problema. Alentamos a las personas a confiar en las soluciones que la comunidad de React ha construido.
 
 ## downshift
 

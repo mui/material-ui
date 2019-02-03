@@ -21,9 +21,9 @@ Material-UI's styling solution is inspired by many other CSS-in-JS libraries lik
 - ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core. It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles).
 
-## Installation
+## インストール
 
-To install and save in your `package.json` dependencies, run:
+インストールして`package.json` のdependenciesに保存します。次を実行してください。
 
 ```sh
 // with npm

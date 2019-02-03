@@ -24,7 +24,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
@@ -66,7 +66,7 @@ Use a different transition.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 
-## Complementary projects
+## Дополнительные проекты
 
 For more advanced use cases you might be able to take advantage of:
 

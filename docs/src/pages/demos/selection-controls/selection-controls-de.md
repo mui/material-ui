@@ -72,7 +72,7 @@ The option that the switch controls, as well as the state it’s in, should be m
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 

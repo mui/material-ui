@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-or if you want to avoid properties collision:
+ou se você quiser evitar colisões de propriedades:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'

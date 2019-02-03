@@ -1,5 +1,5 @@
 ---
-title: Componente de Card(Tarjetas)
+title: Componente de React Card (Tarjeta)
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 # Tarjetas
@@ -8,11 +8,11 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 Las [Tarjetas](https://material.io/design/components/cards.html) son superficies que muestran contenido y acciones sobre un tema particular.
 
-Deben se fáciles de leer y la información que muestran debe ser relevante y accionable. Elementos como texto e imagenes deben ser colocados sobre tarjetas de manera lógica y jerarquica.
+Deben ser fáciles de leer y la información que muestran debe ser relevante y accionable. Elementos como texto e imágenes deben ser colocados sobre tarjetas de manera lógica y jerárquica.
 
 ## Tarjeta simple
 
-Aunque las tarjetas pueden soportar multiples acciones, controles de la interfaz y varios menus debemos usarlas con precaución ya que son puntos de ingreso a información mas detallada.
+Aunque las tarjetas pueden permitir múltiples acciones, controles de la interfaz y varios menus, debemos usarlas con precaución ya que son puntos de ingreso a información mas detallada.
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
 
@@ -28,14 +28,14 @@ Un ejemplo de una tarjeta usando una imagen para reforzar contenido.
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-Por defecto usamos una combinacion de un `<div>` y una *imagen de fondo* para mostrar contenido multimedia. Esto puede ser problemático en ciertas situaciones. Por ejemplo, cuando queremos mostrar un video o una imagen responsiva. En estos casos podemos usar la propiedad `component`:
+Por defecto usamos una combinacion de un `<div>` y una *imagen de fondo* para mostrar contenido multimedia. Esto puede ser problemático en ciertas situaciones. Por ejemplo, tal vez queremos mostrar un video o una imagen responsiva. En estos casos podemos usar la propiedad `component`:
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
 ## Controles de IU
 
-Acciones adicionales dentro de las tarjetas son iniciadas explícitamente usando iconos, texto, controles de IU, localizados de manera típica en el pie de la tarjeta.
+Acciones adicionales dentro de las tarjetas son iniciadas explícitamente usando iconos, texto y controles de IU, localizados de manera típica en el pie de la tarjeta.
 
-Aca un ejemplo de una tarjeta con control multimedia.
+Acá un ejemplo de una tarjeta con control multimedia.
 
 {{"demo": "pages/demos/cards/MediaControlCard.js"}}

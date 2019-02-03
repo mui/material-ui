@@ -2,13 +2,13 @@
 title: Menu React component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
-# Menus
+# Меню
 
 <p class="description">Menus display a list of choices on temporary surfaces.</p>
 
 A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
 
-## Simple Menu
+## Простое меню
 
 Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
@@ -54,7 +54,7 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 {{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
 
-## Limitations
+## Ограничения
 
 There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout. You can use the `Typography` component to workaround this issue:
 
@@ -66,7 +66,7 @@ Use a different transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
-## Complementary projects
+## Дополнительные проекты
 
 For more advanced use cases you might be able to take advantage of:
 

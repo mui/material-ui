@@ -1,7 +1,7 @@
 ---
 components: CssBaseline
 ---
-# CSS Baseline
+# CSS-Baseline
 
 <p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
@@ -23,9 +23,9 @@ function MyApp() {
 export default MyApp;
 ```
 
-## Approach
+## Ansatz
 
-### Page
+### Seite
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 

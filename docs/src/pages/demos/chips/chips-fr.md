@@ -27,7 +27,7 @@ Outlined chips offer an alternative style.
 
 ## Tableau de puce
 
-An example of rendering multiple Chips from an array of values. Supprimer une puce la supprime du tablea. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
+Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Supprimer une puce la supprime du tablea. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
 
 {{"demo": "pages/demos/chips/ChipsArray.js"}}
 

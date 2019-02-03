@@ -1,14 +1,14 @@
-# Usage
+# Utilisation
 
-<p class="description">Get started with React and Material-UI in no time.</p>
+<p class="description">Commencez rapidement avec React et Material-UI.</p>
 
-Material-UI components work in isolation. **They are self-supporting**, and will inject, and only inject, the styles they need to display. They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
+Les composants Material-UI fonctionnent de manière isolée. **Ils sont auto-soutien**, ils d'injecter, et seulement injecter, les styles nécessaires. They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
 
-You can use any of the components as demonstrated in the documentation. Please refer to each component's [demo page](/demos/buttons/) to see how they should be imported.
+Vous pouvez utiliser n'importe lequel des composants comme indiqué dans la documentation. Veuillez vous référer à chaque [page de démonstration](/demos/buttons/) pour voir comment les composants doivent être importés.
 
-## Quick start
+## Démarrage rapide
 
-Here's a quick example to get you started, **it's literally all you need**:
+Voici un exemple rapide pour vous aider à commencer, **c'est tout ce dont vous avez besoin** :
 
 ```jsx
 import React from 'react';
@@ -30,7 +30,7 @@ Yes, this really is all you need to get started, as you can see in this live and
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
-## Globals
+## Variables globales
 
 Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
 
@@ -52,10 +52,10 @@ Material-UI provides an optional [CssBaseline](/style/css-baseline/) component. 
 
 This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a [separate page](/versions/).
 
-## Next steps
+## Etapes suivantes
 
-Now that you have an idea of the basic setup, it's time to learn more about:
+Maintenant que vous avez une idée de la configuration de base, il est temps d'en apprendre d'avantage sur:
 
 - How to provide [the Material Design font and typography](/style/typography/).
-- How to take advantage of the [theming solution](/customization/themes/).
+- Comment tirer parti de la [solution de thème](/customization/themes/).
 - How to [override](/customization/overrides/) the look and feel of the components.

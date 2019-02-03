@@ -2,40 +2,40 @@
 title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
-# Dialogs
+# Диалоги
 
-<p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
+<p class="description">Диалоги информируют пользователей о задаче и могут содержать критическую информацию, требовать решения или включать несколько задач.</p>
 
-A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/utils/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+[Диалог](https://material.io/design/components/dialogs.html) представляет собой тип [модальных](/utils/modal/) окон, который появляется над приложением, чтобы предоставить важную информацию или для предоставления решения. Диалоги отключают все функции приложения, когда они появляются, и остаются на экране до тех пор, пока не будут подтверждены, отклонены или пока не будут предприняты необходимые действия.
 
-Dialogs are purposefully interruptive, so they should be used sparingly.
+Диалоги целенаправленно останавливают, поэтому их следует использовать с осторожностью.
 
-## Simple Dialogs
+## Простые диалоги
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Простые диалоги могут предоставить дополнительные детали или действия по элементу списка. Например, они могут отображать аватары, значки, уточняющий подтекст или ортогональные действия (например, добавление учетной записи).
 
 Touch mechanics:
 
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+- Выбор опции немедленно фиксирует ее и закрывает меню
+- Касание за пределами диалога или нажатие Назад отменяет действие и закрывает диалоговое окно
 
 {{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
-## Alerts
+## Оповещения
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Большинству оповещений не нужны названия. Они суммируют решение в предложении или два:
 
-- Asking a question (e.g. "Delete this conversation?")
-- Making a statement related to the action buttons
+- Задать вопрос (например, «Удалить этот разговор?»)
+- Создать заявления, связанное с кнопками действий
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+Используйте предупреждения в строке заголовка только для ситуаций с высоким риском, таких как потенциальная потеря подключения. Пользователи должны уметь понимать варианты, основываясь только на заголовке и тексте кнопки.
 
-If a title is required:
+Если требуется название:
 
-- Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
-- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
+- Используйте четкий вопрос или утверждение с пояснением в области содержимого, например «Очистить USB-накопитель?».
+- Избегайте извинений, двусмысленности или вопросов, таких как «Предупреждение!» Или «Вы уверены?»
 
 {{"demo": "pages/demos/dialogs/AlertDialog.js"}}
 

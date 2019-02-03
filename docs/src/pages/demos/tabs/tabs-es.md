@@ -10,7 +10,7 @@ components: Tabs, Tab
 
 ## Simple Tabs
 
-A simple example with no frills.
+Un ejemplo sencillo sin florituras.
 
 {{"demo": "pages/demos/tabs/SimpleTabs.js"}}
 

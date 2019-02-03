@@ -34,7 +34,7 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Dense (Только для компьютеров)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 

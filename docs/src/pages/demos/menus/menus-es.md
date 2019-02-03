@@ -66,7 +66,7 @@ Use a different transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
-## Complementary projects
+## Proyectos relacionados
 
 For more advanced use cases you might be able to take advantage of:
 

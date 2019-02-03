@@ -1,16 +1,16 @@
 ---
-title: Hidden React component
-components: Hidden
+title: React-компонент Скрыть
+components: Скрыть
 ---
-# Hidden
+# Скрыть
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
+<p class="description">Быстро и оперативно переключайте значения видимости компонентов и многое другое с помощью наших утилит для скрытия.</p>
 
-All elements are visible unless **they are explicitly hidden**. To ease integration with our [responsive breakpoints](/layout/basics/), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/layout/grid/) component.
+Все элементы видны, если **они явно не скрыты**. Чтобы упростить интеграцию с нашими [ точками остановки](/layout/basics/), этот компонент можно использовать для скрытия любого контента, или использовать его вместе с нашим компонентом [`Grid`](/layout/grid/).
 
-## How it works
+## Как это работает
 
-Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`. Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior. The ranges are inclusive of the specified breakpoints.
+Скрытие работает с диапазоном точек остановки, например, `xsUp` или `mdDown`, или использует одну или несколько точек остановки, например, `only='sm'` или `only={['md', 'xl']}`. Диапазоны и отдельные точки остановки могут использоваться одновременно для достижения индивидуального поведения. The ranges are inclusive of the specified breakpoints.
 
 ```js
 innerWidth  |xs      sm       md       lg       xl
