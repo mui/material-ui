@@ -4,13 +4,13 @@ components: AppBar, Toolbar, Menu
 ---
 # App Bar
 
-<p class="description">The App Bar displays information and actions relating to the current screen.</p>
+<p class="description">App Barには、現在の画面に関する情報と操作が表示されます。</p>
 
-The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+[top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
 
-It can transform into a contextual action bar or used as a navbar.
+コンテキスト上のアクションバーに変換するか、またはナビゲーションバーとして使用することができます。
 
-## App Bar with buttons
+## Button App Bar
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
@@ -18,23 +18,23 @@ It can transform into a contextual action bar or used as a navbar.
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with a primary search field
+## Primary search App Bar
 
-A primary searchbar.
+基本的な検索バー
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## Menu App Bar
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## Search App Bar
 
-A side searchbar.
+サイド検索バー
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Dense App Bar (デスクトップのみ)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
