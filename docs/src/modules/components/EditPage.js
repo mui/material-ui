@@ -21,9 +21,9 @@ function EditPage(props) {
       }
       target="_blank"
       rel="noopener"
-      data-ga-event-category="l10n"
-      data-ga-event-action="edit"
-      data-ga-event-label={userLanguage}
+      data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
+      data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
+      data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
     >
       {t('editPage')}
     </Button>
