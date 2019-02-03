@@ -1,5 +1,63 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.9.2
+###### *Feb 03, 2019*
+
+Big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+- ⚛️ Add a new Breadcrumb component to the lab (#14084) @mbrookes
+https://material-ui.com/lab/breadcrumbs
+- 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon 
+- 📝 Prepare support for 5 new documentation languages 
+https://translate.material-ui.com/project/material-ui-docs
+ - And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v3.9.2`
+
+- [Portal] Fix onRendered being called before child componentDidUpdate (#14305) @joshwooding 
+- [Select] Id should not be set from name if missing (#14322) @aericson
+- [ListItem] Add alignItems prop to ListItem.d.ts (#14334) @EndiM 
+- [useMediaQuery] Fix typings for options object (#14339) @johannwagner`
+- [NativeSelect] Fix option background for dark theme (#14340) @ryancogswell 
+- [Button] Add color inherit to outlined variant of button component (#14332) @EndiM 
+- [ListItem] Improve ListItemSecondaryAction DX (#14350) @eps1lon 
+- [ExpansionPanel] Fix userAgent check (#14361) @Floriferous 
+
+### `@material-ui/styles@v3.0.0-alpha.10`
+
+- [styles] Export StyleRules as public type #14362 @VincentLanglet 
+
+### `@material-ui/lab@v3.0.0-alpha.30`
+
+- [Slider] Added valueReducer prop (#12665) @aseem191 
+- [lab] Add a Breadcrumb component (#14084) @mbrookes
+
+### Docs
+
+- [docs] Add CloudHealth to showcase, reorder based on latest pageviews (#14307) @mbrookes 
+- [docs] New translations (#14308) @oliviertassinari 
+- [docs] New Crowdin translations (#14315) @muibot 
+- [docs] Fix i18n logic (#14316) @oliviertassinari 
+- [docs] Translate the key wordings (#14317) @oliviertassinari 
+- [docs] Add sorting to Showcase (#14312) @mbrookes 
+- [docs] Link ignore target blank (807bab8) @oliviertassinari 
+- [docs] Reset Table page number (#14354) @rafaelmarinids 
+- [docs] Explain bootstrap issue for nextjs-hooks (#14353) @avetisk 
+- [docs] Improve wrapping docs (#14351) @eps1lon 
+- [docs] AppBar and Textfield demos in TypeScript (#13229) @eps1lon 
+- [docs] Minor Hook Demo fixes (#14367) @joshwooding 
+- [docs] Enable the i18n help messages (#14356) @oliviertassinari 
+- [docs] Fix SW cache invalidation (242bff9) @oliviertassinari 
+
+### Core
+
+- [README] Add all the products sponsoring open source (#14311) @oliviertassinari 
+- [core] Disable CircleCI on l10n (#14314) @oliviertassinari 
+- [test] Fix CDN test (#14324) @oliviertassinari 
+- [core] Fix innerRef being considered injected with certain HOCs (#14333) @eps1lon 
+- [test] Update test/README.md section (#14355) @Dynogic 
+
 ## 3.9.1
 ###### *Jan 26, 2019*
 
