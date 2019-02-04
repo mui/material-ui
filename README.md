@@ -28,7 +28,7 @@
 
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
-**[Stable channel v1](https://material-ui.com/)**
+**[Stable channel v3](https://material-ui.com/)**
 ```sh
 // with npm
 npm install @material-ui/core
@@ -172,6 +172,6 @@ This project is licensed under the terms of the
 
 ## Security
 
-To report a security vulnerability, please use the 
+To report a security vulnerability, please use the
 [Tidelift security contact](https://tidelift.com/security).
 Tidelift will coordinate the fix and disclosure.

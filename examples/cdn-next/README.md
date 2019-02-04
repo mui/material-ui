@@ -1,4 +1,4 @@
-# CDN example
+# CDN-next example
 
 ## How to use
 

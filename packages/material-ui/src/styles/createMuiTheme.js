@@ -73,7 +73,9 @@ function createMuiTheme(options = {}) {
               'Instead, you need to use the $ruleName syntax:',
               JSON.stringify(
                 {
-                  [`&$${key}`]: child,
+                  root: {
+                    [`&$${key}`]: child,
+                  },
                 },
                 null,
                 2,
