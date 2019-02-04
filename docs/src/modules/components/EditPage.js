@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
+const LANGUAGES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
+const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+
 function EditPage(props) {
   const { markdownLocation, sourceCodeRootUrl, t, userLanguage } = props;
+  const crowdInLanguage = LANGUAGES[userLanguage] || userLanguage;
+  const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
 
   return (
     <Button
@@ -12,8 +17,13 @@ function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${sourceCodeRootUrl}${markdownLocation}`
-          : 'https://translate.material-ui.com/'
+          : `${CROWDIN_ROOT_URL}${crowdInLanguage}#/master${crowdInPath}`
       }
+      target="_blank"
+      rel="noopener"
+      data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
+      data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
+      data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
     >
       {t('editPage')}
     </Button>
