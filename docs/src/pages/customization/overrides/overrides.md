@@ -17,7 +17,7 @@ You might need to change the style of a component in some very specific situatio
 The first way to override the style of a component is to use **class names**.
 Every component provides a `className` property which is always applied to the root element.
 
-In this example, it's using the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order
+This example is using the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order
 component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property.
 You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM
