@@ -67,7 +67,7 @@ async function createPackageFile() {
     ...packageDataOther,
     main: './index.js',
     module: './esm/index.js',
-    types: './index.d.ts',
+    typings: './index.d.ts',
     private: false,
   };
   const targetPath = path.resolve(buildPath, './package.json');
