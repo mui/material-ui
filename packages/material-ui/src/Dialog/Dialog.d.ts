@@ -26,6 +26,7 @@ export type DialogClassKey =
   | 'paper'
   | 'paperScrollPaper'
   | 'paperScrollBody'
+  | 'paperWidthFalse'
   | 'paperWidthXs'
   | 'paperWidthSm'
   | 'paperWidthMd'

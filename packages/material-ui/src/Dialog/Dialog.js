@@ -50,6 +50,12 @@ export const styles = theme => ({
   paperScrollBody: {
     margin: '48px auto',
   },
+  /* Styles applied to the `Paper` component if `maxWidth=false`. */
+  paperWidthFalse: {
+    '&$paperScrollBody': {
+      margin: 48,
+    },
+  },
   /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 360),
@@ -98,6 +104,9 @@ export const styles = theme => ({
   /* Styles applied to the `Paper` component if `fullWidth={true}`. */
   paperFullWidth: {
     width: '100%',
+    '&$paperScrollBody': {
+      width: 'initial',
+    },
   },
   /* Styles applied to the `Paper` component if `fullScreen={true}`. */
   paperFullScreen: {
@@ -215,8 +224,8 @@ class Dialog extends React.Component {
               className={classNames(
                 classes.paper,
                 classes[`paperScroll${capitalize(scroll)}`],
+                classes[`paperWidth${capitalize(String(maxWidth))}`],
                 {
-                  [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
                   [classes.paperFullScreen]: fullScreen,
                   [classes.paperFullWidth]: fullWidth,
                 },
