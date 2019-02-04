@@ -107,6 +107,7 @@ async function addLicense(packageData) {
 async function run() {
   const packageData = await createPackageFile();
 
+  // use enhanced readme from workspace root for `@material-ui/core`
   const readmePath = packageData.name === '@material-ui/core' ? '../../README.md' : './README.md';
   await Promise.all(
     [readmePath, '../../CHANGELOG.md', '../../LICENSE'].map(file => includeFileInBuild(file)),
