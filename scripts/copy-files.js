@@ -105,12 +105,13 @@ async function addLicense(packageData) {
 }
 
 async function run() {
-  await Promise.all(
-    ['../../README.md', '../../CHANGELOG.md', '../../LICENSE'].map(file =>
-      includeFileInBuild(file),
-    ),
-  );
   const packageData = await createPackageFile();
+
+  const readmePath = packageData.name === '@material-ui/core' ? '../../README.md' : './README.md';
+  await Promise.all(
+    [readmePath, '../../CHANGELOG.md', '../../LICENSE'].map(file => includeFileInBuild(file)),
+  );
+
   await addLicense(packageData);
 
   // TypeScript
