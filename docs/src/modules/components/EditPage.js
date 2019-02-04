@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 const LANGUAGES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';

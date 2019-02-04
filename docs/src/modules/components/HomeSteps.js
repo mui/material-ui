@@ -12,6 +12,7 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   step: {
@@ -80,21 +81,18 @@ const styles = theme => ({
 });
 
 function HomeSteps(props) {
-  const classes = props.classes;
+  const { classes, t } = props;
 
   return (
     <Grid container>
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
-          <Typography variant="h6">Installation</Typography>
+          <Typography variant="h6">{t('installation')}</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {`
-            Install Material-UI's source files via npm.
-            We take care of injecting the CSS needed.
-            `}
+            {t('installDescr')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -105,7 +103,7 @@ function HomeSteps(props) {
                 `}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {'or use a CDN.'}
+            {t('cdn')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -116,7 +114,7 @@ function HomeSteps(props) {
                 `}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {'Load the default Roboto font.'}
+            {t('loadFont')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -133,17 +131,17 @@ function HomeSteps(props) {
             <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
           )}
         >
-          Read installation docs
+          {t('installButton')}
         </Button>
       </Grid>
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <BuildIcon className={classes.stepIcon} />
-          <Typography variant="h6">Usage</Typography>
+          <Typography variant="h6">{t('usage')}</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {'Material-UI components work in isolation. They are self-supporting.'}
+            {t('usageDescr')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -167,18 +165,17 @@ function HomeSteps(props) {
             <Link naked prefetch href="/getting-started/usage" {...buttonProps} />
           )}
         >
-          Explore the docs
+          {t('usageButton')}
         </Button>
       </Grid>
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
-          <Typography variant="h6">Premium Themes</Typography>
+          <Typography variant="h6">{t('themes')}</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {`Take Material-UI to the next level with premium themes from
-              our official marketplace—all built on Material-UI.`}
+            {t('themseDescr')}
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
             <NoSsr>
@@ -190,7 +187,7 @@ function HomeSteps(props) {
         <Button
           component={buttonProps => <Link naked prefetch href="/premium-themes" {...buttonProps} />}
         >
-          Browse themes
+          {t('themesButton')}
         </Button>
       </Grid>
     </Grid>
@@ -199,6 +196,11 @@ function HomeSteps(props) {
 
 HomeSteps.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(HomeSteps);
+const Page = withStyles(styles)(HomeSteps);
+
+export default connect(state => ({
+  t: state.options.t,
+}))(Page);
