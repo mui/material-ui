@@ -7,7 +7,7 @@ const workspacePath = process.cwd();
 const buildPath = path.join(workspacePath, './build');
 const srcPath = path.join(workspacePath, './src');
 
-async function copyFile(file) {
+async function includeFileInBuild(file) {
   const targetPath = path.resolve(buildPath, path.basename(file));
   await fse.copy(file, targetPath);
   console.log(`Copied ${file} to ${targetPath}`);
@@ -106,7 +106,9 @@ async function addLicense(packageData) {
 
 async function run() {
   await Promise.all(
-    ['../../README.md', '../../CHANGELOG.md', '../../LICENSE'].map(file => copyFile(file)),
+    ['../../README.md', '../../CHANGELOG.md', '../../LICENSE'].map(file =>
+      includeFileInBuild(file),
+    ),
   );
   const packageData = await createPackageFile();
   await addLicense(packageData);
