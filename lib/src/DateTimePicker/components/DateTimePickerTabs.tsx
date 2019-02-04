@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Theme } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import withTheme from '@material-ui/core/styles/withTheme';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { DateRangeIcon } from '../../_shared/icons/DateRangeIcon';
@@ -81,4 +80,4 @@ export const styles = (theme: Theme) => ({
   },
 });
 
-export default withTheme()(withStyles(styles, { name: 'MuiPickerDTTabs' })(DateTimePickerTabs));
+export default withStyles(styles, { name: 'MuiPickerDTTabs', withTheme: true })(DateTimePickerTabs);
