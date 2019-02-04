@@ -19,4 +19,5 @@ import createPalette, {
   palette.augmentColor(option, 400); // $ExpectError
   palette.augmentColor(colorOrOption);
   palette.augmentColor(colorOrOption, 400); // $ExpectError
+  const augmentedColor = palette.augmentColor(colorOrOption);
 }

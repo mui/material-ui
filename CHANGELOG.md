@@ -6,6 +6,7 @@
 Big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
+
 - ⚛️ Add a new Breadcrumb component to the lab (#14084) @simoami @mbrookes
 https://material-ui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon 

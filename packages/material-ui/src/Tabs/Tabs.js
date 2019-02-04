@@ -77,7 +77,8 @@ class Tabs extends React.Component {
   state = {
     indicatorStyle: {},
     scrollerStyle: {
-      marginBottom: 0,
+      overflow: 'hidden',
+      marginBottom: null,
     },
     showLeftScroll: false,
     showRightScroll: false,
@@ -204,6 +205,7 @@ class Tabs extends React.Component {
   handleScrollbarSizeChange = scrollbarHeight => {
     this.setState({
       scrollerStyle: {
+        overflow: null,
         marginBottom: -scrollbarHeight,
       },
     });

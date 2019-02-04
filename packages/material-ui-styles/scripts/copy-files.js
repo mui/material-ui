@@ -22,8 +22,9 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     main: './index.js',
-    module: './index.es.js',
+    module: './esm/index.js',
     private: false,
+    typings: './index.d.ts',
   };
   const buildPath = path.resolve(__dirname, '../build/package.json');
 
@@ -46,7 +47,7 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['../build/index.js', '../build/index.es.js'].map(file =>
+    ['../build/index.js', '../build/esm/index.js'].map(file =>
       prepend(path.resolve(__dirname, file), license),
     ),
   );

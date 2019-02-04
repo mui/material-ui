@@ -3,4 +3,4 @@ edge >= 14
 firefox >= 52
 chrome >= 49
 safari >= 10
-node 6.11
+node 8.0
