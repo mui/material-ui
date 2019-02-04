@@ -30,7 +30,7 @@ function createModulePackages(srcDir, outDir) {
     directoryPackages.map(directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join(buildPath, 'esm', directoryPackage, 'index.js'),
+        module: path.join('..', 'esm', directoryPackage, 'index.js'),
       };
       const packageJsonPath = path.join(outDir, directoryPackage, 'package.json');
 
