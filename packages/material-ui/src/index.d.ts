@@ -65,7 +65,8 @@ export type PropInjector<InjectedProps, AdditionalProps = {}> = <
 >(
   component: C,
 ) => React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> & AdditionalProps
+  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+    AdditionalProps
 >;
 
 /**
