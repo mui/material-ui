@@ -3,14 +3,15 @@ const path = require('path');
 const fse = require('fs-extra');
 const glob = require('glob');
 
-const workspacePath = process.cwd();
-const buildPath = path.join(workspacePath, './build');
-const srcPath = path.join(workspacePath, './src');
+const packagePath = process.cwd();
+const buildPath = path.join(packagePath, './build');
+const srcPath = path.join(packagePath, './src');
 
 async function includeFileInBuild(file) {
+  const sourcePath = path.resolve(packagePath, file);
   const targetPath = path.resolve(buildPath, path.basename(file));
-  await fse.copy(file, targetPath);
-  console.log(`Copied ${file} to ${targetPath}`);
+  await fse.copy(sourcePath, targetPath);
+  console.log(`Copied ${sourcePath} to ${targetPath}`);
 }
 
 /**
@@ -23,31 +24,32 @@ async function includeFileInBuild(file) {
  *
  * @param {string} rootDir
  */
-function createModulePackages(srcDir, outDir) {
-  const directoryPackages = glob.sync('*/index.js', { cwd: srcDir }).map(path.dirname);
+async function createModulePackages({ from, to }) {
+  const directoryPackages = glob.sync('*/index.js', { cwd: from }).map(path.dirname);
 
-  return Promise.all(
-    directoryPackages.map(directoryPackage => {
+  await Promise.all(
+    directoryPackages.map(async directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join('..', 'esm', directoryPackage, 'index.js'),
+        module: path.join('../esm', directoryPackage, 'index.js'),
       };
-      const packageJsonPath = path.join(outDir, directoryPackage, 'package.json');
+      const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
-      return Promise.all([
-        fse.exists(path.join(outDir, directoryPackage, 'index.d.ts')),
+      const [typingsExist] = await Promise.all([
+        fse.exists(path.join(to, directoryPackage, 'index.d.ts')),
         fse.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2)),
-      ]).then(([typingsExist]) => {
-        if (!typingsExist) {
-          return Promise.reject(new Error(`index.d.ts for ${directoryPackage} is missing`));
-        }
-        return Promise.resolve(packageJsonPath);
-      });
+      ]);
+
+      if (!typingsExist) {
+        throw new Error(`index.d.ts for ${directoryPackage} is missing`);
+      }
+
+      return packageJsonPath;
     }),
   );
 }
 
-async function typescriptCopy(from, to) {
+async function typescriptCopy({ from, to }) {
   if (!(await fse.exists(to))) {
     console.warn(`path ${to} does not exists`);
     return [];
@@ -59,15 +61,15 @@ async function typescriptCopy(from, to) {
 }
 
 async function createPackageFile() {
-  const packageData = await fse.readFile(path.resolve(workspacePath, './package.json'), 'utf8');
+  const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } = JSON.parse(
     packageData,
   );
   const newPackageData = {
     ...packageDataOther,
+    private: false,
     main: './index.js',
     module: './esm/index.js',
-    private: false,
     typings: './index.d.ts',
   };
   const targetPath = path.resolve(buildPath, './package.json');
@@ -96,36 +98,46 @@ async function addLicense(packageData) {
       './esm/index.js',
       './umd/material-ui.development.js',
       './umd/material-ui.production.min.js',
-    ].map(file =>
-      prepend(path.resolve(buildPath, file), license).catch(() =>
-        console.log(`Skipped license for ${file}`),
-      ),
-    ),
+    ].map(async file => {
+      try {
+        await prepend(path.resolve(buildPath, file), license);
+      } catch (err) {
+        if (err.code === 'ENOENT') {
+          console.log(`Skipped license for ${file}`);
+        } else {
+          throw err;
+        }
+      }
+    }),
   );
 }
 
 async function run() {
-  const packageData = await createPackageFile();
+  try {
+    const packageData = await createPackageFile();
 
-  // use enhanced readme from workspace root for `@material-ui/core`
-  const readmePath = packageData.name === '@material-ui/core' ? '../../README.md' : './README.md';
-  await Promise.all(
-    [readmePath, '../../CHANGELOG.md', '../../LICENSE'].map(file => includeFileInBuild(file)),
-  );
+    await Promise.all(
+      [
+        // use enhanced readme from workspace root for `@material-ui/core`
+        packageData.name === '@material-ui/core' ? '../../README.md' : './README.md',
+        '../../CHANGELOG.md',
+        '../../LICENSE',
+      ].map(file => includeFileInBuild(file)),
+    );
 
-  await addLicense(packageData);
+    await addLicense(packageData);
 
-  // TypeScript
-  const from = srcPath;
-  await Promise.all([
-    typescriptCopy(from, buildPath),
-    typescriptCopy(from, path.resolve(buildPath, './es')),
-  ]);
+    // TypeScript
+    await Promise.all([
+      typescriptCopy({ from: srcPath, to: buildPath }),
+      typescriptCopy({ from: srcPath, to: path.resolve(buildPath, './es') }),
+    ]);
 
-  await createModulePackages(srcPath, buildPath);
+    await createModulePackages({ from: srcPath, to: buildPath });
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 }
 
-run().catch(error => {
-  console.error(error);
-  process.exit(1);
-});
+run();
