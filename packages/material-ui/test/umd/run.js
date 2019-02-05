@@ -53,9 +53,9 @@ async function createApp() {
   const rootPath = path.join(__dirname, '../../../../');
   const umdPath = '/umd.js';
 
-  let index = await fse.readFile(path.join(rootPath, 'examples/cdn/index.html'), 'utf8');
+  let index = await fse.readFile(path.join(rootPath, 'examples/cdn-next/index.html'), 'utf8');
   index = index.replace(
-    'https://unpkg.com/@material-ui/core/umd/material-ui.development.js',
+    'https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js',
     umdPath,
   );
   app.get('/', (req, res) => {
@@ -81,7 +81,7 @@ async function startBrowser() {
   const browser = await puppeteer.launch({
     args: [
       '--single-process', // Solve mono-thread issue on CircleCI
-      '--disable-web-security', // Solve weird crossorigin anonymous issue on CircleCI
+      // '--disable-web-security', // Solve weird crossorigin anonymous issue on CircleCI
     ],
   });
   const page = await browser.newPage();

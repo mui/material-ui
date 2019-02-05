@@ -18,7 +18,6 @@ component and some styles:
   and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
-
 > **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
 A Modal window describes parts of a UI.
 An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
@@ -76,5 +75,5 @@ You can **speed up** the rendering by moving the modal body into its own compone
 </Modal>
 ```
 
-This way, you take advantage of React render laziness evaluation.
+This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation).
 The `TableComponent` render method will only be evaluated when opening the modal 🚀.

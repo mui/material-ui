@@ -1,6 +1,6 @@
 ---
 title: Breadcrumbs React component
-components: Breadcrumbs
+components: Breadcrumbs, Link, Typography
 ---
 
 # Breadcrumbs
