@@ -2,6 +2,7 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -106,7 +107,7 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes;
+    const { classes, t } = this.props;
 
     return (
       <AppFrame>
@@ -138,7 +139,7 @@ class HomePage extends React.Component {
                   gutterBottom
                   className={classes.headline}
                 >
-                  {"React components that implement Google's Material Design."}
+                  {t('strapline')}
                 </Typography>
                 <Button
                   component={buttonProps => (
@@ -148,7 +149,7 @@ class HomePage extends React.Component {
                   variant="outlined"
                   color="primary"
                 >
-                  {'Get Started'}
+                  {t('getStarted')}
                 </Button>
               </div>
             </div>
@@ -159,7 +160,7 @@ class HomePage extends React.Component {
               href="https://github.com/mui-org/material-ui"
               data-icon="octicon-star"
               data-show-count="true"
-              aria-label="Star mui-org/material-ui on GitHub"
+              aria-label={t('starOnGitHub')}
             >
               Star
             </a>
@@ -202,9 +203,11 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 const Page = withStyles(styles)(HomePage);
 
-// Hack for https://github.com/zeit/next.js/pull/5857
-export default () => <Page />;
+export default connect(state => ({
+  t: state.options.t,
+}))(Page);

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -29,89 +31,84 @@ const styles = {
   },
 };
 
-const themes = [
-  {
-    name: 'Dashboard',
-    description:
-      'A minimal dashboard with taskbar and mini variant draw. ' +
-      'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
-    src: '/static/images/layouts/dashboard.png',
-    href: '/getting-started/page-layout-examples/dashboard',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/dashboard',
-  },
-  {
-    name: 'Sign-in',
-    description: 'A simple sign-in page.',
-    src: '/static/images/layouts/sign-in.png',
-    href: '/getting-started/page-layout-examples/sign-in',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in',
-  },
-  {
-    name: 'Blog',
-    description:
-      'A sophisticated blog page layout. Markdown support is courtesy of markdown-to-jsx, ' +
-      'but is easily replaced.',
-    src: '/static/images/layouts/blog.png',
-    href: '/getting-started/page-layout-examples/blog',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/blog',
-  },
-  {
-    name: 'Checkout',
-    description:
-      'A step-by-step checkout page layout. ' +
-      'Adapt the number of steps to suit your needs, or make steps optional.',
-    src: '/static/images/layouts/checkout.png',
-    href: '/getting-started/page-layout-examples/checkout',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/checkout',
-  },
-  {
-    name: 'Album',
-    description: 'A responsive album / gallery page layout with a hero unit and footer.',
-    src: '/static/images/layouts/album.png',
-    href: '/getting-started/page-layout-examples/album',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/album',
-  },
-  {
-    name: 'Pricing',
-    description:
-      'Quickly build an effective pricing table for your potential customers with this page ' +
-      'layout.',
-    src: '/static/images/layouts/pricing.png',
-    href: '/getting-started/page-layout-examples/pricing',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/pricing',
-  },
-];
+function layouts(t) {
+  return [
+    {
+      title: t('dashboardTitle'),
+      description: t('dashboardDescr'),
+      src: '/static/images/layouts/dashboard.png',
+      href: '/getting-started/page-layout-examples/dashboard',
+      source:
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/dashboard',
+    },
+    {
+      title: t('signInTitle'),
+      description: t('signInDescr'),
+      src: '/static/images/layouts/sign-in.png',
+      href: '/getting-started/page-layout-examples/sign-in',
+      source:
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in',
+    },
+    {
+      title: t('blogTitle'),
+      description: t('blogDescr'),
+      src: '/static/images/layouts/blog.png',
+      href: '/getting-started/page-layout-examples/blog',
+      source:
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/blog',
+    },
+    {
+      title: t('checkoutTitle'),
+      description: t('checkoutDescr'),
+      src: '/static/images/layouts/checkout.png',
+      href: '/getting-started/page-layout-examples/checkout',
+      source:
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/checkout',
+    },
+    {
+      title: t('albumTitle'),
+      description: t('albumDescr'),
+      src: '/static/images/layouts/album.png',
+      href: '/getting-started/page-layout-examples/album',
+      source:
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/album',
+    },
+    {
+      title: t('pricingTitle'),
+      description: t('pricingDescr'),
+      src: '/static/images/layouts/pricing.png',
+      href: '/getting-started/page-layout-examples/pricing',
+      source:
+        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/pricing',
+    },
+  ];
+}
 
 function PageLayoutExamples(props) {
-  const { classes } = props;
+  const { classes, t } = props;
+
   return (
     <Grid container spacing={16}>
-      {themes.map(theme => (
-        <Grid item sm={6} md={4} className={classes.item} key={theme.name}>
+      {layouts(t).map(layout => (
+        <Grid item sm={6} md={4} className={classes.item} key={layout.title}>
           <Card className={classes.card}>
             <CardMedia
               component="a"
-              href={_rewriteUrlForNextExport(theme.href)}
+              href={_rewriteUrlForNextExport(layout.href)}
               className={classes.cardMedia}
-              image={theme.src}
-              title={theme.name}
+              image={layout.src}
+              title={layout.title}
               target="_blank"
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h5" align="left" component="h2">
-                {theme.name}
+                {layout.title}
               </Typography>
-              <Typography component="p">{theme.description}</Typography>
+              <Typography component="p">{layout.description}</Typography>
             </CardContent>
             <CardActions>
-              <Button component="a" href={theme.source} size="small" color="primary">
-                Source code
+              <Button component="a" href={layout.source} size="small" color="primary">
+                {t('sourceCode')}
               </Button>
             </CardActions>
           </Card>
@@ -123,6 +120,10 @@ function PageLayoutExamples(props) {
 
 PageLayoutExamples.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(PageLayoutExamples);
+export default compose(
+  connect(state => ({ t: state.options.t })),
+  withStyles(styles),
+)(PageLayoutExamples);
