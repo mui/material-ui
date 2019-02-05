@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
-import { PropsOf } from '@material-ui/core';
-import { number } from 'prop-types';
 
 declare const Foo: OverridableComponent<{
   props: {

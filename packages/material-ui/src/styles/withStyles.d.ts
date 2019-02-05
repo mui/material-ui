@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit, PropInjector, PropsOf } from '..';
+import { Omit, PropInjector } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';

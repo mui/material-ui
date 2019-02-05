@@ -148,13 +148,14 @@ declare module '@material-ui/styles/makeStyles' {
 }
 
 declare module '@material-ui/styles/styled' {
-  import { Omit, PropsOf } from '@material-ui/core';
+  import { Omit } from '@material-ui/core';
   import {
     CSSProperties,
     StyledComponentProps,
     Styles,
     WithStylesOptions,
   } from '@material-ui/styles/withStyles';
+  import * as React from 'react';
 
   /**
    * @internal
@@ -163,7 +164,7 @@ declare module '@material-ui/styles/styled' {
     styles: CSSProperties | ((theme: Theme) => CSSProperties),
     options?: WithStylesOptions,
   ) => React.ComponentType<
-    Omit<JSX.LibraryManagedAttributes<C, PropsOf<C>>, 'classes' | 'className'> &
+    Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, 'classes' | 'className'> &
       StyledComponentProps<'root'> & { className?: string }
   >;
 
@@ -217,7 +218,7 @@ declare module '@material-ui/styles/useTheme' {
 
 declare module '@material-ui/styles/withStyles' {
   import * as React from 'react';
-  import { Omit, PropInjector, PropsOf } from '@material-ui/core';
+  import { Omit, PropInjector } from '@material-ui/core';
   import * as CSS from 'csstype';
   import * as JSS from 'jss';
 

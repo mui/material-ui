@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropsOf, StandardProps } from '..';
+import { StandardProps } from '..';
 import ButtonBase from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';

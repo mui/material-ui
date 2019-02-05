@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PropsOf } from '..';
 import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Avatar: OverridableComponent<{
