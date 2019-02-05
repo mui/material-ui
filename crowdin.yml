@@ -1,7 +1,12 @@
 files:
-  - source: /docs/src/pages/**/*.md
+  - source: /docs/**/*
     ignore:
       - /**/%file_name%-%two_letters_code%.md
       - /docs/src/pages/getting-started/page-layout-examples/**/*
       - /docs/src/pages/premium-themes/**/*
+      - '*.js'
+      - /**/%file_name%-%two_letters_code%.json
+      - /docs/*
+      - /docs/static/
+      - /docs/types/
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
