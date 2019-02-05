@@ -2,7 +2,6 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import { Field, Form, FormSpy } from 'react-final-form';
@@ -14,6 +13,7 @@ import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   form: {

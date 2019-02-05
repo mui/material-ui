@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +16,7 @@ import { capitalize } from '@material-ui/core/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 import ColorDemo from './ColorDemo';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
+import compose from 'docs/src/modules/utils/compose';
 
 const defaults = { primary: '#2196f3', secondary: '#f50057' };
 const hues = Object.keys(colors).slice(1, 17);

@@ -1,5 +1,4 @@
 import React from 'react';
-import compose from 'recompose/compose';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
@@ -10,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import compose from 'docs/src/modules/utils/compose';
 
 let searchTimer;
 let initialized = false;

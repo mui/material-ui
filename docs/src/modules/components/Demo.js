@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import copy from 'clipboard-copy';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -20,6 +19,7 @@ import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import compose from 'docs/src/modules/utils/compose';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
