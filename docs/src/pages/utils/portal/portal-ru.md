@@ -4,11 +4,11 @@ components: Portal
 ---
 # Portal
 
-<p class="description">The portal component renders its children into a new "subtree" outside of current component hierarchy.</p>
+<p class="description">Компонент Portal отображает свои дочерние элементы в новом «поддереве» вне текущей иерархии компонентов.</p>
 
-The children of the portal component will be appended to the `container` specified.
+Дочерние элементы портала будут добавлены внутрь элемента, указанного в свойстве `container`.
 
-The component is used internally by the [`Modal`](/utils/modal/) and [`Popper`](/utils/popper/) components. On the server, the content won't be rendered. You have to wait for the client side reconciliation to see the children.
+Портал используется внутри компонентов [`Modal`](/utils/modal/) и [`Popper`](/utils/popper/). На сервере содержимое портала не отрисовывается. Чтобы дочерние элементы были отображены, необходимо дождаться реконсилиации на стороне клиента.
 
 ## Simple Portal
 

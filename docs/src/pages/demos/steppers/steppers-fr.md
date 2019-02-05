@@ -66,7 +66,7 @@ If you have been reading the [overrides documentation page](/customization/overr
 
 This component uses a customized `StepConnector` element that changes border color based on the `active` and `completed` state.
 
-⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 

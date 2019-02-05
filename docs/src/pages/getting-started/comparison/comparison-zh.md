@@ -2,7 +2,7 @@
 
 <p class="description">你在这里因为你想知道Material-UI是否可以更好为你解决一些具体的问题。 这也是我们希望在这里回答你的。</p>
 
-这是无疑我们写的文档中最具挑战性的一页，但是我们着实觉得它是重要的。 也许你遇到了需要解决的问题, 并且已经用了另一个库来解决它们。
+这是无疑我们写的文档中最具挑战性的一页，但是我们着实觉得它是重要的。 也许您已经使用了其他的库来解决一些您遇到的问题。
 
 我们希望您的帮助使这份文档保持最新状态, 因为Javascript的世界更新地很快! 如果您注意到不准确或一些看起来不太正确的内容, 请通过[opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide)了解。
 

@@ -2,42 +2,42 @@
 title: App Bar React component
 components: AppBar, Toolbar, Menu
 ---
-# App Bar
+# アプリバー
 
-<p class="description">The App Bar displays information and actions relating to the current screen.</p>
+<p class="description">App Barには、現在の画面に関する情報と操作が表示されます。</p>
 
-The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+[top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
 
-It can transform into a contextual action bar or used as a navbar.
+状況に応じて変化するアクションバーや、ナビゲーションバーとして使用することができます。
 
-## App Bar with buttons
+## ボタン付き App Bar
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## Simple App Bar
+## シンプルアプリバー
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App Bar with a primary search field
+## 基本的な検索フィールド付きApp Bar
 
-A primary searchbar.
+基本的な検索バー
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## メニュー付き App Bar
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## 検索フィールド付きApp Bar
 
-A side searchbar.
+サイド検索バー
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Dense App Bar (デスクトップのみ)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## 下部アプリバー
 
 {{"demo": "pages/demos/app-bar/BottomAppBar.js", "iframe": true}}

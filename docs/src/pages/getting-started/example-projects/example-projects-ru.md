@@ -1,6 +1,6 @@
-# Example Projects
+# Примеры проектов
 
-<p class="description">Are you looking for an example project to get started?</p>
+<p class="description">Вы ищете пример проекта, чтобы начать?</p>
 
 We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
@@ -10,18 +10,18 @@ We host some example projects which you can find in the [GitHub repository](http
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
 - E mais
 
-Create React App is an awesome project for learning React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
+Create React App - отличный проект для изучения React. Посмотрите на [доступные альтернативы](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) чтобы увидеть, какой проект лучше всего соответствует вашим потребностям.
 
-The source code for this documentation site is also included in the repository. This is a slightly more complex project. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
+Исходный код этого сайта документации также включен в репозиторий. Это немного более сложный проект. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
 
-## More advanced example projects
+## Более продвинутые примеры проектов
 
-Looking for a more advanced example project?
+Ищете более продвинутый пример проекта?
 
-If you want to start with a more complete and real world example, you could take a look at:
+Если вы хотите начать с более полного и реального примера, вы можете взглянуть на:
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), which includes: 
+- [Material Sense](https://github.com/alexanmtz/material-sense), который включает в себя: 
   - Graph using recharts
-  - React Router included with a navigation example
+  - React Router включен с примером навигации
   - A docker container with an Nginx server for production build
   - Created with [Create React App](https://facebook.github.io/create-react-app/)

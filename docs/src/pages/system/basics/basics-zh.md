@@ -20,7 +20,7 @@
 
 ### 演示
 
-在剩下的这 *开始* 部分，我们正在使用 **风格的部件** 作为参考的例子(强调的普遍性，这包)。 Alternatively, you can [use JSS](#interoperability). 该演示，也是基于 **默认** 材料-UI [主题对象](/customization/default-theme/)的。
+在剩下的这 *开始* 部分，我们正在使用 **风格的部件** 作为参考的例子(强调的普遍性，这包)。 或者，您可以[使用JSS ](#interoperability) 。 该演示，也是基于 **默认** 材料-UI [主题对象](/customization/default-theme/)的。
 
 ```jsx
 进口 { palette, spacing, typography } 从'@材料-ui/系统';

@@ -1,21 +1,21 @@
-# Basics
+# Bases
 
-<p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
+<p class="description">Les layouts Material Design encouragent à la cohérence entre les plate-formes, environnements et tailles d'écran en utilisant des éléments et des espacements uniformes.</p>
 
-## Responsive UI
+## UI responsive
 
-[Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size. We provide the following helpers to make the UI responsive:
+Les [layouts responsive](https://material.io/design/layout/responsive-layout-grid.html) Material Design s'adaptent à toutes les tailles d'écran possibles. Nous fournissons les helpers suivants pour rendre l'UI responsive :
 
-- [Grid](/layout/grid/): The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
-- [Breakpoints](/layout/breakpoints/): We provide a low-level API that enables the use of breakpoints in a wide variety of contexts.
-- [useMediaQuery](/layout/use-media-query/): This is a CSS media query hook for React.
-- [Hidden](/layout/hidden/): The hidden component can be used to change the visibility of the elements.
+- [Grid](/layout/grid/) : La grille crée une cohérence visuelle entre les layouts tout en permettant une certaine flexibilité pour une large variété de designs ;
+- [Breakpoints](/layout/breakpoints/) : Nous fournissons une API bas niveau qui permet l'utilisation de breakpoints dans de nombreux contextes ;
+- [useMediaQuery](/layout/use-media-query/) : Ceci est un hook media query CSS pour React ;
+- [Hidden](/layout/hidden/) : ce composant peut être utilisé pour modifier la visibilité des éléments.
 
 ## z-index
 
-Several Material-UI components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content. We utilize a default z-index scale in Material-UI that's been designed to properly layer drawers, modals, snackbars, tooltips, and more.
+De nombreux composants Material-UI utilisent `z-index`, la propriété CSS qui aide à contrôler le layout en fournissant un troisième axe pour organiser le contenu. Nous utilisons une échelle de z-index par défaut dans Material-UI qui a été conçue pour superposer proprement les menus, modales, snackbars, tooltips, etc...
 
-[These values](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+[Ces valeurs](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) commencent à un nombre arbitraire, élevé et suffisamment spécifique pour idéalement éviter les conflits.
 
 - mobile stepper: 1000
 - app bar: 1100
@@ -24,4 +24,4 @@ Several Material-UI components utilize `z-index`, the CSS property that helps co
 - snackbar: 1400
 - tooltip: 1500
 
-These values can always be customized. You will find them in the theme under the [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) key. We don’t encourage customization of individual values; should you change one, you likely need to change them all.
+Ces valeurs peuvent être personnalisées. Vous les trouverez dans le thème à la clé [`z-index`](/customization/default-theme/?expend-path=$.zIndex). Nous n'encourageons pas la personnalisation de valeurs individuelles ; si vous devez en modifiez une, vous devrez très probablement les modifier toutes.

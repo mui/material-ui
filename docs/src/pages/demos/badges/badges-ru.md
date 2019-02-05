@@ -1,41 +1,41 @@
 ---
-title: Badge React component
+title: React-компонент Значок
 components: Badge
 ---
-# Badges
+# Значки
 
-<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
+<p class="description">Значок генерирует маленький значок в правом верхнем углу своего дочернего(их) элемента(ов).</p>
 
-## Emblemas Simples
+## Простые значки
 
-Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
+Примеры значков, содержащих текст, с использованием основного и дополнительного цветов. Значок применяется к дочерним элементам.
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Maximum Value
+## Максимальное значение
 
-You can use the `max` property to cap the value of the badge content.
+Вы можете использовать свойство `max` чтобы ограничить значение содержимого значка.
 
 {{"demo": "pages/demos/badges/BadgeMax.js"}}
 
-## Dot Badge
+## Точечный значок
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+Свойство `dot` превращает значок в маленькую точку. Это можно использовать как уведомление о том, что что-то изменилось без счетчика.
 
 {{"demo": "pages/demos/badges/DotBadge.js"}}
 
-## Badge visibility
+## Видимость значка
 
-The visibility of badges can be controlled using the `invisible` property.
+Видимость значков можно контролировать с помощью свойства `invisible`.
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+Значок автоматически скрывается, если badgeContent равен нулю. Вы можете переопределить это с помощью свойства `showZero`.
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Customized Badge
+## Кастомизированный значок
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
+Если вы читали [страницу документации о переопределениях](/customization/overrides/) но не уверены, что можете войти в курс этого, вот один из примеров того, как вы можете изменить положение значка.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}
