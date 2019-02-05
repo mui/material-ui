@@ -40,6 +40,7 @@ const blacklistSuite = [
 
   // Documentation extension
   'docs-getting-started-page-layout-examples',
+  'docs-customization-default-theme',
 
   // Less important
   'docs-layouts',
