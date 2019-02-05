@@ -86,7 +86,7 @@ export const styles = theme => ({
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
-function ListItem(props) {
+const ListItem = React.forwardRef((props, ref) => {
   const {
     alignItems,
     button,
@@ -158,6 +158,7 @@ function ListItem(props) {
           return (
             <ContainerComponent
               className={classNames(classes.container, ContainerClassName)}
+              ref={ref}
               {...ContainerProps}
             >
               <Component {...componentProps}>{children}</Component>
@@ -166,11 +167,17 @@ function ListItem(props) {
           );
         }
 
-        return <Component {...componentProps}>{children}</Component>;
+        return (
+          <Component ref={ref} {...componentProps}>
+            {children}
+          </Component>
+        );
       }}
     </MergeListContext>
   );
-}
+});
+
+ListItem.displayName = 'ListItem';
 
 ListItem.propTypes = {
   /**
