@@ -166,7 +166,7 @@ class AppFrame extends React.Component {
   };
 
   render() {
-    const { children, classes, reduxTheme, userLanguage } = this.props;
+    const { children, classes, reduxTheme, t, userLanguage } = this.props;
     const { languageMenu } = this.state;
 
     return (
@@ -208,7 +208,7 @@ class AppFrame extends React.Component {
                   )}
                   <div className={classes.grow} />
                   <AppSearch />
-                  <Tooltip title="Change language" enterDelay={300}>
+                  <Tooltip title={t('language')} enterDelay={300}>
                     <IconButton
                       color="inherit"
                       aria-owns={languageMenu ? 'language-menu' : undefined}
@@ -236,10 +236,10 @@ class AppFrame extends React.Component {
                       </MenuItem>
                     ))}
                   </Menu>
-                  <Tooltip title="Edit docs colors" enterDelay={300}>
+                  <Tooltip title={t('editDocsColors')} enterDelay={300}>
                     <IconButton
                       color="inherit"
-                      aria-label="Edit docs colors"
+                      aria-label={t('editDocsColors')}
                       component={Link}
                       naked
                       href="/style/color/#color-tool"
@@ -249,11 +249,11 @@ class AppFrame extends React.Component {
                       <ColorsIcon />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Toggle light/dark theme" enterDelay={300}>
+                  <Tooltip title={t('toggleTheme')} enterDelay={300}>
                     <IconButton
                       color="inherit"
                       onClick={this.handleTogglePaletteType}
-                      aria-label="Toggle light/dark theme"
+                      aria-label={t('toggleTheme')}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="dark"
                     >
@@ -264,11 +264,11 @@ class AppFrame extends React.Component {
                       )}
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
+                  <Tooltip title={t('toggleRTL')} enterDelay={300}>
                     <IconButton
                       color="inherit"
                       onClick={this.handleToggleDirection}
-                      aria-label="Toggle right-to-left/left-to-right"
+                      aria-label={t('toggleRTL')}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="rtl"
                     >
@@ -279,12 +279,12 @@ class AppFrame extends React.Component {
                       )}
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="GitHub repository" enterDelay={300}>
+                  <Tooltip title={t('github')} enterDelay={300}>
                     <IconButton
                       component="a"
                       color="inherit"
                       href="https://github.com/mui-org/material-ui"
-                      aria-label="GitHub repository"
+                      aria-label={t('github')}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="github"
                     >
@@ -314,12 +314,14 @@ AppFrame.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   reduxTheme: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   userLanguage: PropTypes.string.isRequired,
 };
 
 export default compose(
   connect(state => ({
     reduxTheme: state.theme,
+    t: state.options.t,
     userLanguage: state.options.userLanguage,
   })),
   withStyles(styles),

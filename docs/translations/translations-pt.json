@@ -1,4 +1,9 @@
 {
+  "language": "Change language",
+  "editDocsColors": "Edit docs colors",
+  "toggleTheme": "Toggle light/dark theme",
+  "toggleRTL": "Toggle right-to-left/left-to-right",
+  "github": "GitHub repository",
   "strapline": "React components for faster and easier web development. Build you own design system, or start with Material Design.",
   "getStarted": "Get Started",
   "starOnGitHub":"Star mui-org/material-ui on GitHub",
