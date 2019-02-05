@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -144,6 +144,6 @@ Showcase.propTypes = {
 };
 
 export default compose(
-  connect(state => ({t: state.options.t})),
+  connect(state => ({ t: state.options.t })),
   withStyles(styles),
 )(Showcase);

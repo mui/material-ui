@@ -119,6 +119,6 @@ Ad.propTypes = {
 };
 
 export default compose(
-  connect(state => ({t: state.options.t})),
+  connect(state => ({ t: state.options.t })),
   withStyles(styles),
 )(Ad);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -122,6 +122,6 @@ PageLayoutExamples.propTypes = {
 };
 
 export default compose(
-  connect(state => ({t: state.options.t})),
+  connect(state => ({ t: state.options.t })),
   withStyles(styles),
 )(PageLayoutExamples);
