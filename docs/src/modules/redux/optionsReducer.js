@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import memoize from '@material-ui/system/memoize';
 
@@ -14,7 +16,23 @@ req.keys().forEach(filename => {
   }
 });
 
-const getT = memoize(userLanguage => key => translations[userLanguage][key]);
+const getT = memoize(userLanguage => key => {
+  const wordings = translations[userLanguage];
+
+  if (!wordings) {
+    console.error(`Missing language: ${userLanguage}.`);
+    return '…';
+  }
+
+  const translation = wordings[key];
+
+  if (!translation) {
+    console.error(`Missing translation for ${userLanguage}:${key}.`);
+    return `${userLanguage}:${key}`;
+  }
+
+  return translation;
+});
 
 const mapping = {
   [ACTION_TYPES.OPTIONS_CHANGE]: (state, action) => {

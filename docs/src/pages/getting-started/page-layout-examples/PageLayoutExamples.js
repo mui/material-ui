@@ -30,6 +30,7 @@ const styles = {
     paddingTop: '65%',
   },
 };
+
 function layouts(t) {
   return [
     {
@@ -85,6 +86,7 @@ function layouts(t) {
 
 function PageLayoutExamples(props) {
   const { classes, t } = props;
+
   return (
     <Grid container spacing={16}>
       {layouts(t).map(layout => (

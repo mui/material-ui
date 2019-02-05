@@ -38,6 +38,9 @@ const blacklistSuite = [
   'docs-demos-tooltips',
   'docs-utils-transitions',
 
+  // Documentation extension
+  'docs-getting-started-page-layout-examples',
+
   // Less important
   'docs-layouts',
   'docs-getting-started-page-layout-examples-album',

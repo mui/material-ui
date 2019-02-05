@@ -176,7 +176,7 @@ function HomeSteps(props) {
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {t('themseDescr')}
+            {t('themesDescr')}
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
             <NoSsr>
