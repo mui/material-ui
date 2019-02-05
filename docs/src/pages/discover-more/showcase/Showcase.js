@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -61,7 +62,7 @@ const byVisits = sortFactory('similarWebVisits');
 const byStars = sortFactory('stars');
 
 function Showcase(props) {
-  const { classes } = props;
+  const { classes, t } = props;
   const [sortFunction, setSortFunction] = React.useState(() => byVisits);
   const [sortFunctionName, setSortFunctionName] = React.useState('byVisits');
 
@@ -90,10 +91,10 @@ function Showcase(props) {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
-          <MenuItem value="byVisits">Traffic</MenuItem>
-          <MenuItem value="byNewest">Newest</MenuItem>
-          <MenuItem value="byStars">GitHub stars</MenuItem>
-          <MenuItem value="byTitle">Alphabetical</MenuItem>
+          <MenuItem value="byVisits">{t('traffic')}</MenuItem>
+          <MenuItem value="byNewest">{t('newest')}</MenuItem>
+          <MenuItem value="byStars">{t('stars')}</MenuItem>
+          <MenuItem value="byTitle">{t('alphabetical')}</MenuItem>
         </Select>
       </FormControl>
       {appList.sort(sortFunction).map(app => (
@@ -138,6 +139,11 @@ function Showcase(props) {
 
 Showcase.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Showcase);
+const Page = withStyles(styles)(Showcase);
+
+export default connect(state => ({
+  t: state.options.t,
+}))(Page);

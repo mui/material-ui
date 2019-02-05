@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
 import CodeFund from 'docs/src/modules/components/CodeFund';
 import Carbon from 'docs/src/modules/components/Carbon';
-import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {

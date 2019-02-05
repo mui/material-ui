@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -12,7 +13,6 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
-import { connect } from 'react-redux';
 
 const styles = theme => ({
   step: {
