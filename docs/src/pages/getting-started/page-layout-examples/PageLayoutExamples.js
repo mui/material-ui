@@ -105,7 +105,7 @@ function PageLayoutExamples(props) {
             </CardContent>
             <CardActions>
               <Button component="a" href={layout.source} size="small" color="primary">
-                Source code
+                {t('sourceCode')}
               </Button>
             </CardActions>
           </Card>
