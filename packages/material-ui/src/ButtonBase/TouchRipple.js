@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Ripple from './Ripple';
 
@@ -267,7 +267,7 @@ class TouchRipple extends React.PureComponent {
         component="span"
         enter
         exit
-        className={classNames(classes.root, className)}
+        className={clsx(classes.root, className)}
         {...other}
       >
         {this.state.ripples}

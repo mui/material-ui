@@ -1,7 +1,7 @@
 import React from 'react';
 import LZString from 'lz-string';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -321,7 +321,7 @@ class Demo extends React.Component {
           </div>
         )}
         <div
-          className={classNames(classes.demo, {
+          className={clsx(classes.demo, {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
         >

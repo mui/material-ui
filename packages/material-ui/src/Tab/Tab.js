@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
@@ -165,7 +165,7 @@ class Tab extends React.Component {
       label = (
         <span className={classes.labelContainer}>
           <span
-            className={classNames(classes.label, {
+            className={clsx(classes.label, {
               [classes.labelWrapped]: this.state.labelWrapped,
             })}
             ref={ref => {
@@ -181,7 +181,7 @@ class Tab extends React.Component {
     return (
       <ButtonBase
         focusRipple
-        className={classNames(
+        className={clsx(
           classes.root,
           classes[`textColor${capitalize(textColor)}`],
           {

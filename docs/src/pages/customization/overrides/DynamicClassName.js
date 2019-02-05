@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -47,7 +47,7 @@ class DynamicClassName extends React.Component {
           label="Blue"
         />
         <Button
-          className={classNames(classes.button, {
+          className={clsx(classes.button, {
             [classes.buttonBlue]: this.state.color === 'blue',
           })}
         >

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '../styles';
 import { capitalize } from '../utils/helpers';
 
@@ -65,7 +65,7 @@ function NotchedOutline(props) {
         [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
         ...style,
       }}
-      className={classNames(classes.root, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       <legend

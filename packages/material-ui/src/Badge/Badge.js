@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -97,7 +97,7 @@ function Badge(props) {
     invisible = true;
   }
 
-  const badgeClassName = classNames(classes.badge, {
+  const badgeClassName = clsx(classes.badge, {
     [classes[`color${capitalize(color)}`]]: color !== 'default',
     [classes.invisible]: invisible,
     [classes.dot]: variant === 'dot',
@@ -109,7 +109,7 @@ function Badge(props) {
   }
 
   return (
-    <ComponentProp className={classNames(classes.root, className)} {...other}>
+    <ComponentProp className={clsx(classes.root, className)} {...other}>
       {children}
       <span className={badgeClassName}>{displayValue}</span>
     </ComponentProp>

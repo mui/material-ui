@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
@@ -19,7 +19,7 @@ function TableHead(props) {
 
   return (
     <Tablelvl2Context.Provider value={contextValue}>
-      <Component className={classNames(classes.root, className)} {...other} />
+      <Component className={clsx(classes.root, className)} {...other} />
     </Tablelvl2Context.Provider>
   );
 }

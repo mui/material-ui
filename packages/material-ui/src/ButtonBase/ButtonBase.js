@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
@@ -257,7 +257,7 @@ class ButtonBase extends React.Component {
       ...other
     } = this.props;
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.disabled]: disabled,

@@ -516,7 +516,7 @@ const buttonStyles = {
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-// First we get the classNames with Glamor css function
+// First we get the clsx with Glamor css function
 const buttonClasses = css(buttonStyles);
 
 // We need the class names to be strings

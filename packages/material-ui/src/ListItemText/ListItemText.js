@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
@@ -64,7 +64,7 @@ function ListItemText(props) {
           primary = (
             <Typography
               variant={theme.typography.useNextVariants ? 'body1' : 'subheading'}
-              className={classNames(classes.primary, { [classes.textDense]: dense })}
+              className={clsx(classes.primary, { [classes.textDense]: dense })}
               component="span"
               {...primaryTypographyProps}
             >
@@ -77,7 +77,7 @@ function ListItemText(props) {
         if (secondary != null && secondary.type !== Typography && !disableTypography) {
           secondary = (
             <Typography
-              className={classNames(classes.secondary, {
+              className={clsx(classes.secondary, {
                 [classes.textDense]: dense,
               })}
               color="textSecondary"
@@ -90,7 +90,7 @@ function ListItemText(props) {
 
         return (
           <div
-            className={classNames(
+            className={clsx(
               classes.root,
               {
                 [classes.dense]: dense,

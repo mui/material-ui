@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { componentPropType } from '@material-ui/utils';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -64,7 +64,7 @@ function Link(props) {
 
   return (
     <Typography
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.button]: component === 'button',

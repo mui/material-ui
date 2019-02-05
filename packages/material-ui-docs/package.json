@@ -38,6 +38,7 @@
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "@material-ui/utils": "^3.0.0-alpha.2",
+    "clsx": "^1.0.2",
     "marked": "^0.6.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"

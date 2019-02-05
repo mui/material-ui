@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
@@ -120,7 +120,7 @@ class SwitchBase extends React.Component {
     return (
       <IconButton
         component="span"
-        className={classNames(
+        className={clsx(
           classes.root,
           {
             [classes.checked]: checked,

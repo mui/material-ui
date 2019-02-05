@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
@@ -45,7 +45,7 @@ function Radio(props) {
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
       classes={{
-        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+        root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
         disabled: classes.disabled,
       }}

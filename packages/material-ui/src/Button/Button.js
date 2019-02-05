@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -203,7 +203,7 @@ function Button(props) {
 
   const contained = variant === 'contained';
   const text = variant === 'text';
-  const className = classNames(
+  const className = clsx(
     classes.root,
     {
       [classes.text]: text,
@@ -228,7 +228,7 @@ function Button(props) {
       className={className}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       {...other}
     >
       <span className={classes.label}>{children}</span>

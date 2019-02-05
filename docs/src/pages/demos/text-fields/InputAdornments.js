@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -69,7 +69,7 @@ class InputAdornments extends React.Component {
         <TextField
           label="With normal TextField"
           id="simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
@@ -78,7 +78,7 @@ class InputAdornments extends React.Component {
         <TextField
           select
           label="With Select"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           value={this.state.weightRange}
           onChange={this.handleChange('weightRange')}
           InputProps={{
@@ -100,9 +100,7 @@ class InputAdornments extends React.Component {
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>
-        <FormControl
-          className={classNames(classes.margin, classes.withoutLabel, classes.textField)}
-        >
+        <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
           <Input
             id="adornment-weight"
             value={this.state.weight}
@@ -116,7 +114,7 @@ class InputAdornments extends React.Component {
 
           <FormHelperText id="weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={classNames(classes.margin, classes.textField)}>
+        <FormControl className={clsx(classes.margin, classes.textField)}>
           <InputLabel htmlFor="adornment-password">Password</InputLabel>
           <Input
             id="adornment-password"

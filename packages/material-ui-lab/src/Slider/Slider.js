@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -520,7 +520,7 @@ class Slider extends React.Component {
       [classes.rtl]: theme.direction === 'rtl',
     };
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.vertical]: vertical,
@@ -529,12 +529,12 @@ class Slider extends React.Component {
       classNameProp,
     );
 
-    const containerClasses = classNames(classes.container, {
+    const containerClasses = clsx(classes.container, {
       [classes.vertical]: vertical,
     });
 
-    const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
-    const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
+    const trackBeforeClasses = clsx(classes.track, classes.trackBefore, commonClasses);
+    const trackAfterClasses = clsx(classes.track, classes.trackAfter, commonClasses);
 
     const thumbTransformFunction = vertical ? 'translateY' : 'translateX';
     const thumbDirectionInverted = vertical || theme.direction === 'rtl';
@@ -548,13 +548,13 @@ class Slider extends React.Component {
     const ThumbIcon = thumbIcon
       ? React.cloneElement(thumbIcon, {
           ...thumbIcon.props,
-          className: classNames(thumbIcon.props.className, classes.thumbIcon),
+          className: clsx(thumbIcon.props.className, classes.thumbIcon),
         })
       : null;
     /** End Thumb Icon Logic Here */
 
-    const thumbWrapperClasses = classNames(classes.thumbWrapper, commonClasses);
-    const thumbClasses = classNames(
+    const thumbWrapperClasses = clsx(classes.thumbWrapper, commonClasses);
+    const thumbClasses = clsx(
       classes.thumb,
       {
         [classes.thumbIconWrapper]: thumbIcon,

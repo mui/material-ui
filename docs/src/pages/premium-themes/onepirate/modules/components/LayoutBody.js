@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 
@@ -92,7 +92,7 @@ function LayoutBody(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`width${capitalize(width)}`]]: !fullWidth,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { chainPropTypes, componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -114,7 +114,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
           children.length &&
           isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-        const className = classNames(
+        const className = clsx(
           classes.root,
           classes.default,
           {
@@ -135,10 +135,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
         if (button) {
           componentProps.component = componentProp || 'div';
-          componentProps.focusVisibleClassName = classNames(
-            classes.focusVisible,
-            focusVisibleClassName,
-          );
+          componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
           Component = ButtonBase;
         }
 
@@ -157,7 +154,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
 
           return (
             <ContainerComponent
-              className={classNames(classes.container, ContainerClassName)}
+              className={clsx(classes.container, ContainerClassName)}
               ref={ref}
               {...ContainerProps}
             >

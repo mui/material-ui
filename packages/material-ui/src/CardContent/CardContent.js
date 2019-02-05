@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
@@ -17,7 +17,7 @@ export const styles = {
 function CardContent(props) {
   const { classes, className, component: Component, ...other } = props;
 
-  return <Component className={classNames(classes.root, className)} {...other} />;
+  return <Component className={clsx(classes.root, className)} {...other} />;
 }
 
 CardContent.propTypes = {

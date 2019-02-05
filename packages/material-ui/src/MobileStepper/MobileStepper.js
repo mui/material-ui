@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
@@ -73,11 +73,7 @@ function MobileStepper(props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    classes[`position${capitalize(position)}`],
-    classNameProp,
-  );
+  const className = clsx(classes.root, classes[`position${capitalize(position)}`], classNameProp);
 
   return (
     <Paper square elevation={0} className={className} {...other}>
@@ -85,7 +81,7 @@ function MobileStepper(props) {
       {variant === 'dots' && (
         <div className={classes.dots}>
           {[...new Array(steps)].map((_, step) => {
-            const dotClassName = classNames(classes.dot, {
+            const dotClassName = clsx(classes.dot, {
               [classes.dotActive]: step === activeStep,
             });
             // eslint-disable-next-line react/no-array-index-key

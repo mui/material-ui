@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -185,7 +185,7 @@ function Pricing(props) {
         </Grid>
       </main>
       {/* Footer */}
-      <footer className={classNames(classes.footer, classes.layout)}>
+      <footer className={clsx(classes.footer, classes.layout)}>
         <Grid container spacing={32} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs key={footer.title}>

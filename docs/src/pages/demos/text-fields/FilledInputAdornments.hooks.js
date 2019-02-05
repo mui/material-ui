@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -58,7 +58,7 @@ function FilledInputAdornments() {
     <div className={classes.root}>
       <TextField
         id="filled-simple-start-adornment"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="filled"
         label="With filled TextField"
         InputProps={{
@@ -67,7 +67,7 @@ function FilledInputAdornments() {
       />
       <TextField
         select
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="filled"
         label="With Select"
         value={values.weightRange}
@@ -84,7 +84,7 @@ function FilledInputAdornments() {
       </TextField>
       <TextField
         id="filled-adornment-amount"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="filled"
         label="Amount"
         value={values.amount}
@@ -95,7 +95,7 @@ function FilledInputAdornments() {
       />
       <TextField
         id="filled-adornment-weight"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="filled"
         label="Weight"
         value={values.weight}
@@ -107,7 +107,7 @@ function FilledInputAdornments() {
       />
       <TextField
         id="filled-adornment-password"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="filled"
         type={values.showPassword ? 'text' : 'password'}
         label="Password"

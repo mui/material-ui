@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Button'; // So we don't have any override priority issue.
@@ -24,7 +24,7 @@ function DialogActions(props) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
-    <div className={classNames(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} {...other}>
       {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
     </div>
   );

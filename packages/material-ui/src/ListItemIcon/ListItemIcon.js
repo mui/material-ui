@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -20,7 +20,7 @@ function ListItemIcon(props) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return (
-    <div className={classNames(classes.root, classNameProp)} {...other}>
+    <div className={clsx(classes.root, classNameProp)} {...other}>
       {children}
     </div>
   );

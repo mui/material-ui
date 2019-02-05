@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -133,7 +133,7 @@ function MultipleSelect() {
           ))}
         </Select>
       </FormControl>
-      <FormControl className={classNames(classes.formControl, classes.noLabel)}>
+      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
         <Select
           multiple
           displayEmpty

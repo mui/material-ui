@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -98,7 +98,7 @@ class Breadcrumbs extends React.Component {
       <Typography
         component={Component}
         color="textSecondary"
-        className={classNames(classes.root, classNameProp)}
+        className={clsx(classes.root, classNameProp)}
         {...other}
       >
         <ol className={classes.ol}>

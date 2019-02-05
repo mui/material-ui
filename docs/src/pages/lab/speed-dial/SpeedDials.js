@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -95,7 +95,7 @@ class SpeedDials extends React.Component {
     const { classes } = this.props;
     const { direction, hidden, open } = this.state;
 
-    const speedDialClassName = classNames(
+    const speedDialClassName = clsx(
       classes.speedDial,
       classes[`direction${capitalize(direction)}`],
     );

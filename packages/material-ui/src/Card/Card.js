@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 
@@ -16,9 +16,7 @@ export const styles = {
 function Card(props) {
   const { classes, className, raised, ...other } = props;
 
-  return (
-    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 1} {...other} />
-  );
+  return <Paper className={clsx(classes.root, className)} elevation={raised ? 8 : 1} {...other} />;
 }
 
 Card.propTypes = {

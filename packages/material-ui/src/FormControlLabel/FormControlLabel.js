@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -88,7 +88,7 @@ function FormControlLabel(props) {
 
   return (
     <label
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`labelPlacement${capitalize(labelPlacement)}`]]: labelPlacement !== 'end',
@@ -101,7 +101,7 @@ function FormControlLabel(props) {
       {React.cloneElement(control, controlProps)}
       <Typography
         component="span"
-        className={classNames(classes.label, { [classes.disabled]: disabled })}
+        className={clsx(classes.label, { [classes.disabled]: disabled })}
       >
         {label}
       </Typography>

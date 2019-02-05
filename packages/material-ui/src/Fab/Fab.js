@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -138,7 +138,7 @@ function Fab(props) {
 
   return (
     <ButtonBase
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.extended]: variant === 'extended',
@@ -152,7 +152,7 @@ function Fab(props) {
       )}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       {...other}
     >
       <span className={classes.label}>{children}</span>

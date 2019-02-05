@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
@@ -63,7 +63,7 @@ function StepButton(props) {
     <ButtonBase
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
-      className={classNames(classes.root, classes[orientation], classNameProp)}
+      className={clsx(classes.root, classes[orientation], classNameProp)}
       {...other}
     >
       {child}

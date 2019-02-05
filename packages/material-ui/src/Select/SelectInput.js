@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
@@ -274,7 +274,7 @@ class SelectInput extends React.Component {
     return (
       <div className={classes.root}>
         <div
-          className={classNames(
+          className={clsx(
             classes.select,
             classes.selectMenu,
             {

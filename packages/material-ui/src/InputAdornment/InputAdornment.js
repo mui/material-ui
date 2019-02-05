@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
 import Typography from '../Typography';
@@ -67,7 +67,7 @@ function InputAdornment(props) {
   return (
     <FormControlContext.Provider value={null}>
       <Component
-        className={classNames(
+        className={clsx(
           classes.root,
           {
             [classes.filled]: variant === 'filled',

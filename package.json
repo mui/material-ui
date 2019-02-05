@@ -73,7 +73,6 @@
     "@date-io/date-fns": "^1.0.0",
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
-    "@types/classnames": "^2.2.6",
     "@types/enzyme": "^3.1.4",
     "@types/react": "^16.7.10",
     "@types/react-dom": "^16.0.9",

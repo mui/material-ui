@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
@@ -129,7 +129,7 @@ class ExpansionPanelSummary extends React.Component {
         disabled={disabled}
         component="div"
         aria-expanded={expanded}
-        className={classNames(
+        className={clsx(
           classes.root,
           {
             [classes.disabled]: disabled,
@@ -143,13 +143,11 @@ class ExpansionPanelSummary extends React.Component {
         onClick={this.handleChange}
         {...other}
       >
-        <div className={classNames(classes.content, { [classes.expanded]: expanded })}>
-          {children}
-        </div>
+        <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
         {expandIcon && (
           <IconButton
             disabled={disabled}
-            className={classNames(classes.expandIcon, {
+            className={clsx(classes.expandIcon, {
               [classes.expanded]: expanded,
             })}
             component="div"

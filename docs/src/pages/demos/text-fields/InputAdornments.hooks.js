@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
@@ -66,7 +66,7 @@ function InputAdornments() {
       <TextField
         label="With normal TextField"
         id="simple-start-adornment"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         InputProps={{
           startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
@@ -74,7 +74,7 @@ function InputAdornments() {
       <TextField
         select
         label="With Select"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         value={values.weightRange}
         onChange={handleChange('weightRange')}
         InputProps={{
@@ -96,7 +96,7 @@ function InputAdornments() {
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
         />
       </FormControl>
-      <FormControl className={classNames(classes.margin, classes.withoutLabel, classes.textField)}>
+      <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
         <Input
           id="adornment-weight"
           value={values.weight}
@@ -109,7 +109,7 @@ function InputAdornments() {
         />
         <FormHelperText id="weight-helper-text">Weight</FormHelperText>
       </FormControl>
-      <FormControl className={classNames(classes.margin, classes.textField)}>
+      <FormControl className={clsx(classes.margin, classes.textField)}>
         <InputLabel htmlFor="adornment-password">Password</InputLabel>
         <Input
           id="adornment-password"

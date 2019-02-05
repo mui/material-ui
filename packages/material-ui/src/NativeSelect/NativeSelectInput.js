@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 
 /**
@@ -24,7 +24,7 @@ function NativeSelectInput(props) {
   return (
     <div className={classes.root}>
       <select
-        className={classNames(
+        className={clsx(
           classes.select,
           {
             [classes.filled]: variant === 'filled',

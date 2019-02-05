@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
 import Slide from '../Slide';
@@ -135,7 +135,7 @@ class Drawer extends React.Component {
       <Paper
         elevation={variant === 'temporary' ? elevation : 0}
         square
-        className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
+        className={clsx(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
           [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
         })}
         {...PaperProps}
@@ -146,7 +146,7 @@ class Drawer extends React.Component {
 
     if (variant === 'permanent') {
       return (
-        <div className={classNames(classes.root, classes.docked, className)} {...other}>
+        <div className={clsx(classes.root, classes.docked, className)} {...other}>
           {drawer}
         </div>
       );
@@ -166,7 +166,7 @@ class Drawer extends React.Component {
 
     if (variant === 'persistent') {
       return (
-        <div className={classNames(classes.root, classes.docked, className)} {...other}>
+        <div className={clsx(classes.root, classes.docked, className)} {...other}>
           {slidingDrawer}
         </div>
       );
@@ -180,7 +180,7 @@ class Drawer extends React.Component {
           ...BackdropPropsProp,
           transitionDuration,
         }}
-        className={classNames(classes.root, classes.modal, className)}
+        className={clsx(classes.root, classes.modal, className)}
         open={open}
         onClose={onClose}
         {...other}

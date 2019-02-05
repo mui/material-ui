@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import hasValue from './hasValue';
 import isValueSelected from './isValueSelected';
@@ -80,7 +80,7 @@ class ToggleButtonGroup extends React.Component {
     });
 
     const groupSelected = selectedProp === 'auto' ? hasValue(value) : selectedProp;
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.selected]: groupSelected,

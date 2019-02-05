@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Typography from '../Typography';
@@ -58,7 +58,7 @@ function SnackbarContent(props) {
       role="alertdialog"
       square
       elevation={6}
-      className={classNames(classes.root, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       <div className={classes.message}>{message}</div>

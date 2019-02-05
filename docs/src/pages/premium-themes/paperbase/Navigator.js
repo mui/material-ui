@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -92,10 +92,10 @@ function Navigator(props) {
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
-        <ListItem className={classNames(classes.firebase, classes.item, classes.itemCategory)}>
+        <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
           Paperbase
         </ListItem>
-        <ListItem className={classNames(classes.item, classes.itemCategory)}>
+        <ListItem className={clsx(classes.item, classes.itemCategory)}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
@@ -123,7 +123,7 @@ function Navigator(props) {
                 button
                 dense
                 key={childId}
-                className={classNames(
+                className={clsx(
                   classes.item,
                   classes.itemActionable,
                   active && classes.itemActiveItem,

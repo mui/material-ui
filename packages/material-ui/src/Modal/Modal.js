@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -331,7 +331,7 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={classNames(classes.root, className, {
+          className={clsx(classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}

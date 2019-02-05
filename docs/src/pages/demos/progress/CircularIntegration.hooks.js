@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import green from '@material-ui/core/colors/green';
@@ -46,7 +46,7 @@ function CircularIntegration() {
   const [success, setSuccess] = React.useState(false);
   let timer = null;
 
-  const buttonClassname = classNames({
+  const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
   });
 
