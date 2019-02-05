@@ -1,19 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 
-declare const Foo: OverridableComponent<{
-  props: {
-    numberProp: number;
-    callbackProp?(b: boolean): void;
-    inconsistentProp?: string;
-  };
-  defaultComponent: React.ComponentType<{
-    defaultProp?: boolean;
-    defaultCallbackProp?(s: string): void;
-  }>;
-  classKey: 'root' | 'foo' | 'bar';
-}>;
-
 interface MyOverrideProps {
   className: string;
   myString?: string;
@@ -29,6 +16,19 @@ const MyOverrideRefForwardingComponent = React.forwardRef<HTMLLegendElement>((pr
   <div ref={ref} />
 ));
 declare const MyIncompatibleComponent1: React.ComponentType<{ inconsistentProp?: number }>;
+
+declare const Foo: OverridableComponent<{
+  props: {
+    numberProp: number;
+    callbackProp?(b: boolean): void;
+    inconsistentProp?: string;
+  };
+  defaultComponent: React.ComponentType<{
+    defaultProp?: boolean;
+    defaultCallbackProp?(s: string): void;
+  }>;
+  classKey: 'root' | 'foo' | 'bar';
+}>;
 
 // Can provide basic props; callback parameter types will be inferred.
 <Foo
