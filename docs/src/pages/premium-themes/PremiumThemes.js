@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -167,8 +168,7 @@ PremiumThemes.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const Page = withStyles(styles)(PremiumThemes);
-
-export default connect(state => ({
-  t: state.options.t,
-}))(Page);
+export default compose(
+  connect(state => ({t: state.options.t})),
+  withStyles(styles),
+)(PremiumThemes);

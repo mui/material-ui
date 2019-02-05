@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -117,8 +118,7 @@ Ad.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const Page = withStyles(styles)(Ad);
-
-export default connect(state => ({
-  t: state.options.t,
-}))(Page);
+export default compose(
+  connect(state => ({t: state.options.t})),
+  withStyles(styles),
+)(Ad);
