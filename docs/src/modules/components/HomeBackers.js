@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import mapTranslations from '../utils/mapTranslations';
@@ -38,7 +39,7 @@ HomeBackers.propTypes = {
   userLanguage: PropTypes.string.isRequired,
 };
 
-export default connect(state => ({
-  t: state.options.t,
-  userLanguage: state.options.userLanguage,
-}))(withStyles(styles)(HomeBackers));
+export default compose(
+  connect(state => ({ userLanguage: state.options.userLanguage })),
+  withStyles(styles),
+)(HomeBackers);
