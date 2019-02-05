@@ -128,10 +128,7 @@ async function run() {
     await addLicense(packageData);
 
     // TypeScript
-    await Promise.all([
-      typescriptCopy({ from: srcPath, to: buildPath }),
-      typescriptCopy({ from: srcPath, to: path.resolve(buildPath, './es') }),
-    ]);
+    await typescriptCopy({ from: srcPath, to: buildPath });
 
     await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
