@@ -90,6 +90,6 @@ DefaultTheme.propTypes = {
 };
 
 export default compose(
+  withStyles(styles, { withTheme: true }),
   connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(withTheme()(DefaultTheme));
+)(DefaultTheme);
