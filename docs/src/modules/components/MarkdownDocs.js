@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
@@ -21,6 +20,7 @@ import {
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
 import { LANGUAGES } from 'docs/src/modules/constants';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {

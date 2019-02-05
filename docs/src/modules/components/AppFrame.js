@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -29,6 +28,7 @@ import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
+import compose from 'docs/src/modules/utils/compose';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
