@@ -26,7 +26,7 @@ function LinearDeterminate() {
     return () => {
       clearInterval(timer);
     };
-  });
+  }, []);
 
   return (
     <div className={classes.root}>

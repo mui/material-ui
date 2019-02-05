@@ -57,7 +57,7 @@ const suggestions = [
   });
 
   it('should support next dependencies', () => {
-    assert.deepEqual(getDependencies(s1, 'next'), {
+    assert.deepEqual(getDependencies(s1, { reactVersion: 'next' }), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',
@@ -89,7 +89,7 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pic
   });
 
   it('can collect required @types packages', () => {
-    assert.deepEqual(getDependencies(s1, 'TS'), {
+    assert.deepEqual(getDependencies(s1, { codeLanguage: 'TS' }), {
       '@foo-bar/bip': 'latest',
       '@material-ui/core': 'latest',
       'prop-types': 'latest',

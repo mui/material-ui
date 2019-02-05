@@ -59,6 +59,7 @@ This property accepts the following keys:
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 | <span class="prop-name">paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
 | <span class="prop-name">paperScrollBody</span> | Styles applied to the `Paper` component if `scroll="body"`.
+| <span class="prop-name">paperWidthFalse</span> | Styles applied to the `Paper` component if `maxWidth=false`.
 | <span class="prop-name">paperWidthXs</span> | Styles applied to the `Paper` component if `maxWidth="xs"`.
 | <span class="prop-name">paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
 | <span class="prop-name">paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.

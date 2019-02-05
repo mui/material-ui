@@ -18,7 +18,7 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |   | The icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |   | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 

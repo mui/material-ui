@@ -2,7 +2,7 @@ import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import Slider from './Slider';
+import Slider, { defaultValueReducer } from './Slider';
 
 function touchList(touchArray) {
   touchArray.item = idx => touchArray[idx];
@@ -219,6 +219,91 @@ describe('<Slider />', () => {
 
     it('should signal that it is disabled', () => {
       assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
+    });
+  });
+
+  describe('prop: slider', () => {
+    let wrapper;
+
+    const moveLeftEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowLeft',
+    });
+    const moveRightEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowRight',
+    });
+
+    before(() => {
+      function valueReducer(rawValue, props, event) {
+        const { disabled, max, min, step } = props;
+
+        function roundToStep(number) {
+          return Math.round(number / step) * step;
+        }
+
+        if (!disabled && step) {
+          if (rawValue > min && rawValue < max) {
+            if (rawValue === max - step) {
+              // If moving the Slider using arrow keys and value is formerly an maximum edge value
+              return roundToStep(rawValue + step / 2);
+            }
+            if (rawValue === min + step) {
+              // Same for minimum edge value
+              return roundToStep(rawValue - step / 2);
+            }
+            return roundToStep(rawValue);
+          }
+          return rawValue;
+        }
+
+        return defaultValueReducer(rawValue, props, event);
+      }
+
+      const onChange = (_, value) => {
+        wrapper.setProps({ value });
+      };
+      wrapper = mount(
+        <Slider
+          value={90}
+          valueReducer={valueReducer}
+          min={6}
+          max={108}
+          step={10}
+          onChange={onChange}
+        />,
+      );
+    });
+
+    it('should reach right edge value', () => {
+      wrapper.setProps({ value: 90 });
+      const button = wrapper.find('button');
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 108);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 90);
+    });
+
+    it('should reach left edge value', () => {
+      wrapper.setProps({ value: 20 });
+      const button = wrapper.find('button');
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 6);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 20);
     });
   });
 });

@@ -1,12 +1,14 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
 import FormHelperText from '../FormHelperText';
 import FormControl from '../FormControl';
 import TextField from './TextField';
 import Select from '../Select';
+
+const TextFieldNaked = unwrap(TextField);
 
 describe('<TextField />', () => {
   let shallow;
@@ -25,7 +27,7 @@ describe('<TextField />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<TextField />);
+      wrapper = shallow(<TextFieldNaked classes={{}} />);
     });
 
     describe('structure', () => {
@@ -46,12 +48,12 @@ describe('<TextField />', () => {
       });
 
       it('should forward the multiline prop to Input', () => {
-        wrapper = shallow(<TextField multiline />);
+        wrapper = shallow(<TextFieldNaked multiline classes={{}} />);
         assert.strictEqual(wrapper.childAt(0).props().multiline, true);
       });
 
       it('should forward the fullWidth prop to Input', () => {
-        wrapper = shallow(<TextField fullWidth />);
+        wrapper = shallow(<TextFieldNaked fullWidth classes={{}} />);
         assert.strictEqual(wrapper.childAt(0).props().fullWidth, true);
       });
     });
@@ -103,7 +105,7 @@ describe('<TextField />', () => {
 
     describe('with an outline', () => {
       it('should set outline props', () => {
-        wrapper = shallow(<TextField variant="outlined" />);
+        wrapper = shallow(<TextFieldNaked variant="outlined" classes={{}} />);
         assert.strictEqual(wrapper.props().variant, 'outlined');
         assert.strictEqual(
           wrapper.find('WithStyles(OutlinedInput)').props().labelWidth,
@@ -112,7 +114,9 @@ describe('<TextField />', () => {
       });
 
       it('should set shrink prop on outline from label', () => {
-        wrapper = shallow(<TextField variant="outlined" InputLabelProps={{ shrink: true }} />);
+        wrapper = shallow(
+          <TextFieldNaked variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
+        );
         assert.strictEqual(wrapper.find('WithStyles(OutlinedInput)').props().notched, true);
       });
     });
@@ -137,13 +141,13 @@ describe('<TextField />', () => {
       const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
 
       const wrapper = shallow(
-        <TextField select SelectProps={{ native: true }}>
+        <TextFieldNaked select SelectProps={{ native: true }} classes={{}}>
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
-        </TextField>,
+        </TextFieldNaked>,
       );
       assert.strictEqual(wrapper.childAt(0).type(), Select);
       assert.strictEqual(wrapper.childAt(0).props().input.type, Input);

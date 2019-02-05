@@ -1,5 +1,15 @@
-# Current
+# For Google
+/drafts / 301
+/inbox / 301
+/trash / 301
+/spam / 301
 /page-layout-examples/* /getting-started/page-layout-examples/:splat 301
+/guides/csp/ /css-in-js/advanced/#what-is-csp-and-why-is-it-useful 301
+/utils/modals/ /utils/modal/ 301
+/utils/modals /utils/modal/ 301
+/utils/popovers/ /utils/popover/ 301
+/utils/popovers /utils/popover/ 301
+/guides/migration-v0.x /guides/migration-v0x/ 301
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0

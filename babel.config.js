@@ -21,7 +21,7 @@ if (process.env.BABEL_ENV === 'es') {
     [
       '@babel/preset-env',
       {
-        modules: ['modules', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
+        modules: ['esm', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],
   ];
@@ -36,6 +36,18 @@ const defaultAlias = {
   '@material-ui/system': './packages/material-ui-system/src',
 };
 
+const productionPlugins = [
+  'transform-react-constant-elements',
+  'transform-dev-warning',
+  ['react-remove-properties', { properties: ['data-mui-test'] }],
+  [
+    'transform-react-remove-prop-types',
+    {
+      mode: 'unsafe-wrap',
+    },
+  ],
+];
+
 module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
@@ -46,17 +58,8 @@ module.exports = {
   ],
   ignore: [/@babel[\\|/]runtime/],
   env: {
-    test: {
-      sourceMaps: 'both',
-      plugins: [
-        [
-          'babel-plugin-module-resolver',
-          {
-            root: ['./'],
-            alias: defaultAlias,
-          },
-        ],
-      ],
+    cjs: {
+      plugins: productionPlugins,
     },
     coverage: {
       plugins: [
@@ -124,47 +127,26 @@ module.exports = {
         ['transform-react-remove-prop-types', { mode: 'remove' }],
       ],
     },
+    esm: {
+      plugins: productionPlugins,
+    },
     es: {
-      plugins: [
-        'transform-react-constant-elements',
-        'transform-dev-warning',
-        ['react-remove-properties', { properties: ['data-mui-test'] }],
-        [
-          'transform-react-remove-prop-types',
-          {
-            mode: 'unsafe-wrap',
-          },
-        ],
-      ],
-      // It's most likely a babel bug.
-      // We are using this ignore option in the CLI command but that has no effect.
-      ignore: ['**/*.test.js'],
+      plugins: productionPlugins,
     },
     production: {
-      plugins: [
-        'transform-react-constant-elements',
-        'transform-dev-warning',
-        ['react-remove-properties', { properties: ['data-mui-test'] }],
-        [
-          'transform-react-remove-prop-types',
-          {
-            mode: 'unsafe-wrap',
-          },
-        ],
-      ],
-      // It's most likely a babel bug.
-      // We are using this ignore option in the CLI command but that has no effect.
-      ignore: ['**/*.test.js'],
+      plugins: productionPlugins,
     },
     'production-umd': {
+      plugins: productionPlugins,
+    },
+    test: {
+      sourceMaps: 'both',
       plugins: [
-        'transform-react-constant-elements',
-        'transform-dev-warning',
-        ['react-remove-properties', { properties: ['data-mui-test'] }],
         [
-          'transform-react-remove-prop-types',
+          'babel-plugin-module-resolver',
           {
-            mode: 'unsafe-wrap',
+            root: ['./'],
+            alias: defaultAlias,
           },
         ],
       ],

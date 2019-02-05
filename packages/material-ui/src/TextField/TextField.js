@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -11,11 +12,17 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+import withStyles from '../styles/withStyles';
 
 const variantComponent = {
   standard: Input,
   filled: FilledInput,
   outlined: OutlinedInput,
+};
+
+const styles = {
+  /* Styles applied to the root element. */
+  root: {},
 };
 
 /**
@@ -64,7 +71,8 @@ class TextField extends React.Component {
       autoComplete,
       autoFocus,
       children,
-      className,
+      classes,
+      className: classNameProp,
       defaultValue,
       error,
       FormHelperTextProps,
@@ -137,7 +145,7 @@ class TextField extends React.Component {
 
     return (
       <FormControl
-        className={className}
+        className={classNames(classes.root, classNameProp)}
         error={error}
         fullWidth={fullWidth}
         required={required}
@@ -187,6 +195,11 @@ TextField.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -317,4 +330,4 @@ TextField.defaultProps = {
   variant: 'standard',
 };
 
-export default TextField;
+export default withStyles(styles, { name: 'MuiTextField' })(TextField);

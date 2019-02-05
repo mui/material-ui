@@ -133,6 +133,15 @@ export function recomposeColor(color) {
  * @returns {number} A contrast ratio value in the range 0 - 21.
  */
 export function getContrastRatio(foreground, background) {
+  warning(
+    foreground,
+    `Material-UI: missing foreground argument in getContrastRatio(${foreground}, ${background}).`,
+  );
+  warning(
+    background,
+    `Material-UI: missing background argument in getContrastRatio(${foreground}, ${background}).`,
+  );
+
   const lumA = getLuminance(foreground);
   const lumB = getLuminance(background);
   return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
@@ -148,6 +157,8 @@ export function getContrastRatio(foreground, background) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 export function getLuminance(color) {
+  warning(color, `Material-UI: missing color argument in getLuminance(${color}).`);
+
   const decomposedColor = decomposeColor(color);
 
   if (decomposedColor.type.indexOf('rgb') !== -1) {

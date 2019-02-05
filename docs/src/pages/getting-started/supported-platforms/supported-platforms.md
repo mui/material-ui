@@ -19,7 +19,7 @@ You can expect Material-UI's components to render without major issues.
 ## Server
 
 Because Material-UI supports server-side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node).
-We try to support the [last active LTS version](https://github.com/nodejs/Release#lts-schedule1). Right now, we support **node v6.x** and newer versions.
+We also try to support the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1). Right now, we support **node v8.x** and newer versions.
 
 ### CSS prefixing
 

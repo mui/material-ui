@@ -62,7 +62,7 @@ There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=3
 
 ## Changer la transition
 
-Use a different transition altogether.
+Use a different transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 

@@ -10,7 +10,7 @@ import acceptLanguage from 'accept-language';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
+import { ACTION_TYPES, LANGUAGES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -44,6 +44,8 @@ class SideEffectsRaw extends React.Component {
       (userLanguage && options.userLanguage !== userLanguage) ||
       (codeVariant && options.codeVariant !== codeVariant)
     ) {
+      window.ga('set', 'dimension1', codeVariant);
+      window.ga('set', 'dimension2', userLanguage);
       this.props.dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
         payload: {
@@ -51,6 +53,9 @@ class SideEffectsRaw extends React.Component {
           codeVariant,
         },
       });
+    } else {
+      window.ga('set', 'dimension1', CODE_VARIANTS.JS);
+      window.ga('set', 'dimension2', 'en');
     }
   }
 

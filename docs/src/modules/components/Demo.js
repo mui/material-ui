@@ -48,21 +48,17 @@ const styles = theme => ({
       marginRight: 0,
     },
   },
-  demo: theme.mixins.gutters({
+  demo: {
     borderRadius: theme.shape.borderRadius,
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    padding: 20,
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing.unit * 3,
-      paddingRight: theme.spacing.unit * 3,
-      paddingTop: theme.spacing.unit * 6,
-      paddingBottom: theme.spacing.unit * 3,
+      padding: theme.spacing.unit * 3,
     },
-  }),
+  },
   demoHiddenHeader: {
     paddingTop: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
@@ -175,6 +171,7 @@ class Demo extends React.Component {
   handleCodeLanguageClick = (event, codeVariant) => {
     if (this.props.codeVariant !== codeVariant) {
       document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
+      window.ga('set', 'dimension1', codeVariant);
 
       this.props.dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,

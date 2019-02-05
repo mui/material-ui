@@ -89,6 +89,7 @@ import { TablePaginationClassKey } from '../TablePagination';
 import { TableRowClassKey } from '../TableRow';
 import { TableSortLabelClassKey } from '../TableSortLabel';
 import { TabsClassKey } from '../Tabs';
+import { TextFieldClassKey } from '../TextField';
 import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
 import { TypographyClassKey } from '../Typography';
@@ -186,6 +187,7 @@ export interface ComponentNameToClassKey {
   MuiTableRow: TableRowClassKey;
   MuiTableSortLabel: TableSortLabelClassKey;
   MuiTabs: TabsClassKey;
+  MuiTextField: TextFieldClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
   MuiTouchRipple: TouchRippleClassKey;

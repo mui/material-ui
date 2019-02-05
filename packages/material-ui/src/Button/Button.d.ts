@@ -10,10 +10,10 @@ declare const Button: ExtendButtonBase<{
     disableFocusRipple?: boolean;
     disableRipple?: boolean;
     fullWidth?: boolean;
-    mini?: boolean;
+    href?: string;
     size?: 'small' | 'medium' | 'large';
     type?: string;
-    variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
+    variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: 'button';
   classKey: ButtonClassKey;
@@ -27,24 +27,15 @@ export type ButtonClassKey =
   | 'text'
   | 'textPrimary'
   | 'textSecondary'
-  | 'flat'
-  | 'flatPrimary'
-  | 'flatSecondary'
   | 'outlined'
   | 'outlinedPrimary'
   | 'outlinedSecondary'
-  | 'colorInherit'
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
-  | 'raised'
-  | 'raisedPrimary'
-  | 'raisedSecondary'
   | 'focusVisible'
   | 'disabled'
-  | 'fab'
-  | 'extendedFab'
-  | 'mini'
+  | 'colorInherit'
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';

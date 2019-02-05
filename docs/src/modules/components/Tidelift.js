@@ -38,6 +38,9 @@ function Tidelift(props) {
 
   return (
     <Link
+      data-ga-event-category="sponsors"
+      data-ga-event-action="logo"
+      data-ga-event-label="tidelift"
       className={classNames(classes.root, 'mui-fixed')}
       href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage"
       target="_blank"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { FormControlClassKey, FormControlProps } from '../FormControl';
+import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputProps as StandardInputProps } from '../Input';
 import { FilledInputProps } from '../FilledInput';
@@ -57,7 +57,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = FormControlClassKey;
+export type TextFieldClassKey = 'root';
 
 declare const TextField: React.ComponentType<TextFieldProps>;
 

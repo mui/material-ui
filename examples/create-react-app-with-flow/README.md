@@ -10,7 +10,7 @@ The community is maintaining [the definitions under this project](https://github
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/create-react-app-with-flow
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2 material-ui-next/examples/create-react-app-with-flow
 cd create-react-app-with-flow
 ```
 
