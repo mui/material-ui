@@ -117,17 +117,20 @@ declare const MyIncompatibleComponent1: React.ComponentType<{ inconsistentProp?:
   numberProp={3}
 />;
 
-<Foo<typeof MyOverrideComponent>
-  component={MyOverrideComponent}
-  // $ExpectError
-  myString={4} // should be a string
-  numberProp={3}
-/>;
-
 <Foo
   component={MyOverrideComponent}
   // $ExpectError
   myCallback={n => console.log(n)} // n has type any
+  numberProp={3}
+/>;
+
+<Foo<typeof MyOverrideComponent>
+  component={MyOverrideComponent}
+  // $ExpectError
+  myString={4} // should be a string
+  myCallback={n => {
+    n; // $ExpectType number
+  }}
   numberProp={3}
 />;
 
