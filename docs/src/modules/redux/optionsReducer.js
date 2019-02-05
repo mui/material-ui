@@ -1,20 +1,11 @@
 /* eslint-disable no-console */
 
-import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import memoize from '@material-ui/system/memoize';
+import mapTranslations from 'docs/src/modules/utils/mapTranslations';
 
 const req = require.context('docs/translations', false, /translations.*\.json$/);
-
-const translations = {};
-req.keys().forEach(filename => {
-  const match = filename.match(/-([a-z]{2})\.json$/);
-
-  if (match && LANGUAGES.indexOf(match[1]) !== -1) {
-    translations[match[1]] = req(filename);
-  } else {
-    translations.en = req(filename);
-  }
-});
+const translations = mapTranslations(req, 'json');
 
 const getT = memoize(userLanguage => key => {
   const wordings = translations[userLanguage];

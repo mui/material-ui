@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
+import mapTranslations from '../utils/mapTranslations';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import backers from './backers.md';
+
+const req = require.context('docs/src/modules/components', false, /\.md$/);
+const backers = mapTranslations(req, 'md');
 
 const styles = theme => ({
   root: {
@@ -18,12 +22,12 @@ const styles = theme => ({
 });
 
 function HomeBackers(props) {
-  const { classes } = props;
+  const { classes, userLanguage } = props;
 
   return (
     <div className={classes.root}>
       <NoSsr>
-        <MarkdownElement className={classes.markdownElement} text={backers} />
+        <MarkdownElement className={classes.markdownElement} text={backers[userLanguage]} />
       </NoSsr>
     </div>
   );
@@ -31,6 +35,10 @@ function HomeBackers(props) {
 
 HomeBackers.propTypes = {
   classes: PropTypes.object.isRequired,
+  userLanguage: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(HomeBackers);
+export default connect(state => ({
+  t: state.options.t,
+  userLanguage: state.options.userLanguage,
+}))(withStyles(styles)(HomeBackers));
