@@ -61,5 +61,6 @@
   "albumTitle": "Album",
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
   "pricingTitle": "Pricing",
-  "pricingDescr": "Quickly build an effective pricing table for your potential customers with this page layout."
+  "pricingDescr": "Quickly build an effective pricing table for your potential customers with this page layout.",
+  "expandAll": "Expand all"
 }
