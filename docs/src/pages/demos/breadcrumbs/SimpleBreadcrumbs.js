@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const styles = theme => ({
   root: {
@@ -22,13 +21,12 @@ function handleClick(event) {
   alert('You clicked a breadcrumb.'); // eslint-disable-line no-alert
 }
 
-function CustomSeparator(props) {
+function SimpleBreadcrumbs(props) {
   const { classes } = props;
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Breadcrumbs separator="›" arial-label="Breadcrumb">
+        <Breadcrumbs arial-label="Breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
@@ -40,34 +38,29 @@ function CustomSeparator(props) {
       </Paper>
       <br />
       <Paper className={classes.paper}>
-        <Breadcrumbs separator="-" arial-label="Breadcrumb">
+        <Breadcrumbs arial-label="Breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
           <Link color="inherit" href="/lab/about/" onClick={handleClick}>
             Lab
           </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
-        </Breadcrumbs>
-      </Paper>
-      <br />
-      <Paper className={classes.paper}>
-        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} arial-label="Breadcrumb">
-          <Link color="inherit" href="/" onClick={handleClick}>
-            Material-UI
+          <Link
+            color="textPrimary"
+            href="/lab/about/breadcrumbs"
+            onClick={handleClick}
+            aria-current="page"
+          >
+            Breadcrumb
           </Link>
-          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-            Lab
-          </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
         </Breadcrumbs>
       </Paper>
     </div>
   );
 }
 
-CustomSeparator.propTypes = {
+SimpleBreadcrumbs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CustomSeparator);
+export default withStyles(styles)(SimpleBreadcrumbs);

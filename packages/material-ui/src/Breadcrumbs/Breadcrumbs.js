@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 import { componentPropType } from '@material-ui/utils';
+import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
-import Typography from '@material-ui/core/Typography';
 
 const styles = {
   /* Styles applied to the root element. */

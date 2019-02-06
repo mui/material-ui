@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import withStyles from '../styles/withStyles';
+import { emphasize } from '../styles/colorManipulator';
+import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 
 const styles = theme => ({
   root: {
