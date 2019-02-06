@@ -1,16 +1,16 @@
 ---
-title: Hidden React component
+title: React-компонент Скрыть
 components: Hidden
 ---
-# Hidden
+# Скрыть
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
+<p class="description">Быстро и оперативно переключайте значения видимости компонентов и многое другое с помощью наших утилит для скрытия.</p>
 
-All elements are visible unless **they are explicitly hidden**. To ease integration with our [responsive breakpoints](/layout/basics/), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/layout/grid/) component.
+Все элементы видны, если **они явно не скрыты**. Чтобы упростить интеграцию с нашими [ точками остановки](/layout/basics/), этот компонент можно использовать для скрытия любого контента, или использовать его вместе с нашим компонентом [`Grid`](/layout/grid/).
 
-## How it works
+## Как это работает
 
-Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`. Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior. The ranges are inclusive of the specified breakpoints.
+Скрытие работает с диапазоном точек остановки, например, `xsUp` или `mdDown`, или использует одну или несколько точек остановки, например, `only='sm'` или `only={['md', 'xl']}`. Диапазоны и отдельные точки остановки могут использоваться одновременно для достижения индивидуального поведения. Диапазоны включают указанные точки остановки.
 
 ```js
 innerWidth  |xs      sm       md       lg       xl
@@ -22,41 +22,41 @@ mdDown      |                     hide | show
 
 ```
 
-## Implementations
+## Реализации
 
 ### js
 
-By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/layout/breakpoints/#withwidth-) higher-order component that watches screen size. This has the benefit of not rendering any content at all unless the breakpoint is met.
+По умолчанию используется реализация `js`, которая быстро скрывает контент, используя компонент высшего порядка [`withWidth()`](/layout/breakpoints/#withwidth-), который следит за размером экрана. Преимущество этого заключается в том, что контент вообще не отображается, если не достигнута точка остановки.
 
 ### css
 
-If you are using server-side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
+Если вы используете рендеринг на стороне сервера, вы можете установить `implementation="css"`, если вы не хотите, чтобы браузер повторно выводил ваш контент на экран.
 
-## Breakpoint up
+## Точка остановки Вверх (up)
 
-Using any breakpoint `up` property, the given *children* will be hidden *at or above* the breakpoint.
+Используя любое свойство точки остановки от `up`, данные *дочерних элементов* будут скрыты *на уровне или выше* точки остановки.
 
 {{"demo": "pages/layout/hidden/BreakpointUp.js"}}
 
-## Breakpoint down
+## Точка остановки Вниз
 
-Using any breakpoint `down` property, the given *children* will be hidden *at or below* the breakpoint.
+Используя любое свойство точки остановки от `down`, данные *дочерних элементов* будут скрыты *на уровне или ниже* точки остановки.
 
 {{"demo": "pages/layout/hidden/BreakpointDown.js"}}
 
-## Breakpoint only
+## Точка остановки Только (only)
 
-Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
+Используя свойство точки остановки `only`, данные *дочерних элементов* будут скрыты *на* указанной точке (точках) остановки.
 
-The `only` property can be used in two ways:
+Свойство `only` можно использовать двумя способами:
 
-- list a single breakpoint
-- list an array of breakpoints
+- указать одну точку остановки
+- перечислить массив точек остановки
 
 {{"demo": "pages/layout/hidden/BreakpointOnly.js"}}
 
-## Integration with Grid
+## Интеграция с Grid (Сеткой)
 
-It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
+Весьма обычным является изменение `Grid` в разных точках остановки, и во многих случаях вы хотите скрыть некоторые из этих элементов.
 
 {{"demo": "pages/layout/hidden/GridIntegration.js"}}

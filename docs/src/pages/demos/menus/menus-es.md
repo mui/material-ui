@@ -36,7 +36,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ A pesar de que la especificación de material design anima a usar temas, este ejemplo no es común.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
@@ -56,7 +56,7 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 ## Limitations
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout. You can use the `Typography` component to workaround this issue:
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
@@ -66,7 +66,7 @@ Use a different transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
-## Complementary projects
+## Proyectos relacionados
 
 For more advanced use cases you might be able to take advantage of:
 

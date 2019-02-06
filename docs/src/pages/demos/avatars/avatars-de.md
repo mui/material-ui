@@ -1,25 +1,25 @@
 ---
-title: Avatar React component
+title: Avatar React-Komponente
 components: Avatar
 ---
-# Avatars
+# Avatare
 
-<p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
+<p class="description">Avatare sind im gesamten Material Design zu finden und werden in allen Bereichen von Tabellen bis hin zu Dialogmenüs verwendet.</p>
 
-## Image avatars
+## Bild Avatare
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` into the component.
+Bild Avatare können erstellt werden, indem Standard `img` props `src` oder `srcSet` in die Komponente übergeben werden.
 
 {{"demo": "pages/demos/avatars/ImageAvatars.js"}}
 
-## Letter avatars
+## Buchstaben Avatare
 
-Avatars containing simple characters can be created by passing your string as `children`.
+Avatare mit einfachen Zeichen können erstellt werden, indem man einen String als `children` übergibt.
 
 {{"demo": "pages/demos/avatars/LetterAvatars.js"}}
 
-## Icon avatars
+## Icon Avatare
 
-Icon avatars are created by passing an icon as `children`.
+Icon Avatare werden erstellt, indem man ein Icon als `children` übergibt.
 
 {{"demo": "pages/demos/avatars/IconAvatars.js"}}

@@ -43,7 +43,7 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 {{"demo": "pages/style/typography/DeprecatedTypes.js"}}
 
-## Theme
+## Thème
 
 In some situations you might not be able to use the `Typography` component. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
 

@@ -2,17 +2,17 @@
 title: List React component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Lists
+# Списки
 
-<p class="description">Lists are continuous, vertical indexes of text or images.</p>
+<p class="description">Списки представляют собой непрерывные вертикальные массивы данных из текста или изображений.</p>
 
-[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+[Списки](https://material.io/design/components/lists.html) представляют собой непрерывную группу из текста или изображений. Они состоят из элементов, содержащих основные и дополнительные действия, которые представлены значками и текстом.
 
-## Simple List
+## Простой список
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-The last item of the previous demo shows how you can render a link:
+Последний элемент предыдущего примера показывает, как вы можете отрисовать ссылку:
 
 ```jsx
 function ListItemLink(props) {
@@ -26,60 +26,60 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+Вы можете [посмотреть демо с React Router](/guides/composition/#react-router).
 
-## Nested List
+## Вложенный список
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Folder List
+## Список папок
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
-## Interactive
+## Интерактивность
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+Ниже приведена интерактивная демонстрация, которая позволяет вам увидеть результаты различных настроек:
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 
-## Selected ListItem
+## Выбранный ListItem
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## Выравнивание элементов списка
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+Вы должны изменить выравнивание элементов списка при отображении 3 или более элементов. Для этого установите свойство `alignItems = "flex-start"`
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
-## List Controls
+## Элементы управления списком
 
 ### Checkbox
 
-A checkbox can either be a primary action or a secondary action.
+Checkbox может быть основным или второстепенным действием.
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+В этом примере checkbox является основным действием и индикатором состояния для элемента списка. Кнопка комментария является второстепенным действием.
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-The checkbox is the secondary action for the list item and a separate target.
+Тут checkbox является второстепенным действием для элемента списка.
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
-### Switch
+### Switch (переключатель)
 
-The switch is the secondary action and a separate target.
+Switch является второстепенным действием.
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Pinned Subheader List
+## Закрепленный подзаголовок
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+При прокрутке подзаголовки остаются закрепленными в верхней части экрана, пока следующий подзаголовок не оттеснит предыдущий.
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+Эта функция опирается на фиксированное позиционирование CSS. К сожалению эта функциональность, [не реализована](https://caniuse.com/#search=sticky) всеми браузерами, которые мы поддерживаем. Мы по умолчанию выключаем закрепление - `disableSticky` когда оно не поддерживается.
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Inset List
+## Вставленный список
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

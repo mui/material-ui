@@ -1,8 +1,8 @@
 # TypeScript
 
-<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
+<p class="description">Vous pouvez ajouter du typage statique à JavaScript pour améliorer la productivité des développeurs et la qualité du code grâce à TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required.
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. Une version minimale de TypeScript 2.8 est requise.
 
 Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
@@ -294,7 +294,7 @@ Any element or component that you pass into `component` will have this problem i
 
 There is an ongoing effort to fix this by making component props generic.
 
-### Avoiding properties collision
+### Eviter les collisions de propriétés
 
 The previous strategy suffers from a little limitation: properties collision. The component providing the `component` property might not forward all its properties to the root element. To workaround this issue, you can create a custom component:
 

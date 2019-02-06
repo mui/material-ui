@@ -49,7 +49,7 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 For more advanced use cases you might be able to take advantage of:
 
-### PopupState helper
+### Assistant PopupState
 
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 

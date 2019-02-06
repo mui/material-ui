@@ -1,15 +1,15 @@
-# Minimizing Bundle Size
+# Réduire la taille du bundle
 
-<p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
+<p class="description">En savoir plus sur les outils que vous pouvez utiliser pour réduire la taille du bundle.</p>
 
-## Bundle size matters
+## La taille du bundle compte
 
-The bundle size of Material-UI is taken very seriously, so [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression. The size of the bundle is checked at each commit:
+The bundle size of Material-UI is taken very seriously, so [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression. La taille du bundle est vérifiée à chaque commit:
 
 - When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30).
 - When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24). (styling, theming, etc.: ~18 kB gzipped)
 
-## How to reduce the bundle size?
+## Comment réduire la taille du bundle?
 
 For convenience, Material-UI exposes its full API on the top-level `material-ui` import. Using this is fine if you have tree shaking working, however, in the case where tree shaking is not supported or configured in your build chain, **this causes the entire library and its dependencies to be included** in your client bundle.
 

@@ -20,7 +20,7 @@ components: Divider
 
 ## 内嵌分隔线
 
-现在已弃用 `inset` 属性。你现在应该使用 `variant="inset"`
+现在已弃用 `inset` 属性。你现在应该使用 `variant="inset"`.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 

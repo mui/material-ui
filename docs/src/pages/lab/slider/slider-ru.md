@@ -37,3 +37,7 @@ Sliders reflect the current state of the settings they control.
 ## Custom thumb
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}
+
+## Пользовательский reducer значения
+
+{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}

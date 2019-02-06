@@ -1,12 +1,12 @@
-# Comparison with other libraries
+# 他のライブラリとの比較
 
-<p class="description">You’re here because you want to know if Material-UI can solve your specific problems better. That’s what we hope to answer for you here.</p>
+<p class="description">Material-UIがあなたの抱える問題をよりよく解決できるかどうかを知りたいはずです。 これらはここにいるあなたに答えたいことです。</p>
 
-This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important. Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
+これはガイドの中でも間違いなく書くのが難しいページの1つですが、重要なことだと感じています。 思うに、あなたは抱えている問題を解決しようとして別のライブラリを使ったことがあります。
 
-We’d like your help keeping this document up-to-date because the JavaScript world moves fast! If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by [opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
+JavaScriptの世界は急速に変わっていきます、このドキュメントを最新の状態に保てるようにご協力をお願いします。 もし正しくないと思われる記述に気づいた場合は、[issueを開いて](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide)私たちにお知らせください。
 
-We cover the following libraries:
+以下のライブラリについて記述しています。
 
 - [Material-UI](#material-ui)
 - [Material Design Lite (MDL)](#material-design-lite-mdl)
@@ -18,17 +18,17 @@ We cover the following libraries:
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)
 
-We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️. There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 
+バイアスがかかることを避けたいと思いますが、コアチームとしては明らかにMaterial-UIがとても好きです。❤️ There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 
 
-We do want to be fair and accurate though, so where other libraries offer significant advantages we try to list these as well.
+しかし、私たちは公平で正確であることを望んでいるので、他のライブラリが大きな利点として上げていることについて、記述しようとします。
 
 ## Material Design Lite (MDL)
 
 ![stars](https://img.shields.io/github/stars/google/material-design-lite.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-design-lite.svg)
 
-Material Design Lite, while a very well-thought-out Material Design implementation, was primarily maintained by Developer Relations at Google. Today, **the project is no longer maintained**. So what happened?
+Material Design Liteは、非常によく考え抜かれた Material Designの実装で、 主にGoogleの開発者関係によってメンテナンスされてきました。 今日、**このプロジェクトはもはやメンテナンスされていません**。 何が起こったのでしょうか。
 
-The Material Components Web team started out building MDC-web as "MDL v2", but, after collaborating on it for a few months, both teams felt it best to bring the project under the Material Design team's purview. This shift meant a re-orientation of goals away from simply "adding a Material Design look and feel" to websites, and towards the goal of a canonical Material Design implementation for the entire web platform.
+Material Components Webの開発チームはMDL v2としてMDC-webの開発を始めました、しかし、数ヶ月のためにそれに協力した後、両チームは、Material Designの開発チームの下でプロジェクトを進めることが最善だと感じました。 この移行は、再配向の目的が単にWebサイトに「Material Designの見た目を加えること」から離れ、Webプラットフォーム全体の為の正しい実装の目的に向かっていくことを意味します。
 
 ## Material Components Web (MDC-web)
 

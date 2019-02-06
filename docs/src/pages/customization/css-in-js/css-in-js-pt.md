@@ -55,10 +55,10 @@ If you don't like this default behavior, you can change it. O JSS conta com o co
 
 ### Global CSS
 
-Fornecemos uma implementação personalizada do gerador de nome de classe para as necessidades de Material-UI: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator). As well as the option to make the class names **deterministic** with the `dangerouslyUseGlobalCSS` option. When turned on, the class names will look like this:
+Fornecemos uma implementação personalizada do gerador de nome de classe para as necessidades de Material-UI: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator). Assim como a opção de fazer os nomes de classes serem **determinísticos** com a opção `dangerouslyUseGlobalCSS`. When turned on, the class names will look like this:
 
-- development: `.MuiAppBar-root`
-- production: `.MuiAppBar-root`
+- desenvolvimento: `.MuiAppBar-root-`
+- produção: `.MuiAppBar-root `
 
 ⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for quick prototyping. Relying on it for code running in production has the following implications:
 

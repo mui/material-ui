@@ -1,9 +1,9 @@
 ---
 components: Link
 ---
-# Links
+# Liens
 
-<p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
+<p class="description">Le composant Lien vous permet de personnaliser facilement les éléments de types ancre avec les couleurs de votre thème et les styles de typographie.</p>
 
 ## Simple links
 
@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-or if you want to avoid properties collision:
+ou si vous souhaitez éviter les collisions de propriétés :
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'
