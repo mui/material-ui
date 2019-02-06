@@ -15,7 +15,7 @@ install_js: &install_js
     name: Install js dependencies
     command: |
       yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
-      yarn --frozen-lockfile
+      yarn
 restore_yarn_cache: &restore_yarn_cache
   restore_cache:
     key: v2-yarn-sha-{{ checksum "yarn.lock" }}
