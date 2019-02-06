@@ -21,7 +21,7 @@ This example uses the [`withStyles()`](/customization/css-in-js/#withstyles-styl
 component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property.
 You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM
-(by Material-UI) to style a component has the highest specificity possible since the `<link>` is injected at the bottom
+by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom
 of the `<head />` to ensure the components always render correctly.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
