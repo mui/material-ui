@@ -23,7 +23,7 @@ export const styles = {
   },
 };
 
-function CardActions(props) {
+const CardActions = React.forwardRef(function CardActions(props, ref) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
@@ -33,12 +33,13 @@ function CardActions(props) {
         { [classes.disableActionSpacing]: disableActionSpacing },
         className,
       )}
+      ref={ref}
       {...other}
     >
       {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
     </div>
   );
-}
+});
 
 CardActions.propTypes = {
   /**

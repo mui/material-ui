@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -143,6 +144,7 @@ GridListTile.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Height of the tile in number of grid cells.
    */
@@ -155,4 +157,4 @@ GridListTile.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(styles, { name: 'MuiGridListTile' })(withForwardedRef(GridListTile));

@@ -28,7 +28,7 @@ export const styles = {
   },
 };
 
-function StepButton(props) {
+const StepButton = React.forwardRef(function StepButton(props, ref) {
   const {
     active,
     alternativeLabel,
@@ -64,12 +64,13 @@ function StepButton(props) {
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, classes[orientation], classNameProp)}
+      ref={ref}
       {...other}
     >
       {child}
     </ButtonBase>
   );
-}
+});
 
 StepButton.propTypes = {
   /**

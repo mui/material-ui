@@ -13,11 +13,11 @@ export const styles = {
   },
 };
 
-function CardContent(props) {
+const CardContent = React.forwardRef(function CardContent(props, ref) {
   const { classes, className, component: Component, ...other } = props;
 
-  return <Component className={clsx(classes.root, className)} {...other} />;
-}
+  return <Component className={clsx(classes.root, className)} ref={ref} {...other} />;
+});
 
 CardContent.propTypes = {
   /**

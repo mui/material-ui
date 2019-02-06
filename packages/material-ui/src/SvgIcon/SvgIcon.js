@@ -52,7 +52,7 @@ export const styles = theme => ({
   },
 });
 
-function SvgIcon(props) {
+const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
   const {
     children,
     classes,
@@ -81,13 +81,14 @@ function SvgIcon(props) {
       color={nativeColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
       role={titleAccess ? 'img' : 'presentation'}
+      ref={ref}
       {...other}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </Component>
   );
-}
+});
 
 SvgIcon.propTypes = {
   /**

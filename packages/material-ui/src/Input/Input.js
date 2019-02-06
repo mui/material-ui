@@ -92,7 +92,7 @@ export const styles = theme => {
   };
 };
 
-function Input(props) {
+const Input = React.forwardRef(function Input(props, ref) {
   const { disableUnderline, classes, ...other } = props;
 
   return (
@@ -104,10 +104,11 @@ function Input(props) {
         }),
         underline: null,
       }}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Input.propTypes = {
   /**

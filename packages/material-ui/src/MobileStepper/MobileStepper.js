@@ -59,7 +59,7 @@ export const styles = theme => ({
   },
 });
 
-function MobileStepper(props) {
+const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
   const {
     activeStep,
     backButton,
@@ -76,7 +76,7 @@ function MobileStepper(props) {
   const className = clsx(classes.root, classes[`position${capitalize(position)}`], classNameProp);
 
   return (
-    <Paper square elevation={0} className={className} {...other}>
+    <Paper square elevation={0} className={className} ref={ref} {...other}>
       {backButton}
       {variant === 'dots' && (
         <div className={classes.dots}>
@@ -100,7 +100,7 @@ function MobileStepper(props) {
       {nextButton}
     </Paper>
   );
-}
+});
 
 MobileStepper.propTypes = {
   /**

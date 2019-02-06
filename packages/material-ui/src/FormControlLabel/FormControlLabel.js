@@ -48,11 +48,7 @@ export const styles = theme => ({
   },
 });
 
-/**
- * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
- * Use this component if you want to display an extra label.
- */
-function FormControlLabel(props) {
+const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) {
   const {
     checked,
     classes,
@@ -96,6 +92,7 @@ function FormControlLabel(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       {React.cloneElement(control, controlProps)}
@@ -107,7 +104,7 @@ function FormControlLabel(props) {
       </Typography>
     </label>
   );
-}
+});
 
 FormControlLabel.propTypes = {
   /**

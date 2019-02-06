@@ -46,7 +46,7 @@ export const styles = theme => ({
   },
 });
 
-function StepConnector(props) {
+const StepConnector = React.forwardRef(function StepConnector(props, ref) {
   const {
     active,
     alternativeLabel,
@@ -72,6 +72,7 @@ function StepConnector(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       <span
@@ -82,7 +83,7 @@ function StepConnector(props) {
       />
     </div>
   );
-}
+});
 
 StepConnector.propTypes = {
   /**

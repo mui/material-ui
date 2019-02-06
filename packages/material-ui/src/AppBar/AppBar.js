@@ -68,7 +68,7 @@ export const styles = theme => {
   };
 };
 
-function AppBar(props) {
+const AppBar = React.forwardRef(function AppBar(props, ref) {
   const { children, classes, className: classNameProp, color, position, ...other } = props;
 
   const className = clsx(
@@ -82,11 +82,11 @@ function AppBar(props) {
   );
 
   return (
-    <Paper square component="header" elevation={4} className={className} {...other}>
+    <Paper square component="header" elevation={4} className={className} ref={ref} {...other}>
       {children}
     </Paper>
   );
-}
+});
 
 AppBar.propTypes = {
   /**

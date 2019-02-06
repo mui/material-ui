@@ -37,20 +37,21 @@ export const styles = theme => ({
   },
 });
 
-function CardActionArea(props) {
+const CardActionArea = React.forwardRef(function CardActionArea(props, ref) {
   const { children, classes, className, focusVisibleClassName, ...other } = props;
 
   return (
     <ButtonBase
       className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
+      ref={ref}
       {...other}
     >
       {children}
       <span className={classes.focusHighlight} />
     </ButtonBase>
   );
-}
+});
 
 CardActionArea.propTypes = {
   /**

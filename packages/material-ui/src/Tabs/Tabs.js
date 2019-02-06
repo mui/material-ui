@@ -10,6 +10,7 @@ import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 import deprecatedPropType from '../utils/deprecatedPropType';
@@ -306,6 +307,7 @@ class Tabs extends React.Component {
       component: Component,
       fullWidth = false,
       indicatorColor,
+      innerRef,
       onChange,
       scrollable: deprecatedScrollable = false,
       ScrollButtonComponent,
@@ -380,7 +382,7 @@ class Tabs extends React.Component {
     const conditionalElements = this.getConditionalElements();
 
     return (
-      <Component className={className} {...other}>
+      <Component className={className} ref={innerRef} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         {conditionalElements.scrollbarSizeListener}
         <div className={classes.flexContainer}>
@@ -446,6 +448,7 @@ Tabs.propTypes = {
    * Determines the color of the indicator.
    */
   indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Callback fired when the value changes.
    *
@@ -510,4 +513,4 @@ Tabs.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);
+export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(withForwardedRef(Tabs));

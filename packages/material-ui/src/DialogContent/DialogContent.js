@@ -16,15 +16,15 @@ export const styles = {
   },
 };
 
-function DialogContent(props) {
+const DialogContent = React.forwardRef(function DialogContent(props, ref) {
   const { classes, children, className, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
     </div>
   );
-}
+});
 
 DialogContent.propTypes = {
   /**

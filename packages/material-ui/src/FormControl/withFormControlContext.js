@@ -4,11 +4,11 @@ import FormControlContext from './FormControlContext';
 import { getDisplayName } from '@material-ui/utils';
 
 export default function withFormControlContext(Component) {
-  const EnhancedComponent = props => (
+  const EnhancedComponent = React.forwardRef((props, ref) => (
     <FormControlContext.Consumer>
-      {context => <Component muiFormControl={context} {...props} />}
+      {context => <Component muiFormControl={context} ref={ref} {...props} />}
     </FormControlContext.Consumer>
-  );
+  ));
 
   if (process.env.NODE_ENV !== 'production') {
     EnhancedComponent.displayName = `WithFormControlContext(${getDisplayName(Component)})`;

@@ -121,7 +121,7 @@ export const styles = theme => ({
   },
 });
 
-function Fab(props) {
+const Fab = React.forwardRef(function Fab(props, ref) {
   const {
     children,
     classes,
@@ -152,12 +152,13 @@ function Fab(props) {
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 Fab.propTypes = {
   /**

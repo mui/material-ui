@@ -193,7 +193,7 @@ export const styles = theme => ({
   }, {}),
 });
 
-function Grid(props) {
+const Grid = React.forwardRef(function Grid(props, ref) {
   const {
     alignContent,
     alignItems,
@@ -237,8 +237,8 @@ function Grid(props) {
     classNameProp,
   );
 
-  return <Component className={className} {...other} />;
-}
+  return <Component className={className} ref={ref} {...other} />;
+});
 
 Grid.propTypes = {
   /**

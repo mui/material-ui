@@ -59,10 +59,7 @@ export const styles = theme => ({
   },
 });
 
-/**
- * A button based label for placing inside `TableCell` for column sorting.
- */
-function TableSortLabel(props) {
+const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   const {
     active,
     children,
@@ -79,6 +76,7 @@ function TableSortLabel(props) {
       className={clsx(classes.root, { [classes.active]: active }, className)}
       component="span"
       disableRipple
+      ref={ref}
       {...other}
     >
       {children}
@@ -89,7 +87,7 @@ function TableSortLabel(props) {
       )}
     </ButtonBase>
   );
-}
+});
 
 TableSortLabel.propTypes = {
   /**

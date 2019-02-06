@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => {
   const transition = {
@@ -115,6 +116,7 @@ class ExpansionPanelSummary extends React.Component {
       expanded,
       expandIcon,
       IconButtonProps,
+      innerRef,
       onBlur,
       onChange,
       onClick,
@@ -142,6 +144,7 @@ class ExpansionPanelSummary extends React.Component {
         onFocusVisible={this.handleFocusVisible}
         onBlur={this.handleBlur}
         onClick={this.handleChange}
+        ref={innerRef}
         {...other}
       >
         <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
@@ -196,6 +199,7 @@ ExpansionPanelSummary.propTypes = {
    * Properties applied to the `TouchRipple` element wrapping the expand icon.
    */
   IconButtonProps: PropTypes.object,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -218,4 +222,6 @@ ExpansionPanelSummary.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);
+export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(
+  withForwardedRef(ExpansionPanelSummary),
+);

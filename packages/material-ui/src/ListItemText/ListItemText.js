@@ -41,7 +41,7 @@ export const styles = theme => ({
   textDense: {},
 });
 
-function ListItemText(props) {
+const ListItemText = React.forwardRef(function ListItemText(props, ref) {
   const {
     children,
     classes,
@@ -98,6 +98,7 @@ function ListItemText(props) {
               },
               classNameProp,
             )}
+            ref={ref}
             {...other}
           >
             {primary}
@@ -107,7 +108,7 @@ function ListItemText(props) {
       }}
     </ListContext.Consumer>
   );
-}
+});
 
 ListItemText.propTypes = {
   /**

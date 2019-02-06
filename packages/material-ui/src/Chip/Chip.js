@@ -7,6 +7,8 @@ import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
+import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -274,6 +276,11 @@ class Chip extends React.Component {
     }
   };
 
+  handleRef = ref => {
+    setRef(this.chipRef, ref);
+    setRef(this.props.innerRef, ref);
+  };
+
   render() {
     const {
       avatar: avatarProp,
@@ -284,6 +291,7 @@ class Chip extends React.Component {
       component: Component,
       deleteIcon: deleteIconProp,
       icon: iconProp,
+      innerRef,
       label,
       onClick,
       onDelete,
@@ -365,9 +373,7 @@ class Chip extends React.Component {
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
         onKeyUp={this.handleKeyUp}
-        ref={ref => {
-          this.chipRef = ref;
-        }}
+        ref={this.handleRef}
         {...other}
       >
         {avatar || icon}
@@ -422,6 +428,7 @@ Chip.propTypes = {
    * Icon element.
    */
   icon: PropTypes.element,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The content of the label.
    */
@@ -455,4 +462,4 @@ Chip.defaultProps = {
   variant: 'default',
 };
 
-export default withStyles(styles, { name: 'MuiChip' })(Chip);
+export default withStyles(styles, { name: 'MuiChip' })(withForwardedRef(Chip));

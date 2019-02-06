@@ -70,7 +70,7 @@ export const styles = theme => ({
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
-function TablePagination(props) {
+const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const {
     ActionsComponent,
     backIconButtonProps,
@@ -99,7 +99,7 @@ function TablePagination(props) {
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
-    <Component className={classes.root} colSpan={colSpan} {...other}>
+    <Component className={classes.root} colSpan={colSpan} ref={ref} {...other}>
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
@@ -150,7 +150,7 @@ function TablePagination(props) {
       </Toolbar>
     </Component>
   );
-}
+});
 
 TablePagination.propTypes = {
   /**

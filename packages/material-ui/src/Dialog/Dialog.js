@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import { duration } from '../styles/transitions';
@@ -173,6 +174,7 @@ class Dialog extends React.Component {
       disableEscapeKeyDown,
       fullScreen,
       fullWidth,
+      innerRef,
       maxWidth,
       onBackdropClick,
       onClose,
@@ -207,6 +209,7 @@ class Dialog extends React.Component {
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         open={open}
+        ref={innerRef}
         role="dialog"
         {...other}
       >
@@ -285,6 +288,7 @@ Dialog.propTypes = {
    * If `true`, the dialog stretches to `maxWidth`.
    */
   fullWidth: PropTypes.bool,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Determine the max width of the dialog.
    * The dialog width grows with the size of the screen, this property is useful
@@ -326,6 +330,7 @@ Dialog.propTypes = {
   onExit: PropTypes.func,
   /**
    * Callback fired when the dialog has exited.
+
    */
   onExited: PropTypes.func,
   /**
@@ -378,4 +383,4 @@ Dialog.defaultProps = {
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
-export default withStyles(styles, { name: 'MuiDialog' })(Dialog);
+export default withStyles(styles, { name: 'MuiDialog' })(withForwardedRef(Dialog));

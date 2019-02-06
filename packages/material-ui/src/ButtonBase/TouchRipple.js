@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 import Ripple from './Ripple';
 
 const DURATION = 550;
@@ -260,7 +261,7 @@ class TouchRipple extends React.PureComponent {
   };
 
   render() {
-    const { center, classes, className, ...other } = this.props;
+    const { center, classes, className, innerRef, ...other } = this.props;
 
     return (
       <TransitionGroup
@@ -268,6 +269,8 @@ class TouchRipple extends React.PureComponent {
         enter
         exit
         className={clsx(classes.root, className)}
+        // TODO does this make sense?
+        ref={innerRef}
         {...other}
       >
         {this.state.ripples}
@@ -291,10 +294,13 @@ TouchRipple.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 TouchRipple.defaultProps = {
   center: false,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(TouchRipple);
+export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(
+  withForwardedRef(TouchRipple),
+);

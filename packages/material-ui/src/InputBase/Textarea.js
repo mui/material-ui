@@ -5,6 +5,7 @@ import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce 
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
 
 const ROWS_HEIGHT = 19;
 
@@ -75,6 +76,7 @@ class Textarea extends React.Component {
   handleRefInput = ref => {
     this.inputRef = ref;
 
+    setRef(this.props.innerRef, ref);
     setRef(this.props.textareaRef, ref);
   };
 
@@ -148,6 +150,7 @@ class Textarea extends React.Component {
       classes,
       className,
       defaultValue,
+      innerRef,
       onChange,
       rows,
       rowsMax,
@@ -212,6 +215,7 @@ Textarea.propTypes = {
    * @ignore
    */
   disabled: PropTypes.bool,
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -229,6 +233,7 @@ Textarea.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * @deprecated
    * Use that property to pass a ref callback to the native textarea element.
    */
   textareaRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -242,4 +247,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiPrivateTextarea' })(Textarea);
+export default withStyles(styles, { name: 'MuiPrivateTextarea' })(withForwardedRef(Textarea));
