@@ -38,11 +38,6 @@ export const styles = theme => ({
   },
 });
 
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
-
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
