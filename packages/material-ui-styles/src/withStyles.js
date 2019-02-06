@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import hoistStatics from '@material-ui/core/utils/hoistInternalStatics';
 import { getDisplayName } from '@material-ui/utils';
 import makeStyles from './makeStyles';
 import RefHolder from './RefHolder';
 import getThemeProps from './getThemeProps';
-import hoistStatics from './hoistInternalStatics';
 import useTheme from './useTheme';
 
 // Link a style sheet with a component.

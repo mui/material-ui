@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import hoistStatics from '@material-ui/core/utils/hoistInternalStatics';
 import { getDisplayName } from '@material-ui/utils';
-import hoistStatics from './hoistInternalStatics';
 import useTheme from './useTheme';
 import RefHolder from './RefHolder';
 
