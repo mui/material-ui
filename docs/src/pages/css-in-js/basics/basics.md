@@ -39,8 +39,6 @@ npm install @material-ui/styles
 yarn add @material-ui/styles
 ```
 
-> Please note that it depends on *react@next* and *react-dom@next*.
-
 ### Migration for `@material-ui/core` users
 
 To switch from the default style implementation to this newest version, you need to execute the following code **before importing any** Material-UI's components:

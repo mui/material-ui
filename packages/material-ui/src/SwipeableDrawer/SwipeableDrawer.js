@@ -25,11 +25,6 @@ export function reset() {
   nodeThatClaimedTheSwipe = null;
 }
 
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
-
 class SwipeableDrawer extends React.Component {
   state = {};
 
