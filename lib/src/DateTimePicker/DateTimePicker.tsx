@@ -19,7 +19,7 @@ export interface BaseDateTimePickerProps
   extends Omit<BaseDatePickerProps, 'openTo' | 'openToYearSelection' | 'views'> {
   /** Auto move between date, hours and minutes */
   autoSubmit?: boolean;
-  /** Show or hide tabs date/time tabs (hidden automatically on small screens) */
+  /** Show or hide date/time tabs (hidden automatically on small screens) */
   showTabs?: boolean;
   /** Control 12h or 24h view mode for clock */
   ampm?: boolean;
