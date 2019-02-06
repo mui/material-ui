@@ -153,9 +153,7 @@ class Modal extends React.Component {
     if (this.props.closeAfterTransition) {
       this.props.manager.remove(this);
     }
-    this.setState({
-      exited: true,
-    });
+    this.setState({ exited: true });
   };
 
   handleBackdropClick = event => {
@@ -323,11 +321,11 @@ class Modal extends React.Component {
         onRendered={this.handleRendered}
       >
         {/*
-                  Marking an element with the role presentation indicates to assistive technology
-                  that this element should be ignored; it exists to support the web application and
-                  is not meant for humans to interact with directly.
-                  https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-                */}
+          Marking an element with the role presentation indicates to assistive technology
+          that this element should be ignored; it exists to support the web application and
+          is not meant for humans to interact with directly.
+          https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+        */}
         <div
           data-mui-test="Modal"
           ref={this.handleModalRef}
@@ -340,8 +338,8 @@ class Modal extends React.Component {
         >
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
-          )}{' '}
-          <RootRef rootRef={this.onRootRef}> {React.cloneElement(children, childProps)} </RootRef>
+          )}
+          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
         </div>
       </Portal>
     );
@@ -473,7 +471,4 @@ Modal.defaultProps = {
   manager: new ModalManager(),
 };
 
-export default withStyles(styles, {
-  flip: false,
-  name: 'MuiModal',
-})(Modal);
+export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
