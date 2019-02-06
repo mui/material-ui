@@ -1,13 +1,11 @@
 files:
-  - source: /docs/**/*
+  - source: /docs/src/**/*.md
     ignore:
       - /**/%file_name%-%two_letters_code%.md
       - /docs/src/pages/getting-started/page-layout-examples/**/*
       - /docs/src/pages/premium-themes/**/*
-      - '*.js'
+    translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
+  - source: /docs/translations/*.json
+    ignore:
       - /**/%file_name%-%two_letters_code%.json
-      - /docs/*
-      - /docs/static/
-      - /docs/types/
-      - '*.tsx'
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
