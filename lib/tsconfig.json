@@ -5,6 +5,7 @@
     "module": "commonjs",
     "outDir": "build",
     "declaration": true,
+    "lib": ["dom", "es2016"],
     "jsx": "react",
     "skipLibCheck": true
   },

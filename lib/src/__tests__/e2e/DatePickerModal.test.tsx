@@ -52,9 +52,7 @@ describe('e2e - DatePickerModal default year format', () => {
   const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
 
   beforeEach(() => {
-    component = mount(
-      <DatePickerModal onChange={onChangeMock} value={date} availableViews={['year']} />
-    );
+    component = mount(<DatePickerModal onChange={onChangeMock} value={date} views={['year']} />);
   });
 
   it('Should use year format by default for year only view', () => {
@@ -71,7 +69,7 @@ describe('e2e - DatePickerModal default year month format', () => {
 
   beforeEach(() => {
     component = mount(
-      <DatePickerModal onChange={onChangeMock} value={date} availableViews={['year', 'month']} />
+      <DatePickerModal onChange={onChangeMock} value={date} views={['year', 'month']} />
     );
   });
 
@@ -89,11 +87,7 @@ describe('e2e - DatePickerModal default year month day format', () => {
 
   beforeEach(() => {
     component = mount(
-      <DatePickerModal
-        onChange={onChangeMock}
-        value={date}
-        availableViews={['year', 'month', 'day']}
-      />
+      <DatePickerModal onChange={onChangeMock} value={date} views={['year', 'month', 'day']} />
     );
   });
 

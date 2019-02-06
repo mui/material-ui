@@ -16,7 +16,7 @@ import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export interface BaseDateTimePickerProps
-  extends Omit<BaseDatePickerProps, 'openTo' | 'openToYearSelection' | 'availableViews'> {
+  extends Omit<BaseDatePickerProps, 'openTo' | 'openToYearSelection' | 'views'> {
   /** Auto move between date, hours and minutes */
   autoSubmit?: boolean;
   /** Show or hide tabs switching between date and time */

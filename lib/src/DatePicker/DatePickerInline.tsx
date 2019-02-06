@@ -78,6 +78,10 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = props => {
   );
 };
 
+DatePickerInline.defaultProps = {
+  views: ['year', 'day'],
+};
+
 export default React.forwardRef((props: DatePickerInlineProps, ref) => (
   <DatePickerInline {...props} forwardedRef={ref} />
 ));

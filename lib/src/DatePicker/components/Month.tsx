@@ -15,15 +15,6 @@ export interface MonthProps extends WithStyles<typeof styles> {
 }
 
 export class Month extends React.PureComponent<MonthProps> {
-  public static propTypes: any = {
-    children: PropTypes.node.isRequired,
-    classes: PropTypes.object.isRequired,
-    disabled: PropTypes.bool,
-    onSelect: PropTypes.func.isRequired,
-    selected: PropTypes.bool,
-    value: PropTypes.any.isRequired,
-  };
-
   public static defaultProps = {
     selected: false,
     disabled: false,
@@ -49,10 +40,9 @@ export class Month extends React.PureComponent<MonthProps> {
         onKeyPress={this.handleClick}
         color={selected ? 'primary' : 'default'}
         variant={selected ? 'h5' : 'subtitle1'}
+        children={children}
         {...other}
-      >
-        {children}
-      </Typography>
+      />
     );
   }
 }
@@ -67,6 +57,7 @@ export const styles = (theme: Theme) =>
       cursor: 'pointer',
       outline: 'none',
       height: 75,
+      transition: theme.transitions.create('font-size', { duration: '100ms' }),
       '&:focus': {
         color: theme.palette.primary.main,
         fontWeight: theme.typography.fontWeightMedium,

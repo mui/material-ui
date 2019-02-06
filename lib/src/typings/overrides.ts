@@ -1,4 +1,4 @@
-import { ClassNameMap, StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
+import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
 import { styles as ModalDialogStyles } from '../_shared/ModalDialog';
 import { styles as PickerToolbarStyles } from '../_shared/PickerToolbar';
 import { styles as ToolbarButtonStyles } from '../_shared/ToolbarButton';

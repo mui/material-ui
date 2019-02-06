@@ -50,7 +50,7 @@ describe('e2e - DatePicker', () => {
   });
 });
 
-describe('e2e -- DatePicker availableViews year', () => {
+describe('e2e -- DatePicker views year', () => {
   const onChangeMock = jest.fn();
   let component: ReactWrapper<DatePickerProps>;
 
@@ -59,7 +59,7 @@ describe('e2e -- DatePicker availableViews year', () => {
       <DatePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        availableViews={['year']}
+        views={['year']}
       />
     );
   });
@@ -75,7 +75,7 @@ describe('e2e -- DatePicker availableViews year', () => {
   });
 });
 
-describe('e2e -- DatePicker availableViews year and month', () => {
+describe('e2e -- DatePicker views year and month', () => {
   const onChangeMock = jest.fn();
   let component: ReactWrapper<DatePickerProps>;
 
@@ -84,7 +84,7 @@ describe('e2e -- DatePicker availableViews year and month', () => {
       <DatePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        availableViews={['year', 'month']}
+        views={['year', 'month']}
       />
     );
   });
@@ -117,7 +117,7 @@ describe('e2e -- DatePicker availableViews year and month', () => {
   });
 });
 
-describe('e2e -- DatePicker availableViews year and month open from year', () => {
+describe('e2e -- DatePicker views year and month open from year', () => {
   const onChangeMock = jest.fn();
   let component: ReactWrapper<DatePickerProps>;
 
@@ -126,7 +126,7 @@ describe('e2e -- DatePicker availableViews year and month open from year', () =>
       <DatePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        availableViews={['year', 'month']}
+        views={['year', 'month']}
         openToYearSelection
       />
     );

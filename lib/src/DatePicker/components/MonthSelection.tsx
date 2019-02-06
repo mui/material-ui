@@ -1,8 +1,8 @@
-import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import * as PropTypes from 'prop-types';
 import * as React from 'react';
+
+import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import { withUtils, WithUtilsProps } from '../../_shared/WithUtils';
-import { DateType, DomainPropTypes } from '../../constants/prop-types';
+import { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import Month from './Month';
 
@@ -16,13 +16,6 @@ export interface MonthSelectionProps extends WithUtilsProps, WithStyles<typeof s
 }
 
 export class MonthSelection extends React.PureComponent<MonthSelectionProps> {
-  public static propTypes: any = {
-    date: PropTypes.shape({}).isRequired,
-    minDate: DomainPropTypes.date,
-    maxDate: DomainPropTypes.date,
-    onChange: PropTypes.func.isRequired,
-  };
-
   public static defaultProps = {
     minDate: new Date('1900-01-01'),
     maxDate: new Date('2100-01-01'),
@@ -40,14 +33,18 @@ export class MonthSelection extends React.PureComponent<MonthSelectionProps> {
     const now = utils.date();
     const utilMinDate = utils.date(minDate);
     const utilMaxDate = utils.date(maxDate);
+
     const firstEnabledMonth = utils.startOfMonth(
       disablePast && utils.isAfter(now, utilMinDate) ? now : utilMinDate
     );
+
     const lastEnabledMonth = utils.startOfMonth(
       disableFuture && utils.isBefore(now, utilMaxDate) ? now : utilMaxDate
     );
+
     const isBeforeFirstEnabled = utils.isBefore(month, firstEnabledMonth);
     const isAfterLastEnabled = utils.isAfter(month, lastEnabledMonth);
+
     return isBeforeFirstEnabled || isAfterLastEnabled;
   };
 

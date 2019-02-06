@@ -143,9 +143,31 @@
       "required": false,
       "type": { "name": "boolean" }
     },
+    "views": {
+      "defaultValue": null,
+      "description": "Array of views to show. Order year -> month -> day",
+      "name": "views",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(\"year\" | \"month\" | \"day\")[]" }
+    },
+    "openTo": {
+      "defaultValue": null,
+      "description": "Initial view to show when date picker is open",
+      "name": "openTo",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "\"year\" | \"month\" | \"day\"" }
+    },
     "openToYearSelection": {
       "defaultValue": null,
-      "description": "Open datepicker from year selection",
+      "description": "@deprecated use openTo instead",
       "name": "openToYearSelection",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -532,6 +554,17 @@
       "required": false,
       "type": { "name": "boolean" }
     },
+    "minutesStep": {
+      "defaultValue": null,
+      "description": "Step over minutes",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/TimePicker/TimePicker.tsx",
+        "name": "BaseTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "number" }
+    },
     "mask": {
       "defaultValue": null,
       "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
@@ -865,6 +898,17 @@
       },
       "required": false,
       "type": { "name": "boolean" }
+    },
+    "minutesStep": {
+      "defaultValue": null,
+      "description": "Step over minutes",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
+        "name": "BaseDateTimePickerProps"
+      },
+      "required": false,
+      "type": { "name": "number" }
     },
     "openTo": {
       "defaultValue": null,

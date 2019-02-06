@@ -1,8 +1,6 @@
-import { IUtils } from '@date-io/core/IUtils';
 import * as React from 'react';
+import { getFormatByViews } from '../_helpers/date-utils';
 import BasePicker, { BasePickerProps } from '../_shared/BasePicker';
-import DatePickerView, { DatePickerViewType } from '../constants/DatePickerView';
-import { MaterialUiPickersDate } from '../typings/date';
 import { ExtendWrapper } from '../wrappers/ExtendWrapper';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
@@ -11,18 +9,6 @@ export interface DatePickerModalProps
   extends BasePickerProps,
     BaseDatePickerProps,
     ExtendWrapper<ModalWrapperProps> {}
-
-const getFormat = (
-  format: string | undefined,
-  availableViews: DatePickerViewType[],
-  utils: IUtils<MaterialUiPickersDate>
-) =>
-  format ||
-  (availableViews.length === 1 && availableViews[0] === DatePickerView.YEAR
-    ? utils.yearFormat
-    : availableViews[availableViews.length - 1] === DatePickerView.MONTH
-      ? utils.yearMonthFormat
-      : utils.dateFormat);
 
 export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
   const {
@@ -44,7 +30,7 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
     rightArrowIcon,
     shouldDisableDate,
     value,
-    availableViews,
+    views,
     openTo,
     ...other
   } = props;
@@ -65,7 +51,7 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
         <ModalWrapper
           disableFuture={disableFuture}
           disablePast={disablePast}
-          format={getFormat(format, availableViews!, utils)}
+          format={format || getFormatByViews(views!, utils)}
           labelFunc={labelFunc}
           maxDate={maxDate}
           minDate={minDate}
@@ -93,7 +79,7 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
             renderDay={renderDay}
             rightArrowIcon={rightArrowIcon}
             shouldDisableDate={shouldDisableDate}
-            availableViews={availableViews}
+            views={views}
             openTo={openTo}
           />
         </ModalWrapper>
@@ -103,7 +89,7 @@ export const DatePickerModal: React.SFC<DatePickerModalProps> = props => {
 };
 
 DatePickerModal.defaultProps = {
-  availableViews: [DatePickerView.YEAR, DatePickerView.MONTH, DatePickerView.DAY],
+  views: ['year', 'day'],
 };
 
 export default React.forwardRef((props: DatePickerModalProps, ref) => (

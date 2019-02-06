@@ -27,17 +27,8 @@ export const styles = (theme: Theme) =>
       margin: '0 4px 0 2px',
       cursor: 'default',
     },
-    ampmSelection: {
-      top: 9,
-      position: 'relative',
-      marginLeft: 10,
-      marginRight: -10,
-    },
-    ampmLabel: {
-      fontSize: 18,
-    },
     hourMinuteLabel: {
-      top: 5,
+      top: 10,
       position: 'relative',
       display: 'flex',
       justifyContent: 'flex-end',
@@ -55,6 +46,15 @@ export const styles = (theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'flex-end',
+    },
+    ampmSelection: {
+      top: 11,
+      position: 'relative',
+      marginLeft: 10,
+      marginRight: -10,
+    },
+    ampmLabel: {
+      fontSize: 18,
     },
   });
 

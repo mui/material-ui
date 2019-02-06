@@ -7,6 +7,8 @@ const date = PropTypes.oneOfType([
   PropTypes.instanceOf(Date),
 ]);
 
+const datePickerView = PropTypes.oneOf(['year', 'month', 'day']);
+
 export type DateType = object | string | number | Date | null | undefined;
 
-export const DomainPropTypes = { date };
+export const DomainPropTypes = { date, datePickerView };

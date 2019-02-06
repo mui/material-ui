@@ -37,9 +37,11 @@ export default class BasicDatePicker extends PureComponent {
 
         <div className="picker">
           <DatePicker
-            label="With today button"
-            showTodayButton
+            label="Date of birth"
             value={selectedDate}
+            disableFuture
+            openTo="year"
+            views={['year', 'month', 'day']}
             onChange={this.handleDateChange}
           />
         </div>
