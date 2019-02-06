@@ -467,7 +467,7 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: startAdornment, prop: endAdornment', () => {
-    it('should render adornment before input', () => {
+    it('should render adornment before input jsx', () => {
       const wrapper = mount(
         <InputBase startAdornment={<InputAdornment position="start">$</InputAdornment>} />,
       );
@@ -480,7 +480,7 @@ describe('<InputBase />', () => {
       );
     });
 
-    it('should render adornment after input', () => {
+    it('should render adornment after input jsx', () => {
       const wrapper = mount(
         <InputBase endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
       );
@@ -492,6 +492,64 @@ describe('<InputBase />', () => {
         InputAdornment,
       );
     });
+
+
+    it('should render adornment before input string', () => {
+      const id = `id:${Math.random()}`;
+      const wrapper = mount(
+        <InputBase startAdornment={id} />,
+      );
+
+      assert.include(wrapper.html(), id);
+    });
+
+    it('should render adornment after input string', () => {
+      const id = `id:${Math.random()}`;
+      const wrapper = mount(
+        <InputBase endAdornment={id} />,
+      );
+
+      assert.include(wrapper.html(), id);
+    });
+
+
+    const StartHelloWorld = (props) => <div>{props.helloWorld || 'START'}</div>;
+    StartHelloWorld.propTypes = {
+        helloWorld: PropTypes.string
+    }
+    const EndHelloWorld = (props) => <div>{props.helloWorld || 'END'}</div>;
+    EndHelloWorld.propTypes = {
+        helloWorld: PropTypes.string
+    }
+
+    it('should allow react component as value', () => {
+      const wrapper = mount(
+        <>
+        <InputBase
+          startAdornment={StartHelloWorld}
+          endAdornment={EndHelloWorld}
+        />
+        </>
+      );
+      assert.equal(wrapper.find(StartHelloWorld).text(), 'START');
+      assert.equal(wrapper.find(EndHelloWorld).text(), 'END');
+    });
+
+    it('should allow react component as value with props', () => {
+      const wrapper = mount(
+        <>
+        <InputBase
+          startAdornment={StartHelloWorld}
+          startAdornmentProps={{ helloWorld: 'start' }}
+          endAdornment={EndHelloWorld}
+          endAdornmentProps={{ helloWorld: 'end' }}
+        />
+        </>
+      );
+      assert.equal(wrapper.find(StartHelloWorld).text(), 'start');
+      assert.equal(wrapper.find(EndHelloWorld).text(), 'end');
+    });
+
   });
 
   describe('prop: inputRef', () => {

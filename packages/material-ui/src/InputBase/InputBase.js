@@ -139,6 +139,19 @@ export const styles = theme => {
   };
 };
 
+
+function toComponent(componentOrString) {
+  if (typeof componentOrString === 'function') {
+    return {
+      component: componentOrString,
+    };
+  }
+  return {
+    component: componentOrString,
+    useFlatComponent: true
+  }
+}
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
@@ -290,6 +303,7 @@ class InputBase extends React.Component {
       defaultValue,
       disabled,
       endAdornment,
+      endAdornmentProps,
       error,
       fullWidth,
       id,
@@ -314,6 +328,7 @@ class InputBase extends React.Component {
       rows,
       rowsMax,
       startAdornment,
+      startAdornmentProps,
       type,
       value,
       ...other
@@ -394,6 +409,8 @@ class InputBase extends React.Component {
       };
     }
 
+    const StartAdornment = toComponent(startAdornment);
+    const EndAdornment = toComponent(endAdornment);
     return (
       <div className={className} onClick={this.handleClick} {...other}>
         {renderPrefix
@@ -403,7 +420,11 @@ class InputBase extends React.Component {
               focused,
             })
           : null}
-        {startAdornment}
+
+        {StartAdornment.useFlatComponent ?
+          StartAdornment.component :
+          <StartAdornment.component {...startAdornmentProps} />
+        }
         <FormControlContext.Provider value={null}>
           <InputComponent
             aria-invalid={fcs.error}
@@ -428,7 +449,10 @@ class InputBase extends React.Component {
             {...inputProps}
           />
         </FormControlContext.Provider>
-        {endAdornment}
+        {EndAdornment.useFlatComponent ?
+          EndAdornment.component :
+          <EndAdornment.component {...endAdornmentProps} />
+        }
       </div>
     );
   }
@@ -474,7 +498,15 @@ InputBase.propTypes = {
   /**
    * End `InputAdornment` for this component.
    */
-  endAdornment: PropTypes.node,
+  endAdornment: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.string
+  ]),
+  /**
+   * End Props passed `endAdornment` component.
+   */
+  endAdornmentProps: PropTypes.object,
   /**
    * If `true`, the input will indicate an error. This is normally obtained via context from
    * FormControl.
@@ -581,7 +613,15 @@ InputBase.propTypes = {
   /**
    * Start `InputAdornment` for this component.
    */
-  startAdornment: PropTypes.node,
+  startAdornment: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.string
+  ]),
+  /**
+   * Start Props passed `StartAdornment` component.
+   */
+  startAdornmentProps: PropTypes.object,
   /**
    * Type of the input element. It should be a valid HTML5 input type.
    */

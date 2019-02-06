@@ -11,7 +11,8 @@ export interface InputBaseProps
   autoFocus?: boolean;
   defaultValue?: Array<string | number | boolean | object> | string | number | boolean | object;
   disabled?: boolean;
-  endAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode | React.Component | string;
+  endAdornmentProps?: React.Props<any>;
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
@@ -35,7 +36,8 @@ export interface InputBaseProps
   }) => React.ReactNode;
   rows?: string | number;
   rowsMax?: string | number;
-  startAdornment?: React.ReactNode;
+  startAdornment?: React.ReactNode | React.Component | string;
+  startAdornmentProps?: React.Props<any>;
   type?: string;
   value?: Array<string | number | boolean | object> | string | number | boolean | object;
   onFilled?: () => void;
