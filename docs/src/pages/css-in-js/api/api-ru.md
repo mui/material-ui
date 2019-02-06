@@ -17,7 +17,7 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 
 `class name generator`: The generator should be provided to JSS.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -47,7 +47,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 `styles`: A function generating the styles or a styles object.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import { withStyles, createStyles } from '@material-ui/styles';
@@ -73,11 +73,11 @@ Link a style sheet with a function component using the **hook** pattern.
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+    - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
@@ -85,7 +85,7 @@ Link a style sheet with a function component using the **hook** pattern.
 
 `hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -103,26 +103,26 @@ export default function MyComponent() {
 }
 ```
 
-## `styled(styles, [options])(Component) => Component`
+## `styled(Component)(styles, [options]) => Component`
 
 Link a style sheet with a function component using the **styled components** pattern.
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
+1. `Component`: The component that will be wrapped.
+2. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+3. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+    - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
-3. `Component`: The component that will be wrapped.
 
 #### Returns
 
 `Component`: The new component created.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -143,7 +143,7 @@ This component allows you to change the behavior of the styling solution. It mak
 
 It should preferably be used at **the root of your component tree**.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -163,7 +163,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context. It should preferably be used at **the root of your component tree**.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -189,7 +189,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 
 `theme`: The theme object.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -214,11 +214,11 @@ Some implementation details that might be interesting to being aware of:
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+    - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
@@ -226,7 +226,7 @@ Some implementation details that might be interesting to being aware of:
 
 `higher-order component`: Should be used to wrap a component.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -281,7 +281,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 `Component`: The new component created.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
