@@ -1,6 +1,8 @@
 ## Supporting Material-UI
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome [backers](/discover-more/backers/).
+Material-UI is an MIT-licensed open source project.
+It's an independent project with ongoing development made possible entirely
+thanks to the support of these awesome [backers](/discover-more/backers/).
 
 ### Gold Sponsors
 
@@ -10,7 +12,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="高级主题">
+    <img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes">
   </a>
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 16px;">
     <img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code">

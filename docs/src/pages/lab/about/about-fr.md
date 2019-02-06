@@ -17,9 +17,9 @@ yarn add @material-ui/lab
 The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
 
 ```sh
-// avec npm
+// with npm
 npm install @material-ui/core
 
-// avec yarn
+// with yarn
 yarn add @material-ui/core
 ```

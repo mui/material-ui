@@ -2,17 +2,17 @@
 title: List React component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Listas
+# Lists
 
-<p class="description">Las listas son índices continuos y verticales de texto o imágenes.</p>
+<p class="description">Lists are continuous, vertical indexes of text or images.</p>
 
-Las [listas](https://material.io/design/components/lists.html) son un grupo continuo de texto o imágenes. Se componen de elementos que contienen acciones primarias y complementarias, que se representan mediante iconos y texto.
+[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-## Lista Simple
+## Simple List
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-El último elemento del demo anterior muestra cómo se puede representar un enlace:
+The last item of the previous demo shows how you can render a link:
 
 ```jsx
 function ListItemLink(props) {
@@ -26,13 +26,13 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-Puedes encontrar una demostración [usando React Router siguiendo esta sección](/guides/composition/#react-router) de la documentación.
+You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
 
-## Lista Anidada
+## Nested List
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Lista de carpetas
+## Folder List
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
@@ -42,44 +42,44 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 
-## Elemento de la lista seleccionado
+## Selected ListItem
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Alineación de los elementos de la lista
+## Align list items
 
 You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
-## Controles de lista
+## List Controls
 
-### Casilla de selección
+### Checkbox
 
-Un checkbox puede ser una acción primaria o una acción secundaria.
+A checkbox can either be a primary action or a secondary action.
 
-El checkbox es la acción principal y el indicador de estado para el elemento de la lista. El botón de comentario es una acción secundaria y un objetivo separado.
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-El checkbox es la acción secundaria para el elemento de la lista y un objetivo separado.
+The checkbox is the secondary action for the list item and a separate target.
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
 ### Switch
 
-El switch es la acción secundaria y un objetivo separado.
+The switch is the secondary action and a separate target.
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Lista de subencabezados fijados
+## Pinned Subheader List
 
-Al desplazarse, los subencabezados permanecen anclados en la parte superior de la pantalla hasta que el siguiente subencabezado los saque de la pantalla.
+Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 
-Esta característica se basa en el posicionamiento adhesivo CSS. Desafortunadamente, [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores que soportamos. La propiedad `disableSticky` se aplicará por defecto cuando no sea soportado por el navegador.
+This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Lista con margen
+## Inset List
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

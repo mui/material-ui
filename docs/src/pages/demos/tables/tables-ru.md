@@ -1,74 +1,74 @@
 ---
-title: React-компонент Таблица
+title: Table React component
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
-# Таблицы
+# Tables
 
-<p class="description">Таблицы отображают массивы данных. Они могут быть полностью кастомизированны.</p>
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
 
-[Таблицы](https://material.io/design/components/data-tables.html) отображают информацию так, чтобы ее было легко воспринимать визуально. Так чтобы пользователи видели шаблоны отображения данных. Они могут быть встроены в основной контент, например в карточки.
+[Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
 
-Таблицы могут включать в себя:
+Data tables can include:
 
-- Соответствующую визуализацию
-- Навигацию
-- Инструменты для запросов и манипулирования данными
+- A corresponding visualization
+- Navigation
+- Tools to query and manipulate data
 
-При использовании таких инструментов их следует размещать непосредственно сверху или снизу таблицы.
+When including tools, they should be placed directly above or below the table.
 
-## Структура
+## Structure
 
-Таблица данных содержит 1 строку заголовка, в которой перечислены имена столбцов, за которыми следуют строки для данных.
+A data table contains a header row at the top that lists column names, followed by rows for data.
 
-Флажки должны сопровождать каждую строку, если пользователю необходимо выбрать или манипулировать данными.
+Checkboxes should accompany each row if the user needs to select or manipulate data.
 
-Для доступности(accessibility) первый столбец должен быть элементом `<th>` с атрибутом `scope` со значением `"row"`. Это позволяет программам чтения с экрана идентифицировать значение ячейки по имени строки и столбца.
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. This enables screen readers to identify a cell's value by it's row and column name.
 
-## Простая таблица
+## Simple Table
 
-Простой пример без излишеств.
+A simple example with no frills.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
-## Сортировка и выбор строк
+## Sorting & Selecting
 
-В этом примере демонстрируется использование `чекбокса` и кликабельных строк для выбора данных в настраиваемой `панели инструментов`. Здесь используется компонент `TableSortLabel` чтобы помочь стилизовать заголовки столбцов.
+This example demonstrates the use of `Checkbox` and clickable rows for selection, with a custom `Toolbar`. It uses the `TableSortLabel` component to help style column headings.
 
-Таблица имеет фиксированную ширину для демонстрации горизонтальной прокрутки. Чтобы предотвратить прокрутку элементов управления нумерацией страниц, компонент TablePagination находится за пределами таблицы. (В [примерe «собственные действия элементов нумерации»](#custom-table-pagination-action) ниже показывается управление нумерацией таблиц с помощью TableFooter.)
+The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-table-pagination-action) below shows the pagination within the TableFooter.)
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
-## Индивидуальное изменение таблицы
+## Customized Tables
 
-Если вы читали [страницу документации о переопределениях](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот примеры того, как вы можете изменить отображение `TableCell`.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a `TableCell`.
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
-## Настройка постраничной навигации
+## Custom Table Pagination Action
 
-Свойство `Action` компонента `TablePagination` позволяет реализовать собственную обработку пользовательский событий.
+The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Объединение таблиц
+## Spanning Table
 
-Простой пример с объединением строк и столбцов.
+A simple example with spanning rows & columns.
 
 {{"demo": "pages/demos/tables/SpanningTable.js"}}
 
-## Виртуализированная таблица
+## Virtualized Table
 
-В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше.
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. It renders 200 rows and can easily handle more.
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 
-## Дополнительные проекты
+## Complementary projects
 
-Для более сложных вариантов использования вы можете воспользоваться:
+For more advanced use cases you might be able to take advantage of:
 
-- [dx-react-grid-material-ui<](https://devexpress.github.io/devextreme-reactive/react/grid/) Сетка данных для Material-UI с функциями навигации, сортировки, фильтрации, группировки и редактирования ([пользовательское соглашение](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Адаптируемые таблицы данных для Material-UI с фильтрацией, сортировкой, поиском и многим другим.
-- [material-table](https://github.com/mbrn/material-table) Таблицы данных основанные на компоненте таблицы, с дополнительной функциональностью, такой как: поиск, фильтрация, сортировка и многое другое.
-- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Виртуализированная таблица для Material-UI.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
+- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.

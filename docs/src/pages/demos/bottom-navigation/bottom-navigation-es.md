@@ -4,18 +4,18 @@ components: BottomNavigation, BottomNavigationAction
 ---
 # Bottom Navigation (Navegação Inferior)
 
-<p class="description">Las barras de navegación inferiores permiten movimiento entre destinos primarios en una aplicación.</p>
+<p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
 
-[Navegación Inferior](https://material.io/design/components/bottom-navigation.html) bars muestra de tres a cinco destinos en la parte inferior de una pantalla. Cada destino es representado por un icono y una etiqueta de texto opcional. Cuando un icono de navegación inferior es tocado, el usuario es llevado al destino de navegación superior asociado con ese icono.
+[Bottom navigation](https://material.io/design/components/bottom-navigation.html) bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.
 
 ## Bottom Navigation (Navegação Inferior)
 
-Cuando sólo hay **tres** acciones, muestra las dos cosas, iconos y etiquetas de texto en todo momento.
+When there are only **three** actions, display both icons and text labels at all times.
 
 {{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Bottom Navigation with no label
 
-Si hay **cuatro ** o **cinco** acciones, mostrar vistas inactivas solamente como iconos.
+If there are **four** or **five** actions, display inactive views as icons only.
 
 {{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}

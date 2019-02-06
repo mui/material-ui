@@ -1,20 +1,20 @@
-# Versions de Materiel-UI
+# Material-UI Versions
 
-<p class="description">Vous pouvez revenir à cette page et changer de version de document à tout moment.</p>
+<p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
 
-## Versions stables
+## Stable versions
 
-La version la plus récente est recommandée en production.
+The most recent version is recommended in production.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Dernière version
+## Latest version
 
-Ici vous pouvez trouver la dernière documentation non publiée et le code. Vous pouvez l'utiliser pour voir les modifications à venir et fournir des retours aux contributeurs de Material-UI.
+Here you can find the latest unreleased documentation and code. You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
 
 {{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
 
-## Stratégie de gestion des versions
+## Versioning strategy
 
 We recognize that you need **stability** from the Material-UI library. Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
 

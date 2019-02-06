@@ -1,7 +1,7 @@
-# Comunidad
+# Community
 
-<p class="description">Si desea mantenerse actualizado sobre el desarrollo de Material-UI o comunicarse con la comunidad, puede seguir estos recursos.</p>
+<p class="description">If you want to stay up to date on the development of Material-UI or to reach out to the community, you can follow those resources.</p>
 
-- Chetea con nosotros en [Gitter](https://gitter.im/mui-org/material-ui).
-- Para obtener ayuda sobre el uso de Material-UI, pregunte en StackOverflow usando el tag [material-ui](https://stackoverflow.com/questions/tagged/material-ui).
-- Siga [@MaterialUI](https://twitter.com/MaterialUI) en Twitter.
+- Chat with us on [Gitter](https://gitter.im/mui-org/material-ui).
+- For help using Material-UI, ask on StackOverflow using the tag [material-ui](https://stackoverflow.com/questions/tagged/material-ui).
+- Follow [@MaterialUI](https://twitter.com/MaterialUI) on Twitter.

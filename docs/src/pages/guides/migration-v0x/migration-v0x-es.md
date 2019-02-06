@@ -76,9 +76,9 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 
 4. After that, you are free to migrate one component instance at the time.
 
-## Componentes
+## Components
 
-### Autocompletado
+### Autocomplete
 
 Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
 

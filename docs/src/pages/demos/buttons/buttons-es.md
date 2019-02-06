@@ -1,14 +1,14 @@
 ---
-title: Componente de React Botón
+title: Botón componente React
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
 # Botones
 
-<p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
+<p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un solo toque.</p>
 
 Los [botones](https://material.io/design/components/buttons.html) indican acciones que los usuarios pueden tomar. Suelen ponerse a lo largo de la interfaz, en lugares como:
 
-- Diálogos
+- Dialogs
 - Ventanas modal
 - Formularios
 - Tarjetas
@@ -83,7 +83,7 @@ Iconos son también apropiados para botones de cambio que permiten marcar o desm
 
 ## Botones personalizados
 
-Si has estado leyendo la [página de documentación sobre overrides](/customization/overrides/) pero aún no te sientes cómodo intentándolo, a continuación hay ejemplos de como cambiar el color principal de un Botón usandos clases, y usando un tema; y de un Botón estilo Bootstrap.
+Si has leído la [página de documentación de anulación](/customization/overrides/) pero no te sientes cómodo intentándolo, a continuación hay ejemplos de como cambiar el color principal de un Botón usandos clases, y usando un tema; y de un Botón estilo Bootstrap.
 
 ⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
 

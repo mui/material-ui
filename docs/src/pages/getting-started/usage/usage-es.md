@@ -1,4 +1,4 @@
-# Implementación
+# Usage
 
 <p class="description">Get started with React and Material-UI in no time.</p>
 

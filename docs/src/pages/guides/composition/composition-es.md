@@ -6,15 +6,16 @@
 
 In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem we tag some of our components when needed with a `muiName` static property.
 
-You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component verify if that component has this static property set.
+However, users like to wrap components in order to enhance them. That can conflict with our `muiName` solution. If you encounter this issue, you need to:
 
-If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
+1. Forward the properties.
+2. Use the same tag for your wrapping component that is used with the wrapped component.
 
 Let's see an example:
 
 ```jsx
 const WrappedIcon = props => <Icon {...props} />;
-WrappedIcon.muiName = Icon.muiName;
+WrappedIcon.muiName = 'Icon';
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}

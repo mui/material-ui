@@ -28,7 +28,7 @@ When you use `target="_blank"` with Links it is [recommended](https://developers
 - `rel="noopener"` prevents the new page from being able to access the window.opener property and ensures it runs in a separate process. Without this the target page can potentially redirect your page to a malicious URL.
 - `rel="noreferrer""` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
 
-## Сторонняя библиотека маршрутизации
+## Third-party routing library
 
 One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
 
@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-или если вы хотите избежать столкновения свойств:
+or if you want to avoid properties collision:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'

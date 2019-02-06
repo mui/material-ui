@@ -42,7 +42,7 @@ const Box = styled.div`${palette}${spacing}${typography}`;
 
 {{"demo": "pages/system/basics/Demo.js"}}
 
-### Instalación
+### Installation
 
 ```jsx
 // usando npm

@@ -42,7 +42,7 @@ const Box = styled.div`${palette}${spacing}${typography}`;
 
 {{"demo": "pages/system/basics/Demo.js"}}
 
-### Инструкция по установке
+### Installation
 
 ```jsx
 // usando npm
@@ -285,7 +285,7 @@ We don't support all the CSS properties. It's possible that you want to support 
 
 `style function`: The style function created.
 
-#### Примеры
+#### Examples
 
 ```js
 import { style } from '@material-ui/system'
@@ -306,7 +306,7 @@ Merge multiple style functions into one.
 
 `style function`: The style function created.
 
-#### Примеры
+#### Examples
 
 ```js
 import { style, compose } from '@material-ui/system'
@@ -391,7 +391,7 @@ const Box = styled.div`
 
 {{"demo": "pages/system/basics/CssProp.js"}}
 
-## Как это работает
+## How it works
 
 styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
 

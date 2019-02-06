@@ -1,51 +1,51 @@
 ---
-title: Date Picker, Time Picker React компоненты
+title: Date Picker, Time Picker React components
 components: TextField
 ---
-# Поля выбора
+# Пикеры
 
-<p class="description">Поля выбора предоставляют возможность выбрать единственное значение из заранее заданного множества.</p>
+<p class="description">Пикеры предоставляют возможность выбрать единственное значение из заранее заданного множества.</p>
 
 - На мобильном устройстве лучше всего отображать в модальном окне.
 - Для инлайн-отображения, например в формах стоит рассмотреть возможность использования более компактных элементов управления, таких как сегментированные выпадающие кнопки.
 
-#### Примечание
+#### Внимание
 
 Мы поддерживаем только **нативные типы полей ввода**.
 
-⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime). Рассмотрите [дополнительные проекты](#complementary-projects) для более сложных решений.
+⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime). Have a look at the [complementary projects](#complementary-projects) for richer solutions.
 
-## Поля выбора даты
+## Date pickers
 
-Пример нативного поля выбора даты с помощью `type="date"`, можно использовать как календарь.
+A native date picker example with `type="date"`, it can be used as a calendar too.
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## Поля выбора даты & времени
+## Date & Time pickers
 
-Нативное поля выбора даты и времени с помощью `type="datetime-local"`.
+A native date & time picker example with `type="datetime-local"`.
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
 
-## Поля выбора времени
+## Time pickers
 
-Нативное поле выбора времени с помощью `type="time"`.
+A native time picker example with `type="time"`.
 
 {{"demo": "pages/demos/pickers/TimePickers.js"}}
 
-## Дополнительные проекты
+## Complementary projects
 
-Для более сложных вариантов использования вы можете воспользоваться.
+For more advanced use cases you might be able to take advantage of.
 
 ### material-ui-pickers
 
 ![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) предоставляет поля ввода даты и времени, в соответствии c Material Design спецификацией.
+[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) provides date and time controls that follow the Material Design spec.
 
 {{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
 
-### Прочее
+### Other
 
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): поле выбора времени.
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): поле выбора даты и времени.
+- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
+- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.

@@ -2,32 +2,32 @@
 title: Chip React component
 components: Chip
 ---
-# Фишки
+# Chips
 
-<p class="description">Фишки - это компактные элементы, представляющие входные данные, атрибут или действие.</p>
+<p class="description">Chips are compact elements that represent an input, attribute, or action.</p>
 
-[Фишки](https://material.io/design/components/chips.html) позволяют пользователям вводить информацию, делать выбор, фильтровать контент или инициировать действия.
+[Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
 
-Несмотря на то, что он включен здесь как автономный компонент, наиболее распространенное использование будет в той или иной форме ввода, поэтому некоторые из продемонстрированных здесь действий не показаны в контексте.
+While included here as a standalone component, the most common use will be in some form of input, so some of the behaviour demonstrated here is not shown in context.
 
-## Фишка
+## Chip
 
-Примеры фишек, использующих изображения, SVG-иконку, «Символ» и строку в качестве аватара.
+Examples of Chips, using an image Avatar, SVG Icon Avatar, "Letter" and (string) Avatar.
 
-- Фишки с заданным свойством `onClick` могут изменять внешний вид при фокусировке, наведении курсора и клике.
-- Фишки с определенным свойством `onDelete` будут отображать значок удаления который меняет внешний вид при наведении курсора.
+- Chips with the `onClick` property defined change appearance on focus, hover, and click.
+- Chips with the `onDelete` property defined will display a delete icon which changes appearance on hover.
 
 {{"demo": "pages/demos/chips/Chips.js"}}
 
-### Контурные фишки
+### Outlined Chips
 
-Контурные фишки предлагают альтернативный стиль.
+Outlined chips offer an alternative style.
 
 {{"demo": "pages/demos/chips/OutlinedChips.js"}}
 
-## Массив фишек
+## Chip array
 
-Пример рендеринга нескольких фишек из массива значений. Удаление фишки удаляет ее из массива. Обратите внимание, что поскольку свойство `onClick` не определено, фишка может быть сфокусирована, но не получает глубины при щелчке или касании.
+An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array. Note that since no `onClick` property is defined, the Chip can be focused, but does not gain depth while clicked or touched.
 
 {{"demo": "pages/demos/chips/ChipsArray.js"}}
 

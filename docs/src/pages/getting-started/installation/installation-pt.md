@@ -9,10 +9,10 @@ O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/pa
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// utilizando o npm
+// usando npm
 npm install @material-ui/core
 
-// utilizando o yarn
+// usando yarn
 yarn add @material-ui/core
 ```
 

@@ -8,7 +8,7 @@ components: Grid
 
 The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs. Material Design’s responsive UI is based on a 12-column grid layout.
 
-## Comment ça fonctionne
+## How it works
 
 The grid system is implemented with the `Grid` component:
 
@@ -18,17 +18,17 @@ The grid system is implemented with the `Grid` component:
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 
-## Ecartement
+## Spacing
 
 The responsive grid focuses on consistent spacing widths, rather than column width. Material design margins and columns follow an **8dp** square baseline grid. Spacing can be 8, 16, 24, 32 or 40dp wide.
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
-## Les grilles fluides
+## Fluid grids
 
 Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
-### Grille de base
+### Basic grid
 
 The column widths apply at all breakpoints (i.e. `xs` and up).
 
@@ -42,17 +42,17 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 ## Interactive
 
-Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/layout/grid/InteractiveGrid.js"}}
 
-## Mise en page automatique
+## Auto-layout
 
 The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
-## Grille complexe
+## Complex Grid
 
 The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
 
@@ -66,7 +66,7 @@ The following demo doesn't follow the Material Design specification, but illustr
 
 {{"demo": "pages/layout/grid/CSSGrid.js"}}
 
-## Grille imbriquée
+## Nested Grid
 
 The `container` and `item` properties are two independent booleans. They can be combined.
 
@@ -76,9 +76,9 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/layout/grid/NestedGrid.js"}}
 
-## Restrictions
+## Limitations
 
-### Marge négative
+### Negative margin
 
 There is one limitation with the negative margin we use to implement the spacing between items. A horizontal scroll will appear if a negative margin goes beyond the `<body>`. There are 3 available workarounds: 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default). 2. Applying padding to the parent with at least half the spacing value applied to the child:
 

@@ -2,20 +2,20 @@
 title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 ---
-# Bottom Navigation (Нижняя панель навигации)
+# Bottom Navigation (Navegação Inferior)
 
-<p class="description">Нижние панели навигации позволяют перемещаться между основными пунктами назначения в приложении.</p>
+<p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
 
-[Нижняя панель навигации](https://material.io/design/components/bottom-navigation.html) отображает от трех до пяти элементов перехода внизу экрана. Каждый элемент перехода представлен значком и необязательной текстовой меткой. При нажатии на нижний значок навигации пользователь попадает на страницу, связанную с этим значком.
+[Bottom navigation](https://material.io/design/components/bottom-navigation.html) bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.
 
-## Bottom Navigation (Нижняя панель навигации)
+## Bottom Navigation (Navegação Inferior)
 
-Если есть только **три действия**, стоит всегда отображать и значки и текстовые метки.
+When there are only **three** actions, display both icons and text labels at all times.
 
 {{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
 
-## Нижняя навигация без текста
+## Bottom Navigation with no label
 
-Если существует **четыре** или **пять** действий, стоит отображать неактивные элементы только в виде значков.
+If there are **four** or **five** actions, display inactive views as icons only.
 
 {{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}

@@ -14,7 +14,7 @@ Material-UI支持最新的，稳定版的全部主流浏览器和平台。 我�
 
 ## 服务器
 
-因为Material-UI支持服务器端渲染，所以我们需要支持 [Node.js](https://github.com/nodejs/node)的最新稳定版本。 We also try to support the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1). 现在，我们支持 **node v8.x** 和更新版本。
+因为Material-UI支持服务器端渲染，所以我们需要支持 [Node.js](https://github.com/nodejs/node)的最新稳定版本。 我们试图支持 [最后一个活动LTS版本](https://github.com/nodejs/Release#lts-schedule1)。 现在，我们支持 **node v6.x** 和更新版本。
 
 ### CSS前缀
 

@@ -45,7 +45,7 @@ You can also swap out the transition, the next example uses `Slide`.
 
 ## Form dialogs
 
-Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
@@ -75,7 +75,7 @@ You may make a dialog responsively full screen the dialog using `withMobileDialo
 
 ## Confirmation dialogs
 
-Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK.”
 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 

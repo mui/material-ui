@@ -1,86 +1,86 @@
 ---
-title: React-компонент Сетка
-components: Сетка
+title: Grid React component
+components: Grid
 ---
-# Сетка
+# Grid
 
-<p class="description">Сетка адаптивного макета Material Design адаптируется к размеру экрана и ориентации, обеспечивая согласованность макетов.</p>
+<p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-[Сетка](https://material.io/design/layout/responsive-layout-grid.html) создает визуальную согласованность между макетами, позволяя гибко адаптироваться к разнообразным дизайнам. Адаптивный пользовательский интерфейс Material Design основан на сетке с 12 колонками.
+The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs. Material Design’s responsive UI is based on a 12-column grid layout.
 
-## Как это работает
+## How it works
 
-Система сетки реализована с помощью компонента `Grid`:
+The grid system is implemented with the `Grid` component:
 
-- Она использует [модуль Flexible Box CSS](https://www.w3.org/TR/css-flexbox-1/) для повышеной гибкости.
-- Существует два типа макетов: *контейнеры* и *элементы*.
-- Ширина элементов задается в процентах, поэтому они всегда гибко изменяют свой размер относительно родительского элемента.
-- Элементы имеют отступы для создания промежутков между отдельными элементами.
-- Существует пять контрольных точек прерывания сетки: xs, sm, md, lg и xl.
+- It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+- There are two types of layout: *containers* and *items*.
+- Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
+- Items have padding to create the spacing between individual items.
+- There are five grid breakpoints: xs, sm, md, lg, and xl.
 
-## Интервал
+## Spacing
 
-Адаптивная сетка фокусируется на постоянной ширине отступов, а не на ширине столбца. Поля и столбцы Material Design соответствуют базовой квадратной **8dp** сетке. Интервал может быть 8, 16, 24, 32 или 40dp в ширину.
+The responsive grid focuses on consistent spacing widths, rather than column width. Material design margins and columns follow an **8dp** square baseline grid. Spacing can be 8, 16, 24, 32 or 40dp wide.
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
-## Адаптивные сетки
+## Fluid grids
 
-Адаптивные сетки используют столбцы, которые масштабируют и изменяют размер содержимого. Макет адаптивной сетки может использовать точки прерывания, чтобы определить, нужно ли кардинально изменить макет.
+Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
-### Базовая сетка
+### Basic grid
 
-Ширина столбца меняется во всех точках прерывания (от `xs` и выше).
+The column widths apply at all breakpoints (i.e. `xs` and up).
 
 {{"demo": "pages/layout/grid/CenteredGrid.js"}}
 
-### Сетка с точками прерывания
+### Grid with breakpoints
 
-Некоторые столбцы имеют несколько значений ширины, что приводит к изменению макета в определенной точке прерывания.
+Some columns have multiple widths defined, causing the layout to change at the defined breakpoint.
 
 {{"demo": "pages/layout/grid/FullWidthGrid.js"}}
 
-## Интерактивность
+## Interactive
 
-Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/layout/grid/InteractiveGrid.js"}}
 
-## Авто-разметка
+## Auto-layout
 
-Автоматическая разметка позволяет *элементам* равномерно распределять доступное пространство. Это также означает, что вы можете установить ширину одного *элемента*, а остальные будут автоматически изменять размер вокруг него.
+The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
-## Сложная сетка
+## Complex Grid
 
-Следующая демонстрация не соответствует спецификации Material Design, но иллюстрирует, как сетка может использоваться для создания сложных макетов.
+The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
 
 {{"demo": "pages/layout/grid/ComplexGrid.js"}}
 
-## CSS макет сетки
+## CSS Grid Layout
 
-**CSS Grid Layout** отлично подходит для разделения страницы на основные блоки или определяет взаимосвязь размера, позиционирования и уровня между частями управляемого элемента, состоящего из HTML примитивов.
+**CSS Grid Layout** excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
 
-⚠️ К сожалению, CSS-сетка поддерживается только самыми современными браузерами.
+⚠️ Unfortunately, CSS grid is only supported by the most recent browsers.
 
 {{"demo": "pages/layout/grid/CSSGrid.js"}}
 
-## Вложенная сетка
+## Nested Grid
 
-Свойства `container` и `item` - это два независимых логических значения. Они могут быть объединены.
+The `container` and `item` properties are two independent booleans. They can be combined.
 
-> Flex **контейнер** представляет собой блок, созданный элементом с вычисляемым свойством display `flex` или `inline-flex`. Дочерние элементы flex контейнера называются flex **элементы** и размещаются используя flex-модель.
+> A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/layout/grid/NestedGrid.js"}}
 
-## Ограничения
+## Limitations
 
-### Отрицательный margin
+### Negative margin
 
-Есть одно ограничение с отрицательным margin, которое мы используем для добавления расстояния между элементами. Появится горизонтальная прокрутка, если отрицательный margin выходит за пределы `<body>`. Существует 3 обходных пути: 1. Не использовать отступы и не реализовывать их в пространстве пользователя. `spacing={0}` (по умолчанию). 2. Применение внутренних отступов (padding) к родителю с использованием, как минимум, половины значения отступа, имеющегося у дочернего элемента:
+There is one limitation with the negative margin we use to implement the spacing between items. A horizontal scroll will appear if a negative margin goes beyond the `<body>`. There are 3 available workarounds: 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default). 2. Applying padding to the parent with at least half the spacing value applied to the child:
 
 ```jsx
   <body>
@@ -92,18 +92,18 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   </body>
 ```
 
-1. Добавление `overflow-x: hidden;` к родителю.
+1. Adding `overflow-x: hidden;` to the parent.
 
 ### white-space: nowrap;
 
-Исходное значение для элементов Flex: `min-width: auto`. Это вызывает конфликт позиционирования, когда дети используют `white-space: nowrap;` Вы можете столкнуться со следующей проблемой:
+The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. На практике вы можете использовать свойство `zeroMinWidth`:
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
 
 ```jsx
 <Grid item xs zeroMinWidth>

@@ -62,7 +62,7 @@ components: Snackbar, SnackbarContent
 
 ### 更改过渡动画
 
-使用不同的过渡动画。
+同时使用不同的过渡动画。
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 

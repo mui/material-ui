@@ -83,15 +83,15 @@ Les icônes sont également appropriés pour les boutons à bascule qui permette
 
 ## Boutons personnalisés
 
-Si vous avez lu [la page de la documentation sur les personnalisation](/customization/overrides/) mais que vous n'êtes pas prêt pour vous lancer, voici des exemples pour changer la couleur principale d'un bouton en utilisant des classes, et en utilisant un thème; et d'un bouton de style Bootstrap.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the main color of a Button using classes, and using a theme; and of a Bootstrap style Button.
 
-⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
-## Boutons complexes
+## Complex Buttons
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. Vous pouvez tirer parti de ce composant de niveau inférieur pour créer des interactions personnalisées.
+The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}
 
@@ -108,7 +108,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-ou si vous souhaitez éviter les collisions de propriétés :
+or if you want to avoid properties collision:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Remarque: la création de `MyLink` est nécessaire pour éviter un démontage inattendu. Vous en saurez plus à ce sujet dans notre [guide des propriétés des composants](/guides/composition/#component-property).*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

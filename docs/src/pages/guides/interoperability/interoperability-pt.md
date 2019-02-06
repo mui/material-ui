@@ -61,7 +61,7 @@ export default RawCssButton;
 
 ## Styled Components
 
-![estrelas](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
 The `styled()` method works perfectly on all of our components.
 
@@ -164,7 +164,7 @@ Material-UI has a rich theme structure that you can leverage for the color manip
 
 ## CSS Modules
 
-![estrelas](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
+![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
 It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the bundling solution people are using.
 
@@ -212,7 +212,7 @@ export default CssModulesButton;
 
 ## Emotion
 
-![estrelas](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
 
 ### The css Prop
 
@@ -390,7 +390,7 @@ export default GlobalCssButton;
 
 ## React JSS
 
-![estrelas](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
+![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
 Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss). We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
 
@@ -484,7 +484,7 @@ const CssToMuiButton = withStyles(styles)(({ classes }) => (
 
 ## Glamor
 
-![estrelas](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
+![stars](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
 
 A good way to apply styles with Glamor is using the **css()** function and then **classnames** to get them as strings:
 

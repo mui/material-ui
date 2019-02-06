@@ -33,7 +33,7 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 {{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
 
-## Дополнительные проекты
+## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
 

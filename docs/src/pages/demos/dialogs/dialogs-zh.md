@@ -45,7 +45,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 表单对话框
 
-表单对话框允许用户通过一个弹出的对话框，对表单进行填写。 For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+表单对话框允许用户通过一个弹出的对话框，对表单进行填写。 在下面的例子中，你的网站提示那些潜在用户填写他们的电子邮箱，他们可以在点击之后填写email区域，并点击'提交'按钮以提交。
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
@@ -75,7 +75,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 确认对话框
 
-确认对话框要求用户在提交选项之前显式确认他们的选择。 For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+确认对话框要求用户在提交选项之前显式确认他们的选择。 例如, 用户可以聆听多个铃声, 但只在触摸 "OK" 时进行最后的选择。
 
 在确认对话框中触摸 "取消", 或按后退, 将会取消当前操作, 放弃任何更改, 并关闭对话框。
 

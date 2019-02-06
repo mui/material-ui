@@ -16,7 +16,7 @@ A palette is a collection of colors, i.e. hues and their shades. Material-UI pro
 
 A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
 
-### Примеры
+### Examples
 
 The Material Design color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
 

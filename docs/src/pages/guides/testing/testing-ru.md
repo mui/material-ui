@@ -1,10 +1,10 @@
-# Тестирование
+# Testing
 
-<p class="description">Пишите тесты, чтобы предотвратить регрессии и получить лучший код.</p>
+<p class="description">Write tests to prevent regressions and write better code.</p>
 
 ## Internal
 
-Мы серьезно относимся к тестам. We have written and maintain **a wide range** of tests so we can iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) have proven to be really helpful. To learn more about our internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
+We take tests seriously. We have written and maintain **a wide range** of tests so we can iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) have proven to be really helpful. To learn more about our internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
 While we have reached the 100% test coverage achievement, we don't encourage our users to do the same. [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 
@@ -48,7 +48,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 
 `shallow` (*shallow*): A shallow function.
 
-#### Примеры
+#### Examples
 
 ```jsx
 import { createShallow } from '@material-ui/core/test-utils';
@@ -80,7 +80,7 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 `mount` (*mount*): A mount function.
 
-#### Примеры
+#### Examples
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
@@ -116,7 +116,7 @@ Generate a render to string function with the needed context. Please refer to th
 
 `render` (*Function*): A render to string function.
 
-#### Примеры
+#### Examples
 
 ```jsx
 import { createRender } from '@material-ui/core/test-utils';

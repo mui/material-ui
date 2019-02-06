@@ -1,33 +1,33 @@
 ---
-title: Componente React Autocomplete
+title: Autocomplete React component
 components: TextField, Paper, MenuItem, Popper
 ---
 # Autocomplete (Autocompletar)
 
-<p class="description">O autocomplete é uma entrada de texto normal aprimorada por um painel de opções sugeridas.</p>
+<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
 
-O Material-UI não fornece nenhuma API de alto nível para resolver esse problema. Encorajamos as pessoas a confiar nas soluções que a comunidade React construiu.
+Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
 
 ## downshift
 
-![estrelas](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
+![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-No exemplo a seguir, demonstramos como usar [downshift](https://github.com/paypal/downshift).
+In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).
 
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select
 
-![estrelas](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-select.svg)
+![stars](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-select.svg)
 
-No exemplo a seguir, demonstramos como usar [react-select](https://github.com/JedWatson/react-select).
+In the following example, we demonstrate how to use [react-select](https://github.com/JedWatson/react-select).
 
 {{"demo": "pages/demos/autocomplete/IntegrationReactSelect.js"}}
 
 ## react-autosuggest
 
-![estrelas](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-autosuggest.svg)
+![stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-No exemplo a seguir, demonstramos como usar [react-autosuggest](https://github.com/moroshko/react-autosuggest). Também está sendo usado [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) para a lógica de destaque.
+In the following example, we demonstrate how to use [react-autosuggest](https://github.com/moroshko/react-autosuggest). It's also using [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) for the highlighting logic.
 
 {{"demo": "pages/demos/autocomplete/IntegrationAutosuggest.js"}}

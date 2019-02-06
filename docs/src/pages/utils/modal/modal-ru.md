@@ -14,20 +14,20 @@ The component renders its `children` node in front of a backdrop component. The 
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
-> **примечание по терминологии**. Термин «modal» иногда используется для обозначения «dialog», но это неверно. Модальное окно описывает части UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
-
-If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal. Modal is a lower-level construct that is leveraged by the following components:
+Modal is a lower-level construct that is leveraged by the following components:
 
 - [Dialog](/demos/dialogs/)
 - [Drawer](/demos/drawers/)
 - [Menu](/demos/menus/)
 - [Popover](/utils/popover/)
 
+If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal.
+
 ## Simple modal
 
 {{"demo": "pages/utils/modal/SimpleModal.js"}}
 
-## Производительность
+## Performance
 
 The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modal in your React tree won't slow down your page.
 
@@ -66,4 +66,4 @@ We create a lot of React elements that will never be mounted. It's wasteful
 </Modal>
 ```
 
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal
+This way, you take advantage of React render laziness evaluation. The `TableComponent` render method will only be evaluated when opening the modal

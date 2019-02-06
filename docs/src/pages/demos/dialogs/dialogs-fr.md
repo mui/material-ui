@@ -34,24 +34,24 @@ Utilisez les alertes de la barre de titre uniquement dans les situations à haut
 
 Si un titre est requis:
 
-- Utilisez une question ou une déclaration claire avec une explication dans la zone de contenu, telle que "Effacer le stockage USB?".
-- Évitez les excuses, les ambiguïtés ou les questions telles que "Attention"
+- Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
+- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
 {{"demo": "pages/demos/dialogs/AlertDialog.js"}}
 
-Vous pouvez également permuter la transition. L’exemple suivant utilise `Slide`.
+You can also swap out the transition, the next example uses `Slide`.
 
 {{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
 ## Dialogues de formulaire
 
-Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des champs de formulaire dans une boîte de dialogue. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
 ## Dialogue personnalisé
 
-Si vous avez lu la page de documentation [sur les personnalisation](/customization/overrides/) mais que vous n'êtes pas prêt à vous lancer, voici un exemple de la façon dont vous pouvez personnaliser le `DialogTitle` pour ajouter un bouton de fermeture.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
 
 ⚠️ Bien que la spécification material encouragent la thématisation, cet exemple sort des sentiers battus.
 
@@ -63,7 +63,7 @@ Si vous avez lu la page de documentation [sur les personnalisation](/customizati
 
 ## Tailles en option
 
-Vous pouvez définir une largeur maximale dans la boîte de dialogue à l’aide de la valeur `maxWidth`, associée à la valeur `fullWidth`. Lorsque la propriété `fullWidth` est définie sur true, la boîte de dialogue s'adapte en fonction de la valeur `maxWidth`.
+You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
 
 {{"demo": "pages/demos/dialogs/MaxWidthDialog.js"}}
 
@@ -75,15 +75,15 @@ You may make a dialog responsively full screen the dialog using `withMobileDialo
 
 ## Dialogues de confirmation
 
-Les dialogues de confirmation demandent aux utilisateurs de confirmer explicitement leur choix avant la validation d'une option. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK.”
 
-Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer sur Retour annule l'action, annule les modifications et ferme la boîte de dialogue.
+Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
 ## Accessibilité
 
-Assurez-vous d’ajouter `aria-labelledby = "id ..."`, faisant référence au titre modal, dans le composant `Dialog`. De plus, vous pouvez donner une description de votre dialogue avec la propriété `aria-describeby="id ..."` du composant `Dialog`.
+Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Dialog`. Additionally, you may give a description of your modal dialog with the `aria-describedby="id..."` property on the `Dialog`.
 
 ## Défiler de longues contenu
 
@@ -98,7 +98,7 @@ Essayez la démo ci-dessous pour voir ce que nous voulons dire:
 
 ## Dialogue glissable
 
-Vous pouvez créer une boîte de dialogue déplaçable à l’aide de [react-draggable](https://github.com/mzabriskie/react-draggable). Pour ce faire, vous pouvez passer le composant importé `Draggable` en tant que proprieté `PaperComponent` du composant `Dialog`. Cela rend la totalité de la boîte de dialogue déplaçable.
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
 
 {{"demo": "pages/demos/dialogs/DraggableDialog.js"}}
 

@@ -10,7 +10,7 @@ We have provided examples for the following styling solutions:
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
-- [Глобальный CSS](#global-css)
+- [Global CSS](#global-css)
 - [React JSS](#react-jss)
 - [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
@@ -347,7 +347,7 @@ Material-UI has a rich theme structure that you can leverage for the color manip
 
 {{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
 
-## Глобальный CSS
+## Global CSS
 
 Explicitly providing the class names to the component is too much effort? Rest assured, we provide an option to make the class names **deterministic** for quick prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css).
 

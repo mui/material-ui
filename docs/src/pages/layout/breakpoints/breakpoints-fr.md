@@ -12,7 +12,7 @@ Each breakpoint matches with a *fixed* screen width:
 - **lg**, large: 1280px or larger
 - **xl**, extra-large: 1920px or larger
 
-Ces valeurs peuvent être personnalisées. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
+These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/layout/grid/) and [Hidden](/layout/hidden/) components.
 

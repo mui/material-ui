@@ -7,7 +7,7 @@
   "tidelift": "Get Professionally Supported Material-UI",
   "strapline": "React components for faster and easier web development. Build you own design system, or start with Material Design.",
   "getStarted": "Get Started",
-  "starOnGitHub": "Star mui-org/material-ui on GitHub",
+  "starOnGitHub":"Star mui-org/material-ui on GitHub",
   "installation": "Installation",
   "installDescr": "Install Material-UI's source files via npm. We take care of injecting the CSS needed.",
   "cdn": "or use a CDN.",

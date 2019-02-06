@@ -37,7 +37,3 @@ Sliders reflect the current state of the settings they control.
 ## Custom thumb
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}
-
-## Valor do reducer personalizado
-
-{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}

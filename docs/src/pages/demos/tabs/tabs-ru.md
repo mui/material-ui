@@ -10,7 +10,7 @@ components: Tabs, Tab
 
 ## Simple Tabs
 
-Простой пример без излишеств.
+A simple example with no frills.
 
 {{"demo": "pages/demos/tabs/SimpleTabs.js"}}
 
@@ -66,7 +66,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 If you have read the [overrides documentation page](/customization/overrides/) but aren't confident jumping in, here's an example of how you can change the main color of the Tabs.
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 

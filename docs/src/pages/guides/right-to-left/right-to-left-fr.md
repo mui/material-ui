@@ -1,8 +1,8 @@
-# Droite à gauche
+# Right-to-left
 
-<p class="description">Pour modifier le sens des composants Materiau-UI, vous devez suivre les étapes suivantes. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
+<p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
 
-## Etapes
+## Steps
 
 ### 1. HTML
 
@@ -12,7 +12,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 <body dir="rtl">
 ```
 
-### 2. Thème
+### 2. Theme
 
 Set the direction in your custom theme:
 
@@ -57,13 +57,13 @@ function RTL(props) {
 }
 ```
 
-## Démo
+## Demo
 
-*Utilisez le bouton de navigation situé dans le coin supérieur droit pour retourner toute la documentation*
+*Use the direction toggle button on the top right corner to flip the whole documentation*
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
-## Désactiver la transformation RTL
+## Opting out of rtl transformation
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
 

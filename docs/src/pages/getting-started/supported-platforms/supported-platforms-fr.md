@@ -1,20 +1,20 @@
-# Plateformes supportées
+# Supported Platforms
 
-<p class="description">En savoir plus sur les plateformes, des plus anciennes aux plus modernes, prises en charge par Material-UI.</p>
+<p class="description">Learn about the platforms, from modern to old, that are supported by Material-UI.</p>
 
-## Navigateur
+## Browser
 
-Material-UI prend en charge les dernières versions stables de tous les principaux navigateurs et plates-formes. Nous supportons également Internet Explorer 11. You don't need to provide any JavaScript polyfill as we manage unsupported browser features internally and in isolation.
+Material-UI supports the latest, stable releases of all major browsers and platforms. We also support Internet Explorer 11. You don't need to provide any JavaScript polyfill as we manage unsupported browser features internally and in isolation.
 
 | IE | Edge  | Firefox | Chrome | Safari | Googlebot |
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-Étant donné que Googlebot utilise un service de rendu Web (WRS) pour indexer le contenu de la page, il est essentiel que Material-UI le prenne en charge. [WRS est basé sur Chrome 41](https://developers.google.com/search/docs/guides/rendering). Vous pouvez vous attendre à ce que les composants de Material-UI soient rendus sans problèmes majeurs.
+Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it. [WRS is based on Chrome 41](https://developers.google.com/search/docs/guides/rendering). You can expect Material-UI's components to render without major issues.
 
-## Serveur
+## Server
 
-Because Material-UI supports server-side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). We also try to support the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1). Right now, we support **node v8.x** and newer versions.
+Because Material-UI supports server-side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). We try to support the [last active LTS version](https://github.com/nodejs/Release#lts-schedule1). Right now, we support **node v6.x** and newer versions.
 
 ### CSS prefixing
 

@@ -16,13 +16,13 @@ O componente wrapper `TextField` é um controle de formulário completo, incluin
 
 > **Nota:** Esta versão do campo de texto não está mais documentada na documentação do Material Design.
 
-## Delineado
+## Outlined
 
 `TextField` suporta estilo delineado.
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
 
-## Preenchido
+## Filled
 
 `TextField` suporta estilo preenchido.
 
@@ -32,7 +32,7 @@ O componente wrapper `TextField` é um controle de formulário completo, incluin
 
 `TextField` é composto por componentes menores ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), e [`FormHelperText`](/api/form-helper-text/) ) que você pode aproveitar diretamente para personalizar significativamente as entradas do seu formulário.
 
-Você também pode ter notado que algumas propriedades de entrada nativas do HTML estão faltando no componente `TextField`. Isto é intencional. O componente cuida das propriedades mais usadas, depois cabe ao usuário usar o componente exibido na demonstração. Ainda, você pode usar `inputProps` (`InputProps` e `InputLabelProps`) se você quiser evitar algum boilerplate.
+Você também pode ter notado que algumas propriedades de entrada nativas do HTML estão faltando no componente `TextField`. Isto é intencional. O componente cuida das propriedades mais usadas, depois cabe ao usuário usar o componente exibido na demonstração. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
@@ -42,19 +42,19 @@ Você também pode ter notado que algumas propriedades de entrada nativas do HTM
 
 ## Inputs Costumizados
 
-Se você leu a [página de abertura da documentação](/customization/overrides/) mas não está confiante, aqui vai um exemplo de como trocar a cor principal do Input.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
 ⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-A customização não para no CSS, você pode usar composição para criar componentes personalizados e dar ao seu aplicativo uma sensação única. Abaixo há um exemplo usando o componente [`InputBase`](/api/input-base/), inspirado pelo Google Maps.
+Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
-## Decoração de inputs
+## Input Adornments
 
-`Input` permite o uso de `InputAdornment`. Estes podem ser usados para adicionar um prefixo, sufixo ou uma ação para uma entrada. Por exemplo, você pode usar um botão com ícone para ocultar ou revelar a senha.
+`Input` allows the provision of `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
@@ -64,11 +64,11 @@ Os ícones podem ser especificados como anexados ou anexados.
 
 {{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
 
-### Input com bordas preenchidas
+### Filled Input Adornments
 
 {{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
 
-### Inputs com contornos delineados
+### Outlined Input Adornments
 
 {{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
@@ -80,11 +80,11 @@ Os ícones podem ser especificados como anexados ou anexados.
 
 ## Limitations
 
-O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "srink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
+The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
 
 ![minimizar](/static/images/text-fields/shrink.png)
 
-Para contornar o problema, você pode forçar a "shrink" do label.
+To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
@@ -98,33 +98,33 @@ ou
 
 ## Inputs Formatados
 
-Você pode usar bibliotecas de terceiros para formatar uma entrada. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`. O componente de entrada fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implementa a interface [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property. The provided input component should handle the `inputRef` property. The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
 
-A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format).
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
 ## Accessibility
 
-Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao label e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">
-  <label for="my-input">Endereço de e-mail</label>
+  <label for="my-input">Email address</label>
   <input id="my-input" aria-describedby="my-helper-text" />
-  <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
+  <span id="my-helper-text">We'll never share your email.</span>
 </div>
 ```
 
-- Se você estiver usando o componente `TextField`, basta fornecer um `id` único.
-- Se você está compondo o componente:
+- If you are using the `TextField` component, you just have to provide a unique `id`.
+- If you are composing the component:
 
 ```jsx
-<div class="form-control">
-  <label for="my-input">Endereço de e-mail</label>
-  <input id="my-input" aria-describedby="my-helper-text" />
-  <span id="my-helper-text">Nós nunca compartilharemos seu e-mail.</span>
-</div>
+<FormControl>
+  <InputLabel htmlFor="my-input">Email address</InputLabel>
+  <Input id="my-input" aria-describedby="my-helper-text" />
+  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+</FormControl>
 ```
 
 ## Projetos Complementares
@@ -134,4 +134,4 @@ For more advanced use cases you might be able to take advantage of:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
-- [uniformes-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Componentes Material-UI para Uniforms, um conjunto de bibliotecas React para construção de formulários.
+- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Material-UI wrapper components for Uniforms, a set of React libraries for building forms.

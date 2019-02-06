@@ -235,7 +235,7 @@ const className = `${productionPrefix}-${identifier}`;
 
 If you don't like this default behavior, you can change it. JSS relies on the concept of [class name generator](https://cssinjs.org/jss-api/#generate-your-class-names).
 
-## Globales CSS
+## Global CSS
 
 We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
 

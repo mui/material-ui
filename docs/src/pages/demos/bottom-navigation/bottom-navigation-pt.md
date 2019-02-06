@@ -10,7 +10,7 @@ components: BottomNavigation, BottomNavigationAction
 
 ## Bottom Navigation (Navegação Inferior)
 
-Quando existem apenas **três** ações, exibir ambos os ícones e rótulos de texto em todos os momentos.
+When there are only **three** actions, display both icons and text labels at all times.
 
 {{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
 

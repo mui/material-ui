@@ -2,13 +2,13 @@
 title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
-# Diálogos
+# Dialogs
 
-<p class="description">Los diálogos informan a los usuarios sobre una acción y pueden contener información importante, o varias acciones.</p>
+<p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
-Un [Diálogo](https://material.io/design/components/dialogs.html)es una clase de [ventana modal](/utils/modal/) que aparece encima del contenido para proveer información importante o pedir que el usuario tome una decision. Los diálogos deshabilitan todas las funcciones del app cuando aparecen, y se quedan visibles hasta que se confirman, se despedan, o se toma alguna acción necesario.
+A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/utils/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
-Los diálogos están diseñados a interrumpir el usuario, por eso, deben usarse solo cuando estén necesarios.
+Dialogs are purposefully interruptive, so they should be used sparingly.
 
 ## Simple Dialogs
 
@@ -45,7 +45,7 @@ You can also swap out the transition, the next example uses `Slide`.
 
 ## Form dialogs
 
-Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
@@ -53,7 +53,7 @@ Form dialogs allow users to fill out form fields within a dialog. For example, i
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `DialogTitle` to support a close button.
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, este ejemplo no es común.
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/dialogs/CustomizedDialog.js"}}
 
@@ -75,7 +75,7 @@ You may make a dialog responsively full screen the dialog using `withMobileDialo
 
 ## Confirmation dialogs
 
-Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK.”
 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 

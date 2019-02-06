@@ -1,10 +1,10 @@
 # Flexbox
 
-<p class="description">Verwalten Sie schnell das Layout, die Ausrichtung und die Größe von Rasterspalten, Navigation, Komponenten und mehr mit einer umfassenden Suite von responsiven Flexbox-Dienstprogrammen.</p>
+<p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities.</p>
 
-Die Dokumentationsseite ist stark von [ A Complete Guide to Flexbox inspiriert ](https://css-tricks.com/snippets/css/a-guide-to-flexbox/). Wir empfehlen Ihnen dringend, es zu lesen und sich einzuprägen.
+The documentation page is highly inspired by [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/). We highly encourage you to read and memorize it.
 
-## Eigenschaften für das übergeordnete Element
+## Properties for the Parent
 
 ### display
 
@@ -61,7 +61,7 @@ Die Dokumentationsseite ist stark von [ A Complete Guide to Flexbox inspiriert ]
 
 {{"demo": "pages/system/flexbox/AlignContent.js"}}
 
-## Eigenschaften für die untergeordneten Elemente
+## Properties for the Children
 
 ### order
 

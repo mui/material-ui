@@ -1,10 +1,10 @@
-# Rendu serveur
+# Server Rendering
 
 <p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
 
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
 
-## Material-UI sur le serveur
+## Material-UI on the Server
 
 Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker. To inject the style down to the client, we need to:
 
@@ -15,11 +15,11 @@ Material-UI was designed from the ground-up with the constraint of rendering on 
 
 On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
 
-## Mise en place
+## Setting Up
 
 In the following recipe, we are going to look at how to set up server-side rendering.
 
-### Côté serveur
+### The Server Side
 
 The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
 
@@ -127,7 +127,7 @@ function renderFullPage(html, css) {
 }
 ```
 
-### Le côté client
+### The Client Side
 
 The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at our client file:
 
@@ -182,7 +182,7 @@ ReactDOM.hydrate(
 );
 ```
 
-## Implémentations de référence
+## Reference implementations
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
@@ -190,7 +190,7 @@ We host different reference implementations which you can find in the [GitHub re
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 
-## Résolution de problèmes
+## Troubleshooting
 
 If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](#reference-implementations), bit by bit.
 

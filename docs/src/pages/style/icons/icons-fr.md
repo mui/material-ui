@@ -9,7 +9,7 @@ A [system icon](https://material.io/design/iconography/system-icons.html) or UI 
 
 Material-UI provides two components to render system icons: `SvgIcon` for rendering SVG paths, and `Icon` for rendering font icons.
 
-## Icônes SVG
+## SVG Icons
 
 The `SvgIcon` component takes an SVG `path` element as its child and converts it to a React component that displays the path, and allows the icon to be styled and respond to mouse events. SVG elements should be scaled for a 24x24px viewport.
 
@@ -25,7 +25,7 @@ It's interesting to have the building blocks needed to implement custom icons, b
   <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
 </a>
 
-#### Utilisation
+#### Usage
 
 You can use [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
 
@@ -68,7 +68,7 @@ Note: Importing named exports in this way will result in the code for *every ico
 
 Looking for even more SVG icons? There are a lot of projects out there, but [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 official and community provided icons. [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
 
-## Icônes de polices
+## Font Icons
 
 The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 

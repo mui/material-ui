@@ -4,7 +4,7 @@ components: CircularProgress, LinearProgress
 ---
 # Progress
 
-<p class="description">Les indicateurs de progression expriment un temps d'attente non spécifié ou affichent la durée d'un processus.</p>
+<p class="description">Progress indicators express an unspecified wait time or display the length of a process.</p>
 
 [Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
 
@@ -84,13 +84,13 @@ function Progress(props) {
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. The last demo demonstrates how you can build a Facebook like spinner.
 
-⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
-## Retarder l'apparition
+## Delaying appearance
 
-Il y a [3 limites importantes](https://www.nngroup.com/articles/response-times-3-important-limits/) à connaître sur les temps de réponse. The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second. After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
+There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time. The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second. After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
 
@@ -100,6 +100,6 @@ Under heavy load, you might lose the stroke dash animation or see random Circula
 
 ![heavy load](/static/images/progress/heavy-load.gif)
 
-Lorsque ce n'est pas possible, vous pouvez utiliser la propriété `disableShrink` pour atténuer le problème. Voir https://github.com/mui-org/material-ui/issues/10327
+When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See https://github.com/mui-org/material-ui/issues/10327
 
 {{"demo": "pages/demos/progress/CircularUnderLoad.js"}}

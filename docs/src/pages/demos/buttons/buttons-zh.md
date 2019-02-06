@@ -4,9 +4,9 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
 # 按钮
 
-<p class="description">用户只需一按按钮组件，就可以触发动作并作出选择。</p>
+<p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达了用户可以触发的动作。通常，按钮被放置在界面中的以下位置：
+[按钮](https://material.io/design/components/buttons.html) 传达了用户可以采取的行动，它们一般被放置在你的界面中的以下位置：
 
 - 对话框
 - 模态窗口
@@ -16,20 +16,20 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## 实心按钮
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度强调, 按照不同的填充颜色和立体效果来表示强调程度。 它们用于触发应用程序所具有的主要功能。
+[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度强调, 按照不同的填充颜色和立体效果来表示强调程度。 它们包含对应用程序具有主要作用的操作。
 
-此演示的最后一个示例演示了如何使用上传按钮。
+此演示的最后一个示例显示了如何使用上传按钮。
 
 {{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
 ## 文本按钮
 
-[文本按钮](https://material.io/design/components/buttons.html#text-button) 通常用于不太醒目的操作, 包括那些位于:
+[文本按钮](https://material.io/design/components/buttons.html#text-button) 通常用于不太明显的操作, 包括那些位于:
 
 - 在对话框中
 - 在卡片
 
-在卡片中，使用文本按钮有助于保持卡片内容的醒目程度。
+在卡片中，文本按钮有助于在卡片内容之上强调按钮的存在。
 
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
@@ -108,7 +108,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-或者如果你想避免属性碰撞：
+or if you want to avoid properties collision:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*注意：创建 `MyLink` 是必要的，以防止意外卸载。您可以在我们的 [组件属性指南](/guides/composition/#component-property)阅读更多相关信息。*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

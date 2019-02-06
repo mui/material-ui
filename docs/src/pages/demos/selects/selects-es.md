@@ -20,9 +20,9 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## Customized selects
 
-Si has estado leyendo la [página de documentación sobre overrides](/customization/overrides/) pero aun no tienes la confianza suficiente para usarlos acá hay un ejemplo de su uso para el cambio de color de un input.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 {{"demo": "pages/demos/selects/CustomizedSelects.js"}}
 
@@ -44,6 +44,6 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
-## Campos de texto
+## Text Fields
 
-El componente `TextField` es un campo de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).
+The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

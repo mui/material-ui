@@ -16,15 +16,15 @@ Le composant d'encapsulation `TextField` est un contrôle de formulaire complet 
 
 > **Remarque:** Cette version du champ de texte n'est plus documentée dans la documentation de material design.
 
-## Encadré
+## Outlined
 
-`TextField` prend en charge le style encadré.
+`TextField` supports outlined styling.
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
 
-## Remplis
+## Filled
 
-`TextField` prend en charge le style rempli.
+`TextField` supports filled styling.
 
 {{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
 
@@ -32,7 +32,7 @@ Le composant d'encapsulation `TextField` est un contrôle de formulaire complet 
 
 `TextField` est composé d'éléments plus petits ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), et [`FormHelperText`](/api/form-helper-text/) ) que vous pouvez utiliser directement pour personnaliser de manière significative vos entrées de formulaire.
 
-Vous avez peut-être également remarqué que certaines propriétés d'entrée HTML natives sont absentes du composant `TextField`. C'est intentionnel. Le composant prend en charge les propriétés les plus utilisées, puis il appartient à l'utilisateur d'utiliser le composant sous-jacent présenté dans la démonstration suivante. Néanmoins, vous pouvez utiliser `inputProps` (et `InputProps`, `InputLabelProps` propriétés) pour aller plus vite.
+You might also have noticed that some native HTML input properties are missing from the `TextField` component. This is on purpose. The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
@@ -40,15 +40,15 @@ Vous avez peut-être également remarqué que certaines propriétés d'entrée H
 
 {{"demo": "pages/demos/text-fields/Inputs.js"}}
 
-## Inputs personnalisées
+## Customized inputs
 
-Si vous avez lu [la page de documentation sur la personnalisation](/customization/overrides/) mais que vous n'êtes pas prêt pour vous lancer, voici un exemple de la façon dont vous pouvez changer la couleur principale d'un input.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
-⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
-La personnalisation ne se limite pas aux CSS, vous pouvez utiliser la composition pour créer des composants personnalisés et donner à votre application une sensation unique. Voici un exemple utilisant le composant [`InputBase`](/api/input-base/), inspiré de Google Maps.
+Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputBase.js"}}
 
@@ -58,7 +58,7 @@ La personnalisation ne se limite pas aux CSS, vous pouvez utiliser la compositio
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
-### Avec Icone
+### With icon
 
 Icons can be specified as prepended or appended.
 
@@ -78,19 +78,19 @@ Icons can be specified as prepended or appended.
 
 {{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
-## Restrictions
+## Limitations
 
 The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
-Pour contourner le problème, vous pouvez forcer l'état "shrink" de la legende.
+To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-ou
+or
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -104,9 +104,9 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
-## Accessibilité
+## Accessibility
 
-Pour que le champ de texte soit accessible, **le champ de texte doit être lié au label et au texte d'assistance**. Les nœuds DOM sous-jacents doivent avoir cette structure.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">
@@ -116,8 +116,8 @@ Pour que le champ de texte soit accessible, **le champ de texte doit être lié 
 </div>
 ```
 
-- Si vous utilisez le composant `TextField` , il vous suffit de fournir un identifiant unique `id`.
-- Si vous composez le composant:
+- If you are using the `TextField` component, you just have to provide a unique `id`.
+- If you are composing the component:
 
 ```jsx
 <FormControl>
@@ -129,7 +129,7 @@ Pour que le champ de texte soit accessible, **le champ de texte doit être lié 
 
 ## Projets complémentaires
 
-Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
+For more advanced use cases you might be able to take advantage of:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.

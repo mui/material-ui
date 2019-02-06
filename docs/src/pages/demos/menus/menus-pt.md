@@ -56,7 +56,7 @@ It is a [render props](https://reactjs.org/docs/render-props.html) demo that kee
 
 ## Limitations
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout. You can use the `Typography` component to workaround this issue:
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 

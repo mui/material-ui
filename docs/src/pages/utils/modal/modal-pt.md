@@ -1,37 +1,37 @@
 ---
-title: Componente React Modal
+title: Modal React component
 components: Modal
 ---
 # Modal
 
 <p class="description">O componente modal fornece uma base sólida para criar diálogos, popovers, lightboxes ou qualquer outra coisa.</p>
 
-O componente renderiza o conteúdo de seu `children` sobre um backdrop. O `Modal` fornece alguns recursos úteis quando utilizado sobre um componente [`Portal`](/utils/portal/) e alguns estilos:
+The component renders its `children` node in front of a backdrop component. The `Modal` offers a few helpful features over using just a [`Portal`](/utils/portal/) component and some styles:
 
-- Gerencia o empilhamento de chamadas 'um a cada vez'.
-- Cria um backdrop para desabilitar a interação abaixo do modal.
-- Quando aberto, desabilita o scroll da página.
+- Manages modal stacking when one-at-a-time just isn't enough.
+- Creates a backdrop, for disabling interaction below the modal.
+- It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
-> **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela Modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
-
-Se você está criando um diálogo Modal, você provavelmente quer usar o componente [Dialog](/demos/dialogs/) em vez de diretamente um Modal. Modal uma estrutura de baixo-nível que é alavancada pelos seguintes componentes:
+Modal is a lower-level construct that is leveraged by the following components:
 
 - [Dialog](/demos/dialogs/)
 - [Drawer](/demos/drawers/)
 - [Menu](/demos/menus/)
 - [Popover](/utils/popover/)
 
-## Modal Simples
+If you are creating a modal dialog, you probably want to use the [Dialog](/demos/dialogs/) component rather than directly using Modal.
+
+## Simple modal
 
 {{"demo": "pages/utils/modal/SimpleModal.js"}}
 
 ## Performance
 
-O conteúdo dos modais são **montados lentamente** dentro do DOM. Isso garante que, mesmo tendo muitos modais fechados em sua árvore React, o carregamento da sua página não será afetado.
+The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modal in your React tree won't slow down your page.
 
-Porém, criar elementos React tem um preço também. Considere o caso a seguir:
+However, creating React elements has a cost too. Consider the following case:
 
 ```jsx
 <Modal open={false}>
@@ -66,4 +66,4 @@ We create a lot of React elements that will never be mounted. It's wasteful
 </Modal>
 ```
 
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal
+This way, you take advantage of React render laziness evaluation. The `TableComponent` render method will only be evaluated when opening the modal

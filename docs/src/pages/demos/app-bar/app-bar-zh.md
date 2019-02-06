@@ -1,6 +1,6 @@
 ---
-title: React的应用栏组件
-components: 应用栏（AppBar）、工具栏(ToolBar)、菜单(Menu)
+title: React 顶部应用栏组件
+components: AppBar, Toolbar, Menu
 ---
 # 应用栏
 
@@ -18,13 +18,13 @@ components: 应用栏（AppBar）、工具栏(ToolBar)、菜单(Menu)
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## 带一个主搜索输入框的应用栏
+## 搜索输入框居中的应用栏
 
 一个主搜索栏
 
 {{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
-## 带有菜单的应用栏
+## 带菜单的应用栏
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
@@ -34,7 +34,7 @@ components: 应用栏（AppBar）、工具栏(ToolBar)、菜单(Menu)
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## 紧凑模式 (仅限桌面模式)
+## 紧凑模式 (仅限桌面)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 

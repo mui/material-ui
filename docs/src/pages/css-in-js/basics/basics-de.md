@@ -1,16 +1,16 @@
 # Basics
 
-<p class="description">Sie können unsere Styling-Lösung auch nutzen, falls Sie unsere Komponenten nicht verwenden.</p>
+<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
 
 > ⚠️ `@material-ui/styles` is unstable (alpha version). Hopefully, we will make it the default style implementation for the core components in Material-UI v4. [Follow this path](/customization/css-in-js/) to read the documentation of the default style implementation.
 
-Material-UI hat das Ziel, eine solide Grundlage für dynamische UIs zu schaffen. Der Einfachheit halber **stellen wir unseren Nutzern unsere Styling-Lösung bereit**. Sie können sie benutzen, aber Sie müssen nicht. Diese Styling-Lösung [funktioniert mit](/guides/interoperability/) allen anderen bekannten Lösungen.
+Material-UI aims to provide strong foundations for building dynamic UIs. For the sake of simplicity, **we expose our styling solution to users**. You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability/) all the other major solutions.
 
-## Die Styling-Lösung von Material-UI
+## Material-UI's styling solution
 
 In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
 
-- [Eine vereinheitlichte Styling-Sprache](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
+- [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 Material-UI's styling solution is inspired by many other CSS-in-JS libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).

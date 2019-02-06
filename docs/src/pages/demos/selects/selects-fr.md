@@ -20,9 +20,9 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## Customized selects
 
-Si vous avez lu [la page de documentation sur la personnalisation](/customization/overrides/) mais que vous n'êtes pas prêt pour vous lancer, voici un exemple de la façon dont vous pouvez changer la couleur principale d'un input.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
-⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/selects/CustomizedSelects.js"}}
 
@@ -38,9 +38,9 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
 
-## Avec un dialogue
+## With a Dialog
 
-Bien que cela soit découragé par la spécification Material Design, vous pouvez utiliser une sélection dans une boîte de dialogue.
+While it's discouraged by the Material Design specification, you can use a select inside a dialog.
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 

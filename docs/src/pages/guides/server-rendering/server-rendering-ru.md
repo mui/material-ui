@@ -1,27 +1,27 @@
-# Серверная отрисовка
+# Server Rendering
 
-<p class="description">Наиболее распространенный вариант использования для серверной отрисовки - это использовать начальную отрисовку, когда пользователь (или поисковой движок) впервые запрашивает ваше приложение.</p>
+<p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
 
-Когда сервер получает запрос, он отрисовывает необходимые компоненты в HTML строк, а затем отправляет ее как ответ клиенту. С этого момента клиент берет на себя обязанности по отрисовке.
+When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client. From that point on, the client takes over rendering duties.
 
-## Material-UI на сервере
+## Material-UI on the Server
 
-Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated. Важно предоставить странице необходимый CSS, иначе страница будет отрисована только с помощью HTML, а тем будет ожидать CSS, который добавится клиентом, вызывая мерцание. Чтобы добавить стили на клиент, вам необходимо:
+Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated. It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker. To inject the style down to the client, we need to:
 
-1. Создавать новые объекты `sheetsRegistry` и `theme` на каждый запрос.
-2. Отрисовать React дерево с серверным API и сущностью.
-3. Затянуть CSS из `sheetsRegistry`.
-4. Передать CSS клиенту.
+1. Create a fresh, new `sheetsRegistry` and `theme` instance on every request.
+2. Render the React tree with the server-side API and the instance.
+3. Pull the CSS out of the `sheetsRegistry`.
+4. Pass the CSS along to the client.
 
-На стороне клиента CSS будет добавлен второй раз перед удалением добавленного сервером CSS.
+On the client side, the CSS will be injected a second time before removing the server-side injected CSS.
 
-## Настройка
+## Setting Up
 
-В следующем рецепте мы рассмотрим, как настроить серверную отрисовку.
+In the following recipe, we are going to look at how to set up server-side rendering.
 
-### Сторона сервера
+### The Server Side
 
-Ниже приведено описание того, как наша сторона сервера будет выглядеть. Мы настраиваем [Express middleware](http://expressjs.com/en/guide/using-middleware.html), используя [app.use](http://expressjs.com/en/api.html), чтобы обработать все запросы, которые приходят на наш сервер. Если вы не знакомы с Express или middleware, просто знайте, что наша функция handleRender будет вызвана каждый раз, когда сервер получает запрос.
+The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](http://expressjs.com/en/guide/using-middleware.html) using [app.use](http://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
 
 `server.js`
 
@@ -30,7 +30,7 @@ import express from 'express';
 import React from 'react';
 import App from './App';
 
-// Мы заполним их в следующих разделах.
+// We are going to fill these out in the sections to follow.
 function renderFullPage(html, css) {
   /* ... */
 }
@@ -48,11 +48,11 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Обработка запроса
+### Handling the Request
 
-Первая вещь, которую нам нужно сделать на каждый запрос, - это создать новые сущности `sheetsRegistry` и `theme`.
+The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
 
-При отрисовке мы обернем `App`, наш корневой компонент, внутри `JssProvider` и [`MuiThemeProvider`](/api/mui-theme-provider/), чтобы создать `sheetsRegistry` и `theme`, доступные всем компонентам в дереве компонентов.
+When rendering, we will wrap `App`, our root component, inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider/) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 

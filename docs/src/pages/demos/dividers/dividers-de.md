@@ -20,7 +20,7 @@ We need to make sure the `Divider` is rendered as a `li` to match the HTML5 spec
 
 ## Inset Dividers
 
-Die `inset`-Eigenschaft ist von nun an veraltet. Sie sollten nun `variant="inset"` benutzen.
+The `inset` property has now been deprecated. You should now use `variant="inset"`
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 

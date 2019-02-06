@@ -7,7 +7,7 @@ components: TextField
 <p class="description">Les sélecteurs constituent un moyen simple de sélectionner une valeur unique dans un ensemble prédéterminé.</p>
 
 - Sur mobile, les sélecteurs conviennent mieux à l’affichage dans la boîte de dialogue de confirmation.
-- Pour un affichage en ligne, par exemple sur un formulaire, envisagez d'utiliser des contrôles compacts tels que des boutons déroulants segmentés.
+- For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
 
 #### Avis
 

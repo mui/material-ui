@@ -1,5 +1,5 @@
 ---
-title: React-компонент Кнопка
+title: Button React component
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
 # Кнопки
@@ -8,10 +8,10 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 [Кнопки](https://material.io/design/components/buttons.html) сообщают о действиях, которые могут выполнять пользователи. Они обычно размещаются в вашем интерфейсе, например:
 
-- Диалоги
+- Dialogs
 - Всплывающие окно
 - Формы
-- Карточки
+- Карты
 - Панели инструментов
 
 ## Блочные кнопки
@@ -27,25 +27,25 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 [Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее выраженных действий, в том числе расположенных:
 
 - В диалогах
-- В карточках - Cards
+- В cards
 
-В Карточках (Cards) текстовые кнопки помогают сохранить акцент на содержании карточки.
+В Cards текстовые кнопки помогают сохранить акцент на содержании карточки.
 
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
 ## Контурные кнопки
 
-[Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. Они содержат действия, которые важны, но не являются основными в приложении.
+[Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. Они содержат действия, которые важны, но не являются основными действиеми в приложении.
 
 ### Альтернатива
 
-Выделенные кнопки также являются альтернативой выделенным кнопкам или могут использоваться как альтернатива текстовым кнопкам.
+Выделенные кнопки также являются альтернативой выделенным кнопкам или более высокая альтернатива текстовым кнопкам.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
 ## Плавающие кнопки действий
 
-[Плавающая кнопка действия](https://material.io/design/components/buttons-floating-action-button.html) выполняет основное или наиболее распространенное действие на экране. Они отображаются над всем содержимым экрана, обычно в виде закрашенного круга со значком в центре. FABs бывают двух типов: обычные и расширенные.
+[Плавающие кнопки действий](https://material.io/design/components/buttons-floating-action-button.html) выполняет основное или наиболее распространенное действие на экране. Они отображаются над всем содержимым экрана, обычно в виде круглой формы со значком в центре. FABs бывают двух типов: обычные и расширенные.
 
 Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана.
 
@@ -53,11 +53,11 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
 
-По умолчанию анимация кнопки с плавающим действием на экране является расширяющейся.
+По умолчанию анимация кнопки с плавающим действием на экране является expanding.
 
-Кнопка с плавающим действием, которая охватывает несколько боковых экранов (например, экраны с вкладками), должна анимироваться при переходах.
+Кнопка с плавающим действием, которая охватывает несколько боковых экранов (например, экраны с вкладками), должна анимироватьза при пререходах.
 
-Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
+Переход Zoom может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироватьза постепенно.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
@@ -77,27 +77,27 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
-Значки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
+Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
 ## Индивидуальные кнопки
 
-Если вы читали [документацию по переопределению стилей(Overrides)](/customization/overrides/) но вы не уверены, вот примеры того, как вы можете изменить основной цвет кнопки, используя классы, и используя тему; и кнопки в стиле Bootstrap.
+Если вы читали [overrides documentation page](/customization/overrides/) но вы не уверены, вот примеры того, как вы можете изменить основной цвет кнопки, используя классы, и используя тему; и кнопки в стиле Bootstrap.
 
-⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
-## Сложные кнопки
+## Complex Buttons
 
-Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
+The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}
 
-## Сторонняя библиотека маршрутизации
+## Third-party routing library
 
-Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим:
+One common use case is to use the button to trigger a navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -108,7 +108,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-или если вы хотите избежать столкновения свойств:
+or if you want to avoid properties collision:
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Примечание: Создание `MyLink` необходимо для предотвращения неожиданного отключения. Вы можете прочитать больше об этом в нашем [руководстве по свойствам компонента](/guides/composition/#component-property).*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*

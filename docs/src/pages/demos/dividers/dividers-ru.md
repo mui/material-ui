@@ -2,25 +2,25 @@
 title: Divider React component
 components: Divider
 ---
-# Разделитель
+# Dividers
 
-<p class="description">Разделитель - это тонкая линия, которая группирует содержимое (контент) в списки и макеты (слои).</p>
+<p class="description">A divider is a thin line that groups content in lists and layouts.</p>
 
-[Разелители](https://material.io/design/components/dividers.html) делят содержимое (контент) на явные (четкие) группы.
+[Dividers](https://material.io/design/components/dividers.html) separate content into clear groups.
 
-## Разделители списков
+## List Dividers
 
-По умолчанию разделитель отображается как `<hr>`. Вместо этого Вы можете сформировать отображение этого DOM-элемента, используя свойство `divider` в компоненте `ListItem`.
+The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/demos/dividers/ListDividers.js"}}
 
-## Спецификации HTML5
+## HTML5 Specification
 
 We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
 
 ## Inset Dividers
 
-Свойство `inset` является устаревшим. Сейчас вам следует использовать `variant="inset"`.
+The `inset` property has now been deprecated. You should now use `variant="inset"`
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 

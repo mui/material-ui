@@ -16,7 +16,7 @@ You may have noticed some inconsistency in the API regarding composing component
 2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
 3. API consistency matters.
 
-## Règles
+## Rules
 
 Aside from the above composition trade-off, we enforce the following rules:
 

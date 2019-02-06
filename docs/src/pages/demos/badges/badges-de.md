@@ -1,38 +1,38 @@
 ---
-title: Badge React-Komponente
+title: Badge React component
 components: Badge
 ---
 # Badges
 
-<p class="description">Badge generiert ein kleines Abzeichen an der oberen rechten Ecke seiner Kinder.</p>
+<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
 ## Emblemas Simples
 
-Beispiele für Badges, die Text enthalten, mit Primär- und Sekundärfarben. Das Abzeichen wird an seinen Kindern angebracht.
+Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Maximalwert
+## Maximum Value
 
-Sie können die Eigenschaft `max` verwenden, um den Wert des Badge-Inhalts zu begrenzen.
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/demos/badges/BadgeMax.js"}}
 
-## Punkt-Badge
+## Dot Badge
 
-Die Eigenschaft `dot` verwandelt ein Badge in einen kleinen Punkt. Dies kann als Benachrichtigung verwendet werden, dass sich etwas geändert hat, ohne eine Zählung vorzunehmen.
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/demos/badges/DotBadge.js"}}
 
-## Badge Sichtbarkeit
+## Badge visibility
 
-Die Sichtbarkeit von Badges kann über die Eigenschaft `invisible` gesteuert werden.
+The visibility of badges can be controlled using the `invisible` property.
 
-Das Badge versteckt sich automatisch, wenn `badgeContent` null ist. Dies kann mit der Eigenschaft `showZero` überschrieben werden.
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Benutzerdefinierte Badges
+## Customized Badge
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
 

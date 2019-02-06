@@ -1,41 +1,41 @@
 ---
-title: Componente Badge
+title: Badge React component
 components: Badge
 ---
-# Placas
+# Badges
 
-<p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
+<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
 ## Emblemas Simples
 
-Ejemplos de badges que contienen texto, usando los colores primarios y secundarios de la paleta de colores.
+Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
 
 {{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Valor Máximo
+## Maximum Value
 
-Puedes usar la propiedad `max` para limitar el valor máximo del contenido del badge.
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/demos/badges/BadgeMax.js"}}
 
-## Badge de punto
+## Dot Badge
 
-La propiedad `dot` cambia el aspecto del badge a un punto pequeño y puede ser usado como notificación de que algo a cambiado sin mostrar más información.
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/demos/badges/DotBadge.js"}}
 
-## Visibilidad del Badge
+## Badge visibility
 
-La visibilidad del badge puede ser controlada usando la propiedad `invisible`.
+The visibility of badges can be controlled using the `invisible` property.
 
-El badge se auto oculta usando la propiedad `badgeContent={0}`. Puedes sobreescribir este comportamiento usando la propiedad `showZero`.
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
-## Badge Personalizado
+## Customized Badge
 
-Si has leído la [documentación sobre cómo sobreescribir](/customization/overrides/) pero no te sientes seguro de como hacerlo, aquí hay un ejemplo de como cambiar la posición del badge.
+If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the badge position.
 
-⚠️ A pesar de que la especificación de material design anima a usar temas, este ejemplo no es común.
+⚠️ While the material design specification encourages theming, this example is off the beaten path.
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}

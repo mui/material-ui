@@ -1,5 +1,5 @@
 ---
-title: React-компонент Панель навигации
+title: App Bar React component
 components: AppBar, Toolbar, Menu
 ---
 # Панель навигации
@@ -34,7 +34,7 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
 
-## Dense (Только для компьютеров)
+## Dense (desktop only)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
 

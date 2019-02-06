@@ -37,7 +37,3 @@ components: Slider
 ## 自定义拇指
 
 {{"demo": "pages/lab/slider/CustomIconSlider.js"}}
-
-## 定制减价机
-
-{{"demo": "pages/lab/slider/CustomValueReducerSlider.js"}}

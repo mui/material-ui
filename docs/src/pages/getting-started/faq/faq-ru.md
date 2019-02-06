@@ -78,24 +78,24 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 - auto-prefixing
 - better debugging
-- медиа-запросы
-- ключевые кадры
+- media queries
+- keyframes
 
-## Как мне использовать react-router?
+## How do I use react-router?
 
-Мы описали, как использовать [стороннюю библиотеку маршрутизации](/demos/buttons/#third-party-routing-library) с помощью компонента `ButtonBase`. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Вы можете использовать то же решение с ними.
+We have documented how to use a [third-party routing library](/demos/buttons/#third-party-routing-library) with the `ButtonBase` component. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. You can use the same solution with them.
 
 ## How do I combine the `withStyles()` and `withTheme()` HOCs?
 
-Есть несколько разных вариантов:
+There are a number of different options:
 
-**`withTheme` опция:**
+**`withTheme` option:**
 
 ```js
 export default withStyles(styles, { withTheme: true })(Modal);
 ```
 
-**`compose()` вспомогательная функция:**
+**`compose()` helper function:**
 
 ```js
 import { compose } from 'recompose';
@@ -106,13 +106,13 @@ export default compose(
 )(Modal);
 ```
 
-**цепочка необработанных функций:**
+**raw function chaining:**
 
 ```js
 export default withTheme()(withStyles(styles)(Modal));
 ```
 
-## Как я могу получить доступ к элементу DOM?
+## How can I access the DOM element?
 
 Wrap the component with the [`RootRef`](/api/root-ref/) helper.
 

@@ -56,7 +56,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 局限性
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+这里有 [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，这个bug会让`text-overflow: ellipse`在 flexbox 布局中失去效果 你可以使用`Typography`组件做替代方案绕过这个问题：
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 

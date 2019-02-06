@@ -38,7 +38,7 @@ You can find a [demo with React Router following this section](/guides/compositi
 
 ## Interactif
 
-Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 

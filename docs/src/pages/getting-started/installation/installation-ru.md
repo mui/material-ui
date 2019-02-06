@@ -1,12 +1,12 @@
-# Инструкция по установке
+# Installation
 
-<p class="description">Установите Material-UI, самый популярный в мире фреймворк для пользовательского интерфейса React.</p>
+<p class="description">Install Material-UI, the world's most popular React UI framework.</p>
 
-Material-UI доступен в виде пакета [ npm ](https://www.npmjs.com/package/@material-ui/core).
+Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
 ## npm
 
-Для установки и сохранения в вашем ` package.json ` зависимости, запустите:
+To install and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
@@ -16,39 +16,39 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-Обратите внимание, что [react](https://www.npmjs.com/package/react) > = 16.3.0 и [react-dom](https://www.npmjs.com/package/react-dom) > = 16.3.0 являются одноранговыми зависимостями.
+Please note that [react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 are peer dependencies.
 
-## Шрифт Roboto
+## Roboto Font
 
-Material-UI был разработан на основе шрифта [Roboto](https://fonts.google.com/specimen/Roboto). Поэтому обязательно следуйте [этим инструкциям](/style/typography/#general). Например, через Google Web Fonts:
+Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/style/typography/#general). For instance, via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-В качестве альтернативы, если вы используете JSX поверх HTML для отрисовки head:
+Alternatively, if you are using JSX over HTML to render the head:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-## Иконочный шрифт
+## Font Icons
 
-Для того, чтобы использовать компонент `Icon`, вы должны сначала добавить [Material icons](https://material.io/tools/icons/) шрифт. Вот [некоторые инструкции](/style/icons/#font-icons) как это сделать. Например, через Google Web Fonts:
+In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
-В качестве альтернативы, если вы используете JSX поверх HTML для отрисовки head:
+Alternatively, if you are using JSX over HTML to render the head:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-## SVG Иконки
+## SVG Icons
 
-Для того, чтобы использовать предварительно собранные иконки SVG Material, например, найденные в [демонстрационных версиях](/demos/app-bar/), сначала нужно установить [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) пакет:
+In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh
 npm install @material-ui/icons
@@ -56,13 +56,13 @@ npm install @material-ui/icons
 
 ## CDN
 
-Вы можете начать использовать Material-UI с минимальной интерфейсной инфраструктурой, что отлично подходит для прототипирования. Мы не рекомендуем использовать этот подход в производственных условиях - клиент должен загрузить всю библиотеку, независимо от того, какие компоненты фактически используются, как это влияет на производительность и использование полосы пропускания.
+You can start using Material-UI with minimal Front-end infrastructure, which is great for prototyping. We discourage using this approach in production though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilisation.
 
-#### Релизы UMD
+#### UMD releases
 
-Мы предоставляем два файла универсального определения модуля (UMD):
+We are providing two Universal Module Definition (UMD) files:
 
-- один для разработки: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- один для публикации: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) для быстрого старта.
+You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.

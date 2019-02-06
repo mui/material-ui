@@ -104,20 +104,20 @@ export default function MyComponent() {
 }
 ```
 
-## `styled(Component)(styles, [options]) => Component`
+## `styled(styles, [options])(Component) => Component`
 
 链路的样式表中有一个功能组件的使用**styled components**的模式。
 
 #### 参数
 
-1. `Component` ：将被包装的组件。
-2. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
-3. `选项` (*Object* [optional]): 
+1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
+2. `选项` (*Object* [optional]): 
     - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
     - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
     - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
     - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
     - 其他键被转发到[jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet)。
+3. `Component` ：将被包装的组件。
 
 #### 返回结果
 
@@ -209,9 +209,9 @@ export default function MyComponent() {
 
 一些可能有趣的实现细节：
 
-- 它添加了一个 `classes` 属性，因此您可以从外部覆盖注入的类名。
-- 它添加了一个 `innerRef` 属性，因此你可以从外部覆盖注入的类名。 ` innerRef ` 的用法与 `ref` 相同。
-- 它将转发*非 React 的静态* 属性，以便 HOC 更 "透明"。 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
+- 它添加了一个`classes`属性，因此您可以从外部覆盖注入的类名。
+- 它添加了一个`innerRef`属性，因此你可以从外部覆盖注入的类名。 ` innerRef ` 的用法与 ` ref ` 相同。
+- 它将转发 *non React static* 属性, 以便 HOC 更 "透明"。 例如, 它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
 
 #### 参数
 

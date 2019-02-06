@@ -18,7 +18,7 @@ components: Select, NativeSelect
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
-## 自定义选择
+## Customized selects
 
 如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
