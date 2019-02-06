@@ -1,7 +1,5 @@
-import { IconButton, InputAdornment } from '@material-ui/core';
 import { ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import DatePickerModal from '../../DatePicker';
 import DatePicker, { DatePickerProps } from '../../DatePicker/DatePicker';
 import { mount, utilsToUse } from '../test-utils';
 
@@ -52,44 +50,89 @@ describe('e2e - DatePicker', () => {
   });
 });
 
-describe('e2e -- DatePicker keyboard input', () => {
+describe('e2e -- DatePicker availableViews year', () => {
   const onChangeMock = jest.fn();
   let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
     component = mount(
-      <DatePickerModal
-        keyboard
-        label="Masked input"
-        placeholder="10/10/2018"
-        format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
-        mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-        value={'2018-01-01T00:00:00.000Z'}
+      <DatePicker
+        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
-        InputAdornmentProps={{
-          disableTypography: true,
-        }}
-        InputLabelProps={{
-          htmlFor: 'your-id',
-        }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton>date_range</IconButton>
-            </InputAdornment>
-          ),
-        }}
+        availableViews={['year']}
       />
     );
   });
 
-  it('Should properly set value on change keyboard', () => {
-    const e = { target: { value: '10/11/2018' } };
+  it('Should render year selection', () => {
+    expect(component.find('Year').length).toBe(201);
 
-    component.find('input').simulate('change', e);
-    expect(component.find('t').prop('value')).toBe('10/11/2018');
+    component
+      .find('Year')
+      .at(1)
+      .simulate('click');
+    expect(onChangeMock).toHaveBeenCalled();
+  });
+});
 
-    component.find('input').simulate('blur');
-    expect(onChangeMock).toBeCalled();
+describe('e2e -- DatePicker availableViews year and month', () => {
+  const onChangeMock = jest.fn();
+  let component: ReactWrapper<DatePickerProps>;
+
+  beforeEach(() => {
+    component = mount(
+      <DatePicker
+        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        onChange={onChangeMock}
+        availableViews={['year', 'month']}
+      />
+    );
+  });
+
+  it('Should render month selection', () => {
+    expect(component.find('Month').length).toBe(12);
+  });
+
+  it('Should switch to year selection and back to month', () => {
+    component
+      .find('ToolbarButton')
+      .first()
+      .simulate('click');
+
+    const year = component.find('Year');
+    expect(component.find('Year').length).toBe(201);
+
+    year.first().simulate('click');
+
+    expect(component.find('Month').length).toBe(12);
+  });
+
+  it('Should select month', () => {
+    component
+      .find('Month')
+      .first()
+      .simulate('click');
+
+    expect(onChangeMock).toHaveBeenCalled();
+  });
+});
+
+describe('e2e -- DatePicker availableViews year and month open from year', () => {
+  const onChangeMock = jest.fn();
+  let component: ReactWrapper<DatePickerProps>;
+
+  beforeEach(() => {
+    component = mount(
+      <DatePicker
+        date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
+        onChange={onChangeMock}
+        availableViews={['year', 'month']}
+        openToYearSelection
+      />
+    );
+  });
+
+  it('Should render year selection', () => {
+    expect(component.find('Year').length).toBe(201);
   });
 });
