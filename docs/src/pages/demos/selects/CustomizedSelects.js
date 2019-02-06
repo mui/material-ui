@@ -75,12 +75,6 @@ class CustomizedSelects extends React.Component {
           <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
             Age
           </InputLabel>
-          <BootstrapInput />
-        </FormControl>
-        <FormControl className={classes.margin}>
-          <InputLabel htmlFor="age-customized-select" className={classes.bootstrapFormLabel}>
-            Age
-          </InputLabel>
           <Select
             value={this.state.age}
             onChange={this.handleChange}
