@@ -25,7 +25,7 @@ export const styles = {
   },
 };
 
-const Backdrop = React.forwardRef((props, ref) => {
+const Backdrop = React.forwardRef(function Backdrop(props, ref) {
   const { classes, className, invisible, open, transitionDuration, ...other } = props;
 
   return (
@@ -45,8 +45,6 @@ const Backdrop = React.forwardRef((props, ref) => {
     </Fade>
   );
 });
-
-Backdrop.displayName = 'Backdrop';
 
 Backdrop.propTypes = {
   /**

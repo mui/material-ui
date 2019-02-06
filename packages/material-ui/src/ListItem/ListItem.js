@@ -86,7 +86,7 @@ export const styles = theme => ({
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
-const ListItem = React.forwardRef((props, ref) => {
+const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems,
     button,
@@ -176,8 +176,6 @@ const ListItem = React.forwardRef((props, ref) => {
     </MergeListContext>
   );
 });
-
-ListItem.displayName = 'ListItem';
 
 ListItem.propTypes = {
   /**
