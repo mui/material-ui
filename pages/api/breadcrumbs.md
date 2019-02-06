@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui-lab/src/Breadcrumbs/Breadcrumbs.js
+filename: /packages/material-ui/src/Breadcrumbs/Breadcrumbs.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/Breadcrumbs/Breadcrumbs.js
 <p class="description">The API documentation of the Breadcrumbs React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 ```
 
 
@@ -30,5 +30,5 @@ Any other properties supplied will be spread to the root element (native element
 
 ## Demos
 
-- [Breadcrumbs](/lab/breadcrumbs/)
+- [Breadcrumbs](/demos/breadcrumbs/)
 

@@ -113,6 +113,7 @@ export { default as Backdrop } from './Backdrop';
 export { default as Badge } from './Badge';
 export { default as BottomNavigation } from './BottomNavigation';
 export { default as BottomNavigationAction } from './BottomNavigationAction';
+export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Card } from './Card';
