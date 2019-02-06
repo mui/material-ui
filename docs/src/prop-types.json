@@ -321,7 +321,7 @@
     },
     "clearable": {
       "defaultValue": null,
-      "description": "If true clear button will be displayed",
+      "description": "Clearable mode (for inline pickers works only for clearing input)",
       "name": "clearable",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
@@ -655,7 +655,7 @@
     },
     "clearable": {
       "defaultValue": null,
-      "description": "If true clear button will be displayed",
+      "description": "Clearable mode (for inline pickers works only for clearing input)",
       "name": "clearable",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",
@@ -1154,7 +1154,7 @@
     },
     "clearable": {
       "defaultValue": null,
-      "description": "If true clear button will be displayed",
+      "description": "Clearable mode (for inline pickers works only for clearing input)",
       "name": "clearable",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/DateTextField.tsx",

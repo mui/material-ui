@@ -23,17 +23,25 @@ export const TimePickerInline: React.SFC<TimePickerInlineProps> = props => {
         isAccepted,
         pick12hOr24hFormat,
         handleAccept,
+        handleClear,
       }) => (
         <InlineWrapper
           innerRef={forwardedRef}
           value={value}
           onChange={handleTextFieldChange}
           isAccepted={isAccepted}
+          onClear={handleClear}
           handleAccept={handleAccept}
           format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
           {...other}
         >
-          <TimePicker date={date} onChange={handleChange} ampm={ampm} seconds={seconds} minutesStep={minutesStep} />
+          <TimePicker
+            date={date}
+            onChange={handleChange}
+            ampm={ampm}
+            seconds={seconds}
+            minutesStep={minutesStep}
+          />
         </InlineWrapper>
       )}
     </BasePicker>

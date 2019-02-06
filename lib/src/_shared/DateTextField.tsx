@@ -48,13 +48,13 @@ export interface DateTextFieldProps
   emptyLabel?: string;
   /** Do not open picker on enter keypress */
   disableOpenOnEnter?: boolean;
-  /** Dynamic label generation function [(date: Date, invalidLabel: string) => string] */
+  /** Dynamic label generation function */
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Icon displayed for open picker button in keyboard mode */
   keyboardIcon?: React.ReactNode;
   /** Message, appearing when date cannot be parsed */
   invalidDateMessage?: React.ReactNode;
-  /** If true clear button will be displayed */
+  /** Clearable mode (for inline pickers works only for clearing input) */
   clearable?: boolean;
   /** Component that should replace the default Material-UI TextField */
   TextFieldComponent?:

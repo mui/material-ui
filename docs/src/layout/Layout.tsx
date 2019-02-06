@@ -90,7 +90,7 @@ class Layout extends Component<LayoutProps> {
 
             <div className={classes.flex} />
 
-            <Tooltip title="Change library that will work with date under the hood">
+            <Tooltip title="Change the peer library for date management">
               <IconButton color="inherit" onClick={this.handleUtilsMenuOpen}>
                 <SettingsIcon />
               </IconButton>

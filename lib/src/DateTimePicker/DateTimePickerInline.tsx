@@ -46,6 +46,7 @@ export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = props 
         handleTextFieldChange,
         isAccepted,
         pick12hOr24hFormat,
+        handleClear,
         handleAccept,
       }) => (
         <InlineWrapper
@@ -58,6 +59,7 @@ export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = props 
           value={value}
           isAccepted={isAccepted}
           handleAccept={handleAccept}
+          onClear={handleClear}
           format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
           {...other}
         >

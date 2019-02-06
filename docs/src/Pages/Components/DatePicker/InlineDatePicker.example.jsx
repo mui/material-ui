@@ -37,6 +37,7 @@ class InlineDatePickerDemo extends PureComponent {
         <div className="picker">
           <InlineDatePicker
             keyboard
+            clearable
             variant="outlined"
             label="With keyboard"
             value={selectedDate}
