@@ -29,7 +29,7 @@ export const styles = {
   },
 };
 
-const List = React.forwardRef((props, ref) => {
+const List = React.forwardRef(function List(props, ref) {
   const {
     children,
     classes,
@@ -62,8 +62,6 @@ const List = React.forwardRef((props, ref) => {
     </Component>
   );
 });
-
-List.displayName = 'List';
 
 List.propTypes = {
   /**

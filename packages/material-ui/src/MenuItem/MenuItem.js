@@ -27,7 +27,7 @@ export const styles = theme => ({
   selected: {},
 });
 
-const MenuItem = React.forwardRef((props, ref) => {
+const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   const { classes, className, component, disableGutters, role, selected, ...other } = props;
 
   return (
@@ -51,8 +51,6 @@ const MenuItem = React.forwardRef((props, ref) => {
     />
   );
 });
-
-MenuItem.displayName = 'MenuItem';
 
 MenuItem.propTypes = {
   /**
