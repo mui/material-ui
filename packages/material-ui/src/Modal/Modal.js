@@ -358,7 +358,7 @@ Modal.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: PropTypes.element.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
