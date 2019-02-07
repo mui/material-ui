@@ -129,7 +129,13 @@ class SelectInput extends React.Component {
       return;
     }
 
-    if ([' ', 'ArrowUp', 'ArrowDown'].indexOf(event.key) !== -1) {
+    const keys = [' ', 'ArrowUp', 'ArrowDown'];
+
+    if (navigator.platform.indexOf('Win') > -1) {
+      keys.push('Enter');
+    }
+
+    if (keys.indexOf(event.key) !== -1) {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;
