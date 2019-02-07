@@ -129,7 +129,16 @@ class SelectInput extends React.Component {
       return;
     }
 
-    if ([' ', 'ArrowUp', 'ArrowDown'].indexOf(event.key) !== -1) {
+    if (
+      [
+        ' ',
+        'ArrowUp',
+        'ArrowDown',
+        // The native select doesn't respond to enter on MacOS, but it's recommended by
+        // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
+        'Enter',
+      ].indexOf(event.key) !== -1
+    ) {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;
