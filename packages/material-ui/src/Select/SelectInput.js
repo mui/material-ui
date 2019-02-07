@@ -131,7 +131,7 @@ class SelectInput extends React.Component {
 
     const keys = [' ', 'ArrowUp', 'ArrowDown'];
 
-    if (navigator.platform.indexOf('Win') > -1) {
+    if (window.navigator.platform.indexOf('Win') > -1) {
       keys.push('Enter');
     }
 
