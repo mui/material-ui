@@ -22,13 +22,13 @@ const DatePickerDemo = () => (
     />
 
     <SourcablePanel
-      title="Year/Month only Picker"
-      sourceFile="Components/DatePicker/YearMonthPicker.example.jsx"
+      title="Keyboard input"
+      sourceFile="Components/DatePicker/KeyboardDatePicker.example.jsx"
     />
 
     <SourcablePanel
-      title="Keyboard input"
-      sourceFile="Components/DatePicker/KeyboardDatePicker.example.jsx"
+      title="Views combinations"
+      sourceFile="Components/DatePicker/YearMonthPicker.example.jsx"
     />
 
     <SourcablePanel

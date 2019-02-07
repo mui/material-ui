@@ -41,6 +41,10 @@ export default class BasicDatePicker extends PureComponent {
             value={selectedDate}
             disableFuture
             openTo="year"
+            format={this.props.getFormatString({
+              moment: 'DD/MM/YYYY',
+              dateFns: 'dd/MM/yyyy',
+            })}
             views={['year', 'month', 'day']}
             onChange={this.handleDateChange}
           />
