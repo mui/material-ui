@@ -192,10 +192,6 @@ SwitchBase.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: PropTypes.bool,
-  /**
    * The icon to display when the component is unchecked.
    */
   icon: PropTypes.node.isRequired,

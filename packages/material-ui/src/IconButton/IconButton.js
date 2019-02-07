@@ -140,10 +140,6 @@ IconButton.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, the ripple will be disabled.
-   */
-  disableRipple: PropTypes.bool,
 };
 
 IconButton.defaultProps = {
