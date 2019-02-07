@@ -1,13 +1,15 @@
 import { Omit } from '@material-ui/core';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
 import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
-import { DIALOG_WIDTH } from '../constants/dimensions';
+import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 
 export interface OuterInlineWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
+  wider?: boolean;
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */
@@ -68,9 +70,7 @@ export class InlineWrapper extends React.PureComponent<
   public close = () => {
     this.setState({ anchorEl: null });
 
-    if (this.props.value !== null) {
-      this.props.handleAccept();
-    }
+    this.props.handleAccept();
 
     if (this.props.onClose) {
       this.props.onClose();
@@ -106,6 +106,7 @@ export class InlineWrapper extends React.PureComponent<
       onlyCalendar,
       classes,
       handleAccept,
+      wider,
       ...other
     } = this.props;
 
@@ -129,7 +130,7 @@ export class InlineWrapper extends React.PureComponent<
           anchorEl={this.state.anchorEl}
           onClose={this.close}
           classes={{
-            paper: classes.popoverPaper,
+            paper: clsx(classes.popoverPaper, { [classes.popoverPaperWider]: wider }),
           }}
           anchorOrigin={{
             vertical: 'bottom',
@@ -151,6 +152,9 @@ export const styles = {
   popoverPaper: {
     width: DIALOG_WIDTH,
     paddingBottom: 8,
+  },
+  popoverPaperWider: {
+    width: DIALOG_WIDTH_WIDER,
   },
 };
 

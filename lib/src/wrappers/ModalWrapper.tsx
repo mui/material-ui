@@ -31,6 +31,7 @@ export interface ModalWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'o
   container?: React.ReactNode;
   DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
   isAccepted?: boolean;
+  wider?: boolean;
 }
 
 export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
@@ -152,6 +153,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
       isAccepted,
       DialogProps,
       showTabs,
+      wider,
       ...other
     } = this.props;
 
@@ -168,6 +170,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
         />
 
         <ModalDialog
+          wider={wider}
           showTabs={showTabs}
           open={this.state.open}
           onKeyDownInner={this.handleKeyDown}

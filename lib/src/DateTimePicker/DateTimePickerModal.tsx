@@ -53,6 +53,7 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
         pick12hOr24hFormat,
       }) => (
         <ModalWrapper
+          wider
           showTabs={toShowTabs}
           ref={forwardedRef}
           disableFuture={disableFuture}

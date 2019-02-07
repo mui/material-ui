@@ -50,6 +50,7 @@ export const DateTimePickerInline: React.SFC<DateTimePickerInlineProps> = props 
         handleAccept,
       }) => (
         <InlineWrapper
+          wider
           innerRef={forwardedRef}
           disableFuture={disableFuture}
           disablePast={disablePast}

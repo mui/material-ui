@@ -6,7 +6,7 @@ import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
-import { DIALOG_WIDTH } from '../constants/dimensions';
+import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 
 export interface ModalDialogProps extends DialogProps {
   onAccept: () => void;
@@ -21,6 +21,7 @@ export interface ModalDialogProps extends DialogProps {
   clearable?: boolean;
   showTodayButton?: boolean;
   showTabs?: boolean;
+  wider?: boolean;
 }
 
 export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>> = ({
@@ -38,6 +39,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
   clearable,
   showTodayButton,
   showTabs,
+  wider,
   ...other
 }) => (
   <Dialog
@@ -45,6 +47,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
     onClose={onDismiss}
     classes={{
       paper: clsx(classes.dialogRoot, {
+        [classes.dialogRootWider]: wider,
         [classes.dialogWithTabs]: showTabs,
       }),
     }}
@@ -100,6 +103,9 @@ export const styles = createStyles({
   dialogRoot: {
     minWidth: DIALOG_WIDTH,
     minHeight: dialogHeight,
+  },
+  dialogRootWider: {
+    minWidth: DIALOG_WIDTH_WIDER,
   },
   dialog: {
     minHeight: dialogHeight,
