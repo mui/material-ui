@@ -24,7 +24,7 @@ function loadDependencies() {
 
   loadCSS(
     'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-    document.querySelector('#insertion-point-jss'),
+    document.querySelector('#app-search'),
   );
   loadScript(
     'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js',
