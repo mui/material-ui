@@ -890,7 +890,7 @@
     },
     "showTabs": {
       "defaultValue": { "value": "true" },
-      "description": "Show or hide tabs switching between date and time",
+      "description": "Show or hide date/time tabs (hidden automatically on small screens)",
       "name": "showTabs",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
