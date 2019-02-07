@@ -71,7 +71,7 @@ const styles = theme => ({
   },
   item: {
     fontSize: 13,
-    padding: `${theme.spacing(0.5)}px 0`,
+    padding: theme.spacing(0.5, 0),
   },
 });
 

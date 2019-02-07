@@ -229,7 +229,7 @@ const styles = theme => ({
     right: 0,
   },
   chip: {
-    margin: `${theme.spacing(0.5)}px ${2}px`,
+    margin: theme.spacing(0.5, 2),
   },
   inputRoot: {
     flexWrap: 'wrap',

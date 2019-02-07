@@ -24,7 +24,7 @@ const payments = [
 
 const styles = theme => ({
   listItem: {
-    padding: `${theme.spacing(1)}px 0`,
+    padding: theme.spacing(1, 0),
   },
   total: {
     fontWeight: '700',

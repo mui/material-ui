@@ -27,7 +27,7 @@ const styles = theme => ({
   heroContent: {
     maxWidth: 600,
     margin: '0 auto',
-    padding: `${theme.spacing(8)}px 0 ${theme.spacing(6)}px`,
+    padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -43,7 +43,7 @@ const styles = theme => ({
     },
   },
   cardGrid: {
-    padding: `${theme.spacing(8)}px 0`,
+    padding: theme.spacing(8, 0),
   },
   card: {
     height: '100%',

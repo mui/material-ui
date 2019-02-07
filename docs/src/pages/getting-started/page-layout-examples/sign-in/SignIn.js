@@ -30,7 +30,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(3)}px`,
+    padding: theme.spacing(2, 3, 3),
   },
   avatar: {
     margin: theme.spacing(1),

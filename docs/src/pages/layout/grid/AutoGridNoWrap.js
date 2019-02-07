@@ -10,7 +10,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     overflow: 'hidden',
-    padding: `0 ${theme.spacing(3)}px`,
+    padding: theme.spacing(0, 3),
   },
   paper: {
     maxWidth: 400,

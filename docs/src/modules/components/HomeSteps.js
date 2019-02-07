@@ -18,11 +18,11 @@ import Link from 'docs/src/modules/components/Link';
 const styles = theme => ({
   step: {
     border: `12px solid ${theme.palette.background.paper}`,
-    padding: `${theme.spacing(3)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(3, 2),
     borderRightWidth: 0,
     borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing(5)}px ${theme.spacing(4)}px`,
+      padding: theme.spacing(5, 4),
     },
     [theme.breakpoints.up('md')]: {
       borderRightWidth: 12,

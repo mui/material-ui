@@ -20,7 +20,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(1),
   },
   divider: {
-    margin: `${theme.spacing(2)}px 0`,
+    margin: theme.spacing(2, 0),
   },
 });
 

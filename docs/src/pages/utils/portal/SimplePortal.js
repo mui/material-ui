@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   alert: {
     padding: theme.spacing(1),
-    margin: `${theme.spacing(1)}px 0`,
+    margin: theme.spacing(1, 0),
     border: '1px solid',
     borderColor: theme.palette.text.primary,
   },

@@ -34,7 +34,7 @@ const styles = theme => ({
   markdownElement: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
-    padding: `0 ${theme.spacing(1)}px`,
+    padding: theme.spacing(0, 1),
   },
 });
 

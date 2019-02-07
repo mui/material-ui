@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   title: {
-    margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
+    margin: theme.spacing(4, 0, 2),
   },
 }));
 

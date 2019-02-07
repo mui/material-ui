@@ -39,7 +39,7 @@ const styles = theme => ({
     },
   },
   stepper: {
-    padding: `${theme.spacing(3)}px 0 ${theme.spacing(5)}px`,
+    padding: theme.spacing(3, 0, 5),
   },
   buttons: {
     display: 'flex',

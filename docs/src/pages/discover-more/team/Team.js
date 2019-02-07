@@ -89,7 +89,7 @@ const members = [
 
 const styles = theme => ({
   details: {
-    margin: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px 0`,
+    margin: theme.spacing(1, 1, 1, 0),
   },
   cover: {
     width: theme.spacing(10),

@@ -71,7 +71,7 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   chip: {
-    margin: `${theme.spacing(0.5)}px ${2}px`,
+    margin: theme.spacing(0.5, 2),
   },
   chipFocused: {
     backgroundColor: emphasize(
@@ -80,7 +80,7 @@ const styles = theme => ({
     ),
   },
   noOptionsMessage: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(1, 2),
   },
   singleValue: {
     fontSize: 16,

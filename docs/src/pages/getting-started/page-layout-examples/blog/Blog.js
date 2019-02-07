@@ -45,7 +45,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(4),
   },
   mainFeaturedPostContent: {
-    padding: `${theme.spacing(6)}px`,
+    padding: theme.spacing(6),
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
     },
@@ -63,7 +63,7 @@ const styles = theme => ({
     width: 160,
   },
   markdown: {
-    padding: `${theme.spacing(3)}px 0`,
+    padding: theme.spacing(3, 0),
   },
   sidebarAboutBox: {
     padding: theme.spacing(2),
@@ -75,7 +75,7 @@ const styles = theme => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing(8),
-    padding: `${theme.spacing(6)}px 0`,
+    padding: theme.spacing(6, 0),
   },
 });
 

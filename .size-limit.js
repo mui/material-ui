@@ -28,7 +28,7 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '92.3 KB',
+    limit: '92.4 KB',
   },
   {
     name: 'The theme object',
@@ -59,14 +59,14 @@ module.exports = [
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Button/index.js',
-    limit: '24.5 KB',
+    limit: '24.6 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Modal/index.js',
-    limit: '24.0 KB',
+    limit: '24.1 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper

@@ -74,14 +74,14 @@ const styles = theme => ({
     marginTop: theme.spacing(3),
   },
   logo: {
-    margin: `${theme.spacing(3)}px 0 ${theme.spacing(4)}px`,
+    margin: theme.spacing(3, 0, 4),
     width: '100%',
     height: '35vw',
     maxHeight: 200,
   },
   social: {
     backgroundColor: theme.palette.background.paper,
-    padding: `${theme.spacing(2)}px 0`,
+    padding: theme.spacing(2, 0),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

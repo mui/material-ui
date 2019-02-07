@@ -39,7 +39,7 @@ const styles = theme => ({
   heroContent: {
     maxWidth: 600,
     margin: '0 auto',
-    padding: `${theme.spacing(8)}px 0 ${theme.spacing(6)}px`,
+    padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
     backgroundColor: theme.palette.grey[200],
@@ -58,7 +58,7 @@ const styles = theme => ({
   footer: {
     marginTop: theme.spacing(8),
     borderTop: `1px solid ${theme.palette.divider}`,
-    padding: `${theme.spacing(6)}px 0`,
+    padding: theme.spacing(6, 0),
   },
 });
 

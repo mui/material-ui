@@ -153,9 +153,7 @@ const styles = theme => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
-      9,
-    )}px`,
+    padding: theme.spacing(1, 1, 1, 9),
   },
 });
 

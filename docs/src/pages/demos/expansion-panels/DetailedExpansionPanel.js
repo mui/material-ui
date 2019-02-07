@@ -36,7 +36,7 @@ const styles = theme => ({
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(1, 2),
   },
   link: {
     color: theme.palette.primary.main,

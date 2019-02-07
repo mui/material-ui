@@ -12,7 +12,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   paper: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(1, 2),
   },
 });
 

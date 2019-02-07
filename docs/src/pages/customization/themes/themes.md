@@ -319,10 +319,19 @@ theme.spacing(2) // = 4 * 2
 
 ```js
 const theme = createMuiTheme({
-  spacing: x => `${0.25 * x}rem`, // (Bootstrap strategy)
+  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
 theme.spacing(2) // = 0.5rem = 8px
+```
+
+#### Multiple arity
+
+The `theme.spacing()` helper accepts up to 4 arguments.
+You can use the arguments to reduce the boilerplate:
+```diff
+-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
++  padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
 ### Other variables

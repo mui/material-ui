@@ -31,9 +31,7 @@ const theme = createMuiTheme({
   palette: {
     primary,
   },
-  spacing: {
-    unit: 4,
-  },
+  spacing: 4,
   props: {
     MuiButtonBase: {
       disableRipple: true,

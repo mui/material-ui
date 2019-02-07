@@ -18,11 +18,11 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 const styles = theme => ({
   toggleContainer: {
     height: 56,
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(1, 2),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    margin: `${theme.spacing(1)}px 0`,
+    margin: theme.spacing(1, 0),
     background: theme.palette.background.default,
   },
 });

@@ -29,7 +29,7 @@ const styles = theme => ({
     height: 380,
   },
   radioGroup: {
-    margin: `${theme.spacing(1)}px 0`,
+    margin: theme.spacing(1, 0),
   },
   speedDial: {
     position: 'absolute',

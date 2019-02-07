@@ -11,9 +11,9 @@ const styles = theme => ({
   root: {
     maxWidth: theme.spacing(110),
     margin: 'auto',
-    padding: `${theme.spacing(3)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(3, 2),
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing(6)}px ${theme.spacing(2)}px`,
+      padding: theme.spacing(6, 2),
     },
   },
   list: {

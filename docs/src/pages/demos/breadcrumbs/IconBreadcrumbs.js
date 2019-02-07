@@ -11,7 +11,7 @@ import GrainIcon from '@material-ui/icons/Grain';
 
 const styles = theme => ({
   root: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(1, 2),
   },
   link: {
     display: 'flex',

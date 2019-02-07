@@ -17,13 +17,13 @@ const styles = theme => ({
     marginRight: theme.spacing(1),
   },
   section1: {
-    margin: `${theme.spacing(3)}px ${theme.spacing(2)}px`,
+    margin: theme.spacing(3, 2),
   },
   section2: {
     margin: theme.spacing(2),
   },
   section3: {
-    margin: `${theme.spacing(6)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
+    margin: theme.spacing(6, 2, 2),
   },
 });
 
