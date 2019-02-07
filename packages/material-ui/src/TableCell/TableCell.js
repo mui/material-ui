@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -121,7 +121,7 @@ function TableCell(props) {
             }
             const padding = paddingProp || (table && table.padding ? table.padding : 'default');
 
-            const className = classNames(
+            const className = clsx(
               classes.root,
               {
                 [classes.head]: variant

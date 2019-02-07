@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import EventListener from 'react-event-listener';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
@@ -233,7 +233,7 @@ class Snackbar extends React.Component {
     return (
       <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
         <div
-          className={classNames(
+          className={clsx(
             classes.root,
             classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
             className,

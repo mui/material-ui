@@ -40,7 +40,7 @@
     "@babel/runtime": "^7.2.0",
     "@emotion/hash": "^0.7.1",
     "@material-ui/utils": "^3.0.0-alpha.2",
-    "classnames": "^2.2.5",
+    "clsx": "^1.0.2",
     "deepmerge": "^3.0.0",
     "hoist-non-react-statics": "^3.2.1",
     "jss": "^10.0.0-alpha.7",

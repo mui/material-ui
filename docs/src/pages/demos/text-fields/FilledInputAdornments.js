@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -61,7 +61,7 @@ class FilledInputAdornments extends React.Component {
       <div className={classes.root}>
         <TextField
           id="filled-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="With filled TextField"
           InputProps={{
@@ -71,7 +71,7 @@ class FilledInputAdornments extends React.Component {
 
         <TextField
           select
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="With Select"
           value={this.state.weightRange}
@@ -88,7 +88,7 @@ class FilledInputAdornments extends React.Component {
         </TextField>
         <TextField
           id="filled-adornment-amount"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="Amount"
           value={this.state.amount}
@@ -100,7 +100,7 @@ class FilledInputAdornments extends React.Component {
 
         <TextField
           id="filled-adornment-weight"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="Weight"
           value={this.state.weight}
@@ -113,7 +113,7 @@ class FilledInputAdornments extends React.Component {
 
         <TextField
           id="filled-adornment-password"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           type={this.state.showPassword ? 'text' : 'password'}
           label="Password"

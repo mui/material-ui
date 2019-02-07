@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -130,7 +130,7 @@ function AppDrawer(props) {
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
-            paper: classNames(classes.paper, 'algolia-drawer'),
+            paper: clsx(classes.paper, 'algolia-drawer'),
           }}
           disableBackdropTransition={!iOS}
           variant="temporary"

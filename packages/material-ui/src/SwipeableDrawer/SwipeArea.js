@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import { isHorizontal } from '../Drawer/Drawer';
@@ -40,7 +40,7 @@ function SwipeArea(props) {
 
   return (
     <div
-      className={classNames(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
+      className={clsx(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
       style={{
         [isHorizontal(props) ? 'width' : 'height']: width,
       }}

@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
@@ -30,11 +30,11 @@ function styled(Component) {
         component: ComponentProp,
         ...other
       } = props;
-      const className = classNames(classes.root, classNameProp);
+      const className = clsx(classes.root, classNameProp);
 
       if (clone) {
         return React.cloneElement(children, {
-          className: classNames(children.props.className, className),
+          className: clsx(children.props.className, className),
         });
       }
 

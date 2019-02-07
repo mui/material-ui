@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -58,7 +58,7 @@ function OutlinedInputAdornments() {
     <div className={classes.root}>
       <TextField
         id="outlined-simple-start-adornment"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="With outlined TextField"
         InputProps={{
@@ -67,7 +67,7 @@ function OutlinedInputAdornments() {
       />
       <TextField
         select
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="With Select"
         value={values.weightRange}
@@ -84,7 +84,7 @@ function OutlinedInputAdornments() {
       </TextField>
       <TextField
         id="outlined-adornment-amount"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Amount"
         value={values.amount}
@@ -95,7 +95,7 @@ function OutlinedInputAdornments() {
       />
       <TextField
         id="outlined-adornment-weight"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Weight"
         value={values.weight}
@@ -107,7 +107,7 @@ function OutlinedInputAdornments() {
       />
       <TextField
         id="outlined-adornment-password"
-        className={classNames(classes.margin, classes.textField)}
+        className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         type={values.showPassword ? 'text' : 'password'}
         label="Password"

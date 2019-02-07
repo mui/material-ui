@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -26,7 +26,7 @@ function FormGroup(props) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.row]: row,

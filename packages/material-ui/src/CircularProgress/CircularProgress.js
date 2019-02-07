@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -138,7 +138,7 @@ function CircularProgress(props) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
@@ -154,7 +154,7 @@ function CircularProgress(props) {
     >
       <svg className={classes.svg} viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
         <circle
-          className={classNames(classes.circle, {
+          className={clsx(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
             [classes.circleDisableShrink]: disableShrink,

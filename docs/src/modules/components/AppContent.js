@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -27,7 +27,7 @@ const styles = theme => ({
 function AppContent(props) {
   const { className, classes, children } = props;
 
-  return <main className={classNames(classes.root, className)}>{children}</main>;
+  return <main className={clsx(classes.root, className)}>{children}</main>;
 }
 
 AppContent.propTypes = {

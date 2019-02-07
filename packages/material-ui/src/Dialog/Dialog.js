@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -185,7 +185,7 @@ class Dialog extends React.Component {
 
     return (
       <Modal
-        className={classNames(classes.root, className)}
+        className={clsx(classes.root, className)}
         BackdropProps={{
           transitionDuration,
           ...BackdropProps,
@@ -213,7 +213,7 @@ class Dialog extends React.Component {
           {...TransitionProps}
         >
           <div
-            className={classNames(classes.container, classes[`scroll${capitalize(scroll)}`])}
+            className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
             onClick={this.handleBackdropClick}
             onMouseDown={this.handleMouseDown}
             role="document"
@@ -221,7 +221,7 @@ class Dialog extends React.Component {
             <PaperComponent
               elevation={24}
               {...PaperProps}
-              className={classNames(
+              className={clsx(
                 classes.paper,
                 classes[`paperScroll${capitalize(scroll)}`],
                 classes[`paperWidth${capitalize(String(maxWidth))}`],

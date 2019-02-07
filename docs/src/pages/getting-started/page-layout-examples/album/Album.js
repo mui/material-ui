@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -106,7 +106,7 @@ function Album(props) {
             </div>
           </div>
         </div>
-        <div className={classNames(classes.layout, classes.cardGrid)}>
+        <div className={clsx(classes.layout, classes.cardGrid)}>
           {/* End hero unit */}
           <Grid container spacing={40}>
             {cards.map(card => (

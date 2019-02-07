@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
@@ -43,7 +43,7 @@ describe('<Switch />', () => {
       assert.strictEqual(switchBase.props().checkedIcon.type, 'span');
       assert.strictEqual(
         switchBase.props().checkedIcon.props.className,
-        classNames(classes.icon, classes.iconChecked),
+        clsx(classes.icon, classes.iconChecked),
       );
     });
 

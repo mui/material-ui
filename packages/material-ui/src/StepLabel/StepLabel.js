@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -93,7 +93,7 @@ function StepLabel(props) {
 
   return (
     <span
-      className={classNames(
+      className={clsx(
         classes.root,
         classes[orientation],
         {
@@ -107,7 +107,7 @@ function StepLabel(props) {
     >
       {icon || StepIconComponent ? (
         <span
-          className={classNames(classes.iconContainer, {
+          className={clsx(classes.iconContainer, {
             [classes.alternativeLabel]: alternativeLabel,
           })}
         >
@@ -123,7 +123,7 @@ function StepLabel(props) {
       <span className={classes.labelContainer}>
         <Typography
           component="span"
-          className={classNames(classes.label, {
+          className={clsx(classes.label, {
             [classes.alternativeLabel]: alternativeLabel,
             [classes.completed]: completed,
             [classes.active]: active,

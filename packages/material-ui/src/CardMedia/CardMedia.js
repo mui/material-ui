@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
@@ -35,7 +35,7 @@ function CardMedia(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.media]: isMediaComponent,

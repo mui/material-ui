@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -23,7 +23,7 @@ export const styles = theme => ({
 function Toolbar(props) {
   const { children, classes, className: classNameProp, disableGutters, variant, ...other } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[variant],
     {

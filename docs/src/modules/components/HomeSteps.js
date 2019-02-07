@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -86,7 +86,7 @@ function HomeSteps(props) {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
+      <Grid item xs={12} md={4} className={clsx(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
           <Typography variant="h6">{t('installation')}</Typography>
@@ -169,7 +169,7 @@ function HomeSteps(props) {
           {t('usageButton')}
         </Button>
       </Grid>
-      <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
+      <Grid item xs={12} md={4} className={clsx(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
           <Typography variant="h6">{t('themes')}</Typography>

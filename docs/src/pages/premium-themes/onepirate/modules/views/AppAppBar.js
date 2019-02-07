@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
@@ -65,7 +65,7 @@ function AppAppBar(props) {
             <Link
               variant="h6"
               underline="none"
-              className={classNames(classes.rightLink, classes.linkSecondary)}
+              className={clsx(classes.rightLink, classes.linkSecondary)}
               href="/premium-themes/onepirate/sign-up"
             >
               {'Sign Up'}

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
@@ -330,7 +330,7 @@ class InputBase extends React.Component {
 
     const focused = muiFormControl ? muiFormControl.focused : this.state.focused;
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.disabled]: fcs.disabled,
@@ -346,7 +346,7 @@ class InputBase extends React.Component {
       classNameProp,
     );
 
-    const inputClassName = classNames(
+    const inputClassName = clsx(
       classes.input,
       {
         [classes.disabled]: fcs.disabled,

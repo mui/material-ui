@@ -6,7 +6,7 @@
 
 ## 为什么我的组件在生产版本中没有正确呈现？
 
-一旦您的代码在生产包中，这可能是由于类名冲突而发生的n°1问题。 要使Material-UI起作用，页面上所有组件的 `classNames` 值必须由 [类名生成器](/customization/css-in-js/#creategenerateclassname-options-class-name-generator)的单个实例生成。
+一旦您的代码在生产包中，这可能是由于类名冲突而发生的n°1问题。 要使Material-UI起作用，页面上所有组件的 `clsx` 值必须由 [类名生成器](/customization/css-in-js/#creategenerateclassname-options-class-name-generator)的单个实例生成。
 
 要纠正此问题，需要初始化页面上的所有组件，以便它们之间只有 **个类名生成器**。
 
@@ -127,8 +127,8 @@ export default withTheme()(withStyles(styles)(Modal));
 - 提高 [的文档](https://github.com/mui-org/material-ui/tree/master/docs)。
 - 帮助他人入门。
 - [传播单词](https://twitter.com/MaterialUI)。
-- 回答 [StackOverflow在存储库中对标记为问题](https://stackoverflow.com/questions/tagged/material-ui) </a> 或 问题提出疑问。</li> </ul> 
-    
+- 回答 [StackOverflow在存储库中对标记为问题](https://stackoverflow.com/questions/tagged/material-ui) </a> 或 问题提出疑问。</li> </ul>
+
     如果您在商业项目中使用材料的用户界面，并希望通过成为支持其持续发展 **赞助商**， 或侧或业余爱好项目，并想成为一个靠山，你可以通过做 [OpenCollective](https://opencollective.com/material-ui)。
-    
+
     筹集的所有资金都是透明管理的，赞助商在README和Material-UI主页上获得认可。

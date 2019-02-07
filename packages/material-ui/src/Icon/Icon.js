@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -55,7 +55,7 @@ function Icon(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         'material-icons',
         classes.root,
         {

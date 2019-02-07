@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -74,7 +74,7 @@ class FilledInputAdornments extends React.Component<Props, State> {
       <div className={classes.root}>
         <TextField
           id="filled-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="With filled TextField"
           InputProps={{
@@ -83,7 +83,7 @@ class FilledInputAdornments extends React.Component<Props, State> {
         />
         <TextField
           select
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="With Select"
           value={this.state.weightRange}
@@ -100,7 +100,7 @@ class FilledInputAdornments extends React.Component<Props, State> {
         </TextField>
         <TextField
           id="filled-adornment-amount"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="Amount"
           value={this.state.amount}
@@ -111,7 +111,7 @@ class FilledInputAdornments extends React.Component<Props, State> {
         />
         <TextField
           id="filled-adornment-weight"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           label="Weight"
           value={this.state.weight}
@@ -123,7 +123,7 @@ class FilledInputAdornments extends React.Component<Props, State> {
         />
         <TextField
           id="filled-adornment-password"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="filled"
           type={this.state.showPassword ? 'text' : 'password'}
           label="Password"

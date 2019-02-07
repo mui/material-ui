@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -145,7 +145,7 @@ class TextField extends React.Component {
 
     return (
       <FormControl
-        className={classNames(classes.root, classNameProp)}
+        className={clsx(classes.root, classNameProp)}
         error={error}
         fullWidth={fullWidth}
         required={required}

@@ -1,9 +1,9 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export function cloneElementWithClassName(child, className) {
   return React.cloneElement(child, {
-    className: classNames(child.props.className, className),
+    className: clsx(child.props.className, className),
   });
 }
 

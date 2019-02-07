@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
@@ -40,14 +40,14 @@ function StepIcon(props) {
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     if (error) {
-      return <Warning className={classNames(classes.root, classes.error)} />;
+      return <Warning className={clsx(classes.root, classes.error)} />;
     }
     if (completed) {
-      return <CheckCircle className={classNames(classes.root, classes.completed)} />;
+      return <CheckCircle className={clsx(classes.root, classes.completed)} />;
     }
     return (
       <SvgIcon
-        className={classNames(classes.root, {
+        className={clsx(classes.root, {
           [classes.active]: active,
         })}
       >

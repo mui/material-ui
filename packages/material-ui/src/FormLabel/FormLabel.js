@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -64,7 +64,7 @@ function FormLabel(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.disabled]: fcs.disabled,
@@ -80,7 +80,7 @@ function FormLabel(props) {
       {children}
       {fcs.required && (
         <span
-          className={classNames(classes.asterisk, {
+          className={clsx(classes.asterisk, {
             [classes.error]: fcs.error,
           })}
           data-mui-test="FormLabelAsterisk"

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -81,7 +81,7 @@ function FloatingActionButtonZoom() {
     },
     {
       color: 'inherit',
-      className: classNames(classes.fab, classes.fabGreen),
+      className: clsx(classes.fab, classes.fabGreen),
       icon: <UpIcon />,
     },
   ];

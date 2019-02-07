@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -72,7 +72,7 @@ class FabIntegrationSnackbar extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
-    const fabClassName = classNames(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
+    const fabClassName = clsx(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
 
     return (
       <div className={classes.root}>

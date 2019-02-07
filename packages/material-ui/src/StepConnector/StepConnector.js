@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -61,7 +61,7 @@ function StepConnector(props) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         classes.root,
         classes[orientation],
         {
@@ -75,7 +75,7 @@ function StepConnector(props) {
       {...other}
     >
       <span
-        className={classNames(classes.line, {
+        className={clsx(classes.line, {
           [classes.lineHorizontal]: orientation === 'horizontal',
           [classes.lineVertical]: orientation === 'vertical',
         })}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import LayoutBody from '../components/LayoutBody';
 
@@ -63,7 +63,7 @@ function ProductHeroLayout(props) {
         />
         {children}
         <div className={classes.backdrop} />
-        <div className={classNames(classes.background, backgroundClassName)} />
+        <div className={clsx(classes.background, backgroundClassName)} />
         <img
           className={classes.arrowDown}
           src="/static/themes/onepirate/productHeroArrowDown.png"

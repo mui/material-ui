@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -67,7 +67,7 @@ function FabIntegrationSnackbar() {
     setOpen(false);
   }
 
-  const fabClassName = classNames(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
+  const fabClassName = clsx(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
 
   return (
     <div className={classes.root}>

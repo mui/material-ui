@@ -1692,11 +1692,6 @@
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.10.tgz#780d552467824be4a241b29510a7873a7432c4a6"
   integrity sha512-fOM/Jhv51iyugY7KOBZz2ThfT1gwvsGCfWxpLpZDgkGjpEO4Le9cld07OdskikLjDUQJ43dzDaVRSFwQlpdqVg==
 
-"@types/classnames@^2.2.6":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.7.tgz#fb68cc9be8487e6ea5b13700e759bfbab7e0fefd"
-  integrity sha512-rzOhiQ55WzAiFgXRtitP/ZUT8iVNyllEpylJ5zHzR4vArUvMB39GTk+Zon/uAM0JxEFAWnwsxC2gH8s+tZ3Myg==
-
 "@types/enzyme@^3.1.4":
   version "3.1.16"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.16.tgz#b29e1d7148e4e15a773a9b9f2149ea4c42d3a91d"
@@ -4290,6 +4285,11 @@ clone@^1.0.2:
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
 clsx@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.0.2.tgz#2e0d63a900d7fe33218d7a53dee9e3a0c7300e1d"
+  integrity sha512-NQZV7ri2Gfufu9q1P9JDV4MHhdJvUukOadjAoN12pK37P12nrYp/mC05BSoekv0KX/5hGHAe2WQeOlhaWhXC5Q==
+
+clsx@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.0.2.tgz#2e0d63a900d7fe33218d7a53dee9e3a0c7300e1d"
   integrity sha512-NQZV7ri2Gfufu9q1P9JDV4MHhdJvUukOadjAoN12pK37P12nrYp/mC05BSoekv0KX/5hGHAe2WQeOlhaWhXC5Q==

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
@@ -32,7 +32,7 @@ function GridList(props) {
 
   return (
     <Component
-      className={classNames(classes.root, classNameProp)}
+      className={clsx(classes.root, classNameProp)}
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >

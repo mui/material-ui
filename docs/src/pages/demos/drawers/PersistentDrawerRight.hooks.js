@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -95,7 +95,7 @@ function PersistentDrawerRight() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={classNames(classes.appBar, {
+        className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
@@ -104,7 +104,7 @@ function PersistentDrawerRight() {
             color="inherit"
             aria-label="Open drawer"
             onClick={handleDrawerOpen}
-            className={classNames(classes.menuButton, open && classes.hide)}
+            className={clsx(classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>
@@ -114,7 +114,7 @@ function PersistentDrawerRight() {
         </Toolbar>
       </AppBar>
       <main
-        className={classNames(classes.content, {
+        className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >

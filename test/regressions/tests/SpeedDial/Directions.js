@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
@@ -69,7 +69,7 @@ SimpleSpeedDial.propTypes = {
 
 function Directions({ classes }) {
   const speedDialClassName = direction =>
-    classNames(classes.speedDial, classes[`direction${capitalize(direction)}`]);
+    clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
   return (
     <div className={classes.root}>

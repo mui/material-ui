@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -65,7 +65,7 @@ function DetailedExpansionPanel(props) {
           <div className={classes.column}>
             <Chip label="Barbados" className={classes.chip} onDelete={() => {}} />
           </div>
-          <div className={classNames(classes.column, classes.helper)}>
+          <div className={clsx(classes.column, classes.helper)}>
             <Typography variant="caption">
               Select your destination of choice
               <br />

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import withStyles from '../styles/withStyles';
@@ -21,7 +21,7 @@ export const styles = {
 function TabScrollButton(props) {
   const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
 
-  const className = classNames(classes.root, classNameProp);
+  const className = clsx(classes.root, classNameProp);
 
   if (!visible) {
     return <div className={className} />;

@@ -1,5 +1,5 @@
-export const attach = (...classNames) => `&.${classNames.join('.')}`;
-export const nest = (...classNames) => `& .${classNames.join('.')}`;
+export const attach = (...clsx) => `&.${clsx.join('.')}`;
+export const nest = (...clsx) => `& .${clsx.join('.')}`;
 
 export const APP_BAR = {
   root: 'app-bar__root',

@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -61,7 +61,7 @@ class OutlinedInputAdornments extends React.Component {
       <div className={classes.root}>
         <TextField
           id="outlined-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="With outlined TextField"
           InputProps={{
@@ -71,7 +71,7 @@ class OutlinedInputAdornments extends React.Component {
 
         <TextField
           select
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="With Select"
           value={this.state.weightRange}
@@ -88,7 +88,7 @@ class OutlinedInputAdornments extends React.Component {
         </TextField>
         <TextField
           id="outlined-adornment-amount"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="Amount"
           value={this.state.amount}
@@ -100,7 +100,7 @@ class OutlinedInputAdornments extends React.Component {
 
         <TextField
           id="outlined-adornment-weight"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="Weight"
           value={this.state.weight}
@@ -113,7 +113,7 @@ class OutlinedInputAdornments extends React.Component {
 
         <TextField
           id="outlined-adornment-password"
-          className={classNames(classes.margin, classes.textField)}
+          className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           type={this.state.showPassword ? 'text' : 'password'}
           label="Password"

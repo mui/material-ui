@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -82,7 +82,7 @@ function IconButton(props) {
 
   return (
     <ButtonBase
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',

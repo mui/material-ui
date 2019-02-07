@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
@@ -43,7 +43,7 @@ function Tidelift(props) {
       data-ga-event-category="sponsors"
       data-ga-event-action="logo"
       data-ga-event-label="tidelift"
-      className={classNames(classes.root, 'mui-fixed')}
+      className={clsx(classes.root, 'mui-fixed')}
       href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage"
       target="_blank"
       rel="noopener"

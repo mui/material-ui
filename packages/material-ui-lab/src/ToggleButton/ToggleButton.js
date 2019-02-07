@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -87,7 +87,7 @@ class ToggleButton extends React.Component {
       ...other
     } = this.props;
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.disabled]: disabled,

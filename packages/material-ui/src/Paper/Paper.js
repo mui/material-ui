@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
@@ -41,7 +41,7 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     `Material-UI: this elevation \`${elevation}\` is not implemented.`,
   );
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[`elevation${elevation}`],
     {

@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -100,7 +100,7 @@ function MiniDrawer() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={classNames(classes.appBar, {
+        className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
@@ -109,7 +109,7 @@ function MiniDrawer() {
             color="inherit"
             aria-label="Open drawer"
             onClick={handleDrawerOpen}
-            className={classNames(classes.menuButton, {
+            className={clsx(classes.menuButton, {
               [classes.hide]: open,
             })}
           >
@@ -122,12 +122,12 @@ function MiniDrawer() {
       </AppBar>
       <Drawer
         variant="permanent"
-        className={classNames(classes.drawer, {
+        className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
         })}
         classes={{
-          paper: classNames({
+          paper: clsx({
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
           }),

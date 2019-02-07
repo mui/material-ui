@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -50,7 +50,7 @@ function Divider(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.inset]: inset || variant === 'inset',

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
@@ -67,7 +67,7 @@ function Avatar(props) {
     );
   } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
     children = React.cloneElement(childrenProp, {
-      className: classNames(childrenClassNameProp, childrenProp.props.className),
+      className: clsx(childrenClassNameProp, childrenProp.props.className),
     });
   } else {
     children = childrenProp;
@@ -75,7 +75,7 @@ function Avatar(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         classes.system,
         {

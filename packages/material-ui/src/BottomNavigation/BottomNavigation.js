@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
@@ -27,7 +27,7 @@ function BottomNavigation(props) {
     ...other
   } = props;
 
-  const className = classNames(classes.root, classNameProp);
+  const className = clsx(classes.root, classNameProp);
 
   const children = React.Children.map(childrenProp, (child, childIndex) => {
     if (!React.isValidElement(child)) {

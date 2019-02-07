@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '../internal/svg-icons/Add';
 
@@ -42,11 +42,11 @@ export const styles = theme => ({
 function SpeedDialIcon(props) {
   const { classes, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
-  const iconClassName = classNames(classes.icon, {
+  const iconClassName = clsx(classes.icon, {
     [classes.iconOpen]: open,
     [classes.iconWithOpenIconOpen]: openIconProp && open,
   });
-  const openIconClassName = classNames(classes.openIcon, { [classes.openIconOpen]: open });
+  const openIconClassName = clsx(classes.openIcon, { [classes.openIconOpen]: open });
 
   function formatIcon(icon, className) {
     if (React.isValidElement(icon)) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
@@ -54,7 +54,7 @@ function StepContent(props) {
   }
 
   return (
-    <div className={classNames(classes.root, { [classes.last]: last }, className)} {...other}>
+    <div className={clsx(classes.root, { [classes.last]: last }, className)} {...other}>
       <TransitionComponent
         in={active}
         className={classes.transition}

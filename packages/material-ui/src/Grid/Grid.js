@@ -11,7 +11,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -215,7 +215,7 @@ function Grid(props) {
     ...other
   } = props;
 
-  const className = classNames(
+  const className = clsx(
     {
       [classes.container]: container,
       [classes.item]: item,

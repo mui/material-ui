@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import CancelIcon from '../internal/svg-icons/Cancel';
@@ -295,7 +295,7 @@ class Chip extends React.Component {
     } = this.props;
 
     const clickable = clickableProp !== false && onClick ? true : clickableProp;
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes[`color${capitalize(color)}`]]: color !== 'default',
@@ -322,16 +322,12 @@ class Chip extends React.Component {
       deleteIcon =
         deleteIconProp && React.isValidElement(deleteIconProp) ? (
           React.cloneElement(deleteIconProp, {
-            className: classNames(
-              deleteIconProp.props.className,
-              classes.deleteIcon,
-              customClasses,
-            ),
+            className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
             onClick: this.handleDeleteIconClick,
           })
         ) : (
           <CancelIcon
-            className={classNames(classes.deleteIcon, customClasses)}
+            className={clsx(classes.deleteIcon, customClasses)}
             onClick={this.handleDeleteIconClick}
           />
         );
@@ -340,17 +336,17 @@ class Chip extends React.Component {
     let avatar = null;
     if (avatarProp && React.isValidElement(avatarProp)) {
       avatar = React.cloneElement(avatarProp, {
-        className: classNames(classes.avatar, avatarProp.props.className, {
+        className: clsx(classes.avatar, avatarProp.props.className, {
           [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
         }),
-        childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
+        childrenClassName: clsx(classes.avatarChildren, avatarProp.props.childrenClassName),
       });
     }
 
     let icon = null;
     if (iconProp && React.isValidElement(iconProp)) {
       icon = React.cloneElement(iconProp, {
-        className: classNames(classes.icon, iconProp.props.className, {
+        className: clsx(classes.icon, iconProp.props.className, {
           [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
         }),
       });
