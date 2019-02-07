@@ -34,7 +34,7 @@ export default function createSpacing(spacing) {
             [
               'Material-UI: theme.spacing.unit usage has been deprecated.',
               'It will be removed in v5.',
-              'You can replace theme.spacing.unit * 2 with theme.spacing(2).',
+              'You can replace `theme.spacing.unit * 2` with `theme.spacing(2)`.',
             ].join('\n'),
           );
           warnOnce = true;

@@ -23,11 +23,11 @@ The grid system is implemented with the `Grid` component:
 ## Spacing
 
 The responsive grid focuses on consistent spacing widths, rather than column width.
-Material design margins and columns follow an **8px** square baseline grid.
-The spacing property is an integer in the [0, 8] interval.
+Material Design margins and columns follow an **8px** square baseline grid.
+The spacing property is an integer between 0 and 10 inclusive.
 By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
 
-This output transformation function can be customized using the theme, exactly like [the system spacing](/system/spacing/#transformation).
+This output transformation function can be customized [using the theme](/customization/themes/#spacing).
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
@@ -96,7 +96,7 @@ There are 3 available workarounds:
 ```jsx
   <body>
     <div style={{ padding: 20 }}>
-      <Grid container spacing={4}>
+      <Grid container spacing={5}>
         //...
       </Grid>
     </div>

@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.text.secondary,
-    marginBottom: 4,
+    marginBottom: theme.spacing(0.5),
     '&:hover': {
       color: theme.palette.primary.main,
     },
