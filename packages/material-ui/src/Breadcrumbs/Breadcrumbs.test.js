@@ -53,10 +53,9 @@ describe('<Breadcrumbs />', () => {
       <Breadcrumbs>
         <span />
         <span />
-        <span />
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 1);
   });
 
   it('should render an ellipse', () => {
@@ -91,8 +90,8 @@ describe('<Breadcrumbs />', () => {
         <span />
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.state().expanded, false);
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
     wrapper.find(BreadcrumbCollapsed).simulate('click');
-    assert.strictEqual(wrapper.state().expanded, true);
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 8);
   });
 });

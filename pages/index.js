@@ -160,7 +160,6 @@ class HomePage extends React.Component {
               href="https://github.com/mui-org/material-ui"
               data-icon="octicon-star"
               data-show-count="true"
-              aria-label={t('starOnGitHub')}
             >
               Star
             </a>
