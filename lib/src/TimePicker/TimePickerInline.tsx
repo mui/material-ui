@@ -11,7 +11,17 @@ export interface TimePickerInlineProps
     ExtendWrapper<OuterInlineWrapperProps> {}
 
 export const TimePickerInline: React.SFC<TimePickerInlineProps> = props => {
-  const { value, format, onChange, ampm, forwardedRef, seconds, minutesStep, ...other } = props;
+  const {
+    ampm,
+    format,
+    forwardedRef,
+    initialFocusedDate,
+    minutesStep,
+    onChange,
+    seconds,
+    value,
+    ...other
+  } = props;
 
   return (
     <BasePicker mergePreviousDateOnChange autoOk {...props}>
