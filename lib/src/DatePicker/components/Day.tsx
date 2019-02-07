@@ -38,8 +38,8 @@ class Day extends React.PureComponent<DayProps> {
     const className = clsx(classes.day, {
       [classes.hidden]: hidden,
       [classes.current]: current,
-      [classes.selected]: selected,
-      [classes.disabled]: disabled,
+      [classes.isSelected]: selected,
+      [classes.isDisabled]: disabled,
     });
 
     return (
@@ -69,7 +69,7 @@ export const styles = (theme: Theme) =>
       color: theme.palette.primary.main,
       fontWeight: 600,
     },
-    selected: {
+    isSelected: {
       color: theme.palette.common.white,
       backgroundColor: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium,
@@ -77,7 +77,7 @@ export const styles = (theme: Theme) =>
         backgroundColor: theme.palette.primary.main,
       },
     },
-    disabled: {
+    isDisabled: {
       pointerEvents: 'none',
       color: theme.palette.text.hint,
     },

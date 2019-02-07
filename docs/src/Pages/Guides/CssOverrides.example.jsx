@@ -21,7 +21,7 @@ const materialTheme = createMuiTheme({
       day: {
         color: lightBlue.A700,
       },
-      selected: {
+      isSelected: {
         backgroundColor: lightBlue['400'],
       },
       current: {
