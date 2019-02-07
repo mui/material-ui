@@ -10,5 +10,5 @@ npm run docs:dev
 
 ## How can I add a new demo in the documentation?
 
-[You can follow this guide](https://github.com/mui-org/material-ui/blob/master/CONTRIBUTING.md)
+[You can follow this guide](https://github.com/mui-org/material-ui/blob/next/CONTRIBUTING.md)
 on how to get started contributing to Material-UI.

@@ -55,7 +55,7 @@ function HomeFooter(props) {
               <li className={classes.listItem}>
                 <Link
                   color="inherit"
-                  href="https://github.com/mui-org/material-ui/tree/master/examples"
+                  href="https://github.com/mui-org/material-ui/tree/next/examples"
                 >
                   {t('examples')}
                 </Link>
@@ -85,7 +85,7 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         {`Currently v${process.env.LIB_VERSION}. ${t('released')} `}
-        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/master/LICENSE">
+        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
           MIT License
         </Link>
         {'.'}

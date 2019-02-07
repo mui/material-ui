@@ -2,7 +2,7 @@
 
 ## Usage
 
-Simply copy the files into your project, or one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples), and import and use the `Dashboard` component.
+Simply copy the files into your project, or one of the [example applications](https://github.com/mui-org/material-ui/tree/next/examples), and import and use the `Dashboard` component.
 
 You can customize the sections, layout and charts to suit your specific business requirements.
 
