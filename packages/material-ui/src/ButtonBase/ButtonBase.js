@@ -280,6 +280,7 @@ class ButtonBase extends React.Component {
       buttonProps.disabled = disabled;
     } else {
       buttonProps.role = 'button';
+      buttonProps['aria-disabled'] = disabled;
     }
 
     return (
