@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
   },
   chip: {
-    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
+    margin: theme.spacing(0.5, 2),
   },
   chipFocused: {
     backgroundColor: emphasize(
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
     ),
   },
   noOptionsMessage: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(1, 2),
   },
   singleValue: {
     fontSize: 16,
@@ -92,12 +92,12 @@ const useStyles = makeStyles(theme => ({
   paper: {
     position: 'absolute',
     zIndex: 1,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     left: 0,
     right: 0,
   },
   divider: {
-    height: theme.spacing.unit * 2,
+    height: theme.spacing(2),
   },
 }));
 

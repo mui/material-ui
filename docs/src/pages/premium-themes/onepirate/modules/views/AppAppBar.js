@@ -28,7 +28,7 @@ const styles = theme => ({
   rightLink: {
     fontSize: 16,
     color: theme.palette.common.white,
-    marginLeft: theme.spacing.unit * 3,
+    marginLeft: theme.spacing(3),
   },
   linkSecondary: {
     color: theme.palette.secondary.main,

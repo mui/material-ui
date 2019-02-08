@@ -29,15 +29,15 @@ const styles = theme => ({
     marginRight: 20,
   },
   code: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     '& pre': {
       margin: '0px !important',
     },
   },
   fab: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
   },
 });
 

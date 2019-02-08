@@ -17,8 +17,8 @@ const styles = theme => ({
   },
   speedDial: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3,
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
   },
 });
 

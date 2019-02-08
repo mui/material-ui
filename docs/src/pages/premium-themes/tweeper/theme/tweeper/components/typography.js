@@ -8,7 +8,7 @@ export default ({ linked, linkInverted, theme, attach, nest, TEXT, ICON }) => ({
         display: 'inline-block',
       },
       [attach(TEXT.indented)]: {
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
       },
       [attach(TEXT.indentedLarge)]: {
         marginLeft: 20,
@@ -27,7 +27,7 @@ export default ({ linked, linkInverted, theme, attach, nest, TEXT, ICON }) => ({
         display: 'flex',
         alignItems: 'flex-end',
         [nest(ICON.root)]: {
-          marginRight: theme.spacing.unit / 2,
+          marginRight: theme.spacing(0.5),
         },
       },
       [attach(TEXT.icon, TEXT.inline)]: {

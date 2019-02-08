@@ -9,7 +9,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   input: {
     display: 'none',

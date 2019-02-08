@@ -10,14 +10,14 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
+When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/next/test/README.md).
 
-When migrating a component to master, or submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
+When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-lab).
 
 ### Branch Structure
 
 All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)).
-At any given time, `master` represents the latest development version of the library.
+At any given time, `next` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
 #### `next` is unsafe
@@ -32,7 +32,7 @@ Only important bug fixes should be applied to `master` at this point.
 ### How to increase the chance of being accepted?
 
 We will only accept a pull request for which all tests pass. Make sure the following is true:
-- The branch is targeted at: 
+- The branch is targeted at:
   - `master` for important fixes.
   - `next` for everything else including breaking changes.
 - The branch is not behind its target.
@@ -67,8 +67,8 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```sh
 git remote add upstream git@github.com:mui-org/material-ui.git
-git checkout master
-git pull upstream master
+git checkout next
+git pull upstream next
 git checkout -b my-topic-branch
 yarn
 ```
@@ -170,12 +170,12 @@ In case you missed something, [we have a real example that can be used as a summ
 ### About TypeScript demos
 
 To help people use this library with TypeScript we try to provide equivalent demos
-in TypeScript. 
+in TypeScript.
 
 Changing demos in JavaScript requires a manual update of the TypeScript
 version. If you are not familiar with this language you can add the filepath
 of the TS demo to `docs/ts-demo-ignore.json`. See `docs/babel.config.ts.js` for more
-information. Otherwise our CI will fail the `test_build` job. 
+information. Otherwise our CI will fail the `test_build` job.
 A contributor can later update the TypeScript version of that demo.
 
 If you are already familiar with TypeScript you can simply write the demo in TypeScript.
@@ -211,7 +211,7 @@ Now, every time you import `material-ui` in your project, it is going to use you
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/mui-org/material-ui/blob/master/ROADMAP.md).
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/mui-org/material-ui/blob/next/ROADMAP.md).
 
 ## License
 

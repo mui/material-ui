@@ -14,7 +14,7 @@ export type GridContentAlignment =
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
-export type GridSpacing = 0 | 8 | 16 | 24 | 32 | 40;
+export type GridSpacing = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export type GridJustification =
   | 'flex-start'

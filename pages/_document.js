@@ -59,6 +59,9 @@ class MyDocument extends Document {
             This includes DNS lookups, TLS negotiations, TCP handshakes.
           */}
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
+          <style id="material-icon-font" />
+          <style id="font-awesome" />
+          <style id="app-search" />
           <style id="insertion-point-jss" />
         </Head>
         <body>

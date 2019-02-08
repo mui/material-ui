@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.text.secondary,
-    marginBottom: theme.spacing.unit / 2,
+    marginBottom: theme.spacing(0.5),
     '&:hover': {
       color: theme.palette.primary.main,
     },
@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   toolbar: {
     ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing.unit * 3,
+    paddingLeft: theme.spacing(3),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',

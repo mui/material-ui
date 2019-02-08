@@ -11,13 +11,13 @@ import GrainIcon from '@material-ui/icons/Grain';
 
 const styles = theme => ({
   root: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(1, 2),
   },
   link: {
     display: 'flex',
   },
   icon: {
-    marginRight: theme.spacing.unit / 2,
+    marginRight: theme.spacing(0.5),
     width: 20,
     height: 20,
   },

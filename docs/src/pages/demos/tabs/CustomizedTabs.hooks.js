@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'initial',
     minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing.unit * 4,
+    marginRight: theme.spacing(4),
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   tabSelected: {},
   typography: {
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
   },
 }));
 

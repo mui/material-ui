@@ -10,12 +10,12 @@ const styles = theme => ({
     height: 180,
   },
   wrapper: {
-    width: 100 + theme.spacing.unit * 2,
+    width: 100 + theme.spacing(2),
   },
   paper: {
     zIndex: 1,
     position: 'relative',
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,

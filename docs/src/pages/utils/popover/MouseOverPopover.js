@@ -9,7 +9,7 @@ const styles = theme => ({
     pointerEvents: 'none',
   },
   paper: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 

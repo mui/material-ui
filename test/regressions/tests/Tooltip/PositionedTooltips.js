@@ -45,7 +45,7 @@ function PositionedTooltips(props) {
             <Button className={classes.fab}>left-end</Button>
           </Tooltip>
         </Grid>
-        <Grid item container xs={6} alignItems="flex-end" direction="column" spacing={0}>
+        <Grid item container xs={6} alignItems="flex-end" direction="column">
           <Grid item>
             <Tooltip open title="Add" placement="right-start">
               <Button className={classes.fab}>right-start</Button>

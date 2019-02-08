@@ -13,7 +13,7 @@ import { Theme } from '@material-ui/core/styles';
 // Example 1
 const styles = ({ palette, spacing }: Theme) => ({
   root: {
-    padding: spacing.unit,
+    padding: spacing(1),
     backgroundColor: palette.background.default,
     color: palette.primary.dark,
   },
@@ -67,7 +67,7 @@ const AnotherStyledSFC = withStyles({
 
 // withTheme
 const ComponentWithTheme = withTheme<Theme>()(({ theme }: WithTheme<Theme>) => (
-  <div>{theme.spacing.unit}</div>
+  <div>{theme.spacing(1)}</div>
 ));
 
 <ComponentWithTheme />;
@@ -107,7 +107,7 @@ declare const themed: boolean;
   const Foo = withStyles(themedStyles, { withTheme: true })(
     class extends React.Component<WithTheme<Theme>> {
       render() {
-        return <div style={{ margin: this.props.theme.spacing.unit }} />;
+        return <div style={{ margin: this.props.theme.spacing(1) }} />;
       }
     },
   );
@@ -115,7 +115,7 @@ declare const themed: boolean;
 
   const Bar = withStyles(themedStyles, { withTheme: true })(
     ({ theme }: WithStyles<typeof themedStyles, true>) => (
-      <div style={{ margin: theme.spacing.unit }} />
+      <div style={{ margin: theme.spacing(1) }} />
     ),
   );
   <Bar />;
@@ -195,7 +195,7 @@ withStyles(theme =>
 
       inset: {
         '&:first-child': {
-          paddingLeft: theme.spacing.unit * 7,
+          paddingLeft: theme.spacing(7),
         },
       },
       row: {

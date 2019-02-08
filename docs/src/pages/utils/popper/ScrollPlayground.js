@@ -23,7 +23,7 @@ const styles = theme => ({
   scrollContainer: {
     height: 400,
     overflow: 'auto',
-    marginBottom: theme.spacing.unit * 3,
+    marginBottom: theme.spacing(3),
   },
   scroll: {
     position: 'relative',
@@ -32,7 +32,7 @@ const styles = theme => ({
     height: '230%',
   },
   legend: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
     maxWidth: 300,
   },
   paper: {
@@ -239,7 +239,7 @@ class AnchorPlayground extends React.Component {
             </Grid>
           </RootRef>
         </div>
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Typography gutterBottom variant="h6">
               Appearance

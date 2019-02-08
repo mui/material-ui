@@ -24,13 +24,13 @@ const payments = [
 
 const styles = theme => ({
   listItem: {
-    padding: `${theme.spacing.unit}px 0`,
+    padding: theme.spacing(1, 0),
   },
   total: {
     fontWeight: '700',
   },
   title: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 
@@ -55,7 +55,7 @@ function Review(props) {
           </Typography>
         </ListItem>
       </List>
-      <Grid container spacing={16}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping

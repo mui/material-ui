@@ -21,7 +21,7 @@ function Tweet() {
   return (
     <ListItem button className={classes.root}>
       <Box mb="5px">
-        <Grid container spacing={8}>
+        <Grid container spacing={1}>
           <Grid item>
             <Box
               display="flex"
@@ -40,7 +40,7 @@ function Tweet() {
           </Grid>
         </Grid>
       </Box>
-      <Grid container spacing={8} wrap="nowrap">
+      <Grid container spacing={1} wrap="nowrap">
         <Grid item>
           <Avatar
             medium
@@ -50,7 +50,7 @@ function Tweet() {
           />
         </Grid>
         <Grid item>
-          <Grid container spacing={16}>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography bold inline>
                 Dan Abramov

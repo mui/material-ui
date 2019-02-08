@@ -205,7 +205,7 @@ describe('withStyles', () => {
     });
 
     it('should work when depending on a theme', () => {
-      const styles = theme => ({ root: { padding: theme.spacing.unit } });
+      const styles = theme => ({ root: { padding: theme.spacing(1) } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
       const wrapper = mount(

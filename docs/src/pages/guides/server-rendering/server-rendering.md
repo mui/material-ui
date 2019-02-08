@@ -191,10 +191,11 @@ ReactDOM.hydrate(
 
 ## Reference implementations
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
+
+- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
 
 ## Troubleshooting
 

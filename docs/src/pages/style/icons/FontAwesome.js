@@ -13,10 +13,10 @@ const styles = theme => ({
     alignItems: 'flex-end',
   },
   icon: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
   iconHover: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     '&:hover': {
       color: red[800],
     },
@@ -27,7 +27,7 @@ class FontAwesome extends React.Component {
   componentDidMount() {
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
-      document.querySelector('#insertion-point-jss'),
+      document.querySelector('#font-awesome'),
     );
   }
 

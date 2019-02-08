@@ -32,7 +32,7 @@ When the `className` property isn't enough, and you need to access deeper elemen
 The list of  classes for each
 component is documented in the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/api/button/#css).
-Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
 This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to
 provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values).

@@ -10,7 +10,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   progress: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     color: '#00695c',
   },
   linearColorPrimary: {
@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   // Reproduce the Facebook spinners.
   facebook: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     position: 'relative',
   },
   facebook1: {

@@ -16,9 +16,9 @@ const styles = theme => ({
     minHeight: 600,
   },
   markdownElement: {
-    maxWidth: theme.spacing.unit * 110,
+    maxWidth: theme.spacing(110),
     margin: 'auto',
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 

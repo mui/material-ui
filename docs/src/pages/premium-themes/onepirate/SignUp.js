@@ -18,14 +18,14 @@ import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   form: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing(6),
   },
   button: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   feedback: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 
@@ -74,7 +74,7 @@ class SignUp extends React.Component {
           >
             {({ handleSubmit, submitting }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
-                <Grid container spacing={16}>
+                <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Field
                       autoFocus

@@ -6,8 +6,8 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 3,
+    margin: theme.spacing(2),
+    marginRight: theme.spacing(3),
   },
 });
 

@@ -41,7 +41,7 @@ MyTable.propTypes = {
 function PaddingTable() {
   return (
     <div>
-      <Grid container spacing={16}>
+      <Grid container spacing={2}>
         <Grid item xs={6}>
           <MyTable padding="default" />
         </Grid>

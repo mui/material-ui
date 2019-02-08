@@ -10,12 +10,12 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     overflow: 'hidden',
-    padding: `0 ${theme.spacing.unit * 3}px`,
+    padding: theme.spacing(0, 3),
   },
   paper: {
     maxWidth: 400,
-    margin: `${theme.spacing.unit}px auto`,
-    padding: theme.spacing.unit * 2,
+    margin: `${theme.spacing(1)}px auto`,
+    padding: theme.spacing(2),
   },
 });
 
@@ -28,7 +28,7 @@ function AutoGridNoWrap(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={16}>
+        <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -38,7 +38,7 @@ function AutoGridNoWrap(props) {
         </Grid>
       </Paper>
       <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={16}>
+        <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -48,7 +48,7 @@ function AutoGridNoWrap(props) {
         </Grid>
       </Paper>
       <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={16}>
+        <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>

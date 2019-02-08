@@ -40,10 +40,10 @@ const styles = theme => ({
   root: {
     position: 'relative',
     marginBottom: 40,
-    marginLeft: -theme.spacing.unit * 2,
-    marginRight: -theme.spacing.unit * 2,
+    marginLeft: -theme.spacing(2),
+    marginRight: -theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      padding: `0 ${theme.spacing.unit}px`,
+      padding: theme.spacing(0, 1),
       marginLeft: 0,
       marginRight: 0,
     },
@@ -56,13 +56,13 @@ const styles = theme => ({
     justifyContent: 'center',
     padding: 20,
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing.unit * 3,
+      padding: theme.spacing(3),
     },
   },
   demoHiddenHeader: {
-    paddingTop: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 3,
+      paddingTop: theme.spacing(3),
     },
   },
   header: {
@@ -71,7 +71,7 @@ const styles = theme => ({
       display: 'flex',
       flip: false,
       top: 0,
-      right: theme.spacing.unit,
+      right: theme.spacing(1),
     },
     justifyContent: 'space-between',
   },
@@ -84,7 +84,7 @@ const styles = theme => ({
     },
     '& pre': {
       overflow: 'auto',
-      paddingTop: theme.spacing.unit * 5,
+      paddingTop: theme.spacing(5),
       margin: '0px !important',
       borderRadius: '0px !important',
     },

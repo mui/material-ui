@@ -22,9 +22,9 @@ import post3 from './blog-post.3.md';
 const styles = theme => ({
   layout: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(1100 + theme.spacing(3) * 2)]: {
       width: 1100,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -42,16 +42,16 @@ const styles = theme => ({
   mainFeaturedPost: {
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing(4),
   },
   mainFeaturedPostContent: {
-    padding: `${theme.spacing.unit * 6}px`,
+    padding: theme.spacing(6),
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
     },
   },
   mainGrid: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   card: {
     display: 'flex',
@@ -63,19 +63,19 @@ const styles = theme => ({
     width: 160,
   },
   markdown: {
-    padding: `${theme.spacing.unit * 3}px 0`,
+    padding: theme.spacing(3, 0),
   },
   sidebarAboutBox: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     backgroundColor: theme.palette.grey[200],
   },
   sidebarSection: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit * 8,
-    padding: `${theme.spacing.unit * 6}px 0`,
+    marginTop: theme.spacing(8),
+    padding: theme.spacing(6, 0),
   },
 });
 
@@ -178,7 +178,7 @@ function Blog(props) {
           </Paper>
           {/* End main featured post */}
           {/* Sub featured posts */}
-          <Grid container spacing={40} className={classes.cardGrid}>
+          <Grid container spacing={5} className={classes.cardGrid}>
             {featuredPosts.map(post => (
               <Grid item key={post.title} xs={12} md={6}>
                 <Card className={classes.card}>
@@ -210,7 +210,7 @@ function Blog(props) {
             ))}
           </Grid>
           {/* End sub featured posts */}
-          <Grid container spacing={40} className={classes.mainGrid}>
+          <Grid container spacing={5} className={classes.mainGrid}>
             {/* Main content */}
             <Grid item xs={12} md={8}>
               <Typography variant="h6" gutterBottom>

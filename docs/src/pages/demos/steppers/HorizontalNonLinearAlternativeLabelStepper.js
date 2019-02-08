@@ -12,17 +12,17 @@ const styles = theme => ({
     width: '90%',
   },
   button: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   backButton: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   completed: {
     display: 'inline-block',
   },
   instructions: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
 });
 

@@ -23,7 +23,7 @@ const styles = theme => ({
     zIndex: 0,
   },
   menuButton: {
-    marginLeft: -theme.spacing.unit,
+    marginLeft: -theme.spacing(1),
   },
   iconButtonAvatar: {
     padding: 4,
@@ -47,7 +47,7 @@ function Header(props) {
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
-          <Grid container spacing={8} alignItems="center">
+          <Grid container spacing={1} alignItems="center">
             <Hidden smUp>
               <Grid item>
                 <IconButton
@@ -89,7 +89,7 @@ function Header(props) {
         elevation={0}
       >
         <Toolbar>
-          <Grid container alignItems="center" spacing={8}>
+          <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
               <Typography color="inherit" variant="h5">
                 Authentication

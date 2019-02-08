@@ -12,7 +12,7 @@ const { Tabs, Tab, ListItem, InputAdornment } = molecules;
 const Header = () => (
   <AppBar position="sticky" elevation={1}>
     <Toolbar>
-      <Grid container alignItems="center" spacing={16}>
+      <Grid container alignItems="center" spacing={2}>
         <Grid item xs={6} sm={4}>
           <Tabs value={0} variant="fullWidth">
             <Tab

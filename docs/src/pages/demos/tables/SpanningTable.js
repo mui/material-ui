@@ -13,7 +13,7 @@ const TAX_RATE = 0.07;
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     overflowX: 'auto',
   },
   table: {

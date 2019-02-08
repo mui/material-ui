@@ -17,13 +17,13 @@ const styles = theme => ({
     width: 100,
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 
 class GuttersGrid extends React.Component {
   state = {
-    spacing: '16',
+    spacing: '2',
   };
 
   handleChange = key => (event, value) => {
@@ -37,7 +37,7 @@ class GuttersGrid extends React.Component {
     const { spacing } = this.state;
 
     return (
-      <Grid container className={classes.root} spacing={16}>
+      <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12}>
           <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
             {[0, 1, 2].map(value => (
@@ -60,11 +60,16 @@ class GuttersGrid extends React.Component {
                   row
                 >
                   <FormControlLabel value="0" control={<Radio />} label="0" />
+                  <FormControlLabel value="1" control={<Radio />} label="1" />
+                  <FormControlLabel value="2" control={<Radio />} label="2" />
+                  <FormControlLabel value="3" control={<Radio />} label="3" />
+                  <FormControlLabel value="4" control={<Radio />} label="4" />
+                  <FormControlLabel value="5" control={<Radio />} label="5" />
+                  <FormControlLabel value="6" control={<Radio />} label="6" />
+                  <FormControlLabel value="7" control={<Radio />} label="7" />
                   <FormControlLabel value="8" control={<Radio />} label="8" />
-                  <FormControlLabel value="16" control={<Radio />} label="16" />
-                  <FormControlLabel value="24" control={<Radio />} label="24" />
-                  <FormControlLabel value="32" control={<Radio />} label="32" />
-                  <FormControlLabel value="40" control={<Radio />} label="40" />
+                  <FormControlLabel value="9" control={<Radio />} label="9" />
+                  <FormControlLabel value="10" control={<Radio />} label="10" />
                 </RadioGroup>
               </Grid>
             </Grid>

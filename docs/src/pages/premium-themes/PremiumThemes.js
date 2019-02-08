@@ -67,7 +67,7 @@ function themes(t) {
       category: t('admin'),
       href: '/premium-themes/paperbase',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/paperbase',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/paperbase',
     },
     {
       name: 'Onepirate',
@@ -77,7 +77,7 @@ function themes(t) {
       category: t('landing'),
       href: '/premium-themes/onepirate',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/onepirate',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/onepirate',
     },
     {
       name: 'Instapaper',
@@ -87,7 +87,7 @@ function themes(t) {
       category: t('profile'),
       href: '/premium-themes/instapaper',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/instapaper',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/instapaper',
     },
     {
       name: 'Tweeper',
@@ -97,7 +97,7 @@ function themes(t) {
       category: t('profile'),
       href: '/premium-themes/tweeper',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/premium-themes/tweeper',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/premium-themes/tweeper',
     },
   ];
 }
@@ -105,7 +105,7 @@ function themes(t) {
 function PremiumThemes(props) {
   const { classes, t } = props;
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       {themes(t).map(theme => (
         <Grid key={theme.name} item xs={12} md={6}>
           <Card className={classes.card}>

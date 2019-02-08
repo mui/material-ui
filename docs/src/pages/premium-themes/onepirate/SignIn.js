@@ -17,14 +17,14 @@ import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   form: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing(6),
   },
   button: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   feedback: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
 });
 

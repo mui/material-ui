@@ -14,7 +14,7 @@ export const styles = theme => ({
     height: 32,
     minWidth: 48,
     margin: 0,
-    padding: `${theme.spacing.unit - 4}px ${theme.spacing.unit * 1.5}px`,
+    padding: '4px 12px',
     borderRadius: 2,
     color: fade(theme.palette.action.active, 0.38),
     '&$selected': {

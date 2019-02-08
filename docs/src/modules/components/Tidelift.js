@@ -4,13 +4,10 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
-import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 
 const styles = theme => ({
   root: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
-      .spacing.unit * 2}px`,
+    padding: theme.spacing(1, 1, 1, 2),
     right: 0,
     left: 0,
     display: 'flex',
@@ -31,12 +28,12 @@ const styles = theme => ({
     content: '""',
     width: 20,
     height: 20,
-    margin: `0 ${theme.spacing.unit}px 0 0`,
+    margin: theme.spacing(0, 1, 0, 0),
   },
 });
 
 function Tidelift(props) {
-  const { classes, t } = props;
+  const { classes } = props;
 
   return (
     <Link
@@ -49,17 +46,13 @@ function Tidelift(props) {
       rel="noopener"
     >
       <span className={classes.logo} />
-      <Typography color="inherit">{t('tidelift')}</Typography>
+      <Typography color="inherit">Get Professionally Supported Material-UI</Typography>
     </Link>
   );
 }
 
 Tidelift.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(Tidelift);
+export default withStyles(styles)(Tidelift);

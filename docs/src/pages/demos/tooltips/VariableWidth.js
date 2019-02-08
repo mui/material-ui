@@ -6,7 +6,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   customWidth: {
     maxWidth: 500,
@@ -17,9 +17,9 @@ const styles = theme => ({
 });
 
 const longText = `
-Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus. 
-Praesent non nunc mollis, fermentum neque at, semper arcu. 
-Nullam eget est sed sem iaculis gravida eget vitae justo. 
+Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus.
+Praesent non nunc mollis, fermentum neque at, semper arcu.
+Nullam eget est sed sem iaculis gravida eget vitae justo.
 `;
 
 function VariableWidth({ classes }) {

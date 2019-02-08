@@ -19,10 +19,10 @@ const styles = theme => ({
     flexGrow: 1,
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   chipWrapper: {
-    marginBottom: theme.spacing.unit * 5,
+    marginBottom: theme.spacing(5),
   },
 });
 
@@ -115,7 +115,7 @@ class ChipsPlayground extends React.Component {
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
-          <Grid container justify="center" alignItems="center" spacing={40}>
+          <Grid container justify="center" alignItems="center" spacing={5}>
             <Grid item className={classes.chipWrapper}>
               <Chip
                 label="Awesome Chip Component"
@@ -131,7 +131,7 @@ class ChipsPlayground extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Grid container spacing={24}>
+            <Grid container spacing={3}>
               <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>color</FormLabel>

@@ -18,11 +18,11 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 const styles = theme => ({
   toggleContainer: {
     height: 56,
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(1, 2),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    margin: `${theme.spacing.unit}px 0`,
+    margin: theme.spacing(1, 0),
     background: theme.palette.background.default,
   },
 });
@@ -42,7 +42,7 @@ class ToggleButtons extends React.Component {
     const { alignment, formats } = this.state;
 
     return (
-      <Grid container spacing={16}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>

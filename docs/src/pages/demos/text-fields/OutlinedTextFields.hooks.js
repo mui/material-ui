@@ -10,11 +10,11 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   dense: {
-    marginTop: 16,
+    marginTop: theme.spacing(2),
   },
   menu: {
     width: 200,

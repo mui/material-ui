@@ -15,19 +15,19 @@ const styles = theme => ({
     minHeight: 116,
     maxWidth: 345,
     display: 'block',
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 3,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(3),
   },
   info: {
     ...theme.typography.caption,
     position: 'absolute',
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     cursor: 'default',
     bottom: 0,
     right: 0,
   },
   paper: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     display: 'block',
   },
 });
@@ -102,7 +102,7 @@ class Ad extends React.Component {
     return (
       <span className={classes.root}>
         {this.random >= 0.9 ? <CodeFund /> : <Carbon />}
-        {adblock === true ? getAdblock(classes) : null}
+        {adblock === true ? getAdblock(classes, t) : null}
         {adblock === false ? (
           <Tooltip id="ad-info" title={t('adTitle')} placement="left">
             <span className={classes.info}>i</span>
