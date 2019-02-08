@@ -74,19 +74,14 @@ function MarkdownDocs(props) {
         const jsType = isHooks ? 'jsHooks' : 'js';
         const rawType = isHooks ? 'rawHooks' : 'raw';
 
-        const tsFilename = !isHooks
-          ? sourceFiles.find(sourceFileName => {
-              const isTSSourceFile = /\.tsx$/.test(sourceFileName);
-              const isTSVersionOfFile = sourceFileName.replace(/\.tsx$/, '.js') === filename;
-              return isTSSourceFile && isTSVersionOfFile;
-            })
-          : undefined;
+        const tsFilename = filename.replace(/\.js$/, '.tsx');
+        const hasTSVersion = sourceFiles.indexOf(tsFilename) !== -1;
 
         demos[demoName] = {
           ...demos[demoName],
           [jsType]: req(filename).default,
           [rawType]: reqSource(filename),
-          rawTS: tsFilename ? reqSource(tsFilename) : undefined,
+          rawTS: hasTSVersion ? reqSource(tsFilename) : undefined,
         };
       }
     });
