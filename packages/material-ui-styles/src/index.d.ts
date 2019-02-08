@@ -47,15 +47,14 @@ declare module '@material-ui/styles/createStyles' {
 
 declare module '@material-ui/styles/getThemeProps' {
   import { ComponentsPropsList } from '@material-ui/core/styles/props';
-  import { Theme } from '@material-ui/core';
 
-  interface NamedParams<K extends keyof ComponentsPropsList> {
+  interface NamedParams<K extends keyof ComponentsPropsList, Theme> {
     name: K;
     props: ComponentsPropsList[K];
     theme?: Theme;
   }
-  export default function getThemeProps<Name extends keyof ComponentsPropsList>(
-    params: NamedParams<Name>,
+  export default function getThemeProps<Name extends keyof ComponentsPropsList, Theme>(
+    params: NamedParams<Name, Theme>,
   ): ComponentsPropsList[Name];
 }
 
@@ -199,15 +198,12 @@ declare module '@material-ui/styles/StylesProvider' {
 }
 
 declare module '@material-ui/styles/ThemeProvider' {
-  import { Theme } from '@material-ui/core';
-
-  const ThemeContext: React.Context<Theme>;
-
-  export interface ThemeProviderProps {
+  export interface ThemeProviderProps<Theme> {
     children: React.ReactNode;
     theme: Theme | ((outerTheme: Theme) => Theme);
   }
-  const ThemeProvider: React.ComponentType<ThemeProviderProps>;
+  type ThemeProvider<T> = React.ComponentType<ThemeProviderProps<T>>;
+  const ThemeProvider: ThemeProvider<any>;
   export default ThemeProvider;
 }
 
