@@ -143,27 +143,7 @@ In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons
 + {{"demo": "pages/demos/buttons/SuperButtons.js"}}
 ```
 
-#### 3. Edit the Next.js page.
-
-The Next.js page is saved in the following file.
-There is a direct mapping between the filename in the repository and the pathname in the documentation.
-
-```
-pages/demos/buttons.js
-```
-
-Then, you will need to add the following code:
-```diff
-+ 'pages/demos/buttons/SuperButtons.js': {
-+   js: require('docs/src/pages/demos/buttons/SuperButtons').default,
-+   raw: preval`
-+ module.exports = require('fs')
-+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SuperButtons'), 'utf8')
-+`,
-+        },
-```
-
-#### 4. You are done 🎉!
+#### 3. You are done 🎉!
 
 In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
 
