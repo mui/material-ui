@@ -22,6 +22,12 @@ The placement of the popper updates with the available area in the viewport.
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
+## Minimalist Popper
+
+You can use the component with zero extra dependencies.
+
+{{"demo": "pages/utils/popper/MinimalPopper.js" }}
+
 ## Scroll playground
 
 {{"demo": "pages/utils/popper/ScrollPlayground.js"}}
