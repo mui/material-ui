@@ -23,6 +23,11 @@ export interface ButtonBaseTypeMap {
   classKey: ButtonBaseClassKey;
 }
 
+/**
+ * utility to create component types that inherit props from ButtonBase.
+ * This component has an additional overload if the `href` prop is set which
+ * can make extension quite tricky
+ */
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
   props: ButtonBaseTypeMap['props'] & M['props'];
   defaultComponent: M['defaultComponent'];
