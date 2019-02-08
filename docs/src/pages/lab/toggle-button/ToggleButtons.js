@@ -9,6 +9,7 @@ import FormatBoldIcon from '@material-ui/icons/FormatBold';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
 import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
 import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -82,6 +83,7 @@ class ToggleButtons extends React.Component {
               </ToggleButton>
               <ToggleButton disabled value="color">
                 <FormatColorFillIcon />
+                <ArrowDropDownIcon />
               </ToggleButton>
             </ToggleButtonGroup>
           </div>

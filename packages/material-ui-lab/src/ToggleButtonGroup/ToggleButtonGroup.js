@@ -2,21 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import hasValue from './hasValue';
+// import { fade } from '@material-ui/core/styles/colorManipulator';
 import isValueSelected from './isValueSelected';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    background: 'transparent',
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    background: theme.palette.background.paper,
     borderRadius: 2,
     overflow: 'hidden',
-  },
-  /* Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set. */
-  selected: {
-    background: theme.palette.background.paper,
   },
 });
 
@@ -79,17 +73,8 @@ class ToggleButtonGroup extends React.Component {
       });
     });
 
-    const groupSelected = selectedProp === 'auto' ? hasValue(value) : selectedProp;
-    const className = clsx(
-      classes.root,
-      {
-        [classes.selected]: groupSelected,
-      },
-      classNameProp,
-    );
-
     return (
-      <div className={className} {...other}>
+      <div className={clsx(classes.root,classNameProp)} {...other}>
         {children}
       </div>
     );

@@ -10,17 +10,27 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    boxSizing: 'border-box',
     ...theme.typography.button,
     height: 48,
-    width: 48,
-    margin: 0,
-    borderRadius: 2,
+    minWidth: 24,
+    padding: '0px 11px 0px 11px',
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
+    '&:not(:first-child)': {
+      marginLeft: -1,
+      borderLeft: '1px solid transparent',
+    },
     '&$selected': {
       color: theme.palette.action.active,
       backgroundColor: fade(theme.palette.action.active, 0.12),
+      // border: `1px solid ${fade(theme.palette.action.active, 0.14)}`,
       '&:hover': {
         backgroundColor: fade(theme.palette.action.active, 0.15),
+      },
+      '& + $prevChildSelected': {
+        borderLeft: 0,
+        marginLeft: 0,
       },
     },
     '&$disabled': {
@@ -37,21 +47,26 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-    '&:not(:first-child)': {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
+    '&:first-child': {
+      borderTopLeftRadius: 2,
+      borderBottomLeftRadius: 2,
     },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-      boxSizing: 'content-box', // Add the right border to the default button size as a spacer
-      borderRight: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    '&:last-child': {
+      borderTopRightRadius: 2,
+      borderBottomRightRadius: 2,
+      paddingLeft: 12,
+      // paddingRight: 11,
     },
+  },
+  '& + $prevChildSelected': {
+    borderLeft: 0,
+    marginLeft: 0,
   },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
+  prevChildSelected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {
     width: '100%',
@@ -90,6 +105,7 @@ class ToggleButton extends React.Component {
 
     const className = clsx(
       classes.root,
+      classes.prevChildSelected,
       {
         [classes.disabled]: disabled,
         [classes.selected]: selected,
