@@ -77,6 +77,25 @@ describe('<Breadcrumbs />', () => {
     assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 1);
   });
 
+  it('should expand', () => {
+    const wrapper = shallow(
+      <Breadcrumbs>
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </Breadcrumbs>,
+    );
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
+    wrapper.find(BreadcrumbCollapsed).simulate('click');
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 8);
+  });
+
   describe('warning', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
