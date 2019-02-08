@@ -13,7 +13,7 @@ const styles = theme => ({
     display: 'flex',
   },
   paper: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   svg: {
     width: 100,

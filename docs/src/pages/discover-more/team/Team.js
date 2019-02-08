@@ -89,26 +89,26 @@ const members = [
 
 const styles = theme => ({
   details: {
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px 0`,
+    margin: theme.spacing(1, 1, 1, 0),
   },
   cover: {
-    width: theme.spacing.unit * 10,
-    height: theme.spacing.unit * 10,
-    margin: theme.spacing.unit * 2,
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+    margin: theme.spacing(2),
     borderRadius: '50%',
     flexShrink: 0,
     backgroundColor: theme.palette.background.default,
   },
   icon: {
     fontSize: 18,
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 
 function Team(props) {
   const { classes } = props;
   return (
-    <Grid container spacing={16}>
+    <Grid container spacing={2}>
       {members.map(member => (
         <Grid key={member.name} item xs={12} md={6}>
           <Paper>

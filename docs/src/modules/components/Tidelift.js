@@ -9,8 +9,7 @@ import compose from 'recompose/compose';
 
 const styles = theme => ({
   root: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
-      .spacing.unit * 2}px`,
+    padding: theme.spacing(1, 1, 1, 2),
     right: 0,
     left: 0,
     display: 'flex',
@@ -31,7 +30,7 @@ const styles = theme => ({
     content: '""',
     width: 20,
     height: 20,
-    margin: `0 ${theme.spacing.unit}px 0 0`,
+    margin: theme.spacing(0, 1, 0, 0),
   },
 });
 

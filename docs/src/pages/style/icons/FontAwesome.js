@@ -13,10 +13,10 @@ const styles = theme => ({
     alignItems: 'flex-end',
   },
   icon: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
   iconHover: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     '&:hover': {
       color: red[800],
     },

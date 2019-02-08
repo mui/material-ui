@@ -10,16 +10,16 @@ function round(value) {
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit * 7,
+    margin: theme.spacing(7),
   },
   marginBottom: {
-    marginBottom: theme.spacing.unit * 12,
+    marginBottom: theme.spacing(12),
   },
   widthSmall: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(660 + theme.spacing.unit * 6)]: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(660 + theme.spacing(6))]: {
       width: 660,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -27,9 +27,9 @@ const styles = theme => ({
   },
   widthMedium: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(850 + theme.spacing.unit * 6)]: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(850 + theme.spacing(6))]: {
       width: 850,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -37,8 +37,8 @@ const styles = theme => ({
   },
   widthLarge: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
       width: 880,
       marginLeft: 'auto',
@@ -53,8 +53,8 @@ const styles = theme => ({
   },
   widthXlarge: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
       width: 900,
       marginLeft: 'auto',

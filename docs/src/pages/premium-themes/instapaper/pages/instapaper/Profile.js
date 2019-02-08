@@ -68,7 +68,7 @@ function ProfilePage() {
                 </Grid>
               </Box>
               <Box mb="20px">
-                <Grid container spacing={40}>
+                <Grid container spacing={5}>
                   <Grid item>
                     <Typography variant="subtitle1">
                       <b>132</b> posts
@@ -106,7 +106,7 @@ function ProfilePage() {
           <Tab label="Saved" icon={<Icon>bookmark_border_outlined</Icon>} />
           <Tab label="Tagged" />
         </Tabs>
-        <Grid container spacing={32}>
+        <Grid container spacing={4}>
           <Grid item xs={4}>
             <img
               alt="post"

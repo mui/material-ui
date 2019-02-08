@@ -18,11 +18,11 @@ const styles = theme => ({
   },
   fake: {
     backgroundColor: grey[200],
-    height: theme.spacing.unit,
-    margin: theme.spacing.unit * 2,
+    height: theme.spacing(1),
+    margin: theme.spacing(2),
     // Selects every two elements among any group of siblings.
     '&:nth-child(2n)': {
-      marginRight: theme.spacing.unit * 3,
+      marginRight: theme.spacing(3),
     },
   },
 });

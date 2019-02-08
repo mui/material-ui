@@ -23,7 +23,7 @@ const styles = (theme: Theme) =>
       flexWrap: 'wrap',
     },
     margin: {
-      margin: theme.spacing.unit,
+      margin: theme.spacing(1),
     },
     cssLabel: {
       '&$cssFocused': {
@@ -44,7 +44,7 @@ const styles = (theme: Theme) =>
     notchedOutline: {},
     bootstrapRoot: {
       'label + &': {
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing(3),
       },
     },
     bootstrapInput: {

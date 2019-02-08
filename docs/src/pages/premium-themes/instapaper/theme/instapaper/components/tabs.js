@@ -17,8 +17,8 @@ export default ({ attach, theme, nest, ICON, TAB }) => ({
     root: {
       lineHeight: 'inherit',
       minWidth: 0,
-      marginRight: theme.spacing.unit,
-      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing(1),
+      marginLeft: theme.spacing(1),
       [theme.breakpoints.up('md')]: {
         minWidth: 0,
         marginRight: 30,

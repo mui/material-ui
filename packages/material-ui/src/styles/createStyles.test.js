@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { createStyles } from '.';
+import createStyles from './createStyles';
 
 describe('createStyles', () => {
   it('is the identity function', () => {

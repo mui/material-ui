@@ -11,7 +11,7 @@ import Button from '../components/Button';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 10,
+    marginTop: theme.spacing(10),
     marginBottom: 0,
     display: 'flex',
   },
@@ -22,15 +22,15 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: theme.palette.warning.main,
-    padding: `${theme.spacing.unit * 8}px ${theme.spacing.unit * 3}px`,
+    padding: theme.spacing(8, 3),
   },
   cardContent: {
     maxWidth: 400,
   },
   textField: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
   button: {
     width: '100%',
@@ -81,7 +81,7 @@ class ProductCTA extends React.Component {
 
     return (
       <LayoutBody className={classes.root} component="section" width="large">
-        <Grid container spacing={0}>
+        <Grid container>
           <Grid item xs={12} md={6} className={classes.cardWrapper}>
             <div className={classes.card}>
               <form onSubmit={this.handleSubmit} className={classes.cardContent}>

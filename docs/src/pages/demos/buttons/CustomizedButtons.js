@@ -8,7 +8,7 @@ import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   cssRoot: {
     color: theme.palette.getContrastText(purple[500]),

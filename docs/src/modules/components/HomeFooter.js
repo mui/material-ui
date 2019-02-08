@@ -9,11 +9,11 @@ import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   root: {
-    maxWidth: theme.spacing.unit * 110,
+    maxWidth: theme.spacing(110),
     margin: 'auto',
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(3, 2),
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 2}px`,
+      padding: theme.spacing(6, 2),
     },
   },
   list: {
@@ -22,11 +22,11 @@ const styles = theme => ({
     listStyle: 'none',
   },
   listItem: {
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
   },
   version: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
 });
 

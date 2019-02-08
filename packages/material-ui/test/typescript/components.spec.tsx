@@ -661,7 +661,7 @@ const TableTest = () => {
     return createStyles({
       paper: {
         width: '100%',
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing(3),
         backgroundColor,
         overflowX: 'auto',
       },
@@ -737,7 +737,7 @@ const TabsTest = () => {
   const styles: StyleRulesCallback<ClassKey> = theme => ({
     root: {
       flexGrow: 1,
-      marginTop: theme.spacing.unit * 3,
+      marginTop: theme.spacing(3),
       backgroundColor: theme.palette.background.paper,
     },
     button: {

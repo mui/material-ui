@@ -10,10 +10,10 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   button: {
     display: 'block',
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
   formControl: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     minWidth: 120,
   },
 });

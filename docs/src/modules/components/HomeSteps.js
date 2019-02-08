@@ -18,11 +18,11 @@ import Link from 'docs/src/modules/components/Link';
 const styles = theme => ({
   step: {
     border: `12px solid ${theme.palette.background.paper}`,
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(3, 2),
     borderRightWidth: 0,
     borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
+      padding: theme.spacing(5, 4),
     },
     [theme.breakpoints.up('md')]: {
       borderRightWidth: 12,
@@ -45,33 +45,33 @@ const styles = theme => ({
   },
   stepTitle: {
     display: 'flex',
-    marginBottom: theme.spacing.unit * 3,
+    marginBottom: theme.spacing(3),
     alignItems: 'center',
   },
   stepIcon: {
     color: theme.palette.primary.dark,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     fontSize: 30,
   },
   stepBody: {
     minHeight: 270,
   },
   markdownElement: {
-    maxWidth: `calc(100vw - ${(theme.spacing.unit * 5 + 1) * 2}px)`,
+    maxWidth: `calc(100vw - ${(theme.spacing(5) + 1) * 2}px)`,
     '& pre, & pre[class*="language-"], & code': {
       backgroundColor: 'transparent',
     },
     '& pre, & pre[class*="language-"]': {
-      padding: theme.spacing.unit,
+      padding: theme.spacing(1),
       margin: 0,
     },
   },
   divider: {
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
   },
   link: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     display: 'block',
   },
   img: {

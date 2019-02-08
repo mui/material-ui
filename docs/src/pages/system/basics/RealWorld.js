@@ -11,7 +11,7 @@ function RealWorld() {
   return (
     <Box clone pt={2} pr={1} pb={1} pl={2}>
       <Paper elevation={0}>
-        <Grid container spacing={16} alignItems="center" wrap="nowrap">
+        <Grid container spacing={2} alignItems="center" wrap="nowrap">
           <Grid item>
             <Box bgcolor="primary.main" clone>
               <Avatar>
@@ -23,7 +23,7 @@ function RealWorld() {
             <Typography>You have lost connection to the internet. This app is offline.</Typography>
           </Grid>
         </Grid>
-        <Grid container justify="flex-end" spacing={8}>
+        <Grid container justify="flex-end" spacing={1}>
           <Grid item>
             <Button color="primary">Turn on wifi</Button>
           </Grid>

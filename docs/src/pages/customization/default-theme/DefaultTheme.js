@@ -10,15 +10,15 @@ import Switch from '@material-ui/core/Switch';
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     paddingTop: 0,
     // Match <Inspector /> default theme.
     backgroundColor: theme.palette.type === 'light' ? theme.palette.common.white : '#242424',
-    minHeight: theme.spacing.unit * 40,
+    minHeight: theme.spacing(40),
     width: '100%',
   },
   switch: {
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing(1),
   },
 });
 

@@ -16,7 +16,7 @@ module.exports = [
     name: 'The initial cost paid for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '18.7 KB',
+    limit: '18.8 KB',
   },
   {
     name: 'The initial cost paid for using one component with ES modules',
@@ -28,7 +28,13 @@ module.exports = [
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '92.3 KB',
+    limit: '92.4 KB',
+  },
+  {
+    name: 'The theme object',
+    webpack: true,
+    path: 'packages/material-ui/build/styles/createMuiTheme.js',
+    limit: '7 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
@@ -53,14 +59,14 @@ module.exports = [
     name: 'The size of the @material-ui/core/Button component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Button/index.js',
-    limit: '24.5 KB',
+    limit: '24.6 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Modal/index.js',
-    limit: '24.0 KB',
+    limit: '24.1 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper

@@ -15,8 +15,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.light,
   },
   layoutBody: {
-    marginTop: theme.spacing.unit * 8,
-    marginBottom: theme.spacing.unit * 8,
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(8),
     display: 'flex',
   },
   iconsWrapper: {
@@ -32,7 +32,7 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.palette.warning.main,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
     '&:hover': {
       backgroundColor: theme.palette.warning.dark,
     },
@@ -43,11 +43,11 @@ const styles = theme => ({
     paddingLeft: 0,
   },
   listItem: {
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
   },
   language: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     width: 150,
   },
 });
@@ -69,14 +69,14 @@ function AppFooter(props) {
   return (
     <Typography component="footer" className={classes.root}>
       <LayoutBody className={classes.layoutBody} width="large">
-        <Grid container spacing={40}>
+        <Grid container spacing={5}>
           <Grid item xs={6} sm={4} md={2}>
             <Grid
               container
               direction="column"
               justify="flex-end"
               className={classes.iconsWrapper}
-              spacing={16}
+              spacing={2}
             >
               <Grid item className={classes.icons}>
                 <a href="https://material-ui.com/" className={classes.icon}>

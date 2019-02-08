@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   button: {
     display: 'block',
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
 });
 

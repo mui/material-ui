@@ -15,11 +15,11 @@ const styles = theme => ({
     display: 'flex',
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     flex: '1 0 auto',
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 

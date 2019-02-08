@@ -57,31 +57,31 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   headline: {
-    paddingLeft: theme.spacing.unit * 4,
-    paddingRight: theme.spacing.unit * 4,
-    marginTop: theme.spacing.unit,
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    marginTop: theme.spacing(1),
     maxWidth: 500,
     textAlign: 'center',
   },
   content: {
-    paddingBottom: theme.spacing.unit * 8,
-    paddingTop: theme.spacing.unit * 8,
+    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(8),
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 12,
+      paddingTop: theme.spacing(12),
     },
   },
   button: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   logo: {
-    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 4}px`,
+    margin: theme.spacing(3, 0, 4),
     width: '100%',
     height: '35vw',
     maxHeight: 200,
   },
   social: {
     backgroundColor: theme.palette.background.paper,
-    padding: `${theme.spacing.unit * 2}px 0`,
+    padding: theme.spacing(2, 0),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -89,7 +89,7 @@ const styles = theme => ({
     boxSizing: 'content-box',
     '& span': {
       display: 'flex',
-      marginRight: theme.spacing.unit,
+      marginRight: theme.spacing(1),
     },
     '& a': {
       color: theme.palette.background.paper,

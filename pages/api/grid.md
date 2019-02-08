@@ -30,7 +30,7 @@ import Grid from '@material-ui/core/Grid';
 | <span class="prop-name">lg</span> | <span class="prop-type">enum:&nbsp;false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br></span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">md</span> | <span class="prop-type">enum:&nbsp;false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br></span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">sm</span> | <span class="prop-type">enum:&nbsp;false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br></span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden. |
-| <span class="prop-name">spacing</span> | <span class="prop-type">enum:&nbsp;0, 8, 16, 24, 32, 40<br></span> | <span class="prop-default">0</span> | Defines the space between the type `item` component. It can only be used on a type `container` component. |
+| <span class="prop-name">spacing</span> | <span class="prop-type">enum:&nbsp;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10<br></span> | <span class="prop-default">0</span> | Defines the space between the type `item` component. It can only be used on a type `container` component. |
 | <span class="prop-name">wrap</span> | <span class="prop-type">enum:&nbsp;'nowrap'&nbsp;&#124;<br>&nbsp;'wrap'&nbsp;&#124;<br>&nbsp;'wrap-reverse'<br></span> | <span class="prop-default">'wrap'</span> | Defines the `flex-wrap` style property. It's applied for all screen sizes. |
 | <span class="prop-name">xl</span> | <span class="prop-type">enum:&nbsp;false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br></span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
 | <span class="prop-name">xs</span> | <span class="prop-type">enum:&nbsp;false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br></span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
@@ -68,11 +68,16 @@ This property accepts the following keys:
 | <span class="prop-name">justify-xs-space-between</span> | 
 | <span class="prop-name">justify-xs-space-around</span> | 
 | <span class="prop-name">justify-xs-space-evenly</span> | 
+| <span class="prop-name">spacing-xs-1</span> | 
+| <span class="prop-name">spacing-xs-2</span> | 
+| <span class="prop-name">spacing-xs-3</span> | 
+| <span class="prop-name">spacing-xs-4</span> | 
+| <span class="prop-name">spacing-xs-5</span> | 
+| <span class="prop-name">spacing-xs-6</span> | 
+| <span class="prop-name">spacing-xs-7</span> | 
 | <span class="prop-name">spacing-xs-8</span> | 
-| <span class="prop-name">spacing-xs-16</span> | 
-| <span class="prop-name">spacing-xs-24</span> | 
-| <span class="prop-name">spacing-xs-32</span> | 
-| <span class="prop-name">spacing-xs-40</span> | 
+| <span class="prop-name">spacing-xs-9</span> | 
+| <span class="prop-name">spacing-xs-10</span> | 
 | <span class="prop-name">grid-xs-auto</span> | 
 | <span class="prop-name">grid-xs-true</span> | 
 | <span class="prop-name">grid-xs-1</span> | 

@@ -14,16 +14,16 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   chip: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   section1: {
-    margin: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    margin: theme.spacing(3, 2),
   },
   section2: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
   section3: {
-    margin: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`,
+    margin: theme.spacing(6, 2, 2),
   },
 });
 

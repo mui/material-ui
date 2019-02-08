@@ -125,8 +125,8 @@ const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -141,7 +141,7 @@ const styles = theme => ({
     },
   },
   search: {
-    width: theme.spacing.unit * 9,
+    width: theme.spacing(9),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -153,8 +153,7 @@ const styles = theme => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
-      .spacing.unit * 9}px`,
+    padding: theme.spacing(1, 1, 1, 9),
   },
 });
 

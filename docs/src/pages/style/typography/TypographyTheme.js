@@ -6,7 +6,7 @@ const styles = theme => ({
   root: {
     ...theme.typography.button,
     backgroundColor: theme.palette.common.white,
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 

@@ -8,7 +8,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state/in
 
 const styles = theme => ({
   typography: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
 });
 

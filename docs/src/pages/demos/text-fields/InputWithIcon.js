@@ -11,7 +11,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 
@@ -45,7 +45,7 @@ function InputWithIcon(props) {
       />
 
       <div className={classes.margin}>
-        <Grid container spacing={8} alignItems="flex-end">
+        <Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <AccountCircle />
           </Grid>

@@ -12,7 +12,7 @@ export default ({ attach, linked, linkInverted, theme, primary, white, ICON }) =
       fontSize: 18,
     },
     [attach(ICON.contained)]: {
-      padding: theme.spacing.unit / 2,
+      padding: theme.spacing(0.5),
       width: 'calc(1em + 4px)',
       height: 'calc(1em + 4px)',
       borderRadius: '50%',

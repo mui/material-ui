@@ -8,8 +8,8 @@ import Head from 'docs/src/modules/components/Head';
 
 const styles = theme => ({
   credit: {
-    marginTop: theme.spacing.unit * 6,
-    marginBottom: theme.spacing.unit * 4,
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(4),
   },
   hideCredit: {
     position: 'absolute',

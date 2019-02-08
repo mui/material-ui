@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
   chip: {
     backgroundColor: theme.palette.grey[100],
@@ -28,7 +28,7 @@ const styles = theme => ({
   },
   avatar: {
     background: 'none',
-    marginRight: -theme.spacing.unit * 1.5,
+    marginRight: -theme.spacing(1.5),
   },
 });
 

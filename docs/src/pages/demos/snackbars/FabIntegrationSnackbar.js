@@ -27,12 +27,12 @@ const styles = theme => ({
     marginRight: 20,
   },
   button: {
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing(1),
   },
   fab: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
   },
   fabMoveUp: {
     transform: 'translate3d(0, -46px, 0)',
