@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
@@ -39,7 +39,7 @@ const useStyles1 = makeStyles(theme => ({
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   message: {
     display: 'flex',
@@ -54,11 +54,11 @@ function MySnackbarContentWrapper(props) {
 
   return (
     <SnackbarContent
-      className={classNames(classes[variant], className)}
+      className={clsx(classes[variant], className)}
       aria-describedby="client-snackbar"
       message={
         <span id="client-snackbar" className={classes.message}>
-          <Icon className={classNames(classes.icon, classes.iconVariant)} />
+          <Icon className={clsx(classes.icon, classes.iconVariant)} />
           {message}
         </span>
       }
@@ -87,7 +87,7 @@ MySnackbarContentWrapper.propTypes = {
 
 const useStyles2 = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 }));
 

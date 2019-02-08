@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -12,8 +12,8 @@ const styles = (theme: Theme) =>
       flexWrap: 'wrap',
     },
     textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
       width: 200,
     },
     dense: {
@@ -129,7 +129,7 @@ class TextFields extends React.Component<Props, State> {
         <TextField
           id="standard-dense"
           label="Dense"
-          className={classNames(classes.textField, classes.dense)}
+          className={clsx(classes.textField, classes.dense)}
           margin="dense"
         />
         <TextField

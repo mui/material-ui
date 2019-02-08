@@ -12,6 +12,8 @@ import FormControlContext from '../FormControl/FormControlContext';
 import InputAdornment from '../InputAdornment';
 import Textarea from './Textarea';
 import InputBase from './InputBase';
+import TextField from '../TextField';
+import Select from '../Select';
 
 describe('<InputBase />', () => {
   let classes;
@@ -490,6 +492,22 @@ describe('<InputBase />', () => {
           .childAt(1)
           .type(),
         InputAdornment,
+      );
+    });
+
+    it('should allow a Select as an adornment', () => {
+      mount(
+        <TextField
+          value=""
+          name="text"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Select value="a" name="suffix" />
+              </InputAdornment>
+            ),
+          }}
+        />,
       );
     });
   });

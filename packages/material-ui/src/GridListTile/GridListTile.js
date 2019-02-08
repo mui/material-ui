@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { componentPropType } from '@material-ui/utils';
@@ -95,7 +95,7 @@ class GridListTile extends React.Component {
     const { children, classes, className, cols, component: Component, rows, ...other } = this.props;
 
     return (
-      <Component className={classNames(classes.root, className)} {...other}>
+      <Component className={clsx(classes.root, className)} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         <div className={classes.tile}>
           {React.Children.map(children, child => {

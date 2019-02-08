@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 import withFormControlContext from '../FormControl/withFormControlContext';
+import FormControlContext from '../FormControl/FormControlContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -64,25 +65,27 @@ function InputAdornment(props) {
   }
 
   return (
-    <Component
-      className={classNames(
-        classes.root,
-        {
-          [classes.filled]: variant === 'filled',
-          [classes.positionStart]: position === 'start',
-          [classes.positionEnd]: position === 'end',
-          [classes.disablePointerEvents]: disablePointerEvents,
-        },
-        className,
-      )}
-      {...other}
-    >
-      {typeof children === 'string' && !disableTypography ? (
-        <Typography color="textSecondary">{children}</Typography>
-      ) : (
-        children
-      )}
-    </Component>
+    <FormControlContext.Provider value={null}>
+      <Component
+        className={clsx(
+          classes.root,
+          {
+            [classes.filled]: variant === 'filled',
+            [classes.positionStart]: position === 'start',
+            [classes.positionEnd]: position === 'end',
+            [classes.disablePointerEvents]: disablePointerEvents,
+          },
+          className,
+        )}
+        {...other}
+      >
+        {typeof children === 'string' && !disableTypography ? (
+          <Typography color="textSecondary">{children}</Typography>
+        ) : (
+          children
+        )}
+      </Component>
+    </FormControlContext.Provider>
   );
 }
 

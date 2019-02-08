@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +16,7 @@ import { capitalize } from '@material-ui/core/utils/helpers';
 import { ACTION_TYPES } from 'docs/src/modules/constants';
 import ColorDemo from './ColorDemo';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
+import compose from 'docs/src/modules/utils/compose';
 
 const defaults = { primary: '#2196f3', secondary: '#f50057' };
 const hues = Object.keys(colors).slice(1, 17);
@@ -45,16 +45,16 @@ const styles = theme => ({
   sliderContainer: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   slider: {
     width: 'calc(100% - 80px)',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
   },
   colorBar: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
   colorSquare: {
     width: 64,
@@ -64,7 +64,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   button: {
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
   },
 });
 
@@ -243,7 +243,7 @@ class ColorTool extends React.Component {
     };
 
     return (
-      <Grid container spacing={40} className={classes.root}>
+      <Grid container spacing={5} className={classes.root}>
         {colorPicker('primary')}
         {colorPicker('secondary')}
         <Grid item xs={12} sm={6} md={4}>

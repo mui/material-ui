@@ -13,7 +13,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   button: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
   placeholder: {
     height: 40,

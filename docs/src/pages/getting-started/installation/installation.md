@@ -70,4 +70,4 @@ We are providing two Universal Module Definition (UMD) files:
 - one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
 - one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn) to quickly get started.

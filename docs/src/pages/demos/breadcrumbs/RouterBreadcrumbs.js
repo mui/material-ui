@@ -12,7 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import MemoryRouter from 'react-router/MemoryRouter';
 import Route from 'react-router/Route';
 import { Link as RouterLink } from 'react-router-dom';
@@ -52,10 +52,10 @@ const styles = theme => ({
   },
   lists: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing(4),
   },
 });
 

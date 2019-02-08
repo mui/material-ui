@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Hidden from '@material-ui/core/Hidden';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
@@ -15,11 +15,11 @@ const styles = theme => ({
     display: 'flex',
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     flex: '1 0 auto',
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 

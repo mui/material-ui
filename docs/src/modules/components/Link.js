@@ -4,7 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
@@ -16,7 +16,7 @@ function NextWrapper(props) {
     <NextLink href={href} prefetch={prefetch}>
       <a
         onClick={onClick}
-        className={classNames(className, {
+        className={clsx(className, {
           [activeClassName]: router.pathname === href && activeClassName,
         })}
         {...other}

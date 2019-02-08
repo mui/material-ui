@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ListContext from '../List/ListContext';
 
@@ -35,7 +35,7 @@ function ListItemAvatar(props) {
     <ListContext.Consumer>
       {context =>
         React.cloneElement(children, {
-          className: classNames(
+          className: clsx(
             {
               [classes.root]: context.dense,
               [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
@@ -43,7 +43,7 @@ function ListItemAvatar(props) {
             className,
             children.props.className,
           ),
-          childrenClassName: classNames(
+          childrenClassName: clsx(
             { [classes.icon]: context.dense },
             children.props.childrenClassName,
           ),

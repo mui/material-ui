@@ -9,12 +9,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   fab: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
   absolute: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3,
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
   },
 });
 

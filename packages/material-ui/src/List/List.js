@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ListContext from './ListContext';
@@ -29,7 +29,7 @@ export const styles = {
   },
 };
 
-const List = React.forwardRef((props, ref) => {
+const List = React.forwardRef(function List(props, ref) {
   const {
     children,
     classes,
@@ -43,7 +43,7 @@ const List = React.forwardRef((props, ref) => {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.dense]: dense && !disablePadding,
@@ -62,8 +62,6 @@ const List = React.forwardRef((props, ref) => {
     </Component>
   );
 });
-
-List.displayName = 'List';
 
 List.propTypes = {
   /**

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -82,7 +82,7 @@ class BottomNavigationAction extends React.Component {
       ...other
     } = this.props;
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.selected]: selected,
@@ -91,7 +91,7 @@ class BottomNavigationAction extends React.Component {
       classNameProp,
     );
 
-    const labelClassName = classNames(classes.label, {
+    const labelClassName = clsx(classes.label, {
       [classes.selected]: selected,
       [classes.iconOnly]: !showLabelProp && !selected,
     });

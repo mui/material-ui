@@ -3,8 +3,8 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';

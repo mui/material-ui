@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Transition from 'react-transition-group/Transition';
 
 /**
@@ -36,7 +36,7 @@ class Ripple extends React.Component {
     } = this.props;
     const { visible, leaving } = this.state;
 
-    const rippleClassName = classNames(
+    const rippleClassName = clsx(
       classes.ripple,
       {
         [classes.rippleVisible]: visible,
@@ -52,7 +52,7 @@ class Ripple extends React.Component {
       left: -(rippleSize / 2) + rippleX,
     };
 
-    const childClassName = classNames(classes.child, {
+    const childClassName = clsx(classes.child, {
       [classes.childLeaving]: leaving,
       [classes.childPulsate]: pulsate,
     });

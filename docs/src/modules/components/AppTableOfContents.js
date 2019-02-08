@@ -55,15 +55,14 @@ const styles = theme => ({
     wordBreak: 'break-word',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit *
-      2}px 5px`,
+    padding: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px 5px`,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
   contents: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
   ul: {
     padding: 0,
@@ -72,7 +71,7 @@ const styles = theme => ({
   },
   item: {
     fontSize: 13,
-    padding: `${theme.spacing.unit / 2}px 0`,
+    padding: theme.spacing(0.5, 0),
   },
 });
 

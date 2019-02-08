@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
@@ -37,11 +37,6 @@ export const styles = theme => ({
     visibility: 'hidden',
   },
 });
-
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
 
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
@@ -336,7 +331,7 @@ class Modal extends React.Component {
           ref={this.handleModalRef}
           onKeyDown={this.handleKeyDown}
           role="presentation"
-          className={classNames(classes.root, className, {
+          className={clsx(classes.root, className, {
             [classes.hidden]: exited,
           })}
           {...other}
@@ -363,7 +358,7 @@ Modal.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: PropTypes.element.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.

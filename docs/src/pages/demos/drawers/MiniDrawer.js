@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -65,9 +65,9 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing.unit * 7 + 1,
+    width: theme.spacing(7) + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9 + 1,
+      width: theme.spacing(9) + 1,
     },
   },
   toolbar: {
@@ -79,7 +79,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
   },
 });
 
@@ -104,7 +104,7 @@ class MiniDrawer extends React.Component {
         <CssBaseline />
         <AppBar
           position="fixed"
-          className={classNames(classes.appBar, {
+          className={clsx(classes.appBar, {
             [classes.appBarShift]: this.state.open,
           })}
         >
@@ -113,7 +113,7 @@ class MiniDrawer extends React.Component {
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
+              className={clsx(classes.menuButton, {
                 [classes.hide]: this.state.open,
               })}
             >
@@ -126,12 +126,12 @@ class MiniDrawer extends React.Component {
         </AppBar>
         <Drawer
           variant="permanent"
-          className={classNames(classes.drawer, {
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: this.state.open,
             [classes.drawerClose]: !this.state.open,
           })}
           classes={{
-            paper: classNames({
+            paper: clsx({
               [classes.drawerOpen]: this.state.open,
               [classes.drawerClose]: !this.state.open,
             }),

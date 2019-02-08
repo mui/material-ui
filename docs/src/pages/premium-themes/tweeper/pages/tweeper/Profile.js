@@ -19,7 +19,7 @@ const { Tabs, Tab } = molecules;
 
 const Content = styled('div')({
   maxWidth: 1000,
-  padding: theme.spacing.unit * 4,
+  padding: theme.spacing(4),
   margin: 'auto',
 });
 
@@ -38,7 +38,7 @@ function Profile() {
       <CssBaseline />
       <Header />
       <Content>
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
             <Feed>
               <Cover />

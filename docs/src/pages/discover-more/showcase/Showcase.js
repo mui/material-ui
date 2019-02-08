@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -17,25 +19,25 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.default,
     // Hide the demo container padding
-    margin: -theme.spacing.unit * 3,
+    margin: -theme.spacing(3),
     // Maintain alignment with the markdown text
     [theme.breakpoints.down('xs')]: {
       padding: 30,
     },
   },
   formControl: {
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing(4),
     minWidth: 120,
   },
   title: {
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing(2),
   },
   card: {
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing(1),
     maxWidth: 600,
   },
   description: {
-    marginBottom: theme.spacing.unit * 6,
+    marginBottom: theme.spacing(6),
   },
   cardMedia: {
     paddingTop: '75%', // 4:3
@@ -61,7 +63,7 @@ const byVisits = sortFactory('similarWebVisits');
 const byStars = sortFactory('stars');
 
 function Showcase(props) {
-  const { classes } = props;
+  const { classes, t } = props;
   const [sortFunction, setSortFunction] = React.useState(() => byVisits);
   const [sortFunctionName, setSortFunctionName] = React.useState('byVisits');
 
@@ -90,10 +92,10 @@ function Showcase(props) {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
-          <MenuItem value="byVisits">Traffic</MenuItem>
-          <MenuItem value="byNewest">Newest</MenuItem>
-          <MenuItem value="byStars">GitHub stars</MenuItem>
-          <MenuItem value="byTitle">Alphabetical</MenuItem>
+          <MenuItem value="byVisits">{t('traffic')}</MenuItem>
+          <MenuItem value="byNewest">{t('newest')}</MenuItem>
+          <MenuItem value="byStars">{t('stars')}</MenuItem>
+          <MenuItem value="byTitle">{t('alphabetical')}</MenuItem>
         </Select>
       </FormControl>
       {appList.sort(sortFunction).map(app => (
@@ -138,6 +140,10 @@ function Showcase(props) {
 
 Showcase.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Showcase);
+export default compose(
+  connect(state => ({ t: state.options.t })),
+  withStyles(styles),
+)(Showcase);

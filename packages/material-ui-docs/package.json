@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
+  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-lab",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:copy-files",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
@@ -32,12 +32,13 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^3.0.0",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "@material-ui/utils": "^3.0.0-alpha.2",
+    "clsx": "^1.0.2",
     "marked": "^0.6.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"

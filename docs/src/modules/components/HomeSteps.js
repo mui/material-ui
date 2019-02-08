@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import compose from 'recompose/compose';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -16,11 +18,11 @@ import Link from 'docs/src/modules/components/Link';
 const styles = theme => ({
   step: {
     border: `12px solid ${theme.palette.background.paper}`,
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(3, 2),
     borderRightWidth: 0,
     borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
+      padding: theme.spacing(5, 4),
     },
     [theme.breakpoints.up('md')]: {
       borderRightWidth: 12,
@@ -43,33 +45,33 @@ const styles = theme => ({
   },
   stepTitle: {
     display: 'flex',
-    marginBottom: theme.spacing.unit * 3,
+    marginBottom: theme.spacing(3),
     alignItems: 'center',
   },
   stepIcon: {
     color: theme.palette.primary.dark,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     fontSize: 30,
   },
   stepBody: {
     minHeight: 270,
   },
   markdownElement: {
-    maxWidth: `calc(100vw - ${(theme.spacing.unit * 5 + 1) * 2}px)`,
+    maxWidth: `calc(100vw - ${(theme.spacing(5) + 1) * 2}px)`,
     '& pre, & pre[class*="language-"], & code': {
       backgroundColor: 'transparent',
     },
     '& pre, & pre[class*="language-"]': {
-      padding: theme.spacing.unit,
+      padding: theme.spacing(1),
       margin: 0,
     },
   },
   divider: {
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
   },
   link: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     display: 'block',
   },
   img: {
@@ -80,21 +82,18 @@ const styles = theme => ({
 });
 
 function HomeSteps(props) {
-  const classes = props.classes;
+  const { classes, t } = props;
 
   return (
     <Grid container>
-      <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
+      <Grid item xs={12} md={4} className={clsx(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
-          <Typography variant="h6">Installation</Typography>
+          <Typography variant="h6">{t('installation')}</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {`
-            Install Material-UI's source files via npm.
-            We take care of injecting the CSS needed.
-            `}
+            {t('installDescr')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -105,7 +104,7 @@ function HomeSteps(props) {
                 `}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {'or use a CDN.'}
+            {t('cdn')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -116,7 +115,7 @@ function HomeSteps(props) {
                 `}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {'Load the default Roboto font.'}
+            {t('loadFont')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -133,17 +132,17 @@ function HomeSteps(props) {
             <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
           )}
         >
-          Read installation docs
+          {t('installButton')}
         </Button>
       </Grid>
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <BuildIcon className={classes.stepIcon} />
-          <Typography variant="h6">Usage</Typography>
+          <Typography variant="h6">{t('usage')}</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {'Material-UI components work in isolation. They are self-supporting.'}
+            {t('usageDescr')}
           </Typography>
           <MarkdownElement
             className={classes.markdownElement}
@@ -167,18 +166,17 @@ function HomeSteps(props) {
             <Link naked prefetch href="/getting-started/usage" {...buttonProps} />
           )}
         >
-          Explore the docs
+          {t('usageButton')}
         </Button>
       </Grid>
-      <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
+      <Grid item xs={12} md={4} className={clsx(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
-          <Typography variant="h6">Premium Themes</Typography>
+          <Typography variant="h6">{t('themes')}</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
-            {`Take Material-UI to the next level with premium themes from
-              our official marketplace—all built on Material-UI.`}
+            {t('themesDescr')}
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
             <NoSsr>
@@ -190,7 +188,7 @@ function HomeSteps(props) {
         <Button
           component={buttonProps => <Link naked prefetch href="/premium-themes" {...buttonProps} />}
         >
-          Browse themes
+          {t('themesButton')}
         </Button>
       </Grid>
     </Grid>
@@ -199,6 +197,10 @@ function HomeSteps(props) {
 
 HomeSteps.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(HomeSteps);
+export default compose(
+  connect(state => ({ t: state.options.t })),
+  withStyles(styles),
+)(HomeSteps);

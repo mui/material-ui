@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,17 +9,6 @@ import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/Markdown
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, LANGUAGES, CODE_VARIANTS } from 'docs/src/modules/constants';
-
-// Inject the insertion-point-jss after docssearch
-if (process.browser && !global.__INSERTION_POINT__) {
-  global.__INSERTION_POINT__ = true;
-  const styleNode = document.createComment('insertion-point-jss');
-  const docsearchStylesSheet = document.querySelector('#insertion-point-jss');
-
-  if (document.head && docsearchStylesSheet) {
-    document.head.insertBefore(styleNode, docsearchStylesSheet.nextSibling);
-  }
-}
 
 function themeSideEffect(reduxTheme) {
   setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);

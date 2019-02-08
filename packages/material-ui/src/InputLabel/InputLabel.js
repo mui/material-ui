@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
@@ -105,7 +105,7 @@ function InputLabel(props) {
     states: ['margin', 'variant'],
   });
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     {
       [classes.formControl]: muiFormControl,

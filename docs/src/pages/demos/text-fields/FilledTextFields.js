@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -11,8 +11,8 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   dense: {
     marginTop: 16,
@@ -145,7 +145,7 @@ class FilledTextFields extends React.Component {
         <TextField
           id="filled-dense"
           label="Dense"
-          className={classNames(classes.textField, classes.dense)}
+          className={clsx(classes.textField, classes.dense)}
           margin="dense"
           variant="filled"
         />

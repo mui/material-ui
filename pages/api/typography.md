@@ -87,6 +87,6 @@ you need to use the following style sheet name: `MuiTypography`.
 
 ## Demos
 
-- [Breadcrumbs](/lab/breadcrumbs/)
+- [Breadcrumbs](/demos/breadcrumbs/)
 - [Typography](/style/typography/)
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { lighten } from '../styles/colorManipulator';
@@ -174,7 +174,7 @@ export const styles = theme => ({
 function LinearProgress(props) {
   const { classes, className: classNameProp, color, value, valueBuffer, variant, ...other } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     {
       [classes.colorPrimary]: color === 'primary',
@@ -186,18 +186,18 @@ function LinearProgress(props) {
     },
     classNameProp,
   );
-  const dashedClass = classNames(classes.dashed, {
+  const dashedClass = clsx(classes.dashed, {
     [classes.dashedColorPrimary]: color === 'primary',
     [classes.dashedColorSecondary]: color === 'secondary',
   });
-  const bar1ClassName = classNames(classes.bar, {
+  const bar1ClassName = clsx(classes.bar, {
     [classes.barColorPrimary]: color === 'primary',
     [classes.barColorSecondary]: color === 'secondary',
     [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
     [classes.bar1Determinate]: variant === 'determinate',
     [classes.bar1Buffer]: variant === 'buffer',
   });
-  const bar2ClassName = classNames(classes.bar, {
+  const bar2ClassName = clsx(classes.bar, {
     [classes.barColorPrimary]: color === 'primary' && variant !== 'buffer',
     [classes.colorPrimary]: color === 'primary' && variant === 'buffer',
     [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
@@ -141,7 +141,7 @@ class FormControl extends React.Component {
     return (
       <FormControlContext.Provider value={childContext}>
         <Component
-          className={classNames(
+          className={clsx(
             classes.root,
             {
               [classes[`margin${capitalize(margin)}`]]: margin !== 'none',

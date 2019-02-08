@@ -24,7 +24,7 @@ function loadDependencies() {
 
   loadCSS(
     'https://fonts.googleapis.com/icon?family=Material+Icons',
-    document.querySelector('#insertion-point-jss'),
+    document.querySelector('#material-icon-font'),
   );
   loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
 }
@@ -287,9 +287,6 @@ const pages = [
       {
         pathname: '/lab/about',
         title: 'About The Lab',
-      },
-      {
-        pathname: '/lab/breadcrumbs',
       },
       {
         pathname: '/lab/slider',

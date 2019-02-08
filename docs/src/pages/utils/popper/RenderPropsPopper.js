@@ -13,7 +13,7 @@ const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null));
 
 const styles = theme => ({
   typography: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 

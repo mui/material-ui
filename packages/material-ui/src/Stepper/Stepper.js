@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from '../StepConnector';
@@ -41,7 +41,7 @@ function Stepper(props) {
     ...other
   } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[orientation],
     {

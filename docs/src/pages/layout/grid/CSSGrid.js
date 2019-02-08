@@ -10,17 +10,17 @@ const styles = theme => ({
   container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: `${theme.spacing.unit * 3}px`,
+    gridGap: `${theme.spacing(3)}px`,
   },
   paper: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing(1),
   },
   divider: {
-    margin: `${theme.spacing.unit * 2}px 0`,
+    margin: theme.spacing(2, 0),
   },
 });
 
@@ -32,7 +32,7 @@ function CSSGrid(props) {
       <Typography variant="subtitle1" gutterBottom>
         Material-UI Grid:
       </Typography>
-      <Grid container spacing={24}>
+      <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>xs=3</Paper>
         </Grid>

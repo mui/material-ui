@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
@@ -45,7 +45,7 @@ function Step(props) {
     ...other
   } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[orientation],
     {

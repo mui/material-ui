@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
@@ -58,7 +58,7 @@ function TableRow(props) {
   return (
     <Tablelvl2Context.Consumer>
       {tablelvl2 => {
-        const className = classNames(
+        const className = clsx(
           classes.root,
           {
             [classes.head]: tablelvl2 && tablelvl2.variant === 'head',

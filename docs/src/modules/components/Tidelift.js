@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   root: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
-      .spacing.unit * 2}px`,
+    padding: theme.spacing(1, 1, 1, 2),
     right: 0,
     left: 0,
     display: 'flex',
@@ -29,7 +28,7 @@ const styles = theme => ({
     content: '""',
     width: 20,
     height: 20,
-    margin: `0 ${theme.spacing.unit}px 0 0`,
+    margin: theme.spacing(0, 1, 0, 0),
   },
 });
 
@@ -41,7 +40,7 @@ function Tidelift(props) {
       data-ga-event-category="sponsors"
       data-ga-event-action="logo"
       data-ga-event-label="tidelift"
-      className={classNames(classes.root, 'mui-fixed')}
+      className={clsx(classes.root, 'mui-fixed')}
       href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage"
       target="_blank"
       rel="noopener"

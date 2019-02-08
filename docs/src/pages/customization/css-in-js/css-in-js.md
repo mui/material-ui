@@ -29,8 +29,8 @@ to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 ## JSS
 
 Material-UI's styling solution uses [JSS](https://github.com/cssinjs/jss) at its core.
-It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS to CSS compiler which works at runtime and server-side.
-It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JS to CSS compiler which works at runtime and server-side.
+It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
 The best place to start is by looking at the features that each [plugin](https://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins).
@@ -98,7 +98,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase)
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
 You might, however, also want to override these styles, for example with styled-components.
-If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
+If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-dom-insertion-point) to handle this situation.
 By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML comment

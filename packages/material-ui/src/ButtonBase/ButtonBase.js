@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
@@ -47,11 +47,6 @@ export const styles = {
   /* Styles applied to the root element if keyboard focused. */
   focusVisible: {},
 };
-
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'production' && !React.createContext) {
-  throw new Error('Material-UI: react@16.3.0 or greater is required.');
-}
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -262,7 +257,7 @@ class ButtonBase extends React.Component {
       ...other
     } = this.props;
 
-    const className = classNames(
+    const className = clsx(
       classes.root,
       {
         [classes.disabled]: disabled,

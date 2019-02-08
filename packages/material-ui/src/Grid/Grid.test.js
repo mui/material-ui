@@ -58,8 +58,8 @@ describe('<Grid />', () => {
 
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
-      const wrapper = shallow(<Grid container spacing={8} />);
-      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-8']), true);
+      const wrapper = shallow(<Grid container spacing={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-1']), true);
     });
   });
 

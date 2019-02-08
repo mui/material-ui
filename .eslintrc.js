@@ -51,6 +51,7 @@ module.exports = {
     'react/no-find-dom-node': 'off',
 
     'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
     'consistent-this': ['error', 'self'],
     'max-len': [
@@ -90,7 +91,7 @@ module.exports = {
     'mocha/no-sibling-hooks': 'error',
     'mocha/no-skipped-tests': 'error',
     'mocha/no-top-level-hooks': 'error',
-    'mocha/prefer-arrow-callback': 'error',
+    'mocha/prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'mocha/valid-suite-description': 'error',
   },
 };

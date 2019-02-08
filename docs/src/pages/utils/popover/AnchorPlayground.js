@@ -18,7 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 const styles = theme => ({
   buttonWrapper: {
     position: 'relative',
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing(4),
   },
   anchor: {
     backgroundColor: green[500],
@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   checked: {},
   typography: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
   },
 });
 
@@ -142,7 +142,7 @@ class AnchorPlayground extends React.Component {
 
     return (
       <div>
-        <Grid container justify="center" spacing={0}>
+        <Grid container justify="center">
           <Grid item className={classes.buttonWrapper}>
             <Button
               buttonRef={node => {
@@ -181,7 +181,7 @@ class AnchorPlayground extends React.Component {
         >
           <Typography className={classes.typography}>The content of the Popover.</Typography>
         </Popover>
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <FormControl component="fieldset">
               <FormLabel component="legend">anchorReference</FormLabel>

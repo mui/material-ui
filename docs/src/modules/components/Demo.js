@@ -1,10 +1,9 @@
 import React from 'react';
 import LZString from 'lz-string';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -20,6 +19,7 @@ import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import compose from 'docs/src/modules/utils/compose';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -40,10 +40,10 @@ const styles = theme => ({
   root: {
     position: 'relative',
     marginBottom: 40,
-    marginLeft: -theme.spacing.unit * 2,
-    marginRight: -theme.spacing.unit * 2,
+    marginLeft: -theme.spacing(2),
+    marginRight: -theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      padding: `0 ${theme.spacing.unit}px`,
+      padding: theme.spacing(0, 1),
       marginLeft: 0,
       marginRight: 0,
     },
@@ -56,13 +56,13 @@ const styles = theme => ({
     justifyContent: 'center',
     padding: 20,
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing.unit * 3,
+      padding: theme.spacing(3),
     },
   },
   demoHiddenHeader: {
-    paddingTop: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 3,
+      paddingTop: theme.spacing(3),
     },
   },
   header: {
@@ -71,7 +71,7 @@ const styles = theme => ({
       display: 'flex',
       flip: false,
       top: 0,
-      right: theme.spacing.unit,
+      right: theme.spacing(1),
     },
     justifyContent: 'space-between',
   },
@@ -84,7 +84,7 @@ const styles = theme => ({
     },
     '& pre': {
       overflow: 'auto',
-      paddingTop: theme.spacing.unit * 5,
+      paddingTop: theme.spacing(5),
       margin: '0px !important',
       borderRadius: '0px !important',
     },
@@ -321,7 +321,7 @@ class Demo extends React.Component {
           </div>
         )}
         <div
-          className={classNames(classes.demo, {
+          className={clsx(classes.demo, {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
         >

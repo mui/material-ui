@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import withStyles from '../styles/withStyles';
 
 const styles = {
   root: {
@@ -19,7 +19,7 @@ function BreadcrumbSeparator(props) {
   const { children, classes, className, ...other } = props;
 
   return (
-    <li aria-hidden="true" className={classNames(classes.root, className)} {...other}>
+    <li aria-hidden="true" className={clsx(classes.root, className)} {...other}>
       {children}
     </li>
   );

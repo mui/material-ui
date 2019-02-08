@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -184,7 +184,7 @@ function Typography(props) {
   } = props;
 
   const variant = getVariant(theme, variantProp);
-  const className = classNames(
+  const className = clsx(
     classes.root,
     {
       [classes[variant]]: variant !== 'inherit',

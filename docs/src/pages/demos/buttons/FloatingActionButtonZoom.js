@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -38,8 +38,8 @@ const styles = theme => ({
   },
   fab: {
     position: 'absolute',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 2,
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
   },
   fabGreen: {
     color: theme.palette.common.white,
@@ -83,7 +83,7 @@ class FloatingActionButtonZoom extends React.Component {
       },
       {
         color: 'inherit',
-        className: classNames(classes.fab, classes.fabGreen),
+        className: clsx(classes.fab, classes.fabGreen),
         icon: <UpIcon />,
       },
     ];

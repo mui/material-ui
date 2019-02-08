@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
@@ -26,7 +26,7 @@ export const styles = theme => {
   };
 };
 
-const Paper = React.forwardRef((props, ref) => {
+const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
     className: classNameProp,
@@ -41,7 +41,7 @@ const Paper = React.forwardRef((props, ref) => {
     `Material-UI: this elevation \`${elevation}\` is not implemented.`,
   );
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[`elevation${elevation}`],
     {
@@ -52,8 +52,6 @@ const Paper = React.forwardRef((props, ref) => {
 
   return <Component className={className} ref={ref} {...other} />;
 });
-
-Paper.displayName = 'Paper';
 
 Paper.propTypes = {
   /**

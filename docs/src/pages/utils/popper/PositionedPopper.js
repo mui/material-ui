@@ -13,7 +13,7 @@ const styles = theme => ({
     width: 500,
   },
   typography: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 
@@ -63,7 +63,7 @@ class PositionedPopper extends React.Component {
             <br />
             <Button onClick={this.handleClick('left-end')}>left-end</Button>
           </Grid>
-          <Grid item container xs={6} alignItems="flex-end" direction="column" spacing={0}>
+          <Grid item container xs={6} alignItems="flex-end" direction="column">
             <Grid item>
               <Button onClick={this.handleClick('right-start')}>right-start</Button>
             </Grid>

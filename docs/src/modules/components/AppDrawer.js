@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { _rewriteUrlForNextExport } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.text.secondary,
-    marginBottom: theme.spacing.unit / 2,
+    marginBottom: theme.spacing(0.5),
     '&:hover': {
       color: theme.palette.primary.main,
     },
@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   toolbar: {
     ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing.unit * 3,
+    paddingLeft: theme.spacing(3),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
@@ -130,7 +130,7 @@ function AppDrawer(props) {
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
-            paper: classNames(classes.paper, 'algolia-drawer'),
+            paper: clsx(classes.paper, 'algolia-drawer'),
           }}
           disableBackdropTransition={!iOS}
           variant="temporary"

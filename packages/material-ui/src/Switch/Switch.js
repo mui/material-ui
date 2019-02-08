@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import SwitchBase from '../internal/SwitchBase';
@@ -104,16 +104,16 @@ function Switch(props) {
   const { classes, className, color, ...other } = props;
 
   return (
-    <span className={classNames(classes.root, className)}>
+    <span className={clsx(classes.root, className)}>
       <SwitchBase
         type="checkbox"
         icon={<span className={classes.icon} />}
         classes={{
-          root: classNames(classes.switchBase, classes[`color${capitalize(color)}`]),
+          root: clsx(classes.switchBase, classes[`color${capitalize(color)}`]),
           checked: classes.checked,
           disabled: classes.disabled,
         }}
-        checkedIcon={<span className={classNames(classes.icon, classes.iconChecked)} />}
+        checkedIcon={<span className={clsx(classes.icon, classes.iconChecked)} />}
         {...other}
       />
       <span className={classes.bar} />

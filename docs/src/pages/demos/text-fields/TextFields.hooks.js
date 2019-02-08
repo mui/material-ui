@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     width: 200,
   },
   dense: {
@@ -116,7 +116,7 @@ function TextFields() {
       <TextField
         id="standard-dense"
         label="Dense"
-        className={classNames(classes.textField, classes.dense)}
+        className={clsx(classes.textField, classes.dense)}
         margin="dense"
       />
       <TextField

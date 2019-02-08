@@ -10,7 +10,7 @@ const styles = (theme: Theme) =>
       flexWrap: 'wrap',
     },
     input: {
-      margin: theme.spacing.unit,
+      margin: theme.spacing(1),
     },
   });
 

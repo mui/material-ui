@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
@@ -110,7 +110,7 @@ class SpeedDialAction extends React.Component {
       >
         <Fab
           size="small"
-          className={classNames(className, classes.button, !open && classes.buttonClosed)}
+          className={clsx(className, classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
           tabIndex={-1}
           role="menuitem"

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { chainPropTypes, componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -86,7 +86,7 @@ export const styles = theme => ({
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
-function ListItem(props) {
+const ListItem = React.forwardRef(function ListItem(props, ref) {
   const {
     alignItems,
     button,
@@ -114,7 +114,7 @@ function ListItem(props) {
           children.length &&
           isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-        const className = classNames(
+        const className = clsx(
           classes.root,
           classes.default,
           {
@@ -135,10 +135,7 @@ function ListItem(props) {
 
         if (button) {
           componentProps.component = componentProp || 'div';
-          componentProps.focusVisibleClassName = classNames(
-            classes.focusVisible,
-            focusVisibleClassName,
-          );
+          componentProps.focusVisibleClassName = clsx(classes.focusVisible, focusVisibleClassName);
           Component = ButtonBase;
         }
 
@@ -157,7 +154,8 @@ function ListItem(props) {
 
           return (
             <ContainerComponent
-              className={classNames(classes.container, ContainerClassName)}
+              className={clsx(classes.container, ContainerClassName)}
+              ref={ref}
               {...ContainerProps}
             >
               <Component {...componentProps}>{children}</Component>
@@ -166,11 +164,15 @@ function ListItem(props) {
           );
         }
 
-        return <Component {...componentProps}>{children}</Component>;
+        return (
+          <Component ref={ref} {...componentProps}>
+            {children}
+          </Component>
+        );
       }}
     </MergeListContext>
   );
-}
+});
 
 ListItem.propTypes = {
   /**
@@ -203,7 +205,7 @@ ListItem.propTypes = {
       return new Error(
         'Material-UI: you used an element after ListItemSecondaryAction. ' +
           'For ListItem to detect that it has a secondary action ' +
-          `you must pass it has the last children to ListItem.${
+          `you must pass it as the last child to ListItem.${
             process.env.NODE_ENV === 'test' ? Date.now() : ''
           }`,
       );

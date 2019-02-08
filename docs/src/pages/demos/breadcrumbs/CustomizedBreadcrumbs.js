@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Paper from '@material-ui/core/Paper';
-import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
   chip: {
     backgroundColor: theme.palette.grey[100],
@@ -28,7 +28,7 @@ const styles = theme => ({
   },
   avatar: {
     background: 'none',
-    marginRight: -theme.spacing.unit * 1.5,
+    marginRight: -theme.spacing(1.5),
   },
 });
 

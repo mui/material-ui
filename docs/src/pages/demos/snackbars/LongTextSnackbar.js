@@ -12,7 +12,7 @@ const action = (
 
 const styles = theme => ({
   snackbar: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -62,7 +62,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -100,7 +100,7 @@ class PersistentDrawerLeft extends React.Component {
         <CssBaseline />
         <AppBar
           position="fixed"
-          className={classNames(classes.appBar, {
+          className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}
         >
@@ -109,7 +109,7 @@ class PersistentDrawerLeft extends React.Component {
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
+              className={clsx(classes.menuButton, open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
@@ -152,7 +152,7 @@ class PersistentDrawerLeft extends React.Component {
           </List>
         </Drawer>
         <main
-          className={classNames(classes.content, {
+          className={clsx(classes.content, {
             [classes.contentShift]: open,
           })}
         >

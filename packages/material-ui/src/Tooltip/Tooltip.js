@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import RootRef from '../RootRef';
 import withStyles from '../styles/withStyles';
@@ -297,7 +297,7 @@ class Tooltip extends React.Component {
       title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
       ...other,
       ...children.props,
-      className: classNames(other.className, children.props.className),
+      className: clsx(other.className, children.props.className),
     };
 
     if (!disableTouchListener) {
@@ -336,7 +336,7 @@ class Tooltip extends React.Component {
       <React.Fragment>
         <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
-          className={classNames(classes.popper, {
+          className={clsx(classes.popper, {
             [classes.popperInteractive]: interactive,
           })}
           placement={placement}
@@ -354,7 +354,7 @@ class Tooltip extends React.Component {
               {...TransitionProps}
             >
               <div
-                className={classNames(
+                className={clsx(
                   classes.tooltip,
                   {
                     [classes.touch]: this.ignoreNonTouchEvents,

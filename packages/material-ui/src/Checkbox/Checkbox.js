@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -56,14 +56,14 @@ function Checkbox(props) {
     <SwitchBase
       type="checkbox"
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-      className={classNames(
+      className={clsx(
         {
           [classes.indeterminate]: indeterminate,
         },
         className,
       )}
       classes={{
-        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+        root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
         disabled: classes.disabled,
       }}

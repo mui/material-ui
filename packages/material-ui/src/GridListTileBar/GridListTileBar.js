@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -80,7 +80,7 @@ function GridListTileBar(props) {
   } = props;
 
   const actionPos = actionIcon && actionPosition;
-  const className = classNames(
+  const className = clsx(
     classes.root,
     {
       [classes.titlePositionBottom]: titlePosition === 'bottom',
@@ -91,7 +91,7 @@ function GridListTileBar(props) {
   );
 
   // Remove the margin between the title / subtitle wrapper, and the Action Icon
-  const titleWrapClassName = classNames(classes.titleWrap, {
+  const titleWrapClassName = clsx(classes.titleWrap, {
     [classes.titleWrapActionPosLeft]: actionPos === 'left',
     [classes.titleWrapActionPosRight]: actionPos === 'right',
   });
@@ -104,7 +104,7 @@ function GridListTileBar(props) {
       </div>
       {actionIcon ? (
         <div
-          className={classNames(classes.actionIcon, {
+          className={clsx(classes.actionIcon, {
             [classes.actionIconActionPosLeft]: actionPos === 'left',
           })}
         >

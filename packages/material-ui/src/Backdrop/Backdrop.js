@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Fade from '../Fade';
 
@@ -25,14 +25,14 @@ export const styles = {
   },
 };
 
-const Backdrop = React.forwardRef((props, ref) => {
+const Backdrop = React.forwardRef(function Backdrop(props, ref) {
   const { classes, className, invisible, open, transitionDuration, ...other } = props;
 
   return (
     <Fade in={open} timeout={transitionDuration} {...other}>
       <div
         data-mui-test="Backdrop"
-        className={classNames(
+        className={clsx(
           classes.root,
           {
             [classes.invisible]: invisible,
@@ -45,8 +45,6 @@ const Backdrop = React.forwardRef((props, ref) => {
     </Fade>
   );
 });
-
-Backdrop.displayName = 'Backdrop';
 
 Backdrop.propTypes = {
   /**

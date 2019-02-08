@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ function styled(Component) {
   return (style, options) => {
     function StyledComponent(props) {
       const { classes, className, ...other } = props;
-      return <Component className={classNames(classes.root, className)} {...other} />;
+      return <Component className={clsx(classes.root, className)} {...other} />;
     }
     StyledComponent.propTypes = {
       classes: PropTypes.object.isRequired,

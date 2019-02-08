@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ListItem from '../ListItem';
@@ -27,7 +27,7 @@ export const styles = theme => ({
   selected: {},
 });
 
-function MenuItem(props) {
+const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   const { classes, className, component, disableGutters, role, selected, ...other } = props;
 
   return (
@@ -38,7 +38,7 @@ function MenuItem(props) {
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.selected]: selected,
@@ -46,10 +46,11 @@ function MenuItem(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 MenuItem.propTypes = {
   /**

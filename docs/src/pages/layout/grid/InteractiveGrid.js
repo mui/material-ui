@@ -18,12 +18,12 @@ const styles = theme => ({
     height: 240,
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     height: '100%',
     color: theme.palette.text.secondary,
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 
@@ -60,7 +60,7 @@ class InteractiveGrid extends React.Component {
         <Grid item xs={12}>
           <Grid
             container
-            spacing={16}
+            spacing={2}
             className={classes.demo}
             alignItems={alignItems}
             direction={direction}
@@ -80,7 +80,7 @@ class InteractiveGrid extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Grid container spacing={24}>
+            <Grid container spacing={3}>
               <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>direction</FormLabel>

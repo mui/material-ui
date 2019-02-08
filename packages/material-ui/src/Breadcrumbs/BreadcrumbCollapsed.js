@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import withStyles from '../styles/withStyles';
+import { emphasize } from '../styles/colorManipulator';
+import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 
 const styles = theme => ({
   root: {
@@ -14,8 +14,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.grey[100],
     color: theme.palette.grey[700],
     borderRadius: 2,
-    marginLeft: theme.spacing.unit / 2,
-    marginRight: theme.spacing.unit / 2,
+    marginLeft: theme.spacing(0.5),
+    marginRight: theme.spacing(0.5),
     cursor: 'pointer',
     '&:hover, &:focus': {
       backgroundColor: theme.palette.grey[200],

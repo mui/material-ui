@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -38,7 +38,7 @@ class MuiVirtualizedTable extends React.PureComponent {
   getRowClassName = ({ index }) => {
     const { classes, rowClassName, onRowClick } = this.props;
 
-    return classNames(classes.tableRow, classes.flexContainer, rowClassName, {
+    return clsx(classes.tableRow, classes.flexContainer, rowClassName, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
     });
   };
@@ -48,7 +48,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     return (
       <TableCell
         component="div"
-        className={classNames(classes.tableCell, classes.flexContainer, {
+        className={clsx(classes.tableCell, classes.flexContainer, {
           [classes.noClick]: onRowClick == null,
         })}
         variant="body"
@@ -79,7 +79,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     return (
       <TableCell
         component="div"
-        className={classNames(classes.tableCell, classes.flexContainer, classes.noClick)}
+        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
         variant="head"
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
@@ -122,7 +122,7 @@ class MuiVirtualizedTable extends React.PureComponent {
                       columnIndex: index,
                     })
                   }
-                  className={classNames(classes.flexContainer, className)}
+                  className={clsx(classes.flexContainer, className)}
                   cellRenderer={renderer}
                   dataKey={dataKey}
                   {...other}

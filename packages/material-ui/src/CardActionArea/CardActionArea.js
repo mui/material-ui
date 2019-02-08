@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 
@@ -42,8 +42,8 @@ function CardActionArea(props) {
 
   return (
     <ButtonBase
-      className={classNames(classes.root, className)}
-      focusVisibleClassName={classNames(focusVisibleClassName, classes.focusVisible)}
+      className={clsx(classes.root, className)}
+      focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
       {...other}
     >
       {children}

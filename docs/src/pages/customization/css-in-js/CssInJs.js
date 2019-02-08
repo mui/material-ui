@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -23,7 +23,7 @@ function MyLink(props) {
 
   return (
     <a
-      className={classNames(
+      className={clsx(
         classes.root,
         {
           [classes.primary]: variant === 'primary',

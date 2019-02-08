@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
@@ -70,7 +70,7 @@ function TableSortLabel(props) {
 
   return (
     <ButtonBase
-      className={classNames(classes.root, { [classes.active]: active }, className)}
+      className={clsx(classes.root, { [classes.active]: active }, className)}
       component="span"
       disableRipple
       {...other}
@@ -78,7 +78,7 @@ function TableSortLabel(props) {
       {children}
       {hideSortIcon && !active ? null : (
         <IconComponent
-          className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+          className={clsx(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
         />
       )}
     </ButtonBase>

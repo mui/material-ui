@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Paper from '../Paper';
@@ -71,7 +71,7 @@ export const styles = theme => {
 function AppBar(props) {
   const { children, classes, className: classNameProp, color, position, ...other } = props;
 
-  const className = classNames(
+  const className = clsx(
     classes.root,
     classes[`position${capitalize(position)}`],
     {

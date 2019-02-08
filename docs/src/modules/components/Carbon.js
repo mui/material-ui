@@ -7,13 +7,14 @@ const styles = theme => ({
     '#carbonads': {
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
-        .spacing.unit + 130}px`,
+      padding: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(
+        1,
+      ) + 130}px`,
       borderRadius: theme.shape.borderRadius,
       '& .carbon-img': {
         float: 'left',
         marginLeft: -130,
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
       },
       '& img': {
         verticalAlign: 'middle',

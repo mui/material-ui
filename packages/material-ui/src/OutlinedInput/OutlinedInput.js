@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import NotchedOutline from './NotchedOutline';
@@ -100,7 +100,7 @@ function OutlinedInput(props) {
       )}
       classes={{
         ...classes,
-        root: classNames(classes.root, classes.underline),
+        root: clsx(classes.root, classes.underline),
         notchedOutline: null,
       }}
       {...other}

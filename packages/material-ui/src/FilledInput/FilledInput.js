@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import withStyles from '../styles/withStyles';
@@ -131,7 +131,7 @@ function FilledInput(props) {
     <InputBase
       classes={{
         ...classes,
-        root: classNames(classes.root, {
+        root: clsx(classes.root, {
           [classes.underline]: !disableUnderline,
         }),
         underline: null,

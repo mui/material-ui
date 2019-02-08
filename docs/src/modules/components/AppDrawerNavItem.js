@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
@@ -85,7 +85,7 @@ class AppDrawerNavItem extends React.Component {
             component={props => (
               <Link naked activeClassName={classes.active} href={href} {...props} />
             )}
-            className={classNames(classes.buttonLeaf, `depth-${depth}`)}
+            className={clsx(classes.buttonLeaf, `depth-${depth}`)}
             disableRipple
             onClick={onClick}
             style={style}

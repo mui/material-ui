@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from 'docs/src/modules/components/Link';
 
-const styleSheet = theme => ({
+const styles = theme => ({
   root: {
-    maxWidth: theme.spacing.unit * 110,
+    maxWidth: theme.spacing(110),
     margin: 'auto',
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    padding: theme.spacing(3, 2),
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 2}px`,
+      padding: theme.spacing(6, 2),
     },
   },
   list: {
@@ -20,21 +22,21 @@ const styleSheet = theme => ({
     listStyle: 'none',
   },
   listItem: {
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
   },
   version: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
 });
 
 function HomeFooter(props) {
-  const { classes } = props;
+  const { classes, t } = props;
 
   return (
     <footer className={classes.root}>
       <Typography variant="h6" gutterBottom>
-        Quick Links
+        {t('quickLinks')}
       </Typography>
       <Typography variant="subtitle1" component="div">
         <Grid container>
@@ -53,9 +55,9 @@ function HomeFooter(props) {
               <li className={classes.listItem}>
                 <Link
                   color="inherit"
-                  href="https://github.com/mui-org/material-ui/tree/master/examples"
+                  href="https://github.com/mui-org/material-ui/tree/next/examples"
                 >
-                  Examples
+                  {t('examples')}
                 </Link>
               </li>
             </ul>
@@ -64,17 +66,17 @@ function HomeFooter(props) {
             <ul className={classes.list}>
               <li className={classes.listItem}>
                 <Link color="inherit" href="/style/icons">
-                  Icons
+                  {t('icons')}
                 </Link>
               </li>
               <li className={classes.listItem}>
                 <Link color="inherit" href="/style/color">
-                  Color
+                  {t('color')}
                 </Link>
               </li>
               <li className={classes.listItem}>
                 <Link color="inherit" href="/discover-more/team">
-                  Team
+                  {t('team')}
                 </Link>
               </li>
             </ul>
@@ -82,8 +84,8 @@ function HomeFooter(props) {
         </Grid>
       </Typography>
       <Typography className={classes.version}>
-        {`Currently v${process.env.LIB_VERSION}. Released under the `}
-        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/master/LICENSE">
+        {`Currently v${process.env.LIB_VERSION}. ${t('released')} `}
+        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
           MIT License
         </Link>
         {'.'}
@@ -94,6 +96,10 @@ function HomeFooter(props) {
 
 HomeFooter.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styleSheet)(HomeFooter);
+export default compose(
+  connect(state => ({ t: state.options.t })),
+  withStyles(styles),
+)(HomeFooter);

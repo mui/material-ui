@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import keycode from 'keycode';
 import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
@@ -239,7 +239,7 @@ class SpeedDial extends React.Component {
     }
 
     return (
-      <div className={classNames(classes.root, actionsPlacementClass, classNameProp)} {...other}>
+      <div className={clsx(classes.root, actionsPlacementClass, classNameProp)} {...other}>
         <TransitionComponent
           in={!hidden}
           timeout={transitionDuration}
@@ -268,7 +268,7 @@ class SpeedDial extends React.Component {
           id={`${id}-actions`}
           role="menu"
           aria-orientation={orientation}
-          className={classNames(
+          className={clsx(
             classes.actions,
             { [classes.actionsClosed]: !open },
             actionsPlacementClass,

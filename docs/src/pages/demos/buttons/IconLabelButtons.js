@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -11,13 +11,13 @@ import SaveIcon from '@material-ui/icons/Save';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   leftIcon: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   rightIcon: {
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
   },
   iconSmall: {
     fontSize: 20,
@@ -46,7 +46,7 @@ function IconLabelButtons(props) {
         Talk
       </Button>
       <Button variant="contained" size="small" className={classes.button}>
-        <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
+        <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>
     </div>

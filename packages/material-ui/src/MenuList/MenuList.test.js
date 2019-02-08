@@ -28,7 +28,6 @@ describe('<MenuList />', () => {
     });
 
     it('should render a List', () => {
-      assert.strictEqual(wrapper.name(), 'List');
       assert.strictEqual(wrapper.props()['data-test'], 'hi');
       assert.strictEqual(wrapper.hasClass('test-class'), true);
     });

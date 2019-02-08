@@ -2,6 +2,7 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -56,31 +57,31 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   headline: {
-    paddingLeft: theme.spacing.unit * 4,
-    paddingRight: theme.spacing.unit * 4,
-    marginTop: theme.spacing.unit,
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    marginTop: theme.spacing(1),
     maxWidth: 500,
     textAlign: 'center',
   },
   content: {
-    paddingBottom: theme.spacing.unit * 8,
-    paddingTop: theme.spacing.unit * 8,
+    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(8),
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 12,
+      paddingTop: theme.spacing(12),
     },
   },
   button: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   logo: {
-    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 4}px`,
+    margin: theme.spacing(3, 0, 4),
     width: '100%',
     height: '35vw',
     maxHeight: 200,
   },
   social: {
     backgroundColor: theme.palette.background.paper,
-    padding: `${theme.spacing.unit * 2}px 0`,
+    padding: theme.spacing(2, 0),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -88,7 +89,7 @@ const styles = theme => ({
     boxSizing: 'content-box',
     '& span': {
       display: 'flex',
-      marginRight: theme.spacing.unit,
+      marginRight: theme.spacing(1),
     },
     '& a': {
       color: theme.palette.background.paper,
@@ -106,7 +107,7 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const classes = this.props.classes;
+    const { classes, t } = this.props;
 
     return (
       <AppFrame>
@@ -138,7 +139,7 @@ class HomePage extends React.Component {
                   gutterBottom
                   className={classes.headline}
                 >
-                  {"React components that implement Google's Material Design."}
+                  {t('strapline')}
                 </Typography>
                 <Button
                   component={buttonProps => (
@@ -148,7 +149,7 @@ class HomePage extends React.Component {
                   variant="outlined"
                   color="primary"
                 >
-                  {'Get Started'}
+                  {t('getStarted')}
                 </Button>
               </div>
             </div>
@@ -159,7 +160,6 @@ class HomePage extends React.Component {
               href="https://github.com/mui-org/material-ui"
               data-icon="octicon-star"
               data-show-count="true"
-              aria-label="Star mui-org/material-ui on GitHub"
             >
               Star
             </a>
@@ -202,9 +202,11 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 const Page = withStyles(styles)(HomePage);
 
-// Hack for https://github.com/zeit/next.js/pull/5857
-export default () => <Page />;
+export default connect(state => ({
+  t: state.options.t,
+}))(Page);

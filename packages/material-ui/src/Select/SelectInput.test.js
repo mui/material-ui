@@ -220,7 +220,7 @@ describe('<SelectInput />', () => {
       assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
     });
 
-    [' ', 'ArrowUp', 'ArrowDown'].forEach(key => {
+    [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
         wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key });
         assert.strictEqual(wrapper.state().open, true);

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -22,24 +22,24 @@ const styles = theme => ({
     width: '100%',
   },
   controls: {
-    margin: theme.spacing.unit * 3,
+    margin: theme.spacing(3),
   },
   exampleWrapper: {
     position: 'relative',
     height: 380,
   },
   radioGroup: {
-    margin: `${theme.spacing.unit}px 0`,
+    margin: theme.spacing(1, 0),
   },
   speedDial: {
     position: 'absolute',
     '&$directionUp, &$directionLeft': {
-      bottom: theme.spacing.unit * 2,
-      right: theme.spacing.unit * 3,
+      bottom: theme.spacing(2),
+      right: theme.spacing(3),
     },
     '&$directionDown, &$directionRight': {
-      top: theme.spacing.unit * 2,
-      left: theme.spacing.unit * 3,
+      top: theme.spacing(2),
+      left: theme.spacing(3),
     },
   },
   directionUp: {},
@@ -95,7 +95,7 @@ class SpeedDials extends React.Component {
     const { classes } = this.props;
     const { direction, hidden, open } = this.state;
 
-    const speedDialClassName = classNames(
+    const speedDialClassName = clsx(
       classes.speedDial,
       classes[`direction${capitalize(direction)}`],
     );

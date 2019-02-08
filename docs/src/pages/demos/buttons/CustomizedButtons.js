@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import purple from '@material-ui/core/colors/purple';
@@ -8,7 +8,7 @@ import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   cssRoot: {
     color: theme.palette.getContrastText(purple[500]),
@@ -67,11 +67,7 @@ function CustomizedButtons(props) {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classNames(classes.margin, classes.cssRoot)}
-      >
+      <Button variant="contained" color="primary" className={clsx(classes.margin, classes.cssRoot)}>
         Custom CSS
       </Button>
       <MuiThemeProvider theme={theme}>
@@ -83,7 +79,7 @@ function CustomizedButtons(props) {
         variant="contained"
         color="primary"
         disableRipple
-        className={classNames(classes.margin, classes.bootstrapRoot)}
+        className={clsx(classes.margin, classes.bootstrapRoot)}
       >
         Bootstrap
       </Button>

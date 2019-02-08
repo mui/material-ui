@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
@@ -135,7 +135,7 @@ class Tabs extends React.Component {
         direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
         visible={this.state.showLeftScroll}
-        className={classNames(classes.scrollButtons, {
+        className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsAuto]: scrollButtons === 'auto',
         })}
       />
@@ -146,7 +146,7 @@ class Tabs extends React.Component {
         direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
         visible={this.state.showRightScroll}
-        className={classNames(classes.scrollButtons, {
+        className={clsx(classes.scrollButtons, {
           [classes.scrollButtonsAuto]: scrollButtons === 'auto',
         })}
       />
@@ -327,11 +327,11 @@ class Tabs extends React.Component {
         'at the same time on a `Tabs` component.',
     );
 
-    const className = classNames(classes.root, classNameProp);
-    const flexContainerClassName = classNames(classes.flexContainer, {
+    const className = clsx(classes.root, classNameProp);
+    const flexContainerClassName = clsx(classes.flexContainer, {
       [classes.centered]: centered && !scrollable,
     });
-    const scrollerClassName = classNames(classes.scroller, {
+    const scrollerClassName = clsx(classes.scroller, {
       [classes.fixed]: !scrollable,
       [classes.scrollable]: scrollable,
     });

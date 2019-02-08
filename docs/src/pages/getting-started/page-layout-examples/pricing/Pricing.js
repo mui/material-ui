@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -28,9 +28,9 @@ const styles = theme => ({
   },
   layout: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(900 + theme.spacing(3) * 2)]: {
       width: 900,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -39,7 +39,7 @@ const styles = theme => ({
   heroContent: {
     maxWidth: 600,
     margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+    padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
     backgroundColor: theme.palette.grey[200],
@@ -48,17 +48,17 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'baseline',
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing(2),
   },
   cardActions: {
     [theme.breakpoints.up('sm')]: {
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing(2),
     },
   },
   footer: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing(8),
     borderTop: `1px solid ${theme.palette.divider}`,
-    padding: `${theme.spacing.unit * 6}px 0`,
+    padding: theme.spacing(6, 0),
   },
 });
 
@@ -146,7 +146,7 @@ function Pricing(props) {
           </Typography>
         </div>
         {/* End hero unit */}
-        <Grid container spacing={40} alignItems="flex-end">
+        <Grid container spacing={5} alignItems="flex-end">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -185,8 +185,8 @@ function Pricing(props) {
         </Grid>
       </main>
       {/* Footer */}
-      <footer className={classNames(classes.footer, classes.layout)}>
-        <Grid container spacing={32} justify="space-evenly">
+      <footer className={clsx(classes.footer, classes.layout)}>
+        <Grid container spacing={4} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>

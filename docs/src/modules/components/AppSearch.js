@@ -1,5 +1,4 @@
 import React from 'react';
-import compose from 'recompose/compose';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
@@ -10,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import compose from 'docs/src/modules/utils/compose';
 
 let searchTimer;
 let initialized = false;
@@ -24,7 +24,7 @@ function loadDependencies() {
 
   loadCSS(
     'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-    document.querySelector('#insertion-point-jss'),
+    document.querySelector('#app-search'),
   );
   loadScript(
     'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js',
@@ -125,8 +125,8 @@ const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -141,7 +141,7 @@ const styles = theme => ({
     },
   },
   search: {
-    width: theme.spacing.unit * 9,
+    width: theme.spacing(9),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -153,8 +153,7 @@ const styles = theme => ({
     color: 'inherit',
   },
   inputInput: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme
-      .spacing.unit * 9}px`,
+    padding: theme.spacing(1, 1, 1, 9),
   },
 });
 

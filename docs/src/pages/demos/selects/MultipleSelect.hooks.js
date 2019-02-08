@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   formControl: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     minWidth: 120,
     maxWidth: 300,
   },
@@ -25,10 +25,10 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   chip: {
-    margin: theme.spacing.unit / 4,
+    margin: 2,
   },
   noLabel: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
 }));
 
@@ -133,7 +133,7 @@ function MultipleSelect() {
           ))}
         </Select>
       </FormControl>
-      <FormControl className={classNames(classes.formControl, classes.noLabel)}>
+      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
         <Select
           multiple
           displayEmpty

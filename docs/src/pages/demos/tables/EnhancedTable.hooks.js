@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
@@ -114,7 +114,7 @@ EnhancedTableHead.propTypes = {
 
 const useToolbarStyles = makeStyles(theme => ({
   root: {
-    paddingRight: theme.spacing.unit,
+    paddingRight: theme.spacing(1),
   },
   highlight:
     theme.palette.type === 'light'
@@ -143,7 +143,7 @@ const EnhancedTableToolbar = props => {
 
   return (
     <Toolbar
-      className={classNames(classes.root, {
+      className={clsx(classes.root, {
         [classes.highlight]: numSelected > 0,
       })}
     >
@@ -185,7 +185,7 @@ EnhancedTableToolbar.propTypes = {
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   table: {
     minWidth: 1020,

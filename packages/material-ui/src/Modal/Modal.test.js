@@ -20,7 +20,11 @@ describe('<Modal />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
-    classes = getClasses(<Modal open={false} />);
+    classes = getClasses(
+      <Modal open={false}>
+        <div />
+      </Modal>,
+    );
     mount = createMount();
     savedBodyStyle = document.body.style;
   });
@@ -254,7 +258,9 @@ describe('<Modal />', () => {
       onCloseSpy = spy();
       topModalStub = stub();
       wrapper = shallow(
-        <Modal open={false} onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy} />,
+        <Modal open={false} onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <div />
+        </Modal>,
       );
       instance = wrapper.instance();
     });

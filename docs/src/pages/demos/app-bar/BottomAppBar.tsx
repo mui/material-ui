@@ -21,15 +21,15 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const styles = (theme: Theme) =>
   createStyles({
     text: {
-      paddingTop: theme.spacing.unit * 2,
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
+      paddingTop: theme.spacing(2),
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
     },
     paper: {
       paddingBottom: 50,
     },
     list: {
-      marginBottom: theme.spacing.unit * 2,
+      marginBottom: theme.spacing(2),
     },
     subHeader: {
       backgroundColor: theme.palette.background.paper,

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
@@ -21,6 +20,7 @@ import {
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
 import { LANGUAGES } from 'docs/src/modules/constants';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
@@ -32,9 +32,9 @@ const styles = theme => ({
     alignItems: 'flex-end',
   },
   markdownElement: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-    padding: `0 ${theme.spacing.unit}px`,
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(0, 1),
   },
 });
 
@@ -74,19 +74,14 @@ function MarkdownDocs(props) {
         const jsType = isHooks ? 'jsHooks' : 'js';
         const rawType = isHooks ? 'rawHooks' : 'raw';
 
-        const tsFilename = !isHooks
-          ? sourceFiles.find(sourceFileName => {
-              const isTSSourceFile = /\.tsx$/.test(sourceFileName);
-              const isTSVersionOfFile = sourceFileName.replace(/\.tsx$/, '.js') === filename;
-              return isTSSourceFile && isTSVersionOfFile;
-            })
-          : undefined;
+        const tsFilename = filename.replace(/\.js$/, '.tsx');
+        const hasTSVersion = sourceFiles.indexOf(tsFilename) !== -1;
 
         demos[demoName] = {
           ...demos[demoName],
           [jsType]: req(filename).default,
           [rawType]: reqSource(filename),
-          rawTS: tsFilename ? reqSource(tsFilename) : undefined,
+          rawTS: hasTSVersion ? reqSource(tsFilename) : undefined,
         };
       }
     });

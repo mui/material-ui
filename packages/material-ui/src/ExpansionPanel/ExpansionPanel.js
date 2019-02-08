@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import warning from 'warning';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
@@ -151,7 +151,7 @@ class ExpansionPanel extends React.Component {
 
     return (
       <Paper
-        className={classNames(
+        className={clsx(
           classes.root,
           {
             [classes.expanded]: expanded,

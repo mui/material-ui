@@ -1,7 +1,7 @@
 // @inheritedComponent Transition
 
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import { componentPropType } from '@material-ui/utils';
@@ -152,7 +152,7 @@ class Collapse extends React.Component {
       >
         {(state, childProps) => (
           <Component
-            className={classNames(
+            className={clsx(
               classes.container,
               {
                 [classes.entered]: state === 'entered',

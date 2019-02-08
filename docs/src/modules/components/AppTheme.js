@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
@@ -8,8 +8,8 @@ import Head from 'docs/src/modules/components/Head';
 
 const styles = theme => ({
   credit: {
-    marginTop: theme.spacing.unit * 6,
-    marginBottom: theme.spacing.unit * 4,
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(4),
   },
   hideCredit: {
     position: 'absolute',
@@ -26,7 +26,7 @@ function AppTheme(props) {
       <Typography
         color="textSecondary"
         align="center"
-        className={classNames(classes.credit, {
+        className={clsx(classes.credit, {
           [classes.hideCredit]: hideCredit,
         })}
       >
