@@ -1,4 +1,5 @@
 import React from 'react';
+import warning from 'warning';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { componentPropType } from '@material-ui/utils';
@@ -58,11 +59,19 @@ class Breadcrumbs extends React.Component {
   }
 
   renderItemsBeforeAndAfter(allItems) {
-    const { itemsBeforeCollapse, itemsAfterCollapse } = this.props;
+    const { maxItems, itemsBeforeCollapse, itemsAfterCollapse } = this.props;
 
-    // This defends against someone passing weird data, to ensure that if all
+    // This defends against someone passing weird input, to ensure that if all
     // items would be shown anyway, we just show all items without the EllipsisItem
     if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
+      warning(
+        false,
+        [
+          'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
+          // eslint-disable-next-line max-len
+          `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+        ].join('\n'),
+      );
       return allItems;
     }
 
