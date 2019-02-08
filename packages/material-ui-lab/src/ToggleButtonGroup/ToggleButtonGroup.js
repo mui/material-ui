@@ -11,6 +11,8 @@ export const styles = theme => ({
     background: theme.palette.background.paper,
     borderRadius: 2,
     overflow: 'hidden',
+    display: 'flex',
+    flexWrap: 'nowrap',
   },
 });
 
@@ -52,7 +54,6 @@ class ToggleButtonGroup extends React.Component {
       classes,
       exclusive,
       onChange,
-      selected: selectedProp,
       value,
       ...other
     } = this.props;
@@ -63,7 +64,6 @@ class ToggleButtonGroup extends React.Component {
       }
 
       const { selected: buttonSelected, value: buttonValue } = child.props;
-
       const selected =
         buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
 
@@ -74,7 +74,7 @@ class ToggleButtonGroup extends React.Component {
     });
 
     return (
-      <div className={clsx(classes.root,classNameProp)} {...other}>
+      <div className={clsx(classes.root, classNameProp)} {...other}>
         {children}
       </div>
     );
@@ -109,11 +109,6 @@ ToggleButtonGroup.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, render the group in a selected state. If `auto` (the default)
-   * render in a selected state if `value` is not empty.
-   */
-  selected: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),
-  /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
    */
@@ -122,7 +117,6 @@ ToggleButtonGroup.propTypes = {
 
 ToggleButtonGroup.defaultProps = {
   exclusive: false,
-  selected: 'auto',
 };
 
 export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

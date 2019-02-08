@@ -39,26 +39,6 @@ describe('<ToggleButtonGroup />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  it('should render a selected div', () => {
-    const wrapper = shallow(
-      <ToggleButtonGroup selected>
-        <ToggleButton value="hello" />
-      </ToggleButtonGroup>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true);
-  });
-
-  it('should render a selected div when selected is "auto" and a value is present', () => {
-    const wrapper = shallow(
-      <ToggleButtonGroup selected="auto" value={['one']}>
-        <ToggleButton value="hello" />
-      </ToggleButtonGroup>,
-    );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true);
-  });
-
   it('should not render a selected div when selected is "auto" and a value is missing', () => {
     const wrapper = shallow(
       <ToggleButtonGroup selected="auto">
