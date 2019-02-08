@@ -208,7 +208,7 @@ class AppFrame extends React.Component {
                   )}
                   <div className={classes.grow} />
                   <AppSearch />
-                  <Tooltip title={t('language')} enterDelay={300}>
+                  <Tooltip title="Change language" enterDelay={300}>
                     <IconButton
                       color="inherit"
                       aria-owns={languageMenu ? 'language-menu' : undefined}

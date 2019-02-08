@@ -2,6 +2,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Breadcrumbs from './Breadcrumbs';
+import BreadcrumbSeparator from './BreadcrumbSeparator';
+import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import Typography from '@material-ui/core/Typography';
 
 describe('<Breadcrumbs />', () => {
@@ -44,5 +46,52 @@ describe('<Breadcrumbs />', () => {
     );
     assert.strictEqual(wrapper.is('.test-class-name'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
+  it('should render seperators', () => {
+    const wrapper = shallow(
+      <Breadcrumbs>
+        <span />
+        <span />
+      </Breadcrumbs>,
+    );
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 1);
+  });
+
+  it('should render an ellipse', () => {
+    const wrapper = shallow(
+      <Breadcrumbs>
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </Breadcrumbs>,
+    );
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
+    assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 1);
+  });
+
+  it('should expand', () => {
+    const wrapper = shallow(
+      <Breadcrumbs>
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </Breadcrumbs>,
+    );
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
+    wrapper.find(BreadcrumbCollapsed).simulate('click');
+    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 8);
   });
 });

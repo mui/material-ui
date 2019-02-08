@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
-import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 
 const styles = theme => ({
   root: {
@@ -35,7 +33,7 @@ const styles = theme => ({
 });
 
 function Tidelift(props) {
-  const { classes, t } = props;
+  const { classes } = props;
 
   return (
     <Link
@@ -48,17 +46,13 @@ function Tidelift(props) {
       rel="noopener"
     >
       <span className={classes.logo} />
-      <Typography color="inherit">{t('tidelift')}</Typography>
+      <Typography color="inherit">Get Professionally Supported Material-UI</Typography>
     </Link>
   );
 }
 
 Tidelift.propTypes = {
   classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default compose(
-  connect(state => ({ t: state.options.t })),
-  withStyles(styles),
-)(Tidelift);
+export default withStyles(styles)(Tidelift);
