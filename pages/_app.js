@@ -284,6 +284,9 @@ const pages = [
         title: 'About The Lab',
       },
       {
+        pathname: '/lab/selectable-group',
+      },
+      {
         pathname: '/lab/slider',
       },
       {
