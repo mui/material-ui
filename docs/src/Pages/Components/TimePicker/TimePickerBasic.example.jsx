@@ -38,8 +38,9 @@ export default class BasicUsage extends PureComponent {
           <TimePicker
             showTodayButton
             todayLabel="now"
-            label="With today button"
+            label="Step = 5"
             value={selectedDate}
+            minutesStep={5}
             onChange={this.handleDateChange}
           />
         </div>
