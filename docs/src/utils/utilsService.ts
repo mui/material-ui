@@ -1,18 +1,18 @@
 import { UtilsLib } from '../App';
 
 export const createUtilsService = (lib: UtilsLib) => ({
-  getFormatString(formats: Record<UtilsLib, string>) {
+  getFormatString(formats: { moment: string; dateFns: string; dayjs?: string; luxon?: string }) {
     switch (lib) {
       case 'date-fns':
-        return formats['date-fns'];
+        return formats.dateFns;
       case 'luxon':
-        return formats['luxon'] || formats['date-fns'];
+        return formats.luxon || formats.dateFns;
       case 'moment':
-        return formats['moment'];
+        return formats.moment;
       case 'dayjs':
-        return formats['dayjs'] || formats['moment'];
+        return formats.dayjs || formats.moment;
       default:
-        return formats['date-fns'];
+        return formats.dateFns;
     }
   },
 });
