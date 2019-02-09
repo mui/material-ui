@@ -1,7 +1,12 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createShallow,
+  getClasses,
+  wrapsIntrinsicElement,
+} from '@material-ui/core/test-utils';
 import Slider, { defaultValueReducer } from './Slider';
 
 function touchList(touchArray) {
@@ -19,6 +24,13 @@ describe('<Slider />', () => {
     classes = getClasses(<Slider value={0} />);
     mount = createMount();
   });
+
+  function findHandle(wrapper) {
+    // Will also match any other react component if not filtered. They won't appear in the DOM
+    // and are therefore an implementation detail. We're interested in what the user
+    // interacts with.
+    return wrapper.find('[role="slider"]').filterWhere(wrapsIntrinsicElement);
+  }
 
   it('should render a div', () => {
     const wrapper = shallow(<Slider value={0} />);
@@ -195,10 +207,10 @@ describe('<Slider />', () => {
     });
 
     it('should render thumb with the disabled classes', () => {
-      const button = wrapper.find('button');
+      const handle = findHandle(wrapper);
 
-      assert.strictEqual(button.hasClass(classes.thumb), true);
-      assert.strictEqual(button.hasClass(classes.disabled), true);
+      assert.strictEqual(handle.hasClass(classes.thumb), true);
+      assert.strictEqual(handle.hasClass(classes.disabled), true);
     });
 
     it('should render tracks with the disabled classes', () => {
@@ -213,12 +225,8 @@ describe('<Slider />', () => {
       assert.strictEqual(handleChange.callCount, 0);
     });
 
-    it('should disable its thumb', () => {
-      assert.ok(wrapper.find('button').props().disabled);
-    });
-
     it('should signal that it is disabled', () => {
-      assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
+      assert.ok(findHandle(wrapper).props().disabled);
     });
   });
 
@@ -275,34 +283,34 @@ describe('<Slider />', () => {
 
     it('should reach right edge value', () => {
       wrapper.setProps({ value: 90 });
-      const button = wrapper.find('button');
+      const handle = findHandle(wrapper);
 
-      button.prop('onKeyDown')(moveRightEvent);
+      handle.prop('onKeyDown')(moveRightEvent);
       assert.strictEqual(wrapper.prop('value'), 100);
 
-      button.prop('onKeyDown')(moveRightEvent);
+      handle.prop('onKeyDown')(moveRightEvent);
       assert.strictEqual(wrapper.prop('value'), 108);
 
-      button.prop('onKeyDown')(moveLeftEvent);
+      handle.prop('onKeyDown')(moveLeftEvent);
       assert.strictEqual(wrapper.prop('value'), 100);
 
-      button.prop('onKeyDown')(moveLeftEvent);
+      handle.prop('onKeyDown')(moveLeftEvent);
       assert.strictEqual(wrapper.prop('value'), 90);
     });
 
     it('should reach left edge value', () => {
       wrapper.setProps({ value: 20 });
-      const button = wrapper.find('button');
-      button.prop('onKeyDown')(moveLeftEvent);
+      const handle = findHandle(wrapper);
+      handle.prop('onKeyDown')(moveLeftEvent);
       assert.strictEqual(wrapper.prop('value'), 10);
 
-      button.prop('onKeyDown')(moveLeftEvent);
+      handle.prop('onKeyDown')(moveLeftEvent);
       assert.strictEqual(wrapper.prop('value'), 6);
 
-      button.prop('onKeyDown')(moveRightEvent);
+      handle.prop('onKeyDown')(moveRightEvent);
       assert.strictEqual(wrapper.prop('value'), 10);
 
-      button.prop('onKeyDown')(moveRightEvent);
+      handle.prop('onKeyDown')(moveRightEvent);
       assert.strictEqual(wrapper.prop('value'), 20);
     });
   });

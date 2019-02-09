@@ -564,13 +564,7 @@ class Slider extends React.Component {
 
     return (
       <Component
-        role="slider"
         className={className}
-        aria-disabled={disabled}
-        aria-valuenow={value}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
@@ -584,6 +578,10 @@ class Slider extends React.Component {
           <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
           <div className={thumbWrapperClasses} style={inlineThumbStyles}>
             <ButtonBase
+              aria-valuenow={value}
+              aria-valuemin={min}
+              aria-valuemax={max}
+              aria-orientation={vertical ? 'vertical' : 'horizontal'}
               className={thumbClasses}
               disabled={disabled}
               disableRipple
@@ -592,6 +590,7 @@ class Slider extends React.Component {
               onTouchStartCapture={this.handleTouchStart}
               onTouchMove={this.handleTouchMove}
               onFocusVisible={this.handleFocus}
+              role="slider"
             >
               {ThumbIcon}
             </ButtonBase>
