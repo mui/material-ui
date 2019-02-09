@@ -53,7 +53,8 @@ export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
 
 export const getMinutes = (offsetX: number, offsetY: number, step = 1) => {
   const angleStep = step * 6;
-  const { value } = getAngleValue(angleStep, offsetX, offsetY);
+  let { value } = getAngleValue(angleStep, offsetX, offsetY);
+  value = (value * step) % 60;
 
   return value;
 };
