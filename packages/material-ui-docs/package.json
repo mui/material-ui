@@ -2,7 +2,7 @@
   "name": "@material-ui/docs",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.0.0-alpha.9",
+  "version": "4.0.0-alpha.0",
   "description": "Material-UI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "@material-ui/utils": "^3.0.0-alpha.2",
+    "@material-ui/utils": "^4.0.0-alpha.0",
     "clsx": "^1.0.2",
     "marked": "^0.6.0",
     "nprogress": "^0.2.0",

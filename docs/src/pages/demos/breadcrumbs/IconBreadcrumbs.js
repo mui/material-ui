@@ -37,9 +37,14 @@ function IconBreadcrumbs(props) {
           <HomeIcon className={classes.icon} />
           Material-UI
         </Link>
-        <Link color="inherit" href="/lab/about/" onClick={handleClick} className={classes.link}>
+        <Link
+          color="inherit"
+          href="/getting-started/installation/"
+          onClick={handleClick}
+          className={classes.link}
+        >
           <WhatshotIcon className={classes.icon} />
-          Lab
+          Core
         </Link>
         <Typography color="textPrimary" className={classes.link}>
           <GrainIcon className={classes.icon} />
