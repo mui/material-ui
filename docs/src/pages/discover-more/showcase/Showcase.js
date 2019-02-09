@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 import Link from 'docs/src/modules/components/Link';
+import compose from 'docs/src/modules/utils/compose';
 import appList from './appList';
 
 const styles = theme => ({

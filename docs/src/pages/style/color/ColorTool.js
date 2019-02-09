@@ -13,9 +13,9 @@ import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
 import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import { capitalize } from '@material-ui/core/utils/helpers';
-import { ACTION_TYPES } from 'docs/src/modules/constants';
 import ColorDemo from './ColorDemo';
 import themeInitialState from 'docs/src/modules/styles/themeInitialState';
+import { ACTION_TYPES } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
 
 const defaults = { primary: '#2196f3', secondary: '#f50057' };

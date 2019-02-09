@@ -19,8 +19,8 @@ import {
   getDescription,
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
-import { LANGUAGES } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
+import { LANGUAGES } from 'docs/src/modules/constants';
 
 const styles = theme => ({
   root: {

@@ -2,8 +2,8 @@ import withRoot from './modules/withRoot';
 // --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { Field, Form, FormSpy } from 'react-final-form';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';

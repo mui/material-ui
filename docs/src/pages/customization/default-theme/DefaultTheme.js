@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import url from 'url';
 import Inspector from 'react-inspector';
 import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
