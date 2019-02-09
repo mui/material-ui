@@ -352,10 +352,15 @@ class Slider extends React.Component {
     }
     this.setState({ currentState: 'activated' });
 
+    const { onDragStart, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+
     document.body.addEventListener('touchend', this.handleTouchEnd);
 
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
+    if (typeof onDragStart === 'function') {
+      onDragStart(event, newValue);
     }
   };
 
@@ -363,13 +368,18 @@ class Slider extends React.Component {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
 
+    const { onDragStart, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+
     document.body.addEventListener('mouseenter', this.handleMouseEnter);
     document.body.addEventListener('mouseleave', this.handleMouseLeave);
     document.body.addEventListener('mousemove', this.handleMouseMove);
     document.body.addEventListener('mouseup', this.handleMouseUp);
 
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
+    if (typeof onDragStart === 'function') {
+      onDragStart(event, newValue);
     }
   };
 

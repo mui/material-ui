@@ -78,8 +78,8 @@ describe('<Slider />', () => {
     );
     assert.strictEqual(
       handleDragStart.args[0].length,
-      1,
-      'should have called the handleDragEnd cb with 1 argument',
+      2,
+      'should have called the handleDragEnd cb with 2 argument',
     );
     assert.strictEqual(
       handleDragEnd.args[0].length,
