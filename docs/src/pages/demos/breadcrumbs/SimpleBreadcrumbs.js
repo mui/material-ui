@@ -30,8 +30,8 @@ function SimpleBreadcrumbs(props) {
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
-          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-            Lab
+          <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+            Core
           </Link>
           <Typography color="textPrimary">Breadcrumb</Typography>
         </Breadcrumbs>
@@ -42,12 +42,12 @@ function SimpleBreadcrumbs(props) {
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
-          <Link color="inherit" href="/lab/about/" onClick={handleClick}>
-            Lab
+          <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+            Core
           </Link>
           <Link
             color="textPrimary"
-            href="/lab/about/breadcrumbs"
+            href="/demos/breadcrumbs/"
             onClick={handleClick}
             aria-current="page"
           >

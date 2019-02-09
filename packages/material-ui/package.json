@@ -2,7 +2,7 @@
   "name": "@material-ui/core",
   "private": false,
   "author": "Material-UI Team",
-  "version": "3.9.1",
+  "version": "4.0.0-alpha.0",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "@material-ui/system": "^3.0.0-alpha.0",
-    "@material-ui/utils": "^3.0.0-alpha.2",
+    "@material-ui/system": "^4.0.0-alpha.0",
+    "@material-ui/utils": "^4.0.0-alpha.0",
     "@types/jss": "^9.5.6",
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",
