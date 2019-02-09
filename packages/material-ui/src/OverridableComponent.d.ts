@@ -55,6 +55,6 @@ export interface OverridableTypeMap {
   classKey: string;
 }
 
-export type Simplify<T> = { [K in keyof T]: T[K] };
+export type Simplify<T> = T extends any ? { [K in keyof T]: T[K] } : never;
 
 export type SimplifiedPropsOf<C extends React.ReactType> = Simplify<React.ComponentProps<C>>;
