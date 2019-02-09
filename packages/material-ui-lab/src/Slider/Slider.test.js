@@ -1,8 +1,13 @@
 import React from 'react';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
-import Slider from './Slider';
+import Slider, { defaultValueReducer } from './Slider';
+
+function touchList(touchArray) {
+  touchArray.item = idx => touchArray[idx];
+  return touchArray;
+}
 
 describe('<Slider />', () => {
   let mount;
@@ -55,6 +60,94 @@ describe('<Slider />', () => {
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });
 
+  it('should only listen to changes from the same touchpoint', () => {
+    const handleChange = spy();
+    const handleDragStart = spy();
+    const handleDragEnd = spy();
+    let touchEvent;
+
+    const wrapper = mount(
+      <Slider
+        onChange={handleChange}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        value={0}
+      />,
+    );
+
+    wrapper.simulate('touchstart', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 2 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 2 }]);
+    document.body.dispatchEvent(touchEvent);
+
+    assert.strictEqual(handleChange.callCount, 0, 'should not have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 0, 'should not have called the handleDragEnd cb');
+
+    wrapper.simulate('touchmove', {
+      changedTouches: touchList([{ identifier: 1 }]),
+    });
+    touchEvent = new window.MouseEvent('touchend');
+    touchEvent.changedTouches = touchList([{ identifier: 1 }]);
+    document.body.dispatchEvent(touchEvent);
+
+    assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
+    assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+  });
+
+  describe('when mouse leaves window', () => {
+    it('should move to the end', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    });
+  });
+
+  describe('when mouse reenters window', () => {
+    it('should update if mouse is still clicked', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 1;
+      document.body.dispatchEvent(mouseEnter);
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+
+      assert.strictEqual(handleChange.callCount, 2, 'should have called the handleChange cb');
+    });
+
+    it('should not update if mouse is not clicked', () => {
+      const handleChange = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} value={50} />);
+
+      wrapper.simulate('mousedown');
+      document.body.dispatchEvent(new window.MouseEvent('mouseleave'));
+
+      const mouseEnter = new window.Event('mouseenter');
+      mouseEnter.buttons = 0;
+      document.body.dispatchEvent(mouseEnter);
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+    });
+  });
+
   describe('unmount', () => {
     it('should not have global event listeners registered after unmount', () => {
       const handleChange = spy();
@@ -70,18 +163,18 @@ describe('<Slider />', () => {
       wrapper.simulate('mousedown');
       callGlobalListeners();
       // pre condition: the dispatched event actually did something when mounted
-      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
-      assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleDragEnd.callCount, 1);
 
       wrapper.unmount();
 
-      // After unmounting global listeners should not be registered aynmore since that would
+      // After unmounting global listeners should not be registered anymore since that would
       // break component encapsulation. If they are still mounted either react will throw warnings
       // or other component logic throws.
       // post condition: the dispatched events dont cause errors/warnings
       callGlobalListeners();
-      assert.strictEqual(handleChange.callCount, 1, 'should not have called handleChange again');
-      assert.strictEqual(handleDragEnd.callCount, 1, 'should not have called handleDragEnd again');
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleDragEnd.callCount, 1);
     });
   });
 
@@ -119,52 +212,98 @@ describe('<Slider />', () => {
 
       assert.strictEqual(handleChange.callCount, 0);
     });
+
+    it('should disable its thumb', () => {
+      assert.ok(wrapper.find('button').props().disabled);
+    });
+
+    it('should signal that it is disabled', () => {
+      assert.ok(wrapper.find('[role="slider"]').props()['aria-disabled']);
+    });
   });
 
-  describe('prop: value', () => {
-    const transitionComplexDuration = 375;
+  describe('prop: slider', () => {
     let wrapper;
-    let clock;
+
+    const moveLeftEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowLeft',
+    });
+    const moveRightEvent = new window.KeyboardEvent('keydown', {
+      key: 'ArrowRight',
+    });
 
     before(() => {
-      clock = useFakeTimers();
-      wrapper = mount(<Slider value={0} />);
+      function valueReducer(rawValue, props, event) {
+        const { disabled, max, min, step } = props;
+
+        function roundToStep(number) {
+          return Math.round(number / step) * step;
+        }
+
+        if (!disabled && step) {
+          if (rawValue > min && rawValue < max) {
+            if (rawValue === max - step) {
+              // If moving the Slider using arrow keys and value is formerly an maximum edge value
+              return roundToStep(rawValue + step / 2);
+            }
+            if (rawValue === min + step) {
+              // Same for minimum edge value
+              return roundToStep(rawValue - step / 2);
+            }
+            return roundToStep(rawValue);
+          }
+          return rawValue;
+        }
+
+        return defaultValueReducer(rawValue, props, event);
+      }
+
+      const onChange = (_, value) => {
+        wrapper.setProps({ value });
+      };
+      wrapper = mount(
+        <Slider
+          value={90}
+          valueReducer={valueReducer}
+          min={6}
+          max={108}
+          step={10}
+          onChange={onChange}
+        />,
+      );
     });
 
-    after(() => {
-      clock.restore();
-    });
-
-    it('should render thumb in initial state', () => {
+    it('should reach right edge value', () => {
+      wrapper.setProps({ value: 90 });
       const button = wrapper.find('button');
-      assert.strictEqual(button.prop('style').left, '0%');
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 108);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 90);
     });
 
-    it('should render tracks in initial state', () => {
-      const tracks = wrapper.find('div').filterWhere(n => n.hasClass(classes.track));
-      const trackBefore = tracks.at(0);
-      const trackAfter = tracks.at(1);
-
-      assert.strictEqual(trackBefore.prop('style').width, '0%');
-      assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
-    });
-
-    it('after change value should change position of thumb', () => {
-      wrapper.setProps({ value: 50 });
-
-      clock.tick(transitionComplexDuration);
-
+    it('should reach left edge value', () => {
+      wrapper.setProps({ value: 20 });
       const button = wrapper.find('button');
-      assert.strictEqual(button.prop('style').left, '50%');
-    });
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
 
-    it('should render tracks in new state', () => {
-      const tracks = wrapper.find('div').filterWhere(n => n.hasClass(classes.track));
-      const trackBefore = tracks.at(0);
-      const trackAfter = tracks.at(1);
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 6);
 
-      assert.strictEqual(trackBefore.prop('style').width, '50%');
-      assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 20);
     });
   });
 });

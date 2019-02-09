@@ -4,10 +4,11 @@ import { ButtonBaseProps } from '../ButtonBase';
 
 export interface ListItemProps
   extends StandardProps<
-      ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
-      ListItemClassKey,
-      'component'
-    > {
+    ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
+    ListItemClassKey,
+    'component'
+  > {
+  alignItems?: 'flex-start' | 'center';
   button?: boolean;
   component?: React.ReactType<ListItemProps>;
   ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;

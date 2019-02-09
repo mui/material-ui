@@ -11,6 +11,7 @@ export interface TypographyProps
   component?: React.ReactType<TypographyProps>;
   gutterBottom?: boolean;
   headlineMapping?: { [type in Style]: string };
+  inline?: boolean;
   noWrap?: boolean;
   paragraph?: boolean;
   variant?: Style | 'inherit';
@@ -18,17 +19,19 @@ export interface TypographyProps
 
 export type TypographyClassKey =
   | 'root'
-  | 'display4'
-  | 'display3'
-  | 'display2'
-  | 'display1'
-  | 'headline'
-  | 'title'
-  | 'subheading'
-  | 'body2'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'subtitle1'
+  | 'subtitle2'
   | 'body1'
+  | 'body2'
   | 'caption'
   | 'button'
+  | 'overline'
   | 'srOnly'
   | 'alignLeft'
   | 'alignCenter'
@@ -39,7 +42,16 @@ export type TypographyClassKey =
   | 'paragraph'
   | 'colorInherit'
   | 'colorSecondary'
-  | 'colorTextSecondary';
+  | 'colorTextSecondary'
+  | 'colorError'
+  | 'inline'
+  | 'display4' // deprecated
+  | 'display3'
+  | 'display2'
+  | 'display1'
+  | 'headline'
+  | 'title'
+  | 'subheading';
 
 declare const Typography: React.ComponentType<TypographyProps>;
 

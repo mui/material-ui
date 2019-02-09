@@ -20,6 +20,15 @@ we allow such pattern.
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
+## Customized selects
+
+If you have been reading the [overrides documentation page](/customization/overrides/)
+but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+
+⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+
+{{"demo": "pages/demos/selects/CustomizedSelects.js"}}
+
 ## Multiple Select
 
 The `Select` component can handle multiple selections.
@@ -29,6 +38,10 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
+## Controlled open Select
+
+{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
+
 ## With a Dialog
 
 While it's discouraged by the Material Design specification, you can use a select inside a dialog.
@@ -37,8 +50,4 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 ## Text Fields
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields#textfield).
-
-## Controlled open Select
-
-{{"demo": "pages/demos/selects/ControlledOpenSelect.js"}}
+The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

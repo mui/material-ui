@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import NoSsr from '@material-ui/core/NoSsr';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -24,7 +25,7 @@ const styles = theme => ({
   },
 });
 
-class ListItemLink1 extends React.Component {
+class ListItemLink extends React.Component {
   renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
 
   render() {
@@ -40,13 +41,13 @@ class ListItemLink1 extends React.Component {
   }
 }
 
-ListItemLink1.propTypes = {
+ListItemLink.propTypes = {
   icon: PropTypes.node.isRequired,
   primary: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
 };
 
-function ListItemLink2(props) {
+function ListItemLinkShorthand(props) {
   const { primary, to } = props;
   return (
     <li>
@@ -57,36 +58,38 @@ function ListItemLink2(props) {
   );
 }
 
-ListItemLink2.propTypes = {
+ListItemLinkShorthand.propTypes = {
   primary: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
 };
 
 function ComponentProperty(props) {
   const { classes } = props;
+
+  // Use NoSsr to avoid SEO issues with the documentation website.
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
-      <div className={classes.root}>
-        <Route>
-          {({ location }) => (
-            <Typography gutterBottom type="title">
-              Current route: {location.pathname}
-            </Typography>
-          )}
-        </Route>
-        <div className={classes.lists}>
-          <List component="nav">
-            <ListItemLink1 to="/inbox" primary="Inbox" icon={<InboxIcon />} />
-            <ListItemLink1 to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
-          </List>
-          <Divider />
-          <List component="nav">
-            <ListItemLink2 to="/trash" primary="Trash" />
-            <ListItemLink2 to="/spam" primary="Spam" />
-          </List>
+    <NoSsr>
+      <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+        <div className={classes.root}>
+          <Route>
+            {({ location }) => (
+              <Typography gutterBottom>Current route: {location.pathname}</Typography>
+            )}
+          </Route>
+          <div className={classes.lists}>
+            <List component="nav">
+              <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
+              <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
+            </List>
+            <Divider />
+            <List component="nav">
+              <ListItemLinkShorthand to="/trash" primary="Trash" />
+              <ListItemLinkShorthand to="/spam" primary="Spam" />
+            </List>
+          </div>
         </div>
-      </div>
-    </MemoryRouter>
+      </MemoryRouter>
+    </NoSsr>
   );
 }
 

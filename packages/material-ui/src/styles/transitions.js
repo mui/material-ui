@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-globals */
 
 import warning from 'warning';

@@ -32,11 +32,11 @@ function TextButtons(props) {
       <input
         accept="image/*"
         className={classes.input}
-        id="flat-button-file"
+        id="text-button-file"
         multiple
         type="file"
       />
-      <label htmlFor="flat-button-file">
+      <label htmlFor="text-button-file">
         <Button component="span" className={classes.button}>
           Upload
         </Button>

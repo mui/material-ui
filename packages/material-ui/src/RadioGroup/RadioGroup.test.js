@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
@@ -35,6 +35,54 @@ describe('<RadioGroup />', () => {
     wrapper.simulate('keyDown', event);
     assert.strictEqual(handleKeyDown.callCount, 1);
     assert.strictEqual(handleKeyDown.args[0][0], event);
+  });
+
+  it('should support uncontrolled mode', () => {
+    const wrapper = shallow(
+      <RadioGroup name="group">
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    const radio = wrapper.children().first();
+    const event = { target: { value: 'one' } };
+    radio.simulate('change', event, true);
+    assert.strictEqual(
+      wrapper
+        .children()
+        .first()
+        .props().checked,
+      true,
+    );
+  });
+
+  it('should support default value in uncontrolled mode', () => {
+    const wrapper = shallow(
+      <RadioGroup name="group" defaultValue="zero">
+        <Radio value="zero" />
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .children()
+        .first()
+        .props().checked,
+      true,
+    );
+
+    const radio = wrapper.children().last();
+    const event = { target: { value: 'one' } };
+    radio.simulate('change', event, true);
+
+    assert.strictEqual(
+      wrapper
+        .children()
+        .last()
+        .props().checked,
+      true,
+    );
   });
 
   describe('imperative focus()', () => {
@@ -132,20 +180,6 @@ describe('<RadioGroup />', () => {
       internalRadio.simulate('change', event, true);
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.calledWith(event), true);
-    });
-
-    it('should not fire onChange if not checked', () => {
-      const handleChange = spy();
-      const wrapper = shallow(
-        <RadioGroup value="" onChange={handleChange}>
-          <Radio />
-          <Radio />
-        </RadioGroup>,
-      );
-
-      const internalRadio = wrapper.children().first();
-      internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, false);
-      assert.strictEqual(handleChange.callCount, 0);
     });
 
     it('should chain the onChange property', () => {

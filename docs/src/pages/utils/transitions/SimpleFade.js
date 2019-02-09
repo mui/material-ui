@@ -9,6 +9,9 @@ const styles = theme => ({
   root: {
     height: 180,
   },
+  container: {
+    display: 'flex',
+  },
   paper: {
     margin: theme.spacing.unit,
   },
@@ -39,13 +42,15 @@ class SimpleFade extends React.Component {
     return (
       <div className={classes.root}>
         <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
-        <Fade in={checked}>
-          <Paper elevation={4} className={classes.paper}>
-            <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-            </svg>
-          </Paper>
-        </Fade>
+        <div className={classes.container}>
+          <Fade in={checked}>
+            <Paper elevation={4} className={classes.paper}>
+              <svg className={classes.svg}>
+                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              </svg>
+            </Paper>
+          </Fade>
+        </div>
       </div>
     );
   }

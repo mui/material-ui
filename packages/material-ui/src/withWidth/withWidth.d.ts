@@ -2,11 +2,17 @@ import { Breakpoint } from '../styles/createBreakpoints';
 import { PropInjector } from '..';
 
 export interface WithWidthOptions {
-  resizeInterval: number;
+  withTheme?: boolean;
+  noSSR?: boolean;
+  initialWidth?: Breakpoint;
+  resizeInterval?: number;
 }
 
 export interface WithWidth {
   width: Breakpoint;
+}
+
+export interface WithWidthProps extends Partial<WithWidth> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
@@ -24,4 +30,4 @@ export function isWidthUp(
 
 export default function withWidth(
   options?: WithWidthOptions,
-): PropInjector<WithWidth, Partial<WithWidth>>;
+): PropInjector<WithWidth, WithWidthProps>;

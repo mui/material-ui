@@ -10,7 +10,7 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -28,6 +28,12 @@ const styles = theme => ({
       borderBottomColor: purple[500],
     },
   },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: purple[500],
+    },
+  },
+  notchedOutline: {},
   bootstrapRoot: {
     'label + &': {
       marginTop: theme.spacing.unit * 3,
@@ -35,9 +41,11 @@ const styles = theme => ({
   },
   bootstrapInput: {
     borderRadius: 4,
+    position: 'relative',
     backgroundColor: theme.palette.common.white,
     border: '1px solid #ced4da',
     fontSize: 16,
+    width: 'auto',
     padding: '10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
@@ -54,6 +62,7 @@ const styles = theme => ({
       '"Segoe UI Symbol"',
     ].join(','),
     '&:focus': {
+      borderRadius: 4,
       borderColor: '#80bdff',
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
@@ -67,17 +76,18 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  typography: { useNextVariants: true },
 });
 
 function CustomizedInputs(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       <FormControl className={classes.margin}>
         <InputLabel
-          htmlFor="custom-css-input"
-          FormLabelClasses={{
+          htmlFor="custom-css-standard-input"
+          classes={{
             root: classes.cssLabel,
             focused: classes.cssFocused,
           }}
@@ -85,17 +95,44 @@ function CustomizedInputs(props) {
           Custom CSS
         </InputLabel>
         <Input
-          id="custom-css-input"
+          id="custom-css-standard-input"
           classes={{
             underline: classes.cssUnderline,
           }}
         />
       </FormControl>
+      <TextField
+        className={classes.margin}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
+        InputProps={{
+          classes: {
+            root: classes.cssOutlinedInput,
+            focused: classes.cssFocused,
+            notchedOutline: classes.notchedOutline,
+          },
+        }}
+        label="Custom CSS"
+        variant="outlined"
+        id="custom-css-outlined-input"
+      />
+
       <MuiThemeProvider theme={theme}>
         <TextField
           className={classes.margin}
           label="MuiThemeProvider"
-          id="mui-theme-provider-input"
+          id="mui-theme-provider-standard-input"
+        />
+
+        <TextField
+          className={classes.margin}
+          label="MuiThemeProvider"
+          variant="outlined"
+          id="mui-theme-provider-outlined-input"
         />
       </MuiThemeProvider>
       <FormControl className={classes.margin}>

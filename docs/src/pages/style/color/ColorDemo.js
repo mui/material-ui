@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
@@ -74,7 +74,7 @@ function ColorDemo(props) {
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               Color sample
             </Typography>
           </Toolbar>
@@ -91,9 +91,9 @@ function ColorDemo(props) {
 }
 \`\`\``}
         />
-        <Button variant="fab" className={classes.fab} style={{ backgroundColor: secondary.main }}>
+        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="Add">
           <AddIcon nativeColor={secondary.contrastText} />
-        </Button>
+        </Fab>
       </div>
     </div>
   );

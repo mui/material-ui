@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import Transition from 'react-transition-group/Transition';
-import { createShallow, createMount, unwrap } from '../test-utils';
+import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
@@ -301,7 +301,7 @@ describe('<Slide />', () => {
     });
   });
 
-  describe('server side', () => {
+  describe('server-side', () => {
     it('should be initially hidden', () => {
       const wrapper = shallow(<Slide {...defaultProps} in={false} />);
       assert.strictEqual(wrapper.find(Transition).props().style.visibility, 'hidden');

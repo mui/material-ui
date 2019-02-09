@@ -2,35 +2,55 @@
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
+import { parse as docgenParse } from 'react-docgen';
+import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
+import { LANGUAGES } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
+const DEMO_IGNORE = LANGUAGES.map(language => `-${language}.md`);
 
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
 }
 
 function generateHeader(reactAPI) {
-  return [
-    '---',
-    `filename: ${normalizePath(reactAPI.filename)}`,
-    `title: ${reactAPI.name} API`,
-    '---',
-  ].join('\n');
+  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
 }
 
 function getDeprecatedInfo(type) {
-  const deprecatedPropType = 'deprecated(PropTypes.';
+  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
+  const match = type.raw.match(marker);
+  const startIndex = type.raw.search(marker);
+  if (match) {
+    const offset = match[0].length;
 
-  const indexStart = type.raw.indexOf(deprecatedPropType);
-
-  if (indexStart !== -1) {
     return {
-      propTypes: type.raw.substring(indexStart + deprecatedPropType.length, type.raw.indexOf(',')),
+      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
       explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
     };
+  }
+
+  return false;
+}
+
+function getChained(type) {
+  const marker = 'chainPropTypes';
+  const indexStart = type.raw.indexOf(marker);
+
+  if (indexStart !== -1) {
+    const parsed = docgenParse(`
+      import PropTypes from 'prop-types';
+      const Foo = () => <div />
+      Foo.propTypes = {
+        bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
+      }
+      export default Foo
+    `);
+
+    return parsed.props.bar.type;
   }
 
   return false;
@@ -49,7 +69,6 @@ function generatePropDescription(description, type) {
 
   if (type.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
-
     if (deprecatedInfo) {
       deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
     }
@@ -76,7 +95,7 @@ function generatePropDescription(description, type) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach(tag => {
       if (tag.description) {
-        tag.description = tag.description.replace(/\n/g, ' ');
+        tag.description = tag.description.replace(/\r*\n/g, ' ');
       }
     });
 
@@ -122,11 +141,19 @@ function generatePropType(type) {
   switch (type.name) {
     case 'custom': {
       const deprecatedInfo = getDeprecatedInfo(type);
-
       if (deprecatedInfo !== false) {
         return generatePropType({
           name: deprecatedInfo.propTypes,
         });
+      }
+
+      const chained = getChained(type);
+      if (chained !== false) {
+        return generatePropType(chained);
+      }
+
+      if (type.raw === 'componentPropType') {
+        return 'Component';
       }
 
       return type.raw;
@@ -200,7 +227,7 @@ function generateProps(reactAPI) {
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(
-        prop.defaultValue.value.replace(/\n/g, ''),
+        prop.defaultValue.value.replace(/\r*\n/g, ''),
       )}</span>`;
     }
 
@@ -218,17 +245,21 @@ function generateProps(reactAPI) {
 
     textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
       prop.type,
-    )} | ${defaultValue} | ${description} |\n`;
+    )}</span> | ${defaultValue} | ${description} |\n`;
 
     return textProps;
   }, text);
 
-  text = `${text}
+  if (reactAPI.spread) {
+    text = `${text}
 Any other properties supplied will be spread to the root element (${
-    reactAPI.inheritance
-      ? `[${reactAPI.inheritance.component}](${reactAPI.inheritance.pathname})`
-      : 'native element'
-  }).`;
+      reactAPI.inheritance
+        ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+            reactAPI.inheritance.pathname,
+          )})`
+        : 'native element'
+    }).`;
+  }
 
   return text;
 }
@@ -261,21 +292,20 @@ function generateClasses(reactAPI) {
     text = reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n');
   }
 
-  return `## CSS API
+  return `## CSS
 
 You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
 
 ${text}
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
     reactAPI.filename,
   )})
 for more detail.
 
-If using the \`overrides\` key of the theme as documented
-[here](/customization/themes#customizing-all-instances-of-a-component-type),
+If using the \`overrides\` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 
 `;
@@ -305,17 +335,17 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [${inheritance.component}](${
-    inheritance.pathname
-  }) component${suffix} are also available.
-You can take advantage of this behavior to [target nested components](/guides/api#spread).
+The properties of the [${inheritance.component}](${_rewriteUrlForNextExport(
+    inheritance.pathname,
+  )}) component${suffix} are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 `;
 }
 
 function generateDemos(reactAPI) {
   const pagesMarkdown = reactAPI.pagesMarkdown.reduce((accumulator, page) => {
-    if (page.components.includes(reactAPI.name)) {
+    if (!DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)) {
       accumulator.push(page);
     }
 
@@ -328,13 +358,15 @@ function generateDemos(reactAPI) {
 
   return `## Demos
 
-${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('\n')}
+${pagesMarkdown
+  .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
+  .join('\n')}
 
 `;
 }
 
 function generateImportStatement(reactAPI) {
-  const source = reactAPI.filename
+  const source = normalizePath(reactAPI.filename)
     // determine the published package name
     .replace(
       /\/packages\/material-ui(-(.+?))?\/src/,
@@ -355,9 +387,10 @@ export default function generateMarkdown(reactAPI) {
     '',
     '<!--- This documentation is automatically generated, do not try to edit it. -->',
     '',
-    `# ${reactAPI.name}`,
+    `# ${reactAPI.name} API`,
     '',
-    `<p class="description">The API documentation of the ${reactAPI.name} React component.</p>`,
+    `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
+      'Learn more about the properties and the CSS customization points.</p>',
     '',
     generateImportStatement(reactAPI),
     '',

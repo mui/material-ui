@@ -133,7 +133,7 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('getLuminance', () => {
-    it('returns a valid luminance for rgb white', () => {
+    it('returns a valid luminance for rgb black', () => {
       assert.strictEqual(getLuminance('rgba(0, 0, 0)'), 0);
       assert.strictEqual(getLuminance('rgb(0, 0, 0)'), 0);
     });

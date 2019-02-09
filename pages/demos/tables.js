@@ -1,44 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/tables/tables.md';
+
+const req = require.context('docs/src/pages/demos/tables', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/tables', false, /\.js$/);
+const reqPrefix = 'pages/demos/tables';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/demos/tables/SimpleTable.js': {
-          js: require('docs/src/pages/demos/tables/SimpleTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/SimpleTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/EnhancedTable.js': {
-          js: require('docs/src/pages/demos/tables/EnhancedTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/EnhancedTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/CustomPaginationActionsTable.js': {
-          js: require('docs/src/pages/demos/tables/CustomPaginationActionsTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomPaginationActionsTable'), 'utf8')
-`,
-        },
-        'pages/demos/tables/CustomizedTable.js': {
-          js: require('docs/src/pages/demos/tables/CustomizedTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomizedTable'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

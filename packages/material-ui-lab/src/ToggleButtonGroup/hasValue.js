@@ -4,5 +4,5 @@ export default function hasValue(value) {
     return value.length > 0;
   }
 
-  return !!value;
+  return value != null;
 }

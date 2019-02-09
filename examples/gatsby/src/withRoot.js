@@ -6,8 +6,6 @@ import getPageContext from './getPageContext';
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    muiPageContext = null;
-
     constructor(props) {
       super(props);
       this.muiPageContext = getPageContext();
@@ -15,7 +13,7 @@ function withRoot(Component) {
 
     componentDidMount() {
       // Remove the server-side injected CSS.
-      const jssStyles = document.querySelector('#server-side-jss');
+      const jssStyles = document.querySelector('#jss-server-side');
       if (jssStyles && jssStyles.parentNode) {
         jssStyles.parentNode.removeChild(jssStyles);
       }

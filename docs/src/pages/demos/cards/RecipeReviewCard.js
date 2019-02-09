@@ -30,13 +30,10 @@ const styles = theme => ({
   },
   expand: {
     transform: 'rotate(0deg)',
+    marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -8,
-    },
   },
   expandOpen: {
     transform: 'rotate(180deg)',
@@ -75,7 +72,7 @@ class RecipeReviewCard extends React.Component {
         <CardMedia
           className={classes.media}
           image="/static/images/cards/paella.jpg"
-          title="Contemplative Reptile"
+          title="Paella dish"
         />
         <CardContent>
           <Typography component="p">
@@ -103,9 +100,7 @@ class RecipeReviewCard extends React.Component {
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph variant="body2">
-              Method:
-            </Typography>
+            <Typography paragraph>Method:</Typography>
             <Typography paragraph>
               Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
               minutes.

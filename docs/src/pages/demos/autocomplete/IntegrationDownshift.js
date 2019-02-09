@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
-import keycode from 'keycode';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -56,6 +55,7 @@ function renderInput(inputProps) {
         inputRef: ref,
         classes: {
           root: classes.inputRoot,
+          input: classes.inputInput,
         },
         ...InputProps,
       }}
@@ -117,7 +117,7 @@ class DownshiftMultiple extends React.Component {
 
   handleKeyDown = event => {
     const { inputValue, selectedItem } = this.state;
-    if (selectedItem.length && !inputValue.length && keycode(event) === 'backspace') {
+    if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
       this.setState({
         selectedItem: selectedItem.slice(0, selectedItem.length - 1),
       });
@@ -234,6 +234,10 @@ const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
   },
+  inputInput: {
+    width: 'auto',
+    flexGrow: 1,
+  },
   divider: {
     height: theme.spacing.unit * 2,
   },
@@ -306,9 +310,12 @@ function IntegrationDownshift(props) {
                 popperNode = node;
               },
             })}
-            <div {...getMenuProps()}>
-              <Popper disablePortal open={isOpen} anchorEl={popperNode}>
-                <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
+            <Popper open={isOpen} anchorEl={popperNode}>
+              <div {...(isOpen ? getMenuProps({}, { suppressRefError: true }) : {})}>
+                <Paper
+                  square
+                  style={{ marginTop: 8, width: popperNode ? popperNode.clientWidth : null }}
+                >
                   {getSuggestions(inputValue).map((suggestion, index) =>
                     renderSuggestion({
                       suggestion,
@@ -319,8 +326,8 @@ function IntegrationDownshift(props) {
                     }),
                   )}
                 </Paper>
-              </Popper>
-            </div>
+              </div>
+            </Popper>
           </div>
         )}
       </Downshift>

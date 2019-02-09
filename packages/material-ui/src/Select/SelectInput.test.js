@@ -1,8 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import keycode from 'keycode';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Menu from '../Menu';
 import Portal from '../Portal';
 import MenuItem from '../MenuItem';
@@ -61,12 +60,43 @@ describe('<SelectInput />', () => {
     );
   });
 
+  describe('prop: value', () => {
+    it('should select the option based on the number value', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} value={20} />);
+      assert.deepEqual(wrapper.find(MenuItem).map(m => m.props().selected), [false, true, false]);
+    });
+
+    it('should select the option based on the string value', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} value="20" />);
+      assert.deepEqual(wrapper.find(MenuItem).map(m => m.props().selected), [false, true, false]);
+    });
+
+    it('should select only the option that matches the object', () => {
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
+
+      const wrapper = shallow(
+        <SelectInput {...defaultProps} value={obj1}>
+          <MenuItem key={1} value={obj1}>
+            1
+          </MenuItem>
+          <MenuItem key={2} value={obj2}>
+            2
+          </MenuItem>
+        </SelectInput>,
+      );
+
+      assert.deepEqual(wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected), [
+        true,
+        false,
+      ]);
+    });
+  });
+
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} readOnly />);
-      wrapper
-        .find(`.${defaultProps.classes.select}`)
-        .simulate('keyDown', { which: keycode('down') });
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key: 'ArrowDown' });
       assert.strictEqual(wrapper.state().open, false);
     });
   });
@@ -190,11 +220,9 @@ describe('<SelectInput />', () => {
       assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
     });
 
-    ['space', 'up', 'down'].forEach(key => {
+    [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
-        wrapper
-          .find(`.${defaultProps.classes.select}`)
-          .simulate('keyDown', { which: keycode(key) });
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('keyDown', { key });
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(instance.ignoreNextBlur, true);
       });
@@ -281,9 +309,7 @@ describe('<SelectInput />', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} disabled tabIndex={0} />);
       assert.strictEqual(wrapper.find('[data-mui-test="SelectDisplay"]').props().tabIndex, 0);
     });
-  });
 
-  describe('prop: multiple', () => {
     it('should serialize multiple select value', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} value={[10, 30]} multiple />);
       assert.strictEqual(wrapper.find('input').props().value, '10,30');
@@ -292,6 +318,45 @@ describe('<SelectInput />', () => {
         false,
         true,
       ]);
+    });
+
+    describe('when the value matches an option but they are different types', () => {
+      it('should select the options based on the value', () => {
+        const wrapper = shallow(<SelectInput {...defaultProps} value={['10', '20']} multiple />);
+        assert.deepEqual(wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected), [
+          true,
+          true,
+          false,
+        ]);
+      });
+    });
+
+    describe('when the value is an object', () => {
+      it('should select only the options that match', () => {
+        const obj1 = { id: 1 };
+        const obj2 = { id: 2 };
+        const obj3 = { id: 3 };
+
+        const wrapper = shallow(
+          <SelectInput {...defaultProps} value={[obj1, obj3]} multiple>
+            <MenuItem key={1} value={obj1}>
+              1
+            </MenuItem>
+            <MenuItem key={2} value={obj2}>
+              2
+            </MenuItem>
+            <MenuItem key={3} value={obj3}>
+              3
+            </MenuItem>
+          </SelectInput>,
+        );
+
+        assert.deepEqual(wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected), [
+          true,
+          false,
+          true,
+        ]);
+      });
     });
 
     it('should throw if non array', () => {
@@ -353,6 +418,32 @@ describe('<SelectInput />', () => {
       const ref = React.createRef();
       mount(<SelectInput {...defaultProps} inputRef={ref} />);
       assert.strictEqual(ref.current.node.tagName, 'INPUT');
+    });
+
+    it('should be able to return the input focus proxy function', () => {
+      const ref = React.createRef();
+      mount(<SelectInput {...defaultProps} inputRef={ref} />);
+      assert.strictEqual(typeof ref.current.focus, 'function');
+    });
+
+    it('should be able to hit proxy function', () => {
+      const ref = React.createRef();
+      const onFocus = spy();
+      mount(<SelectInput {...defaultProps} inputRef={ref} onFocus={onFocus} />);
+      ref.current.focus();
+      assert.strictEqual(onFocus.called, true);
+    });
+  });
+
+  describe('prop: name', () => {
+    it('should have no id when name is not provided', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} />);
+      assert.strictEqual(wrapper.find('.select').props().id, undefined);
+    });
+
+    it('should have select-`name` id when name is provided', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} name="foo" />);
+      assert.strictEqual(wrapper.find('.select').props().id, 'select-foo');
     });
   });
 });

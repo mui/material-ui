@@ -21,7 +21,7 @@ We recognize that you need **stability** from the Material-UI library. Stability
 
 This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
+Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/).
 Material-UI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 
@@ -36,6 +36,7 @@ No developer assistance is expected during update.
 We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
 
 In general, you can expect the following release cycle:
+
 - A **major** release every 6 months.
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for urgent bugfix).
@@ -61,6 +62,7 @@ We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Lon
 Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
 To make these transitions as easy as possible, we make two commitments to you:
+
 - We work hard to minimize the number of breaking changes and to provide migration tools when possible.
 - We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
 

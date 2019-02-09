@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import RootRef from '../RootRef';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import exactProp from '../utils/exactProp';
 import Grow from '../Grow';
 import Popper from '../Popper';
 
@@ -14,6 +14,11 @@ export const styles = theme => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     opacity: 0.9,
+    pointerEvents: 'none',
+  },
+  /* Styles applied to the Popper component if `interactive={true}`. */
+  popperInteractive: {
+    pointerEvents: 'auto',
   },
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
@@ -67,23 +72,7 @@ export const styles = theme => ({
 });
 
 class Tooltip extends React.Component {
-  childrenRef = null;
-
-  closeTimer = null;
-
-  defaultId = null;
-
-  enterTimer = null;
-
-  focusTimer = null;
-
   ignoreNonTouchEvents = false;
-
-  isControlled = null;
-
-  leaveTimer = null;
-
-  touchTimer = null;
 
   constructor(props) {
     super();
@@ -100,7 +89,9 @@ class Tooltip extends React.Component {
 
   componentDidMount() {
     warning(
-      !this.childrenRef.disabled || !this.childrenRef.tagName.toLowerCase() === 'button',
+      !this.childrenRef.disabled ||
+        (this.childrenRef.disabled && this.props.title === '') ||
+        this.childrenRef.tagName.toLowerCase() !== 'button',
       [
         'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
         'A disabled element does not fire events.',
@@ -112,7 +103,7 @@ class Tooltip extends React.Component {
 
     // Fallback to this default id when possible.
     // Use the random value for client side rendering only.
-    // We can't use it server side.
+    // We can't use it server-side.
     this.defaultId = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
 
     // Rerender with this.defaultId and this.childrenRef.
@@ -142,7 +133,7 @@ class Tooltip extends React.Component {
       if (this.childrenRef === document.activeElement) {
         this.handleEnter(event);
       }
-    }, 0);
+    });
 
     const childrenProps = this.props.children.props;
     if (childrenProps.onFocus) {
@@ -270,7 +261,14 @@ class Tooltip extends React.Component {
       disableFocusListener,
       disableHoverListener,
       disableTouchListener,
+      enterDelay,
+      enterTouchDelay,
       id,
+      interactive,
+      leaveDelay,
+      leaveTouchDelay,
+      onClose,
+      onOpen,
       open: openProp,
       placement,
       PopperProps,
@@ -278,18 +276,28 @@ class Tooltip extends React.Component {
       title,
       TransitionComponent,
       TransitionProps,
+      ...other
     } = this.props;
 
     let open = this.isControlled ? openProp : this.state.open;
 
-    // There is no point at displaying an empty tooltip.
+    // There is no point in displaying an empty tooltip.
     if (title === '') {
       open = false;
     }
 
+    // For accessibility and SEO concerns, we render the title to the DOM node when
+    // the tooltip is hidden. However, we have made a tradeoff when
+    // `disableHoverListener` is set. This title logic is disabled.
+    // It's allowing us to keep the implementation size minimal.
+    // We are open to change the tradeoff.
+    const shouldShowNativeTitle = !open && !disableHoverListener;
     const childrenProps = {
       'aria-describedby': open ? id || this.defaultId : null,
-      title: !open && typeof title === 'string' ? title : null,
+      title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
+      ...other,
+      ...children.props,
+      className: classNames(other.className, children.props.className),
     };
 
     if (!disableTouchListener) {
@@ -307,6 +315,15 @@ class Tooltip extends React.Component {
       childrenProps.onBlur = this.handleLeave;
     }
 
+    const interactiveWrapperListeners = interactive
+      ? {
+          onMouseOver: childrenProps.onMouseOver,
+          onMouseLeave: childrenProps.onMouseLeave,
+          onFocus: childrenProps.onFocus,
+          onBlur: childrenProps.onBlur,
+        }
+      : {};
+
     warning(
       !children.props.title,
       [
@@ -319,12 +336,15 @@ class Tooltip extends React.Component {
       <React.Fragment>
         <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
-          className={classes.popper}
+          className={classNames(classes.popper, {
+            [classes.popperInteractive]: interactive,
+          })}
           placement={placement}
           anchorEl={this.childrenRef}
           open={open}
           id={childrenProps['aria-describedby']}
           transition
+          {...interactiveWrapperListeners}
           {...PopperProps}
         >
           {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
@@ -386,9 +406,14 @@ Tooltip.propTypes = {
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
    * This property is used with aria-describedby to solve the accessibility issue.
-   * If you don't provide this property. It fallback to a random generated id.
+   * If you don't provide this property. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
+  /**
+   * Makes a tooltip interactive, i.e. will not close when the user
+   * hovers over the tooltip before the `leaveDelay` is expired.
+   */
+  interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This property won't impact the leave touch delay (`leaveTouchDelay`).
@@ -432,7 +457,7 @@ Tooltip.propTypes = {
     'top',
   ]),
   /**
-   * Properties applied to the [`Popper`](/api/popper) element.
+   * Properties applied to the [`Popper`](/api/popper/) element.
    */
   PopperProps: PropTypes.object,
   /**
@@ -444,16 +469,14 @@ Tooltip.propTypes = {
    */
   title: PropTypes.node.isRequired,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * Properties applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };
-
-Tooltip.propTypes = exactProp(Tooltip.propTypes);
 
 Tooltip.defaultProps = {
   disableFocusListener: false,
@@ -461,6 +484,7 @@ Tooltip.defaultProps = {
   disableTouchListener: false,
   enterDelay: 0,
   enterTouchDelay: 1000,
+  interactive: false,
   leaveDelay: 0,
   leaveTouchDelay: 1500,
   placement: 'bottom',

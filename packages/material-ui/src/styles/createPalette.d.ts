@@ -1,6 +1,8 @@
 import { Color, PaletteType } from '..';
 import { CommonColors } from '../colors/common';
 
+export type ColorPartial = Partial<Color>;
+
 export interface TypeText {
   primary: string;
   secondary: string;
@@ -24,7 +26,7 @@ export interface TypeBackground {
 
 export type TypeDivider = string;
 
-export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;
+export type PaletteColorOptions = SimplePaletteColorOptions | ColorPartial;
 
 export interface SimplePaletteColorOptions {
   light?: string;
@@ -64,16 +66,18 @@ export interface Palette {
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (background: string) => string;
-  augmentColor: (
-    color: SimplePaletteColorOptions,
-    mainShade: number | string,
-    lightShade: number | string,
-    darkShade: number | string,
-  ) => void;
+  augmentColor: {
+    (
+      color: ColorPartial,
+      mainShade?: number | string,
+      lightShade?: number | string,
+      darkShade?: number | string,
+    ): void;
+    (color: PaletteColorOptions): void;
+  };
 }
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
-export type ColorPartial = Partial<Color>;
 
 export interface PaletteOptions {
   primary?: PaletteColorOptions;

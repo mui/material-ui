@@ -7,10 +7,6 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   margin: {
     margin: theme.spacing.unit,
   },
@@ -27,6 +23,7 @@ const styles = theme => ({
     fontSize: 16,
     padding: '6px 12px',
     border: '1px solid',
+    lineHeight: 1.5,
     backgroundColor: '#007bff',
     borderColor: '#007bff',
     fontFamily: [
@@ -60,13 +57,16 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
-function CustomizedInputs(props) {
+function CustomizedButtons(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <div>
       <Button
         variant="contained"
         color="primary"
@@ -91,8 +91,8 @@ function CustomizedInputs(props) {
   );
 }
 
-CustomizedInputs.propTypes = {
+CustomizedButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CustomizedInputs);
+export default withStyles(styles)(CustomizedButtons);

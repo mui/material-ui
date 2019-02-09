@@ -1,10 +1,8 @@
-/* eslint-disable react/no-did-mount-set-state */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import { getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -35,26 +33,24 @@ const withWidth = (options = {}) => Component => {
   } = options;
 
   class WithWidth extends React.Component {
-    handleResize = debounce(() => {
-      const width = this.getWidth();
-      if (width !== this.state.width) {
-        this.setState({
-          width,
-        });
-      }
-    }, resizeInterval);
-
     constructor(props) {
       super(props);
 
-      if (noSSR) {
-        this.state.width = this.getWidth();
+      this.state = {
+        width: noSSR ? this.getWidth() : undefined,
+      };
+
+      if (typeof window !== 'undefined') {
+        this.handleResize = debounce(() => {
+          const width2 = this.getWidth();
+          if (width2 !== this.state.width) {
+            this.setState({
+              width: width2,
+            });
+          }
+        }, resizeInterval);
       }
     }
-
-    state = {
-      width: undefined,
-    };
 
     componentDidMount() {
       const width = this.getWidth();
@@ -136,11 +132,11 @@ const withWidth = (options = {}) => Component => {
     /**
      * As `window.innerWidth` is unavailable on the server,
      * we default to rendering an empty component during the first mount.
-     * In some situation, you might want to use an heuristic to approximate
+     * You might want to use an heuristic to approximate
      * the screen width of the client browser screen width.
      *
      * For instance, you could be using the user-agent or the client-hints.
-     * http://caniuse.com/#search=client%20hint
+     * https://caniuse.com/#search=client%20hint
      */
     initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     /**
@@ -154,7 +150,7 @@ const withWidth = (options = {}) => Component => {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    WithWidth.displayName = wrapDisplayName(Component, 'WithWidth');
+    WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithWidth, Component);

@@ -31,23 +31,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class SwipeableDrawer extends React.Component {
-  backdropRef = null;
+  state = {};
 
   isSwiping = null;
-
-  paperRef = null;
-
-  startX = null;
-
-  startY = null;
-
-  lastTime = null;
-
-  lastTranslate = null;
-
-  velocity = 0;
-
-  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -155,7 +141,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   handleBodyTouchStart = event => {
-    // We are not supposed to hanlde this touch move.
+    // We are not supposed to handle this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
     }
@@ -374,6 +360,7 @@ class SwipeableDrawer extends React.Component {
       onOpen,
       open,
       PaperProps = {},
+      SwipeAreaProps,
       swipeAreaWidth,
       variant,
       ...other
@@ -403,13 +390,11 @@ class SwipeableDrawer extends React.Component {
           anchor={anchor}
           {...other}
         />
-        {!disableDiscovery &&
-          !disableSwipeToOpen &&
-          variant === 'temporary' && (
-            <NoSsr>
-              <SwipeArea anchor={anchor} width={swipeAreaWidth} />
-            </NoSsr>
-          )}
+        {!disableDiscovery && !disableSwipeToOpen && variant === 'temporary' && (
+          <NoSsr>
+            <SwipeArea anchor={anchor} width={swipeAreaWidth} {...SwipeAreaProps} />
+          </NoSsr>
+        )}
       </React.Fragment>
     );
   }
@@ -435,6 +420,10 @@ SwipeableDrawer.propTypes = {
    * navigation actions. Swipe to open is disabled on iOS browsers by default.
    */
   disableSwipeToOpen: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  hideBackdrop: PropTypes.bool,
   /**
    * Affects how far the drawer must be opened/closed to change his state.
    * Specified as percent (0-1) of the width of the drawer
@@ -470,6 +459,10 @@ SwipeableDrawer.propTypes = {
    * @ignore
    */
   PaperProps: PropTypes.object,
+  /**
+   * Properties applied to the swipe area element.
+   */
+  SwipeAreaProps: PropTypes.object,
   /**
    * The width of the left most (or right most) area in pixels where the
    * drawer can be swiped open from.

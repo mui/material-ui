@@ -69,26 +69,32 @@ export function setTranslateValue(props, node) {
 }
 
 /**
- * The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+ * The Slide transition is used by the [Snackbar](/demos/snackbars/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Slide extends React.Component {
   mounted = false;
 
-  transition = null;
+  constructor() {
+    super();
 
-  handleResize = debounce(() => {
-    // Skip configuration where the position is screen size invariant.
-    if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
-      return;
-    }
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        // Skip configuration where the position is screen size invariant.
+        if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
+          return;
+        }
 
-    if (this.transitionRef) {
-      setTranslateValue(this.props, this.transitionRef);
+        if (this.transitionRef) {
+          setTranslateValue(this.props, this.transitionRef);
+        }
+      }, 166); // Corresponds to 10 frames at 60 Hz.
     }
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  }
 
   componentDidMount() {
+    this.mounted = true;
+
     // state.mounted handle SSR, once the component is mounted, we need
     // to properly hide it.
     if (!this.props.in) {
@@ -96,8 +102,6 @@ class Slide extends React.Component {
       // otherwise component will be shown when in=false.
       this.updatePosition();
     }
-
-    this.mounted = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -183,6 +187,7 @@ class Slide extends React.Component {
   render() {
     const {
       children,
+      direction,
       onEnter,
       onEntering,
       onExit,

@@ -1,24 +1,14 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/premium-themes/premium-themes.md';
+
+const req = require.context('docs/src/pages/premium-themes', false, /\.md|\.js$/);
+const reqSource = require.context('!raw-loader!../docs/src/pages/premium-themes', false, /\.js$/);
+const reqPrefix = 'pages/premium-themes';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      disableAd
-      markdown={markdown}
-      demos={{
-        'pages/premium-themes/PremiumThemes.js': {
-          js: require('docs/src/pages/premium-themes/PremiumThemes').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/premium-themes/PremiumThemes'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs disableAd req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

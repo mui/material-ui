@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -113,7 +114,7 @@ TableSortLabel.propTypes = {
   /**
    * Sort icon to use.
    */
-  IconComponent: PropTypes.func,
+  IconComponent: componentPropType,
 };
 
 TableSortLabel.defaultProps = {

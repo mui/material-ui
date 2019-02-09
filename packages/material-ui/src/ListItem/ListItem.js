@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { chainPropTypes, componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
+import MergeListContext from './MergeListContext';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -16,9 +18,9 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 12,
-    paddingBottom: 12,
-    '&$selected, &$selected:hover': {
+    paddingTop: 11, // To use 10px in v4
+    paddingBottom: 11, // To use 10px in v4
+    '&$selected, &$selected:hover, &$selected:focus': {
       backgroundColor: theme.palette.action.selected,
     },
   },
@@ -26,17 +28,19 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  // TODO: Sanity check this - why is focusVisibleClassName prop apparently applied to a div?
+  // To remove in v4
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {
-    backgroundColor: theme.palette.action.hover,
-  },
+  focusVisible: {},
   /* Legacy styles applied to the root element. Use `root` instead. */
   default: {},
   /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
   dense: {
     paddingTop: 8,
     paddingBottom: 8,
+  },
+  /* Styles applied to the `component` element if `alignItems="flex-start"`. */
+  alignItemsFlexStart: {
+    alignItems: 'flex-start',
   },
   /* Styles applied to the inner `component` element if `disabled={true}`. */
   disabled: {
@@ -48,7 +52,10 @@ export const styles = theme => ({
     backgroundClip: 'padding-box',
   },
   /* Styles applied to the inner `component` element if `disableGutters={false}`. */
-  gutters: theme.mixins.gutters(),
+  gutters: {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
   /* Styles applied to the inner `component` element if `button={true}`. */
   button: {
     transition: theme.transitions.create('background-color', {
@@ -62,112 +69,148 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
+    '&:focus': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
-    // is absolutely positionned.
+    // is absolutely positioned.
     paddingRight: 32,
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
 
-class ListItem extends React.Component {
-  getChildContext() {
-    return {
-      dense: this.props.dense || this.context.dense || false,
-    };
-  }
+/**
+ * Uses an additional container component if `ListItemSecondaryAction` is the last child.
+ */
+function ListItem(props) {
+  const {
+    alignItems,
+    button,
+    children: childrenProp,
+    classes,
+    className: classNameProp,
+    component: componentProp,
+    ContainerComponent,
+    ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
+    dense: denseProp,
+    disabled,
+    disableGutters,
+    divider,
+    focusVisibleClassName,
+    selected,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      button,
-      children: childrenProp,
-      classes,
-      className: classNameProp,
-      component: componentProp,
-      ContainerComponent,
-      ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
-      dense,
-      disabled,
-      disableGutters,
-      divider,
-      focusVisibleClassName,
-      selected,
-      ...other
-    } = this.props;
+  return (
+    <MergeListContext dense={denseProp} alignItems={alignItems}>
+      {({ dense }) => {
+        const children = React.Children.toArray(childrenProp);
+        const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
+        const hasSecondaryAction =
+          children.length &&
+          isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-    const isDense = dense || this.context.dense || false;
-    const children = React.Children.toArray(childrenProp);
-    const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
-    const hasSecondaryAction =
-      children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
+        const className = classNames(
+          classes.root,
+          classes.default,
+          {
+            [classes.dense]: dense || hasAvatar,
+            [classes.gutters]: !disableGutters,
+            [classes.divider]: divider,
+            [classes.disabled]: disabled,
+            [classes.button]: button,
+            [classes.alignItemsFlexStart]: alignItems === 'flex-start',
+            [classes.secondaryAction]: hasSecondaryAction,
+            [classes.selected]: selected,
+          },
+          classNameProp,
+        );
 
-    const className = classNames(
-      classes.root,
-      classes.default,
-      {
-        [classes.dense]: isDense || hasAvatar,
-        [classes.gutters]: !disableGutters,
-        [classes.divider]: divider,
-        [classes.disabled]: disabled,
-        [classes.button]: button,
-        [classes.secondaryAction]: hasSecondaryAction,
-        [classes.selected]: selected,
-      },
-      classNameProp,
-    );
+        const componentProps = { className, disabled, ...other };
+        let Component = componentProp || 'li';
 
-    const componentProps = { className, disabled, ...other };
-    let Component = componentProp || 'li';
-
-    if (button) {
-      componentProps.component = componentProp || 'div';
-      componentProps.focusVisibleClassName = classNames(
-        classes.focusVisible,
-        focusVisibleClassName,
-      );
-      Component = ButtonBase;
-    }
-
-    if (hasSecondaryAction) {
-      // Use div by default.
-      Component = !componentProps.component && !componentProp ? 'div' : Component;
-
-      // Avoid nesting of li > li.
-      if (ContainerComponent === 'li') {
-        if (Component === 'li') {
-          Component = 'div';
-        } else if (componentProps.component === 'li') {
-          componentProps.component = 'div';
+        if (button) {
+          componentProps.component = componentProp || 'div';
+          componentProps.focusVisibleClassName = classNames(
+            classes.focusVisible,
+            focusVisibleClassName,
+          );
+          Component = ButtonBase;
         }
-      }
 
-      return (
-        <ContainerComponent
-          className={classNames(classes.container, ContainerClassName)}
-          {...ContainerProps}
-        >
-          <Component {...componentProps}>{children}</Component>
-          {children.pop()}
-        </ContainerComponent>
-      );
-    }
+        if (hasSecondaryAction) {
+          // Use div by default.
+          Component = !componentProps.component && !componentProp ? 'div' : Component;
 
-    return <Component {...componentProps}>{children}</Component>;
-  }
+          // Avoid nesting of li > li.
+          if (ContainerComponent === 'li') {
+            if (Component === 'li') {
+              Component = 'div';
+            } else if (componentProps.component === 'li') {
+              componentProps.component = 'div';
+            }
+          }
+
+          return (
+            <ContainerComponent
+              className={classNames(classes.container, ContainerClassName)}
+              {...ContainerProps}
+            >
+              <Component {...componentProps}>{children}</Component>
+              {children.pop()}
+            </ContainerComponent>
+          );
+        }
+
+        return <Component {...componentProps}>{children}</Component>;
+      }}
+    </MergeListContext>
+  );
 }
 
 ListItem.propTypes = {
+  /**
+   * Defines the `align-items` style property.
+   */
+  alignItems: PropTypes.oneOf(['flex-start', 'center']),
   /**
    * If `true`, the list item will be a button (using `ButtonBase`).
    */
   button: PropTypes.bool,
   /**
-   * The content of the component.
+   * The content of the component. If a `ListItemSecondaryAction` is used it must
+   * be the last child.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    const children = React.Children.toArray(props.children);
+
+    // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)
+    let secondaryActionIndex = -1;
+    for (let i = children.length - 1; i >= 0; i -= 1) {
+      const child = children[i];
+      if (isMuiElement(child, ['ListItemSecondaryAction'])) {
+        secondaryActionIndex = i;
+        break;
+      }
+    }
+
+    //  is ListItemSecondaryAction the last child of ListItem
+    if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {
+      return new Error(
+        'Material-UI: you used an element after ListItemSecondaryAction. ' +
+          'For ListItem to detect that it has a secondary action ' +
+          `you must pass it has the last children to ListItem.${
+            process.env.NODE_ENV === 'test' ? Date.now() : ''
+          }`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
@@ -182,14 +225,13 @@ ListItem.propTypes = {
    * Either a string to use a DOM element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
-   * The container component used when a `ListItemSecondaryAction` is rendered.
+   * The container component used when a `ListItemSecondaryAction` is the last child.
    */
-  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  ContainerComponent: componentPropType,
   /**
-   * Properties applied to the container element when the component
-   * is used to display a `ListItemSecondaryAction`.
+   * Properties applied to the container component if used.
    */
   ContainerProps: PropTypes.object,
   /**
@@ -219,6 +261,7 @@ ListItem.propTypes = {
 };
 
 ListItem.defaultProps = {
+  alignItems: 'center',
   button: false,
   ContainerComponent: 'li',
   dense: false,
@@ -226,14 +269,6 @@ ListItem.defaultProps = {
   disableGutters: false,
   divider: false,
   selected: false,
-};
-
-ListItem.contextTypes = {
-  dense: PropTypes.bool,
-};
-
-ListItem.childContextTypes = {
-  dense: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiListItem' })(ListItem);

@@ -1,4 +1,3 @@
-import keycode from 'keycode';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 
@@ -6,6 +5,14 @@ const internal = {
   focusKeyPressed: false,
   keyUpEventTimeout: -1,
 };
+
+function findActiveElement(doc) {
+  let activeElement = doc.activeElement;
+  while (activeElement && activeElement.shadowRoot && activeElement.shadowRoot.activeElement) {
+    activeElement = activeElement.shadowRoot.activeElement;
+  }
+  return activeElement;
+}
 
 export function detectFocusVisible(instance, element, callback, attempt = 1) {
   warning(instance.focusVisibleCheckTime, 'Material-UI: missing instance.focusVisibleCheckTime.');
@@ -16,10 +23,11 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
 
   instance.focusVisibleTimeout = setTimeout(() => {
     const doc = ownerDocument(element);
+    const activeElement = findActiveElement(doc);
 
     if (
       internal.focusKeyPressed &&
-      (doc.activeElement === element || element.contains(doc.activeElement))
+      (activeElement === element || element.contains(activeElement))
     ) {
       callback();
     } else if (attempt < instance.focusVisibleMaxCheckTimes) {
@@ -28,21 +36,31 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
   }, instance.focusVisibleCheckTime);
 }
 
-const FOCUS_KEYS = ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'];
+const FOCUS_KEYS = [
+  9, // 'Tab',
+  13, // 'Enter',
+  27, // 'Escape',
+  32, // ' ',
+  37, // 'ArrowLeft',
+  38, // 'ArrowUp',
+  39, // 'ArrowRight',
+  40, // 'ArrowDown',
+];
 
 function isFocusKey(event) {
-  return FOCUS_KEYS.indexOf(keycode(event)) > -1;
+  // Use event.keyCode to support IE 11
+  return FOCUS_KEYS.indexOf(event.keyCode) > -1;
 }
 
 const handleKeyUpEvent = event => {
   if (isFocusKey(event)) {
     internal.focusKeyPressed = true;
 
-    // Let's consider that the user is using a keyboard during a window frame of 1s.
+    // Let's consider that the user is using a keyboard during a window frame of 500ms.
     clearTimeout(internal.keyUpEventTimeout);
     internal.keyUpEventTimeout = setTimeout(() => {
       internal.focusKeyPressed = false;
-    }, 1e3);
+    }, 500);
   }
 };
 

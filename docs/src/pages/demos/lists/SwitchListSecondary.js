@@ -44,34 +44,32 @@ class SwitchListSecondary extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        <List subheader={<ListSubheader>Settings</ListSubheader>}>
-          <ListItem>
-            <ListItemIcon>
-              <WifiIcon />
-            </ListItemIcon>
-            <ListItemText primary="Wi-Fi" />
-            <ListItemSecondaryAction>
-              <Switch
-                onChange={this.handleToggle('wifi')}
-                checked={this.state.checked.indexOf('wifi') !== -1}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <BluetoothIcon />
-            </ListItemIcon>
-            <ListItemText primary="Bluetooth" />
-            <ListItemSecondaryAction>
-              <Switch
-                onChange={this.handleToggle('bluetooth')}
-                checked={this.state.checked.indexOf('bluetooth') !== -1}
-              />
-            </ListItemSecondaryAction>
-          </ListItem>
-        </List>
-      </div>
+      <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
+        <ListItem>
+          <ListItemIcon>
+            <WifiIcon />
+          </ListItemIcon>
+          <ListItemText primary="Wi-Fi" />
+          <ListItemSecondaryAction>
+            <Switch
+              onChange={this.handleToggle('wifi')}
+              checked={this.state.checked.indexOf('wifi') !== -1}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <BluetoothIcon />
+          </ListItemIcon>
+          <ListItemText primary="Bluetooth" />
+          <ListItemSecondaryAction>
+            <Switch
+              onChange={this.handleToggle('bluetooth')}
+              checked={this.state.checked.indexOf('bluetooth') !== -1}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
+      </List>
     );
   }
 }

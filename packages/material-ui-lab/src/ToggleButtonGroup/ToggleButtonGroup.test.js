@@ -35,7 +35,7 @@ describe('<ToggleButtonGroup />', () => {
         <ToggleButton value="hello" />
       </ToggleButtonGroup>,
     );
-    assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
+    assert.strictEqual(wrapper.is('.test-class-name'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -46,7 +46,7 @@ describe('<ToggleButtonGroup />', () => {
       </ToggleButtonGroup>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
   });
 
   it('should render a selected div when selected is "auto" and a value is present', () => {
@@ -56,21 +56,17 @@ describe('<ToggleButtonGroup />', () => {
       </ToggleButtonGroup>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+    assert.strictEqual(wrapper.hasClass(classes.selected), true);
   });
 
   it('should not render a selected div when selected is "auto" and a value is missing', () => {
     const wrapper = shallow(
-      <ToggleButtonGroup selected="auto" value={null}>
+      <ToggleButtonGroup selected="auto">
         <ToggleButton value="hello" />
       </ToggleButtonGroup>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper.hasClass(classes.selected),
-      false,
-      'should not have the selected class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.selected), false);
   });
 
   describe('exclusive', () => {
@@ -113,7 +109,6 @@ describe('<ToggleButtonGroup />', () => {
           .at(0)
           .props().selected,
         true,
-        'should be selected',
       );
       assert.strictEqual(
         wrapper
@@ -121,7 +116,6 @@ describe('<ToggleButtonGroup />', () => {
           .at(1)
           .props().selected,
         false,
-        'should not be selected',
       );
     });
   });
@@ -184,7 +178,7 @@ describe('<ToggleButtonGroup />', () => {
     });
 
     describe('non exclusive', () => {
-      it('should be null when current value is toggled off', () => {
+      it('should be an empty array when current value is toggled off', () => {
         const handleChange = spy();
         const wrapper = mount(
           <ToggleButtonGroup value={['one']} onChange={handleChange}>
@@ -199,7 +193,8 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(handleChange.args[0][1], null);
+        assert.ok(Array.isArray(handleChange.args[0][1]));
+        assert.strictEqual(handleChange.args[0][1].length, 0);
       });
 
       it('should be an array with a single value when value is toggled on', () => {

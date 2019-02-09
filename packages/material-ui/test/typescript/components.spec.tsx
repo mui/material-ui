@@ -38,6 +38,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Link,
   LinearProgress,
   List,
   ListItem,
@@ -78,6 +79,8 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import { DialogProps } from '@material-ui/core/Dialog';
+import { ButtonProps } from '@material-ui/core/Button';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -88,7 +91,7 @@ const AppBarTest = () => (
       <IconButton color="inherit" aria-label="Menu">
         <FakeIcon />
       </IconButton>
-      <Typography variant="title" color="inherit">
+      <Typography variant="h6" color="inherit">
         Title
       </Typography>
       <Button color="inherit">Login</Button>
@@ -98,7 +101,7 @@ const AppBarTest = () => (
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
-const AvaterClassName = () => <Avatar className="foo" />;
+const AvatarClassName = () => <Avatar className="foo" />;
 
 const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
@@ -125,7 +128,7 @@ const ButtonTest = () => (
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="raised">Raised</Button>
+    <Button variant="contained">Contained</Button>
     <Button variant="fab" color="primary" aria-label="add">
       <FakeIcon />
     </Button>
@@ -133,7 +136,7 @@ const ButtonTest = () => (
       Raised
     </Button>
     <Button component="a">Simple Link</Button>
-    <Button component={props => <a {...props} />}>Complexe Link</Button>
+    <Button component={props => <a {...props} />}>Complex Link</Button>
   </div>
 );
 
@@ -161,7 +164,7 @@ const CardTest = () => (
   <Card>
     <CardContent>
       <Typography variant="body1">Word of the Day</Typography>
-      <Typography variant="headline" component="h2">
+      <Typography variant="h5" component="h2">
         be-nev-o-lent
       </Typography>
       <Typography variant="body1">adjective</Typography>
@@ -470,7 +473,7 @@ const MenuTest = () => {
 
 const PaperTest = () => (
   <Paper elevation={4}>
-    <Typography variant="headline" component="h3">
+    <Typography variant="h5" component="h3">
       This is a sheet of paper.
     </Typography>
     <Typography variant="body1" component="p">
@@ -479,7 +482,7 @@ const PaperTest = () => (
   </Paper>
 );
 
-const CircularProgessTest = () => (
+const CircularProgressTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
@@ -687,7 +690,7 @@ const TableTest = () => {
         <Table>
           <TableHead classes={{ root: 'foo' }}>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
               <TableCell numeric>Fat (g)</TableCell>
               <TableCell numeric>Carbs (g)</TableCell>
@@ -797,6 +800,7 @@ const TextFieldTest = () => (
         },
       }}
     />
+    <Input inputComponent="input" />
   </div>
 );
 
@@ -872,3 +876,43 @@ const InputLabelTest = () => (
     }}
   />
 );
+
+const ReactRouterLinkTest = () => {
+  interface ButtonLinkProps extends ButtonProps {
+    to: string;
+    replace?: boolean;
+  }
+
+  const ButtonLink = (props: ButtonLinkProps) => (
+    <Button {...props} component={ReactRouterLink as any} />
+  );
+
+  const reactRouterButtonLink1 = (
+    <ButtonLink color="primary" to="/">
+      Go Home
+    </ButtonLink>
+  );
+
+  const MyLink = (props: any) => <ReactRouterLink to="/" {...props} />;
+
+  const reactRouterButtonLink2 = (
+    <Button color="primary" component={MyLink}>
+      Go Home
+    </Button>
+  );
+};
+
+const LinkTest = () => {
+  const dudUrl = 'javascript:;';
+  return (
+    <Typography>
+      <Link href={dudUrl}>Link</Link>
+      <Link href={dudUrl} color="inherit">
+        {'color="inherit"'}
+      </Link>
+      <Link href={dudUrl} variant="body1">
+        {'variant="body1"'}
+      </Link>
+    </Typography>
+  );
+};

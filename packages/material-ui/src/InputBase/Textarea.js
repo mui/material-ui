@@ -31,7 +31,7 @@ export const styles = {
     // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
     overflow: 'hidden',
-    // Visibility needed to hide the extra text area on ipads
+    // Visibility needed to hide the extra text area on iPads
     visibility: 'hidden',
     position: 'absolute',
     height: 'auto',
@@ -43,20 +43,6 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  isControlled = null;
-
-  shadowRef = null;
-
-  singlelineShadowRef = null;
-
-  inputRef = null;
-
-  value = null;
-
-  handleResize = debounce(() => {
-    this.syncHeightWithShadow();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
   constructor(props) {
     super();
     this.isControlled = props.value != null;
@@ -66,11 +52,13 @@ class Textarea extends React.Component {
     this.state = {
       height: Number(props.rows) * ROWS_HEIGHT,
     };
-  }
 
-  state = {
-    height: null,
-  };
+    if (typeof window !== 'undefined') {
+      this.handleResize = debounce(() => {
+        this.syncHeightWithShadow();
+      }, 166); // Corresponds to 10 frames at 60 Hz.
+    }
+  }
 
   componentDidMount() {
     this.syncHeightWithShadow();
@@ -127,7 +115,11 @@ class Textarea extends React.Component {
       this.shadowRef.value = props.value == null ? '' : String(props.value);
     }
 
-    const lineHeight = this.singlelineShadowRef.scrollHeight;
+    let lineHeight = this.singlelineShadowRef.scrollHeight;
+    // The Textarea might not be visible (p.ex: display: none).
+    // In this case, the layout values read from the DOM will be 0.
+    lineHeight = lineHeight === 0 ? ROWS_HEIGHT : lineHeight;
+
     let newHeight = this.shadowRef.scrollHeight;
 
     // Guarding for jsdom, where scrollHeight isn't present.
@@ -159,6 +151,7 @@ class Textarea extends React.Component {
       onChange,
       rows,
       rowsMax,
+      style,
       textareaRef,
       value,
       ...other
@@ -193,7 +186,7 @@ class Textarea extends React.Component {
           value={value}
           onChange={this.handleChange}
           ref={this.handleRefInput}
-          style={{ height: this.state.height }}
+          style={{ height: this.state.height, ...style }}
           {...other}
         />
       </div>
@@ -232,6 +225,10 @@ Textarea.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
    * Use that property to pass a ref callback to the native textarea element.
    */
   textareaRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -245,4 +242,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles)(Textarea);
+export default withStyles(styles, { name: 'MuiPrivateTextarea' })(Textarea);

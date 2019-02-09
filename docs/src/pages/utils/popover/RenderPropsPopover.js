@@ -25,7 +25,7 @@ function RenderPropsPopover(props) {
         return (
           <React.Fragment>
             <Button
-              aria-owns={open ? 'render-props-popover' : null}
+              aria-owns={open ? 'render-props-popover' : undefined}
               aria-haspopup="true"
               variant="contained"
               onClick={event => {

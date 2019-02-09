@@ -12,8 +12,8 @@ If you notice an inaccuracy or something that doesn’t seem quite right, please
 We cover the following libraries:
 
 - [Material-UI](#material-ui)
-- [Material Design Lite (MDL)](#material-design-lite-mdl-)
-- [Material Components Web (MDC-web)](#material-components-web-mdc-web-)
+- [Material Design Lite (MDL)](#material-design-lite-mdl)
+- [Material Components Web (MDC-web)](#material-components-web-mdc-web)
 - [Materialize](#materialize)
 - [React Toolbox](#react-toolbox)
 
@@ -56,6 +56,7 @@ Material-UI focuses exclusively on the React library, although, given that Preac
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
+
 - Having fewer constraints, we can make trade-offs specific to our target framework.
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
@@ -69,6 +70,7 @@ They list 3rd-party framework integration projects in the github [README](https:
 Our very first release was using LESS, but seeing the limitation of this solution,
 we quickly started looking into alternatives. Our first migration was towards using an inline-style solution.
 This was promising:
+
 - It allowed us to remove the dependency on the LESS toolchain for our users.
 We removed one important friction in the installation process. (**simpler**)
 - We were able to change the theme at runtime, nest different themes, and have dynamic styles. (**more powerful**)
@@ -78,7 +80,7 @@ We removed one important friction in the installation process. (**simpler**)
 Eventually, we reached the limitations of inline-styles and moved toward a CSS-in-JS
 solution. This transition was made without losing the enhancements the first migration introduced 💅.
 **We strongly think that CSS-in-JS is the future of the web platform**.
-You can [learn more about our new styling solution](/customization/css-in-js) in the documentation.
+You can [learn more about our new styling solution](/customization/css-in-js/) in the documentation.
 
 MDC-web relies on SCSS as Bootstrap v4. The SCSS architecture is pretty close to LESS -
 a technology we replaced for its limitations.
@@ -99,12 +101,14 @@ The only goal of MDC-Web is to be a Material Design implementation for the web p
 ### Tests
 
 Both projects invest a lot in tests. At the time of writing, both projects have over 99% test coverage:
+
 - Material-UI has 1200+ unit tests running on Chrome 49, Firefox 45, Safari 10 and Edge 14.
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
 Still, there is one thing that sets Material-UI apart and it's key:
 We have [hundreds of visual regression tests](https://www.argos-ci.com/mui-org/material-ui) when MDC-web doesn't have any.
 With visual regression tests, you don't have to make any trade-off:
+
 - You can spend less time making sure every contribution doesn't introduce unexpected regressions.
 The **less** time you spend on a single contribution, the **more** contributions you can accept.
 - You can merge new contributions without digging much. Effectively, you are not waiting for users to report regressions. It's **efficient** and **improves the library quality**.
@@ -117,7 +121,7 @@ The **less** time you spend on a single contribution, the **more** contributions
 ### Browser support
 
 Materialize supports a wider range of browsers than Material-UI does, for instance,
-they support IE 10 while [we only support IE 11](/getting-started/supported-platforms).
+they support IE 10 while [we only support IE 11](/getting-started/supported-platforms/).
 Only supporting IE 11 allows us to take full advantage of the flexbox layout.
 IE 10 has many issues with flexbox.
 

@@ -37,6 +37,9 @@ export const styles = theme => ({
     opacity: 0.3,
     transform: 'scale(1)',
     animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-ripple-enter',
   },
   /* Styles applied to the internal `Ripple` components `ripplePulsate` class. */
   ripplePulsate: {
@@ -55,6 +58,9 @@ export const styles = theme => ({
   childLeaving: {
     opacity: 0,
     animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-ripple-exit',
   },
   /* Styles applied to the internal `Ripple` components `childPulsate` class. */
   childPulsate: {
@@ -62,6 +68,9 @@ export const styles = theme => ({
     left: 0,
     top: 0,
     animation: `mui-ripple-pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-ripple-pulsate',
   },
   '@keyframes mui-ripple-enter': {
     '0%': {
@@ -96,17 +105,16 @@ export const styles = theme => ({
 
 class TouchRipple extends React.PureComponent {
   // Used to filter out mouse emulated events on mobile.
-  ignoringMouseDown = false;
+  // ignoringMouseDown = false;
 
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  startTimer = null;
+  // startTimer = null;
 
   // This is the hook called once the previous timeout is ready.
-  startTimerCommit = null;
+  // startTimerCommit = null;
 
   state = {
-    // eslint-disable-next-line react/no-unused-state
     nextKey: 0,
     ripples: [],
   };
@@ -185,7 +193,7 @@ class TouchRipple extends React.PureComponent {
       this.startTimerCommit = () => {
         this.startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
       };
-      // Deplay the execution of the ripple effect.
+      // Delay the execution of the ripple effect.
       this.startTimer = setTimeout(() => {
         if (this.startTimerCommit) {
           this.startTimerCommit();
@@ -200,8 +208,8 @@ class TouchRipple extends React.PureComponent {
   startCommit = params => {
     const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
 
-    this.setState(state => {
-      return {
+    this.setState(
+      state => ({
         nextKey: state.nextKey + 1,
         ripples: [
           ...state.ripples,
@@ -218,8 +226,9 @@ class TouchRipple extends React.PureComponent {
             rippleSize={rippleSize}
           />,
         ],
-      };
-    }, cb);
+      }),
+      cb,
+    );
   };
 
   stop = (event, cb) => {
@@ -234,7 +243,7 @@ class TouchRipple extends React.PureComponent {
       this.startTimerCommit = null;
       this.startTimer = setTimeout(() => {
         this.stop(event, cb);
-      }, 0);
+      });
       return;
     }
 

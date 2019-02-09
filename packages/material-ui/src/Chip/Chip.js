@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import keycode from 'keycode';
 import warning from 'warning';
+import { componentPropType } from '@material-ui/utils';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
@@ -38,6 +38,7 @@ export const styles = theme => {
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
+      boxSizing: 'border-box',
     },
     /* Styles applied to the root element if `color="primary"`. */
     colorPrimary: {
@@ -112,6 +113,9 @@ export const styles = theme => {
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
+      '& $avatar': {
+        marginLeft: -1,
+      },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
@@ -137,12 +141,12 @@ export const styles = theme => {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
-    /* Styles applied to the `avatar` element if `color="primary"` */
+    /* Styles applied to the `avatar` element if `color="primary"`. */
     avatarColorPrimary: {
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.dark,
     },
-    /* Styles applied to the `avatar` element if `color="secondary"` */
+    /* Styles applied to the `avatar` element if `color="secondary"`. */
     avatarColorSecondary: {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.dark,
@@ -158,11 +162,11 @@ export const styles = theme => {
       marginLeft: 4,
       marginRight: -8,
     },
-    /* Styles applied to the `icon` element if `color="primary"` */
+    /* Styles applied to the `icon` element if `color="primary"`. */
     iconColorPrimary: {
       color: 'inherit',
     },
-    /* Styles applied to the `icon` element if `color="secondary"` */
+    /* Styles applied to the `icon` element if `color="secondary"`. */
     iconColorSecondary: {
       color: 'inherit',
     },
@@ -197,9 +201,9 @@ export const styles = theme => {
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`. */
     deleteIconColorSecondary: {
-      color: fade(theme.palette.primary.contrastText, 0.7),
+      color: fade(theme.palette.secondary.contrastText, 0.7),
       '&:hover, &:active': {
-        color: theme.palette.primary.contrastText,
+        color: theme.palette.secondary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
@@ -223,8 +227,6 @@ export const styles = theme => {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 class Chip extends React.Component {
-  chipRef = null;
-
   handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
@@ -245,8 +247,8 @@ class Chip extends React.Component {
       return;
     }
 
-    const key = keycode(event);
-    if (key === 'space' || key === 'enter' || key === 'backspace' || key === 'esc') {
+    const key = event.key;
+    if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
       event.preventDefault();
     }
   };
@@ -263,13 +265,12 @@ class Chip extends React.Component {
       return;
     }
 
-    const key = keycode(event);
-
-    if (onClick && (key === 'space' || key === 'enter')) {
+    const key = event.key;
+    if (onClick && (key === ' ' || key === 'Enter')) {
       onClick(event);
-    } else if (onDelete && key === 'backspace') {
+    } else if (onDelete && key === 'Backspace') {
       onDelete(event);
-    } else if (key === 'esc' && this.chipRef) {
+    } else if (key === 'Escape' && this.chipRef) {
       this.chipRef.blur();
     }
   };
@@ -279,7 +280,7 @@ class Chip extends React.Component {
       avatar: avatarProp,
       classes,
       className: classNameProp,
-      clickable,
+      clickable: clickableProp,
       color,
       component: Component,
       deleteIcon: deleteIconProp,
@@ -294,13 +295,13 @@ class Chip extends React.Component {
       ...other
     } = this.props;
 
+    const clickable = clickableProp !== false && onClick ? true : clickableProp;
     const className = classNames(
       classes.root,
       {
         [classes[`color${capitalize(color)}`]]: color !== 'default',
-        [classes.clickable]: onClick || clickable,
-        [classes[`clickableColor${capitalize(color)}`]]:
-          (onClick || clickable) && color !== 'default',
+        [classes.clickable]: clickable,
+        [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
         [classes.deletable]: onDelete,
         [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
         [classes.outlined]: variant === 'outlined',
@@ -410,7 +411,9 @@ Chip.propTypes = {
   className: PropTypes.string,
   /**
    * If true, the chip will appear clickable, and will raise when pressed,
-   * even if the onClick property is not defined. This can be used, for example,
+   * even if the onClick property is not defined.
+   * If false, the chip will not be clickable, even if onClick property is defined.
+   * This can be used, for example,
    * along with the component property to indicate an anchor Chip is clickable.
    */
   clickable: PropTypes.bool,
@@ -422,7 +425,7 @@ Chip.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
@@ -463,7 +466,6 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
-  clickable: false,
   component: 'div',
   color: 'default',
   variant: 'default',

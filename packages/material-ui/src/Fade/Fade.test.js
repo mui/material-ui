@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
@@ -79,7 +79,7 @@ describe('<Fade />', () => {
   });
 
   describe('prop: appear', () => {
-    it('should work when initially hidden', () => {
+    it('should work when initially hidden, appear=true', () => {
       const wrapper = mount(
         <Fade in={false} appear>
           <div>Foo</div>
@@ -87,11 +87,10 @@ describe('<Fade />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         opacity: 0,
-        willChange: 'opacity',
       });
     });
 
-    it('should work when initially hidden', () => {
+    it('should work when initially hidden, appear=false', () => {
       const wrapper = mount(
         <Fade in={false} appear={false}>
           <div>Foo</div>
@@ -99,7 +98,6 @@ describe('<Fade />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         opacity: 0,
-        willChange: 'opacity',
       });
     });
   });

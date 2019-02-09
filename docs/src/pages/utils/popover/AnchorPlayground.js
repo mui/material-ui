@@ -65,8 +65,6 @@ const inlineStyles = {
 };
 
 class AnchorPlayground extends React.Component {
-  anchorEl = null;
-
   state = {
     open: false,
     anchorOriginVertical: 'top',
@@ -135,6 +133,8 @@ class AnchorPlayground extends React.Component {
     horizontal: '${transformOriginHorizontal}',
   }}
 >
+  The content of the Popover.
+</Popover>
 \`\`\`
 `;
 

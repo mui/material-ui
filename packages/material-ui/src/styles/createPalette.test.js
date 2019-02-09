@@ -361,11 +361,65 @@ describe('createPalette()', () => {
   });
 
   describe('augmentColor', () => {
+    const palette = createPalette({});
+
     it('should throw when the input is invalid', () => {
-      const palette = createPalette({});
       assert.throws(() => {
         palette.augmentColor({});
       }, /The color object needs to have a/);
+    });
+
+    it('should accept a color', () => {
+      const color1 = palette.augmentColor({ ...indigo });
+      assert.deepEqual(
+        {
+          main: color1.main,
+          light: color1.light,
+          dark: color1.dark,
+          contrastText: color1.contrastText,
+        },
+        {
+          dark: '#303f9f',
+          light: '#7986cb',
+          main: '#3f51b5',
+          contrastText: '#fff',
+        },
+      );
+      const color2 = palette.augmentColor({ ...indigo }, 400, 200, 600);
+      assert.deepEqual(
+        {
+          light: color2.light,
+          main: color2.main,
+          dark: color2.dark,
+          contrastText: color2.contrastText,
+        },
+        {
+          light: '#9fa8da',
+          main: '#5c6bc0',
+          dark: '#3949ab',
+          contrastText: '#fff',
+        },
+      );
+    });
+
+    it('should accept a partial palette color', () => {
+      const color = palette.augmentColor({
+        main: indigo[500],
+      });
+      assert.deepEqual(
+        {
+          light: color.light,
+          main: color.main,
+          dark: color.dark,
+          contrastText: color.contrastText,
+        },
+        {
+          light: 'rgb(101, 115, 195)',
+          main: '#3f51b5',
+          dark: 'rgb(44, 56, 126)',
+          contrastText: '#fff',
+        },
+      );
     });
   });
 });

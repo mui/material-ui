@@ -19,11 +19,13 @@ const styles = theme => ({
     paddingBottom: 0,
   },
   button: {
+    letterSpacing: 0,
     justifyContent: 'flex-start',
     textTransform: 'none',
     width: '100%',
   },
   buttonLeaf: {
+    letterSpacing: 0,
     justifyContent: 'flex-start',
     textTransform: 'none',
     width: '100%',
@@ -81,7 +83,7 @@ class AppDrawerNavItem extends React.Component {
         <ListItem className={classes.itemLeaf} disableGutters {...other}>
           <Button
             component={props => (
-              <Link variant="button" activeClassName={classes.active} href={href} {...props} />
+              <Link naked activeClassName={classes.active} href={href} {...props} />
             )}
             className={classNames(classes.buttonLeaf, `depth-${depth}`)}
             disableRipple

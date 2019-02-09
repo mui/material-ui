@@ -34,7 +34,6 @@ class ThemeDefault extends React.Component {
       return;
     }
 
-    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({
       expandPaths: expandPath.split('.').reduce((acc, path) => {
         const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
@@ -49,6 +48,9 @@ class ThemeDefault extends React.Component {
     const { checked, expandPaths } = this.state;
 
     const theme = createMuiTheme({
+      typography: {
+        useNextVariants: true,
+      },
       palette: {
         type: docsTheme.palette.type,
       },

@@ -1,10 +1,10 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
@@ -12,6 +12,20 @@ import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
+import loadScript from 'docs/src/modules/utils/loadScript';
+
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
+  loadScript('https://buttons.github.io/buttons.js', document.querySelector('head'));
+  loadScript('https://platform.twitter.com/widgets.js', document.querySelector('head'));
+}
 
 const styles = theme => ({
   root: {
@@ -64,17 +78,22 @@ const styles = theme => ({
     height: '35vw',
     maxHeight: 200,
   },
-  steps: {
-    maxWidth: theme.spacing.unit * 130,
-    margin: 'auto',
+  social: {
+    backgroundColor: theme.palette.background.paper,
+    padding: `${theme.spacing.unit * 2}px 0`,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 20,
+    boxSizing: 'content-box',
+    '& span': {
+      display: 'flex',
+      marginRight: theme.spacing.unit,
+    },
+    '& a': {
+      color: theme.palette.background.paper,
+    },
   },
-  step: {
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
-  },
-  stepIcon: {
-    marginBottom: theme.spacing.unit,
-  },
-  markdownElement: {},
 });
 
 class HomePage extends React.Component {
@@ -82,6 +101,8 @@ class HomePage extends React.Component {
     if (window.location.hash !== '') {
       window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
     }
+
+    loadDependencies();
   }
 
   render() {
@@ -90,24 +111,6 @@ class HomePage extends React.Component {
     return (
       <AppFrame>
         <div className={classes.root}>
-          <script
-            type="application/ld+json"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "Material-UI",
-  "url": "https://material-ui.com",
-  "logo": "https://material-ui.com/static/brand.png",
-  "sameAs": [
-    "https://twitter.com/materialUI"
-  ]
-}
-            `,
-            }}
-          />
           <Head />
           <Tidelift />
           <div className={classes.hero}>
@@ -119,7 +122,7 @@ class HomePage extends React.Component {
               />
               <div className={classes.text}>
                 <Typography
-                  variant="display2"
+                  variant="h3"
                   align="center"
                   component="h1"
                   color="inherit"
@@ -129,7 +132,7 @@ class HomePage extends React.Component {
                   {'MATERIAL-UI'}
                 </Typography>
                 <Typography
-                  variant="headline"
+                  variant="h5"
                   component="h2"
                   color="inherit"
                   gutterBottom
@@ -139,12 +142,7 @@ class HomePage extends React.Component {
                 </Typography>
                 <Button
                   component={buttonProps => (
-                    <Link
-                      variant="button"
-                      prefetch
-                      href="/getting-started/installation"
-                      {...buttonProps}
-                    />
+                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
                   )}
                   className={classes.button}
                   variant="outlined"
@@ -155,10 +153,48 @@ class HomePage extends React.Component {
               </div>
             </div>
           </div>
+          <div className={classes.social}>
+            <a
+              className="github-button"
+              href="https://github.com/mui-org/material-ui"
+              data-icon="octicon-star"
+              data-show-count="true"
+              aria-label="Star mui-org/material-ui on GitHub"
+            >
+              Star
+            </a>
+            <a
+              className="twitter-follow-button"
+              href="https://twitter.com/@materialui"
+              data-show-screen-name="false"
+            >
+              Follow
+            </a>
+          </div>
           <HomeSteps />
           <HomeBackers />
           <HomeFooter />
         </div>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com/",
+  "logo": "https://material-ui.com/static/brand.png",
+  "sameAs": [
+    "https://twitter.com/materialUI",
+    "https://github.com/mui-org/material-ui",
+    "https://opencollective.com/material-ui"
+  ]
+}
+          `,
+          }}
+        />
       </AppFrame>
     );
   }
@@ -168,7 +204,7 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(
-  withRoot,
-  withStyles(styles),
-)(HomePage);
+const Page = withStyles(styles)(HomePage);
+
+// Hack for https://github.com/zeit/next.js/pull/5857
+export default () => <Page />;

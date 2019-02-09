@@ -12,7 +12,7 @@ export const styles = theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
-    height: 5,
+    height: 4,
   },
   /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
   colorPrimary: {
@@ -23,6 +23,10 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
+  /* Styles applied to the root element if `variant="determinate"`. */
+  determinate: {},
+  /* Styles applied to the root element if `variant="indeterminate"`. */
+  indeterminate: {},
   /* Styles applied to the root element if `variant="buffer"`. */
   buffer: {
     backgroundColor: 'transparent',
@@ -38,6 +42,9 @@ export const styles = theme => ({
     height: '100%',
     width: '100%',
     animation: 'buffer 3s infinite linear',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$buffer',
   },
   /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
   dashedColorPrimary: {
@@ -78,12 +85,13 @@ export const styles = theme => ({
   /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   bar1Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-indeterminate1',
   },
   /* Styles applied to the bar1 element if `variant="determinate"`. */
   bar1Determinate: {
-    willChange: 'transform',
     transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   /* Styles applied to the bar1 element if `variant="buffer"`. */
@@ -94,12 +102,12 @@ export const styles = theme => ({
   /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
   bar2Indeterminate: {
     width: 'auto',
-    willChange: 'left, right',
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+    // Backward compatible logic between JSS v9 and v10.
+    // To remove with the release of Material-UI v4
+    animationName: '$mui-indeterminate2',
     animationDelay: '1.15s',
   },
-  /* Styles applied to the bar2 element if `variant="determinate"`. */
-  bar2Determinate: {},
   /* Styles applied to the bar2 element if `variant="buffer"`. */
   bar2Buffer: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
@@ -171,6 +179,8 @@ function LinearProgress(props) {
     {
       [classes.colorPrimary]: color === 'primary',
       [classes.colorSecondary]: color === 'secondary',
+      [classes.determinate]: variant === 'determinate',
+      [classes.indeterminate]: variant === 'indeterminate',
       [classes.buffer]: variant === 'buffer',
       [classes.query]: variant === 'query',
     },
@@ -193,7 +203,6 @@ function LinearProgress(props) {
     [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',
     [classes.colorSecondary]: color === 'secondary' && variant === 'buffer',
     [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar2Determinate]: variant === 'determinate',
     [classes.bar2Buffer]: variant === 'buffer',
   });
   const rootProps = {};

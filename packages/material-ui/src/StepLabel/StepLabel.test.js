@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 import StepLabel from './StepLabel';
@@ -109,7 +109,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().active, true, 'should set active');
+      assert.strictEqual(stepIcon.props().active, true);
     });
 
     it('renders <Typography> without the className active', () => {
@@ -133,7 +133,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().completed, true, 'should set completed');
+      assert.strictEqual(stepIcon.props().completed, true);
     });
   });
 
@@ -151,7 +151,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().error, true, 'should set error');
+      assert.strictEqual(stepIcon.props().error, true);
     });
   });
 

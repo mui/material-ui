@@ -2,19 +2,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { componentPropType } from '@material-ui/utils';
 import SelectInput from './SelectInput';
+import formControlState from '../FormControl/formControlState';
+import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-// To replace with InputBase in v4.0.0
+// To replace with InputBase in v4
 import Input from '../Input';
-import { formControlState } from '../InputBase/InputBase';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
-function Select(props, context) {
+function Select(props) {
   const {
     autoWidth,
     children,
@@ -24,6 +26,7 @@ function Select(props, context) {
     input,
     inputProps,
     MenuProps,
+    muiFormControl,
     multiple,
     native,
     onClose,
@@ -38,7 +41,7 @@ function Select(props, context) {
   const inputComponent = native ? NativeSelectInput : SelectInput;
   const fcs = formControlState({
     props,
-    context,
+    muiFormControl,
     states: ['variant'],
   });
 
@@ -51,13 +54,13 @@ function Select(props, context) {
       IconComponent,
       variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+      multiple,
       ...(native
         ? {}
         : {
             autoWidth,
             displayEmpty,
             MenuProps,
-            multiple,
             onClose,
             onOpen,
             open,
@@ -102,7 +105,7 @@ Select.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  IconComponent: componentPropType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
@@ -113,12 +116,11 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Properties applied to the [`Menu`](/api/menu) element.
+   * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
-   * You can only use it when the `native` property is `false` (default).
    */
   multiple: PropTypes.bool,
   /**
@@ -172,7 +174,10 @@ Select.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
+    PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object]),
+    ),
   ]),
   /**
    * The variant to use.
@@ -189,10 +194,6 @@ Select.defaultProps = {
   native: false,
 };
 
-Select.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
-
 Select.muiName = 'Select';
 
-export default withStyles(nativeSelectStyles, { name: 'MuiSelect' })(Select);
+export default withStyles(styles, { name: 'MuiSelect' })(withFormControlContext(Select));

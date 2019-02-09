@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import TableSortLabel from './TableSortLabel';
 import Sort from '@material-ui/icons/Sort';
 
@@ -21,7 +21,7 @@ describe('<TableSortLabel />', () => {
 
   it('should render TableSortLabel', () => {
     const wrapper = shallow(<TableSortLabel />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should set the active class when active', () => {

@@ -1,44 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/grid-list/grid-list.md';
+
+const req = require.context('docs/src/pages/demos/grid-list', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/demos/grid-list',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/demos/grid-list';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/demos/grid-list/ImageGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/ImageGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/ImageGridList'), 'utf8')
-`,
-        },
-        'pages/demos/grid-list/TitlebarGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/TitlebarGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/TitlebarGridList'), 'utf8')
-`,
-        },
-        'pages/demos/grid-list/AdvancedGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/AdvancedGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/AdvancedGridList'), 'utf8')
-`,
-        },
-        'pages/demos/grid-list/SingleLineGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/SingleLineGridList').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/SingleLineGridList'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

@@ -27,6 +27,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
+    outline: 'none',
   },
 });
 
@@ -57,10 +58,10 @@ class SimpleModal extends React.Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <Typography variant="title" id="modal-title">
+            <Typography variant="h6" id="modal-title">
               Text in a modal
             </Typography>
-            <Typography variant="subheading" id="simple-modal-description">
+            <Typography variant="subtitle1" id="simple-modal-description">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
             <SimpleModalWrapped />

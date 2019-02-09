@@ -1,23 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/customization/default-theme/default-theme.md';
+
+const req = require.context('docs/src/pages/customization/default-theme', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/customization/default-theme',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/customization/default-theme';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/customization/default-theme/DefaultTheme.js': {
-          js: require('docs/src/pages/customization/default-theme/DefaultTheme').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/default-theme/DefaultTheme'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

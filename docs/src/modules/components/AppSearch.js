@@ -1,17 +1,36 @@
 import React from 'react';
-import keycode from 'keycode';
 import compose from 'recompose/compose';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
+import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
+import loadScript from 'docs/src/modules/utils/loadScript';
 
 let searchTimer;
 let initialized = false;
+let dependenciesLoaded = false;
+
+function loadDependencies() {
+  if (dependenciesLoaded) {
+    return;
+  }
+
+  dependenciesLoaded = true;
+
+  loadCSS(
+    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
+    document.querySelector('#insertion-point-jss'),
+  );
+  loadScript(
+    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js',
+    document.querySelector('head'),
+  );
+}
 
 function initDocsearch() {
   if (!process.browser) {
@@ -45,7 +64,7 @@ function initDocsearch() {
         Router.push(url);
       },
       // Set debug to true if you want to inspect the dropdown.
-      debug: true,
+      // debug: true,
     });
   }, 100);
 }
@@ -53,7 +72,18 @@ function initDocsearch() {
 const styles = theme => ({
   '@global': {
     '.algolia-autocomplete': {
-      fontFamily: theme.typography.fontFamily,
+      '& .ds-dropdown-menu': {
+        boxShadow: theme.shadows[1],
+        borderRadius: theme.shape.borderRadius,
+        '&::before': {
+          display: 'none',
+        },
+        '& [class^=ds-dataset-]': {
+          border: 0,
+          borderRadius: theme.shape.borderRadius,
+          backgroundColor: theme.palette.background.paper,
+        },
+      },
       '& .algolia-docsearch-suggestion--category-header-lvl0': {
         color: theme.palette.text.primary,
       },
@@ -62,20 +92,11 @@ const styles = theme => ({
         padding: '5.33px 10.66px',
         textAlign: 'right',
         width: '30%',
-        '&:before': {
-          display: 'block',
-        },
-        '&:after': {
-          display: 'none',
-        },
       },
       '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
         float: 'right',
         padding: '5.33px 0 5.33px 10.66px',
         width: '70%',
-        '&:before': {
-          display: 'block',
-        },
       },
       '& .algolia-docsearch-suggestion--subcategory-column-text': {
         color: theme.palette.text.secondary,
@@ -85,25 +106,19 @@ const styles = theme => ({
         color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
       },
       '& .algolia-docsearch-suggestion': {
-        background: 'transparent',
+        textDecoration: 'none',
+        backgroundColor: theme.palette.background.paper,
       },
-      '& .algolia-docsearch-suggestion--title': {
-        ...theme.typography.title,
-      },
-      '& .algolia-docsearch-suggestion--text': {
-        ...theme.typography.body1,
-      },
-      '& .ds-dropdown-menu': {
-        boxShadow: theme.shadows[1],
-        borderRadius: 2,
+      '& .algolia-docsearch-suggestion--title': theme.typography.h6,
+      '& .algolia-docsearch-suggestion--text': theme.typography.body2,
+      '&& .algolia-docsearch-suggestion--no-results': {
+        width: '100%',
         '&::before': {
           display: 'none',
         },
-        '& [class^=ds-dataset-]': {
-          border: 0,
-          borderRadius: 2,
-          backgroundColor: theme.palette.background.paper,
-        },
+      },
+      '& b': {
+        fontWeight: theme.typography.fontWeightMedium,
       },
     },
   },
@@ -144,12 +159,18 @@ const styles = theme => ({
 });
 
 class AppSearch extends React.Component {
-  inputRef = null;
+  componentDidMount() {
+    loadDependencies();
+  }
 
   handleKeyDown = event => {
+    // Use event.keyCode to support IE 11
     if (
-      ['/', 's'].indexOf(keycode(event)) !== -1 &&
-      document.activeElement.nodeName.toLowerCase() === 'body' &&
+      [
+        191, // '/'
+        83, // 's'
+      ].indexOf(event.keyCode) !== -1 &&
+      document.activeElement.nodeName === 'BODY' &&
       document.activeElement !== this.inputRef
     ) {
       event.preventDefault();
@@ -165,7 +186,7 @@ class AppSearch extends React.Component {
     }
 
     return (
-      <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'block' : 'none' }}>
+      <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'flex' : 'none' }}>
         <EventListener target="window" onKeyDown={this.handleKeyDown} />
         <div className={classes.search}>
           <SearchIcon />
@@ -193,6 +214,6 @@ AppSearch.propTypes = {
 };
 
 export default compose(
-  withStyles(styles),
   withWidth(),
+  withStyles(styles),
 )(AppSearch);

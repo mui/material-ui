@@ -9,18 +9,6 @@ import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
 
-// Workaround https://github.com/jsdom/jsdom/issues/2026
-const edgeFix =
-  typeof window !== 'undefined' && /jsdom/.test(window.navigator.userAgent)
-    ? {}
-    : {
-        // Fix a rendering issue on Edge
-        '@supports (-ms-ime-align: auto)': {
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-        },
-      };
-
 export const styles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
@@ -43,20 +31,30 @@ export const styles = theme => {
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-child': {
-        borderTopLeftRadius: 2,
-        borderTopRightRadius: 2,
         '&:before': {
           display: 'none',
         },
       },
-      '&:last-child': {
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
-        ...edgeFix,
-      },
       '&$expanded + &': {
         '&:before': {
           display: 'none',
+        },
+      },
+    },
+    /* Styles applied to the root element if `square={false}`. */
+    rounded: {
+      borderRadius: 0,
+      '&:first-child': {
+        borderTopLeftRadius: theme.shape.borderRadius,
+        borderTopRightRadius: theme.shape.borderRadius,
+      },
+      '&:last-child': {
+        borderBottomLeftRadius: theme.shape.borderRadius,
+        borderBottomRightRadius: theme.shape.borderRadius,
+        // Fix a rendering issue on Edge
+        '@supports (-ms-ime-align: auto)': {
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
         },
       },
     },
@@ -81,18 +79,15 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
-  isControlled = null;
-
   constructor(props) {
     super();
     this.isControlled = props.expanded != null;
+    this.state = {};
     if (!this.isControlled) {
       // not controlled, use internal state
       this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
     }
   }
-
-  state = {};
 
   handleChange = event => {
     const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
@@ -116,18 +111,10 @@ class ExpansionPanel extends React.Component {
       disabled,
       expanded: expandedProp,
       onChange,
+      square,
       ...other
     } = this.props;
     const expanded = this.isControlled ? expandedProp : this.state.expanded;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.expanded]: expanded,
-        [classes.disabled]: disabled,
-      },
-      classNameProp,
-    );
 
     let summary = null;
 
@@ -163,7 +150,20 @@ class ExpansionPanel extends React.Component {
       : null;
 
     return (
-      <Paper className={className} elevation={1} square {...other}>
+      <Paper
+        className={classNames(
+          classes.root,
+          {
+            [classes.expanded]: expanded,
+            [classes.disabled]: disabled,
+            [classes.rounded]: !square,
+          },
+          classNameProp,
+        )}
+        elevation={1}
+        square={square}
+        {...other}
+      >
         {summary}
         <Collapse in={expanded} timeout="auto" {...CollapseProps} {...CollapsePropsProp}>
           {children}
@@ -188,7 +188,7 @@ ExpansionPanel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the [`Collapse`](/api/collapse) element.
+   * Properties applied to the [`Collapse`](/api/collapse/) element.
    */
   CollapseProps: PropTypes.object,
   /**
@@ -211,11 +211,16 @@ ExpansionPanel.propTypes = {
    * @param {boolean} expanded The `expanded` state of the panel
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  square: PropTypes.bool,
 };
 
 ExpansionPanel.defaultProps = {
   defaultExpanded: false,
   disabled: false,
+  square: false,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);

@@ -23,15 +23,11 @@ const styles = {
 };
 
 /**
- * The Grow transition is used by the [Tooltip](/demos/tooltips) and
- * [Popover](/utils/popover) components.
+ * The Grow transition is used by the [Tooltip](/demos/tooltips/) and
+ * [Popover](/utils/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component {
-  autoTimeout = null;
-
-  timer = null;
-
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
@@ -123,8 +119,8 @@ class Grow extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, childProps) => {
-          return React.cloneElement(children, {
+        {(state, childProps) =>
+          React.cloneElement(children, {
             style: {
               opacity: 0,
               transform: getScale(0.75),
@@ -132,8 +128,8 @@ class Grow extends React.Component {
               ...style,
             },
             ...childProps,
-          });
-        }}
+          })
+        }
       </Transition>
     );
   }

@@ -84,7 +84,7 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    display4: {
+    h1: {
       fontSize: 24,
     },
     fontSize: 18,
@@ -197,6 +197,11 @@ declare const themed: boolean;
   // Test that withTheme: true guarantees the presence of the theme
   const Foo = withStyles({}, { withTheme: true })(
     class extends React.Component<WithTheme> {
+      hasRef() {
+        // innerRef does not exists, originally caused https://github.com/mui-org/material-ui/issues/14095
+        return Boolean(this.props.innerRef); // $ExpectError
+      }
+
       render() {
         return <div style={{ margin: this.props.theme.spacing.unit }} />;
       }
@@ -246,12 +251,12 @@ withStyles(theme =>
   // https://github.com/mui-org/material-ui/issues/12277
 
   // typescript thinks `content` is the CSS property not a classname
-  // $ExpectError
   const ambiguousStyles = createStyles({
     content: {
       minHeight: '100vh',
     },
     '@media (min-width: 960px)': {
+      // $ExpectError
       content: {
         display: 'flex',
       },
@@ -281,8 +286,7 @@ withStyles(theme =>
         flex: '1 1 auto',
         padding: '0 16px',
       },
-
-      iiiinset: {
+      inset: {
         '&:first-child': {
           paddingLeft: theme.spacing.unit * 7,
         },

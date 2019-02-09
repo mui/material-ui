@@ -11,6 +11,7 @@ export interface TooltipProps
   enterDelay?: number;
   enterTouchDelay?: number;
   id?: string;
+  interactive?: boolean;
   leaveDelay?: number;
   leaveTouchDelay?: number;
   onClose?: (event: React.ChangeEvent<{}>) => void;
@@ -31,12 +32,13 @@ export interface TooltipProps
     | 'top';
   PopperProps?: object;
   title: React.ReactNode;
-  TransitionComponent?: React.ReactType;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   TransitionProps?: TransitionProps;
 }
 
 export type TooltipClassKey =
   | 'popper'
+  | 'popperInteractive'
   | 'tooltip'
   | 'touch'
   | 'tooltipPlacementLeft'

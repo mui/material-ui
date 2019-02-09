@@ -1,13 +1,15 @@
+import { codes as keycodes } from 'keycode';
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
+  let mount;
   let shallow;
   let classes;
   const icon = <Icon>font_icon</Icon>;
@@ -17,12 +19,23 @@ describe('<SpeedDial />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
+  });
+
+  it('should render with a minimal setup', () => {
+    const wrapper = mount(
+      <SpeedDial {...defaultProps} icon={icon}>
+        <SpeedDialAction icon={<Icon>save_icon</Icon>} tooltipTitle="Save" />
+      </SpeedDial>,
+    );
+
+    wrapper.unmount();
   });
 
   it('should render a Fade transition', () => {
@@ -34,14 +47,14 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(wrapper.type(), 'div');
   });
 
-  it('should render a Button', () => {
+  it('should render a Fab', () => {
     const wrapper = shallow(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
     const buttonWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(buttonWrapper.type(), Button);
+    assert.strictEqual(buttonWrapper.type(), Fab);
   });
 
   it('should render with a null child', () => {
@@ -104,19 +117,19 @@ describe('<SpeedDial />', () => {
       </SpeedDial>,
     );
     const actionsWrapper = wrapper.childAt(1);
-    assert.strictEqual(actionsWrapper.childAt(0).props().open, true, 'open should be true');
-    assert.strictEqual(actionsWrapper.childAt(1).props().open, true, 'open should be true');
+    assert.strictEqual(actionsWrapper.childAt(0).props().open, true);
+    assert.strictEqual(actionsWrapper.childAt(1).props().open, true);
   });
 
   describe('prop: onClick', () => {
-    it('should be set as the onClick prop of the button', () => {
+    it('should be set as the onClick prop of the Fab', () => {
       const onClick = spy();
       const wrapper = shallow(
         <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
           <div />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.find(Button);
+      const buttonWrapper = wrapper.find(Fab);
       assert.strictEqual(buttonWrapper.props().onClick, onClick);
     });
 
@@ -133,6 +146,7 @@ describe('<SpeedDial />', () => {
             <div />
           </SpeedDial>,
         );
+
         const buttonWrapper = wrapper.find(Button);
         const event = {
           preventDefault: spy(),
@@ -142,6 +156,9 @@ describe('<SpeedDial />', () => {
         assert.strictEqual(onClick.callCount, 1);
         assert.strictEqual(event.preventDefault.callCount, 1);
         assert.strictEqual(event.stopPropagation.callCount, 1);
+
+        const buttonWrapper = wrapper.find(Fab);
+        assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 
       after(() => {
@@ -185,6 +202,199 @@ describe('<SpeedDial />', () => {
       testDirection('Down');
       testDirection('Left');
       testDirection('Right');
+    });
+  });
+
+  describe('dial focus', () => {
+    let actionRefs;
+    let dialButtonRef;
+    let onkeydown;
+    let wrapper;
+
+    const mountSpeedDial = (direction = 'up', actionCount = 6) => {
+      actionRefs = [];
+      dialButtonRef = undefined;
+      onkeydown = spy();
+
+      wrapper = mount(
+        <SpeedDial
+          {...defaultProps}
+          ButtonProps={{
+            buttonRef: ref => {
+              dialButtonRef = ref;
+            },
+          }}
+          direction={direction}
+          icon={icon}
+          onKeyDown={onkeydown}
+        >
+          {Array.from({ length: actionCount }, (_, i) => (
+            <SpeedDialAction
+              key={i}
+              ButtonProps={{
+                buttonRef: ref => {
+                  actionRefs[i] = ref;
+                },
+              }}
+              icon={icon}
+              tooltipTitle={`action${i}`}
+            />
+          ))}
+        </SpeedDial>,
+      );
+    };
+
+    /**
+     * @returns the button of SpeedDial
+     */
+    const getDialButton = () => wrapper.find('Fab').first();
+    /**
+     *
+     * @param actionIndex
+     * @returns the button of the nth SpeedDialAction or the Fab if -1
+     */
+    const getActionButton = actionIndex => {
+      if (actionIndex === -1) {
+        return getDialButton();
+      }
+      return wrapper.find(SpeedDialAction).at(actionIndex);
+    };
+    /**
+     * @returns true if the button of the nth action is focused
+     */
+    const isActionFocused = index => {
+      const expectedFocusedElement = index === -1 ? dialButtonRef : actionRefs[index];
+      return expectedFocusedElement === window.document.activeElement;
+    };
+    /**
+     * promisified setImmediate
+     */
+    const immediate = () => new Promise(resolve => setImmediate(resolve));
+
+    const resetDialToOpen = direction => {
+      if (wrapper && wrapper.exists()) {
+        wrapper.unmount();
+      }
+
+      mountSpeedDial(direction);
+      dialButtonRef.focus();
+    };
+
+    after(() => {
+      wrapper.unmount();
+    });
+
+    it('displays the actions on focus gain', () => {
+      resetDialToOpen();
+      assert.strictEqual(wrapper.props().open, true);
+    });
+
+    describe('first item selection', () => {
+      const createShouldAssertFirst = assertFn => (dialDirection, arrowKey) => {
+        resetDialToOpen(dialDirection);
+        getDialButton().simulate('keydown', { keyCode: keycodes[arrowKey] });
+        assertFn(isActionFocused(0));
+      };
+
+      const shouldFocusFirst = createShouldAssertFirst(assert.isTrue);
+      const shouldNotFocusFirst = createShouldAssertFirst(assert.isFalse);
+
+      it('considers arrow keys with the same orientation', () => {
+        shouldFocusFirst('up', 'up');
+        shouldFocusFirst('up', 'down');
+
+        shouldFocusFirst('down', 'up');
+        shouldFocusFirst('down', 'down');
+
+        shouldFocusFirst('right', 'right');
+        shouldFocusFirst('right', 'left');
+
+        shouldFocusFirst('left', 'right');
+        shouldFocusFirst('left', 'left');
+      });
+
+      it('ignores arrow keys orthogonal to the direction', () => {
+        shouldNotFocusFirst('up', 'left');
+        shouldNotFocusFirst('up', 'right');
+
+        shouldNotFocusFirst('down', 'left');
+        shouldNotFocusFirst('down', 'right');
+
+        shouldNotFocusFirst('right', 'up');
+        shouldNotFocusFirst('right', 'up');
+
+        shouldNotFocusFirst('left', 'down');
+        shouldNotFocusFirst('left', 'down');
+      });
+    });
+
+    describe('actions navigation', () => {
+      /**
+       * tests a combination of arrow keys on a focused SpeedDial
+       */
+      const testCombination = async (
+        dialDirection,
+        [firstKey, ...combination],
+        [firstFocusedAction, ...foci],
+      ) => {
+        resetDialToOpen(dialDirection);
+
+        getDialButton().simulate('keydown', { keyCode: keycodes[firstKey] });
+        assert.isTrue(
+          isActionFocused(firstFocusedAction),
+          `focused action initial ${firstKey} should be ${firstFocusedAction}`,
+        );
+
+        combination.forEach((arrowKey, i) => {
+          const previousFocusedAction = foci[i - 1] || firstFocusedAction;
+          const expectedFocusedAction = foci[i];
+          const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
+
+          getActionButton(previousFocusedAction).simulate('keydown', {
+            keyCode: keycodes[arrowKey],
+          });
+          assert.isTrue(
+            isActionFocused(expectedFocusedAction),
+            `focused action after ${combinationUntilNot.join(
+              ',',
+            )} should be ${expectedFocusedAction}`,
+          );
+        });
+
+        /**
+         * Tooltip still fires onFocus after unmount ("Warning: setState unmounted").
+         * Could not fix this issue so we are using this workaround
+         */
+        await immediate();
+      };
+
+      it('considers the first arrow key press as forward navigation', async () => {
+        await testCombination('up', ['up', 'up', 'up', 'down'], [0, 1, 2, 1]);
+        await testCombination('up', ['down', 'down', 'down', 'up'], [0, 1, 2, 1]);
+
+        await testCombination('right', ['right', 'right', 'right', 'left'], [0, 1, 2, 1]);
+        await testCombination('right', ['left', 'left', 'left', 'right'], [0, 1, 2, 1]);
+
+        await testCombination('down', ['down', 'down', 'down', 'up'], [0, 1, 2, 1]);
+        await testCombination('down', ['up', 'up', 'up', 'down'], [0, 1, 2, 1]);
+
+        await testCombination('left', ['left', 'left', 'left', 'right'], [0, 1, 2, 1]);
+        await testCombination('left', ['right', 'right', 'right', 'left'], [0, 1, 2, 1]);
+      });
+
+      it('ignores array keys orthogonal to the direction', async () => {
+        await testCombination('up', ['up', 'left', 'right', 'up'], [0, 0, 0, 1]);
+        await testCombination('right', ['right', 'up', 'down', 'right'], [0, 0, 0, 1]);
+        await testCombination('down', ['down', 'left', 'right', 'down'], [0, 0, 0, 1]);
+        await testCombination('left', ['left', 'up', 'down', 'left'], [0, 0, 0, 1]);
+      });
+
+      it('does not wrap around', async () => {
+        await testCombination('up', ['up', 'down', 'down', 'up'], [0, -1, -1, 0]);
+        await testCombination('right', ['right', 'left', 'left', 'right'], [0, -1, -1, 0]);
+        await testCombination('down', ['down', 'up', 'up', 'down'], [0, -1, -1, 0]);
+        await testCombination('left', ['left', 'right', 'right', 'left'], [0, -1, -1, 0]);
+      });
     });
   });
 });

@@ -1,23 +1,18 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/getting-started/usage/usage.md';
+
+const req = require.context('docs/src/pages/getting-started/usage', false, /\.md|\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/getting-started/usage',
+  false,
+  /\.js$/,
+);
+const reqPrefix = 'pages/getting-started/usage';
 
 function Page() {
-  return (
-    <MarkdownDocs
-      markdown={markdown}
-      demos={{
-        'pages/getting-started/usage/Usage.js': {
-          js: require('docs/src/pages/getting-started/usage/Usage').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/getting-started/usage/Usage'), 'utf8')
-`,
-        },
-      }}
-    />
-  );
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
 
-export default withRoot(Page);
+export default Page;

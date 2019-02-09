@@ -1,9 +1,10 @@
 import React from 'react';
 import NextHead from 'next/head';
+import { _rewriteUrlForNextExport, withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 function Head(props) {
-  const { title, description } = props;
+  const { title, router, description } = props;
 
   return (
     <NextHead>
@@ -18,15 +19,20 @@ function Head(props) {
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
+      <meta
+        property="og:url"
+        content={`https://material-ui.com${_rewriteUrlForNextExport(router.asPath)}`}
+      />
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/brand.png" />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:ttl" content="604800" />
     </NextHead>
   );
 }
 
 Head.propTypes = {
   description: PropTypes.string,
+  router: PropTypes.object.isRequired,
   title: PropTypes.string,
 };
 
@@ -35,4 +41,4 @@ Head.defaultProps = {
   title: "The world's most popular React UI framework - Material-UI",
 };
 
-export default Head;
+export default withRouter(Head);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
 import GridList from './GridList';
 
 const tilesData = [
@@ -32,13 +32,13 @@ describe('<GridList />', () => {
     assert.strictEqual(wrapper.name(), 'ul');
   });
 
-  it('should render a ul', () => {
+  it('should accept a component property', () => {
     const wrapper = shallow(
-      <GridList component="ul">
+      <GridList component="li">
         <br />
       </GridList>,
     );
-    assert.strictEqual(wrapper.name(), 'ul');
+    assert.strictEqual(wrapper.name(), 'li');
   });
 
   it('should render children and change cellHeight', () => {
@@ -63,7 +63,7 @@ describe('<GridList />', () => {
       wrapper
         .children()
         .at(0)
-        .prop('style').height,
+        .props().style.height,
       cellHeight + 4,
       'should have height to 254',
     );
@@ -110,7 +110,7 @@ describe('<GridList />', () => {
       wrapper
         .children()
         .at(0)
-        .prop('style').width,
+        .props().style.width,
       '25%',
       'should have 25% of width',
     );
@@ -138,7 +138,7 @@ describe('<GridList />', () => {
       wrapper
         .children()
         .at(0)
-        .prop('style').padding,
+        .props().style.padding,
       spacing / 2,
       'should have 5 of padding',
     );
@@ -162,11 +162,7 @@ describe('<GridList />', () => {
     );
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.strictEqual(
-      wrapper.prop('style').backgroundColor,
-      style.backgroundColor,
-      'should have a red backgroundColor',
-    );
+    assert.strictEqual(wrapper.props().style.backgroundColor, style.backgroundColor);
   });
 
   describe('prop: cellHeight', () => {

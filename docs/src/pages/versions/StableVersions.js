@@ -1,5 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state */
-
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -79,38 +77,31 @@ class StableVersions extends React.Component {
       <Paper className={classes.root}>
         <Table>
           <TableBody>
-            {docs.map(doc => {
-              return (
-                <TableRow key={doc.version}>
-                  <TableCell padding="dense">
-                    <Typography>
-                      {doc.version}
-                      {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
-                    </Typography>
-                  </TableCell>
-                  <TableCell padding="dense">
-                    <Typography
-                      component={props2 => <Link {...props2} variant="secondary" href={doc.url} />}
-                    >
-                      Documentation
-                    </Typography>
-                  </TableCell>
-                  <TableCell padding="dense">
-                    <Typography
-                      component={props2 => (
-                        <Link
-                          {...props2}
-                          variant="secondary"
-                          href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
-                        />
-                      )}
-                    >
-                      Release notes
-                    </Typography>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {docs.map(doc => (
+              <TableRow key={doc.version}>
+                <TableCell padding="dense">
+                  <Typography variant="body2">
+                    {doc.version}
+                    {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
+                  </Typography>
+                </TableCell>
+                <TableCell padding="dense">
+                  <Link variant="body2" color="secondary" rel="nofollow" href={doc.url}>
+                    Documentation
+                  </Link>
+                </TableCell>
+                <TableCell padding="dense">
+                  <Link
+                    variant="body2"
+                    color="secondary"
+                    rel="nofollow"
+                    href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
+                  >
+                    Release notes
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </Paper>

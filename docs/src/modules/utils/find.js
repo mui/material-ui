@@ -75,7 +75,7 @@ function findComponents(directory, components = []) {
 }
 
 const jsRegex = /\.js$/;
-const blackList = ['/.eslintrc', '/_document'];
+const blackList = ['/.eslintrc', '/_document', '/_app'];
 
 // Returns the next.js pages available in a nested format.
 // The output is in the next.js format.

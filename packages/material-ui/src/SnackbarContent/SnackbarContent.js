@@ -53,6 +53,7 @@ function SnackbarContent(props) {
       component={Typography}
       headlineMapping={{
         body1: 'div',
+        body2: 'div',
       }}
       role="alertdialog"
       square

@@ -26,10 +26,10 @@ const variantComponent = {
  *
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
- * - [FormControl](/api/form-control)
- * - [InputLabel](/api/input-label)
- * - [Input](/api/input)
- * - [FormHelperText](/api/form-helper-text)
+ * - [FormControl](/api/form-control/)
+ * - [InputLabel](/api/input-label/)
+ * - [Input](/api/input/)
+ * - [FormHelperText](/api/form-helper-text/)
  *
  * If you wish to alter the properties applied to the native input, you can do so as follows:
  *
@@ -47,10 +47,6 @@ const variantComponent = {
  * - using the underlying components directly as shown in the demos
  */
 class TextField extends React.Component {
-  labelNode = null;
-
-  labelRef = null;
-
   constructor(props) {
     super(props);
     this.labelRef = React.createRef();
@@ -109,13 +105,14 @@ class TextField extends React.Component {
         InputMore.notched = InputLabelProps.shrink;
       }
 
-      InputMore.labelWidth = this.labelNode ? this.labelNode.offsetWidth : 0;
+      InputMore.labelWidth = (this.labelNode && this.labelNode.offsetWidth) || 0;
     }
 
     const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
     const InputComponent = variantComponent[variant];
     const InputElement = (
       <InputComponent
+        aria-describedby={helperTextId}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
         defaultValue={defaultValue}
@@ -140,7 +137,6 @@ class TextField extends React.Component {
 
     return (
       <FormControl
-        aria-describedby={helperTextId}
         className={className}
         error={error}
         fullWidth={fullWidth}
@@ -154,7 +150,12 @@ class TextField extends React.Component {
           </InputLabel>
         )}
         {select ? (
-          <Select value={value} input={InputElement} {...SelectProps}>
+          <Select
+            aria-describedby={helperTextId}
+            value={value}
+            input={InputElement}
+            {...SelectProps}
+          >
             {children}
           </Select>
         ) : (
@@ -203,7 +204,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the [`FormHelperText`](/api/form-helper-text) element.
+   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -216,11 +217,11 @@ TextField.propTypes = {
   helperText: PropTypes.node,
   /**
    * The id of the `input` element.
-   * Use that property to make `label` and `helperText` accessible for screen readers.
+   * Use this property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the [`InputLabel`](/api/input-label) element.
+   * Properties applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
@@ -232,7 +233,7 @@ TextField.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Use this property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -288,7 +289,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the [`Select`](/api/select) element.
+   * Properties applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**

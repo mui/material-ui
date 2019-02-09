@@ -1,10 +1,9 @@
 import React from 'react';
-import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -27,7 +26,7 @@ describe('<Chip />', () => {
     it('should render a div containing a span', () => {
       const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.childAt(0).name(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
       assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
@@ -72,7 +71,7 @@ describe('<Chip />', () => {
 
     it('should render a div containing a span', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.childAt(0).name(), 'span');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -167,9 +166,9 @@ describe('<Chip />', () => {
 
     it('should render a div containing an Avatar, span and svg', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
-      assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
-      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(0).type(), Avatar);
+      assert.strictEqual(wrapper.childAt(1).name(), 'span');
+      assert.strictEqual(wrapper.childAt(2).name(), 'pure(Cancel)');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -193,7 +192,7 @@ describe('<Chip />', () => {
       wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
+      assert.strictEqual(onDeleteSpy.callCount, 1);
     });
 
     it('should stop propagation in onDeleteRequest', () => {
@@ -349,16 +348,12 @@ describe('<Chip />', () => {
 
     describe('onKeyDown is defined', () => {
       it('should call onKeyDown when a key is pressed', () => {
-        const anyKeydownEvent = { keycode: keycode('p') };
+        const anyKeydownEvent = { key: 'p' };
         const onKeyDownSpy = spy();
         wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
         wrapper.find('div').simulate('keyDown', anyKeydownEvent);
-        assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
-        assert.strictEqual(
-          onKeyDownSpy.args[0][0].keyCode,
-          anyKeydownEvent.keyCode,
-          'should have same keyCode',
-        );
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+        assert.strictEqual(onKeyDownSpy.args[0][0].keyCode, anyKeydownEvent.keyCode);
       });
     });
 
@@ -369,7 +364,7 @@ describe('<Chip />', () => {
         wrapper2.instance().chipRef.blur = handleBlur;
         wrapper2.find('div').simulate('keyUp', {
           preventDefault: () => {},
-          keyCode: keycode('esc'),
+          key: 'Escape',
         });
         assert.strictEqual(handleBlur.callCount, 1);
       });
@@ -390,14 +385,14 @@ describe('<Chip />', () => {
         const preventDefaultSpy = spy();
         const spaceKeyDown = {
           preventDefault: preventDefaultSpy,
-          keyCode: keycode('space'),
+          key: ' ',
         };
         wrapper.find('div').simulate('keyDown', spaceKeyDown);
         assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onClickSpy.callCount, 0);
 
         const spaceKeyUp = {
-          keyCode: keycode('space'),
+          key: ' ',
         };
         wrapper.find('div').simulate('keyUp', spaceKeyUp);
         assert.strictEqual(onClickSpy.callCount, 1);
@@ -408,14 +403,14 @@ describe('<Chip />', () => {
         const preventDefaultSpy = spy();
         const enterKeyDown = {
           preventDefault: preventDefaultSpy,
-          keyCode: keycode('enter'),
+          key: 'Enter',
         };
         wrapper.find('div').simulate('keyDown', enterKeyDown);
         assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onClickSpy.callCount, 0);
 
         const enterKeyUp = {
-          keyCode: keycode('enter'),
+          key: 'Enter',
         };
         wrapper.find('div').simulate('keyUp', enterKeyUp);
         assert.strictEqual(onClickSpy.callCount, 1);
@@ -431,14 +426,14 @@ describe('<Chip />', () => {
 
         const backspaceKeyDown = {
           preventDefault: preventDefaultSpy,
-          keyCode: keycode('backspace'),
+          key: 'Backspace',
         };
         wrapper2.find('div').simulate('keyDown', backspaceKeyDown);
         assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onDeleteSpy.callCount, 0);
 
         const backspaceKeyUp = {
-          keyCode: keycode('backspace'),
+          key: 'Backspace',
         };
         wrapper2.find('div').simulate('keyUp', backspaceKeyUp);
         assert.strictEqual(onDeleteSpy.callCount, 1);
@@ -476,27 +471,27 @@ describe('<Chip />', () => {
       });
 
       it('should not call onDelete for child event', () => {
-        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('backspace') });
+        wrapper.find('.child-input').simulate('keyDown', { key: 'Backspace' });
         assert.strictEqual(onDeleteSpy.callCount, 0);
       });
 
       it('should not call onClick for child event when `space` is pressed', () => {
-        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('space') });
+        wrapper.find('.child-input').simulate('keyDown', { key: ' ' });
         assert.strictEqual(onClickSpy.callCount, 0);
       });
 
       it('should not call onClick for child event when `enter` is pressed', () => {
-        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('enter') });
+        wrapper.find('.child-input').simulate('keyDown', { key: 'Enter' });
         assert.strictEqual(onClickSpy.callCount, 0);
       });
 
       it('should call handlers for child event', () => {
         onKeyDownSpy.resetHistory();
-        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('p') });
+        wrapper.find('.child-input').simulate('keyDown', { key: 'p' });
         assert.strictEqual(onKeyDownSpy.callCount, 1);
 
         onKeyUpSpy.resetHistory();
-        wrapper.find('.child-input').simulate('keyUp', { keyCode: keycode('p') });
+        wrapper.find('.child-input').simulate('keyUp', { key: 'p' });
         assert.strictEqual(onKeyUpSpy.callCount, 1);
       });
     });

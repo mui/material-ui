@@ -6,7 +6,7 @@ export interface CardActionsProps
   disableActionSpacing?: boolean;
 }
 
-export type CardActionsClassKey = 'root' | 'action';
+export type CardActionsClassKey = 'root' | 'disableActionSpacing' | 'action';
 
 declare const CardActions: React.ComponentType<CardActionsProps>;
 

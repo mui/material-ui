@@ -24,9 +24,9 @@ function MediaQuery(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subheading">{'down(sm): red'}</Typography>
-      <Typography variant="subheading">{'up(md): blue'}</Typography>
-      <Typography variant="subheading">{'up(lg): green'}</Typography>
+      <Typography variant="subtitle1">{'down(sm): red'}</Typography>
+      <Typography variant="subtitle1">{'up(md): blue'}</Typography>
+      <Typography variant="subtitle1">{'up(lg): green'}</Typography>
     </div>
   );
 }

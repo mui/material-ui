@@ -14,20 +14,20 @@ to discuss the approach before submitting a pull request.
 
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
-  - [Bottom](https://material.io/design/components/app-bars-bottom.html)
+  - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
+- **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓**
-  - **[Flat & raised buttons](https://material.io/design/components/buttons.html) ✓**
-  - [Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons)
+  - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
+  - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/lab/about/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
   - Transitions:
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~
-     **([Lab](/lab/about))
+    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
-  - [Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab)
+  - **[Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) ✓**
     - Speed dial
 - **[Cards](https://material.io/design/components/cards.html) ✓**
 - **[Chips](https://material.io/design/components/chips.html) ✓**
@@ -41,14 +41,14 @@ to discuss the approach before submitting a pull request.
   - **Pagination ✓**
 - **[Dialogs](https://material.io/design/components/dialogs.html) ✓**
   - **[Alert dialog](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
-  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Can be constructed with Dialog and List.)
+  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Can be composed with Dialog and List.)
   - **[Confirmation dialogs](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
   - **[Full screen dialogs](https://material.io/design/components/dialogs.html#full-screen-dialog) ✓**
 - **[Dividers](https://material.io/design/components/dividers.html) ✓**
   - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-  - [Middle](https://material.io/design/components/dividers.html#types)
-  - [Subheader](https://material.io/design/components/dividers.html#types)
+  - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
+  - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
 - **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legacy Material v1*)
 - **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)
 - **[Lists](https://material.io/design/components/lists.html) ✓**
@@ -65,7 +65,7 @@ to discuss the approach before submitting a pull request.
     - **Switch ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓**
-  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be constructed)
+  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu)
     - **Text field dropdown menu ✓** (Select)
@@ -79,10 +79,9 @@ to discuss the approach before submitting a pull request.
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Sliders](https://material.io/design/components/sliders.html) ~
-     **([Lab](/lab/about))
+- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/lab/about/))
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
-  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
@@ -96,8 +95,9 @@ to discuss the approach before submitting a pull request.
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields](https://material.io/design/components/text-fields.html) ✓**
-  - [Filled](https://material.io/design/components/text-fields.html#filled-text-field)
-  - [Outline](https://material.io/design/components/text-fields.html#outlined-text-field)
+  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
+  - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/design/components/text-fields.html#input-types):
     - **Single-line ✓**
     - **Multi-line ✓**

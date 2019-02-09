@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Input from '../Input';
 import InputLabel from '../InputLabel';
 import FormHelperText from '../FormHelperText';
@@ -93,6 +93,11 @@ describe('<TextField />', () => {
       it('should have an Input as the first child', () => {
         assert.strictEqual(wrapper.childAt(0).type(), Input);
         assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
+      });
+
+      it('should add accessibility labels to the input', () => {
+        wrapper.setProps({ id: 'aria-test' });
+        assert.strictEqual(wrapper.childAt(0).props()['aria-describedby'], 'aria-test-helper-text');
       });
     });
 

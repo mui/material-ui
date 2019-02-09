@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
@@ -99,8 +100,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Snackbar extends React.Component {
-  timerAutoHide = null;
-
   state = {};
 
   componentDidMount() {
@@ -284,7 +283,7 @@ Snackbar.propTypes = {
    */
   anchorOrigin: PropTypes.shape({
     horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['top', 'center', 'bottom']).isRequired,
+    vertical: PropTypes.oneOf(['top', 'bottom']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
@@ -294,8 +293,7 @@ Snackbar.propTypes = {
    */
   autoHideDuration: PropTypes.number,
   /**
-   * If you wish the take control over the children of the component you can use this property.
-   * When used, you replace the `SnackbarContent` component with the children.
+   * Replace the `SnackbarContent` component.
    */
   children: PropTypes.element,
   /**
@@ -312,7 +310,7 @@ Snackbar.propTypes = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
+   * Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -385,9 +383,9 @@ Snackbar.propTypes = {
    */
   resumeHideDuration: PropTypes.number,
   /**
-   * Transition component.
+   * The component used for the transition.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  TransitionComponent: componentPropType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

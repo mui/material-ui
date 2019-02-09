@@ -15,14 +15,15 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
 
 export type InputLabelClassKey =
   | 'root'
+  | 'focused'
+  | 'disabled'
+  | 'error'
+  | 'required'
   | 'formControl'
   | 'marginDense'
   | 'shrink'
   | 'animated'
-  | 'contained'
   | 'filled'
   | 'outlined';
 
-declare const InputLabel: React.ComponentType<InputLabelProps>;
-
-export default InputLabel;
+export default class InputLabel extends React.Component<InputLabelProps> {}

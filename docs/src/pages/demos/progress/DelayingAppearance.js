@@ -21,8 +21,6 @@ const styles = theme => ({
 });
 
 class DelayingAppearance extends React.Component {
-  timer = null;
-
   state = {
     loading: false,
     query: 'idle',
@@ -55,7 +53,7 @@ class DelayingAppearance extends React.Component {
       this.setState({
         query: 'success',
       });
-    }, 2e3);
+    }, 2000);
   };
 
   render() {

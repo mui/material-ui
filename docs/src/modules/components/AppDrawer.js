@@ -1,21 +1,21 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { _rewriteUrlForNextExport } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const styles = theme => ({
   paper: {
     width: 240,
-    backgroundColor: theme.palette.background.paper,
   },
   title: {
     color: theme.palette.text.secondary,
@@ -36,9 +36,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-  },
-  anchor: {
-    color: theme.palette.text.secondary,
   },
 });
 
@@ -92,28 +89,40 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 // So: <SwipeableDrawer disableBackdropTransition={false} />
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-function AppDrawer(props, context) {
+function AppDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
 
   const drawer = (
-    <div className={classes.nav}>
-      <div className={classes.toolbarIe11}>
-        <div className={classes.toolbar}>
-          <Link className={classes.title} href="/" onClick={onClose}>
-            <Typography variant="title" color="inherit">
-              Material-UI
-            </Typography>
-          </Link>
-          {process.env.LIB_VERSION ? (
-            <Link className={classes.anchor} href="/versions">
-              <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
-            </Link>
-          ) : null}
+    <PageContext.Consumer>
+      {({ activePage, pages }) => (
+        <div className={classes.nav}>
+          <div className={classes.toolbarIe11}>
+            <div className={classes.toolbar}>
+              <Link
+                className={classes.title}
+                href="/"
+                onClick={onClose}
+                variant="h6"
+                color="inherit"
+              >
+                Material-UI
+              </Link>
+              {process.env.LIB_VERSION ? (
+                <Link
+                  color="textSecondary"
+                  variant="caption"
+                  href={_rewriteUrlForNextExport('/versions')}
+                >
+                  {`v${process.env.LIB_VERSION}`}
+                </Link>
+              ) : null}
+            </div>
+          </div>
+          <Divider />
+          {renderNavItems({ props, pages, activePage, depth: 0 })}
         </div>
-      </div>
-      <Divider />
-      {renderNavItems({ props, pages: context.pages, activePage: context.activePage, depth: 0 })}
-    </div>
+      )}
+    </PageContext.Consumer>
   );
 
   return (
@@ -159,11 +168,6 @@ AppDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
-};
-
-AppDrawer.contextTypes = {
-  activePage: PropTypes.object.isRequired,
-  pages: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(AppDrawer);

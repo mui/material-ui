@@ -56,32 +56,36 @@ function Stepper(props) {
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
-      index,
+      alternativeLabel,
+      connector: connectorProp,
+      last: index + 1 === childrenArray.length,
       orientation,
+    };
+
+    const state = {
+      index,
       active: false,
       completed: false,
       disabled: false,
-      last: index + 1 === childrenArray.length,
-      alternativeLabel,
-      connector: connectorProp,
     };
 
     if (activeStep === index) {
-      controlProps.active = true;
+      state.active = true;
     } else if (!nonLinear && activeStep > index) {
-      controlProps.completed = true;
+      state.completed = true;
     } else if (!nonLinear && activeStep < index) {
-      controlProps.disabled = true;
+      state.disabled = true;
     }
 
     return [
       !alternativeLabel &&
         connector &&
-        index > 0 &&
+        index !== 0 &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
+          ...state,
         }),
-      React.cloneElement(step, { ...controlProps, ...step.props }),
+      React.cloneElement(step, { ...controlProps, ...state, ...step.props }),
     ];
   });
 
@@ -136,7 +140,5 @@ Stepper.defaultProps = {
   nonLinear: false,
   orientation: 'horizontal',
 };
-
-Stepper.muiName = 'Stepper';
 
 export default withStyles(styles, { name: 'MuiStepper' })(Stepper);

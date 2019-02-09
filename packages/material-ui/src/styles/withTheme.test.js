@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import createBroadcast from 'brcast';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount } from '@material-ui/core/test-utils';
 import { CHANNEL } from './themeListener';
 import withTheme from './withTheme';
 

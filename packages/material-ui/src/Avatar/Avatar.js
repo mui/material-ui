@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -19,8 +20,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     userSelect: 'none',
   },
-  /* Styles applied to the root element if there are children and not `src` or `srcSet` */
-  /* Styles applied to the root element if `color="default"`. */
+  /* Styles applied to the root element if there are children and not `src` or `srcSet`. */
   colorDefault: {
     color: theme.palette.background.default,
     backgroundColor:
@@ -31,7 +31,7 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
     textAlign: 'center',
-    // Handle non-square image. The property isn't supported by IE11.
+    // Handle non-square image. The property isn't supported by IE 11.
     objectFit: 'cover',
   },
 });
@@ -51,16 +51,10 @@ function Avatar(props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.colorDefault]: childrenProp && !src && !srcSet,
-    },
-    classNameProp,
-  );
   let children = null;
+  const img = src || srcSet;
 
-  if (src || srcSet) {
+  if (img) {
     children = (
       <img
         alt={alt}
@@ -72,14 +66,25 @@ function Avatar(props) {
       />
     );
   } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
-    const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-    children = React.cloneElement(childrenProp, { className: childrenClassName });
+    children = React.cloneElement(childrenProp, {
+      className: classNames(childrenClassNameProp, childrenProp.props.className),
+    });
   } else {
     children = childrenProp;
   }
 
   return (
-    <Component className={className} {...other}>
+    <Component
+      className={classNames(
+        classes.root,
+        classes.system,
+        {
+          [classes.colorDefault]: !img,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
       {children}
     </Component>
   );
@@ -118,7 +123,7 @@ Avatar.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  component: componentPropType,
   /**
    * Attributes applied to the `img` element if the component
    * is used to display an image.
