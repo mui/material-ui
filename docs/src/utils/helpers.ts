@@ -1,7 +1,12 @@
 import moment, { Moment } from 'moment';
 import { DateTime } from 'luxon';
+import dayjs, { Dayjs } from 'dayjs';
 
-export default function cloneCrossUtils(date: Date | Moment | DateTime) {
+export default function cloneCrossUtils(date: Date | Moment | DateTime | Dayjs) {
+  if (date instanceof dayjs) {
+    return (date as Dayjs).clone().toDate();
+  }
+
   if (date instanceof moment) {
     return (date as Moment).clone().toDate();
   }

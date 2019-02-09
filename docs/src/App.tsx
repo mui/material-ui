@@ -5,6 +5,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import MomentUtils from '@date-io/moment';
 import LuxonUtils from '@date-io/luxon';
+import DayJsUtils from '@date-io/dayjs';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import { UtilsServiceContextProvider } from './_shared/UtilsServiceContext';
 import { createUtilsService } from './utils/utilsService';
@@ -12,6 +13,7 @@ import { createUtilsService } from './utils/utilsService';
 export const utilsMap = {
   moment: MomentUtils,
   luxon: LuxonUtils,
+  dayjs: DayJsUtils,
   'date-fns': DateFnsUtils,
 };
 
