@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
+import Interpolate from 'react-interpolate-component';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -32,6 +33,15 @@ const styles = theme => ({
 
 function HomeFooter(props) {
   const { classes, t } = props;
+
+  const interpolations = {
+    versionNumber: `v${process.env.LIB_VERSION}`,
+    license: (
+      <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
+        {t('license')}
+      </Link>
+    ),
+  };
 
   return (
     <footer className={classes.root}>
@@ -84,11 +94,7 @@ function HomeFooter(props) {
         </Grid>
       </Typography>
       <Typography className={classes.version}>
-        {`${t('currently')} v${process.env.LIB_VERSION}. ${t('released')} `}
-        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
-          {t('license')}
-        </Link>
-        {'.'}
+        <Interpolate with={interpolations}>{`${t('version')} ${t('released')}`}</Interpolate>
       </Typography>
     </footer>
   );
