@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
-import { TransitionProps } from 'react-transition-group/Transition';
-import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';
 
 /**
  * @param rawValue - the value inferred from the event in [min, max]
