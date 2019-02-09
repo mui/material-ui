@@ -13,7 +13,7 @@ export const styles = theme => ({
     boxSizing: 'border-box',
     ...theme.typography.button,
     height: 48,
-    minWidth: 24,
+    minWidth: 48,
     padding: '0px 11px 0px 11px',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
@@ -24,11 +24,10 @@ export const styles = theme => ({
     '&$selected': {
       color: theme.palette.action.active,
       backgroundColor: fade(theme.palette.action.active, 0.12),
-      // border: `1px solid ${fade(theme.palette.action.active, 0.14)}`,
       '&:hover': {
         backgroundColor: fade(theme.palette.action.active, 0.15),
       },
-      '& + $prevChildSelected': {
+      '& + &': {
         borderLeft: 0,
         marginLeft: 0,
       },
@@ -58,15 +57,10 @@ export const styles = theme => ({
       // paddingRight: 11,
     },
   },
-  '& + $prevChildSelected': {
-    borderLeft: 0,
-    marginLeft: 0,
-  },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
-  prevChildSelected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {
     width: '100%',
@@ -105,7 +99,6 @@ class ToggleButton extends React.Component {
 
     const className = clsx(
       classes.root,
-      classes.prevChildSelected,
       {
         [classes.disabled]: disabled,
         [classes.selected]: selected,

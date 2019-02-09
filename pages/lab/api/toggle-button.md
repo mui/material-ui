@@ -37,10 +37,8 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">& + $prevChildSelected</span> | 
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
-| <span class="prop-name">prevChildSelected</span> | 
 | <span class="prop-name">label</span> | Styles applied to the `label` wrapper element.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section

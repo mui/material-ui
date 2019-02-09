@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
-// import { fade } from '@material-ui/core/styles/colorManipulator';
 import isValueSelected from './isValueSelected';
 
 export const styles = theme => ({

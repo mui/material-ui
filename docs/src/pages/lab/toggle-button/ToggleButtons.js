@@ -43,7 +43,7 @@ class ToggleButtons extends React.Component {
 
     return (
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>
               <ToggleButton value="left">
@@ -69,7 +69,7 @@ class ToggleButtons extends React.Component {
             option deselects any other.
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={formats} onChange={this.handleFormat}>
               <ToggleButton value="bold">
