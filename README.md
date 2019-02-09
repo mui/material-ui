@@ -28,7 +28,7 @@ npm i material-ui-pickers
 yarn add material-ui-pickers
 ```
 
-Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.21 version of date-fns for now. Stay tuned!
+Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [date-fns v2](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns or luxon, because they are much lighter and will be correctly tree-shaked from the bundle. Note, that we are fully relying on [date-io](https://github.com/iamkun/dayjs) for supporting different libraries. 
 
 ```sh
 npm i date-fns@2.0.0-alpha.21 @date-io/date-fns
@@ -36,6 +36,8 @@ npm i date-fns@2.0.0-alpha.21 @date-io/date-fns
 npm i moment @date-io/moment
 // or
 npm i luxon @date-io/luxon
+// or
+npm i dayjs @date-io/dayjs
 ```
 
 Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes a utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
