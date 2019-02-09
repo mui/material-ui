@@ -18,8 +18,8 @@ import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))

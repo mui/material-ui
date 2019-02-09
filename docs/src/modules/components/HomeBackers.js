@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
-import mapTranslations from '../utils/mapTranslations';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import mapTranslations from 'docs/src/modules/utils/mapTranslations';
+import compose from 'docs/src/modules/utils/compose';
 
 const req = require.context('docs/src/modules/components', false, /\.md$/);
 const backers = mapTranslations(req, 'md');

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from 'docs/src/modules/components/Link';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {

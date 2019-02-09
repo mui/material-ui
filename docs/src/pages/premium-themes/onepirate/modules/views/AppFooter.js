@@ -4,9 +4,9 @@ import pure from 'recompose/pure';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import LayoutBody from '../components/LayoutBody';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
+import LayoutBody from '../components/LayoutBody';
 import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
