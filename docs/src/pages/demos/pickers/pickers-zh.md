@@ -1,5 +1,5 @@
 ---
-title: Date Picker, Time Picker React components
+title: 日期选择器，时间选择器反应组件
 components: TextField
 ---
 # 选择器
@@ -13,7 +13,7 @@ components: TextField
 
 我们回归到 **原生输入控件**。
 
-⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。 Have a look at the [complementary projects](#complementary-projects) for richer solutions.
+⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。 看看 [补充项目](#complementary-projects) 以获得更丰富的解决方案。
 
 ## 日期选择器
 
