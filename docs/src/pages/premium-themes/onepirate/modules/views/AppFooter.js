@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import pure from 'recompose/pure';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -152,6 +151,6 @@ AppFooter.propTypes = {
 };
 
 export default compose(
-  pure,
+  React.memo,
   withStyles(styles),
 )(AppFooter);

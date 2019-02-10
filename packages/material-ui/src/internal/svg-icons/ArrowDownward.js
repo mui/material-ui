@@ -1,5 +1,4 @@
 import React from 'react';
-import pure from 'recompose/pure';
 import SvgIcon from '../../SvgIcon';
 
 /**
@@ -11,7 +10,7 @@ let ArrowDownward = props => (
   </SvgIcon>
 );
 
-ArrowDownward = pure(ArrowDownward);
+ArrowDownward = React.memo(ArrowDownward);
 ArrowDownward.muiName = 'SvgIcon';
 
 export default ArrowDownward;

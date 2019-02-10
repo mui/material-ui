@@ -78,28 +78,6 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
-#### Render Props
-
-In some cases, you can experience property name collisions using higher-order components.
-To avoid this, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern shown in the following demo.
-
-```jsx
-import Typography from '@material-ui/core/Typography';
-import toRenderProps from 'recompose/toRenderProps';
-
-const WithWidth = toRenderProps(withWidth());
-
-export default function MyComponent() {
-  return (
-    <WithWidth>
-      {({ width }) => <div>{`Current width: ${width}`}</div>}
-    </WithWidth>
-  );
-}
-```
-
-{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
-
 ## API
 
 ### `theme.breakpoints.up(key) => media query`
