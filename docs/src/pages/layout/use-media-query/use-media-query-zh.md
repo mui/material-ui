@@ -5,15 +5,13 @@ title: React中的媒体查询用于响应式设计
 
 <p class="description">这是React的CSS媒体查询钩子。 它侦听与CSS媒体查询的匹配。 它允许根据查询是否匹配来呈现组件。</p>
 
-> ⚠️ `useMediaQuery` 钩是还不稳定，因此它被出口与不稳定的前缀是不稳定的。 请注意，它取决于 *react@next* 和 *react-dom@next*。
-
 一些关键特点：
 
-- ⚛️ It has an idiomatic React API.
-- 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 Less than [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
-- 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
-- 🤖 It supports Server-side rendering.
+- ⚛️它有一个惯用的React API。
+- 🚀它具有高性能，它会观察文档以检测其媒体查询何时发生更改，而不是定期轮询值。
+- 📦小于 [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js)。
+- 💄它是反应敏感和反应媒体的替代方案，旨在简化。
+- 🤖它支持服务器端渲染。
 
 ## 简单的媒体查询
 
@@ -84,7 +82,7 @@ function MyComponent() {
 1. `query` （*String*）：表示要处理的媒体查询的字符串。
 2. `选项` (*Object* [optional]): 
     - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
-    - `options.noSSR` (*Boolean* [optional]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 它慢了。 您可以将此标志设置为 `真` ，如果你是 **没有做服务器端渲染**。
+    - `options.noSsr` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 它慢了。 您可以将此标志设置为 `真` ，如果你是 **没有做服务器端渲染**。
     - `options.ssrMatchMedia` （*功能* [optional]）您可能希望使用启发式来近似 客户端浏览器的屏幕。 例如，您可以使用用户代理或客户端提示https://caniuse.com/#search=client%20hint。 您可以使用主题上的 [`自定义属性`](/customization/themes/#properties) 提供全局ponyfill。 检查 [服务器端呈现示例](#server-side-rendering)。
 
 #### 返回结果
