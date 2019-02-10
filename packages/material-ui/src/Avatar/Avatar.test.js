@@ -90,7 +90,7 @@ describe('<Avatar />', () => {
 
     it('should render a div containing an svg icon', () => {
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).name(), 'pure(Cancel)');
+      assert.strictEqual(wrapper.childAt(0).type(), CancelIcon);
     });
 
     it('should merge user classes & spread custom props to the root node', () => {

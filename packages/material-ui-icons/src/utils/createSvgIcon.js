@@ -1,5 +1,4 @@
 import React from 'react';
-import pure from 'recompose/pure';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 function createSvgIcon(path, displayName) {
@@ -10,7 +9,7 @@ function createSvgIcon(path, displayName) {
   );
 
   Icon.displayName = `${displayName}Icon`;
-  Icon = pure(Icon);
+  Icon = React.memo(Icon);
   Icon.muiName = 'SvgIcon';
 
   return Icon;

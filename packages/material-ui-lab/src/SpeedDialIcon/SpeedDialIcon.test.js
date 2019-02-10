@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import SpeedDialIcon from './SpeedDialIcon';
+import AddIcon from '../internal/svg-icons/Add';
 
 describe('<SpeedDialIcon />', () => {
   let shallow;
@@ -22,8 +23,7 @@ describe('<SpeedDialIcon />', () => {
 
   it('should render the Add icon by default', () => {
     const wrapper = shallow(<SpeedDialIcon />);
-    const buttonWrapper = wrapper.childAt(0);
-    assert.strictEqual(buttonWrapper.find('pure(Add)').length, 1);
+    assert.strictEqual(wrapper.find(AddIcon).length, 1);
   });
 
   it('should render an Icon', () => {

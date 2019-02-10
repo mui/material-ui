@@ -36,7 +36,7 @@ class SimplePopover extends React.Component {
     return (
       <div>
         <Button
-          aria-owns={open ? 'simple-popper' : undefined}
+          aria-owns={open ? 'simple-popover' : undefined}
           aria-haspopup="true"
           variant="contained"
           onClick={this.handleClick}
@@ -44,7 +44,7 @@ class SimplePopover extends React.Component {
           Open Popover
         </Button>
         <Popover
-          id="simple-popper"
+          id="simple-popover"
           open={open}
           anchorEl={anchorEl}
           onClose={this.handleClose}

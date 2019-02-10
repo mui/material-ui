@@ -55,13 +55,6 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 
-## Render Props
-
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that
-keeps track of the local state for a single menu.
-
-{{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
-
 ## Limitations
 
 There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout.

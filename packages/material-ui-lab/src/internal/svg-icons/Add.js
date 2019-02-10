@@ -1,5 +1,4 @@
 import React from 'react';
-import pure from 'recompose/pure';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 /**
@@ -11,7 +10,7 @@ let Add = props => (
   </SvgIcon>
 );
 
-Add = pure(Add);
+Add = React.memo(Add);
 Add.muiName = 'SvgIcon';
 
 export default Add;
