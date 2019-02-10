@@ -1,4 +1,4 @@
-# Supported Components
+# Поддерживаемые компоненты
 
 <p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
 
