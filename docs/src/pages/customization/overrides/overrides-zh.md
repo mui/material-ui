@@ -10,19 +10,19 @@
 
 ## 1。 一次性情况的具体变化
 
-您可能需要在某些特定情况下更改组件的样式，您可以使用以下解决方案：
+You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
 
 ### 覆盖类名
 
 覆盖组件样式的第一种方法是使用 **类名**。 每个组件都提供一个 `className` 属性，该属性始终应用于根元素。
 
-在这个例子中，它使用 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶 组件将自定义样式注入DOM，并通过其 `类` 属性将类名传递给 `ClassNames` 组件。 您可以选择[任何其他样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[CSS注射顺序](/customization/css-in-js/#css-injection-order) ，由于`<link>`注入`<4>`的底部 ，因此通过Material-UI注入DOM 以对组件进行样式化的CSS具有最高的特异性。确保组件始终正确呈现。
+This example uses the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
 ### 覆盖类
 
-当 `className` 属性不够，并且您需要访问更深层元素时，您可以利用 `类` 属性来自定义Material-UI为给定组件注入的所有CSS。 每个 组件的类列表记录在 **Component API** 部分中。 例如，您可以查看 [Button CSS API](/api/button/#css)。 或者，您可以随时查看 [实现细节](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
+当 `className` 属性不够，并且您需要访问更深层元素时，您可以利用 `类` 属性来自定义Material-UI为给定组件注入的所有CSS。 每个 组件的类列表记录在 **Component API** 部分中。 例如，您可以查看 [Button CSS API](/api/button/#css)。 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
 这个例子也使用 `withStyles（）` （见上文），但是这里， `ClassesNesting` 使用 `Button`的 `类` prop到 提供了一个对象，它映射了 **个类的名称以覆盖** （样式规则） **CSS类名称应用** （值）。 组件的现有类将继续注入，因此只需要提供要添加或覆盖的特定样式 。
 
