@@ -185,7 +185,7 @@
     "size-limit": "^0.21.0",
     "styled-components": "^4.1.1",
     "tslint": "^5.11.0",
-    "typescript": "3.1.6",
+    "typescript": "3.2.2",
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",

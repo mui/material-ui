@@ -85,6 +85,10 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
 
+const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, ref) => (
+  <div ref={ref} />
+));
+
 const AppBarTest = () => (
   <AppBar position="static">
     <Toolbar>
@@ -99,7 +103,53 @@ const AppBarTest = () => (
   </AppBar>
 );
 
-const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
+const AvatarTest = () => (
+  <div>
+    <Avatar
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+        log(e);
+      }}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar<'button'>
+      component="button"
+      ref={elem => {
+        elem; // $ExpectType HTMLButtonElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+        log(e);
+      }}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar
+      component="button"
+      ref={(elem: HTMLButtonElement) => {}}
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    <Avatar component={TestOverride} x={3} alt="Image Alt" src="example.jpg" />
+    <Avatar<typeof TestOverride>
+      component={TestOverride}
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
+      x={3}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+    // onClick isn't allowed since we're overriding with a component that // doesn't have that prop:
+    // $ExpectError
+    <Avatar component={TestOverride} onClick={log} />
+  </div>
+);
 
 const AvatarClassName = () => <Avatar className="foo" />;
 
@@ -113,7 +163,7 @@ const BottomNavigationTest = () => {
   const value = 123;
 
   return (
-    <BottomNavigation value={value} onChange={log} showLabels>
+    <BottomNavigation value={value} onChange={e => log(e)} showLabels>
       <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -137,6 +187,59 @@ const ButtonTest = () => (
     </Button>
     <Button component="a">Simple Link</Button>
     <Button component={props => <a {...props} />}>Complex Link</Button>
+    <Button component={ReactRouterLink} to="/open-collective">
+      Link
+    </Button>
+    <Button href="/open-collective">Link</Button>
+    <Button component={ReactRouterLink} to="/open-collective">
+      Link
+    </Button>
+    <Button href="/open-collective">Link</Button>
+    // By default the underlying component is a button element:
+    <Button
+      ref={elem => {
+        elem; // $ExpectType HTMLButtonElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+        log(e);
+      }}
+    >
+      Button
+    </Button>
+    // If an href is provided, an anchor is used:
+    <Button
+      href="/open-collective"
+      ref={elem => {
+        elem; // $ExpectType HTMLAnchorElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+        log(e);
+      }}
+    >
+      Link
+    </Button>
+    // If a component prop is specified, use that:
+    <Button<'div'>
+      component="div"
+      ref={elem => {
+        elem; // $ExpectType HTMLDivElement | null
+      }}
+      onClick={e => {
+        e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
+        log(e);
+      }}
+    >
+      Div
+    </Button>
+    {
+      // Can't have an onClick handler if the overriding component doesn't specify one:
+      // $ExpectError
+      <Button<typeof TestOverride> component={TestOverride} onClick={log}>
+        TestOverride
+      </Button>
+    }
   </div>
 );
 
@@ -242,8 +345,8 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={log} />
-    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={log} />
+    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
+    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={e => log(e)} />
     <Chip
       avatar={
         <Avatar>
@@ -251,8 +354,8 @@ const ChipsTest = () => (
         </Avatar>
       }
       label="Clickable Deletable Chip"
-      onClick={log}
-      onDelete={log}
+      onClick={e => log(e)}
+      onDelete={e => log(e)}
     />
   </div>
 );
@@ -260,12 +363,12 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={log} open>
+    <Dialog onClose={e => log(e)} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
           {emails.map(email => (
-            <ListItem button onClick={log} key={email}>
+            <ListItem button onClick={e => log(e)} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
@@ -274,13 +377,52 @@ const DialogTest = () => {
               <ListItemText primary={email} />
             </ListItem>
           ))}
-          <ListItem button onClick={log}>
+          <ListItem
+            ref={elem => {
+              elem; // $ExpectType HTMLLIElement | null
+            }}
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+              log(e);
+            }}
+          >
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+          <ListItem
+            button
+            ref={elem => {
+              elem; // $ExpectType HTMLButtonElement | null
+            }}
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+              log(e);
+            }}
+          >
             <ListItemAvatar>
               <Avatar>
                 <FakeIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="add account" />
+          </ListItem>
+          <ListItem<'a'>
+            component="a"
+            ref={elem => {
+              elem; // $ExpectType HTMLAnchorElement | null
+            }}
+            onClick={e => {
+              e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+              log(e);
+            }}
+            button
+          >
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -315,25 +457,37 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer variant="persistent" open={open.left} onClose={log} onClick={log}>
+      <Drawer variant="persistent" open={open.left} onClose={e => log(e)} onClick={e => log(e)}>
         List
       </Drawer>
       <Drawer
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={log}
-        onClick={log}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
         ModalProps={{
           hideBackdrop: true,
         }}
       >
         List
       </Drawer>
-      <Drawer anchor="bottom" variant="temporary" open={open.bottom} onClose={log} onClick={log}>
+      <Drawer
+        anchor="bottom"
+        variant="temporary"
+        open={open.bottom}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+      >
         List
       </Drawer>
-      <Drawer variant="persistent" anchor="right" open={open.right} onClose={log} onClick={log}>
+      <Drawer
+        variant="persistent"
+        anchor="right"
+        open={open.right}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+      >
         List
       </Drawer>
     </div>
@@ -349,31 +503,42 @@ const SwipeableDrawerTest = () => {
   };
   return (
     <div>
-      <SwipeableDrawer open={open.left} onClose={log} onClick={log} onOpen={log}>
+      <SwipeableDrawer
+        open={open.left}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
+      >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={log}
-        onClick={log}
-        onOpen={log}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
         ModalProps={{
           hideBackdrop: true,
         }}
       >
         List
       </SwipeableDrawer>
-      <SwipeableDrawer anchor="bottom" open={open.bottom} onClose={log} onClick={log} onOpen={log}>
+      <SwipeableDrawer
+        anchor="bottom"
+        open={open.bottom}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
+      >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={log}
-        onClick={log}
-        onOpen={log}
+        onClose={e => log(e)}
+        onClick={e => log(e)}
+        onOpen={e => log(e)}
       >
         List
       </SwipeableDrawer>
@@ -383,7 +548,7 @@ const SwipeableDrawerTest = () => {
 
 const ExpansionPanelTest = () => (
   <div>
-    <ExpansionPanel onChange={log} expanded disabled>
+    <ExpansionPanel onChange={e => log(e)} expanded disabled>
       <ExpansionPanelSummary />
       <ExpansionPanelDetails />
     </ExpansionPanel>
@@ -419,8 +584,8 @@ const GridTest = () => (
 );
 
 const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={log}>
-    <GridListTile cols={1} rows={4} onClick={log}>
+  <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
+    <GridListTile cols={1} rows={4} onClick={e => log(e)}>
       <img src="img.png" alt="alt text" />
     </GridListTile>
     ,
@@ -430,7 +595,7 @@ const GridListTest = () => (
 const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map(value => (
-      <ListItem dense button selected={false} key={value} onClick={log}>
+      <ListItem dense button selected={false} key={value} onClick={e => log(e)}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -459,14 +624,36 @@ const MenuTest = () => {
       id="lock-menu"
       anchorEl={anchorEl}
       open={true}
-      onClose={log}
+      onClose={e => log(e)}
       PopoverClasses={{ paper: 'foo' }}
     >
       {options.map((option, index) => (
-        <MenuItem key={option} selected={false} onClick={log}>
+        <MenuItem
+          key={option}
+          selected={false}
+          ref={elem => {
+            elem; // $ExpectType HTMLLIElement | null
+          }}
+          onClick={e => {
+            e; // $ExpectType MouseEvent<HTMLLIElement, MouseEvent>
+            log(e);
+          }}
+        >
           {option}
         </MenuItem>
       ))}
+      <MenuItem<'a'>
+        component="a"
+        ref={elem => {
+          elem; // $ExpectType HTMLAnchorElement | null
+        }}
+        onClick={e => {
+          e; // $ExpectType MouseEvent<HTMLAnchorElement, MouseEvent>
+          log(e);
+        }}
+      >
+        Link Item
+      </MenuItem>
     </Menu>
   );
 };
@@ -560,7 +747,7 @@ const SwitchTest = () => {
 
 const SnackbarTest = () => (
   <div>
-    <Button onClick={log}>Open simple snackbar</Button>
+    <Button onClick={e => log(e)}>Open simple snackbar</Button>
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
@@ -568,7 +755,7 @@ const SnackbarTest = () => (
       }}
       open={true}
       autoHideDuration={6e3}
-      onClose={log}
+      onClose={e => log(e)}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
@@ -577,10 +764,10 @@ const SnackbarTest = () => (
       }
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button key="undo" color="secondary" size="small" onClick={log}>
+        <Button key="undo" color="secondary" size="small" onClick={e => log(e)}>
           UNDO
         </Button>,
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={log}>
+        <IconButton key="close" aria-label="Close" color="inherit" onClick={e => log(e)}>
           <FakeIcon />
         </IconButton>,
       ]}
@@ -750,17 +937,13 @@ const TabsTest = () => {
       value: 0,
     };
 
-    handleChange = (event: React.SyntheticEvent<any>, value: number) => {
-      this.setState({ value });
-    };
-
     render() {
       const classes = this.props.classes;
 
       return (
         <div className={classes.root}>
           <AppBar position="static">
-            <Tabs value={this.state.value} onChange={this.handleChange}>
+            <Tabs value={this.state.value} onChange={(event, value) => this.setState({ value })}>
               <Tab label="Item One" />
               <Tab label="Item Two" />
               <Tab label="Item Three" />

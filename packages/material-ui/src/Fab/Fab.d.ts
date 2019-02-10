@@ -1,18 +1,23 @@
-import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { PropTypes } from '..';
+import { ExtendButtonBase } from '../ButtonBase';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
-export interface FabProps extends StandardProps<ButtonBaseProps, FabClassKey, 'component'> {
-  color?: PropTypes.Color;
-  component?: React.ReactType<FabProps>;
-  disabled?: boolean;
-  disableFocusRipple?: boolean;
-  disableRipple?: boolean;
-  href?: string;
-  size?: 'small' | 'medium' | 'large';
-  type?: string;
-  variant?: 'round' | 'extended';
-}
+declare const Fab: ExtendButtonBase<{
+  props: {
+    color?: PropTypes.Color;
+    disabled?: boolean;
+    disableFocusRipple?: boolean;
+    disableRipple?: boolean;
+    href?: string;
+    size?: 'small' | 'medium' | 'large';
+    type?: string;
+    variant?: 'round' | 'extended';
+  };
+  defaultComponent: 'button';
+  classKey: FabClassKey;
+}>;
+
+export type FabProps = SimplifiedPropsOf<typeof Fab>;
 
 export type FabClassKey =
   | 'root'
@@ -25,7 +30,5 @@ export type FabClassKey =
   | 'colorInherit'
   | 'sizeSmall'
   | 'sizeMedium';
-
-declare const Fab: React.ComponentType<FabProps>;
 
 export default Fab;

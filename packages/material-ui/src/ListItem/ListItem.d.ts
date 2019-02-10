@@ -1,25 +1,27 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
+import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
 
-export interface ListItemProps
-  extends StandardProps<
-    ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
-    ListItemClassKey,
-    'component'
-  > {
-  alignItems?: 'flex-start' | 'center';
-  button?: boolean;
-  component?: React.ReactType<ListItemProps>;
-  ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
-  ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
-  dense?: boolean;
-  disabled?: boolean;
-  disableGutters?: boolean;
-  divider?: boolean;
-  focusVisibleClassName?: string;
-  selected?: boolean;
+export interface ListItemTypeMap<P, D extends React.ReactType> {
+  props: P & {
+    alignItems?: 'flex-start' | 'center';
+    button?: boolean;
+    ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
+    ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
+    dense?: boolean;
+    disabled?: boolean;
+    disableGutters?: boolean;
+    divider?: boolean;
+    focusVisibleClassName?: string;
+    selected?: boolean;
+  };
+  defaultComponent: D;
+  classKey: ListItemClassKey;
 }
+
+declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
+  OverridableComponent<ListItemTypeMap<{ button: true }, 'button'>>;
 
 export type ListItemClassKey =
   | 'root'
@@ -34,6 +36,6 @@ export type ListItemClassKey =
   | 'secondaryAction'
   | 'selected';
 
-declare const ListItem: React.ComponentType<ListItemProps>;
+export type ListItemProps = SimplifiedPropsOf<typeof ListItem>;
 
 export default ListItem;

@@ -2,14 +2,6 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
-export type PropsOf<C> = C extends new (props: infer P) => React.Component
-  ? P
-  : C extends (props: infer P) => React.ReactElement<any> | null
-  ? P
-  : C extends keyof JSX.IntrinsicElements
-  ? JSX.IntrinsicElements[C]
-  : never;
-
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
@@ -69,11 +61,12 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
  * additional {AdditionalProps}
  */
 export type PropInjector<InjectedProps, AdditionalProps = {}> = <
-  C extends React.ComponentType<ConsistentWith<PropsOf<C>, InjectedProps>>
+  C extends React.ComponentType<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
 >(
   component: C,
 ) => React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, PropsOf<C>>, keyof InjectedProps> & AdditionalProps
+  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+    AdditionalProps
 >;
 
 /**

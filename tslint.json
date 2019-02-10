@@ -4,6 +4,7 @@
     "jsRules": {},
     "rules": {
         "file-name-casing": false,
+        "no-unnecessary-callback-wrapper": false,
         "no-unnecessary-generics": false,
         "semicolon": [true, "always", "ignore-bound-class-methods"]
     }
