@@ -30,7 +30,7 @@ Link组件构建在 [Typography](/api/typography/) 组件之上。 您可以利�
 
 ## 第三方路由库
 
-One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
+一个常见的用例是仅在客户端上执行导航，而不执行与服务器的.html往返。 `Link` 组件提供了处理此用例的属性： `组件`。
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'
@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-or if you want to avoid properties collision:
+或者如果你想避免属性碰撞：
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'
@@ -54,4 +54,4 @@ const MyLink = props => <RouterLink to="/open-collective" {...props} />
 </Link>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*注意：创建 `MyLink` 是必要的，以防止意外卸载。 您可以在我们的 [组件属性指南](/guides/composition/#component-property)阅读更多相关信息。*
