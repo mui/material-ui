@@ -184,11 +184,11 @@ ReactDOM.hydrate(
 
 ## 参考实现
 
-我们托管不同的参考实现，您可以在 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 文件夹下的 [GitHub存储库](https://github.com/mui-org/material-ui) 找到它们：
+我们托管不同的参考实现，您可以在 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下的 [GitHub存储库](https://github.com/mui-org/material-ui) 找到它们：
 
-- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
 
 ## 故障排除
 
