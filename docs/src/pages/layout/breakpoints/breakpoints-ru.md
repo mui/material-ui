@@ -30,7 +30,7 @@ In the following demo, we change the background color (red, blue & green) based 
 ```jsx
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.main,
     },
@@ -105,7 +105,7 @@ export default function MyComponent() {
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### Примеры
 
 ```js
 const styles = theme => ({
@@ -130,7 +130,7 @@ const styles = theme => ({
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### Примеры
 
 ```js
 const styles = theme => ({
@@ -156,7 +156,7 @@ const styles = theme => ({
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### Примеры
 
 ```js
 const styles = theme => ({
@@ -183,7 +183,7 @@ const styles = theme => ({
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### Примеры
 
 ```js
 const styles = theme => ({
@@ -236,7 +236,7 @@ const theme = createMuiTheme({
 
 `higher-order component`: Should be used to wrap a component.
 
-#### Examples
+#### Примеры
 
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
