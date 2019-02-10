@@ -158,6 +158,7 @@
     "react-final-form": "^4.0.2",
     "react-frame-component": "^4.0.2",
     "react-inspector": "^2.2.2",
+    "react-interpolate-component": "0.12.0",
     "react-jss": "^8.6.1",
     "react-number-format": "^4.0.0",
     "react-redux": "^6.0.0",

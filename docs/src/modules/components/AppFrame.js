@@ -236,10 +236,10 @@ class AppFrame extends React.Component {
                       </MenuItem>
                     ))}
                   </Menu>
-                  <Tooltip title={t('editDocsColors')} enterDelay={300}>
+                  <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
                     <IconButton
                       color="inherit"
-                      aria-label={t('editDocsColors')}
+                      aria-label={t('editWebsiteColors')}
                       component={Link}
                       naked
                       href="/style/color/#color-tool"

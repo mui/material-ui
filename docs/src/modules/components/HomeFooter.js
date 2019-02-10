@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Interpolate from 'react-interpolate-component';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -84,11 +85,18 @@ function HomeFooter(props) {
         </Grid>
       </Typography>
       <Typography className={classes.version}>
-        {`Currently v${process.env.LIB_VERSION}. ${t('released')} `}
-        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
-          MIT License
-        </Link>
-        {'.'}
+        <Interpolate
+          with={{
+            versionNumber: `v${process.env.LIB_VERSION}`,
+            license: (
+              <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
+                {t('license')}
+              </Link>
+            ),
+          }}
+        >
+          {t('homeFooterRelease')}
+        </Interpolate>
       </Typography>
     </footer>
   );
