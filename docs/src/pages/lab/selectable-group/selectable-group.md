@@ -9,9 +9,9 @@ components: SelectableGroup
 
 #### Select Many
 
-{{"demo": "pages/lab/selectable-group/RadioButtons.js"}}
+{{"demo": "pages/lab/selectable-group/Checkboxes.js"}}
 
 #### Select One
 
-{{"demo": "pages/lab/selectable-group/ExclusiveRadioButtons.js"}}
+{{"demo": "pages/lab/selectable-group/RadioButtons.js"}}
 

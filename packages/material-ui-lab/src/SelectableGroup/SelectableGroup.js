@@ -25,7 +25,11 @@ class SelectableGroup extends React.Component {
       this.setState(({ selected: prevSelected }, props) => {
         const selected = handler(prevSelected, value, props);
 
-        if (selected.length === prevSelected.length) {
+        if (props.exclusive) {
+          if (selected === prevSelected) {
+            return null;
+          }
+        } else if (selected.length === prevSelected.length) {
           const notChanged = selected
             .map((val, i) => prevSelected[i] === val)
             .every(isSame => isSame);
