@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import clsx from 'clsx';
-import withStyles from '@material-ui/core/styles/withStyles';
 import isValueSelected from './isValueSelected';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
     borderRadius: 2,
-    overflow: 'hidden',
-    display: 'flex',
-    flexWrap: 'nowrap',
+    display: 'inline-flex',
   },
 });
 
@@ -47,34 +46,32 @@ class ToggleButtonGroup extends React.Component {
   };
 
   render() {
-    const {
-      children: childrenProp,
-      className: classNameProp,
-      classes,
-      exclusive,
-      onChange,
-      value,
-      ...other
-    } = this.props;
-
-    const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
-
-      const { selected: buttonSelected, value: buttonValue } = child.props;
-      const selected =
-        buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
-      return React.cloneElement(child, {
-        selected,
-        onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
-      });
-    });
+    const { children, className, classes, exclusive, onChange, value, ...other } = this.props;
 
     return (
-      <div className={clsx(classes.root, classNameProp)} {...other}>
-        {children}
+      <div className={clsx(classes.root, className)} {...other}>
+        {React.Children.map(children, child => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          warning(
+            child.type !== React.Fragment,
+            [
+              "Material-UI: the ToggleButtonGroup component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+
+          const { selected: buttonSelected, value: buttonValue } = child.props;
+          const selected =
+            buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
+
+          return React.cloneElement(child, {
+            selected,
+            onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
+          });
+        })}
       </div>
     );
   }

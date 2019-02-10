@@ -10,8 +10,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    boxSizing: 'border-box',
     ...theme.typography.button,
+    boxSizing: 'border-box',
     height: 48,
     minWidth: 48,
     padding: '0px 11px 0px 12px',
@@ -54,7 +54,6 @@ export const styles = theme => ({
       borderTopRightRadius: 2,
       borderBottomRightRadius: 2,
       paddingLeft: 12,
-      // paddingRight: 11,
     },
   },
   /* Styles applied to the root element if `disabled={true}`. */
@@ -63,7 +62,7 @@ export const styles = theme => ({
   selected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {
-    width: '100%',
+    width: '100%', // Ensure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
@@ -89,26 +88,24 @@ class ToggleButton extends React.Component {
   render() {
     const {
       children,
-      className: classNameProp,
       classes,
-      disableFocusRipple,
+      className,
       disabled,
+      disableFocusRipple,
       selected,
       ...other
     } = this.props;
 
-    const className = clsx(
-      classes.root,
-      {
-        [classes.disabled]: disabled,
-        [classes.selected]: selected,
-      },
-      classNameProp,
-    );
-
     return (
       <ButtonBase
-        className={className}
+        className={clsx(
+          classes.root,
+          {
+            [classes.disabled]: disabled,
+            [classes.selected]: selected,
+          },
+          className,
+        )}
         disabled={disabled}
         focusRipple={!disableFocusRipple}
         onClick={this.handleChange}
