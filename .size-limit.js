@@ -93,6 +93,6 @@ module.exports = [
     name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
-    limit: '9.1 KB',
+    limit: '9.8 KB',
   },
 ];

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Interpolate from 'react-interpolate-component';
+import Interpolate from '@trendmicro/react-interpolate';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -86,7 +86,7 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         <Interpolate
-          with={{
+          replacement={{
             versionNumber: `v${process.env.LIB_VERSION}`,
             license: (
               <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
