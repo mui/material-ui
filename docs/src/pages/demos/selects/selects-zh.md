@@ -18,9 +18,11 @@ components: Select, NativeSelect
 
 {{"demo": "pages/demos/selects/NativeSelects.js"}}
 
-## Customized selects
+## 自定义选择
 
 如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
+
+The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.
 
 ⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 
