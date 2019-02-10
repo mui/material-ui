@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing(20),
+    paddingTop: theme.spacing.unit * 20,
   },
 });
 
