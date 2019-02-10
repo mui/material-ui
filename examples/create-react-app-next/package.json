@@ -1,9 +1,9 @@
 {
-  "name": "create-react-app",
-  "version": "3.0.0",
+  "name": "create-react-app-next",
+  "version": "4.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@material-ui/core": "next",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

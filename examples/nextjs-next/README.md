@@ -1,12 +1,12 @@
-# Next.js Hooks example
+# Next.js v4-alpha example
 
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/nextjs-hooks
-cd nextjs
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/nextjs-next
+cd nextjs-next
 ```
 
 Install it and run:

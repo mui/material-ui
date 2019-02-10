@@ -1,12 +1,12 @@
-# CDN-next example
+# CDN v4-alpha example
 
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/cdn
-cd cdn
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/cdn-next
+cd cdn-next
 ```
 
 Run:
@@ -22,7 +22,7 @@ which is great for prototyping. We discourage using this approach in production 
 the client has to download the entire library, regardless of which components are actually used,
 affecting performance and bandwidth utilisation.
 
-[The live preview.](https://rawgit.com/mui-org/material-ui/next/examples/cdn/index.html)
+[The live preview.](https://rawgit.com/mui-org/material-ui/next/examples/cdn-next/index.html)
 
 ## UMD releases
 

@@ -1,15 +1,15 @@
 {
-  "name": "nextjs",
-  "version": "3.0.0",
+  "name": "nextjs-next",
+  "version": "4.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@material-ui/core": "next",
     "@material-ui/styles": "latest",
     "jss": "latest",
     "next": "latest",
     "prop-types": "latest",
-    "react": "next",
-    "react-dom": "next"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "scripts": {
     "dev": "next",

@@ -14,7 +14,7 @@ import Link from 'next/link';
 const useStyles = makeStyles(theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing(20),
+    paddingTop: theme.spacing.unit * 20,
   },
 }));
 
