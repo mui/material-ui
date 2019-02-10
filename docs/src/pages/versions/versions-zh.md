@@ -1,20 +1,20 @@
-# Material-UI 版本号
+# Material-UI 的不同版本
 
-<p class="description">你可以在任意时间回到本页切换文档的版本。</p>
+<p class="description">你可以随时回到本页来切换不同版本的文档。</p>
 
 ## 稳定版本
 
-我们推荐在生产环境中使用最新版本。
+我们推荐在生产开发中使用最新版本。
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
 ## 最新版本
 
-在这里您可以找到尚未发布的最新文档和代码。 你可以使用它来查看最新的更新内容, 并为 Material-UI 的贡献者提供更好的反馈。
+在这里您可以找到尚未发布的最新文档和代码。 您可以使用它来查看即将实施的更新 , 并给 Material-UI 的贡献者提供更好的反馈。
 
 {{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
 
-## 版本控制策略
+## 版本控制方案
 
 我们认识到您需要来自Material-UI库的**稳定性**. 稳定性确保可重用组件和库、教程、工具和学习教程不会意外过时. 稳定性对于Material-UI蓬勃发展的生态系统至关重要.
 
