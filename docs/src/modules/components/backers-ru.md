@@ -1,8 +1,6 @@
-## Supporting Material-UI
+## Поддержка Material-UI
 
-Material-UI is an MIT-licensed open source project.
-It's an independent project with ongoing development made possible entirely
-thanks to the support of these awesome [backers](/discover-more/backers/).
+Material-UI — это проект с открытым исходным кодом, опубликованный под лицензией MIT. It's an independent project with ongoing development made possible entirely thanks to the support of these awesome [backers](/discover-more/backers/).
 
 ### Gold Sponsors
 
