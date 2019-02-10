@@ -1,10 +1,10 @@
 # 支持的平台
 
-<p class="description">了解更多从古老到新的支持Material-UI的平台</p>
+<p class="description">了解更多Material-UI支持的从最新版到旧版的平台</p>
 
 ## 浏览器
 
-Material-UI支持最新的，稳定版的全部主流浏览器和平台。 我们同样支持Internet Explorer 11。 你不需要像以往我们管理不兼容的浏览器那样提供JavaScript polyfill。
+Material-UI支持所有主流浏览器和平台的最新稳定版本。 我们还支持Internet Explorer 11。 你不需要像以往我们管理不兼容的浏览器那样提供JavaScript polyfill。
 
 | IE | Edge  | Firefox | Chrome | Safari | Googlebot |
 |:-- |:----- |:------- |:------ |:------ |:--------- |
@@ -14,7 +14,7 @@ Material-UI支持最新的，稳定版的全部主流浏览器和平台。 我�
 
 ## 服务器
 
-因为Material-UI支持服务器端渲染，所以我们需要支持 [Node.js](https://github.com/nodejs/node)的最新稳定版本。 我们试图支持 [最后一个活动LTS版本](https://github.com/nodejs/Release#lts-schedule1)。 现在，我们支持 **node v6.x** 和更新版本。
+因为Material-UI支持服务器端渲染，所以我们需要支持 [Node.js](https://github.com/nodejs/node)的最新稳定版本。 我们还会尝试支持维护中的[ LTS版本](https://github.com/nodejs/Release#lts-schedule1) 。 现在，我们支持 **node v8.x** 和更新版本。
 
 ### CSS前缀
 
