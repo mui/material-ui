@@ -14,14 +14,14 @@ components: 语气
 - ♿️它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
 - ♿️自动添加适当的ARIA角色。
 
-Modal是一个较低级别的构造，由以下组件利用：
+> **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 模态框的窗口可以描述用户界面的一部分。 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
+
+当你创建一个模态对话框时，使用[对话框（Dialog）](/demos/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
 - [Dialog](/demos/dialogs/)
 - [Drawer](/demos/drawers/)
 - [Menu](/demos/menus/)
 - [Popover](/utils/popover/)
-
-如果要创建模式对话框，则可能需要使用 [Dialog](/demos/dialogs/) 组件而不是直接使用Modal。
 
 ## 简单的模态
 
@@ -29,9 +29,9 @@ Modal是一个较低级别的构造，由以下组件利用：
 
 ## 性能
 
-模态的含量为 **懒惰地安装** 到DOM。 它确保在React树中拥有许多闭合模态不会减慢页面速度。
+模态框的内容是用 **延迟加载**的方式加载到DOM中的。 以此确保即使你的React树中有许多关闭的模态框， 你的页面速度也不会减慢。
 
-但是，创建React元素也会产生成本。考虑以下情况：
+然而， 创建一个React组件也会有成本。考虑一下以下的情况：
 
 ```jsx
 <Modal open={false}>
@@ -58,7 +58,7 @@ Modal是一个较低级别的构造，由以下组件利用：
 </Modal>
 ```
 
-我们创建了许多永远不会安装的React元素。这很浪费 
+We create a lot of React elements that will never be mounted. It's wasteful 
 
 ```jsx
 <Modal open={false}>
@@ -66,4 +66,4 @@ Modal是一个较低级别的构造，由以下组件利用：
 </Modal>
 ```
 
-这样，您就可以利用React渲染惰性评估。 只有在打开模态时才会计算 `TableComponent` 渲染方法
+This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal
