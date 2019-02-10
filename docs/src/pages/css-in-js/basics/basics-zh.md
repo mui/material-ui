@@ -8,22 +8,22 @@ Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见
 
 ## Material-UI 的样式解决方案
 
-在以前的版本中，Material-UI 使用 LESS，然后是自定义内嵌式的解决方案来编写组件的样式，但是这些方法已被证明是有限制的。 最近，我们[迁移](https://github.com/oliviertassinari/a-journey-toward-better-style)到*CSS-in-JS*的解决方案中去。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
+在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 最近，我们开始向*CSS-in-JS*解决方案方向转移。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [将SCSS（Sass）转换为CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+- [将 SCSS（Sass）转换为 CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
 - 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
-- 🚀是 [极快](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles)。 x2.6比服务器上的情感更快，用于渲染静态样式表。
-- 🧩可通过 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API进行扩展。
-- ⚡️它的核心使用 [JSS](https://github.com/cssinjs/jss)。 这是一个 [高性能](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript来CSS编译器，在运行时和服务器端的工作。
+- 🚀 Is [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles). x2.6比服务器上的情感更快，用于渲染静态样式表。
+- 🧩 Is extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
+- ⚡️它的核心使用 [JSS](https://github.com/cssinjs/jss)。 It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)。
 
 ## 安装
 
-下载并保存到你的 `package.json` 依赖，运行
+将 Material-UI 下载并保存到你的 `package.json` 依赖文件里，请运行:
 
 ```sh
 // 用npm安装
@@ -32,8 +32,6 @@ npm install @material-ui/styles
 // 用yarn安装
 yarn add @material-ui/styles
 ```
-
-> 请注意，它取决于 *react@next* 和 *react-dom@next*。
 
 ### 迁移`@material-ui/core`用户
 
