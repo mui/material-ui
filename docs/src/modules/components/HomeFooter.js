@@ -34,15 +34,6 @@ const styles = theme => ({
 function HomeFooter(props) {
   const { classes, t } = props;
 
-  const interpolations = {
-    versionNumber: `v${process.env.LIB_VERSION}`,
-    license: (
-      <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
-        {t('license')}
-      </Link>
-    ),
-  };
-
   return (
     <footer className={classes.root}>
       <Typography variant="h6" gutterBottom>
@@ -94,7 +85,18 @@ function HomeFooter(props) {
         </Grid>
       </Typography>
       <Typography className={classes.version}>
-        <Interpolate with={interpolations}>{`${t('version')} ${t('released')}`}</Interpolate>
+        <Interpolate
+          with={{
+            versionNumber: `v${process.env.LIB_VERSION}`,
+            license: (
+              <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
+                {t('license')}
+              </Link>
+            ),
+          }}
+        >
+          {t('homeFooterRelease')}
+        </Interpolate>
       </Typography>
     </footer>
   );
