@@ -6,6 +6,6 @@ Material-UI由一小群宝贵的核心贡献者维护，得到了我们社区的
 
 {{"demo": "pages/discover-more/team/Team.js", "hideHeader": true}}
 
-通过 [打开问题](https://github.com/mui-org/material-ui/issues/new) 或提交拉取请求参与Material-UI开发。 阅读我们的 [贡献指南](https://github.com/mui-org/material-ui/blob/master/CONTRIBUTING.md) ，了解我们如何发展。
+通过 [打开问题](https://github.com/mui-org/material-ui/issues/new) 或提交拉取请求参与Material-UI开发。 Read our [contributing guidelines](https://github.com/mui-org/material-ui/blob/next/CONTRIBUTING.md) for information on how we develop.
 
 [加入Material-UI社区！](/discover-more/community/)
