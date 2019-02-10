@@ -30,7 +30,7 @@ CSS 媒体查询是让 UI 具有响应性的惯用做法。 我们提供了四�
 ```jsx
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.main,
     },
@@ -209,7 +209,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 一些可能有趣的实现细节：
 
-- 它将转发 *non React static* 属性, 以便 HOC 更 "透明"。 例如, 它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
+- 它将转发*非 React 的静态* 属性，以便 HOC 更 "透明"。 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
 
 #### 参数
 
@@ -224,7 +224,7 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // 断点全局设置 
+      initialWidth: 'lg', // Breakpoint being globally set 
     },
   },
 });
