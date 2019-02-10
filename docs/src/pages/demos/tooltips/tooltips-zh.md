@@ -75,7 +75,7 @@ function MyComponent(props) {
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
-## 过渡动画
+## 过渡(Transitions)
 
 使用不同的过渡动画。
 
