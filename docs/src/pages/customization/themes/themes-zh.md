@@ -21,8 +21,9 @@
 - [调色板](#palette)
 - [类型（浅色/深色主题）](#type-light-dark-theme)
 - [活版印刷](#typography)
-- [其他变量](#other-variables)
-- [自定义变量](#custom-variables)
+- [间距](#spacing)
+- [Other variables](#other-variables)
+- [Custom variables](#custom-variables)
 
 ### 调色板
 
@@ -194,7 +195,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-### 排版 - 字体系列
+#### Typography - Font family
 
 ```js
 const theme = createMuiTheme({
@@ -216,7 +217,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### 排版 - 字体大小
+#### Typography - Font size
 
 Material-UI使用 `rem` 单位作为字体大小。 浏览器 `<html>` 元件默认字体大小是 `16px的`，但浏览器有一个选项，以改变该值， 所以 `REM` 单元允许我们以适应用户的设置，产生了更好的用户体验。 用户可以出于各种原因更改字体大小设置，从视力不佳到为大小和观看距离差异很大的设备选择最佳设置 。
 
@@ -235,7 +236,7 @@ const theme = createMuiTheme({
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### 排版 - HTML字体大小
+#### Typography - HTML font size
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，使用 [10px简化时](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/)。 我们为此用例提供了一个 `htmlFontSize` 主题属性。 它告诉Material-UI `<html>` 元素的字体大小是多少。 它用于调整 `rem` 值，因此计算出的字体大小始终与规范匹配。
 
@@ -258,13 +259,57 @@ html {
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
-### 其他变量
+### 间距
 
-除了调色板，暗色和浅色类型以及排版外，主题还通过提供更多默认值（例如断点，阴影，过渡等）来规范化实现。 您可以查看 [默认主题部分](/customization/default-theme/) 以完整查看默认主题。
+We encourage you to use the `theme.spacing()` helper to create consistent spacing between the elements of your UI. Material-UI uses [a recommended 8px scaling factor by default](https://material.io/design/layout/understanding-layout.html).
 
-### 自定义变量
+```js
+const styles = theme => ({
+  root: {
+    // JSS uses px as the default units for this CSS property.
+    padding: theme.spacing(2), // Outputs 8 * 2
+  },
+});
+```
 
-当使用Material-UI的 [样式解决方案](/customization/css-in-js/) 和您自己的组件时， 您也可以利用主题。 可以方便地向主题添加其他变量，以便您可以在任何地方使用它们。 例如：
+You can change the spacing transformation by providing:
+
+- a number
+
+```js
+const theme = createMuiTheme({
+  spacing: 4,
+});
+
+theme.spacing(2) // = 4 * 2
+```
+
+- or a function
+
+```js
+const theme = createMuiTheme({
+  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+});
+
+theme.spacing(2) // = 0.5rem = 8px
+```
+
+#### Multiple arity
+
+The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate:
+
+```diff
+<br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
++  padding: theme.spacing(1, 2), // '8px 16px'
+```
+
+### Other variables
+
+In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc. You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+
+### Custom variables
+
+When using Material-UI's [styling solution](/customization/css-in-js/) with your own components, you can also take advantage of the theme. It can be convenient to add additional variables to the theme so you can use them everywhere. 例如：
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
@@ -272,7 +317,7 @@ html {
 
 ### CSS
 
-当配置变量不够强大时，您可以利用 `overrides` 的 `theme` 键来潜在地将Material-UI注入的每个 **style** 更改为DOM。 这是一个非常强大的功能。
+当配置变量不够强大时，您可以利用 `overrides` 的 `theme` 键来潜在地将Material-UI注入的每个 **style** 更改为DOM。 That's a really powerful feature.
 
 ```js
 const theme = createMuiTheme({
@@ -288,19 +333,19 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
-每个组件的这些自定义点列表记录在 **Component API** 部分下。 例如，您可以查看 [按钮](/api/button/#css)。 或者，您可以随时查看 [实现](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
+The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
-### 属性
+### Properties
 
-您还可以在组件类型的所有实例上应用属性。 我们在这个用例的 `主题` 公开了一个 `道具` 键。
+You can also apply properties on all the instances of a component type. We expose a `props` key in the `theme` for this use case.
 
 ```js
 const theme = createMuiTheme({
   props: {
-    // 组件的名称 ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // 要应用的属性
-      disableRipple: true, // 在整个应用程序中没有更多的涟漪 
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -316,7 +361,7 @@ const theme = createMuiTheme({
 
 ## 嵌套主题
 
-主题解决方案非常灵活，因为 [可以嵌套](/css-in-js/advanced/#theme-nesting) 多个主题提供者。 在处理具有彼此明显外观的应用程序的不同区域时，这非常有用。
+The theming solution is very flexible, as [you can nest](/css-in-js/advanced/#theme-nesting) multiple theme providers. 在处理具有彼此明显外观的应用程序的不同区域时，这非常有用。
 
 {{"demo": "pages/customization/themes/ThemeNesting.js"}}
 
@@ -324,12 +369,12 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
 
-#### 关于表现的说明
+#### A note on performance
 
-嵌套 `MuiThemeProvider` 组件的性能影响与JSS在幕后的工作相关联。 要理解的要点是我们使用以下元组 `（样式，主题）`缓存注入的CSS。
+The performance implications of nesting the `MuiThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
 
-- `主题`：如果在每个渲染中提供新主题，则将计算并注入新的CSS对象。 对于UI一致性和性能，最好渲染有限数量的主题对象。
-- `样式`：样式对象越大，需要的工作量越多。
+- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
+- `styles`: The larger the styles object is, the more work is needed.
 
 ## API
 
@@ -337,7 +382,7 @@ const theme = createMuiTheme({
 
 该组件采用`theme`属性，并使`theme`由于React上下文，可以在React树下使用。 它最好应在**组件树的根目录中使用** 。
 
-你可以看到完整的属性API [这个专用页面](/api/mui-theme-provider/)。
+You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
 #### 例子
 
@@ -362,7 +407,7 @@ render(<App />, document.querySelector('#app'));
 
 ### `createMuiTheme(options) => theme`
 
-根据收到的选项生成主题。
+Generate a theme base on the options received.
 
 #### 参数
 
