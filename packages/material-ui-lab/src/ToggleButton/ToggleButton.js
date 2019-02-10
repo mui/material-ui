@@ -14,7 +14,7 @@ export const styles = theme => ({
     ...theme.typography.button,
     height: 48,
     minWidth: 48,
-    padding: '0px 11px 0px 11px',
+    padding: '0px 11px 0px 12px',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
     '&:not(:first-child)': {
