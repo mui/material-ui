@@ -104,7 +104,7 @@ const useStyles = makeStyles({
 
 由Material-UI 注入的 CSS 对组件的样式具有最高的特异性, 因为`<link>`被注入到`<head>`的底部, 以确保组件始终正确呈现。
 
-但是, 您可能还希望重写这些样式, 例如使用styled-components。 如果遇到 CSS 注入顺序问题, JSS[提供了一个机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)来处理这种情况。 通过调整 HTML 头中 ` insertionPoint ` 的位置, 可以 [ 控制顺序 ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) 将 CSS 规则应用于组件。
+但是, 您可能还希望重写这些样式, 例如使用styled-components。 如果遇到 CSS 注入顺序问题, JSS[提供了一个机制](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-the-dom-insertion-point)来处理这种情况。 通过调整 HTML 头中 ` insertionPoint ` 的位置, 可以 [ 控制顺序 ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) 将 CSS 规则应用于组件。
 
 ### HTML 注释
 
@@ -277,7 +277,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase);
 
 ### 如何实现CSP？
 
-为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。 JSS有一[个很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
+为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。 JSS有[一个很棒的教程](https://github.com/cssinjs/jss/blob/next/docs/csp.md)关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
 
 CSP nonce是Base 64编码的字符串。 你可以这样生成一个：
 
