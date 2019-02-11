@@ -84,7 +84,7 @@ function InputLabel(props) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     disableAnimation,
     FormLabelClasses,
     margin,
@@ -105,23 +105,21 @@ function InputLabel(props) {
     states: ['margin', 'variant'],
   });
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes.formControl]: muiFormControl,
-      [classes.animated]: !disableAnimation,
-      [classes.shrink]: shrink,
-      [classes.marginDense]: fcs.margin === 'dense',
-      [classes.filled]: fcs.variant === 'filled',
-      [classes.outlined]: fcs.variant === 'outlined',
-    },
-    classNameProp,
-  );
-
   return (
     <FormLabel
       data-shrink={shrink}
-      className={className}
+      className={clsx(
+        classes.root,
+        {
+          [classes.formControl]: muiFormControl,
+          [classes.animated]: !disableAnimation,
+          [classes.shrink]: shrink,
+          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.filled]: fcs.variant === 'filled',
+          [classes.outlined]: fcs.variant === 'outlined',
+        },
+        className,
+      )}
       classes={{
         focused: classes.focused,
         disabled: classes.disabled,

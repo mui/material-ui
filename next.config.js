@@ -1,6 +1,6 @@
+const path = require('path');
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const withTM = require('@weco/next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
@@ -9,9 +9,24 @@ process.env.LIB_VERSION = pkg.version;
 module.exports = {
   webpack: (config, options) => {
     // Alias @material-ui/core peer dependency imports form the following modules to our sources.
-    config = withTM({
-      transpileModules: ['notistack', 'material-ui-pickers'],
-    }).webpack(config, options);
+    // To replace with https://github.com/martpie/next-plugin-transpile-modules once Next.js 8 support is present
+    const transpileModules = ['notistack', 'material-ui-pickers'];
+    const includes = transpileModules.map(module => new RegExp(`${module}(?!.*node_modules)`));
+    config.externals = config.externals.map(external => {
+      if (typeof external !== 'function') return external;
+      return (ctx, req, cb) => {
+        return includes.find(include =>
+          req.startsWith('.') ? include.test(path.resolve(ctx, req)) : include.test(req),
+        )
+          ? cb()
+          : external(ctx, req, cb);
+      };
+    });
+    config.module.rules.push({
+      test: /\.js$/,
+      include: includes,
+      loader: options.defaultLoaders.babel,
+    });
 
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({

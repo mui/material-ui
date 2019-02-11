@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import NextHead from 'next/head';
-import { _rewriteUrlForNextExport, withRouter } from 'next/router';
+import { Router, withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 function Head(props) {
@@ -21,7 +23,7 @@ function Head(props) {
       <meta property="og:title" content={title} />
       <meta
         property="og:url"
-        content={`https://material-ui.com${_rewriteUrlForNextExport(router.asPath)}`}
+        content={`https://material-ui.com${Router._rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/brand.png" />

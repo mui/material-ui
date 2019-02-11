@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import { _rewriteUrlForNextExport } from 'next/router';
+import { Router } from 'next/router';
 import PropTypes from 'prop-types';
 import { getHeaders, getContents } from 'docs/src/modules/utils/parseMarkdown';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -37,7 +39,7 @@ ${headers.components
     component =>
       `- [&lt;${component} /&gt;](${
         section === 'lab' ? '/lab/api' : '/api'
-      }/${_rewriteUrlForNextExport(kebabCase(component))})`,
+      }/${Router._rewriteUrlForNextExport(kebabCase(component))})`,
   )
   .join('\n')}
         `);
