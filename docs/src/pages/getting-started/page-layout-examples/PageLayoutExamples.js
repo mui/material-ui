@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { _rewriteUrlForNextExport } from 'next/router';
+import { Router } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -94,7 +96,7 @@ function PageLayoutExamples(props) {
           <Card className={classes.card}>
             <CardMedia
               component="a"
-              href={_rewriteUrlForNextExport(layout.href)}
+              href={Router._rewriteUrlForNextExport(layout.href)}
               className={classes.cardMedia}
               image={layout.src}
               title={layout.title}

@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { _rewriteUrlForNextExport } from 'next/router';
+import { Router } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
@@ -111,7 +113,7 @@ function AppDrawer(props) {
                 <Link
                   color="textSecondary"
                   variant="caption"
-                  href={_rewriteUrlForNextExport('/versions')}
+                  href={Router._rewriteUrlForNextExport('/versions')}
                 >
                   {`v${process.env.LIB_VERSION}`}
                 </Link>

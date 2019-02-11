@@ -1,9 +1,9 @@
-/* eslint-disable react/forbid-foreign-prop-types */
+/* eslint-disable react/forbid-foreign-prop-types, no-underscore-dangle */
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
-import { _rewriteUrlForNextExport } from 'next/router';
+import { Router } from 'next/router';
 import { pageToTitle } from './helpers';
 import { LANGUAGES } from 'docs/src/modules/constants';
 
@@ -254,7 +254,7 @@ function generateProps(reactAPI) {
     text = `${text}
 Any other properties supplied will be spread to the root element (${
       reactAPI.inheritance
-        ? `[${reactAPI.inheritance.component}](${_rewriteUrlForNextExport(
+        ? `[${reactAPI.inheritance.component}](${Router._rewriteUrlForNextExport(
             reactAPI.inheritance.pathname,
           )})`
         : 'native element'
@@ -335,7 +335,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [${inheritance.component}](${_rewriteUrlForNextExport(
+The properties of the [${inheritance.component}](${Router._rewriteUrlForNextExport(
     inheritance.pathname,
   )}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
@@ -359,7 +359,7 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-  .map(page => `- [${pageToTitle(page)}](${_rewriteUrlForNextExport(page.pathname)})`)
+  .map(page => `- [${pageToTitle(page)}](${Router._rewriteUrlForNextExport(page.pathname)})`)
   .join('\n')}
 
 `;

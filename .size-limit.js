@@ -22,7 +22,7 @@ module.exports = [
     name: 'The initial cost paid for using one component with ES modules',
     webpack: true,
     path: 'packages/material-ui/build/esm/Paper/index.js',
-    limit: '17.8 KB',
+    limit: '17.9 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
@@ -73,7 +73,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/Popper component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Popper/index.js',
-    limit: '9.7 KB',
+    limit: '9.8 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-responsive
@@ -87,12 +87,12 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '193 KB',
+    limit: '199 KB',
   },
   {
     name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
-    limit: '9.8 KB',
+    limit: '10 KB',
   },
 ];
