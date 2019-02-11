@@ -44,47 +44,42 @@ const styles = theme => ({
   },
 });
 
-function byTitle(a, b) {
-  return a.title.localeCompare(b.title);
+function stableSort(array, cmp) {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = cmp(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map(el => el[0]);
 }
 
 // Returns a function that sorts reverse numerically by value of `key`
 function sortFactory(key) {
   return function sortNumeric(a, b) {
-    if (!b[key]) {
+    if (b[key] < a[key]) {
       return -1;
     }
-    return a[key] ? b[key] - a[key] : 1;
+    if (b[key] > a[key]) {
+      return 1;
+    }
+    return 0;
   };
 }
 
-const byNewest = sortFactory('index');
-const byVisits = sortFactory('similarWebVisits');
-const byStars = sortFactory('stars');
+const sortFunctions = {
+  index: sortFactory('index'),
+  similarWebVisits: sortFactory('similarWebVisits'),
+  stars: sortFactory('stars'),
+};
 
 function Showcase(props) {
   const { classes, t } = props;
-  const [sortFunction, setSortFunction] = React.useState(() => byVisits);
-  const [sortFunctionName, setSortFunctionName] = React.useState('byVisits');
+  const [sortFunctionName, setSortFunctionName] = React.useState('index');
+  const sortFunction = sortFunctions[sortFunctionName];
 
   function handleChangeSort(event) {
-    const { value } = event.target;
-    setSortFunctionName(value);
-
-    switch (value) {
-      case 'byNewest':
-        setSortFunction(() => byNewest);
-        break;
-      case 'byStars':
-        setSortFunction(() => byStars);
-        break;
-      case 'byTitle':
-        setSortFunction(() => byTitle);
-        break;
-      default:
-        setSortFunction(() => byVisits);
-        break;
-    }
+    setSortFunctionName(event.target.value);
   }
 
   return (
@@ -92,48 +87,53 @@ function Showcase(props) {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
-          <MenuItem value="byVisits">{t('traffic')}</MenuItem>
-          <MenuItem value="byNewest">{t('newest')}</MenuItem>
-          <MenuItem value="byStars">{t('stars')}</MenuItem>
-          <MenuItem value="byTitle">{t('alphabetical')}</MenuItem>
+          <MenuItem value="index">{t('newest')}</MenuItem>
+          <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
+          <MenuItem value="stars">{t('stars')}</MenuItem>
         </Select>
       </FormControl>
-      {appList.sort(sortFunction).map(app => (
-        <div key={app.title}>
-          <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
-            <span>{app.title}</span>
-            {app.source ? (
-              <IconButton href={app.source} target="_blank" aria-label={`${app.title} source code`}>
-                <GithubIcon />
-              </IconButton>
-            ) : null}
-          </Typography>
-          {app.image ? (
-            <Card className={classes.card}>
-              <CardMedia
-                component="a"
-                href={app.link}
-                rel="noopener"
+      {stableSort(appList.filter(item => item[sortFunctionName] !== undefined), sortFunction).map(
+        app => (
+          <div key={app.title}>
+            <Typography component="h2" variant="h4" gutterBottom className={classes.title}>
+              <span>{app.title}</span>
+              {app.source ? (
+                <IconButton
+                  href={app.source}
+                  target="_blank"
+                  aria-label={`${app.title} source code`}
+                >
+                  <GithubIcon />
+                </IconButton>
+              ) : null}
+            </Typography>
+            {app.image ? (
+              <Card className={classes.card}>
+                <CardMedia
+                  component="a"
+                  href={app.link}
+                  rel="noopener"
+                  target="_blank"
+                  className={classes.cardMedia}
+                  image={`/static/images/showcase/${app.image}`}
+                  title={app.title}
+                />
+              </Card>
+            ) : (
+              <Link
+                variant="body2"
                 target="_blank"
-                className={classes.cardMedia}
-                image={`/static/images/showcase/${app.image}`}
-                title={app.title}
-              />
-            </Card>
-          ) : (
-            <Link
-              variant="body2"
-              target="_blank"
-              rel="noopener nofollow"
-              href={app.link}
-              gutterBottom
-            >
-              Visit the website
-            </Link>
-          )}
-          <Typography className={classes.description}>{app.description}</Typography>
-        </div>
-      ))}
+                rel="noopener nofollow"
+                href={app.link}
+                gutterBottom
+              >
+                Visit the website
+              </Link>
+            )}
+            <Typography className={classes.description}>{app.description}</Typography>
+          </div>
+        ),
+      )}
     </div>
   );
 }

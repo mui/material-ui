@@ -217,6 +217,7 @@ const appList = [
     image: 'eostoolkit.jpg',
     link: 'https://www.eostoolkit.io/',
     source: 'https://github.com/generEOS/eostoolkit',
+    stars: 43,
     similarWebVisits: 123,
     index: 30,
   },
@@ -333,9 +334,9 @@ const appList = [
       'theming. The UI is responsive. The code is open-source!',
     image: 'posters-galore.jpg',
     link: 'https://marmelab.com/react-admin-demo/',
-    source:
-      'https://github.com/marmelab/react-admin/tree/be23a1a8ebc4e2293b57898adcb2f359e836f0fd/examples/demo',
+    source: 'https://github.com/marmelab/react-admin',
     index: 21,
+    stars: 6786,
   },
   {
     title: 'Builder Book',
@@ -345,6 +346,7 @@ const appList = [
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
+    stars: 1042,
     index: 5,
   },
   {
@@ -533,6 +535,7 @@ const appList = [
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
+    stars: 8,
     index: 23,
   },
   {
@@ -565,22 +568,12 @@ const appList = [
     index: 22,
   },
   {
-    title: 'Misheneye',
-    description:
-      'Creates custom brand guides for companies. It walks you through creating your ' +
-      'mission, vision, values, colors, typography and imagery choices, then displays them in ' +
-      'a beautiful brand guide for your organization.',
-    image: 'misheneye.jpg',
-    link: 'https://www.misheneye.com',
-    index: 36,
-  },
-  {
     title: 'Swimmy',
     description: 'An open source forum PWA. 🇯🇵 (Github docs are in English)',
     image: 'swimmy.jpg',
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
-    stars: 3,
+    stars: 4,
     index: 27,
   },
   {
@@ -643,7 +636,7 @@ const appList = [
     image: 'snippets.jpg',
     link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
-    stars: 36,
+    stars: 38,
     index: 19,
   },
   {
@@ -665,7 +658,7 @@ const appList = [
     link: 'https://tree.valleyease.me/',
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
-    stars: 7,
+    stars: 9,
     index: 35,
   },
   {
@@ -676,7 +669,7 @@ const appList = [
       'You can also reorder your playlist tracks and upload new playlist cover images.',
     link: 'https://componofy.herokuapp.com/',
     source: 'https://github.com/DalerAsrorov/componofy',
-    stars: 5,
+    stars: 6,
     index: 8,
   },
   {
@@ -691,19 +684,11 @@ const appList = [
     index: 24,
   },
   {
-    title: 'Gadr',
-    description:
-      'Follow top performing crypto traders. ' +
-      'Get notifications from your favorite traders. Get a full overview of your crypto assets.' +
-      'Share your portfolio with the world and see how you stack up to the best',
-    link: 'https://gadr.io/',
-    index: 33,
-  },
-  {
     title: 'Persona',
     description: 'Zero knowledge digital identity management system built on blockchain.',
     link: 'https://persona.im/',
     image: 'persona.jpg',
+    index: 0,
   },
 ];
 

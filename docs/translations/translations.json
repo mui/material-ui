@@ -48,7 +48,6 @@
   "traffic": "Traffic",
   "newest": "Newest",
   "stars": "GitHub stars",
-  "alphabetical": "Alphabetical",
   "dashboardTitle": "Dashboard",
   "dashboardDescr": "A minimal dashboard with taskbar and mini variant draw. The chart is courtesy of Recharts, but it is simple to substitute an alternative.",
   "signInTitle": "Sign-in",
