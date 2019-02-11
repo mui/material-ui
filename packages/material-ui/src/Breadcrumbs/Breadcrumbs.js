@@ -17,12 +17,11 @@ const styles = {
     alignItems: 'center',
     padding: 0, // Reset
     margin: 0, // Reset
-    '& li': {
-      listStyle: 'none',
-    },
   },
   /* Styles applied to the li element. */
-  li: {},
+  li: {
+    listStyle: 'none',
+  },
   /* Styles applied to the separator element. */
   separator: {},
 };

@@ -21,7 +21,9 @@ So far we have demos for:
 
 - A dashboard
 - A sign-in page
+- A sign-up page
 - A blog page
 - A checkout flow
 - An album page
 - A pricing page
+- A sticky footer page

@@ -21,7 +21,15 @@ export const styles = theme => ({
 });
 
 const Toolbar = React.forwardRef(function Toolbar(props, ref) {
-  const { children, classes, className: classNameProp, disableGutters, variant, ...other } = props;
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    component: Component,
+    disableGutters,
+    variant,
+    ...other
+  } = props;
 
   const className = clsx(
     classes.root,
@@ -33,9 +41,9 @@ const Toolbar = React.forwardRef(function Toolbar(props, ref) {
   );
 
   return (
-    <div className={className} ref={ref} {...other}>
+    <Component className={className} ref={ref} {...other}>
       {children}
-    </div>
+    </Component>
   );
 });
 
@@ -54,6 +62,11 @@ Toolbar.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, disables gutter padding.
    */
   disableGutters: PropTypes.bool,
@@ -64,6 +77,7 @@ Toolbar.propTypes = {
 };
 
 Toolbar.defaultProps = {
+  component: 'div',
   disableGutters: false,
   variant: 'regular',
 };

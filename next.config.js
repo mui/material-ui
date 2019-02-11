@@ -56,8 +56,8 @@ module.exports = {
     });
   },
   webpackDevMiddleware: config => config,
-  // next.js also provide a `defaultPathMap` so we could simplify the logic.
-  // However, we keep it in order to prevent any future regression on the `findPages()` side.
+  // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
+  // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
     const map = {};
 

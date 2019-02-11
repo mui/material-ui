@@ -55,6 +55,10 @@
   "dashboardDescr": "A minimal dashboard with taskbar and mini variant draw. The chart is courtesy of Recharts, but it is simple to substitute an alternative.",
   "signInTitle": "Sign-in",
   "signInDescr": "A simple sign-in page.",
+  "signInSideTitle": "Sign-in side",
+  "signInSideDescr": "A simple sign-in side page.",
+  "signUpTitle": "Sign-up",
+  "signUpDescr": "A simple sign-up page.",
   "blogTitle": "Blog",
   "blogDescr": "A sophisticated blog page layout. Markdown support is courtesy of markdown-to-jsx but is easily replaced.",
   "checkoutTitle": "Checkout",
@@ -63,5 +67,7 @@
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
   "pricingTitle": "Pricing",
   "pricingDescr": "Quickly build an effective pricing table for your potential customers with this page layout.",
+  "stickyFooterTitle": "Sticky footer",
+  "stickyFooterDescr": "Attach a footer to the bottom of the viewport when page content is short.",
   "expandAll": "Expand all"
 }
