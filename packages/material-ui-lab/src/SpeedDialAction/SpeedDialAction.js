@@ -115,17 +115,18 @@ class SpeedDialAction extends React.Component {
     }
 
     const actionButton = (
-      <Button
-        variant="fab"
-        mini
+      <Fab
+        size="small"
         className={classNames(classes.actionButton, classes.button, !open && classes.buttonClosed)}
+        style={{ transitionDelay: `${delay}ms` }}
         tabIndex={-1}
         role="menuitem"
+        onKeyDown={onKeyDown}
         {...clickProps}
         {...ButtonProps}
       >
         {icon}
-      </Button>
+      </Fab>
     );
 
     if (tooltipOpen) {
@@ -161,7 +162,7 @@ class SpeedDialAction extends React.Component {
           role="menuitem"
           onKeyDown={onKeyDown}
           {...ButtonProps}
-          {...clickProp}
+          {...clickProps}
         >
           {icon}
         </Fab>
