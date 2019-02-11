@@ -39,7 +39,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the span element that wraps the children. */
   label: {
-    width: '100%', // assure the correct width for iOS Safari
+    width: '100%', // Ensure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',

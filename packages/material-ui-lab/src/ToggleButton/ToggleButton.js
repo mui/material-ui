@@ -11,17 +11,25 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    height: 32,
+    boxSizing: 'border-box',
+    height: 48,
     minWidth: 48,
-    margin: 0,
-    padding: '4px 12px',
-    borderRadius: 2,
+    padding: '0px 11px 0px 12px',
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
+    '&:not(:first-child)': {
+      marginLeft: -1,
+      borderLeft: '1px solid transparent',
+    },
     '&$selected': {
       color: theme.palette.action.active,
-      backgroundColor: fade(theme.palette.action.active, 0.2),
+      backgroundColor: fade(theme.palette.action.active, 0.12),
       '&:hover': {
-        backgroundColor: fade(theme.palette.action.active, 0.25),
+        backgroundColor: fade(theme.palette.action.active, 0.15),
+      },
+      '& + &': {
+        borderLeft: 0,
+        marginLeft: 0,
       },
     },
     '&$disabled': {
@@ -30,7 +38,7 @@ export const styles = theme => ({
     '&:hover': {
       textDecoration: 'none',
       // Reset on mouse devices
-      backgroundColor: fade(theme.palette.text.primary, 0.12),
+      backgroundColor: fade(theme.palette.text.primary, 0.05),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -38,13 +46,14 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-    '&:not(:first-child)': {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
+    '&:first-child': {
+      borderTopLeftRadius: 2,
+      borderBottomLeftRadius: 2,
     },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
+    '&:last-child': {
+      borderTopRightRadius: 2,
+      borderBottomRightRadius: 2,
+      paddingLeft: 12,
     },
   },
   /* Styles applied to the root element if `disabled={true}`. */
@@ -53,7 +62,7 @@ export const styles = theme => ({
   selected: {},
   /* Styles applied to the `label` wrapper element. */
   label: {
-    width: '100%',
+    width: '100%', // Ensure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
@@ -79,26 +88,24 @@ class ToggleButton extends React.Component {
   render() {
     const {
       children,
-      className: classNameProp,
       classes,
-      disableFocusRipple,
+      className,
       disabled,
+      disableFocusRipple,
       selected,
       ...other
     } = this.props;
 
-    const className = clsx(
-      classes.root,
-      {
-        [classes.disabled]: disabled,
-        [classes.selected]: selected,
-      },
-      classNameProp,
-    );
-
     return (
       <ButtonBase
-        className={className}
+        className={clsx(
+          classes.root,
+          {
+            [classes.disabled]: disabled,
+            [classes.selected]: selected,
+          },
+          className,
+        )}
         disabled={disabled}
         focusRipple={!disableFocusRipple}
         onClick={this.handleChange}

@@ -17,13 +17,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const styles = theme => ({
   toggleContainer: {
-    height: 56,
-    padding: theme.spacing(1, 2),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    margin: theme.spacing(1, 0),
-    background: theme.palette.background.default,
+    margin: theme.spacing(2, 0),
   },
 });
 
@@ -33,9 +27,13 @@ class ToggleButtons extends React.Component {
     formats: ['bold'],
   };
 
-  handleFormat = (event, formats) => this.setState({ formats });
+  handleFormat = (event, formats) => {
+    this.setState({ formats });
+  };
 
-  handleAlignment = (event, alignment) => this.setState({ alignment });
+  handleAlignment = (event, alignment) => {
+    this.setState({ alignment });
+  };
 
   render() {
     const { classes } = this.props;
@@ -43,7 +41,7 @@ class ToggleButtons extends React.Component {
 
     return (
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>
               <ToggleButton value="left">
@@ -60,16 +58,14 @@ class ToggleButtons extends React.Component {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <Typography variant="caption" gutterBottom>
-            Exclusive Selection
-          </Typography>
-          <Typography variant="caption">
+          <Typography gutterBottom>Exclusive Selection</Typography>
+          <Typography>
             Text justification toggle buttons present options for left, right, center, full, and
             justified text with only one item available for selection at a time. Selecting one
             option deselects any other.
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={formats} onChange={this.handleFormat}>
               <ToggleButton value="bold">
@@ -87,10 +83,8 @@ class ToggleButtons extends React.Component {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <Typography variant="caption" gutterBottom>
-            Multiple Selection
-          </Typography>
-          <Typography variant="caption">
+          <Typography gutterBottom>Multiple Selection</Typography>
+          <Typography>
             Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to
             be selected.
           </Typography>
