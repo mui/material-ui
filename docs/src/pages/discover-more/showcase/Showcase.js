@@ -87,8 +87,8 @@ function Showcase(props) {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select value={sortFunctionName} onChange={handleChangeSort} inputProps={{ id: 'sort' }}>
-          <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
           <MenuItem value="index">{t('newest')}</MenuItem>
+          <MenuItem value="similarWebVisits">{t('traffic')}</MenuItem>
           <MenuItem value="stars">{t('stars')}</MenuItem>
         </Select>
       </FormControl>
