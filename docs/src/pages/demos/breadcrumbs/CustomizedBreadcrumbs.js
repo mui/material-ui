@@ -53,7 +53,7 @@ function CustomizedBreadcrumbs(props) {
 
   return (
     <Paper className={classes.root}>
-      <Breadcrumbs arial-label="Breadcrumb">
+      <Breadcrumbs aria-label="Breadcrumb">
         <StyledBreadcrumb
           component="a"
           href="#"

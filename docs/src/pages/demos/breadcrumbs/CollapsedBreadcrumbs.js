@@ -28,7 +28,7 @@ function CollapsedBreadcrumbs(props) {
 
   return (
     <Paper className={classes.paper}>
-      <Breadcrumbs maxItems={2} arial-label="Breadcrumb">
+      <Breadcrumbs maxItems={2} aria-label="Breadcrumb">
         <Link color="inherit" href="#" onClick={handleClick}>
           Home
         </Link>
