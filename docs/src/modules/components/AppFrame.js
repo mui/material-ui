@@ -81,6 +81,13 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
+  banner: {
+    display: 'block',
+    padding: 4,
+    textAlign: 'center',
+    backgroundColor: '#0a6fc2',
+    color: 'white',
+  },
   grow: {
     flex: '1 1 auto',
   },
@@ -192,6 +199,9 @@ class AppFrame extends React.Component {
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
+                <Typography className={classes.banner}>
+                  {`⚠️ This is an alpha version (v${process.env.LIB_VERSION})`}
+                </Typography>
                 <Toolbar>
                   <IconButton
                     color="inherit"
