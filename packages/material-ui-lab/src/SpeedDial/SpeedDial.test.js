@@ -147,7 +147,7 @@ describe('<SpeedDial />', () => {
           </SpeedDial>,
         );
 
-        const buttonWrapper = wrapper.find(Button);
+        const buttonWrapper = wrapper.find(Fab);
         const event = {
           preventDefault: spy(),
           stopPropagation: spy(),
@@ -157,7 +157,6 @@ describe('<SpeedDial />', () => {
         assert.strictEqual(event.preventDefault.callCount, 1);
         assert.strictEqual(event.stopPropagation.callCount, 1);
 
-        const buttonWrapper = wrapper.find(Fab);
         assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 

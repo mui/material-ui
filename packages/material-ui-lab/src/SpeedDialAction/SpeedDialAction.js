@@ -117,13 +117,18 @@ class SpeedDialAction extends React.Component {
     const actionButton = (
       <Fab
         size="small"
-        className={classNames(classes.actionButton, classes.button, !open && classes.buttonClosed)}
+        className={classNames(
+          className,
+          classes.button,
+          classes.actionButton,
+          !open && classes.buttonClosed,
+        )}
         style={{ transitionDelay: `${delay}ms` }}
         tabIndex={-1}
         role="menuitem"
         onKeyDown={onKeyDown}
-        {...clickProps}
         {...ButtonProps}
+        {...clickProps}
       >
         {icon}
       </Fab>
@@ -154,18 +159,7 @@ class SpeedDialAction extends React.Component {
         classes={TooltipClasses}
         {...other}
       >
-        <Fab
-          size="small"
-          className={classNames(className, classes.button, !open && classes.buttonClosed)}
-          style={{ transitionDelay: `${delay}ms` }}
-          tabIndex={-1}
-          role="menuitem"
-          onKeyDown={onKeyDown}
-          {...ButtonProps}
-          {...clickProps}
-        >
-          {icon}
-        </Fab>
+        {actionButton}
       </Tooltip>
     );
   }
