@@ -77,9 +77,9 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   const renderCustomThemeProviders = (
     <>
       <ThemeProvider theme={theme}>
-        <div/>
-        <ThemeProvider theme={(outerTheme: CustomTheme) => ({myCustomColor: 'green'})}>
-          <div/>
+        <div />
+        <ThemeProvider theme={(outerTheme: CustomTheme) => ({ myCustomColor: 'green' })}>
+          <div />
         </ThemeProvider>
       </ThemeProvider>
     </>
@@ -87,8 +87,8 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
 
   const renderWrongCustomThemeProviders = (
     // $ExpectError
-    <ThemeProvider theme={(outerTheme: CustomTheme) => ({myExtraColor: 'green'})}>
-      <div/>
+    <ThemeProvider theme={(outerTheme: CustomTheme) => ({ myExtraColor: 'green' })}>
+      <div />
     </ThemeProvider>
   );
 }

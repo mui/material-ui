@@ -204,7 +204,9 @@ declare module '@material-ui/styles/ThemeProvider' {
     children: React.ReactNode;
     theme: Theme | ((outerTheme: Theme) => Theme);
   }
-  export default function ThemeProvider<T>(props: ThemeProviderProps<T>): React.ReactElement<ThemeProviderProps<T>>;
+  export default function ThemeProvider<T>(
+    props: ThemeProviderProps<T>,
+  ): React.ReactElement<ThemeProviderProps<T>>;
 }
 
 declare module '@material-ui/styles/useTheme' {
