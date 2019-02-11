@@ -4,8 +4,8 @@ components: Paper
 ---
 # Paper
 
-<p class="description">In Material Design, the physical properties of paper are translated to the screen. </p>
+<p class="description">В Material Design физические свойства бумаги переводятся на экран. </p>
 
-The background of an application resembles the flat, opaque texture of a sheet of paper, and an application’s behavior mimics paper’s ability to be re-sized, shuffled, and bound together in multiple sheets.
+Фон приложения напоминает плоскую непрозрачную текстуру листа бумаги, а поведение приложения имитирует способность бумаги изменять размер, перетасовывать и связывать вместе в несколько листов.
 
 {{"demo": "pages/demos/paper/PaperSheet.js"}}

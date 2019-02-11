@@ -1,36 +1,36 @@
 ---
-title: Chip React component
+title: Chip React Component
 components: Chip
 ---
 # Chips
 
-<p class="description">Chips are compact elements that represent an input, attribute, or action.</p>
+<p class="description">Chips sind kompakte Elemente, die eine Eingabe, ein Attribut oder eine Aktion repräsentieren.</p>
 
-[Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
+[Chips](https://material.io/design/components/chips.html) erlauben es dem Nutzer, eine Information einzugeben, eine Auswahl zu treffen, Inhalte zu filtern oder Aktionen auszulösen.
 
-While included here as a standalone component, the most common use will be in some form of input, so some of the behaviour demonstrated here is not shown in context.
+Obwohl hier als eigenständige Komponente eingebunden, wird der wohl häufigste Anwendungsfall in einer Art von Input sein. Einiges des hier demonstrierten Verhaltens ist also nicht unbedingt im Kontext dargestellt.
 
 ## Chip
 
-Examples of Chips, using an image Avatar, SVG Icon Avatar, "Letter" and (string) Avatar.
+Beispiele von Chips, die ein Bild-Avatar, SVG-Icon-Avatar, "Buchstaben-" und (Text-) Avatar verwenden.
 
-- Chips with the `onClick` property defined change appearance on focus, hover, and click.
-- Chips with the `onDelete` property defined will display a delete icon which changes appearance on hover.
+- Chips, auf denen das `onClick` Property gesetzt ist, ändern ihr Erscheinungsbild beim Fokusieren, Darüberfahren und Klicken.
+- Chips, auf denen das `onDelete` Property definiert ist, zeigen ein Löschen-Icon, das beim Darüberfahren sein Erscheinungsbild ändert.
 
 {{"demo": "pages/demos/chips/Chips.js"}}
 
-### Outlined Chips
+### Umrandete Chips
 
-Outlined chips offer an alternative style.
+Umrandete Chips bieten einen alternativen Stil.
 
 {{"demo": "pages/demos/chips/OutlinedChips.js"}}
 
-## Chip array
+## Chip Array
 
-An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array. Note that since no `onClick` property is defined, the Chip can be focused, but does not gain depth while clicked or touched.
+Ein Beispiel vom Rendern mehrerer Chips aus einem Array von Werten. Das Löschen eines Chips entfernt ihn aus dem Array. Beachte, das dadurch, dass kein `onClick` Property gesetzt ist, der Chip zwar fokussiert, jedoch nicht geklickt oder berührt werden kann.
 
 {{"demo": "pages/demos/chips/ChipsArray.js"}}
 
-## Chip Playground
+## Chip Spielwiese
 
 {{"demo": "pages/demos/chips/ChipsPlayground.js"}}

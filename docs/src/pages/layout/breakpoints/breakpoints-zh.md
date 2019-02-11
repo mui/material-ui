@@ -30,7 +30,7 @@ CSS 媒体查询是让 UI 具有响应性的惯用做法。 我们提供了四�
 ```jsx
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.main,
     },
@@ -71,27 +71,6 @@ export default withWidth()(MyComponent);
 在下面的演示中，我们更改了渲染的DOM元素（*em* ，<u>u</u> ，~~ del ~~ & span）基于屏幕宽度。
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
-
-#### Render Props
-
-在某些情况下，您可以使用高阶组件体验属性名称冲突。 为避免这种情况，您可以使用[渲染道具](https://reactjs.org/docs/render-props.html)模式如下面的演示所示。
-
-```jsx
-import Typography from '@material-ui/core/Typography';
-import toRenderProps from 'recompose/toRenderProps';
-
-const WithWidth = toRenderProps(withWidth());
-
-export default function MyComponent() {
-  return (
-    <WithWidth>
-      {({ width }) => <div>{`Current width: ${width}`}</div>}
-    </WithWidth>
-  );
-}
-```
-
-{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
 
 ## API
 
@@ -201,7 +180,7 @@ const styles = theme => ({
 
 ### `withWidth([options]) => higher-order component`
 
-注入`width`属性。 它不会修改传递给它的组件;相反，它返回一个新组件。 此 `宽度` 断点属性与当前屏幕宽度匹配。 它可以是以下断点之一：
+注入`width`属性。 它不会修改传递给它的组件；相反，它返回一个新组件。 这个`width`断点属性与当前屏幕宽度匹配。 It can be one of the following breakpoints:
 
 ```ts
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -209,7 +188,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 一些可能有趣的实现细节：
 
-- 它将转发 *non React static* 属性, 以便 HOC 更 "透明"。 例如, 它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
+- 它将转发*非 React 的静态* 属性，以便 HOC 更 "透明"。 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
 
 #### 参数
 
@@ -224,7 +203,7 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // 断点全局设置 
+      initialWidth: 'lg', // Breakpoint being globally set 
     },
   },
 });

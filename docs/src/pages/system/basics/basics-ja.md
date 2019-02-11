@@ -42,7 +42,7 @@ const Box = styled.div`${palette}${spacing}${typography}`;
 
 {{"demo": "pages/system/basics/Demo.js"}}
 
-### Installation
+### インストール
 
 ```jsx
 // usando npm
@@ -285,7 +285,7 @@ We don't support all the CSS properties. It's possible that you want to support 
 
 `style function`: The style function created.
 
-#### Examples
+#### 例
 
 ```js
 import { style } from '@material-ui/system'
@@ -306,7 +306,7 @@ Merge multiple style functions into one.
 
 `style function`: The style function created.
 
-#### Examples
+#### 例
 
 ```js
 import { style, compose } from '@material-ui/system'

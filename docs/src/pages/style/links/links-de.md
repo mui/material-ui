@@ -3,9 +3,9 @@ components: Link
 ---
 # Links
 
-<p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
+<p class="description">Mit der Link-Komponente kannst du Ankerelemente auf einfache Weise an deine Designfarben und Typografiestile anpassen.</p>
 
-## Simple links
+## Einfache Links
 
 The Link component is built on top of the [Typography](/api/typography/) component. You can leverage its properties.
 
@@ -15,22 +15,22 @@ However, the Link has different default properties than the Typography: - `color
 
 ## Accessibility
 
-- When providing the content for the link, avoid generic descriptions like "click here" or "go to". Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- For the best user experience links should stand out from the text on the page.
-- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
+- Vermeide generische Beschreibungen wie "Hier klicken" oder "Gehe zu" beim Erstellen eines Links. Verwende stattdessen [spezifische Beschreibungen](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+- Für eine optimale Benutzererfahrungen sollten Links aus dem Text der Seite hervorgehoben werden.
+- Wenn ein Link keinen sinnvollen href hat, [sollte ein `<button>` Element verwendet werden](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
 
 {{"demo": "pages/style/links/ButtonLink.js"}}
 
-## Security
+## Sicherheit
 
-When you use `target="_blank"` with Links it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
+Wenn du Links mit `target="_blank"` verwendest und auf Drittanbieter- Inhalte verweist, ist es [empfohlen](https://developers.google.com/web/tools/lighthouse/audits/noopener), immer `rel="noopener"` oder `rel="noreferrer"` zu verwenden.
 
-- `rel="noopener"` prevents the new page from being able to access the window.opener property and ensures it runs in a separate process. Without this the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer""` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
+- `rel="noopener"` verhindert den Zugriff der Seite auf das window.opener Attribut und stellt sicher, dass sie in einem eigenen Process läuft. Andernfalls kann die Ziel- Seite potentiell eine Weiterleitung zu einer schädlichen URL durchführen.
+- `rel="noreferrer""` hat die gleichen Auswirkungen, verhindert jedoch zusätzlich, dass der *Referer* Header zu der neuen Seite gesendet wird. ⚠️ Das entfernen des Referrer Headers kann Auswirkungen auf Analytics haben.
 
-## Third-party routing library
+## Drittanbieter-Routing Bibliothek
 
-One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
+Ein häufiger Anwendungsfall besteht darin, die Navigation nur clientseitig durchzuführen, ohne einen .html-Roundtrip mit dem Server durchzuführen. Die `Link`- Komponente bietet eine Eigenschaft für diesen Anwendungsfall: `component`.
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'
@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-or if you want to avoid properties collision:
+oder wenn Sie die Kollision von Eigenschaften vermeiden möchten:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'
@@ -54,4 +54,4 @@ const MyLink = props => <RouterLink to="/open-collective" {...props} />
 </Link>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Merke: Das Erstellen von `MyLink` ist notwendig um unerwünschtes Unmounting zu verhindern. Weitere Informationen dazu finden Sie in unserem [Komponenten-Guide](/guides/composition/#component-property).*

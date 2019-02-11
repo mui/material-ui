@@ -1,18 +1,18 @@
 ---
-title: Autocomplete React component
+title: Autovervollständigungs React-Komponente
 components: TextField, Paper, MenuItem, Popper
 ---
-# Autocomplete
+# Autovervollständigung
 
-<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+<p class="description">Die Autovervollständigung ist eine normale Texteingabe, die durch ein Panel mit vorgeschlagenen Optionen ergänzt wird.</p>
 
-Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
+Material-UI bietet keine High-Level-API zur Lösung dieses Problems. Wir unterstützen Menschen, die sich auf die Lösungen verlassen, die die React-Community entwickelt hat.
 
 ## downshift
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).
+Im folgenden Beispiel demonstrieren wir, wie man einen [downshift](https://github.com/paypal/downshift) benutzt.
 
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
@@ -20,7 +20,7 @@ In the following example, we demonstrate how to use [downshift](https://github.c
 
 ![stars](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-select.svg)
 
-In the following example, we demonstrate how to use [react-select](https://github.com/JedWatson/react-select).
+Im folgenden Beispiel demonstrieren wir, wie man [react-select](https://github.com/JedWatson/react-select) benutzt.
 
 {{"demo": "pages/demos/autocomplete/IntegrationReactSelect.js"}}
 
@@ -28,6 +28,6 @@ In the following example, we demonstrate how to use [react-select](https://githu
 
 ![stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-In the following example, we demonstrate how to use [react-autosuggest](https://github.com/moroshko/react-autosuggest). It's also using [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) for the highlighting logic.
+Im folgenden Beispiel demonstrieren wir, wie man [react-autosuggest](https://github.com/moroshko/react-autosuggest) verwendet. Es verwendet auch [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) für die Highlighting-Logik.
 
 {{"demo": "pages/demos/autocomplete/IntegrationAutosuggest.js"}}

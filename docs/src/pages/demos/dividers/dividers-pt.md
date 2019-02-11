@@ -6,7 +6,7 @@ components: Divider
 
 <p class="description">Um divisor é uma linha fina que agrupa conteúdo em listas e layouts.</p>
 
-[Dividers](https://material.io/design/components/dividers.html) separate content into clear groups.
+[Dividers (Divisores)](https://material.io/design/components/dividers.html) separam grupos de conteúdos.
 
 ## Divisores de lista
 
@@ -20,7 +20,7 @@ We need to make sure the `Divider` is rendered as a `li` to match the HTML5 spec
 
 ## Divisores de inserção
 
-The `inset` property has now been deprecated. You should now use `variant="inset"`
+A propriedade `inset` está obsoleta e em desuso. Você deve usar agora `variant="inset"`.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 

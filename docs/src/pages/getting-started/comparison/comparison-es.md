@@ -1,12 +1,12 @@
-# Comparison with other libraries
+# Comparación con otras librerías
 
-<p class="description">You’re here because you want to know if Material-UI can solve your specific problems better. That’s what we hope to answer for you here.</p>
+<p class="description">Estas aqui porque quieres saber si Material-UI puede dar mejor soluciones a tus problemas especificos. Esto es lo que esperamos respoder.</p>
 
-This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important. Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
+Esta es sin duda la página de la guía más difícil de escribir, pero creemos que es importante. Lo más probable es que haya tenido problemas que intentó resolver y haya utilizado otra librería para ello.
 
-We’d like your help keeping this document up-to-date because the JavaScript world moves fast! If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by [opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
+También nos gustaría **tú** ayuda para mantener este documento actualizado ¡porque el mundo de JavaScript se mueve rápido! Si usted nota una inexactitud o algo que no parece del todo correcto, por favor, avísenos a través [ de un issue ](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
 
-We cover the following libraries:
+Nosotros cubrimos las siguientes librerías:
 
 - [Material-UI](#material-ui)
 - [Material Design Lite (MDL)](#material-design-lite-mdl)
@@ -16,53 +16,53 @@ We cover the following libraries:
 
 ## Material-UI
 
-![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)
+![estrellas](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/@material-ui/core.svg)
 
-We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️. There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 
+Nos esforzaremos mucho para evitar sesgos, aunque como equipo central, obviamente nos gusta mucho Material-UI ❤️. There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 
 
-We do want to be fair and accurate though, so where other libraries offer significant advantages we try to list these as well.
+Sin embargo, queremos ser justos y precisos, por lo que, cuando otras librerías ofrecen ventajas significativas, también intentamos enumerarlas.
 
 ## Material Design Lite (MDL)
 
-![stars](https://img.shields.io/github/stars/google/material-design-lite.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-design-lite.svg)
+![estrellas](https://img.shields.io/github/stars/google/material-design-lite.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/material-design-lite.svg)
 
-Material Design Lite, while a very well-thought-out Material Design implementation, was primarily maintained by Developer Relations at Google. Today, **the project is no longer maintained**. So what happened?
+Material Design Lite, fue una implementación muy bien pensada de Material Design, y fue mantenida principalmente por desarrolladores de Google. Hoy, ** el proyecto ya no es mantenido. **. ¿Entonces qué pasó?
 
-The Material Components Web team started out building MDC-web as "MDL v2", but, after collaborating on it for a few months, both teams felt it best to bring the project under the Material Design team's purview. This shift meant a re-orientation of goals away from simply "adding a Material Design look and feel" to websites, and towards the goal of a canonical Material Design implementation for the entire web platform.
+El equipo de componentes web material comenzó la construcción de MDC-web como "MDL v2", pero, después de colaborar en él durante unos meses, ambos equipos sintieron que lo mejor es llevar el proyecto bajo el ámbito de competencia del equipo de Material Design. Este cambio significó una reorientación de objetivos lejos de simplemente "agregar una apariencia de Material Design" a los sitios web, y hacia el objetivo de una implementación de Material Design canónica para toda la plataforma web.
 
 ## Material Components Web (MDC-web)
 
-![stars](https://img.shields.io/github/stars/material-components/material-components-web.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-components-web.svg)
+![estrellas](https://img.shields.io/github/stars/material-components/material-components-web.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/material-components-web.svg)
 
-We are very happy to see this project supported by Google and its design team. It sends a clear signal that the [Material Design specification](https://material.io/design/) is here to stay, as they continue to invest in it.
+Estamos muy contentos de ver este proyecto apoyado por Google y su equipo de diseño. Es una señal clara de que la especificación de [ Material Design ](https://material.io/design/) vino para quedarse, ya que continúan invirtiendo en ella.
 
-### Frameworks and libraries
+### Frameworks y librerías
 
-Material-UI focuses exclusively on the React library, although, given that Preact supports the very same API, we hope to soon support it too. Supporting one framework allows us to do less but do it better.
+Material-UI se centra exclusivamente en la librería React, aunque, dado que Preact soporta la misma API, esperamos darle soporte pronto también. Apoyar un framework nos permite hacer menos pero hacerlo mejor.
 
-This comes in different flavors:
+Esto viene en diferentes sabores:
 
-- Having fewer constraints, we can make trade-offs specific to our target framework. We have fewer edge-cases to take into account.
-- We can spend more time on nailing the React use case.
+- Al tener menos restricciones, podemos hacer concesiones específicas a nuestro framework objetivo. Tenemos menos casos de vanguardia que tener en cuenta.
+- Podemos dedicar más tiempo a identificar el caso de uso de React.
 
-MDC-web was designed from the ground up to be fully compatible with 3rd party JS frameworks and libraries. They list 3rd-party framework integration projects in the github [README](https://github.com/material-components/material-components-web/#material-components-for-the-web)
+MDC-web fue diseñado desde cero para ser totalmente compatible con los frameworks y bibliotecas JS de terceros. Ellos listan proyectos de integración con frameworks de terceros en github [README](https://github.com/material-components/material-components-web/#material-components-for-the-web)
 
-### Styling solution
+### Solución de diseño
 
-[Material-UI carries a heavy legacy with styles](https://github.com/oliviertassinari/a-journey-toward-better-style). Our very first release was using LESS, but seeing the limitation of this solution, we quickly started looking into alternatives. Our first migration was towards using an inline-style solution. This was promising:
+[Material-UI tiene un gran legado con estilos](https://github.com/oliviertassinari/a-journey-toward-better-style). Nuestra primera versión usaba LESS, pero viendo la limitación de esta solución, rápidamente empezamos a buscar alternativas. Nuestra primera migración fue hacia el uso de una solución de estilo en línea. Este fue prometedor:
 
-- It allowed us to remove the dependency on the LESS toolchain for our users. We removed one important friction in the installation process. (**simpler**)
-- We were able to change the theme at runtime, nest different themes, and have dynamic styles. (**more powerful**)
-- We reduced the loading time by breaking the big monolithic CSS file in order to enable code splitting. (**faster**)
-- The style override story became more intuitive, as we were free of CSS specificity issues. (**simpler**)
+- Nos permitió eliminar la dependencia de la herramienta LESS para nuestros usuarios. Quitamos una fricción importante en el proceso de instalación. (**más simple**)
+- Pudimos cambiar el tema en tiempo de ejecución, anidar diferentes temas y tener estilos dinámicos. (**más potente**)
+- Redujimos el tiempo de carga rompiendo el gran archivo monolítico CSS para permitir la división del código. (**más rápido**)
+- La historia de reemplazado de estilo se hizo más intuitiva, ya que estábamos libres de problemas específicos de CSS. (**más simple**)
 
-Eventually, we reached the limitations of inline-styles and moved toward a CSS-in-JS solution. This transition was made without losing the enhancements the first migration introduced **We strongly think that CSS-in-JS is the future of the web platform**. You can [learn more about our new styling solution](/customization/css-in-js/) in the documentation.
+Finalmente, hemos alcanzado las limitaciones de los estilos en línea y nos hemos movido hacia una solución CSS-in-JS. This transition was made without losing the enhancements the first migration introduced **Creemos firmemente que CSS-in-JS es el futuro de la plataforma web **. Puedes [aprender más sobre nuestra nueva solución de estilo](/customization/css-in-js/) en la documentación.
 
-MDC-web relies on SCSS as Bootstrap v4. The SCSS architecture is pretty close to LESS - a technology we replaced for its limitations.
+MDC-web se basa en SCSS como Bootstrap v4. La arquitectura SCSS está bastante cerca de LESS - una tecnología que reemplazamos por sus limitaciones.
 
-### The vision
+### Nuestra visión
 
-Our vision is to provide an elegant implementation of the Material Design guidelines **and more**.
+Nuestra visión es proporcionar una implementación elegante de las directrices de Diseño Material **y más**.
 
 > The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guideline-specific implementation, we want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
 > 
@@ -86,21 +86,21 @@ Still, there is one thing that sets Material-UI apart and it's key: We have [hun
 
 ## Materialize
 
-![stars](https://img.shields.io/github/stars/Dogfalo/materialize.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/materialize-css.svg)
+![estrellas](https://img.shields.io/github/stars/Dogfalo/materialize.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/materialize-css.svg)
 
 ### Browser support
 
 Materialize supports a wider range of browsers than Material-UI does, for instance, they support IE 10 while [we only support IE 11](/getting-started/supported-platforms/). Only supporting IE 11 allows us to take full advantage of the flexbox layout. IE 10 has many issues with flexbox.
 
-### Styling solution
+### Solución de diseño
 
 Materialize uses SCSS, a styling architecture Material-UI moved away from 2 years ago. We explain why in the [MDC-web section](#styling-solution) above.
 
 ## React Toolbox
 
-![stars](https://img.shields.io/github/stars/react-toolbox/react-toolbox.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-toolbox.svg)
+![estrellas](https://img.shields.io/github/stars/react-toolbox/react-toolbox.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/react-toolbox.svg)
 
-### Styling solution
+### Solución de diseño
 
 While both React Toolbox and Material-UI are betting on CSS-in-JS, we have taken a different trade-off. Material-UI has chosen **JSS** while React Toolbox started rewriting their library with **styled-components**. We picked JSS over styled-components for the following reason:
 

@@ -1,32 +1,32 @@
 # Installation
 
-<p class="description">Install Material-UI, the world's most popular React UI framework.</p>
+<p class="description">Installieren Sie Material-UI, das weltweit beliebteste React UI-Framework.</p>
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UI ist als [npm-Paket](https://www.npmjs.com/package/@material-ui/core) verfügbar.
 
 ## npm
 
-To install and save in your `package.json` dependencies, run:
+Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgenden Befehl aus:
 
 ```sh
-// with npm
+// mit npm
 npm install @material-ui/core
 
-// with yarn
+// mit yarn
 yarn add @material-ui/core
 ```
 
-Please note that [react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 are peer dependencies.
+Beachten Sie, dass [react](https://www.npmjs.com/package/react) >= 16.3.0 und [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0 Abhängigkeiten in Ihrem Projekt sein müssen.
 
-## Roboto Font
+## Die Roboto Schrift
 
-Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/style/typography/#general). For instance, via Google Web Fonts:
+Material-UI wurde mit Blick auf die [Roboto](https://fonts.google.com/specimen/Roboto)-Schrift designed. Bitte folgen Sie daher [diesen Anweisungen](/style/typography/#general). Zum Beispiel über Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
@@ -34,13 +34,13 @@ Alternatively, if you are using JSX over HTML to render the head:
 
 ## Font Icons
 
-In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
+In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. Zum Beispiel über Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
-Alternatively, if you are using JSX over HTML to render the head:
+Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -65,4 +65,4 @@ We are providing two Universal Module Definition (UMD) files:
 - one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
 - one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn) to quickly get started.

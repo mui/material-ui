@@ -4,7 +4,7 @@ components: TextField
 ---
 # Pickers
 
-<p class="description">Pickers provide a simple way to select a single value from a pre-determined set.</p>
+<p class="description">Pickers proporcionan una manera sencilla de elegir un valor de un conjunto predeterminado.</p>
 
 - On mobile, pickers are best suited for display in confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
@@ -33,13 +33,13 @@ A native time picker example with `type="time"`.
 
 {{"demo": "pages/demos/pickers/TimePickers.js"}}
 
-## Complementary projects
+## Proyectos relacionados
 
 For more advanced use cases you might be able to take advantage of.
 
 ### material-ui-pickers
 
-![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
+![estrellas](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/material-ui-pickers.svg)
 
 [material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) provides date and time controls that follow the Material Design spec.
 

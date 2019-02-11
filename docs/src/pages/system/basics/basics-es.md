@@ -42,7 +42,7 @@ const Box = styled.div`${palette}${spacing}${typography}`;
 
 {{"demo": "pages/system/basics/Demo.js"}}
 
-### Installation
+### Instalación
 
 ```jsx
 // usando npm
@@ -367,7 +367,7 @@ const theme = {
 
 {{"demo": "pages/system/basics/Variant.js"}}
 
-## CSS property
+## Propiedad CSS
 
 If you want to support custom CSS values, you can use our `css()` helper. It will process the `css` property.
 
@@ -391,7 +391,7 @@ const Box = styled.div`
 
 {{"demo": "pages/system/basics/CssProp.js"}}
 
-## How it works
+## Cómo funciona
 
 styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
 

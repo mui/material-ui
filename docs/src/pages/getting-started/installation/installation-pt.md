@@ -9,10 +9,10 @@ O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/pa
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// usando npm
+// utilizando o npm
 npm install @material-ui/core
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/core
 ```
 
@@ -48,7 +48,7 @@ Como alternativa, se você estiver utilizando o JSX, use:
 
 ## Ícones SVG
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+Para utilizar os ícones Material em SVG, como os encontrados nas [demonstrações de componentes](/demos/app-bar/) você precisa primeiro instalar o pacote [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
 npm install @material-ui/icons
@@ -56,13 +56,13 @@ npm install @material-ui/icons
 
 ## CDN
 
-You can start using Material-UI with minimal Front-end infrastructure, which is great for prototyping. We discourage using this approach in production though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilisation.
+Você pode começar a utilizar o Material-UI com o mínimo de infraestrutura de frontend, o que é bom para prototipação. Nós, porém, desencorajamos utilizar esse método na produção - o cliente precisa baixar a biblioteca inteira, independente de quais componentes realmente são utilizados, afetando a performance e uso de banda.
 
-#### UMD releases
+#### Lançamentos para UMD
 
-We are providing two Universal Module Definition (UMD) files:
+Nós estamos provendo dois arquivos no Universal Module Definition (UMD):
 
-- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- um para desenvolvimento: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- um para a produção: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
+Você pode seguir [esse exemplo de CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn) para rapidamente começar.

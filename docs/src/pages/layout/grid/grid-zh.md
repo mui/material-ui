@@ -20,7 +20,9 @@ components: Grid
 
 ## 间距
 
-响应式栅格侧重于一致的间距宽度，而不是列宽。 Material design 外边距和列遵循** 8dp **方形基线栅格。 间距可以是 8，16，24，32或者40dp 宽。
+响应式栅格侧重于一致的间距宽度，而不是列宽。 Material Design margins and columns follow an **8px** square baseline grid. The spacing property is an integer between 0 and 10 inclusive. By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
+
+This output transformation function can be customized [using the theme](/customization/themes/#spacing).
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
@@ -62,7 +64,7 @@ components: Grid
 
 ** CSS栅格布局**擅长将页面划分为主要区域，或者在从HTML基元构建的控件的各个部分之间定义大小，位置和图层之间的关系。
 
-⚠️遗憾的是，CSS网格仅受最新浏览器的支持。
+⚠️ Unfortunately, CSS grid is only supported by the most recent browsers.
 
 {{"demo": "pages/layout/grid/CSSGrid.js"}}
 
@@ -80,7 +82,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### 负边距
 
-我们使用负边距来实现项目之间的间距有一个缺点。 如果负边距超出`<body>`元素，则会出现水平滚动。 有三种解决方法：1. 不使用spacing特性并且设置成默认的`spacing={0}` 2。 将填充应用于父级，并且至少将一半的间距值应用于子级：
+我们使用负边距来实现项目之间的间距有一个缺点。 如果负边距超出`<body>`元素，则会出现水平滚动。 有三种解决方法：1. 不使用spacing特性并且设置成默认的`spacing={0}` 2。 Applying padding to the parent with at least half the spacing value applied to the child:
 
 ```jsx
   <body>

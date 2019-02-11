@@ -84,7 +84,7 @@ function Progress(props) {
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the components. The last demo demonstrates how you can build a Facebook like spinner.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
 
 {{"demo": "pages/demos/progress/CustomizedProgress.js"}}
 
@@ -94,7 +94,7 @@ There are [3 important limits](https://www.nngroup.com/articles/response-times-3
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
 
-## Limitations
+## Limitaciones
 
 Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
 

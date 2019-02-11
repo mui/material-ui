@@ -36,7 +36,7 @@ The `createRender()` function is ideal for this. This is just an alias for the e
 
 Generate an enhanced shallow function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
@@ -70,7 +70,7 @@ describe('<MyComponent />', () => {
 
 Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]) 
     - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
@@ -106,7 +106,7 @@ describe('<MyComponent />', () => {
 
 Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]) 
     - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.

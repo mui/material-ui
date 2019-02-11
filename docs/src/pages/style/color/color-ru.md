@@ -1,22 +1,22 @@
 # Color
 
-<p class="description">Пока́зывайте значение через цвет. Out of the box you get access to all colors in the Material Design spec.</p>
+<p class="description">Пока́зывайте значение через цвет. Из коробки вы получаете доступ ко всем цветам в спецификации Material Design.</p>
 
-The Material Design [color system](https://material.io/design/color/) can be used to create a color theme that reflects your brand or style.
+[Система цветов](https://material.io/design/color/) Material Design может быть использована для создания цветовой темы, которая отражает ваш бренд или стиль.
 
 ## Color system
 
-### Important Terms
+### Важные термины
 
-#### "Palette"
+#### "Палитра"
 
-A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines. [This color palette](#color-palette) have been designed to work harmoniously with each other.
+Палитра - это набор цветов, то есть оттенков и теней. Материал-UI предоставляет все цвета из руководящих принципов Material Design. [Эта цветовая палитра](#color-palette) была разработана для гармоничной работы друг с другом.
 
-#### "Hue" & "Shade"
+#### "Оттенок" и "Тень"
 
 A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
 
-### Examples
+### Примеры
 
 The Material Design color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
 

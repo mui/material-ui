@@ -1,26 +1,26 @@
 # Color
 
-<p class="description">Convey meaning through color. Out of the box you get access to all colors in the Material Design spec.</p>
+<p class="description">Transmitir significado a través del color. Ahora mismo puedes acceder a todos los colores en la especificación de diseño de Material Design.</p>
 
-The Material Design [color system](https://material.io/design/color/) can be used to create a color theme that reflects your brand or style.
+El [sistema de color](https://material.io/design/color/) Material Design se puede utilizar para crear un tema de color que refleje su marca o estilo.
 
-## Color system
+## Sistema de color
 
-### Important Terms
+### Términos importantes
 
-#### "Palette"
+#### "Pallette" (Paleta)
 
-A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines. [This color palette](#color-palette) have been designed to work harmoniously with each other.
+Una paleta es una colección de colores, es decir, su matiz (color) y sus tonos. Material-UI proporciona todos los colores de las pautas de Material Design. [Esta paleta de colores](#color-palette) ha sido diseñada para que funcionen en armonía unas con otras.
 
-#### "Hue" & "Shade"
+#### "Hue" & "Shade" (Matiz y tono)
 
-A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
+Un solo color dentro de la paleta está formado por un matiz como el "rojo" y un tono, como "500". "rojo 50" es el tono más claro de rojo (* rosa! *), mientras que "rojo 900" es el más oscuro. Además, la mayoría de los matices vienen con tonos de "acento", prefijados con un `A`.
 
-### Examples
+### Ejemplos
 
-The Material Design color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
+La paleta de colores de Material Design consta de colores primarios y de acento que se pueden usar para ilustrar o desarrollar los colores de su marca. Esta paleta de colores ha sido diseñada para que funcionen en armonía unas con otras.
 
-For instance, you can refer to complementary primary and accent colors (for example 'red 500' & 'purple A200'), like so:
+Por ejemplo, puede referirse a colores primarios y de acento complementarios (por ejemplo, 'rojo 500' & 'púrpura A200'), así:
 
 ```js
 import purple from '@material-ui/core/colors/purple';
@@ -31,9 +31,9 @@ const accent = purple['A200']; // #E040FB
 const accent = purple.A200; // #E040FB (alternative method)
 ```
 
-### Color palette
+### Paleta de colores
 
-Given a *HUE* (red, pink, etc.) and a *SHADE* (500, 600, etc.) you can import the color like this:
+Dado un * HUE (matriz) * (rojo, rosa, etc.) y una * SOMBRA (tono) * (500, 600, etc.) puedes importar el color así:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
@@ -43,9 +43,9 @@ const color = HUE[SHADE];
 
 {{"demo": "pages/style/color/Color.js", "hideHeader": true}}
 
-## Color tool
+## Herramienta de color
 
-To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. Alternatively, you can enter hex values in the Primary and Secondary text fields.
+Para probar un [ material.io/design/color ](https://material.io/design/color/) combinación de colores con la documentación de Material-UI, simplemente seleccione los colores usando la paleta y los controles deslizantes a continuación. Alternatively, you can enter hex values in the Primary and Secondary text fields.
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 

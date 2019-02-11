@@ -24,7 +24,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
@@ -66,13 +66,13 @@ Use a different transition.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 
-## Complementary projects
+## Proyectos relacionados
 
 For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+![estrellas](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/notistack.svg)
 
 In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
 

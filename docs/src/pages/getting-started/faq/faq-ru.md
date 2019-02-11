@@ -1,4 +1,4 @@
-# Frequently Asked Questions
+# Часто задаваемые вопросы (FAQ)
 
 <p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
 
@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -61,9 +61,9 @@ const theme = createMuiTheme({
 
 Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices, in these cases, you can dynamically change the theme value.
 
-## Do I have to use JSS to style my app?
+## Должен ли я использовать JSS для стилизации своего приложения?
 
-It's highly recommended:
+Это крайне рекомендуется:
 
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
@@ -78,24 +78,24 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 - auto-prefixing
 - better debugging
-- media queries
-- keyframes
+- медиа-запросы
+- ключевые кадры
 
-## How do I use react-router?
+## Как мне использовать react-router?
 
-We have documented how to use a [third-party routing library](/demos/buttons/#third-party-routing-library) with the `ButtonBase` component. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. You can use the same solution with them.
+Мы описали, как использовать [стороннюю библиотеку маршрутизации](/demos/buttons/#third-party-routing-library) с помощью компонента `ButtonBase`. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Вы можете использовать то же решение с ними.
 
 ## How do I combine the `withStyles()` and `withTheme()` HOCs?
 
-There are a number of different options:
+Есть несколько разных вариантов:
 
-**`withTheme` option:**
+**`withTheme` опция:**
 
 ```js
 export default withStyles(styles, { withTheme: true })(Modal);
 ```
 
-**`compose()` helper function:**
+**`compose()` вспомогательная функция:**
 
 ```js
 import { compose } from 'recompose';
@@ -106,13 +106,13 @@ export default compose(
 )(Modal);
 ```
 
-**raw function chaining:**
+**цепочка необработанных функций:**
 
 ```js
 export default withTheme()(withStyles(styles)(Modal));
 ```
 
-## How can I access the DOM element?
+## Как я могу получить доступ к элементу DOM?
 
 Wrap the component with the [`RootRef`](/api/root-ref/) helper.
 
@@ -124,7 +124,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 There are many ways to support Material-UI:
 
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

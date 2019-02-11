@@ -19,6 +19,12 @@ Some important features of the `Popper` component:
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
+## Minimalist Popper
+
+You can use the component with zero extra dependencies.
+
+{{"demo": "pages/utils/popper/MinimalPopper.js" }}
+
 ## Scroll playground
 
 {{"demo": "pages/utils/popper/ScrollPlayground.js"}}
@@ -39,17 +45,11 @@ Highlight part of the text to see the popper:
 
 {{"demo": "pages/utils/popper/FakedReferencePopper.js"}}
 
-## Render Props
-
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single popper.
-
-{{"demo": "pages/utils/popper/RenderPropsPopper.js"}}
-
 ## Projets complémentaires
 
-For more advanced use cases you might be able to take advantage of:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
-### PopupState helper
+### Assistant PopupState
 
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 

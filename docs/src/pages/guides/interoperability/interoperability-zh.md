@@ -104,7 +104,7 @@ export default StyledComponents;
 
 ### 控制优先权
 
-样式组件和JSS都将样式注入 `<head>`的底部。 确保样式组件样式最后加载的一种方法是将CSS注入顺序</a>更改为 ，如演示中所示。</p>
+样式组件和JSS都将样式注入 `<head>`的底部。 确保样式组件样式最后加载的一种方法是将CSS注入顺序</a>更改为 ，如演示中所示。</p> 
 
 另一种方法是使用 `&&` 在风格的组件字符 [颠簸起来特异性](https://www.styled-components.com/docs/advanced#issues-with-specificity) 通过重复类名。 使用此选项可确保在JSS样式之前应用样式化组件样式。 此解决方案的一个示例：
 
@@ -505,13 +505,13 @@ const buttonStyles = {
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-// 首先，我们使用Glamor css函数获取clsx
+// First we get the clsx with Glamor css function
 const buttonClasses = css(buttonStyles);
 
-// 我们需要类名是字符串
+// We need the class names to be strings
 const className = buttonClasses.toString();
 
-// 然后我们只为它们分配Button的className属性
+// Then we just assign them the Button's className attribute
 function GlamorButton() {
   return (
     <div>

@@ -1,8 +1,8 @@
-# Frequently Asked Questions
+# Preguntas frecuentes
 
-<p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
+<p class="description">¿Atrapado en un problema en particular? Revisa las dudas más comunes primero en nuestras Preguntas frecuentes.</p>
 
-If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui). For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
+Si aún no encuentras lo que está buscando, puedes preguntar a la comunidad en [gitter](https://gitter.im/mui-org/material-ui). Para preguntas how-to y otros non-issues, por favor utiliza [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) en lugar de los issues en Github. Existe una etiqueta en StackOverflow llamada `material-ui` que puedes usar para etiquetar tus preguntas.
 
 ## Why aren't my components rendering correctly in production builds?
 
@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -124,7 +124,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 There are many ways to support Material-UI:
 
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

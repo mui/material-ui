@@ -63,7 +63,7 @@ The `Tooltip` wraps long text by default to make it readable.
 
 {{"demo": "pages/demos/tooltips/VariableWidth.js"}}
 
-## Interactive
+## Interativo
 
 A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 

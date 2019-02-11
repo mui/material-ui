@@ -6,19 +6,19 @@ Les utilisateurs de Material-UI viennent d'horizons et de styles d'apprentissage
 
 ## Premier exemplec
 
-The [usage page](/getting-started/usage/#quick-start) contains a small Material-UI example with a live editor. Même si vous ne connaissez pas encore Material-UI, essayez de changer le code et voyez comment cela affecte le résultat.
+La page [d'utilisation](/getting-started/usage/#quick-start) contient un petit exemple Material-UI avec un éditeur en ligne. Même si vous ne connaissez pas encore Material-UI, essayez de changer le code et voyez comment cela affecte le résultat.
 
 ## Exemples de Projets
 
-We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
+Nous [hébergeons des exemples de projets](/getting-started/example-projects/) fournissant l'infrastructure nécessaire au développement et au déploiement de sites Web avec React.
 
 ## Exemples de mise en page
 
-We have a [selection of basic page layouts](/getting-started/page-layout-examples/) to help you get started building your app.
+Nous avons une [sélection de mises en page de base](/getting-started/page-layout-examples/) pour vous aider à commencer à créer votre application.
 
 ## Ressources recommandées
 
-When first learning Material-UI, you might find third-party blog posts, books and video courses more helpful than the official documentation. We maintain a list of commonly recommended resources, some of which are free.
+Lors de la première utilisation de Material-UI, vous trouverez peut-être que les articles de blogs, livres et cours vidéo tiers sont plus utiles que la documentation officielle. Nous maintenons une liste de ressources de bonnes qualités, dont certaines sont gratuites.
 
 ### Gratuit
 

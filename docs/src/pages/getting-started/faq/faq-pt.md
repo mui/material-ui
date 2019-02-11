@@ -1,6 +1,6 @@
-# Frequently Asked Questions
+# Perguntas Frequentes
 
-<p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
+<p class="description">Preso em um determinado problema? Confira algumas dessas dicas recorrentes em nosso FAQ.</p>
 
 If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui). For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
@@ -35,10 +35,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades a serem aplicadas
-      disableRipple: true, // Sem mais ripple, em todo o aplicativo
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 
     },
   },
 });
@@ -124,7 +124,7 @@ The documentation site is using a custom theme. Hence, the color palette is diff
 
 There are many ways to support Material-UI:
 
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

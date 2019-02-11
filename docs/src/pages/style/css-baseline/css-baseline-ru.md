@@ -3,7 +3,7 @@ components: CssBaseline
 ---
 # CSS Baseline
 
-<p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Material-UI предоставляет компонент CssBaseline, чтобы создать элегантную, согласованную и простую основу для построения.</p>
 
 You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
 

@@ -30,7 +30,7 @@ In the following demo, we change the background color (red, blue & green) based 
 ```jsx
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.main,
     },
@@ -72,32 +72,11 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
-#### Render Props
-
-In some cases, you can experience property name collisions using higher-order components. To avoid this, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern shown in the following demo.
-
-```jsx
-import Typography from '@material-ui/core/Typography';
-import toRenderProps from 'recompose/toRenderProps';
-
-const WithWidth = toRenderProps(withWidth());
-
-export default function MyComponent() {
-  return (
-    <WithWidth>
-      {({ width }) => <div>{`Current width: ${width}`}</div>}
-    </WithWidth>
-  );
-}
-```
-
-{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
-
 ## API
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
@@ -122,7 +101,7 @@ const styles = theme => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
@@ -148,7 +127,7 @@ const styles = theme => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
@@ -174,7 +153,7 @@ const styles = theme => ({
 
 ### `theme.breakpoints.between(start, end) => media query`
 
-#### Arguments
+#### Argumentos
 
 1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
@@ -209,9 +188,9 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 Some implementation details that might be interesting to being aware of:
 
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- It forwards *non React static* properties so this HOC is more "transparent". Por exemplo, pode ser usado para definir um método estático (next.js) ` getInitialProps () `.
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.

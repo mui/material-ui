@@ -18,13 +18,14 @@ If you wish to customize the theme, you need to use the `MuiThemeProvider` compo
 
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
-- [Palette](#palette)
+- [Палитра](#palette)
 - [Type (light / dark theme)](#type-light-dark-theme)
 - [Typography](#typography)
+- [Интервал](#spacing)
 - [Other variables](#other-variables)
 - [Custom variables](#custom-variables)
 
-### Palette
+### Палитра
 
 #### Intentions
 
@@ -194,7 +195,7 @@ Have a look at the following example regarding changing the default values, such
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-### Typography - Font family
+#### Typography - Font family
 
 ```js
 const theme = createMuiTheme({
@@ -216,7 +217,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### Typography - Font size
+#### Typography - Font size
 
 Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a much better user experience. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
 
@@ -235,7 +236,7 @@ The computed font size by the browser follows this mathematical equation:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### Typography - HTML font size
+#### Typography - HTML font size
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). We provide a `htmlFontSize` theme property for this use case. It's telling Material-UI what's the font-size on the `<html>` element is. It's used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -257,6 +258,50 @@ html {
 *You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
+
+### Интервал
+
+We encourage you to use the `theme.spacing()` helper to create consistent spacing between the elements of your UI. Material-UI uses [a recommended 8px scaling factor by default](https://material.io/design/layout/understanding-layout.html).
+
+```js
+const styles = theme => ({
+  root: {
+    // JSS uses px as the default units for this CSS property.
+    padding: theme.spacing(2), // Outputs 8 * 2
+  },
+});
+```
+
+You can change the spacing transformation by providing:
+
+- a number
+
+```js
+const theme = createMuiTheme({
+  spacing: 4,
+});
+
+theme.spacing(2) // = 4 * 2
+```
+
+- or a function
+
+```js
+const theme = createMuiTheme({
+  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+});
+
+theme.spacing(2) // = 0.5rem = 8px
+```
+
+#### Multiple arity
+
+The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate:
+
+```diff
+<br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
++  padding: theme.spacing(1, 2), // '8px 16px'
+```
 
 ### Other variables
 
@@ -288,7 +333,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
 ### Properties
 
@@ -339,7 +384,7 @@ This component takes a `theme` property, and makes the `theme` available down th
 
 You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
-#### Examples
+#### Примеры
 
 ```jsx
 import React from 'react';
@@ -372,7 +417,7 @@ Generate a theme base on the options received.
 
 `theme` (*Object*): A complete, ready to use theme object.
 
-#### Examples
+#### Примеры
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -402,7 +447,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 `Component`: The new component created.
 
-#### Examples
+#### Примеры
 
 ```js
 import { withTheme } from '@material-ui/core/styles';

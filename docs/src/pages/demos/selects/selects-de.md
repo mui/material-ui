@@ -22,7 +22,9 @@ As the user experience can be improved on mobile using the native select of the 
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.
+
+⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/selects/CustomizedSelects.js"}}
 
@@ -44,6 +46,6 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
-## Text Fields
+## Text Felder
 
 The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

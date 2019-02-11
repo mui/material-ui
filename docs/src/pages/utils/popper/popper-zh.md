@@ -19,31 +19,31 @@ components: Popper
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
-## 滚动游乐场
+## Minimalist Popper
+
+You can use the component with zero extra dependencies.
+
+{{"demo": "pages/utils/popper/MinimalPopper.js" }}
+
+## Scroll playground
 
 {{"demo": "pages/utils/popper/ScrollPlayground.js"}}
 
-## 定位波普尔
+## Positioned Popper
 
 {{"demo": "pages/utils/popper/PositionedPopper.js"}}
 
-## 没有过渡波普尔
+## Without transition Popper
 
 {{"demo": "pages/utils/popper/NoTransitionPopper.js"}}
 
-## 伪造的参考对象
+## Faked reference object
 
-`anchorEl` 属性可以是对伪DOM元素的引用。 您只需要创建一个形状类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123)。
+The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
 
-突出显示部分文本以查看popper：
+Highlight part of the text to see the popper:
 
 {{"demo": "pages/utils/popper/FakedReferencePopper.js"}}
-
-## Render Props
-
-这是一个 [渲染道具](https://reactjs.org/docs/render-props.html) 演示， 跟踪单个popper的本地状态。
-
-{{"demo": "pages/utils/popper/RenderPropsPopper.js"}}
 
 ## 补充项目
 
@@ -51,6 +51,6 @@ components: Popper
 
 ### PopupState helper
 
-在大多数情况下，有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popper 状态。
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 
 {{"demo": "pages/utils/popper/PopperPopupState.js"}}

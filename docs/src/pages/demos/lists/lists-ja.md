@@ -2,17 +2,17 @@
 title: List React component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Lists
+# List
 
-<p class="description">Lists are continuous, vertical indexes of text or images.</p>
+<p class="description">Listは、テキストまたは画像が連続する垂直方向の索引です。</p>
 
-[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+[List](https://material.io/design/components/lists.html) は、テキストまたは画像が連続するまとまりです。 それらは、アイコンとテキストで表される主要または補足的なアクションを含む項目で構成されています。
 
-## Simple List
+## シンプルなList
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-The last item of the previous demo shows how you can render a link:
+上のデモの最後の項目は、リンクを表示方法を示しています。
 
 ```jsx
 function ListItemLink(props) {
@@ -26,13 +26,13 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+ドキュメントには[このセクションに続くReact Routerを用いたデモ](/guides/composition/#react-router)があります。
 
-## Nested List
+## ネストしたList
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Folder List
+## フォルダのList
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
@@ -42,44 +42,44 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 
-## Selected ListItem
+## 選択されたListItem
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## Listの項目の整列
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+3行以上を表示するときは、項目の配置を変更する必要があり、`alignItems="flex-start"`プロパティを設定してください。
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
-## List Controls
+## Listの操作
 
 ### Checkbox
 
-A checkbox can either be a primary action or a secondary action.
+Checkboxは、主要なアクションまたは補助的なアクションのどちらかになります。
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+Checkboxは、Listの項目の主要なアクションであり状態を表します。コメントボタンは補助的なアクションであり別のターゲットになります。
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-The checkbox is the secondary action for the list item and a separate target.
+Checkboxは、Listの項目と異なるターゲットに対する補助的なアクションです。
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
 ### Switch
 
-The switch is the secondary action and a separate target.
+Switchは補助的なアクションであり異なるターゲットです。
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Pinned Subheader List
+## ピン止めされたサブヘッダー付きList
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+スクロールする上で、サブヘッダーは次のサブヘッダーによって画面から押し出されるまで画面の上部に固定されたままになります。
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+この機能はCSSのSticky positioningに依存しています。 残念ながら、私たちがサポートしている全てのブラウザで[実装されている訳ではありません](https://caniuse.com/#search=sticky)。 サポートされていない場合、デフォルトは `disableSticky` となります。
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Inset List
+## 差し込み
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

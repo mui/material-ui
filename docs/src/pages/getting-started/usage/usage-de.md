@@ -1,14 +1,14 @@
-# Usage
+# Nutzung
 
-<p class="description">Get started with React and Material-UI in no time.</p>
+<p class="description">Beginnen Sie mit React und Material-UI in kürzester Zeit.</p>
 
-Material-UI components work in isolation. **They are self-supporting**, and will inject, and only inject, the styles they need to display. They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
+Material-UI-Komponenten arbeiten isoliert. **Sie sind selbst unterstützend** und injizieren, nur die Stile, die zum Anzeigen benötigt werden. Sie beruhen nicht auf einem globalen Stylesheet wie [normalize.css](https://github.com/necolas/normalize.css/).
 
-You can use any of the components as demonstrated in the documentation. Please refer to each component's [demo page](/demos/buttons/) to see how they should be imported.
+Sie können jede Komponente, wie in der Dokumentation beschrieben, verwenden. Bitte beachten Sie die [Demoseite jeder Komponente](/demos/buttons/), um zu sehen, wie sie importiert werden sollten.
 
-## Quick start
+## Direkt einsteigen
 
-Here's a quick example to get you started, **it's literally all you need**:
+Hier ist ein kurzes Beispiel für den Einstieg. **Es ist wirklich alles, was Sie brauchen**:
 
 ```jsx
 import React from 'react';
@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 function App() {
   return (
     <Button variant="contained" color="primary">
-      Hello World
+      Hallo Welt
     </Button>
   );
 }
@@ -26,17 +26,17 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Yes, this really is all you need to get started, as you can see in this live and interactive demo:
+Ja, das ist tatsächlich alles, das Sie für den Start brauchen. In dieser interaktiven Live-Demo können Sie dies ausprobieren:
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
-## Globals
+## Globale Objekte
 
-Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
+Die Nutzungserfahrung mit der Material-UI kann mit einer Vielzahl wichtiger Globaler Objekte, die sie beachten müssen, verbessert werden.
 
-### Responsive meta tag
+### Responsiver meta-tag
 
-Material-UI is developed mobile first, a strategy in which we first write code for mobile devices and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element.
+Material-UI wurde zuerst für Mobilgeräte entwickelt. Bei dieser Strategie schreiben wir zunächst Code für mobile Geräte und skalieren dann Komponenten nach Bedarf mithilfe sogenannter CSS media queries. Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sicherzustellen, fügen Sie den auch viewport meta tag genannten responsiven Tag zu Ihrem `<head>`-Element.
 
 ```html
 <meta
@@ -46,16 +46,16 @@ Material-UI is developed mobile first, a strategy in which we first write code f
 
 ### CssBaseline
 
-Material-UI provides an optional [CssBaseline](/style/css-baseline/) component. It's fixing some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UI bietet eine optionale [CssBaseline](/style/css-baseline/)-Komponente an. Mit dieser Komponente werden einige Inkonsistenzen zwischen Browsern und Geräten behoben, während sie bewährte Eigenschaften für häufig auftretende HTML-Elemente bereitstellt.
 
-## Versioned Documentation
+## Versionierte Dokumentation
 
-This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a [separate page](/versions/).
+Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. Ältere Versionen der Dokumentation finden Sie auf einer [separaten Seite](/versions/).
 
-## Next steps
+## Nächste Schritte
 
-Now that you have an idea of the basic setup, it's time to learn more about:
+Nun, da Sie eine Vorstellung von den grundlegenden Schritten haben, ist es an der Zeit, mehr darüber zu erfahren:
 
-- How to provide [the Material Design font and typography](/style/typography/).
-- How to take advantage of the [theming solution](/customization/themes/).
-- How to [override](/customization/overrides/) the look and feel of the components.
+- Wie man [die Material Design Schriftart und Typografie](/style/typography/) bereitstellt.
+- Wie man die [theming-Lösung nutzen kann](/customization/themes/).
+- Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/overrides/).

@@ -1,27 +1,27 @@
-# Example Projects
+# サンプルプロジェクト
 
-<p class="description">Are you looking for an example project to get started?</p>
+<p class="description">最初のサンプルプロジェクトをお探しですか？</p>
 
-We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+[GitHubリポジトリ](https://github.com/mui-org/material-ui)の下の[`/examples`](https://github.com/mui-org/material-ui/tree/next/examples)フォルダにいくつかのサンプルプロジェクトを用意しています。
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - E mais
 
-Create React App is an awesome project for learning React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
+Create React AppはReactを学ぶのに良いプロジェクトです。 どのプロジェクトが自分のニーズに最も適しているか知る為に[利用可能な代替案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives)をみてみてください。
 
-The source code for this documentation site is also included in the repository. This is a slightly more complex project. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
+このドキュメントサイトのソースコードもリポジトリに含まれています。 少しだけ複雑なプロジェクトです。 [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs)フォルダのビルド手順を確認してください。
 
-## More advanced example projects
+## 更に高度なサンプルプロジェクト
 
-Looking for a more advanced example project?
+更に高度なサンプルプロジェクトをお探しですか？
 
-If you want to start with a more complete and real world example, you could take a look at:
+更に完全で現実的なサンプルで開始したいと思っているのなら、以下を見てみてください。
 
-- [Material Sense](https://github.com/alexanmtz/material-sense), which includes: 
-  - Graph using recharts
-  - React Router included with a navigation example
-  - A docker container with an Nginx server for production build
-  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+- [Material Sense](https://github.com/alexanmtz/material-sense)以下が含まれます。 
+  - rechartsを用いたグラフ
+  - ナビゲーションのサンプルに含まれるReact Router
+  - プロダクションビルド用のNginxサーバ含むdockerコンテナ
+  - [Create React App](https://facebook.github.io/create-react-app/)による生成

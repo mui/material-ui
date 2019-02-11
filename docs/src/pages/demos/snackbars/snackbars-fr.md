@@ -10,7 +10,7 @@ components: Snackbar, SnackbarContent
 
 Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
 
-#### Frequency
+#### Fréquence
 
 Only one snackbar may be displayed at a time.
 
@@ -24,7 +24,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a Snackbar.
 
-⚠️ Bien que les spécifications de conception des matériaux encouragent la thématisation, ces exemples sortent des sentiers battus.
+⚠️ Bien que les spécifications Material Design encouragent la thématisation, ces exemples sortent des sentiers battus.
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
@@ -34,15 +34,15 @@ There may be circumstances when the placement of the snackbar needs to be more f
 
 {{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
 
-## Message Length
+## Longueur du message
 
 Some snackbars with varying message length.
 
 {{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
 
-## Transitions
+## Les transitions
 
-### Consecutive Snackbars
+### Snackbars consécutifs
 
 Per [Google's guidelines](https://material.io/design/components/snackbars.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
 
@@ -54,7 +54,7 @@ Move the floating action button vertically to accommodate the snackbar height.
 
 {{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
 
-### Control Direction
+### Direction de contrôle
 
 Change the direction of the transition. Slide is the default transition.
 
@@ -62,7 +62,7 @@ Change the direction of the transition. Slide is the default transition.
 
 ### Changer la transition
 
-Use a different transition.
+Utilisez une transition différente.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 
@@ -74,6 +74,6 @@ For more advanced use cases you might be able to take advantage of:
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
+Dans l'exemple suivant, nous montrons comment utiliser [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). Il vous permet également de les empiler les uns sur les autres.
 
 {{"demo": "pages/demos/snackbars/IntegrationNotistack.js"}}
