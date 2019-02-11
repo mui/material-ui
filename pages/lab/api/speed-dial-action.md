@@ -37,9 +37,13 @@ This property accepts the following keys:
 
 | Name | Description |
 |:-----|:------------|
-
-| <span class="prop-name">button</span> | Styles applied to the `Button` component.
-| <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
+| <span class="prop-name">root</span> | Styles applied to the root (`Tooltip`) component.
+| <span class="prop-name">tooltip</span> | Styles applied to the `Tooltip` label wrapper element
+| <span class="prop-name">actionButton</span> | Styles applied to the `Button` component.
+| <span class="prop-name">button</span> | Styles applied to the `Button` or `Paper` component if `open={true}`.
+| <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` or `Paper` component if `open={false}`.
+| <span class="prop-name">textLabel</span> | Styles applied to the `Paper` component if `tooltipOpen={true}`
+| <span class="prop-name">tooltipOpenContainer</span> | Styles applied to the root (`span`) component if `tooltipOpen={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js)
