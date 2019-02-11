@@ -6,7 +6,7 @@ export interface CardHeaderProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardHeaderClassKey, 'title'> {
   action?: React.ReactNode;
   avatar?: React.ReactNode;
-  component?: React.ReactType<CardHeaderProps>;
+  component?: string | React.ReactType<CardHeaderProps>;
   disableTypography?: boolean;
   subheader?: React.ReactNode;
   subheaderTypographyProps?: Partial<TypographyProps>;
