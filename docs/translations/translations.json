@@ -1,4 +1,5 @@
 {
+  "topBanner": "⚠️ This is an alpha version ({{versionNumber}})",
   "editWebsiteColors": "Edit website colors",
   "toggleTheme": "Toggle light/dark theme",
   "toggleRTL": "Toggle right-to-left/left-to-right",

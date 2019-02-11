@@ -64,10 +64,10 @@ const styles = theme => ({
     textAlign: 'center',
   },
   content: {
+    paddingTop: theme.spacing(8) + 29,
     paddingBottom: theme.spacing(8),
-    paddingTop: theme.spacing(8),
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(12),
+      paddingTop: theme.spacing(12) + 29,
     },
   },
   button: {

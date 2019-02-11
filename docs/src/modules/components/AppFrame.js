@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import NProgress from 'nprogress';
 import Router from 'next/router';
+import Interpolate from '@trendmicro/react-interpolate';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -200,7 +201,13 @@ class AppFrame extends React.Component {
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
                 <Typography className={classes.banner}>
-                  {`⚠️ This is an alpha version (v${process.env.LIB_VERSION})`}
+                  <Interpolate
+                    replacement={{
+                      versionNumber: `v${process.env.LIB_VERSION}`,
+                    }}
+                  >
+                    {t('topBanner')}
+                  </Interpolate>
                 </Typography>
                 <Toolbar>
                   <IconButton
