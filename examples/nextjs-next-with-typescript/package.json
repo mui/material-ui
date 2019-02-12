@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "next",
-    "@material-ui/styles": "latest",
+    "@material-ui/styles": "next",
     "@zeit/next-typescript": "^1.1.1",
     "jss": "latest",
     "next": "latest",

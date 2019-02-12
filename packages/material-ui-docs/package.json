@@ -27,7 +27,7 @@
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ../../babel.config.js ./src --out-dir ./build/esm --ignore \"**/*.test.js\"",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build",
+    "release": "yarn build && npm publish build --tag next",
     "test": "exit 0"
   },
   "peerDependencies": {
