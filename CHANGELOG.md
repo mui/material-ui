@@ -3,19 +3,19 @@
 ## 4.0.0-alpha.0
 ###### *Feb 12, 2019*
 
-This is our first unstable release toward Material-UI v4.0.0. We try to release a major release every 6-12 months.
-This is the opportunity for us to remove the deprecated APIs, upgrade or peer dependencies and more importantly, keep up with the direction the community is taking.
+This is our first unstable release towards Material-UI v4.0.0. We try to release a major every 6-12 months.
+This is gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
 
 - You can find the documentation following this URL: https://next.material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
-Big thanks to the 28 contributors who made this release possible!
+A big thanks to the 28 contributors who made this release possible!
 
 Here are some highlights ✨:
 
 - Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
-- Use a unitless spacing API (#14099) @ifndefdeadmau5
-- Improve ES modules tree-shakeability (#13391) @eps1lon
+- Improve the spacing API (#14099) @ifndefdeadmau5
+- Improve ES modules tree shake-ability (#13391) @eps1lon
 - Remove recompose dependency (#14479)
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
@@ -25,8 +25,8 @@ Here are some highlights ✨:
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
-  The upgrade path to React 16.8.0 should be pretty easy for our user.
-  Introducing this breaking change in v4 enable us the following:
+  The upgrade path to React 16.8.0 should be pretty easy for our users.
+  Introducing this breaking change in v4 enables the following:
   - We can remove the recompose dependency and use the new `React.memo()` API.
   - Before or after v4 is out, we can gradually migrate the core components to use the Hook API.
 
@@ -45,7 +45,7 @@ Going forward, you can use the theme to implement a custom Grid spacing transfor
 
 - [theme] Make theme.palette.augmentColor() pure (#13899) @ryancogswell
 
-The `theme.palette.augmentColor()` method do no longer perform a side effect on its input color.
+The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
 In order to use it correctly, you have to use the output of this function.
 
 ```diff
@@ -58,7 +58,7 @@ console.log({ background });
 
 - [core] Change UMD output name to 'MaterialUI' (#13142) @tkrotoff
 
-  This change is easing the usage of Material-UI with a CDN:
+  This change eases the use of Material-UI with a CDN:
   ```diff
   const {
     Button,
@@ -74,7 +74,7 @@ console.log({ background });
 
 - [Button] Remove deprecated props and styles (#14383) @mbrookes
 
-Remove the deprecated button flat and raised variants:
+Remove the deprecated button flat, raised and fab variants:
 
 ```diff
 -<Button variant="contained" />
@@ -84,6 +84,13 @@ Remove the deprecated button flat and raised variants:
 ```diff
 -<Button variant="flat" />
 +<Button variant="text" />
+```
+
+```diff
+-import Button from '@material-ui/core/Button';
+-<Button variant="fab" />
++import Fab from '@material-ui/core/Fab';
++<Fab />
 ```
 
 - [core] Drop official node 6 support (#14379) @eps1lon
@@ -99,7 +106,7 @@ Remove the deprecated button flat and raised variants:
     },
 ```
 
-*Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
+*Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16px'`*
 
 #### Changes
 
@@ -141,12 +148,18 @@ Remove the deprecated button flat and raised variants:
 #### Breaking changes
 
 - [Breadcrumbs] Move to the core (#14436) @oliviertassinari
+```diff
+-import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
++import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+```
+- [ToggleButton] Update styles for Material v2 (#14278) @mbrookes
+
+⚠️ The height has changed - it might break your layout.
 
 #### Changes
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
-- [Slider] Fix a11y issues with the handle (#14461) @eps1lon
-- [ToggleButton] Update styles for Material v2 (#14278) @mbrookes
+- [Slider] Fix a11y issues with the handle (#14461) @eps1lon 
 
 ### Docs
 
