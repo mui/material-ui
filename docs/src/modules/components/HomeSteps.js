@@ -99,21 +99,18 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`sh
-  $ npm install @material-ui/core
+  $ npm install @material-ui/core@next
   \`\`\`
                 `}
           />
-          <Typography variant="subtitle1" gutterBottom>
+          <Link
+            variant="subtitle1"
+            color="inherit"
+            href="https://github.com/mui-org/material-ui/tree/next/examples/cdn-next"
+            gutterBottom
+          >
             {t('cdn')}
-          </Typography>
-          <MarkdownElement
-            className={classes.markdownElement}
-            text={`
-  \`\`\`html
-  <script src="https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
-  \`\`\`
-                `}
-          />
+          </Link>
           <Typography variant="subtitle1" gutterBottom>
             {t('loadFont')}
           </Typography>

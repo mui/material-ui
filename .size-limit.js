@@ -87,12 +87,12 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '199 KB',
+    limit: '202 KB',
   },
   {
     name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
-    limit: '10 KB',
+    limit: '13 KB',
   },
 ];

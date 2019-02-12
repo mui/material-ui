@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
-import Tidelift from 'docs/src/modules/components/Tidelift';
+import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -33,51 +33,54 @@ const styles = theme => ({
     flex: '1 0 100%',
   },
   hero: {
-    minHeight: '80vh',
-    flex: '0 0 auto',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingTop: 64 + 29,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
-  text: {
+  content: {
+    // To replace with a layout component.
+    maxWidth: theme.breakpoints.values.md,
+    margin: 'auto',
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    // --
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    textAlign: 'center',
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(8),
+    [theme.breakpoints.up('md')]: {
+      paddingTop: theme.spacing(20),
+      paddingBottom: theme.spacing(20),
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      textAlign: 'left',
+    },
   },
   title: {
+    marginLeft: -12,
+    whiteSpace: 'nowrap',
     letterSpacing: '.7rem',
     textIndent: '.7rem',
     fontWeight: theme.typography.fontWeightLight,
     [theme.breakpoints.only('xs')]: {
       fontSize: 28,
     },
-    whiteSpace: 'nowrap',
   },
-  headline: {
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4),
-    marginTop: theme.spacing(1),
-    maxWidth: 500,
-    textAlign: 'center',
-  },
-  content: {
-    paddingBottom: theme.spacing(8),
-    paddingTop: theme.spacing(8),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(12),
+  logo: {
+    flexShrink: 0,
+    width: 120,
+    height: 120,
+    marginBottom: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      marginRight: theme.spacing(8),
+      width: 220,
+      height: 200,
     },
   },
   button: {
-    marginTop: theme.spacing(3),
-  },
-  logo: {
-    margin: theme.spacing(3, 0, 4),
-    width: '100%',
-    height: '35vw',
-    maxHeight: 200,
+    marginTop: theme.spacing(4),
   },
   social: {
     backgroundColor: theme.palette.background.paper,
@@ -113,7 +116,6 @@ class HomePage extends React.Component {
       <AppFrame>
         <div className={classes.root}>
           <Head />
-          <Tidelift />
           <div className={classes.hero}>
             <div className={classes.content}>
               <img
@@ -121,10 +123,9 @@ class HomePage extends React.Component {
                 alt="Material-UI Logo"
                 className={classes.logo}
               />
-              <div className={classes.text}>
+              <div>
                 <Typography
                   variant="h3"
-                  align="center"
                   component="h1"
                   color="inherit"
                   gutterBottom
@@ -132,13 +133,7 @@ class HomePage extends React.Component {
                 >
                   {'MATERIAL-UI'}
                 </Typography>
-                <Typography
-                  variant="h5"
-                  component="h2"
-                  color="inherit"
-                  gutterBottom
-                  className={classes.headline}
-                >
+                <Typography variant="h5" component="h2" color="inherit">
                   {t('strapline')}
                 </Typography>
                 <Button
@@ -171,6 +166,7 @@ class HomePage extends React.Component {
               Follow
             </a>
           </div>
+          <HomeQuickWord />
           <HomeSteps />
           <HomeBackers />
           <HomeFooter />

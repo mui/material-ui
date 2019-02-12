@@ -30,6 +30,9 @@ const styles = theme => ({
   toolbarIe11: {
     display: 'flex',
   },
+  placeholder: {
+    height: 29,
+  },
   toolbar: {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
@@ -98,6 +101,7 @@ function AppDrawer(props) {
     <PageContext.Consumer>
       {({ activePage, pages }) => (
         <div className={classes.nav}>
+          <div className={classes.placeholder} />
           <div className={classes.toolbarIe11}>
             <div className={classes.toolbar}>
               <Link

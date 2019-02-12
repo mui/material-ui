@@ -78,7 +78,7 @@ export default function Hook() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/Hook.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/Hook.js"}}
 
 ### Styled components API
 
@@ -102,7 +102,7 @@ export default function StyledComponents() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/StyledComponents.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/StyledComponents.js"}}
 
 ### Higher-order component API
 
@@ -136,7 +136,7 @@ HigherOrderComponent.propTypes = {
 export default withStyles(styles)(HigherOrderComponent);
 ```
 
-{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
 
 ## 适应基于道具
 
@@ -148,8 +148,8 @@ export default withStyles(styles)(HigherOrderComponent);
 
 ### 适应 styled components API
 
-{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js"}}
 
 ### 适应 higher-order component API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHOC.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}

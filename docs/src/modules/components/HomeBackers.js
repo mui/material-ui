@@ -16,9 +16,10 @@ const styles = theme => ({
     minHeight: 600,
   },
   markdownElement: {
-    maxWidth: theme.spacing(110),
+    // To replace with a layout component.
+    maxWidth: theme.breakpoints.values.md,
     margin: 'auto',
-    padding: theme.spacing(2),
+    padding: theme.spacing(4, 2),
   },
 });
 

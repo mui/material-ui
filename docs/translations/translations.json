@@ -1,4 +1,6 @@
 {
+  "topBanner": "⚠️ ({{versionNumber}}) This is the documentation for the `next` release.",
+  "homeQuickWord": "A quick word from our sponsors:",
   "editWebsiteColors": "Edit website colors",
   "toggleTheme": "Toggle light/dark theme",
   "toggleRTL": "Toggle right-to-left/left-to-right",
