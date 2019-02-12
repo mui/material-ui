@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
 
-{{"demo": "pages/css-in-js/advanced/Theming.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/Theming.js"}}
 
 ## Accessing the theme in a component
 
@@ -14,11 +14,11 @@ You might need to access the theme variables inside your React components.
 
 ### `useTheme` hook
 
-{{"demo": "pages/css-in-js/advanced/UseTheme.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/UseTheme.js"}}
 
 ### `withTheme` HOC
 
-{{"demo": "pages/css-in-js/advanced/WithTheme.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
 
 ## Theme nesting
 
@@ -34,7 +34,7 @@ This can be really useful when dealing with different area of your application t
 </ThemeProvider>
 ```
 
-{{"demo": "pages/css-in-js/advanced/ThemeNesting.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/ThemeNesting.js"}}
 
 The inner theme will **override** the outer theme.
 You can extend the outer theme by providing a function:
@@ -103,7 +103,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/css-in-js/advanced/StringTemplates.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/StringTemplates.js"}}
 
 ## CSS injection order
 

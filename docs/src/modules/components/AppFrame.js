@@ -200,10 +200,14 @@ class AppFrame extends React.Component {
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
-                <Typography className={classes.banner}>
+                <Typography className={classes.banner} noWrap>
                   <Interpolate
                     replacement={{
-                      versionNumber: `v${process.env.LIB_VERSION}`,
+                      versionNumber: (
+                        <Link color="inherit" href="/versions/">
+                          {`v${process.env.LIB_VERSION}`}
+                        </Link>
+                      ),
                     }}
                   >
                     {t('topBanner')}

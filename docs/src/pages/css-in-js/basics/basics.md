@@ -88,7 +88,7 @@ export default function Hook() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/Hook.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/Hook.js"}}
 
 ### Styled components API
 
@@ -112,7 +112,7 @@ export default function StyledComponents() {
 }
 ```
 
-{{"demo": "pages/css-in-js/basics/StyledComponents.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/StyledComponents.js"}}
 
 ### Higher-order component API
 
@@ -146,7 +146,7 @@ HigherOrderComponent.propTypes = {
 export default withStyles(styles)(HigherOrderComponent);
 ```
 
-{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
 
 ## Adapting based on props
 
@@ -159,8 +159,8 @@ This button component has a color property that changes its color:
 
 ### Adapting styled components API
 
-{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/AdaptingStyledComponents.js"}}
 
 ### Adapting higher-order component API
 
-{{"demo": "pages/css-in-js/basics/AdaptingHOC.js", "react": "next"}}
+{{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
