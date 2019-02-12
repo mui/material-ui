@@ -6,10 +6,56 @@ import marked from 'marked';
 import warning from 'warning';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
+
+const styles = theme => ({
+  '@global': {
+    html: {
+      scrollBehavior: 'smooth',
+    },
+  },
+  root: {
+    top: 70 + 29,
+    // Fix IE 11 position sticky issue.
+    marginTop: 70 + 29,
+    width: 167,
+    flexShrink: 0,
+    order: 2,
+    position: 'sticky',
+    wordBreak: 'break-word',
+    height: 'calc(100vh - 70px)',
+    overflowY: 'auto',
+    padding: theme.spacing(2, 2, 2, 0),
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  contents: {
+    marginTop: theme.spacing(2),
+  },
+  ul: {
+    padding: 0,
+    margin: 0,
+    listStyleType: 'none',
+  },
+  item: {
+    fontSize: 13,
+    padding: theme.spacing(0.5, 1),
+    '&:hover:not($itemActive)': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+    },
+  },
+  itemActive: {
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+  },
+});
 
 let itemsCollector;
 const renderer = new marked.Renderer();
@@ -43,38 +89,6 @@ function getItems(contents) {
   return itemsCollector;
 }
 
-const styles = theme => ({
-  root: {
-    top: 70 + 29,
-    // Fix IE 11 position sticky issue.
-    marginTop: 70 + 29,
-    width: 167,
-    flexShrink: 0,
-    order: 2,
-    position: 'sticky',
-    wordBreak: 'break-word',
-    height: 'calc(100vh - 70px)',
-    overflowY: 'auto',
-    padding: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px 5px`,
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  contents: {
-    marginTop: theme.spacing(2),
-  },
-  ul: {
-    padding: 0,
-    margin: 0,
-    listStyleType: 'none',
-  },
-  item: {
-    fontSize: 13,
-    padding: theme.spacing(0.5, 0),
-  },
-});
-
 function checkDuplication(uniq, item) {
   warning(!uniq[item.hash], `Table of content: duplicated \`${item.hash}\` item`);
 
@@ -95,6 +109,7 @@ class AppTableOfContents extends React.Component {
 
   state = {
     active: null,
+    clicked: false,
   };
 
   componentDidMount() {
@@ -123,9 +138,14 @@ class AppTableOfContents extends React.Component {
 
   componentWillUnmount() {
     this.handleScroll.cancel();
+    clearTimeout(this.unsetClicked);
   }
 
   findActiveIndex = () => {
+    if (this.state.clicked) {
+      return
+    }
+
     let active;
 
     for (let i = 0; i < this.itemsClient.length; i += 1) {
@@ -150,6 +170,18 @@ class AppTableOfContents extends React.Component {
     }
   };
 
+  handleClick = (hash) => {
+    // Disable findActiveIndex if the page scrolls due to clicking on the index.
+    this.setState({ clicked: true });
+    this.unsetClicked = setTimeout(() => this.setState({ clicked: false }), 1000);
+
+    if (this.state.active !== hash) {
+      this.setState({
+        active: hash,
+      });
+    }
+  };
+
   render() {
     const { classes } = this.props;
     const { active } = this.state;
@@ -169,7 +201,12 @@ class AppTableOfContents extends React.Component {
                     block
                     color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
                     href={`#${item2.hash}`}
-                    className={classes.item}
+                    underline="none"
+                    onClick={() => this.handleClick(item2.hash)}
+                    className={clsx(
+                      classes.item,
+                      active === item2.hash ? classes.itemActive : undefined,
+                    )}
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
                   </Link>
@@ -181,12 +218,16 @@ class AppTableOfContents extends React.Component {
                             block
                             color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
                             href={`#${item3.hash}`}
-                            className={classes.item}
-                            style={{
-                              paddingLeft: 8 * 2,
-                            }}
+                            underline="none"
+                            // variant="caption"
+                            onClick={() => this.handleClick(item3.hash)}
+                            className={clsx(
+                              classes.item,
+                              active === item3.hash ? classes.itemActive : undefined,
+                            )}
+                            style={{ paddingLeft: 12 }}
                           >
-                            <span dangerouslySetInnerHTML={{ __html: item3.text }} />
+                            <span dangerouslySetInnerHTML={{ __html: `- ${item3.text}` }} />
                           </Link>
                         </li>
                       ))}
