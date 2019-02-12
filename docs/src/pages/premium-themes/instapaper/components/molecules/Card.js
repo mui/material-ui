@@ -1,11 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiCard from '@material-ui/core/Card';
 import { CARD } from '../../theme/core';
 
 const Card = ({ className, actionable, contained, spaceGrey, darkBlue, ...props }) => (
   <MuiCard
-    className={cx(
+    className={clsx(
       CARD.root,
       className,
       actionable && CARD.actionable,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -88,7 +88,7 @@ class RecipeReviewCard extends React.Component {
             <ShareIcon />
           </IconButton>
           <IconButton
-            className={classnames(classes.expand, {
+            className={clsx(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
             })}
             onClick={this.handleExpandClick}

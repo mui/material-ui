@@ -1,11 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiListItemText from '@material-ui/core/ListItemText';
 import { LIST_ITEM_TEXT } from '../../theme/core';
 
 const ListItemText = ({ className, category, subcategory, subcategoryPrimary, ...props }) => (
   <MuiListItemText
-    className={cx(
+    className={clsx(
       LIST_ITEM_TEXT.root,
       className,
       category && LIST_ITEM_TEXT.category,

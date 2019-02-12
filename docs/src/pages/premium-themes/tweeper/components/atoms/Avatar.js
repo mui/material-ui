@@ -1,11 +1,11 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiAvatar from '@material-ui/core/Avatar';
 import { AVATAR } from '../../theme/core';
 
 const Avatar = ({ className, bordered, link, small, medium, ultraLarge, ...props }) => (
   <MuiAvatar
-    className={cx(
+    className={clsx(
       AVATAR.root,
       className,
       bordered && AVATAR.bordered,

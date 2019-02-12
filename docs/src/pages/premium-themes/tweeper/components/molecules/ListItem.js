@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiListItem from '@material-ui/core/ListItem';
 import { LIST_ITEM } from '../../theme/core';
 
@@ -14,7 +14,7 @@ const ListItem = ({
   ...props
 }) => (
   <MuiListItem
-    className={cx(
+    className={clsx(
       LIST_ITEM.root,
       className,
       header && LIST_ITEM.header,
