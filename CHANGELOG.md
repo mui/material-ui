@@ -3,12 +3,10 @@
 ## 4.0.0-alpha.0
 ###### *Feb 12, 2019*
 
-This is our first unstable release toward Material-UI v4.0.0.
-We try to release a major release every 6-12 months.
-This is the opportunity for us to remove the deprecated APIs,
-upgrade or peer dependencies and more importantly, keep up with the direction the community is taking.
+This is our first unstable release toward Material-UI v4.0.0. We try to release a major release every 6-12 months.
+This is the opportunity for us to remove the deprecated APIs, upgrade or peer dependencies and more importantly, keep up with the direction the community is taking.
 
-- You can find the documentation following this URL: https://next--material-ui.netlify.com/.
+- You can find the documentation following this URL: https://v4-0-0-alpha.material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
 Big thanks to the 28 contributors who made this release possible!
@@ -27,10 +25,10 @@ Here are some highlights ✨:
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
-The upgrade path to React 16.8.0 should be pretty easy for our user.
-Introducing this breaking change in v4 enable us the following:
-- We can remove the recompose dependency and use the new `React.memo()` API.
-- Before or after v4 is out, we can gradually migrate the core components to use the Hook API.
+  The upgrade path to React 16.8.0 should be pretty easy for our user.
+  Introducing this breaking change in v4 enable us the following:
+  - We can remove the recompose dependency and use the new `React.memo()` API.
+  - Before or after v4 is out, we can gradually migrate the core components to use the Hook API.
 
 - [Grid] Use a unitless spacing API (#14099) @ifndefdeadmau5
 
@@ -60,21 +58,21 @@ console.log({ background });
 
 - [core] Change UMD output name to 'MaterialUI' (#13142) @tkrotoff
 
-This change is easing the usage of Material-UI with a CDN:
-```diff
-const {
-  Button,
-  TextField,
--} = window['material-ui'];
-+} = MaterialUI;
-```
+  This change is easing the usage of Material-UI with a CDN:
+  ```diff
+  const {
+    Button,
+    TextField,
+  -} = window['material-ui'];
+  +} = MaterialUI;
+  ```
 
-It's consistent with the other projects:
-- material-ui => MaterialUI
-- react-dom => ReactDOM
-- prop-types => PropTypes
+  It's consistent with the other projects:
+  - material-ui => MaterialUI
+  - react-dom => ReactDOM
+  - prop-types => PropTypes
 
-- [Button] Remove deprecated props and styles (#14383) @mmbrookes
+- [Button] Remove deprecated props and styles (#14383) @mbrookes
 
 Remove the deprecated button flat and raised variants:
 
@@ -100,6 +98,8 @@ Remove the deprecated button flat and raised variants:
 +     paddingTop: theme.spacing(12),
     },
 ```
+
+*Tip: you can provide more than 1 argument: theme.spacing(1, 2) // = '8px 16px'*
 
 #### Changes
 
