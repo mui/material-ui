@@ -1,18 +1,18 @@
 ---
-title: List React component
+title: Componente List React
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
-# Lists
+# Listas
 
-<p class="description">Lists are continuous, vertical indexes of text or images.</p>
+<p class="description">Las listas son índices contínuos y verticales de texto o imágenes.</p>
 
-[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+Las [listas](https://material.io/design/components/lists.html) son un grupo contínuo de texto o imágenes. Se componen de elementos que contienen acciones primarias y complementarias, que se representan mediante iconos y texto.
 
-## Simple List
+## Lista Simple
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-The last item of the previous demo shows how you can render a link:
+El último elemento del demo anterior muestra cómo se puede representar un enlace:
 
 ```jsx
 function ListItemLink(props) {
@@ -26,60 +26,60 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+Hay una demostración [usando React Router siguiendo esta sección](/guides/composition/#react-router) de la documentación.
 
-## Nested List
+## Lista Anidada
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Folder List
+## Lista de Carpetas
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
-## Interactive
+## Explora
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+Debajo de esta línea hay una demostración interactiva que permite explorar el resultado visual de las distintas configuraciones:
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 
-## Selected ListItem
+## ListItem Seleccionado
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## Alineación de los elementos de la lista
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+Debería cambiar la alineación del list item cuando se muestran 3 o más líneas, ajustando la propiedad `alignItems="flex-start"`.
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
-## List Controls
+## Controles de Lista
 
 ### Checkbox
 
-A checkbox can either be a primary action or a secondary action.
+Un checkbox puede ser una acción primaria o una acción secundaria.
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+El checkbox es la acción principal y el indicador de estado para el elemento de la lista. El botón de comentario es una acción secundaria y un objetivo separado.
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-The checkbox is the secondary action for the list item and a separate target.
+El checkbox es la acción secundaria para el elemento de la lista y un objetivo separado.
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
 ### Switch
 
-The switch is the secondary action and a separate target.
+El switch es la acción secundaria y un objetivo separado.
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Pinned Subheader List
+## Lista de Subencabezados Fijados
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+Al desplazarse, los subencabezados permanecen anclados en la parte superior de la pantalla hasta que el siguiente subencabezado los saque de la pantalla.
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+Esta característica se basa en el posicionamiento adhesivo CSS. Desafortunadamente, [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores que soportamos. La propiedad `disableSticky` se aplicará por defecto cuando no sea soportado por el navegador.
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Inset List
+## Lista con Margen
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

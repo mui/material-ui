@@ -1,23 +1,23 @@
-# Supported Platforms
+# サポートされているプラットフォーム
 
-<p class="description">Learn about the platforms, from modern to old, that are supported by Material-UI.</p>
+<p class="description">Material-UIがサポートする古いプラットフォームからモダンなものまでについて学びます。</p>
 
-## Browser
+## ブラウザ
 
-Material-UI supports the latest, stable releases of all major browsers and platforms. We also support Internet Explorer 11. You don't need to provide any JavaScript polyfill as we manage unsupported browser features internally and in isolation.
+Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 Internet Explorer 11もサポートしています。 ブラウザのサポートされていない機能は内部的に独立して管理されているので、JavaScriptポリフィルを導入する必要はありません。
 
 | IE | Edge  | Firefox | Chrome | Safari | Googlebot |
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
-Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it. [WRS is based on Chrome 41](https://developers.google.com/search/docs/guides/rendering). You can expect Material-UI's components to render without major issues.
+Googlebotはページコンテンツのインデックス作成にweb rendering service (WRS) を使用するので、Material-UIがそれをサポートすることは重要です。 [WRSはChrome 41に基づいています](https://developers.google.com/search/docs/guides/rendering)。 特に支障なくレンダリングできるMaterial-UIのコンポーネントを期待できます。
 
-## Server
+## サーバ
 
-Because Material-UI supports server-side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). We try to support the [last active LTS version](https://github.com/nodejs/Release#lts-schedule1). Right now, we support **node v6.x** and newer versions.
+Material-UIはサーバサイドレンダリングをサポートしてるので、最新の安定版リリースの[Node.js](https://github.com/nodejs/node)をサポートする必要があります。 [LTS](https://github.com/nodejs/Release#lts-schedule1)のサポートも同様に試みています。 今のところ、**node v8.x**と最新のバージョンをサポートしています。
 
-### CSS prefixing
+### CSSプレフィックス
 
-Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/279) an additional postprocessing step that adds vendor specific prefixes. These prefixes are automatically added on the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+一部のCSS機能では、ベンダープレフィックスを付加する追加の後処理手順が[必要](https://github.com/cssinjs/jss/issues/279)になります。 それらプレフィックスは[`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer)のおかげで自動的に付加されます。
 
-The CSS served on this documentation is processed with [`autoprefixer`](https://www.npmjs.com/package/autoprefixer). You can use [the documentation implementation](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) as inspiration. Be aware that it has an implication with the performance of the page. It's a must do for static pages, but it needs to be put in balance with not doing anything when rendering dynamic pages.
+ドキュメントで記述されているCSSは、[`autoprefixer`](https://www.npmjs.com/package/autoprefixer)で処理されます。 インスピレーションとして[ドキュメントの実装](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123)を用いることができます。 ページのパフォーマンスに影響することに注意してください。 これは静的ページには絶対に必要なことですが、動的ページをレンダリングするときに何もしないことと調整が必要です。

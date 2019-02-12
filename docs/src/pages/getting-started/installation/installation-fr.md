@@ -6,7 +6,7 @@ Material-UI est disponible sous forme de package [npm](https://www.npmjs.com/pac
 
 ## npm
 
-Pour installer et enregistrer dans votre `package.json` dépendances, exécutez:
+Pour installer et enregistrer dans vos dépendances `package.json` , exécutez:
 
 ```sh
 // avec npm
@@ -26,13 +26,13 @@ Matériel-UI a été conçu avec la police [Roboto](https://fonts.google.com/spe
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-Sinon, si vous utilisez JSX sur HTML pour rendre la tête:
+Sinon, si vous utilisez JSX sur HTML pour le header:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-## Icônes de polices
+## Polices d'icônes
 
 Pour utiliser le composant de police `Icon`, vous devez d’abord ajouter la police d'icônes [Material](https://material.io/tools/icons/). Voici [quelques instructions](/style/icons/#font-icons) sur la façon de le faire. Par exemple, via Google Web Fonts:
 
@@ -40,7 +40,7 @@ Pour utiliser le composant de police `Icon`, vous devez d’abord ajouter la pol
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
 
-Sinon, si vous utilisez JSX sur HTML pour rendre la tête:
+Sinon, si vous utilisez JSX sur HTML pour le header:
 
 ```jsx
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -65,4 +65,4 @@ Nous fournissons deux fichiers UMD (Universal Module Definition):
 - un pour le développement: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
 - un pour la production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
 
-Vous pouvez suivre [cet exemple CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) pour commencer rapidement.
+Vous pouvez suivre [ce CDN d'exemple](https://github.com/mui-org/material-ui/tree/next/examples/cdn) pour commencer rapidement.

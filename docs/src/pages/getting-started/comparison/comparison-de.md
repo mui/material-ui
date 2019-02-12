@@ -1,12 +1,12 @@
-# Comparison with other libraries
+# Vergleich mit anderen Bibliotheken
 
-<p class="description">You’re here because you want to know if Material-UI can solve your specific problems better. That’s what we hope to answer for you here.</p>
+<p class="description">Du bist hier, weil du wissen willst, ob Material-UI deine spezifischen Probleme besser lösen kann. Genau das hoffen wir dir hier beantworten zu können.</p>
 
-This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important. Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
+Dies ist definitiv eine der am schwierigsten zu verfassenden Seiten in diesem Guide, aber wir sind der Meinung, dass sie wichtig ist. Wahrscheinlich standest du bereits einmal vor Problemen, die du versucht hast, mit einer anderen Bibliothek zu lösen.
 
-We’d like your help keeping this document up-to-date because the JavaScript world moves fast! If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by [opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
+Wir würden uns sehr über deine Hilfe freuen, dieses Dokument auf dem Laufenden zu halten, denn die JavaScript-Welt ist schnelllebig! Wenn du eine Ungenauigkeit oder etwas anderes, das dir nicht richtig erscheint, bemerkst, dann lass' es uns bitte wissen, indem du [ein Issue öffnest](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
 
-We cover the following libraries:
+Wir vergleichen die folgenden Bibliotheken:
 
 - [Material-UI](#material-ui)
 - [Material Design Lite (MDL)](#material-design-lite-mdl)
@@ -18,17 +18,17 @@ We cover the following libraries:
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)
 
-We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️. There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 
+Wir werden unser bestes tun, Voreingenommenheit zu vermeiden, auch wenn wir als Core Team Material-UI natürlich sehr mögen ❤️. There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 
 
-We do want to be fair and accurate though, so where other libraries offer significant advantages we try to list these as well.
+Wir wollen trotzdem so fair und genau sein. Wo also andere Bibliotheken signifikante Vorteile bieten, werden wir versuchen, diese ebenfalls aufzulisten.
 
 ## Material Design Lite (MDL)
 
 ![stars](https://img.shields.io/github/stars/google/material-design-lite.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-design-lite.svg)
 
-Material Design Lite, while a very well-thought-out Material Design implementation, was primarily maintained by Developer Relations at Google. Today, **the project is no longer maintained**. So what happened?
+Material Design Lite wurde, obwohl eine sehr gut durchdachte Material Design Implementierung, hauptsächlich durch Developer Relations bei Google gepflegt. Aktuell **wird das Projekt nicht länger gepflegt**. Was ist also passiert?
 
-The Material Components Web team started out building MDC-web as "MDL v2", but, after collaborating on it for a few months, both teams felt it best to bring the project under the Material Design team's purview. This shift meant a re-orientation of goals away from simply "adding a Material Design look and feel" to websites, and towards the goal of a canonical Material Design implementation for the entire web platform.
+Das Material Components Web Team begann mit dem entwickeln von MDC-web als "MDL v2", aber nachdem ein paar Monate daran entwickelt wurde, hatten beide Teams das Gefühl, es wäre das Beste, beide Projekte in den Zuständigkeitsbereich des Material Design Teams zu geben. Diese Entscheidung bedeutete eine Neuausrichtung der Ziele, weg von dem einfachen "hinzufügen eines Material Design Looks" zu Webseiten, hin zu dem Ziel einer kanonischen Material Design Implementierung für die gesamte Web-Plattform.
 
 ## Material Components Web (MDC-web)
 

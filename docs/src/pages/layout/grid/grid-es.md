@@ -1,109 +1,111 @@
 ---
-title: Grid React component
+title: Componente Grid React
 components: Grid
 ---
 # Grid
 
-<p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
+<p class="description">El grid responsive de Material Design se adapta al tamaño y orientación de la pantalla, garantizando la consistencia en todos los diseños.</p>
 
-The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs. Material Design’s responsive UI is based on a 12-column grid layout.
+La [cuadrícula](https://material.io/design/layout/responsive-layout-grid.html) crea consistencia visual en la distribución de elementos a la vez que permite flexibilidad en una amplia variedad de diseños. La IU responsive de Material Design se basa en una distribución de cuadrícula de 12 columnas.
 
-## How it works
+## Cómo funciona
 
-The grid system is implemented with the `Grid` component:
+El sistema de cuadrícula se implementa con el componente `Grid`:
 
-- It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- There are two types of layout: *containers* and *items*.
-- Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
-- Items have padding to create the spacing between individual items.
-- There are five grid breakpoints: xs, sm, md, lg, and xl.
+- Utiliza el [módulo Flexible Box de CSS](https://www.w3.org/TR/css-flexbox-1/) para una gran flexibilidad.
+- Hay dos tipos de layout:*contenedores (containers)* y *elementos (items)*.
+- Los anchos de los elementos se establecen en porcentajes, por lo que siempre son fluidos y tienen un tamaño relativo al elemento principal.
+- Los elementos tienen padding para crear el espacio entre los elementos individuales.
+- Hay cinco puntos de interrupción de la cuadrícula: xs, sm, md, lg y xl.
 
-## Spacing
+## Espaciado
 
-The responsive grid focuses on consistent spacing widths, rather than column width. Material design margins and columns follow an **8dp** square baseline grid. Spacing can be 8, 16, 24, 32 or 40dp wide.
+La cuadrícula responsive se centra en anchos de espaciado coherentes, en lugar de en el ancho de columna. Los márgenes y columnas de Material Design siguen una cuadrícula con línea-base cuadrada de **8dp**. La propiedad de espaciado es un número entero entre 0 y 10 inclusive. Por defecto, el espaciado entre dos elementos de la cuadrícula sigue una función lineal: `output(spacing)= spacing * 8px`, por ejemplo, `spacing={2}` crea un espacio de 16px.
+
+Esta función de transformación de la salida se puede personalizar [usando el tema](/customization/themes/#spacing).
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
-## Fluid grids
+## Grids fluidos
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Las cuadrículas fluidas usan columnas que escalan y redimensionan el contenido. La disposición de la cuadrícula fluida (el layout) puede usar puntos de interrupción (breakpoints) para determinar si el diseño necesita cambiar drásticamente.
 
-### Basic grid
+### Grid básica
 
-The column widths apply at all breakpoints (i.e. `xs` and up).
+Los anchos de columna se aplican en todos los breakepoints (ej. `xs` y superiores).
 
 {{"demo": "pages/layout/grid/CenteredGrid.js"}}
 
-### Grid with breakpoints
+### Grid con breakpoints
 
-Some columns have multiple widths defined, causing the layout to change at the defined breakpoint.
+Algunas columnas tienen varios anchos definidos, causando que el layout cambie en el correspondiente breakpoint definido.
 
 {{"demo": "pages/layout/grid/FullWidthGrid.js"}}
 
-## Interactive
+## Explora
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+Debajo de esta línea hay una demostración interactiva que permite explorar el resultado visual de las distintas configuraciones:
 
 {{"demo": "pages/layout/grid/InteractiveGrid.js"}}
 
 ## Auto-layout
 
-The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
+El Auto-layout (disposición del diseño automática) hace que los *items* compartan equitativamente el espacio disponible. Eso significa que también se puede asignar el ancho a un *item* y que el resto cambiarán de tamaño automáticamente alrededor de éste.
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
-## Complex Grid
+## Grid Compleja
 
-The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
+El siguiente ejemplo no sigue las directrices de Material Design, pero ilustra cómo el grid puede ser usado para dar forma a layouts complejas.
 
 {{"demo": "pages/layout/grid/ComplexGrid.js"}}
 
 ## CSS Grid Layout
 
-**CSS Grid Layout** excels at dividing a page into major regions, or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
+**CSS Grid Layout** destaca al dividir una página en regiones principales, o al definir la relación entre las partes de un control creado con elementos primitivos HTML, en términos de tamaño, posición o capa.
 
-⚠️ Unfortunately, CSS grid is only supported by the most recent browsers.
+⚠️ Desafortunádamente, CSS grid layout sólo es compatible con los navegadores más recientes.
 
 {{"demo": "pages/layout/grid/CSSGrid.js"}}
 
-## Nested Grid
+## Grid Anidada
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+Las propiedades `conatiner` e `item` son dos boleanos independientes. Se pueden combinar.
 
-> A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
+> Un **contenedor** de flex es la caja generada por un elemento con la propiedad computada display con el valor de `flex` o `inline-flex`. Los hijos en el flujo de un contenedor flex se denominan flex **items** y se establecen mediante el modelo de layout flex.
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/layout/grid/NestedGrid.js"}}
 
-## Limitations
+## Limitaciones
 
-### Negative margin
+### Margen negativo
 
-There is one limitation with the negative margin we use to implement the spacing between items. A horizontal scroll will appear if a negative margin goes beyond the `<body>`. There are 3 available workarounds: 1. Not using the spacing feature and implementing it in user space `spacing={0}` (default). 2. Applying padding to the parent with at least half the spacing value applied to the child:
+Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. Hay 3 soluciones disponibles: 1. No usar la función de espaciado e implementarla en el espacio de usuario `spacing={0}` (por defecto). 2. Aplicar padding al padre con al menos la mitad del valor de espaciado aplicado al hijo:
 
 ```jsx
   <body>
     <div style={{ padding: 20 }}>
-      <Grid container spacing={40}>
+      <Grid container spacing={5}>
         //...
       </Grid>
     </div>
   </body>
 ```
 
-1. Adding `overflow-x: hidden;` to the parent.
+1. Añadiendo `overflow-x: hidden;` al padre.
 
 ### white-space: nowrap;
 
-The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
+La configuración inicial en los objetos flex es `min-width: auto`. Esto causa un conflicto de posicionamiento cuando los hijos usan `white-space: nowrap;`. Se puede presentar este problema con:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+Para que el elemento permanezca dentro del contenedor, se debe establecer `min-width: 0`. En la práctica, se puede establecer la propiedad `zeroMinWidth`:
 
 ```jsx
 <Grid item xs zeroMinWidth>

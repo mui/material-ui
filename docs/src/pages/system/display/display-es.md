@@ -66,7 +66,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 import { display } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property | Theme key |
-|:-------------- |:-------------- |:------------ |:--------- |
-| `displayRaw`   | `display`      | `display`    | none      |
-| `displayPrint` | `displayPrint` | `display`    | none      |
+| Nombre del import | Prop           | Propiedad CSS | Clave del tema |
+|:----------------- |:-------------- |:------------- |:-------------- |
+| `displayRaw`      | `display`      | `display`     | none           |
+| `displayPrint`    | `displayPrint` | `display`     | none           |

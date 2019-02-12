@@ -2,13 +2,13 @@
 title: Menu React component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
-# Menus
+# Меню
 
 <p class="description">Menus display a list of choices on temporary surfaces.</p>
 
 A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
 
-## Simple Menu
+## Простое меню
 
 Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
 
@@ -36,7 +36,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
@@ -48,15 +48,9 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 
-## Render Props
+## Ограничения
 
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single menu.
-
-{{"demo": "pages/demos/menus/RenderPropsMenu.js"}}
-
-## Limitations
-
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipse` from working in a flexbox layout. You can use the `Typography` component to workaround this issue:
+There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
@@ -66,9 +60,9 @@ Use a different transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
-## Complementary projects
+## Дополнительные проекты
 
-For more advanced use cases you might be able to take advantage of:
+Для более сложных вариантов использования вы можете воспользоваться:
 
 ### PopupState helper
 

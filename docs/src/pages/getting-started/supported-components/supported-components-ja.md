@@ -1,15 +1,15 @@
-# Supported Components
+# サポートされているコンポーネント
 
-<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
+<p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
-While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, or every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
+私たちはガイドラインに従うように努めています ( ガイドラインが矛盾する点に常識を適用する) が、全てのコンポーネント、または全てのコンポーネントの機能をサポートするわけではありません。強力なユーザーインターフェイスとエクスペリエンスを作成する為の構成要素を提供します。
 
-If you wish to add support for a component or feature not highlighted here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one to discuss the approach before submitting a pull request.
+ここで強調表示されていないコンポーネントまたは機能のサポートを追加したい場合は、関連する[GitHub Issue](https://github.com/mui-org/material-ui/issues)を探す、または、プルリクエストを送信する前にアプローチを議論するための新しいIssueを作成してください。
 
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
-- **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
+- **[Banners](https://material.io/design/components/banners.html)** ([構成可能](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**

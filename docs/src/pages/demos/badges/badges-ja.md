@@ -6,7 +6,7 @@ components: Badge
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
-## Emblemas Simples
+## Simple Badges
 
 Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
 

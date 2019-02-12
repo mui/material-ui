@@ -27,17 +27,11 @@ We demonstrate how to use the `Popover` component to implement a popover behavio
 
 {{"demo": "pages/utils/popover/MouseOverPopover.js"}}
 
-## Render Props
-
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single popover.
-
-{{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
-
 ## Projets complémentaires
 
-For more advanced use cases you might be able to take advantage of:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
-### PopupState helper
+### Assistant PopupState
 
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
 

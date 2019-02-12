@@ -22,7 +22,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can theme a tooltip.
 
-⚠️ While the material design specification encourages theming, these examples are off the beaten path.
+⚠️ A pesar de que la especificación de material design anima a usar temas, estos ejemplos no son comunes.
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
 
@@ -63,7 +63,7 @@ The `Tooltip` wraps long text by default to make it readable.
 
 {{"demo": "pages/demos/tooltips/VariableWidth.js"}}
 
-## Interactive
+## Explora
 
 A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 

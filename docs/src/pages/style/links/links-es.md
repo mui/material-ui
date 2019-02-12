@@ -13,7 +13,7 @@ The Link component is built on top of the [Typography](/api/typography/) compone
 
 However, the Link has different default properties than the Typography: - `color="primary"` as the link needs to stand out. - `variant="inherit"` as the link will, most of the time, be used as a child of a Typograpy component.
 
-## Accessibility
+## Accesibilidad
 
 - When providing the content for the link, avoid generic descriptions like "click here" or "go to". Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - For the best user experience links should stand out from the text on the page.
@@ -28,7 +28,7 @@ When you use `target="_blank"` with Links it is [recommended](https://developers
 - `rel="noopener"` prevents the new page from being able to access the window.opener property and ensures it runs in a separate process. Without this the target page can potentially redirect your page to a malicious URL.
 - `rel="noreferrer""` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
 
-## Third-party routing library
+## Librería externa de routing
 
 One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
 
@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-or if you want to avoid properties collision:
+o si quieres evitar un choque de propiedades:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'

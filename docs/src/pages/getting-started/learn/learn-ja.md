@@ -1,35 +1,35 @@
-# Learn Material-UI
+# Material-UIを学ぶ
 
-<p class="description">New to Material-UI? It's easy to learn if you know where to start! This guide will help you to get started quickly.</p>
+<p class="description">Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。</p>
 
-People come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you’ll find this section helpful. Like any unfamiliar technology, Material-UI does have a learning curve. With practice and some patience, you will soon get the hang of it.
+人々は異なるバックグラウンドと学習スタイルを持ってMaterial-UIにやってきます。 より理論的なアプローチと実用的なアプローチのどちらが好みだったとしても、このセクションが役に立てれば幸いです。 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
 
-## First Example
+## 最初の例
 
-The [usage page](/getting-started/usage/#quick-start) contains a small Material-UI example with a live editor. Even if you don’t know anything about Material-UI yet, try changing the code and see how it affects the result.
+[使い方ページ](/getting-started/usage/#quick-start)ではMaterial-UIの小さな例とライブエディタがあります。 Material-UIについて何も知らなかったとしても、コードを書き換えてどのように作用するか確認してみてください。
 
-## Example Projects
+## サンプルプロジェクト
 
-We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
+ReactでWebサイトを開発およびデプロイする為に必要なインフラを提供する[いくつかのサンプルプロジェクト](/getting-started/example-projects/)があります。
 
-## Page layout examples
+## ページレイアウトのサンプル
 
-We have a [selection of basic page layouts](/getting-started/page-layout-examples/) to help you get started building your app.
+アプリを構築し易くする[基本的なページレイアウトの例](/getting-started/page-layout-examples/)があります。
 
-## Recommended resources
+## 推奨する資料
 
-When first learning Material-UI, you might find third-party blog posts, books and video courses more helpful than the official documentation. We maintain a list of commonly recommended resources, some of which are free.
+Material-UIを初めて学ぶときは、公式のドキュメントよりもサードパーティのブログ記事や本、動画のコースの方が役に立つかもしれません。 一般的に推奨されている資料のリストを管理しています。いくつかは無料です。
 
 ### Gratuit
 
-- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
- - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555) - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
- - 📝 [The blog post](https://alligator.io/react/material-ui/)
+- **Meet Material-UI — your new favorite user interface library**: Material-UIのいくつかの重要なコンセプトをカバーしながらTodo MVCの構築の手引きとなるブログ記事です。 
+ - 📝 [ブログ記事](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
+- **Learn React & Material-UI**: Material-UIの重要なコンポーネントの全てをカバーするシリーズの動画です。 - 📹 [動画](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
+- **Getting Started With Material-UI For React**: シンプルなカードのリストの構築の手引きとなるブログ記事です。 - 📝 [ブログ記事](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555) - 📹 [動画](https://www.youtube.com/watch?v=PWadEeOuv5o)
+- **Elegant UX in React with Material-UI**: Material-UIの重要なコンセプトをカバーする記事です。 
+ - 📝 [ブログ記事](https://alligator.io/react/material-ui/)
 
-### Paid
+### 有料
 
-- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
- - 📘 [The book](https://builderbook.org/book)
+- **Builder Book**: モダンなjavaScriptとMaterial-UIを用いて、フルスクラッチでJavaScriptによるフルスタックWebアプリケーションの作り方が学べます。 
+ - 📘 [書籍](https://builderbook.org/book)

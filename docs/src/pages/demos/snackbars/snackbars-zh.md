@@ -40,7 +40,7 @@ components: Snackbar, SnackbarContent
 
 {{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
 
-## 过渡动画
+## 过渡(Transitions)
 
 ### 连续的消息条(Snackbar)
 
@@ -62,7 +62,7 @@ components: Snackbar, SnackbarContent
 
 ### 更改过渡动画
 
-同时使用不同的过渡动画。
+使用不同的过渡动画。
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 

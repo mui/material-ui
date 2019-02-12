@@ -1,8 +1,8 @@
-# CSS in JS
+# CSS em JS
 
 <p class="description">Você pode aproveitar nossa solução de estilo, mesmo se não estiver usando nossos componentes.</p>
 
-> ⚠️ Estamos trabalhando na extração da solução de estilo em seu próprio pacote: [`@material-ui/styles`](/css-in-js/basics/). É um projeto instável (versão alfa). Hopefully, we will make it the default style implementation for the core components in Material-UI v4.
+> ⚠️ Estamos trabalhando na extração da solução de estilo em seu próprio pacote: [`@material-ui/styles`](/css-in-js/basics/). É um projeto instável (versão alfa). Esperamos torná-lo a implementação padrão de estilo para os componentes principais do Material-UI v4.
 
 Material-UI tem como objetivo fornecer bases sólidas para a construção de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos nossa solução de estilo aos usuários**. Você pode usá-lo, mas você não precisa. Esta solução de estilo é [interoperável com](/guides/interoperability/) todas as outras soluções principais.
 
@@ -20,7 +20,7 @@ Então, você deve ter notado nas demos que *CSS-in-JS* parece. Usamos o compone
 
 ## JSS
 
-A solução de estilo do Material-UI usa [JSS](https://github.com/cssinjs/jss) em seu núcleo. É um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS ao compilador CSS que trabalha em tempo de execução e no lado do servidor. É cerca de 8 kB (minificado e gzipped) e é extensível através de um [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+A solução de estilo do Material-UI usa [JSS](https://github.com/cssinjs/jss) em seu núcleo. É um [alto desempenho](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JS ao compilador CSS que trabalha em tempo de execução e no lado do servidor. É cerca de 8 kB (minificado e gzipped) e é extensível através de um [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
 
 Se você acabar usando essa solução de estilo na sua base de código, precisará *aprender a API*. O melhor lugar para começar é observar os recursos que cada um dos [plugins](https://cssinjs.org/plugins/) fornece. Material-UI usa [alguns deles](#plugins). Você sempre pode adicionar novos plugins, se necessário, com o [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) ajudante.
 
@@ -55,29 +55,29 @@ If you don't like this default behavior, you can change it. O JSS conta com o co
 
 ### Global CSS
 
-Fornecemos uma implementação personalizada do gerador de nome de classe para as necessidades de Material-UI: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator). As well as the option to make the class names **deterministic** with the `dangerouslyUseGlobalCSS` option. When turned on, the class names will look like this:
+Fornecemos uma implementação personalizada do gerador de nome de classe para as necessidades de Material-UI: [`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator). Assim como a opção de fazer os nomes de classes serem **determinísticos** com a opção `dangerouslyUseGlobalCSS`. When turned on, the class names will look like this:
 
-- development: `.MuiAppBar-root`
-- production: `.MuiAppBar-root`
+- desenvolvimento: `.MuiAppBar-root-`
+- produção: `.MuiAppBar-root `
 
-⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for quick prototyping. Relying on it for code running in production has the following implications:
+⚠️ **ter cuidado quando usando `dangerouslyUseGlobalCSS`.** Nós fornecemos esta opção como uma saída de emergência para uma rápida criação de protótipos. Relying on it for code running in production has the following implications:
 
-- Global CSS is inherently fragile. People use strict methodologies like [BEM](http://getbem.com/introduction/) to workaround the issue.
-- It's harder to keep track of `classes` API changes.
+- O CSS global é inerentemente frágil. As pessoas usam metodologias rigorosas como [ BEM ](http://getbem.com/introduction/) para contornar o problema.
+- É mais difícil controlar as classes ` ` alterações na API.
 
-⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets. `withStyles` has a name option for that:
+⚠️ Ao usar ` dangerouslyUseGlobalCSS ` autônomo (sem Material-UI), você deve nomear os seus style sheets. ` withStyles ` contem uma opção de nome para isso:
 
 ```jsx
 const Button = withStyles(styles, { name: 'button' })(ButtonBase)
 ```
 
-## CSS injection order
+## Ordem de injeção de CSS
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
-You might, however, also want to override these styles, for example with styled-components. If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+You might, however, also want to override these styles, for example with styled-components. Se você está enfrentando um problema de ordem de injeção de CSS, o JSS [ fornece um mecanismo ](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-dom-insertion-point) para lidar com essa situação. Ajustando o posicionamento do ponto de inserção ` ` dentro do seu HTML header, você pode [ controlar a ordem em ](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
 
-### HTML comment
+### Comentário HTML
 
 The simplest approach is to add an HTML comment that determines where JSS will inject the styles:
 
@@ -111,7 +111,7 @@ function App() {
 export default App;
 ```
 
-### Other HTML element
+### Outro elemento HTML
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
 
@@ -179,11 +179,11 @@ export default App;
 
 ## JssProvider
 
-react-jss exposes a `JssProvider` component to configure JSS for the underlying child components. There are different use cases:
+react-jss exposes a `JssProvider` component to configure JSS for the underlying child components. Existem diferentes casos de uso:
 
-- Providing a class name generator.
+- Fornecendo um class name generator.
 - [Providing a Sheets registry.](/customization/css-in-js/#sheets-registry)
-- Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left/) or changing the [CSS injection order](/customization/css-in-js/#css-injection-order). Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available. Here is an example:
+- Fornecendo uma instância do JSS. Talvez você queira suportar [Direita-para-esquerda](/guides/right-to-left/) ou alterar a[ordem de injeção de CSS ](/customization/css-in-js/#css-injection-order). Leia [ a documentação do JSS ](http://cssinjs.org/js-api/) para saber mais sobre as opções disponíveis. Aqui está um exemplo:
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -215,21 +215,21 @@ JSS uses the concept of plugins to extend its core, allowing people to cherry-pi
 - [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer/)
 - [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
-It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/). Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left/#3--jss-rtl).
+É um subconjunto de [ jss-preset-default ](http://cssinjs.org/jss-preset-default/). Of course, you are free to add a new plugin. Nós temos um exemplo para o [ ` jss-rtl ` plugin ](/guides/right-to-left/#3--jss-rtl).
 
 ## API
 
 ### `withStyles(styles, [options]) => higher-order component`
 
-Link a style sheet with a component. It does not modify the component passed to it; instead, it returns a new component with a `classes` property. This `classes` object contains the name of the class names injected in the DOM.
+Vincule uma folha de estilo a um componente. It does not modify the component passed to it; instead, it returns a new component with a `classes` property. This `classes` object contains the name of the class names injected in the DOM.
 
 Some implementation details that might be interesting to being aware of:
 
-- It adds a `classes` property so you can override the injected class names from the outside.
-- It adds an `innerRef` property so you can get a reference to the wrapped component. The usage of `innerRef` is identical to `ref`.
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- Adiciona uma propriedade `classes`, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
+- Ele adiciona uma propriedade `innerRef` para que você possa obter uma referência ao componente encapsulado. O uso de ` innerRef ` é idêntico a ` ref `.
+- It forwards *non React static* properties so this HOC is more "transparent". Por exemplo, pode ser usado para definir um método estático (next.js) ` getInitialProps () `.
 
-#### Arguments
+#### Argumentos
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
@@ -287,7 +287,7 @@ export default MyComponent
 
 A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]): 
     - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
@@ -322,7 +322,7 @@ export default App;
 
 ## Alternative APIs
 
-Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? Rest assured we don't, however because `withStyles()` is a higher-order component, it can be extended with just a **few lines of code** to match different patterns that are all idiomatic React. Here are a couple of examples.
+Você acha que os componentes [ higher-order são os novos mixins ](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? Rest assured we don't, however because `withStyles()` is a higher-order component, it can be extended with just a **few lines of code** to match different patterns that are all idiomatic React. Here are a couple of examples.
 
 ### Render props API (+11 lines)
 

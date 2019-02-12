@@ -10,4 +10,4 @@ Dica: você também pode jogar com o objeto de tema em seu console. **We expose 
 
 Por favor, tome nota que o site de documentação está usando um tema personalizado. Como resultado, as demonstrações você vê aqui podem não estar de acordo com os valores acima.
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.
+If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), and the related imports which `createMuiTheme` uses.

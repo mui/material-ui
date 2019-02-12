@@ -1,11 +1,11 @@
 * * *
 
-title: React Themes built by or curated by the Material-UI Team description: Our collection of templates include themes to build an admin, dashboard, landing page, e-commerce site, application, and more.
+title：由Material-UI团队构建或策划的React主题 描述：我们的模板集合包括用于构建管理员，仪表板，登录页面，电子商务站点，应用程序等的主题。
 
 * * *
 
-# Premium Themes
+# 高级主题
 
-<p class="description">React Themes & Template built by or curated by Material-UI's creators.</p>
+<p class="description">由Material-UI的创建者构建或策划的React Themes＆Template。</p>
 
 {{"demo": "pages/premium-themes/PremiumThemes.js", "hideHeader": true}}

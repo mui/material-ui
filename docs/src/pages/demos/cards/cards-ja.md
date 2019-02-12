@@ -2,40 +2,40 @@
 title: Card React component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
-# Cards
+# Card
 
-<p class="description">Cards contain content and actions about a single subject.</p>
+<p class="description">Cardはコンテンツと一つの主題に関するアクションを含みます。</p>
 
-[Cards](https://material.io/design/components/cards.html) are surfaces that display content and actions on a single topic.
+[Card](https://material.io/design/components/cards.html) は、1つのトピックに関するコンテンツとアクションを表示する面です。
 
-They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+関連性のある実用的な情報を探し易くあるべきです。テキストや画像などの要素は、階層を明確に示すように配置する必要があります。
 
-## Simple Card
+## シンプルなCard
 
-Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
+Cardは複数のアクション、UIコントロール、およびオーバーフローメニューをサポートできますが制限してください。Cardがより複雑で詳細な情報への入り口であることを忘れてはいけません。
 
 {{"demo": "pages/demos/cards/SimpleCard.js"}}
 
-## Complex Interaction
+## 複雑な相互作用
 
-On desktop, card content can expand.
+デスクトップでは、Cardの内容が展開できる可能性があります。
 
 {{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
 
-## Media
+## メディア
 
-Example of a card using an image to reinforce the content.
+内容を補助する為に画像を用いたCardの例。
 
 {{"demo": "pages/demos/cards/MediaCard.js"}}
 
-By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
+デフォルトでは、メディアを表示する為に `<div>` 要素と *背景画像* の組み合わせを使用します。 状況によってこれは問題になることがあります。 例えば、動画やレスポンシブ画像を表示したいとします。 そのような場合は `component` プロパティを使用します。
 
 {{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
-## UI Controls
+## UIコントロール
 
-Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.
+Card内の補足的なアクションは、通常はカードの下部に配置されているアイコンとテキスト及びUIコントロールから明示的に呼び出されます。
 
-Here's an example of a media control card.
+これはメディアコントロール付きCardの例です。
 
 {{"demo": "pages/demos/cards/MediaControlCard.js"}}

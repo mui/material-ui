@@ -1,8 +1,8 @@
-# Comparison with other libraries
+# Comparaison avec d'autres bibliothèques
 
-<p class="description">You’re here because you want to know if Material-UI can solve your specific problems better. That’s what we hope to answer for you here.</p>
+<p class="description">Si vous êtes ici pour savoir si Material-UI peut aider à mieux résoudre certains de vos problème. Vous êtes sur la bonne page.</p>
 
-This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important. Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
+C’est certainement l’une des pages les plus difficiles à écrire du guide, mais nous pensons que c’est important. Les chances sont que vous avez eu des problèmes que vous avez essayé de résoudre et vous avez utilisé une autre bibliothèque pour les résoudre.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast! If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by [opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
 

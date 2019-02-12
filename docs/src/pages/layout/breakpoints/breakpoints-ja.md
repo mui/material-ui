@@ -30,7 +30,7 @@ In the following demo, we change the background color (red, blue & green) based 
 ```jsx
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.main,
     },
@@ -72,27 +72,6 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 {{"demo": "pages/layout/breakpoints/WithWidth.js"}}
 
-#### Render Props
-
-In some cases, you can experience property name collisions using higher-order components. To avoid this, you can use the [render props](https://reactjs.org/docs/render-props.html) pattern shown in the following demo.
-
-```jsx
-import Typography from '@material-ui/core/Typography';
-import toRenderProps from 'recompose/toRenderProps';
-
-const WithWidth = toRenderProps(withWidth());
-
-export default function MyComponent() {
-  return (
-    <WithWidth>
-      {({ width }) => <div>{`Current width: ${width}`}</div>}
-    </WithWidth>
-  );
-}
-```
-
-{{"demo": "pages/layout/breakpoints/RenderPropsWithWidth.js"}}
-
 ## API
 
 ### `theme.breakpoints.up(key) => media query`
@@ -105,7 +84,7 @@ export default function MyComponent() {
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例
 
 ```js
 const styles = theme => ({
@@ -130,7 +109,7 @@ const styles = theme => ({
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例
 
 ```js
 const styles = theme => ({
@@ -156,7 +135,7 @@ const styles = theme => ({
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例
 
 ```js
 const styles = theme => ({
@@ -183,7 +162,7 @@ const styles = theme => ({
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### 例
 
 ```js
 const styles = theme => ({
@@ -236,7 +215,7 @@ const theme = createMuiTheme({
 
 `higher-order component`: Should be used to wrap a component.
 
-#### Examples
+#### 例
 
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';

@@ -48,7 +48,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 
 `shallow` (*shallow*): A shallow function.
 
-#### Examples
+#### 例
 
 ```jsx
 import { createShallow } from '@material-ui/core/test-utils';
@@ -80,7 +80,7 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 `mount` (*mount*): A mount function.
 
-#### Examples
+#### 例
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
@@ -116,7 +116,7 @@ Generate a render to string function with the needed context. Please refer to th
 
 `render` (*Function*): A render to string function.
 
-#### Examples
+#### 例
 
 ```jsx
 import { createRender } from '@material-ui/core/test-utils';

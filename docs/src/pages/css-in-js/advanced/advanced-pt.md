@@ -58,7 +58,7 @@ JSS uses the concept of plugins to extend its core, allowing people to cherry-pi
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-It's a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/). Of course, you are free to add a new plugin. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+É um subconjunto de [ jss-preset-default ](https://cssinjs.org/jss-preset-default/). Of course, you are free to add a new plugin. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
 
 ```jsx
 import { create } from 'jss';
@@ -100,13 +100,13 @@ const useStyles = makeStyles({
 
 {{"demo": "pages/css-in-js/advanced/StringTemplates.js", "react": "next"}}
 
-## CSS injection order
+## Ordem de injeção de CSS
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
-You might, however, also want to override these styles, for example with styled-components. If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to handle this situation. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+You might, however, also want to override these styles, for example with styled-components. Se você está enfrentando um problema de ordem de injeção de CSS, o JSS [ fornece um mecanismo ](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-the-dom-insertion-point) para lidar com essa situação. Ajustando o posicionamento do ponto de inserção ` ` dentro do seu HTML header, você pode [ controlar a ordem em ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
 
-### HTML comment
+### Comentário HTML
 
 The simplest approach is to add an HTML comment that determines where JSS will inject the styles:
 
@@ -134,7 +134,7 @@ function App() {
 export default App;
 ```
 
-### Other HTML element
+### Outro elemento HTML
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
 
@@ -233,7 +233,7 @@ const identifier = 5pbwdt;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-If you don't like this default behavior, you can change it. JSS relies on the concept of [class name generator](https://cssinjs.org/jss-api/#generate-your-class-names).
+If you don't like this default behavior, you can change it. O JSS conta com o conceito de [gerador de nome de classe](https://cssinjs.org/jss-api/#generate-your-class-names).
 
 ## Global CSS
 
@@ -244,8 +244,8 @@ We provide an option to make the class names **deterministic** with the [`danger
 
 ⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for prototyping. Relying on it for code running in production has the following implications:
 
-- Global CSS is inherently fragile. People use strict methodologies like [BEM](http://getbem.com/introduction/) to workaround the issue.
-- It's harder to keep track of `classes` API changes.
+- O CSS global é inerentemente frágil. As pessoas usam metodologias rigorosas como [ BEM ](http://getbem.com/introduction/) para contornar o problema.
+- É mais difícil controlar as classes ` ` alterações na API.
 
 ⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets using the `options` parameter:
 
@@ -277,7 +277,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### How does one implement CSP?
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/next/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 

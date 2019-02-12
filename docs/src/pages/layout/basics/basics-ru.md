@@ -1,8 +1,8 @@
-# Basics
+# Основы
 
-<p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
+<p class="description">Макеты Material Design остаются одинаковыми вне зависимости от используемых платформ, сред выполнения и разрешений экрана благодаря использованию единообразной системы элементов и интервалов.</p>
 
-## Responsive UI
+## Адаптивный пользовательский интерфейс
 
 [Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size. We provide the following helpers to make the UI responsive:
 

@@ -38,5 +38,5 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Typography
 
-- Font antialiasing is enabled for better display of the Roboto font.
+- El antialiasing de fuentes está habilitado para una mejor visualización de la fuente Roboto.
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/themes/#typography-html-font-size) page.

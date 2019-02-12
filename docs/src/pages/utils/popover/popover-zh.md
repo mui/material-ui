@@ -27,18 +27,12 @@ components: Grow, Popover
 
 {{"demo": "pages/utils/popover/MouseOverPopover.js"}}
 
-## Render Props
-
-这是一个 [渲染道具](https://reactjs.org/docs/render-props.html) 演示， 跟踪单个弹出窗口的本地状态。
-
-{{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
-
 ## 补充项目
 
 对于更高级的用例，您可以利用：
 
 ### PopupState helper
 
-在大多数情况下，有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popover 状态。
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
 
 {{"demo": "pages/utils/popover/PopoverPopupState.js"}}

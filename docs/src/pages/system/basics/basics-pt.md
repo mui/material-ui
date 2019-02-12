@@ -273,7 +273,7 @@ Use this helper to create your own style function.
 
 We don't support all the CSS properties. It's possible that you want to support new ones. It's also possible that you want to change the theme path prefix.
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object*): 
   - `options.prop` (*String*): The property the style function will be triggered on.

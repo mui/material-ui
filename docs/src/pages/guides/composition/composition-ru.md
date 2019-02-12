@@ -6,33 +6,31 @@
 
 In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem we tag some of our components when needed with a `muiName` static property.
 
-However, users like to wrap components in order to enhance them. That can conflict with our `muiName` solution. If you encounter this issue, you need to:
+You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component verify if that component has this static property set.
 
-1. Forward the properties.
-2. Use the same tag for your wrapping component that is used with the wrapped component.
+Если вы столкнулись с этой проблемой, вам нужно использовать тот же тег для вашего компонента-обертки что и в оборачиваемом компоненте. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
 
-Let's see an example:
+Давайте рассмотрим пример:
 
 ```jsx
-const WrappedIcon = props => <Icon {...props} />;
-WrappedIcon.muiName = 'Icon';
+const WrappedIcon = props => <Icon {...props} />; WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
 ## Component property
 
-Material-UI allows you to change the root node that will be rendered via a property called `component`.
+Material-UI позволяет вам изменить корневой узел, который будет отображаться с помощью свойства `component`,.
 
 ### How does it work?
 
-The component will render like this:
+Компонент будет отображаться следующим образом:
 
 ```js
 return React.createElement(this.props.component, props)
 ```
 
-For example, by default a `List` component will render a `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` property. The following example will render the `List` component with a `<nav>` element as root node instead:
+Например, по умолчанию компонент `List` будет отображать `<ul>` элемент. Это можно изменить, передав [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) в свойство `component`. В следующем примере будет отображаться компонент `List` с `<nav>` элементом вместо корневого узла:
 
 ```jsx
 <List component="nav">
@@ -45,11 +43,11 @@ For example, by default a `List` component will render a `<ul>` element. This ca
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as [`react-router`](#react-router-demo) or your favorite forms library. But it also **comes with a small caveat!**
+Этот паттерн очень мощный и обеспечивает большую гибкость, а также способ взаимодействия с другими библиотеками, такими как [`react-router`](#react-router-demo) или ваша любимая библиотека для работы с форами. Но **с небольшой оговоркой! **
 
 ### Caveat with inlining
 
-Using an inline function as an argument for the `component` property may result in **unexpected unmounting**, since you pass a new component to the `component` property every time React renders. For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
+Using an inline function as an argument for the `component` property may result in **unexpected unmounting**, since you pass a new component to the `component` property every time React renders. Например, если вы хотите создать собственный `ListItem`, который работает как ссылка, вы можете сделать следующее:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -64,9 +62,9 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 );
 ```
 
-⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
+⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда ` ListItemLink ` отрисован. Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно.
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead. Let's change our `ListItemLink` to the following:
+Решение простое: ** избегайте встроенных функций и вместо этого, передавайте статический компонент в свойство `component`**. Давайте изменим наш `ListItemLink` следующим образом:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -88,11 +86,11 @@ class ListItemLink extends React.Component {
 }
 ```
 
-`renderLink` will now always reference the same component.
+` renderLink ` теперь всегда будет ссылаться на один и тот же компонент.
 
 ### Caveat with shorthand
 
-You can take advantage of the properties forwarding to simplify the code. In this example, we don't create any intermediary component:
+Вы можете воспользоваться преимуществами пробрасывания свойств для упрощения кода. В этом примере мы не создаем ни одного промежуточного компонента:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -100,14 +98,14 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ However, this strategy suffers from a little limitation: properties collision. The component providing the `component` property (e.g. ListItem) might not forward all its properties to the root element (e.g. dense).
+⚠️ Однако, эта стратегия имеет небольшое ограничение: конфликтующие свойства. The component providing the `component` property (e.g. ListItem) might not forward all its properties to the root element (e.g. dense).
 
 ### React Router Demo
 
-Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-router):
+Вот демонстрация с [ React Router DOM ](https://github.com/ReactTraining/react-router):
 
 {{"demo": "pages/guides/composition/ComponentProperty.js"}}
 
 ### With TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).
+Вы можете найти подробности в [ руководстве по TypeScript ](/guides/typescript#usage-of-component-property).

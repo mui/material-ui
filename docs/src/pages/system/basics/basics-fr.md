@@ -18,7 +18,7 @@
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
-### Demo
+### Démo
 
 In the rest of this *Getting Started* section we are using **styled-components** as the reference example (to emphasize the universality of this package). Alternatively, you can [use JSS](#interoperability). The demos are also based on the **default** Material-UI [theme object](/customization/default-theme/).
 
@@ -391,7 +391,7 @@ const Box = styled.div`
 
 {{"demo": "pages/system/basics/CssProp.js"}}
 
-## How it works
+## Comment ça fonctionne
 
 styled-system has done a great job at [explaining how it works](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). It can help building a mental model for this "style function" concept.
 

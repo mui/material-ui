@@ -19,6 +19,12 @@ Some important features of the `Popper` component:
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
+## Minimalist Popper
+
+You can use the component with zero extra dependencies.
+
+{{"demo": "pages/utils/popper/MinimalPopper.js" }}
+
 ## Scroll playground
 
 {{"demo": "pages/utils/popper/ScrollPlayground.js"}}
@@ -38,12 +44,6 @@ The `anchorEl` property can be a reference to a fake DOM element. You just need 
 Highlight part of the text to see the popper:
 
 {{"demo": "pages/utils/popper/FakedReferencePopper.js"}}
-
-## Render Props
-
-It is a [render props](https://reactjs.org/docs/render-props.html) demo that keeps track of the local state for a single popper.
-
-{{"demo": "pages/utils/popper/RenderPropsPopper.js"}}
 
 ## Complementary projects
 

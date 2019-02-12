@@ -1,18 +1,18 @@
 # Exemplos de Projetos
 
-<p class="description">Are you looking for an example project to get started?</p>
+<p class="description">Você está procurando um projeto de exemplo para começar?</p>
 
-We host some example projects which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+Nós hospedamos alguns projetos de exemplo que você pode encontrar no repositório [ GitHub ](https://github.com/mui-org/material-ui) sob o [` / exemplos `](https://github.com/mui-org/material-ui/tree/next/examples) pasta:
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - E mais
 
 Create React App is an awesome project for learning React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
 
-The source code for this documentation site is also included in the repository. This is a slightly more complex project. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
+The source code for this documentation site is also included in the repository. This is a slightly more complex project. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs) folder for build instructions.
 
 ## More advanced example projects
 

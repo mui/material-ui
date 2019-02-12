@@ -6,7 +6,7 @@
 
 A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-class-names).
 
-#### Arguments
+#### Argumentos
 
 1. `options` (*Object* [optional]): 
     - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
@@ -39,7 +39,7 @@ export default function App() {
 
 This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `withStyles` which are a function of the `Theme`.
 
-#### Arguments
+#### Argumentos
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 
@@ -71,7 +71,7 @@ export default withStyles(styles)(MyComponent);
 
 Link a style sheet with a function component using the **hook** pattern.
 
-#### Arguments
+#### Argumentos
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
@@ -103,20 +103,20 @@ export default function MyComponent() {
 }
 ```
 
-## `styled(styles, [options])(Component) => Component`
+## `styled(Component)(styles, [options]) => Component`
 
 Link a style sheet with a function component using the **styled components** pattern.
 
-#### Arguments
+#### Argumentos
 
-1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
+1. `Component`: The component that will be wrapped.
+2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+3. `options` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
-3. `Component`: The component that will be wrapped.
 
 #### Returns
 
@@ -208,11 +208,11 @@ Link a style sheet with a component using the **higher-order component** pattern
 
 Some implementation details that might be interesting to being aware of:
 
-- It adds a `classes` property so you can override the injected class names from the outside.
-- It adds an `innerRef` property so you can get a reference to the wrapped component. The usage of `innerRef` is identical to `ref`.
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- Adiciona uma propriedade `classes`, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
+- Ele adiciona uma propriedade `innerRef` para que você possa obter uma referência ao componente encapsulado. O uso de ` innerRef ` é idêntico a ` ref `.
+- It forwards *non React static* properties so this HOC is more "transparent". Por exemplo, pode ser usado para definir um método estático (next.js) ` getInitialProps () `.
 
-#### Arguments
+#### Argumentos
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
@@ -273,7 +273,7 @@ export default MyComponent
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
-#### Arguments
+#### Argumentos
 
 1. `Component`: The component that will be wrapped.
 

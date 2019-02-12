@@ -2,17 +2,17 @@
 
 <p class="description">Vous cherchez un exemple de projet pour commencer?</p>
 
-Nous hébergeons quelques exemples de projets que vous pouvez trouver dans le référentiel [GitHub.](https://github.com/mui-org/material-ui) sous les [`/exemples`](https://github.com/mui-org/material-ui/tree/master/examples) dossier:
+Nous hébergeons quelques exemples de projets que vous pouvez trouver dans le référentiel [GitHub.](https://github.com/mui-org/material-ui) sous les [`/exemples`](https://github.com/mui-org/material-ui/tree/next/examples) dossier:
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
 - E mais
 
 Create React App est un projet génial pour apprendre React. Regardez [les alternatives disponibles](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) pour voir quel projet correspond le mieux à vos besoins.
 
-Le code source de ce site de documentation est également inclus dans le repository. C'est un projet légèrement plus complexe. Découvrez le [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) dossier pour instructions de construction.
+Le code source de ce site de documentation est également inclus dans le repository. C'est un projet légèrement plus complexe. Découvrez le [`/docs`](https://github.com/mui-org/material-ui/tree/next/docs) dossier pour instructions de construction.
 
 ## Exemples de projets plus avancés
 

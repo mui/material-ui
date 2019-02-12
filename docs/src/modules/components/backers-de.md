@@ -1,14 +1,12 @@
-## Supporting Material-UI
+## Material-UI unterstützen
 
-Material-UI is an MIT-licensed open source project.
-It's an independent project with ongoing development made possible entirely
-thanks to the support of these awesome [backers](/discover-more/backers/).
+Material-UI ist ein MIT-lizenziertes quelloffenes Projekt. Dieses unabhängige Projekt unterliegt dank dieser großartigen [backers](/discover-more/backers/) und ihrer Unterstützung einer kontinuierlichen Entwicklung.
 
-### Gold Sponsors
+### Gold-Sponsoren
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+Gold-Sponsoren sind diejenigen, die $500 pro Monat und mehr für Material-UI gespendet haben.
 
-via [Patreon](https://www.patreon.com/oliviertassinari)
+über [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;">
@@ -19,7 +17,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
   </a>
 </p>
 
-via [OpenCollective](https://opencollective.com/material-ui)
+über [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener" target="_blank" style="margin-right: 16px;">
@@ -36,6 +34,6 @@ via [OpenCollective](https://opencollective.com/material-ui)
   </a>
 </p>
 
-### There is more!
+### Es gibt noch mehr!
 
-See the full list of [our backers](/discover-more/backers/).
+Sehen Sie sich die vollständige Liste [unserer Unterstützer](/discover-more/backers/) an.

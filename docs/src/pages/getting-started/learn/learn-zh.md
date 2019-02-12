@@ -1,14 +1,14 @@
-# 学习使用Material-UI
+# 学习使用 Material-UI
 
-<p class="description">第一次接触Material-UI? 如果你知道从哪里开始, 就很容易学会! 接下来的教程将帮助你快速入门。</p>
+<p class="description">第一次接触Material-UI? 如果你知道从哪里开始, 就很容易学会! 而接下来的教程将帮助你快速入门。</p>
 
-人们来自不同背景和不同学习风格的Material-UI。 无论您是喜欢更理论还是实用的方法，我们希望您会发现本节很有帮助。 与任何不熟悉的技术一样，Material-UI确实具有学习曲线。 通过练习和一些耐心，你很快就会掌握它。
+学习 Material-UI 的人们有着不同背景和不同学习方法。 无论您是喜欢更理论还是实践的学习方法，我们都希望本节对您有所帮助。 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心, 你很快就会掌握其中的诀窍。
 
 ## 第一个例子
 
 [用法页面](/getting-started/usage/#quick-start) 包含一个带有实时编辑器的小型Material-UI示例。 即使您还不了解有关Material-UI的任何信息，请尝试更改代码并查看它对结果的影响。
 
-## 示例项目
+## 范例项目
 
 我们 [举办一些示例项目](/getting-started/example-projects/) 提供在应对开发和部署网站所需的基础设施。
 

@@ -10,11 +10,11 @@
 
 - ⚛️ Access the theme values directly from the component props.
 - 🦋 Encourage UI consistency.
-- 🌈 Write responsive style effortlessly.
+- 🌈 Schreibe mühelos responsive Styles.
 - 🦎 Work with any theme object.
-- 💅 Work with the most popular CSS-in-JS solutions.
-- 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
+- 💅 Arbeite mit den bekanntesten CSS-in-JS Lösungen.
+- 📦 Weniger als [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
+- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
