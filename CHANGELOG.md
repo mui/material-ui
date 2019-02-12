@@ -4,7 +4,7 @@
 ###### *Feb 12, 2019*
 
 This is our first unstable release towards Material-UI v4.0.0. We try to release a major every 6-12 months.
-This is gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
+This gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
 
 - You can find the documentation following this URL: https://next.material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
