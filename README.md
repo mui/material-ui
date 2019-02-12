@@ -37,7 +37,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-**[Next channel v4.0.0-alpha](https://v4-0-0-alpha.material-ui.com/)**
+**[Next channel v4.0.0-alpha](https://next.material-ui.com/)**
 ```sh
 // with npm
 npm install @material-ui/core@next

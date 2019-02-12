@@ -6,7 +6,7 @@
 This is our first unstable release toward Material-UI v4.0.0. We try to release a major release every 6-12 months.
 This is the opportunity for us to remove the deprecated APIs, upgrade or peer dependencies and more importantly, keep up with the direction the community is taking.
 
-- You can find the documentation following this URL: https://v4-0-0-alpha.material-ui.com/.
+- You can find the documentation following this URL: https://next.material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
 Big thanks to the 28 contributors who made this release possible!

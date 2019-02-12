@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-function LatestVersion(props) {
+function LatestVersions(props) {
   const { classes } = props;
 
   return (
@@ -38,7 +38,27 @@ function LatestVersion(props) {
               </Link>
             </TableCell>
             <TableCell padding="dense">
-              <Link variant="body2" color="secondary" href="https://github.com/mui-org/material-ui">
+              <Link variant="body2" color="secondary" href="https://github.com/mui-org/material-ui/tree/master">
+                Source code
+              </Link>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell padding="dense">
+              <Typography variant="body2">next branch</Typography>
+            </TableCell>
+            <TableCell padding="dense">
+              <Link
+                variant="body2"
+                color="secondary"
+                rel="nofollow"
+                href="https://next--material-ui.netlify.com/"
+              >
+                Documentation
+              </Link>
+            </TableCell>
+            <TableCell padding="dense">
+              <Link variant="body2" color="secondary" href="https://github.com/mui-org/material-ui/tree/next">
                 Source code
               </Link>
             </TableCell>
@@ -49,8 +69,8 @@ function LatestVersion(props) {
   );
 }
 
-LatestVersion.propTypes = {
+LatestVersions.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LatestVersion);
+export default withStyles(styles)(LatestVersions);
