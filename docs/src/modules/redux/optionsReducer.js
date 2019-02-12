@@ -19,7 +19,7 @@ const getT = memoize(userLanguage => key => {
 
   if (!translation) {
     console.error(`Missing translation for ${userLanguage}:${key}.`);
-    return `${userLanguage}:${key}`;
+    return translations.en[key];
   }
 
   return translation;
