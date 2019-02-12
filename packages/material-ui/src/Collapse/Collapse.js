@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import withForwardedRef from '../utils/withForwardedRef';
 import { getTransitionProps } from '../transitions/utils';
 
 export const styles = theme => ({
@@ -134,7 +133,6 @@ class Collapse extends React.Component {
       collapsedHeight,
       component: Component,
       in: inProp,
-      innerRef,
       onEnter,
       onEntered,
       onEntering,
@@ -168,7 +166,6 @@ class Collapse extends React.Component {
               },
               className,
             )}
-            ref={innerRef}
             style={{
               minHeight: collapsedHeight,
               ...style,
@@ -217,7 +214,6 @@ Collapse.propTypes = {
    * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -270,4 +266,4 @@ Collapse.muiSupportAuto = true;
 export default withStyles(styles, {
   withTheme: true,
   name: 'MuiCollapse',
-})(withForwardedRef(Collapse));
+})(Collapse);
