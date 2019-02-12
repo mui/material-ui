@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -162,7 +162,7 @@ class Textarea extends React.Component {
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
           aria-hidden="true"
-          className={classnames(classes.textarea, classes.shadow)}
+          className={clsx(classes.textarea, classes.shadow)}
           readOnly
           ref={this.handleRefSinglelineShadow}
           rows="1"
@@ -171,7 +171,7 @@ class Textarea extends React.Component {
         />
         <textarea
           aria-hidden="true"
-          className={classnames(classes.textarea, classes.shadow)}
+          className={clsx(classes.textarea, classes.shadow)}
           defaultValue={defaultValue}
           readOnly
           ref={this.handleRefShadow}
@@ -181,7 +181,7 @@ class Textarea extends React.Component {
         />
         <textarea
           rows={rows}
-          className={classnames(classes.textarea, className)}
+          className={clsx(classes.textarea, className)}
           defaultValue={defaultValue}
           value={value}
           onChange={this.handleChange}

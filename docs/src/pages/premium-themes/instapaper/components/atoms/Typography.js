@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiTypography from '@material-ui/core/Typography';
 import { TEXT } from '../../theme/core';
 
@@ -16,7 +16,7 @@ const Typography = ({
   ...props
 }) => (
   <MuiTypography
-    className={cx(
+    className={clsx(
       TEXT.root,
       className,
       bold && TEXT.bold,

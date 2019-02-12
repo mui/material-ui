@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiDrawer from '@material-ui/core/Drawer';
 import { DRAWER } from '../../theme/core';
 
@@ -16,7 +16,7 @@ const Drawer = ({
   ...props
 }) => (
   <MuiDrawer
-    className={cx(
+    className={clsx(
       DRAWER.root,
       className,
       header && DRAWER.header,

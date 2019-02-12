@@ -1,5 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import MuiIconButton from '@material-ui/core/IconButton';
 import { ICON_BUTTON } from '../../theme/core';
 
@@ -15,7 +15,7 @@ const IconButton = ({
   ...props
 }) => (
   <MuiIconButton
-    className={cx(
+    className={clsx(
       ICON_BUTTON.root,
       className,
       shaded && ICON_BUTTON.shaded,
