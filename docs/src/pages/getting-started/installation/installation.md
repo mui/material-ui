@@ -53,7 +53,11 @@ In order to use prebuilt SVG Material icons, such as those found in the [compone
 you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh
+// with npm
 npm install @material-ui/icons@next
+
+// with yarn
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
