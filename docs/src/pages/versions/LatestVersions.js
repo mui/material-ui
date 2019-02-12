@@ -38,7 +38,11 @@ function LatestVersions(props) {
               </Link>
             </TableCell>
             <TableCell padding="dense">
-              <Link variant="body2" color="secondary" href="https://github.com/mui-org/material-ui/tree/master">
+              <Link
+                variant="body2"
+                color="secondary"
+                href="https://github.com/mui-org/material-ui/tree/master"
+              >
                 Source code
               </Link>
             </TableCell>
@@ -58,7 +62,11 @@ function LatestVersions(props) {
               </Link>
             </TableCell>
             <TableCell padding="dense">
-              <Link variant="body2" color="secondary" href="https://github.com/mui-org/material-ui/tree/next">
+              <Link
+                variant="body2"
+                color="secondary"
+                href="https://github.com/mui-org/material-ui/tree/next"
+              >
                 Source code
               </Link>
             </TableCell>
