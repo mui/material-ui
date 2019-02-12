@@ -126,7 +126,7 @@ function InputLabel(props) {
         disabled: classes.disabled,
         error: classes.error,
         required: classes.required,
-        ...classes,
+        asterisk: classes.asterisk,
       }}
       {...other}
     >
