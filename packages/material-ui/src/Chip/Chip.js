@@ -277,7 +277,7 @@ class Chip extends React.Component {
   };
 
   handleRef = ref => {
-    setRef(this.chipRef, ref);
+    this.chipRef = ref;
     setRef(this.props.innerRef, ref);
   };
 

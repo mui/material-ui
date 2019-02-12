@@ -3,17 +3,15 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
 describe('<Chip />', () => {
-  let shallow;
   let classes;
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Chip />);
     mount = createMount();
   });
@@ -23,94 +21,110 @@ describe('<Chip />', () => {
   });
 
   describe('text only', () => {
-    it('should render a div containing a span', () => {
-      const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).name(), 'span');
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
-      assert.strictEqual(wrapper.props().tabIndex, undefined);
+    it('should render a div containing a label', () => {
+      const wrapper = mount(
+        <Chip className="my-Chip" data-my-prop="woofChip" label="My text Chip" />,
+      );
+      const chip = wrapper.find('.my-Chip').hostNodes();
+      const label = chip.find(`.${classes.label}`).hostNodes();
 
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
-      assert.strictEqual(wrapper.hasClass(classes.clickable), false);
-      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.clickableColorSecondary), false);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), false);
-      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), false);
-      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), false);
+      assert.strictEqual(chip.type(), 'div');
+      assert.strictEqual(label.type(), 'span');
+      assert.strictEqual(label.text(), 'My text Chip');
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass('my-Chip'), true);
+      assert.strictEqual(chip.props()['data-my-prop'], 'woofChip');
+      assert.strictEqual(chip.props().tabIndex, undefined);
+
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass(classes.colorPrimary), false);
+      assert.strictEqual(chip.hasClass(classes.colorSecondary), false);
+      assert.strictEqual(chip.hasClass(classes.clickable), false);
+      assert.strictEqual(chip.hasClass(classes.clickableColorPrimary), false);
+      assert.strictEqual(chip.hasClass(classes.clickableColorSecondary), false);
+      assert.strictEqual(chip.hasClass(classes.deletable), false);
+      assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), false);
+      assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), false);
     });
 
     it('should render with the root and the primary class', () => {
-      const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" color="primary" />);
+      const wrapper = mount(<Chip className="my-Chip" color="primary" />);
+      const chip = wrapper.find(`.${classes.root}`).hostNodes();
 
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass(classes.colorPrimary), true);
     });
 
     it('should render with the root and the secondary class', () => {
-      const wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woofChip" color="secondary" />,
-      );
+      const wrapper = mount(<Chip className="my-Chip" color="secondary" />);
+      const chip = wrapper.find(`.${classes.root}`);
 
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
     });
   });
 
   describe('clickable text chip', () => {
+    let chip;
     let wrapper;
     let handleClick;
 
     before(() => {
       handleClick = () => {};
-      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} />);
+      wrapper = mount(
+        <Chip className="my-Chip" data-my-prop="woofChip" label="My Chip" onClick={handleClick} />,
+      );
+      chip = wrapper.find('.my-Chip').hostNodes();
     });
 
-    it('should render a div containing a span', () => {
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).name(), 'span');
+    it('should render a div containing a label', () => {
+      assert.strictEqual(chip.type(), 'div');
+
+      const label = chip.find(`.${classes.label}`).hostNodes();
+      assert.strictEqual(label.exists(), true);
+      assert.strictEqual(label.type(), 'span');
+      assert.strictEqual(label.text(), 'My Chip');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
-      assert.strictEqual(wrapper.props().onClick, handleClick);
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass('my-Chip'), true);
+      assert.strictEqual(chip.props()['data-my-prop'], 'woofChip');
+      assert.strictEqual(chip.props().onClick, handleClick);
     });
 
     it('should have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.props().tabIndex, 0);
+      assert.strictEqual(chip.props().tabIndex, 0);
     });
 
     it('should apply user value of tabIndex', () => {
-      wrapper = shallow(
+      const tabIndexWrapper = mount(
         // eslint-disable-next-line jsx-a11y/tabindex-no-positive
         <Chip onClick={() => {}} tabIndex={5} />,
       );
-      assert.strictEqual(wrapper.props().tabIndex, 5);
+      const tabIndexChip = tabIndexWrapper.find(`.${classes.root}`).hostNodes();
+      assert.strictEqual(tabIndexChip.props().tabIndex, 5);
     });
 
     it('should render with the root and clickable class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass(classes.clickable), true);
     });
 
     it('should render with the root and clickable primary class', () => {
-      wrapper = shallow(
+      const primaryWrapper = mount(
         <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} color="primary" />,
       );
+      const primaryChip = primaryWrapper.find('.my-Chip').hostNodes();
 
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
+      assert.strictEqual(primaryChip.hasClass(classes.root), true);
+      assert.strictEqual(primaryChip.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(primaryChip.hasClass(classes.clickable), true);
+      assert.strictEqual(primaryChip.hasClass(classes.clickableColorPrimary), true);
     });
 
     it('should render with the root and outlined clickable primary class', () => {
-      wrapper = shallow(
+      const outlinedWrapper = mount(
         <Chip
           className="my-Chip"
           data-my-prop="woofChip"
@@ -119,17 +133,18 @@ describe('<Chip />', () => {
           variant="outlined"
         />,
       );
+      const outlinedChip = outlinedWrapper.find('.my-Chip').hostNodes();
 
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.outlined), true);
-      assert.strictEqual(wrapper.hasClass(classes.outlinedPrimary), true);
+      assert.strictEqual(outlinedChip.hasClass(classes.root), true);
+      assert.strictEqual(outlinedChip.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(outlinedChip.hasClass(classes.clickable), true);
+      assert.strictEqual(outlinedChip.hasClass(classes.clickableColorPrimary), true);
+      assert.strictEqual(outlinedChip.hasClass(classes.outlined), true);
+      assert.strictEqual(outlinedChip.hasClass(classes.outlinedPrimary), true);
     });
 
     it('should render with the root and clickable secondary class', () => {
-      wrapper = shallow(
+      const secondaryWrapper = mount(
         <Chip
           className="my-Chip"
           data-my-prop="woofChip"
@@ -137,61 +152,66 @@ describe('<Chip />', () => {
           color="secondary"
         />,
       );
+      const secondaryChip = secondaryWrapper.find('.my-Chip').hostNodes();
 
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
-      assert.strictEqual(wrapper.hasClass(classes.clickableColorSecondary), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.root), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.clickable), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.clickableColorSecondary), true);
     });
   });
 
   describe('deletable Avatar chip', () => {
+    let chip;
     let wrapper;
 
     before(() => {
-      wrapper = shallow(
+      wrapper = mount(
         <Chip
           avatar={
             <Avatar className="my-Avatar" data-my-prop="woofChip">
               MB
             </Avatar>
           }
+          id="chip-test"
           label="Text Avatar Chip"
           onDelete={() => {}}
           className="my-Chip"
           data-my-prop="woofChip"
         />,
       );
+      chip = wrapper.find('#chip-test').hostNodes();
     });
 
     it('should render a div containing an Avatar, span and svg', () => {
-      assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.childAt(0).type(), Avatar);
-      assert.strictEqual(wrapper.childAt(1).name(), 'span');
-      assert.strictEqual(wrapper.childAt(2).type(), CancelIcon);
+      assert.strictEqual(chip.type(), 'div');
+      assert.strictEqual(chip.childAt(0).type(), Avatar);
+      assert.strictEqual(chip.childAt(1).name(), 'span');
+      assert.strictEqual(chip.childAt(2).type(), CancelIcon);
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass('my-Chip'), true);
+      assert.strictEqual(chip.props()['data-my-prop'], 'woofChip');
     });
 
     it('should merge user classes & spread custom props to the Avatar node', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.avatar), true);
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-Avatar'), true);
-      assert.strictEqual(wrapper.childAt(0).props()['data-my-prop'], 'woofChip');
+      const avatar = chip.find('.my-Avatar').hostNodes();
+      assert.strictEqual(avatar.exists(), true);
+      assert.strictEqual(avatar.hasClass(classes.avatar), true);
+      assert.strictEqual(avatar.props()['data-my-prop'], 'woofChip');
     });
 
     it('should have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.props().tabIndex, 0);
+      assert.strictEqual(chip.props().tabIndex, 0);
     });
 
     it('should fire the function given in onDeleteRequest', () => {
       const onDeleteSpy = spy();
       wrapper.setProps({ onDelete: onDeleteSpy });
 
-      wrapper.find(CancelIcon).simulate('click', { stopPropagation: () => {} });
+      chip.find(CancelIcon).simulate('click', { stopPropagation: () => {} });
       assert.strictEqual(onDeleteSpy.callCount, 1);
     });
 
@@ -200,21 +220,21 @@ describe('<Chip />', () => {
       const stopPropagationSpy = spy();
       wrapper.setProps({ onDelete: onDeleteSpy });
 
-      wrapper.find(CancelIcon).simulate('click', { stopPropagation: stopPropagationSpy });
+      chip.find(CancelIcon).simulate('click', { stopPropagation: stopPropagationSpy });
       assert.strictEqual(stopPropagationSpy.callCount, 1);
     });
 
     it('should render with the root, deletable classes', () => {
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.root), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
 
-      const avatarWrapper = wrapper.childAt(0);
+      const avatarWrapper = wrapper.find(`.${classes.avatar}`);
 
-      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      assert.strictEqual(avatarWrapper.exists(), true);
     });
 
     it('should render with the root, deletable and avatar primary classes', () => {
-      wrapper = shallow(
+      wrapper = mount(
         <Chip
           avatar={
             <Avatar className="my-Avatar" data-my-prop="woofChip">
@@ -228,19 +248,21 @@ describe('<Chip />', () => {
           color="primary"
         />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), true);
+      chip = wrapper.find(`.${classes.root}`);
 
-      const avatarWrapper = wrapper.childAt(0);
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), true);
 
-      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      const avatarWrapper = wrapper.find(`.${classes.avatar}`).first();
+
+      assert.strictEqual(avatarWrapper.exists(), true);
       assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorPrimary), true);
     });
 
     it('should render with the root, deletable and avatar secondary classes', () => {
-      wrapper = shallow(
+      wrapper = mount(
         <Chip
           avatar={
             <Avatar className="my-Avatar" data-my-prop="woofChip">
@@ -254,25 +276,26 @@ describe('<Chip />', () => {
           color="secondary"
         />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), true);
+      chip = wrapper.find(`.${classes.root}`);
 
-      const avatarWrapper = wrapper.childAt(0);
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), true);
 
-      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      const avatarWrapper = wrapper.find(`.${classes.avatar}`).first();
+
+      assert.strictEqual(avatarWrapper.exists(), true);
       assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorSecondary), true);
     });
   });
 
   describe('prop: deleteIcon', () => {
     it('should fire the function given in onDeleteRequest', () => {
-      const wrapper = shallow(
-        <Chip label="Custom delete icon Chip" onDelete={() => {}} deleteIcon={<CheckBox />} />,
-      );
       const onDeleteSpy = spy();
-      wrapper.setProps({ onDelete: onDeleteSpy });
+      const wrapper = mount(
+        <Chip label="Custom delete icon Chip" onDelete={onDeleteSpy} deleteIcon={<CheckBox />} />,
+      );
 
       wrapper.find(CheckBox).simulate('click', { stopPropagation: () => {} });
       assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
@@ -287,7 +310,7 @@ describe('<Chip />', () => {
       'should render a default icon with the root, deletable, deleteIcon' +
         ' and deleteIconOutlinedColorSecondary classes',
       () => {
-        const wrapper = shallow(
+        const wrapper = mount(
           <Chip
             label="Custom delete icon Chip"
             onDelete={() => {}}
@@ -295,8 +318,10 @@ describe('<Chip />', () => {
             color="secondary"
           />,
         );
-        assert.strictEqual(wrapper.hasClass(classes.root), true);
-        assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+        const chip = wrapper.find(`.${classes.root}`);
+
+        assert.strictEqual(chip.exists(), true);
+        assert.strictEqual(chip.hasClass(classes.deletable), true);
 
         const iconWrapper = wrapper.find(CancelIcon);
         assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
@@ -305,22 +330,26 @@ describe('<Chip />', () => {
     );
 
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
-      const wrapper = shallow(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
+      const chip = wrapper.find(`.${classes.root}`);
+
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
 
       const iconWrapper = wrapper.find(CancelIcon);
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
     });
 
     it('should render default icon with the root, deletable and deleteIcon primary class', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} color="primary" />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), true);
+      const chip = wrapper.find(`.${classes.root}`);
+
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), true);
 
       const iconWrapper = wrapper.find(CancelIcon);
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
@@ -328,13 +357,14 @@ describe('<Chip />', () => {
     });
 
     it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} color="secondary" />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
-      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), true);
+      const chip = wrapper.find(`.${classes.root}`);
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), true);
 
       const iconWrapper = wrapper.find(CancelIcon);
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
@@ -343,14 +373,11 @@ describe('<Chip />', () => {
   });
 
   describe('reacts to keyboard chip', () => {
-    const ChipNaked = unwrap(Chip);
-    let wrapper;
-
     describe('onKeyDown is defined', () => {
       it('should call onKeyDown when a key is pressed', () => {
         const anyKeydownEvent = { key: 'p' };
         const onKeyDownSpy = spy();
-        wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
+        const wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
         wrapper.find('div').simulate('keyDown', anyKeydownEvent);
         assert.strictEqual(onKeyDownSpy.callCount, 1);
         assert.strictEqual(onKeyDownSpy.args[0][0].keyCode, anyKeydownEvent.keyCode);
@@ -359,10 +386,10 @@ describe('<Chip />', () => {
 
     describe('escape', () => {
       it('should unfocus when a esc key is pressed', () => {
-        const wrapper2 = mount(<ChipNaked classes={{}} />);
+        const wrapper = mount(<Chip />);
         const handleBlur = spy();
-        wrapper2.instance().chipRef.blur = handleBlur;
-        wrapper2.find('div').simulate('keyUp', {
+        wrapper.find('Chip').instance().chipRef.blur = handleBlur;
+        wrapper.find('div').simulate('keyUp', {
           preventDefault: () => {},
           key: 'Escape',
         });
@@ -372,9 +399,11 @@ describe('<Chip />', () => {
 
     describe('onClick is defined', () => {
       let onClickSpy;
+      let wrapper;
+
       before(() => {
         onClickSpy = spy();
-        wrapper = mount(<ChipNaked classes={{}} onClick={onClickSpy} />);
+        wrapper = mount(<Chip onClick={onClickSpy} />);
       });
 
       afterEach(() => {
@@ -422,20 +451,20 @@ describe('<Chip />', () => {
       it('should call onDelete', () => {
         const preventDefaultSpy = spy();
         const onDeleteSpy = spy();
-        const wrapper2 = mount(<ChipNaked classes={{}} onDelete={onDeleteSpy} />);
+        const wrapper = mount(<Chip classes={{}} onDelete={onDeleteSpy} />);
 
         const backspaceKeyDown = {
           preventDefault: preventDefaultSpy,
           key: 'Backspace',
         };
-        wrapper2.find('div').simulate('keyDown', backspaceKeyDown);
+        wrapper.find('div').simulate('keyDown', backspaceKeyDown);
         assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onDeleteSpy.callCount, 0);
 
         const backspaceKeyUp = {
           key: 'Backspace',
         };
-        wrapper2.find('div').simulate('keyUp', backspaceKeyUp);
+        wrapper.find('div').simulate('keyUp', backspaceKeyUp);
         assert.strictEqual(onDeleteSpy.callCount, 1);
         assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
       });
@@ -446,6 +475,7 @@ describe('<Chip />', () => {
       let onDeleteSpy;
       let onKeyDownSpy;
       let onKeyUpSpy;
+      let wrapper;
 
       before(() => {
         onClickSpy = spy();
@@ -499,14 +529,8 @@ describe('<Chip />', () => {
 
   describe('prop: icon', () => {
     it('should render the icon', () => {
-      const wrapper = shallow(<Chip icon={<span />} />);
-      assert.strictEqual(
-        wrapper
-          .find('span')
-          .first()
-          .hasClass(classes.icon),
-        true,
-      );
+      const wrapper = mount(<Chip icon={<span id="test-icon" />} />);
+      assert.strictEqual(wrapper.find('span#test-icon').hasClass(classes.icon), true);
     });
   });
 });
