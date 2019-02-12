@@ -34,6 +34,7 @@ export const styles = theme => ({
   filled: {},
   /* Styles applied to the root element if `required={true}`. */
   required: {},
+  /* Styles applied to the asterisk element if `required={true}`. */
   asterisk: {
     '&$error': {
       color: theme.palette.error.main,
