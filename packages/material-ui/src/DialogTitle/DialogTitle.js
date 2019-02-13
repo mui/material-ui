@@ -18,13 +18,7 @@ function DialogTitle(props) {
 
   return (
     <div className={clsx(classes.root, className)} {...other}>
-      {disableTypography ? (
-        children
-      ) : (
-        <Typography variant="title" internalDeprecatedVariant>
-          {children}
-        </Typography>
-      )}
+      {disableTypography ? children : <Typography variant="h6">{children}</Typography>}
     </div>
   );
 }

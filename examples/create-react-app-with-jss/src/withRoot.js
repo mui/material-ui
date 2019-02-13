@@ -18,9 +18,6 @@ const theme = createMuiTheme({
     primary: purple,
     secondary: green,
   },
-  typography: {
-    useNextVariants: true,
-  },
 });
 
 // Create a JSS instance with the default preset of plugins.

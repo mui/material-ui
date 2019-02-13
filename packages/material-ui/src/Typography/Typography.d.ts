@@ -44,14 +44,7 @@ export type TypographyClassKey =
   | 'colorSecondary'
   | 'colorTextSecondary'
   | 'colorError'
-  | 'inline'
-  | 'display4' // deprecated
-  | 'display3'
-  | 'display2'
-  | 'display1'
-  | 'headline'
-  | 'title'
-  | 'subheading';
+  | 'inline';
 
 declare const Typography: React.ComponentType<TypographyProps>;
 

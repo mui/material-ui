@@ -104,55 +104,6 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('v2 migration', () => {
-    const mount = createMount();
-
-    beforeEach(() => {
-      // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = false;
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-      consoleErrorMock.reset();
-    });
-
-    /**
-     * tests if a warning is issued from the `warning` module when mounting {component}
-     */
-    const testMount = (component, expectWarning) => {
-      const wrapper = mount(component);
-      wrapper.unmount();
-
-      if (expectWarning) {
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(consoleErrorMock.args()[0], 'deprecated');
-      } else {
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
-      }
-    };
-
-    describe('prop: internalDeprecatedVariant', () => {
-      it('suppresses warnings if the user is on a v2 theme', () => {
-        testMount(<Typography internalDeprecatedVariant variant="headline" />, false);
-      });
-    });
-
-    describe('theme.typography.useNextVariants', () => {
-      it('maps internal deprecated variants', () => {
-        const wrapper = shallow(<Typography variant="display4" />);
-        assert.strictEqual(wrapper.hasClass(classes.h1), true);
-      });
-
-      it('suppresses warnings for restyled variants', () => {
-        const theme = createMuiTheme({ typography: { useNextVariants: true } });
-        testMount(<Typography theme={theme} variant="h1" />, false);
-      });
-    });
-  });
-
   describe('prop: headlineMapping', () => {
     it('should work with a single value', () => {
       const wrapper = shallow(

@@ -13,11 +13,7 @@ const Box = styled.div`
   )}
 `;
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = createMuiTheme();
 
 function CssProp() {
   return (

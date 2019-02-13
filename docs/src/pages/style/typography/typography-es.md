@@ -58,11 +58,7 @@ The material design specification changed concerning variant names and styles. T
 To make an immediate switch to typography v2 you can simply pass `useNextVariants: true` when calling `createMuiTheme`:
 
 ```js
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = createMuiTheme();
 ```
 
 or set `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.

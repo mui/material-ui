@@ -9,7 +9,6 @@ import Header from './Header';
 
 let theme = createMuiTheme({
   typography: {
-    useNextVariants: true,
     h5: {
       fontWeight: 500,
       fontSize: 26,
