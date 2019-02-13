@@ -19,7 +19,7 @@ export const styles = theme => {
     commonTransitionsOptions,
   );
   const thumbTransitions = theme.transitions.create(
-    ['transform', 'box-shadow', 'top', 'left'],
+    ['transform', 'box-shadow'],
     commonTransitionsOptions,
   );
 
@@ -35,18 +35,27 @@ export const styles = theme => {
    */
   const pressedOutlineRadius = 9;
 
+  /**
+   * We need to give some overflow so that the button and tap
+   * highlight can be shown with overlay hidden.
+   */
+  const overflowSize = 24;
+
   return {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
-      width: '100%',
+      width: `calc(100% + ${overflowSize * 2}px)`,
+      overflow: 'hidden',
+      padding: overflowSize,
+      margin: -overflowSize,
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
         cursor: 'no-drop',
       },
       '&$vertical': {
-        height: '100%',
+        height: `calc(100% + ${overflowSize * 2}px)`,
       },
     },
     /* Styles applied to the container element. */
@@ -98,13 +107,15 @@ export const styles = theme => {
     },
     /* Styles applied to the thumb wrapper element. */
     thumbWrapper: {
-      width: 0,
-      height: 0,
       position: 'relative',
       zIndex: 2,
       transition: thumbTransitions,
       '&$activated': {
         transition: 'none',
+      },
+      '&$vertical': {
+        bottom: 0,
+        height: '100%',
       },
     },
     /* Styles applied to the thumb element. */
@@ -539,14 +550,12 @@ class Slider extends React.Component {
     const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses);
     const trackAfterClasses = classNames(classes.track, classes.trackAfter, commonClasses);
 
-    // we use top and left rather than a transform so the thumb wrapper
-    // size doesn't get out of bounds
-    const thumbTransformFunction = vertical ? 'top' : 'left';
+    const thumbTransformFunction = vertical ? 'translateY' : 'translateX';
     const thumbDirectionInverted = vertical || theme.direction === 'rtl';
     const inlineTrackBeforeStyles = this.calculateTrackPartStyles(percent);
     const inlineTrackAfterStyles = this.calculateTrackPartStyles(100 - percent);
     const inlineThumbStyles = {
-      [thumbTransformFunction]: `${thumbDirectionInverted ? 100 - percent : percent}%`,
+      transform: `${thumbTransformFunction}(${thumbDirectionInverted ? 100 - percent : percent}%)`,
     };
 
     /** Start Thumb Icon Logic Here */
