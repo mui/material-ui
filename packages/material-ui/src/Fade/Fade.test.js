@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
 import Fade from './Fade';
 
@@ -101,29 +101,6 @@ describe('<Fade />', () => {
         opacity: 0,
         visibility: 'hidden',
       });
-    });
-  });
-
-  describe('accessiblity', () => {
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
-    it('will set `hidden` acording to the `in` prop', () => {
-      const wrapper = mount(<Fade {...defaultProps} timeout={100} />);
-      assert.strictEqual(wrapper.find('div').props()['aria-hidden'], false);
-
-      wrapper.setProps({ in: false });
-      assert.strictEqual(wrapper.find('div').props()['aria-hidden'], false);
-
-      clock.tick(100);
-      wrapper.update();
-      assert.strictEqual(wrapper.find('div').props()['aria-hidden'], true);
     });
   });
 });
