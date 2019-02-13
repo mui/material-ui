@@ -79,15 +79,16 @@ const styles = theme => ({
   item: {
     fontSize: 13,
     padding: theme.spacing(0.5, 1),
-    '&:hover:not($itemActive)': {
+    '&:hover': {
       backgroundColor:
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     },
+    '&$active': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+    },
   },
-  itemActive: {
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
-  },
+  active: {}
 });
 
 function checkDuplication(uniq, item) {
@@ -233,7 +234,7 @@ class AppTableOfContents extends React.Component {
                     onClick={() => this.handleClick(item2.hash)}
                     className={clsx(
                       classes.item,
-                      active === item2.hash ? classes.itemActive : undefined,
+                      active === item2.hash ? classes.active : undefined,
                     )}
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
@@ -256,7 +257,7 @@ class AppTableOfContents extends React.Component {
                             onClick={() => this.handleClick(item3.hash)}
                             className={clsx(
                               classes.item,
-                              active === item3.hash ? classes.itemActive : undefined,
+                              active === item3.hash ? classes.active : undefined,
                             )}
                             style={{ paddingLeft: 16 }}
                           >
