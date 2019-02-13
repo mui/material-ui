@@ -20,9 +20,6 @@ const styles = {
     // Use translateZ to scrolling issue on Chrome.
     transform: `${getScale(1)} translateZ(0)`,
   },
-  exited: {
-    visibility: 'hidden',
-  },
 };
 
 /**
@@ -106,11 +103,12 @@ class Grow extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onExit, style, theme, timeout, ...other } = this.props;
+    const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = this.props;
 
     return (
       <Transition
         appear
+        in={inProp}
         onEnter={this.handleEnter}
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
@@ -118,11 +116,12 @@ class Grow extends React.Component {
         {...other}
       >
         {(state, childProps) => {
+          const hidden = state === 'exited' && !inProp;
           return React.cloneElement(children, {
-            'aria-hidden': state === 'exited',
             style: {
               opacity: 0,
               transform: getScale(0.75),
+              visiblity: hidden ? 'hidden' : undefined,
               ...styles[state],
               ...style,
               ...children.props.style,

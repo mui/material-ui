@@ -187,6 +187,7 @@ class Slide extends React.Component {
     const {
       children,
       direction,
+      in: inProp,
       onEnter,
       onEntering,
       onExit,
@@ -204,16 +205,18 @@ class Slide extends React.Component {
           onExit={this.handleExit}
           onExited={this.handleExited}
           appear
+          in={inProp}
           ref={ref => {
             this.transitionRef = ReactDOM.findDOMNode(ref);
           }}
           {...other}
         >
           {(state, childProps) => {
+            const hidden = state === 'exited' && !inProp;
+
             return React.cloneElement(children, {
-              'aria-hidden': state === 'exited',
               style: {
-                visibility: state === 'exited' ? 'hidden' : undefined,
+                visibility: hidden ? 'hidden' : undefined,
                 ...style,
                 ...children.props.style,
               },

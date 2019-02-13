@@ -133,6 +133,7 @@ class Collapse extends React.Component {
       className,
       collapsedHeight,
       component: Component,
+      in: inProp,
       onEnter,
       onEntered,
       onEntering,
@@ -146,6 +147,7 @@ class Collapse extends React.Component {
 
     return (
       <Transition
+        in={inProp}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}
         onEntering={this.handleEntering}
@@ -157,12 +159,11 @@ class Collapse extends React.Component {
       >
         {(state, childProps) => (
           <Component
-            aria-hidden={state === 'exited' && collapsedHeight === '0px'}
             className={clsx(
               classes.container,
               {
                 [classes.entered]: state === 'entered',
-                [classes.hidden]: state === 'exited' && collapsedHeight === '0px',
+                [classes.hidden]: state === 'exited' && !inProp && collapsedHeight === '0px',
               },
               className,
             )}

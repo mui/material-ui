@@ -14,9 +14,6 @@ const styles = {
   entered: {
     opacity: 1,
   },
-  exited: {
-    visibility: 'hidden',
-  },
 };
 
 /**
@@ -55,15 +52,16 @@ class Fade extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onExit, style, theme, ...other } = this.props;
+    const { children, in: inProp, onEnter, onExit, style, theme, ...other } = this.props;
 
     return (
-      <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
+      <Transition appear in={inProp} onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
         {(state, childProps) => {
+          const hidden = state === 'exited' && !inProp;
           return React.cloneElement(children, {
-            'aria-hidden': state === 'exited',
             style: {
               opacity: 0,
+              visibility: hidden ? 'hidden' : undefined,
               ...styles[state],
               ...style,
               ...children.props.style,
