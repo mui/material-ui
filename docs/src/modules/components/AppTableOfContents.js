@@ -87,7 +87,7 @@ const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
     },
   },
-  active: {}
+  active: {},
 });
 
 function checkDuplication(uniq, item) {
