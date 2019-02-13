@@ -27,7 +27,7 @@ class FontAwesome extends React.Component {
   componentDidMount() {
     loadCSS(
       'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
-      document.querySelector('#font-awesome'),
+      document.querySelector('#font-awesome-css'),
     );
   }
 
