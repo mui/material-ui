@@ -9,7 +9,6 @@ import EventListener from 'react-event-listener';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Collapse from '@material-ui/core/Collapse';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
@@ -239,13 +238,9 @@ class AppTableOfContents extends React.Component {
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
                   </Link>
-                  <Collapse
-                    in={
-                      item2.hash === active ||
-                      (item2.children.length > 0 &&
-                        item2.children.some(item3 => item3.hash === active))
-                    }
-                  >
+                  {item2.hash === active ||
+                  (item2.children.length > 0 &&
+                    item2.children.some(item3 => item3.hash === active)) ? (
                     <ul className={classes.ul}>
                       {item2.children.map(item3 => (
                         <li key={item3.text}>
@@ -266,7 +261,7 @@ class AppTableOfContents extends React.Component {
                         </li>
                       ))}
                     </ul>
-                  </Collapse>
+                  ) : null}
                 </li>
               ))}
             </Typography>
