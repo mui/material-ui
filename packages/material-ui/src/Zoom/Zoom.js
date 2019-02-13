@@ -54,7 +54,7 @@ class Zoom extends React.Component {
     const { children, in: inProp, onEnter, onExit, style, theme, ...other } = this.props;
 
     return (
-      <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
+      <Transition appear in={inProp} onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
         {(state, childProps) => {
           const hidden = state === 'exited' && !inProp;
           return React.cloneElement(children, {
