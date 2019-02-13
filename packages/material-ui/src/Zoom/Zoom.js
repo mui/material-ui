@@ -14,6 +14,9 @@ const styles = {
   entered: {
     transform: 'scale(1)',
   },
+  exited: {
+    visibility: 'hidden',
+  },
 };
 
 /**
@@ -51,25 +54,22 @@ class Zoom extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onExit, style: styleProp, theme, ...other } = this.props;
-
-    const style = {
-      ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
+    const { children, onEnter, onExit, style, theme, ...other } = this.props;
 
     return (
       <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) =>
-          React.cloneElement(children, {
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            'aria-hidden': state === 'exited',
             style: {
               transform: 'scale(0)',
               ...styles[state],
               ...style,
+              ...children.props.style,
             },
             ...childProps,
-          })
-        }
+          });
+        }}
       </Transition>
     );
   }
@@ -79,7 +79,7 @@ Zoom.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  children: PropTypes.element.isRequired,
   /**
    * If `true`, the component will transition in.
    */

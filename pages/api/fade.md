@@ -15,11 +15,13 @@ import Fade from '@material-ui/core/Fade';
 The Fade transition is used by the [Modal](/utils/modal/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
+The `aria-hidden` prop will be set on the child according to the `in` prop.
+
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">union:&nbsp;element&nbsp;&#124;<br>&nbsp;func<br></span> |   | A single child content element. |
+| <span class="prop-name">children</span> | <span class="prop-type">element</span> |   | A single child content element. |
 | <span class="prop-name">in</span> | <span class="prop-type">bool</span> |   | If `true`, the component will transition in. |
 | <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 

@@ -21,6 +21,11 @@ export const styles = theme => ({
     height: 'auto',
     overflow: 'visible',
   },
+  // eslint-disable-next-line max-len
+  /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
+  hidden: {
+    vibility: 'hidden',
+  },
   /* Styles applied to the outer wrapper element. */
   wrapper: {
     // Hack to get children with a negative margin to not falsify the height computation.
@@ -152,16 +157,18 @@ class Collapse extends React.Component {
       >
         {(state, childProps) => (
           <Component
+            aria-hidden={state === 'exited' && collapsedHeight === '0px'}
             className={clsx(
               classes.container,
               {
                 [classes.entered]: state === 'entered',
+                [classes.hidden]: state === 'exited' && collapsedHeight === '0px',
               },
               className,
             )}
             style={{
-              ...style,
               minHeight: collapsedHeight,
+              ...style,
             }}
             {...childProps}
           >

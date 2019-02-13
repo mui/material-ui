@@ -7,7 +7,7 @@ import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
 function getScale(value) {
-  return `scale(${value}, ${value ** 2})`;
+  return `scale(${value},${value ** 2})`;
 }
 
 const styles = {
@@ -19,6 +19,9 @@ const styles = {
     opacity: 1,
     // Use translateZ to scrolling issue on Chrome.
     transform: `${getScale(1)} translateZ(0)`,
+  },
+  exited: {
+    visibility: 'hidden',
   },
 };
 
@@ -103,12 +106,7 @@ class Grow extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onExit, style: styleProp, theme, timeout, ...other } = this.props;
-
-    const style = {
-      ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
+    const { children, onEnter, onExit, style, theme, timeout, ...other } = this.props;
 
     return (
       <Transition
@@ -119,17 +117,19 @@ class Grow extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, childProps) =>
-          React.cloneElement(children, {
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            'aria-hidden': state === 'exited',
             style: {
               opacity: 0,
               transform: getScale(0.75),
               ...styles[state],
               ...style,
+              ...children.props.style,
             },
             ...childProps,
-          })
-        }
+          });
+        }}
       </Transition>
     );
   }
