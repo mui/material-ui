@@ -19,8 +19,6 @@ const styles = {
 /**
  * The Fade transition is used by the [Modal](/utils/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
- *
- * The `aria-hidden` prop will be set on the child according to the `in` prop.
  */
 class Fade extends React.Component {
   handleEnter = node => {
@@ -57,11 +55,10 @@ class Fade extends React.Component {
     return (
       <Transition appear in={inProp} onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
         {(state, childProps) => {
-          const hidden = state === 'exited' && !inProp;
           return React.cloneElement(children, {
             style: {
               opacity: 0,
-              visibility: hidden ? 'hidden' : undefined,
+              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
               ...styles[state],
               ...style,
               ...children.props.style,

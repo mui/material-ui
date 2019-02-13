@@ -7,7 +7,7 @@ import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
 function getScale(value) {
-  return `scale(${value},${value ** 2})`;
+  return `scale(${value}, ${value ** 2})`;
 }
 
 const styles = {
@@ -116,12 +116,11 @@ class Grow extends React.Component {
         {...other}
       >
         {(state, childProps) => {
-          const hidden = state === 'exited' && !inProp;
           return React.cloneElement(children, {
             style: {
               opacity: 0,
               transform: getScale(0.75),
-              visiblity: hidden ? 'hidden' : undefined,
+              visiblity: state === 'exited' && !inProp ? 'hidden' : undefined,
               ...styles[state],
               ...style,
               ...children.props.style,
@@ -138,7 +137,7 @@ Grow.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  children: PropTypes.element,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */

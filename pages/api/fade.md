@@ -15,8 +15,6 @@ import Fade from '@material-ui/core/Fade';
 The Fade transition is used by the [Modal](/utils/modal/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
-The `aria-hidden` prop will be set on the child according to the `in` prop.
-
 ## Props
 
 | Name | Type | Default | Description |

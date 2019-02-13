@@ -212,11 +212,9 @@ class Slide extends React.Component {
           {...other}
         >
           {(state, childProps) => {
-            const hidden = state === 'exited' && !inProp;
-
             return React.cloneElement(children, {
               style: {
-                visibility: hidden ? 'hidden' : undefined,
+                visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
                 ...style,
                 ...children.props.style,
               },
