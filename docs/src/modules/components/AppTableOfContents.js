@@ -27,7 +27,7 @@ const styles = theme => ({
     order: 2,
     position: 'sticky',
     wordBreak: 'break-word',
-    height: 'calc(100vh - 70px)',
+    height: 'calc(100vh - 70px - 29px)',
     overflowY: 'auto',
     padding: theme.spacing(2, 2, 2, 0),
     display: 'none',
@@ -134,16 +134,29 @@ class AppTableOfContents extends React.Component {
       }
     });
     this.findActiveIndex();
+    window.addEventListener('hashchange', this.handleHashChange);
   }
 
   componentWillUnmount() {
     this.handleScroll.cancel();
     clearTimeout(this.unsetClicked);
+    window.removeEventListener('hashchange', this.handleHashChange);
   }
 
+  handleHashChange = () => {
+    const hash = window.location.hash.substring(1);
+
+    if (this.state.active !== hash) {
+      this.setState({
+        active: hash,
+      });
+    }
+  };
+
   findActiveIndex = () => {
+    // Don't set the active index based on scroll if a link was just clicked
     if (this.state.clicked) {
-      return
+      return;
     }
 
     let active;
@@ -167,13 +180,15 @@ class AppTableOfContents extends React.Component {
       this.setState({
         active: active.hash,
       });
+
+      window.history.replaceState(null, null, `#${active.hash}`);
     }
   };
 
-  handleClick = (hash) => {
-    // Disable findActiveIndex if the page scrolls due to clicking on the index.
+  handleClick = hash => {
+    // Used to disable findActiveIndex if the page scrolls due to click
     this.setState({ clicked: true });
-    this.unsetClicked = setTimeout(() => this.setState({ clicked: false }), 1000);
+    this.unsetClicked = setTimeout(() => this.setState({ clicked: false }), 500);
 
     if (this.state.active !== hash) {
       this.setState({
