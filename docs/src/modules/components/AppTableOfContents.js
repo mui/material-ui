@@ -253,15 +253,14 @@ class AppTableOfContents extends React.Component {
                             color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
                             href={`#${item3.hash}`}
                             underline="none"
-                            // variant="caption"
                             onClick={() => this.handleClick(item3.hash)}
                             className={clsx(
                               classes.item,
                               active === item3.hash ? classes.itemActive : undefined,
                             )}
-                            style={{ paddingLeft: 12 }}
+                            style={{ paddingLeft: 16 }}
                           >
-                            <span dangerouslySetInnerHTML={{ __html: `- ${item3.text}` }} />
+                            <span dangerouslySetInnerHTML={{ __html: item3.text }} />
                           </Link>
                         </li>
                       ))}
