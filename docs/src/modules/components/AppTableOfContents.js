@@ -198,9 +198,9 @@ class AppTableOfContents extends React.Component {
   };
 
   handleClick = hash => {
-    // Used to disable findActiveIndex if the page scrolls due to click
+    // Used to disable findActiveIndex if the page scrolls due to a click
     this.setState({ clicked: true });
-    this.unsetClicked = setTimeout(() => this.setState({ clicked: false }), 500);
+    this.unsetClicked = setTimeout(() => this.setState({ clicked: false }), 1000);
 
     if (this.state.active !== hash) {
       this.setState({
@@ -237,7 +237,7 @@ class AppTableOfContents extends React.Component {
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
                   </Link>
-                  {item2.children.length > 0 ? (
+                  {item2.hash === active || item2.children.length > 0 && item2.children.some(item3 => (item3.hash === active)) ? (
                     <ul className={classes.ul}>
                       {item2.children.map(item3 => (
                         <li key={item3.text}>
