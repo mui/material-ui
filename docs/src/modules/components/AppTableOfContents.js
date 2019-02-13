@@ -162,6 +162,12 @@ class AppTableOfContents extends React.Component {
     let active;
 
     for (let i = 0; i < this.itemsClient.length; i += 1) {
+      // No hash if we're near the top of the page
+      if (document.documentElement.scrollTop < 200) {
+        active = { hash: null };
+        break;
+      }
+
       const item = this.itemsClient[i];
 
       warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
@@ -181,7 +187,13 @@ class AppTableOfContents extends React.Component {
         active: active.hash,
       });
 
-      window.history.replaceState(null, null, `#${active.hash}`);
+      window.history.replaceState(
+        null,
+        null,
+        active.hash === null
+          ? `${window.location.pathname}${window.location.search}`
+          : `#${active.hash}`,
+      );
     }
   };
 
