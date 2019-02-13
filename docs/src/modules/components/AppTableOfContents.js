@@ -161,7 +161,7 @@ class AppTableOfContents extends React.Component {
 
     let active;
 
-    for (let i = 0; i < this.itemsClient.length; i += 1) {
+    for (let i = this.itemsClient.length -1; i >=0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
@@ -173,9 +173,8 @@ class AppTableOfContents extends React.Component {
       warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
 
       if (
-        item.node &&
-        (document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-          i === this.itemsClient.length - 1)
+        item.node && (item.node.offsetTop < document.documentElement.scrollTop +
+        document.documentElement.clientHeight / 4)
       ) {
         active = item;
         break;
@@ -237,7 +236,9 @@ class AppTableOfContents extends React.Component {
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
                   </Link>
-                  {item2.hash === active || item2.children.length > 0 && item2.children.some(item3 => (item3.hash === active)) ? (
+                  {item2.hash === active ||
+                  (item2.children.length > 0 &&
+                    item2.children.some(item3 => item3.hash === active)) ? (
                     <ul className={classes.ul}>
                       {item2.children.map(item3 => (
                         <li key={item3.text}>
