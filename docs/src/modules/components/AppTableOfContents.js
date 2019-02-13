@@ -238,9 +238,7 @@ class AppTableOfContents extends React.Component {
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
                   </Link>
-                  {item2.hash === active ||
-                  (item2.children.length > 0 &&
-                    item2.children.some(item3 => item3.hash === active)) ? (
+                  {item2.children.length > 0 ? (
                     <ul className={classes.ul}>
                       {item2.children.map(item3 => (
                         <li key={item3.text}>
