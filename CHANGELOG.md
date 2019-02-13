@@ -77,8 +77,8 @@ console.log({ background });
 Remove the deprecated button flat, raised and fab variants:
 
 ```diff
--<Button variant="contained" />
-+<Button variant="raised" />
+-<Button variant="raised" />
++<Button variant="contained" />
 ```
 
 ```diff
