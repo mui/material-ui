@@ -113,7 +113,7 @@ describe('<Grow />', () => {
         assert.strictEqual(element.style.opacity, '0', 'should be transparent');
         assert.strictEqual(
           element.style.transform,
-          'scale(0.75, 0.5625)',
+          'scale(0.75,0.5625)',
           'should have the exit scale',
         );
       });
