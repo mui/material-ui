@@ -161,7 +161,7 @@ class AppTableOfContents extends React.Component {
 
     let active;
 
-    for (let i = this.itemsClient.length -1; i >=0; i -= 1) {
+    for (let i = this.itemsClient.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
@@ -173,8 +173,9 @@ class AppTableOfContents extends React.Component {
       warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
 
       if (
-        item.node && (item.node.offsetTop < document.documentElement.scrollTop +
-        document.documentElement.clientHeight / 4)
+        item.node &&
+        item.node.offsetTop <
+          document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
         break;
