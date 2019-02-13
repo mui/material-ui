@@ -112,6 +112,11 @@ class Menu extends React.Component {
         classes={PopoverClasses}
         onEntering={this.handleEntering}
         anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+        // MenuList handles focus
+        disableAutoFocus
+        // workaround for focus logic in Modal we need to revisit that logic otherwise
+        // we can't use tab to switch between menu items
+        disableEnforceFocus
         transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         PaperProps={{
           ...PaperProps,
