@@ -18,7 +18,7 @@ export const styles = theme => {
     commonTransitionsOptions,
   );
   const thumbTransitions = theme.transitions.create(
-    ['transform', 'box-shadow'],
+    ['transform', 'box-shadow', 'top', 'left'],
     commonTransitionsOptions,
   );
 
@@ -97,15 +97,13 @@ export const styles = theme => {
     },
     /* Styles applied to the thumb wrapper element. */
     thumbWrapper: {
+      width: 0,
+      height: 0,
       position: 'relative',
       zIndex: 2,
       transition: thumbTransitions,
       '&$activated': {
         transition: 'none',
-      },
-      '&$vertical': {
-        bottom: 0,
-        height: '100%',
       },
     },
     /* Styles applied to the thumb element. */
@@ -535,12 +533,14 @@ class Slider extends React.Component {
     const trackBeforeClasses = clsx(classes.track, classes.trackBefore, commonClasses);
     const trackAfterClasses = clsx(classes.track, classes.trackAfter, commonClasses);
 
-    const thumbTransformFunction = vertical ? 'translateY' : 'translateX';
+    // we use top and left rather than a transform so the thumb wrapper
+    // size doesn't get out of bounds
+    const thumbTransformFunction = vertical ? 'top' : 'left';
     const thumbDirectionInverted = vertical || theme.direction === 'rtl';
     const inlineTrackBeforeStyles = this.calculateTrackPartStyles(percent);
     const inlineTrackAfterStyles = this.calculateTrackPartStyles(100 - percent);
     const inlineThumbStyles = {
-      transform: `${thumbTransformFunction}(${thumbDirectionInverted ? 100 - percent : percent}%)`,
+      [thumbTransformFunction]: `${thumbDirectionInverted ? 100 - percent : percent}%`,
     };
 
     /** Start Thumb Icon Logic Here */
