@@ -3,7 +3,7 @@
 ## 4.0.0-alpha.0
 ###### *Feb 12, 2019*
 
-This is our first unstable release towards Material-UI v4.0.0. We try to release a major every 6-12 months.
+This is our first unstable release toward Material-UI v4.0.0. We try to release a major every 6-12 months.
 This gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
 
 - You can find the documentation following this URL: https://next.material-ui.com/.
