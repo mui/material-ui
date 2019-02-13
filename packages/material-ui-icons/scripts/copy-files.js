@@ -60,10 +60,7 @@ async function run() {
 
   // TypeScript
   const from = path.resolve(__dirname, '../src');
-  await Promise.all([
-    typescriptCopy(from, path.resolve(__dirname, '../build')),
-    typescriptCopy(from, path.resolve(__dirname, '../build/es')),
-  ]);
+  await Promise.all([typescriptCopy(from, path.resolve(__dirname, '../build'))]);
 }
 
 run();
