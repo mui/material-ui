@@ -12,6 +12,38 @@ import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
+let itemsCollector;
+const renderer = new marked.Renderer();
+renderer.heading = (text, level) => {
+  if (level === 2) {
+    itemsCollector.push({
+      text,
+      level,
+      hash: textToHash(text),
+      children: [],
+    });
+  } else if (level === 3) {
+    if (!itemsCollector[itemsCollector.length - 1]) {
+      throw new Error(`Missing parent level for: ${text}`);
+    }
+
+    itemsCollector[itemsCollector.length - 1].children.push({
+      text,
+      level,
+      hash: textToHash(text),
+    });
+  }
+};
+
+function getItems(contents) {
+  itemsCollector = [];
+  marked(contents.join(''), {
+    renderer,
+  });
+
+  return itemsCollector;
+}
+
 const styles = theme => ({
   '@global': {
     html: {
@@ -56,38 +88,6 @@ const styles = theme => ({
       theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
   },
 });
-
-let itemsCollector;
-const renderer = new marked.Renderer();
-renderer.heading = (text, level) => {
-  if (level === 2) {
-    itemsCollector.push({
-      text,
-      level,
-      hash: textToHash(text),
-      children: [],
-    });
-  } else if (level === 3) {
-    if (!itemsCollector[itemsCollector.length - 1]) {
-      throw new Error(`Missing parent level for: ${text}`);
-    }
-
-    itemsCollector[itemsCollector.length - 1].children.push({
-      text,
-      level,
-      hash: textToHash(text),
-    });
-  }
-};
-
-function getItems(contents) {
-  itemsCollector = [];
-  marked(contents.join(''), {
-    renderer,
-  });
-
-  return itemsCollector;
-}
 
 function checkDuplication(uniq, item) {
   warning(!uniq[item.hash], `Table of content: duplicated \`${item.hash}\` item`);
