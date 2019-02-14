@@ -10,7 +10,7 @@ export interface TypographyProps
   color?: PropTypes.Color | 'textPrimary' | 'textSecondary' | 'error';
   component?: React.ReactType<TypographyProps>;
   gutterBottom?: boolean;
-  headlineMapping?: { [type in Style]: string };
+  variantMapping?: { [type in Style]: string };
   inline?: boolean;
   noWrap?: boolean;
   paragraph?: boolean;

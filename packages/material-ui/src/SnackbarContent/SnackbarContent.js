@@ -51,7 +51,7 @@ function SnackbarContent(props) {
   return (
     <Paper
       component={Typography}
-      headlineMapping={{
+      variantMapping={{
         body1: 'div',
         body2: 'div',
       }}

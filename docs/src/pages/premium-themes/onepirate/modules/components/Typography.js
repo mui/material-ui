@@ -35,7 +35,7 @@ const styles = theme => ({
   },
 });
 
-const headlineMapping = {
+const variantMapping = {
   h1: 'h1',
   h2: 'h1',
   h3: 'h1',
@@ -49,7 +49,7 @@ function Typography(props) {
   const { children, classes, marked, variant, ...other } = props;
 
   return (
-    <MuiTypography headlineMapping={headlineMapping} variant={variant} {...other}>
+    <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
       {children}
       {marked ? (
         <span className={classes[`marked${capitalize(variant) + capitalize(marked)}`]} />

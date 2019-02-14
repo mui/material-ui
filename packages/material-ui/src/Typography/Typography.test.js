@@ -104,10 +104,10 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('prop: headlineMapping', () => {
+  describe('prop: variantMapping', () => {
     it('should work with a single value', () => {
       const wrapper = shallow(
-        <Typography variant="h6" headlineMapping={{ h6: 'aside' }}>
+        <Typography variant="h6" variantMapping={{ h6: 'aside' }}>
           Hello
         </Typography>,
       );
@@ -116,7 +116,7 @@ describe('<Typography />', () => {
 
     it('should work event without the full mapping', () => {
       const wrapper = shallow(
-        <Typography variant="h6" headlineMapping={{}}>
+        <Typography variant="h6" variantMapping={{}}>
           Hello
         </Typography>,
       );

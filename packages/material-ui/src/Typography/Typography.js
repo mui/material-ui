@@ -104,7 +104,7 @@ export const styles = theme => ({
   },
 });
 
-const defaultHeadlineMapping = {
+const defaultVariantMapping = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -125,7 +125,7 @@ function Typography(props) {
     color,
     component: componentProp,
     gutterBottom,
-    headlineMapping,
+    variantMapping,
     inline,
     noWrap,
     paragraph,
@@ -150,7 +150,7 @@ function Typography(props) {
 
   const Component =
     componentProp ||
-    (paragraph ? 'p' : headlineMapping[variant] || defaultHeadlineMapping[variant]) ||
+    (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
   return <Component className={className} {...other} />;
@@ -197,14 +197,6 @@ Typography.propTypes = {
    */
   gutterBottom: PropTypes.bool,
   /**
-   * We are empirically mapping the variant property to a range of different DOM element types.
-   * For instance, subtitle1 to `<h6>`.
-   * If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the `component` property.
-   * The default mapping is the following:
-   */
-  headlineMapping: PropTypes.object,
-  /**
    *  Controls whether the Typography is inline or not.
    */
   inline: PropTypes.bool,
@@ -240,17 +232,25 @@ Typography.propTypes = {
     'srOnly',
     'inherit',
   ]),
+  /**
+   * We are empirically mapping the variant property to a range of different DOM element types.
+   * For instance, subtitle1 to `<h6>`.
+   * If you wish to change that mapping, you can provide your own.
+   * Alternatively, you can use the `component` property.
+   * The default mapping is the following:
+   */
+  variantMapping: PropTypes.object,
 };
 
 Typography.defaultProps = {
   align: 'inherit',
   color: 'inherit',
   gutterBottom: false,
-  headlineMapping: defaultHeadlineMapping,
   inline: false,
   noWrap: false,
   paragraph: false,
   variant: 'body2',
+  variantMapping: defaultVariantMapping,
 };
 
 export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);
