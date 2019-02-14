@@ -133,7 +133,6 @@ class AppTableOfContents extends React.Component {
         });
       }
     });
-    this.findActiveIndex();
     window.addEventListener('hashchange', this.handleHashChange);
   }
 
@@ -143,6 +142,7 @@ class AppTableOfContents extends React.Component {
     window.removeEventListener('hashchange', this.handleHashChange);
   }
 
+  // Update the active TOC entry if the hash changes through click on '#' icon
   handleHashChange = () => {
     const hash = window.location.hash.substring(1);
 
