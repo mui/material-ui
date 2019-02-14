@@ -78,13 +78,17 @@ const styles = theme => ({
   item: {
     fontSize: 13,
     padding: theme.spacing(0.5, 1),
+    borderLeft: '4px solid transparent',
+    boxSizing: 'content-box',
     '&:hover': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+      borderLeft: `4px solid ${
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+      }`,
     },
     '&$active': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+      borderLeft: `4px solid ${
+        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
+      }`,
     },
   },
   active: {},
