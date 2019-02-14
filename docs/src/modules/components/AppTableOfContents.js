@@ -87,7 +87,7 @@ const styles = theme => ({
     },
   },
   secondaryItem: {
-    paddingLeft: theme.spacing(2.5)
+    paddingLeft: theme.spacing(2.5),
   },
   active: {},
 });
@@ -104,7 +104,6 @@ class AppTableOfContents extends React.Component {
   handleScroll = throttle(() => {
     this.findActiveIndex();
   }, 166); // Corresponds to 10 frames at 60 Hz.
-
 
   clicked = false;
 
@@ -205,7 +204,9 @@ class AppTableOfContents extends React.Component {
   handleClick = hash => {
     // Used to disable findActiveIndex if the page scrolls due to a click
     this.clicked = true;
-    this.unsetClicked = setTimeout(() => {this.clicked = false}, 1000);
+    this.unsetClicked = setTimeout(() => {
+      this.clicked = false;
+    }, 1000);
 
     if (this.state.active !== hash) {
       this.setState({
