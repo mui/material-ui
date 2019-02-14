@@ -21,7 +21,7 @@ export const styles = theme => ({
   error: {},
   /* Styles applied to the root element if `required={true}`. */
   required: {},
-  /* Styles applied to the asterisk element if `required={true}`. */
+  /* Styles applied to the asterisk element. */
   asterisk: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
