@@ -247,7 +247,6 @@ describe('<TablePagination />', () => {
         />,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
-      // eslint-disable-next-line max-len
       assert.include(
         consoleErrorMock.args()[0][0],
         'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
