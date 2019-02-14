@@ -44,24 +44,24 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
-      width: `calc(100% + ${overflowSize * 2}px)`,
-      overflow: 'hidden',
-      padding: overflowSize,
-      margin: -overflowSize,
+      width: '100%',
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
         cursor: 'no-drop',
       },
       '&$vertical': {
-        height: `calc(100% + ${overflowSize * 2}px)`,
+        height: '100%',
       },
     },
     /* Styles applied to the container element. */
     container: {
-      position: 'relative',
+      width: `calc(100% + ${overflowSize * 2}px)`,
+      overflow: 'hidden',
+      padding: overflowSize,
+      margin: -overflowSize,
       '&$vertical': {
-        height: '100%',
+        height: `calc(100% + ${overflowSize * 2}px)`,
       },
     },
     /* Styles applied to the track elements. */
