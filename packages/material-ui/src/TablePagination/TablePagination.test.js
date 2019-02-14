@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Select from '../Select';
 import IconButton from '../IconButton';
 import TableFooter from '../TableFooter';
@@ -17,10 +18,12 @@ describe('<TablePagination />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
+    consoleErrorMock.spy();
   });
 
   after(() => {
     mount.cleanUp();
+    consoleErrorMock.reset();
   });
 
   it('should render a TableCell', () => {
@@ -233,33 +236,22 @@ describe('<TablePagination />', () => {
       assert.strictEqual(page, 0);
     });
 
-    it('should handle too high pages after changing rowsPerPage', () => {
-      let page = 2;
-      function ExampleTable(props) {
-        // setProps only works on the mounted root element, so wrap the table
-        return (
-          <table>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  count={11}
-                  page={page}
-                  onChangePage={(event, nextPage) => {
-                    page = nextPage;
-                  }}
-                  onChangeRowsPerPage={noop}
-                  {...props}
-                />
-              </TableRow>
-            </TableFooter>
-          </table>
-        );
-      }
-
-      const wrapper = mount(<ExampleTable rowsPerPage={5} />);
-      wrapper.setProps({ rowsPerPage: 10 });
-      // now, the third page doesn't exist anymore
-      assert.strictEqual(page, 1);
+    it('should raise a warning if the page prop is out of range', () => {
+      shallow(
+        <TablePagination
+          page={2}
+          rowsPerPage={5}
+          count={10}
+          onChangePage={noop}
+          onChangeRowsPerPage={noop}
+        />
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        // eslint-disable-next-line max-len
+        /Material-UI: The page prop of a TablePagination is out of range \(0 to 1, but page is 2\)./,
+      );
     });
 
     it('should display 0 as start number if the table is empty ', () => {
@@ -285,35 +277,6 @@ describe('<TablePagination />', () => {
           .text(),
         '0-0 of 0',
       );
-    });
-
-    it('should call onChangePage with 0 if the table becomes empty', () => {
-      let page = 1;
-      function ExampleTable(props) {
-        // setProps only works on the mounted root element, so wrap the table
-        return (
-          <table>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  page={1}
-                  rowsPerPage={5}
-                  onChangePage={(event, newPage) => {
-                    page = newPage;
-                  }}
-                  onChangeRowsPerPage={noop}
-                  {...props}
-                />
-              </TableRow>
-            </TableFooter>
-          </table>
-        );
-      }
-
-      const wrapper = mount(<ExampleTable count={10} />);
-      wrapper.setProps({ count: 0 });
-      // now, there is one page, which is empty
-      assert.strictEqual(page, 0);
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
