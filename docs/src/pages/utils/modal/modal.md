@@ -76,4 +76,4 @@ You can **speed up** the rendering by moving the modal body into its own compone
 ```
 
 This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation).
-The `TableComponent` render method will only be evaluated when opening the modal 🚀.
+The `TableComponent` render method will only be evaluated when opening the modal.
