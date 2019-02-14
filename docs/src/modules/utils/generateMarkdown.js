@@ -37,20 +37,24 @@ function getDeprecatedInfo(type) {
 }
 
 function getChained(type) {
-  const marker = 'chainPropTypes';
-  const indexStart = type.raw.indexOf(marker);
+  if (type.raw) {
+    const marker = 'chainPropTypes';
+    const indexStart = type.raw.indexOf(marker);
 
-  if (indexStart !== -1) {
-    const parsed = docgenParse(`
-      import PropTypes from 'prop-types';
-      const Foo = () => <div />
-      Foo.propTypes = {
-        bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
-      }
-      export default Foo
-    `);
-
-    return parsed.props.bar.type;
+    if (indexStart !== -1) {
+      const parsed = docgenParse(`
+        import PropTypes from 'prop-types';
+        const Foo = () => <div />
+        Foo.propTypes = {
+          bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
+        }
+        export default Foo
+      `);
+      return {
+        type: parsed.props.bar.type,
+        required: parsed.props.bar.required,
+      };
+    }
   }
 
   return false;
@@ -149,7 +153,7 @@ function generatePropType(type) {
 
       const chained = getChained(type);
       if (chained !== false) {
-        return generatePropType(chained);
+        return generatePropType(chained.type);
       }
 
       if (type.raw === 'componentPropType') {
@@ -231,7 +235,9 @@ function generateProps(reactAPI) {
       )}</span>`;
     }
 
-    if (prop.required) {
+    const chainedPropType = getChained(prop.type);
+
+    if (prop.required || (chainedPropType !== false && chainedPropType.required)) {
       propRaw = `<span class="prop-name required">${propRaw}\u00a0*</span>`;
     } else {
       propRaw = `<span class="prop-name">${propRaw}</span>`;
