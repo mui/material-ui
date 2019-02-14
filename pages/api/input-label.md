@@ -19,12 +19,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The contents of the `InputLabel`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">disableAnimation</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the transition animation is disabled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, apply disabled class. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> |   | If `true`, the label will be displayed in an error state. |
 | <span class="prop-name">focused</span> | <span class="prop-type">bool</span> |   | If `true`, the input of this label is focused. |
-| <span class="prop-name">FormLabelClasses</span> | <span class="prop-type">object</span> |   | `classes` property applied to the [`FormLabel`](/api/form-label/) element. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br></span> |   | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |   | if `true`, the label will indicate that the input is required. |
 | <span class="prop-name">shrink</span> | <span class="prop-type">bool</span> |   | If `true`, the label is shrunk. |
@@ -45,6 +44,7 @@ This property accepts the following keys:
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
 | <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
+| <span class="prop-name">asterisk</span> | Styles applied to the asterisk element.
 | <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">shrink</span> | Styles applied to the `input` element if `shrink={true}`.

@@ -1048,7 +1048,7 @@ const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'ba
 
 const InputLabelTest = () => (
   <InputLabel
-    FormLabelClasses={{
+    classes={{
       root: 'foo',
       asterisk: 'foo',
       disabled: 'foo',

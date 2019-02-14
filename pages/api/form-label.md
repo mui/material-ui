@@ -43,7 +43,7 @@ This property accepts the following keys:
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
 | <span class="prop-name">filled</span> | Styles applied to the root element if `filled={true}`.
 | <span class="prop-name">required</span> | Styles applied to the root element if `required={true}`.
-| <span class="prop-name">asterisk</span> | 
+| <span class="prop-name">asterisk</span> | Styles applied to the asterisk element.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormLabel/FormLabel.js)

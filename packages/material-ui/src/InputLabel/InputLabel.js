@@ -21,6 +21,8 @@ export const styles = theme => ({
   error: {},
   /* Styles applied to the root element if `required={true}`. */
   required: {},
+  /* Styles applied to the asterisk element. */
+  asterisk: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
@@ -86,7 +88,6 @@ function InputLabel(props) {
     classes,
     className,
     disableAnimation,
-    FormLabelClasses,
     margin,
     muiFormControl,
     shrink: shrinkProp,
@@ -125,7 +126,7 @@ function InputLabel(props) {
         disabled: classes.disabled,
         error: classes.error,
         required: classes.required,
-        ...FormLabelClasses,
+        asterisk: classes.asterisk,
       }}
       {...other}
     >
@@ -141,7 +142,7 @@ InputLabel.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -164,10 +165,6 @@ InputLabel.propTypes = {
    * If `true`, the input of this label is focused.
    */
   focused: PropTypes.bool,
-  /**
-   * `classes` property applied to the [`FormLabel`](/api/form-label/) element.
-   */
-  FormLabelClasses: PropTypes.object,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
