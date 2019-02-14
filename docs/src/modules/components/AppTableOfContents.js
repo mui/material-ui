@@ -201,7 +201,7 @@ class AppTableOfContents extends React.Component {
     }
   };
 
-  handleClick = hash => {
+  handleClick = hash => () => {
     // Used to disable findActiveIndex if the page scrolls due to a click
     this.clicked = true;
     this.unsetClicked = setTimeout(() => {
@@ -235,7 +235,7 @@ class AppTableOfContents extends React.Component {
                     color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
                     href={`#${item2.hash}`}
                     underline="none"
-                    onClick={() => this.handleClick(item2.hash)}
+                    onClick={this.handleClick(item2.hash)}
                     className={clsx(
                       classes.item,
                       active === item2.hash ? classes.active : undefined,
@@ -252,7 +252,7 @@ class AppTableOfContents extends React.Component {
                             color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
                             href={`#${item3.hash}`}
                             underline="none"
-                            onClick={() => this.handleClick(item3.hash)}
+                            onClick={this.handleClick(item3.hash)}
                             className={clsx(
                               classes.item,
                               classes.secondaryItem,
