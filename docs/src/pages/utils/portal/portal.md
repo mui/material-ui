@@ -11,7 +11,7 @@ The children of the portal component will be appended to the `container` specifi
 
 The component is used internally by the [`Modal`](/utils/modal/) and [`Popper`](/utils/popper/) components.
 On the server, the content won't be rendered.
-You have to wait for the client side reconciliation to see the children.
+You have to wait for the client side hydratation to see the children.
 
 ## Simple Portal
 
