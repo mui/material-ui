@@ -68,7 +68,7 @@ export const styles = theme => ({
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
-function TablePagination (props) {
+function TablePagination(props) {
   const {
     ActionsComponent,
     backIconButtonProps,

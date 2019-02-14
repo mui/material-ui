@@ -244,13 +244,13 @@ describe('<TablePagination />', () => {
           count={10}
           onChangePage={noop}
           onChangeRowsPerPage={noop}
-        />
+        />,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
-      assert.match(
+      // eslint-disable-next-line max-len
+      assert.include(
         consoleErrorMock.args()[0][0],
-        // eslint-disable-next-line max-len
-        /Material-UI: The page prop of a TablePagination is out of range \(0 to 1, but page is 2\)./,
+        'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });
 
