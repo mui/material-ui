@@ -7,11 +7,11 @@ Material-UI uses a **simplified** implementation of the original [specification]
 
 Each breakpoint matches with a *fixed* screen width:
 
-- **xs**, extra-small: 0px or larger
-- **sm**, small: 600px or larger
-- **md**, medium: 960px or larger
-- **lg**, large: 1280px or larger
-- **xl**, extra-large: 1920px or larger
+* **xs,** extra-small: 0px to 600px
+* **sm,** small: 600px to 960px
+* **md,** medium: 960px to 1280px
+* **lg,** large: 1280px to 1920px
+* **xl,** extra-large: 1920px or larger
 
 These values can always be customized.
 You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
@@ -80,7 +80,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ## API
 
-### `theme.breakpoints.up(key) => media query`
+<a id="theme-breakpoints-up-key-media-query">### `theme.breakpoints.up(key) => media query`</a>
 
 #### Arguments
 
@@ -105,7 +105,7 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.down(key) => media query`
+<a id="theme-breakpoints-down-key-media-query">### `theme.breakpoints.down(key) => media query`</a>
 
 #### Arguments
 
@@ -113,7 +113,7 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
 
 #### Examples
 
@@ -131,7 +131,7 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+<a id="theme-breakpoints-only-key-media-query">### `theme.breakpoints.only(key) => media query`</a>
 
 #### Arguments
 
@@ -139,7 +139,7 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Examples
 
@@ -157,7 +157,7 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoints.between(start, end) => media query`
+<a id="theme-breakpoints-between-start-end-media-query">### `theme.breakpoints.between(start, end) => media query`</a>
 
 #### Arguments
 
@@ -166,7 +166,7 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### Examples
 
