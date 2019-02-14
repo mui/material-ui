@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Theme } from '@material-ui/core';
 import { AppBarProps } from '@material-ui/core/AppBar';
-import { getThemeProps } from '@material-ui/styles';
+import { getThemeProps, ThemeProvider } from '@material-ui/styles';
 import styled, { StyledProps } from '@material-ui/styles/styled';
 
 function testGetThemeProps(theme: Theme, props: AppBarProps): void {
@@ -62,4 +62,33 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     className: number;
   }
   styled(({ className }: ClassNumberProps) => <div>{className.toFixed(2)}</div>)({});
+}
+
+{
+  // ThemeProvider
+  interface CustomTheme {
+    myCustomColor: string;
+  }
+
+  const theme: CustomTheme = {
+    myCustomColor: 'red',
+  };
+
+  const renderCustomThemeProviders = (
+    <>
+      <ThemeProvider theme={theme}>
+        <div />
+        <ThemeProvider theme={(outerTheme: CustomTheme) => ({ myCustomColor: 'green' })}>
+          <div />
+        </ThemeProvider>
+      </ThemeProvider>
+    </>
+  );
+
+  const renderWrongCustomThemeProviders = (
+    // $ExpectError
+    <ThemeProvider theme={(outerTheme: CustomTheme) => ({ myExtraColor: 'green' })}>
+      <div />
+    </ThemeProvider>
+  );
 }
