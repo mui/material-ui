@@ -212,7 +212,7 @@ TablePagination.propTypes = {
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (page < 0 || page > newLastPage) {
       const message =
-        'Material-UI: The page prop of a TablePagination is out of range ' +
+        'Material-UI: the page prop of a TablePagination is out of range ' +
         `(0 to ${newLastPage}, but page is ${page}).`;
 
       // change error message slightly on every check to prevent caching when testing
