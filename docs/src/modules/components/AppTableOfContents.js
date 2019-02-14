@@ -45,11 +45,6 @@ function getItems(contents) {
 }
 
 const styles = theme => ({
-  '@global': {
-    html: {
-      scrollBehavior: 'smooth',
-    },
-  },
   root: {
     top: 70 + 29,
     // Fix IE 11 position sticky issue.
