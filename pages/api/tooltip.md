@@ -18,6 +18,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">anchor</span> | <span class="prop-type">enum:&nbsp;'children'&nbsp;&#124;<br>&nbsp;'cursor'<br></span> | <span class="prop-default">'children'</span> | Anchor from which the tooltip will open. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">element</span> |   | Tooltip reference element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Do not respond to focus events. |

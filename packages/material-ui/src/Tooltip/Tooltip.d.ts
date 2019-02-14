@@ -4,6 +4,7 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
+  anchor?: 'children' | 'cursor';
   children: React.ReactElement<any>;
   disableFocusListener?: boolean;
   disableHoverListener?: boolean;

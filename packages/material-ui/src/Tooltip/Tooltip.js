@@ -141,7 +141,7 @@ class Tooltip extends React.Component {
   };
 
   handleEnter = event => {
-    const { children, enterDelay } = this.props;
+    const { anchor, children, enterDelay } = this.props;
     const childrenProps = children.props;
 
     if (event.type === 'mouseover' && childrenProps.onMouseOver) {
@@ -150,6 +150,37 @@ class Tooltip extends React.Component {
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
       return;
+    }
+
+    this.anchorEl = this.childrenRef;
+    if (event.type !== 'focus' && anchor === 'cursor') {
+      event.persist();
+
+      let clientX = event.clientX;
+      let clientY = event.clientY;
+      if (event.type === 'touchstart' && event.targetTouches.length) {
+        clientX = event.targetTouches[0].clientX;
+        clientY = event.targetTouches[0].clientY;
+      }
+
+      this.anchorEl = {
+        getBoundingClientRect: () => ({
+          left: clientX,
+          right: clientX,
+          top: clientY,
+          bottom: clientY,
+          width: 0,
+          height: 0,
+          x: clientX,
+          y: clientY,
+        }),
+        get clientWidth() {
+          return window.innerWidth;
+        },
+        get clientHeight() {
+          return window.innerHeight;
+        },
+      };
     }
 
     // Remove the title ahead of time.
@@ -339,7 +370,7 @@ class Tooltip extends React.Component {
             [classes.popperInteractive]: interactive,
           })}
           placement={placement}
-          anchorEl={this.childrenRef}
+          anchorEl={this.anchorEl}
           open={open}
           id={childrenProps['aria-describedby']}
           transition
@@ -372,6 +403,10 @@ class Tooltip extends React.Component {
 }
 
 Tooltip.propTypes = {
+  /**
+   * Anchor from which the tooltip will open.
+   */
+  anchor: PropTypes.oneOf(['children', 'cursor']),
   /**
    * Tooltip reference element.
    */
@@ -478,6 +513,7 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
+  anchor: 'children',
   disableFocusListener: false,
   disableHoverListener: false,
   disableTouchListener: false,
