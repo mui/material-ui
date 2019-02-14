@@ -246,6 +246,7 @@ describe('<TablePagination />', () => {
           onChangeRowsPerPage={noop}
         />,
       );
+      console.log(consoleErrorMock.args())
       assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
       assert.include(
         consoleErrorMock.args()[0][0],
