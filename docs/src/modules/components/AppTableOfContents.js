@@ -49,7 +49,7 @@ const styles = theme => ({
     top: 70 + 29,
     // Fix IE 11 position sticky issue.
     marginTop: 70 + 29,
-    width: 167,
+    width: 175,
     flexShrink: 0,
     order: 2,
     position: 'sticky',
@@ -72,7 +72,7 @@ const styles = theme => ({
   },
   item: {
     fontSize: 13,
-    padding: theme.spacing(0.5, 1),
+    padding: theme.spacing(0.5, 0, 0.5, 1),
     borderLeft: '4px solid transparent',
     boxSizing: 'content-box',
     '&:hover': {
@@ -85,6 +85,9 @@ const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
       }`,
     },
+  },
+  secondaryItem: {
+    paddingLeft: theme.spacing(2.5)
   },
   active: {},
 });
@@ -102,6 +105,9 @@ class AppTableOfContents extends React.Component {
     this.findActiveIndex();
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
+
+  clicked = false;
+
   constructor(props) {
     super();
     this.itemsServer = getItems(props.contents);
@@ -110,8 +116,6 @@ class AppTableOfContents extends React.Component {
   state = {
     active: null,
   };
-
-  clicked = false;
 
   componentDidMount() {
     this.itemsClient = [];
@@ -250,9 +254,9 @@ class AppTableOfContents extends React.Component {
                             onClick={() => this.handleClick(item3.hash)}
                             className={clsx(
                               classes.item,
+                              classes.secondaryItem,
                               active === item3.hash ? classes.active : undefined,
                             )}
-                            style={{ paddingLeft: 16 }}
                           >
                             <span dangerouslySetInnerHTML={{ __html: item3.text }} />
                           </Link>
