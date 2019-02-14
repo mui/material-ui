@@ -109,8 +109,9 @@ class AppTableOfContents extends React.Component {
 
   state = {
     active: null,
-    clicked: false,
   };
+
+  clicked = false;
 
   componentDidMount() {
     this.itemsClient = [];
@@ -155,7 +156,7 @@ class AppTableOfContents extends React.Component {
 
   findActiveIndex = () => {
     // Don't set the active index based on scroll if a link was just clicked
-    if (this.state.clicked) {
+    if (this.clicked) {
       return;
     }
 
@@ -199,8 +200,8 @@ class AppTableOfContents extends React.Component {
 
   handleClick = hash => {
     // Used to disable findActiveIndex if the page scrolls due to a click
-    this.setState({ clicked: true });
-    this.unsetClicked = setTimeout(() => this.setState({ clicked: false }), 1000);
+    this.clicked = true;
+    this.unsetClicked = setTimeout(() => {this.clicked = false}, 1000);
 
     if (this.state.active !== hash) {
       this.setState({
