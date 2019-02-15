@@ -103,33 +103,31 @@ class Grow extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onExit, style: styleProp, theme, timeout, ...other } = this.props;
-
-    const style = {
-      ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
+    const { children, in: inProp, onEnter, onExit, style, theme, timeout, ...other } = this.props;
 
     return (
       <Transition
         appear
+        in={inProp}
         onEnter={this.handleEnter}
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, childProps) =>
-          React.cloneElement(children, {
+        {(state, childProps) => {
+          return React.cloneElement(children, {
             style: {
               opacity: 0,
               transform: getScale(0.75),
+              visiblity: state === 'exited' && !inProp ? 'hidden' : undefined,
               ...styles[state],
               ...style,
+              ...children.props.style,
             },
             ...childProps,
-          })
-        }
+          });
+        }}
       </Transition>
     );
   }
@@ -139,7 +137,7 @@ Grow.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  children: PropTypes.element,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */

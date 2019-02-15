@@ -50,25 +50,22 @@ class Fade extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onExit, style: styleProp, theme, ...other } = this.props;
-
-    const style = {
-      ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
+    const { children, in: inProp, onEnter, onExit, style, theme, ...other } = this.props;
 
     return (
-      <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        {(state, childProps) =>
-          React.cloneElement(children, {
+      <Transition appear in={inProp} onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
+        {(state, childProps) => {
+          return React.cloneElement(children, {
             style: {
               opacity: 0,
+              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
               ...styles[state],
               ...style,
+              ...children.props.style,
             },
             ...childProps,
-          })
-        }
+          });
+        }}
       </Transition>
     );
   }
@@ -78,7 +75,7 @@ Fade.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  children: PropTypes.element,
   /**
    * If `true`, the component will transition in.
    */

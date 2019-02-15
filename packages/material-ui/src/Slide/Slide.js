@@ -179,7 +179,6 @@ class Slide extends React.Component {
 
   updatePosition() {
     if (this.transitionRef) {
-      this.transitionRef.style.visibility = 'inherit';
       setTranslateValue(this.props, this.transitionRef);
     }
   }
@@ -188,29 +187,15 @@ class Slide extends React.Component {
     const {
       children,
       direction,
+      in: inProp,
       onEnter,
       onEntering,
       onExit,
       onExited,
-      style: styleProp,
+      style,
       theme,
       ...other
     } = this.props;
-
-    let style = {};
-
-    // We use this state to handle the server-side rendering.
-    // We don't know the width of the children ahead of time.
-    // We need to render it.
-    if (!this.props.in && !this.mounted) {
-      style.visibility = 'hidden';
-    }
-
-    style = {
-      ...style,
-      ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
 
     return (
       <EventListener target="window" onResize={this.handleResize}>
@@ -220,13 +205,22 @@ class Slide extends React.Component {
           onExit={this.handleExit}
           onExited={this.handleExited}
           appear
-          style={style}
+          in={inProp}
           ref={ref => {
             this.transitionRef = ReactDOM.findDOMNode(ref);
           }}
           {...other}
         >
-          {children}
+          {(state, childProps) => {
+            return React.cloneElement(children, {
+              style: {
+                visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
+                ...style,
+                ...children.props.style,
+              },
+              ...childProps,
+            });
+          }}
         </Transition>
       </EventListener>
     );
@@ -237,7 +231,7 @@ Slide.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  children: PropTypes.element,
   /**
    * Direction the child node will enter from.
    */

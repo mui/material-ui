@@ -21,6 +21,11 @@ export const styles = theme => ({
     height: 'auto',
     overflow: 'visible',
   },
+  // eslint-disable-next-line max-len
+  /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
+  hidden: {
+    vibility: 'hidden',
+  },
   /* Styles applied to the outer wrapper element. */
   wrapper: {
     // Hack to get children with a negative margin to not falsify the height computation.
@@ -128,6 +133,7 @@ class Collapse extends React.Component {
       className,
       collapsedHeight,
       component: Component,
+      in: inProp,
       onEnter,
       onEntered,
       onEntering,
@@ -141,6 +147,7 @@ class Collapse extends React.Component {
 
     return (
       <Transition
+        in={inProp}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}
         onEntering={this.handleEntering}
@@ -156,12 +163,13 @@ class Collapse extends React.Component {
               classes.container,
               {
                 [classes.entered]: state === 'entered',
+                [classes.hidden]: state === 'exited' && !inProp && collapsedHeight === '0px',
               },
               className,
             )}
             style={{
-              ...style,
               minHeight: collapsedHeight,
+              ...style,
             }}
             {...childProps}
           >
