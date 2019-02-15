@@ -8,7 +8,7 @@ export interface WithUtilsProps {
   utils: IUtils<MaterialUiPickersDate>;
 }
 
-const checkUtils = (utils: IUtils<MaterialUiPickersDate> | null | undefined) => {
+export const checkUtils = (utils: IUtils<MaterialUiPickersDate> | null | undefined) => {
   if (!utils) {
     // tslint:disable-next-line
     throw new Error(
