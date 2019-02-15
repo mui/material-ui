@@ -6,6 +6,7 @@ import marked from 'marked';
 import warning from 'warning';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
@@ -48,14 +49,14 @@ const styles = theme => ({
     top: 70 + 29,
     // Fix IE 11 position sticky issue.
     marginTop: 70 + 29,
-    width: 167,
+    width: 175,
     flexShrink: 0,
     order: 2,
     position: 'sticky',
     wordBreak: 'break-word',
-    height: 'calc(100vh - 70px)',
+    height: 'calc(100vh - 70px - 29px)',
     overflowY: 'auto',
-    padding: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px 5px`,
+    padding: theme.spacing(2, 2, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -71,8 +72,24 @@ const styles = theme => ({
   },
   item: {
     fontSize: 13,
-    padding: theme.spacing(0.5, 0),
+    padding: theme.spacing(0.5, 0, 0.5, 1),
+    borderLeft: '4px solid transparent',
+    boxSizing: 'content-box',
+    '&:hover': {
+      borderLeft: `4px solid ${
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+      }`,
+    },
+    '&$active': {
+      borderLeft: `4px solid ${
+        theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
+      }`,
+    },
   },
+  secondaryItem: {
+    paddingLeft: theme.spacing(2.5),
+  },
+  active: {},
 });
 
 function checkDuplication(uniq, item) {
@@ -87,6 +104,8 @@ class AppTableOfContents extends React.Component {
   handleScroll = throttle(() => {
     this.findActiveIndex();
   }, 166); // Corresponds to 10 frames at 60 Hz.
+
+  clicked = false;
 
   constructor(props) {
     super();
@@ -118,25 +137,49 @@ class AppTableOfContents extends React.Component {
         });
       }
     });
-    this.findActiveIndex();
+    window.addEventListener('hashchange', this.handleHashChange);
   }
 
   componentWillUnmount() {
     this.handleScroll.cancel();
+    clearTimeout(this.unsetClicked);
+    window.removeEventListener('hashchange', this.handleHashChange);
   }
 
+  // Update the active TOC entry if the hash changes through click on '#' icon
+  handleHashChange = () => {
+    const hash = window.location.hash.substring(1);
+
+    if (this.state.active !== hash) {
+      this.setState({
+        active: hash,
+      });
+    }
+  };
+
   findActiveIndex = () => {
+    // Don't set the active index based on scroll if a link was just clicked
+    if (this.clicked) {
+      return;
+    }
+
     let active;
 
-    for (let i = 0; i < this.itemsClient.length; i += 1) {
+    for (let i = this.itemsClient.length - 1; i >= 0; i -= 1) {
+      // No hash if we're near the top of the page
+      if (document.documentElement.scrollTop < 200) {
+        active = { hash: null };
+        break;
+      }
+
       const item = this.itemsClient[i];
 
       warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
 
       if (
         item.node &&
-        (document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-          i === this.itemsClient.length - 1)
+        item.node.offsetTop <
+          document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
         break;
@@ -146,6 +189,28 @@ class AppTableOfContents extends React.Component {
     if (active && this.state.active !== active.hash) {
       this.setState({
         active: active.hash,
+      });
+
+      window.history.replaceState(
+        null,
+        null,
+        active.hash === null
+          ? `${window.location.pathname}${window.location.search}`
+          : `#${active.hash}`,
+      );
+    }
+  };
+
+  handleClick = hash => () => {
+    // Used to disable findActiveIndex if the page scrolls due to a click
+    this.clicked = true;
+    this.unsetClicked = setTimeout(() => {
+      this.clicked = false;
+    }, 1000);
+
+    if (this.state.active !== hash) {
+      this.setState({
+        active: hash,
       });
     }
   };
@@ -169,7 +234,12 @@ class AppTableOfContents extends React.Component {
                     block
                     color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
                     href={`#${item2.hash}`}
-                    className={classes.item}
+                    underline="none"
+                    onClick={this.handleClick(item2.hash)}
+                    className={clsx(
+                      classes.item,
+                      active === item2.hash ? classes.active : undefined,
+                    )}
                   >
                     <span dangerouslySetInnerHTML={{ __html: item2.text }} />
                   </Link>
@@ -181,10 +251,13 @@ class AppTableOfContents extends React.Component {
                             block
                             color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
                             href={`#${item3.hash}`}
-                            className={classes.item}
-                            style={{
-                              paddingLeft: 8 * 2,
-                            }}
+                            underline="none"
+                            onClick={this.handleClick(item3.hash)}
+                            className={clsx(
+                              classes.item,
+                              classes.secondaryItem,
+                              active === item3.hash ? classes.active : undefined,
+                            )}
                           >
                             <span dangerouslySetInnerHTML={{ __html: item3.text }} />
                           </Link>

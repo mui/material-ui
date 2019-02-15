@@ -105,7 +105,7 @@ const styles = theme => ({
     fontSize: 16,
     color: theme.palette.text.primary,
     '& .anchor-link': {
-      marginTop: -96, // Offset for the anchor.
+      marginTop: -96 - 29, // Offset for the anchor.
       position: 'absolute',
     },
     '& pre, & pre[class*="language-"]': {

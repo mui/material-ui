@@ -60,7 +60,7 @@ class MyDocument extends Document {
           */}
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <style id="material-icon-font" />
-          <style id="font-awesome" />
+          <style id="font-awesome-css" />
           <style id="app-search" />
           <style id="insertion-point-jss" />
         </Head>
