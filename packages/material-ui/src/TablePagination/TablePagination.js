@@ -44,7 +44,8 @@ export const styles = theme => ({
   /* Styles applied to the Select component `select` class. */
   select: {
     paddingLeft: 8,
-    paddingRight: 16,
+    paddingRight: 24,
+    textAlign: 'right',
   },
   /* Styles applied to the Select component `icon` class. */
   selectIcon: {
