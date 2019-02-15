@@ -218,9 +218,9 @@ describe('<Modal />', () => {
         throw new Error('missing modal');
       }
 
-      assert.strictEqual(modal.children.length, 2);
+      assert.strictEqual(modal.children.length, 4);
       assert.strictEqual(modal.children[0] != null, true);
-      assert.strictEqual(modal.children[1], container);
+      assert.strictEqual(modal.children[2], container);
     });
   });
 
@@ -240,8 +240,8 @@ describe('<Modal />', () => {
         throw new Error('missing modal');
       }
 
-      assert.strictEqual(modal.children.length, 1);
-      assert.strictEqual(modal.children[0], container);
+      assert.strictEqual(modal.children.length, 3);
+      assert.strictEqual(modal.children[1], container);
     });
   });
 
@@ -514,6 +514,41 @@ describe('<Modal />', () => {
           <Dialog />
         </Modal>,
       );
+    });
+
+    it('should loop the tab key', () => {
+      const dispatchKey = properties => {
+        const event = new window.Event('keydown');
+        Object.keys(properties).forEach(key => {
+          event[key] = properties[key];
+        });
+        document.dispatchEvent(event);
+      };
+
+      wrapper = mount(
+        <Modal open>
+          <div className="modal">
+            <div>Title</div>
+            <button type="button">x</button>
+            <button type="button">cancel</button>
+            <button type="button">ok</button>
+          </div>
+        </Modal>,
+      );
+      assert.strictEqual(document.activeElement.className, 'modal');
+      dispatchKey({
+        keyCode: 13, // Enter
+      });
+      dispatchKey({
+        keyCode: 9, // Tab
+      });
+      assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelStart');
+      focusContainer.focus();
+      dispatchKey({
+        keyCode: 9, // Tab
+        shiftKey: true,
+      });
+      assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelEnd');
     });
   });
 

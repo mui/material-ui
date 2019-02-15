@@ -66,7 +66,7 @@ module.exports = [
     name: 'The size of the @material-ui/core/Modal component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Modal/index.js',
-    limit: '24.1 KB',
+    limit: '24.3 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
@@ -74,6 +74,13 @@ module.exports = [
     webpack: true,
     path: 'packages/material-ui/build/esm/Popper/index.js',
     limit: '9.8 KB',
+  },
+  {
+    // vs https://bundlephobia.com/result?p=focus-trap-react
+    name: 'The size of the @material-ui/core/Popper component',
+    webpack: true,
+    path: 'packages/material-ui/build/esm/Modal/TrapFocus.js',
+    limit: '1.6 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-responsive
@@ -87,7 +94,7 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '202 KB',
+    limit: '203 KB',
   },
   {
     name: 'The docs home page',

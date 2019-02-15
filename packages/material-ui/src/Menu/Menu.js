@@ -73,7 +73,7 @@ class Menu extends React.Component {
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
     if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
-      const size = `${getScrollbarSize()}px`;
+      const size = `${getScrollbarSize(true)}px`;
       menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
       menuList.style.width = `calc(100% + ${size})`;
     }

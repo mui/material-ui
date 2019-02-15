@@ -77,3 +77,24 @@ You can **speed up** the rendering by moving the modal body into its own compone
 
 This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation).
 The `TableComponent` render method will only be evaluated when opening the modal.
+
+## Accessibility
+
+- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`.
+Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
+
+```jsx
+<Modal
+  aria-labelledby="simple-modal-title"
+  aria-describedby="simple-modal-description"
+>
+  <Typography variant="h6" id="modal-title">
+    My Title
+  </Typography>
+  <Typography variant="subtitle1" id="simple-modal-description">
+    My Description
+  </Typography>
+</Modal>
+```
+
+- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
