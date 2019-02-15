@@ -18,12 +18,10 @@ describe('<TablePagination />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    consoleErrorMock.spy();
   });
 
   after(() => {
     mount.cleanUp();
-    consoleErrorMock.reset();
   });
 
   it('should render a TableCell', () => {
@@ -236,24 +234,6 @@ describe('<TablePagination />', () => {
       assert.strictEqual(page, 0);
     });
 
-    it('should raise a warning if the page prop is out of range', () => {
-      shallow(
-        <TablePagination
-          page={2}
-          rowsPerPage={5}
-          count={10}
-          onChangePage={noop}
-          onChangeRowsPerPage={noop}
-        />,
-      );
-      console.log(consoleErrorMock.args())
-      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
-      );
-    });
-
     it('should display 0 as start number if the table is empty ', () => {
       const wrapper = mount(
         <table>
@@ -299,6 +279,40 @@ describe('<TablePagination />', () => {
 
       assert.strictEqual(wrapper.text().indexOf('Rows per page'), -1);
       assert.strictEqual(wrapper.find(Select).length, 0);
+    });
+  });
+
+  describe('warning', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should raise a warning if the page prop is out of range', () => {
+      assert.strictEqual(consoleErrorMock.callCount(), 0);
+      mount(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                page={2}
+                rowsPerPage={5}
+                count={10}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Material-UI: the page prop of a TablePagination is out of range (0 to 1, but page is 2).',
+      );
     });
   });
 });
