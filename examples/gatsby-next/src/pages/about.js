@@ -1,11 +1,9 @@
-import '../src/bootstrap';
-// --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/styles';
-import Link from '../src/Link';
+import Link from '../components/Link';
 
 const styles = theme => ({
   root: {
@@ -26,7 +24,7 @@ function About(props) {
         about page
       </Typography>
       <Typography gutterBottom>
-        <Link href="/">Go to the main page</Link>
+        <Link to="/">Go to the main page</Link>
       </Typography>
       <Button variant="contained" color="primary">
         Do nothing button
