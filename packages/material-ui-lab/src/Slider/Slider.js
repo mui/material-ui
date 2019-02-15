@@ -60,6 +60,7 @@ export const styles = theme => {
       overflow: 'hidden',
       padding: overflowSize,
       margin: -overflowSize,
+      boxSizing: 'border-box',
       '&$vertical': {
         height: `calc(100% + ${overflowSize * 2}px)`,
       },
