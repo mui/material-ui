@@ -1,4 +1,4 @@
-export type Spacing = (value: number | string) => number | string;
+export type Spacing = (...value: Array<number|string>) => number | string;
 
 export type SpacingOptions = number | Spacing;
 
