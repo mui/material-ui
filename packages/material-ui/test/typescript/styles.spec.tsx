@@ -153,6 +153,13 @@ const theme2 = createMuiTheme({
   },
 });
 
+const t1 = createMuiTheme().spacing(1);
+const t2 = createMuiTheme().spacing(1, 2);
+const t3 = createMuiTheme().spacing(1, 2, 3);
+const t4 = createMuiTheme().spacing(1, 2, 3, 4);
+// $ExpectError
+const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
+
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
