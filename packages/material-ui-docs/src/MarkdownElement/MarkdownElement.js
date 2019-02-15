@@ -19,11 +19,14 @@ marked.Lexer.prototype.lex = function lex(src) {
 const renderer = new marked.Renderer();
 
 export function textToHash(text) {
-  return text
+  return encodeURI(text
     .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/\W+/g, '-')
-    .replace(/-$/g, '');
+    .replace(/\s+/g, '-')
+    // eslint-disable-next-line no-useless-escape, eslint bug?
+    .replace(/[!@#\$%\^&\*\(\)=_\+\[\]{}`~;:'"\|,\.<>\/\?]+/g, '')
+    .replace(/-$/g, '')
+  )
 }
 
 renderer.heading = (text, level) => {

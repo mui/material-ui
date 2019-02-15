@@ -11,6 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
+import compose from 'docs/src/modules/utils/compose';
+import {connect} from 'react-redux';
 
 let itemsCollector;
 const renderer = new marked.Renderer();
@@ -64,6 +66,7 @@ const styles = theme => ({
   },
   contents: {
     marginTop: theme.spacing(2),
+    paddingLeft: theme.spacing(1.5),
   },
   ul: {
     padding: 0,
@@ -216,7 +219,7 @@ class AppTableOfContents extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, t } = this.props;
     const { active } = this.state;
 
     return (
@@ -224,7 +227,7 @@ class AppTableOfContents extends React.Component {
         {this.itemsServer.length > 0 ? (
           <React.Fragment>
             <Typography gutterBottom className={classes.contents}>
-              Contents
+              {t('tableOfContents')}
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />
             <Typography component="ul" className={classes.ul}>
@@ -278,6 +281,12 @@ class AppTableOfContents extends React.Component {
 AppTableOfContents.propTypes = {
   classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AppTableOfContents);
+export default compose(
+  connect(state => ({
+    t: state.options.t,
+  })),
+  withStyles(styles),
+)(AppTableOfContents);
