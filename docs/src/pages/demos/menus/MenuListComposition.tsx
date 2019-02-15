@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -7,19 +7,28 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    paper: {
+      marginRight: theme.spacing(2),
+    },
+  });
 
-class MenuListComposition extends React.Component {
-  state = {
+interface Props extends WithStyles<typeof styles> {}
+
+interface State {
+  open: boolean;
+}
+
+class MenuListComposition extends React.Component<Props, State> {
+  anchorEl: HTMLElement | null | undefined;
+
+  state: State = {
     open: false,
   };
 
@@ -27,8 +36,8 @@ class MenuListComposition extends React.Component {
     this.setState(state => ({ open: !state.open }));
   };
 
-  handleClose = event => {
-    if (this.anchorEl.contains(event.target)) {
+  handleClose = (event: React.MouseEvent<EventTarget>) => {
+    if (this.anchorEl!.contains(event.target as HTMLElement)) {
       return;
     }
 
@@ -83,7 +92,7 @@ class MenuListComposition extends React.Component {
   }
 }
 
-MenuListComposition.propTypes = {
+(MenuListComposition as any).propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
