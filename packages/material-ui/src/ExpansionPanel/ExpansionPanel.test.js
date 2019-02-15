@@ -30,52 +30,66 @@ describe('<ExpansionPanel />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Paper', () => {
+  it('should render and have isControlled set to false', () => {
     const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
-    const paper = wrapper.find(Paper);
-    assert.strictEqual(paper.exists(), true);
-    assert.strictEqual(paper.props().elevation, 1);
-    assert.strictEqual(paper.props().square, false);
-  });
-
-  it('is uncontrolled by default', () => {
-    const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
+    const root = wrapper.find(`.${classes.root}`).first();
+    assert.strictEqual(root.type(), Paper);
+    assert.strictEqual(root.props().elevation, 1);
+    assert.strictEqual(root.props().square, false);
+    assert.strictEqual(wrapper.find('ExpansionPanel').instance().isControlled, false);
 
     wrapper.setProps({ expanded: true });
-    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.expanded), false);
+    assert.strictEqual(root.hasClass(classes.expanded), false);
   });
 
   it('should handle defaultExpanded prop', () => {
-    const wrapper = shallow(<ExpansionPanel defaultExpanded>{minimalChildren}</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass(classes.expanded), true);
+    const wrapper = mount(<ExpansionPanel defaultExpanded>{minimalChildren}</ExpansionPanel>);
+    assert.strictEqual(
+      wrapper.find('ExpansionPanel').instance().isControlled,
+      false,
+      'should have isControlled state false',
+    );
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.expanded), true);
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ExpansionPanel className="test-class-name">{minimalChildren}</ExpansionPanel>,
     );
-    assert.strictEqual(wrapper.hasClass('test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.hasClass('test-class-name'), true);
+    assert.strictEqual(root.hasClass(classes.root), true);
   });
 
   it('should render the summary and collapse elements', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ExpansionPanel>
-        <ExpansionPanelSummary />
-        <div>Hello</div>
+        <ExpansionPanelSummary>Summary</ExpansionPanelSummary>
+        <div id="panel-content">Hello</div>
       </ExpansionPanel>,
     );
 
-    assert.strictEqual(wrapper.childAt(0).type(), ExpansionPanelSummary);
-    const collapse = wrapper.childAt(1);
-    assert.strictEqual(collapse.type(), Collapse);
-    assert.strictEqual(collapse.children().length, 1, 'collapse should have 1 children div');
+    assert.strictEqual(
+      wrapper
+        .find('[aria-expanded=false]')
+        .hostNodes()
+        .text(),
+      'Summary',
+    );
+    assert.strictEqual(
+      wrapper
+        .find('Collapse')
+        .find('div#panel-content')
+        .text(),
+      'Hello',
+    );
   });
 
   it('should handle the expanded prop', () => {
-    const wrapper = shallow(<ExpansionPanel expanded>{minimalChildren}</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass(classes.expanded), true);
-    assert.strictEqual(wrapper.instance().isControlled, true);
+    const wrapper = mount(<ExpansionPanel expanded>{minimalChildren}</ExpansionPanel>);
+    const panel = wrapper.find(`.${classes.root}`).first();
+    assert.strictEqual(panel.hasClass(classes.expanded), true);
+    assert.strictEqual(wrapper.find('ExpansionPanel').instance().isControlled, true);
 
     wrapper.setProps({ expanded: false });
     assert.strictEqual(wrapper.hasClass(classes.expanded), false);
@@ -116,8 +130,8 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('when disabled should have the disabled class', () => {
-    const wrapper = shallow(<ExpansionPanel disabled>{minimalChildren}</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+    const wrapper = mount(<ExpansionPanel disabled>{minimalChildren}</ExpansionPanel>);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.disabled), true);
   });
 
   it('should handle the TransitionComponent prop', () => {
@@ -159,7 +173,7 @@ describe('<ExpansionPanel />', () => {
         consoleErrorMock.reset();
       });
 
-      /* works locally but doesn't catch the errors in test:karma 
+      /* works locally but doesn't catch the errors in test:karma
       it('requires at least one child', () => {
         assert.throws(() => mount(<ExpansionPanel>[]</ExpansionPanel>));
         // 2 other errors are from accesing property of undefined and react component stack
