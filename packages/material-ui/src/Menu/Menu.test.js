@@ -2,9 +2,10 @@ import React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import Popover from '../Popover';
 import Menu from './Menu';
+import MenuList from '../MenuList';
 
 describe('<Menu />', () => {
   let shallow;
@@ -25,8 +26,8 @@ describe('<Menu />', () => {
   });
 
   it('should render a Popover', () => {
-    const wrapper = shallow(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), Popover);
+    const wrapper = mount(<Menu {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Popover).exists(), true);
   });
 
   it('should fire Popover transition event callbacks', () => {
@@ -47,20 +48,23 @@ describe('<Menu />', () => {
   });
 
   it('should pass `classes.paper` to the Popover', () => {
-    const wrapper = shallow(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.props().PaperProps.classes.root, classes.paper);
+    const wrapper = mount(<Menu {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Popover).props().PaperProps.classes.root, classes.paper);
   });
 
   describe('prop: PopoverClasses', () => {
     it('should be able to change the Popover style', () => {
-      const wrapper = shallow(<Menu {...defaultProps} PopoverClasses={{ foo: 'bar' }} />);
-      assert.strictEqual(wrapper.props().classes.foo, 'bar');
+      const wrapper = mount(<Menu {...defaultProps} PopoverClasses={{ paper: 'bar' }} />);
+      assert.strictEqual(wrapper.find(Popover).props().classes.paper, 'bar');
     });
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
-    const wrapper = shallow(<Menu {...defaultProps} />);
-    assert.strictEqual(wrapper.props().getContentAnchorEl, wrapper.instance().getContentAnchorEl);
+    const wrapper = mount(<Menu {...defaultProps} />);
+    assert.strictEqual(
+      wrapper.find(Popover).props().getContentAnchorEl,
+      wrapper.find('Menu').instance().getContentAnchorEl,
+    );
   });
 
   it('should pass onClose prop to Popover', () => {
@@ -84,23 +88,27 @@ describe('<Menu />', () => {
 
   describe('list node', () => {
     let wrapper;
-    let list;
 
     before(() => {
-      wrapper = shallow(<Menu {...defaultProps} className="test-class" data-test="hi" />);
-      list = wrapper.childAt(0);
+      wrapper = mount(<Menu {...defaultProps} className="test-class" data-test="hi" open />);
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(list.name(), 'MenuList');
+      assert.strictEqual(
+        wrapper
+          .find(Popover)
+          .find(MenuList)
+          .exists(),
+        true,
+      );
     });
 
-    it('should spread other props on the list', () => {
-      assert.strictEqual(wrapper.props()['data-test'], 'hi');
+    it('should spread other props on the Popover', () => {
+      assert.strictEqual(wrapper.find(Popover).props()['data-test'], 'hi');
     });
 
     it('should have the user classes', () => {
-      assert.strictEqual(wrapper.hasClass('test-class'), true);
+      assert.strictEqual(wrapper.find(Popover).hasClass('test-class'), true);
     });
   });
 
@@ -132,9 +140,8 @@ describe('<Menu />', () => {
     let findDOMNodeStub;
 
     before(() => {
-      const MenuNaked = unwrap(Menu);
-      wrapper = mount(<MenuNaked {...defaultProps} theme={{}} classes={classes} />);
-      instance = wrapper.instance();
+      wrapper = mount(<Menu {...defaultProps} classes={classes} />);
+      instance = wrapper.find('Menu').instance();
 
       selectedItemFocusSpy = spy();
       menuListFocusSpy = spy();
