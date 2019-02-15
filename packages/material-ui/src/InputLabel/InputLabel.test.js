@@ -35,13 +35,6 @@ describe('<InputLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.animated), false);
   });
 
-  describe('prop: classes', () => {
-    it('should be able to change the InputLabel style', () => {
-      const wrapper = mount(<InputLabel classes={{ root: 'bar' }}>Foo</InputLabel>);
-      assert.include(wrapper.find('InputLabel').props().classes.root, 'bar');
-    });
-  });
-
   describe('with muiFormControl context', () => {
     let wrapper;
 
