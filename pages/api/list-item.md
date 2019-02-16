@@ -21,7 +21,7 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
 | <span class="prop-name">alignItems</span> | <span class="prop-type">enum:&nbsp;'flex-start'&nbsp;&#124;<br>&nbsp;'center'<br></span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
 | <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">Component</span> |   | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
 | <span class="prop-name">ContainerComponent</span> | <span class="prop-type">Component</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child. |
 | <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> |   | Properties applied to the container component if used. |
