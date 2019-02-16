@@ -8,7 +8,6 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'block',
     margin: 0,
   },
   /* Styles applied to the root element if `variant="body2"`. */
@@ -98,9 +97,13 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
-  /* Styles applied to the root element if `inline={true}`. */
-  inline: {
+  /* Styles applied to the root element if `display="inline"`. */
+  displayInline: {
     display: 'inline',
+  },
+  /* Styles applied to the root element if `display="block"`. */
+  displayBlock: {
+    display: 'block',
   },
 });
 
@@ -124,9 +127,9 @@ function Typography(props) {
     className: classNameProp,
     color,
     component: componentProp,
+    display,
     gutterBottom,
     variantMapping,
-    inline,
     noWrap,
     paragraph,
     theme,
@@ -143,7 +146,7 @@ function Typography(props) {
       [classes.gutterBottom]: gutterBottom,
       [classes.paragraph]: paragraph,
       [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-      [classes.inline]: inline,
+      [classes[`display${capitalize(display)}`]]: display !== 'initial',
     },
     classNameProp,
   );
@@ -193,13 +196,13 @@ Typography.propTypes = {
    */
   component: componentPropType,
   /**
+   * Controls the display type
+   */
+  display: PropTypes.oneOf(['initial', 'block', 'inline']),
+  /**
    * If `true`, the text will have a bottom margin.
    */
   gutterBottom: PropTypes.bool,
-  /**
-   *  Controls whether the Typography is inline or not.
-   */
-  inline: PropTypes.bool,
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
@@ -245,8 +248,8 @@ Typography.propTypes = {
 Typography.defaultProps = {
   align: 'inherit',
   color: 'inherit',
+  display: 'initial',
   gutterBottom: false,
-  inline: false,
   noWrap: false,
   paragraph: false,
   variant: 'body2',

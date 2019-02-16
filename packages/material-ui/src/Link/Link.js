@@ -74,7 +74,7 @@ function Link(props) {
       )}
       classes={TypographyClasses}
       component={component}
-      inline={!block}
+      display={block ? 'block' : 'inline'}
       {...other}
     >
       {children}

@@ -9,9 +9,9 @@ export interface TypographyProps
   align?: PropTypes.Alignment;
   color?: PropTypes.Color | 'textPrimary' | 'textSecondary' | 'error';
   component?: React.ReactType<TypographyProps>;
+  display?: 'initial' | 'block' | 'inline';
   gutterBottom?: boolean;
   variantMapping?: { [type in Style]: string };
-  inline?: boolean;
   noWrap?: boolean;
   paragraph?: boolean;
   variant?: Style | 'inherit';
@@ -44,7 +44,8 @@ export type TypographyClassKey =
   | 'colorSecondary'
   | 'colorTextSecondary'
   | 'colorError'
-  | 'inline';
+  | 'displayInline'
+  | 'displayBlock';
 
 declare const Typography: React.ComponentType<TypographyProps>;
 
