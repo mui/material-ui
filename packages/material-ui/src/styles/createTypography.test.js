@@ -59,7 +59,7 @@ describe('createTypography', () => {
       'body2',
       'button',
       'caption',
-      'overline'
+      'overline',
     ];
 
     allVariants.forEach(variant => {
