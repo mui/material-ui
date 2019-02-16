@@ -20,7 +20,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">autoComplete</span> | <span class="prop-type">string</span> |   | This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it here: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill |
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |   | If `true`, the input will be focused during the first mount. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">className</span> | <span class="prop-type">string</span> |   | The CSS class name of the wrapper element. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">union:&nbsp;string, number, bool, object, arrayOf<br></span> |   | The default input value, useful when not controlling the component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |   | If `true`, the input will be disabled. |

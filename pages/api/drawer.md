@@ -21,7 +21,7 @@ when `variant="temporary"` is set.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">anchor</span> | <span class="prop-type">enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'top'&nbsp;&#124;<br>&nbsp;'right'&nbsp;&#124;<br>&nbsp;'bottom'<br></span> | <span class="prop-default">'left'</span> | Side from which the drawer will appear. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The contents of the drawer. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | The elevation of the drawer. |
 | <span class="prop-name">ModalProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Modal`](/api/modal/) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
