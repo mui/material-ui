@@ -64,11 +64,11 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.find('td').hasClass(classes.paddingCheckbox), true);
   });
 
-  it('should render with the user, root, padding, and dense classes', () => {
-    const wrapper = mountInTable(<TableCell className="woofTableCell" padding="dense" />);
+  it('should render with the user, root, padding, and small classes', () => {
+    const wrapper = mountInTable(<TableCell className="woofTableCell" size="small" />);
     assert.strictEqual(wrapper.find('td').hasClass('woofTableCell'), true);
     assert.strictEqual(wrapper.find('td').hasClass(classes.root), true);
-    assert.strictEqual(wrapper.find('td').hasClass(classes.paddingDense), true);
+    assert.strictEqual(wrapper.find('td').hasClass(classes.sizeSmall), true);
   });
 
   it('should render children', () => {
