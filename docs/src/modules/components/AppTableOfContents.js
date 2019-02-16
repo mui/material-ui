@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 import warning from 'warning';
@@ -104,8 +104,8 @@ function checkDuplication(uniq, item) {
 }
 
 function AppTableOfContents(props) {
-  const [activeState, setActiveState] = useState(null);
-  const [itemsServerState, setItemsServerState] = useState([]);
+  const [activeState, setActiveState] = React.useState(null);
+  const [itemsServerState, setItemsServerState] = React.useState([]);
 
   let clicked = false;
   let unsetClicked;
@@ -165,7 +165,7 @@ function AppTableOfContents(props) {
     findActiveIndex();
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
-  useEffect(() => {
+  React.useEffect(() => {
     setItemsServerState(getItems(props.contents));
     itemsClient = [];
     const unique = {};
