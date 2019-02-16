@@ -689,7 +689,18 @@ const appList = [
     link: 'https://persona.im/',
     image: 'persona.jpg',
     index: 0,
-  },
+	},
+	{
+	title: 'TaskMuncher',
+	description:
+		'TaskMuncher is a responsive MERN stack Task Management Productivity Web based application.' +
+		'TaskMuncher is the easiest way to get it done, whether you’re making a shopping list, ' + 
+		'planning a holiday or managing multiple work projects. ' +
+		'Use TaskMuncher to organize and keep track of everything so you can get it all done and enjoy more peace of mind.',
+	link: 'https://taskmuncher.com',
+	image: 'taskmuncher.jpg',
+	index: 30,
+	}
 ];
 
 export default appList;
