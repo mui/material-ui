@@ -1,20 +1,17 @@
 {
-  "name": "nextjs-next",
+  "name": "gatsby-next",
   "version": "4.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "next",
     "@material-ui/styles": "next",
-    "clsx": "latest",
-    "jss": "next",
-    "next": "latest",
-    "prop-types": "latest",
+    "gatsby": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
   }
 }
