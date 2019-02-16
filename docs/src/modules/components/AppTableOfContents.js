@@ -103,13 +103,37 @@ function checkDuplication(uniq, item) {
   }
 }
 
-function AppTableOfContents(props) {
-  const [activeState, setActiveState] = React.useState(null);
-  const [itemsServerState, setItemsServerState] = React.useState([]);
+function getItemsClient(itemsServer) {
+  const items = [];
+  const unique = {};
 
+  itemsServer.forEach(item2 => {
+    checkDuplication(unique, item2);
+    items.push({
+      ...item2,
+      node: document.getElementById(item2.hash),
+    });
+
+    if (item2.children.length > 0) {
+      item2.children.forEach(item3 => {
+        checkDuplication(unique, item3);
+        items.push({
+          ...item3,
+          node: document.getElementById(item3.hash),
+        });
+      });
+    }
+  });
+  return items;
+}
+
+function AppTableOfContents(props) {
+  const { classes, contents, t } = props;
+  const [activeState, setActiveState] = React.useState(null);
+  const itemsServer = React.useMemo(() => getItems(contents), [contents]);
+  let itemsClient = [];
   let clicked = false;
   let unsetClicked;
-  let itemsClient = [];
 
   const findActiveIndex = () => {
     // Don't set the active index based on scroll if a link was just clicked
@@ -166,27 +190,7 @@ function AppTableOfContents(props) {
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   React.useEffect(() => {
-    setItemsServerState(getItems(props.contents));
-    itemsClient = [];
-    const unique = {};
-
-    itemsServerState.forEach(item2 => {
-      checkDuplication(unique, item2);
-      itemsClient.push({
-        ...item2,
-        node: document.getElementById(item2.hash),
-      });
-
-      if (item2.children.length > 0) {
-        item2.children.forEach(item3 => {
-          checkDuplication(unique, item3);
-          itemsClient.push({
-            ...item3,
-            node: document.getElementById(item3.hash),
-          });
-        });
-      }
-    });
+    itemsClient = getItemsClient(itemsServer);
 
     window.addEventListener('hashchange', handleHashChange);
 
@@ -209,18 +213,16 @@ function AppTableOfContents(props) {
     }
   };
 
-  const { classes, t } = props;
-
   return (
     <nav className={classes.root}>
-      {itemsServerState.length > 0 ? (
+      {itemsServer.length > 0 ? (
         <React.Fragment>
           <Typography gutterBottom className={classes.contents}>
             {t('tableOfContents')}
           </Typography>
           <EventListener target="window" onScroll={handleScroll} />
           <Typography component="ul" className={classes.ul}>
-            {itemsServerState.map(item2 => (
+            {itemsServer.map(item2 => (
               <li key={item2.text}>
                 <Link
                   block
