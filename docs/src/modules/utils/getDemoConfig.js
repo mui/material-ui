@@ -19,24 +19,24 @@ ReactDOM.render(<Demo />, document.querySelector('#root'));
 
 function hooksDemo(demoData) {
   return {
-    dependencies: getDependencies(demoData.rawHooks, { reactVersion: 'next' }),
+    dependencies: getDependencies(demoData.raw, { reactVersion: 'next' }),
     files: {
       'index.js': `
-      import React from 'react';
-      import ReactDOM from 'react-dom';
-      import Demo from './demo';
-      import { createMuiTheme } from "@material-ui/core/styles";
-      import { ThemeProvider } from "@material-ui/styles";
-      
-      const theme = createMuiTheme({ typography: { useNextVariants: true } });
-      
-      ReactDOM.render(
-        <ThemeProvider theme={theme}>
-          <Demo />
-        </ThemeProvider>,
-        document.querySelector("#root")
-      );
-          `,
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Demo from './demo';
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+const theme = createMuiTheme({ typography: { useNextVariants: true } });
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <Demo />
+  </ThemeProvider>,
+  document.querySelector("#root")
+);
+      `,
       'demo.js': demoData.raw,
     },
   };
@@ -44,7 +44,7 @@ function hooksDemo(demoData) {
 
 function tsDemo(demoData) {
   return {
-    dependencies: getDependencies(demoData.raw, { codeLanguage: 'TS' }),
+    dependencies: getDependencies(demoData.raw, { codeLanguage: CODE_VARIANTS.TS }),
     files: {
       'demo.tsx': demoData.raw,
       'index.tsx': `
@@ -55,16 +55,17 @@ import Demo from './demo';
 ReactDOM.render(<Demo />, document.querySelector('#root'));
     `,
       'tsconfig.json': `{
-      "compilerOptions": {
-        "module": "esnext",
-        "target": "es5",
-        "lib": ["es6", "dom"],
-        "sourceMap": true,
-        "jsx": "react",
-        "strict": true,
-        "esModuleInterop": true
-      }
-    }`,
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+      `,
     },
     main: 'index.tsx',
     scripts: {
@@ -77,10 +78,12 @@ function getLanguageConfig(demoData) {
   switch (demoData.codeVariant) {
     case CODE_VARIANTS.TS:
       return tsDemo(demoData);
-    case CODE_VARIANTS.HOOKS:
+    case CODE_VARIANTS.HOOK:
       return hooksDemo(demoData);
-    default:
+    case CODE_VARIANTS.JS:
       return jsDemo(demoData);
+    default:
+      throw new Error(`Unsupported codeVariant: ${demoData.codeVariant}`);
   }
 }
 

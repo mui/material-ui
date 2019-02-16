@@ -1,6 +1,7 @@
 import warning from 'warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
 export function titleize(string) {
   warning(
@@ -72,7 +73,7 @@ function addTypeDeps(deps) {
  * @returns {Record<string, 'latest'>} map of packages with their required version
  */
 export function getDependencies(raw, options = {}) {
-  const { codeLanguage = 'JS', reactVersion = 'latest' } = options;
+  const { codeLanguage = CODE_VARIANTS.JS, reactVersion = 'latest' } = options;
   const deps = {
     'react-dom': reactVersion,
     react: reactVersion,
@@ -99,7 +100,7 @@ export function getDependencies(raw, options = {}) {
     }
   }
 
-  if (codeLanguage === 'TS') {
+  if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);
   }
 
