@@ -196,8 +196,7 @@ jobs:
           name: Test umd release
           command: yarn test:umd
       - store_artifacts:
-          path: ./tmp/size-snapshot.json
-          destination: size-snapshot.json
+          path: ./size-snapshot.json
   test_browser:
     <<: *defaults
     steps:
