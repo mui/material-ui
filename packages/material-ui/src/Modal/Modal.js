@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
-import RootRef from '../RootRef';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
+import TrapFocus from './TrapFocus';
 import Backdrop from '../Backdrop';
 import { ariaHidden } from './manageAriaHidden';
 
@@ -107,9 +106,7 @@ class Modal extends React.Component {
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
-    doc.addEventListener('focus', this.enforceFocus, true);
-
-    if (this.dialogRef) {
+    if (this.modalRef) {
       this.handleOpened();
     }
   };
@@ -127,7 +124,6 @@ class Modal extends React.Component {
   };
 
   handleOpened = () => {
-    this.autoFocus();
     this.props.manager.mount(this);
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
@@ -142,11 +138,6 @@ class Modal extends React.Component {
     if (!(hasTransition && this.props.closeAfterTransition) || reason === 'unmount') {
       this.props.manager.remove(this);
     }
-
-    const doc = ownerDocument(this.mountNode);
-    doc.removeEventListener('focus', this.enforceFocus, true);
-
-    this.restoreLastFocus();
   };
 
   handleExited = () => {
@@ -196,19 +187,6 @@ class Modal extends React.Component {
     }
   };
 
-  enforceFocus = () => {
-    // The Modal might not already be mounted.
-    if (!this.isTopModal() || this.props.disableEnforceFocus || !this.mounted || !this.dialogRef) {
-      return;
-    }
-
-    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
-
-    if (!this.dialogRef.contains(currentActiveElement)) {
-      this.dialogRef.focus();
-    }
-  };
-
   handlePortalRef = ref => {
     this.mountNode = ref ? ref.getMountNode() : ref;
   };
@@ -217,54 +195,9 @@ class Modal extends React.Component {
     this.modalRef = ref;
   };
 
-  onRootRef = ref => {
-    this.dialogRef = ref;
-  };
-
-  autoFocus() {
-    // We might render an empty child.
-    if (this.props.disableAutoFocus || !this.dialogRef) {
-      return;
-    }
-
-    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
-
-    if (!this.dialogRef.contains(currentActiveElement)) {
-      if (!this.dialogRef.hasAttribute('tabIndex')) {
-        warning(
-          false,
-          [
-            'Material-UI: the modal content node does not accept focus.',
-            'For the benefit of assistive technologies, ' +
-              'the tabIndex of the node is being set to "-1".',
-          ].join('\n'),
-        );
-        this.dialogRef.setAttribute('tabIndex', -1);
-      }
-
-      this.lastFocus = currentActiveElement;
-      this.dialogRef.focus();
-    }
-  }
-
-  restoreLastFocus() {
-    if (this.props.disableRestoreFocus || !this.lastFocus) {
-      return;
-    }
-
-    // Not all elements in IE 11 have a focus method.
-    // Because IE 11 market share is low, we accept the restore focus being broken
-    // and we silent the issue.
-    if (this.lastFocus.focus) {
-      this.lastFocus.focus();
-    }
-
-    this.lastFocus = null;
-  }
-
-  isTopModal() {
+  isTopModal = () => {
     return this.props.manager.isTopModal(this);
-  }
+  };
 
   render() {
     const {
@@ -339,7 +272,15 @@ class Modal extends React.Component {
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childProps)}</RootRef>
+          <TrapFocus
+            disableEnforceFocus={disableEnforceFocus}
+            disableAutoFocus={disableAutoFocus}
+            disableRestoreFocus={disableRestoreFocus}
+            isEnabled={this.isTopModal}
+            open={open}
+          >
+            {React.cloneElement(children, childProps)}
+          </TrapFocus>
         </div>
       </Portal>
     );

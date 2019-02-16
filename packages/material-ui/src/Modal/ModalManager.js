@@ -32,7 +32,7 @@ function setContainerStyle(data) {
   };
 
   if (data.overflowing) {
-    const scrollbarSize = getScrollbarSize();
+    const scrollbarSize = getScrollbarSize(true);
 
     // Use computed style, here to get the real padding to add our scrollbar width.
     style.paddingRight = `${getPaddingRight(data.container) + scrollbarSize}px`;
