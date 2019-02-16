@@ -75,7 +75,7 @@ function HorizontalNonLinearStepper() {
   }
 
   function handleBack() {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   }
 
   const handleStep = step => () => {
