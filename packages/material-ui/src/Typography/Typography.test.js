@@ -116,7 +116,6 @@ describe('<Typography />', () => {
   });
 
   describe('prop: display', () => {
-
     it('should render with displayInline class in display="inline"', () => {
       const wrapper = shallow(<Typography display="inline">Hello</Typography>);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
@@ -137,6 +136,5 @@ describe('<Typography />', () => {
       assert.strictEqual(wrapper.hasClass(classes.displayBlock), false);
       assert.strictEqual(wrapper.hasClass(classes.displayInline), false);
     });
-
   });
 });
