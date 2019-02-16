@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 import warning from 'warning';
@@ -13,38 +13,6 @@ import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
 import {connect} from 'react-redux';
-
-let itemsCollector;
-const renderer = new marked.Renderer();
-renderer.heading = (text, level) => {
-  if (level === 2) {
-    itemsCollector.push({
-      text,
-      level,
-      hash: textToHash(text),
-      children: [],
-    });
-  } else if (level === 3) {
-    if (!itemsCollector[itemsCollector.length - 1]) {
-      throw new Error(`Missing parent level for: ${text}`);
-    }
-
-    itemsCollector[itemsCollector.length - 1].children.push({
-      text,
-      level,
-      hash: textToHash(text),
-    });
-  }
-};
-
-function getItems(contents) {
-  itemsCollector = [];
-  marked(contents.join(''), {
-    renderer,
-  });
-
-  return itemsCollector;
-}
 
 const styles = theme => ({
   root: {
@@ -81,12 +49,12 @@ const styles = theme => ({
     '&:hover': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-      }`,
+        }`,
     },
     '&$active': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
-      }`,
+        }`,
     },
   },
   secondaryItem: {
@@ -94,6 +62,38 @@ const styles = theme => ({
   },
   active: {},
 });
+
+let itemsCollector;
+const renderer = new marked.Renderer();
+renderer.heading = (text, level) => {
+  if (level === 2) {
+    itemsCollector.push({
+      text,
+      level,
+      hash: textToHash(text),
+      children: [],
+    });
+  } else if (level === 3) {
+    if (!itemsCollector[itemsCollector.length - 1]) {
+      throw new Error(`Missing parent level for: ${text}`);
+    }
+
+    itemsCollector[itemsCollector.length - 1].children.push({
+      text,
+      level,
+      hash: textToHash(text),
+    });
+  }
+};
+
+function getItems(contents) {
+  itemsCollector = [];
+  marked(contents.join(''), {
+    renderer,
+  });
+
+  return itemsCollector;
+}
 
 function checkDuplication(uniq, item) {
   warning(!uniq[item.hash], `Table of content: duplicated \`${item.hash}\` item`);
@@ -103,96 +103,44 @@ function checkDuplication(uniq, item) {
   }
 }
 
-class AppTableOfContents extends React.Component {
-  handleScroll = throttle(() => {
-    this.findActiveIndex();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+function AppTableOfContents(props) {
+  const [activeState, setActiveState] = useState(null);
+  const [itemsServerState, setItemsServerState] = useState([]);
 
-  clicked = false;
+  let clicked = false;
+  let unsetClicked;
+  let itemsClient = [];
 
-  constructor(props) {
-    super();
-    this.itemsServer = getItems(props.contents);
-  }
-
-  state = {
-    active: null,
-  };
-
-  componentDidMount() {
-    this.itemsClient = [];
-    const uniq = {};
-
-    this.itemsServer.forEach(item2 => {
-      checkDuplication(uniq, item2);
-      this.itemsClient.push({
-        ...item2,
-        node: document.getElementById(item2.hash),
-      });
-
-      if (item2.children.length > 0) {
-        item2.children.forEach(item3 => {
-          checkDuplication(uniq, item3);
-          this.itemsClient.push({
-            ...item3,
-            node: document.getElementById(item3.hash),
-          });
-        });
-      }
-    });
-    window.addEventListener('hashchange', this.handleHashChange);
-  }
-
-  componentWillUnmount() {
-    this.handleScroll.cancel();
-    clearTimeout(this.unsetClicked);
-    window.removeEventListener('hashchange', this.handleHashChange);
-  }
-
-  // Update the active TOC entry if the hash changes through click on '#' icon
-  handleHashChange = () => {
-    const hash = window.location.hash.substring(1);
-
-    if (this.state.active !== hash) {
-      this.setState({
-        active: hash,
-      });
-    }
-  };
-
-  findActiveIndex = () => {
+  const findActiveIndex = () => {
     // Don't set the active index based on scroll if a link was just clicked
-    if (this.clicked) {
+    if (clicked) {
       return;
     }
 
     let active;
-
-    for (let i = this.itemsClient.length - 1; i >= 0; i -= 1) {
+    for (let i = itemsClient.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
         break;
       }
 
-      const item = this.itemsClient[i];
+      const item = itemsClient[i];
 
       warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
 
       if (
         item.node &&
         item.node.offsetTop <
-          document.documentElement.scrollTop + document.documentElement.clientHeight / 8
+        document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
         break;
       }
     }
 
-    if (active && this.state.active !== active.hash) {
-      this.setState({
-        active: active.hash,
-      });
+    if (active && activeState !== active.hash) {
+      setActiveState(active.hash);
 
       window.history.replaceState(
         null,
@@ -204,78 +152,118 @@ class AppTableOfContents extends React.Component {
     }
   };
 
-  handleClick = hash => () => {
-    // Used to disable findActiveIndex if the page scrolls due to a click
-    this.clicked = true;
-    this.unsetClicked = setTimeout(() => {
-      this.clicked = false;
-    }, 1000);
+  // Update the active TOC entry if the hash changes through click on '#' icon
+  const handleHashChange = () => {
+    const hash = window.location.hash.substring(1);
 
-    if (this.state.active !== hash) {
-      this.setState({
-        active: hash,
-      });
+    if (activeState !== hash) {
+      setActiveState(hash);
     }
   };
 
-  render() {
-    const { classes, t } = this.props;
-    const { active } = this.state;
+  const handleScroll = throttle(() => {
+    findActiveIndex();
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
-    return (
-      <nav className={classes.root}>
-        {this.itemsServer.length > 0 ? (
-          <React.Fragment>
-            <Typography gutterBottom className={classes.contents}>
-              {t('tableOfContents')}
-            </Typography>
-            <EventListener target="window" onScroll={this.handleScroll} />
-            <Typography component="ul" className={classes.ul}>
-              {this.itemsServer.map(item2 => (
-                <li key={item2.text}>
-                  <Link
-                    block
-                    color={active === item2.hash ? 'textPrimary' : 'textSecondary'}
-                    href={`#${item2.hash}`}
-                    underline="none"
-                    onClick={this.handleClick(item2.hash)}
-                    className={clsx(
-                      classes.item,
-                      active === item2.hash ? classes.active : undefined,
-                    )}
-                  >
-                    <span dangerouslySetInnerHTML={{ __html: item2.text }} />
-                  </Link>
-                  {item2.children.length > 0 ? (
-                    <ul className={classes.ul}>
-                      {item2.children.map(item3 => (
-                        <li key={item3.text}>
-                          <Link
-                            block
-                            color={active === item3.hash ? 'textPrimary' : 'textSecondary'}
-                            href={`#${item3.hash}`}
-                            underline="none"
-                            onClick={this.handleClick(item3.hash)}
-                            className={clsx(
-                              classes.item,
-                              classes.secondaryItem,
-                              active === item3.hash ? classes.active : undefined,
-                            )}
-                          >
-                            <span dangerouslySetInnerHTML={{ __html: item3.text }} />
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </li>
-              ))}
-            </Typography>
-          </React.Fragment>
-        ) : null}
-      </nav>
-    );
-  }
+  useEffect(() => {
+    setItemsServerState(getItems(props.contents));
+    itemsClient = [];
+    const unique = {};
+
+    itemsServerState.forEach(item2 => {
+      checkDuplication(unique, item2);
+      itemsClient.push({
+        ...item2,
+        node: document.getElementById(item2.hash),
+      });
+
+      if (item2.children.length > 0) {
+        item2.children.forEach(item3 => {
+          checkDuplication(unique, item3);
+          itemsClient.push({
+            ...item3,
+            node: document.getElementById(item3.hash),
+          });
+        });
+      }
+    });
+
+    window.addEventListener('hashchange', handleHashChange);
+
+    return function componentWillUnmount() {
+      handleScroll.cancel();
+      clearTimeout(unsetClicked);
+      window.removeEventListener('hashchange', handleHashChange);
+    }
+  });
+
+  const handleClick = hash => () => {
+    // Used to disable findActiveIndex if the page scrolls due to a click
+    clicked = true;
+    unsetClicked = setTimeout(() => {
+      clicked = false;
+    }, 1000);
+
+    if (activeState !== hash) {
+      setActiveState(hash);
+    }
+  };
+
+  const { classes, t } = props;
+
+  return (
+    <nav className={classes.root}>
+      {itemsServerState.length > 0 ? (
+        <React.Fragment>
+          <Typography gutterBottom className={classes.contents}>
+            {t('tableOfContents')}
+          </Typography>
+          <EventListener target="window" onScroll={handleScroll} />
+          <Typography component="ul" className={classes.ul}>
+            {itemsServerState.map(item2 => (
+              <li key={item2.text}>
+                <Link
+                  block
+                  color={activeState === item2.hash ? 'textPrimary' : 'textSecondary'}
+                  href={`#${item2.hash}`}
+                  underline="none"
+                  onClick={handleClick(item2.hash)}
+                  className={clsx(
+                    classes.item,
+                    activeState === item2.hash ? classes.active : undefined,
+                  )}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: item2.text }} />
+                </Link>
+                {item2.children.length > 0 ? (
+                  <ul className={classes.ul}>
+                    {item2.children.map(item3 => (
+                      <li key={item3.text}>
+                        <Link
+                          block
+                          color={activeState === item3.hash ? 'textPrimary' : 'textSecondary'}
+                          href={`#${item3.hash}`}
+                          underline="none"
+                          onClick={handleClick(item3.hash)}
+                          className={clsx(
+                            classes.item,
+                            classes.secondaryItem,
+                            activeState === item3.hash ? classes.active : undefined,
+                          )}
+                        >
+                          <span dangerouslySetInnerHTML={{ __html: item3.text }} />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
+          </Typography>
+        </React.Fragment>
+      ) : null}
+    </nav>
+  );
 }
 
 AppTableOfContents.propTypes = {
