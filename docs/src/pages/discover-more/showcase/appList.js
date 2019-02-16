@@ -700,7 +700,7 @@ const appList = [
 	link: 'https://taskmuncher.com',
 	image: 'taskmuncher.jpg',
 	index: 30,
-	}
+	},
 ];
 
 export default appList;
