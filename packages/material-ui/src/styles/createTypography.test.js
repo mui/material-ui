@@ -47,17 +47,19 @@ describe('createTypography', () => {
   it('should apply a CSS property to all the variants', () => {
     const typography = createTypography(palette, { allVariants: { marginLeft: 0 } });
     const allVariants = [
-      'display4',
-      'display3',
-      'display2',
-      'display1',
-      'headline',
-      'title',
-      'subheading',
-      'body2',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'subtitle1',
+      'subtitle2',
       'body1',
-      'caption',
+      'body2',
       'button',
+      'caption',
+      'overline'
     ];
 
     allVariants.forEach(variant => {
