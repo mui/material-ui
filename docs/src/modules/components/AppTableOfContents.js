@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {
@@ -49,12 +49,12 @@ const styles = theme => ({
     '&:hover': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-        }`,
+      }`,
     },
     '&$active': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
-        }`,
+      }`,
     },
   },
   secondaryItem: {
@@ -132,7 +132,7 @@ function AppTableOfContents(props) {
       if (
         item.node &&
         item.node.offsetTop <
-        document.documentElement.scrollTop + document.documentElement.clientHeight / 8
+          document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
         break;
@@ -194,7 +194,7 @@ function AppTableOfContents(props) {
       handleScroll.cancel();
       clearTimeout(unsetClicked);
       window.removeEventListener('hashchange', handleHashChange);
-    }
+    };
   });
 
   const handleClick = hash => () => {
