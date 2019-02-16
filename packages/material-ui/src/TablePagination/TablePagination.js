@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { componentPropType } from '@material-ui/utils';
+import { componentPropType, chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -68,98 +68,86 @@ export const styles = theme => ({
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
-class TablePagination extends React.Component {
-  // This logic would be better handled on userside.
-  // However, we have it just in case.
-  componentDidUpdate() {
-    const { count, onChangePage, page, rowsPerPage } = this.props;
-    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
-    if (page > newLastPage) {
-      onChangePage(null, newLastPage);
-    }
+function TablePagination(props) {
+  const {
+    ActionsComponent,
+    backIconButtonProps,
+    classes,
+    colSpan: colSpanProp,
+    component: Component,
+    count,
+    labelDisplayedRows,
+    labelRowsPerPage,
+    nextIconButtonProps,
+    onChangePage,
+    onChangeRowsPerPage,
+    page,
+    rowsPerPage,
+    rowsPerPageOptions,
+    SelectProps = {},
+    ...other
+  } = props;
+
+  let colSpan;
+
+  if (Component === TableCell || Component === 'td') {
+    colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  render() {
-    const {
-      ActionsComponent,
-      backIconButtonProps,
-      classes,
-      colSpan: colSpanProp,
-      component: Component,
-      count,
-      labelDisplayedRows,
-      labelRowsPerPage,
-      nextIconButtonProps,
-      onChangePage,
-      onChangeRowsPerPage,
-      page,
-      rowsPerPage,
-      rowsPerPageOptions,
-      SelectProps = {},
-      ...other
-    } = this.props;
+  const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
-    let colSpan;
-
-    if (Component === TableCell || Component === 'td') {
-      colSpan = colSpanProp || 1000; // col-span over everything
-    }
-
-    const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
-
-    return (
-      <Component className={classes.root} colSpan={colSpan} {...other}>
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.spacer} />
-          {rowsPerPageOptions.length > 1 && (
-            <Typography color="inherit" variant="caption" className={classes.caption}>
-              {labelRowsPerPage}
-            </Typography>
-          )}
-          {rowsPerPageOptions.length > 1 && (
-            <Select
-              classes={{
-                root: classes.selectRoot,
-                select: classes.select,
-                icon: classes.selectIcon,
-              }}
-              input={<InputBase className={classes.input} />}
-              value={rowsPerPage}
-              onChange={onChangeRowsPerPage}
-              {...SelectProps}
-            >
-              {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItemComponent
-                  className={classes.menuItem}
-                  key={rowsPerPageOption}
-                  value={rowsPerPageOption}
-                >
-                  {rowsPerPageOption}
-                </MenuItemComponent>
-              ))}
-            </Select>
-          )}
+  return (
+    <Component className={classes.root} colSpan={colSpan} {...other}>
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.spacer} />
+        {rowsPerPageOptions.length > 1 && (
           <Typography color="inherit" variant="caption" className={classes.caption}>
-            {labelDisplayedRows({
-              from: count === 0 ? 0 : page * rowsPerPage + 1,
-              to: Math.min(count, (page + 1) * rowsPerPage),
-              count,
-              page,
-            })}
+            {labelRowsPerPage}
           </Typography>
-          <ActionsComponent
-            className={classes.actions}
-            backIconButtonProps={backIconButtonProps}
-            count={count}
-            nextIconButtonProps={nextIconButtonProps}
-            onChangePage={onChangePage}
-            page={page}
-            rowsPerPage={rowsPerPage}
-          />
-        </Toolbar>
-      </Component>
-    );
-  }
+        )}
+        {rowsPerPageOptions.length > 1 && (
+          <Select
+            classes={{
+              root: classes.selectRoot,
+              select: classes.select,
+              icon: classes.selectIcon,
+            }}
+            input={<InputBase className={classes.input} />}
+            value={rowsPerPage}
+            onChange={onChangeRowsPerPage}
+            {...SelectProps}
+          >
+            {rowsPerPageOptions.map(rowsPerPageOption => (
+              <MenuItemComponent
+                className={classes.menuItem}
+                key={rowsPerPageOption}
+                value={rowsPerPageOption}
+              >
+                {rowsPerPageOption}
+              </MenuItemComponent>
+            ))}
+          </Select>
+        )}
+        <Typography color="inherit" variant="caption" className={classes.caption}>
+          {labelDisplayedRows({
+            from: count === 0 ? 0 : page * rowsPerPage + 1,
+            to: Math.min(count, (page + 1) * rowsPerPage),
+            count,
+            page,
+          })}
+        </Typography>
+        <ActionsComponent
+          className={classes.actions}
+          backIconButtonProps={backIconButtonProps}
+          count={count}
+          nextIconButtonProps={nextIconButtonProps}
+          onChangePage={onChangePage}
+          page={page}
+          rowsPerPage={rowsPerPage}
+        />
+      </Toolbar>
+    </Component>
+  );
 }
 
 TablePagination.propTypes = {
@@ -219,7 +207,20 @@ TablePagination.propTypes = {
   /**
    * The zero-based index of the current page.
    */
-  page: PropTypes.number.isRequired,
+  page: chainPropTypes(PropTypes.number.isRequired, props => {
+    const { count, page, rowsPerPage } = props;
+    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
+    if (page < 0 || page > newLastPage) {
+      const message =
+        'Material-UI: the page prop of a TablePagination is out of range ' +
+        `(0 to ${newLastPage}, but page is ${page}).`;
+
+      // change error message slightly on every check to prevent caching when testing
+      // which would not trigger console errors on subsequent fails
+      return new Error(`${message}${process.env.NODE_ENV === 'test' ? Date.now() : ''}`);
+    }
+    return null;
+  }),
   /**
    * The number of rows per page.
    */
