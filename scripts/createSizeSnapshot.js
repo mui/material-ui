@@ -3,7 +3,7 @@ const path = require('path');
 const getSize = require('size-limit');
 
 const workspaceRoot = path.join(__dirname, '../');
-const snapshotDestPath = path.join(workspaceRoot, 'tmp', 'size-snapshot.json');
+const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
 
 function flatten(arr) {
   return arr.reduce((acc, entry) => acc.concat(entry), []);
