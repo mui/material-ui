@@ -7,12 +7,12 @@ import warning from 'warning';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
-import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {
