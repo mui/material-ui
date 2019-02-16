@@ -184,8 +184,8 @@ jobs:
           name: Can we build the docs?
           command: yarn docs:build
       - run:
-          name: Is the size acceptable?
-          command: yarn lerna bootstrap && yarn size
+          name: Create a size snapshot for danger.js
+          command: yarn size:snapshot
       - run:
           name: Install dependencies for Chrome Headless
           # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
@@ -195,6 +195,9 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
+      - store_artifacts:
+          path: ./tmp/size-snapshot.json
+          destination: size-snapshot.json
   test_browser:
     <<: *defaults
     steps:

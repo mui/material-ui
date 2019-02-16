@@ -42,6 +42,7 @@
     "prettier:all": "yarn babel-node ./scripts/prettier.js write",
     "size": "size-limit",
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",
+    "size:snapshot": "node scripts/createSizeSnapshot",
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
