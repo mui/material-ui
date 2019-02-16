@@ -46,6 +46,7 @@ export const styles = theme => ({
     paddingLeft: 8,
     paddingRight: 24,
     textAlign: 'right',
+    textAlignLast: 'right', // Align <select> on Chrome.
   },
   /* Styles applied to the Select component `icon` class. */
   selectIcon: {
