@@ -35,19 +35,17 @@ function StylesProvider(props) {
   warning(
     typeof window !== 'undefined' || localOptions.sheetsManager,
     [
-      'Material-UI: you need to provide a sheetsManager to the StyleProvider ' +
+      'Material-UI: you need to provide a sheetsManager to the <StyleProvider> ' +
         'when rendering on the server.',
     ].join('\n'),
   );
 
+  const outerOptions = React.useContext(StylesContext);
+
   return (
-    <StylesContext.Consumer>
-      {outerOptions => (
-        <StylesContext.Provider value={{ ...outerOptions, ...localOptions }}>
-          {children}
-        </StylesContext.Provider>
-      )}
-    </StylesContext.Consumer>
+    <StylesContext.Provider value={{ ...outerOptions, ...localOptions }}>
+      {children}
+    </StylesContext.Provider>
   );
 }
 

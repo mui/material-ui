@@ -204,7 +204,8 @@
   "nyc": {
     "include": [
       "packages/material-ui/src/**/*.js",
-      "packages/material-ui-utils/src/**/*.js"
+      "packages/material-ui-utils/src/**/*.js",
+      "packages/material-ui-styles/src/**/*.js"
     ],
     "exclude": [
       "**/*.test.js"

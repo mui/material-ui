@@ -14,6 +14,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
 import loadScript from 'docs/src/modules/utils/loadScript';
+import compose from 'docs/src/modules/utils/compose';
 
 let dependenciesLoaded = false;
 
@@ -201,8 +202,9 @@ HomePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const Page = withStyles(styles)(HomePage);
-
-export default connect(state => ({
-  t: state.options.t,
-}))(Page);
+export default compose(
+  connect(state => ({
+    t: state.options.t,
+  })),
+  withStyles(styles),
+)(HomePage);

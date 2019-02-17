@@ -3,7 +3,7 @@
 function getThemeProps(params) {
   const { theme, name, props } = params;
 
-  if (!theme.props || !name || !theme.props[name]) {
+  if (!theme || !theme.props || !theme.props[name]) {
     return props;
   }
 

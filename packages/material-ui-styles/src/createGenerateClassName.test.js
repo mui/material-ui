@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createGenerateClassName from './createGenerateClassName';
 
 describe('createGenerateClassName', () => {
@@ -215,5 +216,48 @@ describe('createGenerateClassName', () => {
       ),
       'classNamePrefix-key2-b6l15m',
     );
+  });
+
+  describe('classNamePrefix', () => {
+    it('should work without a classNamePrefix', () => {
+      const rule = { key: 'root' };
+      const styleSheet = {
+        rules: { raw: {} },
+        options: {},
+      };
+      const generateClassName2 = createGenerateClassName();
+      assert.strictEqual(generateClassName2(rule, styleSheet), 'root-11u5x61');
+    });
+  });
+
+  describe('production', () => {
+    // Only run the test on node.
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      return;
+    }
+
+    let nodeEnv;
+    const env = process.env;
+
+    before(() => {
+      nodeEnv = env.NODE_ENV;
+      env.NODE_ENV = 'production';
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      env.NODE_ENV = nodeEnv;
+      consoleErrorMock.reset();
+    });
+
+    it('should output a short representation', () => {
+      const rule = { key: 'root' };
+      const styleSheet = {
+        rules: { raw: {} },
+        options: {},
+      };
+      const generateClassName2 = createGenerateClassName();
+      assert.strictEqual(generateClassName2(rule, styleSheet), 'jss11u5x61');
+    });
   });
 });

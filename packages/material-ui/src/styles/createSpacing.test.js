@@ -30,7 +30,7 @@ describe('createSpacing', () => {
     assert.strictEqual(spacing(1, 2), '0.25rem 0.5rem');
   });
 
-  describe('warning', () => {
+  describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
     });

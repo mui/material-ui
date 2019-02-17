@@ -3,27 +3,19 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
 import ThemeContext from './ThemeContext';
+import useTheme from './useTheme';
 
 // To support composition of theme.
 function mergeOuterLocalTheme(outerTheme, localTheme) {
   if (typeof localTheme === 'function') {
-    warning(
-      outerTheme,
-      [
-        'Material-UI: you are providing a theme function property ' +
-          'to the ThemeProvider component:',
-        '<ThemeProvider theme={outerTheme => outerTheme} />',
-        'However, no outer theme is present.',
-        'Make sure a theme is already injected higher in the React tree ' +
-          'or provide a theme object.',
-      ].join('\n'),
-    );
-
     const mergedTheme = localTheme(outerTheme);
 
     warning(
       mergedTheme,
-      'Material-UI: return an object from your theme function, i.e. theme={() => ({})}!',
+      [
+        'Material-UI: you should return an object from your theme function, i.e.',
+        '<ThemeProvider theme={() => ({})} />',
+      ].join('\n'),
     );
 
     return mergedTheme;
@@ -39,17 +31,23 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
  */
 function ThemeProvider(props) {
   const { children, theme: localTheme } = props;
+  const outerTheme = useTheme();
 
-  return (
-    <ThemeContext.Consumer>
-      {outerTheme => {
-        const theme =
-          outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
-
-        return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
-      }}
-    </ThemeContext.Consumer>
+  warning(
+    outerTheme !== null || typeof localTheme !== 'function',
+    [
+      'Material-UI: you are providing a theme function property ' +
+        'to the ThemeProvider component:',
+      '<ThemeProvider theme={outerTheme => outerTheme} />',
+      '',
+      'However, no outer theme is present.',
+      'Make sure a theme is already injected higher in the React tree ' +
+        'or provide a theme object.',
+    ].join('\n'),
   );
+
+  const theme = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
 
 ThemeProvider.propTypes = {

@@ -96,7 +96,7 @@ describe('<Breadcrumbs />', () => {
     assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 8);
   });
 
-  describe('warning', () => {
+  describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
     });
