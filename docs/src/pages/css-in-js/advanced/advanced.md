@@ -255,15 +255,15 @@ JSS relies on the concept of [class name generator](https://cssinjs.org/jss-api/
 
 ### `jss-plugin-global`
 
-With [`jss-plugin-global`](#jss-plugins) provided, you can define global class names.
+The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset, you can use it to define global class names.
 
-{{"demo": "pages/css-in-js/advanced/GlobalJSS.js"}}
+{{"demo": "pages/css-in-js/advanced/GlobalCss.js"}}
 
 ### Hybrid
 
 You can also combine JSS generated class names with global ones.
 
-{{"demo": "pages/css-in-js/advanced/HybridGlobalJSS.js"}}
+{{"demo": "pages/css-in-js/advanced/HybridGlobalCss.js"}}
 
 ### Deterministic class names
 
