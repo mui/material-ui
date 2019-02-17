@@ -63,7 +63,7 @@ function ListItemText(props) {
         if (primary != null && primary.type !== Typography && !disableTypography) {
           primary = (
             <Typography
-              variant={'body1'}
+              variant="body1"
               className={clsx(classes.primary, { [classes.textDense]: dense })}
               component="span"
               {...primaryTypographyProps}

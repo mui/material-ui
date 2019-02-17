@@ -13,34 +13,34 @@ const [main] = fs.readdirSync(dirname).reduce((result, filename) => {
 
 module.exports = [
   {
-    name: 'The initial cost paid for using one component',
-    webpack: true,
-    path: 'packages/material-ui/build/Paper/index.js',
-    limit: '18.9 KB',
-  },
-  {
     name: 'The initial cost paid for using one component with ES modules',
     webpack: true,
     path: 'packages/material-ui/build/esm/Paper/index.js',
-    limit: '17.9 KB',
+    limit: '17.5 KB',
+  },
+  {
+    name: 'The initial cost paid for using one component without ES modules',
+    webpack: true,
+    path: 'packages/material-ui/build/Paper/index.js',
+    limit: '18.5 KB',
   },
   {
     name: 'The size of the @material-ui/core modules',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '91.9 KB',
+    limit: '91.5 KB',
   },
   {
     name: 'The theme object',
     webpack: true,
     path: 'packages/material-ui/build/styles/createMuiTheme.js',
-    limit: '7 KB',
+    limit: '6 KB',
   },
   {
     name: 'The size of the @material-ui/styles modules',
     webpack: true,
     path: 'packages/material-ui-styles/build/index.js',
-    limit: '16.3 KB',
+    limit: '15.7 KB',
   },
   {
     name: 'The size of the @material-ui/system modules',
@@ -56,28 +56,28 @@ module.exports = [
   },
   {
     // why we use esm here: https://github.com/mui-org/material-ui/pull/13391#issuecomment-459692816
-    name: 'The size of the @material-ui/core/Button component',
+    name: 'The size of the Button component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Button/index.js',
-    limit: '24.6 KB',
+    limit: '24.2 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-modal
-    name: 'The size of the @material-ui/core/Modal component',
+    name: 'The size of the Modal component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Modal/index.js',
-    limit: '24.3 KB',
+    limit: '24.0 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=react-popper
-    name: 'The size of the @material-ui/core/Popper component',
+    name: 'The size of the Popper component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Popper/index.js',
     limit: '9.8 KB',
   },
   {
     // vs https://bundlephobia.com/result?p=focus-trap-react
-    name: 'The size of the @material-ui/core/Popper component',
+    name: 'The size of the TrapFocus component',
     webpack: true,
     path: 'packages/material-ui/build/esm/Modal/TrapFocus.js',
     limit: '1.6 KB',
@@ -94,12 +94,12 @@ module.exports = [
     name: 'The main docs bundle',
     webpack: false,
     path: main.path,
-    limit: '203 KB',
+    limit: '202 KB',
   },
   {
     name: 'The docs home page',
     webpack: false,
     path: `.next/static/${buildId}/pages/index.js`,
-    limit: '13 KB',
+    limit: '10 KB',
   },
 ];

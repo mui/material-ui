@@ -8,7 +8,6 @@ export interface LinkProps
     LinkClassKey,
     'component'
   > {
-  block?: boolean;
   color?: PropTypes.Color;
   component?: React.ReactType<LinkProps>;
   TypographyClasses?: TypographyProps['classes'];

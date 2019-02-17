@@ -18,7 +18,6 @@ import Link from '@material-ui/core/Link';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">block</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the link is inline or not. When `block` is true the link is not inline  when `block` is false it is. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the link. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'error', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary'<br></span> | <span class="prop-default">'primary'</span> | The color of the link. |

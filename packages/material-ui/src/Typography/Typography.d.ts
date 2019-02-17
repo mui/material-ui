@@ -11,10 +11,10 @@ export interface TypographyProps
   component?: React.ReactType<TypographyProps>;
   display?: 'initial' | 'block' | 'inline';
   gutterBottom?: boolean;
-  variantMapping?: { [type in Style]: string };
   noWrap?: boolean;
   paragraph?: boolean;
   variant?: Style | 'inherit';
+  variantMapping?: { [type in Style]: string };
 }
 
 export type TypographyClassKey =

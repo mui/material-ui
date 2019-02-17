@@ -124,39 +124,42 @@ function Typography(props) {
   const {
     align,
     classes,
-    className: classNameProp,
+    className,
     color,
-    component: componentProp,
+    component,
     display,
     gutterBottom,
-    variantMapping,
     noWrap,
     paragraph,
     theme,
     variant,
+    variantMapping,
     ...other
   } = props;
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes[variant]]: variant !== 'inherit',
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-      [classes.noWrap]: noWrap,
-      [classes.gutterBottom]: gutterBottom,
-      [classes.paragraph]: paragraph,
-      [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-      [classes[`display${capitalize(display)}`]]: display !== 'initial',
-    },
-    classNameProp,
-  );
-
   const Component =
-    componentProp ||
+    component ||
     (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
-  return <Component className={className} {...other} />;
+  return (
+    <Component
+      className={clsx(
+        classes.root,
+        {
+          [classes[variant]]: variant !== 'inherit',
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes.noWrap]: noWrap,
+          [classes.gutterBottom]: gutterBottom,
+          [classes.paragraph]: paragraph,
+          [classes[`align${capitalize(align)}`]]: align !== 'inherit',
+          [classes[`display${capitalize(display)}`]]: display !== 'initial',
+        },
+        className,
+      )}
+      {...other}
+    />
+  );
 }
 
 Typography.propTypes = {
@@ -240,7 +243,6 @@ Typography.propTypes = {
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
-   * The default mapping is the following:
    */
   variantMapping: PropTypes.object,
 };
