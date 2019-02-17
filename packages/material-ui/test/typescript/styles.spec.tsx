@@ -169,7 +169,7 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ComponentWithTheme = withTheme()(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
+const ComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
 
 <ComponentWithTheme />;
 
@@ -183,12 +183,12 @@ const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => 
 // missing prop theme
 <StyledComponent />; // $ExpectError
 
-const AllTheComposition = withTheme()(StyledComponent);
+const AllTheComposition = withTheme(StyledComponent);
 
 <AllTheComposition />;
 
 {
-  const Foo = withTheme()(
+  const Foo = withTheme(
     class extends React.Component<WithTheme> {
       render() {
         return null;

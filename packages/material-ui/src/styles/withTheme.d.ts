@@ -9,4 +9,6 @@ export interface ThemedComponentProps extends Partial<WithTheme> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withTheme(): PropInjector<WithTheme, ThemedComponentProps>;
+declare const withTheme: PropInjector<WithTheme, ThemedComponentProps>;
+
+export default withTheme;

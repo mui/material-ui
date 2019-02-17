@@ -27,7 +27,7 @@ describe('withTheme', () => {
       theme: PropTypes.object,
     };
 
-    const TestWithTheme = withTheme()(Test);
+    const TestWithTheme = withTheme(Test);
 
     const wrapper = mount(
       <ThemeProvider theme={{ foo: 'foo' }}>
@@ -40,14 +40,14 @@ describe('withTheme', () => {
   it('does not hoist statics', () => {
     const Test = () => null;
     Test.someStatic = 'will not get hoisted';
-    const TestWithTheme = withTheme()(Test);
+    const TestWithTheme = withTheme(Test);
     assert.strictEqual(TestWithTheme.someStatic, undefined);
   });
 
   it('hoists mui internals', () => {
     assert.strictEqual(isMuiElement(<Input />, ['Input']), true);
 
-    const ThemedInput = withTheme()(Input);
+    const ThemedInput = withTheme(Input);
 
     assert.strictEqual(isMuiElement(<ThemedInput />, ['Input']), true);
   });

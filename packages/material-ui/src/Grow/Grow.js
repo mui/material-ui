@@ -177,4 +177,4 @@ Grow.defaultProps = {
 
 Grow.muiSupportAuto = true;
 
-export default withTheme()(Grow);
+export default withTheme(Grow);

@@ -46,7 +46,7 @@
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**' && nyc report -r lcovonly",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/material-ui/**/*.test.js' 'packages/material-ui-utils/**/*.test.js' 'packages/material-ui-styles/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=html",
+    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha 'packages/**/**/*.test.js' --exclude '**/node_modules/**' && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:umd": "yarn babel-node packages/material-ui/test/umd/run.js",
@@ -201,8 +201,7 @@
   "nyc": {
     "include": [
       "packages/material-ui/src/**/*.js",
-      "packages/material-ui/utils/**/*.js",
-      "packages/material-ui/styles/**/*.js"
+      "packages/material-ui-utils/src/**/*.js"
     ],
     "exclude": [
       "**/*.test.js"

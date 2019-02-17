@@ -5,7 +5,17 @@ import hoistStatics from './hoistInternalStatics';
 import ThemeContext from './ThemeContext';
 
 // Provide the theme object as a property to the input component.
-const withTheme = () => Component => {
+const withTheme = Component => {
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV !== 'production' && Component === undefined) {
+    throw new Error(
+      [
+        'You are calling withTheme(Component) with an undefined component.',
+        'You may have forgotten to import it.',
+      ].join('\n'),
+    );
+  }
+
   const WithTheme = props => (
     <ThemeContext.Consumer>
       {theme => {

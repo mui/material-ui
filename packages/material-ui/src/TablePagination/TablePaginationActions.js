@@ -86,4 +86,4 @@ TablePaginationActions.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withTheme()(TablePaginationActions);
+export default withTheme(TablePaginationActions);

@@ -25,7 +25,7 @@ function getThemeSpy() {
   };
 
   return {
-    ThemeSpy: withTheme()(ThemeSpy),
+    ThemeSpy: withTheme(ThemeSpy),
     themeSpy,
   };
 }

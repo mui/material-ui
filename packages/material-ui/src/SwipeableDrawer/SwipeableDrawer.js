@@ -494,4 +494,4 @@ SwipeableDrawer.defaultProps = {
   variant: 'temporary', // Mobile first.
 };
 
-export default withTheme()(SwipeableDrawer);
+export default withTheme(SwipeableDrawer);
