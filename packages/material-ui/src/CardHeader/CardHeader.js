@@ -56,6 +56,7 @@ function CardHeader(props) {
         variant={avatar ? 'body2' : 'h5'}
         className={classes.title}
         component="span"
+        display="block"
         {...titleTypographyProps}
       >
         {title}
@@ -71,6 +72,7 @@ function CardHeader(props) {
         className={classes.subheader}
         color="textSecondary"
         component="span"
+        display="block"
         {...subheaderTypographyProps}
       >
         {subheader}

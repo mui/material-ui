@@ -32,7 +32,12 @@ function SubheaderDividers(props) {
       </ListItem>
       <Divider component="li" />
       <li>
-        <Typography className={classes.dividerFullWidth} color="textSecondary" variant="caption">
+        <Typography
+          className={classes.dividerFullWidth}
+          color="textSecondary"
+          display="block"
+          variant="caption"
+        >
           Divider
         </Typography>
       </li>
@@ -41,7 +46,12 @@ function SubheaderDividers(props) {
       </ListItem>
       <Divider component="li" variant="inset" />
       <li>
-        <Typography className={classes.dividerInset} color="textSecondary" variant="caption">
+        <Typography
+          className={classes.dividerInset}
+          color="textSecondary"
+          display="block"
+          variant="caption"
+        >
           Leisure
         </Typography>
       </li>
