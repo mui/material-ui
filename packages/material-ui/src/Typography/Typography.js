@@ -247,7 +247,7 @@ Typography.propTypes = {
 
 Typography.defaultProps = {
   align: 'inherit',
-  color: 'inherit',
+  color: 'default',
   display: 'initial',
   gutterBottom: false,
   noWrap: false,
