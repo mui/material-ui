@@ -100,6 +100,9 @@ function TrapFocus(props) {
   );
 }
 
+/**
+ * @ignore - internal component.
+ */
 TrapFocus.propTypes = {
   /**
    * A single child content element.

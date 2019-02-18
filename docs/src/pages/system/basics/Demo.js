@@ -7,11 +7,7 @@ import { palette, spacing, typography } from '@material-ui/system';
 const Box = styled.div`${palette}${spacing}${typography}`;
 // or import { unstable_Box as Box } from '@material-ui/core/Box';
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = createMuiTheme();
 
 function Demo() {
   return (

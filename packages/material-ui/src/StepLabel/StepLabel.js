@@ -129,6 +129,7 @@ function StepLabel(props) {
             [classes.active]: active,
             [classes.error]: error,
           })}
+          display="block"
         >
           {children}
         </Typography>

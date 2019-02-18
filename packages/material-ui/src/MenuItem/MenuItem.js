@@ -10,7 +10,7 @@ import ListItem from '../ListItem';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    ...theme.typography.subheading,
+    ...theme.typography.subtitle1,
     height: 24,
     boxSizing: 'content-box',
     width: 'auto',

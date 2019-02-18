@@ -15,7 +15,7 @@ function Types(props) {
 
   return (
     <div className={classes.root}>
-      <Typography component="h2" variant="h1" gutterBottom>
+      <Typography variant="h1" component="h2" gutterBottom>
         h1. Heading
       </Typography>
       <Typography variant="h2" gutterBottom>
@@ -49,13 +49,13 @@ function Types(props) {
         unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
         dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
       </Typography>
-      <Typography variant="button" gutterBottom>
+      <Typography variant="button" display="block" gutterBottom>
         button text
       </Typography>
-      <Typography variant="caption" gutterBottom>
+      <Typography variant="caption" display="block" gutterBottom>
         caption text
       </Typography>
-      <Typography variant="overline" gutterBottom>
+      <Typography variant="overline" display="block" gutterBottom>
         overline text
       </Typography>
     </div>

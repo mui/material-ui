@@ -10,7 +10,7 @@ function MyComponent() {
   return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
 }
 
-const theme = createMuiTheme({ typography: { useNextVariants: true } });
+const theme = createMuiTheme();
 
 export default function ThemeHelper() {
   return (

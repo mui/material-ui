@@ -49,9 +49,6 @@ const theme = createMuiTheme({
     accent: red,
     type: 'light',
   },
-  typography: {
-    useNextVariants: true,
-  },
 });
 
 function renderPricing(req, res) {

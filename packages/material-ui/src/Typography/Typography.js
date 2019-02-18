@@ -1,30 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType, chainPropTypes } from '@material-ui/utils';
+import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'block',
     margin: 0,
   },
-  /* Styles applied to the root element if `variant="display4"`. */
-  display4: theme.typography.display4,
-  /* Styles applied to the root element if `variant="display3"`. */
-  display3: theme.typography.display3,
-  /* Styles applied to the root element if `variant="display2"`. */
-  display2: theme.typography.display2,
-  /* Styles applied to the root element if `variant="display1"`. */
-  display1: theme.typography.display1,
-  /* Styles applied to the root element if `variant="headline"`. */
-  headline: theme.typography.headline,
-  /* Styles applied to the root element if `variant="title"`. */
-  title: theme.typography.title,
-  /* Styles applied to the root element if `variant="subheading"`. */
-  subheading: theme.typography.subheading,
   /* Styles applied to the root element if `variant="body2"`. */
   body2: theme.typography.body2,
   /* Styles applied to the root element if `variant="body1"`. */
@@ -112,39 +97,17 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
-  /* Styles applied to the root element if `inline={true}`. */
-  inline: {
+  /* Styles applied to the root element if `display="inline"`. */
+  displayInline: {
     display: 'inline',
+  },
+  /* Styles applied to the root element if `display="block"`. */
+  displayBlock: {
+    display: 'block',
   },
 });
 
-const nextVariants = {
-  display4: 'h1',
-  display3: 'h2',
-  display2: 'h3',
-  display1: 'h4',
-  headline: 'h5',
-  title: 'h6',
-  subheading: 'subtitle1',
-};
-
-function getVariant(theme, variantProp) {
-  const typography = theme.typography;
-  let variant = variantProp;
-
-  if (!variant) {
-    variant = typography.useNextVariants ? 'body2' : 'body1';
-  }
-
-  // complete v2 switch
-  if (typography.useNextVariants) {
-    variant = nextVariants[variant] || variant;
-  }
-
-  return variant;
-}
-
-const defaultHeadlineMapping = {
+const defaultVariantMapping = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -155,55 +118,48 @@ const defaultHeadlineMapping = {
   subtitle2: 'h6',
   body1: 'p',
   body2: 'p',
-  // deprecated
-  display4: 'h1',
-  display3: 'h1',
-  display2: 'h1',
-  display1: 'h1',
-  headline: 'h1',
-  title: 'h2',
-  subheading: 'h3',
 };
 
 function Typography(props) {
   const {
     align,
     classes,
-    className: classNameProp,
+    className,
     color,
-    component: componentProp,
+    component,
+    display,
     gutterBottom,
-    headlineMapping,
-    inline,
-    internalDeprecatedVariant,
     noWrap,
     paragraph,
     theme,
-    variant: variantProp,
+    variant,
+    variantMapping,
     ...other
   } = props;
 
-  const variant = getVariant(theme, variantProp);
-  const className = clsx(
-    classes.root,
-    {
-      [classes[variant]]: variant !== 'inherit',
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-      [classes.noWrap]: noWrap,
-      [classes.gutterBottom]: gutterBottom,
-      [classes.paragraph]: paragraph,
-      [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-      [classes.inline]: inline,
-    },
-    classNameProp,
-  );
-
   const Component =
-    componentProp ||
-    (paragraph ? 'p' : headlineMapping[variant] || defaultHeadlineMapping[variant]) ||
+    component ||
+    (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) ||
     'span';
 
-  return <Component className={className} {...other} />;
+  return (
+    <Component
+      className={clsx(
+        classes.root,
+        {
+          [classes[variant]]: variant !== 'inherit',
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes.noWrap]: noWrap,
+          [classes.gutterBottom]: gutterBottom,
+          [classes.paragraph]: paragraph,
+          [classes[`align${capitalize(align)}`]]: align !== 'inherit',
+          [classes[`display${capitalize(display)}`]]: display !== 'initial',
+        },
+        className,
+      )}
+      {...other}
+    />
+  );
 }
 
 Typography.propTypes = {
@@ -243,29 +199,13 @@ Typography.propTypes = {
    */
   component: componentPropType,
   /**
+   * Controls the display type
+   */
+  display: PropTypes.oneOf(['initial', 'block', 'inline']),
+  /**
    * If `true`, the text will have a bottom margin.
    */
   gutterBottom: PropTypes.bool,
-  /**
-   * We are empirically mapping the variant property to a range of different DOM element types.
-   * For instance, subtitle1 to `<h6>`.
-   * If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the `component` property.
-   * The default mapping is the following:
-   */
-  headlineMapping: PropTypes.object,
-  /**
-   *  Controls whether the Typography is inline or not.
-   */
-  inline: PropTypes.bool,
-  /**
-   * A deprecated variant is used from an internal component. Users don't need
-   * a deprecation warning here if they switched to the v2 theme. They already
-   * get the mapping that will be applied in the next major release.
-   *
-   * @internal
-   */
-  internalDeprecatedVariant: PropTypes.bool,
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
@@ -280,69 +220,42 @@ Typography.propTypes = {
   theme: PropTypes.object.isRequired,
   /**
    * Applies the theme typography styles.
-   * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
    */
-  variant: chainPropTypes(
-    PropTypes.oneOf([
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'subtitle1',
-      'subtitle2',
-      'body1',
-      'body2',
-      'caption',
-      'button',
-      'overline',
-      'srOnly',
-      'inherit',
-      // deprecated
-      'display4',
-      'display3',
-      'display2',
-      'display1',
-      'headline',
-      'title',
-      'subheading',
-    ]),
-    props => {
-      const deprecatedVariants = [
-        'display4',
-        'display3',
-        'display2',
-        'display1',
-        'headline',
-        'title',
-        'subheading',
-      ];
-      if (
-        props.theme.typography.useNextVariants &&
-        !props.internalDeprecatedVariant &&
-        deprecatedVariants.indexOf(props.variant) !== -1
-      ) {
-        return new Error(
-          'Material-UI: you are using a deprecated typography variant: ' +
-            `\`${props.variant}\` that will be removed in the next major release.\n` +
-            'Please read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2.',
-        );
-      }
-
-      return null;
-    },
-  ),
+  variant: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'subtitle2',
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    'overline',
+    'srOnly',
+    'inherit',
+  ]),
+  /**
+   * We are empirically mapping the variant property to a range of different DOM element types.
+   * For instance, subtitle1 to `<h6>`.
+   * If you wish to change that mapping, you can provide your own.
+   * Alternatively, you can use the `component` property.
+   */
+  variantMapping: PropTypes.object,
 };
 
 Typography.defaultProps = {
   align: 'inherit',
   color: 'default',
+  display: 'initial',
   gutterBottom: false,
-  headlineMapping: defaultHeadlineMapping,
-  inline: false,
   noWrap: false,
   paragraph: false,
+  variant: 'body2',
+  variantMapping: defaultVariantMapping,
 };
 
 export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

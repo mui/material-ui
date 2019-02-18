@@ -57,9 +57,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
-  typography: {
-    useNextVariants: true,
-  },
 });
 
 function CustomizedButtons(props) {

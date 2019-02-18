@@ -1,8 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
-import createMuiTheme from '../styles/createMuiTheme';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Typography from './Typography';
 
 describe('<Typography />', () => {
@@ -75,13 +73,6 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('prop: inline', () => {
-    it('should render with the inline class', () => {
-      const wrapper = shallow(<Typography inline>Hello</Typography>);
-      assert.strictEqual(wrapper.hasClass(classes.inline), true);
-    });
-  });
-
   describe('headline', () => {
     it('should render a span by default', () => {
       const wrapper = shallow(<Typography variant="button">Hello</Typography>);
@@ -104,59 +95,10 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('v2 migration', () => {
-    const mount = createMount();
-
-    beforeEach(() => {
-      // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = false;
-      consoleErrorMock.spy();
-    });
-
-    afterEach(() => {
-      // eslint-disable-next-line no-underscore-dangle
-      global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-      consoleErrorMock.reset();
-    });
-
-    /**
-     * tests if a warning is issued from the `warning` module when mounting {component}
-     */
-    const testMount = (component, expectWarning) => {
-      const wrapper = mount(component);
-      wrapper.unmount();
-
-      if (expectWarning) {
-        assert.strictEqual(consoleErrorMock.callCount(), 1);
-        assert.include(consoleErrorMock.args()[0], 'deprecated');
-      } else {
-        assert.strictEqual(consoleErrorMock.callCount(), 0);
-      }
-    };
-
-    describe('prop: internalDeprecatedVariant', () => {
-      it('suppresses warnings if the user is on a v2 theme', () => {
-        testMount(<Typography internalDeprecatedVariant variant="headline" />, false);
-      });
-    });
-
-    describe('theme.typography.useNextVariants', () => {
-      it('maps internal deprecated variants', () => {
-        const wrapper = shallow(<Typography variant="display4" />);
-        assert.strictEqual(wrapper.hasClass(classes.h1), true);
-      });
-
-      it('suppresses warnings for restyled variants', () => {
-        const theme = createMuiTheme({ typography: { useNextVariants: true } });
-        testMount(<Typography theme={theme} variant="h1" />, false);
-      });
-    });
-  });
-
-  describe('prop: headlineMapping', () => {
+  describe('prop: variantMapping', () => {
     it('should work with a single value', () => {
       const wrapper = shallow(
-        <Typography variant="h6" headlineMapping={{ h6: 'aside' }}>
+        <Typography variant="h6" variantMapping={{ h6: 'aside' }}>
           Hello
         </Typography>,
       );
@@ -165,11 +107,34 @@ describe('<Typography />', () => {
 
     it('should work event without the full mapping', () => {
       const wrapper = shallow(
-        <Typography variant="h6" headlineMapping={{}}>
+        <Typography variant="h6" variantMapping={{}}>
           Hello
         </Typography>,
       );
       assert.strictEqual(wrapper.type(), 'h6');
+    });
+  });
+
+  describe('prop: display', () => {
+    it('should render with displayInline class in display="inline"', () => {
+      const wrapper = shallow(<Typography display="inline">Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayInline), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayBlock), false);
+    });
+
+    it('should render with displayInline class in display="block"', () => {
+      const wrapper = shallow(<Typography display="block">Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayBlock), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayInline), false);
+    });
+
+    it('should render with no display classes if display="initial"', () => {
+      const wrapper = shallow(<Typography display="initial">Hello</Typography>);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.displayBlock), false);
+      assert.strictEqual(wrapper.hasClass(classes.displayInline), false);
     });
   });
 });

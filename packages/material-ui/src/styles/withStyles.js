@@ -42,11 +42,7 @@ export const sheetsManager = new Map();
 const noopTheme = {};
 
 // In order to have self-supporting components, we rely on default theme when not provided.
-const defaultTheme = createMuiTheme({
-  typography: {
-    suppressWarning: true,
-  },
-});
+const defaultTheme = createMuiTheme();
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
