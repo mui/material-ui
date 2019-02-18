@@ -19,7 +19,17 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-const withThemeOld = () => Component => {
+const withThemeOld = Component => {
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV !== 'production' && Component === undefined) {
+    throw new Error(
+      [
+        'You are calling withTheme(Component) with an undefined component.',
+        'You may have forgotten to import it.',
+      ].join('\n'),
+    );
+  }
+
   class WithTheme extends React.Component {
     constructor(props, context) {
       super();

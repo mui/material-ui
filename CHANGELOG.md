@@ -159,7 +159,7 @@ Remove the deprecated button flat, raised and fab variants:
 #### Changes
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
-- [Slider] Fix a11y issues with the handle (#14461) @eps1lon 
+- [Slider] Fix a11y issues with the handle (#14461) @eps1lon
 
 ### Docs
 

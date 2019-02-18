@@ -113,4 +113,4 @@ Fade.defaultProps = {
   },
 };
 
-export default withTheme()(Fade);
+export default withTheme(Fade);

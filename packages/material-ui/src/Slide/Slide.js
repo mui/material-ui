@@ -282,4 +282,4 @@ Slide.defaultProps = {
   },
 };
 
-export default withTheme()(Slide);
+export default withTheme(Slide);

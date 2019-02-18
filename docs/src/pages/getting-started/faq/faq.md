@@ -98,7 +98,7 @@ A lot of our interactive components use it internally:
 `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc.
 You can use the same solution with them.
 
-## How do I combine the `withStyles()` and `withTheme()` HOCs?
+## How do I combine the `withStyles()` and `withTheme` HOCs?
 
 There are a number of different options:
 
@@ -114,7 +114,7 @@ export default withStyles(styles, { withTheme: true })(Modal);
 import { compose } from 'recompose';
 
 export default compose(
-  withTheme(),
+  withTheme,
   withStyles(styles)
 )(Modal);
 ```
@@ -122,7 +122,7 @@ export default compose(
 **raw function chaining:**
 
 ```js
-export default withTheme()(withStyles(styles)(Modal));
+export default withTheme(withStyles(styles)(Modal));
 ```
 
 ## How can I access the DOM element?

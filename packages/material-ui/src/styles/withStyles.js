@@ -273,7 +273,7 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
       const more = getThemeProps({ theme: this.theme, name, props: other });
 
       // Provide the theme to the wrapped component.
-      // So we don't have to use the `withTheme()` Higher-order Component.
+      // So we don't have to use the `withTheme` Higher-order Component.
       if (withTheme && !more.theme) {
         more.theme = this.theme;
       }

@@ -155,7 +155,7 @@ const withWidth = (options = {}) => Component => {
 
   hoistNonReactStatics(WithWidth, Component);
 
-  return withTheme()(WithWidth);
+  return withTheme(WithWidth);
 };
 
 export default withWidth;
