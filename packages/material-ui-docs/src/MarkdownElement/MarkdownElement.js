@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import marked from 'marked';
 import { withStyles } from '@material-ui/core/styles';
+import textToHash from '@material-ui/docs/MarkdownElement/textToHash';
 import prism from './prism';
 
 // Monkey patch to preserve non-breaking spaces
@@ -17,18 +18,6 @@ marked.Lexer.prototype.lex = function lex(src) {
 };
 
 const renderer = new marked.Renderer();
-
-export function textToHash(text) {
-  return encodeURI(
-    text
-      .toLowerCase()
-      .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-      // eslint-disable-next-line no-useless-escape
-      .replace(/[!@#\$%\^&\*\(\)=_\+\[\]{}`~;:'"\|,\.<>\/\?]+/g, '')
-      .replace(/[\s-]+/g, '-')
-      .replace(/-$/g, ''),
-  );
-}
 
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.
