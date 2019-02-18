@@ -93,6 +93,7 @@ export function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'next',
     '@material-ui/system': 'next',
     '@material-ui/utils': 'next',
+    '@material-ui/css-utils': 'next',
     'date-fns': 'next',
     jss: 'next',
     'jss-plugin-template': 'next',

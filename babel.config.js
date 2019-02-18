@@ -35,6 +35,7 @@ const defaultAlias = {
   '@material-ui/styles': './packages/material-ui-styles/src',
   '@material-ui/system': './packages/material-ui-system/src',
   '@material-ui/utils': './packages/material-ui-utils/src',
+  '@material-ui/css-utils': './packages/material-ui-css-utils/src',
 };
 
 const productionPlugins = [
