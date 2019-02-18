@@ -28,6 +28,7 @@
     "@emotion/core": "^10.0.0",
     "@emotion/styled": "^10.0.0",
     "benchmark": "^2.1.4",
+    "emotion": "^10.0.7",
     "emotion-server": "^10.0.6",
     "nodemod": "^1.5.19",
     "styled-system": "^3.1.11"
