@@ -8,5 +8,6 @@ describe('textToHash', () => {
       'createmuithemeoptions-theme',
     );
     assert.strictEqual(textToHash('Typography - Font family'), 'typography-font-family');
+    assert.strictEqual(textToHash('barre d&#39;application'), 'barre-dapplication');
   });
 });

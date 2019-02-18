@@ -202,7 +202,7 @@ function AppTableOfContents(props) {
       clearTimeout(unsetClickedRef.current);
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, [false]);
+  }, []);
 
   React.useEffect(() => {
     setItemsServer(getItemsServer(contents, itemsCollectorRef));
