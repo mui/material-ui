@@ -11,7 +11,7 @@ DeepChildRaw.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const DeepChild = withTheme()(DeepChildRaw);
+const DeepChild = withTheme(DeepChildRaw);
 
 function WithTheme() {
   return (

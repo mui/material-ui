@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import Transition from 'react-transition-group/Transition';
 import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
@@ -39,19 +38,14 @@ describe('<Slide />', () => {
         style={{ color: 'red', backgroundColor: 'yellow' }}
         theme={createMuiTheme()}
       >
-        <div style={{ color: 'blue' }} />
+        <div id="with-slide" style={{ color: 'blue' }} />
       </SlideNaked>,
     );
-    assert.deepEqual(
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .props().style,
-      {
-        backgroundColor: 'yellow',
-        color: 'blue',
-      },
-    );
+    assert.deepEqual(wrapper.find('#with-slide').props().style, {
+      backgroundColor: 'yellow',
+      color: 'blue',
+      visibility: undefined,
+    });
   });
 
   describe('event callbacks', () => {
@@ -241,7 +235,7 @@ describe('<Slide />', () => {
       );
       const transition = wrapper.instance().transitionRef;
 
-      assert.strictEqual(transition.style.visibility, 'inherit');
+      assert.strictEqual(transition.style.visibility, 'hidden');
       assert.notStrictEqual(transition.style.transform, undefined);
     });
   });
@@ -303,8 +297,12 @@ describe('<Slide />', () => {
 
   describe('server-side', () => {
     it('should be initially hidden', () => {
-      const wrapper = shallow(<Slide {...defaultProps} in={false} />);
-      assert.strictEqual(wrapper.find(Transition).props().style.visibility, 'hidden');
+      const wrapper = mount(
+        <Slide {...defaultProps} in={false}>
+          <div id="with-slide" />
+        </Slide>,
+      );
+      assert.strictEqual(wrapper.find('#with-slide').props().style.visibility, 'hidden');
     });
   });
 });

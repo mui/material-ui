@@ -63,7 +63,7 @@ function ListItemText(props) {
         if (primary != null && primary.type !== Typography && !disableTypography) {
           primary = (
             <Typography
-              variant={theme.typography.useNextVariants ? 'body1' : 'subheading'}
+              variant="body1"
               className={clsx(classes.primary, { [classes.textDense]: dense })}
               component="span"
               {...primaryTypographyProps}
@@ -116,7 +116,7 @@ ListItemText.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

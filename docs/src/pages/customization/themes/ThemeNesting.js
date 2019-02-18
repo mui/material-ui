@@ -10,7 +10,6 @@ const outerTheme = createMuiTheme({
       main: orange[500],
     },
   },
-  typography: { useNextVariants: true },
 });
 
 const innerTheme = createMuiTheme({
@@ -19,7 +18,6 @@ const innerTheme = createMuiTheme({
       main: green[500],
     },
   },
-  typography: { useNextVariants: true },
 });
 
 function ThemeNesting() {

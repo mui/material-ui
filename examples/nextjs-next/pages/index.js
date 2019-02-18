@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import '../src/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
@@ -10,7 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
-import Link from 'next/link';
+import Link from '../src/Link';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,11 +46,11 @@ function Index() {
         Material-UI
       </Typography>
       <Typography variant="subtitle1" gutterBottom>
-        example project
+        home page
       </Typography>
       <Typography gutterBottom>
-        <Link href="/about">
-          <a>Go to the about page</a>
+        <Link color="secondary" href="/about">
+          Go to the about page
         </Link>
       </Typography>
       <Button variant="contained" color="secondary" onClick={handleClick}>

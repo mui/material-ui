@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import blue from '@material-ui/core/colors/blue';
 import Switch from '@material-ui/core/Switch';
 
-const defaultTheme = createMuiTheme({ typography: { useNextVariants: true } });
+const defaultTheme = createMuiTheme();
 
 class DynamicThemeNesting extends React.Component {
   state = {

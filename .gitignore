@@ -11,6 +11,7 @@
 /.nyc_output
 /coverage
 /docs/export
+/examples/**/.cache
 /packages/material-ui-codemod/lib
 /packages/material-ui-icons/material-io-tools-icons
 /test/regressions/screenshots

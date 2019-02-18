@@ -14,15 +14,7 @@ export const styles = {
 };
 
 function DialogContentText(props) {
-  return (
-    <Typography
-      component="p"
-      internalDeprecatedVariant
-      variant="subheading"
-      color="textSecondary"
-      {...props}
-    />
-  );
+  return <Typography component="p" variant="subtitle1" color="textSecondary" {...props} />;
 }
 
 DialogContentText.propTypes = {
@@ -32,7 +24,7 @@ DialogContentText.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
 };

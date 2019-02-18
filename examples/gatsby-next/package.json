@@ -1,0 +1,17 @@
+{
+  "name": "gatsby-next",
+  "version": "4.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "next",
+    "@material-ui/styles": "next",
+    "gatsby": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  }
+}

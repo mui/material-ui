@@ -51,16 +51,7 @@ export const styles = {
 };
 
 function Link(props) {
-  const {
-    block,
-    children,
-    classes,
-    className: classNameProp,
-    component,
-    TypographyClasses,
-    underline,
-    ...other
-  } = props;
+  const { children, classes, className, component, TypographyClasses, underline, ...other } = props;
 
   return (
     <Typography
@@ -70,11 +61,10 @@ function Link(props) {
           [classes.button]: component === 'button',
         },
         classes[`underline${capitalize(underline)}`],
-        classNameProp,
+        className,
       )}
       classes={TypographyClasses}
       component={component}
-      inline={!block}
       {...other}
     >
       {children}
@@ -84,17 +74,12 @@ function Link(props) {
 
 Link.propTypes = {
   /**
-   *  Controls whether the link is inline or not. When `block` is true the link is not inline
-   *  when `block` is false it is.
-   */
-  block: PropTypes.bool,
-  /**
    * The content of the link.
    */
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -132,7 +117,6 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
-  block: false,
   color: 'primary',
   component: 'a',
   underline: 'hover',

@@ -15,7 +15,7 @@ function MyComponent() {
   return <span>{`width: ${width}`}</span>;
 }
 
-const theme = createMuiTheme({ typography: { useNextVariants: true } });
+const theme = createMuiTheme();
 
 export default function UseWidth() {
   return (

@@ -18,13 +18,7 @@ function DialogTitle(props) {
 
   return (
     <div className={clsx(classes.root, className)} {...other}>
-      {disableTypography ? (
-        children
-      ) : (
-        <Typography variant="title" internalDeprecatedVariant>
-          {children}
-        </Typography>
-      )}
+      {disableTypography ? children : <Typography variant="h6">{children}</Typography>}
     </div>
   );
 }
@@ -36,7 +30,7 @@ DialogTitle.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

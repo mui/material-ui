@@ -36,17 +36,9 @@ const BoxEmotion = styledEmotion('div')(styleFunction);
 const BoxMaterialSystem = styledComponents.div`${materialSystem}`;
 const BoxStyledSystem = styledComponents.div`${styledSystem}`;
 
-const materialSystemTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const materialSystemTheme = createMuiTheme();
 
-const styledSystemTheme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const styledSystemTheme = createMuiTheme();
 styledSystemTheme.breakpoints = null;
 styledSystemTheme.colors = styledSystemTheme.palette;
 styledSystemTheme.fontSizes = styledSystemTheme.typography;

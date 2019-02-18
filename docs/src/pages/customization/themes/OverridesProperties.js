@@ -10,7 +10,6 @@ const theme = createMuiTheme({
       disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
-  typography: { useNextVariants: true },
 });
 
 function OverridesProperties() {

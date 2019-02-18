@@ -5,11 +5,7 @@ import webfontloader from 'webfontloader';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TestViewer from './TestViewer';
 
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-});
+const theme = createMuiTheme();
 
 // Get all the tests specifically written for preventing regressions.
 const requireRegression = require.context('./tests', true, /js$/);

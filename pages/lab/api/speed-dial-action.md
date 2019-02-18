@@ -19,7 +19,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Button`](/api/button/) component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node</span> |   | The Icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">TooltipClasses</span> | <span class="prop-type">object</span> |   | Classes applied to the [`Tooltip`](/api/tooltip/) element. |

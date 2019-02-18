@@ -15,14 +15,7 @@ export type ThemeStyle =
   | 'body2'
   | 'caption'
   | 'button'
-  | 'overline'
-  | 'display4' // deprecated
-  | 'display3'
-  | 'display2'
-  | 'display1'
-  | 'headline'
-  | 'title'
-  | 'subheading';
+  | 'overline';
 
 export interface FontStyle
   extends Required<{
@@ -36,7 +29,6 @@ export interface FontStyle
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
   allVariants?: CSSProperties;
-  useNextVariants?: boolean;
 }
 
 export type TypographyStyle = Required<

@@ -21,7 +21,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 | <span class="prop-name required">ariaLabel *</span> | <span class="prop-type">string</span> |   | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
 | <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Button`](/api/button/) element. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | SpeedDialActions to display when the SpeedDial is `open`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'&nbsp;&#124;<br>&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br></span> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">element</span> |   | The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation. |

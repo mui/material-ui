@@ -87,6 +87,7 @@ describe('<Zoom />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         transform: 'scale(0)',
+        visibility: 'hidden',
       });
     });
 
@@ -98,6 +99,7 @@ describe('<Zoom />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         transform: 'scale(0)',
+        visibility: 'hidden',
       });
     });
   });

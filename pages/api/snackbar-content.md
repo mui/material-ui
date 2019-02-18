@@ -19,7 +19,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">action</span> | <span class="prop-type">node</span> |   | The action to display. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">message</span> | <span class="prop-type">node</span> |   | The message to display. |
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).

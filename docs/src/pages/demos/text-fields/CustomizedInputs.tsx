@@ -84,7 +84,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
-  typography: { useNextVariants: true },
 });
 
 export interface Props extends WithStyles<typeof styles> {}

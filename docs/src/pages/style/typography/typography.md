@@ -44,10 +44,6 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 
 {{"demo": "pages/style/typography/Types.js"}}
 
-### Deprecated variants
-
-{{"demo": "pages/style/typography/DeprecatedTypes.js"}}
-
 ## Theme
 
 In some situations you might not be able to use the `Typography` component.
@@ -55,41 +51,39 @@ Hopefully, you might be able to take advantage of the [`typography`](/customizat
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
 
-## Migration to typography v2
+## Changing the semantic element
 
-The material design specification changed concerning variant names and styles.
-To allow a smooth transition we kept old variants and restyled variants for backwards compatibility but we log deprecation warnings.
-We will remove the old typography variants in the next major release v4.0.0 (Q1 2019).
+The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element.
+It’s important to realize that the style of a typography is independent from the semantic underlying element.
 
-### Strategies
+- You can change the underlying element for a one time occassion with the `component` property:
 
-To make an immediate switch to typography v2 you can simply pass `useNextVariants: true` when
-calling `createMuiTheme`:
+```jsx
+{/* We already have an h1 in the page, let's not duplicate it. */}
+<Typography variant="h1" component="h2">
+  h1. Heading
+</Typography>
+```
+
+- You can change the mapping [globally using the theme](/customization/themes/#properties):
 
 ```js
 const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
+  props: {
+    MuiTypography: {
+      variantMapping: {
+        h1: 'h2',
+        h2: 'h2',
+        h3: 'h2',
+        h4: 'h2',
+        h5: 'h2',
+        h6: 'h2',
+        subtitle1: 'h2',
+        subtitle2: 'h2',
+        body1: 'span',
+        body2: 'span',
+      },
+    },
   },
-});
+})
 ```
-
-or set `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;` if you don't use the theme.
-
-This will use new variants instead of old variants according to the following mapping:
-
-```sh
-display4 => h1
-display3 => h2
-display2 => h3
-display1 => h4
-headline => h5
-title => h6
-subheading => subtitle1
-body2 => body1
-body1 (default) => body2 (default)
-```
-
-Please note that this will log deprecation warnings if you use one of the old variants.
-We recommend you replace those old variants with the recommended variants to be prepared
-for the next major release. See [Themes](/customization/themes/) for more information about how to use a global theme.

@@ -3544,7 +3544,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.3, classnames@^2.2.5, classnames@~2.2.5:
+classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6, classnames@~2.2.5:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -4049,6 +4049,16 @@ create-emotion-server@10.0.0:
     html-tokenize "^2.0.0"
     multipipe "^1.0.2"
     through "^2.3.8"
+
+create-emotion@^10.0.7:
+  version "10.0.7"
+  resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-10.0.7.tgz#608d69c550e2f57827383762d416a9ddf75d8bed"
+  integrity sha512-2T6vvvh7XN/MvI3far2SXeQ5s7wti/dae6jKuHxkK4IA1IKdYocKTujZ+r56azZ8fguq3Qj4ua1AJ2vHCq7VTg==
+  dependencies:
+    "@emotion/cache" "^10.0.7"
+    "@emotion/serialize" "^0.11.4"
+    "@emotion/sheet" "0.9.2"
+    "@emotion/utils" "0.11.1"
 
 create-emotion@^9.2.12:
   version "9.2.12"
@@ -5032,6 +5042,14 @@ emotion-theming@^10.0.5:
     "@emotion/weak-memoize" "0.2.2"
     hoist-non-react-statics "^2.3.1"
     object-assign "^4.1.1"
+
+emotion@^10.0.7:
+  version "10.0.7"
+  resolved "https://registry.yarnpkg.com/emotion/-/emotion-10.0.7.tgz#74ea432c7004c2bd5452d017d52e307a7a31a835"
+  integrity sha512-k1gGBoel9rlHvHIUVHyk4iJPsRaDsrpr7vKivOmdJAH2Va+smxIYvsjjzXnxTeqJt5IwcVBareuoAJMxeShG/w==
+  dependencies:
+    babel-plugin-emotion "^10.0.7"
+    create-emotion "^10.0.7"
 
 emotion@^9.1.2:
   version "9.2.12"

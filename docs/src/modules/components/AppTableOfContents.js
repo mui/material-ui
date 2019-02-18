@@ -237,7 +237,7 @@ function AppTableOfContents(props) {
             {itemsServer.map(item2 => (
               <li key={item2.text}>
                 <Link
-                  block
+                  display="block"
                   color={activeState === item2.hash ? 'textPrimary' : 'textSecondary'}
                   href={`#${item2.hash}`}
                   underline="none"
@@ -254,7 +254,7 @@ function AppTableOfContents(props) {
                     {item2.children.map(item3 => (
                       <li key={item3.text}>
                         <Link
-                          block
+                          display="block"
                           color={activeState === item3.hash ? 'textPrimary' : 'textSecondary'}
                           href={`#${item3.hash}`}
                           underline="none"

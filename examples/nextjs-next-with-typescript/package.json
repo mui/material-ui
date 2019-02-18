@@ -6,7 +6,7 @@
     "@material-ui/core": "next",
     "@material-ui/styles": "next",
     "@zeit/next-typescript": "^1.1.1",
-    "jss": "latest",
+    "jss": "next",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

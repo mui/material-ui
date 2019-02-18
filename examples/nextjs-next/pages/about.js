@@ -1,34 +1,32 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import '../src/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
-import Link from 'next/link';
+import { withStyles } from '@material-ui/styles';
+import Link from '../src/Link';
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing(20),
   },
-}));
+});
 
-function About() {
-  const classes = useStyles();
+function About(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" component="h1" gutterBottom>
         Material-UI
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="subtitle1" component="h2" gutterBottom>
         about page
       </Typography>
       <Typography gutterBottom>
-        <Link href="/">
-          <a>Go to the main page</a>
-        </Link>
+        <Link href="/">Go to the main page</Link>
       </Typography>
       <Button variant="contained" color="primary">
         Do nothing button
@@ -37,4 +35,8 @@ function About() {
   );
 }
 
-export default About;
+About.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(About);

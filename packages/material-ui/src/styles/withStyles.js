@@ -42,11 +42,7 @@ export const sheetsManager = new Map();
 const noopTheme = {};
 
 // In order to have self-supporting components, we rely on default theme when not provided.
-const defaultTheme = createMuiTheme({
-  typography: {
-    suppressWarning: true,
-  },
-});
+const defaultTheme = createMuiTheme();
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
@@ -277,7 +273,7 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
       const more = getThemeProps({ theme: this.theme, name, props: other });
 
       // Provide the theme to the wrapped component.
-      // So we don't have to use the `withTheme()` Higher-order Component.
+      // So we don't have to use the `withTheme` Higher-order Component.
       if (withTheme && !more.theme) {
         more.theme = this.theme;
       }

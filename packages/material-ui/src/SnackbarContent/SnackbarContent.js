@@ -51,7 +51,7 @@ function SnackbarContent(props) {
   return (
     <Paper
       component={Typography}
-      headlineMapping={{
+      variantMapping={{
         body1: 'div',
         body2: 'div',
       }}
@@ -74,7 +74,7 @@ SnackbarContent.propTypes = {
   action: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**

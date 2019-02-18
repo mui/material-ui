@@ -10,7 +10,7 @@ import ListItem from '../ListItem';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    ...theme.typography.subheading,
+    ...theme.typography.subtitle1,
     height: 24,
     boxSizing: 'content-box',
     width: 'auto',
@@ -59,7 +59,7 @@ MenuItem.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
+   * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
