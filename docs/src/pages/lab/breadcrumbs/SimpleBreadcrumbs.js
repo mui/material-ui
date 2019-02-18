@@ -26,7 +26,7 @@ function SimpleBreadcrumbs(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Breadcrumbs arial-label="Breadcrumb">
+        <Breadcrumbs aria-label="Breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
@@ -38,7 +38,7 @@ function SimpleBreadcrumbs(props) {
       </Paper>
       <br />
       <Paper className={classes.paper}>
-        <Breadcrumbs arial-label="Breadcrumb">
+        <Breadcrumbs aria-label="Breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
