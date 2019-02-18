@@ -195,7 +195,7 @@ Now, every time you import `material-ui` in your project, it is going to use you
 
 ## Translations
 
-Translations are handled via [crowdin](https://crowdin.com/project/material-ui-docs).
+Translations are handled via [Crowdin](https://translate.material-ui.com).
 You don't need to apply any changes to localized versions of our markdown files  
 i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing 
 these changes across the localized versions.
