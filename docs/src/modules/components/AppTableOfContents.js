@@ -63,36 +63,38 @@ const styles = theme => ({
   active: {},
 });
 
-let itemsCollector;
 const renderer = new marked.Renderer();
-renderer.heading = (text, level) => {
-  if (level === 2) {
-    itemsCollector.push({
-      text,
-      level,
-      hash: textToHash(text),
-      children: [],
-    });
-  } else if (level === 3) {
-    if (!itemsCollector[itemsCollector.length - 1]) {
-      throw new Error(`Missing parent level for: ${text}`);
+
+function setRenderer(itemsCollectorRef) {
+  renderer.heading = (text, level) => {
+    if (level === 2) {
+      itemsCollectorRef.current.push({
+        text,
+        level,
+        hash: textToHash(text),
+        children: [],
+      });
+    } else if (level === 3) {
+      if (!itemsCollectorRef.current[itemsCollectorRef.current.length - 1]) {
+        throw new Error(`Missing parent level for: ${text}`);
+      }
+
+      itemsCollectorRef.current[itemsCollectorRef.current.length - 1].children.push({
+        text,
+        level,
+        hash: textToHash(text),
+      });
     }
+  };
+}
 
-    itemsCollector[itemsCollector.length - 1].children.push({
-      text,
-      level,
-      hash: textToHash(text),
-    });
-  }
-};
-
-function getItems(contents) {
-  itemsCollector = [];
+function getItemsServer(contents, itemsCollectorRef) {
+  itemsCollectorRef.current = [];
   marked(contents.join(''), {
     renderer,
   });
 
-  return itemsCollector;
+  return itemsCollectorRef.current;
 }
 
 function checkDuplication(uniq, item) {
@@ -103,13 +105,13 @@ function checkDuplication(uniq, item) {
   }
 }
 
-function getItemsClient(itemsServer) {
-  const items = [];
+function getItemsClient(items) {
+  const itemsClient = [];
   const unique = {};
 
-  itemsServer.forEach(item2 => {
+  items.forEach(item2 => {
     checkDuplication(unique, item2);
-    items.push({
+    itemsClient.push({
       ...item2,
       node: document.getElementById(item2.hash),
     });
@@ -117,39 +119,40 @@ function getItemsClient(itemsServer) {
     if (item2.children.length > 0) {
       item2.children.forEach(item3 => {
         checkDuplication(unique, item3);
-        items.push({
+        itemsClient.push({
           ...item3,
           node: document.getElementById(item3.hash),
         });
       });
     }
   });
-  return items;
+  return itemsClient;
 }
 
 function AppTableOfContents(props) {
   const { classes, contents, t } = props;
+  const itemsCollectorRef = React.useRef([]);
+  const [itemsServer, setItemsServer] = React.useState([]);
+  const itemsClientRef = React.useRef([]);
   const [activeState, setActiveState] = React.useState(null);
-  const itemsServer = React.useMemo(() => getItems(contents), [contents]);
-  let itemsClient = [];
-  let clicked = false;
-  let unsetClicked;
+  const clickedRef = React.useRef(false);
+  const unsetClickedRef = React.useRef(null);
 
   const findActiveIndex = () => {
     // Don't set the active index based on scroll if a link was just clicked
-    if (clicked) {
+    if (clickedRef.current) {
       return;
     }
 
     let active;
-    for (let i = itemsClient.length - 1; i >= 0; i -= 1) {
+    for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
         break;
       }
 
-      const item = itemsClient[i];
+      const item = itemsClientRef.current[i];
 
       warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
 
@@ -190,22 +193,31 @@ function AppTableOfContents(props) {
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   React.useEffect(() => {
-    itemsClient = getItemsClient(itemsServer);
+    setRenderer(itemsCollectorRef);
 
     window.addEventListener('hashchange', handleHashChange);
 
     return function componentWillUnmount() {
       handleScroll.cancel();
-      clearTimeout(unsetClicked);
+      clearTimeout(unsetClickedRef.current);
       window.removeEventListener('hashchange', handleHashChange);
     };
-  });
+  }, [false]);
+
+  React.useEffect(() => {
+    setItemsServer(getItemsServer(contents, itemsCollectorRef));
+  }, [contents]);
+
+  React.useEffect(() => {
+    itemsClientRef.current = getItemsClient(itemsCollectorRef.current);
+    findActiveIndex();
+  }, [itemsServer]);
 
   const handleClick = hash => () => {
     // Used to disable findActiveIndex if the page scrolls due to a click
-    clicked = true;
-    unsetClicked = setTimeout(() => {
-      clicked = false;
+    clickedRef.current = true;
+    unsetClickedRef.current = setTimeout(() => {
+      clickedRef.current = false;
     }, 1000);
 
     if (activeState !== hash) {
