@@ -97,6 +97,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "babel-plugin-unwrap-createStyles": "link:packages/babel-plugin-unwrap-createStyles",
     "chai": "^4.1.2",
+    "classnames": "^2.2.6",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^2.0.0",
     "cross-env": "^5.1.1",
@@ -150,6 +151,7 @@
     "nyc": "^13.0.0",
     "postcss": "^7.0.0",
     "prettier": "^1.8.2",
+    "prop-types": "^15.6.0",
     "puppeteer": "^1.5.0",
     "raw-loader": "^1.0.0",
     "react": "^16.8.0",
@@ -190,6 +192,7 @@
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
+    "webpack": "^4.28.4",
     "webpack-bundle-analyzer": "^3.0.0",
     "webpack-cli": "^3.2.3"
   },

@@ -31,7 +31,7 @@
     "test": "exit 0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.0.0",
+    "@material-ui/core": "^3.0.0 || ^4.0.0-alpha",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
