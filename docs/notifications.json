@@ -37,5 +37,9 @@
     "id": 40,
     "text": "Let's translate! <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"ja\" href=\"https://translate.material-ui.com/\">コミュニティがドキュメントを日本語に翻訳するのを手伝ってください</a>. 🇯🇵",
     "userLanguage": "ja"
+  },
+  {
+    "id": 41,
+    "text": "Come and join us in <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://spectrum.chat/material-ui\">the new Material-UI community</a> on Spectrum!"
   }
 ]
