@@ -136,7 +136,7 @@ The Markdown file is the source for the website documentation. So, whatever you 
 In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
 
 Changes should only be applied to the english version e.g. only `app-bar.md` and
-not `app-bar-de.md`. For contributions concerning translations read the [section
+not `app-bar-de.md`. For contributions concerning translations please read the [section
 about translations](#Translations).
 
 ```diff
