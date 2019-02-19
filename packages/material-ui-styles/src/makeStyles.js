@@ -212,7 +212,7 @@ function makeStyles(stylesOrCreator, options = {}) {
         stylesOptions,
         theme,
       });
-    }, [theme]);
+    }, [theme, stylesCreator]);
 
     const firstRender = React.useRef(true);
     React.useEffect(() => {
@@ -240,7 +240,7 @@ function makeStyles(stylesOrCreator, options = {}) {
           theme,
         });
       },
-      [theme],
+      [theme, stylesCreator],
     );
 
     return getClasses({

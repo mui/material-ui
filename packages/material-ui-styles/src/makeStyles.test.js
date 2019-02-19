@@ -306,27 +306,47 @@ describe('makeStyles', () => {
     });
   });
 
-  // To fix, for the next pull request
-  // describe.skip('HMR with same state', () => {
-  //   it('should take the new stylesCreator into account', () => {
-  //     const styles1 = { root: { padding: 1 } };
-  //     const StyledComponent1 = withStyles(styles1, { name: 'MuiTextField' })(Empty);
-  //     const wrapper = mount(<StyledComponent1 />);
+  describe('react-hot-loader', () => {
+    it('should take the new stylesCreator into account', () => {
+      const useStyles1 = makeStyles({ root: { padding: 8 } });
+      const useStyles2 = makeStyles({ root: { padding: 4 } });
 
-  //     const styles2 = { root: { padding: 2 } };
-  //     const StyledComponent2 = withStyles(styles2, { name: 'MuiTextField' })(Empty);
+      let hmr = false;
 
-  //     // Simulate react-hot-loader behavior
-  //     wrapper.instance().componentDidUpdate = StyledComponent2.prototype.componentDidUpdate;
+      const StyledComponent = () => {
+        // Simulate react-hot-loader behavior
+        if (hmr) {
+          useStyles2();
+        } else {
+          useStyles1();
+        }
 
-  //     const classes1 = wrapper.childAt(0).props().classes.root;
-  //     wrapper.setProps({});
-  //     wrapper.update();
-  //     const classes2 = wrapper.childAt(0).props().classes.root;
+        return <div />;
+      };
 
-  //     assert.notStrictEqual(classes1, classes2, 'should generate new classes');
-  //   });
-  // });
+      const sheetsRegistry = new SheetsRegistry();
+      const wrapper = mount(
+        <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StyledComponent />
+        </StylesProvider>,
+      );
+
+      assert.strictEqual(sheetsRegistry.registry.length, 1);
+      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+        root: { padding: 8 },
+      });
+
+      hmr = true;
+      act(() => {
+        wrapper.setProps({});
+      });
+
+      assert.strictEqual(sheetsRegistry.registry.length, 1);
+      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+        root: { padding: 4 },
+      });
+    });
+  });
 
   describe('classname quality', () => {
     let sheetsRegistry;
