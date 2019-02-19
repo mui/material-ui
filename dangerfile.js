@@ -50,21 +50,19 @@ function isPackageComparison([bundle]) {
 /**
  * Generates a user-readable string from a percentage change
  * @param {number} change
- * @param {boolean} includeEmoji
+ * @param {string} goodEmoji emoji on reduction
+ * @param {string} badEmooji emoji on increase
  */
-function addPercent(change, includeEmoji) {
+function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle_down:') {
   if (!Number.isFinite(change)) {
     // When a new package is created
     return 'n/a';
   }
   const formatted = (change * 100).toFixed(2);
   if (/^-|^0(?:\.0+)$/.test(formatted)) {
-    return `${formatted}%`;
+    return `${goodEmoji}${formatted}%`;
   }
-  if (includeEmoji) {
-    return `:small_red_triangle:+${formatted}%`;
-  }
-  return `+${formatted}%`;
+  return `${badEmooji}:+${formatted}%`;
 }
 
 /**
@@ -80,8 +78,9 @@ function generateMDTable(headers, body) {
 }
 
 function generateEmphasizedChange([bundle, { parsed, gzip }]) {
-  const changeParsed = addPercent(parsed.relativeDiff, true);
-  const changeGzip = addPercent(gzip.relativeDiff, true);
+  // increase might be a bug fix which is a nice thing. reductions are always nice
+  const changeParsed = addPercent(parsed.relativeDiff, ':heart_eyes:', '');
+  const changeGzip = addPercent(gzip.relativeDiff, ':heart_eyes:', '');
 
   return `**${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
 }
