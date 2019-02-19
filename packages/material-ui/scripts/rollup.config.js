@@ -58,7 +58,7 @@ export default [
       commonjs(commonjsOptions),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      sizeSnapshot(),
+      sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
       uglify(),
     ],
   },

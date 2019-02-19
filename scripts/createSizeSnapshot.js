@@ -128,7 +128,7 @@ async function getSizeLimitBundles() {
 }
 
 async function run() {
-  const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/.size-snapshot.json')];
+  const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
   const sizeLimitBundles = await getSizeLimitBundles();
 
   const bundleSizes = fromEntries(

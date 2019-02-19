@@ -181,7 +181,10 @@ jobs:
           command: cd packages/material-ui-system && yarn build
       - persist_to_workspace:
           root: .
-          paths: packages/*/build
+          paths: 
+            - packages/*/build
+            # rollup snapshot
+            - packages/material-ui/size-snapshot.json
   test_browser:
     <<: *defaults
     steps:
