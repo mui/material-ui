@@ -35,13 +35,13 @@ const styles = theme => ({
 function getAdblock(classes, t) {
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
-      <Typography component="span" gutterBottom>
+      <Typography display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
-      <Typography component="span" gutterBottom>
+      <Typography display="block" component="span" gutterBottom>
         {t('adblock')}
       </Typography>
-      <Typography component="span">
+      <Typography display="block" component="span">
         {t('thanks')}{' '}
         <span role="img" aria-label="Love">
           ❤️

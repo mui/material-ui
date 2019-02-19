@@ -67,6 +67,7 @@ function HomeQuickWord(props) {
       <NoSsr>
         <Link
           variant="body2"
+          display="block"
           data-ga-event-category="sponsors"
           data-ga-event-action="quick-word"
           data-ga-event-label={backer.alt}
