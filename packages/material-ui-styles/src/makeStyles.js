@@ -200,15 +200,7 @@ function makeStyles(stylesOrCreator, options = {}) {
       ...stylesOptions2,
     };
 
-    let firstRender = false;
-
-    const [state] = React.useState(() => {
-      firstRender = true;
-      return {
-        // Helper to debug
-        // id: id++,
-      };
-    });
+    const { current: state } = React.useRef({});
 
     // Execute synchronously every time the theme changes.
     React.useMemo(() => {
@@ -222,8 +214,9 @@ function makeStyles(stylesOrCreator, options = {}) {
       });
     }, [theme]);
 
+    const firstRender = React.useRef(true);
     React.useEffect(() => {
-      if (!firstRender) {
+      if (!firstRender.current) {
         update({
           props,
           state,
@@ -233,18 +226,20 @@ function makeStyles(stylesOrCreator, options = {}) {
         });
       }
     });
+    React.useEffect(() => {
+      firstRender.current = false;
+    }, []);
 
     // Execute asynchronously every time the theme changes.
     React.useEffect(
-      () =>
-        function cleanup() {
-          detach({
-            state,
-            stylesCreator,
-            stylesOptions,
-            theme,
-          });
-        },
+      () => () => {
+        detach({
+          state,
+          stylesCreator,
+          stylesOptions,
+          theme,
+        });
+      },
       [theme],
     );
 
