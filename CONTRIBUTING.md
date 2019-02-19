@@ -135,6 +135,10 @@ declarations.
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
 In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
 
+Changes should only be applied to the english version e.g. only `app-bar.md` and
+not `app-bar-de.md`. For contributions concerning translations please read the [section
+about translations](#Translations).
+
 ```diff
 + ### Super buttons
 +
@@ -188,6 +192,13 @@ yarn link "@material-ui/core"
 ```
 
 Now, every time you import `material-ui` in your project, it is going to use your local distribution.
+
+## Translations
+
+Translations are handled via [Crowdin](https://translate.material-ui.com).
+You don't need to apply any changes to localized versions of our markdown files  
+i.e. files having a `-someLocale` suffix. Crowdin automatically takes care of syncing 
+these changes across the localized versions.
 
 ## Roadmap
 
