@@ -1,5 +1,113 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.1
+###### *Feb 19, 2019*
+
+A big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- Important accessibility fixes (#14465, #14545) @eps1lon, @oliviertassinari
+- Improve the Gastby integration (#14552)
+- Remove the deprecated Typography variants (#14562) @joshwooding
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v4.0.0-alpha.1`
+
+### Breaking change
+
+- [Typography] Remove deprecated Typography variants and v4 changes (#14562) @joshwooding
+
+  - Remove the deprecated typography variants. You can upgrade by performing the following replacements:
+    - display4 => h1
+    - display3 => h2
+    - display2 => h3
+    - display1 => h4
+    - headline => h5
+    - title => h6
+    - subheading => subtitle1
+    - body2 => body1
+    - body1 (default) => body2 (default)
+  - Remove the opinionated `display: block` default typograpghy style.
+  You can use the new `display?: 'initial' | 'inline' | 'block';` property.
+  - Rename the `headlineMapping` property to better align with its purpose.
+  ```diff
+  -<MuiTypography headlineMapping={headlineMapping}>
+  +<MuiTypography variantMapping={variantMapping}>
+  ```
+
+- [InputLabel] Remove FormLabelClasses in favor of asterisk class (#14504) @umairfarooq44
+
+You should be able to override all the styles of the FormLabel component using the css API of the InputLabel component. We do no longer need the `FormLabelClasses` property.
+```diff
+<InputLabel
+- FormLabelClasses={{ asterisk: 'bar' }}
++ classes={{ asterisk: 'bar' }}
+>
+  Foo
+</InputLabel>
+```
+
+- [TablePagination] Only raise a warning when the page is out of range (#14534) @leMaik
+
+The `TablePagination` component does no longer try to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
+
+### Changes
+
+- [typescript] Fix theme.spacing to accept up to 4 arguments (#14539) @toshi1127
+- [Transition] Fix hidden children appearing in a11y tree (#14465) @eps1lon
+- [TablePagination] Fix style issue with rpp select (#14547) @antokara
+- [Modal] Improve the focus logic (#14545) @oliviertassinari
+
+### `@material-ui/styles@v4.0.0-alpha.1`
+
+#### Breaking changes
+
+- [styles] Change the withTheme API (#14565) @oliviertassinari
+
+Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the emotion and styled-components API.
+```diff
+-const DeepChild = withTheme()(DeepChildRaw);
++const DeepChild = withTheme(DeepChildRaw);
+```
+
+#### Changes
+
+- [styles] Type ThemeProvider and getThemeProps generic (#14489) @igorbt
+- [styles] 100% test coverage (#14566) @oliviertassinari
+- [styles] Follow react docs for firstRender flag (#13607) @eps1lon
+- [styles] Add react-hot-loader support (#14583) @oliviertassinari
+- [styles] Warn if missing ThemeProvider (#14581) @oliviertassinari
+
+### `@material-ui/icons@v4.0.0-alpha.1`
+
+- [icons] Remove es folder (#14518) @mgansler
+
+### Docs
+
+- [docs] yarn command to add @material-ui/icons (#14502) @Inambe
+- [docs] Update CHANGELOG.md (#14516) @saculbr
+- [examples] Add lib to tsconfig (#14507) @eps1lon
+- [docs] Enable es, fr, pt & ru (#14537) @oliviertassinari
+- [docs] Add ts demos for menus, fixes ClickAwayListener onClickAway type (#14535) @eps1lon
+- [docs] Update the styling of the TOC (#14520) @mbrookes
+- [docs] Update breakpoints.md for clarity (#14527) @matthewjwhitney
+- [docs] Fix Horizontal Non-linear Stepper demo (#14551) @SVTerziev
+- [docs] Update the branch for Crowdin (#14550) @mbrookes
+- [docs] Fix hooks codesandbox broken (#14553) @Abbo44
+- [docs] Fix css anchor link (#14554) @umairfarooq44
+- [examples] Improve the Gastby integration (#14552) @oliviertassinari
+- [docs] Add examples of global class names (#14563) @n-batalha
+- [docs] Change Gitter to Spectrum (#14558) @mbrookes
+- [docs] Add sections about translation contributions (#14571) @eps1lon
+- [docs] Localize the table of contents (#14548) @mbrookes
+
+### Core
+
+- [core] Convert remaining classNames usage (#14506) @eps1lon
+- [core] Fix Prettier on next branch (#14524) @joshwooding
+- [core] Fix some peer dependency warnings (#14572) @eps1lon
+
 ## 4.0.0-alpha.0
 ###### *Feb 12, 2019*
 
