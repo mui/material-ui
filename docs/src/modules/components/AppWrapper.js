@@ -183,7 +183,6 @@ class AppWrapper extends React.Component {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dispatch: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   reduxTheme: PropTypes.object.isRequired,
 };
