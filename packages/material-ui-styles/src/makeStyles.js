@@ -232,15 +232,14 @@ function makeStyles(stylesOrCreator, options = {}) {
 
     // Execute asynchronously every time the theme changes.
     React.useEffect(
-      () =>
-        function removeStyles() {
-          detach({
-            state,
-            stylesCreator,
-            stylesOptions,
-            theme,
-          });
-        },
+      () => () => {
+        detach({
+          state,
+          stylesCreator,
+          stylesOptions,
+          theme,
+        });
+      },
       [theme],
     );
 
