@@ -149,8 +149,6 @@ async function run() {
   </details>`;
 
     markdown(details);
-  } else {
-    markdown(``);
   }
 }
 
