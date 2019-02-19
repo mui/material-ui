@@ -200,12 +200,8 @@ function makeStyles(stylesOrCreator, options = {}) {
       ...stylesOptions2,
     };
 
-    const firstRender = React.useRef(true);
-    React.useEffect(() => {
-      firstRender.current = false;
-    }, []);
+    const { current: state } = React.useRef({});
 
-<<<<<<< HEAD
     // Execute synchronously every time the theme changes.
     React.useMemo(() => {
       attach({
@@ -217,25 +213,8 @@ function makeStyles(stylesOrCreator, options = {}) {
         theme,
       });
     }, [theme]);
-=======
-    const { current: state } = React.useRef({});
 
-    // Execute synchronously everytime the theme changes.
-    React.useMemo(
-      () => {
-        attach({
-          name,
-          props,
-          state,
-          stylesCreator,
-          stylesOptions,
-          theme,
-        });
-      },
-      [theme],
-    );
->>>>>>> [styles] Follow react docs for firstRender flag
-
+    const firstRender = React.useRef(true);
     React.useEffect(() => {
       if (!firstRender.current) {
         update({
@@ -247,11 +226,14 @@ function makeStyles(stylesOrCreator, options = {}) {
         });
       }
     });
+    React.useEffect(() => {
+      firstRender.current = false;
+    }, []);
 
     // Execute asynchronously every time the theme changes.
     React.useEffect(
       () =>
-        function cleanup() {
+        function componentWillUnmount() {
           detach({
             state,
             stylesCreator,
