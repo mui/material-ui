@@ -13,10 +13,10 @@ async function loadCurrentSnapshot() {
 
 /**
  * @param {string} commitId the sha of a commit
- * @param {string} branch the branch containing that commit
+ * @param {string} ref the branch containing that commit
  */
-async function loadSnapshot(commitId, branch = 'master') {
-  const response = await fetch(`${artifactServer}/artifacts/${branch}/${commitId}`);
+async function loadSnapshot(commitId, ref = 'master') {
+  const response = await fetch(`${artifactServer}/artifacts/${ref}/${commitId}/size-snapshot.json`);
   return response.json();
 }
 
@@ -37,10 +37,10 @@ function uniqueKeys(...objects) {
 
 const nullSnapshot = { gzip: Number.NaN, parsed: Number.NaN };
 
-module.exports = async function loadComparison(parrentId) {
+module.exports = async function loadComparison(parrentId, ref) {
   const [currentSnapshot, previousSnapshot] = await Promise.all([
     loadCurrentSnapshot(),
-    loadSnapshot(parrentId),
+    loadSnapshot(parrentId, ref),
   ]);
 
   const bundleKeys = uniqueKeys(currentSnapshot, previousSnapshot);
@@ -56,10 +56,14 @@ module.exports = async function loadComparison(parrentId) {
           parsed: {
             previous: previousSize.parsed,
             current: currentSize.parsed,
+            absoluteDiff: currentSize.parsed - previousSize.parsed,
+            relativeDiff: (currentSize.parsed / previousSize.parsed) - 1
           },
           gzip: {
             previous: previousSize.gzip,
             current: currentSize.gzip,
+            absoluteDiff: currentSize.gzip - previousSize.gzip,
+            relativeDiff: (currentSize.gzip / previousSize.gzip) - 1
           },
         },
       ];
