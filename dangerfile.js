@@ -103,7 +103,7 @@ async function run() {
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
   const results = Object.entries(comparison.bundles);
-  const anyResultsChanges = results.filter(createComparisonFilter(0, 0));
+  const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
 
   if (anyResultsChanges.length > 0) {
     markdown('This PR introduced some changes to the bundle size.');
