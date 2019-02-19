@@ -83,7 +83,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 无障碍功能
 
-一定要添加 `aria-labelledby="id..."`，来给` Dialog `引用模态框标题。 此外, 您还可以使用`对话框`的属性`aria-describedby="id..."`来描述您的模态对话框。
+Follow the [Modal accessibility section](/utils/modal/#accessibility).
 
 ## 长内容滚动
 

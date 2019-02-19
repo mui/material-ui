@@ -1,15 +1,15 @@
 ---
-title: Portal React component
+title: Composant React Téléportation
 components: Portal
 ---
-# Portal
+# Téléportation (Portal)
 
-<p class="description">The portal component renders its children into a new "subtree" outside of current component hierarchy.</p>
+<p class="description">Le composant de portail convertit ses enfants en un nouveau "sous-arbre" en dehors de la hiérarchie de composants actuelle.</p>
 
-The children of the portal component will be appended to the `container` specified.
+Les enfants du composant Portal seront ajoutés au `container` fournit.
 
-The component is used internally by the [`Modal`](/utils/modal/) and [`Popper`](/utils/popper/) components. On the server, the content won't be rendered. You have to wait for the client side reconciliation to see the children.
+Ce composant est utilisé en interne par les composants [`Modal`](/utils/modal/) et [`Popper`](/utils/popper/). Sur le serveur, le contenu ne sera pas rendu. You have to wait for the client side hydratation to see the children.
 
-## Simple Portal
+## Téléportation simple
 
 {{"demo": "pages/utils/portal/SimplePortal.js"}}

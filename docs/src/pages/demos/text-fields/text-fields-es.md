@@ -98,7 +98,7 @@ o
 
 ## Campos de texto formateados
 
-Puedes usar librerías externas para formatear un campo de texto. Tienes que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`. El componente del campo de texto proporcionado debe manejar el atributo `inputRef`. El atributo debe ser creada con un valor usando el interfaz [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+Se pueden utilizar librerías externas para formatear un campo de texto. Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`. El componente del campo de texto proporcionado debe manejar el atributo `inputRef`. El atributo debe ser creado con un valor usando el interfaz [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 
 El siguiente demo utiliza las librerías [react-text-mask](https://github.com/text-mask/text-mask) y [react-number-format](https://github.com/s-yadav/react-number-format).
 
@@ -106,7 +106,7 @@ El siguiente demo utiliza las librerías [react-text-mask](https://github.com/te
 
 ## Accesibilidad
 
-Para facilitar la accesibilidad, ** el campo debe estar vinculado a la etiqueta y al texto de ayuda**.
+Para facilitar la accesibilidad, ** el campo debe estar vinculado a la etiqueta y al texto de ayuda**. Los nodos DOM subyacentes deben tener esta estructura.
 
 ```jsx
 <div class="form-control">
@@ -116,22 +116,22 @@ Para facilitar la accesibilidad, ** el campo debe estar vinculado a la etiqueta 
 </div>
 ```
 
-- Si usas el componente `TextField`, solo tienes que proporcionar un `id` único.
-- Si estás componiendo el componente:
+- Si se usa el componente `TextField`, sólo hay que proporcionar un `id` único.
+- Si se está componiendo el componente:
 
 ```jsx
 <FormControl>
   <InputLabel htmlFor="mi-campo">Email</InputLabel>
   <Input id="mi-campo" aria-describedby="mi-texto-de-ayuda" />
-  <FormHelperText id="mi-texto-de-ayuda">Nuncac compartiremos tu email.</FormHelperText>
+  <FormHelperText id="mi-texto-de-ayuda">Nunca compartiremos tu email.</FormHelperText>
 </FormControl>
 ```
 
 ## Proyectos relacionados
 
-Para usos más avanzados tal vez puedas aprovercharte de:
+Para usos más avanzados tal vez puedas sacarle partido a:
 
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
-- [uniformes-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Comoponentes envoltorio de Material-UI para Uniforms, un conjunto de bibliotecas React para crear formularios.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Un conjunto de componentes contenedor para facilitar el uso de Material-UI junto a Redux Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Enlaces para utilizar Material-UI con formik.
+- [final-form-material-u](https://github.com/Deadly0/final-form-material-ui) Un conjunto de componentes contenedor para facilitar el uso de Material-UI junto a Final Form.
+- [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Componentes contenedor de Material-UI para Uniforms, un conjunto de bibliotecas React para crear formularios.

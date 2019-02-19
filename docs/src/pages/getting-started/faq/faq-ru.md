@@ -1,8 +1,8 @@
 # Часто задаваемые вопросы (FAQ)
 
-<p class="description">Stuck on a particular problem? Check some of these common gotchas first in our FAQ.</p>
+<p class="description">Столкнулись с особой проблемой? Сначала посмотрите наиболее распространенные ошибки в нашем FAQ.</p>
 
-If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui). For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
+Если вы все еще не можете найти то, что ищете, вы можете задать вопрос сообществу в [gitter](https://gitter.im/mui-org/material-ui). Для практических и других вопросов, пожалуйста, используйте [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) вместо вопросов на Github. На StackOverflow существует тег `material-ui`, который вы можете использовать для ваших вопросов.
 
 ## Why aren't my components rendering correctly in production builds?
 
@@ -85,7 +85,7 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 Мы описали, как использовать [стороннюю библиотеку маршрутизации](/demos/buttons/#third-party-routing-library) с помощью компонента `ButtonBase`. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Вы можете использовать то же решение с ними.
 
-## How do I combine the `withStyles()` and `withTheme()` HOCs?
+## How do I combine the `withStyles()` and `withTheme` HOCs?
 
 Есть несколько разных вариантов:
 
@@ -101,7 +101,7 @@ export default withStyles(styles, { withTheme: true })(Modal);
 import { compose } from 'recompose';
 
 export default compose(
-  withTheme(),
+  withTheme,
   withStyles(styles)
 )(Modal);
 ```
@@ -109,7 +109,7 @@ export default compose(
 **цепочка необработанных функций:**
 
 ```js
-export default withTheme()(withStyles(styles)(Modal));
+export default withTheme(withStyles(styles)(Modal));
 ```
 
 ## Как я могу получить доступ к элементу DOM?
@@ -127,7 +127,7 @@ There are many ways to support Material-UI:
 - Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
-- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
+- Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).
 
 If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**, or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 

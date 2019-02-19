@@ -1,28 +1,28 @@
 ---
-title: 栅格
-components: Grid
+title: React 栅格(Grid)组件
+components: 栅格(Grid)
 ---
-# Grid
+# 栅格(Grid)
 
-<p class="description">Material Design 的响应式布局栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
+<p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
 
-[Grid](https://material.io/design/layout/responsive-layout-grid.html):Grid（栅格）组件能确保不同布局间的视觉一致性，同时在众多不同设计中保持灵活性。 Material Design’s 的响应式UI基于12列的栅格布局。
+[Grid](https://material.io/design/layout/responsive-layout-grid.html): 栅格(Grid)组件能确保不同布局间的视觉一致性，同时在众多不同设计中保持灵活性。 Material Design 的响应式 UI 是基于12列的栅格布局。
 
-## 工作方式
+## 它是如何工作的
 
-网格系统使用 `Grid` 组件实现：
+栅格系统使用 `Grid` 组件实现：
 
-- 它使用 [CSS的灵活盒模块](https://www.w3.org/TR/css-flexbox-1/) ，具有很高的灵活性。
-- 布局有两种类型： *容器* ， *项目*。
+- 为了达到高度的灵活性，它运用了用 [CSS 的 Flexible Box 模块](https://www.w3.org/TR/css-flexbox-1/) 。
+- 它有两种类型的布局： *containers* ， *items*。
 - 项目宽度以百分比设置，因此它们总是相对于其父元素是流动的和大小的。
 - 项目具有填充以创建单个项目之间的间距。
 - 有五个网格断点：xs，sm，md，lg和xl。
 
 ## 间距
 
-响应式栅格侧重于一致的间距宽度，而不是列宽。 Material Design margins and columns follow an **8px** square baseline grid. The spacing property is an integer between 0 and 10 inclusive. By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
+响应式栅格侧重于一致的间距宽度，而不是列宽。 Material design 外边距和列遵循** 8dp **方形基线栅格。 spacing属性是0到10之间的整数，包括0和10。 默认情况下，两个网格项之间的间距遵循线性函数： `output(spacing) = spacing * 8px`，例如 `spacing = {2}` 创建16px宽间距。
 
-This output transformation function can be customized [using the theme](/customization/themes/#spacing).
+该输出变换函数可定制 [使用中的主题](/customization/themes/#spacing)。
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
@@ -64,7 +64,7 @@ This output transformation function can be customized [using the theme](/customi
 
 ** CSS栅格布局**擅长将页面划分为主要区域，或者在从HTML基元构建的控件的各个部分之间定义大小，位置和图层之间的关系。
 
-⚠️ Unfortunately, CSS grid is only supported by the most recent browsers.
+⚠️遗憾的是，CSS网格仅受最新浏览器的支持。
 
 {{"demo": "pages/layout/grid/CSSGrid.js"}}
 
@@ -82,7 +82,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### 负边距
 
-我们使用负边距来实现项目之间的间距有一个缺点。 如果负边距超出`<body>`元素，则会出现水平滚动。 有三种解决方法：1. 不使用spacing特性并且设置成默认的`spacing={0}` 2。 Applying padding to the parent with at least half the spacing value applied to the child:
+我们使用负边距来实现项目之间的间距有一个缺点。 如果负边距超出`<body>`元素，则会出现水平滚动。 有三种解决方法：1. 不使用spacing特性并且设置成默认的`spacing={0}` 2。 将填充应用于父级元素，并且至少将一半的间距值应用于子级元素：
 
 ```jsx
   <body>

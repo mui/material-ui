@@ -33,6 +33,6 @@ We demonstrate how to use the `Popover` component to implement a popover behavio
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
+Существует сторонний пакет [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state), который, в большинстве случаев, заботится о состоянии всплывающего меню за вас.
 
 {{"demo": "pages/utils/popover/PopoverPopupState.js"}}

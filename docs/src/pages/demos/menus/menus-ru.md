@@ -50,13 +50,13 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 ## Ограничения
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+Существует [ошибка flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437), которая предотвращает работу свойства `text-overflow: ellipsis` внутри flexbox. Вы можете использовать компонент `Typography` с `noWrap`, чтобы обойти эту проблему:
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
-## Change Transition
+## Изменить Transition
 
-Use a different transition.
+Используйте другой transition.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
@@ -66,6 +66,6 @@ Use a different transition.
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+Существует сторонний пакет [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state), который, в большинстве случаев, заботится о состоянии всплывающего меню за вас.
 
 {{"demo": "pages/demos/menus/MenuPopupState.js"}}

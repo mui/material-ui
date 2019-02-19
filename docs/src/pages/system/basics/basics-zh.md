@@ -391,7 +391,7 @@ const Box = styled.div`
 
 {{"demo": "pages/system/basics/CssProp.js"}}
 
-## 工作方式
+## 它是如何工作的
 
 风格的系统已经做了很多工作在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works)的。 它可以帮助建设一个心理模型对于这种"风格的功能"概念。
 

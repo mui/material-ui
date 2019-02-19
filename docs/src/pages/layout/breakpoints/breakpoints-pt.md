@@ -4,13 +4,22 @@
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
-Each breakpoint matches with a *fixed* screen width:
+Each breakpoint (a key) matches with a *fixed* screen width (a value):
 
-- **xs**, extra-small: 0px or larger
-- **sm**, small: 600px or larger
-- **md**, medium: 960px or larger
-- **lg**, large: 1280px or larger
-- **xl**, extra-large: 1920px or larger
+- **xs,** extra-small: 0px
+- **sm,** small: 600px
+- **md,** medium: 960px
+- **lg,** large: 1280px
+- **xl,** extra-large: 1920px
+
+These [breakpoint values](/customization/default-theme/?expend-path=$.breakpoints.values) are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
+
+```js
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
+```
 
 These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
@@ -84,7 +93,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 `media query`: A media query string ready to be used with JSS.
 
-#### Examples
+#### Exemplos
 
 ```js
 const styles = theme => ({
@@ -107,9 +116,9 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
 
-#### Examples
+#### Exemplos
 
 ```js
 const styles = theme => ({
@@ -133,9 +142,9 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
-#### Examples
+#### Exemplos
 
 ```js
 const styles = theme => ({
@@ -160,9 +169,9 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
-#### Examples
+#### Exemplos
 
 ```js
 const styles = theme => ({
@@ -215,7 +224,7 @@ const theme = createMuiTheme({
 
 `higher-order component`: Should be used to wrap a component.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';

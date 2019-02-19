@@ -2,8 +2,6 @@
 
 <p class="description">Você pode aproveitar nossa solução de estilo, mesmo se não estiver usando nossos componentes.</p>
 
-> ⚠️ `@material-ui/styles` is unstable (alpha version). Hopefully, we will make it the default style implementation for the core components in Material-UI v4. [Follow this path](/customization/css-in-js/) to read the documentation of the default style implementation.
-
 Material-UI tem como objetivo fornecer bases sólidas para a construção de interfaces de usuário dinâmicas. Por uma questão de simplicidade, **expomos nossa solução de estilo aos usuários**. Você pode usá-lo, mas você não precisa. Esta solução de estilo é [interoperável com](/guides/interoperability/) todas as outras soluções principais.
 
 ## Solução de estilo do Material-UI

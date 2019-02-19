@@ -164,7 +164,7 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 {{"demo": "pages/customization/themes/Palette.js"}}
 
-#### Color tool
+#### Herramienta de color
 
 Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color/#color-tool) to help you.
 
@@ -355,7 +355,7 @@ const theme = createMuiTheme({
 
 ## Accessing the theme in a component
 
-You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. Here is an example:
+You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. Here is an example:
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
@@ -384,7 +384,7 @@ This component takes a `theme` property, and makes the `theme` available down th
 
 You can see the full properties API in [this dedicated page](/api/mui-theme-provider/).
 
-#### Examples
+#### Ejemplos
 
 ```jsx
 import React from 'react';
@@ -417,7 +417,7 @@ Generate a theme base on the options received.
 
 `theme` (*Object*): A complete, ready to use theme object.
 
-#### Examples
+#### Ejemplos
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -435,7 +435,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### `withTheme()(Component) => Component`
+### `withTheme(Component) => Component`
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
@@ -447,7 +447,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 `Component`: The new component created.
 
-#### Examples
+#### Ejemplos
 
 ```js
 import { withTheme } from '@material-ui/core/styles';
@@ -456,5 +456,5 @@ function MyComponent(props) {
   return <div>{props.theme.direction}</div>;
 }
 
-export default withTheme()(MyComponent);
+export default withTheme(MyComponent);
 ```

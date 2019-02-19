@@ -22,8 +22,8 @@ Changing the theme configuration variables is the most effective way to match Ma
 - [Type (light / dark theme)](#type-light-dark-theme)
 - [Typography](#typography)
 - [Интервал](#spacing)
-- [Other variables](#other-variables)
-- [Custom variables](#custom-variables)
+- [Другие переменные](#other-variables)
+- [Пользовательские переменные](#custom-variables)
 
 ### Палитра
 
@@ -41,7 +41,7 @@ The default palette uses the shades prefixed with `A` (`A200`, etc.) for the sec
 
 If you want to learn more about color, you can check out [the color section](/style/color/).
 
-#### Custom palette
+#### Настраиваемая палитра
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
@@ -266,48 +266,48 @@ We encourage you to use the `theme.spacing()` helper to create consistent spacin
 ```js
 const styles = theme => ({
   root: {
-    // JSS uses px as the default units for this CSS property.
-    padding: theme.spacing(2), // Outputs 8 * 2
+    // JSS использует пиксели в качестве дефолтных единиц измерения для этого CSS свойства.
+    padding: theme.spacing (2), // Выведет 8 * 2
   },
 });
 ```
 
-You can change the spacing transformation by providing:
+Вы можете изменить преобразование расстояния, передав:
 
-- a number
+- число
 
 ```js
-const theme = createMuiTheme({
+const theme = createMuiTheme ({
   spacing: 4,
 });
 
-theme.spacing(2) // = 4 * 2
+theme.spacing (2) // = 4 * 2
 ```
 
-- or a function
+- или функция
 
 ```js
-const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+const theme = createMuiTheme ({
+  spacing: factor => `$ {0.25 * factor} rem`, // (стратегия Bootstrap)
 });
 
-theme.spacing(2) // = 0.5rem = 8px
+theme.spacing (2) // = 0.5rem = 8px
 ```
 
 #### Multiple arity
 
-The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate:
+Вспомогательная функция ` theme.spacing () ` принимает до 4 аргументов. Вы можете использовать аргументы, чтобы уменьшить шаблон:
 
 ```diff
-<br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-+  padding: theme.spacing(1, 2), // '8px 16px'
+<br />- padding: `$ {theme.spacing (1)} px $ {theme.spacing (2)} px`,
++ padding: theme.spacing (1, 2), // '8px 16px'
 ```
 
-### Other variables
+### Другие переменные
 
-In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc. You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+В дополнение к палитре, темным и светлым типам и типографии, тема нормализует реализацию, предоставляя множество значений по умолчанию, таких как точки останова, тени, переходы и т. д. You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
-### Custom variables
+### Пользовательские переменные
 
 When using Material-UI's [styling solution](/customization/css-in-js/) with your own components, you can also take advantage of the theme. It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
@@ -317,7 +317,7 @@ When using Material-UI's [styling solution](/customization/css-in-js/) with your
 
 ### CSS
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change every single **style** injected by Material-UI into the DOM. That's a really powerful feature.
+When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change every single **style** injected by Material-UI into the DOM. Это действительно мощная штука.
 
 ```js
 const theme = createMuiTheme({
@@ -335,9 +335,9 @@ const theme = createMuiTheme({
 
 The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
-### Properties
+### Свойства
 
-You can also apply properties on all the instances of a component type. We expose a `props` key in the `theme` for this use case.
+Вы также можете применять свойства ко всем экземплярам типа компонента. We expose a `props` key in the `theme` for this use case.
 
 ```js
 const theme = createMuiTheme({
@@ -355,7 +355,7 @@ const theme = createMuiTheme({
 
 ## Accessing the theme in a component
 
-You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. Here is an example:
+You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. Here is an example:
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
@@ -409,11 +409,11 @@ render(<App />, document.querySelector('#app'));
 
 Generate a theme base on the options received.
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Returns
+#### Возвращает
 
 `theme` (*Object*): A complete, ready to use theme object.
 
@@ -435,15 +435,15 @@ const theme = createMuiTheme({
 });
 ```
 
-### `withTheme()(Component) => Component`
+### `withTheme(Component) => Component`
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
-#### Arguments
+#### Аргументы
 
 1. `Component`: The component that will be wrapped.
 
-#### Returns
+#### Возвращает
 
 `Component`: The new component created.
 
@@ -456,5 +456,5 @@ function MyComponent(props) {
   return <div>{props.theme.direction}</div>;
 }
 
-export default withTheme()(MyComponent);
+export default withTheme(MyComponent);
 ```

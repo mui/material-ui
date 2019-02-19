@@ -2,8 +2,6 @@
 
 <p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
 
-> ⚠️`@material-ui/styles`是实验性的（alpha版）。 希望我们将它作为Material-UI v4中核心组件的默认样式实现。 [遵循此路径](/customization/css-in-js/)阅读默认样式实现的文档 。
-
 Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见, **我们向用户公开我们的样式解决方案 **。 你可以使用它，但是你不需要这样做。 该样式解决方案可[与所有其他主要解决方案](/guides/interoperability/)互操作
 
 ## Material-UI 的样式解决方案

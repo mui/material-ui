@@ -74,7 +74,7 @@ Os ícones podem ser especificados como anexados ou anexados.
 
 ## Layout
 
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter other styles to meet the specification.
+`TextField`,`FormControl` permite a especificação de `margin` para alterar os espaços verticais do input. Usando `none` (default) não irá aplicar margens para o `FormControl`, enquanto que `dense` e `normal` irá também alterar outros estilos para atender as especificações.
 
 {{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
@@ -129,9 +129,9 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao l
 
 ## Projetos Complementares
 
-For more advanced use cases you might be able to take advantage of:
+Para os usos mais avançados, você é capaz de aproveita:
 
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Um conjunto de componentes do wrapper para facilitar o uso do Material UI com Redux Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Ligações para usar Mateiral-UI com formik.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Um conjunto de componentes wrapper para facilitar o uso do Material UI com Final Form.
 - [uniformes-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) Componentes Material-UI para Uniforms, um conjunto de bibliotecas React para construção de formulários.

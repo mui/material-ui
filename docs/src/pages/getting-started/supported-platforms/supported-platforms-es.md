@@ -1,4 +1,4 @@
-# Supported Platforms
+# Plataformas soportadas
 
 <p class="description">Learn about the platforms, from modern to old, that are supported by Material-UI.</p>
 

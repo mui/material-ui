@@ -22,15 +22,15 @@ components: Select, NativeSelect
 
 如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.
+第一步是设置 `InputBase` 组件的样式。 一旦设置样式，您就可以直接将其用作文本字段，也可以将其提供给select `input` 属性作为可以选择的内容项。
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/selects/CustomizedSelects.js"}}
 
 ## 多选
 
-`Select`组件可以处理多个选择，可以使用`multiple` 属性启用
+`Select`组件可以处理多选，可以使用`multiple` 属性启用
 
 与单项选择一样，您可以通过访问` onChange `属性中的回调` event.target.value `来提取新值。它总是一个数组。
 
@@ -42,10 +42,10 @@ The first step is to style the `InputBase` component. Once it's styled, you can 
 
 ## 与对话框组件使用
 
-虽然Material Design的规范不鼓励，但您可以在对话框组件中使用选择。
+虽然Material Design的规范不鼓励这样做，但您还是可以在对话框组件中使用选择器。
 
 {{"demo": "pages/demos/selects/DialogSelect.js"}}
 
-## Text Fields
+## 文本输入框
 
 ` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/demos/text-fields/#textfield)的示例

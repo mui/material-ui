@@ -4,10 +4,10 @@
 
 您可以在[GitHub存储库中](https://github.com/mui-org/material-ui)的[`/examples`](https://github.com/mui-org/material-ui/tree/next/examples)的文件夹下面，找到一些我们托管一些范例项目：
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
+- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)
 - 以及更多
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
@@ -23,5 +23,5 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 - [Material Sense](https://github.com/alexanmtz/material-sense)，包括： 
   - 使用 recharts 的图表
   - 在导航示例中涵盖了 React Router
-  - 一个具有用于生产环境创造的 Nginx 服务器的 Docker 容器(Docker container)
+  - 一个具有用于生产环境创造的 Nginx 服务器的 Docker container(Docker 容器)。
   - 使用 [Create React App](https://facebook.github.io/create-react-app/) 创建

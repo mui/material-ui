@@ -62,9 +62,9 @@ MDC-web se basa en SCSS como Bootstrap v4. La arquitectura SCSS está bastante c
 
 ### Nuestra visión
 
-Nuestra visión es proporcionar una implementación elegante de las directrices de Diseño Material **y más**.
+Nuestra visión es proporcionar una implementación elegante de las pautas de Material Design **y más**.
 
-> The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guideline-specific implementation, we want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
+> Las pautas de Material Design son un excelente punto de partida, pero no brindan dirección sobre todos los aspectos o necesidades de una aplicación. In addition to the guideline-specific implementation, we want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
 > 
 > *[An extract taken from the [vision section](/discover-more/vision/) of the documentation.]*
 
@@ -88,7 +88,7 @@ Still, there is one thing that sets Material-UI apart and it's key: We have [hun
 
 ![estrellas](https://img.shields.io/github/stars/Dogfalo/materialize.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/materialize-css.svg)
 
-### Browser support
+### Navegadores soportados
 
 Materialize supports a wider range of browsers than Material-UI does, for instance, they support IE 10 while [we only support IE 11](/getting-started/supported-platforms/). Only supporting IE 11 allows us to take full advantage of the flexbox layout. IE 10 has many issues with flexbox.
 

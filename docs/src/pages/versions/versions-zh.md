@@ -8,11 +8,11 @@
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## 最新版本
+## Latest versions
 
 在这里您可以找到尚未发布的最新文档和代码。 您可以使用它来查看即将实施的更新 , 并给 Material-UI 的贡献者提供更好的反馈。
 
-{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
 
 ## 版本控制方案
 

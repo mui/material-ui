@@ -187,8 +187,8 @@ ReactDOM.hydrate(
 我们托管不同的参考实现，您可以在 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下的 [GitHub存储库](https://github.com/mui-org/material-ui) 找到它们：
 
 - [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
 
 ## 故障排除
 

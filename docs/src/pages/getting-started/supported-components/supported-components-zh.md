@@ -1,10 +1,10 @@
-# 支持组件
+# 支持的组件
 
-<p class="description">以下是Material Design组件和功能的列表. 当前由Material-UI支持的那些被高亮显示✓.</p>
+<p class="description">以下是 Material Design 组件和功能的列表. 我们将那些Material-UI 支持的组件和功能用高亮✓来显示.</p>
 
-虽然我们努力遵循实践中的指导原则（在指导原则相互矛盾的情况下应用 常识 - 比 可能预期的更常见），但我们不希望支持每个组件，或每个组件的每 特征，而是提供构建块 允许开发人员创建引人注目的用户界面和体验。
+虽然我们尽量遵循一些可行的指南（当指南有争议性的时候我们会更多地依赖于常识，而这种情况会比您想象中的发生更多），但是我们并不指望能够做到支持每一个组件或者每一个组件下的功能。我们更倾向于通过提供一些构建好的模块，让开发者创造更实用的用户界面以及用户体验。
 
-如果您希望在此处添加对组件或功能未高亮显示的支持, 请搜索相关的 [ GitHub 问题 ](https://github.com/mui-org/material-ui/issues), 或创建一个新的问题 来讨论该方法, 然后再提交pull请求。
+如果您希望加对一个组件或一个未高亮显示的功能加以支持, 请搜索相关的 [ GitHub 问题 ](https://github.com/mui-org/material-ui/issues), 或创建一个新的问题来讨论该方法, 然后再提交pull request。
 
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**

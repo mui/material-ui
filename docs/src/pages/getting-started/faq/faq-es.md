@@ -85,7 +85,7 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 We have documented how to use a [third-party routing library](/demos/buttons/#third-party-routing-library) with the `ButtonBase` component. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. You can use the same solution with them.
 
-## How do I combine the `withStyles()` and `withTheme()` HOCs?
+## How do I combine the `withStyles()` and `withTheme` HOCs?
 
 There are a number of different options:
 
@@ -101,7 +101,7 @@ export default withStyles(styles, { withTheme: true })(Modal);
 import { compose } from 'recompose';
 
 export default compose(
-  withTheme(),
+  withTheme,
   withStyles(styles)
 )(Modal);
 ```
@@ -109,7 +109,7 @@ export default compose(
 **raw function chaining:**
 
 ```js
-export default withTheme()(withStyles(styles)(Modal));
+export default withTheme(withStyles(styles)(Modal));
 ```
 
 ## How can I access the DOM element?
@@ -127,7 +127,7 @@ There are many ways to support Material-UI:
 - Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
-- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
+- Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).
 
 If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**, or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 

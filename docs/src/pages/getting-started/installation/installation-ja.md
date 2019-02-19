@@ -9,11 +9,11 @@ Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/c
 インストールして`package.json` のdependenciesに保存します。次を実行してください。
 
 ```sh
-// npmの場合
-npm install @material-ui/core
+// with npm
+npm install @material-ui/core@next
 
-// yarnの場合
-yarn add @material-ui/core
+// with yarn
+yarn add @material-ui/core@next
 ```
 
 [react](https://www.npmjs.com/package/react) >= 16.3.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0がpeer dependenciesであることに注意してください。
@@ -51,7 +51,11 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 [component demos](/demos/app-bar/)にあるような事前にビルドされたSVG Material iconsを使う為には、[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)パッケージをインストールします。
 
 ```sh
-npm install @material-ui/icons
+// with npm
+npm install @material-ui/icons@next
+
+// with yarn
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
@@ -62,7 +66,7 @@ npm install @material-ui/icons
 
 私たちは２つのUniversal Module Definition (UMD) ファイルを提供します。
 
-- 開発用: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- 本番用: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- 開発用: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
+- 本番用: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
 
-[CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn)に従うことで、すぐに開発を始めることができます。
+[CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)に従うことで、すぐに開発を始めることができます。

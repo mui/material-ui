@@ -1,45 +1,45 @@
 ---
-title: Breadcrumbs React component
-components: Breadcrumbs, Link, Typography
+title: Componente React Migas de pan
+components: Migas de pan, Vínculo, Tipografía
 ---
-# Breadcrumbs
+# Migas de pan
 
-<p class="description">Breadcrumbs allow users to make selections from a range of values.</p>
+<p class="description">Las Migas de pan permiten a los usuarios realizar selecciones desde un rango de valores.</p>
 
-## Simple breadcrumbs
+## Migas de pan simples
 
 {{"demo": "pages/demos/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Custom separator
+## Separador personalizado
 
-In the following examples, we are using two string separators, and an SVG icon.
+En los siguientes ejemplos, estamos usando dos cadenas como separadores, y un ícono SVG.
 
 {{"demo": "pages/demos/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## Migas de pan con íconos
 
 {{"demo": "pages/demos/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## Migas de pan colapsadas
 
 {{"demo": "pages/demos/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## Migas de pan personalizadas
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the breadcrumb link design.
+Si has estado leyendo la [página de documentación de anulaciones](/customization/overrides/) pero no estás con la confianza de abordarla, aquí hay un ejemplo de cómo puedes cambiar el diseño del vínculo de las migas de pan.
 
 {{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## Accesibilidad
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Asegúrese de agregar una descripción `aria-label` en el componente `Breadcrumbs`.
 
-The accessibility of this component relies on:
+La accesibilidad de este componente se basa en:
 
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+- El conjunto de vínculos está estructurado usando una lista ordenada (elemento `<ol>`).
+- Para prevenir el anuncio del lector de pantalla de los separadores visuales entre los vínculos, se ocultan con `aria-hidden`.
+- Un elemento de navegación con la etiqueta `aria-label` identifica la estructura como un rastro de migas de pan y la convierte en un punto de referencia para que sea fácil de ubicar.
 
-## Integration with react-router
+## Integración con react-router
 
 {{"demo": "pages/demos/breadcrumbs/RouterBreadcrumbs.js"}}

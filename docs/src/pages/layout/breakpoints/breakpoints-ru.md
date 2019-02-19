@@ -4,13 +4,22 @@
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
-Each breakpoint matches with a *fixed* screen width:
+Each breakpoint (a key) matches with a *fixed* screen width (a value):
 
-- **xs**, extra-small: 0px or larger
-- **sm**, small: 600px or larger
-- **md**, medium: 960px or larger
-- **lg**, large: 1280px or larger
-- **xl**, extra-large: 1920px or larger
+- **xs,** extra-small: 0px
+- **sm,** small: 600px
+- **md,** medium: 960px
+- **lg,** large: 1280px
+- **xl,** extra-large: 1920px
+
+These [breakpoint values](/customization/default-theme/?expend-path=$.breakpoints.values) are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
+
+```js
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
+```
 
 These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
 
@@ -76,13 +85,13 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Arguments
+#### Аргументы
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Возвращает
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: Строка медиа-запроса, готовая для использования с JSS.
 
 #### Примеры
 
@@ -101,13 +110,13 @@ const styles = theme => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
-#### Arguments
+#### Аргументы
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Возвращает
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
 
 #### Примеры
 
@@ -127,13 +136,13 @@ const styles = theme => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
-#### Arguments
+#### Аргументы
 
 1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Возвращает
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Примеры
 
@@ -153,14 +162,14 @@ const styles = theme => ({
 
 ### `theme.breakpoints.between(start, end) => media query`
 
-#### Arguments
+#### Аргументы
 
 1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Возвращает
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### Примеры
 
@@ -180,17 +189,17 @@ const styles = theme => ({
 
 ### `withWidth([options]) => higher-order component`
 
-Inject a `width` property. It does not modify the component passed to it; instead, it returns a new component. This `width` breakpoint property match the current screen width. It can be one of the following breakpoints:
+Вставить свойство `width`. Оно не изменяет переданный в него компонент; вместо этого оно возвращает новый компонент. Свойство точки останова `width` соответствует текущей ширине экрана. Это может быть одна из следующих точек останова:
 
 ```ts
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 ```
 
-Some implementation details that might be interesting to being aware of:
+Некоторые детали реализации, которые могут быть интересны для понимания:
 
 - It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
@@ -211,9 +220,9 @@ const theme = createMuiTheme({
 
 - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
-#### Returns
+#### Возвращает
 
-`higher-order component`: Should be used to wrap a component.
+`компонент высшего порядка`: следует использовать, чтобы обернуть компонент.
 
 #### Примеры
 

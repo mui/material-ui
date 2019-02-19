@@ -83,7 +83,7 @@ Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer
 
 ## Accessibilité
 
-Assurez-vous d’ajouter `aria-labelledby = "id ..."`, faisant référence au titre modal, dans le composant `Dialog`. De plus, vous pouvez donner une description de votre dialogue avec la propriété `aria-describeby="id ..."` du composant `Dialog`.
+Follow the [Modal accessibility section](/utils/modal/#accessibility).
 
 ## Défiler de longues contenu
 

@@ -34,7 +34,7 @@ Material Design Lite非常用心地实施了对Material Design，它主要由谷
 
 ![评星](https://img.shields.io/github/stars/material-components/material-components-web.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-components-web.svg)
 
-我们很高兴看到Google及其设计团队支持该项目。 这意味着，[Material Design 规范](https://material.io/design/) 将被保留，并获得持续的投入。
+我们很高兴看到 Google 及其设计团队支持该项目。 这意味着，[Material Design 规范](https://material.io/design/) 将被保留，并获得持续的投入。
 
 ### 框架和库
 
@@ -56,7 +56,7 @@ MDC-web 从一开始就被设计为完全兼容第三方 JS 框架和库。 关�
 - 它使我们能够将一个巨无霸 CSS 文件分成多个小文件，实现代码拆分，从而降低缩短页面的加载时间。 （**更快速**）
 - 由于我们不需要处理 CSS 具体性问题，各样式表之间覆盖的结果也变得更加直观。 （**更简便**）
 
-渐渐地，我们又发现了内联样式表地局限性，从而渐渐转向了 JS 嵌套 CSS (CSS-in-JS) 的解决方案。 这样的转变能保证第一次迁移做出的改善依旧被保留。 **我们强烈认为 JS 嵌套 CSS (CSS-in-JS) 是Web平台发展的未来** 。 您可以在文档中[了解更多关于我们的新的样式表的解决方案](/customization/css-in-js/)。
+渐渐地，我们又发现了内联样式表地局限性，从而渐渐转向了 JS 嵌套 CSS (CSS-in-JS) 的解决方案。 这样的转变能保证第一次迁移做出的改善依旧被保留。 **我们强烈认为 CSS-in-JS（JS 嵌套 CSS） 是Web平台发展的未来** 。 您可以在文档中[了解更多关于我们的新的样式表的解决方案](/customization/css-in-js/)。
 
 MDC-web 作为 Bootstrap v4 依赖于 SCSS。 SCSS 架构与 LESS 非常接近 -- 因为此局限性我们也取代了它。
 

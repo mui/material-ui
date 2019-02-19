@@ -4,22 +4,22 @@ components: Avatar
 ---
 # Avatars (Avatares)
 
-<p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
+<p class="description">Os avatares são encontrado ao longo do material design, com usos em tudo, desde as tabelas até menus de diálogo.</p>
 
 ## Avatares de imagens
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` into the component.
+Avatares de imagem podem ser utilizado passando o padrão `img` props `src` ou `srcSet` no componente.
 
 {{"demo": "pages/demos/avatars/ImageAvatars.js"}}
 
 ## Avatares de carta
 
-Avatars containing simple characters can be created by passing your string as `children`.
+Avatares contém caracteres simples podendo ser criado passando sua string com `children`.
 
 {{"demo": "pages/demos/avatars/LetterAvatars.js"}}
 
 ## Avatares de ícones
 
-Icon avatars are created by passing an icon as `children`.
+Os avatares de ícones são criados passando com o ícone `children`.
 
 {{"demo": "pages/demos/avatars/IconAvatars.js"}}

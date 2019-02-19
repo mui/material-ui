@@ -269,7 +269,7 @@ class MyComponent extends React.Component {
 export default MyComponent
 ```
 
-## `withTheme()(Component) => Component`
+## `withTheme(Component) => Component`
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
@@ -291,5 +291,5 @@ function MyComponent(props) {
   return <div>{props.theme.direction}</div>;
 }
 
-export default withTheme()(MyComponent);
+export default withTheme(MyComponent);
 ```

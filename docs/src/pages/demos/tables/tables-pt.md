@@ -66,9 +66,9 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 ## Projetos Complementares
 
-For more advanced use cases you might be able to take advantage of:
+Para caso de usos mais avançados, você é capaz de aproveitar de:
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento and funções de edição ([custom license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Tabelas de dados responsivos para Material-UI com filtro, ordenação, pesquisa e muito mais.
 - [material-table](https://github.com/mbrn/material-table) DataTable baseado no componente table com recursos adicionais como: pesquisa, filtro, ordenação e muito mais.
 - [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Tabela Material-UI Virtualizada.

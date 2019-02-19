@@ -9,14 +9,14 @@ Material-UI 可通过 [npm](https://www.npmjs.com/package/@material-ui/core) 包
 将 Material-UI 下载并保存到你的 `package.json` 依赖文件里，请运行:
 
 ```sh
-// 用npm安装
-npm install @material-ui/core
+// with npm
+npm install @material-ui/core@next
 
-// 用yarn安装
-yarn add @material-ui/core
+// with yarn
+yarn add @material-ui/core@next
 ```
 
-请注意 [react](https://www.npmjs.com/package/react) >= 16.3.0版和[ react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0版是同伴依赖。
+请注意 [react](https://www.npmjs.com/package/react) >= 16.3.0版和[ react-dom](https://www.npmjs.com/package/react-dom) >= 16.3.0版是同版本依赖。
 
 ## Roboto 字体
 
@@ -51,7 +51,11 @@ yarn add @material-ui/core
 如果您想使用实现建立好的 SVG Material icons，例如在[组件演示](/demos/app-bar/)中运用的那些, 您必须先安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)包：
 
 ```sh
-npm install @material-ui/icons
+// with npm
+npm install @material-ui/icons@next
+
+// with yarn
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
@@ -62,7 +66,7 @@ npm install @material-ui/icons
 
 我们提供了两个通用模块定义 (UMD) 文件:
 
-- 一个用于开发: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- 一个用于生产: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- 一个用于开发: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
+- 一个用于生产: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
 
-您可以按照[此CDN示例](https://github.com/mui-org/material-ui/tree/next/examples/cdn)快速开始。
+您可以按照[此CDN示例](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)快速开始。

@@ -9,7 +9,7 @@ title: Box React组件
 
 > ⚠️“unstable_”API可能会在任何版本中发生变化而不尊重semver。
 
-## 例
+## 示例
 
 [调色板](/system/palette/) 样式功能。
 

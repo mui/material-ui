@@ -81,9 +81,9 @@ Touch mechanics:
 
 {{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
-## Accessibility
+## Доступность
 
-Не забудьте добавить `aria-labelledby="id..."`, ссылаясь на заголовок модального окна, в `Dialog`. Кроме того, вы можете создать описание вашего модального диалога с помощью свойства `aria-describedby="id..."` в `Dialog`.
+Follow the [Modal accessibility section](/utils/modal/#accessibility).
 
 ## Прокрутка длинного контента
 

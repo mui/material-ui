@@ -9,11 +9,11 @@ Material-UI está disponible como un [ paquete npm ](https://www.npmjs.com/packa
 Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
 
 ```sh
-// usando npm
-npm install @material-ui/core
+// with npm
+npm install @material-ui/core@next
 
-// usando yarn
-yarn add @material-ui/core
+// with yarn
+yarn add @material-ui/core@next
 ```
 
 Ten en cuenta que [ react ](https://www.npmjs.com/package/react) > = 16.3.0 y [ react-dom ](https://www.npmjs.com/package/react-dom) > = 16.3.0 son dependencias tipo "peer".
@@ -51,7 +51,11 @@ Alternativamente, si estás utilizando JSX sobre HTML para renderizar el encabez
 Con el fin de utilizar iconos Material en SVG prediseñados, tales como los que se encuentran en los [demos de componentes](/demos/app-bar/) primero debes instalar el paquete [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
-npm install @material-ui/icons
+// with npm
+npm install @material-ui/icons@next
+
+// with yarn
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
@@ -62,7 +66,7 @@ Puedes comenzar a utilizar Material-UI con una infraestructura mínima de front-
 
 Proporcionamos dos archivos de definición de módulo universal (UMD, por sus siglas en inglés):
 
-- uno para desarrollo: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- uno para producción: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- uno para desarrollo: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
+- uno para producción: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
 
-Puedes seguir [ este ejemplo sobre CDN ](https://github.com/mui-org/material-ui/tree/next/examples/cdn) para empezar rápidamente.
+Puedes seguir [ este ejemplo sobre CDN ](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) para empezar rápidamente.
