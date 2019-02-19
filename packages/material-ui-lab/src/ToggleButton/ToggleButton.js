@@ -7,6 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import withSelectableContext from '../SelectableGroup/withSelectableContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -72,7 +73,7 @@ export const styles = theme => ({
 
 class ToggleButton extends React.Component {
   handleChange = event => {
-    const { onChange, onClick, value } = this.props;
+    const { muiSelectableGroup, onClick, value } = this.props;
 
     if (onClick) {
       onClick(event, value);
@@ -81,9 +82,7 @@ class ToggleButton extends React.Component {
       }
     }
 
-    if (onChange) {
-      onChange(event, value);
-    }
+    muiSelectableGroup.toggle(event, value);
   };
 
   render() {
@@ -94,9 +93,16 @@ class ToggleButton extends React.Component {
       disabled,
       disableFocusRipple,
       innerRef,
-      selected,
+      muiSelectableGroup,
+      selected: selectedProp,
+      value,
       ...other
     } = this.props;
+
+    const selected =
+      muiSelectableGroup && selectedProp === undefined
+        ? muiSelectableGroup.isValueSelected(value)
+        : selectedProp;
 
     return (
       <ButtonBase
@@ -155,7 +161,7 @@ ToggleButton.propTypes = {
   /**
    * @ignore
    */
-  onChange: PropTypes.func,
+  muiSelectableGroup: PropTypes.object,
   /**
    * @ignore
    */
@@ -179,4 +185,6 @@ ToggleButton.defaultProps = {
 
 ToggleButton.muiName = 'ToggleButton';
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(withForwardedRef(ToggleButton));
+export default withStyles(styles, { name: 'MuiToggleButton' })(
+  withForwardedRef(withSelectableContext(ToggleButton)),
+);

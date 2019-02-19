@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class SelectableGroup extends React.Component {
   state = {
-    selected: [],
+    selected: null,
   };
 
   deselect = this.createReducer(utils.deselect);
@@ -14,14 +14,19 @@ class SelectableGroup extends React.Component {
 
   toggle = this.createReducer(utils.toggle);
 
-  isValueSelected = value => utils.hasValue(this.state.selected, value);
-
-  isSelected() {
-    return this.state.selected.length > 0;
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== undefined && props.value !== state.selected) {
+      return {
+        selected: props.value,
+      };
+    }
+    return null;
   }
 
+  isValueSelected = value => utils.hasValue(this.state.selected, value);
+
   createReducer(handler) {
-    return value => {
+    return (event, value) => {
       this.setState(({ selected: prevSelected }, props) => {
         const selected = handler(prevSelected, value, props);
 
@@ -29,7 +34,7 @@ class SelectableGroup extends React.Component {
           if (selected === prevSelected) {
             return null;
           }
-        } else if (selected.length === prevSelected.length) {
+        } else if (selected && prevSelected && selected.length === prevSelected.length) {
           const notChanged = selected
             .map((val, i) => prevSelected[i] === val)
             .every(isSame => isSame);
@@ -40,7 +45,7 @@ class SelectableGroup extends React.Component {
         }
 
         if (this.props.onChange) {
-          this.props.onChange(selected, value);
+          this.props.onChange(event, selected);
         }
 
         return { selected };
@@ -49,7 +54,7 @@ class SelectableGroup extends React.Component {
   }
 
   render() {
-    const { children, exclusive } = this.props;
+    const { children } = this.props;
     const { deselect, isValueSelected, select, toggle } = this;
 
     const childContext = {
@@ -80,6 +85,15 @@ SelectableGroup.propTypes = {
    * Functioned called when value changes.
    */
   onChange: PropTypes.func,
+  /**
+   * The currently selected value within the group or an array of selected
+   * values when `exclusive` is false.
+   */
+  value: PropTypes.any,
+};
+
+SelectableGroup.defaultProps = {
+  exclusive: false,
 };
 
 export default SelectableGroup;

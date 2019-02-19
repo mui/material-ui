@@ -27,7 +27,7 @@ export function select(values, value, options = {}) {
     return value;
   }
 
-  return [...values, value];
+  return values ? [...values, value] : [value];
 }
 export function toggle(values, toggleValue, options) {
   return hasValue(values, toggleValue, options)

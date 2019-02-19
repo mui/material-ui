@@ -26,7 +26,7 @@ const styles = {
 
 const SelectableRadio = withSelectableContext(props => {
   const { muiSelectableGroup, value, ...other } = props;
-  const handleChange = e => muiSelectableGroup.toggle(e.target.value);
+  const handleChange = event => muiSelectableGroup.toggle(event, value);
 
   return (
     <Radio
@@ -43,7 +43,7 @@ class RadioButtons extends React.Component {
     selected: null,
   };
 
-  handleChange = selected => {
+  handleChange = (event, selected) => {
     this.setState({
       selected,
     });

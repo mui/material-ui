@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
-import isValueSelected from './isValueSelected';
 import withStyles from '@material-ui/core/styles/withStyles';
 import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import SelectableGroup from '../SelectableGroup';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -15,76 +14,16 @@ export const styles = theme => ({
   },
 });
 
-class ToggleButtonGroup extends React.Component {
-  handleChange = (event, buttonValue) => {
-    const { onChange, value } = this.props;
+function ToggleButtonGroup(props) {
+  const { children, className, classes, exclusive, onChange, value, ...other } = props;
 
-    if (!onChange) {
-      return;
-    }
-
-    const index = value && value.indexOf(buttonValue);
-    let newValue;
-
-    if (value && index >= 0) {
-      newValue = [...value];
-      newValue.splice(index, 1);
-    } else {
-      newValue = value ? [...value, buttonValue] : [buttonValue];
-    }
-
-    onChange(event, newValue);
-  };
-
-  handleExclusiveChange = (event, buttonValue) => {
-    const { onChange, value } = this.props;
-
-    if (!onChange) {
-      return;
-    }
-
-    onChange(event, value === buttonValue ? null : buttonValue);
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      classes,
-      exclusive,
-      innerRef,
-      onChange,
-      value,
-      ...other
-    } = this.props;
-
-    return (
-      <div className={clsx(classes.root, className)} ref={innerRef} {...other}>
-        {React.Children.map(children, child => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
-
-          warning(
-            child.type !== React.Fragment,
-            [
-              "Material-UI: the ToggleButtonGroup component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
-
-          const { selected: buttonSelected, value: buttonValue } = child.props;
-          const selected =
-            buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
-          return React.cloneElement(child, {
-            selected,
-            onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
-          });
-        })}
+  return (
+    <SelectableGroup exclusive={exclusive} onChange={onChange} value={value}>
+      <div className={clsx(classes.root, className)} {...other}>
+        {children}
       </div>
-    );
-  }
+    </SelectableGroup>
+  );
 }
 
 ToggleButtonGroup.propTypes = {

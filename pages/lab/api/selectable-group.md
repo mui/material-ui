@@ -19,8 +19,9 @@ import SelectableGroup from '@material-ui/lab/SelectableGroup';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The contents of the selectable group. |
-| <span class="prop-name">exclusive</span> | <span class="prop-type">bool</span> |   | Only allows one value to be selected. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Functioned called when value changes |
+| <span class="prop-name">exclusive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Only allows one value to be selected. |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Functioned called when value changes. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |   | The currently selected value within the group or an array of selected values when `exclusive` is false. |
 
 Any other properties supplied will be spread to the root element (native element).
 
