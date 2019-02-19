@@ -100,7 +100,6 @@ async function run() {
   const mergeBaseCommit = await git(`merge-base HEAD ${upstreamRemote}/${upstreamRef}`);
 
   const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
-  console.log(`comparing ${commitRange}`);
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
   const results = Object.entries(comparison.bundles);
@@ -149,6 +148,10 @@ async function run() {
   </details>`;
 
     markdown(details);
+  } else {
+    // this can later be removed to reduce PR noise. It is kept for now for debug
+    // purposes only. DangerJS will swallow console.logs if completes successfully
+    markdown(`No bundle size changes comparing ${commitRange}`);
   }
 }
 
