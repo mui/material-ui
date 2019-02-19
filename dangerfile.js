@@ -99,6 +99,9 @@ async function run() {
   await git(`fetch ${upstreamRemote}`);
   const mergeBaseCommit = await git(`merge-base HEAD ${upstreamRemote}/${upstreamRef}`);
 
+  const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
+  console.log(`comparing ${commitRange}`);
+
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
   const results = Object.entries(comparison.bundles);
   const anyResultsChanges = results.filter(createComparisonFilter(0, 0));
@@ -139,13 +142,15 @@ async function run() {
   <details>
   <summary>Details of bundle changes.</summary>
 
-  <p>Comparing: ${mergeBaseCommit}...${danger.github.pr.head.sha}</p>
+  <p>Comparing: ${commitRange}</p>
 
   ${detailsTable}
 
   </details>`;
 
     markdown(details);
+  } else {
+    markdown(``);
   }
 }
 
