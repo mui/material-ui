@@ -21,6 +21,21 @@ function omit(input, fields) {
 // Using components as a low-level styling construct can be simpler.
 function styled(Component) {
   const componentCreator = (style, options) => {
+    let filterProps;
+    let propTypes = {};
+
+    if (style.filterProps) {
+      filterProps = style.filterProps;
+      delete style.filterProps;
+    }
+
+    /* eslint-disable react/forbid-foreign-prop-types */
+    if (style.propTypes) {
+      propTypes = style.propTypes;
+      delete style.propTypes;
+    }
+    /* eslint-enable react/forbid-foreign-prop-types */
+
     function StyledComponent(props) {
       const {
         children,
@@ -39,9 +54,8 @@ function styled(Component) {
       }
 
       let spread = other;
-      if (style.filterProps) {
-        const omittedProps = style.filterProps;
-        spread = omit(spread, omittedProps);
+      if (filterProps) {
+        spread = omit(spread, filterProps);
       }
 
       if (typeof children === 'function') {
@@ -70,8 +84,13 @@ function styled(Component) {
        */
       clone: chainPropTypes(PropTypes.bool, props => {
         if (props.clone && props.component) {
-          throw new Error('You can not use the clone and component properties at the same time.');
+          return new Error(
+            `You can not use the clone and component properties at the same time.${
+              process.env.NODE_ENV === 'test' ? Date.now() : ''
+            }`,
+          );
         }
+        return null;
       }),
       /**
        * The component used for the root node.
@@ -79,7 +98,7 @@ function styled(Component) {
        */
       component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
       theme: PropTypes.object,
-      ...(style.propTypes || {}),
+      ...propTypes,
     };
 
     if (process.env.NODE_ENV !== 'production') {

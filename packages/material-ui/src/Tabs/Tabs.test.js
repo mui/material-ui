@@ -49,7 +49,7 @@ describe('<Tabs />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  describe('warning', () => {
+  describe('warnings', () => {
     before(() => {
       consoleErrorMock.spy();
     });

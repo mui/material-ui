@@ -51,4 +51,11 @@ describe('withTheme', () => {
 
     assert.strictEqual(isMuiElement(<ThemedInput />, ['Input']), true);
   });
+
+  it('should throw is the import is invalid', () => {
+    assert.throw(
+      () => withTheme(undefined),
+      'You are calling withTheme(Component) with an undefined component',
+    );
+  });
 });

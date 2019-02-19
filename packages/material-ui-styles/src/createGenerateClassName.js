@@ -60,7 +60,7 @@ export default function createGenerateClassName(options = {}) {
     }
 
     // Help with debuggability.
-    if (styleSheet && styleSheet.options.classNamePrefix) {
+    if (styleSheet.options.classNamePrefix) {
       return `${safePrefix(styleSheet.options.classNamePrefix)}-${rule.key}-${seed}${suffix}`;
     }
 

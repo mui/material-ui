@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* eslint-disable no-underscore-dangle */
 
 import { ponyfillGlobal } from '@material-ui/utils';

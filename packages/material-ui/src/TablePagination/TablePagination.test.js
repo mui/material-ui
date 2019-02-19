@@ -282,7 +282,7 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('warning', () => {
+  describe('warnings', () => {
     before(() => {
       consoleErrorMock.spy();
     });

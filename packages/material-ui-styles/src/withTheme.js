@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getDisplayName } from '@material-ui/utils';
 import hoistStatics from './hoistInternalStatics';
-import ThemeContext from './ThemeContext';
+import useTheme from './useTheme';
+import RefHolder from './RefHolder';
 
 // Provide the theme object as a property to the input component.
+// It's an alternative API to useTheme().
+// We encourage the usage of useTheme() where possible.
 const withTheme = Component => {
-  /* istanbul ignore if */
   if (process.env.NODE_ENV !== 'production' && Component === undefined) {
     throw new Error(
       [
@@ -16,14 +18,15 @@ const withTheme = Component => {
     );
   }
 
-  const WithTheme = props => (
-    <ThemeContext.Consumer>
-      {theme => {
-        const { innerRef, ...other } = props;
-        return <Component theme={theme} ref={innerRef} {...other} />;
-      }}
-    </ThemeContext.Consumer>
-  );
+  const WithTheme = React.forwardRef(function WithTheme(props, ref) {
+    const { innerRef, ...other } = props;
+    const theme = useTheme();
+    return (
+      <RefHolder ref={ref}>
+        <Component theme={theme} ref={innerRef} {...other} />
+      </RefHolder>
+    );
+  });
 
   WithTheme.propTypes = {
     /**

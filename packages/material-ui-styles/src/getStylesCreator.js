@@ -12,7 +12,8 @@ function getStylesCreator(stylesOrCreator) {
   warning(
     typeof stylesOrCreator === 'object' || themingEnabled,
     [
-      'Material-UI: the first argument provided to withStyles() is invalid.',
+      'Material-UI: the first argument provided to withStyles(styles)' +
+        ' or makeStyles(styles) is invalid.',
       'You need to provide a function generating the styles or a styles object.',
     ].join('\n'),
   );
