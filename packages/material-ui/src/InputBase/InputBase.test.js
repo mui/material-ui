@@ -515,6 +515,26 @@ describe('<InputBase />', () => {
     });
   });
 
+  describe('prop: ...other', () => {
+    const ariaAttributes = {
+      'aria-autocomplete': 'list',
+      'aria-controls': 'menu',
+      'aria-labelledby': 'label',
+    };
+
+    it('should pass aria attributes to input', () => {
+      const wrapper = mount(<InputBase {...ariaAttributes} />);
+
+      assert.include(wrapper.find('input').props(), ariaAttributes);
+    });
+
+    it('should not pass aria attributes to div', () => {
+      const wrapper = mount(<InputBase {...ariaAttributes} />);
+
+      assert.notInclude(wrapper.find('div').props(), ariaAttributes);
+    });
+  });
+
   describe('prop: inputRef', () => {
     it('should be able to return the input node via a ref object', () => {
       const ref = React.createRef();

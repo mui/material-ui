@@ -140,6 +140,8 @@ export const styles = theme => {
   };
 };
 
+const ariaRegExp = /^aria-/;
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
@@ -321,8 +323,14 @@ class InputBase extends React.Component {
       ...other
     } = this.props;
 
-    const ariaDescribedby = other['aria-describedby'];
-    delete other['aria-describedby'];
+    const ariaAttributes = {};
+
+    Object.keys(other).forEach((key) => {
+      if(ariaRegExp.test(key)) {
+        ariaAttributes[key] = other[key];
+        delete other[key];
+      }
+    })
 
     const fcs = formControlState({
       props: this.props,
@@ -409,7 +417,6 @@ class InputBase extends React.Component {
         <FormControlContext.Provider value={null}>
           <InputComponent
             aria-invalid={fcs.error}
-            aria-describedby={ariaDescribedby}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             className={inputClassName}
@@ -427,6 +434,7 @@ class InputBase extends React.Component {
             required={fcs.required}
             rows={rows}
             value={value}
+            {...ariaAttributes}
             {...inputProps}
           />
         </FormControlContext.Provider>
