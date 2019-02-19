@@ -23,13 +23,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     );
   }
 
-  let meta = name;
+  let classNamePrefix = name;
 
   if (process.env.NODE_ENV !== 'production' && !name) {
     // Provide a better DX outside production.
-    meta = getDisplayName(Component);
+    classNamePrefix = getDisplayName(Component);
     warning(
-      typeof meta === 'string',
+      typeof classNamePrefix === 'string',
       [
         'Material-UI: the component displayName is invalid. It needs to be a string.',
         `Please fix the following component: ${Component}.`,
@@ -41,7 +41,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     ...otherOptions,
     Component,
     name: name || Component.displayName,
-    meta,
+    classNamePrefix,
   });
 
   const WithStyles = React.forwardRef(function WithStyles(props, ref) {

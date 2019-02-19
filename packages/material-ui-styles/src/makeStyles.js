@@ -175,7 +175,7 @@ function makeStyles(stylesOrCreator, options = {}) {
     // An explicit value provided by the developers.
     name,
     // Help with debuggability.
-    meta: metaOption,
+    classNamePrefix: classNamePrefixOption,
     defaultTheme: defaultThemeOption,
     Component,
     ...stylesOptions2
@@ -184,13 +184,13 @@ function makeStyles(stylesOrCreator, options = {}) {
   const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string';
   const defaultTheme = defaultThemeOption || noopTheme;
 
-  const meta = name || metaOption || 'Hook';
+  const classNamePrefix = name || classNamePrefixOption || 'Hook';
 
   stylesCreator.options = {
     index: increment(),
     name,
-    meta,
-    classNamePrefix: meta,
+    meta: classNamePrefix,
+    classNamePrefix,
   };
 
   return (props = {}) => {
