@@ -229,16 +229,10 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: Inspect
-          command: du -a /tmp/workspace
-      - run:
           name: Restore build
           command: |
             sudo apt install -y rsync
             rsync -a /tmp/workspace/ .
-      - run:
-          name: Inspect
-          command: du -a packages/
       # Netlify already do it for us but we need to check the size.
       - run:
           name: Can we build the docs?
