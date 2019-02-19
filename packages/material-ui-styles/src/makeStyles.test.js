@@ -58,8 +58,7 @@ describe('makeStyles', () => {
   });
 
   describe('warnings', () => {
-    const styles = { root: {} };
-    const mountWithProps = createGetClasses(styles);
+    const mountWithProps = createGetClasses({ root: {} });
 
     beforeEach(() => {
       consoleErrorMock.spy();
@@ -99,6 +98,16 @@ describe('makeStyles', () => {
         consoleErrorMock.args()[0][0],
         'Material-UI: the key `root` provided to the classes property is not valid',
       );
+    });
+
+    it('should warn if missing theme', () => {
+      const styles = theme => ({ root: { padding: theme.spacing(2) } });
+      const mountWithProps2 = createGetClasses(styles);
+      assert.throw(() => {
+        mountWithProps2({});
+      });
+      assert.strictEqual(consoleErrorMock.callCount(), 4);
+      assert.include(consoleErrorMock.args()[1][0], 'the `styles` argument provided is invalid');
     });
   });
 
