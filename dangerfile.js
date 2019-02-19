@@ -130,8 +130,8 @@ async function run() {
       results.map(([bundle, { parsed, gzip }]) => {
         return [
           bundle,
-          addPercent(parsed.relativeDiff, true),
-          addPercent(gzip.relativeDiff, true),
+          addPercent(parsed.relativeDiff),
+          addPercent(gzip.relativeDiff),
           parsed.previous,
           parsed.current,
           gzip.previous,
