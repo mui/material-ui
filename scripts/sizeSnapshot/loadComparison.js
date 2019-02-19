@@ -40,7 +40,8 @@ const nullSnapshot = { gzip: Number.NaN, parsed: Number.NaN };
 module.exports = async function loadComparison(parrentId, ref) {
   const [currentSnapshot, previousSnapshot] = await Promise.all([
     loadCurrentSnapshot(),
-    loadSnapshot(parrentId, ref),
+    // silence non existing snapshots
+    loadSnapshot(parrentId, ref).catch(() => ({})),
   ]);
 
   const bundleKeys = uniqueKeys(currentSnapshot, previousSnapshot);
@@ -57,13 +58,13 @@ module.exports = async function loadComparison(parrentId, ref) {
             previous: previousSize.parsed,
             current: currentSize.parsed,
             absoluteDiff: currentSize.parsed - previousSize.parsed,
-            relativeDiff: (currentSize.parsed / previousSize.parsed) - 1
+            relativeDiff: currentSize.parsed / previousSize.parsed - 1,
           },
           gzip: {
             previous: previousSize.gzip,
             current: currentSize.gzip,
             absoluteDiff: currentSize.gzip - previousSize.gzip,
-            relativeDiff: (currentSize.gzip / previousSize.gzip) - 1
+            relativeDiff: currentSize.gzip / previousSize.gzip - 1,
           },
         },
       ];
