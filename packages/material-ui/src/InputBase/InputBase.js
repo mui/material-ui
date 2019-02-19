@@ -325,12 +325,12 @@ class InputBase extends React.Component {
 
     const ariaAttributes = {};
 
-    Object.keys(other).forEach((key) => {
-      if(ariaRegExp.test(key)) {
+    Object.keys(other).forEach(key => {
+      if (ariaRegExp.test(key)) {
         ariaAttributes[key] = other[key];
         delete other[key];
       }
-    })
+    });
 
     const fcs = formControlState({
       props: this.props,

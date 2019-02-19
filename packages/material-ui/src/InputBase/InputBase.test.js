@@ -515,24 +515,16 @@ describe('<InputBase />', () => {
     });
   });
 
-  describe('prop: ...other', () => {
+  it('should pass aria attributes to input', () => {
     const ariaAttributes = {
       'aria-autocomplete': 'list',
       'aria-controls': 'menu',
       'aria-labelledby': 'label',
     };
+    const wrapper = mount(<InputBase {...ariaAttributes} />);
 
-    it('should pass aria attributes to input', () => {
-      const wrapper = mount(<InputBase {...ariaAttributes} />);
-
-      assert.include(wrapper.find('input').props(), ariaAttributes);
-    });
-
-    it('should not pass aria attributes to div', () => {
-      const wrapper = mount(<InputBase {...ariaAttributes} />);
-
-      assert.notInclude(wrapper.find('div').props(), ariaAttributes);
-    });
+    assert.include(wrapper.find('input').props(), ariaAttributes);
+    assert.notInclude(wrapper.find('div').props(), ariaAttributes);
   });
 
   describe('prop: inputRef', () => {
