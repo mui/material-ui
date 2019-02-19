@@ -112,7 +112,11 @@ async function run() {
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
       .map(generateEmphasizedChange);
-    markdown(importantChanges.join('\n'));
+
+    // have to guard against empty strings
+    if (importantChanges.length > 0) {
+      markdown(importantChanges.join('\n'));
+    }
 
     const detailsTable = generateMDTable(
       [
