@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import marked from 'marked';
 import warning from 'warning';
 import throttle from 'lodash/throttle';
-import EventListener from 'react-event-listener';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -129,6 +128,21 @@ function getItemsClient(items) {
   return itemsClient;
 }
 
+function useThrottledOnScroll(callback, delay) {
+  const throttledCallback = React.useMemo(() => throttle(callback, delay), [delay]);
+
+  /* eslint-disable-next-line consistent-return */
+  React.useEffect(() => {
+    if (delay != null) {
+      window.addEventListener('scroll', throttledCallback);
+      return () => {
+        throttledCallback.cancel();
+        window.removeEventListener('scroll', throttledCallback);
+      };
+    }
+  }, [throttledCallback]);
+}
+
 function AppTableOfContents(props) {
   const { classes, contents, t } = props;
   const itemsCollectorRef = React.useRef([]);
@@ -188,9 +202,8 @@ function AppTableOfContents(props) {
     }
   };
 
-  const handleScroll = throttle(() => {
-    findActiveIndex();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  // Corresponds to 10 frames at 60 Hz
+  useThrottledOnScroll(findActiveIndex, itemsServer.length > 0 ? 166 : null);
 
   React.useEffect(() => {
     setRenderer(itemsCollectorRef);
@@ -198,7 +211,6 @@ function AppTableOfContents(props) {
     window.addEventListener('hashchange', handleHashChange);
 
     return function componentWillUnmount() {
-      handleScroll.cancel();
       clearTimeout(unsetClickedRef.current);
       window.removeEventListener('hashchange', handleHashChange);
     };
@@ -232,7 +244,6 @@ function AppTableOfContents(props) {
           <Typography gutterBottom className={classes.contents}>
             {t('tableOfContents')}
           </Typography>
-          <EventListener target="window" onScroll={handleScroll} />
           <Typography component="ul" className={classes.ul}>
             {itemsServer.map(item2 => (
               <li key={item2.text}>
