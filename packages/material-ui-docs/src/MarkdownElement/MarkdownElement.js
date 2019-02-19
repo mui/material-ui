@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import marked from 'marked';
 import { withStyles } from '@material-ui/core/styles';
+import textToHash from '@material-ui/docs/MarkdownElement/textToHash';
 import prism from './prism';
 
 // Monkey patch to preserve non-breaking spaces
@@ -17,14 +18,6 @@ marked.Lexer.prototype.lex = function lex(src) {
 };
 
 const renderer = new marked.Renderer();
-
-export function textToHash(text) {
-  return text
-    .toLowerCase()
-    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
-    .replace(/\W+/g, '-')
-    .replace(/-$/g, '');
-}
 
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.
