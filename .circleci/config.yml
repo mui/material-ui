@@ -246,9 +246,20 @@ jobs:
       - run:
           name: Create a size snapshot
           command: yarn size:snapshot
-      # For debugging/working on a PR
+      # downloaded by aws lambda to s3 bucket
+      # lambda allowes us to limit this to mui-org branches only while hiding credentials
+      # that would allow write access to s3
       - store_artifacts:
           path: size-snapshot.json
+      - run:
+          name: Possibly persist size snapshot
+          command: |
+            if [ $CIRCLE_BRANCH ~= ^pull/ ]; then
+              echo "pull request; do not persist the size snapshot"
+            else
+              echo "no pull request; lets persist the size snapshot"
+              curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM
+            fi
 workflows:
   version: 2
   pipeline:
