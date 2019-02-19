@@ -255,7 +255,8 @@ jobs:
           name: Possibly persist size snapshot
           command: |
             if [ $CIRCLE_BRANCH ~= ^pull/ ]; then
-              echo "pull request; do not persist the size snapshot"
+              echo "pull request; let's run dangerJS"
+              yarn danger ci
             else
               echo "no pull request; lets persist the size snapshot"
               curl -X PUT --header "x-api-key: $CIRCLE_AWS_API_KEY" https://t6nulys5kl.execute-api.us-east-1.amazonaws.com/v1/persist-size-snapshot?build-id=$CIRCLE_BUILD_NUM

@@ -104,6 +104,7 @@
     "cross-env": "^5.1.1",
     "css-loader": "^2.0.0",
     "css-mediaquery": "^0.1.2",
+    "danger": "^7.0.12",
     "date-fns": "2.0.0-alpha.21",
     "doctrine": "^3.0.0",
     "downshift": "^3.0.0",
