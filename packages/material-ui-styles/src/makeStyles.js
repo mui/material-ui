@@ -233,7 +233,7 @@ function makeStyles(stylesOrCreator, options = {}) {
     // Execute asynchronously every time the theme changes.
     React.useEffect(
       () =>
-        function componentWillUnmount() {
+        function removeStyles() {
           detach({
             state,
             stylesCreator,
