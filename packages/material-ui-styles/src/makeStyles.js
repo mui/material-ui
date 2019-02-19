@@ -7,9 +7,7 @@ import ThemeContext from './ThemeContext';
 import { StylesContext } from './StylesProvider';
 import { increment } from './indexCounter';
 import getStylesCreator from './getStylesCreator';
-
-// We use the same empty object to ref count the styles that don't need a theme object.
-const noopTheme = {};
+import noopTheme from './noopTheme';
 
 // Helper to debug
 // let id = 0;

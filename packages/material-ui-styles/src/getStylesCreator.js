@@ -1,5 +1,6 @@
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import noopTheme from './noopTheme';
 
 // Support for the jss-expand plugin.
 function arrayMerge(destination, source) {
@@ -12,15 +13,27 @@ function getStylesCreator(stylesOrCreator) {
   warning(
     typeof stylesOrCreator === 'object' || themingEnabled,
     [
-      'Material-UI: the first argument provided to withStyles(styles)' +
-        ' or makeStyles(styles) is invalid.',
+      'Material-UI: the `styles` argument provided is invalid.',
       'You need to provide a function generating the styles or a styles object.',
     ].join('\n'),
   );
 
   return {
     create: (theme, name) => {
-      const styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
+      let styles;
+      try {
+        styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
+      } catch (err) {
+        warning(
+          !themingEnabled || theme !== noopTheme,
+          [
+            'Material-UI: the `styles` argument provided is invalid.',
+            'You are providing a function without a theme in the context.',
+            'One of the parent elements needs to use a ThemeProvider.',
+          ].join('\n'),
+        );
+        throw err;
+      }
 
       if (!name || !theme.overrides || !theme.overrides[name]) {
         return styles;
