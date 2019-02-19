@@ -158,17 +158,18 @@ async function run() {
   }
 }
 
-run()
-  .then(() => {
-    process.exit(0);
-  })
-  .catch(err => {
+(async () => {
+  try {
+    await run();
+  } catch (err) {
     console.error(err);
-    return cleanup();
-  })
-  .catch(err => {
+  }
+
+  try {
+    await cleanup();
+  } catch (err) {
     console.error(err);
-  })
-  .finally(() => {
+    // unhandled promise rejects exit with 0
     process.exit(1);
-  });
+  }
+})();
