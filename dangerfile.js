@@ -30,6 +30,13 @@ async function cleanup() {
   await git(`remote remove ${upstreamRemote}`);
 }
 
+/**
+ * creates a callback for Object.entries(comparison).filter that excludes every
+ * entry that does not exceed the given threshold values for parsed and gzip size
+ *
+ * @param {number} parsedThreshold
+ * @param {number} gzipThreshold
+ */
 function createComparisonFilter(parsedThreshold, gzipThreshold) {
   return ([, { parsed, gzip }]) => {
     return (
@@ -70,6 +77,7 @@ function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle_dow
  * Generates a Markdown table
  * @param {string[]} headers
  * @param {string[][]} body
+ * @returns {string}
  */
 function generateMDTable(headers, body) {
   const tableHeaders = [headers.join(' | '), headers.map(() => ' --- ').join(' | ')];
@@ -164,6 +172,7 @@ async function run() {
     await run();
   } catch (err) {
     console.error(err);
+    // need to cleanup first so no early exit
   }
 
   try {

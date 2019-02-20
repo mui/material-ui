@@ -4,6 +4,7 @@
 const fse = require('fs-extra');
 const path = require('path');
 const fetch = require('node-fetch');
+const { fromEntries, uniqueKeys } = require('../utils');
 
 const artifactServer = 'https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui';
 
@@ -12,27 +13,12 @@ async function loadCurrentSnapshot() {
 }
 
 /**
- * @param {string} commitId the sha of a commit
- * @param {string} ref the branch containing that commit
+ * @param {string} commitId - the sha of a commit
+ * @param {string} ref - the branch containing that commit
  */
 async function loadSnapshot(commitId, ref = 'master') {
   const response = await fetch(`${artifactServer}/artifacts/${ref}/${commitId}/size-snapshot.json`);
   return response.json();
-}
-
-function flatten(array) {
-  return array.reduce((acc, entry) => acc.concat(entry), []);
-}
-
-function fromEntries(entries) {
-  return entries.reduce((acc, [key, value]) => {
-    acc[key] = value;
-    return acc;
-  }, []);
-}
-
-function uniqueKeys(...objects) {
-  return Array.from(new Set(flatten(objects.map(Object.keys))));
 }
 
 const nullSnapshot = { gzip: Number.NaN, parsed: Number.NaN };
