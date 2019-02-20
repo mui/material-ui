@@ -35,12 +35,12 @@ module.exports = async function loadComparison(parrentId, ref) {
       // if a bundle was added the change should be +inf
       // if a bundle was removed the change should be -inf
       const currentSize = currentSnapshot[bundle] || {
-        gzip: Number.NEGATIVE_INFINITY,
-        parsed: Number.NEGATIVE_INFINITY,
-      };
-      const previousSize = previousSnapshot[bundle] || {
         gzip: Number.POSITIVE_INFINITY,
         parsed: Number.POSITIVE_INFINITY,
+      };
+      const previousSize = previousSnapshot[bundle] || {
+        gzip: Number.NEGATIVE_INFINITY,
+        parsed: Number.NEGATIVE_INFINITY,
       };
 
       return [
