@@ -21,8 +21,6 @@ async function loadSnapshot(commitId, ref = 'master') {
   return response.json();
 }
 
-const nullSnapshot = { gzip: Number.NaN, parsed: Number.NaN };
-
 module.exports = async function loadComparison(parrentId, ref) {
   const [currentSnapshot, previousSnapshot] = await Promise.all([
     loadCurrentSnapshot(),
@@ -34,8 +32,16 @@ module.exports = async function loadComparison(parrentId, ref) {
 
   const bundles = fromEntries(
     bundleKeys.map(bundle => {
-      const currentSize = currentSnapshot[bundle] || nullSnapshot;
-      const previousSize = previousSnapshot[bundle] || nullSnapshot;
+      // if a bundle was added the change should be +inf
+      // if a bundle was removed the change should be -inf
+      const currentSize = currentSnapshot[bundle] || {
+        gzip: Number.NEGATIVE_INFINITY,
+        parsed: Number.NEGATIVE_INFINITY,
+      };
+      const previousSize = previousSnapshot[bundle] || {
+        gzip: Number.POSITIVE_INFINITY,
+        parsed: Number.POSITIVE_INFINITY,
+      };
 
       return [
         bundle,
