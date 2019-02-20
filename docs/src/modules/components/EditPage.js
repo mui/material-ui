@@ -17,7 +17,7 @@ function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${sourceCodeRootUrl}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLanguage}#/next${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLanguage}#/staging${crowdInPath}`
       }
       target="_blank"
       rel="noopener"
