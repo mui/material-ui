@@ -128,7 +128,7 @@ class ExpansionPanelSummary extends React.Component {
         disableRipple
         disabled={disabled}
         component="div"
-        aria-expanded={expanded}
+        aria-expanded={Boolean(expanded)}
         className={clsx(
           classes.root,
           {
