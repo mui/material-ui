@@ -22,7 +22,9 @@ describe('<TablePagination />', () => {
   let mount;
 
   before(() => {
-    classes = getClasses(<TablePagination />);
+    classes = getClasses(
+      <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
+    );
     shallow = createShallow({ dive: true });
     mount = createMount();
   });
@@ -34,15 +36,17 @@ describe('<TablePagination />', () => {
   it('should render a TableCell', () => {
     const wrapper = mount(
       <table>
-        <tr>
-          <TablePagination
-            count={1}
-            page={0}
-            onChangePage={noop}
-            onChangeRowsPerPage={noop}
-            rowsPerPage={5}
-          />
-        </tr>
+        <tbody>
+          <tr>
+            <TablePagination
+              count={1}
+              page={0}
+              onChangePage={noop}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={5}
+            />
+          </tr>
+        </tbody>
       </table>,
     );
     assert.strictEqual(wrapper.find(TableCell).hasClass(classes.root), true);
@@ -70,15 +74,17 @@ describe('<TablePagination />', () => {
     it('should render a TableCell by default', () => {
       const wrapper = mount(
         <table>
-          <tr>
-            <TablePagination
-              count={1}
-              page={0}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-            />
-          </tr>
+          <tbody>
+            <tr>
+              <TablePagination
+                count={1}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+              />
+            </tr>
+          </tbody>
         </table>,
       );
       assert.strictEqual(wrapper.find(TableCell).hasClass(classes.root), true);
