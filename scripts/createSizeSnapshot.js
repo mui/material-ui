@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fse = require('fs-extra');
 const path = require('path');
 const getSize = require('size-limit');
