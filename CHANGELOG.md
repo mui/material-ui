@@ -1,14 +1,14 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 4.0.0-alpha.1
-###### *Feb 19, 2019*
+###### *Feb 20, 2019*
 
 A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
 - Important accessibility fixes (#14465, #14545) @eps1lon, @oliviertassinari
-- Improve the Gastby integration (#14552)
+- Improve the Gastby integration (we will continue working on it to get something awesome) (#14552)
 - Remove the deprecated Typography variants (#14562) @joshwooding
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
@@ -16,7 +16,7 @@ Here are some highlights ✨:
 
 ### Breaking change
 
-- [Typography] Remove deprecated Typography variants and v4 changes (#14562) @joshwooding
+- [Typography] Remove deprecated Typography variants (#14562) @joshwooding
 
   - Remove the deprecated typography variants. You can upgrade by performing the following replacements:
     - display4 => h1
