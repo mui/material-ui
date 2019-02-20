@@ -5,15 +5,15 @@ import { getDisplayName, hoistMuiStatics } from '@material-ui/utils';
  * Enables ref forwarding on a given component that uses `innerRef` to forward refs
  * This is useful for component implementations that predate `forwardRef` and
  * used other props to forward refs.
- * 
+ *
  * Instead of `<Component innerRef={ref} />` you can write
- * `<withForwardRef(Component) ref={ref} />`. 
- * 
+ * `<withForwardRef(Component) ref={ref} />`.
+ *
  * This HOC does not handle prop collision. In
  * `<withForwardRef(Component) ref={ref} innerRef={innerRef} />` `innerRef` will be dropped
- * 
+ *
  * Only copies statics from material-ui over.
- * 
+ *
  * @param {React.ComponentType} Component
  * @returns {React.ForwardRefComponent}
  */

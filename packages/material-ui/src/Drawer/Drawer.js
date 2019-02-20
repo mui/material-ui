@@ -148,11 +148,7 @@ class Drawer extends React.Component {
 
     if (variant === 'permanent') {
       return (
-        <div
-          className={clsx(classes.root, classes.docked, className)}
-          ref={innerRef}
-          {...other}
-        >
+        <div className={clsx(classes.root, classes.docked, className)} ref={innerRef} {...other}>
           {drawer}
         </div>
       );

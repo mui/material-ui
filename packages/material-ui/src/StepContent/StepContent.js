@@ -53,11 +53,7 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
   }
 
   return (
-    <div
-      className={clsx(classes.root, { [classes.last]: last }, className)}
-      ref={ref}
-      {...other}
-    >
+    <div className={clsx(classes.root, { [classes.last]: last }, className)} ref={ref} {...other}>
       <TransitionComponent
         in={active}
         className={classes.transition}
