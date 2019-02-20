@@ -36,7 +36,7 @@ function MyComponent() {
 You can use Material-UI's [breakpoint helpers](/layout/breakpoints/) as follows:
 
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
