@@ -1,4 +1,4 @@
-# 构成
+# 合成
 
 <p class="description">Material-UI尝试使合成尽可能简单。</p>
 

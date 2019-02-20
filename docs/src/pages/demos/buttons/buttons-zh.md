@@ -1,45 +1,45 @@
 ---
-title: React 按钮组件
+title: React Button（按钮）组件
 components: Button, Fab, IconButton, ButtonBase, Zoom
 ---
-# 按钮
+# Buttons（按钮）
 
-<p class="description">用户只需一按按钮组件，就可以触发动作并作出选择。</p>
+<p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达了用户可以触发的动作。通常，按钮被放置在界面中的以下位置：
+[按钮](https://material.io/design/components/buttons.html)承载了用户可以触发的动作。通常他们被放置在界面中的以下位置：
 
-- 对话框
-- 模态窗口
-- 表单
-- 卡片
-- 工具栏
+- Dialogs（对话框）
+- Modal windows（模态窗口）
+- Forms（表单）
+- Cards（卡片）
+- Toolbars（工具栏)
 
-## 实心按钮
+## Contained Buttons（实心按钮）
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度强调, 按照不同的填充颜色和立体效果来表示强调程度。 它们用于触发应用程序所具有的主要功能。
+[实心按钮](https://material.io/design/components/buttons.html#contained-button)表示高度的强调, 根据他们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
 此演示的最后一个示例演示了如何使用上传按钮。
 
 {{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
-## 文本按钮
+## Text Buttons（文本按钮）
 
-[文本按钮](https://material.io/design/components/buttons.html#text-button) 通常用于不太醒目的操作, 包括那些位于:
+[文本按钮](https://material.io/design/components/buttons.html#text-button)通常用于不太醒目的操作, 包括那些位于:
 
-- 在对话框中
-- 在卡片
+- 对话框中
+- 卡片中
 
 在卡片中，使用文本按钮有助于保持卡片内容的醒目程度。
 
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
-## 描边按钮
+## Outlined Buttons（描边按钮）
 
-[描边按钮](https://material.io/design/components/buttons.html#outlined-button) 是中等强调按钮。 它们包含重要的操作， 但不是应用程序中的主要操作。
+[描边按钮](https://material.io/design/components/buttons.html#outlined-button)是中等强调按钮。 它们包含重要但在应用程序中的不是主要的那些操作。
 
 ### 备选方案
 
-描边按钮也可以用来作为比实心按钮次要一点的按钮方案， 或者用来作为比文本按钮重要一点的按钮方案。
+和实心按钮相比，描边按钮强调的更少；或者和文本按钮相比，描边按钮强调的更多。
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 

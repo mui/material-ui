@@ -131,7 +131,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 For more advanced use cases you might be able to take advantage of:
 
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Набор компонентов-оберток для облегчения работы с Material UI в связке с Redux Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Привязки для использования Material-UI с formik.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Набор компонентов-оберток для облегчения работы с Material UI в связке с Final Form.
 - [uniforms-material](https://github.com/vazco/uniforms/tree/master/packages/uniforms-material) компоненты оболочки Material-UI для Uniforms, набор библиотек React для создания форм.

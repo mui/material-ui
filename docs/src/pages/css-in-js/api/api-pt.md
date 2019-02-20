@@ -17,7 +17,7 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 
 `class name generator`: The generator should be provided to JSS.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -47,7 +47,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 `styles`: A function generating the styles or a styles object.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import { withStyles, createStyles } from '@material-ui/styles';
@@ -85,7 +85,7 @@ Link a style sheet with a function component using the **hook** pattern.
 
 `hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -122,7 +122,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 `Component`: The new component created.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -143,7 +143,7 @@ This component allows you to change the behavior of the styling solution. It mak
 
 It should preferably be used at **the root of your component tree**.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -163,7 +163,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This component takes a `theme` property, and makes the `theme` available down the React tree thanks to React context. It should preferably be used at **the root of your component tree**.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -189,7 +189,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 
 `theme`: The theme object.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -209,8 +209,8 @@ Link a style sheet with a component using the **higher-order component** pattern
 Some implementation details that might be interesting to being aware of:
 
 - Adiciona uma propriedade `classes`, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
-- Ele adiciona uma propriedade `innerRef` para que você possa obter uma referência ao componente encapsulado. O uso de ` innerRef ` é idêntico a ` ref `.
-- It forwards *non React static* properties so this HOC is more "transparent". Por exemplo, pode ser usado para definir um método estático (next.js) ` getInitialProps () `.
+- Ele adiciona uma propriedade `innerRef` para que você possa obter uma referência ao componente encapsulado. O uso de `innerRef` é idêntico a `ref`.
+- It forwards *non React static* properties so this HOC is more "transparent". Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
 
 #### Argumentos
 
@@ -226,7 +226,7 @@ Some implementation details that might be interesting to being aware of:
 
 `higher-order component`: Should be used to wrap a component.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -269,7 +269,7 @@ class MyComponent extends React.Component {
 export default MyComponent
 ```
 
-## `withTheme()(Component) => Component`
+## `withTheme(Component) => Component`
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 
@@ -281,7 +281,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 `Component`: The new component created.
 
-#### Examples
+#### Exemplos
 
 ```jsx
 import React from 'react';
@@ -291,5 +291,5 @@ function MyComponent(props) {
   return <div>{props.theme.direction}</div>;
 }
 
-export default withTheme()(MyComponent);
+export default withTheme(MyComponent);
 ```

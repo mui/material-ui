@@ -149,7 +149,7 @@ export default App;
 
 ### JS createComment
 
-codesandbox.io prevents the access to the `<head>` element. To get around the issue, you can use the JavaScript `document.createComment()` API:
+codesanbox.io evita el acceso al elemento `<head>`. Para solucionar el problema, puede usar JavaScript `document.createComment()` API:
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';

@@ -4,10 +4,10 @@
 
 Nós hospedamos alguns projetos de exemplo que você pode encontrar no repositório [ GitHub ](https://github.com/mui-org/material-ui) sob o [` / exemplos `](https://github.com/mui-org/material-ui/tree/next/examples) pasta:
 
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-next)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
+- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)
 - E mais
 
 Create React App is an awesome project for learning React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.

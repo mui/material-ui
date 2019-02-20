@@ -1,18 +1,18 @@
 ---
-title: Transition React component
+title: Composants React de transitions
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
-# Transitions
+# Les transitions
 
-<p class="description">Transition helps make a UI expressive and easy to use.</p>
+<p class="description">Les transitions contribue à rendre une interface utilisateur expressif et facile à utiliser.</p>
 
-Material-UI provides a number of transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications components.
+Material-UI fournit un certain nombre de transitions qui peuvent être utilisées pour introduire [des transitions de base](https://material.io/design/motion/) dans votre applications.
 
-To better support server rendering Material-UI provides a `style` property to the children of some transition components (Fade, Grow, Zoom, Slide). The `style` property must be applied to the DOM for the animation to work as expected.
+Afin de mieux prendre en charge le rendu du serveur, Material-UI fournit une propriété `style` pour les enfants de certains composants de transition (Fade, Grow, Zoom, Slide). La propriété `style` doit être appliquée au DOM pour que l'animation fonctionne comme prévu.
 
 ```jsx
-// The `props` object contains a `style` property.
-// You need to provide it to the `div` element as shown here.
+// L'objet `props` contient une propriété `style`.
+// Vous devez le fournir à l'élément `div` comme indiqué ici.
 function MyComponent(props) {
   return (
     <div {...props}>
@@ -38,7 +38,7 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 ## Fade
 
-Fade in from transparent to opaque.
+Fondu de transparent à opaque.
 
 {{"demo": "pages/utils/transitions/SimpleFade.js"}}
 
@@ -62,6 +62,6 @@ The Transition component's `mountOnEnter` property prevents the child component 
 
 Expand outwards from the center of the child element.
 
-This example also demonstrates how to delay the enter transition.
+Cet exemple montre également comment retarder la transition d'entrée.
 
 {{"demo": "pages/utils/transitions/SimpleZoom.js"}}

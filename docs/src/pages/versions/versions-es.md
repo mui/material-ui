@@ -8,11 +8,11 @@ La versión más reciente se recomienda en producción.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Versión mas reciente
+## Latest versions
 
 Aquí puedes encontrar la version inédita mas reciente de la documentación y código. Puedes usarlo para ver qué cambios se avecinan y proporcionar mejores comentarios a los contribuyentes de Material-UI.
 
-{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
 
 ## Estrategia para versionado
 

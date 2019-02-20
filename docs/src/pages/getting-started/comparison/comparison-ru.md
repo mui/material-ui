@@ -34,7 +34,7 @@ Kоманда разработчиков Material Components начали стр
 
 ![stars](https://img.shields.io/github/stars/material-components/material-components-web.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-components-web.svg)
 
-Мы очень рады, что этот проект поддерживается Google и его командой дизайнеров. It sends a clear signal that the [Material Design specification](https://material.io/design/) is here to stay, as they continue to invest in it.
+Мы очень рады, что этот проект поддерживается Google и его командой дизайнеров. Это четко дает понять, что [спецификация Material Design](https://material.io/design/) будет существовать, пока Google продолжает в нее инвестировать.
 
 ### Фреймворки и библиотеки
 

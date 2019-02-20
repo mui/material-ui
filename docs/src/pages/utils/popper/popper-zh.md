@@ -15,13 +15,13 @@ components: Popper
 - 和 [`Popver`](/utils/popover/) 不同，滚动和单击不会被阻止。 Popper组件会随着可视窗口中的可使用区域更新其位置。
 - 将 `anchorEl` 作为引用对象传递以创建新的 `Popper.js` 实例。
 
-## 简单波普尔
+## 简单 Popper
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
-## Minimalist Popper
+## 最小化的 Popper
 
-You can use the component with zero extra dependencies.
+你可以使用该组件而不需要任何附加依赖。
 
 {{"demo": "pages/utils/popper/MinimalPopper.js" }}
 
@@ -33,7 +33,7 @@ You can use the component with zero extra dependencies.
 
 {{"demo": "pages/utils/popper/PositionedPopper.js"}}
 
-## Without transition Popper
+## 没有过渡效果的 Popper
 
 {{"demo": "pages/utils/popper/NoTransitionPopper.js"}}
 
@@ -51,6 +51,6 @@ Highlight part of the text to see the popper:
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
+在大多数情况下，一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popper 的 state 。
 
 {{"demo": "pages/utils/popper/PopperPopupState.js"}}

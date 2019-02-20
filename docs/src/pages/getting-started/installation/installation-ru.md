@@ -10,10 +10,10 @@ Material-UI доступен в виде пакета [ npm ](https://www.npmjs.
 
 ```sh
 // with npm
-npm install @material-ui/core
+npm install @material-ui/core@next
 
 // with yarn
-yarn add @material-ui/core
+yarn add @material-ui/core@next
 ```
 
 Обратите внимание, что [react](https://www.npmjs.com/package/react) > = 16.3.0 и [react-dom](https://www.npmjs.com/package/react-dom) > = 16.3.0 являются одноранговыми зависимостями.
@@ -51,7 +51,11 @@ Material-UI был разработан на основе шрифта [Roboto](
 Для того, чтобы использовать предварительно собранные иконки SVG Material, например, найденные в [демонстрационных версиях](/demos/app-bar/), сначала нужно установить [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) пакет:
 
 ```sh
-npm install @material-ui/icons
+// with npm
+npm install @material-ui/icons@next
+
+// with yarn
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
@@ -62,7 +66,7 @@ npm install @material-ui/icons
 
 Мы предоставляем два файла универсального определения модуля (UMD):
 
-- один для разработки: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- один для публикации: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- один для разработки: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
+- один для публикации: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
 
-Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn) для быстрого старта.
+Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) для быстрого старта.

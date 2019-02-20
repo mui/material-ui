@@ -1,4 +1,6 @@
 {
+  "topBanner": "⚠️ ({{versionNumber}}) This is the documentation for the `next` release.",
+  "homeQuickWord": "A quick word from our sponsors:",
   "editWebsiteColors": "Modifier les couleurs du site",
   "toggleTheme": "Basculer le thème de couleurs \"clair/sombre\"",
   "toggleRTL": "Basculer de droite à gauche / de gauche à droite",
@@ -49,7 +51,6 @@
   "traffic": "Trafic",
   "newest": "Plus récent",
   "stars": "Étoiles GitHub",
-  "alphabetical": "Alphabétique",
   "dashboardTitle": "Tableau de bord",
   "dashboardDescr": "Un tableau de bord minimal. Le graphique est implementé avec l'aide de Recharts, mais il peut être remplacé par une solution alternative.",
   "signInTitle": "Connexion",

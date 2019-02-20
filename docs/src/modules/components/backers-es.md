@@ -9,12 +9,9 @@ Los Patrocinadores Gold son aquellos que se han comprometido a donar $500/mes o 
 a través de [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Temas Premium">
-  </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 16px;">
-    <img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="La forma más rápida de compartir código">
-  </a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?partner=104080" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Temas Premium"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://avatars2.githubusercontent.com/u/30204434?s=192" alt="tidelift" title="Consiga Soporte Profesional para Material-UI"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bitsrc.io" rel="noopener" target="_blank" style="margin-right: 16px;"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="La forma más rápida de compartir código"></a>
 </p>
 
 a través de [OpenCollective](https://opencollective.com/material-ui)

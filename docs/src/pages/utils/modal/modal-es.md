@@ -27,7 +27,7 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/demos
 
 {{"demo": "pages/utils/modal/SimpleModal.js"}}
 
-## Performance
+## Rendimiento
 
 The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modal in your React tree won't slow down your page.
 
@@ -66,4 +66,24 @@ We create a lot of React elements that will never be mounted. It's wasteful
 </Modal>
 ```
 
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal
+This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
+
+## Accesibilidad
+
+- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
+
+```jsx
+<Modal
+  aria-labelledby="simple-modal-title"
+  aria-describedby="simple-modal-description"
+>
+  <Typography variant="h6" id="modal-title">
+    My Title
+  </Typography>
+  <Typography variant="subtitle1" id="simple-modal-description">
+    My Description
+  </Typography>
+</Modal>
+```
+
+- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.

@@ -1,14 +1,14 @@
 ---
-title: List React component
+title: Lista React Componente
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 # Lists (Listas)
 
 <p class="description">As listas são índices verticais contínuos de texto ou imagens.</p>
 
-[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+[Listas](https://material.io/design/components/lists.html) são um grupo contínuo de texto ou imagens. Eles são compostos por itens contendo ações primárias e complementares, que são representados por ícones e texto.
 
-## Simple List
+## Lista simples
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
@@ -26,7 +26,7 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+Você pode encontrar uma demonstração [com React Router seguindo esta seção](/guides/composition/#react-router) da documentação.
 
 ## Lista aninhada
 
@@ -48,7 +48,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Alinhar itens da lista
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, defina a propriedade `alignItems = "flex-start"`.
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
@@ -56,13 +56,13 @@ You should change the list item alignment when displaying 3 lines or more, set t
 
 ### Checkbox
 
-A checkbox can either be a primary action or a secondary action.
+Uma caixa de seleção que pode ser tanto uma ação principal ou uma ação secundária.
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+O checkbox é a ação primária e o estado indicador para o item da lista. O botão comentário é a ação secundária e um destino separado.
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-The checkbox is the secondary action for the list item and a separate target.
+O checkbox é a ação secundária para o item da lista e um destino separado.
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
@@ -76,7 +76,7 @@ O comutador é a ação secundária e um destino separado.
 
 Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da tela pelo próximo subtítulo.
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+Este recurso está dependendo do posicionamento de sticky CSS. Infelizmente, [não foi implementado](https://caniuse.com/#search=sticky) por todos os navegadores que suportamos. O padrão é `disableSticky` quando não é suportado.
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 

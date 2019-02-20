@@ -51,7 +51,7 @@ function MyComponent() {
 
 服务器上需要实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) ，我们建议使用 [css-mediaquery](https://github.com/ericf/css-mediaquery)。 我们还鼓励使用从主题中获取属性的 `unstable_useMediaQueryTheme` 版本的钩子。 这样，您可以为所有React树提供一次 `ssrMatchMedia` 选项。
 
-{{“demo”：“pages / layout / use-media-query / ServerSide.js”，“react”：“next”}}
+{{"demo": "pages/layout/use-media-query/ServerSide.js"}}
 
 ## 从 `迁移withWidth（）`
 
@@ -80,7 +80,7 @@ function MyComponent() {
 #### 参数
 
 1. `query` （*String*）：表示要处理的媒体查询的字符串。
-2. `选项` (*Object* [optional]):
+2. `选项` (*Object* [optional]): 
     - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
     - `options.noSsr` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 它慢了。 您可以将此标志设置为 `真` ，如果你是 **没有做服务器端渲染**。
     - `options.ssrMatchMedia` （*功能* [optional]）您可能希望使用启发式来近似 客户端浏览器的屏幕。 例如，您可以使用用户代理或客户端提示https://caniuse.com/#search=client%20hint。 您可以使用主题上的 [`自定义属性`](/customization/themes/#properties) 提供全局ponyfill。 检查 [服务器端呈现示例](#server-side-rendering)。

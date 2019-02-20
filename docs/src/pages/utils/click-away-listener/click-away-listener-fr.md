@@ -4,11 +4,11 @@ components: ClickAwayListener
 ---
 # Click away listener
 
-<p class="description">Listen for click events that occur somewhere in the document, outside of the element itself.</p>
+<p class="description">Écoutez des événements click qui se produisent quelque part dans le document, en dehors de l’élément lui-même.</p>
 
 ## Simple menu
 
-For instance, if you need to hide a menu when people click anywhere else on your page:
+Par exemple, si vous avez besoin de cacher un menu en cliquant n'importe où sur votre page:
 
 {{"demo": "pages/utils/click-away-listener/ClickAway.js"}}
 

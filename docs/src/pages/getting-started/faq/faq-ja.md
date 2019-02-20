@@ -14,7 +14,7 @@
 
 - 誤ってMaterial-UIの2つのバージョンを**bundle**してしまっている場合、 依存関係がMaterial-UIを対の依存関係として正しく設定されていない可能性があります
 - Reactツリーの**サブセット**に`JssProvider`を使用している場合
-- bundlerを使っていて、それが複数のクラス名ジェネレータインスタンスが作成されるという方法でコード分割しています。 webpackで [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化環境下`で`runtimeChunk`を設定してみてください](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)
+- bundlerを使っていて、それが複数のクラス名ジェネレータインスタンスが作成されるという方法でコード分割しています。 > webpackで [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化環境下`で`runtimeChunk`を設定してみてください](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)
 
 全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`JssProvider`](/customization/css-in-js/#jssprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
 
@@ -85,7 +85,7 @@ const theme = createMuiTheme({
 
 私達は[サードパーティ製ルーティングライブラリ](/demos/buttons/#third-party-routing-library)で`ButtonBase`コンポーネントの使い方をドキュメント化しました。 私たちのインタラクティブなコンポーネントの多くはButtonBaseコンポーネントを内部的に使っています：`Button`, `MenuItem`, `<ListItem button />`, `Tab`, などなど。 それらの例を参考にしてください。
 
-## どうやって`withStyles()`と`withTheme()`をHOCで統合できますか?
+## How do I combine the `withStyles()` and `withTheme` HOCs?
 
 さまざまなオプションがあります。
 
@@ -101,7 +101,7 @@ export default withStyles(styles, { withTheme: true })(Modal);
 import { compose } from 'recompose';
 
 export default compose(
-  withTheme(),
+  withTheme,
   withStyles(styles)
 )(Modal);
 ```
@@ -109,7 +109,7 @@ export default compose(
 **生の関数チェーン：**
 
 ```js
-export default withTheme()(withStyles(styles)(Modal));
+export default withTheme(withStyles(styles)(Modal));
 ```
 
 ## どうやってDOM要素にアクセスできますか？
@@ -127,7 +127,7 @@ Material-UIをサポートする方法はたくさんあります。
 - [ドキュメント](https://github.com/mui-org/material-ui/tree/next/docs)を改善する 
 - 他の人が始めるのを手伝う
 - [ライブラリを布教する](https://twitter.com/MaterialUI) 
-- [StackOverflowの質問](https://stackoverflow.com/questions/tagged/material-ui)、またはリポジトリで[質問としてマークされているissues](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion)に答えてください。
+- Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).
 
 商用プロジェクトでMaterial-UIを使用していて、スポンサーになることによってその継続的な開発を支援したい場合は、 あるいはサブや趣味のプロジェクトで**スポンサー**になりたい場合は、[OpenCollective](https://opencollective.com/material-ui)を使って行うことができます。
 

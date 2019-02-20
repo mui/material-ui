@@ -25,7 +25,7 @@ It's interesting to have the building blocks needed to implement custom icons, b
   <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
 </a>
 
-#### Usage
+#### Utilização
 
 You can use [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
 

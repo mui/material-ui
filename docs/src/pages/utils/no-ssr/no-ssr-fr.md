@@ -2,23 +2,23 @@
 title: No SSR React component
 components: NoSsr
 ---
-# No SSR
+# Pas de SSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+<p class="description">NoSsr supprime intentionnellement des composants du rendu côté serveur (SSR).</p>
 
-This component can be useful in a variety of situations:
+Ce composant peut être utile dans diverses situations:
 
-- Escape hatch for broken dependencies not supporting SSR.
-- Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
-- Under too heavy server load, you can turn on service degradation.
-- Improve the time-to-interactive by only rendering what's important (with the `defer` property).
+- Trappe d'évacuation pour les dépendances qui ne supportent pas le SSR.
+- Améliorer le temps nécessaire pour peindre le client en rendant uniquement le rendu visible à l'écran.
+- Réduire le temps de rendu sur le serveur.
+- Si la charge du serveur est trop importante, vous pouvez activer une dégradation du service.
+- Améliorez le temps d'interactivité en ne rendant que ce qui est important (avec la propriété `defer`).
 
-## Client side deferring
+## Report du côté client
 
 {{"demo": "pages/utils/no-ssr/SimpleNoSsr.js"}}
 
-## Frame deferring
+## Report d'une frame
 
 In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
 

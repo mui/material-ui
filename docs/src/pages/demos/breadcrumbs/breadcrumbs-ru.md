@@ -26,18 +26,18 @@ components: Breadcrumbs, Link, Typography
 
 ## Пользовательские хлебные крошки
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the breadcrumb link design.
+Если вы читали [страницу документации по переопределению стилей](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот пример того, как изменить дизайн хлебной крошки.
 
 {{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Accessibility
+## Доступность
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Убедитесь что добавили `aria-label` в описание `Breadcrumbs` компонента.
 
-The accessibility of this component relies on:
+Доступность этого компонента зависит от:
 
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
+- Набор ссылок структурирован с использованием упорядоченного списка (элемент`<ol>`).
+- Для того, чтобы программа чтения с экрана не объявляла визуальные разделители между ссылками, они скрыты с `aria-hidden`.
 - Элемент навигации, помеченный `aria-label` идентифицирует структуру как "след" хлебной крошки и делает ее навигационным ориентиром, чтобы ее можно было легко найти.
 
 ## Интеграция с react-router

@@ -8,11 +8,11 @@
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Última versão
+## Latest versions
 
 Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá usar esta versão para ver quais alterações que estão a ser implementadas e fornecer um feedback melhor para os contribuidores de Material-UI.
 
-{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
 
 ## Estratégia de controle de versão
 

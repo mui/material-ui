@@ -1,5 +1,5 @@
 ---
-title: React Paper 组件
+title: React Portal 组件
 components: Portal
 ---
 # Portal
@@ -8,7 +8,7 @@ components: Portal
 
 Portal 组件的子节点将被添加到指定的 `容器` 中。
 
-该组件在被用于 [`Modal`](/utils/modal/) 和 [`Popper`](/utils/popper/) 内部。 在服务端，内容不会被渲染。 你必须等到客户端协调完成才能见到子节点。
+该组件在被用于 [`Modal`](/utils/modal/) 和 [`Popper`](/utils/popper/) 内部。 在服务端，内容不会被渲染。 You have to wait for the client side hydratation to see the children.
 
 ## 简单的 Portal 示例
 

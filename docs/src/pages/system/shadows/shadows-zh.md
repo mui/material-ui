@@ -2,7 +2,7 @@
 
 <p class="description">使用box-shadow实用程序为元素添加或删除阴影。</p>
 
-## 例
+## 示例
 
 ```jsx
 <Box boxShadow={0}>…

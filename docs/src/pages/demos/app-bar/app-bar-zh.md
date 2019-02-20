@@ -1,8 +1,8 @@
 ---
-title: React的应用栏组件
-components: 应用栏（AppBar）、工具栏(ToolBar)、菜单(Menu)
+title: React的 App Bar（应用栏）组件
+components: AppBar, Toolbar, Menu
 ---
-# 应用栏
+# App Bar（应用栏）
 
 <p class="description">应用栏用来显示与当前屏幕相关的信息和操作。</p>
 
@@ -28,7 +28,7 @@ components: 应用栏（AppBar）、工具栏(ToolBar)、菜单(Menu)
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
-## 带搜索输入框的应用栏
+## 带有搜索输入框的应用栏
 
 一个侧边搜索栏。
 

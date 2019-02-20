@@ -39,47 +39,44 @@ import 'typeface-roboto';
 
 {{"demo": "pages/style/typography/Types.js"}}
 
-### 弃用的变体
-
-{{"demo": "pages/style/typography/DeprecatedTypes.js"}}
-
 ## 主题
 
 在某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用主题的 [`排版`](/customization/default-theme/?expend-path=$.typography) 键。
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
 
-## 迁移到typography v2
+## Changing the semantic element
 
-Material design规范因变体名称和样式而发生变化。 为了实现平滑过渡，我们保留旧变体和重新设计的变体以实现向后兼容性，但我们记录了弃用警告。 我们将在下一个主要版本v4.0.0（2019年第一季度）中删除旧的排版变体。
+The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
 
-### 策略
+- You can change the underlying element for a one time occassion with the `component` property:
 
-要立即切换到排版v2，您只需传递` useNextVariants：true </ code>
-调用<code>createMuiTheme `：
+```jsx
+{/* We already have an h1 in the page, let's not duplicate it. */}
+<Typography variant="h1" component="h2">
+  h1. Heading
+</Typography>
+```
+
+- You can change the mapping [globally using the theme](/customization/themes/#properties):
 
 ```js
 const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
+  props: {
+    MuiTypography: {
+      variantMapping: {
+        h1: 'h2',
+        h2: 'h2',
+        h3: 'h2',
+        h4: 'h2',
+        h5: 'h2',
+        h6: 'h2',
+        subtitle1: 'h2',
+        subtitle2: 'h2',
+        body1: 'span',
+        body2: 'span',
+      },
+    },
   },
-});
+})
 ```
-
-或者设置 `window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;`如果你不使用主题。
-
-根据以下映射，这将使用新variants而不是旧的variants：
-
-```sh
-display4 => h1
-display3 => h2
-display2 => h3
-display1 => h4
-headline => h5
-title => h6
-subheading => subtitle1
-body2 => body1
-body1 (default) => body2 (default)
-```
-
-请注意，如果您使用其中一个旧版本，则会记录弃用警告。 我们建议您使用建议的variants替换那些旧的variants 为下一个主要版本。 有关如何使用全局主题的更多信息，请参见[主题](/customization/themes/)。

@@ -9,7 +9,7 @@
 #### 参数
 
 1. `选项` (*Object* [optional]): 
-    - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): 默认值为`false`。 使Material-UI 类名称具有确定性。
+    - ` options.dangerouslyUseGlobalCSS ` (*Boolean* [optional]): Defaults to `false`。 使Material-UI 类名称具有确定性。
     - `options.productionPrefix` (*String* [optional])：初始值为`'jss'`. 用于在生产中对类名称进行前缀的字符串。
     - `options.seed` (*String* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 当使用多个生成器时，它可用于避免类名冲突。
 
@@ -270,7 +270,7 @@ class MyComponent extends React.Component {
 export default MyComponent
 ```
 
-## `withTheme()(Component) => Component`
+## `withTheme(Component) => Component`
 
 提供`theme` object作为输入组件的属性，因此可以在render方法中使用 。
 
@@ -292,5 +292,5 @@ function MyComponent(props) {
   return <div>{props.theme.direction}</div>;
 }
 
-export default withTheme()(MyComponent);
+export default withTheme(MyComponent);
 ```

@@ -1,4 +1,6 @@
 {
+  "topBanner": "⚠️ ({{versionNumber}}) This is the documentation for the `next` release.",
+  "homeQuickWord": "A quick word from our sponsors:",
   "editWebsiteColors": "ウェブサイトの色を編集する",
   "toggleTheme": "ライト/ダークテーマに変更する",
   "toggleRTL": "左右反転する",
@@ -49,7 +51,6 @@
   "traffic": "トラフィック",
   "newest": "新着",
   "stars": "GitHubのスター数",
-  "alphabetical": "アルファベット順",
   "dashboardTitle": "ダッシュボード",
   "dashboardDescr": "タスクバーと変異チャート機能を備えたミニマルなダッシュボード。チャートはRechartsによるものですが、差し替えるのは簡単です。",
   "signInTitle": "ログイン",

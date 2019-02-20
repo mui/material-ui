@@ -4,38 +4,38 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 ---
 # Dialogs (Diálogos)
 
-<p class="description">As caixas de diálogo informam os usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
+<p class="description">As caixas de diálogo informa aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
-Uma caixa de [Diálogo](https://material.io/design/components/dialogs.html) é um tipo de janela [modal](/utils/modal/) que aparece na frente do conteúdo do aplicativo para fornecer informações críticas ou solicitar uma decisão. As caixas de diálogo desativam toda a funcionalidade do aplicativo quando elas são exibidas e permanecem na tela até que sejam confirmadas, rejeitadas ou que uma ação necessária tenha sido executada.
+Uma caixa de [Diálogo](https://material.io/design/components/dialogs.html) é um tipo de janela [modal](/utils/modal/) que aparece na frente do conteúdo do aplicativo para fornecer informações críticas ou solicitar uma decisão. A caixa de diálogo desabilita as funcionalidades do aplicativo enquanto aparece e permanece em tela até confirmado, negado ou a ação requerida seja passada.
 
 As caixas de diálogo são intencionalmente interruptivas, portanto devem ser usadas com moderação.
 
 ## Caixas de diálogo simples
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+A caixa de diálogo simples pode providenciar detalhes adicionais ou ações sobre um item de lista. Por exemplo, ele podem mostrar um avatar, ícone, texto esclarecedor ou um ação paralela (Como adicionar uma conta.).
 
-Touch mechanics:
+Mecanismo de Toque:
 
-- Choosing an option immediately commits the option and closes the menu
-- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+- Escolhendo imediadamente uma opção confirmando a opção e fechando o menu
+- Tocando para sair da caixa de diálogo ou pressionando a opção de voltar cancelando a ação e fechando a caixa de diálogo
 
 {{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
 ## Alerts
 
-Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
+Alertas são interrupções urgentes, requerendo confirmação que informou ao usuário a situação.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Maioria dos alertas não precisam de títulos. Eles resumem uma decisão em uma sentença ou duas por:
 
-- Asking a question (e.g. "Delete this conversation?")
-- Making a statement related to the action buttons
+- Fazendo uma pergunta(Exemplo: "Apagar esta conversa?")
+- Fazendo uma declaração relacionada aos botões de ação
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+Use a barra de título somente para situações de alto risco, como perda de conexão potencial. Os usuários devem ser capaz de entender as escolhas baseando-se apenas no título e texto do botão.
 
-If a title is required:
+Se um título é necessário:
 
-- Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
-- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
+- Use uma pergunta ou declaração clara com uma explicação na área de conteúdo, como um "Apagar dados do USB?".
+- Evite desculpas, ambiguidade ou perguntas, algo como "Atenção!" ou "Você tem certeza?"
 
 {{"demo": "pages/demos/dialogs/AlertDialog.js"}}
 
@@ -43,9 +43,9 @@ You can also swap out the transition, the next example uses `Slide`.
 
 {{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
-## Form dialogs
+## Formulário de Diálogo
 
-Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+Os fórmulas de diálogo permite que os usuários preencham os campos de um fórmula em uma diálogo. Por exemplo, se seu site solicita aos inscritos preencham endereço de e-mail, eles poderão preencher o campo de e-mail e tocar em encaminhar.
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
@@ -83,7 +83,7 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 
 ## Accessibility
 
-Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Dialog`. Additionally, you may give a description of your modal dialog with the `aria-describedby="id..."` property on the `Dialog`.
+Follow the [Modal accessibility section](/utils/modal/#accessibility).
 
 ## Scrolling long content
 

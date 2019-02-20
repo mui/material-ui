@@ -1,6 +1,6 @@
 # Color
 
-<p class="description">Transmitir significado a través del color. Ahora mismo puedes acceder a todos los colores en la especificación de diseño de Material Design.</p>
+<p class="description">Transmitir significado a través del color. Ahora mismo se puede acceder a todos los colores en la especificación de diseño de Material Design.</p>
 
 El [sistema de color](https://material.io/design/color/) Material Design se puede utilizar para crear un tema de color que refleje su marca o estilo.
 
@@ -10,15 +10,15 @@ El [sistema de color](https://material.io/design/color/) Material Design se pued
 
 #### "Pallette" (Paleta)
 
-Una paleta es una colección de colores, es decir, su matiz (color) y sus tonos. Material-UI proporciona todos los colores de las pautas de Material Design. [Esta paleta de colores](#color-palette) ha sido diseñada para que funcionen en armonía unas con otras.
+Una paleta es una colección de colores, es decir, su matiz (color) y sus tonos. Material-UI proporciona todos los colores incluidos en las pautas de Material Design. [Esta paleta de colores](#color-palette) ha sido diseñada para que funcionen en armonía unos con otros.
 
 #### "Hue" & "Shade" (Matiz y tono)
 
-Un solo color dentro de la paleta está formado por un matiz como el "rojo" y un tono, como "500". "rojo 50" es el tono más claro de rojo (* rosa! *), mientras que "rojo 900" es el más oscuro. Además, la mayoría de los matices vienen con tonos de "acento", prefijados con un `A`.
+Un solo color dentro de la paleta está formado por un matiz como el "rojo" y un tono, como "500". "rojo 50" es el tono más claro de rojo (*¡rosa!*), mientras que "rojo 900" es el más oscuro. Además, la mayoría de los matices vienen con tonos de "acento", prefijados con una `A`.
 
 ### Ejemplos
 
-La paleta de colores de Material Design consta de colores primarios y de acento que se pueden usar para ilustrar o desarrollar los colores de su marca. Esta paleta de colores ha sido diseñada para que funcionen en armonía unas con otras.
+La paleta de colores de Material Design consta de colores primarios y de acento que se pueden usar para ilustrar o desarrollar los colores de su marca. Han sido diseñados para trabajar en armonía unos con otros.
 
 Por ejemplo, puede referirse a colores primarios y de acento complementarios (por ejemplo, 'rojo 500' & 'púrpura A200'), así:
 
@@ -28,12 +28,12 @@ import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
-const accent = purple.A200; // #E040FB (alternative method)
+const accent = purple.A200; // #E040FB (método alternativo)
 ```
 
 ### Paleta de colores
 
-Dado un * HUE (matriz) * (rojo, rosa, etc.) y una * SOMBRA (tono) * (500, 600, etc.) puedes importar el color así:
+Dado un *HUE (matiz)* (rojo, rosa, etc.) y una *SHADE (tono)* (500, 600, etc.) se puede importar el color así:
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
@@ -45,11 +45,11 @@ const color = HUE[SHADE];
 
 ## Herramienta de color
 
-Para probar un [ material.io/design/color ](https://material.io/design/color/) combinación de colores con la documentación de Material-UI, simplemente seleccione los colores usando la paleta y los controles deslizantes a continuación. Alternatively, you can enter hex values in the Primary and Secondary text fields.
+Para probar un esquema de color [material.io/design/color](https://material.io/design/color/) con la documentación de Material-UI, simplemente se pueden seleccionar los colores usando la paleta y los sliders de abajo. Como alternativa, se pueden escribir valores hexadecimales en los campos de text Primary (color primario) y Secondary (color secundario).
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/themes/#theme-provider)):
+La salida conseguida en la muestra de color se puede pegar directamente en la función [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) (para ser utilizada con [`MuiThemeProvider`](/customization/themes/#theme-provider)):
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';

@@ -1,4 +1,6 @@
 {
+  "topBanner": "⚠️ ({{versionNumber}}) This is the documentation for the `next` release.",
+  "homeQuickWord": "A quick word from our sponsors:",
   "editWebsiteColors": "Редактирование цветов сайт",
   "toggleTheme": "Переключить светлую/темную тему",
   "toggleRTL": "Переключить справа-налево/слева-направо",
@@ -49,7 +51,6 @@
   "traffic": "Трафик",
   "newest": "По новизне",
   "stars": "Звезды на GitHub",
-  "alphabetical": "По алфавиту",
   "dashboardTitle": "Панель управления",
   "dashboardDescr": "Минималистичная панель управления с панелью задач и небольшим выбором палитры. Графики любезно предоставлены Recharts, но легко могут быть заменены на другие.",
   "signInTitle": "Авторизация",
