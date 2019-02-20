@@ -42,7 +42,7 @@
     "@material-ui/utils": "^4.0.0-alpha.0",
     "clsx": "^1.0.2",
     "keycode": "^2.1.9",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {},
   "sideEffects": false,

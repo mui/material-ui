@@ -58,7 +58,7 @@
     "jss-vendor-prefixer": "^7.0.0",
     "normalize-scroll-left": "^0.1.2",
     "popper.js": "^1.14.1",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.7.2",
     "react-event-listener": "^0.6.2",
     "react-transition-group": "^2.2.1",
     "warning": "^4.0.1"

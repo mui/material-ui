@@ -1,4 +1,3 @@
-export { default as componentPropType } from './componentPropType';
 export { default as chainPropTypes } from './chainPropTypes';
 export { default as exactProp } from './exactProp';
 export { default as getDisplayName } from './getDisplayName';

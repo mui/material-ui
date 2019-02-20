@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, componentPropType } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
@@ -227,11 +227,11 @@ ListItem.propTypes = {
    * Either a string to use a DOM element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    */
-  ContainerComponent: componentPropType,
+  ContainerComponent: PropTypes.elementType,
   /**
    * Properties applied to the container component if used.
    */

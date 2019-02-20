@@ -156,8 +156,9 @@ function generatePropType(type) {
         return generatePropType(chained.type);
       }
 
-      if (type.raw === 'componentPropType') {
-        return 'Component';
+      // this should be fixed at some point in react-docgen
+      if (type.raw === 'PropTypes.elementType') {
+        return 'element type';
       }
 
       return type.raw;

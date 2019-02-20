@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from '../StepIcon';
@@ -196,7 +195,7 @@ StepLabel.propTypes = {
   /**
    * The component to render in place of the [`StepIcon`](/api/step-icon/).
    */
-  StepIconComponent: componentPropType,
+  StepIconComponent: PropTypes.elementType,
   /**
    * Properties applied to the [`StepIcon`](/api/step-icon/) element.
    */

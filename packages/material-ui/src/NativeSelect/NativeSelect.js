@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { componentPropType } from '@material-ui/utils';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
 import formControlState from '../FormControl/formControlState';
@@ -132,7 +131,7 @@ NativeSelect.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: componentPropType,
+  IconComponent: PropTypes.elementType,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
