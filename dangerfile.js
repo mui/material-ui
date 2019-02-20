@@ -61,7 +61,7 @@ function isPackageComparison([bundle]) {
  * @param {string} goodEmoji emoji on reduction
  * @param {string} badEmooji emoji on increase
  */
-function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle_down:') {
+function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle:') {
   const formatted = (change * 100).toFixed(2);
   if (/^-|^0(?:\.0+)$/.test(formatted)) {
     return `${formatted}%${goodEmoji}`;
