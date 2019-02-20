@@ -32,6 +32,7 @@ async function createModulePackages({ from, to }) {
       const packageJson = {
         sideEffects: false,
         module: path.join('../esm', directoryPackage, 'index.js'),
+        typings: './index.d.ts',
       };
       const packageJsonPath = path.join(to, directoryPackage, 'package.json');
 
