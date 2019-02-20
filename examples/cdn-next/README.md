@@ -28,5 +28,5 @@ affecting performance and bandwidth utilisation.
 
 We are providing two Universal Module Definition (UMD) files:
 
-- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js

@@ -58,7 +58,7 @@ Pick one of the following plugins:
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
 We also publish a second version of the components to target **evergreen browsers**.
-You can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core/es/).
+You can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core@next/es/).
 All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
 This can be used to make separate bundles targeting different browsers.
 Older browsers will require more JavaScript features to be transpiled,
