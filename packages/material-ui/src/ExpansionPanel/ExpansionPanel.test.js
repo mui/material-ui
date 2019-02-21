@@ -116,19 +116,32 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle the CollapseComponent prop', () => {
-    const CustomCollapse = props => <div {...props} />;
+    class NoTransitionCollapse extends React.Component {
+      render () {
+        const { children }= this.props
+        return this.props.in ? <div>{children}</div> : null
+      }
+    }
 
-    const wrapper = shallow(
-      <ExpansionPanel CollapseComponent={CustomCollapse}>
+    const CustomContent = () => <div>Hello</div>
+    const wrapper = mount(
+      <ExpansionPanel expanded CollapseComponent={NoTransitionCollapse}>
         <ExpansionPanelSummary />
-        <div>Hello</div>
+        <CustomContent />
       </ExpansionPanel>,
     );
 
-    assert.strictEqual(wrapper.childAt(0).type(), ExpansionPanelSummary);
-    const collapse = wrapper.childAt(1);
-    assert.strictEqual(collapse.type(), CustomCollapse);
-    assert.strictEqual(collapse.children().length, 1, 'collapse should have 1 children div');
+    // Collapse is initially shown
+    const collapse = wrapper.find(NoTransitionCollapse);
+    assert.strictEqual(collapse.type(), NoTransitionCollapse);
+    assert.strictEqual(collapse.props().in, true);
+    assert.strictEqual(wrapper.find(CustomContent).length, 1);
+
+    // Hide the collapse
+    wrapper.setProps({ expanded: false })
+    const collapse2 = wrapper.find(NoTransitionCollapse);
+    assert.strictEqual(collapse2.props().in, false);
+    assert.strictEqual(wrapper.find(CustomContent).length, 0);
   });
 
   describe('prop: children', () => {
