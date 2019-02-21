@@ -28,7 +28,7 @@ import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import { ACTION_TYPES } from 'docs/src/modules/constants';
+import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
 
 Router.onRouteChangeStart = () => {
@@ -68,14 +68,14 @@ const languages = [
     code: 'es',
     text: '🇪🇸 Español',
   },
-  // {
-  //   code: 'de',
-  //   text: '🇩🇪 Deutsch',
-  // },
-  // {
-  //   code: 'ja',
-  //   text: '🇯🇵 日本語',
-  // },
+  {
+    code: 'de',
+    text: '🇩🇪 Deutsch',
+  },
+  {
+    code: 'ja',
+    text: '🇯🇵 日本語',
+  },
 ];
 
 const styles = theme => ({
@@ -247,15 +247,17 @@ class AppFrame extends React.Component {
                     open={Boolean(languageMenu)}
                     onClose={this.handleLanguageMenuClose}
                   >
-                    {languages.map(language => (
-                      <MenuItem
-                        key={language.code}
-                        selected={userLanguage === language.code}
-                        onClick={this.handleLanguageMenuItemClick(language.code)}
-                      >
-                        {language.text}
-                      </MenuItem>
-                    ))}
+                    {languages
+                      .filter(language => LANGUAGES.indexOf(language.code) !== -1)
+                      .map(language => (
+                        <MenuItem
+                          key={language.code}
+                          selected={userLanguage === language.code}
+                          onClick={this.handleLanguageMenuItemClick(language.code)}
+                        >
+                          {language.text}
+                        </MenuItem>
+                      ))}
                   </Menu>
                   <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
                     <IconButton

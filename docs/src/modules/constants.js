@@ -9,4 +9,8 @@ export const ACTION_TYPES = {
   OPTIONS_CHANGE: 'OPTIONS_CHANGE',
 };
 
-export const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja'];
+// Active
+export const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
+
+// Work in progress
+export const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja'];

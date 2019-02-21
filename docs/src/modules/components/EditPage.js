@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
-const LANGUAGES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
+const LOCALES = { zh: 'zh-CN', pt: 'pt-BZ', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
 function EditPage(props) {
   const { markdownLocation, sourceCodeRootUrl, t, userLanguage } = props;
-  const crowdInLanguage = LANGUAGES[userLanguage] || userLanguage;
+  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
 
   return (
@@ -17,7 +17,7 @@ function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${sourceCodeRootUrl}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLanguage}#/staging${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
       }
       target="_blank"
       rel="noopener"
