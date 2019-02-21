@@ -40,7 +40,7 @@
     "@material-ui/system": "^4.0.0-alpha.0",
     "@material-ui/utils": "^4.0.0-alpha.0",
     "@types/jss": "^9.5.6",
-    "@types/react-transition-group": "^2.0.8",
+    "@types/react-transition-group": "^2.0.16",
     "brcast": "^3.0.1",
     "clsx": "^1.0.2",
     "csstype": "^2.5.2",
@@ -60,7 +60,7 @@
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
     "react-event-listener": "^0.6.2",
-    "react-transition-group": "^2.2.1",
+    "react-transition-group": "^2.5.3",
     "warning": "^4.0.1"
   },
   "sideEffects": false,
