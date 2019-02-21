@@ -21,7 +21,7 @@ import TableCell from '@material-ui/core/TableCell';
 | <span class="prop-name">align</span> | <span class="prop-type">enum:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br></span> | <span class="prop-default">'inherit'</span> | Set the text-align on the table cell content.<br>Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The table cell contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">Component</span> |   | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">element type</span> |   | The component used for the root node. Either a string to use a DOM element or a component. |
 | ~~<span class="prop-name">numeric</span>~~ | <span class="prop-type">bool</span> |   | *Deprecated*. Instead, use the `align` property.<br><br>If `true`, content will align to the right. |
 | <span class="prop-name">padding</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br></span> |   | Sets the padding applied to the cell. By default, the Table parent component set the value. |
 | <span class="prop-name">scope</span> | <span class="prop-type">string</span> |   | Set scope attribute. |

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
@@ -76,7 +75,7 @@ BottomNavigation.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Callback fired when the value changes.
    *

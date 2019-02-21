@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
@@ -348,7 +347,7 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the base button will be disabled.
    */

@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import withFormControlContext from '../FormControl/withFormControlContext';
@@ -492,7 +491,7 @@ InputBase.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: componentPropType,
+  inputComponent: PropTypes.elementType,
   /**
    * Attributes applied to the `input` element.
    */

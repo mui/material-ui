@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
@@ -107,7 +106,7 @@ InputAdornment.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Disable pointer events on the root.
    * This allows for the content of the adornment to focus the input on click.

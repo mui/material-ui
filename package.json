@@ -151,7 +151,7 @@
     "nyc": "^13.0.0",
     "postcss": "^7.0.0",
     "prettier": "^1.8.2",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.7.2",
     "puppeteer": "^1.5.0",
     "raw-loader": "^1.0.0",
     "react": "^16.8.0",

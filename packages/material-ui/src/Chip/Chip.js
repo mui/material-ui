@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
-import { componentPropType } from '@material-ui/utils';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
@@ -414,7 +413,7 @@ Chip.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */

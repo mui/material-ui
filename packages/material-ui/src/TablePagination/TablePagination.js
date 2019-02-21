@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { componentPropType, chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -157,7 +157,7 @@ TablePagination.propTypes = {
    * The component used for displaying the actions.
    * Either a string to use a DOM element or a component.
    */
-  ActionsComponent: componentPropType,
+  ActionsComponent: PropTypes.elementType,
   /**
    * Properties applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
@@ -175,7 +175,7 @@ TablePagination.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * The total number of rows.
    */

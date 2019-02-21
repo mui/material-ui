@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
@@ -104,7 +103,7 @@ FormHelperText.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the helper text should be displayed in a disabled state.
    */

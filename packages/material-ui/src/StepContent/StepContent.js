@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
 
@@ -112,7 +111,7 @@ StepContent.propTypes = {
   /**
    * The component used for the transition.
    */
-  TransitionComponent: componentPropType,
+  TransitionComponent: PropTypes.elementType,
   /**
    * Adjust the duration of the content expand transition.
    * Passed as a property to the transition component.

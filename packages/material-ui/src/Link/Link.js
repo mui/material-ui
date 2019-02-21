@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { componentPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
@@ -101,7 +100,7 @@ Link.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * `classes` property applied to the [`Typography`](/api/typography/) element.
    */
