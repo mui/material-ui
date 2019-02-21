@@ -106,7 +106,7 @@ class ExpansionPanel extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
-      CollapseProps: CollapsePropsProp,
+      CollapseProps,
       defaultExpanded,
       disabled,
       expanded: expandedProp,
@@ -143,12 +143,6 @@ class ExpansionPanel extends React.Component {
       return child;
     });
 
-    const CollapseProps = !expanded
-      ? {
-          'aria-hidden': 'true',
-        }
-      : null;
-
     return (
       <Paper
         className={clsx(
@@ -165,7 +159,7 @@ class ExpansionPanel extends React.Component {
         {...other}
       >
         {summary}
-        <Collapse in={expanded} timeout="auto" {...CollapseProps} {...CollapsePropsProp}>
+        <Collapse in={expanded} timeout="auto" {...CollapseProps}>
           {children}
         </Collapse>
       </Paper>

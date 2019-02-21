@@ -120,7 +120,7 @@ class Grow extends React.Component {
             style: {
               opacity: 0,
               transform: getScale(0.75),
-              visiblity: state === 'exited' && !inProp ? 'hidden' : undefined,
+              visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
               ...styles[state],
               ...style,
               ...children.props.style,

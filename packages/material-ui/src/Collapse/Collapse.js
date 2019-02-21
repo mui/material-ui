@@ -23,7 +23,7 @@ export const styles = theme => ({
   // eslint-disable-next-line max-len
   /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
   hidden: {
-    vibility: 'hidden',
+    visibility: 'hidden',
   },
   /* Styles applied to the outer wrapper element. */
   wrapper: {
