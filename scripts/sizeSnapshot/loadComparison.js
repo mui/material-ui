@@ -4,7 +4,7 @@
 const fse = require('fs-extra');
 const path = require('path');
 const fetch = require('node-fetch');
-const { fromEntries, uniqueKeys } = require('../utils');
+const { fromPairs } = require('lodash');
 
 const artifactServer = 'https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui';
 
@@ -30,9 +30,9 @@ module.exports = async function loadComparison(parrentId, ref) {
     loadSnapshot(parrentId, ref).catch(() => ({})),
   ]);
 
-  const bundleKeys = uniqueKeys(currentSnapshot, previousSnapshot);
+  const bundleKeys = Object.keys({ ...currentSnapshot, ...previousSnapshot });
 
-  const bundles = fromEntries(
+  const bundles = fromPairs(
     bundleKeys.map(bundle => {
       // if a bundle was added the change should be +inf
       // if a bundle was removed the change should be -100%

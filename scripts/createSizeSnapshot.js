@@ -2,7 +2,7 @@
 const fse = require('fs-extra');
 const path = require('path');
 const getSize = require('size-limit');
-const { flatten, fromEntries } = require('./utils');
+const { flatten, fromPairs } = require('lodash');
 
 const workspaceRoot = path.join(__dirname, '../');
 const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
@@ -126,7 +126,7 @@ async function run() {
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
   const sizeLimitBundles = await getSizeLimitBundles();
 
-  const bundleSizes = fromEntries(
+  const bundleSizes = fromPairs(
     await Promise.all([
       ...getSizeLimitSizes(sizeLimitBundles),
       ...flatten(await Promise.all(rollupBundles.map(getRollupSize))),

@@ -140,6 +140,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.0",
     "lerna": "^3.4.3",
+    "lodash": "^4.17.11",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^6.8.3",
     "material-ui-pickers": "^2.0.2",
