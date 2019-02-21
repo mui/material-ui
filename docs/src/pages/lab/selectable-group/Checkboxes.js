@@ -18,7 +18,7 @@ const styles = {
 
 const SelectableCheckbox = withSelectableContext(props => {
   const { muiSelectableGroup, value, ...other } = props;
-  const handleChange = event => muiSelectableGroup.toggle(event, value);
+  const handleChange = event => muiSelectableGroup.toggle(event, event.target.value);
 
   return (
     <Checkbox
@@ -29,6 +29,10 @@ const SelectableCheckbox = withSelectableContext(props => {
     />
   );
 });
+
+SelectableCheckbox.propTypes = {
+  value: PropTypes.any,
+};
 
 class Checkboxes extends React.Component {
   state = {
