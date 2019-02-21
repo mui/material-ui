@@ -171,6 +171,9 @@ jobs:
           name: Can we generate the @material-ui/core build?
           command: cd packages/material-ui && yarn build
       - run:
+          name: Can we generate the @material-ui/lab build?
+          command: cd packages/material-ui-lab && yarn build
+      - run:
           name: Can we generate the @material-ui/styles build?
           command: cd packages/material-ui-styles && yarn build
       - run:
