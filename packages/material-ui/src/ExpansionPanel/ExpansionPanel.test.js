@@ -135,7 +135,6 @@ describe('<ExpansionPanel />', () => {
 
     // Collapse is initially shown
     const collapse = wrapper.find(NoTransitionCollapse);
-    assert.strictEqual(collapse.type(), NoTransitionCollapse);
     assert.strictEqual(collapse.props().in, true);
     assert.strictEqual(wrapper.find(CustomContent).length, 1);
 
