@@ -6,7 +6,6 @@ import {
   createMount,
   findOutermostIntrinsic,
   getClasses,
-  unwrap,
 } from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
@@ -15,7 +14,6 @@ describe('<ExpansionPanelSummary />', () => {
   let mount;
   let shallow;
   let classes;
-  const ExpansionPanelSummaryNaked = unwrap(ExpansionPanelSummary);
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -60,19 +58,42 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(iconWrap.hasClass(classes.expandIcon), true);
   });
 
-  it('handleFocusVisible() should set focused state', () => {
-    const eventMock = 'woofExpansionPanelSummary';
-    const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} />);
-    wrapper.instance().handleFocusVisible(eventMock);
-    assert.strictEqual(wrapper.state().focused, true);
-  });
+  describe('focus', () => {
+    function focusVisible(wrapper, event) {
+      // don't know of any better strategy to simulate focusvisible
+      wrapper
+        .find(ButtonBase)
+        .props()
+        .onFocusVisible(event);
+      wrapper.update();
+    }
 
-  it('handleBlur() should unset focused state', () => {
-    const eventMock = 'woofExpansionPanelSummary';
-    const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} />);
-    wrapper.setState({ focused: true });
-    wrapper.instance().handleBlur(eventMock);
-    assert.strictEqual(wrapper.state().focused, false);
+    function isFocused(wrapper) {
+      return wrapper
+        .find(`.${classes.root}`)
+        .first()
+        .hasClass(classes.focused);
+    }
+
+    it('handleFocusVisible() should set focused state', () => {
+      const wrapper = mount(<ExpansionPanelSummary />);
+
+      focusVisible(wrapper);
+      assert.strictEqual(isFocused(wrapper), true);
+    });
+
+    it('handleBlur() should unset focused state', () => {
+      const wrapper = mount(<ExpansionPanelSummary expanded />);
+
+      focusVisible(wrapper);
+      assert.strictEqual(isFocused(wrapper), true);
+
+      wrapper
+        .find('[aria-expanded=true]')
+        .first()
+        .simulate('blur');
+      assert.strictEqual(isFocused(wrapper), false);
+    });
   });
 
   describe('event callbacks', () => {

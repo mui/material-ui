@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
-import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
@@ -71,97 +70,71 @@ export const styles = theme => {
   };
 };
 
-class ExpansionPanelSummary extends React.Component {
-  state = {
-    focused: false,
-  };
+function ExpansionPanelSummary(props) {
+  const {
+    children,
+    classes,
+    className,
+    disabled,
+    expanded,
+    expandIcon,
+    IconButtonProps,
+    onBlur,
+    onChange,
+    onClick,
+    onFocusVisible,
+    ...other
+  } = props;
+  const [focused, setFocused] = React.useState(false);
 
-  handleFocusVisible = event => {
-    this.setState({
-      focused: true,
-    });
-
-    if (this.props.onFocusVisible) {
-      this.props.onFocusVisible(event);
-    }
-  };
-
-  handleBlur = event => {
-    this.setState({
-      focused: false,
-    });
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
-  };
-
-  handleChange = event => {
-    const { onChange, onClick } = this.props;
-    if (onChange) {
-      onChange(event);
-    }
-    if (onClick) {
-      onClick(event);
-    }
-  };
-
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      disabled,
-      expanded,
-      expandIcon,
-      IconButtonProps,
-      onBlur,
-      onChange,
-      onClick,
-      onFocusVisible,
-      ...other
-    } = this.props;
-    const { focused } = this.state;
-
-    return (
-      <ButtonBase
-        focusRipple={false}
-        disableRipple
-        disabled={disabled}
-        component="div"
-        aria-expanded={expanded}
-        className={clsx(
-          classes.root,
-          {
-            [classes.disabled]: disabled,
-            [classes.expanded]: expanded,
-            [classes.focused]: focused,
-          },
-          className,
-        )}
-        onFocusVisible={this.handleFocusVisible}
-        onBlur={this.handleBlur}
-        onClick={this.handleChange}
-        {...other}
-      >
-        <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
-        {expandIcon && (
-          <IconButton
-            disabled={disabled}
-            className={clsx(classes.expandIcon, {
-              [classes.expanded]: expanded,
-            })}
-            component="div"
-            tabIndex={-1}
-            aria-hidden="true"
-            {...IconButtonProps}
-          >
-            {expandIcon}
-          </IconButton>
-        )}
-      </ButtonBase>
-    );
+  function handleFocusVisible(event) {
+    setFocused(true);
+    onFocusVisible(event);
   }
+
+  function handleBlur(event) {
+    setFocused(false);
+    onBlur(event);
+  }
+
+  function handleChange(event) {
+    onChange(event);
+    onClick(event);
+  }
+
+  return (
+    <ButtonBase
+      focusRipple={false}
+      disableRipple
+      disabled={disabled}
+      component="div"
+      aria-expanded={expanded}
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.expanded]: expanded,
+          [classes.focused]: focused,
+        },
+        className,
+      )}
+      onFocusVisible={handleFocusVisible}
+      onBlur={handleBlur}
+      onClick={handleChange}
+      {...other}
+    >
+      <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
+      {expandIcon && (
+        <div
+          className={clsx(classes.expandIcon, {
+            [classes.expanded]: expanded,
+          })}
+        >
+          {expandIcon}
+        </div>
+      )}
+    </ButtonBase>
+  );
 }
 
 ExpansionPanelSummary.propTypes = {
@@ -214,8 +187,13 @@ ExpansionPanelSummary.propTypes = {
   onFocusVisible: PropTypes.func,
 };
 
+const noop = () => {};
 ExpansionPanelSummary.defaultProps = {
   disabled: false,
+  onBlur: noop,
+  onChange: noop,
+  onClick: noop,
+  onFocusVisible: noop,
 };
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
