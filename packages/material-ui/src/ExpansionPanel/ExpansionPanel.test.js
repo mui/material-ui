@@ -184,7 +184,7 @@ describe('<ExpansionPanel />', () => {
       it('needs a valid element as the first child', () => {
         mount(
           <ExpansionPanel>
-            <></>
+            <React.Fragment />
           </ExpansionPanel>,
         );
         assert.strictEqual(consoleErrorMock.callCount(), 1);
