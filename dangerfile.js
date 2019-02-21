@@ -26,6 +26,11 @@ function git(args) {
 
 const UPSTREAM_REMOTE = 'danger-upstream';
 
+/**
+ * This is mainly used for local development. It should be executed before the
+ * scripts exit to avoid adding internal remotes to the local machine. This is
+ * not an issue in CI.
+ */
 async function cleanup() {
   await git(`remote remove ${UPSTREAM_REMOTE}`);
 }
@@ -166,18 +171,20 @@ async function run() {
 }
 
 (async () => {
+  let exitCode = 0;
   try {
     await run();
   } catch (err) {
     console.error(err);
-    // need to cleanup first so no early exit
+    exitCode = 1;
   }
 
   try {
     await cleanup();
   } catch (err) {
     console.error(err);
-    // unhandled promise rejects exit with 0
-    process.exit(1);
+    exitCode = 1;
   }
+
+  process.exit(exitCode);
 })();
