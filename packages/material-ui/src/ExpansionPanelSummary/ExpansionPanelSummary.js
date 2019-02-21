@@ -31,7 +31,7 @@ export const styles = theme => {
         opacity: 0.38,
       },
     },
-    /* Styles applied to the root element, `content` and `expandIcon` if `expanded={true}`. */
+    /* Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
     /* Styles applied to the root and children wrapper elements when focused. */
     focused: {},
