@@ -37,5 +37,9 @@
     "id": 40,
     "text": "Let's translate! <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://translate.material-ui.com/\">コミュニティがドキュメントを日本語に翻訳するのを手伝ってください</a>. 🇯🇵",
     "userLanguage": "ja"
+  },
+  {
+    "id": 41,
+    "text": "Announcing the <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://docs.google.com/forms/d/e/1FAIpQLSevNaVyg3Fu_X8_HCJZ5j6hq4XW_7TBUCBYEPsFfDZksx7Tfw/viewform\">Material-UI Developer Survey 2019</a>, help us improve the library!"
   }
 ]
