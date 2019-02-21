@@ -78,9 +78,22 @@ export const styles = theme => {
   };
 };
 
-function useIsControlled(value) {
+const noop = () => {};
+/**
+ * state managment either controlled or uncontrolled
+ * Like https://reactjs.org/docs/uncontrolled-components.html
+ *
+ * @param {T | null | undefined} value - the controlled value
+ * @param {T | null | undefined} defaultValue - the initial value if uncontrolled
+ * @returns {[T, (T | (T => T)) => void]} - matching useState return type
+ */
+function useMaybeControlled(value, defaultValue) {
+  // equivalent to a read-only this.isControlled which is initialized in the constructor
   const { current: isControlled } = React.useRef(value != null);
-  return isControlled;
+
+  const [state, setState] = React.useState(defaultValue);
+
+  return isControlled ? [value, noop] : [state, setState];
 }
 
 function ExpansionPanel(props) {
@@ -98,15 +111,10 @@ function ExpansionPanel(props) {
     ...other
   } = props;
 
-  const isControlled = useIsControlled(expandedProp);
-  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-
-  const expanded = isControlled ? expandedProp : expandedState;
+  const [expanded, setExpanded] = useMaybeControlled(expandedProp, defaultExpanded);
 
   function handleChange(event) {
-    if (!isControlled) {
-      setExpandedState(isExpanded => !isExpanded);
-    }
+    setExpanded(isExpanded => !isExpanded);
     if (onChange) {
       onChange(event, !expanded);
     }
