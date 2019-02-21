@@ -24,25 +24,27 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should render and have isControlled set to false', () => {
-    const wrapper = shallow(<ExpansionPanel>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.type(), Paper);
-    assert.strictEqual(wrapper.props().elevation, 1);
-    assert.strictEqual(wrapper.props().square, false);
-    assert.strictEqual(wrapper.instance().isControlled, false);
+    const wrapper = mount(<ExpansionPanel>foo</ExpansionPanel>);
+
+    const root = wrapper.find(`.${classes.root}`).first();
+    assert.strictEqual(root.type(), Paper);
+    assert.strictEqual(root.props().elevation, 1);
+    assert.strictEqual(root.props().square, false);
 
     wrapper.setProps({ expanded: true });
-    assert.strictEqual(wrapper.state().expanded, false);
+    assert.strictEqual(wrapper.find(`.${classes.expanded}`).exists(), false);
   });
 
   it('should handle defaultExpanded prop', () => {
-    const wrapper = shallow(<ExpansionPanel defaultExpanded>foo</ExpansionPanel>);
+    const wrapper = mount(<ExpansionPanel defaultExpanded>foo</ExpansionPanel>);
+
     assert.strictEqual(
-      wrapper.instance().isControlled,
-      false,
-      'should have isControlled state false',
+      wrapper
+        .find(`.${classes.root}`)
+        .first()
+        .hasClass(classes.expanded),
+      true,
     );
-    assert.strictEqual(wrapper.state().expanded, true);
-    assert.strictEqual(wrapper.hasClass(classes.expanded), true);
   });
 
   it('should render the custom className and the root class', () => {
@@ -66,13 +68,13 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle the expanded prop', () => {
-    const wrapper = shallow(<ExpansionPanel expanded>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.state().expanded, undefined);
-    assert.strictEqual(wrapper.hasClass(classes.expanded), true);
-    assert.strictEqual(wrapper.instance().isControlled, true);
+    const wrapper = mount(<ExpansionPanel expanded>foo</ExpansionPanel>);
+    const findRoot = () => wrapper.find(`.${classes.root}`).first();
+
+    assert.strictEqual(findRoot().hasClass(classes.expanded), true);
 
     wrapper.setProps({ expanded: false });
-    assert.strictEqual(wrapper.hasClass(classes.expanded), false);
+    assert.strictEqual(findRoot().hasClass(classes.expanded), false);
   });
 
   it('should call onChange when clicking the summary element', () => {

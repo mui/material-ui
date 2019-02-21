@@ -78,94 +78,88 @@ export const styles = theme => {
   };
 };
 
-class ExpansionPanel extends React.Component {
-  constructor(props) {
-    super();
-    this.isControlled = props.expanded != null;
-    this.state = {};
-    if (!this.isControlled) {
-      // not controlled, use internal state
-      this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
+function useIsControlled(value) {
+  const { current: isControlled } = React.useRef(value != null);
+  return isControlled;
+}
+
+function ExpansionPanel(props) {
+  const {
+    children: childrenProp,
+    classes,
+    className: classNameProp,
+    defaultExpanded,
+    disabled,
+    expanded: expandedProp,
+    onChange,
+    square,
+    TransitionComponent,
+    TransitionProps,
+    ...other
+  } = props;
+
+  const isControlled = useIsControlled(expandedProp);
+  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
+
+  const expanded = isControlled ? expandedProp : expandedState;
+
+  function handleChange(event) {
+    if (!isControlled) {
+      setExpandedState(isExpanded => !isExpanded);
+    }
+    if (onChange) {
+      onChange(event, !expanded);
     }
   }
 
-  handleChange = event => {
-    const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
+  let summary = null;
 
-    if (!this.isControlled) {
-      this.setState({ expanded: !expanded });
+  const children = React.Children.map(childrenProp, child => {
+    if (!React.isValidElement(child)) {
+      return null;
     }
 
-    if (this.props.onChange) {
-      this.props.onChange(event, !expanded);
-    }
-  };
-
-  render() {
-    const {
-      children: childrenProp,
-      classes,
-      className,
-      defaultExpanded,
-      disabled,
-      expanded: expandedProp,
-      onChange,
-      square,
-      TransitionComponent,
-      TransitionProps,
-      ...other
-    } = this.props;
-    const expanded = this.isControlled ? expandedProp : this.state.expanded;
-
-    let summary = null;
-
-    const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
-
-      warning(
-        child.type !== React.Fragment,
-        [
-          "Material-UI: the ExpansionPanel component doesn't accept a Fragment as a child.",
-          'Consider providing an array instead.',
-        ].join('\n'),
-      );
-
-      if (isMuiElement(child, ['ExpansionPanelSummary'])) {
-        summary = React.cloneElement(child, {
-          disabled,
-          expanded,
-          onChange: this.handleChange,
-        });
-        return null;
-      }
-
-      return child;
-    });
-
-    return (
-      <Paper
-        className={clsx(
-          classes.root,
-          {
-            [classes.expanded]: expanded,
-            [classes.disabled]: disabled,
-            [classes.rounded]: !square,
-          },
-          className,
-        )}
-        elevation={1}
-        square={square}
-        {...other}
-      >
-        {summary}
-        <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
-          {children}
-        </TransitionComponent>
-      </Paper>
+    warning(
+      child.type !== React.Fragment,
+      [
+        "Material-UI: the ExpansionPanel component doesn't accept a Fragment as a child.",
+        'Consider providing an array instead.',
+      ].join('\n'),
     );
-  }
+
+    if (isMuiElement(child, ['ExpansionPanelSummary'])) {
+      summary = React.cloneElement(child, {
+        disabled,
+        expanded,
+        onChange: handleChange,
+      });
+      return null;
+    }
+
+    return child;
+  });
+
+  return (
+    <Paper
+      className={clsx(
+        classes.root,
+        {
+          [classes.expanded]: expanded,
+          [classes.disabled]: disabled,
+          [classes.rounded]: !square,
+        },
+        classNameProp,
+      )}
+      elevation={1}
+      square={square}
+      {...other}
+    >
+      {summary}
+      <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
+        {children}
+      </TransitionComponent>
+    </Paper>
+  );
 }
 
 ExpansionPanel.propTypes = {
