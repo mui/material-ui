@@ -34,6 +34,7 @@ const activeCore = [
   {
     name: 'Josh Wooding',
     github: 'joshwooding',
+    twitter: 'JoshWooding_',
     flag: 'Core team',
     city: 'UK',
   },
