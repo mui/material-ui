@@ -38,10 +38,11 @@ async function cleanup() {
  * @param {number} gzipThreshold
  */
 function createComparisonFilter(parsedThreshold, gzipThreshold) {
-  return ([, { parsed, gzip }]) => {
+  return comparisonEntry => {
+    const [, snapshot] = comparisonEntry;
     return (
-      Math.abs(parsed.absoluteDiff) >= parsedThreshold ||
-      Math.abs(gzip.absoluteDiff) >= gzipThreshold
+      Math.abs(snapshot.parsed.absoluteDiff) >= parsedThreshold ||
+      Math.abs(snapshot.gzip.absoluteDiff) >= gzipThreshold
     );
   };
 }
@@ -49,10 +50,11 @@ function createComparisonFilter(parsedThreshold, gzipThreshold) {
 /**
  * checks if the bundle is of a package e.b. `@material-ui/core` but not
  * `@material-ui/core/Paper`
- * @param {[string]} comparison entry
+ * @param {[string, any]} comparisonEntry
  */
-function isPackageComparison([bundle]) {
-  return /^@[\w-]+\/[\w-]+$/.test(bundle);
+function isPackageComparison(comparisonEntry) {
+  const [bundleKey] = comparisonEntry;
+  return /^@[\w-]+\/[\w-]+$/.test(bundleKey);
 }
 
 /**
