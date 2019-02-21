@@ -5,6 +5,7 @@ import { PaperProps } from '../Paper';
 
 export interface ExpansionPanelProps
   extends StandardProps<PaperProps, ExpansionPanelClassKey, 'onChange'> {
+  CollapseComponent?: React.ComponentType<CollapseProps>;
   CollapseProps?: Partial<CollapseProps>;
   defaultExpanded?: boolean;
   disabled?: boolean;

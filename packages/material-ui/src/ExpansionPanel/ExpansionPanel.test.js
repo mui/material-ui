@@ -115,6 +115,22 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.disabled), true);
   });
 
+  it('should handle the CollapseComponent prop', () => {
+    const CustomCollapse = props => <div {...props} />;
+
+    const wrapper = shallow(
+      <ExpansionPanel CollapseComponent={CustomCollapse}>
+        <ExpansionPanelSummary />
+        <div>Hello</div>
+      </ExpansionPanel>,
+    );
+
+    assert.strictEqual(wrapper.childAt(0).type(), ExpansionPanelSummary);
+    const collapse = wrapper.childAt(1);
+    assert.strictEqual(collapse.type(), CustomCollapse);
+    assert.strictEqual(collapse.children().length, 1, 'collapse should have 1 children div');
+  });
+
   describe('prop: children', () => {
     it('should accept an empty child', () => {
       shallow(

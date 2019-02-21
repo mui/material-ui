@@ -8,6 +8,7 @@ import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
+import { componentPropType } from '@material-ui/utils';
 
 export const styles = theme => {
   const transition = {
@@ -106,6 +107,7 @@ class ExpansionPanel extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
+      CollapseComponent,
       CollapseProps,
       defaultExpanded,
       disabled,
@@ -159,9 +161,9 @@ class ExpansionPanel extends React.Component {
         {...other}
       >
         {summary}
-        <Collapse in={expanded} timeout="auto" {...CollapseProps}>
+        <CollapseComponent in={expanded} timeout="auto" {...CollapseProps}>
           {children}
-        </Collapse>
+        </CollapseComponent>
       </Paper>
     );
   }
@@ -181,6 +183,10 @@ ExpansionPanel.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the collapse effect.
+   */
+  CollapseComponent: componentPropType,
   /**
    * Properties applied to the [`Collapse`](/api/collapse/) element.
    */
@@ -212,6 +218,7 @@ ExpansionPanel.propTypes = {
 };
 
 ExpansionPanel.defaultProps = {
+  CollapseComponent: Collapse,
   defaultExpanded: false,
   disabled: false,
   square: false,
