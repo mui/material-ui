@@ -24,10 +24,10 @@ function git(args) {
   });
 }
 
-const upstreamRemote = 'danger-upstream';
+const UPSTREAM_REMOTE = 'danger-upstream';
 
 async function cleanup() {
-  await git(`remote remove ${upstreamRemote}`);
+  await git(`remote remove ${UPSTREAM_REMOTE}`);
 }
 
 /**
@@ -96,12 +96,12 @@ async function run() {
   const upstreamRepo = danger.github.pr.base.repo.full_name;
   const upstreamRef = danger.github.pr.base.ref;
   try {
-    await git(`remote add ${upstreamRemote} https://github.com/${upstreamRepo}.git`);
+    await git(`remote add ${UPSTREAM_REMOTE} https://github.com/${upstreamRepo}.git`);
   } catch (err) {
     // ignore if it already exist for local testing
   }
-  await git(`fetch ${upstreamRemote}`);
-  const mergeBaseCommit = await git(`merge-base HEAD ${upstreamRemote}/${upstreamRef}`);
+  await git(`fetch ${UPSTREAM_REMOTE}`);
+  const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
   const commitRange = `${mergeBaseCommit}...${danger.github.pr.head.sha}`;
 
