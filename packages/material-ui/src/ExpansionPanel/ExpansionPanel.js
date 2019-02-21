@@ -8,7 +8,6 @@ import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
-import { componentPropType } from '@material-ui/utils';
 
 export const styles = theme => {
   const transition = {
@@ -186,7 +185,7 @@ ExpansionPanel.propTypes = {
   /**
    * The component used for the collapse effect.
    */
-  CollapseComponent: componentPropType,
+  CollapseComponent: PropTypes.elementType,
   /**
    * Properties applied to the [`Collapse`](/api/collapse/) element.
    */
