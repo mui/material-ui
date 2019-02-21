@@ -256,6 +256,12 @@ jobs:
       - run:
           name: Can we build the docs?
           command: yarn docs:build
+      # temporary workaround, proposing to size-limit to make webpack alias configureable
+      - run:
+          name: Prepare size snapshot
+          command: |
+            cd packages/material-ui/build && yarn link && cd ../../../ 
+            yarn link @material-ui/core
       - run:
           name: Create a size snapshot
           command: yarn size:snapshot
