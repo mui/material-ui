@@ -32,7 +32,7 @@ export const styles = theme => {
       },
     },
     // eslint-disable-next-line max-len
-    /* Styles applied to the root element, children wrapper element and olv`IconButton` component if `expanded={true}`. */
+    /* Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
     /* Styles applied to the root and children wrapper elements when focused. */
     focused: {},
