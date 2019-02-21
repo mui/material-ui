@@ -84,7 +84,6 @@ function TextMobileStepper() {
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
-        className={classes.mobileStepper}
         nextButton={
           <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
             Next
