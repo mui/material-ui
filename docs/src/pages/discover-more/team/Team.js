@@ -98,7 +98,7 @@ const partners = [
     city: 'Berlin, Germany',
   },
   {
-    name: 'dmtrKovalenko',
+    name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
     flag: 'Material-UI pickers',
