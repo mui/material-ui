@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
@@ -116,14 +117,15 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle the CollapseComponent prop', () => {
-    class NoTransitionCollapse extends React.Component {
-      render () {
-        const { children }= this.props
-        return this.props.in ? <div>{children}</div> : null
-      }
-    }
+    const NoTransitionCollapse = props => {
+      return props.in ? <div>{props.children}</div> : null;
+    };
+    NoTransitionCollapse.propTypes = {
+      children: PropTypes.node,
+      in: PropTypes.bool,
+    };
 
-    const CustomContent = () => <div>Hello</div>
+    const CustomContent = () => <div>Hello</div>;
     const wrapper = mount(
       <ExpansionPanel expanded CollapseComponent={NoTransitionCollapse}>
         <ExpansionPanelSummary />
@@ -138,7 +140,7 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(wrapper.find(CustomContent).length, 1);
 
     // Hide the collapse
-    wrapper.setProps({ expanded: false })
+    wrapper.setProps({ expanded: false });
     const collapse2 = wrapper.find(NoTransitionCollapse);
     assert.strictEqual(collapse2.props().in, false);
     assert.strictEqual(wrapper.find(CustomContent).length, 0);
