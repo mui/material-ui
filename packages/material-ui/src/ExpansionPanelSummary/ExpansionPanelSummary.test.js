@@ -97,7 +97,7 @@ describe('<ExpansionPanelSummary />', () => {
   describe('prop: onChange', () => {
     it('fires onChange if the summary control is clicked', () => {
       const handleChange = spy();
-      const wrapper = mount(<ExpansionPanelSummary onChange={handleChange} />);
+      const wrapper = mount(<ExpansionPanelSummary expanded={false} onChange={handleChange} />);
 
       const control = findOutermostIntrinsic(wrapper.find('[aria-expanded]'));
       const eventMock = 'woofExpansionPanelSummary';
