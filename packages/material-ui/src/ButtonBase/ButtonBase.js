@@ -325,8 +325,8 @@ ButtonBase.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * @deprecated
    * Use that property to pass a ref callback to the native button component.
+   * @deprecated
    */
   buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -378,6 +378,10 @@ ButtonBase.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore

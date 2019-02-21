@@ -16,6 +16,11 @@ export const styles = {
   },
 };
 
+/**
+ * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
+ * It provides compact row layout.
+ * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
+ */
 const FormGroup = React.forwardRef(function FormGroup(props, ref) {
   const { classes, className, children, row, ...other } = props;
 

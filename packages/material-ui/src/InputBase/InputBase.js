@@ -489,6 +489,10 @@ InputBase.propTypes = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The component used for the native input.

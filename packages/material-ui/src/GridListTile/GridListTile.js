@@ -153,6 +153,10 @@ GridListTile.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Height of the tile in number of grid cells.

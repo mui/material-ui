@@ -236,6 +236,10 @@ TextField.propTypes = {
    * Use this property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`InputLabel`](/api/input-label/) element.

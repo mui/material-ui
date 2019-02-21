@@ -80,6 +80,9 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * An alternative to `<Select native />` with a much smaller bundle size footprint.
+ */
 const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
   const {
     children,

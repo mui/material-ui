@@ -32,6 +32,9 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
 const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
   const { anchor, classes, className, width, ...other } = props;
 

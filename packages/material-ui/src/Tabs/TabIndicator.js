@@ -23,6 +23,9 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
 const TabIndicator = React.forwardRef(function TabIndicator(props, ref) {
   const { classes, className, color, ...other } = props;
 

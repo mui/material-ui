@@ -13,6 +13,9 @@ export const styles = {
   },
 };
 
+/**
+ * Must be used as the last child of ListItem to function properly.
+ */
 const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryAction(props, ref) {
   const { children, classes, className, ...other } = props;
 

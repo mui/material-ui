@@ -119,6 +119,10 @@ Select.propTypes = {
    * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
+  /**
+   * @ignore
+   * from `withFormControlContext`
+   */
   muiFormControl: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.

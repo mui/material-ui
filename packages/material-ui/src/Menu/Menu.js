@@ -156,6 +156,10 @@ Menu.propTypes = {
    * If `true`, the selected / first menu item will not be auto focused.
    */
   disableAutoFocusItem: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`MenuList`](/api/menu-list/) element.

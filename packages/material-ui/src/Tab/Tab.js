@@ -186,6 +186,10 @@ Tab.propTypes = {
    * render the indicator.
    */
   indicator: PropTypes.node,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The label element.

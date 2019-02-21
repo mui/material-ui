@@ -197,6 +197,10 @@ ExpansionPanel.propTypes = {
    * Setting this prop enables control over the panel.
    */
   expanded: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Callback fired when the expand/collapse state is changed.

@@ -73,6 +73,10 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * Refer to the [Icons](/style/icons/) section of the documentation
+ * regarding the available icon options.
+ */
 const IconButton = React.forwardRef(function IconButton(props, ref) {
   const { children, classes, className, color, disabled, ...other } = props;
 

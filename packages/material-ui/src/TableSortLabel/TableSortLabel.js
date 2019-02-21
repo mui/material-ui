@@ -59,6 +59,9 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * A button based label for placing inside `TableCell` for column sorting.
+ */
 const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   const {
     active,

@@ -221,6 +221,10 @@ Drawer.propTypes = {
    * The elevation of the drawer.
    */
   elevation: PropTypes.number,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`Modal`](/api/modal/) element.

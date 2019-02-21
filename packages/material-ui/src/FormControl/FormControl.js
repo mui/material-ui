@@ -189,6 +189,10 @@ FormControl.propTypes = {
    * If `true`, the component will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.

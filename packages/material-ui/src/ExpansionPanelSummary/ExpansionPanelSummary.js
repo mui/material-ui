@@ -199,6 +199,10 @@ ExpansionPanelSummary.propTypes = {
    * Properties applied to the `TouchRipple` element wrapping the expand icon.
    */
   IconButtonProps: PropTypes.object,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore

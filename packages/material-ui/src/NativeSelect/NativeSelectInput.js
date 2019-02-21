@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
+/**
+ * @ignore - internal component.
+ */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
   const {
     children,

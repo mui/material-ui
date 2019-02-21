@@ -15,6 +15,9 @@ export const styles = {
   },
 };
 
+/**
+ * @ignore - internal component.
+ */
 const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
 

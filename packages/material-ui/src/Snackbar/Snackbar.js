@@ -314,6 +314,10 @@ Snackbar.propTypes = {
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    */
   disableWindowBlurListener: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single

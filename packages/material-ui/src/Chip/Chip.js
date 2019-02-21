@@ -428,6 +428,10 @@ Chip.propTypes = {
    * Icon element.
    */
   icon: PropTypes.element,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The content of the label.

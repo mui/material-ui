@@ -13,6 +13,9 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
+ */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { children, classes, className: classNameProp, ...other } = props;
 
