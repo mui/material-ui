@@ -125,8 +125,6 @@ async function run() {
   const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
 
   if (anyResultsChanges.length > 0) {
-    markdown('This PR introduced some changes to the bundle size.');
-
     const importantChanges = results
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
@@ -173,7 +171,7 @@ async function run() {
     markdown(details);
   } else {
     // this can later be removed to reduce PR noise. It is kept for now for debug
-    // purposes only. DangerJS will swallow console.logs if completes successfully
+    // purposes only. DangerJS will swallow console.logs if it completes successfully
     markdown(`No bundle size changes comparing ${commitRange}`);
   }
 }
