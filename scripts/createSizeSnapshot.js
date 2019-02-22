@@ -70,6 +70,11 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/styles/createMuiTheme.js',
     },
     {
+      name: '@material-ui/lab',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/index.js',
+    },
+    {
       name: '@material-ui/styles',
       webpack: true,
       path: 'packages/material-ui-styles/build/index.js',

@@ -78,15 +78,23 @@ function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle:') 
 
 /**
  * Generates a Markdown table
- * @param {string[]} headers
+ * @param {{ label: string, align: 'left' | 'center' | 'right'}[]} headers
  * @param {string[][]} body
  * @returns {string}
  */
 function generateMDTable(headers, body) {
-  const tableHeaders = [headers.join(' | '), headers.map(() => ' --- ').join(' | ')];
+  const headerRow = headers.map(header => header.label);
+  const alignmentRow = headers.map(header => {
+    if (header.align === 'right') {
+      return ' ---:';
+    }
+    if (header.align === 'center') {
+      return ':---:';
+    }
+    return ' --- ';
+  });
 
-  const tablebody = body.map(r => r.join(' | '));
-  return `${tableHeaders.join('\n')}\n${tablebody.join('\n')}`;
+  return [headerRow, alignmentRow, ...body].map(row => row.join(' | ')).join('\n');
 }
 
 function generateEmphasizedChange([bundle, { parsed, gzip }]) {
@@ -117,8 +125,6 @@ async function run() {
   const anyResultsChanges = results.filter(createComparisonFilter(1, 1));
 
   if (anyResultsChanges.length > 0) {
-    markdown('This PR introduced some changes to the bundle size.');
-
     const importantChanges = results
       .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
       .filter(isPackageComparison)
@@ -131,23 +137,23 @@ async function run() {
 
     const detailsTable = generateMDTable(
       [
-        'bundle',
-        'parsed diff',
-        'gzip diff',
-        'prev parsed',
-        'current parsed',
-        'prev gzip',
-        'current gzip',
+        { label: 'bundle' },
+        { label: 'parsed diff', align: 'right' },
+        { label: 'gzip diff', align: 'right' },
+        { label: 'prev parsed', align: 'right' },
+        { label: 'current parsed', align: 'right' },
+        { label: 'prev gzip', align: 'right' },
+        { label: 'current gzip', align: 'right' },
       ],
       results.map(([bundle, { parsed, gzip }]) => {
         return [
           bundle,
           addPercent(parsed.relativeDiff),
           addPercent(gzip.relativeDiff),
-          parsed.previous,
-          parsed.current,
-          gzip.previous,
-          gzip.current,
+          parsed.previous.toLocaleString(),
+          parsed.current.toLocaleString(),
+          gzip.previous.toLocaleString(),
+          gzip.current.toLocaleString(),
         ];
       }),
     );
@@ -165,7 +171,7 @@ async function run() {
     markdown(details);
   } else {
     // this can later be removed to reduce PR noise. It is kept for now for debug
-    // purposes only. DangerJS will swallow console.logs if completes successfully
+    // purposes only. DangerJS will swallow console.logs if it completes successfully
     markdown(`No bundle size changes comparing ${commitRange}`);
   }
 }
