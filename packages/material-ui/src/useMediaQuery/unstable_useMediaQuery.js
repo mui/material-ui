@@ -36,12 +36,6 @@ function useMediaQuery(queryInput, options = {}) {
     defaultMatches = ssrMatchMedia(query).matches;
   }
 
-  // Early exit for server-side rendering performance.
-  /* istanbul ignore if */
-  if (typeof window === 'undefined') {
-    return defaultMatches;
-  }
-
   const [matches, setMatches] = React.useState(defaultMatches);
 
   React.useEffect(() => {
