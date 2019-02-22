@@ -93,7 +93,6 @@ class TextMobileStepper extends React.Component {
           steps={maxSteps}
           position="static"
           activeStep={activeStep}
-          className={classes.mobileStepper}
           nextButton={
             <Button size="small" onClick={this.handleNext} disabled={activeStep === maxSteps - 1}>
               Next
