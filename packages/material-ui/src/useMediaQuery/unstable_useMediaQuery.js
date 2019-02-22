@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import React from 'react';
 
 // This variable will be true once the server-side hydration is completed.
@@ -18,7 +16,7 @@ function useMounted() {
   return mountedRef.current;
 }
 
-function unstable_useMediaQuery(queryInput, options = {}) {
+function useMediaQuery(queryInput, options = {}) {
   const query = queryInput.replace('@media ', '');
   const {
     defaultMatches: defaultMatchesInput = false,
@@ -71,4 +69,4 @@ export function testReset() {
   hydrationCompleted = false;
 }
 
-export default unstable_useMediaQuery;
+export default useMediaQuery;
