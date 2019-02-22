@@ -39,7 +39,7 @@ export const styles = theme => ({
   },
 });
 
-function SpeedDialIcon(props) {
+const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
   const { classes, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
   const iconClassName = clsx(classes.icon, {
@@ -57,12 +57,12 @@ function SpeedDialIcon(props) {
   }
 
   return (
-    <span className={classes.root} {...other}>
+    <span className={classes.root} ref={ref} {...other}>
       {openIconProp ? formatIcon(openIconProp, openIconClassName) : null}
       {iconProp ? formatIcon(iconProp, iconClassName) : <AddIcon className={iconClassName} />}
     </span>
   );
-}
+});
 
 SpeedDialIcon.propTypes = {
   /**

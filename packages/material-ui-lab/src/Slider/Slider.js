@@ -5,6 +5,8 @@ import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { setRef } from '@material-ui/core/utils/reactHelpers';
+import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
 import clamp from '../utils/clamp';
 
 export const styles = theme => {
@@ -431,6 +433,11 @@ class Slider extends React.Component {
     this.emitChange(event, value);
   };
 
+  handleRef = ref => {
+    setRef(this.props.innerRef, ref);
+    this.containerRef = ReactDOM.findDOMNode(ref);
+  };
+
   handleDragEnd(event) {
     const { onDragEnd, valueReducer } = this.props;
 
@@ -516,6 +523,7 @@ class Slider extends React.Component {
       component: Component,
       thumb: thumbIcon,
       disabled,
+      innerRef,
       max,
       min,
       onChange,
@@ -589,9 +597,7 @@ class Slider extends React.Component {
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
         onTouchMove={this.handleTouchMove}
-        ref={ref => {
-          this.containerRef = ReactDOM.findDOMNode(ref);
-        }}
+        ref={this.handleRef}
         {...other}
       >
         <div className={containerClasses}>
@@ -641,6 +647,11 @@ Slider.propTypes = {
    * If `true`, the slider will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
@@ -701,4 +712,4 @@ Slider.defaultProps = {
   valueReducer: defaultValueReducer,
 };
 
-export default withStyles(styles, { name: 'MuiSlider', withTheme: true })(Slider);
+export default withStyles(styles, { name: 'MuiSlider', withTheme: true })(withForwardedRef(Slider));
