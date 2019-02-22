@@ -3,40 +3,22 @@ import React from 'react';
 // This variable will be true once the server-side hydration is completed.
 let hydrationCompleted = false;
 
-function useMounted() {
-  const mountedRef = React.useRef(false);
-
-  React.useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-
-  return mountedRef.current;
-}
-
 function useMediaQuery(queryInput, options = {}) {
   const query = queryInput.replace('@media ', '');
-  const {
-    defaultMatches: defaultMatchesInput = false,
-    noSsr = false,
-    ssrMatchMedia = null,
-  } = options;
+  const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = options;
 
-  let defaultMatches = defaultMatchesInput;
-  const mounted = useMounted();
+  const [matches, setMatches] = React.useState(() => {
+    if (hydrationCompleted || noSsr) {
+      return window.matchMedia(query).matches;
+    }
+    if (ssrMatchMedia) {
+      return ssrMatchMedia(query).matches;
+    }
 
-  if (mounted) {
     // Once the component is mounted, we rely on the
     // event listeners to return the correct matches value.
-  } else if (hydrationCompleted || noSsr) {
-    defaultMatches = window.matchMedia(query).matches;
-  } else if (ssrMatchMedia) {
-    defaultMatches = ssrMatchMedia(query).matches;
-  }
-
-  const [matches, setMatches] = React.useState(defaultMatches);
+    return defaultMatches;
+  });
 
   React.useEffect(() => {
     hydrationCompleted = true;
