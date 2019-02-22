@@ -8,7 +8,6 @@ export interface LinkProps
     LinkClassKey,
     'component'
   > {
-  color?: PropTypes.Color;
   component?: React.ReactType<LinkProps>;
   TypographyClasses?: TypographyProps['classes'];
   underline?: 'none' | 'hover' | 'always';
