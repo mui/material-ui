@@ -59,7 +59,7 @@
     "normalize-scroll-left": "^0.1.2",
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
-    "react-event-listener": "^0.6.2",
+    "react-event-listener": "^0.6.6",
     "react-transition-group": "^2.5.3",
     "warning": "^4.0.1"
   },
