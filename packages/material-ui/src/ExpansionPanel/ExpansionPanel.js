@@ -105,13 +105,14 @@ class ExpansionPanel extends React.Component {
     const {
       children: childrenProp,
       classes,
-      className: classNameProp,
-      CollapseProps,
+      className,
       defaultExpanded,
       disabled,
       expanded: expandedProp,
       onChange,
       square,
+      TransitionComponent,
+      TransitionProps,
       ...other
     } = this.props;
     const expanded = this.isControlled ? expandedProp : this.state.expanded;
@@ -152,16 +153,16 @@ class ExpansionPanel extends React.Component {
             [classes.disabled]: disabled,
             [classes.rounded]: !square,
           },
-          classNameProp,
+          className,
         )}
         elevation={1}
         square={square}
         {...other}
       >
         {summary}
-        <Collapse in={expanded} timeout="auto" {...CollapseProps}>
+        <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
           {children}
-        </Collapse>
+        </TransitionComponent>
       </Paper>
     );
   }
@@ -181,10 +182,6 @@ ExpansionPanel.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * Properties applied to the [`Collapse`](/api/collapse/) element.
-   */
-  CollapseProps: PropTypes.object,
   /**
    * If `true`, expands the panel by default.
    */
@@ -209,12 +206,21 @@ ExpansionPanel.propTypes = {
    * @ignore
    */
   square: PropTypes.bool,
+  /**
+   * The component used for the collapse effect.
+   */
+  TransitionComponent: PropTypes.elementType,
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 ExpansionPanel.defaultProps = {
   defaultExpanded: false,
   disabled: false,
   square: false,
+  TransitionComponent: Collapse,
 };
 
 export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);
