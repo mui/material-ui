@@ -34,7 +34,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
+| <span class="prop-name">expanded</span> | Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
 | <span class="prop-name">focused</span> | Styles applied to the root and children wrapper elements when focused.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">content</span> | Styles applied to the children wrapper element.
