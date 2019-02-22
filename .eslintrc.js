@@ -17,7 +17,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['babel', 'mocha', 'material-ui'],
+  plugins: ['babel', 'mocha', 'material-ui', 'react-hooks'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -79,6 +79,8 @@ module.exports = {
         eventHandlerPropPrefix: 'on',
       },
     ],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
     'material-ui/docgen-ignore-before-comment': 'error',
     'mocha/handle-done-callback': 'error',
