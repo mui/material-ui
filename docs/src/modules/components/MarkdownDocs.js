@@ -20,7 +20,7 @@ import {
   demoRegexp,
 } from 'docs/src/modules/utils/parseMarkdown';
 import compose from 'docs/src/modules/utils/compose';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
 const styles = theme => ({
   root: {
@@ -63,7 +63,7 @@ function MarkdownDocs(props) {
       if (filename.indexOf('.md') !== -1) {
         const match = filename.match(/-([a-z]{2})\.md$/);
 
-        if (match && LANGUAGES.indexOf(match[1]) !== -1) {
+        if (match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1) {
           markdowns[match[1]] = req(filename);
         } else {
           markdowns.en = req(filename);

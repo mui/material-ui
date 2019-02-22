@@ -80,6 +80,7 @@ const styles = theme => ({
         },
         '& [class^=ds-dataset-]': {
           border: 0,
+          maxHeight: 'calc(100vh - 100px)',
           borderRadius: theme.shape.borderRadius,
           backgroundColor: theme.palette.background.paper,
         },
@@ -91,12 +92,12 @@ const styles = theme => ({
         opacity: 1,
         padding: '5.33px 10.66px',
         textAlign: 'right',
-        width: '30%',
+        width: '25%',
       },
       '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
         float: 'right',
         padding: '5.33px 0 5.33px 10.66px',
-        width: '70%',
+        width: '75%',
       },
       '& .algolia-docsearch-suggestion--subcategory-column-text': {
         color: theme.palette.text.secondary,
