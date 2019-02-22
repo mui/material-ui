@@ -42,9 +42,7 @@ function useMediaQuery(queryInput, options = {}) {
     hydrationCompleted = true;
 
     const queryList = window.matchMedia(query);
-    if (matches !== queryList.matches) {
-      setMatches(queryList.matches);
-    }
+    setMatches(queryList.matches);
 
     function handleMatchesChange(event) {
       setMatches(event.matches);
