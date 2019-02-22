@@ -106,8 +106,8 @@ class ExpansionPanel extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
-      CollapseComponent,
-      CollapseProps,
+      TransitionComponent,
+      TransitionProps,
       defaultExpanded,
       disabled,
       expanded: expandedProp,
@@ -160,9 +160,9 @@ class ExpansionPanel extends React.Component {
         {...other}
       >
         {summary}
-        <CollapseComponent in={expanded} timeout="auto" {...CollapseProps}>
+        <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
           {children}
-        </CollapseComponent>
+        </TransitionComponent>
       </Paper>
     );
   }
@@ -182,14 +182,6 @@ ExpansionPanel.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the collapse effect.
-   */
-  CollapseComponent: PropTypes.elementType,
-  /**
-   * Properties applied to the [`Collapse`](/api/collapse/) element.
-   */
-  CollapseProps: PropTypes.object,
   /**
    * If `true`, expands the panel by default.
    */
@@ -214,10 +206,19 @@ ExpansionPanel.propTypes = {
    * @ignore
    */
   square: PropTypes.bool,
+  /**
+   * The component used for the collapse effect. Defaults to
+   * the [`Collapse`](/api/collapse).
+   */
+  TransitionComponent: PropTypes.elementType,
+  /**
+   * Properties applied to the Transition element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 ExpansionPanel.defaultProps = {
-  CollapseComponent: Collapse,
+  TransitionComponent: Collapse,
   defaultExpanded: false,
   disabled: false,
   square: false,

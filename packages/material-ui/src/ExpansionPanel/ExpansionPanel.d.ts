@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { CollapseProps } from '../Collapse';
+import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 
 export interface ExpansionPanelProps
   extends StandardProps<PaperProps, ExpansionPanelClassKey, 'onChange'> {
-  CollapseComponent?: React.ComponentType<CollapseProps>;
-  CollapseProps?: Partial<CollapseProps>;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionProps?: TransitionProps;
   defaultExpanded?: boolean;
   disabled?: boolean;
   expanded?: boolean;

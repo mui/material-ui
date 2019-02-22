@@ -116,7 +116,7 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.disabled), true);
   });
 
-  it('should handle the CollapseComponent prop', () => {
+  it('should handle the TransitionComponent prop', () => {
     const NoTransitionCollapse = props => {
       return props.in ? <div>{props.children}</div> : null;
     };
@@ -127,7 +127,7 @@ describe('<ExpansionPanel />', () => {
 
     const CustomContent = () => <div>Hello</div>;
     const wrapper = mount(
-      <ExpansionPanel expanded CollapseComponent={NoTransitionCollapse}>
+      <ExpansionPanel expanded TransitionComponent={NoTransitionCollapse}>
         <ExpansionPanelSummary />
         <CustomContent />
       </ExpansionPanel>,
