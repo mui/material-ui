@@ -151,7 +151,7 @@ const pages = [
       },
       {
         pathname: '/utils/box',
-        title: 'Box (unstable)',
+        title: 'Box',
       },
     ],
   },

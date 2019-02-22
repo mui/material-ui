@@ -23,6 +23,10 @@ describe('<Slider />', () => {
     mount = createMount();
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   function findHandle(wrapper) {
     // Will also match any other react component if not filtered. They won't appear in the DOM
     // and are therefore an implementation detail. We're interested in what the user

@@ -86,19 +86,7 @@ export namespace PropTypes {
 import * as colors from './colors';
 
 export { colors };
-export {
-  createGenerateClassName,
-  createMuiTheme,
-  jssPreset,
-  MuiThemeProvider,
-  StyleRulesCallback,
-  Theme,
-  withStyles,
-  WithStyles,
-  createStyles,
-  withTheme,
-  WithTheme,
-} from './styles';
+export { createMuiTheme, Theme, withStyles, WithStyles, withTheme, WithTheme } from './styles';
 
 export { default as AppBar } from './AppBar';
 export { default as Avatar } from './Avatar';

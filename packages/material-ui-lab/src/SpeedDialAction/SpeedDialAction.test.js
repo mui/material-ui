@@ -21,10 +21,12 @@ describe('<SpeedDialAction />', () => {
     classes = getClasses(<SpeedDialAction {...defaultProps} />);
   });
 
-  it('should render its component tree without warnings', () => {
-    const wrapper = mount(<SpeedDialAction {...defaultProps} />);
+  after(() => {
+    mount.cleanUp();
+  });
 
-    wrapper.unmount();
+  it('should render its component tree without warnings', () => {
+    mount(<SpeedDialAction {...defaultProps} />);
   });
 
   it('should render a Tooltip', () => {

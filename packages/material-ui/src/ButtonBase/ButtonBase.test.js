@@ -691,13 +691,13 @@ describe('<ButtonBase />', () => {
     });
 
     it('should not rerender the TouchRipple', () => {
-      const wrapper = mount(<ButtonBase>foo</ButtonBase>);
+      const wrapper = mount(<ButtonBase.Original>foo</ButtonBase.Original>);
       wrapper.setProps({
         children: 'bar',
       });
       assert.strictEqual(
         rerender.updates.filter(update => update.displayName !== 'NoSsr').length,
-        1,
+        2,
       );
     });
   });

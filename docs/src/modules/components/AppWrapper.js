@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import url from 'url';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import acceptLanguage from 'accept-language';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
@@ -186,7 +185,7 @@ class AppWrapper extends React.Component {
         sheetsManager={pageContext.sheetsManager}
         sheetsRegistry={pageContext.sheetsRegistry}
       >
-        <MuiThemeProvider theme={pageContext.theme}>{children}</MuiThemeProvider>
+        <ThemeProvider theme={pageContext.theme}>{children}</ThemeProvider>
         <SideEffects />
       </StylesProvider>
     );

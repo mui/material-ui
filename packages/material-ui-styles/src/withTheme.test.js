@@ -14,10 +14,12 @@ describe('withTheme', () => {
 
   before(() => {
     mount = createMount();
+    global.disableShallowSupport = true;
   });
 
   after(() => {
     mount.cleanUp();
+    global.disableShallowSupport = false;
   });
 
   it('should inject the theme', () => {

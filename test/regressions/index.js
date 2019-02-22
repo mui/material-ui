@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import TestViewer from './TestViewer';
 
 const theme = createMuiTheme();
@@ -138,11 +139,11 @@ tests.forEach(test => {
 
   suite.createTest(test.name, () => {
     ReactDOM.render(
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <TestViewer>
           <TestCase />
         </TestViewer>
-      </MuiThemeProvider>,
+      </ThemeProvider>,
       rootEl,
     );
   });
