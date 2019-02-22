@@ -10,14 +10,15 @@ const useStyles = makeStyles(theme => ({
 
 function CircularDeterminate() {
   const classes = useStyles();
-  const [completed, setCompleted] = React.useState(0);
-
-  function progress() {
-    setCompleted(completed >= 100 ? 0 : completed + 1);
-  }
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    const timer = setInterval(progress, 20);
+    function tick() {
+      // reset when reaching 100%
+      setProgress(oldProgress => (oldProgress >= 100 ? 0 : oldProgress + 1));
+    }
+
+    const timer = setInterval(tick, 20);
     return () => {
       clearInterval(timer);
     };
@@ -25,11 +26,11 @@ function CircularDeterminate() {
 
   return (
     <div>
-      <CircularProgress className={classes.progress} variant="determinate" value={completed} />
+      <CircularProgress className={classes.progress} variant="determinate" value={progress} />
       <CircularProgress
         className={classes.progress}
         variant="determinate"
-        value={completed}
+        value={progress}
         color="secondary"
       />
     </div>
