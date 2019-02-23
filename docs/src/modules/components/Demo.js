@@ -222,6 +222,7 @@ class Demo extends React.Component {
     const demoData = this.getDemoData();
     const DemoComponent = demoData.js;
     const sourceLanguage = demoData.codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'jsx';
+    const Frame = demoOptions.iframe ? DemoFrame : React.Fragment;
 
     return (
       <div className={classes.root}>
@@ -325,13 +326,9 @@ class Demo extends React.Component {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
         >
-          {demoOptions.iframe ? (
-            <DemoFrame>
-              <DemoComponent />
-            </DemoFrame>
-          ) : (
+          <Frame>
             <DemoComponent />
-          )}
+          </Frame>
         </div>
       </div>
     );
