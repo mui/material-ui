@@ -305,7 +305,8 @@ SpeedDial.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The color of the Fab component. It supports those theme colors that make sense for the Fab component.
+   * The color of the Fab component.
+   * It supports those theme colors that make sense for the Fab component.
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
