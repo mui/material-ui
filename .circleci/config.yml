@@ -14,21 +14,16 @@ install_js: &install_js
   run:
     name: Install js dependencies
     command: |
-      yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
       yarn
 restore_yarn_cache: &restore_yarn_cache
   restore_cache:
     key: v2-yarn-sha-{{ checksum "yarn.lock" }}
-restore_yarn_offline_mirror: &restore_yarn_offline_mirror
-  restore_cache:
-    key: v2-npm-packages-offline-cache
 version: 2
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - run:
           name: Check versions and env
@@ -47,15 +42,10 @@ jobs:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v4
-      - save_cache:
-          key: v2-npm-packages-offline-cache
-          paths:
-            - ~/.cache/npm-packages-offline-cache/v1
   test_unit:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
       - run:
@@ -87,7 +77,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
       - run:
@@ -158,7 +147,6 @@ jobs:
       - image: circleci/node:8.15
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
       - run:
@@ -204,7 +192,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
       - run:
@@ -229,7 +216,6 @@ jobs:
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
       - run:
@@ -241,7 +227,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
       - *restore_yarn_cache
       - *install_js
       - attach_workspace:
