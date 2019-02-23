@@ -40,7 +40,7 @@
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "prettier": "yarn babel-node ./scripts/prettier.js",
     "prettier:all": "yarn babel-node ./scripts/prettier.js write",
-    "size:snapshot": "node scripts/createSizeSnapshot",
+    "size:snapshot": "node scripts/sizeSnapshot/create",
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "start": "yarn docs:dev",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
