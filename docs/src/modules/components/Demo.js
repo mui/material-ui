@@ -190,7 +190,7 @@ class Demo extends React.Component {
   };
 
   handleClickCodeOpen = () => {
-    document.cookie = `knowsAboutShowSource=true;path=/;expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    document.cookie = `knowsAboutShowSource=true;path=/;max-age=31536000`;
     this.setState(state => ({
       codeOpen: !state.codeOpen,
       knowsAboutShowSource: true,
