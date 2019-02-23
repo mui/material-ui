@@ -64,13 +64,13 @@ const styles = theme => ({
 
 const renderer = new marked.Renderer();
 
-function setRenderer(itemsCollectorRef, uniqueRef) {
+function setRenderer(itemsCollectorRef, unique) {
   renderer.heading = (text, level) => {
     if (level === 2) {
       itemsCollectorRef.current.push({
         text,
         level,
-        hash: textToHash(text, uniqueRef.current),
+        hash: textToHash(text, unique),
         children: [],
       });
     } else if (level === 3) {
@@ -81,7 +81,7 @@ function setRenderer(itemsCollectorRef, uniqueRef) {
       itemsCollectorRef.current[itemsCollectorRef.current.length - 1].children.push({
         text,
         level,
-        hash: textToHash(text, uniqueRef.current),
+        hash: textToHash(text, unique),
       });
     }
   };
@@ -135,7 +135,6 @@ function useThrottledOnScroll(callback, delay) {
 function AppTableOfContents(props) {
   const { classes, contents, t } = props;
   const itemsCollectorRef = React.useRef([]);
-  const uniqueRef = React.useRef({});
   const [itemsServer, setItemsServer] = React.useState([]);
   const itemsClientRef = React.useRef([]);
   const [activeState, setActiveState] = React.useState(null);
@@ -196,7 +195,7 @@ function AppTableOfContents(props) {
   useThrottledOnScroll(findActiveIndex, itemsServer.length > 0 ? 166 : null);
 
   React.useEffect(() => {
-    setRenderer(itemsCollectorRef, uniqueRef);
+    setRenderer(itemsCollectorRef, {});
 
     window.addEventListener('hashchange', handleHashChange);
 

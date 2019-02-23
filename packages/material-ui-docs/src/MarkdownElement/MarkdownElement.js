@@ -18,7 +18,7 @@ marked.Lexer.prototype.lex = function lex(src) {
 };
 
 const renderer = new marked.Renderer();
-function setRenderer(uniqueRef) {
+function setRenderer(unique) {
   renderer.heading = (text, level) => {
     // Small title. No need for an anchor.
     // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
@@ -26,7 +26,7 @@ function setRenderer(uniqueRef) {
       return `<h${level}>${text}</h${level}>`;
     }
 
-    const escapedText = textToHash(text, uniqueRef.current);
+    const escapedText = textToHash(text, unique);
 
     return (
       `
@@ -269,9 +269,8 @@ const styles = theme => ({
 
 function MarkdownElement(props) {
   const { classes, className, text, ...other } = props;
-  const uniqueRef = React.useRef({});
   React.useMemo(() => {
-    setRenderer(uniqueRef);
+    setRenderer({});
   }, []);
 
   /* eslint-disable react/no-danger */
