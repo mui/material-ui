@@ -19,6 +19,7 @@ import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import compose from 'docs/src/modules/utils/compose';
+import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function compress(object) {
@@ -96,7 +97,12 @@ class Demo extends React.Component {
     anchorEl: null,
     codeOpen: false,
     demoHovered: false,
+    knowsAboutShowSource: false,
   };
+
+  componentDidMount() {
+    this.setState({ knowsAboutShowSource: getCookie('knowsAboutShowSource') });
+  }
 
   handleClickMore = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -184,8 +190,10 @@ class Demo extends React.Component {
   };
 
   handleClickCodeOpen = () => {
+    document.cookie = `knowsAboutShowSource=true;path=/;expires=Fri, 31 Dec 9999 23:59:59 GMT`;
     this.setState(state => ({
       codeOpen: !state.codeOpen,
+      knowsAboutShowSource: true,
     }));
   };
 
@@ -222,8 +230,8 @@ class Demo extends React.Component {
 
   render() {
     const { classes, codeVariant, demo, demoOptions } = this.props;
-    const { anchorEl, codeOpen, demoHovered } = this.state;
-    const showSourceHint = false;
+    const { anchorEl, codeOpen, demoHovered, knowsAboutShowSource } = this.state;
+    const showSourceHint = demoHovered && !knowsAboutShowSource;
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
     const DemoComponent = demoData.js;
