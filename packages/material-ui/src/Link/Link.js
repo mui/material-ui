@@ -89,6 +89,7 @@ Link.propTypes = {
    * The color of the link.
    */
   color: PropTypes.oneOf([
+    'default',
     'error',
     'inherit',
     'primary',
