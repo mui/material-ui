@@ -95,6 +95,7 @@ class Demo extends React.Component {
   state = {
     anchorEl: null,
     codeOpen: false,
+    demoHovered: false,
   };
 
   handleClickMore = event => {
@@ -188,6 +189,10 @@ class Demo extends React.Component {
     }));
   };
 
+  handleDemoHover = event => {
+    this.setState({ demoHovered: event.type === 'mouseenter' });
+  };
+
   getDemoData = () => {
     const { codeVariant, demo, githubLocation } = this.props;
     if (codeVariant === CODE_VARIANTS.HOOK && demo.rawHooks) {
@@ -217,7 +222,8 @@ class Demo extends React.Component {
 
   render() {
     const { classes, codeVariant, demo, demoOptions } = this.props;
-    const { anchorEl, codeOpen } = this.state;
+    const { anchorEl, codeOpen, demoHovered } = this.state;
+    const showSourceHint = false;
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
     const DemoComponent = demoData.js;
@@ -237,12 +243,18 @@ class Demo extends React.Component {
                 onLanguageClick={this.handleCodeLanguageClick}
               />
               <div>
-                <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
+                <Tooltip
+                  key={showSourceHint}
+                  open={showSourceHint ? true : undefined}
+                  title={codeOpen ? 'Hide the source' : 'Show the source'}
+                  placement="top"
+                >
                   <IconButton
                     data-ga-event-category={category}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
                     aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
+                    color={demoHovered ? 'primary' : 'default'}
                   >
                     <CodeIcon />
                   </IconButton>
@@ -325,6 +337,8 @@ class Demo extends React.Component {
           className={clsx(classes.demo, {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
+          onMouseEnter={this.handleDemoHover}
+          onMouseLeave={this.handleDemoHover}
         >
           <Frame>
             <DemoComponent />
