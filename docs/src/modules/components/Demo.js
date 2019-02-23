@@ -97,11 +97,11 @@ class Demo extends React.Component {
     anchorEl: null,
     codeOpen: false,
     demoHovered: false,
-    knowsAboutShowSource: false,
+    sourceHintSeen: false,
   };
 
   componentDidMount() {
-    this.setState({ knowsAboutShowSource: getCookie('knowsAboutShowSource') });
+    this.setState({ sourceHintSeen: getCookie('sourceHintSeen') });
   }
 
   handleClickMore = event => {
@@ -190,10 +190,10 @@ class Demo extends React.Component {
   };
 
   handleClickCodeOpen = () => {
-    document.cookie = `knowsAboutShowSource=true;path=/;max-age=31536000`;
+    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
     this.setState(state => ({
       codeOpen: !state.codeOpen,
-      knowsAboutShowSource: true,
+      sourceHintSeen: true,
     }));
   };
 
@@ -230,8 +230,8 @@ class Demo extends React.Component {
 
   render() {
     const { classes, codeVariant, demo, demoOptions } = this.props;
-    const { anchorEl, codeOpen, demoHovered, knowsAboutShowSource } = this.state;
-    const showSourceHint = demoHovered && !knowsAboutShowSource;
+    const { anchorEl, codeOpen, demoHovered, sourceHintSeen } = this.state;
+    const showSourceHint = demoHovered && !sourceHintSeen;
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
     const DemoComponent = demoData.js;
