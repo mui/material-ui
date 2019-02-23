@@ -1,15 +1,15 @@
-export default function textToHash(text, unique = {}) {
-  function makeUnique(hash, i = 0) {
-    const uniqueHash = i ? `${hash}-${i}` : hash;
-    if (!unique[uniqueHash]) {
-      unique[uniqueHash] = true;
-      return uniqueHash;
-    }
+function makeUnique(hash, unique, i = 1) {
+  const uniqueHash = i === 1 ? hash : `${hash}-${i}`;
 
-    i += 1;
-    return makeUnique(hash, i);
+  if (!unique[uniqueHash]) {
+    unique[uniqueHash] = true;
+    return uniqueHash;
   }
 
+  return makeUnique(hash, unique, i + 1);
+}
+
+export default function textToHash(text, unique = {}) {
   return makeUnique(
     encodeURI(
       text
@@ -20,5 +20,6 @@ export default function textToHash(text, unique = {}) {
         .replace(/-+/g, '-')
         .replace(/-$/g, ''),
     ),
+    unique,
   );
 }

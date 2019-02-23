@@ -64,21 +64,21 @@ const styles = theme => ({
 
 const renderer = new marked.Renderer();
 
-function setRenderer(itemsCollectorRef, unique) {
+function setRenderer(itemsCollector, unique) {
   renderer.heading = (text, level) => {
     if (level === 2) {
-      itemsCollectorRef.current.push({
+      itemsCollector.current.push({
         text,
         level,
         hash: textToHash(text, unique),
         children: [],
       });
     } else if (level === 3) {
-      if (!itemsCollectorRef.current[itemsCollectorRef.current.length - 1]) {
+      if (!itemsCollector.current[itemsCollector.current.length - 1]) {
         throw new Error(`Missing parent level for: ${text}`);
       }
 
-      itemsCollectorRef.current[itemsCollectorRef.current.length - 1].children.push({
+      itemsCollector.current[itemsCollector.current.length - 1].children.push({
         text,
         level,
         hash: textToHash(text, unique),
@@ -87,13 +87,9 @@ function setRenderer(itemsCollectorRef, unique) {
   };
 }
 
-function getItemsServer(contents, itemsCollectorRef) {
-  itemsCollectorRef.current = [];
-  marked(contents.join(''), {
-    renderer,
-  });
-
-  return itemsCollectorRef.current;
+function getItemsServer(contents, itemsCollector) {
+  marked(contents.join(''), { renderer });
+  return itemsCollector.current;
 }
 
 function getItemsClient(items) {
@@ -117,36 +113,40 @@ function getItemsClient(items) {
   return itemsClient;
 }
 
-function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => throttle(callback, delay), [callback, delay]);
+const noop = () => {};
 
-  /* eslint-disable-next-line consistent-return */
+function useThrottledOnScroll(callback, delay) {
+  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
+    callback,
+    delay,
+  ]);
+
   React.useEffect(() => {
-    if (delay != null) {
-      window.addEventListener('scroll', throttledCallback);
-      return () => {
-        throttledCallback.cancel();
-        window.removeEventListener('scroll', throttledCallback);
-      };
-    }
-  }, [delay, throttledCallback]);
+    window.addEventListener('scroll', throttledCallback);
+    return () => {
+      window.removeEventListener('scroll', throttledCallback);
+      throttledCallback.cancel();
+    };
+  }, [throttledCallback]);
 }
 
 function AppTableOfContents(props) {
   const { classes, contents, t } = props;
-  const itemsCollectorRef = React.useRef([]);
-  const [itemsServer, setItemsServer] = React.useState([]);
+
+  const itemsServer = React.useMemo(() => {
+    const itemsCollectorRef = { current: [] };
+    setRenderer(itemsCollectorRef, {});
+    return getItemsServer(contents, itemsCollectorRef);
+  }, [contents]);
+
   const itemsClientRef = React.useRef([]);
+  React.useEffect(() => {
+    itemsClientRef.current = getItemsClient(itemsServer);
+  }, [itemsServer]);
+
   const [activeState, setActiveState] = React.useState(null);
-  const clickedRef = React.useRef(false);
-  const unsetClickedRef = React.useRef(null);
 
   const findActiveIndex = React.useCallback(() => {
-    // Don't set the active index based on scroll if a link was just clicked
-    if (clickedRef.current) {
-      return;
-    }
-
     let active;
     for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
@@ -182,49 +182,8 @@ function AppTableOfContents(props) {
     }
   }, [activeState]);
 
-  // Update the active TOC entry if the hash changes through click on '#' icon
-  const handleHashChange = () => {
-    const hash = window.location.hash.substring(1);
-
-    if (activeState !== hash) {
-      setActiveState(hash);
-    }
-  };
-
   // Corresponds to 10 frames at 60 Hz
-  useThrottledOnScroll(findActiveIndex, itemsServer.length > 0 ? 166 : null);
-
-  React.useEffect(() => {
-    setRenderer(itemsCollectorRef, {});
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return function componentWillUnmount() {
-      clearTimeout(unsetClickedRef.current);
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, [handleHashChange]);
-
-  React.useEffect(() => {
-    setItemsServer(getItemsServer(contents, itemsCollectorRef));
-  }, [contents]);
-
-  React.useEffect(() => {
-    itemsClientRef.current = getItemsClient(itemsCollectorRef.current);
-    findActiveIndex();
-  }, [findActiveIndex]);
-
-  const handleClick = hash => () => {
-    // Used to disable findActiveIndex if the page scrolls due to a click
-    clickedRef.current = true;
-    unsetClickedRef.current = setTimeout(() => {
-      clickedRef.current = false;
-    }, 1000);
-
-    if (activeState !== hash) {
-      setActiveState(hash);
-    }
-  };
+  useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
 
   const itemLink = (item, secondary) => (
     <Link
@@ -232,7 +191,6 @@ function AppTableOfContents(props) {
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`#${item.hash}`}
       underline="none"
-      onClick={handleClick(item.hash)}
       className={clsx(
         classes.item,
         { [classes.secondaryItem]: secondary },
