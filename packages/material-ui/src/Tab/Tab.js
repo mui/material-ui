@@ -16,9 +16,12 @@ export const styles = theme => ({
     minWidth: 72,
     position: 'relative',
     boxSizing: 'border-box',
-    padding: 0,
     minHeight: 48,
     flexShrink: 0,
+    padding: '6px 12px',
+    [theme.breakpoints.up('md')]: {
+      padding: '6px 24px',
+    },
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
@@ -30,13 +33,10 @@ export const styles = theme => ({
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: {
     minHeight: 72,
-    // paddingTop supposed to be 12px
-    // - 3px from the paddingBottom
     paddingTop: 9,
-    // paddingBottom supposed to be 12px
-    // -3px for line-height of the label
-    // -6px for label padding
-    // = 3px
+    '& $wrapper :first-child': {
+      marginBottom: 6,
+    },
   },
   /* Styles applied to the root element if `textColor="inherit"`. */
   textColorInherit: {
@@ -79,6 +79,11 @@ export const styles = theme => ({
     flexGrow: 1,
     maxWidth: 'none',
   },
+  /* Styles applied to the root element if `wrapped={true}`. */
+  wrapped: {
+    fontSize: theme.typography.pxToRem(12),
+    lineHeight: 1.5,
+  },
   /* Styles applied to the `icon` and `label`'s wrapper element. */
   wrapper: {
     display: 'inline-flex',
@@ -87,44 +92,27 @@ export const styles = theme => ({
     width: '100%',
     flexDirection: 'column',
   },
-  /* Styles applied to the label container element if `label` is provided. */
-  labelContainer: {
-    width: '100%', // Fix an IE 11 issue
-    boxSizing: 'border-box',
-    padding: '6px 12px',
-    [theme.breakpoints.up('md')]: {
-      padding: '6px 24px',
-    },
-  },
-  /* Styles applied to the label wrapper element if `label` is provided. */
-  label: {},
-  /* Deprecated, the styles will be removed in v4. */
-  labelWrapped: {},
 });
 
-class Tab extends React.Component {
-  state = {
-    labelWrapped: false,
-  };
+function Tab(props) {
+  const {
+    classes,
+    className,
+    disabled,
+    fullWidth,
+    icon,
+    indicator,
+    label,
+    onChange,
+    onClick,
+    selected,
+    textColor,
+    value,
+    wrapped,
+    ...other
+  } = props;
 
-  componentDidMount() {
-    this.checkTextWrap();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.labelWrapped === prevState.labelWrapped) {
-      /**
-       * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
-       * font size still only requires one line.  This check will prevent an infinite render loop
-       * from occurring in that scenario.
-       */
-      this.checkTextWrap();
-    }
-  }
-
-  handleChange = event => {
-    const { onChange, value, onClick } = this.props;
-
+  const handleChange = event => {
     if (onChange) {
       onChange(event, value);
     }
@@ -134,78 +122,34 @@ class Tab extends React.Component {
     }
   };
 
-  checkTextWrap = () => {
-    if (this.labelRef) {
-      const labelWrapped = this.labelRef.getClientRects().length > 1;
-      if (this.state.labelWrapped !== labelWrapped) {
-        this.setState({ labelWrapped });
-      }
-    }
-  };
-
-  render() {
-    const {
-      classes,
-      className,
-      disabled,
-      fullWidth,
-      icon,
-      indicator,
-      label: labelProp,
-      onChange,
-      selected,
-      textColor,
-      value,
-      ...other
-    } = this.props;
-
-    let label;
-
-    if (labelProp !== undefined) {
-      label = (
-        <span className={classes.labelContainer}>
-          <span
-            className={clsx(classes.label, {
-              [classes.labelWrapped]: this.state.labelWrapped,
-            })}
-            ref={ref => {
-              this.labelRef = ref;
-            }}
-          >
-            {labelProp}
-          </span>
-        </span>
-      );
-    }
-
-    return (
-      <ButtonBase
-        focusRipple
-        className={clsx(
-          classes.root,
-          classes[`textColor${capitalize(textColor)}`],
-          {
-            [classes.disabled]: disabled,
-            [classes.selected]: selected,
-            [classes.labelIcon]: icon && label,
-            [classes.fullWidth]: fullWidth,
-          },
-          className,
-        )}
-        role="tab"
-        aria-selected={selected}
-        disabled={disabled}
-        {...other}
-        onClick={this.handleChange}
-      >
-        <span className={classes.wrapper}>
-          {icon}
-          {label}
-        </span>
-        {indicator}
-      </ButtonBase>
-    );
-  }
+  return (
+    <ButtonBase
+      focusRipple
+      className={clsx(
+        classes.root,
+        classes[`textColor${capitalize(textColor)}`],
+        {
+          [classes.disabled]: disabled,
+          [classes.selected]: selected,
+          [classes.labelIcon]: label && icon,
+          [classes.fullWidth]: fullWidth,
+          [classes.wrapped]: wrapped,
+        },
+        className,
+      )}
+      role="tab"
+      aria-selected={selected}
+      disabled={disabled}
+      onClick={handleChange}
+      {...other}
+    >
+      <span className={classes.wrapper}>
+        {icon}
+        {label}
+      </span>
+      {indicator}
+    </ButtonBase>
+  );
 }
 
 Tab.propTypes = {
@@ -265,11 +209,17 @@ Tab.propTypes = {
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,
+  /**
+   * Tab labels appear in a single row.
+   * They can use a second line if needed.
+   */
+  wrapped: PropTypes.bool,
 };
 
 Tab.defaultProps = {
   disabled: false,
   textColor: 'inherit',
+  wrapped: false,
 };
 
 export default withStyles(styles, { name: 'MuiTab' })(Tab);

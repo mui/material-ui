@@ -1,13 +1,5 @@
-export default ({ theme, attach, nest, ICON, TABS, TAB }) => ({
+export default ({ theme, attach, TAB }) => ({
   MuiTabs: {
-    root: {
-      [attach(TABS.underline)]: {
-        borderBottom: '1px solid #e6ecf0',
-      },
-      [`& .${TAB.selected} .${TAB.wrapper} *`]: {
-        color: theme.palette.primary.main,
-      },
-    },
     indicator: {
       backgroundColor: theme.palette.primary.main,
     },
@@ -15,16 +7,26 @@ export default ({ theme, attach, nest, ICON, TABS, TAB }) => ({
   MuiTab: {
     root: {
       minHeight: 53,
+      textTransform: 'none',
+      fontWeight: 700,
       minWidth: 0,
+      padding: 0,
+      '&:hover': {
+        backgroundColor: 'rgba(29, 161, 242, 0.1)',
+      },
       [theme.breakpoints.up('md')]: {
+        fontSize: 15,
         minWidth: 0,
+        padding: 0,
       },
       [attach(TAB.onlyIcon)]: {
-        [nest(TAB.wrapper)]: {
+        '&:hover': {
+          backgroundColor: 'transparent',
+        },
+        '& $wrapper': {
           width: 'auto',
           padding: 8,
           borderRadius: 25,
-          color: '#657786',
           '&:hover': {
             color: theme.palette.primary.main,
             backgroundColor: 'rgba(29, 161, 242, 0.1)',
@@ -34,26 +36,6 @@ export default ({ theme, attach, nest, ICON, TABS, TAB }) => ({
     },
     textColorInherit: {
       opacity: 1,
-    },
-    wrapper: {
-      [nest(ICON.root)]: {
-        fontSize: 26.25,
-      },
-    },
-    labelContainer: {
-      width: '100%',
-      padding: 15,
-      [theme.breakpoints.up('md')]: {
-        padding: 15,
-      },
-      '&:hover': {
-        backgroundColor: 'rgba(29, 161, 242, 0.1)',
-      },
-    },
-    label: {
-      textTransform: 'none',
-      fontSize: 15,
-      fontWeight: 700,
       color: '#657786',
     },
   },

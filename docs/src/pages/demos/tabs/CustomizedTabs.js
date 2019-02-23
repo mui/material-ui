@@ -5,6 +5,29 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
+const StyledTabs = withStyles({
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > div': {
+      maxWidth: 40,
+      width: '100%',
+      backgroundColor: '#635ee7',
+    },
+  },
+})(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+
+const StyledTab = withStyles(theme => ({
+  root: {
+    textTransform: 'initial',
+    color: '#fff',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+  },
+}))(props => <Tab disableRipple {...props} />);
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -49,6 +72,9 @@ const styles = theme => ({
   typography: {
     padding: theme.spacing(3),
   },
+  demo2: {
+    backgroundColor: '#2e1534',
+  },
 });
 
 class CustomizedTabs extends React.Component {
@@ -87,7 +113,15 @@ class CustomizedTabs extends React.Component {
             label="Tab 3"
           />
         </Tabs>
-        <Typography className={classes.typography}>Ant Design UI powered by Material-UI</Typography>
+        <Typography className={classes.typography}>Ant Design like with Material-UI</Typography>
+        <div className={classes.demo2}>
+          <StyledTabs value={value} onChange={this.handleChange}>
+            <StyledTab label="Workflows" />
+            <StyledTab label="Datasets" />
+            <StyledTab label="Connections" />
+          </StyledTabs>
+          <Typography className={classes.typography} />
+        </div>
       </div>
     );
   }
