@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
-import withSelectableContext from '../SelectableGroup/withSelectableContext';
+import useSelectedState from '../SelectableGroup/useSelectedState';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -71,10 +71,23 @@ export const styles = theme => ({
   },
 });
 
-class ToggleButton extends React.Component {
-  handleChange = event => {
-    const { muiSelectableGroup, onClick, value } = this.props;
+function ToggleButton(props) {
+  const {
+    children,
+    classes,
+    className,
+    disabled,
+    disableFocusRipple,
+    innerRef,
+    onClick,
+    selected: selectedProp,
+    value,
+    ...other
+  } = props;
 
+  const selectState = useSelectedState();
+
+  const handleChange = event => {
     if (onClick) {
       onClick(event, value);
       if (event.isDefaultPrevented()) {
@@ -82,48 +95,31 @@ class ToggleButton extends React.Component {
       }
     }
 
-    muiSelectableGroup.toggle(event, value);
+    selectState.toggle(event, value);
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      disabled,
-      disableFocusRipple,
-      innerRef,
-      muiSelectableGroup,
-      selected: selectedProp,
-      value,
-      ...other
-    } = this.props;
+  const selected =
+    selectState && selectedProp === undefined ? selectState.isValueSelected(value) : selectedProp;
 
-    const selected =
-      muiSelectableGroup && selectedProp === undefined
-        ? muiSelectableGroup.isValueSelected(value)
-        : selectedProp;
-
-    return (
-      <ButtonBase
-        className={clsx(
-          classes.root,
-          {
-            [classes.disabled]: disabled,
-            [classes.selected]: selected,
-          },
-          className,
-        )}
-        disabled={disabled}
-        focusRipple={!disableFocusRipple}
-        ref={innerRef}
-        onClick={this.handleChange}
-        {...other}
-      >
-        <span className={classes.label}>{children}</span>
-      </ButtonBase>
-    );
-  }
+  return (
+    <ButtonBase
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.selected]: selected,
+        },
+        className,
+      )}
+      disabled={disabled}
+      focusRipple={!disableFocusRipple}
+      ref={innerRef}
+      onClick={handleChange}
+      {...other}
+    >
+      <span className={classes.label}>{children}</span>
+    </ButtonBase>
+  );
 }
 
 ToggleButton.propTypes = {
@@ -161,10 +157,6 @@ ToggleButton.propTypes = {
   /**
    * @ignore
    */
-  muiSelectableGroup: PropTypes.object,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * If `true`, the button will be rendered in an active state.
@@ -186,5 +178,5 @@ ToggleButton.defaultProps = {
 ToggleButton.muiName = 'ToggleButton';
 
 export default withStyles(styles, { name: 'MuiToggleButton' })(
-  withForwardedRef(withSelectableContext(ToggleButton)),
+  withForwardedRef(ToggleButton),
 );

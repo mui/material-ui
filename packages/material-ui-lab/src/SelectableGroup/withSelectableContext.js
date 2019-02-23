@@ -1,20 +1,21 @@
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import SelectableGroupContext from './SelectableGroupContext';
 import { getDisplayName } from '@material-ui/utils';
+import useSelectedState from './useSelectedState';
 
 export default function withSelectableGroupContext(Component) {
-  const EnhancedComponent = props => (
-    <SelectableGroupContext.Consumer>
-      {context => <Component muiSelectableGroup={context} {...props} />}
-    </SelectableGroupContext.Consumer>
-  );
+  const WithSelectableGroupContext = props => {
+    const selectState = useSelectedState();
+    return <Component selectState={selectState} {...props} />;
+  };
 
   if (process.env.NODE_ENV !== 'production') {
-    EnhancedComponent.displayName = `WithSelectableGroupContext(${getDisplayName(Component)})`;
+    WithSelectableGroupContext.displayName = `WithSelectableGroupContext(${getDisplayName(
+      Component,
+    )})`;
   }
 
-  hoistNonReactStatics(EnhancedComponent, Component);
+  hoistNonReactStatics(WithSelectableGroupContext, Component);
 
-  return EnhancedComponent;
+  return WithSelectableGroupContext;
 }

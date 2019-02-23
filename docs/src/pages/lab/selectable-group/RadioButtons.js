@@ -25,12 +25,12 @@ const styles = {
 };
 
 const SelectableRadio = withSelectableContext(props => {
-  const { muiSelectableGroup, value, ...other } = props;
-  const handleChange = event => muiSelectableGroup.toggle(event, event.target.value);
+  const { selectState, value, ...other } = props;
+  const handleChange = event => selectState.toggle(event, event.target.value);
 
   return (
     <Radio
-      checked={muiSelectableGroup.isValueSelected(value)}
+      checked={selectState.isValueSelected(value)}
       onClick={handleChange}
       value={value}
       {...other}

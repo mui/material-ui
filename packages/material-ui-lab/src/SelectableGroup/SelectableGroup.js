@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { exactProp } from '@material-ui/utils';
 import * as utils from './utils';
 import SelectableGroupContext from './SelectableGroupContext';
-import PropTypes from 'prop-types';
 
 class SelectableGroup extends React.Component {
   state = {
@@ -57,15 +58,15 @@ class SelectableGroup extends React.Component {
     const { children } = this.props;
     const { deselect, isValueSelected, select, toggle } = this;
 
-    const childContext = {
-      deselect,
-      isValueSelected,
-      select,
-      toggle,
-    };
-
     return (
-      <SelectableGroupContext.Provider value={childContext}>
+      <SelectableGroupContext.Provider
+        value={{
+          deselect,
+          isValueSelected,
+          select,
+          toggle,
+        }}
+      >
         {children}
       </SelectableGroupContext.Provider>
     );
@@ -91,6 +92,10 @@ SelectableGroup.propTypes = {
    */
   value: PropTypes.any,
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  SelectableGroup.propTypes = exactProp(SelectableGroup.propTypes);
+}
 
 SelectableGroup.defaultProps = {
   exclusive: false,

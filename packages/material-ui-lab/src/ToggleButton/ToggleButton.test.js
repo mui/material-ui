@@ -8,6 +8,7 @@ import {
   getClasses,
 } from '@material-ui/core/test-utils';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import ToggleButtonGroup from '../ToggleButtonGroup';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {
@@ -19,6 +20,10 @@ describe('<ToggleButton />', () => {
     mount = createMount();
     render = createRender();
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a <ButtonBase> element', () => {
@@ -97,6 +102,49 @@ describe('<ToggleButton />', () => {
 
       wrapper.simulate('click', event);
       assert.strictEqual(handleChange.callCount, 0);
+    });
+  });
+
+  describe('exclusive', () => {
+    it('should render a selected ToggleButton if value is selected', () => {
+      const wrapper = mount(
+        <ToggleButtonGroup exclusive value="one">
+          <ToggleButton value="one">One</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+      const buttonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton));
+
+      assert.strictEqual(buttonWrapper.hasClass(classes.selected), true);
+    });
+
+    it('should not render a selected ToggleButton when its value is not selected', () => {
+      const wrapper = mount(
+        <ToggleButtonGroup exclusive value="one">
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+      const buttonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton).at(1));
+
+      assert.strictEqual(buttonWrapper.hasClass(classes.selected), false);
+    });
+  });
+
+  describe('non exclusive', () => {
+    it('should render a selected ToggleButton if value is selected', () => {
+      const wrapper = mount(
+        <ToggleButtonGroup value={['one']}>
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      const firstButtonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton).at(0));
+
+      const secondButtonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton).at(1));
+
+      assert.strictEqual(firstButtonWrapper.hasClass(classes.selected), true);
+      assert.strictEqual(secondButtonWrapper.hasClass(classes.selected), false);
     });
   });
 

@@ -23,7 +23,6 @@ import SelectableGroup from '@material-ui/lab/SelectableGroup';
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Functioned called when value changes. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |   | The currently selected value within the group or an array of selected values when `exclusive` is false. |
 
-Any other properties supplied will be spread to the root element (native element).
 
 ## Demos
 
