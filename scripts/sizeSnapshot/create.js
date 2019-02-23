@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const childProcess = require('child_process');
 const fse = require('fs-extra');
-const { flatten, fromPairs } = require('lodash');
+const lodash = require('lodash');
 const path = require('path');
 const { promisify } = require('util');
 
@@ -51,9 +51,9 @@ async function getWebpackSizes() {
 async function run() {
   const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
 
-  const bundleSizes = fromPairs([
+  const bundleSizes = lodash.fromPairs([
     ...(await getWebpackSizes()),
-    ...flatten(await Promise.all(rollupBundles.map(getRollupSize))),
+    ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
   ]);
 
   await fse.writeJSON(snapshotDestPath, bundleSizes, { spaces: 2 });
