@@ -187,7 +187,7 @@ jobs:
           command: tar cfvz builds.tar.gz packages/*/build
       - persist_to_workspace:
           root: .
-          paths: 
+          paths:
             - builds.tar.gz
             # rollup snapshot
             - packages/material-ui/size-snapshot.json
@@ -256,12 +256,6 @@ jobs:
       - run:
           name: Can we build the docs?
           command: yarn docs:build
-      # temporary workaround, proposing to size-limit to make webpack alias configureable
-      - run:
-          name: Prepare size snapshot
-          command: |
-            cd packages/material-ui/build && yarn link && cd ../../../ 
-            yarn link @material-ui/core
       - run:
           name: Create a size snapshot
           command: yarn size:snapshot
@@ -270,6 +264,9 @@ jobs:
       # that allow write access to s3
       - store_artifacts:
           path: size-snapshot.json
+      # for debugging purposes, this is created by webpack called from size:snapshot
+      - store_artifacts:
+          path: scripts/sizeSnapshot/build/stats.json
       - run:
           name: Possibly persist size snapshot
           command: |
