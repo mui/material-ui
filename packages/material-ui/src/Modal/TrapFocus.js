@@ -89,7 +89,7 @@ function TrapFocus(props) {
         lastFocus.current = null;
       }
     };
-  }, [open]);
+  }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open]);
 
   return (
     <React.Fragment>

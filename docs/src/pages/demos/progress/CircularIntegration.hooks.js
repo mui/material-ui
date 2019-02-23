@@ -44,24 +44,23 @@ function CircularIntegration() {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  let timer = null;
+  const timer = React.useRef(null);
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
   });
 
-  React.useEffect(
-    () => () => {
-      clearInterval(timer);
-    },
-    [],
-  );
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
   function handleButtonClick() {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
-      timer = setTimeout(() => {
+      timer.current = setTimeout(() => {
         setSuccess(true);
         setLoading(false);
       }, 2000);

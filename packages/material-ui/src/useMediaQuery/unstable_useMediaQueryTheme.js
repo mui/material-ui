@@ -1,10 +1,8 @@
-/* eslint-disable camelcase */
-
 import { useTheme } from '@material-ui/styles';
 import useMediaQuery from './unstable_useMediaQuery';
 import getThemeProps from '../styles/getThemeProps';
 
-function unstable_useMediaQueryTheme(query, options) {
+function useMediaQueryTheme(query, options) {
   const theme = useTheme();
   const props = getThemeProps({
     theme,
@@ -15,4 +13,4 @@ function unstable_useMediaQueryTheme(query, options) {
   return useMediaQuery(query, { ...props, ...options });
 }
 
-export default unstable_useMediaQueryTheme;
+export default useMediaQueryTheme;

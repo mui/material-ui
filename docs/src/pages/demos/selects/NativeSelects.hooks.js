@@ -29,15 +29,12 @@ function NativeSelects() {
   const [state, setState] = React.useState({
     age: '',
     name: 'hai',
-    labelWidth: 0,
   });
-  const inputLabelRef = React.useRef(null);
 
+  const inputLabelRef = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
-    setState({
-      ...state,
-      labelWidth: ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth,
-    });
+    setLabelWidth(ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth);
   }, []);
 
   const handleChange = name => event => {
@@ -200,11 +197,7 @@ function NativeSelects() {
           value={state.age}
           onChange={handleChange('age')}
           input={
-            <OutlinedInput
-              name="age"
-              labelWidth={state.labelWidth}
-              id="outlined-age-native-simple"
-            />
+            <OutlinedInput name="age" labelWidth={labelWidth} id="outlined-age-native-simple" />
           }
         >
           <option value="" />

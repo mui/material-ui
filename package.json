@@ -120,6 +120,7 @@
     "eslint-plugin-material-ui": "file:packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-hooks": "^1.2.0",
     "expect-puppeteer": "^3.5.1",
     "fg-loadcss": "^2.0.1",
     "final-form": "^4.11.0",
