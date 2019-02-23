@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '@material-ui/core';
+import { StandardProps, PropTypes } from '@material-ui/core';
 import { ButtonProps } from '@material-ui/core/Button';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';
@@ -11,6 +11,7 @@ export interface SpeedDialProps
   > {
   ariaLabel: string;
   ButtonProps?: Partial<ButtonProps>;
+  color?: PropTypes.Color;
   direction?: 'up' | 'down' | 'left' | 'right';
   hidden?: boolean;
   icon: React.ReactNode;
