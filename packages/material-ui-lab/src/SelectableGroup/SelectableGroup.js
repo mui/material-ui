@@ -4,73 +4,48 @@ import { exactProp } from '@material-ui/utils';
 import * as utils from './utils';
 import SelectableGroupContext from './SelectableGroupContext';
 
-class SelectableGroup extends React.Component {
-  state = {
-    selected: null,
-  };
+function SelectableGroup(props) {
+  const [selected, setSelected] = React.useState(null);
+  const { children, exclusive, value: valueProp } = props;
 
-  deselect = this.createReducer(utils.deselect);
-
-  select = this.createReducer(utils.select);
-
-  toggle = this.createReducer(utils.toggle);
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.value !== undefined && props.value !== state.selected) {
-      return {
-        selected: props.value,
-      };
-    }
-    return null;
-  }
-
-  isValueSelected = value => utils.hasValue(this.state.selected, value);
-
-  createReducer(handler) {
+  const createReducer = handler => {
     return (event, value) => {
-      this.setState(({ selected: prevSelected }, props) => {
-        const selected = handler(prevSelected, value, props);
+      setSelected(prevSelected => {
+        const newSelected = handler(prevSelected, value, exclusive);
 
-        if (props.exclusive) {
-          if (selected === prevSelected) {
-            return null;
-          }
-        } else if (selected && prevSelected && selected.length === prevSelected.length) {
-          const notChanged = selected
-            .map((val, i) => prevSelected[i] === val)
-            .every(isSame => isSame);
-
-          if (notChanged) {
-            return null;
-          }
+        // Only call onChange if it exists and state has changed (Object.is mimics React)
+        if (props.onChange && !Object.is(newSelected, prevSelected)) {
+          props.onChange(event, newSelected);
         }
 
-        if (this.props.onChange) {
-          this.props.onChange(event, selected);
-        }
-
-        return { selected };
+        return newSelected;
       });
     };
-  }
+  };
 
-  render() {
-    const { children } = this.props;
-    const { deselect, isValueSelected, select, toggle } = this;
+  const deselect = createReducer(utils.deselect);
+  const select = createReducer(utils.select);
+  const toggle = createReducer(utils.toggle);
+  const isValueSelected = value => utils.hasValue(selected, value);
 
-    return (
-      <SelectableGroupContext.Provider
-        value={{
-          deselect,
-          isValueSelected,
-          select,
-          toggle,
-        }}
-      >
-        {children}
-      </SelectableGroupContext.Provider>
-    );
-  }
+  React.useEffect(() => {
+    if (valueProp !== undefined) {
+      setSelected(valueProp);
+    }
+  }, [valueProp]);
+
+  return (
+    <SelectableGroupContext.Provider
+      value={{
+        deselect,
+        isValueSelected,
+        select,
+        toggle,
+      }}
+    >
+      {children}
+    </SelectableGroupContext.Provider>
+  );
 }
 
 SelectableGroup.propTypes = {

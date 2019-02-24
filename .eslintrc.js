@@ -24,9 +24,6 @@ module.exports = {
         config: path.join(__dirname, './docs/webpackBaseConfig.js'),
       },
     },
-    react:{
-      version: 'detect',
-    }
   },
   rules: {
     // It's buggy

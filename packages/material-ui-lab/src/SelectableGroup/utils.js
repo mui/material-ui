@@ -10,9 +10,7 @@ export function hasValue(values, value) {
   return values.includes(value);
 }
 
-export function deselect(values, deselectValue, options) {
-  const { exclusive } = options;
-
+export function deselect(values, deselectValue, exclusive) {
   if (exclusive) {
     return null;
   }
@@ -20,17 +18,15 @@ export function deselect(values, deselectValue, options) {
   return values.filter(value => value !== deselectValue);
 }
 
-export function select(values, value, options = {}) {
-  const { exclusive } = options;
-
+export function select(values, value, exclusive) {
   if (exclusive) {
     return value;
   }
 
   return values ? [...values, value] : [value];
 }
-export function toggle(values, toggleValue, options) {
-  return hasValue(values, toggleValue, options)
-    ? deselect(values, toggleValue, options)
-    : select(values, toggleValue, options);
+export function toggle(values, toggleValue, exclusive) {
+  return hasValue(values, toggleValue)
+    ? deselect(values, toggleValue, exclusive)
+    : select(values, toggleValue, exclusive);
 }
