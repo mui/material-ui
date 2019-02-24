@@ -6,7 +6,8 @@ import MenuItem from 'packages/material-ui/src/MenuItem';
 import { createMount } from 'packages/material-ui/src/test-utils';
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
+  const items = wrapper.find('li[role="menuitem"]');
+  assert.strictEqual(items.length, 4, 'should find 4 items');
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
@@ -22,7 +23,8 @@ function assertMenuItemTabIndexed(wrapper, tabIndexed) {
 }
 
 function assertMenuItemFocused(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
+  const items = wrapper.find('li[role="menuitem"]');
+  assert.strictEqual(items.length, 4, 'should find 4 items');
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
