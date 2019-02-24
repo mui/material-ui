@@ -85,6 +85,11 @@ describe('<IconButton />', () => {
     assert.strictEqual(wrapper.props().centerRipple, true);
   });
 
+  it('should render with sizeSmall class when prop size="small" provided', () => {
+    const wrapper = shallow(<IconButton size="small">book</IconButton>);
+    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
+  });
+
   describe('prop: disabled', () => {
     it('should disable the component', () => {
       const wrapper = shallow(<IconButton disabled>book</IconButton>);

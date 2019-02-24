@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 const styles = theme => ({
   margin: {
@@ -92,6 +93,9 @@ function ButtonSizes(props) {
         </Fab>
       </div>
       <div>
+        <IconButton aria-label="Delete" className={classes.margin} size="small">
+          <ArrowDownwardIcon fontSize="inherit" />
+        </IconButton>
         <IconButton aria-label="Delete" className={classes.margin}>
           <DeleteIcon fontSize="small" />
         </IconButton>
