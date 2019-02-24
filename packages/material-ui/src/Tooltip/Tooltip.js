@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
 import RootRef from '../RootRef';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
@@ -20,7 +21,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: 'rgba(97, 97, 97, 0.9)',
+    backgroundColor: fade(theme.palette.grey[700], 0.9),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
