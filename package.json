@@ -37,6 +37,7 @@
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache --report-unused-disable-directives && echo \"eslint: no lint errors\"",
+    "lint:ci": "eslint . --report-unused-disable-directives",
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "prettier": "yarn babel-node ./scripts/prettier.js",
     "prettier:all": "yarn babel-node ./scripts/prettier.js write",
