@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
 import * as utils from './utils';
 import SelectableGroupContext from './SelectableGroupContext';
 
@@ -67,10 +66,6 @@ SelectableGroup.propTypes = {
    */
   value: PropTypes.any,
 };
-
-if (process.env.NODE_ENV !== 'production') {
-  SelectableGroup.propTypes = exactProp(SelectableGroup.propTypes);
-}
 
 SelectableGroup.defaultProps = {
   exclusive: false,
