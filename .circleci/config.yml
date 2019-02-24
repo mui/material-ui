@@ -17,7 +17,9 @@ commands:
   install_js:
     steps:
       - restore_cache:
-          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
+          keys:
+             - v2-yarn-sha-{{ checksum "yarn.lock" }}
+             - v2-yarn-sha-
       - run:
           name: Install js dependencies
           command: yarn
