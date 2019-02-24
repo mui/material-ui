@@ -80,7 +80,7 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      {hideSortIcon ? null : (
+      {hideSortIcon && !active ? null : (
         <IconComponent
           className={clsx(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
         />
