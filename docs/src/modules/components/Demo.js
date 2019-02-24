@@ -254,6 +254,7 @@ class Demo extends React.Component {
                 <Tooltip
                   key={showSourceHint}
                   open={showSourceHint ? true : undefined}
+                  PopperProps={{ disablePortal: true }}
                   title={codeOpen ? 'Hide the source' : 'Show the source'}
                   placement="top"
                 >
