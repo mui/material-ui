@@ -1,7 +1,9 @@
+version: 2.1
+
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:8.15
+    - image: circleci/node:8.15-browsers
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -10,36 +12,24 @@ defaults: &defaults
 # restore_repo: &restore_repo
 #   restore_cache:
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
-install_js: &install_js
-  run:
-    name: Install js dependencies
-    command: |
-      yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
-      yarn
-restore_yarn_cache: &restore_yarn_cache
-  restore_cache:
-    key: v2-yarn-sha-{{ checksum "yarn.lock" }}
-restore_yarn_offline_mirror: &restore_yarn_offline_mirror
-  restore_cache:
-    key: v2-npm-packages-offline-cache
-version: 2
+
+commands:
+  install_js:
+    steps:
+      - restore_cache:
+          keys:
+             - v2-yarn-sha-{{ checksum "yarn.lock" }}
+             - v2-yarn-sha-
+      - run:
+          name: Install js dependencies
+          command: yarn
+
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - run:
-          name: Check versions and env
-          command: |
-            yarn --version
-            node --version
-            docker --version
-            docker-compose --version
-            env
-            yarn cache dir
-      - *install_js
+      - install_js
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
@@ -47,23 +37,17 @@ jobs:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v4
-      - save_cache:
-          key: v2-npm-packages-offline-cache
-          paths:
-            - ~/.cache/npm-packages-offline-cache/v1
   test_unit:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: Check if yarn prettier was run
           command: yarn prettier check-changed
       - run:
           name: Lint
-          command: yarn lint
+          command: yarn lint:ci
       - run:
           name: Lint JSON
           command: yarn jsonlint
@@ -87,9 +71,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: material-ui-icons
           command: |
@@ -152,20 +134,20 @@ jobs:
             fi
   test_build:
     <<: *defaults
-    # This isn't user facing code.
-    # Let's take advantage of the most up to date node version.
-    docker:
-      - image: circleci/node:8.15
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: Transpile TypeScript demos
           command: yarn docs:typescript:formatted
       - run:
           name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
+          command: git diff --exit-code
+      - run:
+          name: Can we generate the documentation?
+          command: yarn docs:api
+      - run:
+          name: '`yarn docs:api` changes commited?'
           command: git diff --exit-code
       - run:
           name: Can we generate the @material-ui/core build?
@@ -192,46 +174,24 @@ jobs:
             # rollup snapshot
             - packages/material-ui/size-snapshot.json
       - run:
-          name: Install dependencies for Chrome Headless
-          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-      - run:
           name: Test umd release
           command: yarn test:umd
   test_browser:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
-      - run:
-          name: Can we generate the documentation?
-          command: yarn docs:api
-      - run:
-          name: '`yarn docs:api` changes commited?'
-          command: git diff --exit-code
-      - run:
-          name: Install dependencies for Chrome Headless
-          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - install_js
       - run:
           name: Tests real browsers
           command: yarn test:karma
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:8.15
-      - image: selenium/standalone-chrome:3.11.0
+      - image: circleci/node:8.15-browsers
+      - image: selenium/standalone-chrome:3.141.59
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - run:
           name: Visual regression tests
           command: |
@@ -241,9 +201,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_offline_mirror
-      - *restore_yarn_cache
-      - *install_js
+      - install_js
       - attach_workspace:
           at: /tmp/workspace
       - run:
