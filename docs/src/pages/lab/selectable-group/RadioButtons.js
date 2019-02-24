@@ -6,7 +6,6 @@ import Radio from '@material-ui/core/Radio';
 import SelectableGroup from '@material-ui/lab/SelectableGroup';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import withSelectableContext from '@material-ui/lab/SelectableGroup/withSelectableContext';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
@@ -22,24 +21,6 @@ const styles = {
     },
   },
   checked: {},
-};
-
-const SelectableRadio = withSelectableContext(props => {
-  const { selectState, value, ...other } = props;
-  const handleChange = event => selectState.toggle(event, event.target.value);
-
-  return (
-    <Radio
-      checked={selectState.isValueSelected(value)}
-      onClick={handleChange}
-      value={value}
-      {...other}
-    />
-  );
-});
-
-SelectableRadio.propTypes = {
-  value: PropTypes.any,
 };
 
 class RadioButtons extends React.Component {
@@ -60,8 +41,8 @@ class RadioButtons extends React.Component {
       <div className={classes.root}>
         <SelectableGroup exclusive onChange={this.handleChange}>
           <div>
-            <SelectableRadio value="b" name="radio-button-demo" aria-label="B" />
-            <SelectableRadio
+            <Radio value="b" name="radio-button-demo" aria-label="B" />
+            <Radio
               value="c"
               name="radio-button-demo"
               aria-label="C"
@@ -70,8 +51,8 @@ class RadioButtons extends React.Component {
                 checked: classes.checked,
               }}
             />
-            <SelectableRadio value="d" color="default" name="radio-button-demo" aria-label="D" />
-            <SelectableRadio
+            <Radio value="d" color="default" name="radio-button-demo" aria-label="D" />
+            <Radio
               value="e"
               color="default"
               name="radio-button-demo"

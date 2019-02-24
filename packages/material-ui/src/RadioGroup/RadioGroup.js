@@ -2,92 +2,29 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import FormGroup from '../FormGroup';
-import { createChainedFunction, find } from '../utils/helpers';
+import SelectableGroup from '@material-ui/lab/SelectableGroup';
 
-class RadioGroup extends React.Component {
-  radios = [];
+function RadioGroup(props) {
+  const { children, defaultValue, name, onChange, value: valueProp, ...other } = props;
+  let { current: firstLoad } = React.useRef(true);
 
-  constructor(props) {
-    super();
-    this.isControlled = props.value != null;
+  let value = valueProp;
 
-    if (!this.isControlled) {
-      this.state = {
-        value: props.defaultValue,
-      };
+  if (firstLoad) {
+    firstLoad = false;
+    if (defaultValue) {
+      value = defaultValue;
     }
   }
 
-  focus = () => {
-    if (!this.radios || !this.radios.length) {
-      return;
-    }
-
-    const focusRadios = this.radios.filter(n => !n.disabled);
-
-    if (!focusRadios.length) {
-      return;
-    }
-
-    const selectedRadio = find(focusRadios, n => n.checked);
-
-    if (selectedRadio) {
-      selectedRadio.focus();
-      return;
-    }
-
-    focusRadios[0].focus();
-  };
-
-  handleChange = event => {
-    if (!this.isControlled) {
-      this.setState({
-        value: event.target.value,
-      });
-    }
-
-    if (this.props.onChange) {
-      this.props.onChange(event, event.target.value);
-    }
-  };
-
-  render() {
-    const { children, name, value: valueProp, onChange, ...other } = this.props;
-
-    const value = this.isControlled ? valueProp : this.state.value;
-    this.radios = [];
-
-    return (
+  return (
+    <SelectableGroup onChange={onChange} value={value} additional={{ name }} exclusive>
       <FormGroup role="radiogroup" {...other}>
-        {React.Children.map(children, child => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
-
-          warning(
-            child.type !== React.Fragment,
-            [
-              "Material-UI: the RadioGroup component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
-
-          return React.cloneElement(child, {
-            name,
-            inputRef: node => {
-              if (node) {
-                this.radios.push(node);
-              }
-            },
-            checked: value === child.props.value,
-            onChange: createChainedFunction(child.props.onChange, this.handleChange),
-          });
-        })}
+        {children}
       </FormGroup>
-    );
-  }
+    </SelectableGroup>
+  );
 }
 
 RadioGroup.propTypes = {

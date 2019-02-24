@@ -6,6 +6,7 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
+import useSelectedState from '@material-ui/lab/SelectableGroup/useSelectedState';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -37,7 +38,39 @@ export const styles = theme => ({
 });
 
 const Radio = React.forwardRef(function Radio(props, ref) {
-  const { classes, color, ...other } = props;
+  const {
+    classes,
+    checked: checkedProp,
+    color,
+    name: nameProp,
+    onChange,
+    onClick,
+    value,
+    ...other
+  } = props;
+  const selectedState = useSelectedState();
+
+  let name = nameProp;
+
+  if (selectedState && selectedState.additional) {
+    name = selectedState.additional.name;
+  }
+
+  const checked = selectedState ? selectedState.isValueSelected(value) : checkedProp;
+
+  const handleChange = event => {
+    if (selectedState && !checked) {
+      selectedState.toggle(event, value);
+    }
+
+    if (onClick) {
+      onClick(event);
+    }
+
+    if (onChange) {
+      onChange(event, checked);
+    }
+  };
 
   return (
     <SwitchBase
@@ -50,6 +83,10 @@ const Radio = React.forwardRef(function Radio(props, ref) {
         disabled: classes.disabled,
       }}
       ref={ref}
+      name={name}
+      checked={checked}
+      onClick={handleChange}
+      value={value}
       {...other}
     />
   );
@@ -98,6 +135,10 @@ Radio.propTypes = {
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
+   * @ignore
+   */
+  name: PropTypes.string,
+  /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
@@ -105,6 +146,10 @@ Radio.propTypes = {
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * The input component property `type`.
    */

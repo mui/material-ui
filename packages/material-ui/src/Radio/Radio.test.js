@@ -2,9 +2,15 @@ import React from 'react';
 import { assert } from 'chai';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import { getClasses, createShallow, createMount } from '@material-ui/core/test-utils';
+import {
+  getClasses,
+  createShallow,
+  createMount,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Radio from './Radio';
+import RadioGroup from '../RadioGroup';
 
 describe('<Radio />', () => {
   let shallow;
@@ -45,6 +51,38 @@ describe('<Radio />', () => {
     it('should render a checked icon', () => {
       const wrapper = mount(<Radio checked />);
       assert.strictEqual(wrapper.find(RadioButtonCheckedIcon).length, 1);
+    });
+  });
+
+  describe('RadioButtonGroup', () => {
+    it('should support uncontrolled mode', () => {
+      const wrapper = mount(
+        <RadioGroup name="group">
+          <Radio value="one" />
+        </RadioGroup>,
+      );
+
+      let radio = wrapper.find(Radio);
+      radio.simulate('click');
+      radio = findOutermostIntrinsic(wrapper.find(Radio));
+      assert.strictEqual(radio.hasClass(classes.checked), true);
+    });
+
+    it('should support default value in uncontrolled mode', () => {
+      const wrapper = mount(
+        <RadioGroup name="group" defaultValue="zero">
+          <Radio value="zero" />
+          <Radio value="one" />
+        </RadioGroup>,
+      );
+
+      const firstRadio = findOutermostIntrinsic(wrapper.find(Radio).at(0));
+      assert.strictEqual(firstRadio.hasClass(classes.checked), true);
+
+      let secondRadio = wrapper.find(Radio).at(1);
+      secondRadio.simulate('click');
+      secondRadio = findOutermostIntrinsic(wrapper.find(Radio).at(1));
+      assert.strictEqual(secondRadio.hasClass(classes.checked), true);
     });
   });
 });

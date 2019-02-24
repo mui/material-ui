@@ -1,12 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import Radio from '@material-ui/core/Radio';
 import SelectableGroup from '@material-ui/lab/SelectableGroup';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import useSelectedState from '@material-ui/lab/SelectableGroup/useSelectedState';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
@@ -24,19 +22,6 @@ const useStyles = makeStyles({
   checked: {},
 });
 
-function SelectableRadio(props) {
-  const { value, ...other } = props;
-  const { toggle, isValueSelected } = useSelectedState();
-
-  const handleChange = event => toggle(event, event.target.value);
-
-  return <Radio checked={isValueSelected(value)} onClick={handleChange} value={value} {...other} />;
-}
-
-SelectableRadio.propTypes = {
-  value: PropTypes.any,
-};
-
 function RadioButtons() {
   const classes = useStyles();
   const [selected, setSelected] = React.useState();
@@ -47,8 +32,8 @@ function RadioButtons() {
     <div className={classes.root}>
       <SelectableGroup exclusive onChange={handleChange}>
         <div>
-          <SelectableRadio value="b" name="radio-button-demo" aria-label="B" />
-          <SelectableRadio
+          <Radio value="b" name="radio-button-demo" aria-label="B" />
+          <Radio
             value="c"
             name="radio-button-demo"
             aria-label="C"
@@ -57,8 +42,8 @@ function RadioButtons() {
               checked: classes.checked,
             }}
           />
-          <SelectableRadio value="d" color="default" name="radio-button-demo" aria-label="D" />
-          <SelectableRadio
+          <Radio value="d" color="default" name="radio-button-demo" aria-label="D" />
+          <Radio
             value="e"
             color="default"
             name="radio-button-demo"

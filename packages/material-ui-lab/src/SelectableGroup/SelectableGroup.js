@@ -5,7 +5,7 @@ import SelectableGroupContext from './SelectableGroupContext';
 
 function SelectableGroup(props) {
   const [selected, setSelected] = React.useState(null);
-  const { children, exclusive, value: valueProp } = props;
+  const { additional, children, exclusive, value: valueProp } = props;
 
   const createReducer = handler => {
     return (event, value) => {
@@ -36,6 +36,7 @@ function SelectableGroup(props) {
   return (
     <SelectableGroupContext.Provider
       value={{
+        additional,
         deselect,
         isValueSelected,
         select,
@@ -48,6 +49,10 @@ function SelectableGroup(props) {
 }
 
 SelectableGroup.propTypes = {
+  /**
+   * Additional props to pass down.
+   */
+  additional: PropTypes.object,
   /**
    * The contents of the selectable group.
    */

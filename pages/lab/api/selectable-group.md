@@ -18,6 +18,7 @@ import SelectableGroup from '@material-ui/lab/SelectableGroup';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">additional</span> | <span class="prop-type">object</span> |   | Additional props to pass down. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The contents of the selectable group. |
 | <span class="prop-name">exclusive</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Only allows one value to be selected. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Functioned called when value changes. |
