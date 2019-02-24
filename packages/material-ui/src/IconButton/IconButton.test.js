@@ -88,6 +88,19 @@ describe('<IconButton />', () => {
   it('should render with sizeSmall class when prop size="small" provided', () => {
     const wrapper = shallow(<IconButton size="small">book</IconButton>);
     assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
+    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), false);
+  });
+
+  it('should render with sizeMedium class when prop size="medium" provided', () => {
+    const wrapper = shallow(<IconButton size="medium">book</IconButton>);
+    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
+    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), true);
+  });
+
+  it('should render with sizeMedium class when no size is provided', () => {
+    const wrapper = shallow(<IconButton size="medium">book</IconButton>);
+    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
+    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), true);
   });
 
   describe('prop: disabled', () => {

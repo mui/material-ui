@@ -77,6 +77,8 @@ export const styles = theme => ({
     minWidth: 24,
     fontSize: 18,
   },
+  /* Styles applied to the root element if `size="medium"`. */
+  sizeMedium: {},
 });
 
 /**
@@ -93,8 +95,8 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
-          [classes.sizeSmall]: size === 'small',
         },
+        classes[`size${capitalize(size)}`],
         className,
       )}
       centerRipple
