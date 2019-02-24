@@ -18,6 +18,10 @@ export const styles = theme => ({
     alignItems: 'center',
     '&:hover': {
       color: theme.palette.text.primary,
+      '& $icon': {
+        opacity: 1,
+        color: theme.palette.text.secondary,
+      },
     },
     '&:focus': {
       color: theme.palette.text.primary,
@@ -26,8 +30,9 @@ export const styles = theme => ({
   /* Styles applied to the root element if `active={true}`. */
   active: {
     color: theme.palette.text.primary,
-    '& $icon': {
+    '& $icon, &:hover $icon': {
       opacity: 1,
+      color: theme.palette.text.primary,
     },
   },
   /* Styles applied to the icon component. */
@@ -75,7 +80,7 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      {hideSortIcon && !active ? null : (
+      {hideSortIcon ? null : (
         <IconComponent
           className={clsx(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
         />
