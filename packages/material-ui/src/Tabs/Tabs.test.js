@@ -25,7 +25,7 @@ const findScrollButton = (wrapper, direction) => wrapper.find(`button[aria-label
 const hasLeftScrollButton = wrapper => findScrollButton(wrapper, 'left').exists();
 const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exists();
 
-describe('<Tabs />', () => {
+describe.only('<Tabs />', () => {
   let mount;
   let classes;
   let render;
@@ -512,6 +512,19 @@ describe('<Tabs />', () => {
 
         assert.strictEqual(hasLeftScrollButton(wrapper), true);
         assert.strictEqual(hasRightScrollButton(wrapper), true);
+      });
+
+      it('should not set scroll button states if difference is only one pixel', () => {
+        const wrapper = mount(tabs);
+
+        setFakeTabs(wrapper, {
+          scrollLeft: 0,
+          scrollWidth: 101,
+          clientWidth: 100,
+        });
+
+        assert.strictEqual(hasLeftScrollButton(wrapper), false);
+        assert.strictEqual(hasRightScrollButton(wrapper), false);
       });
     });
   });
