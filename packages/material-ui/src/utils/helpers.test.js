@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { capitalize, contains, find } from './helpers';
+import { capitalize, contains, find, findIndex } from './helpers';
 
 describe('utils/helpers.js', () => {
   describe('capitalize', () => {
@@ -21,6 +21,23 @@ describe('utils/helpers.js', () => {
       assert.strictEqual(find(array, 'woofHelpers'), array[0]);
       assert.strictEqual(find(array, { foo: 'bar' }), array[2]);
       assert.strictEqual(find(array, n => n && n.woofHelpers === 'meow'), array[3]);
+    });
+  });
+
+  describe('findIndex(arr, pred)', () => {
+    it('returns the index of the item if it is in the array', () => {
+      const array = ['moo', 'woof', 'bar'];
+      assert.strictEqual(findIndex(array, 'woof'), 1);
+    });
+
+    it('works with objects', () => {
+      const array = ['moo', 'woof', { test: 'bar' }];
+      assert.strictEqual(findIndex(array, { test: 'bar' }), 2);
+    });
+
+    it('returns -1 if item is not in array', () => {
+      const array = [];
+      assert.strictEqual(findIndex(array, 'test'), -1);
     });
   });
 
