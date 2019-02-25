@@ -90,6 +90,9 @@ const styles = theme => ({
       borderRadius: '0px !important',
     },
   },
+  tooltip: {
+    zIndex: theme.zIndex.appBar - 1,
+  },
 });
 
 class Demo extends React.Component {
@@ -252,8 +255,10 @@ class Demo extends React.Component {
               />
               <div>
                 <Tooltip
+                  classes={{ popper: classes.tooltip }}
                   key={showSourceHint}
                   open={showSourceHint ? true : undefined}
+                  PopperProps={{ disablePortal: true }}
                   title={codeOpen ? 'Hide the source' : 'Show the source'}
                   placement="top"
                 >
@@ -267,7 +272,11 @@ class Demo extends React.Component {
                     <CodeIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="View the source on GitHub" placement="top">
+                <Tooltip
+                  classes={{ popper: classes.tooltip }}
+                  title="View the source on GitHub"
+                  placement="top"
+                >
                   <IconButton
                     data-ga-event-category={category}
                     data-ga-event-action="github"
@@ -279,7 +288,11 @@ class Demo extends React.Component {
                   </IconButton>
                 </Tooltip>
                 {demoOptions.hideEditButton ? null : (
-                  <Tooltip title="Edit in CodeSandbox" placement="top">
+                  <Tooltip
+                    classes={{ popper: classes.tooltip }}
+                    title="Edit in CodeSandbox"
+                    placement="top"
+                  >
                     <IconButton
                       data-ga-event-category={category}
                       data-ga-event-action="codesandbox"
