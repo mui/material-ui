@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
 import RootRef from '../RootRef';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
@@ -12,7 +13,6 @@ export const styles = theme => ({
   /* Styles applied to the Popper component. */
   popper: {
     zIndex: theme.zIndex.tooltip,
-    opacity: 0.9,
     pointerEvents: 'none',
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
@@ -21,7 +21,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: theme.palette.grey[700],
+    backgroundColor: fade(theme.palette.grey[700], 0.9),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
@@ -29,12 +29,14 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
     maxWidth: 300,
+    fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${theme.typography.round(16 / 14)}em`,
+    fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {

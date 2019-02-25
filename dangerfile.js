@@ -71,9 +71,9 @@ function isPackageComparison(comparisonEntry) {
 function addPercent(change, goodEmoji = '', badEmooji = ':small_red_triangle:') {
   const formatted = (change * 100).toFixed(2);
   if (/^-|^0(?:\.0+)$/.test(formatted)) {
-    return `${formatted}%${goodEmoji}`;
+    return `${formatted}% ${goodEmoji}`;
   }
-  return `+${formatted}%${badEmooji}`;
+  return `+${formatted}% ${badEmooji}`;
 }
 
 /**
