@@ -45,12 +45,13 @@ const styles = theme => ({
     padding: theme.spacing(0.5, 0, 0.5, 1),
     borderLeft: '4px solid transparent',
     boxSizing: 'content-box',
-    '&:hover': {
+    outline: 'none',
+    '&:hover,&:focus': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
       }`,
     },
-    '&$active': {
+    '&$active,&:active': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
       }`,
