@@ -4,11 +4,10 @@
 
 ## Bundle size matters
 
-The bundle size of Material-UI is taken very seriously, so
-[size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression.
-The size of the bundle is checked at each commit:
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24). (styling, theming, etc.: ~18 kB gzipped)
+The bundle size of Material-UI is taken very seriously. We take size snapshots
+on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). 
+Combined with [dangerJS](https://danger.systems/js/) we can inspect
+[detailed bundle size changes](<(https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)>) on every Pull Request.
 
 ## How to reduce the bundle size?
 
