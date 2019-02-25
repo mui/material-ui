@@ -20,11 +20,12 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">node</span> |   | The content of the expansion panel. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">CollapseProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Collapse`](/api/collapse/) element. |
 | <span class="prop-name">defaultExpanded</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, expands the panel by default. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the panel will be displayed in a disabled state. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool</span> |   | If `true`, expands the panel, otherwise collapse it. Setting this prop enables control over the panel. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |   | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, expanded: boolean) => void`<br>*event:* The event source of the callback<br>*expanded:* The `expanded` state of the panel |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">Collapse</span> | The component used for the collapse effect. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Transition` element. |
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper/)).
 

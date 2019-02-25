@@ -16,6 +16,7 @@ async function handleClick(event) {
   // Ignore click for new tab / new window behavior
   if (
     event.defaultPrevented ||
+    event.button !== 0 || // ignore everything but left-click
     event.metaKey ||
     event.ctrlKey ||
     event.shiftKey ||

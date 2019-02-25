@@ -1,7 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+  unwrap,
+} from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
@@ -89,22 +95,16 @@ describe('<ExpansionPanelSummary />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should propagate call to onChange prop', () => {
-      const eventMock = 'woofExpansionPanelSummary';
+    it('fires onChange if the summary control is clicked', () => {
       const handleChange = spy();
-      const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} onChange={handleChange} />);
-      wrapper.instance().handleChange(eventMock);
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWith(eventMock), true);
-    });
+      const wrapper = mount(<ExpansionPanelSummary expanded={false} onChange={handleChange} />);
 
-    it('should not propagate call to onChange prop', () => {
+      const control = findOutermostIntrinsic(wrapper.find('[aria-expanded]'));
       const eventMock = 'woofExpansionPanelSummary';
-      const handleChange = spy();
-      const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} onChange={handleChange} />);
-      wrapper.setProps({ onChange: undefined });
-      wrapper.instance().handleChange(eventMock);
-      assert.strictEqual(handleChange.callCount, 0);
+      control.simulate('click', { eventMock });
+
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleChange.calledWithMatch({ eventMock }), true);
     });
   });
 

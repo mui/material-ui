@@ -52,6 +52,8 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     let more = other;
 
     if (typeof name === 'string' || withTheme) {
+      // name and withTheme are invariant in the outer scope
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       theme = useTheme();
 
       if (name) {

@@ -20,3 +20,4 @@
 build
 node_modules
 package-lock.json
+size-snapshot.json

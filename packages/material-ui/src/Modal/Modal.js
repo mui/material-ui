@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
@@ -291,7 +290,7 @@ Modal.propTypes = {
   /**
    * A backdrop component. This property enables custom backdrop rendering.
    */
-  BackdropComponent: componentPropType,
+  BackdropComponent: PropTypes.elementType,
   /**
    * Properties applied to the [`Backdrop`](/api/backdrop/) element.
    */

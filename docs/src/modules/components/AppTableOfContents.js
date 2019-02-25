@@ -129,7 +129,7 @@ function getItemsClient(items) {
 }
 
 function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => throttle(callback, delay), [delay]);
+  const throttledCallback = React.useMemo(() => throttle(callback, delay), [callback, delay]);
 
   /* eslint-disable-next-line consistent-return */
   React.useEffect(() => {
@@ -140,7 +140,7 @@ function useThrottledOnScroll(callback, delay) {
         window.removeEventListener('scroll', throttledCallback);
       };
     }
-  }, [throttledCallback]);
+  }, [delay, throttledCallback]);
 }
 
 function AppTableOfContents(props) {
@@ -152,7 +152,7 @@ function AppTableOfContents(props) {
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
 
-  const findActiveIndex = () => {
+  const findActiveIndex = React.useCallback(() => {
     // Don't set the active index based on scroll if a link was just clicked
     if (clickedRef.current) {
       return;
@@ -191,7 +191,7 @@ function AppTableOfContents(props) {
           : `#${active.hash}`,
       );
     }
-  };
+  }, [activeState]);
 
   // Update the active TOC entry if the hash changes through click on '#' icon
   const handleHashChange = () => {
@@ -214,7 +214,7 @@ function AppTableOfContents(props) {
       clearTimeout(unsetClickedRef.current);
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, []);
+  }, [handleHashChange]);
 
   React.useEffect(() => {
     setItemsServer(getItemsServer(contents, itemsCollectorRef));
@@ -223,7 +223,7 @@ function AppTableOfContents(props) {
   React.useEffect(() => {
     itemsClientRef.current = getItemsClient(itemsCollectorRef.current);
     findActiveIndex();
-  }, [itemsServer]);
+  }, [findActiveIndex]);
 
   const handleClick = hash => () => {
     // Used to disable findActiveIndex if the page scrolls due to a click

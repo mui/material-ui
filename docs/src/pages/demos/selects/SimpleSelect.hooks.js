@@ -26,25 +26,22 @@ const useStyles = makeStyles(theme => ({
 
 function SimpleSelect() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [values, setValues] = React.useState({
     age: '',
     name: 'hai',
-    labelWidth: 0,
   });
-  const inputLabelRef = React.useRef(null);
 
+  const inputLabelRef = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
-    setState({
-      ...state,
-      labelWidth: ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth,
-    });
+    setLabelWidth(ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth);
   }, []);
 
   function handleChange(event) {
-    setState({
-      ...state,
+    setValues(oldValues => ({
+      ...oldValues,
       [event.target.name]: event.target.value,
-    });
+    }));
   }
 
   return (
@@ -52,7 +49,7 @@ function SimpleSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-simple">Age</InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           inputProps={{
             name: 'age',
@@ -70,7 +67,7 @@ function SimpleSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-helper">Age</InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           input={<Input name="age" id="age-helper" />}
         >
@@ -85,7 +82,7 @@ function SimpleSelect() {
       </FormControl>
       <FormControl className={classes.formControl}>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           displayEmpty
           name="age"
@@ -105,7 +102,7 @@ function SimpleSelect() {
           Age
         </InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           input={<Input name="age" id="age-label-placeholder" />}
           displayEmpty
@@ -124,7 +121,7 @@ function SimpleSelect() {
       <FormControl className={classes.formControl} disabled>
         <InputLabel htmlFor="name-disabled">Name</InputLabel>
         <Select
-          value={state.name}
+          value={values.name}
           onChange={handleChange}
           input={<Input name="name" id="name-disabled" />}
         >
@@ -140,7 +137,7 @@ function SimpleSelect() {
       <FormControl className={classes.formControl} error>
         <InputLabel htmlFor="name-error">Name</InputLabel>
         <Select
-          value={state.name}
+          value={values.name}
           onChange={handleChange}
           name="name"
           renderValue={value => `⚠️  - ${value}`}
@@ -158,7 +155,7 @@ function SimpleSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="name-readonly">Name</InputLabel>
         <Select
-          value={state.name}
+          value={values.name}
           onChange={handleChange}
           input={<Input name="name" id="name-readonly" readOnly />}
         >
@@ -174,7 +171,7 @@ function SimpleSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-auto-width">Age</InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           input={<Input name="age" id="age-auto-width" />}
           autoWidth
@@ -190,7 +187,7 @@ function SimpleSelect() {
       </FormControl>
       <FormControl className={classes.formControl}>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           name="age"
           displayEmpty
@@ -208,7 +205,7 @@ function SimpleSelect() {
       <FormControl required className={classes.formControl}>
         <InputLabel htmlFor="age-required">Age</InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           name="age"
           inputProps={{
@@ -230,11 +227,9 @@ function SimpleSelect() {
           Age
         </InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
-          input={
-            <OutlinedInput labelWidth={state.labelWidth} name="age" id="outlined-age-simple" />
-          }
+          input={<OutlinedInput labelWidth={labelWidth} name="age" id="outlined-age-simple" />}
         >
           <MenuItem value="">
             <em>None</em>
@@ -247,7 +242,7 @@ function SimpleSelect() {
       <FormControl variant="filled" className={classes.formControl}>
         <InputLabel htmlFor="filled-age-simple">Age</InputLabel>
         <Select
-          value={state.age}
+          value={values.age}
           onChange={handleChange}
           input={<FilledInput name="age" id="filled-age-simple" />}
         >

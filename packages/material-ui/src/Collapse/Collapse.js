@@ -4,7 +4,6 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -24,7 +23,7 @@ export const styles = theme => ({
   // eslint-disable-next-line max-len
   /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
   hidden: {
-    vibility: 'hidden',
+    visibility: 'hidden',
   },
   /* Styles applied to the outer wrapper element. */
   wrapper: {
@@ -210,7 +209,7 @@ Collapse.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the component will transition in.
    */

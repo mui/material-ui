@@ -5,7 +5,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Modal from '../Modal';
@@ -329,7 +328,7 @@ Dialog.propTypes = {
   /**
    * The component used to render the body of the dialog.
    */
-  PaperComponent: componentPropType,
+  PaperComponent: PropTypes.elementType,
   /**
    * Properties applied to the [`Paper`](/api/paper/) element.
    */
@@ -341,7 +340,7 @@ Dialog.propTypes = {
   /**
    * The component used for the transition.
    */
-  TransitionComponent: componentPropType,
+  TransitionComponent: PropTypes.elementType,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

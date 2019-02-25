@@ -19,6 +19,7 @@ import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import compose from 'docs/src/modules/utils/compose';
+import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function compress(object) {
@@ -89,13 +90,22 @@ const styles = theme => ({
       borderRadius: '0px !important',
     },
   },
+  tooltip: {
+    zIndex: theme.zIndex.appBar - 1,
+  },
 });
 
 class Demo extends React.Component {
   state = {
     anchorEl: null,
     codeOpen: false,
+    demoHovered: false,
+    sourceHintSeen: false,
   };
+
+  componentDidMount() {
+    this.setState({ sourceHintSeen: getCookie('sourceHintSeen') });
+  }
 
   handleClickMore = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -183,9 +193,15 @@ class Demo extends React.Component {
   };
 
   handleClickCodeOpen = () => {
+    document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
     this.setState(state => ({
       codeOpen: !state.codeOpen,
+      sourceHintSeen: true,
     }));
+  };
+
+  handleDemoHover = event => {
+    this.setState({ demoHovered: event.type === 'mouseenter' });
   };
 
   getDemoData = () => {
@@ -217,11 +233,13 @@ class Demo extends React.Component {
 
   render() {
     const { classes, codeVariant, demo, demoOptions } = this.props;
-    const { anchorEl, codeOpen } = this.state;
+    const { anchorEl, codeOpen, demoHovered, sourceHintSeen } = this.state;
+    const showSourceHint = demoHovered && !sourceHintSeen;
     const category = demoOptions.demo;
     const demoData = this.getDemoData();
     const DemoComponent = demoData.js;
     const sourceLanguage = demoData.codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'jsx';
+    const Frame = demoOptions.iframe ? DemoFrame : React.Fragment;
 
     return (
       <div className={classes.root}>
@@ -236,17 +254,29 @@ class Demo extends React.Component {
                 onLanguageClick={this.handleCodeLanguageClick}
               />
               <div>
-                <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
+                <Tooltip
+                  classes={{ popper: classes.tooltip }}
+                  key={showSourceHint}
+                  open={showSourceHint ? true : undefined}
+                  PopperProps={{ disablePortal: true }}
+                  title={codeOpen ? 'Hide the source' : 'Show the source'}
+                  placement="top"
+                >
                   <IconButton
                     data-ga-event-category={category}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
                     aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
+                    color={demoHovered ? 'primary' : 'default'}
                   >
                     <CodeIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="View the source on GitHub" placement="top">
+                <Tooltip
+                  classes={{ popper: classes.tooltip }}
+                  title="View the source on GitHub"
+                  placement="top"
+                >
                   <IconButton
                     data-ga-event-category={category}
                     data-ga-event-action="github"
@@ -258,7 +288,11 @@ class Demo extends React.Component {
                   </IconButton>
                 </Tooltip>
                 {demoOptions.hideEditButton ? null : (
-                  <Tooltip title="Edit in CodeSandbox" placement="top">
+                  <Tooltip
+                    classes={{ popper: classes.tooltip }}
+                    title="Edit in CodeSandbox"
+                    placement="top"
+                  >
                     <IconButton
                       data-ga-event-category={category}
                       data-ga-event-action="codesandbox"
@@ -324,14 +358,12 @@ class Demo extends React.Component {
           className={clsx(classes.demo, {
             [classes.demoHiddenHeader]: demoOptions.hideHeader,
           })}
+          onMouseEnter={this.handleDemoHover}
+          onMouseLeave={this.handleDemoHover}
         >
-          {demoOptions.iframe ? (
-            <DemoFrame>
-              <DemoComponent />
-            </DemoFrame>
-          ) : (
+          <Frame>
             <DemoComponent />
-          )}
+          </Frame>
         </div>
       </div>
     );

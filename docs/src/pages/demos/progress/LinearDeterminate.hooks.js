@@ -12,16 +12,17 @@ function LinearDeterminate() {
   const classes = useStyles();
   const [completed, setCompleted] = React.useState(0);
 
-  function progress() {
-    if (completed === 100) {
-      setCompleted(0);
-    } else {
-      const diff = Math.random() * 10;
-      setCompleted(Math.min(completed + diff, 100));
-    }
-  }
-
   React.useEffect(() => {
+    function progress() {
+      setCompleted(oldCompleted => {
+        if (oldCompleted === 100) {
+          return 0;
+        }
+        const diff = Math.random() * 10;
+        return Math.min(oldCompleted + diff, 100);
+      });
+    }
+
     const timer = setInterval(progress, 500);
     return () => {
       clearInterval(timer);

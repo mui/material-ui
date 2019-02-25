@@ -15,9 +15,10 @@ the purpose of each file.
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,
-please consider creating a [pull-request on GitHub](https://github.com/mui-org/material-ui/pulls).
+please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
 
 So far we have demos for:
+
 - A dashboard
 - A sign-in page
 - A blog page

@@ -22,9 +22,8 @@ class SideEffectsRaw extends React.Component {
     const { options } = this.props;
 
     const URL = url.parse(document.location.href, true);
-    const userLanguage = acceptLanguage.get(
-      URL.query.lang || getCookie('lang') || navigator.language,
-    );
+    const userLanguage =
+      URL.query.lang || acceptLanguage.get(getCookie('lang') || navigator.language);
     const codeVariant = getCookie('codeVariant');
 
     if (

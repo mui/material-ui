@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
@@ -64,7 +63,7 @@ Table.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: componentPropType,
+  component: PropTypes.elementType,
   /**
    * Allows TableCells to inherit padding of the Table.
    */

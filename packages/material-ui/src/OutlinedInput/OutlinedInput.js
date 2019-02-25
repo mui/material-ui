@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { componentPropType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import NotchedOutline from './NotchedOutline';
 import withStyles from '../styles/withStyles';
@@ -166,7 +165,7 @@ OutlinedInput.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: componentPropType,
+  inputComponent: PropTypes.elementType,
   /**
    * Attributes applied to the `input` element.
    */

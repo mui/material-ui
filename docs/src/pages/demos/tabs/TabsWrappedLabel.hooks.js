@@ -37,7 +37,7 @@ function TabsWrappedLabel() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" />
+          <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" wrapped />
           <Tab value="two" label="Item Two" />
           <Tab value="three" label="Item Three" />
         </Tabs>
