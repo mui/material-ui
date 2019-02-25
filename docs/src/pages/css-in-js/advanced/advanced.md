@@ -2,6 +2,9 @@
 
 <p class="description">Advanced Usage.</p>
 
+
+{{"demo": "pages/css-in-js/advanced/Playground.js"}}
+
 ## Theming
 
 Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
