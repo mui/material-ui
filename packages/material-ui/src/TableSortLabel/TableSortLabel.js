@@ -16,6 +16,9 @@ export const styles = theme => ({
     justifyContent: 'flex-start',
     flexDirection: 'inherit',
     alignItems: 'center',
+    '&:focus': {
+      color: theme.palette.text.primary,
+    },
     '&:hover': {
       color: theme.palette.text.primary,
       '& $icon': {
@@ -23,18 +26,17 @@ export const styles = theme => ({
         color: theme.palette.text.secondary,
       },
     },
-    '&:focus': {
+    '&$active': {
       color: theme.palette.text.primary,
+      // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
+      '&& $icon': {
+        opacity: 1,
+        color: theme.palette.text.primary,
+      },
     },
   },
   /* Styles applied to the root element if `active={true}`. */
-  active: {
-    color: theme.palette.text.primary,
-    '& $icon, &:hover $icon': {
-      opacity: 1,
-      color: theme.palette.text.primary,
-    },
-  },
+  active: {},
   /* Styles applied to the icon component. */
   icon: {
     height: 18,
