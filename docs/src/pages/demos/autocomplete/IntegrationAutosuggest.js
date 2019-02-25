@@ -80,9 +80,9 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
               {part.text}
             </span>
           ) : (
-            <strong key={String(index)} style={{ fontWeight: 300 }}>
+            <span key={String(index)} style={{ fontWeight: 300 }}>
               {part.text}
-            </strong>
+            </span>
           ),
         )}
       </div>
