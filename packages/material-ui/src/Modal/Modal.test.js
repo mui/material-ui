@@ -405,23 +405,23 @@ describe('<Modal />', () => {
   });
 
   describe('focus', () => {
-    let focusContainer = null;
+    let initialFocus = null;
     let wrapper;
 
     beforeEach(() => {
-      focusContainer = document.createElement('div');
-      focusContainer.tabIndex = 0;
-      focusContainer.className = 'focus-container';
-      document.body.appendChild(focusContainer);
-      focusContainer.focus();
-      assert.strictEqual(document.activeElement, focusContainer);
+      initialFocus = document.createElement('div');
+      initialFocus.tabIndex = 0;
+      initialFocus.className = 'initial-focus';
+      document.body.appendChild(initialFocus);
+      initialFocus.focus();
+      assert.strictEqual(document.activeElement, initialFocus);
       consoleErrorMock.spy();
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
       wrapper.unmount();
-      document.body.removeChild(focusContainer);
+      document.body.removeChild(initialFocus);
     });
 
     it('should focus on the modal when it is opened', () => {
@@ -432,7 +432,20 @@ describe('<Modal />', () => {
       );
       assert.strictEqual(document.activeElement.className, 'modal');
       wrapper.setProps({ open: false });
-      assert.strictEqual(document.activeElement, focusContainer);
+      assert.strictEqual(document.activeElement, initialFocus);
+    });
+
+    it('should support autoFocus', () => {
+      wrapper = mount(
+        <Modal open>
+          <div className="modal">
+            <input type="text" autoFocus className />
+          </div>
+        </Modal>,
+      );
+      assert.strictEqual(document.activeElement.tagName, 'INPUT');
+      wrapper.setProps({ open: false });
+      assert.strictEqual(document.activeElement, initialFocus);
     });
 
     it('should keep focus on the modal when it is closed', () => {
@@ -452,7 +465,7 @@ describe('<Modal />', () => {
           <div>Foo</div>
         </Modal>,
       );
-      assert.strictEqual(document.activeElement, focusContainer);
+      assert.strictEqual(document.activeElement, initialFocus);
     });
 
     it('should not focus modal when child has focus', () => {
@@ -476,7 +489,7 @@ describe('<Modal />', () => {
       );
 
       assert.strictEqual(document.activeElement, document.querySelector('input'));
-      focusContainer.focus();
+      initialFocus.focus();
       assert.strictEqual(document.activeElement.className, 'modal');
     });
 
@@ -490,8 +503,8 @@ describe('<Modal />', () => {
       );
 
       assert.strictEqual(document.activeElement, document.querySelector('input'));
-      focusContainer.focus();
-      assert.strictEqual(document.activeElement.className, 'focus-container');
+      initialFocus.focus();
+      assert.strictEqual(document.activeElement, initialFocus);
     });
 
     it('should warn if the modal content is not focusable', () => {
@@ -543,7 +556,7 @@ describe('<Modal />', () => {
         keyCode: 9, // Tab
       });
       assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelStart');
-      focusContainer.focus();
+      initialFocus.focus();
       dispatchKey({
         keyCode: 9, // Tab
         shiftKey: true,
