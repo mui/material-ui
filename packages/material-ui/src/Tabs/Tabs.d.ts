@@ -9,7 +9,6 @@ declare const Tabs: OverridableComponent<{
     action?: (actions: TabsActions) => void;
     centered?: boolean;
     children?: React.ReactNode;
-    component?: React.ReactType<TabsProps>;
     indicatorColor?: 'secondary' | 'primary' | string;
     onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
     ScrollButtonComponent?: React.ReactType;
