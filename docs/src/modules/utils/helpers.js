@@ -79,6 +79,12 @@ export function getDependencies(raw, options = {}) {
     react: reactVersion,
   };
   const versions = {
+    '@material-ui/core': 'next',
+    '@material-ui/icons': 'next',
+    '@material-ui/lab': 'next',
+    '@material-ui/styles': 'next',
+    '@material-ui/system': 'next',
+    '@material-ui/utils': 'next',
     'date-fns': 'next',
   };
   const re = /^import\s.*\sfrom\s+'([^']+)|import\s'([^']+)'/gm;
