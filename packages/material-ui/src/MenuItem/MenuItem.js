@@ -16,9 +16,6 @@ export const styles = theme => ({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     '&$selected': {},
-    '&:focus': {
-      backgroundColor: theme.palette.action.hover,
-    },
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
@@ -27,11 +24,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
-  button: {
-    '&:focus': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
 });
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
@@ -47,7 +39,6 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
       disableGutters={disableGutters}
       className={clsx(
         classes.root,
-        classes.button,
         {
           [classes.selected]: selected,
           [classes.gutters]: !disableGutters,
