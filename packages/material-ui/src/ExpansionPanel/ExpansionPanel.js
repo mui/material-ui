@@ -82,11 +82,9 @@ class ExpansionPanel extends React.Component {
   constructor(props) {
     super();
     this.isControlled = props.expanded != null;
-    this.state = {};
-    if (!this.isControlled) {
-      // not controlled, use internal state
-      this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
-    }
+    this.state = {
+      expanded: Boolean(props.defaultExpanded),
+    };
   }
 
   handleChange = event => {
