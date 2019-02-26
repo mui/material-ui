@@ -27,6 +27,11 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
+  button: {
+    '&:focus': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
 });
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
@@ -42,6 +47,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
       disableGutters={disableGutters}
       className={clsx(
         classes.root,
+        classes.button,
         {
           [classes.selected]: selected,
           [classes.gutters]: !disableGutters,
