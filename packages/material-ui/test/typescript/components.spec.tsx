@@ -917,7 +917,9 @@ const TableTest = () => {
 };
 
 const TabsTest = () => {
-  const TabContainer: React.SFC = props => <div style={{ padding: 20 }}>{props.children}</div>;
+  const TabContainer: React.FunctionComponent = props => (
+    <div style={{ padding: 20 }}>{props.children}</div>
+  );
 
   type ClassKey = 'root' | 'button';
 
