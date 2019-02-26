@@ -11,7 +11,8 @@ import FormLabel from '../FormLabel';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    transformOrigin: 'top left',
+    display: 'block',
+    transformOrigin: 'top left'
   },
   /* Styles applied to the root element if `focused={true}`. */
   focused: {},
