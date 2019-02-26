@@ -137,7 +137,9 @@ class ExpansionPanel extends React.Component {
           onChange: this.handleChange,
         })}
         <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
-          {children}
+          <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
+            {children}
+          </div>
         </TransitionComponent>
       </Paper>
     );
