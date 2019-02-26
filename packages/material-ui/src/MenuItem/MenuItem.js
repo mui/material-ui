@@ -16,6 +16,9 @@ export const styles = theme => ({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     '&$selected': {},
+    '&:focus': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
