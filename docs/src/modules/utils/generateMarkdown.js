@@ -42,14 +42,20 @@ function getChained(type) {
     const indexStart = type.raw.indexOf(marker);
 
     if (indexStart !== -1) {
-      const parsed = docgenParse(`
+      const parsed = docgenParse(
+        `
         import PropTypes from 'prop-types';
         const Foo = () => <div />
         Foo.propTypes = {
           bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
         }
         export default Foo
-      `);
+      `,
+        null,
+        null,
+        // helps react-docgen pickup babel.config.js
+        { filename: './' },
+      );
       return {
         type: parsed.props.bar.type,
         required: parsed.props.bar.required,
@@ -154,11 +160,6 @@ function generatePropType(type) {
       const chained = getChained(type);
       if (chained !== false) {
         return generatePropType(chained.type);
-      }
-
-      // this should be fixed at some point in react-docgen
-      if (type.raw === 'PropTypes.elementType') {
-        return 'element type';
       }
 
       return type.raw;

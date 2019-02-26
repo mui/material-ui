@@ -21,7 +21,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 | <span class="prop-name">action</span> | <span class="prop-type">node</span> |   | The action to display in the card header. |
 | <span class="prop-name">avatar</span> | <span class="prop-type">node</span> |   | The Avatar for the Card Header. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">element type</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disableTypography</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `title` text, and optional `subheader` text with the Typography component. |
 | <span class="prop-name">subheader</span> | <span class="prop-type">node</span> |   | The content of the component. |
 | <span class="prop-name">subheaderTypographyProps</span> | <span class="prop-type">object</span> |   | These props will be forwarded to the subheader (as long as disableTypography is not `true`). |
