@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
+import { chainPropTypes } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
-import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => {
   const transition = {
@@ -115,32 +114,7 @@ class ExpansionPanel extends React.Component {
     } = this.props;
     const expanded = this.isControlled ? expandedProp : this.state.expanded;
 
-    let summary = null;
-
-    const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
-
-      warning(
-        child.type !== React.Fragment,
-        [
-          "Material-UI: the ExpansionPanel component doesn't accept a Fragment as a child.",
-          'Consider providing an array instead.',
-        ].join('\n'),
-      );
-
-      if (isMuiElement(child, ['ExpansionPanelSummary'])) {
-        summary = React.cloneElement(child, {
-          disabled,
-          expanded,
-          onChange: this.handleChange,
-        });
-        return null;
-      }
-
-      return child;
-    });
+    const [summary, ...children] = React.Children.toArray(childrenProp);
 
     return (
       <Paper
@@ -157,7 +131,11 @@ class ExpansionPanel extends React.Component {
         square={square}
         {...other}
       >
-        {summary}
+        {React.cloneElement(summary, {
+          disabled,
+          expanded,
+          onChange: this.handleChange,
+        })}
         <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
           {children}
         </TransitionComponent>
@@ -170,7 +148,27 @@ ExpansionPanel.propTypes = {
   /**
    * The content of the expansion panel.
    */
-  children: PropTypes.node.isRequired,
+  children: chainPropTypes(PropTypes.node.isRequired, props => {
+    const summary = React.Children.toArray(props.children)[0];
+    if (summary.type === React.Fragment) {
+      return new Error(
+        "Material-UI: The ExpansionPanel doesn't accept a Fragment as a child. " +
+          `Consider providing an array instead.${
+            process.env.NODE_ENV === 'test' ? Date.now() : ''
+          }`,
+      );
+    }
+
+    if (!React.isValidElement(summary)) {
+      return new Error(
+        `Material-UI: Expected the first child of ExpansionPanel to be a valid element.${
+          process.env.NODE_ENV === 'test' ? Date.now() : ''
+        }`,
+      );
+    }
+
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

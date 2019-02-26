@@ -218,6 +218,4 @@ ExpansionPanelSummary.defaultProps = {
   disabled: false,
 };
 
-ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
-
 export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);
