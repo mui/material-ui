@@ -8,6 +8,7 @@ import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
+import { PureProvider } from './ExpansionPanelContext';
 
 export const styles = theme => {
   const transition = {
@@ -113,12 +114,15 @@ function ExpansionPanel(props) {
 
   const [expanded, setExpanded] = useMaybeControlled(expandedProp, defaultExpanded);
 
-  function handleChange(event) {
-    setExpanded(isExpanded => !isExpanded);
-    if (onChange) {
-      onChange(event, !expanded);
-    }
-  }
+  const handleChange = React.useCallback(
+    event => {
+      setExpanded(isExpanded => !isExpanded);
+      if (onChange) {
+        onChange(event, !expanded);
+      }
+    },
+    [expanded, setExpanded, onChange],
+  );
 
   let summary = null;
 
@@ -136,11 +140,7 @@ function ExpansionPanel(props) {
     );
 
     if (isMuiElement(child, ['ExpansionPanelSummary'])) {
-      summary = React.cloneElement(child, {
-        disabled,
-        expanded,
-        onChange: handleChange,
-      });
+      summary = child;
       return null;
     }
 
@@ -148,25 +148,27 @@ function ExpansionPanel(props) {
   });
 
   return (
-    <Paper
-      className={clsx(
-        classes.root,
-        {
-          [classes.expanded]: expanded,
-          [classes.disabled]: disabled,
-          [classes.rounded]: !square,
-        },
-        classNameProp,
-      )}
-      elevation={1}
-      square={square}
-      {...other}
-    >
-      {summary}
-      <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
-        {children}
-      </TransitionComponent>
-    </Paper>
+    <PureProvider disabled={disabled} expanded={expanded} onChange={handleChange}>
+      <Paper
+        className={clsx(
+          classes.root,
+          {
+            [classes.expanded]: expanded,
+            [classes.disabled]: disabled,
+            [classes.rounded]: !square,
+          },
+          classNameProp,
+        )}
+        elevation={1}
+        square={square}
+        {...other}
+      >
+        {summary}
+        <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
+          {children}
+        </TransitionComponent>
+      </Paper>
+    </PureProvider>
   );
 }
 
@@ -221,6 +223,7 @@ ExpansionPanel.propTypes = {
 ExpansionPanel.defaultProps = {
   defaultExpanded: false,
   disabled: false,
+  onChange: noop,
   square: false,
   TransitionComponent: Collapse,
 };

@@ -2,19 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
-import Collapse from '../Collapse';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
 import ExpansionPanelSummary from '../ExpansionPanelSummary';
 
 describe('<ExpansionPanel />', () => {
   let mount;
-  let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<ExpansionPanel>foo</ExpansionPanel>);
   });
@@ -48,23 +45,29 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<ExpansionPanel className="test-class-name">foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass('test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(<ExpansionPanel className="test-class-name">foo</ExpansionPanel>);
+    const root = wrapper.find(`.${classes.root}`).first();
+    assert.strictEqual(root.hasClass('test-class-name'), true);
   });
 
   it('should render the summary and collapse elements', () => {
-    const wrapper = shallow(
-      <ExpansionPanel>
-        <ExpansionPanelSummary />
+    const wrapper = mount(
+      <ExpansionPanel expanded>
+        <ExpansionPanelSummary>summary</ExpansionPanelSummary>
         <div>Hello</div>
       </ExpansionPanel>,
     );
 
-    assert.strictEqual(wrapper.childAt(0).type(), ExpansionPanelSummary);
-    const collapse = wrapper.childAt(1);
-    assert.strictEqual(collapse.type(), Collapse);
-    assert.strictEqual(collapse.children().length, 1, 'collapse should have 1 children div');
+    assert.strictEqual(
+      wrapper
+        .find('[aria-expanded=true]')
+        .first()
+        .text(),
+      'summary',
+    );
+
+    const collapse = wrapper.find('Collapse');
+    assert.strictEqual(collapse.text(), 'Hello');
   });
 
   it('should handle the expanded prop', () => {
@@ -101,21 +104,15 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(handleChange.args[0][1], false);
   });
 
-  it('when undefined onChange and controlled should not call the onChange', () => {
-    const handleChange = spy();
-    const wrapper = mount(
-      <ExpansionPanel onChange={handleChange} expanded>
-        <ExpansionPanelSummary />
-      </ExpansionPanel>,
-    );
-    wrapper.setProps({ onChange: undefined });
-    wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(handleChange.callCount, 0);
-  });
-
   it('when disabled should have the disabled class', () => {
-    const wrapper = shallow(<ExpansionPanel disabled>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+    const wrapper = mount(<ExpansionPanel disabled>foo</ExpansionPanel>);
+    assert.strictEqual(
+      wrapper
+        .find(`.${classes.root}`)
+        .first()
+        .hasClass(classes.disabled),
+      true,
+    );
   });
 
   it('should handle the TransitionComponent prop', () => {
@@ -149,8 +146,8 @@ describe('<ExpansionPanel />', () => {
 
   describe('prop: children', () => {
     it('should accept an empty child', () => {
-      shallow(
-        <ExpansionPanel>
+      mount(
+        <ExpansionPanel expanded>
           <ExpansionPanelSummary />
           {null}
         </ExpansionPanel>,

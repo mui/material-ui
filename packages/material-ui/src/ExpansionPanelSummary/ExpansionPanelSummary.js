@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
+import { useExpansionPanel } from '../ExpansionPanel';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
@@ -75,17 +76,15 @@ function ExpansionPanelSummary(props) {
     children,
     classes,
     className,
-    disabled,
-    expanded,
     expandIcon,
     IconButtonProps,
     onBlur,
-    onChange,
     onClick,
     onFocusVisible,
     ...other
   } = props;
   const [focused, setFocused] = React.useState(false);
+  const { disabled, expanded, onChange } = useExpansionPanel();
 
   function handleFocusVisible(event) {
     setFocused(true);
@@ -191,7 +190,6 @@ const noop = () => {};
 ExpansionPanelSummary.defaultProps = {
   disabled: false,
   onBlur: noop,
-  onChange: noop,
   onClick: noop,
   onFocusVisible: noop,
 };

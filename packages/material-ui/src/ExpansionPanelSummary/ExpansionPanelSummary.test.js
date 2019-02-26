@@ -8,9 +8,10 @@ import {
   getClasses,
 } from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
+import ExpansionPanel from '../ExpansionPanel';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
-describe('<ExpansionPanelSummary />', () => {
+describe.only('<ExpansionPanelSummary />', () => {
   let mount;
   let shallow;
   let classes;
@@ -105,11 +106,17 @@ describe('<ExpansionPanelSummary />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<ExpansionPanelSummary {...handlers} />);
+      const wrapper = mount(
+        <ExpansionPanel expanded>
+          <ExpansionPanelSummary {...handlers} />
+        </ExpansionPanel>,
+      );
+
+      const summary = wrapper.find('[aria-expanded]').first();
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { persist: () => {} });
+        summary.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -118,7 +125,11 @@ describe('<ExpansionPanelSummary />', () => {
   describe('prop: onChange', () => {
     it('fires onChange if the summary control is clicked', () => {
       const handleChange = spy();
-      const wrapper = mount(<ExpansionPanelSummary expanded={false} onChange={handleChange} />);
+      const wrapper = mount(
+        <ExpansionPanel expanded={false} onChange={handleChange}>
+          <ExpansionPanelSummary />
+        </ExpansionPanel>,
+      );
 
       const control = findOutermostIntrinsic(wrapper.find('[aria-expanded]'));
       const eventMock = 'woofExpansionPanelSummary';
@@ -132,8 +143,15 @@ describe('<ExpansionPanelSummary />', () => {
   describe('prop: click', () => {
     it('should trigger onClick', () => {
       const handleClick = spy();
-      const wrapper = shallow(<ExpansionPanelSummary onClick={handleClick} />);
-      wrapper.simulate('click');
+      const wrapper = mount(
+        <ExpansionPanel expanded={false} onChange={() => {}}>
+          <ExpansionPanelSummary onClick={handleClick} />
+        </ExpansionPanel>,
+      );
+      wrapper
+        .find('[aria-expanded]')
+        .first()
+        .simulate('click');
       assert.strictEqual(handleClick.callCount, 1);
     });
   });
