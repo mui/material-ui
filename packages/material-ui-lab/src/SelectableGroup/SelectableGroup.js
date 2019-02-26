@@ -2,36 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as utils from './utils';
 import SelectableGroupContext from './SelectableGroupContext';
+import objectIs from '../utils/objectIs';
 
 function SelectableGroup(props) {
   const [selected, setSelected] = React.useState(null);
   const { additional, children, exclusive, value: valueProp } = props;
 
   const createReducer = handler => {
-    return (event, value) => {
-      setSelected(prevSelected => {
-        const newSelected = handler(prevSelected, value, exclusive);
+    return (value, event) => {
+      const newSelected = handler(selected, value, exclusive);
 
-        // Only call onChange if it exists and state has changed (Object.is mimics React)
-        if (props.onChange && !Object.is(newSelected, prevSelected)) {
-          props.onChange(event, newSelected);
-        }
+      // Only call onChange if it exists and state has changed (Object.is mimics React)
+      if (props.onChange && !objectIs(newSelected, selected)) {
+        props.onChange(event, newSelected);
+      }
 
-        return newSelected;
-      });
+      setSelected(selected);
     };
   };
+
+  if (valueProp !== selected) {
+    setSelected(valueProp);
+  }
 
   const deselect = createReducer(utils.deselect);
   const select = createReducer(utils.select);
   const toggle = createReducer(utils.toggle);
   const isValueSelected = value => utils.hasValue(selected, value);
-
-  React.useEffect(() => {
-    if (valueProp !== undefined) {
-      setSelected(valueProp);
-    }
-  }, [valueProp]);
 
   return (
     <SelectableGroupContext.Provider

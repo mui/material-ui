@@ -95,7 +95,7 @@ function ToggleButton(props) {
       }
     }
 
-    selectState.toggle(event, value);
+    selectState.toggle(value, event);
   };
 
   const selected =

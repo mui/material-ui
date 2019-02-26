@@ -59,12 +59,8 @@ const Radio = React.forwardRef(function Radio(props, ref) {
   const checked = selectedState ? selectedState.isValueSelected(value) : checkedProp;
 
   const handleChange = event => {
-    if (selectedState && !checked) {
-      selectedState.toggle(event, value);
-    }
-
-    if (onClick) {
-      onClick(event);
+    if (selectedState) {
+      selectedState.select(value, event);
     }
 
     if (onChange) {
@@ -85,7 +81,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
       ref={ref}
       name={name}
       checked={checked}
-      onClick={handleChange}
+      onChange={handleChange}
       value={value}
       {...other}
     />

@@ -20,7 +20,7 @@ function SelectableCheckbox(props) {
   const { value, ...other } = props;
   const { toggle, isValueSelected } = useSelectedState();
 
-  const handleChange = event => toggle(event, event.target.value);
+  const handleChange = event => toggle(event.target.value, event);
 
   return (
     <Checkbox checked={isValueSelected(value)} onClick={handleChange} value={value} {...other} />

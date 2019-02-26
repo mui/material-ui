@@ -18,7 +18,7 @@ const styles = {
 
 const SelectableCheckbox = withSelectableContext(props => {
   const { selectState, value, ...other } = props;
-  const handleChange = event => selectState.toggle(event, event.target.value);
+  const handleChange = event => selectState.toggle(event.target.value, event);
 
   return (
     <Checkbox
