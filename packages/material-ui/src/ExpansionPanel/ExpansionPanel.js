@@ -161,6 +161,7 @@ ExpansionPanel.propTypes = {
       );
     }
 
+    /* istanbul ignore if */
     if (!React.isValidElement(summary)) {
       return new Error(
         `Material-UI: Expected the first child of ExpansionPanel to be a valid element.${
