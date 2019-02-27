@@ -37,7 +37,7 @@ class CustomIconSlider extends React.Component {
       <div className={classes.root}>
         <Typography id="slider-image">Image thumb</Typography>
         <Slider
-          classes={{ root: classes.slider }}
+          className={classes.slider}
           value={value}
           aria-labelledby="slider-image"
           onChange={this.handleChange}

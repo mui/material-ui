@@ -17,9 +17,9 @@ function DisabledSlider(props) {
 
   return (
     <div className={classes.root}>
-      <Slider classes={{ root: classes.slider }} value={0} disabled />
-      <Slider classes={{ root: classes.slider }} value={50} disabled />
-      <Slider classes={{ root: classes.slider }} value={100} disabled />
+      <Slider className={classes.slider} value={0} disabled />
+      <Slider className={classes.slider} value={50} disabled />
+      <Slider className={classes.slider} value={100} disabled />
     </div>
   );
 }
