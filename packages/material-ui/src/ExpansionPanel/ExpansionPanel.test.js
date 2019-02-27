@@ -160,11 +160,7 @@ describe('<ExpansionPanel />', () => {
       });
 
       it('requires at least one child', () => {
-        try {
-          mount(<ExpansionPanel>[]</ExpansionPanel>);
-        } catch (err) {
-          // non-empty block for the linter
-        }
+        assert.throws(() => mount(<ExpansionPanel>[]</ExpansionPanel>));
         // 2 other errors are from cloneElement(undefined) and `prop-types`
         assert.strictEqual(consoleErrorMock.callCount(), 3);
         assert.include(consoleErrorMock.args()[0][0], 'Material-UI: Expected the first child');
