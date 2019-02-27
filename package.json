@@ -79,7 +79,7 @@
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-text-mask": "^5.4.2",
-    "@types/styled-components": "^4.1.8",
+    "@types/styled-components": "^4.1.11",
     "accept-language": "^3.0.18",
     "argos-cli": "^0.0.9",
     "autoprefixer": "^9.0.0",
