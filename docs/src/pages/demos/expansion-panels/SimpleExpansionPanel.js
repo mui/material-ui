@@ -24,8 +24,8 @@ function SimpleExpansionPanel(props) {
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
           <Typography className={classes.heading}>Expansion Panel 1</Typography>
         </ExpansionPanelSummary>
@@ -39,8 +39,8 @@ function SimpleExpansionPanel(props) {
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2-content"
-          id="panel2-header"
+          aria-controls="panel2a-content"
+          id="panel2a-header"
         >
           <Typography className={classes.heading}>Expansion Panel 2</Typography>
         </ExpansionPanelSummary>
@@ -54,8 +54,8 @@ function SimpleExpansionPanel(props) {
       <ExpansionPanel disabled>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
+          aria-controls="panel3a-content"
+          id="panel3a-header"
         >
           <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
         </ExpansionPanelSummary>

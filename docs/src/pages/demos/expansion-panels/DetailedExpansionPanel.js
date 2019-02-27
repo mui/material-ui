@@ -54,8 +54,8 @@ function DetailedExpansionPanel(props) {
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel-content"
-          id="panel-header"
+          aria-controls="panel1c-content"
+          id="panel1c-header"
         >
           <div className={classes.column}>
             <Typography className={classes.heading}>Location</Typography>
