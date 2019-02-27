@@ -699,7 +699,7 @@ const appList = [
       'Use TaskMuncher to organize and keep track of everything so you can get it all done ' +
       'and enjoy more peace of mind.',
     link: 'https://taskmuncher.com',
-    image: 'taskmuncher.jpg',
+    image: 'taskmuncher.png',
     index: 30,
   },
 ];
