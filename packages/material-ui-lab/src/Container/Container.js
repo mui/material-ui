@@ -98,10 +98,9 @@ Container.propTypes = {
    */
   fixed: PropTypes.bool,
   /**
-   * Determine the max width of the container.
-   * The container width grows with the size of the screen, this property is useful
-   * on the desktop where you might need some coherent different width size across your
-   * application. Set to `false` to disable `maxWidth`.
+   * Determine the max-width of the container.
+   * The container width grows with the size of the screen.
+   * Set to `false` to disable `maxWidth`.
    */
   maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
 };

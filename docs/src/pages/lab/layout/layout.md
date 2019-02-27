@@ -1,6 +1,6 @@
 ---
 title: Layout React component
-components: Layout
+components: Container
 ---
 
 # Layout
