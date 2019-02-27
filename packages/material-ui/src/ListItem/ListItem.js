@@ -20,7 +20,7 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 11, // To use 10px in v4
     paddingBottom: 11, // To use 10px in v4
-    '&$selected, &$selected:hover, &$selected:focus': {
+    '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
     },
   },
@@ -30,7 +30,9 @@ export const styles = theme => ({
   },
   // To remove in v4
   /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
-  focusVisible: {},
+  focusVisible: {
+    backgroundColor: theme.palette.action.selected,
+  },
   /* Legacy styles applied to the root element. Use `root` instead. */
   default: {},
   /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
@@ -68,9 +70,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-    },
-    '&:focus': {
-      backgroundColor: theme.palette.action.hover,
     },
   },
   /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */

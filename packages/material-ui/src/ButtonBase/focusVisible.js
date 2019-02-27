@@ -36,11 +36,14 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
   }, instance.focusVisibleCheckTime);
 }
 
+// The keys that might change document.activeElement.
 const FOCUS_KEYS = [
   9, // 'Tab',
   13, // 'Enter',
   27, // 'Escape',
   32, // ' ',
+  36, // 'Home',
+  35, // 'End',
   37, // 'ArrowLeft',
   38, // 'ArrowUp',
   39, // 'ArrowRight',
