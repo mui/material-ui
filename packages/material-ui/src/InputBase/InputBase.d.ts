@@ -73,7 +73,7 @@ export type InputBaseClassKey =
   | 'inputType'
   | 'inputTypeSearch'
   | 'adornedEnd'
-  | 'adornedStart'
+  | 'adornedStart';
 
 declare const InputBase: React.ComponentType<InputBaseProps>;
 
