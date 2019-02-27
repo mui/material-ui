@@ -63,15 +63,19 @@ export type InputBaseClassKey =
   | 'formControl'
   | 'focused'
   | 'disabled'
+  | 'adornedEnd'
+  | 'adornedStart'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'fullWidth'
   | 'input'
   | 'inputMarginDense'
-  | 'inputDisabled'
   | 'inputMultiline'
   | 'inputType'
-  | 'inputTypeSearch';
+  | 'inputTypeSearch'
+  | 'inputAdornedStart'
+  | 'inputAdornedEnd';
 
 declare const InputBase: React.ComponentType<InputBaseProps>;
 
