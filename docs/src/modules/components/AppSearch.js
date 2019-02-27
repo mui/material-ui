@@ -192,7 +192,6 @@ class AppSearch extends React.Component {
           <SearchIcon />
         </div>
         <Input
-          aria-label="Search in Material-UI documentation"
           disableUnderline
           placeholder="Search…"
           id="docsearch-input"
