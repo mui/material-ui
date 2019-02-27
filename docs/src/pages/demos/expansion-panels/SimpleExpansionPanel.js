@@ -22,7 +22,11 @@ function SimpleExpansionPanel(props) {
   return (
     <div className={classes.root}>
       <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
           <Typography className={classes.heading}>Expansion Panel 1</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -33,7 +37,11 @@ function SimpleExpansionPanel(props) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
           <Typography className={classes.heading}>Expansion Panel 2</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -44,7 +52,11 @@ function SimpleExpansionPanel(props) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel disabled>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3a-content"
+          id="panel3a-header"
+        >
           <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
         </ExpansionPanelSummary>
       </ExpansionPanel>

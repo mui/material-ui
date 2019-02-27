@@ -266,7 +266,6 @@ class Demo extends React.Component {
                     data-ga-event-category={category}
                     data-ga-event-action="expand"
                     onClick={this.handleClickCodeOpen}
-                    aria-label={codeOpen ? 'Hide the source' : 'Show the source'}
                     color={demoHovered ? 'primary' : 'default'}
                   >
                     <CodeIcon />
@@ -282,7 +281,6 @@ class Demo extends React.Component {
                     data-ga-event-action="github"
                     href={demoData.githubLocation}
                     target="_blank"
-                    aria-label="GitHub"
                   >
                     <Github />
                   </IconButton>
@@ -297,7 +295,6 @@ class Demo extends React.Component {
                       data-ga-event-category={category}
                       data-ga-event-action="codesandbox"
                       onClick={this.handleClickCodeSandbox}
-                      aria-label="CodeSandbox"
                     >
                       <EditIcon />
                     </IconButton>
