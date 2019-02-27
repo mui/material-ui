@@ -7,19 +7,30 @@ import SelectableGroup from '@material-ui/lab/SelectableGroup';
 
 function RadioGroup(props) {
   const { children, defaultValue, name, onChange, value: valueProp, ...other } = props;
-  let { current: firstLoad } = React.useRef(true);
-
-  let value = valueProp;
-
-  if (firstLoad) {
-    firstLoad = false;
-    if (defaultValue) {
-      value = defaultValue;
+  const { current: isUncontrolled } = React.useRef(valueProp == null);
+  const [value, setValue] = React.useState(() => {
+    if (isUncontrolled) {
+      return defaultValue;
     }
+    return null;
+  });
+
+  if (valueProp !== undefined && valueProp !== value) {
+    setValue(valueProp);
   }
 
+  const handleChange = (event, selected) => {
+    if (isUncontrolled) {
+      setValue(selected);
+    }
+
+    if (onChange) {
+      onChange(event, selected);
+    }
+  };
+
   return (
-    <SelectableGroup onChange={onChange} value={value} additional={{ name }} exclusive>
+    <SelectableGroup onChange={handleChange} value={value} additional={{ name }} exclusive>
       <FormGroup role="radiogroup" {...other}>
         {children}
       </FormGroup>

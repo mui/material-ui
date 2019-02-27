@@ -44,7 +44,6 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     color,
     name: nameProp,
     onChange,
-    onClick,
     value,
     ...other
   } = props;

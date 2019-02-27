@@ -12,16 +12,16 @@ function SelectableGroup(props) {
     return (value, event) => {
       const newSelected = handler(selected, value, exclusive);
 
+      setSelected(newSelected);
+
       // Only call onChange if it exists and state has changed (Object.is mimics React)
       if (props.onChange && !objectIs(newSelected, selected)) {
         props.onChange(event, newSelected);
       }
-
-      setSelected(selected);
     };
   };
 
-  if (valueProp !== selected) {
+  if (valueProp !== undefined && valueProp !== selected) {
     setSelected(valueProp);
   }
 

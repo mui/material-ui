@@ -63,7 +63,7 @@ describe('<RadioGroup />', () => {
 
       const firstRadio = findOutermostIntrinsic(wrapper.find(Radio).at(0));
       const event = { test: true };
-      firstRadio.simulate('click', event);
+      firstRadio.simulate('change', event);
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.args[0][0].test, true);
     });
@@ -80,7 +80,7 @@ describe('<RadioGroup />', () => {
 
       const firstRadio = findOutermostIntrinsic(wrapper.find(Radio).at(0));
       const event = { test: true };
-      firstRadio.simulate('click', event);
+      firstRadio.simulate('change', event);
       assert.strictEqual(handleChange1.callCount, 1);
       assert.strictEqual(handleChange2.callCount, 1);
     });

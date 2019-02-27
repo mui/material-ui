@@ -63,7 +63,7 @@ describe('<Radio />', () => {
       );
 
       let radio = wrapper.find(Radio);
-      radio.simulate('click');
+      radio.simulate('change');
       radio = findOutermostIntrinsic(wrapper.find(Radio));
       assert.strictEqual(radio.hasClass(classes.checked), true);
     });
@@ -80,7 +80,7 @@ describe('<Radio />', () => {
       assert.strictEqual(firstRadio.hasClass(classes.checked), true);
 
       let secondRadio = wrapper.find(Radio).at(1);
-      secondRadio.simulate('click');
+      secondRadio.simulate('change');
       secondRadio = findOutermostIntrinsic(wrapper.find(Radio).at(1));
       assert.strictEqual(secondRadio.hasClass(classes.checked), true);
     });
