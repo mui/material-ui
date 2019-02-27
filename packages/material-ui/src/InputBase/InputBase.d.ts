@@ -71,7 +71,9 @@ export type InputBaseClassKey =
   | 'inputDisabled'
   | 'inputMultiline'
   | 'inputType'
-  | 'inputTypeSearch';
+  | 'inputTypeSearch'
+  | 'adornedEnd'
+  | 'adornedStart'
 
 declare const InputBase: React.ComponentType<InputBaseProps>;
 
