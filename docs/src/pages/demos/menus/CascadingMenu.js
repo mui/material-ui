@@ -6,37 +6,37 @@ import SubMenu from './SubMenu';
 
 const items = [
   {
-    key: "1",
-    item: "Item 1"
+    key: '1',
+    item: 'Item 1',
   },
   {
-    key: "2",
-    item: "Item 2"
+    key: '2',
+    item: 'Item 2',
   },
   {
-    key: "3",
-    item: "Item 3"
+    key: '3',
+    item: 'Item 3',
   },
   {
-    key: "1stsub",
-    item: "More Items",
-    child: "first-cascade",
+    key: '1stsub',
+    item: 'More Items',
+    child: 'first-cascade',
     subItems: [
       {
-        key: "more1",
-        item: "SubItem 1"
+        key: 'more1',
+        item: 'SubItem 1',
       },
       {
-        key: "more2",
-        item: "SubItem 2"
+        key: 'more2',
+        item: 'SubItem 2',
       },
       {
-        key: "more3",
-        item: "SubItem 3"
+        key: 'more3',
+        item: 'SubItem 3',
       },
       {
-        key: "secondsub",
-        item: "More Subitems",
+        key: 'secondsub',
+        item: 'More Subitems',
         child: 'second-cascade',
         subItems: [
           {
@@ -46,30 +46,30 @@ const items = [
             subItems: [
               {
                 key: '1234',
-                item: 'Last Item'
+                item: 'Last Item',
               },
               {
                 key: '2222',
-                item: 'Last Item'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+                item: 'Last Item',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 class CascadingMenu extends React.Component {
   state = {
     anchorEl: null,
-    anchorItems: {}
+    anchorItems: {},
   };
 
-  handleClick = (e) => {
+  handleClick = e => {
     this.setState({
-      anchorEl: e.target
-    })
+      anchorEl: e.target,
+    });
   };
 
   handleClose = () => {
@@ -77,34 +77,34 @@ class CascadingMenu extends React.Component {
   };
 
   handleSubMenuOpen = (key, e) => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const anchorItems = Object.assign({}, prevState.anchorItems, {
         [key]: {
-          anchorEl:  e.target,
-          open: true
-        }
+          anchorEl: e.target,
+          open: true,
+        },
       });
-      return {anchorItems};
+      return { anchorItems };
     });
-  }
+  };
 
-  handleSubMenuClose = (key) => {
-    this.setState((prevState) => {
+  handleSubMenuClose = key => {
+    this.setState(prevState => {
       const anchorItems = Object.assign({}, prevState.anchorItems, {
         [key]: {
-          anchorEl:  null,
-          open: false
-        }
+          anchorEl: null,
+          open: false,
+        },
       });
-      return {anchorItems};
+      return { anchorItems };
     });
-  }
+  };
 
-  renderItems = (item) => {
+  renderItems = item => {
     const { anchorItems } = this.state;
     const { open = false, anchorEl = {} } = anchorItems[item.key] || {};
 
-    if(item.subItems) {
+    if (item.subItems) {
       return (
         <SubMenu
           key={item.key}
@@ -118,16 +118,13 @@ class CascadingMenu extends React.Component {
       );
     }
     return (
-      <MenuItem
-        key={item.key}
-        style={{display: "flex", justifyContent: "space-between"}}
-      >
+      <MenuItem key={item.key} style={{ display: 'flex', justifyContent: 'space-between' }}>
         {item.item}
       </MenuItem>
     );
-  }
+  };
 
-  renderMenuItems = (menuItems) => menuItems.map(item => this.renderItems(item))
+  renderMenuItems = menuItems => menuItems.map(item => this.renderItems(item));
 
   render() {
     const { anchorEl } = this.state;
@@ -135,7 +132,7 @@ class CascadingMenu extends React.Component {
 
     return (
       <div>
-         <Button
+        <Button
           aria-owns={open ? 'cascading-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
@@ -147,15 +144,13 @@ class CascadingMenu extends React.Component {
           anchorEl={anchorEl}
           open={open}
           onClose={this.handleClose}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-          transformOrigin={{ vertical: "top", horizontal: "left" }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
         >
-          {
-            this.renderMenuItems(items)
-          }
+          {this.renderMenuItems(items)}
         </Menu>
       </div>
-    )   
+    );
   }
 }
 
