@@ -467,7 +467,7 @@ describe('makeStyles', () => {
       };
     });
 
-    it.only('should update like expected', async () => {
+    it('should update like expected', async () => {
       const sheetsRegistry = new SheetsRegistry();
 
       const wrapper = mount(
