@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, ThemeProvider, useTheme } from '@material-ui/styles';
 
-const styles = theme => {
+const useStyles = makeStyles(theme => {
   return {
     root: props => {
       return {
@@ -10,8 +10,7 @@ const styles = theme => {
       };
     },
   };
-};
-const useStyles = makeStyles(styles);
+});
 
 const Component = React.memo(props => {
   const classes = useStyles(props);
@@ -49,7 +48,7 @@ function Showcase(props) {
   const theme = React.useMemo(() => ({ color }), [color]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={() => theme}>
       <fieldset>
         <div>Color in theme, background-color in props</div>
         <label htmlFor="background-color">background-color</label>

@@ -7,6 +7,7 @@ import { Input } from '@material-ui/core';
 import { createMount } from '@material-ui/core/test-utils';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import sleep from 'modules/waterfall/sleep';
 import StylesProvider from './StylesProvider';
 import ThemeProvider from './ThemeProvider';
 import withStyles from './withStyles';
@@ -111,7 +112,7 @@ describe('withStyles', () => {
       wrapper.unmount();
     });
 
-    it('should work when depending on a theme', () => {
+    it('should work when depending on a theme', async () => {
       const styles = theme => ({ root: { padding: theme.spacing(1) } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
@@ -127,6 +128,7 @@ describe('withStyles', () => {
       act(() => {
         wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       });
+      await sleep()
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-lu46bw' });
     });
@@ -174,28 +176,6 @@ describe('withStyles', () => {
       });
     });
   });
-
-  // To fix for a new pull request
-  // describe('HMR with same state', () => {
-  //   it('should take the new stylesCreator into account', () => {
-  //     const styles1 = { root: { padding: 1 } };
-  //     const StyledComponent1 = withStyles(styles1, { name: 'MuiTextField' })(Empty);
-  //     const wrapper = mount(<StyledComponent1 />);
-
-  //     const styles2 = { root: { padding: 2 } };
-  //     const StyledComponent2 = withStyles(styles2, { name: 'MuiTextField' })(Empty);
-
-  //     // Simulate react-hot-loader behavior
-  //     wrapper.instance().componentDidUpdate = StyledComponent2.prototype.componentDidUpdate;
-
-  //     const classes1 = wrapper.childAt(0).props().classes.root;
-  //     wrapper.setProps({});
-  //     wrapper.update();
-  //     const classes2 = wrapper.childAt(0).props().classes.root;
-
-  //     assert.notStrictEqual(classes1, classes2, 'should generate new classes');
-  //   });
-  // });
 
   describe('classname quality', () => {
     it('should use the displayName', () => {

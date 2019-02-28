@@ -10,10 +10,7 @@ import { increment } from './indexCounter';
 import getStylesCreator from './getStylesCreator';
 import noopTheme from './noopTheme';
 
-// Helper to debug
-// let id = 0;
-
-function getClasses({ classes, Component, state, stylesOptions }) {
+function getClasses({ state, stylesOptions }, classes, Component) {
   if (stylesOptions.disableGeneration) {
     return classes || {};
   }
@@ -53,7 +50,7 @@ function getClasses({ classes, Component, state, stylesOptions }) {
   return state.cacheClasses.value;
 }
 
-function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
+function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
   if (stylesOptions.disableGeneration) {
     return;
   }
@@ -75,7 +72,7 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
     theme,
     flip: typeof stylesOptions.flip === 'boolean' ? stylesOptions.flip : theme.direction === 'rtl',
   };
-  options.generateId = options.generateClassName;
+  options.generateId = options.generateClassName; // to remove with JSS v10
 
   const sheetsRegistry = stylesOptions.sheetsRegistry;
 
@@ -93,7 +90,6 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
         link: false,
         ...options,
       });
-
       staticSheet.attach();
 
       if (stylesOptions.sheetsCache) {
@@ -105,8 +101,8 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
       sheetsRegistry.add(staticSheet);
     }
 
-    sheetManager.dynamicStyles = getDynamicStyles(styles);
     sheetManager.staticSheet = staticSheet;
+    sheetManager.dynamicStyles = getDynamicStyles(styles);
   }
 
   if (sheetManager.dynamicStyles) {
@@ -116,19 +112,17 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
     });
 
     warning(props, 'Material-UI: properties missing.');
-
     dynamicSheet.update(props).attach();
 
     state.dynamicSheet = dynamicSheet;
-
-    if (sheetsRegistry) {
-      sheetsRegistry.add(dynamicSheet);
-    }
-
     state.classes = mergeClasses({
       baseClasses: sheetManager.staticSheet.classes,
       newClasses: dynamicSheet.classes,
     });
+
+    if (sheetsRegistry) {
+      sheetsRegistry.add(dynamicSheet);
+    }
   } else {
     state.classes = sheetManager.staticSheet.classes;
   }
@@ -136,7 +130,7 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
   sheetManager.refs += 1;
 }
 
-function update({ state, props }) {
+function update({ state }, props) {
   if (state.dynamicSheet) {
     state.dynamicSheet.update(props);
   }
@@ -154,7 +148,6 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
   if (sheetManager.refs === 0) {
     multiKeyStore.delete(stylesOptions.sheetsManager, stylesCreator, theme);
     stylesOptions.jss.removeStyleSheet(sheetManager.staticSheet);
-
     if (sheetsRegistry) {
       sheetsRegistry.remove(sheetManager.staticSheet);
     }
@@ -162,9 +155,29 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
 
   if (state.dynamicSheet) {
     stylesOptions.jss.removeStyleSheet(state.dynamicSheet);
-
     if (sheetsRegistry) {
       sheetsRegistry.remove(state.dynamicSheet);
+    }
+  }
+}
+
+// You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
+// https://reactjs.org/docs/hooks-reference.html#usememo
+// This one has a semantic guarantee
+function useMemo(func, values) {
+  const ref = React.useRef([]);
+
+  if (ref.current.length !== values.length) {
+    ref.current = values;
+    func();
+    return;
+  }
+
+  for (let i = 0; i < values.length; i += 1) {
+    if (values[i] !== ref.current[i]) {
+      ref.current = values;
+      func();
+      return;
     }
   }
 }
@@ -199,54 +212,51 @@ function makeStyles(stylesOrCreator, options = {}) {
       ...stylesOptions2,
     };
 
-    const { current: state } = React.useRef({});
+    const { current: instance } = React.useRef({
+      // previous: null,
+      // current: null,
+    });
+    const firstRender = React.useRef();
 
     // Execute synchronously every time the theme changes.
-    React.useMemo(() => {
-      attach({
+    useMemo(() => {
+      instance.current = {
         name,
-        props,
-        state,
+        state: {},
         stylesCreator,
         stylesOptions,
         theme,
-      });
-    }, [theme, stylesCreator]);
+      };
+      attach(instance.current, props);
+      firstRender.current = true;
 
-    const firstRender = React.useRef(true);
-    React.useEffect(() => {
-      if (!firstRender.current) {
-        update({
-          props,
-          state,
-          stylesCreator,
-          stylesOptions,
-          theme,
+      if (instance.previous) {
+        const previous = instance.previous;
+        setTimeout(() => {
+          detach(previous);
         });
       }
-    });
-    React.useEffect(() => {
-      firstRender.current = false;
-    }, []);
 
-    // Execute asynchronously every time the theme changes.
+      instance.previous = instance.current;
+    }, [theme, stylesCreator]);
+
+    React.useEffect(() => {
+      if (!firstRender.current) {
+        update(instance.current, props);
+      }
+      firstRender.current = false;
+    });
+
     React.useEffect(
       () => () => {
-        detach({
-          state,
-          stylesCreator,
-          stylesOptions,
-          theme,
-        });
+        detach(instance.current);
       },
-      [theme, stylesCreator],
+      [],
     );
 
-    return getClasses({
+    return getClasses(instance.current, {
       classes: props.classes,
       Component,
-      state,
-      stylesOptions,
     });
   };
 }
