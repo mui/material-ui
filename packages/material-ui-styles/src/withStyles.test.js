@@ -128,7 +128,7 @@ describe('withStyles', () => {
       act(() => {
         wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       });
-      await sleep()
+      await sleep();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-lu46bw' });
     });

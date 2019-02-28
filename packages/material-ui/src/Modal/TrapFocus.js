@@ -6,27 +6,6 @@ import warning from 'warning';
 import RootRef from '../RootRef';
 import ownerDocument from '../utils/ownerDocument';
 
-// You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
-// https://reactjs.org/docs/hooks-reference.html#usememo
-// This one has a semantic guarantee
-function useMemo(func, values) {
-  const ref = React.useRef([]);
-
-  if (ref.current.length !== values.length) {
-    ref.current = values;
-    func();
-    return;
-  }
-
-  for (let i = 0; i < values.length; i += 1) {
-    if (values[i] !== ref.current[i]) {
-      ref.current = values;
-      func();
-      break;
-    }
-  }
-}
-
 function TrapFocus(props) {
   const {
     disableAutoFocus,
@@ -42,7 +21,9 @@ function TrapFocus(props) {
   const sentinelEnd = React.useRef();
   const lastFocus = React.useRef();
 
-  useMemo(() => {
+  // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
+  // https://reactjs.org/docs/hooks-reference.html#usememo
+  React.useMemo(() => {
     if (!open) {
       return;
     }

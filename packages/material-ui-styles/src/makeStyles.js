@@ -72,7 +72,7 @@ function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
     theme,
     flip: typeof stylesOptions.flip === 'boolean' ? stylesOptions.flip : theme.direction === 'rtl',
   };
-  options.generateId = options.generateClassName; // to remove with JSS v10
+  options.generateId = options.generateClassName;
 
   const sheetsRegistry = stylesOptions.sheetsRegistry;
 
@@ -161,27 +161,6 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
   }
 }
 
-// You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
-// https://reactjs.org/docs/hooks-reference.html#usememo
-// This one has a semantic guarantee
-function useMemo(func, values) {
-  const ref = React.useRef([]);
-
-  if (ref.current.length !== values.length) {
-    ref.current = values;
-    func();
-    return;
-  }
-
-  for (let i = 0; i < values.length; i += 1) {
-    if (values[i] !== ref.current[i]) {
-      ref.current = values;
-      func();
-      return;
-    }
-  }
-}
-
 function makeStyles(stylesOrCreator, options = {}) {
   const {
     // An explicit value provided by the developers.
@@ -218,8 +197,11 @@ function makeStyles(stylesOrCreator, options = {}) {
     });
     const firstRender = React.useRef();
 
+    // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
+    // https://reactjs.org/docs/hooks-reference.html#usememo
+    //
     // Execute synchronously every time the theme changes.
-    useMemo(() => {
+    React.useMemo(() => {
       instance.current = {
         name,
         state: {},
@@ -254,10 +236,7 @@ function makeStyles(stylesOrCreator, options = {}) {
       [],
     );
 
-    return getClasses(instance.current, {
-      classes: props.classes,
-      Component,
-    });
+    return getClasses(instance.current, props.classes, Component);
   };
 }
 

@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme } from '@material-ui/core/styles';
 import sleep from 'modules/waterfall/sleep';
+import createGenerateClassName from './createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
 import useTheme from './useTheme';
@@ -396,20 +397,16 @@ describe('makeStyles', () => {
     });
   });
 
-  describe('stree test', () => {
-    let Showcase;
+  describe('stress test', () => {
+    let StressTest;
 
     before(() => {
-      const useStyles = makeStyles(theme => {
-        return {
-          root: props => {
-            return {
-              backgroundColor: props.backgroundColor,
-              color: theme.color,
-            };
-          },
-        };
-      });
+      const useStyles = makeStyles(theme => ({
+        root: props => ({
+          backgroundColor: props.backgroundColor,
+          color: theme.color,
+        }),
+      }));
 
       const Component = React.memo(props => {
         const classes = useStyles(props);
@@ -435,7 +432,7 @@ describe('makeStyles', () => {
         backgroundColor: PropTypes.string.isRequired,
       };
 
-      Showcase = () => {
+      StressTest = () => {
         const [backgroundColor, setBackgroundColor] = React.useState('black');
         function handleBackgroundColorChange(event) {
           setBackgroundColor(event.target.value);
@@ -467,12 +464,16 @@ describe('makeStyles', () => {
       };
     });
 
-    it.only('should update like expected', async () => {
+    it('should update like expected', async () => {
       const sheetsRegistry = new SheetsRegistry();
 
       const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
-          <Showcase />
+        <StylesProvider
+          sheetsRegistry={sheetsRegistry}
+          sheetsCache={new Map()}
+          generateClassName={createGenerateClassName()}
+        >
+          <StressTest />
         </StylesProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 2);
