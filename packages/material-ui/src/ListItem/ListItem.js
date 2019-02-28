@@ -204,9 +204,7 @@ ListItem.propTypes = {
       return new Error(
         'Material-UI: you used an element after ListItemSecondaryAction. ' +
           'For ListItem to detect that it has a secondary action ' +
-          `you must pass it as the last child to ListItem.${
-            process.env.NODE_ENV === 'test' ? Date.now() : ''
-          }`,
+          'you must pass it as the last child to ListItem.',
       );
     }
 

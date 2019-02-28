@@ -1,5 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
+import PropTypes from 'prop-types';
 import { getClasses, createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import ListItemText from '../ListItemText';
@@ -175,6 +176,7 @@ describe('<ListItem />', () => {
 
       afterEach(() => {
         consoleErrorMock.reset();
+        PropTypes.resetWarningCache();
       });
 
       it('warns if it cant detect the secondary action properly', () => {

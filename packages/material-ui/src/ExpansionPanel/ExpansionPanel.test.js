@@ -157,6 +157,7 @@ describe('<ExpansionPanel />', () => {
 
       afterEach(() => {
         consoleErrorMock.reset();
+        PropTypes.resetWarningCache();
       });
 
       /* works locally but doesn't catch the errors in test:karma 
