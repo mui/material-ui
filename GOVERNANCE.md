@@ -34,7 +34,7 @@ also contribute in the following ways.
 
 - Support new users by answering questions on
 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) and
-[Gitter](https://gitter.im/mui-org/material-ui).
+[Spectrum](https://spectrum.chat/material-ui).
 - Reviewing and commenting on [existing pull requests](https://github.com/mui-org/material-ui/pulls)
 and [issues](https://github.com/mui-org/material-ui/issues).
 - Reporting bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
@@ -78,7 +78,7 @@ In addition to their participation as a committer, Core Team members have the fo
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
 - Admin access to various tools and services ([npm](https://www.npmjs.com/package/@material-ui/core),
 [CircleCi](https://circleci.com/gh/mui-org/material-ui),
-[BrowserStack](https://www.browserstack.com/), [Gitter](https://gitter.im/mui-org/material-ui)).
+[BrowserStack](https://www.browserstack.com/), [Spectrum](https://spectrum.chat/material-ui)).
 - Admin access to all financial accounts.
 - Vote on the removal of committers and Core Team members.
 - Vote on decisions when consensus cannot be reached by the community.
