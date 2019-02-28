@@ -7,7 +7,6 @@ import { Input } from '@material-ui/core';
 import { createMount } from '@material-ui/core/test-utils';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import sleep from 'modules/waterfall/sleep';
 import StylesProvider from './StylesProvider';
 import ThemeProvider from './ThemeProvider';
 import withStyles from './withStyles';
@@ -112,7 +111,7 @@ describe('withStyles', () => {
       wrapper.unmount();
     });
 
-    it('should work when depending on a theme', async () => {
+    it('should work when depending on a theme', () => {
       const styles = theme => ({ root: { padding: theme.spacing(1) } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
@@ -128,7 +127,6 @@ describe('withStyles', () => {
       act(() => {
         wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       });
-      await sleep();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-lu46bw' });
     });

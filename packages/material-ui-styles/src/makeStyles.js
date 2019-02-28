@@ -161,6 +161,33 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
   }
 }
 
+function useSynchronousEffect(func, values) {
+  const ref = React.useRef([]);
+  let output;
+
+  if (ref.current.length !== values.length) {
+    ref.current = values;
+    output = func();
+  } else {
+    for (let i = 0; i < values.length; i += 1) {
+      if (values[i] !== ref.current[i]) {
+        ref.current = values;
+        output = func();
+        break;
+      }
+    }
+  }
+
+  React.useEffect(
+    () => () => {
+      if (output) {
+        output();
+      }
+    },
+    values,
+  );
+}
+
 function makeStyles(stylesOrCreator, options = {}) {
   const {
     // An explicit value provided by the developers.
@@ -191,50 +218,33 @@ function makeStyles(stylesOrCreator, options = {}) {
       ...stylesOptions2,
     };
 
-    const { current: instance } = React.useRef({
-      // previous: null,
-      // current: null,
-    });
-    const firstRender = React.useRef();
+    const instance = React.useRef();
+    const shouldUpdate = React.useRef();
 
-    // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
-    // https://reactjs.org/docs/hooks-reference.html#usememo
-    //
-    // Execute synchronously every time the theme changes.
-    React.useMemo(() => {
-      instance.current = {
+    useSynchronousEffect(() => {
+      const current = {
         name,
         state: {},
         stylesCreator,
         stylesOptions,
         theme,
       };
-      attach(instance.current, props);
-      firstRender.current = true;
 
-      if (instance.previous) {
-        const previous = instance.previous;
-        setTimeout(() => {
-          detach(previous);
-        });
-      }
+      attach(current, props);
 
-      instance.previous = instance.current;
+      shouldUpdate.current = false;
+      instance.current = current;
+      return () => {
+        detach(current);
+      };
     }, [theme, stylesCreator]);
 
     React.useEffect(() => {
-      if (!firstRender.current) {
+      if (shouldUpdate.current) {
         update(instance.current, props);
       }
-      firstRender.current = false;
+      shouldUpdate.current = true;
     });
-
-    React.useEffect(
-      () => () => {
-        detach(instance.current);
-      },
-      [],
-    );
 
     return getClasses(instance.current, props.classes, Component);
   };

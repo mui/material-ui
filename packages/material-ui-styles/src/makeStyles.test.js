@@ -5,7 +5,6 @@ import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-import sleep from 'modules/waterfall/sleep';
 import createGenerateClassName from './createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
@@ -194,7 +193,7 @@ describe('makeStyles', () => {
       assert.strictEqual(sheetsRegistry.registry.length, 0);
     });
 
-    it('should work when depending on a theme', async () => {
+    it('should work when depending on a theme', () => {
       const useStyles = makeStyles(theme => ({ root: { padding: theme.spacing(1) } }), {
         name: 'MuiTextField',
       });
@@ -215,7 +214,6 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       });
-      await sleep();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-lu46bw' });
     });
@@ -262,7 +260,7 @@ describe('makeStyles', () => {
       });
     });
 
-    it('should handle dynamic properties', async () => {
+    it('should handle dynamic properties', () => {
       const useStyles = makeStyles({
         root: props => ({ margin: 8, padding: props.padding || 8 }),
       });
@@ -321,7 +319,7 @@ describe('makeStyles', () => {
   });
 
   describe('react-hot-loader', () => {
-    it('should take the new stylesCreator into account', async () => {
+    it('should take the new stylesCreator into account', () => {
       const useStyles1 = makeStyles({ root: { padding: 8 } });
       const useStyles2 = makeStyles({ root: { padding: 4 } });
 
@@ -356,7 +354,6 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.setProps({});
       });
-      await sleep();
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
         root: { padding: 4 },
@@ -464,7 +461,7 @@ describe('makeStyles', () => {
       };
     });
 
-    it('should update like expected', async () => {
+    it('should update like expected', () => {
       const sheetsRegistry = new SheetsRegistry();
 
       const wrapper = mount(
@@ -486,8 +483,9 @@ describe('makeStyles', () => {
 }`,
       );
 
-      wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
-      await sleep();
+      act(() => {
+        wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
+      });
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
@@ -496,8 +494,9 @@ describe('makeStyles', () => {
   background-color: black;
 }`,
       );
-      wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
-      await sleep();
+      act(() => {
+        wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
+      });
       assert.strictEqual(
         sheetsRegistry.toString(),
         `
