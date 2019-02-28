@@ -323,15 +323,7 @@ class Slider extends React.Component {
   };
 
   handleClick = event => {
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(
-      this.containerRef,
-      event,
-      vertical,
-      this.isReverted(),
-      this.touchId,
-    );
-    const value = percentToValue(percent, min, max);
+    const value = this.calculateValueFromPercent(event);
 
     this.emitChange(event, value, () => {
       this.playJumpAnimation();
@@ -360,10 +352,15 @@ class Slider extends React.Component {
     }
     this.setState({ currentState: 'activated' });
 
+    const { onDragStart, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+
     document.body.addEventListener('touchend', this.handleTouchEnd);
 
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
+    if (typeof onDragStart === 'function') {
+      onDragStart(event, newValue);
     }
   };
 
@@ -371,13 +368,18 @@ class Slider extends React.Component {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
 
+    const { onDragStart, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+
     document.body.addEventListener('mouseenter', this.handleMouseEnter);
     document.body.addEventListener('mouseleave', this.handleMouseLeave);
     document.body.addEventListener('mousemove', this.handleMouseMove);
     document.body.addEventListener('mouseup', this.handleMouseUp);
 
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
+    if (typeof onDragStart === 'function') {
+      onDragStart(event, newValue);
     }
   };
 
@@ -414,20 +416,17 @@ class Slider extends React.Component {
   };
 
   handleMouseMove = event => {
-    const { min, max, vertical } = this.props;
-    const percent = calculatePercent(
-      this.containerRef,
-      event,
-      vertical,
-      this.isReverted(),
-      this.touchId,
-    );
-    const value = percentToValue(percent, min, max);
+    const value = this.calculateValueFromPercent(event);
 
     this.emitChange(event, value);
   };
 
   handleDragEnd(event) {
+    const { onDragEnd, valueReducer } = this.props;
+
+    const value = this.calculateValueFromPercent(event);
+    const newValue = valueReducer(value, this.props, event);
+
     this.setState({ currentState: 'normal' });
 
     document.body.removeEventListener('mouseenter', this.handleMouseEnter);
@@ -436,8 +435,8 @@ class Slider extends React.Component {
     document.body.removeEventListener('mouseup', this.handleMouseUp);
     document.body.removeEventListener('touchend', this.handleTouchEnd);
 
-    if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragEnd(event);
+    if (typeof onDragEnd === 'function') {
+      onDragEnd(event, newValue);
     }
   }
 
@@ -472,6 +471,18 @@ class Slider extends React.Component {
           }(${percent / 100})`,
         };
     }
+  }
+
+  calculateValueFromPercent(event) {
+    const { min, max, vertical } = this.props;
+    const percent = calculatePercent(
+      this.containerRef,
+      event,
+      vertical,
+      this.isReverted(),
+      this.touchId,
+    );
+    return percentToValue(percent, min, max);
   }
 
   playJumpAnimation() {

@@ -70,6 +70,22 @@ describe('<Slider />', () => {
     assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+
+    assert.strictEqual(
+      handleChange.args[0].length,
+      2,
+      'should have called the handleDragEnd cb with 2 arguments',
+    );
+    assert.strictEqual(
+      handleDragStart.args[0].length,
+      2,
+      'should have called the handleDragEnd cb with 2 argument',
+    );
+    assert.strictEqual(
+      handleDragEnd.args[0].length,
+      2,
+      'should have called the handleDragEnd cb with 2 arguments',
+    );
   });
 
   it('should only listen to changes from the same touchpoint', () => {
