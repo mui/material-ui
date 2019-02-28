@@ -172,14 +172,6 @@ function AppTableOfContents(props) {
 
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
-
-      window.history.replaceState(
-        null,
-        null,
-        active.hash === null
-          ? `${window.location.pathname}${window.location.search}`
-          : `#${active.hash}`,
-      );
     }
   }, [activeState]);
 
