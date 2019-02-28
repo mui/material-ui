@@ -34,6 +34,12 @@ export const styles = theme => {
    */
   const pressedOutlineRadius = 9;
 
+  /**
+   * We need to give some overflow so that the button and tap
+   * highlight can be shown with overlay hidden.
+   */
+  const overflowSize = 24;
+
   return {
     /* Styles applied to the root element. */
     root: {
@@ -50,9 +56,13 @@ export const styles = theme => {
     },
     /* Styles applied to the container element. */
     container: {
-      position: 'relative',
+      width: `calc(100% + ${overflowSize * 2}px)`,
+      overflow: 'hidden',
+      padding: overflowSize,
+      margin: -overflowSize,
+      boxSizing: 'border-box',
       '&$vertical': {
-        height: '100%',
+        height: `calc(100% + ${overflowSize * 2}px)`,
       },
     },
     /* Styles applied to the track elements. */
