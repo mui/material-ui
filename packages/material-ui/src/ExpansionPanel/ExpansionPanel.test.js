@@ -2,26 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createShallow,
-  createMount,
-  getClasses,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import Collapse from '../Collapse';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
 import ExpansionPanelSummary from '../ExpansionPanelSummary';
 
 describe('<ExpansionPanel />', () => {
   let mount;
-  let shallow;
   let classes;
   const minimalChildren = [<ExpansionPanelSummary key="header" />];
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
   });
