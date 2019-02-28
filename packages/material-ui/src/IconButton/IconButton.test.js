@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  getClasses,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -85,22 +90,16 @@ describe('<IconButton />', () => {
     assert.strictEqual(wrapper.props().centerRipple, true);
   });
 
-  it('should render with sizeSmall class when prop size="small" provided', () => {
-    const wrapper = shallow(<IconButton size="small">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), true);
-    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), false);
-  });
-
-  it('should render with sizeMedium class when prop size="medium" provided', () => {
-    const wrapper = shallow(<IconButton size="medium">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), true);
-  });
-
-  it('should render with sizeMedium class when no size is provided', () => {
-    const wrapper = shallow(<IconButton size="medium">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(wrapper.hasClass(classes.sizeMedium), true);
+  describe('prop: size', () => {
+    it('should render the right class', () => {
+      let wrapper;
+      wrapper = mount(<IconButton size="small">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), true);
+      wrapper = mount(<IconButton size="medium">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
+      wrapper = mount(<IconButton>book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
+    });
   });
 
   describe('prop: disabled', () => {

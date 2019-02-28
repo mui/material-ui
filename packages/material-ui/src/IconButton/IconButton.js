@@ -64,6 +64,11 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    padding: 3,
+    fontSize: theme.typography.pxToRem(20),
+  },
   /* Styles applied to the children container element. */
   label: {
     width: '100%',
@@ -71,14 +76,6 @@ export const styles = theme => ({
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    padding: 3,
-    minWidth: 24,
-    fontSize: 18,
-  },
-  /* Styles applied to the root element if `size="medium"`. */
-  sizeMedium: {},
 });
 
 /**
@@ -95,8 +92,8 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
-        classes[`size${capitalize(size)}`],
         className,
       )}
       centerRipple
