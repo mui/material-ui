@@ -69,3 +69,9 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 Существует сторонний пакет [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state), который, в большинстве случаев, заботится о состоянии всплывающего меню за вас.
 
 {{"demo": "pages/demos/menus/MenuPopupState.js"}}
+
+## Cascading menu
+
+Open submenus
+
+{{"demo": "pages/demos/menus/CascadingMenu.js"}}
