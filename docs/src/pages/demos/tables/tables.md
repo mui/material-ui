@@ -31,6 +31,12 @@ A simple example with no frills.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
+## Dense Table
+
+A simple example of a dense table with no frills.
+
+{{"demo": "pages/demos/tables/DenseTable.js"}}
+
 ## Sorting & Selecting
 
 This example demonstrates the use of `Checkbox` and clickable rows for selection, with a custom `Toolbar`. It uses the `TableSortLabel` component to help style column headings.

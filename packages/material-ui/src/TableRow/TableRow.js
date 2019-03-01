@@ -9,7 +9,6 @@ export const styles = theme => ({
   root: {
     color: 'inherit',
     display: 'table-row',
-    height: 48,
     verticalAlign: 'middle',
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
@@ -30,14 +29,10 @@ export const styles = theme => ({
   selected: {},
   /* Styles applied to the root element if `hover={true}`. */
   hover: {},
-  /* Styles applied to the root element if table variant = 'head'. */
-  head: {
-    height: 56,
-  },
-  /* Styles applied to the root element if table variant = 'footer'. */
-  footer: {
-    height: 56,
-  },
+  /* Styles applied to the root element if table variant="head". */
+  head: {},
+  /* Styles applied to the root element if table variant="footer". */
+  footer: {},
 });
 
 /**
@@ -45,31 +40,24 @@ export const styles = theme => ({
  * based on the material table element parent (head, body, etc).
  */
 const TableRow = React.forwardRef(function TableRow(props, ref) {
-  const {
-    classes,
-    className: classNameProp,
-    component: Component,
-    hover,
-    selected,
-    ...other
-  } = props;
+  const { classes, className, component: Component, hover, selected, ...other } = props;
+  const tablelvl2 = React.useContext(Tablelvl2Context);
 
   return (
-    <Tablelvl2Context.Consumer>
-      {tablelvl2 => {
-        const className = clsx(
-          classes.root,
-          {
-            [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
-            [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
-            [classes.hover]: hover,
-            [classes.selected]: selected,
-          },
-          classNameProp,
-        );
-        return <Component className={className} ref={ref} {...other} />;
-      }}
-    </Tablelvl2Context.Consumer>
+    <Component
+      ref={ref}
+      className={clsx(
+        classes.root,
+        {
+          [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
+          [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
+          [classes.hover]: hover,
+          [classes.selected]: selected,
+        },
+        className,
+      )}
+      {...other}
+    />
   );
 });
 
