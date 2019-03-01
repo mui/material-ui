@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { DatePicker } from 'material-ui-pickers';
+import { DatePicker, InlineDatePicker } from 'material-ui-pickers';
 
 function YearMonthPicker(props) {
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -29,9 +29,9 @@ function YearMonthPicker(props) {
       </div>
 
       <div className="picker">
-        <DatePicker
-          views={['year', 'month']}
+        <InlineDatePicker
           openTo="year"
+          views={['year', 'month']}
           label="Year and Month"
           helperText="Start from year selection"
           value={selectedDate}

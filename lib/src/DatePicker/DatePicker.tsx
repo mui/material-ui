@@ -65,18 +65,19 @@ export class DatePicker extends React.PureComponent<DatePickerProps> {
   };
 
   public static defaultProps = {
+    openToYearSelection: false,
     minDate: new Date('1900-01-01'),
     maxDate: new Date('2100-01-01'),
-    openToYearSelection: false,
     views: ['year', 'day'] as DatePickerViewType[],
   };
 
   public state: DatePickerState = {
     // TODO in v3 remove openToYearSelection
-    openView:
-      this.props.openTo || this.props.openToYearSelection!
-        ? 'year'
-        : this.props.views![this.props.views!.length - 1],
+    openView: this.props.openTo
+      ? this.props.openTo
+      : this.props.openToYearSelection
+      ? 'year'
+      : this.props.views![this.props.views!.length - 1],
   };
 
   get date() {
@@ -160,15 +161,14 @@ export class DatePicker extends React.PureComponent<DatePickerProps> {
             label={utils.getYearText(this.date)}
           />
 
-          {!this.isYearOnly &&
-            !this.isYearAndMonth && (
-              <ToolbarButton
-                variant="h4"
-                onClick={this.openCalendar}
-                selected={openView === 'day'}
-                label={utils.getDatePickerHeaderText(this.date)}
-              />
-            )}
+          {!this.isYearOnly && !this.isYearAndMonth && (
+            <ToolbarButton
+              variant="h4"
+              onClick={this.openCalendar}
+              selected={openView === 'day'}
+              label={utils.getDatePickerHeaderText(this.date)}
+            />
+          )}
 
           {this.isYearAndMonth && (
             <ToolbarButton

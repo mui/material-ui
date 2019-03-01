@@ -28,6 +28,10 @@ function Regression() {
         This page is using for the automate regression of material-ui-pickers.
       </Typography>
 
+      <Typography align="center" variant="h4" component="span" gutterBottom>
+        DatePicker
+      </Typography>
+
       <Grid container justify="center" wrap="wrap">
         <DatePicker id="basic-datepicker" {...sharedProps} />
         <DatePicker id="clearable-datepicker" clearable {...sharedProps} />
@@ -39,6 +43,7 @@ function Regression() {
           mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
           {...sharedProps}
         />
+        <DatePicker disabled id="disabled" {...sharedProps} />
       </Grid>
     </div>
   );
