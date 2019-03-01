@@ -151,6 +151,7 @@ export class DateTextField extends React.PureComponent<DateTextFieldProps> {
       prevProps.maxDate !== this.props.maxDate ||
       prevProps.minDate !== this.props.minDate ||
       prevProps.emptyLabel !== this.props.emptyLabel ||
+      prevProps.labelFunc !== this.props.labelFunc ||
       prevProps.utils !== this.props.utils
     ) {
       this.setState(DateTextField.getStateFromProps(this.props));
