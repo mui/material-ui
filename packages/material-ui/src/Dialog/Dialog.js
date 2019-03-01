@@ -68,9 +68,9 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
-    maxWidth: Math.max(theme.breakpoints.values.xs, 360),
+    maxWidth: Math.max(theme.breakpoints.values.xs, 396),
     '&$paperScrollBody': {
-      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 360) + 48 * 2)]: {
+      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 396) + 48 * 2)]: {
         margin: 48,
       },
     },
@@ -286,10 +286,9 @@ Dialog.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * Determine the max width of the dialog.
-   * The dialog width grows with the size of the screen, this property is useful
-   * on the desktop where you might need some coherent different width size across your
-   * application. Set to `false` to disable `maxWidth`.
+   * Determine the max-width of the dialog.
+   * The dialog width grows with the size of the screen.
+   * Set to `false` to disable `maxWidth`.
    */
   maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
   /**

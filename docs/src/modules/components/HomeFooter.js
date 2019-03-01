@@ -5,14 +5,12 @@ import Interpolate from '@trendmicro/react-interpolate';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/lab/Container';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   root: {
-    // To replace with a layout component.
-    maxWidth: theme.breakpoints.values.md,
-    margin: 'auto',
     padding: theme.spacing(3, 2),
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(6, 2),
@@ -36,7 +34,7 @@ function HomeFooter(props) {
   const { classes, t } = props;
 
   return (
-    <footer className={classes.root}>
+    <Container component="footer" className={classes.root}>
       <Typography variant="h6" gutterBottom>
         {t('quickLinks')}
       </Typography>
@@ -103,7 +101,7 @@ function HomeFooter(props) {
           {t('homeFooterRelease')}
         </Interpolate>
       </Typography>
-    </footer>
+    </Container>
   );
 }
 

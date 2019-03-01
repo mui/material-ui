@@ -13,7 +13,7 @@ const styles = theme => ({
   },
   hideCredit: {
     position: 'absolute',
-    top: 0,
+    top: -100,
   },
 });
 
