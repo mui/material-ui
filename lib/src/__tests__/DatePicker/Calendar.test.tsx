@@ -6,15 +6,25 @@ import { shallowRender, utilsToUse } from '../test-utils';
 describe('Calendar', () => {
   let component: ShallowWrapper<CalendarProps>;
 
+  const onChangeMock = jest.fn();
+  const onMonthChangeMock = jest.fn();
+
   beforeEach(() => {
     component = shallowRender(props => (
-      <Calendar date={utilsToUse.date('01-01-2017')} onChange={jest.fn()} {...props} />
+      <Calendar
+        date={utilsToUse.date('01-01-2017')}
+        onMonthChange={onMonthChangeMock}
+        onChange={onChangeMock}
+        {...props}
+      />
     ));
   });
 
-  it('Should renders', () => {
-    // console.log(component.debug());
-    expect(component).toBeTruthy();
+  it('Should swipe between month', () => {
+    component.find('WithUtils(WithStyles(CalendarHeader))').prop<any>('onMonthChange')(
+      utilsToUse.date()
+    );
+    expect(onMonthChangeMock).toHaveBeenCalled();
   });
 });
 
@@ -48,6 +58,7 @@ describe('Calendar - keyboard control', () => {
   const onChangeMock = jest.fn();
 
   beforeEach(() => {
+    jest.resetAllMocks();
     component = shallowRender(props => (
       <Calendar
         date={utilsToUse.date('01-01-2017')}
@@ -61,22 +72,34 @@ describe('Calendar - keyboard control', () => {
   });
 
   it('Should render go to prev week on up', () => {
-    component.find('EventListener').simulate('keyDown', { keyCode: 38, preventDefault: jest.fn() });
+    component.find('EventListener').prop<any>('onKeyDown')({
+      key: 'ArrowUp',
+      preventDefault: jest.fn(),
+    });
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should render go to next week on down', () => {
-    component.find('EventListener').simulate('keyDown', { keyCode: 40, preventDefault: jest.fn() });
+    component.find('EventListener').prop<any>('onKeyDown')({
+      key: 'ArrowDown',
+      preventDefault: jest.fn(),
+    });
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should render go to prev week on up', () => {
-    component.find('EventListener').simulate('keyDown', { keyCode: 37, preventDefault: jest.fn() });
+    component.find('EventListener').prop<any>('onKeyDown')({
+      key: 'ArrowLeft',
+      preventDefault: jest.fn(),
+    });
     expect(onChangeMock).toHaveBeenCalled();
   });
 
   it('Should render go to prev week on up', () => {
-    component.find('EventListener').simulate('keyDown', { keyCode: 39, preventDefault: jest.fn() });
+    component.find('EventListener').prop<any>('onKeyDown')({
+      key: 'ArrowRight',
+      preventDefault: jest.fn(),
+    });
     expect(onChangeMock).toHaveBeenCalled();
   });
 });
