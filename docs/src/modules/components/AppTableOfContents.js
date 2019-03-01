@@ -50,7 +50,7 @@ const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
       }`,
     },
-    '&$active': {
+    '&$active,&:active': {
       borderLeft: `4px solid ${
         theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
       }`,
@@ -64,52 +64,38 @@ const styles = theme => ({
 
 const renderer = new marked.Renderer();
 
-function setRenderer(itemsCollectorRef) {
+function setRenderer(itemsCollector, unique) {
   renderer.heading = (text, level) => {
     if (level === 2) {
-      itemsCollectorRef.current.push({
+      itemsCollector.current.push({
         text,
         level,
-        hash: textToHash(text),
+        hash: textToHash(text, unique),
         children: [],
       });
     } else if (level === 3) {
-      if (!itemsCollectorRef.current[itemsCollectorRef.current.length - 1]) {
+      if (!itemsCollector.current[itemsCollector.current.length - 1]) {
         throw new Error(`Missing parent level for: ${text}`);
       }
 
-      itemsCollectorRef.current[itemsCollectorRef.current.length - 1].children.push({
+      itemsCollector.current[itemsCollector.current.length - 1].children.push({
         text,
         level,
-        hash: textToHash(text),
+        hash: textToHash(text, unique),
       });
     }
   };
 }
 
-function getItemsServer(contents, itemsCollectorRef) {
-  itemsCollectorRef.current = [];
-  marked(contents.join(''), {
-    renderer,
-  });
-
-  return itemsCollectorRef.current;
-}
-
-function checkDuplication(uniq, item) {
-  warning(!uniq[item.hash], `Table of content: duplicated \`${item.hash}\` item`);
-
-  if (!uniq[item.hash]) {
-    uniq[item.hash] = true;
-  }
+function getItemsServer(contents, itemsCollector) {
+  marked(contents.join(''), { renderer });
+  return itemsCollector.current;
 }
 
 function getItemsClient(items) {
   const itemsClient = [];
-  const unique = {};
 
   items.forEach(item2 => {
-    checkDuplication(unique, item2);
     itemsClient.push({
       ...item2,
       node: document.getElementById(item2.hash),
@@ -117,7 +103,6 @@ function getItemsClient(items) {
 
     if (item2.children.length > 0) {
       item2.children.forEach(item3 => {
-        checkDuplication(unique, item3);
         itemsClient.push({
           ...item3,
           node: document.getElementById(item3.hash),
@@ -128,30 +113,40 @@ function getItemsClient(items) {
   return itemsClient;
 }
 
-function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => throttle(callback, delay), [callback, delay]);
+const noop = () => {};
 
-  /* eslint-disable-next-line consistent-return */
+function useThrottledOnScroll(callback, delay) {
+  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
+    callback,
+    delay,
+  ]);
+
   React.useEffect(() => {
-    if (delay != null) {
-      window.addEventListener('scroll', throttledCallback);
-      return () => {
-        throttledCallback.cancel();
-        window.removeEventListener('scroll', throttledCallback);
-      };
-    }
-  }, [delay, throttledCallback]);
+    window.addEventListener('scroll', throttledCallback);
+    return () => {
+      window.removeEventListener('scroll', throttledCallback);
+      throttledCallback.cancel();
+    };
+  }, [throttledCallback]);
 }
 
 function AppTableOfContents(props) {
   const { classes, contents, t } = props;
-  const itemsCollectorRef = React.useRef([]);
-  const [itemsServer, setItemsServer] = React.useState([]);
+
+  const itemsServer = React.useMemo(() => {
+    const itemsCollectorRef = { current: [] };
+    setRenderer(itemsCollectorRef, {});
+    return getItemsServer(contents, itemsCollectorRef);
+  }, [contents]);
+
   const itemsClientRef = React.useRef([]);
+  React.useEffect(() => {
+    itemsClientRef.current = getItemsClient(itemsServer);
+  }, [itemsServer]);
+
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
-
   const findActiveIndex = React.useCallback(() => {
     // Don't set the active index based on scroll if a link was just clicked
     if (clickedRef.current) {
@@ -182,48 +177,11 @@ function AppTableOfContents(props) {
 
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
-
-      window.history.replaceState(
-        null,
-        null,
-        active.hash === null
-          ? `${window.location.pathname}${window.location.search}`
-          : `#${active.hash}`,
-      );
     }
   }, [activeState]);
 
-  // Update the active TOC entry if the hash changes through click on '#' icon
-  const handleHashChange = () => {
-    const hash = window.location.hash.substring(1);
-
-    if (activeState !== hash) {
-      setActiveState(hash);
-    }
-  };
-
   // Corresponds to 10 frames at 60 Hz
-  useThrottledOnScroll(findActiveIndex, itemsServer.length > 0 ? 166 : null);
-
-  React.useEffect(() => {
-    setRenderer(itemsCollectorRef);
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return function componentWillUnmount() {
-      clearTimeout(unsetClickedRef.current);
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, [handleHashChange]);
-
-  React.useEffect(() => {
-    setItemsServer(getItemsServer(contents, itemsCollectorRef));
-  }, [contents]);
-
-  React.useEffect(() => {
-    itemsClientRef.current = getItemsClient(itemsCollectorRef.current);
-    findActiveIndex();
-  }, [findActiveIndex]);
+  useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
 
   const handleClick = hash => () => {
     // Used to disable findActiveIndex if the page scrolls due to a click
@@ -237,6 +195,30 @@ function AppTableOfContents(props) {
     }
   };
 
+  React.useEffect(
+    () => () => {
+      clearTimeout(unsetClickedRef.current);
+    },
+    [],
+  );
+
+  const itemLink = (item, secondary) => (
+    <Link
+      display="block"
+      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
+      href={`#${item.hash}`}
+      underline="none"
+      onClick={handleClick(item.hash)}
+      className={clsx(
+        classes.item,
+        { [classes.secondaryItem]: secondary },
+        activeState === item.hash ? classes.active : undefined,
+      )}
+    >
+      <span dangerouslySetInnerHTML={{ __html: item.text }} />
+    </Link>
+  );
+
   return (
     <nav className={classes.root}>
       {itemsServer.length > 0 ? (
@@ -247,38 +229,11 @@ function AppTableOfContents(props) {
           <Typography component="ul" className={classes.ul}>
             {itemsServer.map(item2 => (
               <li key={item2.text}>
-                <Link
-                  display="block"
-                  color={activeState === item2.hash ? 'textPrimary' : 'textSecondary'}
-                  href={`#${item2.hash}`}
-                  underline="none"
-                  onClick={handleClick(item2.hash)}
-                  className={clsx(
-                    classes.item,
-                    activeState === item2.hash ? classes.active : undefined,
-                  )}
-                >
-                  <span dangerouslySetInnerHTML={{ __html: item2.text }} />
-                </Link>
+                {itemLink(item2)}
                 {item2.children.length > 0 ? (
                   <ul className={classes.ul}>
                     {item2.children.map(item3 => (
-                      <li key={item3.text}>
-                        <Link
-                          display="block"
-                          color={activeState === item3.hash ? 'textPrimary' : 'textSecondary'}
-                          href={`#${item3.hash}`}
-                          underline="none"
-                          onClick={handleClick(item3.hash)}
-                          className={clsx(
-                            classes.item,
-                            classes.secondaryItem,
-                            activeState === item3.hash ? classes.active : undefined,
-                          )}
-                        >
-                          <span dangerouslySetInnerHTML={{ __html: item3.text }} />
-                        </Link>
-                      </li>
+                      <li key={item3.text}>{itemLink(item3, true)}</li>
                     ))}
                   </ul>
                 ) : null}

@@ -89,6 +89,8 @@ function MarkdownDocs(props) {
   }
 
   const headers = getHeaders(markdown);
+  // eslint-disable-next-line no-underscore-dangle
+  global.__HASH_UNIQUE__ = {};
 
   return (
     <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
