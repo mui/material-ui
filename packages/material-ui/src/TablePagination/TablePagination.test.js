@@ -1,5 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
+import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
@@ -310,6 +311,7 @@ describe('<TablePagination />', () => {
 
     after(() => {
       consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning if the page prop is out of range', () => {

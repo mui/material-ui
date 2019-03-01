@@ -118,9 +118,6 @@ IconButton.propTypes = {
           'Firefox will never trigger the event.',
           'You should move the onClick listener to the parent button element.',
           'https://github.com/mui-org/material-ui/issues/13957',
-          // Change error message slightly on every check to prevent caching when testing
-          // which would not trigger console errors on subsequent fails
-          process.env.NODE_ENV === 'test' ? Date.now() : '',
         ].join('\n'),
       );
     }

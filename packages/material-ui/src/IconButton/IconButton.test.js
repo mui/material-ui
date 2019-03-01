@@ -116,6 +116,7 @@ describe('<IconButton />', () => {
 
     afterEach(() => {
       consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning', () => {

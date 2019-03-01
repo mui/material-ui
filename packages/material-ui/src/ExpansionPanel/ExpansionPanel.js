@@ -158,9 +158,7 @@ ExpansionPanel.propTypes = {
     if (summary.type === React.Fragment) {
       return new Error(
         "Material-UI: The ExpansionPanel doesn't accept a Fragment as a child. " +
-          `Consider providing an array instead.${
-            process.env.NODE_ENV === 'test' ? Date.now() : ''
-          }`,
+          'Consider providing an array instead.',
       );
     }
 
