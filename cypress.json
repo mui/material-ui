@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3002",
+  "baseUrl": "http://localhost:3000",
   "integrationFolder": "e2e/integration",
   "supportFile": "e2e/support/index.js",
   "chromeWebSecurity": false,

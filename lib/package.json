@@ -3,8 +3,8 @@
   "version": "2.2.1",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
-  "main": "build/dist/material-ui-pickers.cjs.js",
-  "module": "build/dist/material-ui-pickers.esm.js",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
   "typings": "./build/index.d.ts",
   "keywords": [
     "material-ui",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
   },
-  "homepage": "https://material-ui-pickers.firebaseapp.com/",
+  "homepage": "https://material-ui-pickers.dev/",
   "repository": {
     "type": "git",
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers"

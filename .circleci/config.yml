@@ -17,11 +17,11 @@ jobs:
             - v1-deps
       - run:
           name: Install Dependencies
-          command: npm ci && npx lerna bootstrap
+          command: yarn
       - save_cache:
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.npm
             - ~/.cache
-      - run: npx lerna run build
-      - run: npx lerna run serve & npx wait-on http://localhost:3002 && npm run e2e:run -- --record
+      - run: yarn workspace docs build
+      - run: yarn workspace docs start & npx wait-on http://localhost:3000 && npm run e2e:run -- --record

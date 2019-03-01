@@ -1,0 +1,53 @@
+import PageMeta from '_shared/PageMeta';
+import { NoSsr } from '@material-ui/core';
+import { CODESANDBOX_EXAMPLE_ID } from '_constants';
+
+<PageMeta title="Usage" description="Simple usage example of material-ui-pickers" />
+
+## Usage
+
+Material-UI-pickers rely only on material-ui controls and the date-management lib you have
+choose. Please note that all components are controlled, thats means that its required to pass `value` and `onChange` props.
+
+#### Quick start
+
+```jsx
+import React, { useState } from "react";
+import DateFnsUtils from "@date-io/date-fns"; // choose your lib
+import {
+  DatePicker,
+  TimePicker,
+  DateTimePicker
+  MuiPickersUtilsProvider,
+} from "material-ui-pickers";
+
+function App() {
+  const [selectedDate, handleDateChange] = useState(new Date());
+
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div className="pickers">
+        <DatePicker value={selectedDate} onChange={handleDateChange} />
+        <TimePicker value={selectedDate} onChange={handleDateChange} />
+        <DateTimePicker value={selectedDate} onChange={handleDateChange} />
+      </div>
+    </MuiPickersUtilsProvider>
+  );
+}
+
+```
+
+<NoSsr>
+  <iframe
+    title="codesandbox"
+    src={`https://codesandbox.io/embed/${CODESANDBOX_EXAMPLE_ID}?hidenavigation=1&fontsize=14&view=preview`}
+    style={{
+      width: '100%',
+      height: 650,
+      border: 0,
+      borderRadius: 4,
+      overflow: 'hidden',
+    }}
+    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+  />
+</NoSsr>

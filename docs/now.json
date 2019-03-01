@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "alias": "material-ui-pickers",
+  "build": {
+    "env": {
+      "IS_NOW": "true"
+    }
+  },
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }]
+}

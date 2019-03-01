@@ -5,6 +5,9 @@ node_modules
 dist
 build
 
+# TO REMOVE
+docs-old
+
 # logs
 logs
 *.log
@@ -16,9 +19,10 @@ yarn-error.log*
 # coverage
 coverage
 
-# Optional npm cache directory
+# Cache directory
 .npm
 cypress
+.next
 
 # Optional eslint cache
 .eslintcache

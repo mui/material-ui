@@ -1,0 +1,34 @@
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta'
+import * as CssOverrides from './CssOverrides.example'
+
+<PageMeta title="CSS Overrides" />
+
+## Override styles
+
+Default pickers appearance built based on material-ui theme provided. So pickers will take all
+colors/fonts/theme setting as any other material-ui component.
+
+*Date/Time pickers are quite simple control from UX side, so most people just use default appearence*
+
+Thats why we are not providing any for-component classes api to override stylesheet for particular
+component. Only one way to override existed stylesheet - usage of global material-ui theme
+overrides.
+
+#### Override example
+You can find the override component name and class in the generated classnames for pickers components.
+
+<Example source={CssOverrides} />
+
+
+#### Typescript
+For typescript users it's also required to extend default material-ui theme typings with pickers controls.
+(This will also autocomplete classnames)
+
+```typescript
+declare module '@material-ui/core/styles/overrides' {
+  import { MuiPickersOverrides } from 'material-ui-pickers/typings/overrides'
+
+  export interface Overrides extends MuiPickersOverrides { }
+}
+```

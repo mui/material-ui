@@ -1,0 +1,28 @@
+import Example from '_shared/Example'
+import PageMeta from '_shared/PageMeta'
+import PropTypesTable from '_shared/PropTypesTable'
+
+import * as BasicDateTimePicker from './BasicDateTimePicker.example'
+import * as InlineDateTimePicker from './InlineDateTimePicker.example'
+import * as CustomDateTimePicker from './CustomDateTimePicker.example'
+
+<PageMeta component="Date & Time picker" />
+
+## Date & Time picker
+
+This component combines material design date & time selection components. It allowes to select both date and time with one control.
+
+#### Basic usage
+
+<Example source={BasicDateTimePicker} />
+
+#### Inline mode
+
+<Example source={InlineDateTimePicker} />
+
+#### Customization
+Applied mostly all customization, that available for date & time pickers
+
+<Example source={CustomDateTimePicker} />
+
+<PropTypesTable src="DatePicker/DatePickerModal.tsx" />

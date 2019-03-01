@@ -1,20 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": ".",
     "allowJs": true,
-    "skipDefaultLibCheck": true,
-    "lib": ["es6", "dom"],
-    "skipLibCheck": false,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
-  },
-  "include": ["src"]
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "checkJs": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "material-ui-pickers": ["./material-ui-pickers-build"]
+    }
+  }
 }
