@@ -1,21 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount, unwrap } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import Input from '../Input';
-import InputLabel from '../InputLabel';
-import FormHelperText from '../FormHelperText';
 import FormControl from '../FormControl';
+import OutlinedInput from '../OutlinedInput';
 import TextField from './TextField';
-import Select from '../Select';
-
-const TextFieldNaked = unwrap(TextField);
 
 describe('<TextField />', () => {
-  let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow();
     mount = createMount();
   });
 
@@ -23,108 +17,108 @@ describe('<TextField />', () => {
     mount.cleanUp();
   });
 
-  describe('shallow', () => {
+  describe('mount', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<TextFieldNaked classes={{}} />);
+      wrapper = mount(<TextField />);
     });
 
     describe('structure', () => {
       it('should be a FormControl', () => {
-        assert.strictEqual(wrapper.type(), FormControl);
         wrapper.setProps({ className: 'foo' });
-        assert.strictEqual(wrapper.hasClass('foo'), true);
+        const formControl = wrapper.find(FormControl);
+        assert.strictEqual(formControl.exists(), true);
+        assert.strictEqual(formControl.hasClass('foo'), true);
       });
 
       it('should pass margin to the FormControl', () => {
         wrapper.setProps({ margin: 'normal' });
-        assert.strictEqual(wrapper.props().margin, 'normal');
+        assert.strictEqual(wrapper.find(FormControl).props().margin, 'normal');
       });
 
-      it('should have an Input as the only child', () => {
-        assert.strictEqual(wrapper.children().length, 1);
-        assert.strictEqual(wrapper.childAt(0).type(), Input);
+      it('should have an input as the only child', () => {
+        assert.strictEqual(wrapper.find(Input).length, 1);
       });
 
       it('should forward the multiline prop to Input', () => {
-        wrapper = shallow(<TextFieldNaked multiline classes={{}} />);
-        assert.strictEqual(wrapper.childAt(0).props().multiline, true);
+        wrapper = mount(<TextField multiline />);
+        assert.strictEqual(wrapper.find(Input).props().multiline, true);
       });
 
       it('should forward the fullWidth prop to Input', () => {
-        wrapper = shallow(<TextFieldNaked fullWidth classes={{}} />);
-        assert.strictEqual(wrapper.childAt(0).props().fullWidth, true);
+        wrapper = mount(<TextField fullWidth />);
+        assert.strictEqual(wrapper.find(Input).props().fullWidth, true);
       });
     });
 
     describe('with a label', () => {
       beforeEach(() => {
-        wrapper.setProps({ label: 'Foo bar' });
+        wrapper.setProps({ id: 'label-test', label: 'Foo bar' });
       });
 
-      it('should have 2 children', () => {
-        assert.strictEqual(wrapper.children().length, 2);
-        assert.strictEqual(wrapper.childAt(0).type(), InputLabel);
+      it('label the input', () => {
+        const input = wrapper.find('input#label-test');
+        const label = wrapper.find('label[htmlFor="label-test"]');
+
+        assert.strictEqual(input.exists(), true);
+        assert.strictEqual(label.exists(), true);
+        assert.strictEqual(label.text(), 'Foo bar');
       });
 
-      it('should apply the className to the InputLabel', () => {
+      it('should apply the className to the label', () => {
         wrapper.setProps({ InputLabelProps: { className: 'foo' } });
-        assert.strictEqual(wrapper.childAt(0).hasClass('foo'), true);
-      });
-
-      it('should have an Input as the second child', () => {
-        assert.strictEqual(wrapper.childAt(1).type(), Input);
+        assert.strictEqual(wrapper.find('label').hasClass('foo'), true);
       });
     });
 
     describe('with a helper text', () => {
-      beforeEach(() => {
-        wrapper.setProps({ helperText: 'Foo bar' });
-      });
+      let helperTextId;
+      /**
+       * @return {ReactWrapper} holding the DOM node with the helper text
+       */
+      function findHelperTextWrapper() {
+        return wrapper.find(`#${helperTextId}`).hostNodes();
+      }
 
-      it('should have 2 children', () => {
-        assert.strictEqual(wrapper.children().length, 2);
+      beforeEach(() => {
+        wrapper.setProps({ id: 'aria-test', helperText: 'Foo bar' });
+        helperTextId = wrapper.find('input').props()['aria-describedby'];
       });
 
       it('should apply the className to the FormHelperText', () => {
         wrapper.setProps({ FormHelperTextProps: { className: 'foo' } });
-        assert.strictEqual(wrapper.childAt(1).hasClass('foo'), true);
-      });
-
-      it('should have an Input as the first child', () => {
-        assert.strictEqual(wrapper.childAt(0).type(), Input);
-        assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
+        assert.strictEqual(findHelperTextWrapper().hasClass('foo'), true);
       });
 
       it('should add accessibility labels to the input', () => {
-        wrapper.setProps({ id: 'aria-test' });
-        assert.strictEqual(wrapper.childAt(0).props()['aria-describedby'], 'aria-test-helper-text');
+        assert.strictEqual(helperTextId.length > 0, true);
+        assert.strictEqual(findHelperTextWrapper().text(), 'Foo bar');
       });
     });
 
     describe('with an outline', () => {
       it('should set outline props', () => {
-        wrapper = shallow(<TextFieldNaked variant="outlined" classes={{}} />);
+        wrapper = mount(<TextField variant="outlined" classes={{}} />);
         assert.strictEqual(wrapper.props().variant, 'outlined');
         assert.strictEqual(
-          wrapper.find('WithStyles(OutlinedInput)').props().labelWidth,
+          wrapper.find(OutlinedInput).props().labelWidth,
           wrapper.instance().inputLabelNode ? wrapper.instance().inputLabelNode.offsetWidth : 0,
         );
       });
 
       it('should set shrink prop on outline from label', () => {
-        wrapper = shallow(
-          <TextFieldNaked variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
+        wrapper = mount(
+          <TextField variant="outlined" InputLabelProps={{ shrink: true }} classes={{}} />,
         );
-        assert.strictEqual(wrapper.find('WithStyles(OutlinedInput)').props().notched, true);
+        assert.strictEqual(wrapper.find(OutlinedInput).props().notched, true);
       });
     });
 
     describe('prop: InputProps', () => {
       it('should apply additional properties to the Input component', () => {
-        wrapper.setProps({ InputProps: { inputClassName: 'fullWidth' } });
-        assert.strictEqual(wrapper.find(Input).props().inputClassName, 'fullWidth');
+        wrapper.setProps({ InputProps: { inputclassname: 'fullWidth' } });
+        assert.strictEqual(wrapper.find(Input).props().inputclassname, 'fullWidth');
       });
     });
   });
@@ -140,24 +134,20 @@ describe('<TextField />', () => {
     it('should be able to render a select as expected', () => {
       const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
 
-      const wrapper = shallow(
-        <TextFieldNaked select SelectProps={{ native: true }} classes={{}}>
+      const wrapper = mount(
+        <TextField select SelectProps={{ native: true }}>
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
-        </TextFieldNaked>,
+        </TextField>,
       );
-      assert.strictEqual(wrapper.childAt(0).type(), Select);
-      assert.strictEqual(wrapper.childAt(0).props().input.type, Input);
-      assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .children()
-          .every('option'),
-        true,
-      );
+
+      const select = wrapper.find('select');
+
+      assert.strictEqual(select.exists(), true);
+      assert.strictEqual(select.children().every('option'), true);
     });
   });
 });

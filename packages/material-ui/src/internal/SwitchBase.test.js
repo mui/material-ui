@@ -92,7 +92,7 @@ describe('<SwitchBase />', () => {
   it('should render an icon and input inside the button by default', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} />);
     assert.strictEqual(
-      wrapper.find('IconButton').containsMatchingElement(
+      wrapper.containsMatchingElement(
         <span>
           {defaultProps.icon}
           <input type="checkbox" />
@@ -104,12 +104,12 @@ describe('<SwitchBase />', () => {
 
   it('should have a ripple by default', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} />);
-    assert.strictEqual(wrapper.find('IconButton').props().disableRipple, undefined);
+    assert.strictEqual(wrapper.find('TouchRipple').exists(), true);
   });
 
-  it('should pass disableRipple={true} to IconButton', () => {
+  it('can disable the ripple ', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} disableRipple />);
-    assert.strictEqual(wrapper.find('IconButton').props().disableRipple, true);
+    assert.strictEqual(wrapper.find('TouchRipple').exists(), false);
   });
 
   // className is put on the root node, this is a special case!
@@ -148,7 +148,7 @@ describe('<SwitchBase />', () => {
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = mount(<SwitchBase {...defaultProps} disabled />);
     assert.strictEqual(wrapper.find('ButtonBase').props().disabled, true);
-    assert.strictEqual(wrapper.find('IconButton').hasClass(classes.disabled), true);
+    assert.strictEqual(wrapper.find('ButtonBase').hasClass(classes.disabled), true);
   });
 
   it('should apply the custom disabled className when disabled', () => {

@@ -119,7 +119,7 @@ const defaultVariantMapping = {
   body2: 'p',
 };
 
-function Typography(props) {
+const Typography = React.forwardRef(function Typography(props, ref) {
   const {
     align,
     classes,
@@ -156,10 +156,11 @@ function Typography(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Typography.propTypes = {
   /**

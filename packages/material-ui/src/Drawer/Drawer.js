@@ -6,6 +6,7 @@ import withStyles from '../styles/withStyles';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import { duration } from '../styles/transitions';
 
 const oppositeDirection = {
@@ -119,6 +120,7 @@ class Drawer extends React.Component {
       classes,
       className,
       elevation,
+      innerRef,
       ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
       onClose,
       open,
@@ -146,7 +148,7 @@ class Drawer extends React.Component {
 
     if (variant === 'permanent') {
       return (
-        <div className={clsx(classes.root, classes.docked, className)} {...other}>
+        <div className={clsx(classes.root, classes.docked, className)} ref={innerRef} {...other}>
           {drawer}
         </div>
       );
@@ -183,6 +185,7 @@ class Drawer extends React.Component {
         className={clsx(classes.root, classes.modal, className)}
         open={open}
         onClose={onClose}
+        ref={innerRef}
         {...other}
         {...ModalProps}
       >
@@ -218,6 +221,11 @@ Drawer.propTypes = {
    * The elevation of the drawer.
    */
   elevation: PropTypes.number,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`Modal`](/api/modal/) element.
    */
@@ -266,4 +274,6 @@ Drawer.defaultProps = {
   variant: 'temporary', // Mobile first.
 };
 
-export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);
+export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(
+  withForwardedRef(Drawer),
+);

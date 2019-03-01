@@ -13,11 +13,18 @@ export const styles = {
   },
 };
 
-function Card(props) {
+const Card = React.forwardRef(function Card(props, ref) {
   const { classes, className, raised, ...other } = props;
 
-  return <Paper className={clsx(classes.root, className)} elevation={raised ? 8 : 1} {...other} />;
-}
+  return (
+    <Paper
+      className={clsx(classes.root, className)}
+      elevation={raised ? 8 : 1}
+      ref={ref}
+      {...other}
+    />
+  );
+});
 
 Card.propTypes = {
   /**

@@ -81,7 +81,7 @@ export const styles = theme => {
   };
 };
 
-function OutlinedInput(props) {
+const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
   const { classes, labelWidth, notched, ...other } = props;
 
   return (
@@ -102,10 +102,11 @@ function OutlinedInput(props) {
         root: clsx(classes.root, classes.underline),
         notchedOutline: null,
       }}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 OutlinedInput.propTypes = {
   /**

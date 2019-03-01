@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import { getDisplayName } from '@material-ui/utils';
+import { getDisplayName, hoistMuiStatics } from '@material-ui/utils';
 import makeStyles from './makeStyles';
 import RefHolder from './RefHolder';
 import getThemeProps from './getThemeProps';
-import hoistStatics from './hoistInternalStatics';
 import useTheme from './useTheme';
 
 // Link a style sheet with a component.
@@ -89,7 +88,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
-  hoistStatics(WithStyles, Component);
+  hoistMuiStatics(WithStyles, Component);
 
   return WithStyles;
 };

@@ -77,7 +77,7 @@ export const styles = theme => ({
  * Refer to the [Icons](/style/icons/) section of the documentation
  * regarding the available icon options.
  */
-function IconButton(props) {
+const IconButton = React.forwardRef(function IconButton(props, ref) {
   const { children, classes, className, color, disabled, ...other } = props;
 
   return (
@@ -93,12 +93,13 @@ function IconButton(props) {
       centerRipple
       focusRipple
       disabled={disabled}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 IconButton.propTypes = {
   /**
@@ -143,10 +144,6 @@ IconButton.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, the ripple will be disabled.
-   */
-  disableRipple: PropTypes.bool,
 };
 
 IconButton.defaultProps = {

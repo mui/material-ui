@@ -24,7 +24,7 @@ export const styles = theme => ({
   transition: {},
 });
 
-function StepContent(props) {
+const StepContent = React.forwardRef(function StepContent(props, ref) {
   const {
     active,
     alternativeLabel,
@@ -53,7 +53,7 @@ function StepContent(props) {
   }
 
   return (
-    <div className={clsx(classes.root, { [classes.last]: last }, className)} {...other}>
+    <div className={clsx(classes.root, { [classes.last]: last }, className)} ref={ref} {...other}>
       <TransitionComponent
         in={active}
         className={classes.transition}
@@ -65,7 +65,7 @@ function StepContent(props) {
       </TransitionComponent>
     </div>
   );
-}
+});
 
 StepContent.propTypes = {
   /**

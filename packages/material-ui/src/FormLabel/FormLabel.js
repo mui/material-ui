@@ -41,7 +41,7 @@ export const styles = theme => ({
   },
 });
 
-function FormLabel(props) {
+const FormLabel = React.forwardRef(function FormLabel(props, ref) {
   const {
     children,
     classes,
@@ -75,6 +75,7 @@ function FormLabel(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       {children}
@@ -90,7 +91,7 @@ function FormLabel(props) {
       )}
     </Component>
   );
-}
+});
 
 FormLabel.propTypes = {
   /**

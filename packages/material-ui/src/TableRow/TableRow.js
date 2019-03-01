@@ -44,7 +44,7 @@ export const styles = theme => ({
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-function TableRow(props) {
+const TableRow = React.forwardRef(function TableRow(props, ref) {
   const {
     classes,
     className: classNameProp,
@@ -67,11 +67,11 @@ function TableRow(props) {
           },
           classNameProp,
         );
-        return <Component className={className} {...other} />;
+        return <Component className={className} ref={ref} {...other} />;
       }}
     </Tablelvl2Context.Consumer>
   );
-}
+});
 
 TableRow.propTypes = {
   /**

@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import { isMuiElement } from '../utils/reactHelpers';
 import FormControlContext from './FormControlContext';
 
@@ -115,6 +116,7 @@ class FormControl extends React.Component {
       disabled,
       error,
       fullWidth,
+      innerRef,
       margin,
       required,
       variant,
@@ -148,6 +150,7 @@ class FormControl extends React.Component {
             },
             className,
           )}
+          ref={innerRef}
           {...other}
         />
       </FormControlContext.Provider>
@@ -187,6 +190,11 @@ FormControl.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin: PropTypes.oneOf(['none', 'dense', 'normal']),
@@ -210,4 +218,4 @@ FormControl.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);
+export default withStyles(styles, { name: 'MuiFormControl' })(withForwardedRef(FormControl));

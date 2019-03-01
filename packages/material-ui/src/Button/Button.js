@@ -185,7 +185,7 @@ export const styles = theme => ({
   },
 });
 
-function Button(props) {
+const Button = React.forwardRef(function Button(props, ref) {
   const {
     children,
     classes,
@@ -228,12 +228,13 @@ function Button(props) {
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 Button.propTypes = {
   /**

@@ -9,6 +9,7 @@ import FormControlContext from '../FormControl/FormControlContext';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
 import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import Textarea from './Textarea';
 import { isFilled } from './utils';
 
@@ -292,6 +293,7 @@ class InputBase extends React.Component {
       error,
       fullWidth,
       id,
+      innerRef,
       inputComponent,
       inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
@@ -394,7 +396,7 @@ class InputBase extends React.Component {
     }
 
     return (
-      <div className={className} onClick={this.handleClick} {...other}>
+      <div className={className} onClick={this.handleClick} ref={innerRef} {...other}>
         {renderPrefix
           ? renderPrefix({
               ...fcs,
@@ -487,6 +489,11 @@ InputBase.propTypes = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
@@ -606,4 +613,6 @@ InputBase.defaultProps = {
   type: 'text',
 };
 
-export default withStyles(styles, { name: 'MuiInputBase' })(withFormControlContext(InputBase));
+export default withStyles(styles, { name: 'MuiInputBase' })(
+  withForwardedRef(withFormControlContext(InputBase)),
+);

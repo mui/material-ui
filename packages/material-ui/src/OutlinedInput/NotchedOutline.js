@@ -43,7 +43,7 @@ export const styles = theme => {
 /**
  * @ignore - internal component.
  */
-function NotchedOutline(props) {
+const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
   const {
     children,
     classes,
@@ -66,6 +66,7 @@ function NotchedOutline(props) {
         ...style,
       }}
       className={clsx(classes.root, className)}
+      ref={ref}
       {...other}
     >
       <legend
@@ -83,7 +84,7 @@ function NotchedOutline(props) {
       </legend>
     </fieldset>
   );
-}
+});
 
 NotchedOutline.propTypes = {
   /**

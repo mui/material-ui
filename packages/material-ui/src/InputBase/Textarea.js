@@ -229,6 +229,7 @@ Textarea.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * @deprecated
    * Use that property to pass a ref callback to the native textarea element.
    */
   textareaRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

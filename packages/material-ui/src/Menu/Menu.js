@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
 
@@ -98,6 +99,7 @@ class Menu extends React.Component {
       children,
       classes,
       disableAutoFocusItem,
+      innerRef,
       MenuListProps,
       onEntering,
       PaperProps = {},
@@ -120,6 +122,7 @@ class Menu extends React.Component {
             root: classes.paper,
           },
         }}
+        ref={innerRef}
         {...other}
       >
         <MenuList
@@ -153,6 +156,11 @@ Menu.propTypes = {
    * If `true`, the selected / first menu item will not be auto focused.
    */
   disableAutoFocusItem: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`MenuList`](/api/menu-list/) element.
    */
@@ -219,4 +227,4 @@ Menu.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);
+export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(withForwardedRef(Menu));

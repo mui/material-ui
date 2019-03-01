@@ -94,7 +94,7 @@ export const styles = theme => ({
   },
 });
 
-function Tab(props) {
+const Tab = React.forwardRef(function Tab(props, ref) {
   const {
     classes,
     className,
@@ -137,6 +137,7 @@ function Tab(props) {
         },
         className,
       )}
+      ref={ref}
       role="tab"
       aria-selected={selected}
       disabled={disabled}
@@ -150,7 +151,7 @@ function Tab(props) {
       {indicator}
     </ButtonBase>
   );
-}
+});
 
 Tab.propTypes = {
   /**
@@ -185,6 +186,11 @@ Tab.propTypes = {
    * render the indicator.
    */
   indicator: PropTypes.node,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The label element.
    */

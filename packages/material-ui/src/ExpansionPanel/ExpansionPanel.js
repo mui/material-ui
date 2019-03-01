@@ -7,6 +7,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => {
   const transition = {
@@ -106,6 +107,7 @@ class ExpansionPanel extends React.Component {
       defaultExpanded,
       disabled,
       expanded: expandedProp,
+      innerRef,
       onChange,
       square,
       TransitionComponent,
@@ -128,6 +130,7 @@ class ExpansionPanel extends React.Component {
           className,
         )}
         elevation={1}
+        ref={innerRef}
         square={square}
         {...other}
       >
@@ -195,6 +198,11 @@ ExpansionPanel.propTypes = {
    */
   expanded: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Callback fired when the expand/collapse state is changed.
    *
    * @param {object} event The event source of the callback
@@ -222,4 +230,4 @@ ExpansionPanel.defaultProps = {
   TransitionComponent: Collapse,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);
+export default withStyles(styles, { name: 'MuiExpansionPanel' })(withForwardedRef(ExpansionPanel));

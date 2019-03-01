@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -92,6 +93,7 @@ class ToggleButton extends React.Component {
       className,
       disabled,
       disableFocusRipple,
+      innerRef,
       selected,
       ...other
     } = this.props;
@@ -108,6 +110,7 @@ class ToggleButton extends React.Component {
         )}
         disabled={disabled}
         focusRipple={!disableFocusRipple}
+        ref={innerRef}
         onClick={this.handleChange}
         {...other}
       >
@@ -146,6 +149,11 @@ ToggleButton.propTypes = {
   disableRipple: PropTypes.bool,
   /**
    * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * @ignore
    */
   onChange: PropTypes.func,
   /**
@@ -171,4 +179,4 @@ ToggleButton.defaultProps = {
 
 ToggleButton.muiName = 'ToggleButton';
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);
+export default withStyles(styles, { name: 'MuiToggleButton' })(withForwardedRef(ToggleButton));

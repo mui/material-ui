@@ -35,21 +35,22 @@ export const styles = theme => ({
   error: {},
 });
 
-function StepIcon(props) {
+const StepIcon = React.forwardRef(function StepIcon(props, ref) {
   const { completed, icon, active, error, classes } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     if (error) {
-      return <Warning className={clsx(classes.root, classes.error)} />;
+      return <Warning className={clsx(classes.root, classes.error)} ref={ref} />;
     }
     if (completed) {
-      return <CheckCircle className={clsx(classes.root, classes.completed)} />;
+      return <CheckCircle className={clsx(classes.root, classes.completed)} ref={ref} />;
     }
     return (
       <SvgIcon
         className={clsx(classes.root, {
           [classes.active]: active,
         })}
+        ref={ref}
       >
         <circle cx="12" cy="12" r="12" />
         <text className={classes.text} x="12" y="16" textAnchor="middle">
@@ -60,7 +61,7 @@ function StepIcon(props) {
   }
 
   return icon;
-}
+});
 
 StepIcon.propTypes = {
   /**

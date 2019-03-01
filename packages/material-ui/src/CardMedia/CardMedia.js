@@ -20,7 +20,7 @@ export const styles = {
 
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 
-function CardMedia(props) {
+const CardMedia = React.forwardRef(function CardMedia(props, ref) {
   const { classes, className, component: Component, image, src, style, ...other } = props;
 
   warning(
@@ -41,12 +41,13 @@ function CardMedia(props) {
         },
         className,
       )}
+      ref={ref}
       style={composedStyle}
       src={isMediaComponent ? image || src : undefined}
       {...other}
     />
   );
-}
+});
 
 CardMedia.propTypes = {
   /**

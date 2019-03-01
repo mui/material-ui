@@ -29,7 +29,7 @@ export const styles = {
   completed: {},
 };
 
-function Step(props) {
+const Step = React.forwardRef(function Step(props, ref) {
   const {
     active,
     alternativeLabel,
@@ -56,7 +56,7 @@ function Step(props) {
   );
 
   return (
-    <div className={className} {...other}>
+    <div className={className} ref={ref} {...other}>
       {connector &&
         alternativeLabel &&
         index !== 0 &&
@@ -94,7 +94,7 @@ function Step(props) {
       })}
     </div>
   );
-}
+});
 
 Step.propTypes = {
   /**

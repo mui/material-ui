@@ -28,7 +28,7 @@ export const styles = {
   },
 };
 
-function Stepper(props) {
+const Stepper = React.forwardRef(function Stepper(props, ref) {
   const {
     activeStep,
     alternativeLabel,
@@ -90,11 +90,11 @@ function Stepper(props) {
   });
 
   return (
-    <Paper square elevation={0} className={className} {...other}>
+    <Paper square elevation={0} className={className} ref={ref} {...other}>
       {steps}
     </Paper>
   );
-}
+});
 
 Stepper.propTypes = {
   /**

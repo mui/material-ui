@@ -431,6 +431,11 @@ Popover.propTypes = {
    */
   getContentAnchorEl: PropTypes.func,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold: PropTypes.number,
