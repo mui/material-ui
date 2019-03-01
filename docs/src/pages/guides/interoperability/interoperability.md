@@ -261,7 +261,7 @@ export default EmotionCSS;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### E. Styled Components
+### Styled Components
 
 The `styled()` method works perfectly on all of our components.
 
@@ -302,7 +302,7 @@ export default EmotionStyled;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### E. Deeper elements
+### Deeper elements
 
 In some cases, the approaches above will not work.
 For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `permanent`,
@@ -351,7 +351,7 @@ export default EmotionDeep;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### E. ThemeProvider
+### ThemeProvider
 
 Material-UI has a rich theme structure that you can leverage for
 the color manipulations, the transitions, the media queries, and more.

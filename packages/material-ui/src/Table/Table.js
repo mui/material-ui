@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 import TableContext from './TableContext';
 
 export const styles = theme => ({
@@ -35,11 +36,11 @@ class Table extends React.Component {
   }
 
   render() {
-    const { classes, className, component: Component, padding, ...other } = this.props;
+    const { classes, className, component: Component, innerRef, padding, ...other } = this.props;
 
     return (
       <TableContext.Provider value={this.useMemo({ padding })}>
-        <Component className={clsx(classes.root, className)} {...other} />
+        <Component className={clsx(classes.root, className)} ref={innerRef} {...other} />
       </TableContext.Provider>
     );
   }
@@ -65,6 +66,11 @@ Table.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Allows TableCells to inherit padding of the Table.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
@@ -75,4 +81,4 @@ Table.defaultProps = {
   padding: 'default',
 };
 
-export default withStyles(styles, { name: 'MuiTable' })(Table);
+export default withStyles(styles, { name: 'MuiTable' })(withForwardedRef(Table));

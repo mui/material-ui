@@ -14,7 +14,7 @@ export const styles = theme => ({
   },
 });
 
-function BottomNavigation(props) {
+const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) {
   const {
     children: childrenProp,
     classes,
@@ -51,11 +51,11 @@ function BottomNavigation(props) {
   });
 
   return (
-    <Component className={className} {...other}>
+    <Component className={className} ref={ref} {...other}>
       {children}
     </Component>
   );
-}
+});
 
 BottomNavigation.propTypes = {
   /**

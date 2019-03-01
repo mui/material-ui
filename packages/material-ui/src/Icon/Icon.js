@@ -49,7 +49,7 @@ export const styles = theme => ({
   },
 });
 
-function Icon(props) {
+const Icon = React.forwardRef(function Icon(props, ref) {
   const { children, classes, className, color, component: Component, fontSize, ...other } = props;
 
   return (
@@ -64,12 +64,13 @@ function Icon(props) {
         className,
       )}
       aria-hidden="true"
+      ref={ref}
       {...other}
     >
       {children}
     </Component>
   );
-}
+});
 
 Icon.propTypes = {
   /**

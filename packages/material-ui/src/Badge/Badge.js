@@ -75,7 +75,7 @@ export const styles = theme => ({
   },
 });
 
-function Badge(props) {
+const Badge = React.forwardRef(function Badge(props, ref) {
   const {
     badgeContent,
     children,
@@ -108,12 +108,12 @@ function Badge(props) {
   }
 
   return (
-    <ComponentProp className={clsx(classes.root, className)} {...other}>
+    <ComponentProp className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
       <span className={badgeClassName}>{displayValue}</span>
     </ComponentProp>
   );
-}
+});
 
 Badge.propTypes = {
   /**

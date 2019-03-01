@@ -18,7 +18,6 @@ marked.Lexer.prototype.lex = function lex(src) {
 };
 
 const renderer = new marked.Renderer();
-
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.
   // It's reducing the risk of duplicated id and it's fewer elements in the DOM.
@@ -26,7 +25,8 @@ renderer.heading = (text, level) => {
     return `<h${level}>${text}</h${level}>`;
   }
 
-  const escapedText = textToHash(text);
+  // eslint-disable-next-line no-underscore-dangle
+  const escapedText = textToHash(text, global.__HASH_UNIQUE__);
 
   return (
     `

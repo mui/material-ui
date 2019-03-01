@@ -20,7 +20,7 @@ export const styles = theme => ({
   },
 });
 
-function Toolbar(props) {
+const Toolbar = React.forwardRef(function Toolbar(props, ref) {
   const { children, classes, className: classNameProp, disableGutters, variant, ...other } = props;
 
   const className = clsx(
@@ -33,11 +33,11 @@ function Toolbar(props) {
   );
 
   return (
-    <div className={className} {...other}>
+    <div className={className} ref={ref} {...other}>
       {children}
     </div>
   );
-}
+});
 
 Toolbar.propTypes = {
   /**

@@ -1,16 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
-import InputBase from '../InputBase';
+import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import OutlinedInput from './OutlinedInput';
 import NotchedOutline from './NotchedOutline';
 
 describe('<OutlinedInput />', () => {
-  let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'OutlinedInput' });
     mount = createMount();
   });
 
@@ -19,8 +16,8 @@ describe('<OutlinedInput />', () => {
   });
 
   it('should render a <div />', () => {
-    const wrapper = shallow(<OutlinedInput labelWidth={0} />);
-    assert.strictEqual(wrapper.type(), InputBase);
+    const wrapper = mount(<OutlinedInput labelWidth={0} />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
   });
 
   it('should mount', () => {

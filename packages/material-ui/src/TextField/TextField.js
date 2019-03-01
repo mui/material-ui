@@ -13,6 +13,7 @@ import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 
 const variantComponent = {
   standard: Input,
@@ -79,6 +80,7 @@ class TextField extends React.Component {
       fullWidth,
       helperText,
       id,
+      innerRef,
       InputLabelProps,
       inputProps,
       InputProps,
@@ -148,6 +150,7 @@ class TextField extends React.Component {
         className={clsx(classes.root, classNameProp)}
         error={error}
         fullWidth={fullWidth}
+        ref={innerRef}
         required={required}
         variant={variant}
         {...other}
@@ -233,6 +236,11 @@ TextField.propTypes = {
    * Use this property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`InputLabel`](/api/input-label/) element.
    */
@@ -330,4 +338,4 @@ TextField.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles(styles, { name: 'MuiTextField' })(TextField);
+export default withStyles(styles, { name: 'MuiTextField' })(withForwardedRef(TextField));

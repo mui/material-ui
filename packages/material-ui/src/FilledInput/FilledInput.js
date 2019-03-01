@@ -123,7 +123,7 @@ export const styles = theme => {
   };
 };
 
-function FilledInput(props) {
+const FilledInput = React.forwardRef(function FilledInput(props, ref) {
   const { disableUnderline, classes, ...other } = props;
 
   return (
@@ -135,10 +135,11 @@ function FilledInput(props) {
         }),
         underline: null,
       }}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 FilledInput.propTypes = {
   /**

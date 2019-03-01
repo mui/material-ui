@@ -39,7 +39,7 @@ export const styles = theme => ({
   },
 });
 
-function Checkbox(props) {
+const Checkbox = React.forwardRef(function Checkbox(props, ref) {
   const {
     checkedIcon,
     classes,
@@ -72,10 +72,11 @@ function Checkbox(props) {
         ...inputProps,
       }}
       icon={indeterminate ? indeterminateIcon : icon}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Checkbox.propTypes = {
   /**

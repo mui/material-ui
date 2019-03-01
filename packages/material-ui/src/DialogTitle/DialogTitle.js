@@ -13,15 +13,15 @@ export const styles = {
   },
 };
 
-function DialogTitle(props) {
+const DialogTitle = React.forwardRef(function DialogTitle(props, ref) {
   const { children, classes, className, disableTypography, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
       {disableTypography ? children : <Typography variant="h6">{children}</Typography>}
     </div>
   );
-}
+});
 
 DialogTitle.propTypes = {
   /**

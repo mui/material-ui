@@ -15,7 +15,7 @@ import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
-function Select(props) {
+const Select = React.forwardRef(function Select(props, ref) {
   const {
     autoWidth,
     children,
@@ -76,9 +76,10 @@ function Select(props) {
         : classes,
       ...(input ? input.props.inputProps : {}),
     },
+    ref,
     ...other,
   });
-}
+});
 
 Select.propTypes = {
   /**
@@ -118,6 +119,11 @@ Select.propTypes = {
    * Properties applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
+  /**
+   * @ignore
+   * from `withFormControlContext`
+   */
+  muiFormControl: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
    */

@@ -3,8 +3,8 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import {
   createMount,
-  createShallow,
   getClasses,
+  findOutermostIntrinsic,
   wrapsIntrinsicElement,
 } from '@material-ui/core/test-utils';
 import Slider, { defaultValueReducer } from './Slider';
@@ -16,11 +16,9 @@ function touchList(touchArray) {
 
 describe('<Slider />', () => {
   let mount;
-  let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Slider value={0} />);
     mount = createMount();
   });
@@ -33,19 +31,24 @@ describe('<Slider />', () => {
   }
 
   it('should render a div', () => {
-    const wrapper = shallow(<Slider value={0} />);
-    assert.strictEqual(wrapper.name(), 'div');
+    const wrapper = mount(<Slider value={0} />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
   });
 
   it('should render with the default classes', () => {
-    const wrapper = shallow(<Slider value={0} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = mount(<Slider value={0} />);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render with the default and user classes', () => {
-    const wrapper = shallow(<Slider value={0} className="mySliderClass" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('mySliderClass'), true);
+    const wrapper = mount(<Slider value={0} className="mySliderClass" />);
+    assert.strictEqual(
+      wrapper
+        .find(`.${classes.root}`)
+        .first()
+        .hasClass('mySliderClass'),
+      true,
+    );
   });
 
   it('should call handlers', () => {
@@ -208,9 +211,14 @@ describe('<Slider />', () => {
 
   describe('prop: vertical', () => {
     it('should render with the default and vertical classes', () => {
-      const wrapper = shallow(<Slider vertical value={0} />);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.vertical), true);
+      const wrapper = mount(<Slider vertical value={0} />);
+      assert.strictEqual(
+        wrapper
+          .find(`.${classes.root}`)
+          .first()
+          .hasClass(classes.vertical),
+        true,
+      );
     });
   });
 

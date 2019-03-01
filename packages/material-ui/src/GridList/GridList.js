@@ -16,7 +16,7 @@ export const styles = {
   },
 };
 
-function GridList(props) {
+const GridList = React.forwardRef(function GridList(props, ref) {
   const {
     cellHeight,
     children,
@@ -32,6 +32,7 @@ function GridList(props) {
   return (
     <Component
       className={clsx(classes.root, classNameProp)}
+      ref={ref}
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
@@ -64,7 +65,7 @@ function GridList(props) {
       })}
     </Component>
   );
-}
+});
 
 GridList.propTypes = {
   /**

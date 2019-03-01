@@ -13,9 +13,11 @@ export const styles = {
   },
 };
 
-function DialogContentText(props) {
-  return <Typography component="p" variant="subtitle1" color="textSecondary" {...props} />;
-}
+const DialogContentText = React.forwardRef(function DialogContentText(props, ref) {
+  return (
+    <Typography component="p" variant="subtitle1" color="textSecondary" ref={ref} {...props} />
+  );
+});
 
 DialogContentText.propTypes = {
   /**

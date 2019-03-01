@@ -1,7 +1,7 @@
 /**
  * Copies internal immediate statics from material-ui from source to target
  */
-export default function hoistStatics(target, source) {
+export default function hoistMuiStatics(target, source) {
   const internals = ['muiName'];
 
   for (let i = 0; i < internals.length; i += 1) {

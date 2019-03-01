@@ -35,19 +35,20 @@ export const styles = theme => ({
 /**
  * @ignore - internal component.
  */
-function SwipeArea(props) {
+const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
   const { anchor, classes, className, width, ...other } = props;
 
   return (
     <div
       className={clsx(classes.root, classes[`anchor${capitalize(anchor)}`], className)}
+      ref={ref}
       style={{
         [isHorizontal(props) ? 'width' : 'height']: width,
       }}
       {...other}
     />
   );
-}
+});
 
 SwipeArea.propTypes = {
   /**

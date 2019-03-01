@@ -13,15 +13,15 @@ export const styles = {
 
 const contextValue = { variant: 'footer' };
 
-function TableFooter(props) {
+const TableFooter = React.forwardRef(function TableFooter(props, ref) {
   const { classes, className, component: Component, ...other } = props;
 
   return (
     <Tablelvl2Context.Provider value={contextValue}>
-      <Component className={clsx(classes.root, className)} {...other} />
+      <Component className={clsx(classes.root, className)} ref={ref} {...other} />
     </Tablelvl2Context.Provider>
   );
-}
+});
 
 TableFooter.propTypes = {
   /**

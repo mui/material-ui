@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import withStyles from '../styles/withStyles';
+import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -91,10 +92,19 @@ class GridListTile extends React.Component {
   }
 
   render() {
-    const { children, classes, className, cols, component: Component, rows, ...other } = this.props;
+    const {
+      children,
+      classes,
+      className,
+      cols,
+      component: Component,
+      innerRef,
+      rows,
+      ...other
+    } = this.props;
 
     return (
-      <Component className={clsx(classes.root, className)} {...other}>
+      <Component className={clsx(classes.root, className)} ref={innerRef} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         <div className={classes.tile}>
           {React.Children.map(children, child => {
@@ -144,6 +154,11 @@ GridListTile.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Height of the tile in number of grid cells.
    */
   rows: PropTypes.number,
@@ -155,4 +170,4 @@ GridListTile.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(styles, { name: 'MuiGridListTile' })(withForwardedRef(GridListTile));

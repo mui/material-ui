@@ -35,7 +35,7 @@ export const styles = {
   },
 };
 
-function InputAdornment(props) {
+const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   const {
     children,
     component: Component,
@@ -76,6 +76,7 @@ function InputAdornment(props) {
           },
           className,
         )}
+        ref={ref}
         {...other}
       >
         {typeof children === 'string' && !disableTypography ? (
@@ -86,7 +87,7 @@ function InputAdornment(props) {
       </Component>
     </FormControlContext.Provider>
   );
-}
+});
 
 InputAdornment.propTypes = {
   /**
