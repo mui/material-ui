@@ -20,7 +20,7 @@ describe('<Container />', () => {
   });
 
   describe('prop: maxWidth', () => {
-    it('should support the different values', () => {
+    it('should support different maxWidth values', () => {
       let wrapper;
       wrapper = mount(<Container {...defaultProps} />);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.maxWidthLg), true);
