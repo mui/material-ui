@@ -67,7 +67,7 @@ export const styles = theme => ({
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     padding: 3,
-    fontSize: theme.typography.pxToRem(20),
+    fontSize: theme.typography.pxToRem(18),
   },
   /* Styles applied to the children container element. */
   label: {
