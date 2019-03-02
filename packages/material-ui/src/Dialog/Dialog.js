@@ -68,9 +68,9 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
-    maxWidth: Math.max(theme.breakpoints.values.xs, 396),
+    maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     '&$paperScrollBody': {
-      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 396) + 48 * 2)]: {
+      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 48 * 2)]: {
         margin: 48,
       },
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 
@@ -16,40 +16,44 @@ const styles = theme => ({
       paddingLeft: theme.spacing(3),
       paddingRight: theme.spacing(3),
     },
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(4),
+    },
   },
   fixed: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
     const value = theme.breakpoints.values[breakpoint];
 
     if (value !== 0) {
       acc[theme.breakpoints.up(breakpoint)] = {
-        maxWidth: value + theme.spacing(3) * 2,
+        maxWidth: value,
       };
     }
     return acc;
   }, {}),
   maxWidthXs: {
     [theme.breakpoints.up('xs')]: {
-      maxWidth: Math.max(theme.breakpoints.values.xs, 396) + theme.spacing(2) * 2,
+      maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     },
   },
   maxWidthSm: {
     [theme.breakpoints.up('sm')]: {
-      maxWidth: theme.breakpoints.values.sm + theme.spacing(3) * 2,
+      maxWidth: theme.breakpoints.values.sm,
     },
   },
   maxWidthMd: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: theme.breakpoints.values.md + theme.spacing(3) * 2,
+      maxWidth: theme.breakpoints.values.md,
     },
   },
   maxWidthLg: {
     [theme.breakpoints.up('lg')]: {
-      maxWidth: theme.breakpoints.values.lg + theme.spacing(3) * 2,
+      maxWidth: theme.breakpoints.values.lg,
     },
   },
   maxWidthXl: {
     [theme.breakpoints.up('xl')]: {
-      maxWidth: theme.breakpoints.values.xl + theme.spacing(3) * 2,
+      maxWidth: theme.breakpoints.values.xl,
     },
   },
 });
@@ -59,11 +63,11 @@ function Container(props) {
 
   return (
     <Component
-      className={classNames(
+      className={clsx(
         classes.root,
-        classes[`maxWidth${capitalize(maxWidth)}`],
         {
           [classes.fixed]: fixed,
+          [classes[`maxWidth${capitalize(String(maxWidth))}`]]: maxWidth !== false,
         },
         className,
       )}

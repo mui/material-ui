@@ -27,7 +27,7 @@ function HomeBackers(props) {
   return (
     <div className={classes.root}>
       <NoSsr>
-        <Container>
+        <Container maxWidth="md">
           <MarkdownElement className={classes.markdownElement} text={backers[userLanguage]} />
         </Container>
       </NoSsr>
