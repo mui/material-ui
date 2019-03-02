@@ -57,7 +57,7 @@ This property accepts the following keys:
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Popover/Popover.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Popover/Popover.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

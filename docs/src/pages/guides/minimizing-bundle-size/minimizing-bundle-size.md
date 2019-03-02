@@ -5,7 +5,7 @@
 ## Bundle size matters
 
 The bundle size of Material-UI is taken very seriously. We take size snapshots
-on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)). 
+on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](<(https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459)>) on every Pull Request.
 
@@ -32,7 +32,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 Anything not listed there should be considered **private**, and subject to change without notice.
 For example, the `Tabs` component is a public module while `TabIndicator` is private.
 

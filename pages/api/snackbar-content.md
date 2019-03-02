@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">action</span> | Styles applied to the action wrapper element if `action` is provided.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
