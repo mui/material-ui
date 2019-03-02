@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "./src/index.ts",
@@ -64,7 +64,7 @@
     "build:typescript": "tsc --project tsconfig.json",
     "build": "npm run build:typescript && npm run build:bundle && npm run build:copy",
     "build:analyze": "npm run build",
-    "release": "npm run test && npm run build && npm publish build",
+    "release": "npm run test && npm run build && yarn publish build",
     "lint": "tslint --project tsconfig.json"
   },
   "devDependencies": {

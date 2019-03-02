@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "yarn workspace docs dev",
-    "release": "yarn workspace lib release && yarn workspace docs deploy",
+    "release": "yarn workspace material-ui-pickers release && yarn workspace docs deploy",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run"
   },
