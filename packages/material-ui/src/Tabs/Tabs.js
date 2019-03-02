@@ -210,6 +210,10 @@ class Tabs extends React.Component {
     });
   };
 
+  handleTabsRef = ref => {
+    this.tabsRef = ref;
+  };
+
   moveTabsScroll = delta => {
     const { theme } = this.props;
 
@@ -388,9 +392,7 @@ class Tabs extends React.Component {
           <div
             className={scrollerClassName}
             style={this.state.scrollerStyle}
-            ref={ref => {
-              this.tabsRef = ref;
-            }}
+            ref={this.handleTabsRef}
             role="tablist"
             onScroll={this.handleTabsScroll}
           >
