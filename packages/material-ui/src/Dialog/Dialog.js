@@ -203,7 +203,7 @@ class Dialog extends React.Component {
         closeAfterTransition
         disableBackdropClick={disableBackdropClick}
         disableEscapeKeyDown={disableEscapeKeyDown}
-        onBackdropClick={onBackdropClick}
+        onBackdropClick={this.handleBackdropClick}
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         open={open}
@@ -222,12 +222,7 @@ class Dialog extends React.Component {
           onExited={onExited}
           {...TransitionProps}
         >
-          <div
-            className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-            onClick={this.handleBackdropClick}
-            onMouseDown={this.handleMouseDown}
-            role="document"
-          >
+          <div className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}>
             <PaperComponent
               elevation={24}
               {...PaperProps}
@@ -241,6 +236,7 @@ class Dialog extends React.Component {
                 },
                 PaperProps.className,
               )}
+              onMouseDown={this.handleMouseDown}
             >
               {children}
             </PaperComponent>
