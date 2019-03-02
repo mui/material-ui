@@ -57,6 +57,7 @@ const blacklistSuite = [
 
 const blacklistFilename = [
   'docs-demos-grid-list/tileData.png', // no component
+  'docs-css-in-js-basics/StressTest.png', // strange bug no time for it
   'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe

@@ -159,3 +159,18 @@ This button component has a color property that changes its color:
 ### Adapting higher-order component API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
+
+## Stress test
+
+In the following stress test, you can update the *theme color* and the *background-color property* live:
+
+```js
+const useStyles = makeStyles(theme => ({
+  root: props => ({
+    backgroundColor: props.backgroundColor,
+    color: theme.color,
+  }),
+}));
+```
+
+{{"demo": "pages/css-in-js/basics/StressTest.js"}}

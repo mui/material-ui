@@ -1,11 +1,14 @@
 import { assert } from 'chai';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme } from '@material-ui/core/styles';
+import createGenerateClassName from './createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
+import useTheme from './useTheme';
 import StylesProvider from './StylesProvider';
 import ThemeProvider from './ThemeProvider';
 
@@ -172,7 +175,7 @@ describe('makeStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
@@ -201,7 +204,7 @@ describe('makeStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
@@ -245,7 +248,7 @@ describe('makeStyles', () => {
             },
           })}
         >
-          <StylesProvider sheetsRegistry={sheetsRegistry}>
+          <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
@@ -267,7 +270,7 @@ describe('makeStyles', () => {
       };
 
       const Test = props => (
-        <StylesProvider sheetsRegistry={sheetsRegistry}>
+        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
           <StyledComponent {...props} />
         </StylesProvider>
       );
@@ -304,7 +307,7 @@ describe('makeStyles', () => {
       };
 
       const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration>
+        <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration sheetsCache={new Map()}>
           <StyledComponent />
         </StylesProvider>,
       );
@@ -337,7 +340,7 @@ describe('makeStyles', () => {
 
       const sheetsRegistry = new SheetsRegistry();
       const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry}>
+        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
           <StyledComponent />
         </StylesProvider>,
       );
@@ -351,7 +354,6 @@ describe('makeStyles', () => {
       act(() => {
         wrapper.setProps({});
       });
-
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
         root: { padding: 4 },
@@ -380,7 +382,7 @@ describe('makeStyles', () => {
       };
 
       mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry}>
+        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
           <StyledComponent1 />
           <StyledComponent2 />
         </StylesProvider>,
@@ -389,6 +391,120 @@ describe('makeStyles', () => {
       assert.strictEqual(sheetsRegistry.registry[0].options.name, undefined);
       assert.strictEqual(sheetsRegistry.registry[1].options.classNamePrefix, 'Fooo');
       assert.strictEqual(sheetsRegistry.registry[1].options.name, 'Fooo');
+    });
+  });
+
+  describe('stress test', () => {
+    let StressTest;
+
+    before(() => {
+      const useStyles = makeStyles(theme => ({
+        root: props => ({
+          backgroundColor: props.backgroundColor,
+          color: theme.color,
+        }),
+      }));
+
+      const Component = React.memo(props => {
+        const classes = useStyles(props);
+        const theme = useTheme();
+
+        const rendered = React.useRef(1);
+        React.useEffect(() => {
+          rendered.current += 1;
+        });
+
+        return (
+          <div className={classes.root}>
+            rendered {rendered.current} times
+            <br />
+            backgroundColor: {props.backgroundColor}
+            <br />
+            color: {theme.color}
+          </div>
+        );
+      });
+
+      Component.propTypes = {
+        backgroundColor: PropTypes.string.isRequired,
+      };
+
+      StressTest = () => {
+        const [backgroundColor, setBackgroundColor] = React.useState('black');
+        function handleBackgroundColorChange(event) {
+          setBackgroundColor(event.target.value);
+        }
+
+        const [color, setColor] = React.useState('white');
+        function handleColorChange(event) {
+          setColor(event.target.value);
+        }
+
+        const theme = React.useMemo(() => ({ color }), [color]);
+
+        return (
+          <ThemeProvider theme={theme}>
+            <fieldset>
+              <div>Color in theme, background-color in props</div>
+              <label htmlFor="background-color">background-color</label>
+              <input
+                id="background-color"
+                onChange={handleBackgroundColorChange}
+                value={backgroundColor}
+              />
+              <label htmlFor="color">color</label>
+              <input id="color" onChange={handleColorChange} value={color} />
+            </fieldset>
+            <Component backgroundColor={backgroundColor} />
+          </ThemeProvider>
+        );
+      };
+    });
+
+    it('should update like expected', () => {
+      const sheetsRegistry = new SheetsRegistry();
+
+      const wrapper = mount(
+        <StylesProvider
+          sheetsRegistry={sheetsRegistry}
+          sheetsCache={new Map()}
+          generateClassName={createGenerateClassName()}
+        >
+          <StressTest />
+        </StylesProvider>,
+      );
+      assert.strictEqual(sheetsRegistry.registry.length, 2);
+      assert.strictEqual(
+        sheetsRegistry.toString(),
+        `
+.Hook-root-1 {
+  color: white;
+  background-color: black;
+}`,
+      );
+
+      act(() => {
+        wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
+      });
+      assert.strictEqual(
+        sheetsRegistry.toString(),
+        `
+.Hook-root-2 {
+  color: blue;
+  background-color: black;
+}`,
+      );
+      act(() => {
+        wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
+      });
+      assert.strictEqual(
+        sheetsRegistry.toString(),
+        `
+.Hook-root-2 {
+  color: blue;
+  background-color: green;
+}`,
+      );
     });
   });
 });

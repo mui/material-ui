@@ -175,28 +175,6 @@ describe('withStyles', () => {
     });
   });
 
-  // To fix for a new pull request
-  // describe('HMR with same state', () => {
-  //   it('should take the new stylesCreator into account', () => {
-  //     const styles1 = { root: { padding: 1 } };
-  //     const StyledComponent1 = withStyles(styles1, { name: 'MuiTextField' })(Empty);
-  //     const wrapper = mount(<StyledComponent1 />);
-
-  //     const styles2 = { root: { padding: 2 } };
-  //     const StyledComponent2 = withStyles(styles2, { name: 'MuiTextField' })(Empty);
-
-  //     // Simulate react-hot-loader behavior
-  //     wrapper.instance().componentDidUpdate = StyledComponent2.prototype.componentDidUpdate;
-
-  //     const classes1 = wrapper.childAt(0).props().classes.root;
-  //     wrapper.setProps({});
-  //     wrapper.update();
-  //     const classes2 = wrapper.childAt(0).props().classes.root;
-
-  //     assert.notStrictEqual(classes1, classes2, 'should generate new classes');
-  //   });
-  // });
-
   describe('classname quality', () => {
     it('should use the displayName', () => {
       const sheetsRegistry = new SheetsRegistry();

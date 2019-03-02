@@ -10,10 +10,7 @@ import { increment } from './indexCounter';
 import getStylesCreator from './getStylesCreator';
 import noopTheme from './noopTheme';
 
-// Helper to debug
-// let id = 0;
-
-function getClasses({ classes, Component, state, stylesOptions }) {
+function getClasses({ state, stylesOptions }, classes, Component) {
   if (stylesOptions.disableGeneration) {
     return classes || {};
   }
@@ -53,7 +50,7 @@ function getClasses({ classes, Component, state, stylesOptions }) {
   return state.cacheClasses.value;
 }
 
-function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
+function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
   if (stylesOptions.disableGeneration) {
     return;
   }
@@ -93,7 +90,6 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
         link: false,
         ...options,
       });
-
       staticSheet.attach();
 
       if (stylesOptions.sheetsCache) {
@@ -105,8 +101,8 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
       sheetsRegistry.add(staticSheet);
     }
 
-    sheetManager.dynamicStyles = getDynamicStyles(styles);
     sheetManager.staticSheet = staticSheet;
+    sheetManager.dynamicStyles = getDynamicStyles(styles);
   }
 
   if (sheetManager.dynamicStyles) {
@@ -116,19 +112,17 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
     });
 
     warning(props, 'Material-UI: properties missing.');
-
     dynamicSheet.update(props).attach();
 
     state.dynamicSheet = dynamicSheet;
-
-    if (sheetsRegistry) {
-      sheetsRegistry.add(dynamicSheet);
-    }
-
     state.classes = mergeClasses({
       baseClasses: sheetManager.staticSheet.classes,
       newClasses: dynamicSheet.classes,
     });
+
+    if (sheetsRegistry) {
+      sheetsRegistry.add(dynamicSheet);
+    }
   } else {
     state.classes = sheetManager.staticSheet.classes;
   }
@@ -136,7 +130,7 @@ function attach({ state, props, theme, stylesOptions, stylesCreator, name }) {
   sheetManager.refs += 1;
 }
 
-function update({ state, props }) {
+function update({ state }, props) {
   if (state.dynamicSheet) {
     state.dynamicSheet.update(props);
   }
@@ -154,7 +148,6 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
   if (sheetManager.refs === 0) {
     multiKeyStore.delete(stylesOptions.sheetsManager, stylesCreator, theme);
     stylesOptions.jss.removeStyleSheet(sheetManager.staticSheet);
-
     if (sheetsRegistry) {
       sheetsRegistry.remove(sheetManager.staticSheet);
     }
@@ -162,11 +155,37 @@ function detach({ state, theme, stylesOptions, stylesCreator }) {
 
   if (state.dynamicSheet) {
     stylesOptions.jss.removeStyleSheet(state.dynamicSheet);
-
     if (sheetsRegistry) {
       sheetsRegistry.remove(state.dynamicSheet);
     }
   }
+}
+
+function useSynchronousEffect(func, values) {
+  const ref = React.useRef([]);
+  let output;
+
+  if (ref.current.length !== values.length) {
+    ref.current = values;
+    output = func();
+  } else {
+    for (let i = 0; i < values.length; i += 1) {
+      if (values[i] !== ref.current[i]) {
+        ref.current = values;
+        output = func();
+        break;
+      }
+    }
+  }
+
+  React.useEffect(
+    () => () => {
+      if (output) {
+        output();
+      }
+    },
+    values,
+  );
 }
 
 function makeStyles(stylesOrCreator, options = {}) {
@@ -199,55 +218,35 @@ function makeStyles(stylesOrCreator, options = {}) {
       ...stylesOptions2,
     };
 
-    const { current: state } = React.useRef({});
+    const instance = React.useRef();
+    const shouldUpdate = React.useRef();
 
-    // Execute synchronously every time the theme changes.
-    React.useMemo(() => {
-      attach({
+    useSynchronousEffect(() => {
+      const current = {
         name,
-        props,
-        state,
+        state: {},
         stylesCreator,
         stylesOptions,
         theme,
-      });
+      };
+
+      attach(current, props);
+
+      shouldUpdate.current = false;
+      instance.current = current;
+      return () => {
+        detach(current);
+      };
     }, [theme, stylesCreator]);
 
-    const firstRender = React.useRef(true);
     React.useEffect(() => {
-      if (!firstRender.current) {
-        update({
-          props,
-          state,
-          stylesCreator,
-          stylesOptions,
-          theme,
-        });
+      if (shouldUpdate.current) {
+        update(instance.current, props);
       }
+      shouldUpdate.current = true;
     });
-    React.useEffect(() => {
-      firstRender.current = false;
-    }, []);
 
-    // Execute asynchronously every time the theme changes.
-    React.useEffect(
-      () => () => {
-        detach({
-          state,
-          stylesCreator,
-          stylesOptions,
-          theme,
-        });
-      },
-      [theme, stylesCreator],
-    );
-
-    return getClasses({
-      classes: props.classes,
-      Component,
-      state,
-      stylesOptions,
-    });
+    return getClasses(instance.current, props.classes, Component);
   };
 }
 
