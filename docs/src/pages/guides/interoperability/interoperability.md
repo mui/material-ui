@@ -21,6 +21,7 @@ We have provided examples for the following styling solutions:
 Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been working for decades?
 
 **RawCssButton.css**
+
 ```css
 .button {
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -29,11 +30,12 @@ Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been worki
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 }
 ```
 
 **RawCssButton.js**
+
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
@@ -41,12 +43,8 @@ import Button from '@material-ui/core/Button';
 function RawCssButton() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <Button className="button">
-        Raw CSS
-      </Button>
+      <Button>Material-UI</Button>
+      <Button className="button">Raw CSS</Button>
     </div>
   );
 }
@@ -77,18 +75,14 @@ const StyledButton = styled(Button)`
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 `;
 
 function StyledComponents() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <StyledButton>
-        Styled Components
-      </StyledButton>
+      <Button>Material-UI</Button>
+      <StyledButton>Styled Components</StyledButton>
     </div>
   );
 }
@@ -162,6 +156,42 @@ export default StyledComponentsDeep;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
+### Portals
+
+Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.  
+Because of the way styled-components scopes it's CSS, you may run into issues where styling is not applied.
+
+For example, if you attempt to style the [Menu](/demos/menus/) of a [Select](/demos/selects/) component using the property `MenuProps`,
+you will will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy.  
+The following example shows this work around:
+
+```jsx
+import React from 'react';
+import styled from 'styled-components';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
+const StyledSelect = styled(({ className, ...props }) => (
+  <Select {...props} MenuProps={{ classes: { paper: className } }} />
+))`
+  background-color: lightgrey;
+`;
+
+function StyledComponentsPortal() {
+  return (
+    <div>
+      <StyledSelect>
+        <MenuItem value={1}>1</MenuItem>
+        <MenuItem value={2}>2</MenuItem>
+        <MenuItem value={3}>3</MenuItem>
+      </StyledSelect>
+    </div>
+  );
+}
+
+export default StyledComponentsPortal;
+```
+
 ### ThemeProvider
 
 Material-UI has a rich theme structure that you can leverage for
@@ -177,6 +207,7 @@ It's hard to know the market share of [this styling solution](https://github.com
 bundling solution people are using.
 
 **CssModulesButton.css**
+
 ```css
 .button {
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -185,11 +216,12 @@ bundling solution people are using.
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 }
 ```
 
 **CssModulesButton.js**
+
 ```jsx
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
@@ -199,12 +231,8 @@ import Button from '@material-ui/core/Button';
 function CssModulesButton() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <Button className={styles.button}>
-        CSS Modules
-      </Button>
+      <Button>Material-UI</Button>
+      <Button className={styles.button}>CSS Modules</Button>
     </div>
   );
 }
@@ -227,8 +255,8 @@ Emotion's **css()** method works seamlessly with Material-UI.
 
 ```jsx
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import Button from "@material-ui/core/Button";
+import { jsx, css } from '@emotion/core';
+import Button from '@material-ui/core/Button';
 
 // We just assign them the Button's className attribute
 function EmotionCSS() {
@@ -277,18 +305,14 @@ const StyledButton = styled(Button)`
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 `;
 
 function EmotionStyled() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <StyledButton>
-        Emotion
-      </StyledButton>
+      <Button>Material-UI</Button>
+      <StyledButton>Emotion</StyledButton>
     </div>
   );
 }
@@ -365,6 +389,7 @@ Rest assured, we provide an option to make the class names **deterministic** for
 prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css).
 
 **GlobalCssButton.css**
+
 ```css
 .MuiButton-root {
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -373,11 +398,12 @@ prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css).
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
 }
 ```
 
 **GlobalCssButton.js**
+
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
@@ -385,9 +411,7 @@ import Button from '@material-ui/core/Button';
 function GlobalCssButton() {
   return (
     <div>
-      <Button>
-        Global CSS
-      </Button>
+      <Button>Global CSS</Button>
     </div>
   );
 }
@@ -448,20 +472,22 @@ export default injectSheet(styles)(ReactJssButton);
 The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order component. It provides a few hooks for accessing the theme from within the CSS.
 
 **webpack.config.js**
+
 ```js
 module.exports = {
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [ 'css-to-mui-loader' ]
-      }
-    ]
-  }
-}
+        use: ['css-to-mui-loader'],
+      },
+    ],
+  },
+};
 ```
 
 **CssToMuiButton.css**
+
 ```css
 .button {
   background: $(theme.palette.primary.main);
@@ -480,15 +506,14 @@ module.exports = {
 ```
 
 **CssToMuiButton.js**
+
 ```js
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './CssToMuiButton.css';
 
 const CssToMuiButton = withStyles(styles)(({ classes }) => (
-  <Button className={classes.button}>
-    CSS to MUI Button
-  </Button>
+  <Button className={classes.button}>CSS to MUI Button</Button>
 ));
 ```
 
@@ -526,12 +551,8 @@ const className = buttonClasses.toString();
 function GlamorButton() {
   return (
     <div>
-      <Button>
-        Material-UI
-      </Button>
-      <Button className={className}>
-        Glamor
-      </Button>
+      <Button>Material-UI</Button>
+      <Button className={className}>Glamor</Button>
     </div>
   );
 }
