@@ -162,48 +162,41 @@ export default StyledComponentsDeep;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### Portals
-
-Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.  
-Because of the way styled-components scopes it's CSS, you may run into issues where styling is not applied.
-
-For example, if you attempt to style the [Menu](/demos/menus/) of a [Select](/demos/selects/) component using the property `MenuProps`,
-you will will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy.  
-The following example shows this work around:
-
-```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-
-const StyledSelect = styled(({ className, ...props }) => (
-  <Select {...props} MenuProps={{ classes: { paper: className } }} />
-))`
-  background-color: lightgrey;
-`;
-
-function StyledComponentsPortal() {
-  return (
-    <div>
-      <StyledSelect>
-        <MenuItem value={1}>1</MenuItem>
-        <MenuItem value={2}>2</MenuItem>
-        <MenuItem value={3}>3</MenuItem>
-      </StyledSelect>
-    </div>
-  );
-}
-
-export default StyledComponentsPortal;
-```
-
 ### ThemeProvider
 
 Material-UI has a rich theme structure that you can leverage for
 the color manipulations, the transitions, the media queries, and more.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
+
+### Portals
+
+The [Portal](/utils/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Because of the way styled-components scopes it's CSS, you may run into issues where styling is not applied.
+
+For example, if you attempt to style the [Menu](/demos/menus/) of a [Select](/demos/selects/) component using the property `MenuProps`,
+you will will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy.
+The following example shows a workaround:
+
+```jsx
+import React from 'react';
+import styled from 'styled-components';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+const StyledMenu = styled(({ className, ...props }) => (
+  <Menu {...props} classes={{ paper: className }} />
+))`
+  box-shadow: none;
+  border: 1px solid #d3d4d5;
+  li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+`;
+```
+
+{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
 
 ## CSS Modules
 
