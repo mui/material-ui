@@ -2,7 +2,7 @@
 
 <p class="description">Un aperçu de l'équipe fondatrice et des principaux contributeurs à Material-UI.</p>
 
-Material-UI est géré par un petit groupe de contributeurs essentiels, avec le soutien et la participation massifs de notre communauté. Le développement du projet et de son écosystème est guidé par une équipe internationale, dont certaines ont choisi de figurer ci-dessous.
+Material-UI est géré par un petit groupe de contributeurs essentiels, avec le soutien et la participation massifs de notre communauté.
 
 {{"demo": "pages/discover-more/team/Team.js", "hideHeader": true}}
 

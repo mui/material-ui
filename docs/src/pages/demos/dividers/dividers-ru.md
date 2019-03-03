@@ -1,5 +1,5 @@
 ---
-title: Divider React component
+title: Разделитель, компонент React
 components: Divider
 ---
 # Разделитель
@@ -16,18 +16,18 @@ components: Divider
 
 ## Спецификации HTML5
 
-We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
+Для соблюдения спецификации HTML5 нужно, чтобы `Разделитель` отрисовывался как `li`.
 
-## Inset Dividers
+## Вкладыш
 
 Свойство `inset` является устаревшим. Сейчас вам следует использовать `variant="inset"`.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
-## Subheader Dividers
+## Подтитульные разделлители
 
 {{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
 
-## Middle Dividers
+## Центральные разделители
 
 {{"demo": "pages/demos/dividers/MiddleDividers.js"}}

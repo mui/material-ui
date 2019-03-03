@@ -2,7 +2,7 @@
 
 <p class="description">Material-UIとReactを今すぐ始めましょう。</p>
 
-Material-UIコンポーネントは独立して機能します。 **それらは自立しており**、表示する必要のあるスタイルだけを注入し、導入するだけです。 それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
+Material-UIコンポーネントは独立して機能します。 **They are self-supporting**, and will only inject the styles they need to display. それらは[normalize.css](https://github.com/necolas/normalize.css/)のようなグローバルのスタイルシートには依存しません。
 
 ドキュメントに示されているように、任意のコンポーネントを使用できます。 どのようにインポートされるか確認する為にそれぞれのコンポーネントの[デモページ](/demos/buttons/)を参照してください。
 

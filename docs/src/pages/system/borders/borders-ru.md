@@ -58,7 +58,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 import { borders } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key                                                        |
+| Импорт         | Свойство       | Свойство CSS    | В теме                                                           |
 |:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
 | `border`       | `border`       | `border`        | `borders`                                                        |
 | `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |

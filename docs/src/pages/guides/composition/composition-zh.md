@@ -6,9 +6,9 @@
 
 为了提供最大的灵活性和性能， 我们需要一种方法来知道组件接收子元素的性质。 为了解决这个问题，我们在需要 时使用 `muiName` 静态属性标记我们的一些组件。
 
-You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. 如果你换一个组件验证是否 该组件具有这种静态属性集。
+但是，您仍可能需要包装一个组件以增强它， 即使这可能与` muiName `解决方案冲突。 如果你换一个组件验证是否 该组件具有这种静态属性集。
 
-If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
+如果遇到此问题，则需要为包装组件与被包装组件使用相同的标记。 另外，由于父组件可能需要控制包装组件道具，你应该转发这些属性。
 
 我们来看一个例子：
 

@@ -1,33 +1,33 @@
 ---
-title: Grid List React component
+title: Сеть изображений, компонент React
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
-# Grid List
+# Сеть изображений
 
-<p class="description">Grid lists display a collection of images in an organized grid.</p>
+<p class="description">Сеть изображений суть коллекция изображений на упорядоченной сетке.</p>
 
-[Grid lists](https://material.io/design/components/image-lists.html) represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
+[Сеть изображений](https://material.io/design/components/image-lists.html) являются коллекцией элементов в повторяющемся шаблоне. Они помогают улучшить визуальное восприятие своего содержания.
 
-## Image-only Grid list
+## Простая сеть изображений
 
-A simple example of a scrollable image `GridList`.
+Простой пример прокручиваемой `Сети изображений`.
 
 {{"demo": "pages/demos/grid-list/ImageGridList.js", "hideEditButton": true}}
 
-## Grid list with titlebars
+## Сеть изображений с заголовками
 
-This example demonstrates the use of the `GridListTileBar` to add an overlay to each `GridListTile`. The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
+Этот пример демонстрирует использование `Полосы заголовка сети изображений`, которую следует добавить в каждый `Заголовок сети изображений`. Мы можем указать `заголовок`, `подзаголовок` и дополнительное действие - в этом примере `кнопка-иконка`.
 
 {{"demo": "pages/demos/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
-## Single line Grid list
+## Сеть изображений в одну строку
 
-This example demonstrates a horizontal scrollable single-line grid list of images. Horizontally scrolling grid lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension. One notable exception is a horizontally-scrolling, single-line grid list of images, such as a gallery.
+Данный пример показывает сеть изображений в одну строку с горизонтальной прокруткой. Сети изображений с горизонтальнйо прокруткой не рекомендуется применять, так как это может вызвать дискомфорт у пользователей, ведь обычно при чтении используется вертикальная прокрутка. Исключением из этого правила являются сети с горизонтальной прокруткой в одну строку, например галерея.
 
 {{"demo": "pages/demos/grid-list/SingleLineGridList.js", "hideEditButton": true}}
 
-## Advanced Grid list
+## Более сложный пример
 
-This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing. The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`. The secondary action `IconButton` is positioned on the left.
+В этом примере демонстрирует «рекомендуемые» листы, в которых используются свойства `rows` и `cols` чтобы отрегулировать размер плитки, и свойство `padding` чтобы отрегулировать поля между плитками. На плитках можно видеть пользовательскую полосу расположенную вверху с даным значением градиента в свойстве `titleBackground`. Дополнительное действие в `Кнопке-иконке` распложенно по левую сторону.
 
 {{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}

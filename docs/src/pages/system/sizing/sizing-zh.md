@@ -44,11 +44,11 @@
 import { sizing } from '@material-ui/system';
 ```
 
-| 导入名称        | Prop        | CSS 属性       | 主题键  |
-|:----------- |:----------- |:------------ |:---- |
-| `width`     | `width`     | `width`      | none |
-| `maxWidth`  | `maxWidth`  | `max-width`  | none |
-| `minWidth`  | `minWidth`  | `min-width`  | none |
-| `height`    | `height`    | `height`     | none |
-| `maxHeight` | `maxHeight` | `max-height` | none |
-| `minHeight` | `minHeight` | `min-height` | none |
+| 导入名称        | Prop        | CSS 属性       | Theme key |
+|:----------- |:----------- |:------------ |:--------- |
+| `width`     | `width`     | `width`      | none      |
+| `maxWidth`  | `maxWidth`  | `max-width`  | none      |
+| `minWidth`  | `minWidth`  | `min-width`  | none      |
+| `height`    | `height`    | `height`     | none      |
+| `maxHeight` | `maxHeight` | `max-height` | none      |
+| `minHeight` | `minHeight` | `min-height` | none      |

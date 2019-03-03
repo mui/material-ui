@@ -2,7 +2,7 @@
 title: App Bar React component
 components: AppBar, Toolbar, Menu
 ---
-# App Bar (アプリバー)
+# App Bar
 
 <p class="description">App Barには、現在の画面に関する情報と操作が表示されます。</p>
 

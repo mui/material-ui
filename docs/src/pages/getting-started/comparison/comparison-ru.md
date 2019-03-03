@@ -1,4 +1,4 @@
-# Совместимость с другими библиотеками
+# Сравнение с другими библиотеками
 
 <p class="description">Вы здесь, потому что хотите знать, сможет ли Material-UI помочь решить ваши конкретные проблемы. Вот что мы надеемся ответить вам здесь.</p>
 
@@ -28,7 +28,7 @@
 
 Material Design Lite, будучи очень хорошо продуманной реализацией Material Design, в основном поддерживался разработчиками Google. Сегодня **проект больше не поддерживается**. Так что же случилось?
 
-Kоманда разработчиков Material Components начали строить MDC-сеть «MDL v2», но после совместной работы над ним в течение нескольких месяцев, обе команды решили, что будет лучше, если проект будет полностью под контролем команды Material Design. Этот сдвиг означал переориентацию целей с простого «добавления стилей Material Design» на веб-сайты в сторону имплементации Material Design для всей веб-платформы в целом.
+Команда разработчиков Material Components начали строить MDC-сеть «MDL v2», но после совместной работы над ним в течение нескольких месяцев, обе команды решили, что будет лучше, если проект будет полностью под руководством команды Material Design. Этот сдвиг означал переориентацию целей с простого «добавления стилей Material Design» на веб-сайты в сторону канонической реализации Material Design для всей веб-платформы в целом.
 
 ## Material Components Web (MDC-web)
 
@@ -38,12 +38,12 @@ Kоманда разработчиков Material Components начали стр
 
 ### Фреймворки и библиотеки
 
-Material-UI focuses exclusively on the React library, although, given that Preact supports the very same API, we hope to soon support it too. Supporting one framework allows us to do less but do it better.
+Material-UI ориентирован исключительно на библиотеку React, хотя, учитывая, что Preact поддерживает тот же API, мы надеемся, что скоро тоже будем его поддерживать. Поддержка одного фреймворка позволяет нам делать меньше, но делать это лучше.
 
-This comes in different flavors:
+Это происходит в различных вариантах:
 
-- Having fewer constraints, we can make trade-offs specific to our target framework. We have fewer edge-cases to take into account.
-- We can spend more time on nailing the React use case.
+- Имея меньше ограничений, мы можем идти на компромиссы, характерные для нашего целевого фреймворка. У нас меньше граничных случаев, которые нужно принимать во внимание.
+- Мы можем потратить больше времени на разработку и оттачивание использования React.
 
 MDC-web was designed from the ground up to be fully compatible with 3rd party JS frameworks and libraries. They list 3rd-party framework integration projects in the github [README](https://github.com/material-components/material-components-web/#material-components-for-the-web)
 

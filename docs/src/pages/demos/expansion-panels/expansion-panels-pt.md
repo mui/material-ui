@@ -10,25 +10,29 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **Note:** Expansion panels are no longer documented in the Material Design documentation.
 
-## Simple Expansion Panel
+## Acessibilidade
+
+Para melhor acessibilidade recomendamos a definição de `id` e `aria-controles` no `ExpansionPanelSummary`. O `ExpansionPanel` irá derivar o necessário `aria-labelledby` e `id` para a região de conteúdo do painel.
+
+## Painel de Expansão Simples
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
 
-## Controlled Accordion
+## Acordeão Controlado
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+Estenda o comportamento padrão do painel para criar um acordeão com o componente `ExpansionPanel`.
 
 {{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns
+## Cabeçalho Secundário e Colunas
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para auxiliar o usuário.
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
-## Customized Expansion Panel
+## Painel de Expansão Personalizado
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the background color of the `ExpansionPanelSummary` and padding of `ExpansionPanelDetails`.
+Se você leu a página [documentação de sobreposição (Overrides)](/customization/overrides/), mas você não está confiante em como utilizar, aqui está um exemplo de como você pode personalizar o background do `ExpansionPanelSummary` e padding de `ExpansionPanelDetails`.
 
 ⚠️ Embora a especificação do design do material incentive o tema, esses exemplos estão fora do caminho comum.
 

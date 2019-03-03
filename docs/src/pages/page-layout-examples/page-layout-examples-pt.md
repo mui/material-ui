@@ -1,8 +1,8 @@
-# Page layout examples
+# Exemplos de layout de página
 
-<p class="description">A selection of basic page layouts to help you get started building your app.</p>
+<p class="description">Uma seleção de layouts de página básicos para ajudá-lo a começar a construir sua aplicação.</p>
 
-They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+Esses layouts podem ser combinados com uma das [aplicações de exemplo](https://github.com/mui-org/material-ui/tree/master/examples) para gerar um projeto inicial completo.
 
 Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages.
 

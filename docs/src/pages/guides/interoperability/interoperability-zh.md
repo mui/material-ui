@@ -505,13 +505,13 @@ const buttonStyles = {
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-// First we get the clsx with Glamor css function
+// 首先我们应该通过 Glamor css function 获得 clsx
 const buttonClasses = css(buttonStyles);
 
-// We need the class names to be strings
+// 我们需要类名是字符串
 const className = buttonClasses.toString();
 
-// Then we just assign them the Button's className attribute
+// 然后我们只为它们分配Button的className属性
 function GlamorButton() {
   return (
     <div>

@@ -1,5 +1,5 @@
 ---
-title: Bottom Navigation React component
+title: Нижняя панель навигации, компонент React
 components: BottomNavigation, BottomNavigationAction
 ---
 # Bottom Navigation (Нижняя панель навигации)
