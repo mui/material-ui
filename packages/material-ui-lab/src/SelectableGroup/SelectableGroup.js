@@ -7,6 +7,7 @@ import objectIs from '../utils/objectIs';
 function SelectableGroup(props) {
   const [selected, setSelected] = React.useState(null);
   const { additional, children, exclusive, value: valueProp } = props;
+  const { current: isControlled } = React.useRef(valueProp != null);
 
   const createReducer = handler => {
     return (value, event) => {
@@ -21,7 +22,7 @@ function SelectableGroup(props) {
     };
   };
 
-  if (valueProp !== undefined && valueProp !== selected) {
+  if (isControlled && valueProp !== selected) {
     setSelected(valueProp);
   }
 

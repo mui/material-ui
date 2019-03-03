@@ -2,23 +2,16 @@ import React from 'react';
 import { assert } from 'chai';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import {
-  getClasses,
-  createShallow,
-  createMount,
-  findOutermostIntrinsic,
-} from '@material-ui/core/test-utils';
+import { getClasses, createMount } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Radio from './Radio';
 import RadioGroup from '../RadioGroup';
 
 describe('<Radio />', () => {
-  let shallow;
   let classes;
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Radio />);
     mount = createMount();
   });
@@ -26,6 +19,10 @@ describe('<Radio />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  function findRadio(wrapper, value) {
+    return wrapper.find(`SwitchBase[value="${value}"]`).first();
+  }
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
@@ -36,8 +33,8 @@ describe('<Radio />', () => {
   });
 
   it('should be using SwitchBase', () => {
-    const wrapper = shallow(<Radio />);
-    assert.strictEqual(wrapper.type(), SwitchBase);
+    const wrapper = mount(<Radio />);
+    assert.strictEqual(wrapper.find(SwitchBase).length, 1);
   });
 
   describe('prop: unchecked', () => {
@@ -62,10 +59,13 @@ describe('<Radio />', () => {
         </RadioGroup>,
       );
 
-      let radio = wrapper.find(Radio);
-      radio.simulate('change');
-      radio = findOutermostIntrinsic(wrapper.find(Radio));
-      assert.strictEqual(radio.hasClass(classes.checked), true);
+      findRadio(wrapper, 'one').simulate('change');
+      assert.strictEqual(
+        findRadio(wrapper, 'one')
+          .childAt(0)
+          .hasClass(classes.checked),
+        true,
+      );
     });
 
     it('should support default value in uncontrolled mode', () => {
@@ -76,13 +76,19 @@ describe('<Radio />', () => {
         </RadioGroup>,
       );
 
-      const firstRadio = findOutermostIntrinsic(wrapper.find(Radio).at(0));
-      assert.strictEqual(firstRadio.hasClass(classes.checked), true);
-
-      let secondRadio = wrapper.find(Radio).at(1);
-      secondRadio.simulate('change');
-      secondRadio = findOutermostIntrinsic(wrapper.find(Radio).at(1));
-      assert.strictEqual(secondRadio.hasClass(classes.checked), true);
+      assert.strictEqual(
+        findRadio(wrapper, 'zero')
+          .childAt(0)
+          .hasClass(classes.checked),
+        true,
+      );
+      findRadio(wrapper, 'one').simulate('change');
+      assert.strictEqual(
+        findRadio(wrapper, 'one')
+          .childAt(0)
+          .hasClass(classes.checked),
+        true,
+      );
     });
   });
 });
