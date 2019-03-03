@@ -4,15 +4,15 @@
 
 为了获得最佳的用户体验，material design 的接口需要在各种断点范围下自适应布局需要。 Material-UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
 
-Each breakpoint (a key) matches with a *fixed* screen width (a value):
+每个断点（一个键）匹配一个*固定*的屏幕宽度（一个值）：
 
-- **xs,** extra-small: 0px
-- **sm,** small: 600px
-- **md,** medium: 960px
-- **lg,** large: 1280px
-- **xl,** extra-large: 1920px
+- ** xs， ** 超小：0px
+- ** sm， **小：600px
+- ** md， **中等：960px
+- ** lg， **大：1280px
+- ** xl， **超大：1920px
 
-These [breakpoint values](/customization/default-theme/?expend-path=$.breakpoints.values) are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
+这些[断点值](/customization/default-theme/?expend-path=$.breakpoints.values)用于确定断点范围。 每个范围包含起始断点，不包含终止断点。
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -61,7 +61,7 @@ const styles = theme => ({
 
 ### useMediaQuery钩子
 
-You can learn more on the [useMediaQuery](/layout/use-media-query/) page.
+您可以在 [userMediaQuery](/layout/use-media-query/) 页面上了解更多信息。
 
 ### withWidth()
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度大于断点键给出的屏幕大小。
 
 #### 例子
 

@@ -84,7 +84,7 @@
     
     我们在`ButtonBase` 组件里面解析了如何使用带有[第三方routing的库](/demos/buttons/#third-party-routing-library)。 大量我们的交互式组件的内部也使用了它：如`Button`，`MenuItem`，`<ListItem button />` ，`Tab`等。 您可以使用相同的解决方案。
     
-    ## How do I combine the `withStyles()` and `withTheme` HOCs?
+    ## 如何组合`withStyles()`和`withTheme`的 HOCs（高阶组件）呢?
     
     其实有许多不同的选择可以实现：
     
@@ -126,7 +126,7 @@
     - 帮助改进[这篇文档](https://github.com/mui-org/material-ui/tree/next/docs).
     - 帮助他人开始使用。
     - [口口相传](https://twitter.com/MaterialUI)。
-    - Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).
+    - 回答[ StackOverflow上的问题](https://stackoverflow.com/questions/tagged/material-ui)或[ Spectrum ](https://spectrum.chat/material-ui) 。
     
     如果您在商业项目中使用了Material-UI，并希望通过成为我们的**赞助商</0 >来支持我们的持续发展，或者您一个业余项目或者爱好项目，并想成为我们的支持者， 您都可以通过[OpenCollective](https://opencollective.com/material-ui)实现。</p> 
     

@@ -1,6 +1,6 @@
 # Apprendre Materiel-UI
 
-<p class="description">Nouveau sur Material-UI? C'est facile à apprendre si vous savez par où commencer ! Ce guide vous aidera à démarrer rapidement.</p>
+<p class="description">Nouveau sur Material-UI ? C'est facile à apprendre si vous savez par où commencer ! Ce guide vous aidera à démarrer rapidement.</p>
 
 Les utilisateurs de Material-UI viennent d'horizons et de styles d'apprentissage différents. Que vous préfériez une approche plus théorique ou pratique, nous espérons que cette section vous sera utile. Comme toute technologie inconnue, Material-UI a une courbe d'apprentissage. Avec de la pratique et un peu de patience, vous comprendrez vite.
 
@@ -23,13 +23,16 @@ Lors de la première utilisation de Material-UI, vous trouverez peut-être que l
 ### Gratuit
 
 - **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
- - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555) - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
+  - 📝 [The blog post](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
+- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. 
+  - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
+- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. 
+  - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
+  - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
- - 📝 [The blog post](https://alligator.io/react/material-ui/)
+  - 📝 [The blog post](https://alligator.io/react/material-ui/)
 
 ### Payant
 
 - **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
- - 📘 [The book](https://builderbook.org/book)
+  - 📘 [The book](https://builderbook.org/book)

@@ -2,32 +2,32 @@
 title: Divider React component
 components: Divider
 ---
-# Dividers
+# Divisores
 
-<p class="description">A divider is a thin line that groups content in lists and layouts.</p>
+<p class="description">Un divisor es una línea delgada que agrupa el contenido en listas y diseños.</p>
 
-[Dividers](https://material.io/design/components/dividers.html) separate content into clear groups.
+[Los Divisores](https://material.io/design/components/dividers.html) separan contenido en grupos claros.
 
-## List Dividers
+## Divisores de lista
 
-The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+El divisor se procesa como un `<hr>` por defecto. Puede guardar la representación de este elemento DOM utilizando la propiedad `divider` en el componente `ListItem`.
 
 {{"demo": "pages/demos/dividers/ListDividers.js"}}
 
-## HTML5 Specification
+## Especificación HTML5
 
-We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
+Debemos asegurarnos de que el `divider` se represente como `li` para que coincida con la especificación HTML5. Los siguientes ejemplos muestran dos maneras de lograr esto.
 
-## Inset Dividers
+## Separadores insertados
 
-The `inset` property has now been deprecated. You should now use `variant="inset"`.
+La propiedad `inset` ahora ha quedado en desuso. Ahora debería usar `variant = "inset"`.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
-## Subheader Dividers
+## Divisores de subencabezado
 
 {{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
 
-## Middle Dividers
+## Divisores de Mitad
 
 {{"demo": "pages/demos/dividers/MiddleDividers.js"}}

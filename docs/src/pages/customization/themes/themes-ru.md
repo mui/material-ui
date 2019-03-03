@@ -355,7 +355,7 @@ const theme = createMuiTheme({
 
 ## Accessing the theme in a component
 
-You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. Here is an example:
+You might need to access the theme variables inside your React components. Допустим, вы хотите отобразить значение основного цвета. В этом может помочь компонент высшего порядка `withTheme `. Here is an example:
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 
@@ -435,7 +435,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### `withTheme(Component) => Component`
+### `withTheme()(Component) => Component`
 
 Provide the `theme` object as a property of the input component so it can be used in the render method.
 

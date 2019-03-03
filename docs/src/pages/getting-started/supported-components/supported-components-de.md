@@ -1,10 +1,10 @@
-# Supported Components
+# Unterstützte Komponenten
 
-<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
+<p class="description">Im Folgenden finden Sie eine Liste der Komponenten und Funktionen des Material Design. Die derzeit von Material-UI unterstützten Komponenten werden mit ✓ hervorgehoben.</p>
 
-While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, or every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
+Wir bemühen uns darum die Richtlinien soweit wie es praktisch möglich ist zu befolgen (gesunder Menschenverstand löst meist die Widersprüche der Richtlinien, welche öfter auftreten als man meinen mag), wir versuchen jedoch nicht jede Komponente, noch jede Funktion einer Komponente zu unterstützen, sondern stellen die Bausteine zur Verfügung, welche es Entwicklern ermöglicht überzeugende Benutzeroberflächen und Erlebnisse zu entwickeln.
 
-If you wish to add support for a component or feature not highlighted here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one to discuss the approach before submitting a pull request.
+Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möchten, welche hier nicht markiert sind, suchen Sie bitte nach dem entsprechenden [GitHub-Issue](https://github.com/mui-org/material-ui/issues) oder erstellen Sie ein neues, um die Realisierung zu besprechen, bevor Sie ein Pull-Request absenden.
 
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**

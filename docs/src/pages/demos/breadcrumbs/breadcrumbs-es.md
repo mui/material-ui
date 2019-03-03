@@ -1,6 +1,6 @@
 ---
 title: Componente React Migas de pan
-components: Migas de pan, Vínculo, Tipografía
+components: Breadcrumbs, Link, Typography
 ---
 # Migas de pan
 

@@ -2,33 +2,37 @@
 title: Панель расширения (Компонент React)
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
-# Панель расширения
+# Expansion panels (Раскрывающиеся панели)
 
 <p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>
 
-[An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+[Expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) это простой контейнер, который может использоваться отдельно, либо как часть более крупного компонента, такого как Card (карточка).
 
-> **Note:** Expansion panels are no longer documented in the Material Design documentation.
+> **Примечание:** компонента Expansion panel больше нет в документации по Material Design.
 
-## Simple Expansion Panel
+## Доступность
+
+For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+
+## Простая Expansion Panel
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
 
-## Controlled Accordion
+## Контролируемый "Аккордеон"
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+Используя компонент `ExpansionPanel`, расширив его поведение по умолчанию, можно получить "аккордеон".
 
 {{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns
+## Подзаголовок и столбцы
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Содержимое панели можно структурировать, сгруппировав его в отдельные столбцы, кроме того можно добавить подзаголовок и подсказки для пользователя.
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
-## Customized Expansion Panel
+## Изменение стилей Expansion Panel
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the background color of the `ExpansionPanelSummary` and padding of `ExpansionPanelDetails`.
+Если Вы читали [страницу документации переопределение стилей](/customization/overrides/), но недостаточно уверены в себе, чтобы попробовать самостоятельно, посмотрите например того, как можно изменить цвет фона компонента `ExpansionPanelSummary` и отступы `ExpansionPanelDetails`.
 
 ⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 

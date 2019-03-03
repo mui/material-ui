@@ -1,6 +1,6 @@
 ---
 title: React-компонент Сетка
-components: Сетка
+components: Grid
 ---
 # Сетка
 
@@ -20,9 +20,9 @@ components: Сетка
 
 ## Интервал
 
-Адаптивная сетка фокусируется на постоянной ширине отступов, а не на ширине столбца. Material Design margins and columns follow an **8px** square baseline grid. The spacing property is an integer between 0 and 10 inclusive. By default, the spacing between two grid items follows a linear function: `output(spacing) = spacing * 8px`, e.g. `spacing={2}` creates a 16px wide gap.
+Смысл адаптивной сетки не в равной ширине столбцов, а в равной ширине интервалов между ними. В Material Design величина отступов и ширина столбцов привязаны к базовой сетке с шагом в **8px**. Свойство `spacing` может принимать целочисленные значения от 0 до 10 включительно. По умолчанию расстояние между соседними элементами (GridItem) задано линейной функцией: `output(spacing) = spacing * 8px`, т.е. `spacing={2}` устанавливает значение интервала 16px.
 
-This output transformation function can be customized [using the theme](/customization/themes/#spacing).
+Поведение функции `output` можно изменить, [отредактировав тему](/customization/themes/#spacing).
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
@@ -113,3 +113,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 ```
 
 {{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+
+### direction: column | column-reverse
+
+Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.

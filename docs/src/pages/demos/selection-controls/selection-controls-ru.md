@@ -2,91 +2,91 @@
 title: Checkbox, Radio, Switch React component
 components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Checkbox, Radio, Switch
 ---
-# Selection Controls
+# Элементы выбора
 
-<p class="description">Selection controls allow the user to select options.</p>
+<p class="description">С помощью элементов выбора можно выбирать опции из списка.</p>
 
-[Selection controls](https://material.io/design/components/selection-controls.html) allow users to complete tasks that involve making choices such as selecting options, or switching settings on or off. Selection controls are found on screens that ask users to make decisions or declare preferences such as settings or dialogs.
+[Элементы выбора](https://material.io/design/components/selection-controls.html) позволяют пользователям выбирать параметры из списка или например, включать или выключать настройки. Элементы выбора обычно показываются на экранах, которые просят пользователя принимать решения или устанавливать предпочтения, например настройки или диалоги.
 
-Three types of selection controls are covered in this section:
+В этом разделе рассматриваются три типа элементов выбора:
 
-- **[Radio Buttons](#radio-buttons)** allow the selection of a single option from a set.
-- **[Checkboxes](#checkboxes)** allow the selection of multiple options from a set.
-- **[Switches](#switches)** allow a selection to be turned on or off.
+- **[Radio Buttons](#radio-buttons)** позволяют выбрать одну опцию из набора.
+- **[Чекбоксы](#checkboxes)** позволяют выбрать несколько опций из набора.
+- **[Переключатели (Switch)](#switches)** позволяют включить или выключить что-нибудь.
 
-## Radio Buttons
+## Radio Buttons (радиокнопки)
 
-[Radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
+[](https://material.io/design/components/selection-controls.html#radio-buttons)Радиокнопки позволяют выбрать одну опцию из набора. Используйте их когда пользователю нужно увидеть все доступные опции. Если доступные параметры можно свернуть, возможно лучше использовать раскрывающееся меню, так как оно занимает меньше места.
 
-Radio buttons should have the most commonly used option selected by default.
+Для радиокнопок наиболее часто используемый параметр должен быть выбран по умолчанию.
 
-`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
+`RadioGroup` - это полезная обертка, используемая для группировки `компонентов Radio`, она обеспечивает более простой API и управление с клавиатуры.
 
 {{"demo": "pages/demos/selection-controls/RadioButtonsGroup.js"}}
 
-### Standalone Radio Buttons
+### Автономные радиокнопки
 
-`Radio` can also be used standalone, without the wrapper.
+`Радио` также можно использовать отдельно, без обертки.
 
 {{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
-## Checkboxes
+## Чекбоксы
 
-[Checkboxes](https://material.io/design/components/selection-controls.html#checkboxes) allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
+[Чекбоксы](https://material.io/design/components/selection-controls.html#checkboxes) позволяют выбрать несколько опций из набора. Также они используются чтобы включить или выключить опцию.
 
-If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using a checkbox and use an on/off switch instead.
+Если у вас есть несколько опций, отображаемых в списке, вы можете сохранить пространство, используя чекбоксы вместо переключателей. Если у вас есть только один вариант, лучше не использовать чекбокс, вместо него используйте переключатель включения / выключения.
 
 {{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
 
-`Checkbox` can also be used with a label description thanks to the `FormControlLabel` component.
+`Чекбокс` также можно использовать с описанием метки благодаря компоненту `FormControlLabel`.
 
 {{"demo": "pages/demos/selection-controls/CheckboxLabels.js"}}
 
-## Checkboxes with FormGroup
+## Чекбоксы с FormGroup
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+`FormGroup` - это полезная обертка, используемая для группировки компонентов элементов управления выбором, она предоставляет более простой API.
 
 {{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
-## Switches
+## Switch (переключатели)
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
+[Переключатели](https://material.io/design/components/selection-controls.html#switches) включают или выключают состояние отдельной настройки. Они являются предпочтительным способом для настройки параметров на мобильном устройстве.
 
-The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+Опция которую контролирует переключатель, вместе с ее состоянием должны быть четко описаны в соответствующей метке.
 
 {{"demo": "pages/demos/selection-controls/Switches.js"}}
 
-### Switches with FormControlLabel
+### Переключатели с FormControlLabel
 
-`Switch` can also be used with a label description thanks to the `FormControlLabel` component.
+`Переключатель` также можно использовать с меткой благодаря компоненту `FormControlLabel`.
 
 {{"demo": "pages/demos/selection-controls/SwitchLabels.js"}}
 
-### Switches with FormGroup
+### Переключатели с FormGroup
 
-`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API. However, we encourage you to use a [Checkbox](#checkboxes) instead.
+`FormGroup` - это полезная обертка, используемая для группировки компонентов элементов выбора, которая предоставляет более простой API. Однако мы рекомендуем вам использовать вместо [чекбокс](#checkboxes).
 
 {{"demo": "pages/demos/selection-controls/SwitchesGroup.js"}}
 
-### Customized Switches
+### Кастомизированные переключатели
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the color of a Switch, and an iOS style Switch.
+Если вы читали [документацию по переопределениям](/customization/overrides/), но все еще не до конца уверены как будет выглядеть компонент, вот пример того, как изменить цвет переключателя или сделать его в стиле IOS.
 
 ⚠️ Хотя спецификации материал дизайна поощряют использование тем, эти примеры не соответствуют требованиям.
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 
-## Label placement
+## Расположение метки
 
-You can change the placement of the label:
+Расположение метки можно изменить:
 
 {{"demo": "pages/demos/selection-controls/FormControlLabelPosition.js"}}
 
-## Accessibility
+## Доступность
 
-All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+Все элементы формы должны иметь метки, в том числе радиокнопки, переключатели и чекбоксы. В большинстве случаев это делается с помощью элемента `<label>` ([FormControlLabel](/api/form-control-label/)).
 
-When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+Когда метка не может быть использована, необходимо добавить атрибут непосредственно на поле ввода. В этом случае можно применить дополнительный атрибут (например, `aria-label`, `aria-labelledby`, `title`) через свойство `inputProps`.
 
 ```jsx
 <Checkbox

@@ -28,7 +28,7 @@ Link组件构建在 [Typography](/api/typography/) 组件之上。 您可以利�
 - `rel =“noopener”` 阻止新页面访问window.opener属性并确保它在单独的进程中运行。 如果没有此页面，目标页面可能会将您的页面重定向到恶意URL。
 - `rel ="noreferrer"` 具有相同的效果，但也阻止将 *Referer* 标头发送到新页面。 ⚠️删除引荐来源标题会影响分析。
 
-## 第三方路由库
+## Third-party routing library（第三方路由库）
 
 一个常见的用例是仅在客户端上执行导航，而不执行与服务器的.html往返。 `Link` 组件提供了处理此用例的属性： `组件`。
 
@@ -41,7 +41,7 @@ import Link from '@material-ui/core/Link';
 </Link>
 ```
 
-或者如果你想避免属性碰撞：
+或者如果你想避免属性冲突：
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom'

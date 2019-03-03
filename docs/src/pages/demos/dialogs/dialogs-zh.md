@@ -83,7 +83,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 无障碍功能
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+参考 [Modal accessibility 部分](/utils/modal/#accessibility)
 
 ## 长内容滚动
 

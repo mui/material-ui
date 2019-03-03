@@ -66,7 +66,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 此组件使用自定义的 `StepConnector` 元素, 它根据 `active` 更改边框颜色, 并 ` completed ` 状态。
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/steppers/CustomizedStepper.js"}}
 

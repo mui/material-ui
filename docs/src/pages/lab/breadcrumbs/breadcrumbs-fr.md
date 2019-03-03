@@ -1,45 +1,45 @@
 ---
-title: Breadcrumbs React component
+title: Composant React Fil d'Ariane
 components: Breadcrumbs, Link, Typography
 ---
-# Breadcrumbs
+# Fil d'Ariane
 
 <p class="description">Breadcrumbs allow users to make selections from a range of values.</p>
 
-## Simple breadcrumbs
+## Fil d'Ariane simple
 
 {{"demo": "pages/lab/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Custom separator
+## Séparateur personnalisé
 
-In the following examples, we are using two string separators, and an SVG icon.
+Dans les exemples qui suivent, nous utilisons deux chaînes de caractère et une icône SVG comme séparateurs.
 
 {{"demo": "pages/lab/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## Fil d'Ariane avec icônes
 
 {{"demo": "pages/lab/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## Fil d'Ariane contracté
 
 {{"demo": "pages/lab/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## Fil d'Ariane personnalisé
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the breadcrumb link design.
+Si vous avez lu la [page de documentation sur la personnalisation](/customization/overrides/), mais que vous ne vous sentez pas prêt à faire le saut, alors voici un exemple montrant comment changer l'apparence des liens du fil d'Ariane.
 
 {{"demo": "pages/lab/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Accessibility
+## Accessibilité
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Assurez-vous d'ajouter l'attribut `aria-label` sur le composant `Breadcrumbs`.
 
-The accessibility of this component relies on:
+L'accessibilité de ce composant repose sur les points suivants :
 
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+- La liste des liens est structurée en utilisant une liste ordonnée (balise `<ol>`).
+- Afin de prévenir la lecture des séparateurs par les lecteurs d'écran, ils sont cachés en utilisant l'attribut `aria-hidden`.
+- Un élément HTML `nav` avec l'attribut `aria-label` identifie la structure comme étant un fil d'Ariane et en fait un repère de navigation facile à trouver.
 
-## Integration with react-router
+## Intégration avec react-router
 
 {{"demo": "pages/lab/breadcrumbs/RouterBreadcrumbs.js"}}

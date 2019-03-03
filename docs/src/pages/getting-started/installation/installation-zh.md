@@ -66,7 +66,7 @@ yarn add @material-ui/icons@next
 
 我们提供了两个通用模块定义 (UMD) 文件:
 
-- 一个用于开发: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
-- 一个用于生产: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
+- 一个用于开发: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
+- 一个用于生产: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
 
 您可以按照[此CDN示例](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next)快速开始。

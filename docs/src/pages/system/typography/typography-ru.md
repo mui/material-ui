@@ -48,7 +48,7 @@
 import { typography } from '@material-ui/system';
 ```
 
-| Import name  | Prop         | CSS property  | Theme key                                                              |
+| Импорт       | Свойство     | Свойство CSS  | В теме                                                                 |
 |:------------ |:------------ |:------------- |:---------------------------------------------------------------------- |
 | `fontFamily` | `fontFamily` | `font-family` | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontSize`   | `fontSize`   | `font-size`   | [`typography`](/customization/default-theme/?expend-path=$.typography) |

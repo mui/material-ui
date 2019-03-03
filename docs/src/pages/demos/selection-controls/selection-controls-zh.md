@@ -72,7 +72,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 如果您有阅读[覆盖样式文档](/customization/overrides/)，但你还没有完全掌握方法，可以查看以下这个更改一个输入的主要颜色的示例，包括如何更改 Switch 的样式和自定义出一个 iOS 风格的 Switch
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/selection-controls/CustomizedSwitches.js"}}
 

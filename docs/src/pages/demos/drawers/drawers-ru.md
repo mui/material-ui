@@ -1,32 +1,32 @@
 ---
-title: Drawer React component
+title: Панель, компонент React
 components: Drawer, SwipeableDrawer
 ---
-# Drawer
+# Панель
 
-<p class="description">Навигационная панель предоставляет доступ к DESTINATIONS в вашем приложении. Такие панели предназначены для отображения вспомогательной информации, они располагаются, привязываясь к левому или правому краю экрана.</p>
+<p class="description">Навигационные панели предназначены для предоставления ссылок на различные части вашего приложения. Боковые панели содержат дополнительную информацию и закрепляются по левую или правую сторону окна браузера.</p>
 
-[Навигационные панели](https://material.io/design/components/navigation-drawer.html) позволяют реализовывать такую функциональность как, например, переключение между аккаунтами. Их можно быстро открыть, нажимая на иконку в меню.
+[Навигационные панели](https://material.io/design/components/navigation-drawer.html) позволяют легко получить доступ к основному функционалу вашего приложения, к примеру перейти в раздел смены аккаунта. Они могут либо находится всегда в открытом состоянии либо контролироватся с помощью навигационного меню.
 
-[Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
+[Боковые панели](https://material. io/design/components/sheets-side.html) являются дополнительными элементами, в основном используемыми на планшетах и ПК.
 
-## Temporary drawer
+## Скрытая Панель
 
-Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
+Скрытая навигационная панель может быть видна либо скрыта. По-умолчанию ее не видно, но ее можно открыть над остальным содержимым и выбрать нужный пункт, после чего панель снова переходит в скрытое состояние.
 
-The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
+Также, панель может быть скрыта нажатем на фон или на клавишу Esc. При выборе пункта меню панель закрывается меняя значение свойства `open`.
 
 {{"demo": "pages/demos/drawers/TemporaryDrawer.js"}}
 
-## Swipeable Temporary drawer
+## Скользящая скрытая панель
 
-You can make the drawer swipeable with the `SwipeableDrawer` component.
+Вы можете сделать панель скользящей используя компонент `SwipeableDrawer`.
 
-This component comes with a 2 kB gzipped payload overhead. Some low-end mobile devices won't be able to follow the fingers at 60 FPS. You can use the `disableBackdropTransition` property to help.
+Этот комонент в сжатом виде добавляет 2 kB к загрузке. Некоторые бюджетные мобильные устройства не смогут отвечать на прикосновения с частотой 60 кадров в секунду. Используйте свойство `disableBackdropTransition` чтобы исправить ситуацию.
 
 {{"demo": "pages/demos/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component: - iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough. - iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
+Данный вебсайт использует следующие приемы для улучшения качества взаимодействия с пользователем данного компонента: - iOS является мощным устройством. Поэтому использование backdrop transition не вызывает пропуска кадров. Производительность достаточно хороша. - iOS предоставляет скользящий жест для возврата, который мешает использованию панелей. Данный жест должен быть отключен.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -34,48 +34,48 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## Responsive drawer
+## Приспосабливающаяся панель
 
-The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width. A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
+Адапивный дизайн может быть достигнут использованием компонента `Hidden`. `cкрытая` панель может быть показана для экранов с небольшим разрешением, тогда как `вполне видимая` панель будет показана на широких экранах.
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
 
-## Persistent drawer
+## Стойкая панель
 
-Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
+Стойкая навигационная панель может быть как в открытом так и в закрытом состоянии. Панель находится на том же уровне что и остальное содержимое. По-умолчания она закрыта и может быть открыта с помощю кнопки, оставаясь в таком состоянии пока пользователь не закроет ее. Состояние панель сохраняется между действиями и сессиями.
 
-When the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.
+Когда панель находится за границей экрана и открывается, остальное содержимое меянет размеры приспосбаливаясь к уменьшеному месту в окне браузера.
 
-Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
+Исползование стойких панелей имеет смысл на разрешениях больше чем на мобильных устройствах. Не рекомендуется их использоватся в приложениях с элементами расположенными на нескольких уровнях, где необходимо перемещатся между ними.
 
 {{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
 
-## Mini variant drawer
+## Панель с состоянием минимизации
 
-In this variation, the persistent navigation drawer changes its width. Its resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar. When expanded, it appears as the standard persistent navigation drawer.
+В этом случае стойкая навигационная панель меняет свою ширину. В закрытом состоянии она минимизирована, на том же уровне что и остальное содержимое, и верхняя ее часть скрыта. В открытом состоянии это обычная стойкая навигационная панель.
 
-The mini variant is recommended for apps sections that need quick selection access alongside content.
+Панель с состоянием минимизации рекомендуется использовать в приложениях, где необходимо предоставить быстрый способ обхода вместе с содержимым.
 
 {{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
 
-## Permanent drawer
+## Вполне видимая панель
 
-Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+Вполне видимые навигационные панели всегда видимы и привязанны к левому краю окна браузера, находятся на том же уровне что и остальное содержимое. Они не могут быть скрыты.
 
-Permanent navigation drawers are the **recommended default for desktop**.
+Рекомендуется использовать вполне видимые навигационные панели на **ПК**.
 
-### Full-height navigation
+### Навигация в полную высоту
 
-Apps focused on information consumption that use a left-to-right hierarchy.
+Исползуется в приложениях, которые сфокусированны на предоставлении информации и используют иерархию элементов слева направо.
 
 {{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
 
-### Clipped under the app bar
+### Панель, скрытая за основной полосой
 
-Apps focused on productivity that require balance across the screen.
+Используется в приложениях сфокусированных на эффективной работе и требуют сбалансированного заполнения экрана.
 
 {{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}

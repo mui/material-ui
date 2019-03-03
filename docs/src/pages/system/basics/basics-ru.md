@@ -273,7 +273,7 @@ Use this helper to create your own style function.
 
 We don't support all the CSS properties. It's possible that you want to support new ones. It's also possible that you want to change the theme path prefix.
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object*): 
   - `options.prop` (*String*): The property the style function will be triggered on.
@@ -281,7 +281,7 @@ We don't support all the CSS properties. It's possible that you want to support 
   - `options.themeKey` (*String* [optional]): The theme path prefix.
   - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
 
-#### Returns
+#### Возвращает
 
 `style function`: The style function created.
 
@@ -302,7 +302,7 @@ const borderColor = style({
 
 Merge multiple style functions into one.
 
-#### Returns
+#### Возвращает
 
 `style function`: The style function created.
 
@@ -367,7 +367,7 @@ const theme = {
 
 {{"demo": "pages/system/basics/Variant.js"}}
 
-## CSS property
+## Свойство CSS
 
 If you want to support custom CSS values, you can use our `css()` helper. It will process the `css` property.
 

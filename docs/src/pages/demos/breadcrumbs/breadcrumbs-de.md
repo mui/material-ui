@@ -1,45 +1,45 @@
 ---
-title: Breadcrumbs React component
+title: Breadcrumbs React-Komponente
 components: Breadcrumbs, Link, Typography
 ---
-# Brotkrumen
+# Breadcrumbs
 
-<p class="description">Brotkrumen erlauben Nutzern, in einer Serie von Werten Auswahlen durchzuführen.</p>
+<p class="description">Breadcrumbs erlauben es Nutzern, eine Auswahl aus einer Reihe von Werten zu treffen.</p>
 
-## Einfache Brotkrumen
+## Einfache Breadcrumbs
 
 {{"demo": "pages/demos/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Benutzerdefinierter Trenner
+## Benutzerdefiniertes Trennzeichen
 
-In the following examples, we are using two string separators, and an SVG icon.
+In den folgenden Beispielen werden zwei textbasierte Trennzeichen und ein SVG Icon verwendet.
 
 {{"demo": "pages/demos/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## Breadcrumbs mit Icons
 
 {{"demo": "pages/demos/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## Zusammengeklappte Breadcrumbs
 
 {{"demo": "pages/demos/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## Benutzerdefinierte Breadcrumbs
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can change the breadcrumb link design.
+Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du das Design der Breadcrumb-Links anpassen könntest.
 
 {{"demo": "pages/demos/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Accessibility
+## Barrierefreiheit
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Stelle sicher, dass du ein `aria-label` mit einem Beschreibungstext zur `Breadcrumbs`-Komponente hinzufügst.
 
-The accessibility of this component relies on:
+Die Barrierefreiheit dieser Komponente setzt voraus:
 
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+- Die Links sind in einer geordneten Liste strukturiert (`<ol>`-Element).
+- Um zu verhindern, dass Screenreader die visuellen Trennzeichen zwischen den Links vorlesen, sind diese durch `aria-hidden` vor ihnen versteckt.
+- Ein nav-Element, dass mit einem `aria-label` gelabelt ist, markiert die Struktur als einen Breadcrumb-Pfad und macht sie zu einer Navigations-Landmarke, so dass sie einfach auffindbar ist.
 
-## Integration with react-router
+## Integration mit react-router
 
 {{"demo": "pages/demos/breadcrumbs/RouterBreadcrumbs.js"}}
