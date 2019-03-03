@@ -28,12 +28,21 @@ function SwipeableTemporaryDrawer() {
     right: false,
   });
 
-  const toggleDrawer = (side, open) => () => {
+  const toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
     setState({ ...state, [side]: open });
   };
 
-  const sideList = (
-    <div className={classes.list}>
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
@@ -54,8 +63,13 @@ function SwipeableTemporaryDrawer() {
     </div>
   );
 
-  const fullList = (
-    <div className={classes.fullList}>
+  const fullList = side => (
+    <div
+      className={classes.fullList}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
@@ -87,14 +101,7 @@ function SwipeableTemporaryDrawer() {
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
       >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={toggleDrawer('left', false)}
-          onKeyDown={toggleDrawer('left', false)}
-        >
-          {sideList}
-        </div>
+        {sideList('left')}
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="top"
@@ -102,14 +109,7 @@ function SwipeableTemporaryDrawer() {
         onClose={toggleDrawer('top', false)}
         onOpen={toggleDrawer('top', true)}
       >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={toggleDrawer('top', false)}
-          onKeyDown={toggleDrawer('top', false)}
-        >
-          {fullList}
-        </div>
+        {fullList('top')}
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="bottom"
@@ -117,14 +117,7 @@ function SwipeableTemporaryDrawer() {
         onClose={toggleDrawer('bottom', false)}
         onOpen={toggleDrawer('bottom', true)}
       >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={toggleDrawer('bottom', false)}
-          onKeyDown={toggleDrawer('bottom', false)}
-        >
-          {fullList}
-        </div>
+        {fullList('bottom')}
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="right"
@@ -132,14 +125,7 @@ function SwipeableTemporaryDrawer() {
         onClose={toggleDrawer('right', false)}
         onOpen={toggleDrawer('right', true)}
       >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={toggleDrawer('right', false)}
-          onKeyDown={toggleDrawer('right', false)}
-        >
-          {sideList}
-        </div>
+        {sideList('right')}
       </SwipeableDrawer>
     </div>
   );
