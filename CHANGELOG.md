@@ -1,5 +1,112 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.2
+###### *Mar 3, 2019*
+
+A big thanks to the 23 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- Keep working on accessibility (#14465, #14545, #14661) @eps1lon, @oliviertassinari.
+- Add the Table dense support (#14561) @leMaik.
+- Change the bundle size tracking strategy (copy React) (#14587) @eps1lon.
+- Introduce a new Container component & new full layout demos (#14499) @oliviertassinari.
+- Start removing the need for findDOMNode() (#14536) @eps1lon.
+
+### `@material-ui/core@v4.0.0-alpha.2`
+
+### Breaking changes
+
+- [Tabs] Simplify override (#14638) @oliviertassinari
+
+  We have removed the `labelContainer`, `label` and `labelWrapped` class keys.
+  We have removed 2 intermediary DOM elements.
+  You should be able to move the custom styles to the root class key.
+  ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+- [Table] Add dense support (#14561) @leMaik
+
+  - We have removed the deprecated numeric property.
+  ```diff
+  -<TableCell numeric>{row.calories}</TableCell>
+  +<TableCell align="right">{row.calories}</TableCell>
+  ```
+  - We have removed the fixed height property on the table row.
+  The cell height is computed by the browser using the padding and line-height.
+  - The `dense` mode was promoted to a different property:
+  ```diff
+  -<TableCell padding="dense" />
+  +<TableCell size="small" />
+  ```
+
+### Changes
+
+- [core] Improve a11y for Collapse, ExpansionPanel and Grow (#14598) @eps1lon
+- [Transitions] Increase minimal version of react-transition-group to 2.5.3 (#14612) @wilcoschoneveld
+- [ExpansionPanelSummary] Update docs (#14606) @ifndefdeadmau5
+- [ExpansionPanel] Add TransitionComponent prop (#14617) @ptbrowne
+- [Link] Color property is defined with a wrong type (#14631) @akellan
+- [Tooltip] Improve legibility (#14651) @leMaik
+- [Tabs] Fix variant missing in Tabs.d.ts (#14659) @Deturium
+- [Autocomplete] Improve demo (#14657) @tjmcewan
+- [Dialog] Support for print (#14660) @emildatcu
+- [TableSortLabel] Increase size and show on hover (#14650) @leMaik
+- [Modal] Fix autoFocus support (#14661) @oliviertassinari
+- [InputLabel] display: block as default (#14676) @johnloven
+- [InputBase] Add missing TypeScript class keys (#14684) @dmtrKovalenko
+- [ListItem] Fix listItem focus (#14680) @xs9627
+- [ExpansionPanel] Improve a11y (#14682) @eps1lon
+
+### `@material-ui/styles@v4.0.0-alpha.2`
+
+- [styles] Fix the theme update support (#14697) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.2`
+
+- [Slider] Pass current value to onDragStart/onDragEnd callback (#14475) @rejas
+- [Slider] Fix thumb creating scroll overflow (#14689) @xaviergonz
+- [Layout] New Container component (#14499) @oliviertassinari
+- [Container] Fix two exceptions (#14715) @oliviertassinari
+
+### `@material-ui/utils@v4.0.0-alpha.2`
+
+- [utils] Drop componentPropType in favor of PropTypes.elementType (#14602) @eps1lon
+
+## Docs
+
+- [MobileStepper] Remove unused classname in example (#14597) @charlax
+- [docs] Update the Team (#14613) @oliviertassinari
+- [docs] Solve Firefox middle click issue (#14623) @paol
+- [docs] Update ScrollDialog Demo for 4k (#14622) @AndrewUsher
+- [docs] Fix broken hash link in css-in-js (#14633) @furkle
+- [docs] Improve demo source discoverability (#14635) @eps1lon
+- [docs] Improve Grid limitations description (#14637) @ryancogswell
+- [docs] Fix minor issues with demo action tooltips (#14652) @eps1lon
+- [docs] Upgrade react-docgen (#14666) @eps1lon
+- [docs] Update bundle size strategy (#14662) @eps1lon
+- [docs] Minor next adjustments (#14679) @eps1lon
+- [docs] A grammar modification suggestion (#14671) @mataxxx5
+- [docs] Link the mui-tables project in the documentation (#14701) @parkerself22
+- [docs] Generate unique hash (#14703) @oliviertassinari
+- [docs] Add simple list typescript demo (#14485) @eps1lon
+- [docs] Fix wrong source code URLs (#14716) @oliviertassinari
+
+## Core
+
+- [core] Fix webstorm autocompletion (#14599) @eps1lon
+- [ci] Use dangerJS to report bundle size changes (#14587) @eps1lon
+- [ci] Various size snapshot enhancements (#14620) @eps1lon
+- [core] Solve Babel dependency issue (#14621) @AndrewUsher
+- [core] Add eslint-plugin-react-hooks (#14629) @eps1lon
+- [test] Fix size snapshot including peer dependencies (#14636) @eps1lon
+- [ci] Speedup and cleanup (#14643) @eps1lon
+- [test] Fix how menu items are found in MenuList integration tests (#14654) @ryancogswell
+- [core] Add tslint deprecation rule (#14675) @eps1lon
+- [typescript] Add regression test for popular hoc interop (#14688) @eps1lon
+- [core] Fix .yarnrc syntax (#14704) @joshwooding
+- [core] forward innerRef for certain components (#14536) @eps1lon
+- [core] Use official prop-type cache invalidation (#14699) @eps1lon
+
 ## 4.0.0-alpha.1
 ###### *Feb 20, 2019*
 
