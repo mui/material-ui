@@ -38,7 +38,7 @@ This property accepts the following keys:
 | <span class="prop-name">row</span> | Styles applied to the root element if `row={true}`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormGroup/FormGroup.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/FormGroup/FormGroup.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

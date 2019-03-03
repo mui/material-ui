@@ -31,7 +31,7 @@ function handleClick(event) {
 function IconBreadcrumbs(props) {
   const { classes } = props;
   return (
-    <Paper className={classes.root}>
+    <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
         <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
           <HomeIcon className={classes.icon} />

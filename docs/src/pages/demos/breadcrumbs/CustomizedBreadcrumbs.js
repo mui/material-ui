@@ -52,7 +52,7 @@ function CustomizedBreadcrumbs(props) {
   const { classes } = props;
 
   return (
-    <Paper className={classes.root}>
+    <Paper elevation={0} className={classes.root}>
       <Breadcrumbs aria-label="Breadcrumb">
         <StyledBreadcrumb
           component="a"
