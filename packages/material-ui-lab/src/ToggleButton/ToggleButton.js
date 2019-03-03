@@ -95,7 +95,9 @@ function ToggleButton(props) {
       }
     }
 
-    selectState.toggle(value, event);
+    if (selectState) {
+      selectState.toggle(value, event);
+    }
   };
 
   const selected =
@@ -177,6 +179,4 @@ ToggleButton.defaultProps = {
 
 ToggleButton.muiName = 'ToggleButton';
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(
-  withForwardedRef(ToggleButton),
-);
+export default withStyles(styles, { name: 'MuiToggleButton' })(withForwardedRef(ToggleButton));

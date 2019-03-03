@@ -1,6 +1,5 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
 import {
   createRender,
   createMount,
@@ -25,6 +24,10 @@ describe('<ToggleButton />', () => {
   after(() => {
     mount.cleanUp();
   });
+
+  function findButton(wrapper, value) {
+    return wrapper.find(`ToggleButton[value="${value}"]`).first();
+  }
 
   it('should render a <ButtonBase> element', () => {
     const wrapper = mount(<ToggleButton value="hello">Hello World</ToggleButton>);
@@ -62,71 +65,36 @@ describe('<ToggleButton />', () => {
     assert.strictEqual(root.is('button[disabled]'), true);
   });
 
-  describe('prop: onChange', () => {
-    it('should be called when clicked', () => {
-      const handleChange = spy();
-      const wrapper = mount(
-        <ToggleButton value="1" onChange={handleChange}>
-          Hello
-        </ToggleButton>,
-      );
-      const event = {};
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 1);
-    });
-
-    it('should be called with the button value', () => {
-      const handleChange = spy();
-      const wrapper = mount(
-        <ToggleButton value="one" onChange={handleChange}>
-          Hello
-        </ToggleButton>,
-      );
-      const event = {};
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.args[0][1], 'one');
-    });
-
-    it('should not be called if the click is prevented', () => {
-      const handleChange = spy();
-      const wrapper = mount(
-        <ToggleButton value="one" onChange={handleChange} onClick={event => event.preventDefault()}>
-          Hello
-        </ToggleButton>,
-      );
-      const event = {
-        preventDefault: () => {},
-        isDefaultPrevented: () => true,
-      };
-
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 0);
-    });
-  });
-
   describe('exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
       const wrapper = mount(
         <ToggleButtonGroup exclusive value="one">
-          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="one">1</ToggleButton>
         </ToggleButtonGroup>,
       );
-      const buttonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton));
 
-      assert.strictEqual(buttonWrapper.hasClass(classes.selected), true);
+      assert.strictEqual(
+        findButton(wrapper, 'one')
+          .childAt(0)
+          .hasClass(classes.selected),
+        true,
+      );
     });
 
     it('should not render a selected ToggleButton when its value is not selected', () => {
       const wrapper = mount(
         <ToggleButtonGroup exclusive value="one">
-          <ToggleButton value="one">One</ToggleButton>
-          <ToggleButton value="two">Two</ToggleButton>
+          <ToggleButton value="one">1</ToggleButton>
+          <ToggleButton value="two">2</ToggleButton>
         </ToggleButtonGroup>,
       );
-      const buttonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton).at(1));
 
-      assert.strictEqual(buttonWrapper.hasClass(classes.selected), false);
+      assert.strictEqual(
+        findButton(wrapper, 'two')
+          .childAt(0)
+          .hasClass(classes.selected),
+        false,
+      );
     });
   });
 
@@ -134,17 +102,23 @@ describe('<ToggleButton />', () => {
     it('should render a selected ToggleButton if value is selected', () => {
       const wrapper = mount(
         <ToggleButtonGroup value={['one']}>
-          <ToggleButton value="one">One</ToggleButton>
-          <ToggleButton value="two">Two</ToggleButton>
+          <ToggleButton value="one">1</ToggleButton>
+          <ToggleButton value="two">2</ToggleButton>
         </ToggleButtonGroup>,
       );
 
-      const firstButtonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton).at(0));
-
-      const secondButtonWrapper = findOutermostIntrinsic(wrapper.find(ToggleButton).at(1));
-
-      assert.strictEqual(firstButtonWrapper.hasClass(classes.selected), true);
-      assert.strictEqual(secondButtonWrapper.hasClass(classes.selected), false);
+      assert.strictEqual(
+        findButton(wrapper, 'one')
+          .childAt(0)
+          .hasClass(classes.selected),
+        true,
+      );
+      assert.strictEqual(
+        findButton(wrapper, 'two')
+          .childAt(0)
+          .hasClass(classes.selected),
+        false,
+      );
     });
   });
 

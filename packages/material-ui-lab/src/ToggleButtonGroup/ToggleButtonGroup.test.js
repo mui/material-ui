@@ -42,55 +42,6 @@ describe('<ToggleButtonGroup />', () => {
     assert.strictEqual(root.hasClass(classes.root), true);
   });
 
-  describe('exclusive', () => {
-    it('should render a selected ToggleButton if value is selected', () => {
-      const wrapper = mount(
-        <ToggleButtonGroup exclusive value="one">
-          <ToggleButton value="one">1</ToggleButton>
-        </ToggleButtonGroup>,
-      );
-
-      assert.strictEqual(findButton(wrapper, 'one').props().selected, true);
-    });
-
-    it('should not render a selected ToggleButton when its value is not selected', () => {
-      const wrapper = mount(
-        <ToggleButtonGroup exclusive value="one">
-          <ToggleButton value="one">1</ToggleButton>
-          <ToggleButton value="two">2</ToggleButton>
-        </ToggleButtonGroup>,
-      );
-
-      assert.strictEqual(findButton(wrapper, 'two').props().selected, false);
-    });
-  });
-
-  describe('non exclusive', () => {
-    it('should render a selected ToggleButton if value is selected', () => {
-      const wrapper = mount(
-        <ToggleButtonGroup value={['one']}>
-          <ToggleButton value="one">1</ToggleButton>
-          <ToggleButton value="two">2</ToggleButton>
-        </ToggleButtonGroup>,
-      );
-
-      assert.strictEqual(
-        wrapper
-          .find('[value="one"]')
-          .first()
-          .props().selected,
-        true,
-      );
-      assert.strictEqual(
-        wrapper
-          .find('[value="two"]')
-          .first()
-          .props().selected,
-        false,
-      );
-    });
-  });
-
   describe('prop: onChange', () => {
     describe('exclusive', () => {
       it('should be null when current value is toggled off', () => {

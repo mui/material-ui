@@ -38,15 +38,7 @@ export const styles = theme => ({
 });
 
 const Radio = React.forwardRef(function Radio(props, ref) {
-  const {
-    classes,
-    checked: checkedProp,
-    color,
-    name: nameProp,
-    onChange,
-    value,
-    ...other
-  } = props;
+  const { classes, checked: checkedProp, color, name: nameProp, onChange, value, ...other } = props;
   const selectedState = useSelectedState();
 
   let name = nameProp;

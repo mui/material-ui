@@ -15,11 +15,11 @@ export const styles = theme => ({
 });
 
 function ToggleButtonGroup(props) {
-  const { children, className, classes, exclusive, onChange, value, ...other } = props;
+  const { children, className, classes, exclusive, innerRef, onChange, value, ...other } = props;
 
   return (
     <SelectableGroup exclusive={exclusive} onChange={onChange} value={value}>
-      <div className={clsx(classes.root, className)} {...other}>
+      <div className={clsx(classes.root, className)} ref={innerRef} {...other}>
         {children}
       </div>
     </SelectableGroup>
