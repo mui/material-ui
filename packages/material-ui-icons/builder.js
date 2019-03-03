@@ -64,11 +64,11 @@ const svgo = new SVGO({
 /**
  * Return Pascal-Cased component name.
  *
- * @param {string} svgPath
+ * @param {string} destPath
  * @returns {string} class name
  */
 function getComponentName(destPath) {
-  const splitregex = new RegExp(`[${path.sep}-]+`);
+  const splitregex = new RegExp(`[\\${path.sep}-]+`);
 
   const parts = destPath
     .replace('.js', '')
@@ -93,9 +93,10 @@ async function generateIndex(options) {
 async function worker({ svgPath, options, renameFilter, template }) {
   process.stdout.write('.');
 
-  const svgPathObj = path.parse(svgPath);
+  const normalizedSvgPath = path.normalize(svgPath);
+  const svgPathObj = path.parse(normalizedSvgPath);
   const innerPath = path
-    .dirname(svgPath)
+    .dirname(normalizedSvgPath)
     .replace(options.svgDir, '')
     .replace(path.relative(process.cwd(), options.svgDir), ''); // for relative dirs
   const destPath = renameFilter(svgPathObj, innerPath, options);
