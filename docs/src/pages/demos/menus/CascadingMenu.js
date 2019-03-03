@@ -89,14 +89,17 @@ class CascadingMenu extends React.Component {
   };
 
   handleCloseCascade = () => {
-    this.setState({
-      anchorItems: {}
-    }, () => {
-      this.setState({
-        anchorEl: null
-      })
-    });
-  }
+    this.setState(
+      {
+        anchorItems: {},
+      },
+      () => {
+        this.setState({
+          anchorEl: null,
+        });
+      },
+    );
+  };
 
   renderItems = item => {
     const { anchorItems } = this.state;
@@ -116,7 +119,11 @@ class CascadingMenu extends React.Component {
       );
     }
     return (
-      <MenuItem key={item.key} style={{ display: 'flex', justifyContent: 'space-between' }} onClick={this.handleCloseCascade}>
+      <MenuItem
+        key={item.key}
+        style={{ display: 'flex', justifyContent: 'space-between' }}
+        onClick={this.handleCloseCascade}
+      >
         {item.item}
       </MenuItem>
     );
