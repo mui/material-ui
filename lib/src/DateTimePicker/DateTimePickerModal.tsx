@@ -33,6 +33,8 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
     animateYearScrolling,
     forwardedRef,
     allowKeyboardControl,
+    onMonthChange,
+    onYearChange,
     ...other
   } = props;
 
@@ -84,6 +86,8 @@ export const DateTimePickerModal: React.SFC<DateTimePickerModalProps> = props =>
             maxDate={maxDate}
             minDate={minDate}
             onChange={handleChange}
+            onMonthChange={onMonthChange}
+            onYearChange={onYearChange}
             openTo={openTo}
             renderDay={renderDay}
             rightArrowIcon={rightArrowIcon}

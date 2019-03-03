@@ -95,6 +95,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   innerRef: PropTypes.any,
 };
 
+CalendarHeader.displayName = 'CalendarHeader';
 CalendarHeader.defaultProps = {
   leftArrowIcon: <ArrowLeftIcon />,
   rightArrowIcon: <ArrowRightIcon />,
@@ -142,7 +143,9 @@ export const styles = (theme: Theme) =>
     },
   });
 
-export default withStyles(styles, {
-  withTheme: true,
-  name: 'MuiPickersCalendarHeader',
-})(withUtils()(CalendarHeader));
+export default withUtils()(
+  withStyles(styles, {
+    withTheme: true,
+    name: 'MuiPickersCalendarHeader',
+  })(CalendarHeader)
+);

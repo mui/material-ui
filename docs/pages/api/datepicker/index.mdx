@@ -1,0 +1,49 @@
+import Example from '_shared/Example'
+import PageMeta from '_shared/PageMeta'
+import PropTypesTable from '_shared/PropTypesTable'
+
+import * as CustomDay from './CustomDay.example'
+import * as BasicDatePicker from './BasicDatePicker.example'
+import * as ViewsDatePicker from './ViewsDatePicker.example'
+import * as InlineDatePicker from './InlineDatePicker.example'
+import * as KeyboardDatePicker from './KeyboardDatePicker.example'
+
+<PageMeta component="Datepicker" />
+
+## Date picker
+
+Date pickers use a dialog window or an inline popover to select a single date.
+The selected day is indicated by a filled circle. The current day is indicated by a different
+color and type weight.
+
+#### Basic usage
+
+<Example source={BasicDatePicker} />
+
+#### Keyboard Input
+
+It is recommended to use keyboard input with mask for better desktop experience. More information about [mask](https://github.com/insin/inputmask-core#pattern)
+
+<Example source={KeyboardDatePicker} />
+
+#### Different views
+
+It is also allowed to combine `year`, `month` and `date` selection views.
+Thus you can easily create
+- Year picker
+- Month picker
+- Month + year picker
+
+<Example source={ViewsDatePicker} />
+
+#### Inline mode
+
+<Example source={InlineDatePicker} />
+
+#### Customization
+
+It is allowed to hardly customize displaying of dates. Thus you can add badges or fully change displaying of day.
+
+<Example source={CustomDay} />
+
+<PropTypesTable src="DatePicker/DatePickerModal.tsx" />

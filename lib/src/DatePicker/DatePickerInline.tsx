@@ -35,6 +35,8 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = props => {
     value,
     autoOk,
     onlyCalendar,
+    views,
+    openTo,
     ...other
   } = props;
 
@@ -68,6 +70,8 @@ export const DatePickerInline: React.SFC<DatePickerInlineProps> = props => {
         >
           <ComponentToShow
             date={date}
+            views={views}
+            openTo={openTo}
             allowKeyboardControl={allowKeyboardControl}
             animateYearScrolling={animateYearScrolling}
             disableFuture={disableFuture}

@@ -7,14 +7,14 @@
     "doc": "docs",
     "lib": "lib"
   },
+  "private": true,
+  "workspaces": [
+    "lib",
+    "docs"
+  ],
   "scripts": {
-    "start": "lerna run start --parallel",
-    "bump:patch": "lerna exec -- npm version patch",
-    "bump:minor": "lerna exec -- npm version minor",
-    "release": "lerna run release --scope --parallel material-ui-pickers && lerna run deploy --scope --parallel docs",
-    "release:patch": "npm run bump:patch && npm run release",
-    "release:minor": "npm run bump:minor && npm run release",
-    "postinstall": "lerna bootstrap",
+    "start": "yarn workspace docs dev",
+    "release": "yarn workspace material-ui-pickers release && yarn workspace docs deploy",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run"
   },
@@ -31,7 +31,6 @@
   "homepage": "https://github.com/dmtrKovalenko/material-ui-pickers#readme",
   "devDependencies": {
     "husky": "^1.1.2",
-    "lerna": "^3.4.3",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3"
   },

@@ -1,10 +1,10 @@
 {
   "name": "material-ui-pickers",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
-  "main": "build/dist/material-ui-pickers.cjs.js",
-  "module": "build/dist/material-ui-pickers.esm.js",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
   "typings": "./build/index.d.ts",
   "keywords": [
     "material-ui",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
   },
-  "homepage": "https://material-ui-pickers.firebaseapp.com/",
+  "homepage": "https://material-ui-pickers.dev/",
   "repository": {
     "type": "git",
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers"
@@ -64,7 +64,7 @@
     "build:typescript": "tsc --project tsconfig.json",
     "build": "npm run build:typescript && npm run build:bundle && npm run build:copy",
     "build:analyze": "npm run build",
-    "release": "npm run test && npm run build && npm publish build",
+    "release": "npm run test && npm run build && yarn publish build -f",
     "lint": "tslint --project tsconfig.json"
   },
   "devDependencies": {

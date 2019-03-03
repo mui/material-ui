@@ -32,6 +32,7 @@ export interface CalendarProps extends WithUtilsProps, WithStyles<typeof styles,
   rightArrowIcon?: React.ReactNode;
   renderDay?: RenderDay;
   allowKeyboardControl?: boolean;
+  onMonthChange?: (date: MaterialUiPickersDate) => void;
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 
@@ -116,6 +117,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
   };
 
   public handleChangeMonth = (newMonth: MaterialUiPickersDate, slideDirection: SlideDirection) => {
+    if (this.props.onMonthChange) {
+      this.props.onMonthChange(newMonth);
+    }
+
     this.setState({ currentMonth: newMonth, slideDirection });
   };
 

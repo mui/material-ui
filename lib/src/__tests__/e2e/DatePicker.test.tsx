@@ -52,6 +52,8 @@ describe('e2e - DatePicker', () => {
 
 describe('e2e -- DatePicker views year', () => {
   const onChangeMock = jest.fn();
+  const onYearChangeMock = jest.fn();
+
   let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
@@ -59,24 +61,29 @@ describe('e2e -- DatePicker views year', () => {
       <DatePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
+        onYearChange={onYearChangeMock}
         views={['year']}
       />
     );
   });
 
-  it('Should render year selection', () => {
+  it('Should render year selection and select year', () => {
     expect(component.find('Year').length).toBe(201);
 
     component
       .find('Year')
       .at(1)
       .simulate('click');
+
     expect(onChangeMock).toHaveBeenCalled();
+    expect(onYearChangeMock).toHaveBeenCalled();
   });
 });
 
 describe('e2e -- DatePicker views year and month', () => {
   const onChangeMock = jest.fn();
+  const onMonthChangeMock = jest.fn();
+
   let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
@@ -84,6 +91,7 @@ describe('e2e -- DatePicker views year and month', () => {
       <DatePicker
         date={utilsToUse.date('2018-01-01T00:00:00.000Z')}
         onChange={onChangeMock}
+        onMonthChange={onMonthChangeMock}
         views={['year', 'month']}
       />
     );
@@ -114,6 +122,7 @@ describe('e2e -- DatePicker views year and month', () => {
       .simulate('click');
 
     expect(onChangeMock).toHaveBeenCalled();
+    expect(onMonthChangeMock).toHaveBeenCalled();
   });
 });
 

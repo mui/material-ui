@@ -1,0 +1,19 @@
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta'
+import * as MomentExample from './Moment.example'
+
+<PageMeta title="Moment localization - material-ui-pickers" />
+
+## Localization with moment
+
+Moment localization relying on the global moment object used.
+
+It is also possible to pass configured global moment with selected locale, default timezone, etc.
+Also pass selected locale as string to the provider to make pickers rerenders automatically on
+locale change.
+
+#### Example
+*Note*: Any picker in component tree will be rerendered automatically on locale change
+
+<Example source={MomentExample} />
+

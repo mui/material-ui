@@ -40,7 +40,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
     cancelLabel: PropTypes.node,
     clearLabel: PropTypes.node,
     clearable: PropTypes.bool,
-    todayLabel: PropTypes.string,
+    todayLabel: PropTypes.node,
     showTodayButton: PropTypes.bool,
     onOpen: PropTypes.func,
     DialogProps: PropTypes.object,

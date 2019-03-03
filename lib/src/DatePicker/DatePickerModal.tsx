@@ -37,6 +37,8 @@ export function DatePickerModal(props: DatePickerModalProps) {
     value,
     views,
     openTo,
+    onMonthChange,
+    onYearChange,
     ...other
   } = props;
 

@@ -1,0 +1,22 @@
+import PageMeta from '_shared/PageMeta'
+
+<PageMeta
+  title="Parsing"
+  description="Parsing dates for material-ui-pickers"
+/>
+
+## Parsing dates
+
+Material-UI pickers rely on the date management library when the date should be parsed. For
+any prop-types, that accept actually the date (e.g. `minDate`, `maxDate`)
+can take string, number, Date object and so on.
+
+Find more information about parsing dates in the documentation for your library:
+
+- [date-fns](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Several_ways_to_create_a_Date_object)
+- [dayjs](https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#constructor-dayjsexisting-string--number--date--dayjs)
+- [luxon](https://moment.github.io/luxon/docs/manual/parsing.html)
+- [moment](https://momentjs.com/docs/#/parsing/)
+
+P.S.: Pass any value to the picker, and if it won't be parsed as expected feel free to open issue
+on our [github](https://github.com/dmtrKovalenko/material-ui-pickers) 😎

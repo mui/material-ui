@@ -1,0 +1,36 @@
+import Example from '_shared/Example'
+import PageMeta from '_shared/PageMeta'
+import PropTypesTable from '_shared/PropTypesTable'
+
+import * as BasicTimePicker from './BasicTimePicker.example'
+import * as InlineTimePicker from './InlineTimePicker.example'
+import * as SecondsTimePicker from './SecondsTimePicker.example'
+import * as KeyboardTimePicker from './KeyboardTimePicker.example'
+
+<PageMeta component="Timepicker" />
+
+
+## Time Picker
+
+Time pickers use a dialog to select a single time (in the hours:minutes format).
+The selected time is indicated by the filled circle at the end of the clock hand.
+
+#### Basic usage
+A time picker should adjusts to a user’s preferred time setting, i.e. the 12-hour or 24-hour format.
+
+<Example source={BasicTimePicker} />
+
+#### Keyboard input
+
+<Example source={KeyboardTimePicker} />
+
+#### Inline mode
+
+<Example source={InlineTimePicker} />
+
+#### Seconds
+Seconds input can be used for selection of precise time point
+
+<Example source={SecondsTimePicker} />
+
+<PropTypesTable src="TimePicker/TimePickerModal.tsx" />
