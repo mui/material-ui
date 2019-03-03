@@ -1,5 +1,6 @@
 import React from 'react';
-import { getDisplayName, hoistMuiStatics } from '@material-ui/utils';
+import hoistNonReactStatics from 'hoist-non-react-statics';
+import { getDisplayName } from '@material-ui/utils';
 
 /**
  * Enables ref forwarding on a given component that uses `innerRef` to forward refs
@@ -28,5 +29,5 @@ export default function withForwardedRef(Component) {
     ForwardRefComponent.displayName = `ForwardRef(${getDisplayName(Component)})`;
   }
 
-  return hoistMuiStatics(ForwardRefComponent, Component);
+  return hoistNonReactStatics(ForwardRefComponent, Component);
 }
