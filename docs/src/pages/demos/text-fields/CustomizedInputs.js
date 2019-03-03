@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputBase from '@material-ui/core/InputBase';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import FilledInput from '@material-ui/core/FilledInput';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
@@ -62,13 +64,27 @@ const styles = theme => ({
       '"Segoe UI Symbol"',
     ].join(','),
     '&:focus': {
-      borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
     },
   },
   bootstrapFormLabel: {
     fontSize: 18,
+  },
+  redditRoot: {
+    border: '1px solid #e2e2e1',
+    overflow: 'hidden',
+    borderRadius: 4,
+    backgroundColor: '#fcfcfb',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:hover': {
+      backgroundColor: '#fff',
+    },
+    '&.focused': {
+      backgroundColor: '#fff',
+      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
+      borderColor: theme.palette.primary.main,
+    },
   },
 });
 
@@ -144,6 +160,18 @@ function CustomizedInputs(props) {
           classes={{
             root: classes.bootstrapRoot,
             input: classes.bootstrapInput,
+          }}
+        />
+      </FormControl>
+      <FormControl className={classes.margin} variant="filled">
+        <InputLabel htmlFor="reddit-input">Reddit</InputLabel>
+        <FilledInput
+          id="reddit-input"
+          defaultValue="react-reddit"
+          disableUnderline
+          classes={{
+            root: classes.redditRoot,
+            focused: 'focused',
           }}
         />
       </FormControl>
