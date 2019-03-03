@@ -231,6 +231,28 @@
       "required": false,
       "type": { "name": "(day: any) => boolean" }
     },
+    "onYearChange": {
+      "defaultValue": null,
+      "description": "Callback firing on year change",
+      "name": "onYearChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onMonthChange": {
+      "defaultValue": null,
+      "description": "Callback firing on month change",
+      "name": "onMonthChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
     "mask": {
       "defaultValue": null,
       "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
@@ -1063,6 +1085,28 @@
       },
       "required": false,
       "type": { "name": "(day: any) => boolean" }
+    },
+    "onYearChange": {
+      "defaultValue": null,
+      "description": "Callback firing on year change",
+      "name": "onYearChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
+    },
+    "onMonthChange": {
+      "defaultValue": null,
+      "description": "Callback firing on month change",
+      "name": "onMonthChange",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
+        "name": "BaseDatePickerProps"
+      },
+      "required": false,
+      "type": { "name": "(date: any) => void" }
     },
     "mask": {
       "defaultValue": null,

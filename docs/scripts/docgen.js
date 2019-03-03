@@ -17,17 +17,11 @@ files.forEach(filePart => {
   const parsedDoc = parser.parse(file)[0];
 
   doc[filePart] = Object.entries(parsedDoc.props)
-    .filter(
-      ([key, value]) =>
-        value.description && !value.parent.fileName.includes('@types')
-    )
+    .filter(([key, value]) => value.description && !value.parent.fileName.includes('@types'))
     .reduce((obj, [key, value]) => {
       obj[key] = value;
       return obj;
     }, {});
 });
 
-fs.writeFileSync(
-  path.resolve(__dirname, '..', 'src', 'prop-types.json'),
-  JSON.stringify(doc)
-);
+fs.writeFileSync(path.resolve(__dirname, '..', 'prop-types.json'), JSON.stringify(doc));

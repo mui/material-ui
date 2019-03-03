@@ -49,10 +49,15 @@
     "prismjs": "^1.15.0",
     "raw-loader": "^1.0.0",
     "react": "^16.8.2",
+    "react-docgen-typescript": "^1.12.3",
     "react-dom": "^16.8.2",
     "react-jss": "^8.6.1",
     "remark-slug": "^5.1.1",
     "safe-json-stringify": "^1.2.0",
     "unist-util-visit": "^1.4.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^7.0.1",
+    "patreon": "^0.4.1"
   }
 }
