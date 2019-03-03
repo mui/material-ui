@@ -88,18 +88,6 @@ class CascadingMenu extends React.Component {
     });
   };
 
-  handleSubMenuClose = key => {
-    this.setState(prevState => {
-      const anchorItems = Object.assign({}, prevState.anchorItems, {
-        [key]: {
-          anchorEl: null,
-          open: false,
-        },
-      });
-      return { anchorItems };
-    });
-  };
-
   handleCloseCascade = () => {
     this.setState({
       anchorItems: {}
@@ -122,7 +110,7 @@ class CascadingMenu extends React.Component {
           anchorEl={anchorEl}
           item={item}
           onSubMenuOpen={this.handleSubMenuOpen}
-          onSubMenuClose={this.handleSubMenuClose}
+          onSubMenuClose={this.handleCloseCascade}
           renderItems={this.renderItems}
         />
       );
