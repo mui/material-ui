@@ -57,7 +57,7 @@ If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.pa
 
 The intention value can either be a [color](/style/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
-```js
+```ts
 interface PaletteIntention {
   light?: string;
   main: string;
