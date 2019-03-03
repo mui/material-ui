@@ -12,6 +12,7 @@ Here are some highlights ✨:
 - Change the bundle size tracking strategy (copy React) (#14587) @eps1lon.
 - Introduce a new Container component & new full layout demos (#14499) @oliviertassinari.
 - Start removing the need for findDOMNode() (#14536) @eps1lon.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v4.0.0-alpha.2`
 

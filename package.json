@@ -26,7 +26,7 @@
     "docs:api:lab": "rimraf ./pages/lab/api && cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/lab/api",
     "docs:build": "rimraf .next && cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
-    "docs:deploy": "git push material-ui-docs master:latest",
+    "docs:deploy": "git push material-ui-docs next:next",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
     "docs:export": "rimraf docs/export && next export -o docs/export && yarn docs:build-sw && cp -r docs/static/. docs/export",
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
