@@ -3,7 +3,12 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createRender,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
@@ -23,6 +28,7 @@ const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exist
 describe('<Tabs />', () => {
   let mount;
   let classes;
+  let render;
   const noop = () => {};
   const fakeTabs = {
     getBoundingClientRect: () => ({}),
@@ -48,6 +54,7 @@ describe('<Tabs />', () => {
   before(() => {
     classes = getClasses(<Tabs onChange={noop} value={0} />);
     mount = createMount();
+    render = createRender();
   });
 
   after(() => {
@@ -207,48 +214,16 @@ describe('<Tabs />', () => {
         assert.strictEqual(wrapper.find(TabIndicator).props().style.width, 0);
       });
 
-      /* wrapping Tabs in forwardRef calls componentDidMount :( 
-      it('should not have style server-side', () => {
-        const wrapper = shallow(
+      it('should let the selected <Tab /> render the indicator server-side', () => {
+        const markup = render(
           <Tabs width="md" onChange={noop} value={1}>
             <Tab />
             <Tab />
           </Tabs>,
-          { disableLifecycleMethods: true },
         );
-        const indicator = new ShallowWrapper(
-          wrapper
-            .find(Tab)
-            .at(1)
-            .props().indicator,
-          wrapper,
-        );
-        assert.deepEqual(indicator.props().style, {});
-      }); 
-      
-      it('should let the selected <Tab /> render the indicator', () => {
-        const wrapper = shallow(
-          <Tabs width="md" onChange={noop} value={1}>
-            <Tab />
-            <Tab />
-          </Tabs>,
-          { disableLifecycleMethods: true },
-        );
-        assert.strictEqual(
-          wrapper
-            .find(Tab)
-            .at(0)
-            .props().indicator,
-          false,
-        );
-        assert.strictEqual(
-          wrapper
-            .find(Tab)
-            .at(1)
-            .props().indicator.type,
-          TabIndicator,
-        );
-      }); */
+        const indicator = markup.find(`button > .${classes.indicator}`);
+        assert.strictEqual(indicator.length, 1);
+      });
 
       it('should render the indicator', () => {
         const wrapper = mount(
