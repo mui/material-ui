@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  getClasses,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -83,6 +88,18 @@ describe('<IconButton />', () => {
   it('should pass centerRipple={true} to ButtonBase', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
     assert.strictEqual(wrapper.props().centerRipple, true);
+  });
+
+  describe('prop: size', () => {
+    it('should render the right class', () => {
+      let wrapper;
+      wrapper = mount(<IconButton size="small">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), true);
+      wrapper = mount(<IconButton size="medium">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
+      wrapper = mount(<IconButton>book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
+    });
   });
 
   describe('prop: disabled', () => {

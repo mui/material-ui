@@ -13,7 +13,7 @@ export const styles = theme => ({
     display: 'inline-block',
     fill: 'currentColor',
     flexShrink: 0,
-    fontSize: 24,
+    fontSize: theme.typography.pxToRem(24),
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -44,11 +44,11 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: {
-    fontSize: 20,
+    fontSize: theme.typography.pxToRem(20),
   },
   /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
-    fontSize: 35,
+    fontSize: theme.typography.pxToRem(35),
   },
 });
 
