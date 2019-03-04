@@ -159,7 +159,7 @@ You can use the new `display?: 'initial' | 'inline' | 'block';` property.
   +<TableCell size="small" />
   ```
 
-- The `TablePagination` component does no longer try to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
+- The `TablePagination` component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
 ### Tabs
 
