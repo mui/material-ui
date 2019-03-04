@@ -95,7 +95,7 @@ You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 
 ### Button
 
-- Remove the deprecated button flat, raised and fab variants:
+- Remove the deprecated button variants (flat, raised and fab):
 
   ```diff
   -<Button variant="raised" />
