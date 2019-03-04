@@ -5,6 +5,8 @@ import clsx from 'clsx';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
+import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import TrapFocus from './TrapFocus';
@@ -186,6 +188,7 @@ class Modal extends React.Component {
 
   handleModalRef = ref => {
     this.modalRef = ref;
+    setRef(this.props.innerRef, ref);
   };
 
   isTopModal = () => {
@@ -212,6 +215,7 @@ class Modal extends React.Component {
       disablePortal,
       disableRestoreFocus,
       hideBackdrop,
+      innerRef,
       keepMounted,
       manager,
       onBackdropClick,
@@ -355,6 +359,11 @@ Modal.propTypes = {
    */
   hideBackdrop: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
@@ -410,4 +419,4 @@ Modal.defaultProps = {
   manager: new ModalManager(),
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withStyles(styles, { flip: false, name: 'MuiModal' })(withForwardedRef(Modal));

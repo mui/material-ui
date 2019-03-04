@@ -350,12 +350,13 @@ describe('<Modal />', () => {
     });
 
     it('does not include the children in the a11y tree', () => {
+      const modalRef = React.createRef();
       mount(
-        <Modal keepMounted open={false}>
+        <Modal keepMounted open={false} innerRef={modalRef}>
           <div />
         </Modal>,
       );
-      const modalNode = document.querySelector('[data-mui-test="Modal"]');
+      const modalNode = modalRef.current;
       assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
     });
   });
