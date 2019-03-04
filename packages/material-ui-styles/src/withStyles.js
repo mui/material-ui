@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import { getDisplayName, hoistMuiStatics } from '@material-ui/utils';
+import hoistNonReactStatics from 'hoist-non-react-statics';
+import { getDisplayName } from '@material-ui/utils';
 import makeStyles from './makeStyles';
 import RefHolder from './RefHolder';
 import getThemeProps from './getThemeProps';
@@ -88,7 +89,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
-  hoistMuiStatics(WithStyles, Component);
+  hoistNonReactStatics(WithStyles, Component);
 
   return WithStyles;
 };

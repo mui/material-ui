@@ -168,7 +168,7 @@ async function main(options) {
 
     let renameFilter = options.renameFilter;
     if (typeof renameFilter === 'string') {
-      /* eslint-disable-next-line global-require, import/no-dynamic-require */
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       renameFilter = require(renameFilter).default;
     }
     if (typeof renameFilter !== 'function') {

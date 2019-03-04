@@ -22,11 +22,11 @@ describe('withStyles', () => {
     mount.cleanUp();
   });
 
-  it('does not hoist statics', () => {
+  it('hoist statics', () => {
     const Test = () => null;
     Test.someStatic = 'will not get hoisted';
     const TestWithStyles = withStyles({})(Test);
-    assert.strictEqual(TestWithStyles.someStatic, undefined);
+    assert.strictEqual(TestWithStyles.someStatic, Test.someStatic);
   });
 
   it('hoists mui internals', () => {
