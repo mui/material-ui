@@ -295,7 +295,6 @@ class Popover extends React.Component {
       onExiting,
       open,
       PaperProps,
-      role,
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
@@ -331,7 +330,6 @@ class Popover extends React.Component {
           onExit={onExit}
           onExited={onExited}
           onExiting={onExiting}
-          role={role}
           timeout={transitionDuration}
           {...TransitionProps}
           onEntering={createChainedFunction(this.handleEntering, TransitionProps.onEntering)}
@@ -482,10 +480,6 @@ Popover.propTypes = {
    * Properties applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  role: PropTypes.string,
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
