@@ -46,7 +46,7 @@ yarn add @material-ui/core@next
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This is allowing us to rely on the [Hooks](https://reactjs.org/docs/hooks-intro.html).
+This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ## Handling Breaking Changes
 
