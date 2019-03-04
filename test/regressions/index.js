@@ -40,12 +40,11 @@ const blacklistSuite = [
 
   // Less important
   'docs-layouts',
+
+  // Image load issue
   'docs-getting-started-page-layout-examples-album',
   'docs-getting-started-page-layout-examples-blog',
-  'docs-getting-started-page-layout-examples-checkout',
-  'docs-getting-started-page-layout-examples-dashboard',
-  'docs-getting-started-page-layout-examples-pricing',
-  'docs-getting-started-page-layout-examples-sign-in',
+  'docs-getting-started-page-layout-examples-sign-in-side',
 
   // Useless
   'docs-', // Home
