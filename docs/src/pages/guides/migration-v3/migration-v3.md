@@ -62,7 +62,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 ### Theme
 
 - The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
-In order to use it correctly, you have to use the output of this function.
+To use it correctly, you have to use the returned value.
 
   ```diff
   -const background = { main: color };
