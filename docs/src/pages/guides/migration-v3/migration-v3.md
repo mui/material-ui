@@ -21,7 +21,7 @@ The *why* is covered in the release blog post: [*Work in progress, on Medium*](h
 
 ## Updating Your Dependencies
 
-The very first thing you will need to do is update your dependencies
+The very first thing you will need to do is update your dependencies.
 
 ### Update Material-UI version
 
