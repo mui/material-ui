@@ -25,7 +25,7 @@ The very first thing you will need to do is update your dependencies
 
 ### Update Material-UI version
 
-You need update your `package.json` to use the latest version of Material-UI.
+You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
