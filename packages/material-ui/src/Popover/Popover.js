@@ -9,6 +9,7 @@ import EventListener from 'react-event-listener';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../Grow';
@@ -285,6 +286,7 @@ class Popover extends React.Component {
       container: containerProp,
       elevation,
       getContentAnchorEl,
+      innerRef,
       marginThreshold,
       ModalClasses,
       onEnter,
@@ -319,6 +321,7 @@ class Popover extends React.Component {
         classes={ModalClasses}
         container={container}
         open={open}
+        ref={innerRef}
         BackdropProps={{ invisible: true }}
         {...other}
       >
@@ -530,4 +533,4 @@ Popover.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiPopover' })(Popover);
+export default withStyles(styles, { name: 'MuiPopover' })(withForwardedRef(Popover));

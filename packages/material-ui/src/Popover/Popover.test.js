@@ -365,7 +365,9 @@ describe('<Popover />', () => {
     });
 
     after(() => {
-      window.document.body.removeChild(anchorEl);
+      if (anchorEl) {
+        window.document.body.removeChild(anchorEl);
+      }
     });
 
     it('should be positioned over the top left of the anchor', async () => {
@@ -421,14 +423,14 @@ describe('<Popover />', () => {
 
     it('should pass through container prop if container and anchorEl props are provided', () => {
       const container = {};
-      const shallowWrapper = shallow(<Popover container={container} open />);
+      const shallowWrapper = shallow(<Popover anchorEl={anchorEl} container={container} open />);
+
       assert.strictEqual(
         shallowWrapper
           .dive()
-          .find('Modal')
+          .find(Modal)
           .props().container,
         container,
-        'should pass through container prop if both container and anchorEl props are provided',
       );
     });
 
@@ -437,7 +439,7 @@ describe('<Popover />', () => {
         assert.strictEqual(
           wrapper
             .dive()
-            .find('Modal')
+            .find(Modal)
             .props().container,
           window.document.body,
           "should use anchorEl's parent body as Modal container",
@@ -446,15 +448,8 @@ describe('<Popover />', () => {
     });
 
     it('should not pass container to Modal if container or anchorEl props are not provided', () => {
-      const shallowWrapper = shallow(<Popover open />);
-      assert.strictEqual(
-        shallowWrapper
-          .dive()
-          .find('Modal')
-          .props().container,
-        undefined,
-        'should not pass a container prop if neither container or anchorEl are provided',
-      );
+      const otherWrapper = mount(<Popover open />);
+      assert.strictEqual(otherWrapper.find('Modal').props().container, undefined);
     });
   });
 
@@ -821,8 +816,8 @@ describe('<Popover />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should apply the auto property if supported', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
@@ -830,9 +825,9 @@ describe('<Popover />', () => {
     });
 
     it('should not apply the auto property if not supported', () => {
-      const TransitionComponent = props => <div {...props} />;
-      const wrapper = shallow(
-        <Popover {...defaultProps} TransitionComponent={TransitionComponent}>
+      const TransitionComponent = () => <div tabIndex="-1" />;
+      const wrapper = mount(
+        <Popover {...defaultProps} open TransitionComponent={TransitionComponent}>
           <div />
         </Popover>,
       );
