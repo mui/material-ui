@@ -116,7 +116,7 @@ You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 
 ### TextField
 
-- You should be able to override all the styles of the FormLabel component using the css API of the InputLabel component. We do no longer need the `FormLabelClasses` property.
+- You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component. The `FormLabelClasses` property has been removed.
 
   ```diff
   <InputLabel
