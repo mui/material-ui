@@ -71,7 +71,7 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   chip: {
-    margin: theme.spacing(0.5, 2),
+    margin: theme.spacing(0.5, 0.25),
   },
   chipFocused: {
     backgroundColor: emphasize(

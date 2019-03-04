@@ -20,15 +20,15 @@ export const styles = {
   },
 };
 
-function DialogActions(props) {
+const DialogActions = React.forwardRef(function DialogActions(props, ref) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} {...other}>
       {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
     </div>
   );
-}
+});
 
 DialogActions.propTypes = {
   /**

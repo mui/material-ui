@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
-import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ListItemTypeMap<P, D extends React.ReactType> {
   props: P & {
@@ -36,6 +36,9 @@ export type ListItemClassKey =
   | 'secondaryAction'
   | 'selected';
 
-export type ListItemProps = SimplifiedPropsOf<typeof ListItem>;
+export type ListItemProps<D extends React.ReactType = 'li', P = {}> = OverrideProps<
+  ListItemTypeMap<P, D>,
+  D
+>;
 
 export default ListItem;

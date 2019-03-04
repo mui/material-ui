@@ -67,7 +67,7 @@ class CustomizedExpansionPanel extends React.Component {
           expanded={expanded === 'panel1'}
           onChange={this.handleChange('panel1')}
         >
-          <ExpansionPanelSummary>
+          <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Collapsible Group Item #1</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
@@ -83,7 +83,7 @@ class CustomizedExpansionPanel extends React.Component {
           expanded={expanded === 'panel2'}
           onChange={this.handleChange('panel2')}
         >
-          <ExpansionPanelSummary>
+          <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header">
             <Typography>Collapsible Group Item #2</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
@@ -99,7 +99,7 @@ class CustomizedExpansionPanel extends React.Component {
           expanded={expanded === 'panel3'}
           onChange={this.handleChange('panel3')}
         >
-          <ExpansionPanelSummary>
+          <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header">
             <Typography>Collapsible Group Item #3</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

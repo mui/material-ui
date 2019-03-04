@@ -42,7 +42,7 @@ class TabsWrappedLabel extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs value={value} onChange={this.handleChange}>
-            <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" />
+            <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" wrapped />
             <Tab value="two" label="Item Two" />
             <Tab value="three" label="Item Three" />
           </Tabs>

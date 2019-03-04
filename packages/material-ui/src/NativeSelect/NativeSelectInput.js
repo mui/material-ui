@@ -5,7 +5,7 @@ import clsx from 'clsx';
 /**
  * @ignore - internal component.
  */
-function NativeSelectInput(props) {
+const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
   const {
     children,
     classes,
@@ -36,7 +36,7 @@ function NativeSelectInput(props) {
         disabled={disabled}
         onChange={onChange}
         value={value}
-        ref={inputRef}
+        ref={inputRef || ref}
         {...other}
       >
         {children}
@@ -44,7 +44,7 @@ function NativeSelectInput(props) {
       <IconComponent className={classes.icon} />
     </div>
   );
-}
+});
 
 NativeSelectInput.propTypes = {
   /**
@@ -70,6 +70,7 @@ NativeSelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
+   * @deprecated
    * Use that property to pass a ref callback to the native select element.
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

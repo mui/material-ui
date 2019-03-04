@@ -7,12 +7,29 @@ import RootRef from '../RootRef';
 import ownerDocument from '../utils/ownerDocument';
 
 function TrapFocus(props) {
-  const { disableEnforceFocus, disableAutoFocus, disableRestoreFocus, isEnabled, open } = props;
+  const {
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableRestoreFocus,
+    getDoc,
+    isEnabled,
+    open,
+  } = props;
   const rootRef = React.useRef();
   const ignoreNextEnforceFocus = React.useRef();
   const sentinelStart = React.useRef();
   const sentinelEnd = React.useRef();
   const lastFocus = React.useRef();
+
+  // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
+  // https://reactjs.org/docs/hooks-reference.html#usememo
+  React.useMemo(() => {
+    if (!open) {
+      return;
+    }
+
+    lastFocus.current = getDoc().activeElement;
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
     if (!open) {
@@ -20,11 +37,9 @@ function TrapFocus(props) {
     }
 
     const doc = ownerDocument(rootRef.current);
-    const currentActiveElement = doc.activeElement;
-    lastFocus.current = currentActiveElement;
 
     // We might render an empty child.
-    if (!disableAutoFocus && rootRef.current && !rootRef.current.contains(currentActiveElement)) {
+    if (!disableAutoFocus && rootRef.current && !rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         warning(
           false,
@@ -129,6 +144,11 @@ TrapFocus.propTypes = {
    * modal is hidden.
    */
   disableRestoreFocus: PropTypes.bool,
+  /**
+   * Return the document to consider.
+   * We use it to implement the restore focus between different browser documents.
+   */
+  getDoc: PropTypes.func.isRequired,
   /**
    * Do we still want to enforce the focus?
    * This property helps nesting TrapFocus elements.

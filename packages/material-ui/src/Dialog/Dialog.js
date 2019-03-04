@@ -14,7 +14,11 @@ import Paper from '../Paper';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
-  root: {},
+  root: {
+    '@media print': {
+      position: 'absolute',
+    },
+  },
   /* Styles applied to the root element if `scroll="paper"`. */
   scrollPaper: {
     display: 'flex',
@@ -29,6 +33,9 @@ export const styles = theme => ({
   /* Styles applied to the container element. */
   container: {
     height: '100%',
+    '@media print': {
+      height: 'auto',
+    },
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
   },
@@ -39,6 +46,10 @@ export const styles = theme => ({
     margin: 48,
     position: 'relative',
     overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
+    },
   },
   /* Styles applied to the `Paper` component if `scroll="paper"`. */
   paperScrollPaper: {
@@ -57,9 +68,9 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
-    maxWidth: Math.max(theme.breakpoints.values.xs, 360),
+    maxWidth: Math.max(theme.breakpoints.values.xs, 444),
     '&$paperScrollBody': {
-      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 360) + 48 * 2)]: {
+      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 48 * 2)]: {
         margin: 48,
       },
     },
@@ -275,10 +286,9 @@ Dialog.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * Determine the max width of the dialog.
-   * The dialog width grows with the size of the screen, this property is useful
-   * on the desktop where you might need some coherent different width size across your
-   * application. Set to `false` to disable `maxWidth`.
+   * Determine the max-width of the dialog.
+   * The dialog width grows with the size of the screen.
+   * Set to `false` to disable `maxWidth`.
    */
   maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
   /**

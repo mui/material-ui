@@ -41,11 +41,11 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 ## Theme
 
-In some situations you might not be able to use the `Typography` component. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
+В некоторых ситуациях вы не сможете использовать компонент `Typography`. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
 
 {{"demo": "pages/style/typography/TypographyTheme.js"}}
 
-## Changing the semantic element
+## Изменение семантического элемента
 
 The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
 

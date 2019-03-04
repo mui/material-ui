@@ -1,6 +1,6 @@
 {
-  "topBanner": "⚠️ ({{versionNumber}}) This is the documentation for the `next` release.",
-  "homeQuickWord": "A quick word from our sponsors:",
+  "topBanner": "⚠️ ({{versionNumber}}) Esta es la documentación para la `siguiente` versión.",
+  "homeQuickWord": "Unas palabras de nuestros patrocinadores:",
   "editWebsiteColors": "Editar los colores del sitio web",
   "toggleTheme": "Alternar tema claro/oscuro",
   "toggleRTL": "Alternar derecha-izquierda/izquierda-derecha",

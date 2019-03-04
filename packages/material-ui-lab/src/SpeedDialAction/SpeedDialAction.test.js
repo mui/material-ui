@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
@@ -9,7 +9,6 @@ import SpeedDialAction from './SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
   let mount;
-  let shallow;
   let classes;
   const icon = <Icon>add</Icon>;
   const defaultProps = {
@@ -19,7 +18,6 @@ describe('<SpeedDialAction />', () => {
 
   before(() => {
     mount = createMount();
-    shallow = createShallow({ dive: true });
     classes = getClasses(<SpeedDialAction {...defaultProps} />);
   });
 
@@ -29,52 +27,56 @@ describe('<SpeedDialAction />', () => {
     wrapper.unmount();
   });
 
-  it('initializes its state from props', () => {
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} open tooltipOpen />);
-    assert.strictEqual(wrapper.state().tooltipOpen, true);
-  });
-
   it('should render a Tooltip', () => {
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
-    assert.strictEqual(wrapper.type(), Tooltip);
+    const wrapper = mount(
+      <SpeedDialAction {...defaultProps} open tooltipOpen tooltipTitle="An Action" />,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .find('[role="tooltip"]')
+        .first()
+        .text(),
+      'An Action',
+    );
   });
 
   it('should be able to change the Tooltip classes', () => {
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
-    wrapper.setProps({ TooltipClasses: { root: 'bar' } });
-    assert.include(wrapper.props().classes.root, 'bar');
+    const wrapper = mount(
+      <SpeedDialAction {...defaultProps} TooltipClasses={{ tooltip: 'bar' }} />,
+    );
+    assert.include(wrapper.find(Tooltip).props().classes.tooltip, 'bar');
   });
 
-  it('should render a Button', () => {
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
-    const buttonWrapper = wrapper.childAt(0);
-    assert.strictEqual(buttonWrapper.type(), Fab);
+  it('should render a Fab', () => {
+    const wrapper = mount(<SpeedDialAction {...defaultProps} />);
+    assert.strictEqual(wrapper.find(Fab).exists(), true);
   });
 
   it('should render the Button with the button class', () => {
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} open />);
-    const buttonWrapper = wrapper.childAt(0);
+    const wrapper = mount(<SpeedDialAction {...defaultProps} open />);
+    const buttonWrapper = wrapper.find('button');
     assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
   });
 
   it('should render the Button with the button and buttonClosed classes', () => {
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} />);
-    const buttonWrapper = wrapper.childAt(0);
+    const wrapper = mount(<SpeedDialAction {...defaultProps} />);
+    const buttonWrapper = wrapper.find('button');
     assert.strictEqual(buttonWrapper.hasClass(classes.button), true);
     assert.strictEqual(buttonWrapper.hasClass(classes.buttonClosed), true);
   });
 
   it('passes the className to the Button', () => {
     const className = 'my-speeddialaction';
-    const wrapper = shallow(<SpeedDialAction {...defaultProps} className={className} />);
-    const buttonWrapper = wrapper.childAt(0);
+    const wrapper = mount(<SpeedDialAction {...defaultProps} className={className} />);
+    const buttonWrapper = wrapper.find('button');
     assert.strictEqual(buttonWrapper.hasClass(className), true);
   });
 
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const wrapper = shallow(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
+      const wrapper = mount(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
       const buttonWrapper = wrapper.childAt(0);
       buttonWrapper.simulate('click');
       assert.strictEqual(handleClick.callCount, 1);

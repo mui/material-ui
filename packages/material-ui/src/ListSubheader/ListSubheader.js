@@ -41,7 +41,7 @@ export const styles = theme => ({
   },
 });
 
-function ListSubheader(props) {
+const ListSubheader = React.forwardRef(function ListSubheader(props, ref) {
   const {
     classes,
     className,
@@ -65,10 +65,11 @@ function ListSubheader(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 ListSubheader.propTypes = {
   /**

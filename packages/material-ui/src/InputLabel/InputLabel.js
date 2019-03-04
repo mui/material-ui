@@ -11,6 +11,7 @@ import FormLabel from '../FormLabel';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    display: 'block',
     transformOrigin: 'top left',
   },
   /* Styles applied to the root element if `focused={true}`. */
@@ -82,7 +83,7 @@ export const styles = theme => ({
   },
 });
 
-function InputLabel(props) {
+const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const {
     children,
     classes,
@@ -128,12 +129,13 @@ function InputLabel(props) {
         required: classes.required,
         asterisk: classes.asterisk,
       }}
+      ref={ref}
       {...other}
     >
       {children}
     </FormLabel>
   );
-}
+});
 
 InputLabel.propTypes = {
   /**

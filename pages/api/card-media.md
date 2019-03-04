@@ -19,7 +19,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">element type</span> | <span class="prop-default">'div'</span> | Component for rendering image. Either a string to use a DOM element or a component. |
+| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | Component for rendering image. Either a string to use a DOM element or a component. |
 | <span class="prop-name">image</span> | <span class="prop-type">string</span> |   | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |   | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
 
@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">media</span> | Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardMedia/CardMedia.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/CardMedia/CardMedia.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

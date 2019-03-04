@@ -1,13 +1,13 @@
-# Page layout examples
+# Exemples de mise en page
 
-<p class="description">A selection of basic page layouts to help you get started building your app.</p>
+<p class="description">Nous avons une sélection de mises en page de base pour vous aider à commencer à créer votre application.</p>
 
-They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+Ils peuvent être combinés avec l'un des [Exemples de Projets](https://github.com/mui-org/material-ui/tree/master/examples) pour former un ensemble de départ.
 
-Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages.
+Les sections de chaque mise en page sont clairement définies, soit par des commentaires, soit par l’utilisation de fichiers séparés ce qui facilite l’extraction de parties d’une page (telle qu'une "unité héros" ou un pied de page, par exemple) pour une utilisation ultérieure.
 
-For multi-part examples, a table in the README at the linked source code location describes the purpose of each file.
+Pour les exemples multi-parties, une table dans le README à l'emplacement du code source lié décrit le but de chaque fichier.
 
 {{"demo": "pages/page-layout-examples/PageLayoutExamples.js", "hideHeader": true}}
 
-If while using these examples you make changes or enhancements that could improve the developer experience, or you would like to contribute an additional example, please consider creating a [pull-request on GitHub](https://github.com/mui-org/material-ui/pulls).
+Si, lors de l'utilisation de ces exemples, vous apportez des modifications ou des améliorations susceptibles d'améliorer l'expérience de développeur, ou si vous souhaitez apporter un autre exemple, envisagez de créer une [pull request sur GitHub](https://github.com/mui-org/material-ui/pulls).

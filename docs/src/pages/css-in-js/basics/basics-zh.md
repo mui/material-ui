@@ -14,8 +14,8 @@ Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见
 Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
 - 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
-- 🚀 Is [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles). x2.6比服务器上的情感更快，用于渲染静态样式表。
-- 🧩 Is extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🧩 It's extensible via a [plugins](https://github.com/cssinjs/jss/blob/next/docs/plugins.md) API.
 - ⚡️它的核心使用 [JSS](https://github.com/cssinjs/jss)。 It's a [high performance](https://github.com/cssinjs/jss/blob/next/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)。
 

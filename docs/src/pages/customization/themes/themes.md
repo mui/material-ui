@@ -55,9 +55,9 @@ If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.pa
 [`palette.error`](/customization/default-theme/?expend-path=$.palette.error)
 'intention' objects are provided, they will replace the defaults.
 
-The intention value can either be a [color](/style/color/) object, or an object with one or more of the following keys:
+The intention value can either be a [color](/style/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
-```js
+```ts
 interface PaletteIntention {
   light?: string;
   main: string;

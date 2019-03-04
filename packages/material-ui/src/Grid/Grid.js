@@ -193,7 +193,7 @@ export const styles = theme => ({
   }, {}),
 });
 
-function Grid(props) {
+const Grid = React.forwardRef((props, ref) => {
   const {
     alignContent,
     alignItems,
@@ -237,7 +237,13 @@ function Grid(props) {
     classNameProp,
   );
 
-  return <Component className={className} {...other} />;
+  return <Component className={className} ref={ref} {...other} />;
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  // can't use named function expression since the function body references `Grid`
+  // which would point to the render function instead of the actual component
+  Grid.displayName = 'ForwardRef(Grid)';
 }
 
 Grid.propTypes = {

@@ -10,6 +10,7 @@
 /utils/popovers/ /utils/popover/ 301
 /utils/popovers /utils/popover/ 301
 /guides/migration-v0.x /guides/migration-v0x/ 301
+/size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/next/latest/size-snapshot.json 200
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0

@@ -136,18 +136,6 @@ export const OUTLINED_INPUT = {
   focused: 'outlined-input--notched-outline',
 };
 
-export const TABS = {
-  root: 'tabs__root',
-  inverted: 'tabs--inverted',
-  indicator: 'tabs__indicator',
-};
-
-export const TAB = {
-  root: 'tab__root',
-  label: 'tab__label',
-  selected: 'tab--selected',
-};
-
 export const TEXT = {
   root: 'text__root',
   bold: 'text--bold',
@@ -185,8 +173,6 @@ export default {
   NOTCHED_OUTLINE,
   ICON,
   ICON_BUTTON,
-  TABS,
-  TAB,
   TOOLBAR,
   TEXT,
   attach,

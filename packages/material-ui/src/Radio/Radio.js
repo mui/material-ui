@@ -36,7 +36,7 @@ export const styles = theme => ({
   },
 });
 
-function Radio(props) {
+const Radio = React.forwardRef(function Radio(props, ref) {
   const { classes, color, ...other } = props;
 
   return (
@@ -49,10 +49,11 @@ function Radio(props) {
         checked: classes.checked,
         disabled: classes.disabled,
       }}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Radio.propTypes = {
   /**

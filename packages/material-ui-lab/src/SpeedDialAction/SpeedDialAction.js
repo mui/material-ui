@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
+import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the `Button` component. */
@@ -71,6 +72,7 @@ class SpeedDialAction extends React.Component {
       delay,
       icon,
       id,
+      innerRef,
       onClick,
       onKeyDown,
       open,
@@ -153,6 +155,11 @@ SpeedDialAction.propTypes = {
   id: PropTypes.string,
   /**
    * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * @ignore
    */
   onClick: PropTypes.func,
   /**
@@ -201,4 +208,6 @@ SpeedDialAction.defaultProps = {
   tooltipOpen: false,
 };
 
-export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);
+export default withStyles(styles, { name: 'MuiSpeedDialAction' })(
+  withForwardedRef(SpeedDialAction),
+);

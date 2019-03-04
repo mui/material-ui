@@ -1,5 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
+import PropTypes from 'prop-types';
 import styled from './styled';
 import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
@@ -85,6 +86,7 @@ describe('styled', () => {
 
     afterEach(() => {
       consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
     });
 
     it('warns if it cant detect the secondary action properly', () => {

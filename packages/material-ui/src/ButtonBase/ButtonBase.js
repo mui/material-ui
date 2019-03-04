@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
 import ownerWindow from '../utils/ownerWindow';
+import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import NoSsr from '../NoSsr';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
@@ -239,6 +240,7 @@ class ButtonBase extends React.Component {
       disableTouchRipple,
       focusRipple,
       focusVisibleClassName,
+      innerRef,
       onBlur,
       onFocus,
       onFocusVisible,
@@ -278,6 +280,7 @@ class ButtonBase extends React.Component {
       buttonProps.disabled = disabled;
     } else {
       buttonProps.role = 'button';
+      buttonProps['aria-disabled'] = disabled;
     }
 
     return (
@@ -294,7 +297,7 @@ class ButtonBase extends React.Component {
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
         onContextMenu={this.handleContextMenu}
-        ref={buttonRef}
+        ref={innerRef || buttonRef}
         tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
         {...other}
@@ -323,6 +326,7 @@ ButtonBase.propTypes = {
   action: PropTypes.func,
   /**
    * Use that property to pass a ref callback to the native button component.
+   * @deprecated
    */
   buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
@@ -374,6 +378,11 @@ ButtonBase.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
@@ -453,4 +462,4 @@ ButtonBase.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default withStyles(styles, { name: 'MuiButtonBase' })(withForwardedRef(ButtonBase));

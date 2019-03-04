@@ -129,7 +129,9 @@ function buildDocs(options) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src);
+    reactAPI = docgenParse(src, null, null, {
+      filename: componentObject.filename,
+    });
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;

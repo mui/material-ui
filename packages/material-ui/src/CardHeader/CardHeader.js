@@ -33,7 +33,7 @@ export const styles = {
   subheader: {},
 };
 
-function CardHeader(props) {
+const CardHeader = React.forwardRef(function CardHeader(props, ref) {
   const {
     action,
     avatar,
@@ -80,7 +80,7 @@ function CardHeader(props) {
   }
 
   return (
-    <Component className={clsx(classes.root, classNameProp)} {...other}>
+    <Component className={clsx(classes.root, classNameProp)} ref={ref} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         {title}
@@ -89,7 +89,7 @@ function CardHeader(props) {
       {action && <div className={classes.action}>{action}</div>}
     </Component>
   );
-}
+});
 
 CardHeader.propTypes = {
   /**

@@ -1,6 +1,6 @@
 ---
 title: 模态框 React 组件
-components: 语气
+components: Modal
 ---
 # 模态
 
@@ -58,7 +58,7 @@ components: 语气
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+我们创建了许多永远不会渲染的React元素，这是很浪费的。
 
 ```jsx
 <Modal open={false}>

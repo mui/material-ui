@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
+import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -127,6 +128,11 @@ BottomNavigationAction.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * The label element.
    */
   label: PropTypes.node,
@@ -154,4 +160,6 @@ BottomNavigationAction.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigationAction' })(BottomNavigationAction);
+export default withStyles(styles, { name: 'MuiBottomNavigationAction' })(
+  withForwardedRef(BottomNavigationAction),
+);

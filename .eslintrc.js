@@ -80,7 +80,7 @@ module.exports = {
       },
     ],
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'error',
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
     'material-ui/docgen-ignore-before-comment': 'error',
     'mocha/handle-done-callback': 'error',

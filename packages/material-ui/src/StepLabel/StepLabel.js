@@ -65,7 +65,7 @@ export const styles = theme => ({
   },
 });
 
-function StepLabel(props) {
+const StepLabel = React.forwardRef(function StepLabel(props, ref) {
   const {
     active,
     alternativeLabel,
@@ -102,6 +102,7 @@ function StepLabel(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     >
       {icon || StepIconComponent ? (
@@ -136,7 +137,7 @@ function StepLabel(props) {
       </span>
     </span>
   );
-}
+});
 
 StepLabel.propTypes = {
   /**

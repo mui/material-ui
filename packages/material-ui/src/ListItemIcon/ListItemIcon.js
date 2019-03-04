@@ -16,15 +16,15 @@ export const styles = theme => ({
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
-function ListItemIcon(props) {
+const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, classNameProp)} {...other}>
+    <div className={clsx(classes.root, classNameProp)} ref={ref} {...other}>
       {children}
     </div>
   );
-}
+});
 
 ListItemIcon.propTypes = {
   /**

@@ -48,7 +48,7 @@ The inner theme will **override** the outer theme. You can extend the outer them
 
 ## JSS plugins
 
-JSS uses the concept of plugins to extend its core, allowing people to cherry-pick the features they need. You pay the performance overhead for only what's you are using. All the plugins aren't available by default. We have added the following list:
+JSS uses the concept of plugins to extend its core, allowing people to cherry-pick the features they need. You pay the performance overhead for only what's you are using. All the plugins aren't available by default. Nós adicionamos a seguinte lista:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -58,7 +58,7 @@ JSS uses the concept of plugins to extend its core, allowing people to cherry-pi
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-É um subconjunto de [ jss-preset-default ](https://cssinjs.org/jss-preset-default/). Of course, you are free to add a new plugin. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+É um subconjunto de [ jss-preset-default ](https://cssinjs.org/jss-preset-default/). Claro, você está livre para adicionar um novo plugin. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
 
 ```jsx
 import { create } from 'jss';
@@ -104,7 +104,7 @@ const useStyles = makeStyles({
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
-You might, however, also want to override these styles, for example with styled-components. Se você está enfrentando um problema de ordem de injeção de CSS, o JSS [ fornece um mecanismo ](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-the-dom-insertion-point) para lidar com essa situação. Ajustando o posicionamento do ponto de inserção ` ` dentro do seu HTML header, você pode [ controlar a ordem em ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
+You might, however, also want to override these styles, for example with styled-components. Se você está enfrentando um problema de ordem de injeção de CSS, o JSS [ fornece um mecanismo ](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) para lidar com essa situação. Ajustando o posicionamento do ponto de inserção ` ` dentro do seu HTML header, você pode [ controlar a ordem em ](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
 
 ### Comentário HTML
 
@@ -138,7 +138,7 @@ export default App;
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
 
-For example, a `<noscript>` element:
+Por exemplo, um elemento `<noscript>`:
 
 ```jsx
 <head>
@@ -251,12 +251,12 @@ You can also combine JSS generated class names with global ones.
 
 ### Deterministic class names
 
-We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. When turned on, the class names will look like this:
+We provide an option to make the class names **deterministic** with the [`dangerouslyUseGlobalCSS`](/css-in-js/api/#creategenerateclassname-options-class-name-generator) option. Quando ativado, os nomes das classes ficarão assim:
 
 - development: `.AppBar-root`
 - production: `.AppBar-root`
 
-⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for prototyping. Relying on it for code running in production has the following implications:
+⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for prototyping. Confiar nele para o código rodando em produção tem as seguintes implicações:
 
 - O CSS global é inerentemente frágil. As pessoas usam metodologias rigorosas como [ BEM ](http://getbem.com/introduction/) para contornar o problema.
 - É mais difícil controlar as classes ` ` alterações na API.

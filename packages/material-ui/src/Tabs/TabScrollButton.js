@@ -18,7 +18,7 @@ export const styles = {
 /**
  * @ignore - internal component.
  */
-function TabScrollButton(props) {
+const TabScrollButton = React.forwardRef(function TabScrollButton(props, ref) {
   const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
 
   const className = clsx(classes.root, classNameProp);
@@ -28,11 +28,11 @@ function TabScrollButton(props) {
   }
 
   return (
-    <ButtonBase className={className} onClick={onClick} tabIndex={-1} {...other}>
+    <ButtonBase className={className} onClick={onClick} ref={ref} tabIndex={-1} {...other}>
       {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
     </ButtonBase>
   );
-}
+});
 
 TabScrollButton.propTypes = {
   /**

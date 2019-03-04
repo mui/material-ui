@@ -15,7 +15,6 @@ export const styles = theme => ({
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    '&$selected': {},
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {

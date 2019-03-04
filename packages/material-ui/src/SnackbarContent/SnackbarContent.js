@@ -45,7 +45,7 @@ export const styles = theme => {
   };
 };
 
-function SnackbarContent(props) {
+const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
   const { action, classes, className, message, ...other } = props;
 
   return (
@@ -59,13 +59,14 @@ function SnackbarContent(props) {
       square
       elevation={6}
       className={clsx(classes.root, className)}
+      ref={ref}
       {...other}
     >
       <div className={classes.message}>{message}</div>
       {action ? <div className={classes.action}>{action}</div> : null}
     </Paper>
   );
-}
+});
 
 SnackbarContent.propTypes = {
   /**

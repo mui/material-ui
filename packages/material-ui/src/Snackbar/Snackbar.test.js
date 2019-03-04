@@ -1,17 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import Snackbar from './Snackbar';
 import Slide from '../Slide';
 
 describe('<Snackbar />', () => {
-  let shallow;
   let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Snackbar open />);
     mount = createMount();
   });
@@ -21,14 +19,14 @@ describe('<Snackbar />', () => {
   });
 
   it('should render a ClickAwayListener with classes', () => {
-    const wrapper = shallow(<Snackbar open message="message" />);
-    assert.strictEqual(wrapper.name(), 'ClickAwayListener');
+    const wrapper = mount(<Snackbar open message="message" />);
+    assert.strictEqual(wrapper.find('ClickAwayListener').exists(), true);
     assert.strictEqual(
-      wrapper.childAt(0).hasClass(classes.root),
+      findOutermostIntrinsic(wrapper).hasClass(classes.root),
       true,
       'should have the root class',
     );
-    assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
+    assert.strictEqual(wrapper.find(Slide).exists(), true, 'should use a Slide by default');
   });
 
   describe('prop: onClose', () => {
@@ -365,35 +363,31 @@ describe('<Snackbar />', () => {
 
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
-      const wrapper = shallow(<Snackbar open={false} message="" />);
-      assert.strictEqual(wrapper.type(), null);
+      const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
+      assert.strictEqual(wrapper.text(), null);
     });
 
     it('should be able show it after mounted', () => {
-      const wrapper = shallow(<Snackbar open={false} message="" />);
-      assert.strictEqual(wrapper.type(), null);
+      const wrapper = mount(<Snackbar open={false} message="Hello, World!" />);
+      assert.strictEqual(wrapper.text(), null);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
+      assert.strictEqual(wrapper.text(), 'Hello, World!');
     });
   });
 
   describe('prop: children', () => {
     it('should render the children', () => {
       const children = <div />;
-      const wrapper = shallow(<Snackbar open>{children}</Snackbar>);
-      assert.strictEqual(wrapper.contains(children), true);
+      const wrapper = mount(<Snackbar open>{children}</Snackbar>);
+      assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
   });
 
   describe('prop: TransitionComponent', () => {
     it('should render a Snackbar with TransitionComponent', () => {
-      const Transition = props => <div className="cloned-element-class" {...props} />;
-      const wrapper = shallow(<Snackbar open TransitionComponent={Transition} />);
-      assert.strictEqual(
-        wrapper.find(Transition).length,
-        1,
-        'should include element given in TransitionComponent',
-      );
+      const Transition = () => <div className="cloned-element-class" />;
+      const wrapper = mount(<Snackbar open TransitionComponent={Transition} />);
+      assert.strictEqual(wrapper.find(Transition).exists(), true);
     });
   });
 });

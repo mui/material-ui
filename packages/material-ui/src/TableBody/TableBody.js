@@ -11,17 +11,19 @@ export const styles = {
   },
 };
 
-const contextValue = { variant: 'body' };
+const tablelvl2 = {
+  variant: 'body',
+};
 
-function TableBody(props) {
+const TableBody = React.forwardRef(function TableBody(props, ref) {
   const { classes, className, component: Component, ...other } = props;
 
   return (
-    <Tablelvl2Context.Provider value={contextValue}>
-      <Component className={clsx(classes.root, className)} {...other} />
+    <Tablelvl2Context.Provider value={tablelvl2}>
+      <Component className={clsx(classes.root, className)} ref={ref} {...other} />
     </Tablelvl2Context.Provider>
   );
-}
+});
 
 TableBody.propTypes = {
   /**

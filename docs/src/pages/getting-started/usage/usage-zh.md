@@ -2,7 +2,7 @@
 
 <p class="description">立即开始使用 React 和 Material-UI。</p>
 
-Material-UI 组件是独立工作的。 **它们是自我支持**的，并只要而且仅注入它们需要显示的样式。 他们不依赖任何全局的样式表, 如 [normalize.css](https://github.com/necolas/normalize.css/).
+Material-UI 组件是独立工作的。 **它们是自我支持**的，并只要注入它们需要显示的样式。 他们不依赖任何全局的样式表, 如 [normalize.css](https://github.com/necolas/normalize.css/).
 
 您可以使用文档中演示的任何组件。 请参阅每个组件的 [demo页](/demos/buttons/), 以了解应如何导入它们。
 

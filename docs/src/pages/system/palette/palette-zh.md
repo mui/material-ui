@@ -36,7 +36,7 @@
 import { palette } from '@material-ui/system';
 ```
 
-| 导入名称      | Prop      | CSS 属性            | 主题键                                                              |
+| 导入名称      | Prop      | CSS 属性            | Theme key                                                        |
 |:--------- |:--------- |:----------------- |:---------------------------------------------------------------- |
 | `color`   | `color`   | `color`           | [`palette`](/customization/default-theme/?expend-path=$.palette) |
 | `bgcolor` | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expend-path=$.palette) |

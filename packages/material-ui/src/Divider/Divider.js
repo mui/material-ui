@@ -36,7 +36,7 @@ export const styles = theme => ({
   },
 });
 
-function Divider(props) {
+const Divider = React.forwardRef(function Divider(props, ref) {
   const {
     absolute,
     classes,
@@ -60,10 +60,11 @@ function Divider(props) {
         },
         className,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 Divider.propTypes = {
   /**

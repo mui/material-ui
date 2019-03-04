@@ -16,23 +16,30 @@ export const styles = theme => ({
     justifyContent: 'flex-start',
     flexDirection: 'inherit',
     alignItems: 'center',
-    '&:hover': {
-      color: theme.palette.text.primary,
-    },
     '&:focus': {
       color: theme.palette.text.primary,
     },
-  },
-  /* Styles applied to the root element if `active={true}`. */
-  active: {
-    color: theme.palette.text.primary,
-    '& $icon': {
-      opacity: 1,
+    '&:hover': {
+      color: theme.palette.text.primary,
+      '& $icon': {
+        opacity: 1,
+        color: theme.palette.text.secondary,
+      },
+    },
+    '&$active': {
+      color: theme.palette.text.primary,
+      // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
+      '&& $icon': {
+        opacity: 1,
+        color: theme.palette.text.primary,
+      },
     },
   },
+  /* Styles applied to the root element if `active={true}`. */
+  active: {},
   /* Styles applied to the icon component. */
   icon: {
-    height: 16,
+    height: 18,
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
@@ -40,7 +47,7 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shorter,
     }),
     userSelect: 'none',
-    width: 16,
+    width: 18,
   },
   /* Styles applied to the icon component if `direction="desc"`. */
   iconDirectionDesc: {
@@ -55,7 +62,7 @@ export const styles = theme => ({
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-function TableSortLabel(props) {
+const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
   const {
     active,
     children,
@@ -72,6 +79,7 @@ function TableSortLabel(props) {
       className={clsx(classes.root, { [classes.active]: active }, className)}
       component="span"
       disableRipple
+      ref={ref}
       {...other}
     >
       {children}
@@ -82,7 +90,7 @@ function TableSortLabel(props) {
       )}
     </ButtonBase>
   );
-}
+});
 
 TableSortLabel.propTypes = {
   /**

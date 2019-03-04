@@ -75,7 +75,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase)
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
-You might, however, also want to override these styles, for example with styled-components. Если у вас возникла проблема с порядком подключения CSS, JSS [предоставляет механизм](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-dom-insertion-point) решающий эту проблему. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+You might, however, also want to override these styles, for example with styled-components. Если у вас возникла проблема с порядком подключения CSS, JSS [предоставляет механизм](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) решающий эту проблему. By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML-комментарий
 
@@ -229,7 +229,7 @@ Link a style sheet with a component. It does not modify the component passed to 
 - It adds an `innerRef` property so you can get a reference to the wrapped component. The usage of `innerRef` is identical to `ref`.
 - It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
-#### Arguments
+#### Аргументы
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]): 
@@ -238,7 +238,7 @@ Link a style sheet with a component. It does not modify the component passed to 
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
 
-#### Returns
+#### Возвращает
 
 `компонент высшего порядка`: следует использовать, чтобы обернуть компонент.
 
@@ -287,14 +287,14 @@ export default MyComponent
 
 A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object* [optional]): 
     - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
     - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
     - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
 
-#### Returns
+#### Возвращает
 
 `class name generator`: The generator should be provided to JSS.
 

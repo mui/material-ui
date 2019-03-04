@@ -35,7 +35,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 | <span class="prop-name">placement</span> | <span class="prop-type">enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br></span> | <span class="prop-default">'bottom'</span> | Tooltip placement. |
 | <span class="prop-name">PopperProps</span> | <span class="prop-type">object</span> |   | Properties applied to the [`Popper`](/api/popper/) element. |
 | <span class="prop-name required">title *</span> | <span class="prop-type">node</span> |   | Tooltip title. Zero-length titles string are never displayed. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `Transition` element. |
 
 Any other properties supplied will be spread to the root element (native element).
@@ -58,7 +58,7 @@ This property accepts the following keys:
 | <span class="prop-name">tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tooltip/Tooltip.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Tooltip/Tooltip.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

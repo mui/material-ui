@@ -52,6 +52,22 @@ function layouts(t) {
         'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/page-layout-examples/sign-in',
     },
     {
+      title: t('signInSideTitle'),
+      description: t('signInSideDescr'),
+      src: '/static/images/layouts/sign-in-side.png',
+      href: '/getting-started/page-layout-examples/sign-in-side',
+      source:
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/page-layout-examples/sign-in-side',
+    },
+    {
+      title: t('signUpTitle'),
+      description: t('signUpDescr'),
+      src: '/static/images/layouts/sign-up.png',
+      href: '/getting-started/page-layout-examples/sign-up',
+      source:
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/page-layout-examples/sign-up',
+    },
+    {
       title: t('blogTitle'),
       description: t('blogDescr'),
       src: '/static/images/layouts/blog.png',
@@ -82,6 +98,14 @@ function layouts(t) {
       href: '/getting-started/page-layout-examples/pricing',
       source:
         'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/page-layout-examples/pricing',
+    },
+    {
+      title: t('stickyFooterTitle'),
+      description: t('stickyFooterDescr'),
+      src: '/static/images/layouts/sticky-footer.png',
+      href: '/getting-started/page-layout-examples/sticky-footer',
+      source:
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/page-layout-examples/sticky-footer',
     },
   ];
 }

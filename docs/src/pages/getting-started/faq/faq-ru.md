@@ -85,7 +85,7 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 Мы описали, как использовать [стороннюю библиотеку маршрутизации](/demos/buttons/#third-party-routing-library) с помощью компонента `ButtonBase`. A lot of our interactive components use it internally: `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Вы можете использовать то же решение с ними.
 
-## How do I combine the `withStyles()` and `withTheme` HOCs?
+## Как мне объединить `withStyles()` и `withTheme` HOCs?
 
 Есть несколько разных вариантов:
 
@@ -127,7 +127,7 @@ There are many ways to support Material-UI:
 - Improve [the documentation](https://github.com/mui-org/material-ui/tree/next/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
-- Answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or on [Spectrum](https://spectrum.chat/material-ui).
+- Отвечать на вопросы на [и StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) или [Spectrum](https://spectrum.chat/material-ui).
 
 If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**, or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 

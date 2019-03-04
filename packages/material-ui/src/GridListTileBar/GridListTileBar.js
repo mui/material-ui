@@ -67,7 +67,7 @@ export const styles = theme => ({
   },
 });
 
-function GridListTileBar(props) {
+const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   const {
     actionIcon,
     actionPosition,
@@ -97,7 +97,7 @@ function GridListTileBar(props) {
   });
 
   return (
-    <div className={className} {...other}>
+    <div className={className} ref={ref} {...other}>
       <div className={titleWrapClassName}>
         <div className={classes.title}>{title}</div>
         {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
@@ -113,7 +113,7 @@ function GridListTileBar(props) {
       ) : null}
     </div>
   );
-}
+});
 
 GridListTileBar.propTypes = {
   /**

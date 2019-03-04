@@ -38,7 +38,7 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/next';
 
 function MarkdownDocs(props) {
   const {
@@ -89,6 +89,8 @@ function MarkdownDocs(props) {
   }
 
   const headers = getHeaders(markdown);
+  // eslint-disable-next-line no-underscore-dangle
+  global.__HASH_UNIQUE__ = {};
 
   return (
     <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>

@@ -4,15 +4,15 @@
 
 [Create React AppでのTypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)の使用例を参考にしてください。 TypeScript 2.8以上が必要です。
 
-私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) でテストしています。 Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
+私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/next/tsconfig.json) でテストしています。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。
 
-## Usage of `withStyles`
+## `withStyles`の使い方
 
-Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
+`withStyles`をTypeScriptで使うのは少し厄介ですが、それをできるだけ簡単に扱うためのユーティリティがいくつかあります。
 
-### Using `createStyles` to defeat type widening
+### `createStyles`を使って型の拡大を打倒する
 
-A frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+よくある混乱の原因は、TypeScriptの[型の拡大(widening)](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening)です。これにより、この例は期待通りに動作しません。
 
 ```ts
 const styles = {
@@ -28,7 +28,7 @@ withStyles(styles);
 //           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
-The problem is that the type of the `flexDirection` property is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
+問題は、`flexDirection`プロパティの型が`string`として型推論されることです。これは独断的すぎます。 これを修正するため、styleオブジェクトを直接`withStyles`に渡します:
 
 ```ts
 withStyles({

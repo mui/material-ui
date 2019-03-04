@@ -169,6 +169,35 @@ the color manipulations, the transitions, the media queries, and more.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
 
+### Portals
+
+The [Portal](/utils/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
+
+For example, if you attempt to style the [Menu](/demos/menus/) of a [Select](/demos/selects/) component using the property `MenuProps`,
+you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy.
+The following example shows a workaround:
+
+```jsx
+import React from 'react';
+import styled from 'styled-components';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+const StyledMenu = styled(({ className, ...props }) => (
+  <Menu {...props} classes={{ paper: className }} />
+))`
+  box-shadow: none;
+  border: 1px solid #d3d4d5;
+  li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+`;
+```
+
+{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
+
 ## CSS Modules
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
@@ -261,7 +290,7 @@ export default EmotionCSS;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### E. Styled Components
+### Styled Components
 
 The `styled()` method works perfectly on all of our components.
 
@@ -302,7 +331,7 @@ export default EmotionStyled;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### E. Deeper elements
+### Deeper elements
 
 In some cases, the approaches above will not work.
 For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `permanent`,
@@ -351,7 +380,7 @@ export default EmotionDeep;
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
 
-### E. ThemeProvider
+### ThemeProvider
 
 Material-UI has a rich theme structure that you can leverage for
 the color manipulations, the transitions, the media queries, and more.

@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  getClasses,
+  findOutermostIntrinsic,
+} from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -85,6 +90,18 @@ describe('<IconButton />', () => {
     assert.strictEqual(wrapper.props().centerRipple, true);
   });
 
+  describe('prop: size', () => {
+    it('should render the right class', () => {
+      let wrapper;
+      wrapper = mount(<IconButton size="small">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), true);
+      wrapper = mount(<IconButton size="medium">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
+      wrapper = mount(<IconButton>book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.sizeSmall), false);
+    });
+  });
+
   describe('prop: disabled', () => {
     it('should disable the component', () => {
       const wrapper = shallow(<IconButton disabled>book</IconButton>);
@@ -116,6 +133,7 @@ describe('<IconButton />', () => {
 
     afterEach(() => {
       consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning', () => {

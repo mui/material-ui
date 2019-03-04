@@ -40,13 +40,11 @@ function Tweet() {
           </Grid>
         </Grid>
       </Box>
-      <Grid container spacing={1} wrap="nowrap">
+      <Grid container spacing={3} wrap="nowrap">
         <Grid item>
           <Avatar
             medium
-            src={
-              'https://pbs.twimg.com/profile_images/906557353549598720/oapgW_Fp_reasonably_small.jpg'
-            }
+            src="https://pbs.twimg.com/profile_images/1096807971374448640/rVCDhxkG_200x200.png"
           />
         </Grid>
         <Grid item>

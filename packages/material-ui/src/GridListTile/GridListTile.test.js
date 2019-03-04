@@ -1,7 +1,13 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+  unwrap,
+} from '@material-ui/core/test-utils';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {
@@ -27,15 +33,23 @@ describe('<GridListTile />', () => {
   };
 
   it('should render a li', () => {
-    const children = <img src={tileData.img} alt="foo" />;
-    const wrapper = shallow(<GridListTile>{children}</GridListTile>);
-    assert.strictEqual(wrapper.name(), 'li');
+    const wrapper = mount(
+      <GridListTile>
+        <img src={tileData.img} alt="foo" />
+      </GridListTile>,
+    );
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'li');
   });
 
-  it('should render a ul', () => {
-    const children = <img src={tileData.img} alt="foo" />;
-    const wrapper = shallow(<GridListTile component="li">{children}</GridListTile>);
-    assert.strictEqual(wrapper.name(), 'li');
+  describe('prop: component', () => {
+    it('controls the root host node', () => {
+      const wrapper = mount(
+        <GridListTile component="div">
+          <img src={tileData.img} alt="foo" />
+        </GridListTile>,
+      );
+      assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
+    });
   });
 
   describe('prop: children', () => {
@@ -75,7 +89,7 @@ describe('<GridListTile />', () => {
           {null}
         </GridListTileNaked>,
       );
-      instance = wrapper.instance();
+      instance = wrapper.find('GridListTile').instance();
     });
 
     it('should handle missing image', () => {
@@ -138,8 +152,8 @@ describe('<GridListTile />', () => {
     });
 
     it('should handle the resize event', () => {
-      const wrapper = shallow(<GridListTile />);
-      const instance = wrapper.instance();
+      const wrapper = mount(<GridListTile />);
+      const instance = wrapper.find('GridListTile').instance();
       instance.imgElement = {
         complete: true,
         width: 4,
@@ -151,7 +165,8 @@ describe('<GridListTile />', () => {
       wrapper
         .find('EventListener')
         .at(0)
-        .simulate('resize');
+        .props()
+        .onResize();
       assert.strictEqual(instance.imgElement.classList.remove.callCount, 0);
       clock.tick(166);
       assert.strictEqual(instance.imgElement.classList.remove.callCount, 1);

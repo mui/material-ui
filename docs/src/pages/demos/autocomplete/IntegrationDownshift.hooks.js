@@ -214,7 +214,7 @@ const useStyles = makeStyles(theme => ({
     right: 0,
   },
   chip: {
-    margin: theme.spacing(0.5, 2),
+    margin: theme.spacing(0.5, 0.25),
   },
   inputRoot: {
     flexWrap: 'wrap',

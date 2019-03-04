@@ -64,7 +64,6 @@ describe('<Table />', () => {
         <TableContext.Consumer>
           {value => {
             context = value;
-
             return <tbody />;
           }}
         </TableContext.Consumer>
@@ -72,6 +71,7 @@ describe('<Table />', () => {
     );
 
     assert.deepStrictEqual(context, {
+      size: 'medium',
       padding: 'default',
     });
   });

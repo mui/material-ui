@@ -6,9 +6,9 @@ components: Collapse, Fade, Grow, Slide, Zoom
 
 <p class="description">Transições ajudam a fazer a INTERFACE expressiva e fácil de usar.</p>
 
-Material-UI provides a number of transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications components.
+Material-UI provê um número de transições que podem ser usadas para introduzir algumas [animações](https://material.io/design/motion/) básicas para os componentes de sua aplicação.
 
-To better support server rendering Material-UI provides a `style` property to the children of some transition components (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
+Para um melhor suporte ao server rendering Material-UI provê uma propriedade de `estilo` para o filho de alguns componentes de transição (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 
 ```jsx
 // O objeto `props` contém uma propriedade` style`.
@@ -32,7 +32,7 @@ export default Main() {
 
 ## Collapse
 
-Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
+Expanda verticalmente a partir do topo do elemento filho. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
 
 {{"demo": "pages/utils/transitions/SimpleCollapse.js"}}
 

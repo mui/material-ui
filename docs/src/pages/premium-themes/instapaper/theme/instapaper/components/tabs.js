@@ -1,4 +1,4 @@
-export default ({ attach, theme, nest, ICON, TAB }) => ({
+export default ({ theme }) => ({
   MuiTabs: {
     root: {
       borderTop: '1px solid #efefef',
@@ -15,52 +15,30 @@ export default ({ attach, theme, nest, ICON, TAB }) => ({
   },
   MuiTab: {
     root: {
-      lineHeight: 'inherit',
+      minHeight: 54,
+      fontWeight: 600,
       minWidth: 0,
-      marginRight: theme.spacing(1),
-      marginLeft: theme.spacing(1),
       [theme.breakpoints.up('md')]: {
         minWidth: 0,
-        marginRight: 30,
-        marginLeft: 30,
-      },
-      [attach(TAB.selected)]: {
-        [nest(TAB.label)]: {
-          fontWeight: 600,
-        },
-        '& *': {
-          color: '#262626 !important',
-        },
       },
     },
     labelIcon: {
-      minHeight: 53,
-      paddingTop: 0,
-      '& .MuiTab-wrapper': {
-        flexDirection: 'row',
-      },
-      [nest(ICON.root)]: {
+      minHeight: null,
+      paddingTop: null,
+      '& $wrapper :first-child': {
         fontSize: 16,
+        marginBottom: 0,
         marginRight: 6,
+      },
+    },
+    textColorInherit: {
+      color: '#999',
+      '&$selected': {
+        color: '#262626',
       },
     },
     wrapper: {
       flexDirection: 'row',
-      '& *': {
-        color: '#999',
-      },
-    },
-    labelContainer: {
-      padding: 0,
-      [theme.breakpoints.up('md')]: {
-        padding: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-      },
-    },
-    label: {
-      letterSpacing: 1,
-      textTransform: 'uppercase',
     },
   },
 });

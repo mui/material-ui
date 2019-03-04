@@ -298,6 +298,9 @@ const pages = [
         pathname: '/lab/toggle-button',
       },
       {
+        pathname: '/lab/layout',
+      },
+      {
         ...findPages[2].children[1],
         title: 'API',
       },

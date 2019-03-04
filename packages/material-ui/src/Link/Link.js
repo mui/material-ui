@@ -49,7 +49,7 @@ export const styles = {
   },
 };
 
-function Link(props) {
+const Link = React.forwardRef(function Link(props, ref) {
   const { children, classes, className, component, TypographyClasses, underline, ...other } = props;
 
   return (
@@ -64,12 +64,13 @@ function Link(props) {
       )}
       classes={TypographyClasses}
       component={component}
+      ref={ref}
       {...other}
     >
       {children}
     </Typography>
   );
-}
+});
 
 Link.propTypes = {
   /**

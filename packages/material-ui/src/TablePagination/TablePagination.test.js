@@ -1,6 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '@material-ui/core/test-utils';
+import PropTypes from 'prop-types';
+import {
+  createShallow,
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Select from '../Select';
 import IconButton from '../IconButton';
@@ -12,10 +18,14 @@ import TablePagination from './TablePagination';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
+  let classes;
   let shallow;
   let mount;
 
   before(() => {
+    classes = getClasses(
+      <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
+    );
     shallow = createShallow({ dive: true });
     mount = createMount();
   });
@@ -25,16 +35,22 @@ describe('<TablePagination />', () => {
   });
 
   it('should render a TableCell', () => {
-    const wrapper = shallow(
-      <TablePagination
-        count={1}
-        page={0}
-        onChangePage={noop}
-        onChangeRowsPerPage={noop}
-        rowsPerPage={5}
-      />,
+    const wrapper = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TablePagination
+              count={1}
+              page={0}
+              onChangePage={noop}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={5}
+            />
+          </tr>
+        </tbody>
+      </table>,
     );
-    assert.strictEqual(wrapper.type(), TableCell);
+    assert.strictEqual(wrapper.find(TableCell).hasClass(classes.root), true);
   });
 
   it('should spread custom props on the root node', () => {
@@ -57,21 +73,27 @@ describe('<TablePagination />', () => {
 
   describe('prop: component', () => {
     it('should render a TableCell by default', () => {
-      const wrapper = shallow(
-        <TablePagination
-          count={1}
-          page={0}
-          onChangePage={noop}
-          onChangeRowsPerPage={noop}
-          rowsPerPage={5}
-        />,
+      const wrapper = mount(
+        <table>
+          <tbody>
+            <tr>
+              <TablePagination
+                count={1}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+              />
+            </tr>
+          </tbody>
+        </table>,
       );
-      assert.strictEqual(wrapper.type(), TableCell);
-      assert.notStrictEqual(wrapper.props().colSpan, undefined);
+      assert.strictEqual(wrapper.find(TableCell).hasClass(classes.root), true);
+      assert.notStrictEqual(wrapper.find('td').props().colSpan, undefined);
     });
 
     it('should be able to use outside of the table', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <TablePagination
           component="div"
           count={1}
@@ -81,7 +103,7 @@ describe('<TablePagination />', () => {
           rowsPerPage={5}
         />,
       );
-      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
       assert.strictEqual(wrapper.props().colSpan, undefined);
     });
   });
@@ -289,6 +311,7 @@ describe('<TablePagination />', () => {
 
     after(() => {
       consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
     });
 
     it('should raise a warning if the page prop is out of range', () => {

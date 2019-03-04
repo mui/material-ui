@@ -171,7 +171,7 @@ export const styles = theme => ({
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
  */
-function LinearProgress(props) {
+const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const { classes, className: classNameProp, color, value, valueBuffer, variant, ...other } = props;
 
   const className = clsx(
@@ -233,7 +233,7 @@ function LinearProgress(props) {
   }
 
   return (
-    <div className={className} role="progressbar" {...rootProps} {...other}>
+    <div className={className} role="progressbar" {...rootProps} ref={ref} {...other}>
       {variant === 'buffer' ? <div className={dashedClass} /> : null}
       <div className={bar1ClassName} style={inlineStyles.bar1} />
       {variant === 'determinate' ? null : (
@@ -241,7 +241,7 @@ function LinearProgress(props) {
       )}
     </div>
   );
-}
+});
 
 LinearProgress.propTypes = {
   /**

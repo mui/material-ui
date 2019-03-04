@@ -239,7 +239,7 @@ describe('<InputBase />', () => {
 
     beforeEach(() => {
       // we need a class for enzyme otherwise: "Can't call ::setState on functional component"
-      /* eslint-disable-next-line react/prefer-stateless-function */
+      // eslint-disable-next-line react/prefer-stateless-function
       class Provider extends React.Component {
         render() {
           const { context, ...other } = this.props;

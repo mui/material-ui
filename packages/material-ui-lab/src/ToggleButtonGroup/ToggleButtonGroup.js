@@ -4,6 +4,7 @@ import warning from 'warning';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import withStyles from '@material-ui/core/styles/withStyles';
+import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -46,10 +47,19 @@ class ToggleButtonGroup extends React.Component {
   };
 
   render() {
-    const { children, className, classes, exclusive, onChange, value, ...other } = this.props;
+    const {
+      children,
+      className,
+      classes,
+      exclusive,
+      innerRef,
+      onChange,
+      value,
+      ...other
+    } = this.props;
 
     return (
-      <div className={clsx(classes.root, className)} {...other}>
+      <div className={clsx(classes.root, className)} ref={innerRef} {...other}>
         {React.Children.map(children, child => {
           if (!React.isValidElement(child)) {
             return null;
@@ -96,6 +106,11 @@ ToggleButtonGroup.propTypes = {
    */
   exclusive: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
@@ -115,4 +130,6 @@ ToggleButtonGroup.defaultProps = {
   exclusive: false,
 };
 
-export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);
+export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(
+  withForwardedRef(ToggleButtonGroup),
+);

@@ -10,6 +10,10 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **注意：** 材料设计文档中不再记录扩展面板。
 
+## 无障碍功能
+
+为获得最佳可访问性，我们建议您在 `ExpansionPanelSummary`中配置 `id` 和 `aria-controls` 。 `ExpansionPanel` 将为面板的内容区域导出必要的 `aria-labelledby` 和 `id`。
+
 ## 简单的扩展面板
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
@@ -28,7 +32,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 定制扩展面板
 
-如果您一直在阅读 [覆盖文档页面](/customization/overrides/) 但是您没有信心跳入， 这里是一个示例，说明如何自定义 `ExpansionPanelSummary` 的背景颜色和 `ExpansionPanelDetails`填充。
+如果您已经在阅读 [组件覆写文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个关于如何自定义`ExpansionPanelSummary`组件背景自然色和给`ExpansionPanelDetails`组件添加填充的示例。
 
 ⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
 

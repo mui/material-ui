@@ -10,9 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
 
 const styles = theme => ({
-  table: {
-    fontFamily: theme.typography.fontFamily,
-  },
   flexContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -94,13 +91,7 @@ class MuiVirtualizedTable extends React.PureComponent {
     return (
       <AutoSizer>
         {({ height, width }) => (
-          <Table
-            className={classes.table}
-            height={height}
-            width={width}
-            {...tableProps}
-            rowClassName={this.getRowClassName}
-          >
+          <Table height={height} width={width} {...tableProps} rowClassName={this.getRowClassName}>
             {columns.map(({ cellContentRenderer = null, className, dataKey, ...other }, index) => {
               let renderer;
               if (cellContentRenderer != null) {
@@ -153,11 +144,13 @@ MuiVirtualizedTable.propTypes = {
 };
 
 MuiVirtualizedTable.defaultProps = {
-  headerHeight: 56,
-  rowHeight: 56,
+  headerHeight: 48,
+  rowHeight: 48,
 };
 
-const WrappedVirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+
+// ---
 
 const data = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
@@ -183,7 +176,7 @@ for (let i = 0; i < 200; i += 1) {
 function ReactVirtualizedTable() {
   return (
     <Paper style={{ height: 400, width: '100%' }}>
-      <WrappedVirtualizedTable
+      <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         onRowClick={event => console.log(event)}

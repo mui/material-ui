@@ -109,15 +109,15 @@
 import { flexbox } from '@material-ui/system';
 ```
 
-| 导入名称             | Prop             | CSS 属性            | 主题键  |
-|:---------------- |:---------------- |:----------------- |:---- |
-| `flexDirection`  | `flexDirection`  | `flex-direction`  | none |
-| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none |
-| `justifyContent` | `justifyContent` | `justify-content` | none |
-| `alignItems`     | `alignItems`     | `align-items`     | none |
-| `alignContent`   | `alignContent`   | `align-content`   | none |
-| `order`          | `order`          | `order`           | none |
-| `flex`           | `flex`           | `flex`            | none |
-| `flexGrow`       | `flexGrow`       | `flex-grow`       | none |
-| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none |
-| `alignSelf`      | `alignSelf`      | `align-self`      | none |
+| 导入名称             | Prop             | CSS 属性            | Theme key |
+|:---------------- |:---------------- |:----------------- |:--------- |
+| `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
+| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
+| `justifyContent` | `justifyContent` | `justify-content` | none      |
+| `alignItems`     | `alignItems`     | `align-items`     | none      |
+| `alignContent`   | `alignContent`   | `align-content`   | none      |
+| `order`          | `order`          | `order`           | none      |
+| `flex`           | `flex`           | `flex`            | none      |
+| `flexGrow`       | `flexGrow`       | `flex-grow`       | none      |
+| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none      |
+| `alignSelf`      | `alignSelf`      | `align-self`      | none      |

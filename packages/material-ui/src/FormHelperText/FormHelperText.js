@@ -43,7 +43,7 @@ export const styles = theme => ({
   required: {},
 });
 
-function FormHelperText(props) {
+const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const {
     classes,
     className: classNameProp,
@@ -80,10 +80,11 @@ function FormHelperText(props) {
         },
         classNameProp,
       )}
+      ref={ref}
       {...other}
     />
   );
-}
+});
 
 FormHelperText.propTypes = {
   /**

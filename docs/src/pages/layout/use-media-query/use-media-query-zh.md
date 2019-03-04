@@ -5,11 +5,11 @@ title: React中的媒体查询用于响应式设计
 
 <p class="description">这是React的CSS媒体查询钩子。 它侦听与CSS媒体查询的匹配。 它允许根据查询是否匹配来呈现组件。</p>
 
-一些关键特点：
+一些重要特点：
 
 - ⚛️它有一个惯用的React API。
 - 🚀它具有高性能，它会观察文档以检测其媒体查询何时发生更改，而不是定期轮询值。
-- 📦小于 [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js)。
+- 📦 [1 kB gzipped](/size-snapshot).
 - 💄它是反应敏感和反应媒体的替代方案，旨在简化。
 - 🤖它支持服务器端渲染。
 

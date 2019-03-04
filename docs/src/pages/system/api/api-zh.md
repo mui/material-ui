@@ -2,7 +2,7 @@
 
 <p class="description">@material-ui/system包的API参考。</p>
 
-| 组                                 | 导入名称             | Prop             | CSS 属性                          | 主题键                                                                    |
+| 组                                 | 导入名称             | Prop             | CSS 属性                          | Theme key                                                              |
 |:--------------------------------- |:---------------- |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
 | [borders](/system/borders/)       | `border`         | `border`         | `border`                        | `borders`                                                              |
 | [borders](/system/borders/)       | `borderBottom`   | `borderBottom`   | `border-bottom`                 | `borders`                                                              |

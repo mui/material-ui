@@ -36,7 +36,7 @@ The `createRender()` function is ideal for this. This is just an alias for the e
 
 Generate an enhanced shallow function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object* [optional]) 
     - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
@@ -44,7 +44,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
     - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
     - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
-#### Returns
+#### Возвращает
 
 `shallow` (*shallow*): A shallow function.
 
@@ -70,13 +70,13 @@ describe('<MyComponent />', () => {
 
 Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object* [optional]) 
     - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
     - The other keys are forwarded to the options argument of `enzyme.mount()`.
 
-#### Returns
+#### Возвращает
 
 `mount` (*mount*): A mount function.
 
@@ -106,13 +106,13 @@ describe('<MyComponent />', () => {
 
 Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
 
-#### Arguments
+#### Аргументы
 
 1. `options` (*Object* [optional]) 
     - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
     - The other keys are forwarded to the options argument of `enzyme.render()`.
 
-#### Returns
+#### Возвращает
 
 `render` (*Function*): A render to string function.
 

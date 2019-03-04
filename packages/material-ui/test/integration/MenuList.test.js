@@ -6,11 +6,12 @@ import MenuItem from 'packages/material-ui/src/MenuItem';
 import { createMount } from 'packages/material-ui/src/test-utils';
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
+  const items = wrapper.find('li[role="menuitem"]');
+  assert.strictEqual(items.length, 4);
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.props().tabIndex, 0, 'should have the tab index');
+      assert.strictEqual(item.props().tabIndex, 0);
     } else {
       assert.strictEqual(
         item.props().tabIndex,
@@ -22,11 +23,12 @@ function assertMenuItemTabIndexed(wrapper, tabIndexed) {
 }
 
 function assertMenuItemFocused(wrapper, tabIndexed) {
-  const items = wrapper.find('MenuItem');
+  const items = wrapper.find('li[role="menuitem"]');
+  assert.strictEqual(items.length, 4);
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.find('li').instance(), document.activeElement, 'should be focused');
+      assert.strictEqual(item.find('li').instance(), document.activeElement);
     }
   });
 }

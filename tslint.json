@@ -3,6 +3,7 @@
     "extends": ["dtslint/dtslint.json"],
     "jsRules": {},
     "rules": {
+        "deprecation": true,
         "file-name-casing": false,
         "no-unnecessary-callback-wrapper": false,
         "no-unnecessary-generics": false,

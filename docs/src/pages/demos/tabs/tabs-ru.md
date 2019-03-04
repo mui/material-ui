@@ -2,13 +2,13 @@
 title: Tabs React component
 components: Tabs, Tab
 ---
-# Tabs
+# Вкладки
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
 [Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
-## Simple Tabs
+## Простые вкладки
 
 Простой пример без излишеств.
 
@@ -20,9 +20,9 @@ Os rótulos longos serão agrupados automaticamente nas guias. Se o marcador for
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 
-### Disabled Tab
+### Отключённые вкладки
 
-A Tab can be disabled by setting `disabled` property.
+Вкладка может быть отключена, установив параметр `disabled`.
 
 {{"demo": "pages/demos/tabs/DisabledTabs.js"}}
 

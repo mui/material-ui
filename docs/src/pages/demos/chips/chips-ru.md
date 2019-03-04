@@ -1,5 +1,5 @@
 ---
-title: Chip React component
+title: Фишки, компонент React
 components: Chip
 ---
 # Фишки
@@ -31,6 +31,6 @@ components: Chip
 
 {{"demo": "pages/demos/chips/ChipsArray.js"}}
 
-## Chip Playground
+## Песочница
 
 {{"demo": "pages/demos/chips/ChipsPlayground.js"}}

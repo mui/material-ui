@@ -44,7 +44,7 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 ## Interactif
 
-Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
+Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels utilisant différents paramètres:
 
 {{"demo": "pages/layout/grid/InteractiveGrid.js"}}
 
@@ -113,3 +113,7 @@ In order for the item to stay within the container you need to set `min-width: 0
 ```
 
 {{"demo": "pages/layout/grid/AutoGridNoWrap.js"}}
+
+### direction: column | column-reverse
+
+Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.

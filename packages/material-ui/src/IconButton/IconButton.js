@@ -64,6 +64,11 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    padding: 3,
+    fontSize: theme.typography.pxToRem(18),
+  },
   /* Styles applied to the children container element. */
   label: {
     width: '100%',
@@ -77,8 +82,8 @@ export const styles = theme => ({
  * Refer to the [Icons](/style/icons/) section of the documentation
  * regarding the available icon options.
  */
-function IconButton(props) {
-  const { children, classes, className, color, disabled, ...other } = props;
+const IconButton = React.forwardRef(function IconButton(props, ref) {
+  const { children, classes, className, color, disabled, size, ...other } = props;
 
   return (
     <ButtonBase
@@ -87,18 +92,20 @@ function IconButton(props) {
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
       )}
       centerRipple
       focusRipple
       disabled={disabled}
+      ref={ref}
       {...other}
     >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 IconButton.propTypes = {
   /**
@@ -117,9 +124,6 @@ IconButton.propTypes = {
           'Firefox will never trigger the event.',
           'You should move the onClick listener to the parent button element.',
           'https://github.com/mui-org/material-ui/issues/13957',
-          // Change error message slightly on every check to prevent caching when testing
-          // which would not trigger console errors on subsequent fails
-          process.env.NODE_ENV === 'test' ? Date.now() : '',
         ].join('\n'),
       );
     }
@@ -144,14 +148,16 @@ IconButton.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the ripple will be disabled.
+   * The size of the button.
+   * `small` is equivalent to the dense button styling.
    */
-  disableRipple: PropTypes.bool,
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 IconButton.defaultProps = {
   color: 'default',
   disabled: false,
+  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

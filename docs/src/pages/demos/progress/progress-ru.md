@@ -2,19 +2,19 @@
 title: Circular Progress, Linear Progress React component
 components: CircularProgress, LinearProgress
 ---
-# Progress
+# Прогресс
 
-<p class="description">Progress indicators express an unspecified wait time or display the length of a process.</p>
+<p class="description">Индикаторы прогресса указывают на неопределенное время ожидания или отображают продолжительность процесса.</p>
 
-[Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
+[Индикаторы прогресса](https://material.io/design/components/progress-indicators.html) информируют пользователей о состоянии текущих процессов, таких как загрузка приложения, отправка формы или сохранение обновлений. Они сообщают о состоянии приложения и указывают возможные действия, например, могут ли пользователи уходить с текущего экрана.
 
-**Determinate** indicators display how long an operation will take.
+**Детерменированные** индикаторы показывают, сколько времени займет операция.
 
-**Indeterminate** indicators visualize an unspecified wait time.
+**Недетерминированные** индикаторы отображают неопределенное время ожидания.
 
-#### Progress as a group
+#### Групповой прогресс
 
-When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+Отображая прогресс последовательности процессов, укажите общий прогресс, а не прогресс каждого отдельного действия.
 
 ## Circular
 

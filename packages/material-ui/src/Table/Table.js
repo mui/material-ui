@@ -4,46 +4,26 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
-export const styles = theme => ({
+export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'table',
-    fontFamily: theme.typography.fontFamily,
     width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: 0,
   },
+};
+
+const Table = React.forwardRef(function Table(props, ref) {
+  const { classes, className, component: Component, padding, size, ...other } = props;
+  const table = React.useMemo(() => ({ padding, size }), [padding, size]);
+
+  return (
+    <TableContext.Provider value={table}>
+      <Component ref={ref} className={clsx(classes.root, className)} {...other} />
+    </TableContext.Provider>
+  );
 });
-
-class Table extends React.Component {
-  memoizedContextValue = {};
-
-  // To replace with the corresponding Hook once Material-UI v4 is out:
-  // https://reactjs.org/docs/hooks-reference.html#usememo
-  useMemo(contextValue) {
-    const objectKeys = Object.keys(contextValue);
-
-    for (let i = 0; i < objectKeys.length; i += 1) {
-      const objectKey = objectKeys[i];
-
-      if (contextValue[objectKey] !== this.memoizedContextValue[objectKey]) {
-        this.memoizedContextValue = contextValue;
-        break;
-      }
-    }
-    return this.memoizedContextValue;
-  }
-
-  render() {
-    const { classes, className, component: Component, padding, ...other } = this.props;
-
-    return (
-      <TableContext.Provider value={this.useMemo({ padding })}>
-        <Component className={clsx(classes.root, className)} {...other} />
-      </TableContext.Provider>
-    );
-  }
-}
 
 Table.propTypes = {
   /**
@@ -65,14 +45,24 @@ Table.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Allows TableCells to inherit padding of the Table.
    */
-  padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
+  padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
+  /**
+   * Allows TableCells to inherit size of the Table.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 Table.defaultProps = {
   component: 'table',
   padding: 'default',
+  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);

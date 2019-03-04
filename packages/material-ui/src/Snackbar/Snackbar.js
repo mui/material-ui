@@ -6,6 +6,7 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
 import { capitalize, createChainedFunction } from '../utils/helpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import Slide from '../Slide';
 import SnackbarContent from '../SnackbarContent';
 
@@ -206,6 +207,7 @@ class Snackbar extends React.Component {
       ClickAwayListenerProps,
       ContentProps,
       disableWindowBlurListener,
+      innerRef,
       message,
       onClose,
       onEnter,
@@ -239,6 +241,7 @@ class Snackbar extends React.Component {
           )}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
+          ref={innerRef}
           {...other}
         >
           <EventListener
@@ -311,6 +314,11 @@ Snackbar.propTypes = {
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    */
   disableWindowBlurListener: PropTypes.bool,
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
    * <Snackbar/>, add the key property to ensure independent treatment of each message.
@@ -407,4 +415,4 @@ Snackbar.defaultProps = {
   },
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
+export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(withForwardedRef(Snackbar));

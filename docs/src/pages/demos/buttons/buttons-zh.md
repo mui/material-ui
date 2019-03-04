@@ -18,7 +18,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 [实心按钮](https://material.io/design/components/buttons.html#contained-button)表示高度的强调, 根据他们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
-此演示的最后一个示例演示了如何使用上传按钮。
+以下演示的最后一个例子演示了如何使用上传按钮。
 
 {{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
@@ -43,13 +43,13 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## 浮动操作按钮
+## Floating Action Buttons（提升动作按钮）
 
-[浮动动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB有两种类型：常规和扩展。
+[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB有两种类型：常规的和扩展的。
 
-只在它是最适合呈现屏幕主要操作的方式时使用FAB。
+只使用FAB是最适合呈现屏幕主要操作的方法。
 
-每个屏幕建议只有一个浮动操作按钮来表示最常见的操作。
+在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。
 
 {{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
 
@@ -57,47 +57,47 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 跨越多个横向屏幕（例如标签式屏幕）的浮动操作按钮应该短暂消失， 然后如果其动作改变则重新出现。
 
-可以使用缩放转换来实现此目的。 注意，既然退出和进入 动画同时被触发，我们使用`enterDelay`来允许旧的浮动动作按钮动画在新按钮进入之前完成。
+可以使用缩放转换来实现此目的。 注意，既然退出和进入动画同时被触发，我们使用`enterDelay`来允许旧的浮动动作按钮动画在新的按钮进入之前完成。
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
-## 尺寸
+## 大小
 
-花式更大或更小的按钮？使用 `size` 属性。
+您喜欢更大一点或更小一点的按钮？请使用 `size` 属性。
 
 {{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
-## 带有图标和标签的按钮
+## 带有icons（图标）和 label（标签）的按钮
 
-有时您可能希望为某个按钮添加图标以增强应用程序的用户体验，因为我们识别徽标比纯文本更容易。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
+考虑到相比纯文本，我们更容易识别出图标，有时您可能想要在某个按钮上添加图标以增强应用程序的用户体验， 例如，如果您有一个删除按钮，则可以使用垃圾箱图标对其进行标记。
 
 {{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
 
-## 图标按钮
+## Icon Buttons（图标按钮）
 
 图标按钮通常位于应用栏和工具栏中。
 
-图标也适用于允许选择单个选项的切换按钮或 取消选择，例如向项目添加或删除星标。
+图标也适用于实现单个选项的选择和或取消选择的切换按钮，例如向一个元素添加或删除星标。
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
-## 自定义按钮
+## Customized Buttons（自定义按钮）
 
-如果您有阅读[“重写”文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是一些示例，包括使用 classes 属性更改 Button 的主要颜色、 使用主题和使用 Bootstrap 样式按钮。
+如果您有阅读[“重写”文档](/customization/overrides/)，但你还不是很自信得完全掌握，我们提供了以下的例子，包括使用 classes 属性和 theme（主题）来更改 Button 的主要颜色；以及使用 Bootstrap 样式按钮。
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
-## 复杂按钮
+## Complex Buttons（复杂按钮）
 
-文本按钮，包含按钮，浮动操作按钮和图标按钮构建在同一组件之上：`ButtonBase`。 您可以利用此较底层的组件来构建自定义交互。
+Text Buttons（文本按钮），Contained Buttons（实心按钮），Floating Action Buttons（浮动操作按钮）和 Icon Buttons（图标按钮）是根据同一个组件`ButtonBase`构建的。 您可以利用此较底层的组件来构建自定义的交互。
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}
 
-## 第三方路由库
+## Third-party routing library（第三方路由库）
 
-一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在所有地方用到它的好处：
+一个常见的用例是使用按钮来触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在所有地方受益于它：
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -108,7 +108,7 @@ import Button from '@material-ui/core/Button';
 </Button>
 ```
 
-或者如果你想避免属性碰撞：
+或者如果你想避免属性冲突：
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -121,4 +121,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*注意：创建 `MyLink` 是必要的，以防止意外卸载。您可以在我们的 [组件属性指南](/guides/composition/#component-property)阅读更多相关信息。*
+*注意：创建 `MyLink` 是必要的，以防止意外的 unmounting。您可以在我们的 [组件属性指南](/guides/composition/#component-property)中阅读更多相关信息。*

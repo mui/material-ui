@@ -70,7 +70,6 @@ class Modal extends React.Component {
     if (prevProps.open && !this.props.open) {
       this.handleClose();
     } else if (!prevProps.open && this.props.open) {
-      this.lastFocus = ownerDocument(this.mountNode).activeElement;
       this.handleOpen();
     }
   }
@@ -101,7 +100,7 @@ class Modal extends React.Component {
   }
 
   handleOpen = () => {
-    const doc = ownerDocument(this.mountNode);
+    const doc = this.getDoc();
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
@@ -198,6 +197,10 @@ class Modal extends React.Component {
     return this.props.manager.isTopModal(this);
   };
 
+  getDoc = () => {
+    return ownerDocument(this.mountNode);
+  };
+
   render() {
     const {
       BackdropComponent,
@@ -275,6 +278,7 @@ class Modal extends React.Component {
             disableEnforceFocus={disableEnforceFocus}
             disableAutoFocus={disableAutoFocus}
             disableRestoreFocus={disableRestoreFocus}
+            getDoc={this.getDoc}
             isEnabled={this.isTopModal}
             open={open}
           >

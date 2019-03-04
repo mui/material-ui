@@ -9,7 +9,7 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 Less than [700 B gzipped](https://github.com/mui-org/material-ui/blob/master/.size-limit.js).
+- 📦 [1 kB gzipped](/size-snapshot).
 - 💄 It's an alternative to react-responsive and react-media that aims for simplicity.
 - 🤖 It supports Server-side rendering.
 
