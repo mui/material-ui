@@ -24,6 +24,7 @@ const styles = theme => ({
         // Save printer ink.
         backgroundColor: theme.palette.common.white,
       },
+      ...theme.typography.body2,
     },
   },
 });
