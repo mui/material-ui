@@ -50,8 +50,6 @@ export const styles = theme => ({
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
-  mounted = false;
-
   constructor(props) {
     super();
     this.state = {
@@ -60,7 +58,6 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    this.mounted = true;
     if (this.props.open) {
       this.handleOpen();
     }
@@ -75,8 +72,6 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
-    this.mounted = false;
-
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
       this.handleClose('unmount');
     }
