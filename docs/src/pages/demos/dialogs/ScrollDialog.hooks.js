@@ -7,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Divider from '@material-ui/core/Divider';
 
 function ScrollDialog() {
   const [open, setOpen] = React.useState(false);
@@ -21,6 +22,8 @@ function ScrollDialog() {
     setOpen(false);
   }
 
+  const withDivider = scroll === 'paper';
+
   return (
     <div>
       <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
@@ -32,6 +35,7 @@ function ScrollDialog() {
         aria-labelledby="scroll-dialog-title"
       >
         <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        {withDivider && <Divider />}
         <DialogContent>
           <DialogContentText>
             {Array.apply(null, Array(50))
@@ -44,6 +48,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
               .join('\n')}
           </DialogContentText>
         </DialogContent>
+        {withDivider && <Divider />}
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
