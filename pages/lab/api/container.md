@@ -26,6 +26,26 @@ import Container from '@material-ui/lab/Container';
 
 Any other properties supplied will be spread to the root element (native element).
 
+## CSS
+
+You can override all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+
+- `root`
+- `fixed`
+- `maxWidthXs`
+- `maxWidthSm`
+- `maxWidthMd`
+- `maxWidthLg`
+- `maxWidthXl`
+
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/Container/Container.js)
+for more detail.
+
+If using the `overrides` [key of the theme](/customization/themes/#css),
+you need to use the following style sheet name: `MuiContainer`.
+
 ## Demos
 
 - [Layout](/lab/layout/)
