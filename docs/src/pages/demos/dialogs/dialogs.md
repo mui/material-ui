@@ -98,9 +98,6 @@ Follow the [Modal accessibility section](/utils/modal/#accessibility).
 
 When dialogs become too long for the user’s viewport or device, they scroll.
 
-- `scroll=paper` the content of the dialog scrolls within the paper element.
-- `scroll=body` the content of the dialog scrolls within the body element.
-
 Try the demo below to see what we mean:
 
 {{"demo": "pages/demos/dialogs/ScrollDialog.js"}}

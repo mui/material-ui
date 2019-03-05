@@ -25,11 +25,6 @@ export const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  /* Styles applied to the root element if `scroll="body"`. */
-  scrollBody: {
-    overflowY: 'auto',
-    overflowX: 'hidden',
-  },
   /* Styles applied to the container element. */
   container: {
     height: '100%',
@@ -55,10 +50,6 @@ export const styles = theme => ({
   paperScrollPaper: {
     flex: '0 1 auto',
     maxHeight: 'calc(100% - 96px)',
-  },
-  /* Styles applied to the `Paper` component if `scroll="body"`. */
-  paperScrollBody: {
-    margin: '48px auto',
   },
   /* Styles applied to the `Paper` component if `maxWidth=false`. */
   paperWidthFalse: {
@@ -186,7 +177,6 @@ class Dialog extends React.Component {
       open,
       PaperComponent,
       PaperProps = {},
-      scroll,
       TransitionComponent,
       transitionDuration,
       TransitionProps,
@@ -195,7 +185,7 @@ class Dialog extends React.Component {
 
     return (
       <Modal
-        className={clsx(classes.root, className)}
+        className={clsx(classes.root, classes.container, classes.scrollPaper,className)}
         BackdropProps={{
           transitionDuration,
           ...BackdropProps,
@@ -222,25 +212,23 @@ class Dialog extends React.Component {
           onExited={onExited}
           {...TransitionProps}
         >
-          <div className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}>
-            <PaperComponent
-              elevation={24}
-              {...PaperProps}
-              className={clsx(
-                classes.paper,
-                classes[`paperScroll${capitalize(scroll)}`],
-                classes[`paperWidth${capitalize(String(maxWidth))}`],
-                {
-                  [classes.paperFullScreen]: fullScreen,
-                  [classes.paperFullWidth]: fullWidth,
-                },
-                PaperProps.className,
-              )}
-              onMouseDown={this.handleMouseDown}
-            >
-              {children}
-            </PaperComponent>
-          </div>
+          <PaperComponent
+            elevation={24}
+            {...PaperProps}
+            className={clsx(
+              classes.paper,
+              classes.paperScrollPaper,
+              classes[`paperWidth${capitalize(String(maxWidth))}`],
+              {
+                [classes.paperFullScreen]: fullScreen,
+                [classes.paperFullWidth]: fullWidth,
+              },
+              PaperProps.className,
+            )}
+            onMouseDown={this.handleMouseDown}
+          >
+            {children}
+          </PaperComponent>
         </TransitionComponent>
       </Modal>
     );
@@ -340,10 +328,6 @@ Dialog.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * Determine the container for scrolling the dialog.
-   */
-  scroll: PropTypes.oneOf(['body', 'paper']),
-  /**
    * The component used for the transition.
    */
   TransitionComponent: PropTypes.elementType,
@@ -368,7 +352,6 @@ Dialog.defaultProps = {
   fullWidth: false,
   maxWidth: 'sm',
   PaperComponent: Paper,
-  scroll: 'paper',
   TransitionComponent: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };

@@ -10,11 +10,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 function ScrollDialog() {
   const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
 
-  const handleClickOpen = scrollType => () => {
+  const handleClickOpen = () => {
     setOpen(true);
-    setScroll(scrollType);
   };
 
   function handleClose() {
@@ -23,12 +21,10 @@ function ScrollDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
-      <Button onClick={handleClickOpen('body')}>scroll=body</Button>
+      <Button onClick={handleClickOpen}>open</Button>
       <Dialog
         open={open}
         onClose={handleClose}
-        scroll={scroll}
         aria-labelledby="scroll-dialog-title"
       >
         <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
