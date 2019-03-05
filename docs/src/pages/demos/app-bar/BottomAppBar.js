@@ -140,7 +140,7 @@ function BottomAppBar(props) {
             <IconButton color="inherit">
               <SearchIcon />
             </IconButton>
-            <IconButton color="inherit" className={classes.moreButton}>
+            <IconButton classsName={classes.moreButton} color="inherit">
               <MoreIcon />
             </IconButton>
           </div>

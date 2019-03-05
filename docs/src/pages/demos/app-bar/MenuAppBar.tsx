@@ -24,6 +24,9 @@ const styles = createStyles({
     marginLeft: -12,
     marginRight: 20,
   },
+  accountButton: {
+    marginRight: -12,
+  },
 });
 
 export interface Props extends WithStyles<typeof styles> {}
@@ -81,6 +84,7 @@ class MenuAppBar extends React.Component<Props, State> {
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
+                  className={classes.accountButton}
                 >
                   <AccountCircle />
                 </IconButton>

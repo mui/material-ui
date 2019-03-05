@@ -86,6 +86,9 @@ const styles = (theme: Theme) =>
         display: 'none',
       },
     },
+    accountButton: {
+      marginRight: -12,
+    },
   });
 
 export interface Props extends WithStyles<typeof styles> {}
@@ -209,6 +212,7 @@ class PrimarySearchAppBar extends React.Component<Props, State> {
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
+                className={classes.accountButton}
               >
                 <AccountCircle />
               </IconButton>

@@ -78,15 +78,15 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
-    '& > :last-child': {
-      marginRight: -12,
-    },
   },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  accountButton: {
+    marginRight: -12,
   },
 });
 
@@ -204,6 +204,7 @@ class PrimarySearchAppBar extends React.Component {
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
+                className={classes.accountButton}
               >
                 <AccountCircle />
               </IconButton>
