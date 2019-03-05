@@ -19,6 +19,8 @@ export type ChipClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'clickable'
+  | 'clickableColorPrimary'
+  | 'clickableColorSecondary'
   | 'deletable'
   | 'deletableColorPrimary'
   | 'deletableColorSecondary'

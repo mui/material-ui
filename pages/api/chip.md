@@ -44,8 +44,8 @@ This property accepts the following keys:
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
-| <span class="prop-name">clickableColorPrimary</span> | 
-| <span class="prop-name">clickableColorSecondary</span> | 
+| <span class="prop-name">clickableColorPrimary</span> | Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
+| <span class="prop-name">clickableColorSecondary</span> | Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`.
 | <span class="prop-name">deletable</span> | Styles applied to the root element if `onDelete` is defined.
 | <span class="prop-name">deletableColorPrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
 | <span class="prop-name">deletableColorSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
