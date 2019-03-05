@@ -64,7 +64,7 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  before(() => {
+  beforeEach(() => {
     shallow = createShallow();
   });
 
@@ -97,7 +97,7 @@ import { createMount } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let mount;
 
-  before(() => {
+  beforeEach(() => {
     mount = createMount();
   });
 
@@ -134,7 +134,7 @@ import { createRender } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let render;
 
-  before(() => {
+  beforeEach(() => {
     render = createRender();
   });
 
