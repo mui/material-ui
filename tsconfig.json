@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "baseUrl": "./packages",
     "allowSyntheticDefaultImports": true,
+    "noErrorTruncation": true,
     "paths": {
       "@material-ui/core": ["./material-ui/src"],
       "@material-ui/core/*": ["./material-ui/src/*"],
@@ -18,7 +19,5 @@
       "@material-ui/lab/*": ["./material-ui-lab/src/*"]
     }
   },
-  "exclude": [
-    "**/build/"
-  ]
+  "exclude": ["**/build/"]
 }

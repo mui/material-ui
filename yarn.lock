@@ -1920,6 +1920,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-swipeable-views@^0.12.2":
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views/-/react-swipeable-views-0.12.2.tgz#5b50bfbe2e42043f5de85a11087bcfbcb813610e"
+  integrity sha512-c+OFdmEMUtdGeADR7OmnIUTNoejJTBjO64vBPFkdIpKiABS+DXtUHCzM34U/+Wy7FGeLoPHpKGnm2tcMMst/LA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-text-mask@^5.4.2", "@types/react-text-mask@^5.4.3":
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/@types/react-text-mask/-/react-text-mask-5.4.3.tgz#51351359306a1feaa4ffed017ba6c7fd4d7a6290"
