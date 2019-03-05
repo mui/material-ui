@@ -10,7 +10,7 @@ import acceptLanguage from 'accept-language';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, LANGUAGES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -28,7 +28,7 @@ function themeSideEffect(reduxTheme) {
   document.body.dir = reduxTheme.direction;
 }
 
-acceptLanguage.languages(LANGUAGES);
+acceptLanguage.languages(['en', 'zh']);
 
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
