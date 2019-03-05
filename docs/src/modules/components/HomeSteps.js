@@ -15,6 +15,14 @@ import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
 
+const InstallationLink = React.forwardRef((buttonProps, ref) => (
+  <Link naked prefetch href="/getting-started/installation" ref={ref} {...buttonProps} />
+));
+
+const UsageLink = React.forwardRef((buttonProps, ref) => (
+  <Link naked prefetch href="/getting-started/usage" ref={ref} {...buttonProps} />
+));
+
 const styles = theme => ({
   step: {
     border: `12px solid ${theme.palette.background.paper}`,
@@ -124,13 +132,7 @@ function HomeSteps(props) {
           />
         </div>
         <Divider className={classes.divider} />
-        <Button
-          component={buttonProps => (
-            <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
-          )}
-        >
-          {t('installButton')}
-        </Button>
+        <Button component={InstallationLink}>{t('installButton')}</Button>
       </Grid>
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
@@ -158,13 +160,7 @@ function HomeSteps(props) {
           />
         </div>
         <Divider className={classes.divider} />
-        <Button
-          component={buttonProps => (
-            <Link naked prefetch href="/getting-started/usage" {...buttonProps} />
-          )}
-        >
-          {t('usageButton')}
-        </Button>
+        <Button component={UsageLink}>{t('usageButton')}</Button>
       </Grid>
       <Grid item xs={12} md={4} className={clsx(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
