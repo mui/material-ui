@@ -101,7 +101,7 @@ describe('<MyComponent />', () => {
     mount = createMount();
   });
 
-  after(() => {
+  afterEach(() => {
     mount.cleanUp();
   });
 
