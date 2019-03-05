@@ -157,7 +157,7 @@ class SpeedDial extends React.Component {
   render() {
     const {
       ariaLabel,
-      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = {},
+      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = { color: 'primary' },
       children: childrenProp,
       classes,
       className: classNameProp,
