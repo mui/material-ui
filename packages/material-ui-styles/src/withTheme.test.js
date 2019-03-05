@@ -66,9 +66,9 @@ describe('withTheme', () => {
 
       const ref = React.createRef();
       mount(
-        <>
+        <React.Fragment>
           <ThemedTarget ref={ref} />
-        </>,
+        </React.Fragment>,
       );
 
       assert.instanceOf(ref.current, TargetComponent);
@@ -81,9 +81,9 @@ describe('withTheme', () => {
 
       const ref = React.createRef();
       mount(
-        <>
+        <React.Fragment>
           <ThemedTarget ref={ref} />
-        </>,
+        </React.Fragment>,
       );
 
       assert.strictEqual(ref.current.nodeName, 'DIV');
@@ -103,9 +103,9 @@ describe('withTheme', () => {
         const ThemedDiv = withTheme('div');
 
         mount(
-          <>
+          <React.Fragment>
             <ThemedDiv innerRef={React.createRef()} />
-          </>,
+          </React.Fragment>,
         );
 
         assert.strictEqual(consoleErrorMock.callCount(), 1);

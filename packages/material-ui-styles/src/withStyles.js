@@ -83,10 +83,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         return null;
       }
 
-      return new Error(
-        'Material-UI: The `innerRef` prop is deprecated and will be removed in v5. ' +
-          'Refs are now automatically forwarded to the inner component.',
-      );
+      // return new Error(
+      //   'Material-UI: The `innerRef` prop is deprecated and will be removed in v5. ' +
+      //     'Refs are now automatically forwarded to the inner component.',
+      // );
     }),
   };
 

@@ -316,7 +316,6 @@ const withStylesOld = (stylesOrCreator, options = {}) => Component => {
   return WithStyles;
 };
 
-/* istanbul ignore if */
 if (!ponyfillGlobal.__MUI_STYLES__) {
   ponyfillGlobal.__MUI_STYLES__ = {};
 }
