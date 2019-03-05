@@ -449,7 +449,7 @@ describe('<Popover />', () => {
 
     it('should not pass container to Modal if container or anchorEl props are not provided', () => {
       const otherWrapper = mount(<Popover open />);
-      assert.strictEqual(otherWrapper.find('Modal').props().container, undefined);
+      assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
     });
   });
 

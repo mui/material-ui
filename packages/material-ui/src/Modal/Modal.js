@@ -5,6 +5,8 @@ import clsx from 'clsx';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
+import { setRef } from '../utils/reactHelpers';
+import withForwardedRef from '../utils/withForwardedRef';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import TrapFocus from './TrapFocus';
@@ -50,8 +52,6 @@ export const styles = theme => ({
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
-  mounted = false;
-
   constructor(props) {
     super();
     this.state = {
@@ -60,7 +60,6 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    this.mounted = true;
     if (this.props.open) {
       this.handleOpen();
     }
@@ -75,8 +74,6 @@ class Modal extends React.Component {
   }
 
   componentWillUnmount() {
-    this.mounted = false;
-
     if (this.props.open || (getHasTransition(this.props) && !this.state.exited)) {
       this.handleClose('unmount');
     }
@@ -191,6 +188,7 @@ class Modal extends React.Component {
 
   handleModalRef = ref => {
     this.modalRef = ref;
+    setRef(this.props.innerRef, ref);
   };
 
   isTopModal = () => {
@@ -217,6 +215,7 @@ class Modal extends React.Component {
       disablePortal,
       disableRestoreFocus,
       hideBackdrop,
+      innerRef,
       keepMounted,
       manager,
       onBackdropClick,
@@ -360,6 +359,11 @@ Modal.propTypes = {
    */
   hideBackdrop: PropTypes.bool,
   /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
@@ -415,4 +419,4 @@ Modal.defaultProps = {
   manager: new ModalManager(),
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withStyles(styles, { flip: false, name: 'MuiModal' })(withForwardedRef(Modal));
