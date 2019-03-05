@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
+import Divider from '@material-ui/core/Divider';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -66,6 +67,7 @@ function ConfirmationDialogRaw(props) {
       {...otherProps}
     >
       <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
+      <Divider />
       <DialogContent>
         <RadioGroup
           ref={radioGroupRef}
@@ -79,6 +81,7 @@ function ConfirmationDialogRaw(props) {
           ))}
         </RadioGroup>
       </DialogContent>
+      <Divider />
       <DialogActions>
         <Button onClick={handleCancel} color="primary">
           Cancel
