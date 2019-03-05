@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   button: {
     margin: theme.spacing(1),
   },
@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-function TextButtons(props) {
+function TextButtons(props: WithStyles<typeof styles>) {
   const { classes } = props;
   return (
     <div>
@@ -36,7 +36,6 @@ function TextButtons(props) {
         multiple
         type="file"
       />
-
       <label htmlFor="text-button-file">
         <Button component="span" className={classes.button}>
           Upload
@@ -48,6 +47,6 @@ function TextButtons(props) {
 
 TextButtons.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(TextButtons);

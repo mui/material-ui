@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: 'none',
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    button: {
+      margin: theme.spacing(1),
+    },
+    input: {
+      display: 'none',
+    },
+  });
 
-function ContainedButtons(props) {
+function ContainedButtons(props: WithStyles<typeof styles>) {
   const { classes } = props;
   return (
     <div>
@@ -38,7 +39,6 @@ function ContainedButtons(props) {
         multiple
         type="file"
       />
-
       <label htmlFor="contained-button-file">
         <Button variant="contained" component="span" className={classes.button}>
           Upload
@@ -50,6 +50,6 @@ function ContainedButtons(props) {
 
 ContainedButtons.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+} as any;
 
 export default withStyles(styles)(ContainedButtons);
