@@ -23,9 +23,9 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
-    padding: '4px 56px 4px 24px',
+    padding: '4px 48px 4px 16px',
     '&:last-child': {
-      paddingRight: 24,
+      paddingRight: 16,
     },
   },
   /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
@@ -53,13 +53,16 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `padding="dense"`. */
   paddingDense: {
-    paddingRight: 24,
+    paddingRight: 16,
   },
   /* Styles applied to the root element if `padding="checkbox"`. */
   paddingCheckbox: {
-    padding: '0 12px',
+    padding: 0,
+    '&:first-child': {
+      paddingLeft: 4,
+    },
     '&:last-child': {
-      paddingRight: 12,
+      paddingRight: 4,
     },
   },
   /* Styles applied to the root element if `padding="none"`. */
