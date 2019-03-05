@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { getDisplayName } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import useTheme from './useTheme';
-import RefHolder from './RefHolder';
 
 // Provide the theme object as a property to the input component.
 // It's an alternative API to useTheme().
@@ -21,18 +20,24 @@ const withTheme = Component => {
   const WithTheme = React.forwardRef(function WithTheme(props, ref) {
     const { innerRef, ...other } = props;
     const theme = useTheme();
-    return (
-      <RefHolder ref={ref}>
-        <Component theme={theme} ref={innerRef} {...other} />
-      </RefHolder>
-    );
+    return <Component theme={theme} ref={innerRef || ref} {...other} />;
   });
 
   WithTheme.propTypes = {
     /**
+     * @deprecated
      * Use that property to pass a ref callback to the decorated component.
      */
-    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {
+      if (props.innerRef == null) {
+        return null;
+      }
+
+      return new Error(
+        'Material-UI: The `innerRef` prop is deprecated and will be removed in v5. ' +
+          'Refs are now automatically forwarded to the inner component.',
+      );
+    }),
   };
 
   if (process.env.NODE_ENV !== 'production') {

@@ -7,6 +7,7 @@ import { Input } from '@material-ui/core';
 import { createMount } from '@material-ui/core/test-utils';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+// import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from './StylesProvider';
 import ThemeProvider from './ThemeProvider';
 import withStyles from './withStyles';
@@ -36,6 +37,68 @@ describe('withStyles', () => {
     const StyledInput = withStyles({})(Input);
 
     assert.strictEqual(isMuiElement(<StyledInput />, ['Input']), true);
+  });
+
+  describe('refs', () => {
+    it('forwards ref to class components', () => {
+      // eslint-disable-next-line react/prefer-stateless-function
+      class TargetComponent extends React.Component {
+        render() {
+          return null;
+        }
+      }
+      const StyledTarget = withStyles({})(TargetComponent);
+
+      const ref = React.createRef();
+      mount(
+        <React.Fragment>
+          <StyledTarget ref={ref} />
+        </React.Fragment>,
+      );
+      assert.instanceOf(ref.current, TargetComponent);
+    });
+
+    it('forwards refs to React.forwardRef types', () => {
+      const StyledTarget = withStyles({})(
+        // eslint-disable-next-line react/no-multi-comp
+        React.forwardRef((props, ref) => <div {...props} ref={ref} />),
+      );
+
+      const ref = React.createRef();
+      mount(
+        <React.Fragment>
+          <StyledTarget ref={ref} />
+        </React.Fragment>,
+      );
+      assert.strictEqual(ref.current.nodeName, 'DIV');
+    });
+
+    // describe('innerRef', () => {
+    //   beforeEach(() => {
+    //     consoleErrorMock.spy();
+    //   });
+
+    //   afterEach(() => {
+    //     consoleErrorMock.reset();
+    //     PropTypes.resetWarningCache();
+    //   });
+
+    //   it('is deprecated', () => {
+    //     const ThemedDiv = withStyles({})('div');
+
+    //     mount(
+    //       <React.Fragment>
+    //         <ThemedDiv innerRef={React.createRef()} />
+    //       </React.Fragment>,
+    //     );
+
+    //     assert.strictEqual(consoleErrorMock.callCount(), 1);
+    //     assert.include(
+    //       consoleErrorMock.args()[0][0],
+    //       'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
+    //     );
+    //   });
+    // });
   });
 
   it('should forward the properties', () => {

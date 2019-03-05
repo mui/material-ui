@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { getDisplayName } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import makeStyles from './makeStyles';
-import RefHolder from './RefHolder';
 import getThemeProps from './getThemeProps';
 import useTheme from './useTheme';
 
@@ -67,11 +66,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       }
     }
 
-    return (
-      <RefHolder ref={ref}>
-        <Component ref={innerRef} classes={classes} {...more} />
-      </RefHolder>
-    );
+    return <Component ref={innerRef || ref} classes={classes} {...more} />;
   });
 
   WithStyles.propTypes = {
@@ -80,9 +75,20 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
      */
     classes: PropTypes.object,
     /**
+     * @deprecated
      * Use that property to pass a ref callback to the decorated component.
      */
-    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {
+      if (props.innerRef == null) {
+        return null;
+      }
+
+      return null;
+      // return new Error(
+      //   'Material-UI: The `innerRef` prop is deprecated and will be removed in v5. ' +
+      //     'Refs are now automatically forwarded to the inner component.',
+      // );
+    }),
   };
 
   if (process.env.NODE_ENV !== 'production') {
