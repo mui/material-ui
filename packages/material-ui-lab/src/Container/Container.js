@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils/helpers';
 
-const styles = theme => ({
+export const styles = theme => ({
   root: {
     width: '100%',
     marginLeft: 'auto',
@@ -115,4 +115,4 @@ Container.defaultProps = {
   maxWidth: 'lg',
 };
 
-export default withStyles(styles)(Container);
+export default withStyles(styles, { name: 'MuiContainer' })(Container);

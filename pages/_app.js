@@ -165,7 +165,7 @@ const pages = [
   },
   {
     pathname: '/css-in-js',
-    title: 'CSS in JS (alpha)',
+    title: 'CSS in JS',
     children: [
       {
         pathname: '/css-in-js/basics',
@@ -181,7 +181,7 @@ const pages = [
   },
   {
     pathname: '/system',
-    title: 'System (alpha)',
+    title: 'System',
     children: [
       {
         pathname: '/system/basics',
@@ -261,6 +261,10 @@ const pages = [
       },
       {
         pathname: '/guides/server-rendering',
+      },
+      {
+        pathname: '/guides/migration-v3',
+        title: 'Migration From v3',
       },
       {
         pathname: '/guides/migration-v0x',

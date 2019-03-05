@@ -1,9 +1,6 @@
 # @material-ui/system
 
-<p class="description">Style functions for building powerful design systems.</p>
-
-> ⚠️ `@material-ui/system` is experimental (alpha version).
-We are working on making it stable for Material-UI v4.
+<p class="description">Styled system & style functions for building powerful design systems.</p>
 
 ## Getting Started
 

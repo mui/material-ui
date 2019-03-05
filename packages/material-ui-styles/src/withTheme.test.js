@@ -1,9 +1,11 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import { Input } from '@material-ui/core';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import PropTypes from 'prop-types';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import withTheme from './withTheme';
 import ThemeProvider from './ThemeProvider';
 
@@ -50,6 +52,69 @@ describe('withTheme', () => {
     const ThemedInput = withTheme(Input);
 
     assert.strictEqual(isMuiElement(<ThemedInput />, ['Input']), true);
+  });
+
+  describe('refs', () => {
+    it('forwards ref to class components', () => {
+      // eslint-disable-next-line react/prefer-stateless-function
+      class TargetComponent extends React.Component {
+        render() {
+          return null;
+        }
+      }
+      const ThemedTarget = withTheme(TargetComponent);
+
+      const ref = React.createRef();
+      mount(
+        <React.Fragment>
+          <ThemedTarget ref={ref} />
+        </React.Fragment>,
+      );
+
+      assert.instanceOf(ref.current, TargetComponent);
+    });
+
+    it('forwards refs to React.forwardRef types', () => {
+      const ThemedTarget = withTheme(
+        React.forwardRef((props, ref) => <div {...props} ref={ref} />),
+      );
+
+      const ref = React.createRef();
+      mount(
+        <React.Fragment>
+          <ThemedTarget ref={ref} />
+        </React.Fragment>,
+      );
+
+      assert.strictEqual(ref.current.nodeName, 'DIV');
+    });
+
+    describe('innerRef', () => {
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      afterEach(() => {
+        consoleErrorMock.reset();
+        PropTypes.resetWarningCache();
+      });
+
+      it('is deprecated', () => {
+        const ThemedDiv = withTheme('div');
+
+        mount(
+          <React.Fragment>
+            <ThemedDiv innerRef={React.createRef()} />
+          </React.Fragment>,
+        );
+
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.include(
+          consoleErrorMock.args()[0][0],
+          'Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated',
+        );
+      });
+    });
   });
 
   it('should throw is the import is invalid', () => {

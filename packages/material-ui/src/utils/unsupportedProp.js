@@ -1,5 +1,4 @@
 function unsupportedProp(props, propName, componentName, location, propFullName) {
-  /* istanbul ignore if */
   if (process.env.NODE_ENV === 'production') {
     return null;
   }

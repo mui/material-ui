@@ -91,7 +91,6 @@ Divider.propTypes = {
    * Instead use `variant="inset"`.
    */
   inset: chainPropTypes(PropTypes.bool, props => {
-    /* istanbul ignore if */
     if (props.inset) {
       return new Error(
         'Material-UI: you are using the deprecated `inset` property ' +
