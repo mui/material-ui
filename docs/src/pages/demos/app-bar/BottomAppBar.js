@@ -49,6 +49,12 @@ const styles = theme => ({
     right: 0,
     margin: '0 auto',
   },
+  menuButton: {
+    marginLeft: -12,
+  },
+  moreButton: {
+    marginRight: -12,
+  },
 });
 
 const messages = [
@@ -124,7 +130,7 @@ function BottomAppBar(props) {
       </Paper>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <IconButton color="inherit" aria-label="Open drawer">
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
             <MenuIcon />
           </IconButton>
           <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
@@ -134,7 +140,7 @@ function BottomAppBar(props) {
             <IconButton color="inherit">
               <SearchIcon />
             </IconButton>
-            <IconButton color="inherit">
+            <IconButton color="inherit" className={classes.moreButton}>
               <MoreIcon />
             </IconButton>
           </div>

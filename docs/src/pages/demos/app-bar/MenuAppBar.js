@@ -24,6 +24,9 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  accountButton: {
+    marginRight: -12,
+  },
 };
 
 class MenuAppBar extends React.Component {
@@ -74,6 +77,7 @@ class MenuAppBar extends React.Component {
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
+                  className={classes.accountButton}
                 >
                   <AccountCircle />
                 </IconButton>

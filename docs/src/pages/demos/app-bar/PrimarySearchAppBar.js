@@ -78,6 +78,9 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
+    '& > :last-child': {
+      marginRight: -12,
+    },
   },
   sectionMobile: {
     display: 'flex',
