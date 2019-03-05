@@ -161,7 +161,6 @@ class SpeedDial extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
-      color: colorProp,
       hidden,
       icon: iconProp,
       innerRef,
@@ -253,7 +252,6 @@ class SpeedDial extends React.Component {
           {...TransitionProps}
         >
           <Fab
-            color={colorProp}
             onKeyDown={this.handleKeyboardNavigation}
             aria-label={ariaLabel}
             aria-haspopup="true"
@@ -310,11 +308,6 @@ SpeedDial.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The color of the Fab component.
-   * It supports those theme colors that make sense for the Fab component.
-   */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
    * The direction the actions open relative to the floating action button.
    */
@@ -375,7 +368,6 @@ SpeedDial.propTypes = {
 };
 
 SpeedDial.defaultProps = {
-  color: 'primary',
   hidden: false,
   direction: 'up',
   TransitionComponent: Zoom,
