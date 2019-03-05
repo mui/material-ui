@@ -63,10 +63,8 @@ export const styles = theme => {
         backgroundColor: emphasize(backgroundColor, 0.12),
       },
     },
-    /**
-     * Styles applied to the root element if
-     * `onClick` and `color="primary"` is defined or `clickable={true}`.
-     */
+    // eslint-disable-next-line max-len
+    /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
     clickableColorPrimary: {
       '&:hover, &:focus': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
@@ -75,10 +73,8 @@ export const styles = theme => {
         backgroundColor: emphasize(theme.palette.primary.main, 0.12),
       },
     },
-    /**
-     * Styles applied to the root element if
-     * `onClick` and `color="secondary"` is defined or `clickable={true}`.
-     */
+    // eslint-disable-next-line max-len
+    /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
       '&:hover, &:focus': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
