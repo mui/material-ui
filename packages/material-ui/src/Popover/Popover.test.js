@@ -2,8 +2,14 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createShallow,
+  createMount,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Grow from '../Grow';
+import Modal from '../Modal';
 import Paper from '../Paper';
 import Popover from './Popover';
 
@@ -14,7 +20,6 @@ describe('<Popover />', () => {
   const defaultProps = {
     open: false,
   };
-  const PopoverNaked = unwrap(Popover);
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -32,35 +37,27 @@ describe('<Popover />', () => {
 
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} data-root-node>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().BackdropProps.invisible, true);
-    });
-
-    it('should pass onClose prop to Modal', () => {
-      const fn = () => {};
-      const wrapper = shallow(
-        <Popover {...defaultProps} onClose={fn}>
-          <div />
-        </Popover>,
-      );
-      assert.strictEqual(wrapper.props().onClose, fn, 'should be the onClose function');
+      const root = wrapper.find('Popover > [data-root-node]').first();
+      assert.strictEqual(root.type(), Modal);
+      assert.strictEqual(root.props().BackdropProps.invisible, true);
     });
 
     it('should pass open prop to Modal as `open`', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Popover {...defaultProps}>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.props().open, false);
+      assert.strictEqual(wrapper.find(Modal).props().open, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.props().open, true);
+      assert.strictEqual(wrapper.find(Modal).props().open, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.props().open, false);
+      assert.strictEqual(wrapper.find(Modal).props().open, false);
     });
 
     describe('getOffsetTop', () => {
@@ -68,11 +65,13 @@ describe('<Popover />', () => {
       let rect;
 
       before(() => {
-        instance = shallow(
+        instance = mount(
           <Popover {...defaultProps}>
             <div />
           </Popover>,
-        ).instance();
+        )
+          .find('Popover')
+          .instance();
         rect = { height: 1 };
       });
 
@@ -106,11 +105,13 @@ describe('<Popover />', () => {
       let rect;
 
       before(() => {
-        instance = shallow(
+        instance = mount(
           <Popover {...defaultProps}>
             <div />
           </Popover>,
-        ).instance();
+        )
+          .find('Popover')
+          .instance();
         rect = { width: 1 };
       });
 
@@ -141,32 +142,40 @@ describe('<Popover />', () => {
   });
 
   describe('transition', () => {
-    it('should have Transition as the only child of Modal', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+    let clock;
+
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('uses Grow as the Transition of the modal', () => {
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.children().length, 1, 'should have one child');
-      assert.strictEqual(wrapper.childAt(0).type(), Grow);
-      assert.strictEqual(
-        wrapper.childAt(0).props().appear,
-        true,
-        'should transition on first appearance',
-      );
+      const modal = wrapper.find('[data-mui-test="Modal"]');
+      const transition = modal.find(Grow);
+
+      assert.strictEqual(transition.exists(), true);
+      assert.strictEqual(transition.props().appear, true, 'should transition on first appearance');
     });
 
     it('should set the transition in/out based on the open prop', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} keepMounted>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).props().in, false);
+      assert.strictEqual(wrapper.find(Grow).props().in, false);
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.childAt(0).props().in, true);
+      assert.strictEqual(wrapper.find(Grow).props().in, true);
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.childAt(0).props().in, false);
+      assert.strictEqual(wrapper.find(Grow).props().in, false);
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -177,15 +186,18 @@ describe('<Popover />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(
-        <Popover {...defaultProps} {...handlers}>
+      // transitions towards entered
+      const wrapper = mount(
+        <Popover {...defaultProps} open transitionDuration={0} {...handlers}>
           <div />
         </Popover>,
       );
+      clock.tick(0);
+      // transition towards exited
+      wrapper.setProps({ open: false });
+      clock.tick(0);
 
       events.forEach(eventHook => {
-        const event = eventHook.charAt(2).toLowerCase() + eventHook.slice(3);
-        wrapper.find(Grow).simulate(event, { style: {} });
         assert.strictEqual(
           handlers[eventHook].callCount,
           1,
@@ -196,56 +208,48 @@ describe('<Popover />', () => {
   });
 
   describe('paper', () => {
-    it('should have Paper as the only child of Transition', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+    it('should have Paper as a child of Transition', () => {
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.childAt(0).children().length, 1, 'should have one child');
+
       assert.strictEqual(
         wrapper
-          .childAt(0)
-          .childAt(0)
-          .type(),
-        Paper,
+          .find(Grow)
+          .find(Paper)
+          .exists(),
+        true,
       );
     });
 
     it('should have the paper class and user classes', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps} className="test-class">
+      const wrapper = mount(
+        <Popover {...defaultProps} open className="test-class">
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.hasClass('test-class'), true);
-      const paper = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass('test-class'), true);
+      const paper = wrapper.find(Paper);
       assert.strictEqual(paper.hasClass(classes.paper), true);
     });
 
     it('should have a elevation prop passed down', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
+
       assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .props().elevation,
+        wrapper.find(Paper).props().elevation,
         8,
         'should be 8 elevation by default',
       );
+
       wrapper.setProps({ elevation: 16 });
-      assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .props().elevation,
-        16,
-        'should be 16 elevation',
-      );
+      assert.strictEqual(wrapper.find(Paper).props().elevation, 16, 'should be 16 elevation');
     });
   });
 
@@ -262,20 +266,16 @@ describe('<Popover />', () => {
     };
 
     describe('handleEntering(element)', () => {
-      let wrapper;
-      let handleEntering;
-
-      before(() => {
-        handleEntering = spy();
-        wrapper = shallow(
+      it('should set the inline styles for the enter phase', () => {
+        const handleEntering = spy();
+        const wrapper = mount(
           <Popover {...defaultProps} onEntering={handleEntering}>
             <div />
           </Popover>,
         );
-        wrapper.instance().handleEntering(element);
-      });
+        const instance = wrapper.find('Popover').instance();
+        instance.handleEntering(element);
 
-      it('should set the inline styles for the enter phase', () => {
         assert.strictEqual(
           element.style.top === '16px' && element.style.left === '16px',
           true,
@@ -283,7 +283,7 @@ describe('<Popover />', () => {
         );
         assert.strictEqual(
           element.style.transformOrigin,
-          wrapper.instance().getPositioningStyle(element).transformOrigin,
+          instance.getPositioningStyle(element).transformOrigin,
           'should have a transformOrigin',
         );
       });
@@ -293,7 +293,7 @@ describe('<Popover />', () => {
   describe('prop: anchorEl', () => {
     it('should accept a function', () => {
       const anchorElSpy = spy();
-      shallow(
+      mount(
         <Popover {...defaultProps} anchorEl={anchorElSpy}>
           <div />
         </Popover>,
@@ -365,7 +365,9 @@ describe('<Popover />', () => {
     });
 
     after(() => {
-      window.document.body.removeChild(anchorEl);
+      if (anchorEl) {
+        window.document.body.removeChild(anchorEl);
+      }
     });
 
     it('should be positioned over the top left of the anchor', async () => {
@@ -421,14 +423,14 @@ describe('<Popover />', () => {
 
     it('should pass through container prop if container and anchorEl props are provided', () => {
       const container = {};
-      const shallowWrapper = shallow(<Popover container={container} open />);
+      const shallowWrapper = shallow(<Popover anchorEl={anchorEl} container={container} open />);
+
       assert.strictEqual(
         shallowWrapper
           .dive()
-          .find('Modal')
+          .find(Modal)
           .props().container,
         container,
-        'should pass through container prop if both container and anchorEl props are provided',
       );
     });
 
@@ -437,7 +439,7 @@ describe('<Popover />', () => {
         assert.strictEqual(
           wrapper
             .dive()
-            .find('Modal')
+            .find(Modal)
             .props().container,
           window.document.body,
           "should use anchorEl's parent body as Modal container",
@@ -446,15 +448,8 @@ describe('<Popover />', () => {
     });
 
     it('should not pass container to Modal if container or anchorEl props are not provided', () => {
-      const shallowWrapper = shallow(<Popover open />);
-      assert.strictEqual(
-        shallowWrapper
-          .dive()
-          .find('Modal')
-          .props().container,
-        undefined,
-        'should not pass a container prop if neither container or anchorEl are provided',
-      );
+      const otherWrapper = mount(<Popover open />);
+      assert.strictEqual(otherWrapper.find('Modal').props().container, undefined);
     });
   });
 
@@ -581,34 +576,33 @@ describe('<Popover />', () => {
     });
 
     it('should recalculate position if the popover is open', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Popover {...defaultProps} open transitionDuration={0}>
           <div />
         </Popover>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Popover').instance();
 
       stub(instance, 'setPositioningStyles');
-      wrapper
-        .find('EventListener')
-        .at(0)
-        .simulate('resize');
+      window.dispatchEvent(new window.Event('resize'));
       clock.tick(166);
       assert.strictEqual(instance.setPositioningStyles.called, true);
     });
 
     it('should not recalculate position if the popover is closed', () => {
       const wrapper = mount(
-        <PopoverNaked {...defaultProps} classes={{}} transitionDuration={0}>
+        <Popover {...defaultProps} open transitionDuration={0}>
           <div />
-        </PopoverNaked>,
+        </Popover>,
       );
-      const instance = wrapper.instance();
-      assert.strictEqual(wrapper.contains('EventListener'), false);
-      stub(instance, 'setPositioningStyles');
-      wrapper.instance().handleResize();
+
+      const setPositioningStyles = stub(wrapper.find('Popover').instance(), 'setPositioningStyles');
+
+      window.dispatchEvent(new window.Event('resize'));
+      wrapper.setProps({ open: false });
       clock.tick(166);
-      assert.strictEqual(instance.setPositioningStyles.called, false);
+
+      assert.strictEqual(setPositioningStyles.called, false);
     });
   });
 
@@ -625,11 +619,13 @@ describe('<Popover />', () => {
       let innerWidthContainer;
 
       before(() => {
-        instance = shallow(
+        instance = mount(
           <Popover {...defaultProps} marginThreshold={marginThreshold}>
             <div />
           </Popover>,
-        ).instance();
+        )
+          .find('Popover')
+          .instance();
         instance.getContentAnchorOffset = spy();
 
         innerHeightContainer = global.window.innerHeight;
@@ -657,10 +653,6 @@ describe('<Popover />', () => {
       describe('no offsets', () => {
         before(() => {
           positioningStyle = instance.getPositioningStyle(element);
-        });
-
-        after(() => {
-          instance.getAnchorOffset = stub().returns(anchorOffset);
         });
 
         it('should set top to marginThreshold', () => {
@@ -781,13 +773,19 @@ describe('<Popover />', () => {
   describe('prop: getContentAnchorEl', () => {
     it('should position accordingly', () => {
       const element = { scrollTop: 5, contains: () => true };
-      const child = { offsetTop: 40, clientHeight: 20, parentNode: element };
-      const wrapper = shallow(
-        <Popover {...defaultProps} getContentAnchorEl={() => child}>
+      const getContentAnchorEl = stub().returns({
+        offsetTop: 40,
+        clientHeight: 20,
+        parentNode: element,
+      });
+      const wrapper = mount(
+        <Popover {...defaultProps} getContentAnchorEl={getContentAnchorEl}>
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.instance().getContentAnchorOffset(element), 45);
+
+      const instance = wrapper.find('Popover').instance();
+      assert.strictEqual(instance.getContentAnchorOffset(element), 45);
     });
   });
 
@@ -818,8 +816,8 @@ describe('<Popover />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should apply the auto property if supported', () => {
-      const wrapper = shallow(
-        <Popover {...defaultProps}>
+      const wrapper = mount(
+        <Popover {...defaultProps} open>
           <div />
         </Popover>,
       );
@@ -827,9 +825,9 @@ describe('<Popover />', () => {
     });
 
     it('should not apply the auto property if not supported', () => {
-      const TransitionComponent = props => <div {...props} />;
-      const wrapper = shallow(
-        <Popover {...defaultProps} TransitionComponent={TransitionComponent}>
+      const TransitionComponent = () => <div tabIndex="-1" />;
+      const wrapper = mount(
+        <Popover {...defaultProps} open TransitionComponent={TransitionComponent}>
           <div />
         </Popover>,
       );
@@ -838,18 +836,43 @@ describe('<Popover />', () => {
   });
 
   describe('prop: TransitionProp', () => {
-    it('should fire Popover transition event callbacks', () => {
-      const handler1 = spy();
-      const handler2 = spy();
-      const wrapper = shallow(
-        <Popover {...defaultProps} TransitionProps={{ onEntering: handler2 }} onEntering={handler1}>
+    it('chains onEntering with the apparent onEntering prop', () => {
+      const apparentHandler = spy();
+      const transitionHandler = spy();
+
+      mount(
+        <Popover
+          {...defaultProps}
+          open
+          TransitionProps={{ onEntering: transitionHandler }}
+          onEntering={apparentHandler}
+        >
           <div />
         </Popover>,
       );
 
-      wrapper.find(Grow).simulate('entering', { style: {} });
-      assert.strictEqual(handler1.callCount, 1);
-      assert.strictEqual(handler2.callCount, 1);
+      assert.strictEqual(apparentHandler.callCount, 1);
+      assert.strictEqual(transitionHandler.callCount, 1);
+    });
+
+    it('does not chain other transition callbacks with the apparent ones', () => {
+      const apparentHandler = spy();
+      const transitionHandler = spy();
+      const wrapper = mount(
+        <Popover
+          {...defaultProps}
+          open
+          TransitionProps={{ onExiting: transitionHandler }}
+          onExiting={apparentHandler}
+        >
+          <div />
+        </Popover>,
+      );
+
+      wrapper.setProps({ open: false });
+
+      assert.strictEqual(apparentHandler.callCount, 0);
+      assert.strictEqual(transitionHandler.callCount, 1);
     });
   });
 });
