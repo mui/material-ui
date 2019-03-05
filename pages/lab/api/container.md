@@ -39,11 +39,11 @@ This property accepts the following keys:
 - `maxWidthLg`
 - `maxWidthXl`
 
-Have a look at the [overriding with classes](/customization/overrides/#overriding-with-classes) section
+Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-lab/src/Container/Container.js)
 for more detail.
 
-If you are using the `overrides` [key of the theme](/customization/themes/#css),
+If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiContainer`.
 
 ## Demos

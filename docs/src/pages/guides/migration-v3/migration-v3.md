@@ -1,6 +1,6 @@
 # Migration From v3 to v4
 
-<p class="description">Yeah, v4 has been released!</p>
+<p class="description">Yeah, v4 alpha has been released!</p>
 
 Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
@@ -74,6 +74,13 @@ To use it correctly, you have to use the returned value.
 
 ### Typography
 
+- You can safely remove the next variant from the theme creation:
+
+  ```js
+  typography: {
+    useNextVariants: true,
+  },
+  ```
 - Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1
   - display3 => h2
@@ -86,7 +93,7 @@ To use it correctly, you have to use the returned value.
   - body1 (default) => body2 (default)
 - Remove the opinionated `display: block` default typograpghy style.
 You can use the new `display?: 'initial' | 'inline' | 'block';` property.
-- Rename the `headlineMapping` property to better align with its purpose.
+- Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
 
   ```diff
   -<MuiTypography headlineMapping={headlineMapping}>
@@ -144,15 +151,15 @@ You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 
 ### Table
 
-- We have removed the deprecated numeric property.
+- Remove the deprecated `numeric` property.
 
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
   ```
-- We have removed the fixed height property on the table row.
-    The cell height is computed by the browser using the padding and line-height.
-- The `dense` mode was promoted to a different property:
+- Remove the fixed height CSS property on the `TableRow`.
+  The cell height is computed by the browser using the padding and line-height.
+- Move the `dense` mode to a different property:
 
   ```diff
   -<TableCell padding="dense" />
@@ -163,7 +170,7 @@ You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 
 ### Tabs
 
-- We have removed the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
+- Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
 This has allowed us to removed 2 intermediary DOM elements.
 You should be able to move the custom styles to the root class key.
 
@@ -171,7 +178,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Node
 
-- Drop official node 6 support, you should upgrade to node 8.
+- [Drop official node 6 support](https://github.com/nodejs/Release/blob/eb91c94681ea968a69bf4a4fe85c656ed44263b3/README.md#release-schedule), you should upgrade to node 8.
 
 ### UMD
 
