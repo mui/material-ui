@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 // @inheritedComponent Modal
 
 import React from 'react';
@@ -38,12 +36,14 @@ export const styles = theme => ({
     },
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
+    pointerEvents: 'none',
   },
   /* Styles applied to the `Paper` component. */
   paper: {
     display: 'flex',
     flexDirection: 'column',
     margin: 48,
+    pointerEvents: 'auto',
     position: 'relative',
     overflowY: 'auto', // Fix IE 11 issue, to remove at some point.
     '@media print': {
@@ -141,12 +141,6 @@ class Dialog extends React.Component {
   };
 
   handleBackdropClick = event => {
-    // Ignore the events not coming from the "backdrop"
-    // We don't want to close the dialog when clicking the dialog content.
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
     // Make sure the event starts and ends on the same DOM element.
     if (event.target !== this.mouseDownTarget) {
       return;
@@ -199,11 +193,12 @@ class Dialog extends React.Component {
         BackdropProps={{
           transitionDuration,
           ...BackdropProps,
+          onMouseDown: this.handleMouseDown,
         }}
         closeAfterTransition
         disableBackdropClick={disableBackdropClick}
         disableEscapeKeyDown={disableEscapeKeyDown}
-        onBackdropClick={onBackdropClick}
+        onBackdropClick={this.handleBackdropClick}
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         open={open}
@@ -222,12 +217,7 @@ class Dialog extends React.Component {
           onExited={onExited}
           {...TransitionProps}
         >
-          <div
-            className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-            onClick={this.handleBackdropClick}
-            onMouseDown={this.handleMouseDown}
-            role="document"
-          >
+          <div className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}>
             <PaperComponent
               elevation={24}
               {...PaperProps}

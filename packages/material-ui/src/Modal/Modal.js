@@ -239,10 +239,6 @@ class Modal extends React.Component {
       childProps.onExited = createChainedFunction(this.handleExited, children.props.onExited);
     }
 
-    if (children.props.role === undefined) {
-      childProps.role = children.props.role || 'document';
-    }
-
     if (children.props.tabIndex === undefined) {
       childProps.tabIndex = children.props.tabIndex || '-1';
     }
