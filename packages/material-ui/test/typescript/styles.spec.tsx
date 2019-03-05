@@ -155,10 +155,10 @@ const theme2 = createMuiTheme({
   },
 });
 
-const t1 = createMuiTheme().spacing(1);
-const t2 = createMuiTheme().spacing(1, 2);
-const t3 = createMuiTheme().spacing(1, 2, 3);
-const t4 = createMuiTheme().spacing(1, 2, 3, 4);
+const t1: number = createMuiTheme().spacing(1);
+const t2: string = createMuiTheme().spacing(1, 2);
+const t3: string = createMuiTheme().spacing(1, 2, 3);
+const t4: string = createMuiTheme().spacing(1, 2, 3, 4);
 // $ExpectError
 const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
 
