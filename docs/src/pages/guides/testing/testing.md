@@ -66,7 +66,7 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  before(() => {  // This is Mocha; in Jest, use beforeEach
+  before(() => {  // This is Mocha; in Jest, use beforeAll
     shallow = createShallow();
   });
 
