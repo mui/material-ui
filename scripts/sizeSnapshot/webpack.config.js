@@ -16,79 +16,84 @@ async function getSizeLimitBundles() {
     return result;
   }, []);
 
+  // WARNING: Don't change the `id`. It is used to track the size over time.
+  // The IDs have historic origin. They are not necessarily derived from the path
+  // or module name.
+  // If you want to adjust the name displayed in the mui-pr-bot comment change the LABELS
+  // in the dangerfile.js
   return [
     {
-      name: '@material-ui/core/Paper',
+      id: '@material-ui/core/Paper',
       webpack: true,
       path: 'packages/material-ui/build/Paper/index.js',
     },
     {
-      name: '@material-ui/core/Paper.esm',
+      id: '@material-ui/core/Paper.esm',
       webpack: true,
       path: 'packages/material-ui/build/esm/Paper/index.js',
     },
     {
-      name: '@material-ui/core',
+      id: '@material-ui/core',
       webpack: true,
       path: 'packages/material-ui/build/index.js',
     },
     {
-      name: '@material-ui/core/styles/createMuiTheme',
+      id: '@material-ui/core/styles/createMuiTheme',
       webpack: true,
       path: 'packages/material-ui/build/styles/createMuiTheme.js',
     },
     {
-      name: '@material-ui/lab',
+      id: '@material-ui/lab',
       webpack: true,
       path: 'packages/material-ui-lab/build/index.js',
     },
     {
-      name: '@material-ui/styles',
+      id: '@material-ui/styles',
       webpack: true,
       path: 'packages/material-ui-styles/build/index.js',
     },
     {
-      name: '@material-ui/system',
+      id: '@material-ui/system',
       webpack: true,
       path: 'packages/material-ui-system/build/index.js',
     },
     {
-      name: 'colorManipulator',
+      id: 'colorManipulator',
       webpack: true,
       path: 'packages/material-ui/build/styles/colorManipulator.js',
     },
     {
       // why we use esm here: https://github.com/mui-org/material-ui/pull/13391#issuecomment-459692816
-      name: 'Button',
+      id: 'Button',
       webpack: true,
       path: 'packages/material-ui/build/esm/Button/index.js',
     },
     {
       // vs https://bundlephobia.com/result?p=react-modal
-      name: 'Modal',
+      id: 'Modal',
       webpack: true,
       path: 'packages/material-ui/build/esm/Modal/index.js',
     },
     {
       // vs https://bundlephobia.com/result?p=react-popper
-      name: '@material-ui/core/Popper',
+      id: '@material-ui/core/Popper',
       webpack: true,
       path: 'packages/material-ui/build/esm/Popper/index.js',
     },
     {
       // vs https://bundlephobia.com/result?p=react-responsive
       // vs https://bundlephobia.com/result?p=react-media
-      name: '@material-ui/core/useMediaQuery',
+      id: '@material-ui/core/useMediaQuery',
       webpack: true,
       path: 'packages/material-ui/build/useMediaQuery/index.js',
     },
     {
-      name: 'docs.main',
+      id: 'docs.main',
       webpack: false,
       path: main.path,
     },
     {
-      name: 'docs.landing',
+      id: 'docs.landing',
       webpack: false,
       path: `.next/static/${buildId}/pages/index.js`,
     },
@@ -99,7 +104,7 @@ module.exports = getSizeLimitBundles;
 
 module.exports = new Promise(async resolve => {
   const entry = (await getSizeLimitBundles()).reduce((acc, bundle) => {
-    acc[bundle.name] = path.join(workspaceRoot, bundle.path);
+    acc[bundle.id] = path.join(workspaceRoot, bundle.path);
     return acc;
   }, {});
 

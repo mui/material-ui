@@ -5,8 +5,20 @@ const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
-const parsedSizeChangeThreshold = 300;
-const gzipSizeChangeThreshold = 100;
+const PARSED_SIZE_CHANGE_THRESHOLD = 300;
+const GZIP_SIZE_CHANGE_THRESHOLD = 100;
+const UPSTREAM_REMOTE = 'danger-upstream';
+/**
+ * mapping from bundle id to a human label
+ */
+const LABELS = {
+  '@material-ui/core/Paper': 'Paper.cjs',
+  '@material-ui/core/Paper.esm': 'Paper',
+  '@material-ui/core/styles/createMuiTheme': 'createMuiTheme',
+  '@material-ui/core/Popper': 'Popper',
+  '@material-ui/core/useMediaQuery': 'useMediaQuery',
+  'packages/material-ui/build/umd/material-ui.production.min.js': '@material-ui/core.umd',
+};
 
 /**
  * executes a git subcommand
@@ -23,8 +35,6 @@ function git(args) {
     });
   });
 }
-
-const UPSTREAM_REMOTE = 'danger-upstream';
 
 /**
  * This is mainly used for local development. It should be executed before the
@@ -126,7 +136,7 @@ async function run() {
 
   if (anyResultsChanges.length > 0) {
     const importantChanges = results
-      .filter(createComparisonFilter(parsedSizeChangeThreshold, gzipSizeChangeThreshold))
+      .filter(createComparisonFilter(PARSED_SIZE_CHANGE_THRESHOLD, GZIP_SIZE_CHANGE_THRESHOLD))
       .filter(isPackageComparison)
       .map(generateEmphasizedChange);
 
@@ -147,7 +157,7 @@ async function run() {
       ],
       results.map(([bundle, { parsed, gzip }]) => {
         return [
-          bundle,
+          LABELS[bundle] || bundle,
           addPercent(parsed.relativeDiff),
           addPercent(gzip.relativeDiff),
           parsed.previous.toLocaleString(),
