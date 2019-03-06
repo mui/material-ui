@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import MenuList from 'packages/material-ui/src/MenuList';
@@ -7,8 +7,8 @@ import RootRef from 'packages/material-ui/src/RootRef';
 import { createMount } from 'packages/material-ui/src/test-utils';
 
 function FocusOnMountMenuItem(props) {
-  const listItemRef = useRef();
-  useLayoutEffect(() => {
+  const listItemRef = React.useRef();
+  React.useLayoutEffect(() => {
     listItemRef.current.focus();
   }, []);
   return (
@@ -252,6 +252,7 @@ describe('<MenuList> integration', () => {
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
+
     it('should not wrap focus with ArrowDown from last', () => {
       initializeFocus(wrapper);
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
