@@ -43,6 +43,8 @@ Here are some highlights ✨:
 - Every component except `Dialog`, `MenuList`, `Modal`, `Popover` and `Tabs` forward
   their `innerRef` (#14536). 
   
+  This is implemented by using `React.forwardRef`. This affects the internal component
+  tree and display name and therefore might break shallow or snapshot tests.
   `innerRef` will no longer return a ref to the instance 
   (or nothing if the inner component is a function component) but a ref to its root component. 
   The corresponding API docs list the root component.
