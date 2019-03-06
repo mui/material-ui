@@ -18,29 +18,9 @@ async function getSizeLimitBundles() {
 
   return [
     {
-      name: '@material-ui/core/Paper',
-      webpack: true,
-      path: 'packages/material-ui/build/Paper/index.js',
-    },
-    {
-      name: '@material-ui/core/Paper.esm',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Paper/index.js',
-    },
-    {
       name: '@material-ui/core',
       webpack: true,
       path: 'packages/material-ui/build/index.js',
-    },
-    {
-      name: '@material-ui/core/styles/createMuiTheme',
-      webpack: true,
-      path: 'packages/material-ui/build/styles/createMuiTheme.js',
-    },
-    {
-      name: '@material-ui/lab',
-      webpack: true,
-      path: 'packages/material-ui-lab/build/index.js',
     },
     {
       name: '@material-ui/styles',
@@ -51,6 +31,26 @@ async function getSizeLimitBundles() {
       name: '@material-ui/system',
       webpack: true,
       path: 'packages/material-ui-system/build/index.js',
+    },
+    {
+      name: '@material-ui/lab',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/index.js',
+    },
+    {
+      name: 'Paper',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/Paper/index.js',
+    },
+    {
+      name: 'Paper.cjs',
+      webpack: true,
+      path: 'packages/material-ui/build/Paper/index.js',
+    },
+    {
+      name: 'createMuiTheme',
+      webpack: true,
+      path: 'packages/material-ui/build/styles/createMuiTheme.js',
     },
     {
       name: 'colorManipulator',
@@ -71,14 +71,14 @@ async function getSizeLimitBundles() {
     },
     {
       // vs https://bundlephobia.com/result?p=react-popper
-      name: '@material-ui/core/Popper',
+      name: 'Popper',
       webpack: true,
       path: 'packages/material-ui/build/esm/Popper/index.js',
     },
     {
       // vs https://bundlephobia.com/result?p=react-responsive
       // vs https://bundlephobia.com/result?p=react-media
-      name: '@material-ui/core/useMediaQuery',
+      name: 'useMediaQuery',
       webpack: true,
       path: 'packages/material-ui/build/useMediaQuery/index.js',
     },
@@ -97,8 +97,9 @@ async function getSizeLimitBundles() {
 
 module.exports = getSizeLimitBundles;
 
-module.exports = new Promise(async resolve => {
-  const entry = (await getSizeLimitBundles()).reduce((acc, bundle) => {
+module.exports = async function webpackConfig() {
+  const entries = await getSizeLimitBundles();
+  const entry = entries.reduce((acc, bundle) => {
     acc[bundle.name] = path.join(workspaceRoot, bundle.path);
     return acc;
   }, {});
@@ -124,5 +125,5 @@ module.exports = new Promise(async resolve => {
     },
   };
 
-  resolve(config);
-});
+  return config;
+};

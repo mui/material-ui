@@ -58,7 +58,7 @@ app.listen(port);
 The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
 
 When rendering, we will wrap `App`, our root component,
-inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider/) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
+inside a [`StylesProvider`](/css-in-js/api/#stylesprovider) and [`ThemeProvider`](/css-in-js/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
@@ -67,12 +67,8 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 ```jsx
 import ReactDOMServer from 'react-dom/server'
 import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { ThemeProvider, StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
@@ -97,11 +93,15 @@ function handleRender(req, res) {
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    <StylesProvider
+      registry={sheetsRegistry}
+      generateClassName={generateClassName}
+      sheetsManager={sheetsManager}
+    >
+      <ThemeProvider theme={theme}>
         <App />
-      </MuiThemeProvider>
-    </JssProvider>
+      </ThemeProvider>
+    </StylesProvider>
   )
 
   // Grab the CSS from our sheetsRegistry.
@@ -143,28 +143,21 @@ Let's take a look at our client file:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
 
-class Main extends React.Component {
-  // Remove the server-side injected CSS.
-  componentDidMount() {
+function Main() {
+  React.useEffect(() => {
     const jssStyles = document.getElementById('jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-  }
+  }, []);
 
-  render() {
-    return <App />
-  }
+  return <App />;
 }
 
 // Create a theme instance.
@@ -176,15 +169,10 @@ const theme = createMuiTheme({
   },
 });
 
-// Create a new class name generator.
-const generateClassName = createGenerateClassName();
-
 ReactDOM.hydrate(
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>,
+  <ThemeProvider theme={theme}>
+    <Main />
+  </ThemeProvider>,
   document.querySelector('#root'),
 );
 ```
@@ -193,7 +181,7 @@ ReactDOM.hydrate(
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) folder:
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
+- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/next/examples/ssr-next)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-next)
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-next)
 
@@ -212,8 +200,6 @@ Then, the CSS is missing on the server for consecutive requests.
 We rely on a cache, the sheets manager, to only inject the CSS once per component type
 (if you use two buttons, you only need the CSS of the button one time).
 You need to provide **a new `sheetsManager` for each request**.
-
-You can learn more about [the sheets manager concept in the documentation](/customization/css-in-js/#sheets-manager).
 
 *example of fix:*
 ```diff
@@ -237,7 +223,7 @@ Another symptom is that the styling changes between initial page load and the do
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/customization/css-in-js/#creategenerateclassname-options-class-name-generator).
+The class names value relies on the concept of [class name generator](/css-in-js/advanced/#class-names).
 The whole page needs to be rendered with **a single generator**.
 This generator needs to behave identically on the server and on the client. For instance:
 

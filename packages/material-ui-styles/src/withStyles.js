@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { chainPropTypes, getDisplayName } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName, ponyfillGlobal } from '@material-ui/utils';
 import makeStyles from './makeStyles';
 import getThemeProps from './getThemeProps';
 import useTheme from './useTheme';
+import mergeClasses from './mergeClasses';
+import getStylesCreator from './getStylesCreator';
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
-  const { withTheme = false, name, ...otherOptions } = options;
+  const { defaultTheme, withTheme = false, name, ...stylesOptions } = options;
 
   if (process.env.NODE_ENV !== 'production' && Component === undefined) {
     throw new Error(
@@ -37,13 +39,14 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   }
 
   const useStyles = makeStyles(stylesOrCreator, {
-    ...otherOptions,
+    defaultTheme,
     Component,
     name: name || Component.displayName,
     classNamePrefix,
+    ...stylesOptions,
   });
 
-  const WithStyles = React.forwardRef(function WithStyles(props, ref) {
+  let WithStyles = React.forwardRef(function WithStyles(props, ref) {
     const { classes: classesProp, innerRef, ...other } = props;
     const classes = useStyles(props);
 
@@ -53,7 +56,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     if (typeof name === 'string' || withTheme) {
       // name and withTheme are invariant in the outer scope
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      theme = useTheme();
+      theme = useTheme() || defaultTheme;
 
       if (name) {
         more = getThemeProps({ theme, name, props: other });
@@ -61,13 +64,47 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
       // Provide the theme to the wrapped component.
       // So we don't have to use the `withTheme()` Higher-order Component.
-      if (withTheme) {
+      if (withTheme && !more.theme) {
         more.theme = theme;
       }
     }
 
     return <Component ref={innerRef || ref} classes={classes} {...more} />;
   });
+
+  if (process.env.NODE_ENV === 'test' && !ponyfillGlobal.disableShallowSupport) {
+    // Generate a fake classes object.
+    const stylesCreator = getStylesCreator(stylesOrCreator);
+    const styles = stylesCreator.create(defaultTheme, name);
+    const classes = Object.keys(styles).reduce((acc, key) => {
+      acc[key] = `${name}-${key}`;
+      return acc;
+    }, {});
+
+    // eslint-disable-next-line react/no-multi-comp
+    class WithStylesTest extends React.Component {
+      render() {
+        // eslint-disable-next-line react/prop-types
+        const { classes: newClasses, innerRef, ...other } = this.props;
+        const more = other;
+
+        if (withTheme && !more.theme) {
+          more.theme = defaultTheme;
+        }
+
+        return (
+          <Component
+            ref={innerRef}
+            classes={mergeClasses({ baseClasses: classes, newClasses })}
+            {...more}
+          />
+        );
+      }
+    }
+    WithStylesTest.Original = WithStyles;
+    WithStyles = WithStylesTest;
+    WithStyles.classes = classes;
+  }
 
   WithStyles.propTypes = {
     /**
@@ -96,6 +133,12 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   }
 
   hoistNonReactStatics(WithStyles, Component);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // Exposed for test purposes.
+    WithStyles.Naked = Component;
+    WithStyles.options = options;
+  }
 
   return WithStyles;
 };

@@ -2,11 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { mergeClasses } from '@material-ui/styles';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import withFormControlContext from '../FormControl/withFormControlContext';
 import withStyles from '../styles/withStyles';
-import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 // To replace with InputBase in v4
 import Input from '../Input';

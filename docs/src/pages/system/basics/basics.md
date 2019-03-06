@@ -10,7 +10,7 @@
 - 🦋 Encourage UI consistency.
 - 🌈 Write responsive style effortlessly.
 - 🦎 Work with any theme object.
-- 💅 Work with the most popular CSS-in-JS solutions.
+- 💅 Work with the most popular CSS in JS solutions.
 - 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
 - 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
 
@@ -136,7 +136,7 @@ import { unstable_Box as Box } from '@material-ui/core/Box';
 
 ## Interoperability
 
-`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion.
+`@material-ui/system` works with most CSS in JS libraries, including JSS, styled-components, and emotion.
 
 If you are already using `@material-ui/core`, we encourage you to start with the **JSS** solution to minimize bundle size.
 

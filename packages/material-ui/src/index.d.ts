@@ -87,10 +87,7 @@ import * as colors from './colors';
 
 export { colors };
 export {
-  createGenerateClassName,
   createMuiTheme,
-  jssPreset,
-  MuiThemeProvider,
   StyleRulesCallback,
   Theme,
   withStyles,

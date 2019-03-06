@@ -117,6 +117,7 @@ class Popover extends React.Component {
 
   setPositioningStyles = element => {
     const positioning = this.getPositioningStyle(element);
+
     if (positioning.top !== null) {
       element.style.top = positioning.top;
     }
