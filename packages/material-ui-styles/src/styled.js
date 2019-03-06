@@ -19,8 +19,8 @@ function omit(input, fields) {
 
 // styled-components's API removes the mapping between components and styles.
 // Using components as a low-level styling construct can be simpler.
-function styled(Component, options = {}) {
-  const componentCreator = (style, options2 = {}) => {
+function styled(Component) {
+  const componentCreator = (style, options) => {
     let filterProps;
     let propTypes = {};
 
@@ -108,7 +108,7 @@ function styled(Component, options = {}) {
 
     hoistNonReactStatics(StyledComponent, Component);
 
-    return withStyles(styles, { ...options, ...options2 })(StyledComponent);
+    return withStyles(styles, options)(StyledComponent);
   };
 
   return componentCreator;

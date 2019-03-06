@@ -47,7 +47,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   });
 
   let WithStyles = React.forwardRef(function WithStyles(props, ref) {
-    const { classes: _, innerRef, ...other } = props;
+    const { classes: classesProp, innerRef, ...other } = props;
     const classes = useStyles(props);
 
     let theme;

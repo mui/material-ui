@@ -431,7 +431,7 @@ describe('<Popover />', () => {
     });
 
     it("should use anchorEl's parent body as container if container not provided", async () => {
-      await openPopover(undefined, true);
+      await openPopover(undefined);
       assert.strictEqual(
         wrapper.find(Modal).props().container,
         window.document.body,

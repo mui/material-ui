@@ -41,7 +41,7 @@ if (process.browser) {
 ██║ ╚═╝ ██║██║  ██║   ██║   ███████╗██║  ██║██║██║  ██║███████╗ ╚██████╔╝██║
 ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝  ╚═════╝ ╚═╝
 
-Tip: you can access the \`theme\` object directly in the console.
+Tip: you can access the documentation \`theme\` object directly in the console.
 `,
     'font-family:monospace;color:#1976d2;font-size:12px;',
   );
@@ -75,10 +75,6 @@ const pages = [
       },
       {
         pathname: '/getting-started/supported-platforms',
-      },
-      {
-        pathname: '/getting-started/comparison',
-        title: 'Comparison With Other Libraries',
       },
     ],
   },
@@ -227,10 +223,6 @@ const pages = [
       },
       {
         pathname: '/customization/overrides',
-      },
-      {
-        pathname: '/customization/css-in-js',
-        title: 'CSS in JS',
       },
       {
         pathname: '/customization/default-theme',
