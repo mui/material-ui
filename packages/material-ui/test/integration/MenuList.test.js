@@ -1,4 +1,4 @@
-import React, {useRef, useLayoutEffect} from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import MenuList from 'packages/material-ui/src/MenuList';
@@ -8,10 +8,14 @@ import { createMount } from 'packages/material-ui/src/test-utils';
 
 function FocusOnMountMenuItem(props) {
   const listItemRef = useRef();
-  useLayoutEffect(()=> {
+  useLayoutEffect(() => {
     listItemRef.current.focus();
   }, []);
-  return <RootRef rootRef={listItemRef}><MenuItem {...props} tabIndex={0}/></RootRef>;
+  return (
+    <RootRef rootRef={listItemRef}>
+      <MenuItem {...props} tabIndex={0} />
+    </RootRef>
+  );
 }
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {
@@ -43,7 +47,11 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
 }
 
 function initializeFocus(wrapper) {
-  wrapper.find('[tabIndex=0]').first().getDOMNode().focus();
+  wrapper
+    .find('[tabIndex=0]')
+    .first()
+    .getDOMNode()
+    .focus();
 }
 
 describe('<MenuList> integration', () => {
@@ -220,7 +228,6 @@ describe('<MenuList> integration', () => {
       assertMenuItemTabIndexed(wrapper, 2);
       assertMenuItemFocused(wrapper, 2);
     });
-
   });
 
   describe('MenuList with disableListWrap', () => {
@@ -257,7 +264,5 @@ describe('<MenuList> integration', () => {
       assertMenuItemTabIndexed(wrapper, 3);
       assertMenuItemFocused(wrapper, 3);
     });
-
   });
-
 });
