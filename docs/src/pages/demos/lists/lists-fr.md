@@ -4,15 +4,15 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 ---
 # Listes (Lists)
 
-<p class="description">Les listes sont des index continus et verticaux de texte ou d’images.</p>
+<p class="description">Les listes sont continues, des index verticaux de texte ou d’images.</p>
 
-[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+[Les listes](https://material.io/design/components/lists.html) sont des groupes successifs de textes ou d'images. Ils sont composés d'items contenant les actions primaires ou secondaires, représentées par des icônes et/ou du texte.
 
-## Liste simplifié
+## Liste simple
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-The last item of the previous demo shows how you can render a link:
+Le dernier élément de la démonstration précédente montre comment vous pouvez créer un lien:
 
 ```jsx
 function ListItemLink(props) {
@@ -26,60 +26,60 @@ function ListItemLink(props) {
 </ListItemLink>
 ```
 
-You can find a [demo with React Router following this section](/guides/composition/#react-router) of the documentation.
+Vous pouvez trouver une [démonstration avec la bibliothèque React Router en suivant cette section](/guides/composition/#react-router) de la documentation.
 
-## Nested List
+## Liste imbriquée
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-## Liste des répertoires
+## Liste en répertoires
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
 ## Interactif
 
-Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
+Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels utilisant différents paramètres:
 
 {{"demo": "pages/demos/lists/InteractiveList.js"}}
 
-## Selected ListItem
+## Sélection d'élément de liste
 
 {{"demo": "pages/demos/lists/SelectedListItem.js"}}
 
-## Align list items
+## Alignement d'élément de liste
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
+Vous devez modifier l'alignement des éléments de la liste lorsque vous affichez 3 lignes ou plus, définissez la propriété `alignItems = "flex-start"`.
 
 {{"demo": "pages/demos/lists/AlignItemsList.js"}}
 
-## Liste des contrôles
+## Liste et contrôles
 
 ### Case à cocher
 
-A checkbox can either be a primary action or a secondary action.
+Une case à cocher peut être une action principale ou secondaire.
 
-The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
+La case à cocher est l'action principale et l'indicateur d'état pour l'élément de liste. Le bouton de commentaire est une action secondaire et une cible distincte.
 
 {{"demo": "pages/demos/lists/CheckboxList.js"}}
 
-The checkbox is the secondary action for the list item and a separate target.
+La case à cocher est l'action secondaire pour un élément de liste et une cible distincte.
 
 {{"demo": "pages/demos/lists/CheckboxListSecondary.js"}}
 
 ### Interrupteur (switch)
 
-The switch is the secondary action and a separate target.
+Le commutateur (switch) est l'action secondaire et une cible distincte.
 
 {{"demo": "pages/demos/lists/SwitchListSecondary.js"}}
 
-## Pinned Subheader List
+## Épingler les sous-entêtes
 
-Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+Lors du défilement, les sous-en-têtes restent épinglés en haut de l'écran jusqu'à ce qu'ils soient déplacés en dehors de l'écran par le prochain en-tête.
 
-This feature is relying on the CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+Cette fonctionnalité repose sur le positionnement persistant (sticky) de CSS. Malheureusement, cette propriété [n'est pas implémentée](https://caniuse.com/#search=sticky) par tous les navigateurs que nous supportons. Nous avons par défaut désactivé cette fonction à l'aide de `disableSticky` lorsqu'il n'est pas pris en charge.
 
 {{"demo": "pages/demos/lists/PinnedSubheaderList.js"}}
 
-## Inset List
+## Liste Insets
 
 {{"demo": "pages/demos/lists/InsetList.js"}}

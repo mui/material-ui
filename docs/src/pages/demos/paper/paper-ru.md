@@ -1,8 +1,8 @@
 ---
-title: Paper React component
+title: Сёдзи, компонент React
 components: Paper
 ---
-# Paper
+# Сёдзи
 
 <p class="description">В Material Design физические свойства бумаги переводятся на экран. </p>
 

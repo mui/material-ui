@@ -16,7 +16,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 ## Contained Buttons
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. Ils contiennent des actions qui sont essentielles à votre application.
 
 Le dernier exemple de cette démo montre comment utiliser un bouton de téléchargement.
 

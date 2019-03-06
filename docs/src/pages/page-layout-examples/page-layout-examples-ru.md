@@ -2,9 +2,9 @@
 
 <p class="description">Примеры основных макетов страниц, которые помогут вам построить приложение.</p>
 
-They can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+Их можно комбинировать с одним из [примеров приложений](https://github.com/mui-org/material-ui/tree/master/examples) для формирования основы.
 
-Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages.
+Разделы каждого макета четко определяются либо комментариями, либо использованием отдельных файлов, упрощая извлечение частей страницы (например, «героя» или нижнего колонтитула) для повторного использования на других страницах.
 
 For multi-part examples, a table in the README at the linked source code location describes the purpose of each file.
 

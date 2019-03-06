@@ -116,6 +116,7 @@ function ButtonBases(props) {
               backgroundImage: `url(${image.url})`,
             }}
           />
+
           <span className={classes.imageBackdrop} />
           <span className={classes.imageButton}>
             <Typography

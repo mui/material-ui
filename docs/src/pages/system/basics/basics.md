@@ -1,9 +1,6 @@
 # @material-ui/system
 
-<p class="description">Style functions for building powerful design systems.</p>
-
-> ⚠️ `@material-ui/system` is experimental (alpha version).
-We are working on making it stable for Material-UI v4.
+<p class="description">Styled system & style functions for building powerful design systems.</p>
 
 ## Getting Started
 
@@ -15,7 +12,7 @@ We are working on making it stable for Material-UI v4.
 - 🦎 Work with any theme object.
 - 💅 Work with the most popular CSS-in-JS solutions.
 - 📦 Less than [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
+- 🚀 [Fast enough](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) not to be a bottleneck at runtime.
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 

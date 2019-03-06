@@ -355,7 +355,7 @@ const theme = createMuiTheme({
 
 ## 访问组件中的主题
 
-您可能需要访问React组件中的主题变量。 Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. 下面是一个示例：
+您可能需要访问React组件中的主题变量。 好比说你想要显示原色变量的值。你可以使用 `withTheme`高阶组件来实现。 下面是一个示例：
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 

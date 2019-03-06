@@ -221,8 +221,9 @@ This `classes` object contains the name of the class names injected in the DOM.
 
 Some implementation details that might be interesting to being aware of:
 - It adds a `classes` property so you can override the injected class names from the outside.
-- It adds an `innerRef` property so you can get a reference to the wrapped component. The usage of `innerRef` is identical to `ref`.
-- It forwards *non React static* properties so this HOC is more "transparent".
+- It forwards refs to the inner component.
+- The `innerRef` prop is deprecated. Use `ref` instead.
+- It does **not** copy over statics.
 For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
 #### Arguments
@@ -296,7 +297,7 @@ in the render method.
 
 #### Returns
 
-`Component`: The new component created.
+`Component`: The new component created. Does forward refs to the inner component.
 
 #### Examples
 

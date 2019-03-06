@@ -66,7 +66,7 @@ Puedes comenzar a utilizar Material-UI con una infraestructura mínima de front-
 
 Proporcionamos dos archivos de definición de módulo universal (UMD, por sus siglas en inglés):
 
-- uno para desarrollo: https://unpkg.com/@material-ui/core/next/umd/material-ui.development.js
-- uno para producción: https://unpkg.com/@material-ui/core/next/umd/material-ui.production.min.js
+- uno para desarrollo: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
+- uno para producción: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
 
 Puedes seguir [ este ejemplo sobre CDN ](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) para empezar rápidamente.

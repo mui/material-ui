@@ -38,6 +38,7 @@ function ContainedButtons(props) {
         multiple
         type="file"
       />
+
       <label htmlFor="contained-button-file">
         <Button variant="contained" component="span" className={classes.button}>
           Upload

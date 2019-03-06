@@ -20,7 +20,6 @@ function getDefaultTheme() {
 
 // Provide the theme object as a property to the input component.
 const withThemeOld = Component => {
-  /* istanbul ignore if */
   if (process.env.NODE_ENV !== 'production' && Component === undefined) {
     throw new Error(
       [
@@ -80,7 +79,6 @@ const withThemeOld = Component => {
   return WithTheme;
 };
 
-/* istanbul ignore if */
 if (!ponyfillGlobal.__MUI_STYLES__) {
   ponyfillGlobal.__MUI_STYLES__ = {};
 }

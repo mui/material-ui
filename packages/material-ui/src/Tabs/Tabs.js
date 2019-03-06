@@ -13,6 +13,7 @@ import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 import deprecatedPropType from '../utils/deprecatedPropType';
+import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -210,6 +211,10 @@ class Tabs extends React.Component {
     });
   };
 
+  handleTabsRef = ref => {
+    this.tabsRef = ref;
+  };
+
   moveTabsScroll = delta => {
     const { theme } = this.props;
 
@@ -306,6 +311,7 @@ class Tabs extends React.Component {
       component: Component,
       fullWidth = false,
       indicatorColor,
+      innerRef,
       onChange,
       scrollable: deprecatedScrollable = false,
       ScrollButtonComponent,
@@ -380,7 +386,7 @@ class Tabs extends React.Component {
     const conditionalElements = this.getConditionalElements();
 
     return (
-      <Component className={className} {...other}>
+      <Component className={className} ref={innerRef} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         {conditionalElements.scrollbarSizeListener}
         <div className={classes.flexContainer}>
@@ -388,9 +394,7 @@ class Tabs extends React.Component {
           <div
             className={scrollerClassName}
             style={this.state.scrollerStyle}
-            ref={ref => {
-              this.tabsRef = ref;
-            }}
+            ref={this.handleTabsRef}
             role="tablist"
             onScroll={this.handleTabsScroll}
           >
@@ -446,6 +450,11 @@ Tabs.propTypes = {
    * Determines the color of the indicator.
    */
   indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
+  /**
+   * @ignore
+   * from `withForwardRef`
+   */
+  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Callback fired when the value changes.
    *
@@ -510,4 +519,4 @@ Tabs.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);
+export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(withForwardedRef(Tabs));

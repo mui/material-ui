@@ -109,15 +109,15 @@ The documentation page is highly inspired by [A Complete Guide to Flexbox](https
 import { flexbox } from '@material-ui/system';
 ```
 
-| Import name      | Prop             | CSS property      | Theme key |
-|:---------------- |:---------------- |:----------------- |:--------- |
-| `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
-| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
-| `justifyContent` | `justifyContent` | `justify-content` | none      |
-| `alignItems`     | `alignItems`     | `align-items`     | none      |
-| `alignContent`   | `alignContent`   | `align-content`   | none      |
-| `order`          | `order`          | `order`           | none      |
-| `flex`           | `flex`           | `flex`            | none      |
-| `flexGrow`       | `flexGrow`       | `flex-grow`       | none      |
-| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none      |
-| `alignSelf`      | `alignSelf`      | `align-self`      | none      |
+| Импорт           | Свойство         | Свойство CSS      | В теме |
+|:---------------- |:---------------- |:----------------- |:------ |
+| `flexDirection`  | `flexDirection`  | `flex-direction`  | none   |
+| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none   |
+| `justifyContent` | `justifyContent` | `justify-content` | none   |
+| `alignItems`     | `alignItems`     | `align-items`     | none   |
+| `alignContent`   | `alignContent`   | `align-content`   | none   |
+| `order`          | `order`          | `order`           | none   |
+| `flex`           | `flex`           | `flex`            | none   |
+| `flexGrow`       | `flexGrow`       | `flex-grow`       | none   |
+| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none   |
+| `alignSelf`      | `alignSelf`      | `align-self`      | none   |

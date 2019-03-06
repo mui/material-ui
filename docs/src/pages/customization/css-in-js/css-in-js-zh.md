@@ -75,7 +75,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase)
 
 由Material-UI 注入的 CSS 对组件的样式具有最高的特异性, 因为`<link>`被注入到`<head>`的底部, 以确保组件始终正确呈现。
 
-但是, 您可能还希望重写这些样式, 例如使用styled-components。 如果遇到 CSS 注入顺序问题, JSS[提供了一个机制](https://github.com/cssinjs/jss/blob/next/docs/setup.md#specify-dom-insertion-point)来处理这种情况。 通过调整 HTML 头中 ` insertionPoint ` 的位置, 可以 [ 控制顺序 ](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) 将 CSS 规则应用于组件。
+但是, 您可能还希望重写这些样式, 例如使用styled-components。 如果遇到 CSS 注入顺序问题, JSS[提供了一个机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)来处理这种情况。 通过调整 HTML 头中 ` insertionPoint ` 的位置, 可以 [ 控制顺序 ](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) 将 CSS 规则应用于组件。
 
 ### HTML 注释
 

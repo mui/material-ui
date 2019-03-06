@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { ExtendButtonBase } from '../ButtonBase';
+import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
 
-export interface IconButtonProps extends StandardProps<ButtonBaseProps, IconButtonClassKey> {
-  color?: PropTypes.Color;
-  disabled?: boolean;
-  disableRipple?: boolean;
-}
+declare const IconButton: ExtendButtonBase<{
+  props: {
+    color?: PropTypes.Color;
+    disabled?: boolean;
+    disableRipple?: boolean;
+    size?: 'small' | 'medium';
+  };
+  defaultComponent: 'button';
+  classKey: IconButtonClassKey;
+}>;
 
 export type IconButtonClassKey =
   | 'root'
@@ -14,8 +20,9 @@ export type IconButtonClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'disabled'
+  | 'sizeSmall'
   | 'label';
 
-declare const IconButton: React.ComponentType<IconButtonProps>;
+export type IconButtonProps = SimplifiedPropsOf<typeof IconButton>;
 
 export default IconButton;

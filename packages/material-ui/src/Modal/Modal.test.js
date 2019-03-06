@@ -5,21 +5,18 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import Fade from '../Fade';
 import Portal from '../Portal';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
 describe('<Modal />', () => {
-  let shallow;
   let mount;
   let classes;
   let savedBodyStyle;
-  const ModalNaked = unwrap(Modal);
 
   before(() => {
-    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(
       <Modal open={false}>
         <div />
@@ -37,62 +34,64 @@ describe('<Modal />', () => {
     mount.cleanUp();
   });
 
-  it('should render null by default', () => {
-    const wrapper = shallow(
-      <Modal open={false}>
-        <p>Hello World</p>
-      </Modal>,
-    );
-    assert.strictEqual(wrapper.type(), null, 'should be null');
-  });
-
   describe('prop: open', () => {
-    it('should render the modal div inside the portal', () => {
+    it('should not render the children by default', () => {
       const wrapper = mount(
-        <ModalNaked classes={classes} open data-my-prop="woofModal">
-          <p>Hello World</p>
-        </ModalNaked>,
+        <Modal open={false}>
+          <p id="content">Hello World</p>
+        </Modal>,
       );
-      assert.strictEqual(wrapper.childAt(0).name(), 'Portal');
-      const modal = wrapper
-        .childAt(0)
-        .childAt(0)
-        .childAt(0);
+      assert.strictEqual(wrapper.find('#content').exists(), false);
+    });
+
+    it('renders the children inside a div through a portal when open', () => {
+      const wrapper = mount(
+        <Modal open>
+          <p>Hello World</p>
+        </Modal>,
+      );
+
+      const portal = wrapper.find('Portal');
+      const modal = findOutermostIntrinsic(portal);
+
       assert.strictEqual(modal.type(), 'div');
       assert.strictEqual(modal.hasClass(classes.root), true);
     });
   });
 
   describe('backdrop', () => {
-    let wrapper;
+    const modal = (
+      <Modal open id="modal">
+        <div id="container">
+          <h1 id="heading">Hello</h1>
+        </div>
+      </Modal>
+    );
 
-    beforeEach(() => {
-      wrapper = shallow(
-        <Modal open id="modal">
-          <div id="container">
-            <h1 id="heading">Hello</h1>
-          </div>
-        </Modal>,
-      );
-    });
+    it('should render a backdrop with a fade transition', () => {
+      const wrapper = mount(modal);
 
-    it('should render a backdrop wrapped in a fade transition', () => {
-      const transition = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(transition.type(), Backdrop);
-      assert.strictEqual(transition.props().open, true);
+      const backdrop = wrapper.find(Backdrop);
+      assert.strictEqual(backdrop.exists(), true);
+
+      const transition = backdrop.find(Fade);
+      assert.strictEqual(transition.props().in, true);
     });
 
     it('should pass a transitionDuration prop to the transition component', () => {
+      const wrapper = mount(modal);
       wrapper.setProps({ BackdropProps: { transitionDuration: 200 } });
-      const transition = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(transition.props().transitionDuration, 200);
+
+      const transition = wrapper.find(Fade);
+      assert.strictEqual(transition.props().timeout, 200);
     });
 
     it('should attach a handler to the backdrop that fires onClose', () => {
+      const wrapper = mount(modal);
       const onClose = spy();
       wrapper.setProps({ onClose });
 
-      const handler = wrapper.instance().handleBackdropClick;
+      const handler = wrapper.find('Modal').instance().handleBackdropClick;
       const backdrop = wrapper.find(Backdrop);
       assert.strictEqual(backdrop.props().onClick, handler);
 
@@ -101,30 +100,33 @@ describe('<Modal />', () => {
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
+      const wrapper = mount(modal);
       const onClose = spy();
       wrapper.setProps({ onClose, disableBackdropClick: true });
 
-      const handler = wrapper.instance().handleBackdropClick;
+      const handler = wrapper.find('Modal').instance().handleBackdropClick;
 
       handler({});
       assert.strictEqual(onClose.callCount, 0);
     });
 
     it('should call through to the user specified onBackdropClick callback', () => {
+      const wrapper = mount(modal);
       const onBackdropClick = spy();
       wrapper.setProps({ onBackdropClick });
 
-      const handler = wrapper.instance().handleBackdropClick;
+      const handler = wrapper.find('Modal').instance().handleBackdropClick;
 
       handler({});
       assert.strictEqual(onBackdropClick.callCount, 1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
+      const wrapper = mount(modal);
       const onBackdropClick = spy();
       wrapper.setProps({ onBackdropClick });
 
-      const handler = wrapper.instance().handleBackdropClick;
+      const handler = wrapper.find('Modal').instance().handleBackdropClick;
 
       handler({
         target: {
@@ -257,12 +259,12 @@ describe('<Modal />', () => {
       onEscapeKeyDownSpy = spy();
       onCloseSpy = spy();
       topModalStub = stub();
-      wrapper = shallow(
+      wrapper = mount(
         <Modal open={false} onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
           <div />
         </Modal>,
       );
-      instance = wrapper.instance();
+      instance = wrapper.find('Modal').instance();
     });
 
     it('should have handleKeyDown', () => {
@@ -339,7 +341,7 @@ describe('<Modal />', () => {
   describe('prop: keepMounted', () => {
     it('should keep the children in the DOM', () => {
       const children = <p>Hello World</p>;
-      const wrapper = shallow(
+      const wrapper = mount(
         <Modal keepMounted open={false}>
           <div>{children}</div>
         </Modal>,
@@ -347,60 +349,15 @@ describe('<Modal />', () => {
       assert.strictEqual(wrapper.contains(children), true);
     });
 
-    it('should not keep the children in the DOM', () => {
-      const children = <p>Hello World</p>;
-      const wrapper = shallow(
-        <Modal open={false}>
-          <div>{children}</div>
-        </Modal>,
-      );
-      assert.strictEqual(wrapper.contains(children), false);
-    });
-
-    it('should mount', () => {
+    it('does not include the children in the a11y tree', () => {
+      const modalRef = React.createRef();
       mount(
-        <Modal keepMounted open={false}>
+        <Modal keepMounted open={false} innerRef={modalRef}>
           <div />
         </Modal>,
       );
-      const modalNode = document.querySelector('[data-mui-test="Modal"]');
+      const modalNode = modalRef.current;
       assert.strictEqual(modalNode.getAttribute('aria-hidden'), 'true');
-    });
-  });
-
-  describe('prop: onExited', () => {
-    it('should avoid concurrency issue by chaining internal with the public API', () => {
-      const handleExited = spy();
-      const wrapper = mount(
-        <ModalNaked classes={{}} open>
-          <Fade in onExited={handleExited}>
-            <div />
-          </Fade>
-        </ModalNaked>,
-      );
-      wrapper.setProps({
-        open: false,
-      });
-      wrapper
-        .find('Transition')
-        .at(1)
-        .props()
-        .onExited();
-      assert.strictEqual(handleExited.callCount, 1);
-      assert.strictEqual(wrapper.state().exited, true);
-    });
-
-    it('should not rely on the internal backdrop events', () => {
-      const wrapper = shallow(
-        <Modal open>
-          <div />
-        </Modal>,
-      );
-      assert.strictEqual(wrapper.state().exited, false);
-      wrapper.setProps({
-        open: false,
-      });
-      assert.strictEqual(wrapper.state().exited, true);
     });
   });
 

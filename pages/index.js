@@ -113,7 +113,7 @@ class HomePage extends React.Component {
         <div className={classes.root}>
           <Head />
           <div className={classes.hero}>
-            <Container className={classes.content}>
+            <Container maxWidth="md" className={classes.content}>
               <img
                 src="/static/images/material-ui-logo.svg"
                 alt="Material-UI Logo"

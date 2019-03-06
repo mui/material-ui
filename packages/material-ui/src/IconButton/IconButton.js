@@ -64,6 +64,11 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    padding: 3,
+    fontSize: theme.typography.pxToRem(18),
+  },
   /* Styles applied to the children container element. */
   label: {
     width: '100%',
@@ -78,7 +83,7 @@ export const styles = theme => ({
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(props, ref) {
-  const { children, classes, className, color, disabled, ...other } = props;
+  const { children, classes, className, color, disabled, size, ...other } = props;
 
   return (
     <ButtonBase
@@ -87,6 +92,7 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
       )}
@@ -141,11 +147,17 @@ IconButton.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * The size of the button.
+   * `small` is equivalent to the dense button styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
 };
 
 IconButton.defaultProps = {
   color: 'default',
   disabled: false,
+  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

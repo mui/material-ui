@@ -28,7 +28,11 @@ class TemporaryDrawer extends React.Component {
     right: false,
   };
 
-  toggleDrawer = (side, open) => () => {
+  toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
     this.setState({
       [side]: open,
     });
@@ -37,8 +41,13 @@ class TemporaryDrawer extends React.Component {
   render() {
     const { classes } = this.props;
 
-    const sideList = (
-      <div className={classes.list}>
+    const sideList = side => (
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={this.toggleDrawer(side, false)}
+        onKeyDown={this.toggleDrawer(side, false)}
+      >
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
@@ -59,8 +68,13 @@ class TemporaryDrawer extends React.Component {
       </div>
     );
 
-    const fullList = (
-      <div className={classes.fullList}>
+    const fullList = side => (
+      <div
+        className={classes.fullList}
+        role="presentation"
+        onClick={this.toggleDrawer(side, false)}
+        onKeyDown={this.toggleDrawer(side, false)}
+      >
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
@@ -88,48 +102,20 @@ class TemporaryDrawer extends React.Component {
         <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
         <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
-          >
-            {sideList}
-          </div>
+          {sideList('left')}
         </Drawer>
         <Drawer anchor="top" open={this.state.top} onClose={this.toggleDrawer('top', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('top', false)}
-            onKeyDown={this.toggleDrawer('top', false)}
-          >
-            {fullList}
-          </div>
+          {fullList('top')}
         </Drawer>
         <Drawer
           anchor="bottom"
           open={this.state.bottom}
           onClose={this.toggleDrawer('bottom', false)}
         >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('bottom', false)}
-            onKeyDown={this.toggleDrawer('bottom', false)}
-          >
-            {fullList}
-          </div>
+          {fullList('bottom')}
         </Drawer>
         <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('right', false)}
-            onKeyDown={this.toggleDrawer('right', false)}
-          >
-            {sideList}
-          </div>
+          {sideList('right')}
         </Drawer>
       </div>
     );

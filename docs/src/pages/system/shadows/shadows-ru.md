@@ -19,6 +19,6 @@
 import { shadows } from '@material-ui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key |
+| Импорт      | Свойство    | Свойство CSS | В теме    |
 |:----------- |:----------- |:------------ |:--------- |
 | `boxShadow` | `boxShadow` | `box-shadow` | `shadows` |

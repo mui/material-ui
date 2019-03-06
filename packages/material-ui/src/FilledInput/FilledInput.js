@@ -77,7 +77,7 @@ export const styles = theme => {
         borderBottom: `1px solid ${theme.palette.text.primary}`,
       },
       '&$disabled:before': {
-        borderBottom: `1px dotted ${bottomLineColor}`,
+        borderBottomStyle: 'dotted',
       },
     },
     /* Styles applied to the root element if the component is focused. */

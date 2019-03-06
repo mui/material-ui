@@ -44,7 +44,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然 Material design 规范鼓励样式化，但这些例子是不合适的。
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 

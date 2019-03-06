@@ -1,19 +1,34 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { ShallowWrapper } from 'enzyme';
+import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses, unwrap } from '@material-ui/core/test-utils';
+import {
+  createMount,
+  createRender,
+  findOutermostIntrinsic,
+  getClasses,
+} from '@material-ui/core/test-utils';
 import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
 import TabIndicator from './TabIndicator';
 
+function AccessibleTabScrollButton(props) {
+  return <TabScrollButton aria-label={props.direction} {...props} />;
+}
+AccessibleTabScrollButton.propTypes = {
+  direction: PropTypes.string.isRequired,
+};
+
+const findScrollButton = (wrapper, direction) => wrapper.find(`button[aria-label="${direction}"]`);
+const hasLeftScrollButton = wrapper => findScrollButton(wrapper, 'left').exists();
+const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exists();
+
 describe('<Tabs />', () => {
   let mount;
-  let shallow;
   let classes;
-  const TabsNaked = unwrap(Tabs);
+  let render;
   const noop = () => {};
   const fakeTabs = {
     getBoundingClientRect: () => ({}),
@@ -27,11 +42,19 @@ describe('<Tabs />', () => {
       },
     ],
   };
+  const setFakeTabs = (wrapper, tabs) => {
+    const instance = wrapper.find('Tabs').instance();
+    instance.tabsRef = { ...tabs, ...fakeTabs };
+    // fake componentDidUpdate
+    instance.updateScrollButtonState();
+    // rerender
+    wrapper.update();
+  };
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Tabs', disableLifecycleMethods: true });
     classes = getClasses(<Tabs onChange={noop} value={0} />);
     mount = createMount();
+    render = createRender();
   });
 
   after(() => {
@@ -39,14 +62,15 @@ describe('<Tabs />', () => {
   });
 
   it('should render with the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Tabs width="md" onChange={noop} value={0}>
         <Tab />
         <Tab />
       </Tabs>,
     );
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const root = findOutermostIntrinsic(wrapper);
+    assert.strictEqual(root.type(), 'div');
+    assert.strictEqual(root.hasClass(classes.root), true);
   });
 
   describe('warnings', () => {
@@ -59,7 +83,7 @@ describe('<Tabs />', () => {
     });
 
     it('should warn if the input is invalid', () => {
-      shallow(<Tabs onChange={noop} value={0} centered variant="scrollable" />);
+      mount(<Tabs onChange={noop} value={0} centered variant="scrollable" />);
       assert.match(
         consoleErrorMock.args()[0][0],
         /Material-UI: you can not use the `centered={true}` and `variant="scrollable"`/,
@@ -96,34 +120,34 @@ describe('<Tabs />', () => {
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} className="woofTabs">
           <Tab />
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.hasClass('woofTabs'), true);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const root = findOutermostIntrinsic(wrapper);
+      assert.strictEqual(root.hasClass('woofTabs'), true);
+      assert.strictEqual(root.hasClass(classes.root), true);
     });
   });
 
   describe('prop: centered', () => {
     it('should render with the centered class', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} centered>
           <Tab />
           <Tab />
         </Tabs>,
       );
       const selector = `.${classes.flexContainer}.${classes.centered}`;
-      assert.strictEqual(wrapper.find(selector).name(), 'div');
-      assert.strictEqual(wrapper.find(selector).length, 1);
+      assert.strictEqual(wrapper.find(selector).type(), 'div');
     });
   });
 
   describe('prop: children', () => {
-    it('should accept an invalid child', () => {
-      const wrapper = shallow(
+    it('should accept a null child', () => {
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0}>
           {null}
           <Tab />
@@ -133,172 +157,116 @@ describe('<Tabs />', () => {
     });
 
     it('should support empty children', () => {
-      const wrapper = mount(<Tabs width="md" onChange={noop} value={1} />);
-      assert.strictEqual(wrapper.find('EventListener').length, 1);
+      mount(<Tabs width="md" onChange={noop} value={1} />);
     });
   });
 
   describe('prop: value', () => {
-    let wrapper;
-    before(() => {
-      wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={1}>
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
+    const tabs = (
+      <Tabs width="md" onChange={noop} value={1}>
+        <Tab />
+        <Tab />
+      </Tabs>
+    );
 
     it('should pass selected prop to children', () => {
-      assert.strictEqual(
-        wrapper
-          .find(Tab)
-          .at(0)
-          .props().selected,
-        false,
-        'should have selected to false',
+      const wrapper = mount(tabs);
+      const tabWrappers = wrapper.find('[role="tab"]').hostNodes();
+
+      assert.isNotOk(tabWrappers.at(0).props()['aria-selected']);
+      assert.isOk(tabWrappers.at(1).props()['aria-selected']);
+    });
+
+    it('should accept any value as selected tab value', () => {
+      const tab0 = {};
+      const tab1 = {};
+      assert.notStrictEqual(tab0, tab1);
+      const wrapper = mount(
+        <Tabs width="md" onChange={noop} value={tab0}>
+          <Tab value={tab0} />
+          <Tab value={tab1} />
+        </Tabs>,
       );
-      assert.strictEqual(
-        wrapper
-          .find(Tab)
-          .at(1)
-          .props().selected,
-        true,
-        'should have selected',
-      );
+      const tabWrappers = wrapper.find('[role="tab"]').hostNodes();
+
+      assert.isOk(tabWrappers.at(0).props()['aria-selected']);
+      assert.isNotOk(tabWrappers.at(1).props()['aria-selected']);
     });
 
     it('should switch from the original value', () => {
+      const wrapper = mount(tabs);
       wrapper.setProps({ value: 0 });
-      assert.strictEqual(
-        wrapper
-          .find(Tab)
-          .at(0)
-          .props().selected,
-        true,
-        'should have switched to true',
-      );
-      assert.strictEqual(
-        wrapper
-          .find(Tab)
-          .at(1)
-          .props().selected,
-        false,
-        'should have switched to false',
-      );
+
+      const tabWrappers = wrapper.find('[role="tab"]').hostNodes();
+
+      assert.isOk(tabWrappers.at(0).props()['aria-selected']);
+      assert.isNotOk(tabWrappers.at(1).props()['aria-selected']);
     });
 
     describe('indicator', () => {
       it('should accept a false value', () => {
-        const wrapper2 = mount(
+        const wrapper = mount(
           <Tabs width="md" onChange={noop} value={false}>
             <Tab />
             <Tab />
           </Tabs>,
         );
-        assert.strictEqual(wrapper2.find(TabIndicator).props().style.width, 0);
+        assert.strictEqual(wrapper.find(TabIndicator).props().style.width, 0);
       });
 
-      it('should work server-side', () => {
-        const wrapper2 = shallow(
+      it('should let the selected <Tab /> render the indicator server-side', () => {
+        const markup = render(
           <Tabs width="md" onChange={noop} value={1}>
             <Tab />
             <Tab />
           </Tabs>,
-          { disableLifecycleMethods: true },
         );
-        const indicator = new ShallowWrapper(
-          wrapper2
-            .find(Tab)
-            .at(1)
-            .props().indicator,
-          wrapper2,
-        );
-        assert.deepEqual(indicator.props().style, {});
-      });
-
-      it('should let the selected <Tab /> render the indicator', () => {
-        const wrapper2 = shallow(
-          <Tabs width="md" onChange={noop} value={1}>
-            <Tab />
-            <Tab />
-          </Tabs>,
-          { disableLifecycleMethods: true },
-        );
-        assert.strictEqual(
-          wrapper2
-            .find(Tab)
-            .at(0)
-            .props().indicator,
-          false,
-        );
-        assert.strictEqual(
-          wrapper2
-            .find(Tab)
-            .at(1)
-            .props().indicator.type,
-          TabIndicator,
-        );
-      });
-
-      it('should accept any value as selected tab value', () => {
-        const tab0 = {};
-        const tab1 = {};
-        assert.notStrictEqual(tab0, tab1);
-        const wrapper2 = shallow(
-          <Tabs width="md" onChange={noop} value={tab0}>
-            <Tab value={tab0} />
-            <Tab value={tab1} />
-          </Tabs>,
-        );
-        assert.strictEqual(wrapper2.instance().valueToIndex.size, 2);
+        const indicator = markup.find(`button > .${classes.indicator}`);
+        assert.strictEqual(indicator.length, 1);
       });
 
       it('should render the indicator', () => {
-        const wrapper2 = mount(
+        const wrapper = mount(
           <Tabs width="md" onChange={noop} value={1}>
             <Tab />
             <Tab />
           </Tabs>,
         );
         assert.strictEqual(
-          wrapper2
+          wrapper
             .find(Tab)
             .at(0)
             .props().indicator,
           false,
         );
         assert.strictEqual(
-          wrapper2
+          wrapper
             .find(Tab)
             .at(1)
             .props().indicator,
           false,
         );
-        assert.strictEqual(wrapper2.find(TabIndicator).length, 1);
+        assert.strictEqual(wrapper.find(TabIndicator).length, 1);
       });
 
       it('should update the indicator state no matter what', () => {
-        const wrapper2 = mount(
-          <TabsNaked width="md" onChange={noop} value={1} classes={{}} theme={{}}>
+        const wrapper = mount(
+          <Tabs width="md" onChange={noop} value={1}>
             <Tab />
             <Tab />
-          </TabsNaked>,
+          </Tabs>,
         );
-        const instance = wrapper2.instance();
+        const tabsWrapper = wrapper.find('Tabs');
+        const instance = tabsWrapper.instance();
         stub(instance, 'scrollSelectedIntoView');
 
-        wrapper2.setState({
+        tabsWrapper.setState({
           indicatorStyle: {
             left: 10,
             width: 40,
           },
         });
-        wrapper2.setProps({
+        wrapper.setProps({
           value: 0,
         });
 
@@ -310,19 +278,28 @@ describe('<Tabs />', () => {
       });
     });
 
-    it('should warn when the value is invalid', () => {
-      consoleErrorMock.spy();
-      mount(
-        <Tabs width="md" onChange={noop} value={2}>
-          <Tab value={1} />
-          <Tab value={3} />
-        </Tabs>,
-      );
-      assert.strictEqual(consoleErrorMock.callCount(), 3);
-      assert.match(
-        consoleErrorMock.args()[0][0],
-        /You can provide one of the following values: 1, 3/,
-      );
+    describe('warnings', () => {
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      afterEach(() => {
+        consoleErrorMock.reset();
+      });
+
+      it('warns when the value is not present in any tab', () => {
+        mount(
+          <Tabs width="md" onChange={noop} value={2}>
+            <Tab value={1} />
+            <Tab value={3} />
+          </Tabs>,
+        );
+        assert.strictEqual(consoleErrorMock.callCount(), 3);
+        assert.match(
+          consoleErrorMock.args()[0][0],
+          /You can provide one of the following values: 1, 3/,
+        );
+      });
     });
   });
 
@@ -336,29 +313,29 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
+
       wrapper
         .find(Tab)
         .at(1)
         .simulate('click');
       wrapper.setProps({ value: 1 });
+
       assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
       assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
-      wrapper.unmount();
     });
   });
 
   describe('prop: variant="scrollable"', () => {
     let clock;
-    let wrapper;
+    const tabs = (
+      <Tabs width="md" onChange={noop} value={0} variant="scrollable">
+        <Tab />
+        <Tab />
+      </Tabs>
+    );
 
     before(() => {
       clock = useFakeTimers();
-      wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable">
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
     });
 
     after(() => {
@@ -366,18 +343,22 @@ describe('<Tabs />', () => {
     });
 
     it('should render with the scrollable class', () => {
+      const wrapper = mount(tabs);
       const selector = `.${classes.scroller}.${classes.scrollable}`;
       assert.strictEqual(wrapper.find(selector).name(), 'div');
       assert.strictEqual(wrapper.find(selector).length, 1);
     });
 
     it('should response to scroll events', () => {
-      const instance = wrapper.instance();
+      const wrapper = mount(tabs);
+      const instance = wrapper.find('Tabs').instance();
       instance.tabsRef = { scrollLeft: 100, ...fakeTabs };
       spy(instance, 'updateScrollButtonState');
+
       const selector = `.${classes.scroller}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
       clock.tick(166);
+
       assert.strictEqual(
         instance.updateScrollButtonState.called,
         true,
@@ -387,20 +368,19 @@ describe('<Tabs />', () => {
 
     it('should get a scrollbar size listener', () => {
       // use mount to ensure that handleScrollbarSizeChange gets covered
-      const mountWrapper = mount(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} variant="scrollable">
           <Tab />
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(mountWrapper.find('ScrollbarSize').length, 1);
-      mountWrapper.unmount();
+      assert.strictEqual(wrapper.find('ScrollbarSize').length, 1);
     });
   });
 
   describe('prop: !variant="scrollable"', () => {
     it('should not render with the scrollable class', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0}>
           <Tab />
           <Tab />
@@ -425,7 +405,7 @@ describe('<Tabs />', () => {
     });
 
     it('should render scroll buttons', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
           <Tab />
           <Tab />
@@ -435,23 +415,13 @@ describe('<Tabs />', () => {
     });
 
     it('should render scroll buttons automatically', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="auto">
           <Tab />
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
-    });
-
-    it('should should not render scroll buttons automatically', () => {
-      const wrapper = shallow(
-        <Tabs width="sm" onChange={noop} value={0} variant="scrollable" scrollButtons="auto">
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-      assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be zero');
+      assert.strictEqual(wrapper.find(TabScrollButton).length, 2);
       assert.strictEqual(
         wrapper.find(TabScrollButton).everyWhere(node => node.hasClass(classes.scrollButtonsAuto)),
         true,
@@ -459,63 +429,89 @@ describe('<Tabs />', () => {
     });
 
     it('should handle window resize event', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
           <Tab />
           <Tab />
         </Tabs>,
       );
-      const instance = wrapper.instance();
+      const instance = wrapper.find('Tabs').instance();
       stub(instance, 'updateScrollButtonState');
       stub(instance, 'updateIndicatorState');
-      wrapper
-        .find('EventListener')
-        .at(0)
-        .simulate('resize');
+
+      window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
+
       assert.strictEqual(instance.updateScrollButtonState.called, true);
       assert.strictEqual(instance.updateIndicatorState.called, true);
     });
 
     describe('scroll button visibility states', () => {
-      let wrapper;
-      let instance;
-      before(() => {
-        wrapper = shallow(
-          <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
-            <Tab />
-            <Tab />
-          </Tabs>,
-        );
-        instance = wrapper.instance();
-      });
+      const tabs = (
+        <Tabs
+          width="md"
+          onChange={noop}
+          value={0}
+          variant="scrollable"
+          scrollButtons="on"
+          ScrollButtonComponent={AccessibleTabScrollButton}
+        >
+          <Tab />
+          <Tab />
+        </Tabs>
+      );
 
       it('should set neither left nor right scroll button state', () => {
-        instance.tabsRef = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
+        const wrapper = mount(tabs);
+        const instanceWrapper = wrapper.find('Tabs');
+        const instance = instanceWrapper.instance();
+
+        instance.tabsRef = {
+          scrollLeft: 0,
+          scrollWidth: 90,
+          clientWidth: 100,
+          ...fakeTabs,
+        };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, false);
-        assert.strictEqual(wrapper.state().showRightScroll, false);
+        wrapper.update();
+
+        assert.strictEqual(hasLeftScrollButton(wrapper), false);
+        assert.strictEqual(hasRightScrollButton(wrapper), false);
       });
 
       it('should set only left scroll button state', () => {
-        instance.tabsRef = { scrollLeft: 1, ...fakeTabs };
-        instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, true);
-        assert.strictEqual(wrapper.state().showRightScroll, false);
+        const wrapper = mount(tabs);
+
+        setFakeTabs(wrapper, { scrollLeft: 1 });
+
+        assert.strictEqual(hasLeftScrollButton(wrapper), true);
+        assert.strictEqual(hasRightScrollButton(wrapper), false);
       });
 
       it('should set only right scroll button state', () => {
-        instance.tabsRef = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
-        instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, false);
-        assert.strictEqual(wrapper.state().showRightScroll, true);
+        const wrapper = mount(tabs);
+
+        setFakeTabs(wrapper, {
+          scrollLeft: 0,
+          scrollWidth: 110,
+          clientWidth: 100,
+        });
+
+        assert.strictEqual(hasLeftScrollButton(wrapper), false);
+        assert.strictEqual(hasRightScrollButton(wrapper), true);
       });
 
       it('should set both left and right scroll button state', () => {
-        instance.tabsRef = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
-        instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state().showLeftScroll, true);
-        assert.strictEqual(wrapper.state().showRightScroll, true);
+        const wrapper = mount(tabs);
+
+        setFakeTabs(wrapper, {
+          scrollLeft: 1,
+          scrollWidth: 110,
+          clientWidth: 100,
+        });
+
+        assert.strictEqual(hasLeftScrollButton(wrapper), true);
+        assert.strictEqual(hasRightScrollButton(wrapper), true);
       });
     });
   });
@@ -524,33 +520,42 @@ describe('<Tabs />', () => {
     let instance;
     let wrapper;
     let scrollSpy;
-    const dimensions = { scrollLeft: 100, clientWidth: 200, scrollWidth: 1000 };
-    before(() => {
-      wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} variant="scrollable" scrollButtons="on">
+    const dimensions = { scrollLeft: 100, clientWidth: 200, scrollWidth: 1000, ...fakeTabs };
+
+    beforeEach(() => {
+      wrapper = mount(
+        <Tabs
+          width="md"
+          onChange={noop}
+          value={0}
+          variant="scrollable"
+          scrollButtons="on"
+          ScrollButtonComponent={AccessibleTabScrollButton}
+        >
           <Tab />
           <Tab />
         </Tabs>,
       );
-      instance = wrapper.instance();
-      instance.tabsRef = dimensions;
+      instance = wrapper.find('Tabs').instance();
+
+      setFakeTabs(wrapper, dimensions);
+
       scrollSpy = spy(instance, 'moveTabsScroll');
     });
 
+    afterEach(() => {
+      wrapper.detach();
+    });
+
     it('should call moveTabsScroll', () => {
-      wrapper
-        .find(TabScrollButton)
-        .at(0)
-        .simulate('click');
+      findScrollButton(wrapper, 'left').simulate('click');
       assert.strictEqual(
         scrollSpy.args[0][0],
         -dimensions.clientWidth,
         `should be called with -${dimensions.clientWidth}`,
       );
-      wrapper
-        .find(TabScrollButton)
-        .at(1)
-        .simulate('click');
+
+      findScrollButton(wrapper, 'right').simulate('click');
       assert.strictEqual(
         scrollSpy.args[1][0],
         dimensions.clientWidth,
@@ -563,21 +568,22 @@ describe('<Tabs />', () => {
     let scrollStub;
     let instance;
     let metaStub;
+    let wrapper;
 
     beforeEach(() => {
-      const wrapper = shallow(
+      wrapper = mount(
         <Tabs width="md" onChange={noop} value={0} variant="scrollable">
           <Tab />
           <Tab />
         </Tabs>,
       );
-      instance = wrapper.instance();
+      instance = wrapper.find('Tabs').instance();
       scrollStub = stub(instance, 'scroll');
       metaStub = stub(instance, 'getTabsMeta');
     });
 
     afterEach(() => {
-      instance.scroll.restore();
+      wrapper.detach();
     });
 
     it('should scroll left tab into view', () => {
@@ -613,12 +619,11 @@ describe('<Tabs />', () => {
 
   describe('prop: TabIndicatorProps', () => {
     it('should merge the style', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Tabs onChange={noop} value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
           <Tab />
         </Tabs>,
       );
-      wrapper.setState({ mounted: true });
       assert.strictEqual(wrapper.find(TabIndicator).props().style.backgroundColor, 'green');
     });
   });

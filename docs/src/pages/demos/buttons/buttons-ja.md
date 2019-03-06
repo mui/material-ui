@@ -45,7 +45,7 @@ Outlined buttonは、Contained buttonと比べると強調が弱く、 Text butt
 
 ## Floating Action Buttons
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended.
+[floating action button](https://material.io/design/components/buttons-floating-action-button.html)(FAB) は画面上でもっとも重要で一般的なアクションを実行する際に使用します。 FABは画面の構成要素の中で最前面に配置され、一般的に円形で中央にアイコンが配置されます。 FABには次の二つのタイプがあります: regular extended
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.
 

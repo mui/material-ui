@@ -153,7 +153,6 @@ MuiThemeProviderOld.contextTypes = {
   muiThemeProviderOptions: PropTypes.object,
 };
 
-/* istanbul ignore if */
 if (!ponyfillGlobal.__MUI_STYLES__) {
   ponyfillGlobal.__MUI_STYLES__ = {};
 }
