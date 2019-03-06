@@ -93,20 +93,6 @@ class MenuList extends React.Component {
     }
   };
 
-  focus() {
-    const { currentTabIndex } = this.state;
-    const list = this.listRef;
-    if (!list || !list.children || !list.firstChild) {
-      return;
-    }
-
-    if (currentTabIndex && currentTabIndex >= 0) {
-      list.children[currentTabIndex].focus();
-    } else {
-      list.firstChild.focus();
-    }
-  }
-
   resetTabIndex() {
     const list = this.listRef;
     const currentFocus = ownerDocument(list).activeElement;
