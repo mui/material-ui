@@ -2,6 +2,8 @@
 
 <p class="description">Write tests to prevent regressions and write better code.</p>
 
+Examples in this guide use [global methods from Mocha](https://mochajs.org/api/global.html), not [Jest](https://jestjs.io/docs/en/api).
+
 ## Internal
 
 We take tests seriously. We have written and maintain **a wide range** of tests so we can
@@ -64,7 +66,7 @@ import { createShallow } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let shallow;
 
-  beforeEach(() => {
+  before(() => {  // This is Mocha; in Jest, use beforeEach
     shallow = createShallow();
   });
 
@@ -97,11 +99,11 @@ import { createMount } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let mount;
 
-  beforeEach(() => {
+  before(() => {
     mount = createMount();
   });
 
-  afterEach(() => {
+  after(() => {
     mount.cleanUp();
   });
 
@@ -134,7 +136,7 @@ import { createRender } from '@material-ui/core/test-utils';
 describe('<MyComponent />', () => {
   let render;
 
-  beforeEach(() => {
+  before(() => {
     render = createRender();
   });
 
