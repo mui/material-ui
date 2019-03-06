@@ -252,7 +252,7 @@ class SpeedDial extends React.Component {
           {...TransitionProps}
         >
           <Fab
-            color={ButtonProps.color || 'primary'}
+            color="primary"
             onKeyDown={this.handleKeyboardNavigation}
             aria-label={ariaLabel}
             aria-haspopup="true"
