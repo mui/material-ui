@@ -102,6 +102,19 @@ describe('<IconButton />', () => {
     });
   });
 
+  describe('prop: align', () => {
+    it('should render the right class', () => {
+      let wrapper;
+      wrapper = mount(<IconButton align="left">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignLeft), true);
+      wrapper = mount(<IconButton align="right">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignRight), true);
+      wrapper = mount(<IconButton>book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignLeft), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignRight), false);
+    });
+  });
+
   describe('prop: disabled', () => {
     it('should disable the component', () => {
       const wrapper = shallow(<IconButton disabled>book</IconButton>);
