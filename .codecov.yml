@@ -1,6 +1,4 @@
-coverage:
-  status:
-    patch:
-      default:
-        threshold: 0.0%
-comment: false
+comment:
+  layout: "diff"
+  # testing, yes for production
+  require_changes: no
