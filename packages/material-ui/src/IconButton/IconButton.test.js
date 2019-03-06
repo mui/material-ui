@@ -103,13 +103,16 @@ describe('<IconButton />', () => {
   });
 
   describe('prop: align', () => {
-    it('should render the right class', () => {
-      let wrapper;
-      wrapper = mount(<IconButton align="left">book</IconButton>);
+    it('align="left" should render the right class', () => {
+      const wrapper = mount(<IconButton align="left">book</IconButton>);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignLeft), true);
-      wrapper = mount(<IconButton align="right">book</IconButton>);
+    });
+    it('align="right" should render the right class', () => {
+      const wrapper = mount(<IconButton align="right">book</IconButton>);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignRight), true);
-      wrapper = mount(<IconButton>book</IconButton>);
+    });
+    it('no align should render the right class', () => {
+      const wrapper = mount(<IconButton>book</IconButton>);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignLeft), false);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignRight), false);
     });
