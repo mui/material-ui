@@ -157,7 +157,7 @@ class SpeedDial extends React.Component {
   render() {
     const {
       ariaLabel,
-      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = { color: 'primary' },
+      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = {},
       children: childrenProp,
       classes,
       className: classNameProp,
@@ -252,6 +252,7 @@ class SpeedDial extends React.Component {
           {...TransitionProps}
         >
           <Fab
+            color={ButtonProps.color || 'primary'}
             onKeyDown={this.handleKeyboardNavigation}
             aria-label={ariaLabel}
             aria-haspopup="true"
