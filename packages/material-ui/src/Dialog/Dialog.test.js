@@ -36,14 +36,14 @@ describe('<Dialog />', () => {
   });
 
   it('should render a Modal', () => {
-    const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.type(), Modal);
+    const wrapper = mount(<Dialog {...defaultProps}>foo</Dialog>);
+    assert.strictEqual(wrapper.find(Modal).exists(), true);
   });
 
   it('should render a Modal with TransitionComponent', () => {
-    const Transition = props => <div className="cloned-element-class" {...props} />;
-    const wrapper = shallow(
-      <Dialog {...defaultProps} TransitionComponent={Transition}>
+    const Transition = () => <div tabIndex={-1} />;
+    const wrapper = mount(
+      <Dialog {...defaultProps} open TransitionComponent={Transition}>
         foo
       </Dialog>,
     );
@@ -53,14 +53,14 @@ describe('<Dialog />', () => {
   it('should put Modal specific props on the root Modal node', () => {
     const onEscapeKeyDown = () => {};
     const onClose = () => {};
-    const wrapper = shallow(
+    const wrapper = mount(
       <Dialog
         open
         transitionDuration={100}
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
-        hideOnBackdropClick={false}
-        hideOnEscapeKeyUp={false}
+        disableBackdropClick
+        disableEscapeKeyDown
       >
         foo
       </Dialog>,
@@ -71,8 +71,8 @@ describe('<Dialog />', () => {
     assert.strictEqual(modal.props().BackdropProps.transitionDuration, 100);
     assert.strictEqual(modal.props().onEscapeKeyDown, onEscapeKeyDown);
     assert.strictEqual(modal.props().onClose, onClose);
-    assert.strictEqual(modal.props().hideOnBackdropClick, false);
-    assert.strictEqual(modal.props().hideOnEscapeKeyUp, false);
+    assert.strictEqual(modal.props().disableBackdropClick, true);
+    assert.strictEqual(modal.props().disableEscapeKeyDown, true);
   });
 
   it('should spread custom props on the paper (dialog "root") node', () => {
@@ -93,37 +93,20 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.hasClass('woofDialog'), true);
   });
 
-  it('should render Fade > div > Paper > children inside the Modal', () => {
-    const children = <p>Hello</p>;
-    const wrapper = shallow(<Dialog {...defaultProps}>{children}</Dialog>);
-
-    const fade = wrapper.childAt(0);
-    assert.strictEqual(fade.type(), Fade);
-
-    const div = fade.childAt(0);
-    assert.strictEqual(div.type(), 'div');
-
-    const paper = div.childAt(0);
-    assert.strictEqual(paper.length === 1 && paper.type(), Paper);
-
-    assert.strictEqual(paper.hasClass(classes.paper), true);
-  });
-
-  it('should not be open by default', () => {
-    const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, false);
-    assert.strictEqual(wrapper.find(Fade).props().in, false);
-  });
-
-  it('should be open by default', () => {
-    const wrapper = shallow(<Dialog open>foo</Dialog>);
-    assert.strictEqual(wrapper.props().open, true);
-    assert.strictEqual(wrapper.find(Fade).props().in, true);
-  });
-
   it('should fade down and make the transition appear on first mount', () => {
-    const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.find(Fade).props().appear, true);
+    const wrapper = mount(
+      <Dialog {...defaultProps} open>
+        foo
+      </Dialog>,
+    );
+    // the first one is from the Backdrop, if the Backdrop impl changes this breaks
+    assert.strictEqual(
+      wrapper
+        .find(Fade)
+        .at(1)
+        .props().appear,
+      true,
+    );
   });
 
   describe('backdrop', () => {
@@ -220,8 +203,8 @@ describe('<Dialog />', () => {
   describe('prop: classes', () => {
     it('should add the class on the Paper element', () => {
       const className = 'foo';
-      const wrapper = shallow(
-        <Dialog {...defaultProps} classes={{ paper: className }}>
+      const wrapper = mount(
+        <Dialog {...defaultProps} open classes={{ paper: className }}>
           foo
         </Dialog>,
       );
