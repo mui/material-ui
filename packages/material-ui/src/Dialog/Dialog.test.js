@@ -7,6 +7,16 @@ import Fade from '../Fade';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
+const findBackdrop = wrapper => wrapper.find('[data-mui-test="FakeBackdrop"]');
+const clickBackdrop = wrapper => {
+  const currentTarget = {};
+  const backdrop = findBackdrop(wrapper);
+
+  // simulate would not allow mocking of currentTarget
+  backdrop.props().onMouseDown({ currentTarget, target: currentTarget });
+  backdrop.props().onClick({ currentTarget, target: currentTarget });
+};
+
 describe('<Dialog />', () => {
   let mount;
   let shallow;
@@ -41,14 +51,12 @@ describe('<Dialog />', () => {
   });
 
   it('should put Modal specific props on the root Modal node', () => {
-    const onBackdropClick = () => {};
     const onEscapeKeyDown = () => {};
     const onClose = () => {};
     const wrapper = shallow(
       <Dialog
         open
         transitionDuration={100}
-        onBackdropClick={onBackdropClick}
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         hideOnBackdropClick={false}
@@ -57,13 +65,14 @@ describe('<Dialog />', () => {
         foo
       </Dialog>,
     );
-    assert.strictEqual(wrapper.props().open, true);
-    assert.strictEqual(wrapper.props().BackdropProps.transitionDuration, 100);
-    assert.strictEqual(wrapper.props().onBackdropClick, onBackdropClick);
-    assert.strictEqual(wrapper.props().onEscapeKeyDown, onEscapeKeyDown);
-    assert.strictEqual(wrapper.props().onClose, onClose);
-    assert.strictEqual(wrapper.props().hideOnBackdropClick, false);
-    assert.strictEqual(wrapper.props().hideOnEscapeKeyUp, false);
+
+    const modal = wrapper.find(Modal);
+    assert.strictEqual(modal.props().open, true);
+    assert.strictEqual(modal.props().BackdropProps.transitionDuration, 100);
+    assert.strictEqual(modal.props().onEscapeKeyDown, onEscapeKeyDown);
+    assert.strictEqual(modal.props().onClose, onClose);
+    assert.strictEqual(modal.props().hideOnBackdropClick, false);
+    assert.strictEqual(modal.props().hideOnEscapeKeyUp, false);
   });
 
   it('should spread custom props on the paper (dialog "root") node', () => {
@@ -118,51 +127,55 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = shallow(<Dialog open>foo</Dialog>);
-    });
-
     it('should attach a handler to the backdrop that fires onClose', () => {
       const onClose = spy();
-      wrapper.setProps({ onClose });
+      const wrapper = mount(
+        <Dialog onClose={onClose} open>
+          foo
+        </Dialog>,
+      );
 
-      const handler = wrapper.instance().handleBackdropClick;
-      const backdrop = wrapper.find('[role="document"]');
-      assert.strictEqual(backdrop.props().onClick, handler);
+      clickBackdrop(wrapper);
 
-      handler({});
       assert.strictEqual(onClose.callCount, 1);
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
       const onClose = spy();
-      wrapper.setProps({ onClose, disableBackdropClick: true });
+      const wrapper = mount(
+        <Dialog disableBackdropClick onClose={onClose} open>
+          foo
+        </Dialog>,
+      );
 
-      const handler = wrapper.instance().handleBackdropClick;
+      clickBackdrop(wrapper);
 
-      handler({});
       assert.strictEqual(onClose.callCount, 0);
     });
 
     it('should call through to the user specified onBackdropClick callback', () => {
       const onBackdropClick = spy();
-      wrapper.setProps({ onBackdropClick });
+      const wrapper = mount(
+        <Dialog onBackdropClick={onBackdropClick} open>
+          foo
+        </Dialog>,
+      );
 
-      const handler = wrapper.instance().handleBackdropClick;
+      clickBackdrop(wrapper);
 
-      handler({});
       assert.strictEqual(onBackdropClick.callCount, 1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       const onBackdropClick = spy();
-      wrapper.setProps({ onBackdropClick });
+      const wrapper = mount(
+        <Dialog onBackdropClick={onBackdropClick} open>
+          foo
+        </Dialog>,
+      );
 
-      const handler = wrapper.instance().handleBackdropClick;
-
-      handler({
+      const backdrop = findBackdrop(wrapper);
+      backdrop.props().onClick({
         target: {
           /* a dom node */
         },
@@ -170,38 +183,36 @@ describe('<Dialog />', () => {
           /* another dom node */
         },
       });
+
       assert.strictEqual(onBackdropClick.callCount, 0);
     });
 
-    it('should store the click target on mousedown', () => {
-      const mouseDownTarget = 'clicked element';
-      const backdrop = wrapper.find('[role="document"]');
-      backdrop.simulate('mousedown', { target: mouseDownTarget });
-      assert.strictEqual(wrapper.instance().mouseDownTarget, mouseDownTarget);
-    });
-
-    it('should clear click target on successful backdrop click', () => {
+    it('does not leak memory by keeping DOM references longer than needed ', () => {
       const onBackdropClick = spy();
-      wrapper.setProps({ onBackdropClick });
+      const wrapper = mount(
+        <Dialog onBackdropClick={onBackdropClick} open>
+          foo
+        </Dialog>,
+      );
 
-      const mouseDownTarget = 'backdrop';
+      clickBackdrop(wrapper);
 
-      const backdrop = wrapper.find('[role="document"]');
-      backdrop.simulate('mousedown', { target: mouseDownTarget });
-      assert.strictEqual(wrapper.instance().mouseDownTarget, mouseDownTarget);
-      backdrop.simulate('click', { target: mouseDownTarget, currentTarget: mouseDownTarget });
-      assert.strictEqual(onBackdropClick.callCount, 1);
-      assert.strictEqual(wrapper.instance().mouseDownTarget, null);
+      assert.strictEqual(wrapper.find('Dialog').instance().mouseDownTarget, null);
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {
       const onBackdropClick = spy();
-      wrapper.setProps({ onBackdropClick });
+      const wrapper = mount(
+        <Dialog onBackdropClick={onBackdropClick} open>
+          foo
+        </Dialog>,
+      );
 
-      const backdrop = wrapper.find('[role="document"]');
+      const backdrop = findBackdrop(wrapper);
 
-      backdrop.simulate('mousedown', { target: 'backdrop' });
-      backdrop.simulate('click', { target: 'dialog', currentTarget: 'dialog' });
+      // mousedown dialog, release backdrop
+      backdrop.props().onMouseDown({ target: 'dialog' });
+      backdrop.props().onClick({ target: 'backdrop', currentTarget: 'backdrop' });
       assert.strictEqual(onBackdropClick.callCount, 0);
     });
   });
@@ -220,8 +231,8 @@ describe('<Dialog />', () => {
 
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} maxWidth="xs">
+      const wrapper = mount(
+        <Dialog {...defaultProps} open maxWidth="xs">
           foo
         </Dialog>,
       );
@@ -231,8 +242,8 @@ describe('<Dialog />', () => {
 
   describe('prop: fullWidth', () => {
     it('should set `fullWidth` class if specified', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} fullWidth>
+      const wrapper = mount(
+        <Dialog {...defaultProps} open fullWidth>
           foo
         </Dialog>,
       );
@@ -240,15 +251,19 @@ describe('<Dialog />', () => {
     });
 
     it('should not set `fullWidth` class if not specified', () => {
-      const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
+      const wrapper = mount(
+        <Dialog {...defaultProps} open>
+          foo
+        </Dialog>,
+      );
       assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), false);
     });
   });
 
   describe('prop: fullScreen', () => {
     it('true should render fullScreen', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} fullScreen>
+      const wrapper = mount(
+        <Dialog {...defaultProps} fullScreen open>
           foo
         </Dialog>,
       );
@@ -256,8 +271,8 @@ describe('<Dialog />', () => {
     });
 
     it('false should not render fullScreen', () => {
-      const wrapper = shallow(
-        <Dialog {...defaultProps} fullScreen={false}>
+      const wrapper = mount(
+        <Dialog {...defaultProps} fullScreen={false} open>
           foo
         </Dialog>,
       );

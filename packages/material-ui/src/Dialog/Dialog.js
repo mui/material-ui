@@ -203,7 +203,6 @@ class Dialog extends React.Component {
         closeAfterTransition
         disableBackdropClick={disableBackdropClick}
         disableEscapeKeyDown={disableEscapeKeyDown}
-        onBackdropClick={onBackdropClick}
         onEscapeKeyDown={onEscapeKeyDown}
         onClose={onClose}
         open={open}
@@ -227,6 +226,7 @@ class Dialog extends React.Component {
             onClick={this.handleBackdropClick}
             onMouseDown={this.handleMouseDown}
             role="document"
+            data-mui-test="FakeBackdrop"
           >
             <PaperComponent
               elevation={24}
