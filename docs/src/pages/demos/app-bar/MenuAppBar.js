@@ -21,7 +21,6 @@ const styles = {
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -12,
     marginRight: 20,
   },
 };
@@ -61,7 +60,12 @@ class MenuAppBar extends React.Component {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              align="left"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
