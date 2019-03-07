@@ -3,7 +3,20 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import MenuList from 'packages/material-ui/src/MenuList';
 import MenuItem from 'packages/material-ui/src/MenuItem';
+import RootRef from 'packages/material-ui/src/RootRef';
 import { createMount } from 'packages/material-ui/src/test-utils';
+
+function FocusOnMountMenuItem(props) {
+  const listItemRef = React.useRef();
+  React.useLayoutEffect(() => {
+    listItemRef.current.focus();
+  }, []);
+  return (
+    <RootRef rootRef={listItemRef}>
+      <MenuItem {...props} tabIndex={0} />
+    </RootRef>
+  );
+}
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {
   const items = wrapper.find('li[role="menuitem"]');
@@ -33,6 +46,14 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
   });
 }
 
+function initializeFocus(wrapper) {
+  wrapper
+    .find('[tabIndex=0]')
+    .first()
+    .getDOMNode()
+    .focus();
+}
+
 describe('<MenuList> integration', () => {
   let mount;
 
@@ -52,7 +73,7 @@ describe('<MenuList> integration', () => {
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
           <MenuItem>Menu Item 4</MenuItem>
         </MenuList>,
       );
@@ -65,7 +86,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the first item 1', () => {
-      wrapper.instance().focus();
+      initializeFocus(wrapper);
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
@@ -87,7 +108,7 @@ describe('<MenuList> integration', () => {
     });
 
     it('should focus the second item 1', () => {
-      wrapper.instance().focus();
+      initializeFocus(wrapper);
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
@@ -110,20 +131,8 @@ describe('<MenuList> integration', () => {
       }, 60);
     });
 
-    it('should reset the tabIndex to the focused element when calling resetTabIndex', () => {
-      wrapper.instance().focus();
-      wrapper.simulate('keyDown', { key: 'ArrowDown' });
-      wrapper.instance().setTabIndex(2);
-      wrapper.instance().resetTabIndex();
-
-      assertMenuItemTabIndexed(wrapper, 1);
-      assertMenuItemFocused(wrapper, 1);
-
-      resetWrapper();
-    });
-
     it('should select/focus the first item 2', () => {
-      wrapper.instance().focus();
+      initializeFocus(wrapper);
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
@@ -161,7 +170,7 @@ describe('<MenuList> integration', () => {
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
           <MenuItem selected>Menu Item 2</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
           <MenuItem>Menu Item 4</MenuItem>
         </MenuList>,
       );
@@ -174,13 +183,13 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the second item', () => {
-      wrapper.instance().focus();
+      initializeFocus(wrapper);
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
     });
 
     it('should focus the third item', () => {
-      wrapper.instance().focus();
+      initializeFocus(wrapper);
       wrapper.simulate('keyDown', { key: 'ArrowDown' });
       assertMenuItemTabIndexed(wrapper, 2);
       assertMenuItemFocused(wrapper, 2);
@@ -199,14 +208,62 @@ describe('<MenuList> integration', () => {
     });
   });
 
-  it('should not crash and burn when calling focus() on an empty MenuList', () => {
-    const wrapper = mount(<MenuList />);
-    wrapper.instance().focus();
+  describe('MenuItem with focus on mount', () => {
+    let wrapper;
+
+    const resetWrapper = () => {
+      wrapper = mount(
+        <MenuList>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <FocusOnMountMenuItem>Menu Item 3</FocusOnMountMenuItem>
+          <MenuItem>Menu Item 4</MenuItem>
+        </MenuList>,
+      );
+    };
+
+    before(resetWrapper);
+
+    it('should have the 3nd item tabIndexed and focused', () => {
+      assertMenuItemTabIndexed(wrapper, 2);
+      assertMenuItemFocused(wrapper, 2);
+    });
   });
 
-  it('should not crash and burn when calling focus() on an unmounted MenuList', () => {
-    const wrapper = mount(<MenuList />);
-    delete wrapper.instance().list;
-    wrapper.instance().focus();
+  describe('MenuList with disableListWrap', () => {
+    let wrapper;
+
+    const resetWrapper = () => {
+      wrapper = mount(
+        <MenuList disableListWrap>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem>Menu Item 3</MenuItem>
+          <MenuItem>Menu Item 4</MenuItem>
+        </MenuList>,
+      );
+    };
+
+    before(resetWrapper);
+
+    it('should not wrap focus with ArrowUp from first', () => {
+      initializeFocus(wrapper);
+      wrapper.simulate('keyDown', { key: 'ArrowUp' });
+      assertMenuItemTabIndexed(wrapper, 0);
+      assertMenuItemFocused(wrapper, 0);
+    });
+
+    it('should not wrap focus with ArrowDown from last', () => {
+      initializeFocus(wrapper);
+      wrapper.simulate('keyDown', { key: 'ArrowDown' });
+      wrapper.simulate('keyDown', { key: 'ArrowDown' });
+      wrapper.simulate('keyDown', { key: 'ArrowDown' });
+      assertMenuItemTabIndexed(wrapper, 3);
+      assertMenuItemFocused(wrapper, 3);
+
+      wrapper.simulate('keyDown', { key: 'ArrowDown' });
+      assertMenuItemTabIndexed(wrapper, 3);
+      assertMenuItemFocused(wrapper, 3);
+    });
   });
 });
