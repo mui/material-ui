@@ -46,7 +46,7 @@ Notice that in addition to the button styling, the button label's capitalization
 ### Using the dev tools
 
 The browser dev tools can save you a lot of time.
-The Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode:
+Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode:
 `Mui[component name]-[style rule name]-[UUID]`.
 
 Let's go back to the above demo. How can you override the button label?
@@ -239,4 +239,5 @@ Learn more about it in the [themes section](/customization/themes/#customizing-a
 
 You can also customize all instances of a component with CSS.
 We expose a `dangerouslyUseGlobalCSS` option to do so.
-Learn more about it in the [CSS in JS section](/css-in-js/advanced/#deterministic-class-names) of the documentation. It's very similar to how you would customize Bootstrap.
+Learn more about it in the [styles section](/css-in-js/advanced/#deterministic-class-names) of the documentation.
+It's very similar to how you would customize Bootstrap.

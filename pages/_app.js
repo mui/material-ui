@@ -177,7 +177,6 @@ const pages = [
   },
   {
     pathname: '/system',
-    title: 'System',
     children: [
       {
         pathname: '/system/basics',
