@@ -137,6 +137,7 @@ since we can safely use `ReactDOM.findDOMNode`. For function components you have
 to wrap your component however in `React.forwardRef`:
 
 ```diff
-- <Button component={props => <div {...props} />} />
-+ <Button component={React.forwardRef((props, ref) => <div {...props} ref={ref} />)} />
+- const MyButton = props => <div {...props} />
++ const MyButton = React.forwardRef((props, ref) => <div {...props} ref={ref} />)
+<Button component={MyButton} />
 ```
