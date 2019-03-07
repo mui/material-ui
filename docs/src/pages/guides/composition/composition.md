@@ -128,6 +128,7 @@ Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-ro
 You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).
 
 ### Caveat with refs
+
 Some components such as `ButtonBase` (and therefore `Button`) require access to the 
 underlying DOM node. This was previously done with `ReactDOM.findDOMNode(this)`.
 However `findDOMNode` was deprecated (which disqualifies its usage in react's concurrent mode)
