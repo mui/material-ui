@@ -3,7 +3,7 @@ version: 2.1
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:8.15-browsers
+    - image: circleci/node:8.15
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -23,6 +23,15 @@ commands:
       - run:
           name: Install js dependencies
           command: yarn
+  prepare_chrome_headless:
+    steps:
+      - run:
+          name: Install dependencies for Chrome Headless
+          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      
 
 jobs:
   checkout:
@@ -173,6 +182,7 @@ jobs:
             - builds.tar.gz
             # rollup snapshot
             - packages/material-ui/size-snapshot.json
+      - prepare_chrome_headless
       - run:
           name: Test umd release
           command: yarn test:umd
@@ -181,14 +191,15 @@ jobs:
     steps:
       - checkout
       - install_js
+      - prepare_chrome_headless
       - run:
           name: Tests real browsers
           command: yarn test:karma
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:8.15-browsers
-      - image: selenium/standalone-chrome:3.141.59
+      - image: circleci/node:8.15
+      - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
       - install_js
