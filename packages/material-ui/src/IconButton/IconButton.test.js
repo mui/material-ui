@@ -105,16 +105,16 @@ describe('<IconButton />', () => {
   describe('prop: edge', () => {
     it('edge="start" should render the right class', () => {
       const wrapper = mount(<IconButton edge="start">book</IconButton>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeLeft), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeStart), true);
     });
     it('edge="end" should render the right class', () => {
       const wrapper = mount(<IconButton edge="end">book</IconButton>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeRight), true);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeEnd), true);
     });
     it('no edge should render the right class', () => {
       const wrapper = mount(<IconButton>book</IconButton>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeLeft), false);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeRight), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeStart), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeEnd), false);
     });
   });
 
