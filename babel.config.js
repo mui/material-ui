@@ -134,15 +134,7 @@ module.exports = {
       ],
     },
     esm: {
-      plugins: [
-        ...productionPlugins,
-        [
-          '@babel/plugin-transform-runtime',
-          {
-            useESModules: true,
-          },
-        ],
-      ],
+      plugins: productionPlugins,
     },
     es: {
       plugins: productionPlugins,
