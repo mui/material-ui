@@ -17,14 +17,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-  },
   grow: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: 20,
+    marginRight: theme.spacing(2),
   },
   title: {
     display: 'none',
@@ -48,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   searchIcon: {
-    width: theme.spacing(9),
+    width: theme.spacing(7),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -58,13 +55,9 @@ const useStyles = makeStyles(theme => ({
   },
   inputRoot: {
     color: 'inherit',
-    width: '100%',
   },
   inputInput: {
-    paddingTop: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(10),
+    padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -157,7 +150,7 @@ function PrimarySearchAppBar() {
   );
 
   return (
-    <div className={classes.root}>
+    <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <IconButton

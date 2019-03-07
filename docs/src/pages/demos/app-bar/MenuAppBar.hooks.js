@@ -12,17 +12,17 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  grow: {
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: 20,
-  },
-});
+}));
 
 function MenuAppBar() {
   const classes = useStyles();
@@ -55,7 +55,7 @@ function MenuAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h6" color="inherit" className={classes.title}>
             Photos
           </Typography>
           {auth && (

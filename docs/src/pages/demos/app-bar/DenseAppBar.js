@@ -7,14 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: 10,
+    marginRight: theme.spacing(2),
   },
-};
+});
 
 function DenseAppBar(props) {
   const { classes } = props;

@@ -39,8 +39,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
+    marginRight: theme.spacing(2),
   },
   hide: {
     display: 'none',
@@ -99,11 +98,12 @@ function PersistentDrawerLeft() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar disableGutters={!open}>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="Open drawer"
             onClick={handleDrawerOpen}
+            edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />

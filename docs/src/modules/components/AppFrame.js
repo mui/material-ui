@@ -93,7 +93,7 @@ const styles = theme => ({
     flex: '1 1 auto',
   },
   title: {
-    marginLeft: 24,
+    marginLeft: theme.spacing(2),
     flex: '0 1 auto',
   },
   appBar: {

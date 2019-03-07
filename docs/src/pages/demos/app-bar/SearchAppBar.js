@@ -12,15 +12,13 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const styles = theme => ({
   root: {
-    width: '100%',
-  },
-  grow: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: 20,
+    marginRight: theme.spacing(2),
   },
   title: {
+    flexGrow: 1,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -41,7 +39,7 @@ const styles = theme => ({
     },
   },
   searchIcon: {
-    width: theme.spacing(9),
+    width: theme.spacing(7),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -51,13 +49,9 @@ const styles = theme => ({
   },
   inputRoot: {
     color: 'inherit',
-    width: '100%',
   },
   inputInput: {
-    paddingTop: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(10),
+    padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -86,7 +80,6 @@ function SearchAppBar(props) {
           <Typography className={classes.title} variant="h6" color="inherit" noWrap>
             Material-UI
           </Typography>
-          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
