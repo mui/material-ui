@@ -68,7 +68,7 @@ class MenuAppBar extends React.Component<Props, State> {
         <AppBar position="static">
           <Toolbar>
             <IconButton
-              edge="left"
+              edge="start"
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
@@ -81,7 +81,7 @@ class MenuAppBar extends React.Component<Props, State> {
             {auth && (
               <div>
                 <IconButton
-                  edge="right"
+                  edge="end"
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
                   onClick={this.handleMenu}

@@ -28,7 +28,7 @@ function ButtonAppBar(props: Props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="left" className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>

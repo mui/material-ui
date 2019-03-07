@@ -103,12 +103,12 @@ describe('<IconButton />', () => {
   });
 
   describe('prop: edge', () => {
-    it('edge="left" should render the right class', () => {
-      const wrapper = mount(<IconButton edge="left">book</IconButton>);
+    it('edge="start" should render the right class', () => {
+      const wrapper = mount(<IconButton edge="start">book</IconButton>);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeLeft), true);
     });
-    it('edge="right" should render the right class', () => {
-      const wrapper = mount(<IconButton edge="right">book</IconButton>);
+    it('edge="end" should render the right class', () => {
+      const wrapper = mount(<IconButton edge="end">book</IconButton>);
       assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeRight), true);
     });
     it('no edge should render the right class', () => {

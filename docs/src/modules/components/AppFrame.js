@@ -215,7 +215,7 @@ class AppFrame extends React.Component {
                 </Typography>
                 <Toolbar>
                   <IconButton
-                    edge="left"
+                    edge="start"
                     color="inherit"
                     aria-label="Open drawer"
                     onClick={this.handleDrawerOpen}
@@ -305,7 +305,7 @@ class AppFrame extends React.Component {
                   </Tooltip>
                   <Tooltip title={t('github')} enterDelay={300}>
                     <IconButton
-                      edge="right"
+                      edge="end"
                       component="a"
                       color="inherit"
                       href="https://github.com/mui-org/material-ui"

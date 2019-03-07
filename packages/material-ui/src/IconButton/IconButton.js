@@ -36,15 +36,15 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
-  /* Styles applied to the root element if `edge="left"`. */
-  edgeLeft: {
+  /* Styles applied to the root element if `edge="start"`. */
+  edgeStart: {
     marginLeft: -12,
     '$sizeSmall&': {
       marginLeft: -3,
     },
   },
-  /* Styles applied to the root element if `edge="right"`. */
-  edgeRight: {
+  /* Styles applied to the root element if `edge="end"`. */
+  edgeEnd: {
     marginRight: -12,
     '$sizeSmall&': {
       marginRight: -3,
@@ -107,8 +107,8 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          [classes.edgeLeft]: edge === 'left',
-          [classes.edgeRight]: edge === 'right',
+          [classes.edgeStart]: edge === 'start',
+          [classes.edgeEnd]: edge === 'end',
         },
         className,
       )}
@@ -169,7 +169,7 @@ IconButton.propTypes = {
    * side of the icon with content above or below, without ruining the border
    * size and shape).
    */
-  edge: PropTypes.oneOf(['left', 'right', false]),
+  edge: PropTypes.oneOf(['start', 'end', false]),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.

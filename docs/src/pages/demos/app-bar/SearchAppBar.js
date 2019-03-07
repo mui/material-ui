@@ -76,7 +76,7 @@ function SearchAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <IconButton
-            edge="left"
+            edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="Open drawer"

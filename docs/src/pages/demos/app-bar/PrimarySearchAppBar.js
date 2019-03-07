@@ -166,7 +166,7 @@ class PrimarySearchAppBar extends React.Component {
         <AppBar position="static">
           <Toolbar>
             <IconButton
-              edge="left"
+              edge="start"
               className={classes.menuButton}
               color="inherit"
               aria-label="Open drawer"
@@ -201,7 +201,7 @@ class PrimarySearchAppBar extends React.Component {
                 </Badge>
               </IconButton>
               <IconButton
-                edge="right"
+                edge="end"
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
                 onClick={this.handleProfileMenuOpen}

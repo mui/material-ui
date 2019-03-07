@@ -68,7 +68,7 @@ function ColorDemo(props) {
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
             <IconButton
-              edge="left"
+              edge="start"
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"

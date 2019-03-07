@@ -82,7 +82,7 @@ class FabIntegrationSnackbar extends React.Component {
           <AppBar position="static" color="primary">
             <Toolbar>
               <IconButton
-                edge="left"
+                edge="start"
                 className={classes.menuButton}
                 color="inherit"
                 aria-label="Menu"
