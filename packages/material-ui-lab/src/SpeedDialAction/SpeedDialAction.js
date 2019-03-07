@@ -14,9 +14,9 @@ export const styles = theme => ({
   button: {
     margin: 8,
     color: theme.palette.text.secondary,
-    backgroundColor: emphasize(theme.palette.background.default, 0.12),
+    backgroundColor: theme.palette.common.white,
     '&:hover': {
-      backgroundColor: emphasize(theme.palette.background.default, 0.15),
+      backgroundColor: emphasize(theme.palette.common.white, 0.15),
     },
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
