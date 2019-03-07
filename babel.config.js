@@ -86,6 +86,7 @@ module.exports = {
       ],
     },
     'docs-development': {
+      presets: ['next/babel'],
       plugins: [
         'babel-plugin-preval',
         [
@@ -105,6 +106,7 @@ module.exports = {
       ],
     },
     'docs-production': {
+      presets: ['next/babel'],
       plugins: [
         'babel-plugin-preval',
         [
@@ -119,12 +121,6 @@ module.exports = {
             },
             transformFunctions: ['require', 'require.context'],
             resolvePath,
-          },
-        ],
-        [
-          '@babel/plugin-transform-runtime',
-          {
-            corejs: 2,
           },
         ],
         'babel-plugin-transform-react-constant-elements',
