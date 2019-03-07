@@ -71,7 +71,7 @@ They are easy to debug in development and as short as possible in production:
 - production: `.jss12`
 
 If you don't like this default behavior, you can change it.
-JSS relies on the concept of [class name generator](http://cssinjs.org/js-api/#generate-your-own-class-names).
+JSS relies on the concept of [class name generator](http://cssinjs.org/jss-api/#generate-your-own-class-names).
 
 ### Global CSS
 
@@ -99,7 +99,7 @@ The CSS injected by Material-UI to style a component has the highest specificity
 
 You might, however, also want to override these styles, for example with styled-components.
 If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
-By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/jss-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML comment
 
@@ -210,7 +210,7 @@ There are different use cases:
 - Providing a class name generator.
 - [Providing a Sheets registry.](/customization/css-in-js/#sheets-registry)
 - Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left/) or changing the [CSS injection order](/customization/css-in-js/#css-injection-order).
-Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.
+Read [the JSS documentation](http://cssinjs.org/jss-api/) to learn more about the options available.
 Here is an example:
 
 ```jsx
@@ -271,7 +271,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Returns
 
@@ -320,7 +320,7 @@ export default MyComponent
 
 ### `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](http://cssinjs.org/js-api/#generate-your-own-class-names).
+A function which returns [a class name generator function](http://cssinjs.org/jss-api/#generate-your-own-class-names).
 
 #### Arguments
 
