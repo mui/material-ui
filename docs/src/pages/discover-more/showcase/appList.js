@@ -643,7 +643,7 @@ const appList = [
     title: 'Material Blog',
     description:
       'An open source blog with a UI built entirely using material-ui v1. ' +
-      'Check out the theming page, which leverages `MuiThemeProvider` ' +
+      'Check out the theming page, which leverages `ThemeProvider` ' +
       'to allow for live theme changes.',
     link: 'https://jdupont.github.io/',
     source: 'https://github.com/jdupont/jdupont.github.io',

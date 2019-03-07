@@ -17,31 +17,6 @@ ReactDOM.render(<Demo />, document.querySelector('#root'));
   };
 }
 
-function hooksDemo(demoData) {
-  return {
-    dependencies: getDependencies(demoData.raw, { reactVersion: 'next' }),
-    files: {
-      'index.js': `
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Demo from './demo';
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-
-const theme = createMuiTheme();
-
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Demo />
-  </ThemeProvider>,
-  document.querySelector("#root")
-);
-      `,
-      'demo.js': demoData.raw,
-    },
-  };
-}
-
 function tsDemo(demoData) {
   return {
     dependencies: getDependencies(demoData.raw, { codeLanguage: CODE_VARIANTS.TS }),
@@ -79,7 +54,6 @@ function getLanguageConfig(demoData) {
     case CODE_VARIANTS.TS:
       return tsDemo(demoData);
     case CODE_VARIANTS.HOOK:
-      return hooksDemo(demoData);
     case CODE_VARIANTS.JS:
       return jsDemo(demoData);
     default:

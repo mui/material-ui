@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import warning from 'warning';
 import { getDynamicStyles } from 'jss';
 import mergeClasses from './mergeClasses';
 import multiKeyStore from './multiKeyStore';
-import ThemeContext from './ThemeContext';
+import useTheme from './useTheme';
 import { StylesContext } from './StylesProvider';
 import { increment } from './indexCounter';
 import getStylesCreator from './getStylesCreator';
@@ -184,7 +183,7 @@ function useSynchronousEffect(func, values) {
         output();
       }
     },
-    values,
+    values, // eslint-disable-line react-hooks/exhaustive-deps
   );
 }
 
@@ -194,25 +193,22 @@ function makeStyles(stylesOrCreator, options = {}) {
     name,
     // Help with debuggability.
     classNamePrefix: classNamePrefixOption,
-    defaultTheme: defaultThemeOption,
     Component,
+    defaultTheme = noopTheme,
     ...stylesOptions2
   } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
-  const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string';
-  const defaultTheme = defaultThemeOption || noopTheme;
-
   const classNamePrefix = name || classNamePrefixOption || 'Hook';
-
   stylesCreator.options = {
     index: increment(),
     name,
     meta: classNamePrefix,
     classNamePrefix,
   };
+  const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string';
 
   return (props = {}) => {
-    const theme = listenToTheme ? React.useContext(ThemeContext) || defaultTheme : defaultTheme;
+    const theme = (listenToTheme ? useTheme() : null) || defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
       ...stylesOptions2,

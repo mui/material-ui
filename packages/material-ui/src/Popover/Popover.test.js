@@ -310,7 +310,7 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = (anchorOrigin, renderShallow) => {
+      openPopover = anchorOrigin => {
         if (!anchorEl) {
           anchorEl = window.document.createElement('div');
         }
@@ -326,7 +326,7 @@ describe('<Popover />', () => {
 
         return new Promise(resolve => {
           const component = (
-            <Popover
+            <Popover.Original
               {...defaultProps}
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
@@ -337,14 +337,10 @@ describe('<Popover />', () => {
               }}
             >
               <div />
-            </Popover>
+            </Popover.Original>
           );
-          wrapper = renderShallow ? shallow(component) : mount(component);
+          wrapper = mount(component);
           wrapper.setProps({ open: true });
-
-          if (renderShallow) {
-            resolve();
-          }
         });
       };
 
@@ -435,16 +431,12 @@ describe('<Popover />', () => {
     });
 
     it("should use anchorEl's parent body as container if container not provided", async () => {
-      openPopover(undefined, true).then(() => {
-        assert.strictEqual(
-          wrapper
-            .dive()
-            .find(Modal)
-            .props().container,
-          window.document.body,
-          "should use anchorEl's parent body as Modal container",
-        );
-      });
+      await openPopover(undefined);
+      assert.strictEqual(
+        wrapper.find(Modal).props().container,
+        window.document.body,
+        "should use anchorEl's parent body as Modal container",
+      );
     });
 
     it('should not pass container to Modal if container or anchorEl props are not provided', () => {
@@ -465,7 +457,7 @@ describe('<Popover />', () => {
       openPopover = anchorOrigin =>
         new Promise(resolve => {
           wrapper = mount(
-            <Popover
+            <Popover.Original
               {...defaultProps}
               anchorReference="anchorPosition"
               anchorPosition={anchorPosition}
@@ -477,7 +469,7 @@ describe('<Popover />', () => {
               }}
             >
               <div />
-            </Popover>,
+            </Popover.Original>,
           );
           wrapper.setProps({ open: true });
         });
@@ -499,9 +491,8 @@ describe('<Popover />', () => {
     });
 
     it('should be positioned according to the passed coordinates', async () => {
-      openPopover().then(() => {
-        expectPopover(anchorPosition.top, anchorPosition.left);
-      });
+      await openPopover();
+      expectPopover(anchorPosition.top, anchorPosition.left);
     });
 
     it('should ignore the anchorOrigin prop when being positioned', async () => {
@@ -558,9 +549,8 @@ describe('<Popover />', () => {
     });
 
     it('should not try to change the position', async () => {
-      openPopover().then(() => {
-        expectPopover(11, 12);
-      });
+      await openPopover();
+      expectPopover(11, 12);
     });
   });
 

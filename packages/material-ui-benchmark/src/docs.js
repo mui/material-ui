@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import './bootstrap';
 import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';

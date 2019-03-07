@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import './bootstrap';
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';

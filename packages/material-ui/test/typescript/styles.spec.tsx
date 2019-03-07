@@ -3,7 +3,6 @@ import {
   createStyles,
   withStyles,
   createMuiTheme,
-  MuiThemeProvider,
   Theme,
   withTheme,
   StyleRules,
@@ -11,6 +10,7 @@ import {
   StyledComponentProps,
   WithStyles,
 } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button/Button';
 import blue from '@material-ui/core/colors/blue';
 import { WithTheme } from '@material-ui/core/styles/withTheme';
@@ -164,9 +164,9 @@ const t5 = createMuiTheme().spacing(1, 2, 3, 4, 5);
 
 function OverridesTheme() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Button>{'Overrides'}</Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

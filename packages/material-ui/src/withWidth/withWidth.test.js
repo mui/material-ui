@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { useFakeTimers, spy } from 'sinon';
+import { useFakeTimers } from 'sinon';
 import EventListener from 'react-event-listener';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
@@ -8,13 +8,6 @@ import createBreakpoints from '../styles/createBreakpoints';
 import createMuiTheme from '../styles/createMuiTheme';
 
 const Empty = () => <div />;
-// eslint-disable-next-line react/prefer-stateless-function
-class EmptyClass extends React.Component {
-  render() {
-    return <div />;
-  }
-}
-const EmptyClassWithWidth = withWidth()(EmptyClass);
 const EmptyWithWidth = withWidth()(Empty);
 
 const breakpoints = createBreakpoints({});
@@ -44,15 +37,6 @@ describe('withWidth', () => {
     it('should be able to override it', () => {
       const wrapper = mount(<EmptyWithWidth width="xl" />);
       assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
-    });
-  });
-
-  describe('prop: innerRef', () => {
-    it('should provide a ref on the inner component', () => {
-      const handleRef = spy();
-
-      mount(<EmptyClassWithWidth innerRef={handleRef} />);
-      assert.strictEqual(handleRef.callCount, 1);
     });
   });
 

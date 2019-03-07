@@ -5,9 +5,9 @@ import {
   Theme,
   withStyles,
   WithStyles,
-  MuiThemeProvider,
   createMuiTheme,
 } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Input from '@material-ui/core/Input';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -145,19 +145,19 @@ function CustomizedInputs(props: Props) {
         variant="outlined"
         id="custom-css-outlined-input"
       />
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <TextField
           className={classes.margin}
-          label="MuiThemeProvider"
+          label="ThemeProvider"
           id="mui-theme-provider-standard-input"
         />
         <TextField
           className={classes.margin}
-          label="MuiThemeProvider"
+          label="ThemeProvider"
           variant="outlined"
           id="mui-theme-provider-outlined-input"
         />
-      </MuiThemeProvider>
+      </ThemeProvider>
       <FormControl className={classes.margin}>
         <InputLabel shrink htmlFor="bootstrap-input" className={classes.bootstrapFormLabel}>
           Bootstrap

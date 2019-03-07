@@ -9,6 +9,10 @@ describe('textToHash', () => {
     );
     assert.strictEqual(textToHash('Typography - Font family'), 'typography-font-family');
     assert.strictEqual(textToHash('barre d&#39;application'), 'barre-dapplication');
+    assert.strictEqual(
+      textToHash('createGenerateClassName([options]) => class name generator'),
+      'creategenerateclassname-options-class-name-generator',
+    );
   });
 
   it('should generate a unique hash', () => {

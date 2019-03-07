@@ -8,15 +8,16 @@ You can use it, but you don't have to. This styling solution is [interoperable w
 
 ## Material-UI's styling solution
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the
-components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
-a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited.
+We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
+a *CSS-in-JS* solution.
+It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that this is the future:
 
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other CSS-in-JS libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+Material-UI's styling solution is inspired by many other styling libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
 - 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
@@ -35,24 +36,6 @@ npm install @material-ui/styles
 // with yarn
 yarn add @material-ui/styles
 ```
-
-### Migration for `@material-ui/core` users
-
-To switch from the default style implementation to this newest version, you need to execute the following code **before importing any** Material-UI's components:
-
-```js
-import { install } from '@material-ui/styles';
-
-install();
-```
-
-It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`).
-This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
-
-We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**.
-Behind the scenes, the `install()` function switches the styling engine the core components use.
-
-Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@material-ui/styles/ThemeProvider`. We will remove this component in v4.
 
 ## Getting started
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme({
@@ -11,9 +12,9 @@ const theme = createMuiTheme({
 
 function FontSizeTheme() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Typography>body1</Typography>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

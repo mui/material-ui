@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import {
   createMuiTheme,
   createStyles,
-  MuiThemeProvider,
   Theme,
   withStyles,
   WithStyles,
 } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
@@ -75,11 +75,11 @@ function CustomizedButtons(props: WithStyles<typeof styles>) {
       <Button variant="contained" color="primary" className={clsx(classes.margin, classes.cssRoot)}>
         Custom CSS
       </Button>
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <Button variant="contained" color="primary" className={classes.margin}>
-          MuiThemeProvider
+          ThemeProvider
         </Button>
-      </MuiThemeProvider>
+      </ThemeProvider>
       <Button
         variant="contained"
         color="primary"

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import orange from '@material-ui/core/colors/orange';
 
 const styles = theme => ({
@@ -39,9 +40,9 @@ const theme = createMuiTheme({
 
 function CustomStyles() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <CustomCheckbox />
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

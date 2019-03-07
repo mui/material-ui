@@ -208,4 +208,4 @@ Material-UI尝试实现所有这些变体。 请参阅 [支持的组件](/gettin
 
 ### 全局CSS覆盖
 
-您还可以使用CSS自定义组件的所有实例。 我们公开了一个 `dangerouslyUseGlobalCSS` 选项来执行此操作。 在文档的[CSS in JS部分](/customization/css-in-js/#global-css)中了解有关它的更多信息。 它与您自定义Bootstrap的方式非常相似。
+您还可以使用CSS自定义组件的所有实例。 我们公开了一个 `dangerouslyUseGlobalCSS` 选项来执行此操作。 在文档的[CSS-in-JS部分](/customization/css-in-js/#global-css)中了解有关它的更多信息。 它与您自定义Bootstrap的方式非常相似。

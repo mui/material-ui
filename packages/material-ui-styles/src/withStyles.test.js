@@ -17,10 +17,12 @@ describe('withStyles', () => {
 
   before(() => {
     mount = createMount();
+    global.disableShallowSupport = true;
   });
 
   after(() => {
     mount.cleanUp();
+    global.disableShallowSupport = false;
   });
 
   it('hoist statics', () => {
@@ -32,7 +34,6 @@ describe('withStyles', () => {
 
   it('hoists mui internals', () => {
     assert.strictEqual(isMuiElement(<Input />, ['Input']), true);
-
     // the imported Input is decorated with @material-ui/core/styles
     const StyledInput = withStyles({})(Input);
 

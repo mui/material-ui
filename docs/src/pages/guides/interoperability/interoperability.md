@@ -7,7 +7,7 @@ but you should find that the principals applied here can be adapted to other lib
 
 We have provided examples for the following styling solutions:
 
-- [Raw CSS](#raw-css)
+- [Plain CSS](#plain-css)
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
@@ -16,11 +16,11 @@ We have provided examples for the following styling solutions:
 - [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
-## Raw CSS
+## Plain CSS
 
 Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been working for decades?
 
-**RawCssButton.css**
+**PlainCssButton.css**
 ```css
 .button {
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -33,30 +33,30 @@ Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been worki
 }
 ```
 
-**RawCssButton.js**
+**PlainCssButton.js**
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-function RawCssButton() {
+function PlainCssButton() {
   return (
     <div>
       <Button>
         Material-UI
       </Button>
       <Button className="button">
-        Raw CSS
+        Plain CSS
       </Button>
     </div>
   );
 }
 
-export default RawCssButton;
+export default PlainCssButton;
 ```
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ## Styled Components
 
@@ -100,12 +100,12 @@ export default StyledComponents;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ### Controlling Priority
 
 Both styled-components and JSS inject their styles at the bottom of the `<head>`.
-One approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+One approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name.
 Use this to ensure styled-components styles are applied before JSS styles.
@@ -120,7 +120,7 @@ For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `p
 you will likely need to affect the Drawer's child `paper` element.
 
 However, this is not the root element of `Drawer` and therefore styled-components customization as above will not work.
-You can workaround this by using [stable JSS class names](/customization/css-in-js/#global-css), but the most reliable approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
+You can workaround this by using [stable JSS class names](/css-in-js/advanced#deterministic-class-names), but the most reliable approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself. It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" properties that should not be passed on to the underlying component.
 
@@ -160,7 +160,7 @@ export default StyledComponentsDeep;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ### ThemeProvider
 
@@ -243,7 +243,7 @@ export default CssModulesButton;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ## Emotion
 
@@ -288,7 +288,7 @@ export default EmotionCSS;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ### Styled Components
 
@@ -329,7 +329,7 @@ export default EmotionStyled;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4q8o1y975w)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ### Deeper elements
 
@@ -338,7 +338,7 @@ For example, if you attempt to style a [Drawer](/demos/drawers/) with variant `p
 you will likely need to affect the Drawer's child `paper` element.
 
 However, this is not the root element of `Drawer` and therefore styled-components customization as above will not work.
-You can workaround this by using [stable JSS class names](/customization/css-in-js/#global-css), but the most reliable approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
+You can workaround this by using [stable JSS class names](/css-in-js/advanced#deterministic-class-names), but the most reliable approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself.
 
@@ -378,7 +378,7 @@ export default EmotionDeep;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xj81yqx504)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ### ThemeProvider
 
@@ -391,7 +391,7 @@ the color manipulations, the transitions, the media queries, and more.
 
 Explicitly providing the class names to the component is too much effort?
 Rest assured, we provide an option to make the class names **deterministic** for quick
-prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css).
+prototyping: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced#deterministic-class-names).
 
 **GlobalCssButton.css**
 ```css
@@ -426,7 +426,7 @@ export default GlobalCssButton;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
 
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 ## React JSS
 
@@ -474,7 +474,7 @@ export default injectSheet(styles)(ReactJssButton);
 
 ## CSS to MUI webpack Loader
 
-The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order component. It provides a few hooks for accessing the theme from within the CSS.
+The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the `withStyles()` higher-order component. It provides a few hooks for accessing the theme from within the CSS.
 
 **webpack.config.js**
 ```js
@@ -570,4 +570,4 @@ export default GlamorButton;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
-**Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js/#css-injection-order), as in the demo.
+**Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.

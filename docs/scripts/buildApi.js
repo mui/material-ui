@@ -8,7 +8,7 @@ import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui/src/styles/getStylesCreator';
+import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
 
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {
