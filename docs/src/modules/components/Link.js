@@ -8,20 +8,19 @@ import MuiLink from '@material-ui/core/Link';
 import { connect } from 'react-redux';
 import compose from 'docs/src/modules/utils/compose';
 
-function NextComposed(props) {
-  const { as, href, innerRef, prefetch, ...other } = props;
+const NextComposed = React.forwardRef(function NextComposed(props, ref) {
+  const { as, href, prefetch, ...other } = props;
 
   return (
     <NextLink href={href} prefetch={prefetch} as={as}>
-      <a ref={innerRef} {...other} />
+      <a ref={ref} {...other} />
     </NextLink>
   );
-}
+});
 
 NextComposed.propTypes = {
   as: PropTypes.string,
   href: PropTypes.string,
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   prefetch: PropTypes.bool,
 };
 
@@ -47,7 +46,7 @@ const Link = React.forwardRef(function Link(props, ref) {
   }
 
   if (naked) {
-    return <NextComposed className={className} innerRef={ref} {...other} />;
+    return <NextComposed className={className} ref={ref} {...other} />;
   }
 
   return <MuiLink component={NextComposed} className={className} ref={ref} {...other} />;
