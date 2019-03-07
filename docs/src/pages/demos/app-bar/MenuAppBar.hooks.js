@@ -20,7 +20,6 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -12,
     marginRight: 20,
   },
 });
@@ -53,7 +52,7 @@ function MenuAppBar() {
       </FormGroup>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton edge="left" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>

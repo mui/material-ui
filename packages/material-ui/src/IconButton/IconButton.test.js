@@ -102,19 +102,19 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('prop: align', () => {
-    it('align="left" should render the right class', () => {
-      const wrapper = mount(<IconButton align="left">book</IconButton>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignLeft), true);
+  describe('prop: edge', () => {
+    it('edge="left" should render the right class', () => {
+      const wrapper = mount(<IconButton edge="left">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeLeft), true);
     });
-    it('align="right" should render the right class', () => {
-      const wrapper = mount(<IconButton align="right">book</IconButton>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignRight), true);
+    it('edge="right" should render the right class', () => {
+      const wrapper = mount(<IconButton edge="right">book</IconButton>);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeRight), true);
     });
-    it('no align should render the right class', () => {
+    it('no edge should render the right class', () => {
       const wrapper = mount(<IconButton>book</IconButton>);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignLeft), false);
-      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.alignRight), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeLeft), false);
+      assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.edgeRight), false);
     });
   });
 

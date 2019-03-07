@@ -12,7 +12,6 @@ const styles = createStyles({
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -18,
     marginRight: 10,
   },
 });
@@ -25,7 +24,7 @@ function DenseAppBar(props: Props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar variant="dense">
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton edge="left" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit">

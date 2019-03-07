@@ -127,7 +127,7 @@ function BottomAppBar(props: Props) {
       </Paper>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <IconButton color="inherit" aria-label="Open drawer">
+          <IconButton edge="left" color="inherit" aria-label="Open drawer">
             <MenuIcon />
           </IconButton>
           <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
@@ -137,7 +137,7 @@ function BottomAppBar(props: Props) {
             <IconButton color="inherit">
               <SearchIcon />
             </IconButton>
-            <IconButton color="inherit">
+            <IconButton edge="right" color="inherit">
               <MoreIcon />
             </IconButton>
           </div>
