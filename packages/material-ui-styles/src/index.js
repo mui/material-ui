@@ -1,5 +1,6 @@
 export { default as createGenerateClassName } from './createGenerateClassName';
 export { default as createStyles } from './createStyles';
+export { default as getThemeProps } from './getThemeProps';
 export { default as jssPreset } from './jssPreset';
 export { default as makeStyles } from './makeStyles';
 export { default as mergeClasses } from './mergeClasses';

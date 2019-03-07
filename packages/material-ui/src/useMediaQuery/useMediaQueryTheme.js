@@ -1,6 +1,5 @@
-import { useTheme } from '@material-ui/styles';
+import { useTheme, getThemeProps } from '@material-ui/styles';
 import useMediaQuery from './useMediaQuery';
-import getThemeProps from '../styles/getThemeProps';
 
 function useMediaQueryTheme(query, options) {
   const theme = useTheme();
