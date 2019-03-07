@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -7,7 +5,7 @@ import { createMount } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import unstable_useMediaQuery, { testReset } from './unstable_useMediaQuery';
+import useMediaQuery, { testReset } from './useMediaQuery';
 
 function createMatchMedia(width, listeners) {
   return query => ({
@@ -26,7 +24,7 @@ function createMatchMedia(width, listeners) {
   });
 }
 
-describe('unstable_useMediaQuery', () => {
+describe('useMediaQuery', () => {
   const listeners = [];
   let mount;
   let values;
@@ -55,7 +53,7 @@ describe('unstable_useMediaQuery', () => {
   describe('option: defaultMatches', () => {
     it('should be false by default', done => {
       const Test = () => {
-        const matches = unstable_useMediaQuery('(min-width:2000px)');
+        const matches = useMediaQuery('(min-width:2000px)');
         values(matches);
         return <span>{`${matches}`}</span>;
       };
@@ -72,7 +70,7 @@ describe('unstable_useMediaQuery', () => {
 
     it('should take the option into account', done => {
       const Test = () => {
-        const matches = unstable_useMediaQuery('(min-width:2000px)', {
+        const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
         });
         values(matches);
@@ -93,7 +91,7 @@ describe('unstable_useMediaQuery', () => {
   describe('option: noSsr', () => {
     it('should render once if the default value match the expectation', done => {
       const Test = () => {
-        const matches = unstable_useMediaQuery('(min-width:2000px)', {
+        const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: false,
         });
         values(matches);
@@ -112,7 +110,7 @@ describe('unstable_useMediaQuery', () => {
 
     it('should render twice if the default value does not match the expectation', done => {
       const Test = () => {
-        const matches = unstable_useMediaQuery('(min-width:2000px)', {
+        const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
         });
         values(matches);
@@ -131,7 +129,7 @@ describe('unstable_useMediaQuery', () => {
 
     it('should render once if the default value does not match the expectation', done => {
       const Test = () => {
-        const matches = unstable_useMediaQuery('(min-width:2000px)', {
+        const matches = useMediaQuery('(min-width:2000px)', {
           defaultMatches: true,
           noSsr: true,
         });
@@ -152,7 +150,7 @@ describe('unstable_useMediaQuery', () => {
 
   it('should try to reconcile only the first time', done => {
     const Test = () => {
-      const matches = unstable_useMediaQuery('(min-width:2000px)', {
+      const matches = useMediaQuery('(min-width:2000px)', {
         defaultMatches: true,
       });
       values(matches);
@@ -181,7 +179,7 @@ describe('unstable_useMediaQuery', () => {
 
   it('should be able to change the query dynamically', done => {
     const Test = props => {
-      const matches = unstable_useMediaQuery(props.query, {
+      const matches = useMediaQuery(props.query, {
         defaultMatches: true,
       });
       values(matches);
@@ -211,7 +209,7 @@ describe('unstable_useMediaQuery', () => {
 
   it('should observe the media query', done => {
     const Test = props => {
-      const matches = unstable_useMediaQuery(props.query);
+      const matches = useMediaQuery(props.query);
       values(matches);
       return <span>{`${matches}`}</span>;
     };

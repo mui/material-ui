@@ -1,7 +1,7 @@
 import React from 'react';
-import { ThemeProvider, useTheme } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, useTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();

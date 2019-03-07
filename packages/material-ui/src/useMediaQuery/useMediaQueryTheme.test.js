@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/styles';
@@ -7,10 +5,10 @@ import { createMount } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { testReset } from './unstable_useMediaQuery';
-import unstable_useMediaQueryTheme from './unstable_useMediaQueryTheme';
+import { testReset } from './useMediaQuery';
+import useMediaQueryTheme from './useMediaQueryTheme';
 
-describe('unstable_useMediaQueryTheme', () => {
+describe('useMediaQueryTheme', () => {
   let mount;
   let values;
 
@@ -45,7 +43,7 @@ describe('unstable_useMediaQueryTheme', () => {
 
   it('should use the ssr match media ponyfill', done => {
     function MyComponent() {
-      const matches = unstable_useMediaQueryTheme('(min-width:2000px)');
+      const matches = useMediaQueryTheme('(min-width:2000px)');
       values(matches);
       return <span>{`${matches}`}</span>;
     }
