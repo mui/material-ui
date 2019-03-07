@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
@@ -96,6 +97,10 @@ const styles = theme => ({
   },
 });
 
+const GettingStartedLink = React.forwardRef((props, ref) => {
+  return <Link href="/getting-started/installation" naked prefetch ref={ref} {...props} />;
+});
+
 class HomePage extends React.Component {
   componentDidMount() {
     if (window.location.hash !== '') {
@@ -133,9 +138,7 @@ class HomePage extends React.Component {
                   {t('strapline')}
                 </Typography>
                 <Button
-                  component={buttonProps => (
-                    <Link naked prefetch href="/getting-started/installation" {...buttonProps} />
-                  )}
+                  component={GettingStartedLink}
                   className={classes.button}
                   variant="outlined"
                   color="primary"
