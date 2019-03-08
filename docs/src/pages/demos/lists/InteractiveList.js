@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -17,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 752,
@@ -28,7 +27,7 @@ const styles = theme => ({
   title: {
     margin: theme.spacing(4, 0, 2),
   },
-});
+}));
 
 function generate(element) {
   return [0, 1, 2].map(value =>
@@ -38,137 +37,127 @@ function generate(element) {
   );
 }
 
-class InteractiveList extends React.Component {
-  state = {
-    dense: false,
-    secondary: false,
-  };
+function InteractiveList() {
+  const classes = useStyles();
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(false);
 
-  render() {
-    const { classes } = this.props;
-    const { dense, secondary } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={dense}
-                onChange={event => this.setState({ dense: event.target.checked })}
-                value="dense"
-              />
-            }
-            label="Enable dense"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={secondary}
-                onChange={event => this.setState({ secondary: event.target.checked })}
-                value="secondary"
-              />
-            }
-            label="Enable secondary text"
-          />
-        </FormGroup>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" className={classes.title}>
-              Text only
-            </Typography>
-            <div className={classes.demo}>
-              <List dense={dense}>
-                {generate(
-                  <ListItem>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? 'Secondary text' : null}
-                    />
-                  </ListItem>,
-                )}
-              </List>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" className={classes.title}>
-              Icon with text
-            </Typography>
-            <div className={classes.demo}>
-              <List dense={dense}>
-                {generate(
-                  <ListItem>
-                    <ListItemIcon>
+  return (
+    <div className={classes.root}>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={dense}
+              onChange={event => setDense(event.target.checked)}
+              value="dense"
+            />
+          }
+          label="Enable dense"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={secondary}
+              onChange={event => setSecondary(event.target.checked)}
+              value="secondary"
+            />
+          }
+          label="Enable secondary text"
+        />
+      </FormGroup>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" className={classes.title}>
+            Text only
+          </Typography>
+          <div className={classes.demo}>
+            <List dense={dense}>
+              {generate(
+                <ListItem>
+                  <ListItemText
+                    primary="Single-line item"
+                    secondary={secondary ? 'Secondary text' : null}
+                  />
+                </ListItem>,
+              )}
+            </List>
+          </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" className={classes.title}>
+            Icon with text
+          </Typography>
+          <div className={classes.demo}>
+            <List dense={dense}>
+              {generate(
+                <ListItem>
+                  <ListItemIcon>
+                    <FolderIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Single-line item"
+                    secondary={secondary ? 'Secondary text' : null}
+                  />
+                </ListItem>,
+              )}
+            </List>
+          </div>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" className={classes.title}>
+            Avatar with text
+          </Typography>
+          <div className={classes.demo}>
+            <List dense={dense}>
+              {generate(
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
                       <FolderIcon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? 'Secondary text' : null}
-                    />
-                  </ListItem>,
-                )}
-              </List>
-            </div>
-          </Grid>
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Single-line item"
+                    secondary={secondary ? 'Secondary text' : null}
+                  />
+                </ListItem>,
+              )}
+            </List>
+          </div>
         </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" className={classes.title}>
-              Avatar with text
-            </Typography>
-            <div className={classes.demo}>
-              <List dense={dense}>
-                {generate(
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? 'Secondary text' : null}
-                    />
-                  </ListItem>,
-                )}
-              </List>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" className={classes.title}>
-              Avatar with text and icon
-            </Typography>
-            <div className={classes.demo}>
-              <List dense={dense}>
-                {generate(
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? 'Secondary text' : null}
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>,
-                )}
-              </List>
-            </div>
-          </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" className={classes.title}>
+            Avatar with text and icon
+          </Typography>
+          <div className={classes.demo}>
+            <List dense={dense}>
+              {generate(
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Single-line item"
+                    secondary={secondary ? 'Secondary text' : null}
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton aria-label="Delete">
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>,
+              )}
+            </List>
+          </div>
         </Grid>
-      </div>
-    );
-  }
+      </Grid>
+    </div>
+  );
 }
 
-InteractiveList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(InteractiveList);
+export default InteractiveList;

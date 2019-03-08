@@ -1,51 +1,41 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const styles = {
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
-};
+});
 
-class LinearDeterminate extends React.Component {
-  state = {
-    completed: 0,
-  };
+function LinearDeterminate() {
+  const classes = useStyles();
+  const [completed, setCompleted] = React.useState(0);
 
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 500);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  progress = () => {
-    const { completed } = this.state;
-    if (completed === 100) {
-      this.setState({ completed: 0 });
-    } else {
-      const diff = Math.random() * 10;
-      this.setState({ completed: Math.min(completed + diff, 100) });
+  React.useEffect(() => {
+    function progress() {
+      setCompleted(oldCompleted => {
+        if (oldCompleted === 100) {
+          return 0;
+        }
+        const diff = Math.random() * 10;
+        return Math.min(oldCompleted + diff, 100);
+      });
     }
-  };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <LinearProgress variant="determinate" value={this.state.completed} />
-        <br />
-        <LinearProgress color="secondary" variant="determinate" value={this.state.completed} />
-      </div>
-    );
-  }
+    const timer = setInterval(progress, 500);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return (
+    <div className={classes.root}>
+      <LinearProgress variant="determinate" value={completed} />
+      <br />
+      <LinearProgress color="secondary" variant="determinate" value={completed} />
+    </div>
+  );
 }
 
-LinearDeterminate.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LinearDeterminate);
+export default LinearDeterminate;

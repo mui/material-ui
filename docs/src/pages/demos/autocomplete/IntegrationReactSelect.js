@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types, react/jsx-handler-names */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Select from 'react-select';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
@@ -54,7 +53,7 @@ const suggestions = [
   label: suggestion.label,
 }));
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: 250,
@@ -100,7 +99,7 @@ const styles = theme => ({
   divider: {
     height: theme.spacing(2),
   },
-});
+}));
 
 function NoOptionsMessage(props) {
   return (
@@ -209,70 +208,62 @@ const components = {
   ValueContainer,
 };
 
-class IntegrationReactSelect extends React.Component {
-  state = {
-    single: null,
-    multi: null,
-  };
+function IntegrationReactSelect() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [single, setSingle] = React.useState(null);
+  const [multi, setMulti] = React.useState(null);
 
-  handleChange = name => value => {
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  render() {
-    const { classes, theme } = this.props;
-
-    const selectStyles = {
-      input: base => ({
-        ...base,
-        color: theme.palette.text.primary,
-        '& input': {
-          font: 'inherit',
-        },
-      }),
-    };
-
-    return (
-      <div className={classes.root}>
-        <NoSsr>
-          <Select
-            classes={classes}
-            styles={selectStyles}
-            options={suggestions}
-            components={components}
-            value={this.state.single}
-            onChange={this.handleChange('single')}
-            placeholder="Search a country (start with a)"
-            isClearable
-          />
-          <div className={classes.divider} />
-          <Select
-            classes={classes}
-            styles={selectStyles}
-            textFieldProps={{
-              label: 'Label',
-              InputLabelProps: {
-                shrink: true,
-              },
-            }}
-            options={suggestions}
-            components={components}
-            value={this.state.multi}
-            onChange={this.handleChange('multi')}
-            placeholder="Select multiple countries"
-            isMulti
-          />
-        </NoSsr>
-      </div>
-    );
+  function handleChangeSingle(value) {
+    setSingle(value);
   }
+
+  function handleChangeMulti(value) {
+    setMulti(value);
+  }
+
+  const selectStyles = {
+    input: base => ({
+      ...base,
+      color: theme.palette.text.primary,
+      '& input': {
+        font: 'inherit',
+      },
+    }),
+  };
+
+  return (
+    <div className={classes.root}>
+      <NoSsr>
+        <Select
+          classes={classes}
+          styles={selectStyles}
+          options={suggestions}
+          components={components}
+          value={single}
+          onChange={handleChangeSingle}
+          placeholder="Search a country (start with a)"
+        />
+        <div className={classes.divider} />
+        <Select
+          classes={classes}
+          styles={selectStyles}
+          textFieldProps={{
+            label: 'Label',
+            InputLabelProps: {
+              shrink: true,
+            },
+          }}
+          options={suggestions}
+          components={components}
+          value={multi}
+          onChange={handleChangeMulti}
+          placeholder="Select multiple countries"
+          isMulti
+        />
+      </NoSsr>
+    </div>
+  );
 }
 
-IntegrationReactSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(IntegrationReactSelect);
+export default IntegrationReactSelect;

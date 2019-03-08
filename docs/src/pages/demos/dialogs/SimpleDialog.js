@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
@@ -15,95 +15,80 @@ import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
-const styles = {
+const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
     color: blue[600],
   },
-};
+});
 
-class SimpleDialog extends React.Component {
-  handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
-  };
+function SimpleDialog(props) {
+  const classes = useStyles();
+  const { onClose, selectedValue, ...other } = props;
 
-  handleListItemClick = value => {
-    this.props.onClose(value);
-  };
-
-  render() {
-    const { classes, onClose, selectedValue, ...other } = this.props;
-
-    return (
-      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-        <div>
-          <List>
-            {emails.map(email => (
-              <ListItem button onClick={() => this.handleListItemClick(email)} key={email}>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <PersonIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={email} />
-              </ListItem>
-            ))}
-            <ListItem button onClick={() => this.handleListItemClick('addAccount')}>
-              <ListItemAvatar>
-                <Avatar>
-                  <AddIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="add account" />
-            </ListItem>
-          </List>
-        </div>
-      </Dialog>
-    );
+  function handleClose() {
+    onClose(selectedValue);
   }
+
+  function handleListItemClick(value) {
+    onClose(value);
+  }
+
+  return (
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
+      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <List>
+        {emails.map(email => (
+          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <PersonIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={email} />
+          </ListItem>
+        ))}
+        <ListItem button onClick={() => handleListItemClick('addAccount')}>
+          <ListItemAvatar>
+            <Avatar>
+              <AddIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="add account" />
+        </ListItem>
+      </List>
+    </Dialog>
+  );
 }
 
 SimpleDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
   selectedValue: PropTypes.string,
 };
 
-const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
+function SimpleDialogDemo() {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
-class SimpleDialogDemo extends React.Component {
-  state = {
-    open: false,
-    selectedValue: emails[1],
-  };
-
-  handleClickOpen = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  handleClose = value => {
-    this.setState({ selectedValue: value, open: false });
-  };
-
-  render() {
-    return (
-      <div>
-        <Typography variant="subtitle1">Selected: {this.state.selectedValue}</Typography>
-        <br />
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Open simple dialog
-        </Button>
-        <SimpleDialogWrapped
-          selectedValue={this.state.selectedValue}
-          open={this.state.open}
-          onClose={this.handleClose}
-        />
-      </div>
-    );
+  function handleClickOpen() {
+    setOpen(true);
   }
+
+  const handleClose = value => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
+  return (
+    <div>
+      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <br />
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open simple dialog
+      </Button>
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+    </div>
+  );
 }
 
 export default SimpleDialogDemo;
