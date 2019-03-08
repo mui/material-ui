@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider, useTheme } from '@material-ui/styles';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 /**

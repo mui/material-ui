@@ -1,7 +1,7 @@
 import React from 'react';
 import mediaQuery from 'css-mediaquery';
 import { ThemeProvider } from '@material-ui/styles';
-import useMediaQueryTheme from '@material-ui/core/useMediaQuery/unstable_useMediaQueryTheme';
+import useMediaQueryTheme from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQueryTheme('@media (min-width:600px)');
