@@ -236,7 +236,7 @@ class ButtonBase extends React.Component {
   render() {
     const {
       action,
-      buttonRef: buttonRefProp,
+      buttonRef,
       centerRipple,
       children,
       classes,
@@ -305,7 +305,7 @@ class ButtonBase extends React.Component {
         onTouchStart={this.handleTouchStart}
         ref={ref => {
           setRef(this.buttonRef, ref);
-          setRef(buttonRefProp, ref);
+          setRef(buttonRef, ref);
           setRef(innerRef, ref);
         }}
         tabIndex={disabled ? '-1' : tabIndex}
