@@ -233,14 +233,6 @@ class ButtonBase extends React.Component {
     }
   };
 
-  handleRef = ref => {
-    const { buttonRef, innerRef } = this.props;
-
-    setRef(this.buttonRef, ref);
-    setRef(buttonRef, ref);
-    setRef(innerRef, ref);
-  };
-
   render() {
     const {
       action,
@@ -311,7 +303,11 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        ref={this.handleRef}
+        ref={ref => {
+          setRef(this.buttonRef, ref);
+          setRef(buttonRefProp, ref);
+          setRef(innerRef, ref);
+        }}
         tabIndex={disabled ? '-1' : tabIndex}
         {...buttonProps}
         {...other}
