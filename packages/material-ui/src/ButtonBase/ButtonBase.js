@@ -336,7 +336,7 @@ ButtonBase.propTypes = {
   action: PropTypes.func,
   /**
    * Use that property to pass a ref callback to the native button component.
-   * @deprecated
+   * @deprecated Use `ref` instead
    */
   buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
