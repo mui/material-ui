@@ -178,7 +178,7 @@ class AppFrame extends React.Component {
     const { languageMenu } = this.state;
 
     return (
-      <PageTitle>
+      <PageTitle t={t}>
         {title => {
           let disablePermanent = false;
           let navIconClassName = '';

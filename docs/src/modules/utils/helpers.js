@@ -16,6 +16,10 @@ export function titleize(string) {
 }
 
 export function pageToTitle(page) {
+  if (page.title === false) {
+    return null;
+  }
+
   if (page.title) {
     return page.title;
   }
@@ -27,6 +31,10 @@ export function pageToTitle(page) {
   }
 
   return titleize(name);
+}
+
+export function pageToTitleI18n(page, t) {
+  return t(`pages.${page.pathname}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 
 /**

@@ -7,7 +7,16 @@ import mapTranslations from 'docs/src/modules/utils/mapTranslations';
 const req = require.context('docs/translations', false, /translations.*\.json$/);
 const translations = mapTranslations(req, 'json');
 
-const getT = memoize(userLanguage => key => {
+function getPath(obj, path) {
+  if (!path || typeof path !== 'string') {
+    return null;
+  }
+
+  return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
+}
+
+const getT = memoize(userLanguage => (key, options = {}) => {
+  const { ignoreWarning = false } = options;
   const wordings = translations[userLanguage];
 
   if (!wordings) {
@@ -15,11 +24,13 @@ const getT = memoize(userLanguage => key => {
     return '…';
   }
 
-  const translation = wordings[key];
+  const translation = getPath(wordings, key);
 
   if (!translation) {
-    console.error(`Missing translation for ${userLanguage}:${key}.`);
-    return translations.en[key];
+    if (!ignoreWarning) {
+      console.error(`Missing translation for ${userLanguage}:${key}.`);
+    }
+    return getPath(translations.en, key);
   }
 
   return translation;
@@ -31,7 +42,6 @@ const mapping = {
       codeVariant: action.payload.codeVariant || state.codeVariant,
       userLanguage: action.payload.userLanguage || state.userLanguage,
     };
-    newState.t = getT(newState.userLanguage);
     return newState;
   },
 };
@@ -39,7 +49,6 @@ const mapping = {
 const initialState = {
   codeVariant: CODE_VARIANTS.JS,
   userLanguage: 'en',
-  t: getT('en'),
 };
 
 function optionsReducer(state = initialState, action) {
@@ -48,6 +57,8 @@ function optionsReducer(state = initialState, action) {
   if (mapping[action.type]) {
     newState = mapping[action.type](state, action);
   }
+
+  newState.t = getT(newState.userLanguage);
 
   return newState;
 }
