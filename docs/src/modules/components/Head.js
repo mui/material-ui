@@ -4,9 +4,11 @@ import React from 'react';
 import NextHead from 'next/head';
 import { Router, withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import compose from 'docs/src/modules/utils/compose';
 
 function Head(props) {
-  const { title, router, description } = props;
+  const { description, router, title, userLanguage } = props;
 
   return (
     <NextHead>
@@ -28,6 +30,9 @@ function Head(props) {
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/brand.png" />
       <meta property="og:ttl" content="604800" />
+      {/* Algolia */}
+      <meta name="docsearch:language" content={userLanguage} />
+      <meta name="docsearch:version" content="next" />
     </NextHead>
   );
 }
@@ -36,6 +41,7 @@ Head.propTypes = {
   description: PropTypes.string,
   router: PropTypes.object.isRequired,
   title: PropTypes.string,
+  userLanguage: PropTypes.string.isRequired,
 };
 
 Head.defaultProps = {
@@ -43,4 +49,9 @@ Head.defaultProps = {
   title: "The world's most popular React UI framework - Material-UI",
 };
 
-export default withRouter(Head);
+export default compose(
+  withRouter,
+  connect(state => ({
+    userLanguage: state.options.userLanguage,
+  })),
+)(Head);
