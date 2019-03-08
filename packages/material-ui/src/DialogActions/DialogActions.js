@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Button'; // So we don't have any override priority issue.
 
 export const styles = {
@@ -12,11 +11,13 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'flex-end',
     flex: '0 0 auto',
-    margin: '8px 4px',
+    margin: 8,
   },
-  /* Styles applied to the children. */
+  /* Styles applied to the root element if `disableActionSpacing={false}`. */
   action: {
-    margin: '0 4px',
+    '& > * + *': {
+      marginLeft: 8,
+    },
   },
 };
 
@@ -24,8 +25,18 @@ const DialogActions = React.forwardRef(function DialogActions(props, ref) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.action]: !disableActionSpacing,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
+      {children}
     </div>
   );
 });

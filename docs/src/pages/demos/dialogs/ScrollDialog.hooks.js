@@ -32,7 +32,7 @@ function ScrollDialog() {
         aria-labelledby="scroll-dialog-title"
       >
         <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
+        <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText>
             {Array.apply(null, Array(50))
               .map(

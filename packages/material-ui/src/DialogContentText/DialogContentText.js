@@ -8,15 +8,12 @@ import Typography from '../Typography';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    // Should use variant="body1" in v4
-    lineHeight: 1.5,
+    marginBottom: 16,
   },
 };
 
 const DialogContentText = React.forwardRef(function DialogContentText(props, ref) {
-  return (
-    <Typography component="p" variant="subtitle1" color="textSecondary" ref={ref} {...props} />
-  );
+  return <Typography component="p" variant="body1" color="textSecondary" ref={ref} {...props} />;
 });
 
 DialogContentText.propTypes = {
