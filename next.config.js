@@ -4,7 +4,8 @@ const withTM = require('next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
-process.env.LIB_VERSION = pkg.version;
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
+// const LANGUAGES = ['en'];
 
 module.exports = {
   webpack: (config, options) => {
@@ -16,7 +17,7 @@ module.exports = {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
-          LIB_VERSION: JSON.stringify(process.env.LIB_VERSION),
+          LIB_VERSION: JSON.stringify(pkg.version),
         },
       }),
     ]);
@@ -59,22 +60,35 @@ module.exports = {
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
+    const pages = findPages();
     const map = {};
 
-    function generateMap(pages) {
-      pages.forEach(page => {
+    // I want to disable languages generation for the pull-requests
+    // https://www.netlify.com/docs/continuous-deployment/
+    // eslint-disable-next-line no-console
+    console.log(process.env);
+
+    function traverse(pages2, userLanguage) {
+      const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
+
+      pages2.forEach(page => {
         if (!page.children) {
-          map[page.pathname] = {
+          map[`${prefix}${page.pathname}`] = {
             page: page.pathname,
+            query: {
+              userLanguage,
+            },
           };
           return;
         }
 
-        generateMap(page.children);
+        traverse(page.children, userLanguage);
       });
     }
 
-    generateMap(findPages());
+    LANGUAGES.forEach(userLanguage => {
+      traverse(pages, userLanguage);
+    });
 
     return map;
   },

@@ -75,22 +75,22 @@ class StableVersions extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <Table>
+        <Table size="small">
           <TableBody>
             {docs.map(doc => (
               <TableRow key={doc.version}>
-                <TableCell padding="dense">
+                <TableCell>
                   <Typography variant="body2">
                     {doc.version}
                     {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
                   </Typography>
                 </TableCell>
-                <TableCell padding="dense">
+                <TableCell>
                   <Link variant="body2" color="secondary" rel="nofollow" href={doc.url}>
                     Documentation
                   </Link>
                 </TableCell>
-                <TableCell padding="dense">
+                <TableCell>
                   <Link
                     variant="body2"
                     color="secondary"

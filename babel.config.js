@@ -29,11 +29,12 @@ if (process.env.BABEL_ENV === 'es') {
 
 const defaultAlias = {
   '@material-ui/core': './packages/material-ui/src',
+  '@material-ui/docs': './packages/material-ui-docs/src',
   '@material-ui/icons': './packages/material-ui-icons/src',
   '@material-ui/lab': './packages/material-ui-lab/src',
   '@material-ui/styles': './packages/material-ui-styles/src',
-  '@material-ui/utils': './packages/material-ui-utils/src',
   '@material-ui/system': './packages/material-ui-system/src',
+  '@material-ui/utils': './packages/material-ui-utils/src',
 };
 
 const productionPlugins = [
@@ -86,7 +87,6 @@ module.exports = {
       ],
     },
     'docs-development': {
-      presets: ['next/babel'],
       plugins: [
         'babel-plugin-preval',
         [

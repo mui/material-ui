@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const styles = theme => ({
   root: {

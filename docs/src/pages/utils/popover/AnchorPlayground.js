@@ -6,7 +6,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
 import green from '@material-ui/core/colors/green';
 import Typography from '@material-ui/core/Typography';

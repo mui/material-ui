@@ -39,9 +39,6 @@ const blacklistSuite = [
   'docs-getting-started-page-layout-examples',
   'docs-customization-default-theme',
 
-  // Less important
-  'docs-layouts',
-
   // Image load issue
   'docs-getting-started-page-layout-examples-album',
   'docs-getting-started-page-layout-examples-blog',
@@ -51,8 +48,9 @@ const blacklistSuite = [
   'docs-', // Home
   'docs-discover-more-showcase',
   'docs-guides',
-  'docs-style-color', // non important demo
   'docs-versions',
+  'docs-layouts',
+  'docs-style-color',
 ];
 
 const blacklistFilename = [
@@ -61,6 +59,12 @@ const blacklistFilename = [
   'docs-demos-steppers/SwipeableTextMobileStepper.png', // external img
   'docs-demos-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
+
+  // Redux isolation
+  'docs-demos-chips/ChipsPlayground.png',
+  'docs-utils-popover/AnchorPlayground.png',
+  'docs-utils-popper/ScrollPlayground.png',
+  'docs-layout-grid/InteractiveGrid.png',
 ];
 
 // Also use some of the demos to avoid code duplication.

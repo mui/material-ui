@@ -10,6 +10,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import NoSsr from '@material-ui/core/NoSsr';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
 import LanguageIcon from '@material-ui/icons/Language';
@@ -30,6 +31,7 @@ import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
 import { ACTION_TYPES, LANGUAGES } from 'docs/src/modules/constants';
 import compose from 'docs/src/modules/utils/compose';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -128,6 +130,11 @@ class AppFrame extends React.Component {
     mobileOpen: false,
   };
 
+  componentDidMount() {
+    const { canonical } = pathnameToLanguage(window.location.pathname);
+    this.canonical = canonical;
+  }
+
   handleDrawerOpen = () => {
     this.setState({ mobileOpen: true });
   };
@@ -142,14 +149,6 @@ class AppFrame extends React.Component {
 
   handleLanguageMenuClose = () => {
     this.setState({ languageMenu: null });
-  };
-
-  handleLanguageMenuItemClick = lang => () => {
-    if (lang !== this.props.userLanguage) {
-      document.cookie = `lang=${lang};path=/;max-age=31536000`;
-      window.location.reload();
-    }
-    this.handleLanguageMenuClose();
   };
 
   handleTogglePaletteType = () => {
@@ -178,7 +177,7 @@ class AppFrame extends React.Component {
     const { languageMenu } = this.state;
 
     return (
-      <PageTitle>
+      <PageTitle t={t}>
         {title => {
           let disablePermanent = false;
           let navIconClassName = '';
@@ -242,24 +241,33 @@ class AppFrame extends React.Component {
                       <LanguageIcon />
                     </IconButton>
                   </Tooltip>
-                  <Menu
-                    id="language-menu"
-                    anchorEl={languageMenu}
-                    open={Boolean(languageMenu)}
-                    onClose={this.handleLanguageMenuClose}
-                  >
-                    {languages
-                      .filter(language => LANGUAGES.indexOf(language.code) !== -1)
-                      .map(language => (
-                        <MenuItem
-                          key={language.code}
-                          selected={userLanguage === language.code}
-                          onClick={this.handleLanguageMenuItemClick(language.code)}
-                        >
-                          {language.text}
-                        </MenuItem>
-                      ))}
-                  </Menu>
+                  <NoSsr>
+                    <Menu
+                      id="language-menu"
+                      anchorEl={languageMenu}
+                      open={Boolean(languageMenu)}
+                      onClose={this.handleLanguageMenuClose}
+                    >
+                      {languages
+                        .filter(language => LANGUAGES.indexOf(language.code) !== -1)
+                        .map(language => (
+                          <MenuItem
+                            component="a"
+                            data-no-link="true"
+                            href={
+                              language.code === 'en'
+                                ? this.canonical
+                                : `/${language.code}${this.canonical}`
+                            }
+                            key={language.code}
+                            selected={userLanguage === language.code}
+                            onClick={this.handleLanguageMenuClose}
+                          >
+                            {language.text}
+                          </MenuItem>
+                        ))}
+                    </Menu>
+                  </NoSsr>
                   <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
                     <IconButton
                       color="inherit"

@@ -63,5 +63,9 @@
   "albumDescr": "Une mise en page d'album / galerie responsive avec un hero unit et un footer.",
   "pricingTitle": "Tarifs",
   "pricingDescr": "Construisez rapidement un tableau de prix pour vos clients potentiels avec cette mise en page.",
-  "expandAll": "Tout étendre"
+  "expandAll": "Tout étendre",
+  "pages": {
+    "/getting-started": "Bien démarrer",
+    "/getting-started/learn": "Apprendre"
+  }
 }

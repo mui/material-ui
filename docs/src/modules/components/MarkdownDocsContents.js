@@ -11,27 +11,24 @@ function MarkdownDocsContents(props) {
   const { children, markdownLocation: markdownLocationProp, markdown } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);
+  const { activePage } = React.useContext(PageContext);
+  let markdownLocation = markdownLocationProp || activePage.pathname;
 
-  return (
-    <PageContext.Consumer>
-      {({ activePage }) => {
-        let markdownLocation = markdownLocationProp || activePage.pathname;
+  if (!markdownLocationProp) {
+    const token = markdownLocation.split('/');
+    token.push(token[token.length - 1]);
+    markdownLocation = token.join('/');
 
-        if (!markdownLocationProp) {
-          const token = markdownLocation.split('/');
-          token.push(token[token.length - 1]);
-          markdownLocation = token.join('/');
+    if (headers.filename) {
+      markdownLocation = headers.filename;
+    } else {
+      markdownLocation = `/docs/src/pages${markdownLocation}.md`;
+    }
+  }
 
-          if (headers.filename) {
-            markdownLocation = headers.filename;
-          } else {
-            markdownLocation = `/docs/src/pages${markdownLocation}.md`;
-          }
-        }
-
-        if (headers.components.length > 0) {
-          const section = markdownLocation.split('/')[4];
-          contents.push(`
+  if (headers.components.length > 0) {
+    const section = markdownLocation.split('/')[4];
+    contents.push(`
 ## API
 
 ${headers.components
@@ -42,13 +39,10 @@ ${headers.components
       }/${Router._rewriteUrlForNextExport(kebabCase(component))})`,
   )
   .join('\n')}
-        `);
-        }
+  `);
+  }
 
-        return children({ contents, markdownLocation });
-      }}
-    </PageContext.Consumer>
-  );
+  return children({ contents, markdownLocation });
 }
 
 MarkdownDocsContents.propTypes = {

@@ -42,4 +42,4 @@ gain depth while clicked or touched.
 
 ## Chip Playground
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import JavascriptIcon from '@material-ui/docs/svgIcons/Javascript';
-import TypescriptIcon from '@material-ui/docs/svgIcons/Typescript';
+import JavaScriptIcon from '@material-ui/docs/svgIcons/JavaScript';
+import TypeScriptIcon from '@material-ui/docs/svgIcons/TypeScript';
 import HooksIcon from '@material-ui/docs/svgIcons/Hooks';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 
@@ -48,7 +48,7 @@ function DemoLanguages(props) {
           data-ga-event-category={gaEventCategory}
           data-ga-event-action="source-js"
         >
-          <JavascriptIcon />
+          <JavaScriptIcon />
         </ToggleButton>
         <ToggleButton
           className={classes.toggleButton}
@@ -58,7 +58,7 @@ function DemoLanguages(props) {
           data-ga-event-category={gaEventCategory}
           data-ga-event-action="source-ts"
         >
-          <TypescriptIcon />
+          <TypeScriptIcon />
         </ToggleButton>
         <ToggleButton
           className={classes.toggleButton}

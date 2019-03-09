@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
 import RootRef from '@material-ui/core/RootRef';
 import Typography from '@material-ui/core/Typography';
@@ -103,7 +103,7 @@ const styles = theme => ({
   },
 });
 
-class AnchorPlayground extends React.Component {
+class ScrollPlayground extends React.Component {
   state = {
     arrow: false,
     arrowRef: null,
@@ -320,8 +320,8 @@ class AnchorPlayground extends React.Component {
   }
 }
 
-AnchorPlayground.propTypes = {
+ScrollPlayground.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AnchorPlayground);
+export default withStyles(styles)(ScrollPlayground);

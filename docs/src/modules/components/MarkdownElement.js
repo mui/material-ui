@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
 import marked from 'marked';
 import { withStyles } from '@material-ui/core/styles';
-import textToHash from '@material-ui/docs/MarkdownElement/textToHash';
-import prism from './prism';
+import textToHash from 'docs/src/modules/utils/textToHash';
+import compose from 'docs/src/modules/utils/compose';
+import prism from 'docs/src/modules/components/prism';
 
 // Monkey patch to preserve non-breaking spaces
 // https://github.com/chjj/marked/blob/6b0416d10910702f73da9cb6bb3d4c8dcb7dead7/lib/marked.js#L142-L150
@@ -26,7 +28,7 @@ renderer.heading = (text, level) => {
   }
 
   // eslint-disable-next-line no-underscore-dangle
-  const escapedText = textToHash(text, global.__HASH_UNIQUE__);
+  const escapedText = textToHash(text, global.__MARKED_UNIQUE__);
 
   return (
     `
@@ -53,7 +55,15 @@ renderer.link = (href, title, text) => {
     more = ' target="_blank" rel="noopener nofollow"';
   }
 
-  return `<a href="${href}"${more}>${text}</a>`;
+  // eslint-disable-next-line no-underscore-dangle
+  const userLanguage = global.__MARKED_USER_LANGUAGE__;
+  let finalHref = href;
+
+  if (userLanguage !== 'en' && finalHref.indexOf('/') === 0) {
+    finalHref = `/${userLanguage}${finalHref}`;
+  }
+
+  return `<a href="${finalHref}"${more}>${text}</a>`;
 };
 
 const markedOptions = {
@@ -267,7 +277,10 @@ const styles = theme => ({
 });
 
 function MarkdownElement(props) {
-  const { classes, className, text, ...other } = props;
+  const { classes, className, dispatch, text, userLanguage, ...other } = props;
+
+  // eslint-disable-next-line no-underscore-dangle
+  global.__MARKED_USER_LANGUAGE__ = userLanguage;
 
   /* eslint-disable react/no-danger */
   return (
@@ -283,7 +296,14 @@ function MarkdownElement(props) {
 MarkdownElement.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  dispatch: PropTypes.func,
   text: PropTypes.string,
+  userLanguage: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles, { flip: false })(MarkdownElement);
+export default compose(
+  connect(state => ({
+    userLanguage: state.options.userLanguage,
+  })),
+  withStyles(styles, { flip: false }),
+)(MarkdownElement);

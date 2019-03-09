@@ -1,9 +1,7 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Router } from 'next/router';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,8 +10,9 @@ import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
+import compose from 'docs/src/modules/utils/compose';
 
 const styles = theme => ({
   paper: {
@@ -57,22 +56,22 @@ function renderNavItems({ pages, ...params }) {
   );
 }
 
-function reduceChildRoutes({ props, activePage, items, page, depth }) {
+function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
   if (page.displayNav === false) {
     return items;
   }
 
   if (page.children && page.children.length > 1) {
-    const title = pageToTitle(page);
+    const title = pageToTitleI18n(page, t);
     const openImmediately = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
       <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
-        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1 })}
+        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}
       </AppDrawerNavItem>,
     );
   } else {
-    const title = pageToTitle(page);
+    const title = pageToTitleI18n(page, t);
     page = page.children && page.children.length === 1 ? page.children[0] : page;
 
     items.push(
@@ -95,40 +94,27 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppDrawer(props) {
-  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
+  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen, t } = props;
+  const { activePage, pages } = React.useContext(PageContext);
 
   const drawer = (
-    <PageContext.Consumer>
-      {({ activePage, pages }) => (
-        <div className={classes.nav}>
-          <div className={classes.placeholder} />
-          <div className={classes.toolbarIe11}>
-            <div className={classes.toolbar}>
-              <Link
-                className={classes.title}
-                href="/"
-                onClick={onClose}
-                variant="h6"
-                color="inherit"
-              >
-                Material-UI
-              </Link>
-              {process.env.LIB_VERSION ? (
-                <Link
-                  color="textSecondary"
-                  variant="caption"
-                  href={Router._rewriteUrlForNextExport('/versions')}
-                >
-                  {`v${process.env.LIB_VERSION}`}
-                </Link>
-              ) : null}
-            </div>
-          </div>
-          <Divider />
-          {renderNavItems({ props, pages, activePage, depth: 0 })}
+    <div className={classes.nav}>
+      <div className={classes.placeholder} />
+      <div className={classes.toolbarIe11}>
+        <div className={classes.toolbar}>
+          <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">
+            Material-UI
+          </Link>
+          {process.env.LIB_VERSION ? (
+            <Link color="textSecondary" variant="caption" href="/versions" onClick={onClose}>
+              {`v${process.env.LIB_VERSION}`}
+            </Link>
+          ) : null}
         </div>
-      )}
-    </PageContext.Consumer>
+      </div>
+      <Divider />
+      {renderNavItems({ props, pages, activePage, depth: 0, t })}
+    </div>
   );
 
   return (
@@ -174,6 +160,12 @@ AppDrawer.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onOpen: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AppDrawer);
+export default compose(
+  connect(state => ({
+    t: state.options.t,
+  })),
+  withStyles(styles),
+)(AppDrawer);

@@ -1,47 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import url from 'url';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
-import acceptLanguage from 'accept-language';
-import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
+import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
 import { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, LANGUAGES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
 function themeSideEffect(reduxTheme) {
   setPrismTheme(reduxTheme.paletteType === 'light' ? lightTheme : darkTheme);
   document.body.dir = reduxTheme.direction;
 }
 
-acceptLanguage.languages(LANGUAGES);
-
 class SideEffectsRaw extends React.Component {
   componentDidMount() {
     const { options } = this.props;
-
-    const URL = url.parse(document.location.href, true);
-    const userLanguage =
-      URL.query.lang || acceptLanguage.get(getCookie('lang') || navigator.language);
     const codeVariant = getCookie('codeVariant');
 
-    if (
-      (userLanguage && options.userLanguage !== userLanguage) ||
-      (codeVariant && options.codeVariant !== codeVariant)
-    ) {
+    if (codeVariant && options.codeVariant !== codeVariant) {
       window.ga('set', 'dimension1', codeVariant);
-      window.ga('set', 'dimension2', userLanguage);
       this.props.dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
         payload: {
-          userLanguage,
           codeVariant,
         },
       });
     } else {
       window.ga('set', 'dimension1', CODE_VARIANTS.JS);
-      window.ga('set', 'dimension2', 'en');
     }
+
+    window.ga('set', 'dimension2', options.userLanguage);
   }
 
   render() {
