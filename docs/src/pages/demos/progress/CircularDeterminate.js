@@ -1,54 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   progress: {
     margin: theme.spacing(2),
   },
-});
+}));
 
-class CircularDeterminate extends React.Component {
-  state = {
-    completed: 0,
-  };
+function CircularDeterminate() {
+  const classes = useStyles();
+  const [progress, setProgress] = React.useState(0);
 
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 20);
-  }
+  React.useEffect(() => {
+    function tick() {
+      // reset when reaching 100%
+      setProgress(oldProgress => (oldProgress >= 100 ? 0 : oldProgress + 1));
+    }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+    const timer = setInterval(tick, 20);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-  progress = () => {
-    const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <CircularProgress
-          className={classes.progress}
-          variant="determinate"
-          value={this.state.completed}
-        />
-        <CircularProgress
-          className={classes.progress}
-          variant="determinate"
-          value={this.state.completed}
-          color="secondary"
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CircularProgress className={classes.progress} variant="determinate" value={progress} />
+      <CircularProgress
+        className={classes.progress}
+        variant="determinate"
+        value={progress}
+        color="secondary"
+      />
+    </div>
+  );
 }
 
-CircularDeterminate.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CircularDeterminate);
+export default CircularDeterminate;

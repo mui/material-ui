@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -28,7 +27,7 @@ const StyledTab = withStyles(theme => ({
   },
 }))(props => <Tab disableRipple {...props} />);
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
@@ -75,60 +74,50 @@ const styles = theme => ({
   demo2: {
     backgroundColor: '#2e1534',
   },
-});
+}));
 
-class CustomizedTabs extends React.Component {
-  state = {
-    value: 0,
-  };
+function CustomizedTabs() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Tabs
-          value={value}
-          onChange={this.handleChange}
-          classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
-        >
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 1"
-          />
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 2"
-          />
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 3"
-          />
-        </Tabs>
-        <Typography className={classes.typography}>Ant Design like with Material-UI</Typography>
-        <div className={classes.demo2}>
-          <StyledTabs value={value} onChange={this.handleChange}>
-            <StyledTab label="Workflows" />
-            <StyledTab label="Datasets" />
-            <StyledTab label="Connections" />
-          </StyledTabs>
-          <Typography className={classes.typography} />
-        </div>
-      </div>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  return (
+    <div className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
+      >
+        <Tab
+          disableRipple
+          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+          label="Tab 1"
+        />
+        <Tab
+          disableRipple
+          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+          label="Tab 2"
+        />
+        <Tab
+          disableRipple
+          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+          label="Tab 3"
+        />
+      </Tabs>
+      <Typography className={classes.typography}>Ant Design UI powered by Material-UI</Typography>
+      <div className={classes.demo2}>
+        <StyledTabs value={value} onChange={handleChange}>
+          <StyledTab label="Workflows" />
+          <StyledTab label="Datasets" />
+          <StyledTab label="Connections" />
+        </StyledTabs>
+        <Typography className={classes.typography} />
+      </div>
+    </div>
+  );
 }
 
-CustomizedTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CustomizedTabs);
+export default CustomizedTabs;

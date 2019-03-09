@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -31,7 +30,7 @@ const styles = theme => ({
   noLabel: {
     marginTop: theme.spacing(3),
   },
-});
+}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -57,25 +56,25 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name, that) {
+function getStyles(name, personName, theme) {
   return {
     fontWeight:
-      that.state.name.indexOf(name) === -1
-        ? that.props.theme.typography.fontWeightRegular
-        : that.props.theme.typography.fontWeightMedium,
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
   };
 }
 
-class MultipleSelect extends React.Component {
-  state = {
-    name: [],
-  };
+function MultipleSelect() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState([]);
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-  };
+  function handleChange(event) {
+    setPersonName(event.target.value);
+  }
 
-  handleChangeMultiple = event => {
+  function handleChangeMultiple(event) {
     const { options } = event.target;
     const value = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
@@ -83,126 +82,116 @@ class MultipleSelect extends React.Component {
         value.push(options[i].value);
       }
     }
-    this.setState({
-      name: value,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple">Name</InputLabel>
-          <Select
-            multiple
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple" />}
-            MenuProps={MenuProps}
-          >
-            {names.map(name => (
-              <MenuItem key={name} value={name} style={getStyles(name, this)}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
-          <Select
-            multiple
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple-checkbox" />}
-            renderValue={selected => selected.join(', ')}
-            MenuProps={MenuProps}
-          >
-            {names.map(name => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={this.state.name.indexOf(name) > -1} />
-                <ListItemText primary={name} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple-chip">Chip</InputLabel>
-          <Select
-            multiple
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple-chip" />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {selected.map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {names.map(name => (
-              <MenuItem key={name} value={name} style={getStyles(name, this)}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl className={clsx(classes.formControl, classes.noLabel)}>
-          <Select
-            multiple
-            displayEmpty
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple-placeholder" />}
-            renderValue={selected => {
-              if (selected.length === 0) {
-                return <em>Placeholder</em>;
-              }
-
-              return selected.join(', ');
-            }}
-            MenuProps={MenuProps}
-          >
-            <MenuItem disabled value="">
-              <em>Placeholder</em>
-            </MenuItem>
-            {names.map(name => (
-              <MenuItem key={name} value={name} style={getStyles(name, this)}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-          <InputLabel shrink htmlFor="select-multiple-native">
-            Native
-          </InputLabel>
-          <Select
-            multiple
-            native
-            value={this.state.name}
-            onChange={this.handleChangeMultiple}
-            inputProps={{
-              id: 'select-multiple-native',
-            }}
-          >
-            {names.map(name => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-    );
+    setPersonName(value);
   }
+
+  return (
+    <div className={classes.root}>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="select-multiple">Name</InputLabel>
+        <Select
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<Input id="select-multiple" />}
+          MenuProps={MenuProps}
+        >
+          {names.map(name => (
+            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+        <Select
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<Input id="select-multiple-checkbox" />}
+          renderValue={selected => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {names.map(name => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="select-multiple-chip">Chip</InputLabel>
+        <Select
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<Input id="select-multiple-chip" />}
+          renderValue={selected => (
+            <div className={classes.chips}>
+              {selected.map(value => (
+                <Chip key={value} label={value} className={classes.chip} />
+              ))}
+            </div>
+          )}
+          MenuProps={MenuProps}
+        >
+          {names.map(name => (
+            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
+        <Select
+          multiple
+          displayEmpty
+          value={personName}
+          onChange={handleChange}
+          input={<Input id="select-multiple-placeholder" />}
+          renderValue={selected => {
+            if (selected.length === 0) {
+              return <em>Placeholder</em>;
+            }
+
+            return selected.join(', ');
+          }}
+          MenuProps={MenuProps}
+        >
+          <MenuItem disabled value="">
+            <em>Placeholder</em>
+          </MenuItem>
+          {names.map(name => (
+            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel shrink htmlFor="select-multiple-native">
+          Native
+        </InputLabel>
+        <Select
+          multiple
+          native
+          value={personName}
+          onChange={handleChangeMultiple}
+          inputProps={{
+            id: 'select-multiple-native',
+          }}
+        >
+          {names.map(name => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+  );
 }
 
-MultipleSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(MultipleSelect);
+export default MultipleSelect;

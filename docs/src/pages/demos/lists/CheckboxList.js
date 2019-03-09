@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -9,21 +8,19 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-});
+}));
 
-class CheckboxList extends React.Component {
-  state = {
-    checked: [0],
-  };
+function CheckboxList() {
+  const classes = useStyles();
+  const [checked, setChecked] = React.useState([0]);
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
+  const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -33,38 +30,24 @@ class CheckboxList extends React.Component {
       newChecked.splice(currentIndex, 1);
     }
 
-    this.setState({
-      checked: newChecked,
-    });
+    setChecked(newChecked);
   };
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <List className={classes.root}>
-        {[0, 1, 2, 3].map(value => (
-          <ListItem key={value} role={undefined} dense button onClick={this.handleToggle(value)}>
-            <Checkbox
-              checked={this.state.checked.indexOf(value) !== -1}
-              tabIndex={-1}
-              disableRipple
-            />
-            <ListItemText primary={`Line item ${value + 1}`} />
-            <ListItemSecondaryAction>
-              <IconButton aria-label="Comments">
-                <CommentIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
-    );
-  }
+  return (
+    <List className={classes.root}>
+      {[0, 1, 2, 3].map(value => (
+        <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+          <Checkbox checked={checked.indexOf(value) !== -1} tabIndex={-1} disableRipple />
+          <ListItemText primary={`Line item ${value + 1}`} />
+          <ListItemSecondaryAction>
+            <IconButton aria-label="Comments">
+              <CommentIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
+    </List>
+  );
 }
 
-CheckboxList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CheckboxList);
+export default CheckboxList;

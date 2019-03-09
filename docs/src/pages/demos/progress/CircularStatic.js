@@ -1,53 +1,38 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   progress: {
     margin: theme.spacing(2),
   },
-});
+}));
 
-class CircularStatic extends React.Component {
-  state = {
-    completed: 0,
-  };
+function CircularStatic() {
+  const classes = useStyles();
+  const [completed, setCompleted] = React.useState(0);
 
-  componentDidMount() {
-    this.timer = setInterval(this.progress, 1000);
-  }
+  React.useEffect(() => {
+    function progress() {
+      setCompleted(prevCompleted => (prevCompleted >= 100 ? 0 : prevCompleted + 10));
+    }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+    const timer = setInterval(progress, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-  progress = () => {
-    const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 10 });
-  };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <CircularProgress className={classes.progress} variant="static" value={5} />
-        <CircularProgress className={classes.progress} variant="static" value={25} />
-        <CircularProgress className={classes.progress} variant="static" value={50} />
-        <CircularProgress className={classes.progress} variant="static" value={75} />
-        <CircularProgress className={classes.progress} variant="static" value={100} />
-        <CircularProgress
-          className={classes.progress}
-          variant="static"
-          value={this.state.completed}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CircularProgress className={classes.progress} variant="static" value={5} />
+      <CircularProgress className={classes.progress} variant="static" value={25} />
+      <CircularProgress className={classes.progress} variant="static" value={50} />
+      <CircularProgress className={classes.progress} variant="static" value={75} />
+      <CircularProgress className={classes.progress} variant="static" value={100} />
+      <CircularProgress className={classes.progress} variant="static" value={completed} />
+    </div>
+  );
 }
 
-CircularStatic.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CircularStatic);
+export default CircularStatic;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -20,61 +20,52 @@ TabContainer.propTypes = {
   dir: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: 500,
   },
-});
+}));
 
-class FullWidthTabs extends React.Component {
-  state = {
-    value: 0,
-  };
+function FullWidthTabs() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
-
-  render() {
-    const { classes, theme } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-          >
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
-        >
-          <TabContainer dir={theme.direction}>Item One</TabContainer>
-          <TabContainer dir={theme.direction}>Item Two</TabContainer>
-          <TabContainer dir={theme.direction}>Item Three</TabContainer>
-        </SwipeableViews>
-      </div>
-    );
+  function handleChange(event, newValue) {
+    setValue(newValue);
   }
+
+  function handleChangeIndex(index) {
+    setValue(index);
+  }
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+        >
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabContainer dir={theme.direction}>Item One</TabContainer>
+        <TabContainer dir={theme.direction}>Item Two</TabContainer>
+        <TabContainer dir={theme.direction}>Item Three</TabContainer>
+      </SwipeableViews>
+    </div>
+  );
 }
 
-FullWidthTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(FullWidthTabs);
+export default FullWidthTabs;
