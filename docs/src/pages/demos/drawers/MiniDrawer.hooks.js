@@ -40,7 +40,6 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   menuButton: {
-    marginLeft: 12,
     marginRight: 36,
   },
   hide: {
@@ -104,11 +103,12 @@ function MiniDrawer() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar disableGutters={!open}>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="Open drawer"
             onClick={handleDrawerOpen}
+            edge="start"
             className={clsx(classes.menuButton, {
               [classes.hide]: open,
             })}

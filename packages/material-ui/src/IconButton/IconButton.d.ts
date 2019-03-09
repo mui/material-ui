@@ -5,6 +5,7 @@ import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../Overr
 
 declare const IconButton: ExtendButtonBase<{
   props: {
+    edge?: 'start' | 'end' | false;
     color?: PropTypes.Color;
     disabled?: boolean;
     disableRipple?: boolean;
@@ -16,6 +17,8 @@ declare const IconButton: ExtendButtonBase<{
 
 export type IconButtonClassKey =
   | 'root'
+  | 'edgeStart'
+  | 'edgeEnd'
   | 'colorInherit'
   | 'colorPrimary'
   | 'colorSecondary'

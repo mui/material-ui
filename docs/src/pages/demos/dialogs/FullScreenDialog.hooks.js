@@ -13,14 +13,15 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   appBar: {
     position: 'relative',
   },
-  flex: {
+  title: {
+    marginLeft: theme.spacing(2),
     flex: 1,
   },
-});
+}));
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -46,10 +47,10 @@ function FullScreenDialog() {
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton color="inherit" onClick={handleClose} aria-label="Close">
+            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="Close">
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.flex}>
+            <Typography variant="h6" color="inherit" className={classes.title}>
               Sound
             </Typography>
             <Button color="inherit" onClick={handleClose}>

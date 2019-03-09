@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   menuButton: {
-    marginLeft: -12,
     marginRight: 20,
   },
   button: {
@@ -77,7 +76,12 @@ function FabIntegrationSnackbar() {
       <div className={classes.appFrame}>
         <AppBar position="static" color="primary">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">

@@ -25,7 +25,6 @@ const styles = theme => ({
     height: 24,
   },
   menuButton: {
-    marginLeft: -12,
     marginRight: 20,
   },
   code: {
@@ -68,7 +67,12 @@ function ColorDemo(props) {
         <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">

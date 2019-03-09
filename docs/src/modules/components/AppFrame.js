@@ -93,7 +93,7 @@ const styles = theme => ({
     flex: '1 1 auto',
   },
   title: {
-    marginLeft: 24,
+    marginLeft: theme.spacing(2),
     flex: '0 1 auto',
   },
   appBar: {
@@ -215,6 +215,7 @@ class AppFrame extends React.Component {
                 </Typography>
                 <Toolbar>
                   <IconButton
+                    edge="start"
                     color="inherit"
                     aria-label="Open drawer"
                     onClick={this.handleDrawerOpen}
@@ -304,6 +305,7 @@ class AppFrame extends React.Component {
                   </Tooltip>
                   <Tooltip title={t('github')} enterDelay={300}>
                     <IconButton
+                      edge="end"
                       component="a"
                       color="inherit"
                       href="https://github.com/mui-org/material-ui"

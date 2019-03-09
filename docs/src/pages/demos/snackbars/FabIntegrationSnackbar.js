@@ -23,7 +23,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   menuButton: {
-    marginLeft: -12,
     marginRight: 20,
   },
   button: {
@@ -82,7 +81,12 @@ class FabIntegrationSnackbar extends React.Component {
         <div className={classes.appFrame}>
           <AppBar position="static" color="primary">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Menu"
+              >
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" color="inherit">

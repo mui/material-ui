@@ -13,18 +13,17 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  grow: {
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
+});
 
 class MenuAppBar extends React.Component {
   state = {
@@ -61,15 +60,21 @@ class MenuAppBar extends React.Component {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
+            <Typography variant="h6" color="inherit" className={classes.title}>
               Photos
             </Typography>
             {auth && (
               <div>
                 <IconButton
+                  edge="end"
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
                   onClick={this.handleMenu}

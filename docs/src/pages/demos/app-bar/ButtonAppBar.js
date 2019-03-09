@@ -8,18 +8,17 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  grow: {
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
+});
 
 function ButtonAppBar(props) {
   const { classes } = props;
@@ -27,10 +26,10 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h6" color="inherit" className={classes.title}>
             News
           </Typography>
           <Button color="inherit">Login</Button>

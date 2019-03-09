@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   menuButton: {
-    marginRight: 20,
+    marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -93,6 +93,7 @@ function ResponsiveDrawer(props) {
           <IconButton
             color="inherit"
             aria-label="Open drawer"
+            edge="start"
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >

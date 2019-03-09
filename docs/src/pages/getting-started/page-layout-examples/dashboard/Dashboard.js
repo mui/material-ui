@@ -50,7 +50,6 @@ const styles = theme => ({
     }),
   },
   menuButton: {
-    marginLeft: 12,
     marginRight: 36,
   },
   menuButtonHidden: {
@@ -120,8 +119,9 @@ class Dashboard extends React.Component {
           position="absolute"
           className={clsx(classes.appBar, this.state.open && classes.appBarShift)}
         >
-          <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
+          <Toolbar className={classes.toolbar}>
             <IconButton
+              edge="start"
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}

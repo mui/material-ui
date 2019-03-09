@@ -38,9 +38,8 @@ const useStyles = makeStyles(theme => ({
     }),
     marginRight: drawerWidth,
   },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
+  title: {
+    flexGrow: 1,
   },
   hide: {
     display: 'none',
@@ -99,18 +98,19 @@ function PersistentDrawerRight() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar disableGutters={!open}>
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap className={classes.title}>
+            Persistent drawer
+          </Typography>
           <IconButton
             color="inherit"
             aria-label="Open drawer"
+            edge="end"
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" noWrap>
-            Persistent drawer
-          </Typography>
         </Toolbar>
       </AppBar>
       <main

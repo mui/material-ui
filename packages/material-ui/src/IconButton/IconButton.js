@@ -36,6 +36,20 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the root element if `edge="start"`. */
+  edgeStart: {
+    marginLeft: -12,
+    '$sizeSmall&': {
+      marginLeft: -3,
+    },
+  },
+  /* Styles applied to the root element if `edge="end"`. */
+  edgeEnd: {
+    marginRight: -12,
+    '$sizeSmall&': {
+      marginRight: -3,
+    },
+  },
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
@@ -83,7 +97,7 @@ export const styles = theme => ({
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(props, ref) {
-  const { children, classes, className, color, disabled, size, ...other } = props;
+  const { edge, children, classes, className, color, disabled, size, ...other } = props;
 
   return (
     <ButtonBase
@@ -93,6 +107,8 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
+          [classes.edgeStart]: edge === 'start',
+          [classes.edgeEnd]: edge === 'end',
         },
         className,
       )}
@@ -147,6 +163,13 @@ IconButton.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   */
+  edge: PropTypes.oneOf(['start', 'end', false]),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
