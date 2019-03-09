@@ -14,7 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoFrame from 'docs/src/modules/components/DemoFrame';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';

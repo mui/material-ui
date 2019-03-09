@@ -4,8 +4,8 @@ const withTM = require('next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
-// const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
-const LANGUAGES = ['en'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
+// const LANGUAGES = ['en'];
 
 module.exports = {
   webpack: (config, options) => {
@@ -63,26 +63,31 @@ module.exports = {
     const pages = findPages();
     const map = {};
 
-    function traverse(pages2, language) {
-      const prefix = language === 'en' ? '' : `/${language}`;
+    // I want to disable languages generation for the pull-requests
+    // https://www.netlify.com/docs/continuous-deployment/
+    // eslint-disable-next-line no-console
+    console.log(process.env);
+
+    function traverse(pages2, userLanguage) {
+      const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach(page => {
         if (!page.children) {
           map[`${prefix}${page.pathname}`] = {
             page: page.pathname,
             query: {
-              language,
+              userLanguage,
             },
           };
           return;
         }
 
-        traverse(page.children, language);
+        traverse(page.children, userLanguage);
       });
     }
 
-    LANGUAGES.forEach(language => {
-      traverse(pages, language);
+    LANGUAGES.forEach(userLanguage => {
+      traverse(pages, userLanguage);
     });
 
     return map;

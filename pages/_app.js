@@ -370,7 +370,7 @@ function findActivePage(currentPages, router) {
 class MyApp extends App {
   constructor(props) {
     super();
-    this.redux = initRedux(props.reduxServerState || {});
+    this.redux = initRedux(props.pageProps.reduxServerState);
     this.pageContext = getPageContext();
   }
 
@@ -410,11 +410,15 @@ class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = () => {
+MyApp.getInitialProps = ({ ctx }) => {
   let pageProps = {};
 
   if (!process.browser) {
-    const redux = initRedux({});
+    const redux = initRedux({
+      options: {
+        userLanguage: ctx.query.userLanguage,
+      },
+    });
     pageProps = {
       // No need to include other initial Redux state because when it
       // initialises on the client-side it'll create it again anyway

@@ -29,7 +29,7 @@ async function run() {
 
     traverse(pages);
 
-    await fse.writeFile(translationsFilename, JSON.stringify(output, null, 2));
+    await fse.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
   } catch (err) {
     console.log(err);
     throw err;

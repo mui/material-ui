@@ -87,7 +87,6 @@ module.exports = {
       ],
     },
     'docs-development': {
-      presets: ['next/babel'],
       plugins: [
         'babel-plugin-preval',
         [

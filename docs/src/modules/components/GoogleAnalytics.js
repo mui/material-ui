@@ -1,4 +1,5 @@
 import React from 'react';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // So we can write code like:
 //
@@ -36,7 +37,8 @@ class GoogleAnalytics extends React.Component {
   componentDidMount() {
     // Wait for the title to be updated.
     setTimeout(() => {
-      window.ga('set', { page: window.location.pathname });
+      const { canonical } = pathnameToLanguage(window.location.pathname);
+      window.ga('set', { page: canonical });
       window.ga('send', { hitType: 'pageview' });
     });
 

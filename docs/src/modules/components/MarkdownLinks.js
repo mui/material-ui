@@ -1,5 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 async function handleClick(event) {
   const activeElement = document.activeElement;
@@ -8,12 +9,13 @@ async function handleClick(event) {
   if (
     activeElement.nodeName !== 'A' ||
     activeElement.getAttribute('target') === '_blank' ||
+    activeElement.getAttribute('data-no-link') === 'true' ||
     activeElement.getAttribute('href').indexOf('/') !== 0
   ) {
     return;
   }
 
-  // Ignore click for new tab / new window behavior
+  // Ignore click for new tab/new window behavior
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -26,7 +28,12 @@ async function handleClick(event) {
   }
 
   event.preventDefault();
-  const success = await Router.push(activeElement.getAttribute('href'));
+
+  const as = activeElement.getAttribute('href');
+  const { canonical } = pathnameToLanguage(as);
+  const href = canonical;
+
+  const success = await Router.push(href, as);
   if (!success) {
     return;
   }

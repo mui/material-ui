@@ -4,7 +4,7 @@ import warning from 'warning';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Demo from 'docs/src/modules/components/Demo';
@@ -90,7 +90,7 @@ function MarkdownDocs(props) {
 
   const headers = getHeaders(markdown);
   // eslint-disable-next-line no-underscore-dangle
-  global.__HASH_UNIQUE__ = {};
+  global.__MARKED_UNIQUE__ = {};
 
   return (
     <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>

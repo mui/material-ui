@@ -15,6 +15,8 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
+const warnOnce = {};
+
 const getT = memoize(userLanguage => (key, options = {}) => {
   const { ignoreWarning = false } = options;
   const wordings = translations[userLanguage];
@@ -27,8 +29,10 @@ const getT = memoize(userLanguage => (key, options = {}) => {
   const translation = getPath(wordings, key);
 
   if (!translation) {
-    if (!ignoreWarning) {
-      console.error(`Missing translation for ${userLanguage}:${key}.`);
+    const fullKey = `${userLanguage}:${key}`;
+    if (!ignoreWarning && !warnOnce[fullKey]) {
+      console.error(`Missing translation for ${fullKey}.`);
+      warnOnce[fullKey] = true;
     }
     return getPath(translations.en, key);
   }
@@ -46,13 +50,15 @@ const mapping = {
   },
 };
 
-const initialState = {
-  codeVariant: CODE_VARIANTS.JS,
-  userLanguage: 'en',
-};
+function optionsReducer(state = {}, action) {
+  let newState = { ...state };
 
-function optionsReducer(state = initialState, action) {
-  let newState = state;
+  if (!newState.codeVariant) {
+    newState.codeVariant = CODE_VARIANTS.JS;
+  }
+  if (!newState.userLanguage) {
+    newState.userLanguage = 'en';
+  }
 
   if (mapping[action.type]) {
     newState = mapping[action.type](state, action);

@@ -1,7 +1,7 @@
 import warning from 'warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 
 export function titleize(string) {
   warning(
@@ -124,4 +124,20 @@ export function getDependencies(raw, options = {}) {
 export function getCookie(name) {
   const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
   return document.cookie.replace(regex, '$1');
+}
+
+export function pathnameToLanguage(pathname) {
+  const userLanguage = pathname.substring(1, 3);
+
+  if (LANGUAGES.includes(userLanguage) && pathname.indexOf(`/${userLanguage}/`) === 0) {
+    return {
+      userLanguage,
+      canonical: userLanguage === 'en' ? pathname : pathname.substring(3),
+    };
+  }
+
+  return {
+    userLanguage: 'en',
+    canonical: pathname,
+  };
 }

@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import textToHash from '@material-ui/docs/MarkdownElement/textToHash';
+import textToHash from 'docs/src/modules/utils/textToHash';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
 

@@ -1,9 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Router } from 'next/router';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -109,11 +106,7 @@ function AppDrawer(props) {
             Material-UI
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link
-              color="textSecondary"
-              variant="caption"
-              href={Router._rewriteUrlForNextExport('/versions')}
-            >
+            <Link color="textSecondary" variant="caption" href="/versions" onClick={onClose}>
               {`v${process.env.LIB_VERSION}`}
             </Link>
           ) : null}

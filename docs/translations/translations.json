@@ -77,6 +77,8 @@
   "seeMore": "See more",
   "copySource": "Copy the source",
   "stackblitz": "Edit in StackBlitz (JS only)",
+  "headTitle": "The world's most popular React UI framework - Material-UI",
+  "headDescription": "React components for faster and easier web development. Build your own design system, or start with Material Design.",
   "pages": {
     "/getting-started": "Getting Started",
     "/getting-started/installation": "Installation",

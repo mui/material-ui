@@ -23,23 +23,12 @@ const appList = [
     index: 30,
   },
   {
-    title: 'Serasa Consumidor',
-    description:
-      'Consulte seu CPF e Score grátis rápido e fácil. Simule e consiga empréstimo com taxas que ' +
-      'cabem no seu bolso. Saiba como limpar seu nome, acompanhe dicas sobre finanças pessoais e ' +
-      'monitore seu CPF 24h por dia. 🇧🇷',
-    image: 'serasaconsumidor.jpg',
-    link: 'https://www.serasaconsumidor.com.br/',
-    similarWebVisits: 18100,
-    index: 34,
-  },
-  {
     title: 'Better Business Bureau',
     description:
       'Better Business Bureau helps United States consumers find businesses and charities they ' +
       'can trust.',
     image: 'bbb.jpg',
-    link: 'https://bbb.org/',
+    link: 'https://www.bbb.org/',
     similarWebVisits: 11000,
     index: 30,
   },
@@ -119,7 +108,6 @@ const appList = [
     description: 'Beautiful Stock Photos for $1.',
     image: 'onepixel.jpg',
     link: 'https://www.onepixel.com/',
-    similarWebVisits: 552,
     index: 26,
   },
   {
@@ -227,7 +215,7 @@ const appList = [
       "India's Largest online marketing service provider, " +
       'with more than 200K advertising options, and more than 1M satisfied customers.',
     image: 'themediaant.jpg',
-    link: 'https://themediaant.com/',
+    link: 'https://www.themediaant.com/',
     similarWebVisits: 112,
     index: 30,
   },
@@ -262,8 +250,9 @@ const appList = [
     title: 'LessWrong',
     description: 'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
-    link: 'https://lesswrong.com/',
-    index: 30,
+    link: 'https://www.lesswrong.com/',
+    similarWebVisits: 774,
+    index: 38,
   },
   {
     title: 'Fizix',
@@ -286,7 +275,7 @@ const appList = [
       'Connect your hotel, B&B and apartment with Europe’s #1 flight OTA ' +
       'and distribute it to millions of travellers.',
     image: 'odigeo.jpg',
-    link: 'https://odigeoconnect.com/',
+    link: 'https://www.odigeoconnect.com/',
     index: 30,
   },
   {
@@ -312,7 +301,7 @@ const appList = [
     description:
       'Oneplanetcrowd is Europe’s leading sustainable crowdfunding platform for People & Planet.',
     image: 'oneplanetcrowd.jpg',
-    link: 'https://oneplanetcrowd.com/en',
+    link: 'https://www.oneplanetcrowd.com/en',
     index: 30,
   },
   {
@@ -402,7 +391,7 @@ const appList = [
     title: 'Roast',
     description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
-    link: 'https://roast.io/',
+    link: 'https://www.roast.io/',
     index: 30,
   },
   {
@@ -435,7 +424,7 @@ const appList = [
       'Metafact is a place to verify knowledge via the world’s top experts. ' +
       'It’s a platform to ask questions, learn the facts and share the truth.',
     image: 'metafact.jpg',
-    link: 'metafact.io/',
+    link: 'https://metafact.io/',
     index: 30,
   },
   {
@@ -507,7 +496,7 @@ const appList = [
     title: 'One Shot Move',
     description: 'An LA based moving company.',
     image: 'oneshotmove.jpg',
-    link: 'https://oneshotmove.com/',
+    link: 'https://www.oneshotmove.com/',
     index: 30,
   },
   {
@@ -516,7 +505,7 @@ const appList = [
       'Fluxguard monitors Web site changes for defacement & tamper protection, visual ' +
       'regression testing, synthetic transaction monitoring, and more.',
     image: 'fluxguard.jpg',
-    link: 'https://www.fluxguard.com/',
+    link: 'https://fluxguard.com/',
     index: 30,
   },
   {
@@ -607,15 +596,6 @@ const appList = [
     image: 'code-typing-tutor.png',
     link: 'https://code-typing-tutor.com/',
     index: 29,
-  },
-  {
-    title: 'Team SC',
-    description:
-      'The site of a cognitive neuroscience research group, ' +
-      'with a carefully designed interface and animation. 🇨🇳',
-    image: 'sc.bnu.edu.cn.jpg',
-    link: 'http://sc.bnu.edu.cn/',
-    index: 13,
   },
   {
     title: 'npm registry browser',

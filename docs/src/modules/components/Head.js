@@ -8,7 +8,13 @@ import { connect } from 'react-redux';
 import compose from 'docs/src/modules/utils/compose';
 
 function Head(props) {
-  const { description, router, title, userLanguage } = props;
+  const {
+    t,
+    description = t('headDescription'),
+    router,
+    title = t('headTitle'),
+    userLanguage,
+  } = props;
 
   return (
     <NextHead>
@@ -40,18 +46,15 @@ function Head(props) {
 Head.propTypes = {
   description: PropTypes.string,
   router: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   title: PropTypes.string,
   userLanguage: PropTypes.string.isRequired,
-};
-
-Head.defaultProps = {
-  description: "React Components that Implement Google's Material Design.",
-  title: "The world's most popular React UI framework - Material-UI",
 };
 
 export default compose(
   withRouter,
   connect(state => ({
+    t: state.options.t,
     userLanguage: state.options.userLanguage,
   })),
 )(Head);

@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
-import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import compose from 'docs/src/modules/utils/compose';
