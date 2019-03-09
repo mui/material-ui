@@ -77,7 +77,7 @@ describe('<Breadcrumbs />', () => {
     assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 1);
   });
 
-  it('should expand', () => {
+  it('should expand when `BreadcrumbCollapsed` is clicked', () => {
     const wrapper = shallow(
       <Breadcrumbs>
         <span />

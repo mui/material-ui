@@ -7,8 +7,6 @@ import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
-import { setRef } from '../utils/reactHelpers';
-import withForwardedRef from '../utils/withForwardedRef';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -221,162 +219,162 @@ export const styles = theme => {
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends React.Component {
-  handleDeleteIconClick = event => {
-    // Stop the event from bubbling up to the `Chip`
-    event.stopPropagation();
-    const { onDelete } = this.props;
-    if (onDelete) {
-      onDelete(event);
-    }
-  };
+const Chip = React.forwardRef(function Chip(props, ref) {
+  const {
+    avatar: avatarProp,
+    classes,
+    className: classNameProp,
+    clickable: clickableProp,
+    color,
+    component: Component,
+    deleteIcon: deleteIconProp,
+    icon: iconProp,
+    label,
+    onClick,
+    onDelete,
+    onKeyDown,
+    onKeyUp,
+    variant,
+    ...other
+  } = props;
 
-  handleKeyDown = event => {
-    const { onKeyDown } = this.props;
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+  const chipRef = React.useRef(null);
 
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
+  const handleDeleteIconClick = React.useCallback(
+    event => {
+      // Stop the event from bubbling up to the `Chip`
+      event.stopPropagation();
+      if (onDelete) {
+        onDelete(event);
+      }
+    },
+    [onDelete],
+  );
 
-    const key = event.key;
-    if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
-      event.preventDefault();
-    }
-  };
+  const handleKeyDown = React.useCallback(
+    event => {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
 
-  handleKeyUp = event => {
-    const { onClick, onDelete, onKeyUp } = this.props;
+      // Ignore events from children of `Chip`.
+      if (event.currentTarget !== event.target) {
+        return;
+      }
 
-    if (onKeyUp) {
-      onKeyUp(event);
-    }
+      const key = event.key;
+      if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
+        event.preventDefault();
+      }
+    },
+    [onKeyDown],
+  );
 
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
+  const handleKeyUp = React.useCallback(
+    event => {
+      if (onKeyUp) {
+        onKeyUp(event);
+      }
 
-    const key = event.key;
-    if (onClick && (key === ' ' || key === 'Enter')) {
-      onClick(event);
-    } else if (onDelete && key === 'Backspace') {
-      onDelete(event);
-    } else if (key === 'Escape' && this.chipRef) {
-      this.chipRef.blur();
-    }
-  };
+      // Ignore events from children of `Chip`.
+      if (event.currentTarget !== event.target) {
+        return;
+      }
 
-  handleRef = ref => {
-    this.chipRef = ref;
-    setRef(this.props.innerRef, ref);
-  };
+      const key = event.key;
+      if (onClick && (key === ' ' || key === 'Enter')) {
+        onClick(event);
+      } else if (onDelete && key === 'Backspace') {
+        onDelete(event);
+      } else if (key === 'Escape' && chipRef) {
+        chipRef.current.blur();
+      }
+    },
+    [onClick, onDelete, onKeyUp],
+  );
 
-  render() {
-    const {
-      avatar: avatarProp,
-      classes,
-      className: classNameProp,
-      clickable: clickableProp,
-      color,
-      component: Component,
-      deleteIcon: deleteIconProp,
-      icon: iconProp,
-      innerRef,
-      label,
-      onClick,
-      onDelete,
-      onKeyDown,
-      onKeyUp,
-      variant,
-      ...other
-    } = this.props;
+  const clickable = clickableProp !== false && onClick ? true : clickableProp;
 
-    const clickable = clickableProp !== false && onClick ? true : clickableProp;
-    const className = clsx(
-      classes.root,
-      {
-        [classes[`color${capitalize(color)}`]]: color !== 'default',
-        [classes.clickable]: clickable,
-        [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
-        [classes.deletable]: onDelete,
-        [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
-        [classes.outlined]: variant === 'outlined',
-        [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
-        [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
-      },
-      classNameProp,
-    );
+  const className = clsx(
+    classes.root,
+    {
+      [classes[`color${capitalize(color)}`]]: color !== 'default',
+      [classes.clickable]: clickable,
+      [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
+      [classes.deletable]: onDelete,
+      [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
+      [classes.outlined]: variant === 'outlined',
+      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+    },
+    classNameProp,
+  );
 
-    let deleteIcon = null;
-    if (onDelete) {
-      const customClasses = {
-        [classes[`deleteIconColor${capitalize(color)}`]]:
-          color !== 'default' && variant !== 'outlined',
-        [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
-          color !== 'default' && variant === 'outlined',
-      };
+  let deleteIcon = null;
+  if (onDelete) {
+    const customClasses = {
+      [classes[`deleteIconColor${capitalize(color)}`]]:
+        color !== 'default' && variant !== 'outlined',
+      [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
+        color !== 'default' && variant === 'outlined',
+    };
 
-      deleteIcon =
-        deleteIconProp && React.isValidElement(deleteIconProp) ? (
-          React.cloneElement(deleteIconProp, {
-            className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
-            onClick: this.handleDeleteIconClick,
-          })
-        ) : (
-          <CancelIcon
-            className={clsx(classes.deleteIcon, customClasses)}
-            onClick={this.handleDeleteIconClick}
-          />
-        );
-    }
-
-    let avatar = null;
-    if (avatarProp && React.isValidElement(avatarProp)) {
-      avatar = React.cloneElement(avatarProp, {
-        className: clsx(classes.avatar, avatarProp.props.className, {
-          [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
-        }),
-        childrenClassName: clsx(classes.avatarChildren, avatarProp.props.childrenClassName),
-      });
-    }
-
-    let icon = null;
-    if (iconProp && React.isValidElement(iconProp)) {
-      icon = React.cloneElement(iconProp, {
-        className: clsx(classes.icon, iconProp.props.className, {
-          [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
-        }),
-      });
-    }
-
-    warning(
-      !avatar || !icon,
-      'Material-UI: the Chip component can not handle the avatar ' +
-        'and the icon property at the same time. Pick one.',
-    );
-
-    return (
-      <Component
-        role={clickable || onDelete ? 'button' : undefined}
-        className={className}
-        tabIndex={clickable || onDelete ? 0 : undefined}
-        onClick={onClick}
-        onKeyDown={this.handleKeyDown}
-        onKeyUp={this.handleKeyUp}
-        ref={this.handleRef}
-        {...other}
-      >
-        {avatar || icon}
-        <span className={classes.label}>{label}</span>
-        {deleteIcon}
-      </Component>
-    );
+    deleteIcon =
+      deleteIconProp && React.isValidElement(deleteIconProp) ? (
+        React.cloneElement(deleteIconProp, {
+          className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
+          onClick: handleDeleteIconClick,
+        })
+      ) : (
+        <CancelIcon
+          className={clsx(classes.deleteIcon, customClasses)}
+          onClick={handleDeleteIconClick}
+        />
+      );
   }
-}
+
+  let avatar = null;
+  if (avatarProp && React.isValidElement(avatarProp)) {
+    avatar = React.cloneElement(avatarProp, {
+      className: clsx(classes.avatar, avatarProp.props.className, {
+        [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
+      }),
+      childrenClassName: clsx(classes.avatarChildren, avatarProp.props.childrenClassName),
+    });
+  }
+
+  let icon = null;
+  if (iconProp && React.isValidElement(iconProp)) {
+    icon = React.cloneElement(iconProp, {
+      className: clsx(classes.icon, iconProp.props.className, {
+        [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
+      }),
+    });
+  }
+
+  warning(
+    !avatar || !icon,
+    'Material-UI: the Chip component can not handle the avatar ' +
+      'and the icon property at the same time. Pick one.',
+  );
+
+  return (
+    <Component
+      role={clickable || onDelete ? 'button' : undefined}
+      className={className}
+      tabIndex={clickable || onDelete ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
+      ref={ref}
+      {...other}
+    >
+      {avatar || icon}
+      <span className={classes.label}>{label}</span>
+      {deleteIcon}
+    </Component>
+  );
+});
 
 Chip.propTypes = {
   /**
@@ -423,11 +421,6 @@ Chip.propTypes = {
    */
   icon: PropTypes.element,
   /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * The content of the label.
    */
   label: PropTypes.node,
@@ -460,4 +453,4 @@ Chip.defaultProps = {
   variant: 'default',
 };
 
-export default withStyles(styles, { name: 'MuiChip' })(withForwardedRef(Chip));
+export default withStyles(styles, { name: 'MuiChip' })(Chip);

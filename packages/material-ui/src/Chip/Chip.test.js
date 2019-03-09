@@ -388,7 +388,7 @@ describe('<Chip />', () => {
       it('should unfocus when a esc key is pressed', () => {
         const wrapper = mount(<Chip />);
         const handleBlur = spy();
-        wrapper.find('Chip').instance().chipRef.blur = handleBlur;
+        wrapper.setProps({ onBlur: handleBlur });
         wrapper.find('div').simulate('keyUp', {
           preventDefault: () => {},
           key: 'Escape',

@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unused-prop-types */
-
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '../styles';
@@ -32,10 +31,8 @@ const styles = theme => ({
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
-class CssBaseline extends React.Component {
-  render() {
-    return this.props.children;
-  }
+function CssBaseline(props) {
+  return props.children;
 }
 
 CssBaseline.propTypes = {
@@ -43,10 +40,6 @@ CssBaseline.propTypes = {
    * You can wrap a node.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  classes: PropTypes.object.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {

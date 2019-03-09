@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
-import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -56,57 +55,62 @@ export const styles = theme => ({
   },
 });
 
-class BottomNavigationAction extends React.Component {
-  handleChange = event => {
-    const { onChange, value, onClick } = this.props;
+const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(props, ref) {
+  const {
+    classes,
+    className,
+    icon,
+    label,
+    onChange,
+    onClick,
+    selected,
+    showLabel,
+    value,
+    ...other
+  } = props;
 
-    if (onChange) {
-      onChange(event, value);
-    }
+  const handleChange = React.useCallback(
+    event => {
+      if (onChange) {
+        onChange(event, value);
+      }
 
-    if (onClick) {
-      onClick(event);
-    }
-  };
+      if (onClick) {
+        onClick(event);
+      }
+    },
+    [onChange, onClick, value],
+  );
 
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      icon,
-      label,
-      onChange,
-      onClick,
-      selected,
-      showLabel: showLabelProp,
-      value,
-      ...other
-    } = this.props;
-
-    const className = clsx(
-      classes.root,
-      {
-        [classes.selected]: selected,
-        [classes.iconOnly]: !showLabelProp && !selected,
-      },
-      classNameProp,
-    );
-
-    const labelClassName = clsx(classes.label, {
-      [classes.selected]: selected,
-      [classes.iconOnly]: !showLabelProp && !selected,
-    });
-
-    return (
-      <ButtonBase className={className} focusRipple onClick={this.handleChange} {...other}>
-        <span className={classes.wrapper}>
-          {icon}
-          <span className={labelClassName}>{label}</span>
+  return (
+    <ButtonBase
+      ref={ref}
+      className={clsx(
+        classes.root,
+        {
+          [classes.selected]: selected,
+          [classes.iconOnly]: !showLabel && !selected,
+        },
+        className,
+      )}
+      focusRipple
+      onClick={handleChange}
+      {...other}
+    >
+      <span className={classes.wrapper}>
+        {icon}
+        <span
+          className={clsx(classes.label, {
+            [classes.selected]: selected,
+            [classes.iconOnly]: !showLabel && !selected,
+          })}
+        >
+          {label}
         </span>
-      </ButtonBase>
-    );
-  }
-}
+      </span>
+    </ButtonBase>
+  );
+});
 
 BottomNavigationAction.propTypes = {
   /**
@@ -127,11 +131,6 @@ BottomNavigationAction.propTypes = {
    * The icon element.
    */
   icon: PropTypes.node,
-  /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The label element.
    */
@@ -160,6 +159,4 @@ BottomNavigationAction.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigationAction' })(
-  withForwardedRef(BottomNavigationAction),
-);
+export default withStyles(styles, { name: 'MuiBottomNavigationAction' })(BottomNavigationAction);

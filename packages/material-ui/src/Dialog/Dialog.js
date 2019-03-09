@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
-import withForwardedRef from '../utils/withForwardedRef';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import { duration } from '../styles/transitions';
@@ -136,123 +135,125 @@ export const styles = theme => ({
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-class Dialog extends React.Component {
-  handleMouseDown = event => {
-    this.mouseDownTarget = event.target;
-  };
+const Dialog = React.forwardRef(function Dialog(props, ref) {
+  const {
+    BackdropProps,
+    children,
+    classes,
+    className,
+    disableBackdropClick,
+    disableEscapeKeyDown,
+    fullScreen,
+    fullWidth,
+    maxWidth,
+    onBackdropClick,
+    onClose,
+    onEnter,
+    onEntered,
+    onEntering,
+    onEscapeKeyDown,
+    onExit,
+    onExited,
+    onExiting,
+    open,
+    PaperComponent,
+    PaperProps = {},
+    scroll,
+    TransitionComponent,
+    transitionDuration,
+    TransitionProps,
+    ...other
+  } = props;
 
-  handleBackdropClick = event => {
-    // Ignore the events not coming from the "backdrop"
-    // We don't want to close the dialog when clicking the dialog content.
-    if (event.target !== event.currentTarget) {
-      return;
-    }
+  const mouseDownTarget = React.useRef(null);
 
-    // Make sure the event starts and ends on the same DOM element.
-    if (event.target !== this.mouseDownTarget) {
-      return;
-    }
+  const handleMouseDown = React.useCallback(event => {
+    mouseDownTarget.current = event.target;
+  }, []);
 
-    this.mouseDownTarget = null;
+  const handleBackdropClick = React.useCallback(
+    event => {
+      // Ignore the events not coming from the "backdrop"
+      // We don't want to close the dialog when clicking the dialog content.
+      if (event.target !== event.currentTarget) {
+        return;
+      }
 
-    if (this.props.onBackdropClick) {
-      this.props.onBackdropClick(event);
-    }
+      // Make sure the event starts and ends on the same DOM element.
+      if (event.target !== mouseDownTarget.current) {
+        return;
+      }
 
-    if (!this.props.disableBackdropClick && this.props.onClose) {
-      this.props.onClose(event, 'backdropClick');
-    }
-  };
+      mouseDownTarget.current = null;
 
-  render() {
-    const {
-      BackdropProps,
-      children,
-      classes,
-      className,
-      disableBackdropClick,
-      disableEscapeKeyDown,
-      fullScreen,
-      fullWidth,
-      innerRef,
-      maxWidth,
-      onBackdropClick,
-      onClose,
-      onEnter,
-      onEntered,
-      onEntering,
-      onEscapeKeyDown,
-      onExit,
-      onExited,
-      onExiting,
-      open,
-      PaperComponent,
-      PaperProps = {},
-      scroll,
-      TransitionComponent,
-      transitionDuration,
-      TransitionProps,
-      ...other
-    } = this.props;
+      if (onBackdropClick) {
+        onBackdropClick(event);
+      }
 
-    return (
-      <Modal
-        className={clsx(classes.root, className)}
-        BackdropProps={{
-          transitionDuration,
-          ...BackdropProps,
-        }}
-        closeAfterTransition
-        disableBackdropClick={disableBackdropClick}
-        disableEscapeKeyDown={disableEscapeKeyDown}
-        onEscapeKeyDown={onEscapeKeyDown}
-        onClose={onClose}
-        open={open}
-        ref={innerRef}
-        role="dialog"
-        {...other}
+      if (!disableBackdropClick && onClose) {
+        onClose(event, 'backdropClick');
+      }
+    },
+    [disableBackdropClick, onBackdropClick, onClose],
+  );
+
+  return (
+    <Modal
+      className={clsx(classes.root, className)}
+      BackdropProps={{
+        transitionDuration,
+        ...BackdropProps,
+      }}
+      closeAfterTransition
+      disableBackdropClick={disableBackdropClick}
+      disableEscapeKeyDown={disableEscapeKeyDown}
+      onEscapeKeyDown={onEscapeKeyDown}
+      onClose={onClose}
+      open={open}
+      ref={ref}
+      role="dialog"
+      {...other}
+    >
+      <TransitionComponent
+        appear
+        in={open}
+        timeout={transitionDuration}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={onExit}
+        onExiting={onExiting}
+        onExited={onExited}
+        {...TransitionProps}
       >
-        <TransitionComponent
-          appear
-          in={open}
-          timeout={transitionDuration}
-          onEnter={onEnter}
-          onEntering={onEntering}
-          onEntered={onEntered}
-          onExit={onExit}
-          onExiting={onExiting}
-          onExited={onExited}
-          {...TransitionProps}
+        <div
+          className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
+          onClick={handleBackdropClick}
+          onMouseDown={handleMouseDown}
+          role="document"
+          data-mui-test="FakeBackdrop"
         >
-          <div
-            className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
-            onClick={this.handleBackdropClick}
-            onMouseDown={this.handleMouseDown}
-            role="document"
-            data-mui-test="FakeBackdrop"
+          <PaperComponent
+            elevation={24}
+            {...PaperProps}
+            className={clsx(
+              classes.paper,
+              classes[`paperScroll${capitalize(scroll)}`],
+              classes[`paperWidth${capitalize(String(maxWidth))}`],
+              {
+                [classes.paperFullScreen]: fullScreen,
+                [classes.paperFullWidth]: fullWidth,
+              },
+              PaperProps.className,
+            )}
           >
-            <PaperComponent
-              elevation={24}
-              {...PaperProps}
-              className={clsx(
-                classes.paper,
-                classes[`paperScroll${capitalize(scroll)}`],
-                classes[`paperWidth${capitalize(String(maxWidth))}`],
-                {
-                  [classes.paperFullScreen]: fullScreen,
-                  [classes.paperFullWidth]: fullWidth,
-                },
-                PaperProps.className,
-              )}
-            >
-              {children}
-            </PaperComponent>
-          </div>
-        </TransitionComponent>
-      </Modal>
-    );
-  }
-}
+            {children}
+          </PaperComponent>
+        </div>
+      </TransitionComponent>
+    </Modal>
+  );
+});
 
 Dialog.propTypes = {
   /**
@@ -288,11 +289,6 @@ Dialog.propTypes = {
    * If `true`, the dialog stretches to `maxWidth`.
    */
   fullWidth: PropTypes.bool,
-  /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Determine the max-width of the dialog.
    * The dialog width grows with the size of the screen.
@@ -385,4 +381,4 @@ Dialog.defaultProps = {
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
-export default withStyles(styles, { name: 'MuiDialog' })(withForwardedRef(Dialog));
+export default withStyles(styles, { name: 'MuiDialog' })(Dialog);

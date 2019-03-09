@@ -26,98 +26,97 @@ const styles = {
   separator: {},
 };
 
-class Breadcrumbs extends React.Component {
-  state = {
-    expanded: false,
-  };
-
-  handleClickExpand = () => {
-    this.setState({ expanded: true });
-  };
-
-  insertSeparators(items) {
-    return items.reduce((acc, current, index) => {
-      if (index < items.length - 1) {
-        acc = acc.concat(
-          current,
-          <BreadcrumbSeparator
-            // eslint-disable-next-line react/no-array-index-key
-            key={`separator-${index}`}
-            className={this.props.classes.separator}
-          >
-            {this.props.separator}
-          </BreadcrumbSeparator>,
-        );
-      } else {
-        acc.push(current);
-      }
-
-      return acc;
-    }, []);
-  }
-
-  renderItemsBeforeAndAfter(allItems) {
-    const { maxItems, itemsBeforeCollapse, itemsAfterCollapse } = this.props;
-
-    // This defends against someone passing weird input, to ensure that if all
-    // items would be shown anyway, we just show all items without the EllipsisItem
-    if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
-      warning(
-        false,
-        [
-          'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
-          `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
-        ].join('\n'),
+function insertSeparators(items, className, separator) {
+  return items.reduce((acc, current, index) => {
+    if (index < items.length - 1) {
+      acc = acc.concat(
+        current,
+        <BreadcrumbSeparator
+          // eslint-disable-next-line react/no-array-index-key
+          key={`separator-${index}`}
+          className={className}
+        >
+          {separator}
+        </BreadcrumbSeparator>,
       );
-      return allItems;
+    } else {
+      acc.push(current);
     }
 
-    return [
-      ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed key="ellipsis" onClick={this.handleClickExpand} />,
-      ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
-    ];
-  }
-
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      component: Component,
-      itemsAfterCollapse,
-      itemsBeforeCollapse,
-      maxItems,
-      separator,
-      ...other
-    } = this.props;
-
-    const allItems = React.Children.toArray(children)
-      .filter(child => React.isValidElement(child))
-      .map((child, index) => (
-        <li className={classes.li} key={String(index)}>
-          {child}
-        </li>
-      ));
-
-    return (
-      <Typography
-        component={Component}
-        color="textSecondary"
-        className={clsx(classes.root, classNameProp)}
-        {...other}
-      >
-        <ol className={classes.ol}>
-          {this.insertSeparators(
-            this.state.expanded || (maxItems && allItems.length <= maxItems)
-              ? allItems
-              : this.renderItemsBeforeAndAfter(allItems),
-          )}
-        </ol>
-      </Typography>
-    );
-  }
+    return acc;
+  }, []);
 }
+
+const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    component: Component,
+    itemsAfterCollapse,
+    itemsBeforeCollapse,
+    maxItems,
+    separator,
+    ...other
+  } = props;
+
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleClickExpand = React.useCallback(() => {
+      setExpanded(true);
+    }
+  );
+
+  const renderItemsBeforeAndAfter = React.useMemo(
+    () => allItems => {
+      // This defends against someone passing weird input, to ensure that if all
+      // items would be shown anyway, we just show all items without the EllipsisItem
+      if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
+        warning(
+          false,
+          [
+            // eslint-disable-next-line max-len
+            'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
+            // eslint-disable-next-line max-len
+            `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+          ].join('\n'),
+        );
+        return allItems;
+      }
+
+      return [
+        ...allItems.slice(0, itemsBeforeCollapse),
+        <BreadcrumbCollapsed key="ellipsis" onClick={handleClickExpand} />,
+        ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
+      ];
+    },
+    [handleClickExpand, itemsAfterCollapse, itemsBeforeCollapse, maxItems],
+  );
+
+  const allItems = React.Children.toArray(children)
+    .filter(child => React.isValidElement(child))
+    .map(child => <li className={classes.li}>{child}</li>);
+
+  return (
+    <Typography
+      ref={ref}
+      component={Component}
+      color="textSecondary"
+      className={clsx(classes.root, className)}
+      {...other}
+    >
+      <ol className={classes.ol}>
+        {insertSeparators(
+          expanded || (maxItems && allItems.length <= maxItems)
+            ? allItems
+            : renderItemsBeforeAndAfter(allItems),
+          classes.separator,
+          separator,
+        )}
+      </ol>
+    </Typography>
+  );
+});
 
 Breadcrumbs.propTypes = {
   /**
