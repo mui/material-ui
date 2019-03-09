@@ -3,24 +3,36 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     flex: '1 1 auto',
-    overflowY: 'auto',
+    padding: '8px 24px',
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    padding: '0 24px 24px',
-    '&:first-child': {
-      paddingTop: 24,
-    },
+    overflowY: 'auto',
   },
-};
+  /* Styles applied to the root element if `dividers={true}`. */
+  dividers: {
+    borderTop: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+});
 
 const DialogContent = React.forwardRef(function DialogContent(props, ref) {
-  const { classes, children, className, ...other } = props;
+  const { classes, children, className, dividers, ...other } = props;
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.dividers]: dividers,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
       {children}
     </div>
   );
@@ -40,6 +52,14 @@ DialogContent.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Display the top and bottom dividers.
+   */
+  dividers: PropTypes.bool,
+};
+
+DialogContent.defaultProps = {
+  dividers: false,
 };
 
 export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);

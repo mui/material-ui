@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 
 const DialogTitle = withStyles(theme => ({
   root: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
     margin: 0,
     padding: theme.spacing(2),
   },
@@ -37,14 +36,12 @@ const DialogTitle = withStyles(theme => ({
 
 const DialogContent = withStyles(theme => ({
   root: {
-    margin: 0,
     padding: theme.spacing(2),
   },
 }))(MuiDialogContent);
 
 const DialogActions = withStyles(theme => ({
   root: {
-    borderTop: `1px solid ${theme.palette.divider}`,
     margin: 0,
     padding: theme.spacing(1),
   },
@@ -79,7 +76,7 @@ class CustomizedDialogDemo extends React.Component {
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
             Modal title
           </DialogTitle>
-          <DialogContent>
+          <DialogContent dividers>
             <Typography gutterBottom>
               Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
               facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum

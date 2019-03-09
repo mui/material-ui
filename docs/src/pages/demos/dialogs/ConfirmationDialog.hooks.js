@@ -66,7 +66,7 @@ function ConfirmationDialogRaw(props) {
       {...otherProps}
     >
       <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
-      <DialogContent>
+      <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
           aria-label="Ringtone"
