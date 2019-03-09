@@ -25,6 +25,9 @@ const styles = (theme: Theme) =>
     menuButton: {
       marginRight: theme.spacing(2),
     },
+    menuLabel: {
+      marginLeft: theme.spacing(2),
+    },
     title: {
       display: 'none',
       [theme.breakpoints.up('sm')]: {
@@ -138,26 +141,20 @@ class PrimarySearchAppBar extends React.Component<Props, State> {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>Messages</p>
+          <Badge badgeContent={4} color="secondary">
+            <MailIcon />
+          </Badge>
+          <span className={classes.menuLabel}>Messages</span>
         </MenuItem>
         <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
+          <Badge badgeContent={11} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+          <span className={classes.menuLabel}>Notifications</span>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
+          <AccountCircle />
+          <span className={classes.menuLabel}>Profile</span>
         </MenuItem>
       </Menu>
     );

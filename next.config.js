@@ -5,7 +5,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
-// const LANGUAGES = ['en'];
 
 module.exports = {
   webpack: (config, options) => {
@@ -63,11 +62,6 @@ module.exports = {
     const pages = findPages();
     const map = {};
 
-    // I want to disable languages generation for the pull-requests
-    // https://www.netlify.com/docs/continuous-deployment/
-    // eslint-disable-next-line no-console
-    console.log(process.env);
-
     function traverse(pages2, userLanguage) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
@@ -86,9 +80,14 @@ module.exports = {
       });
     }
 
-    LANGUAGES.forEach(userLanguage => {
-      traverse(pages, userLanguage);
-    });
+    // We want to speed-up the build of pull requests.
+    if (process.env.PULL_REQUEST === 'true') {
+      traverse(pages, 'en');
+    } else {
+      LANGUAGES.forEach(userLanguage => {
+        traverse(pages, userLanguage);
+      });
+    }
 
     return map;
   },
