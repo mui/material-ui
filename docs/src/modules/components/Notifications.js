@@ -63,7 +63,11 @@ class Notifications extends React.Component {
         return false;
       }
 
-      if (message.userLanguage && this.props.userLanguage !== message.userLanguage) {
+      if (
+        message.userLanguage &&
+        message.userLanguage !== this.props.userLanguage &&
+        message.userLanguage !== navigator.language.substring(0, 2)
+      ) {
         return false;
       }
 
