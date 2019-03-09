@@ -1,14 +1,38 @@
+import { IUtils } from '@date-io/core/IUtils';
+import { Omit } from '@material-ui/core';
+import { BasePickerProps } from '../_shared/BasePicker';
 import { DateTextFieldProps } from '../_shared/DateTextField';
+import { DateType } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export const getDisplayDate = ({
   utils,
-  value,
   format,
+  value,
   invalidLabel,
   emptyLabel,
   labelFunc,
 }: DateTextFieldProps) => {
+  const isEmpty = value === null;
+  const date = utils.date(value);
+
+  if (labelFunc) {
+    return labelFunc(isEmpty ? null : date, invalidLabel!);
+  }
+
+  if (isEmpty) {
+    return emptyLabel;
+  }
+
+  return utils.isValid(date) ? utils.format(date, format) : invalidLabel;
+};
+
+export const getDisplayDate2 = (
+  value: DateType,
+  format: string,
+  utils: IUtils<any>,
+  { invalidLabel, emptyLabel, labelFunc }: Omit<BasePickerProps, 'value' | 'onChange'>
+) => {
   const isEmpty = value === null;
   const date = utils.date(value);
 

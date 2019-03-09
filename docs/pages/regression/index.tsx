@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import { DatePicker } from 'material-ui-pickers';
+import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
 import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
 import { MuiPickersContext } from 'material-ui-pickers';
 import LeftArrowIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -35,11 +35,10 @@ function Regression() {
       <Grid container justify="center" wrap="wrap">
         <DatePicker id="basic-datepicker" {...sharedProps} />
         <DatePicker id="clearable-datepicker" clearable {...sharedProps} />
-        <DatePicker id="keyboard-datepicker" keyboard {...sharedProps} />
-        <DatePicker
-          keyboard
+        <KeyboardDatePicker id="keyboard-datepicker" {...sharedProps} />
+        <KeyboardDatePicker
           id="keyboard-mask-datepicker"
-          format="MM/dd/yyyy"
+          format="MM/dd/y"
           mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
           {...sharedProps}
         />

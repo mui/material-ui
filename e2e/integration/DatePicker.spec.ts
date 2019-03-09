@@ -49,14 +49,14 @@ describe('DatePicker', () => {
     cy.get(`input${ids.basic}`).should('have.value', 'February 11th');
   });
 
-  it('Should clear the input by clear button', () => {
-    cy.get(ids.clearable).click();
+  // it('Should clear the input by clear button', () => {
+  //   cy.get(ids.clearable).click();
 
-    cy.get('button')
-      .contains('Clear')
-      .click();
-    cy.get(`input${ids.clearable}`).should('have.value', '');
-  });
+  //   cy.get('button')
+  //     .contains('Clear')
+  //     .click();
+  //   cy.get(`input${ids.clearable}`).should('have.value', '');
+  // });
 
   it('Should not accept invalid date format', () => {
     cy.get(ids.keyboard).type('Januar');

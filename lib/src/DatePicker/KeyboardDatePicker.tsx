@@ -1,19 +1,25 @@
 import * as React from 'react';
 import { getFormatByViews } from '../_helpers/date-utils';
-import { BasePickerProps } from '../_shared/BasePicker';
-import { usePickerState } from '../_shared/hooks/usePickerState';
+import {
+  BaseKeyboardPickerProps,
+  useKeyboardPickerState,
+} from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
-import PureDateInput from '../_shared/PureDateInput';
+import KeyboardDateInput from '../_shared/KeyboardDateInput';
 import { ExtendWrapper } from '../wrappers/ExtendWrapper';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
 
 export interface DatePickerModalProps
-  extends BasePickerProps,
+  extends BaseKeyboardPickerProps,
     BaseDatePickerProps,
     ExtendWrapper<ModalWrapperProps> {}
 
-export function DatePickerModal(props: DatePickerModalProps) {
+export function KeyboardDatePicker(props: DatePickerModalProps) {
+  const utils = useUtils();
+  const { pickerProps, wrapperProps, inputProps } = useKeyboardPickerState(props, () =>
+    getFormatByViews(props.views!, utils)
+  );
   const {
     allowKeyboardControl,
     animateYearScrolling,
@@ -40,11 +46,6 @@ export function DatePickerModal(props: DatePickerModalProps) {
     ...other
   } = props;
 
-  const utils = useUtils();
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, () =>
-    getFormatByViews(props.views!, utils)
-  );
-
   return (
     <ModalWrapper
       disableFuture={disableFuture}
@@ -52,16 +53,13 @@ export function DatePickerModal(props: DatePickerModalProps) {
       labelFunc={labelFunc}
       maxDate={maxDate}
       minDate={minDate}
-      onChange={() => ({})}
       ref={forwardedRef}
       value={value}
       isAccepted={false}
-      InputComponent={PureDateInput}
-      DateInputProps={{
-        ...inputProps,
-        ...other,
-      }}
+      InputComponent={KeyboardDateInput}
+      DateInputProps={inputProps}
       {...wrapperProps}
+      {...other}
     >
       <DatePicker
         {...pickerProps}
@@ -83,10 +81,10 @@ export function DatePickerModal(props: DatePickerModalProps) {
   );
 }
 
-DatePickerModal.defaultProps = {
+KeyboardDatePicker.defaultProps = {
   views: ['year', 'day'],
 };
 
 export default React.forwardRef((props: DatePickerModalProps, ref) => (
-  <DatePickerModal {...props} forwardedRef={ref} />
+  <KeyboardDatePicker {...props} forwardedRef={ref} />
 ));

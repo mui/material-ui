@@ -2,10 +2,9 @@ import { Omit } from '@material-ui/core';
 import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
 
-export interface ModalWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
+export interface ModalWrapperProps<T = any> {
   onAccept?: () => void;
   onDismiss?: () => void;
   onClear?: () => void;
@@ -32,6 +31,8 @@ export interface ModalWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'o
   DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
   isAccepted?: boolean;
   wider?: boolean;
+  InputComponent: React.ComponentType<T>;
+  DateInputProps: T;
 }
 
 export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
@@ -134,45 +135,28 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
 
   public render() {
     const {
-      value,
-      format,
       children,
-      onAccept,
-      onDismiss,
-      invalidLabel,
-      labelFunc,
       okLabel,
       cancelLabel,
       clearLabel,
-      clearable,
       todayLabel,
       showTodayButton,
-      onOpen,
-      onClose,
-      onSetToday,
-      isAccepted,
       DialogProps,
       showTabs,
       wider,
+      InputComponent,
+      DateInputProps,
       ...other
     } = this.props;
 
     return (
       <React.Fragment>
-        <DateTextField
-          value={value}
-          format={format}
-          onClick={this.open}
-          invalidLabel={invalidLabel}
-          labelFunc={labelFunc}
-          clearable={clearable}
-          {...other}
-        />
+        <InputComponent onClick={this.open} {...other} {...DateInputProps} />
 
         <ModalDialog
           wider={wider}
           showTabs={showTabs}
-          open={this.state.open}
+          open={this.props.open}
           onKeyDownInner={this.handleKeyDown}
           onClear={this.handleClear}
           onAccept={this.handleAccept}
@@ -182,7 +166,7 @@ export default class ModalWrapper extends React.PureComponent<ModalWrapperProps>
           todayLabel={todayLabel}
           okLabel={okLabel}
           cancelLabel={cancelLabel}
-          clearable={clearable}
+          // clearable={clearable}
           showTodayButton={showTodayButton}
           children={children}
           {...DialogProps}

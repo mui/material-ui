@@ -24,7 +24,6 @@ export interface DateTextFieldProps
   InputProps?: TextFieldProps['InputProps'];
   inputProps?: TextFieldProps['inputProps'];
   value: DateType;
-  minDate?: DateType;
   /** Error message, shown if date is less then minimal date */
   minDateMessage?: React.ReactNode;
   disablePast?: boolean;

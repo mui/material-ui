@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
-import { DatePicker } from 'material-ui-pickers';
+import { KeyboardDatePicker } from 'material-ui-pickers';
 
-function KeyboardDatePicker(props) {
+function KeyboardDatePickerExample(props) {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
     <Fragment>
       <div className="picker">
-        <DatePicker
+        <KeyboardDatePicker
           keyboard
           clearable
           label="Uncontrolled input"
@@ -20,12 +20,12 @@ function KeyboardDatePicker(props) {
       </div>
 
       <div className="picker">
-        <DatePicker
+        <KeyboardDatePicker
           keyboard
           label="Masked input"
           format={props.getFormatString({
             moment: 'MM/DD/YYYY',
-            dateFns: 'MM/dd/yyyy',
+            dateFns: 'MM/dd/y', // make sure that for date-fns your format is "y" instead of "yyyy"
           })}
           placeholder="10/10/2018"
           mask={value =>
@@ -42,4 +42,4 @@ function KeyboardDatePicker(props) {
   );
 }
 
-export default KeyboardDatePicker;
+export default KeyboardDatePickerExample;

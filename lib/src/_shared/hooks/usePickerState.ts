@@ -1,36 +1,67 @@
 import { IUtils } from '@date-io/core/IUtils';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { MaterialUiPickersDate } from '../..';
+import { getDisplayDate2 } from '../../_helpers/text-field-helper';
 import { BasePickerProps } from '../BasePicker';
 import { useUtils } from './useUtils';
 
-const getInitialDate = (utils: IUtils<any>, { value, initialFocusedDate }: BasePickerProps) => {
+const valueToDate = (utils: IUtils<any>, { value, initialFocusedDate }: BasePickerProps) => {
   const initialDate = value || initialFocusedDate || utils.date();
   const date = utils.date(initialDate);
 
   return date && utils.isValid(date) ? date : utils.date();
 };
 
-export function usePickerState(props: BasePickerProps) {
+export function usePickerState(props: BasePickerProps, getDefaultFormat: () => string) {
   const utils = useUtils();
-  const initialDate = getInitialDate(utils, props);
-  const [date, setDate] = useState(initialDate);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const date = valueToDate(utils, props);
+  const acceptedDateRef = useRef(props.value);
+  const format = props.format || getDefaultFormat();
+
+  const inputProps = {
+    onClick: () => setIsOpen(true),
+    inputValue: getDisplayDate2(date, format, utils, props),
+  };
+
+  const acceptDate = useCallback(
+    (acceptedDate: MaterialUiPickersDate) => {
+      acceptedDateRef.current = acceptedDate;
+
+      setIsOpen(false);
+      props.onChange(acceptedDate);
+    },
+    [utils, props.onChange]
+  );
+
+  // TODO change on useReducer
   const wrapperProps = {
-    onClear: useCallback(() => props.onChange(null), []),
-    onAccept: useCallback(() => props.onChange(date), []),
-    onSetToday: useCallback(() => props.onChange(utils.date()), []),
-    handleDismiss: useCallback(() => props.onChange(initialDate), []),
+    format,
+    open: isOpen,
+    onAccept: () => acceptDate(date),
+    onClear: useCallback(() => props.onChange(null), [date, utils, props.onChange]),
+    onSetToday: useCallback(() => props.onChange(utils.date()), [date, utils, props.onChange]),
+
+    onDismiss: useCallback(() => {
+      setIsOpen(false);
+      props.onChange(acceptedDateRef.current);
+    }, [date, utils, props.onChange]),
   };
 
   const pickerProps = {
     date,
-    onChange: useCallback((newDate: MaterialUiPickersDate, callback?: any) => {
-      setDate(newDate);
-      callback();
-    }, []),
+    onChange: useCallback(
+      (newDate: MaterialUiPickersDate, isFinish = true) => {
+        props.onChange(newDate);
+
+        if (isFinish && props.autoOk) {
+          acceptDate(newDate);
+        }
+      },
+      [props.onChange, props.autoOk]
+    ),
   };
 
-  return { pickerProps, wrapperProps };
-  // return { }
+  return { pickerProps, inputProps, wrapperProps };
 }
