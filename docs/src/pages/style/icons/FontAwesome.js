@@ -11,6 +11,10 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
+    "& $icon, & $iconHover": {
+      fontFamily: "'Font Awesome 5 Free'",
+      fontWeight: 900
+    },
   },
   icon: {
     margin: theme.spacing.unit * 2,
