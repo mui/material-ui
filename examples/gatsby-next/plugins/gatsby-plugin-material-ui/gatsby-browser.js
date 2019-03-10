@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import { install } from '@material-ui/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './.cache/theme';
-
-install();
 
 export const onInitialClientRender = () => {
   if (process.env.BUILD_STAGE === `develop`) {
