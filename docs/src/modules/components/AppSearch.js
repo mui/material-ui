@@ -56,6 +56,7 @@ function initDocsearch() {
       apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
+      algoliaOptions: { facetFilters: ['version:master', 'language:en'] },
       handleSelected: (input, event, suggestion) => {
         const url = suggestion.url
           .replace(/^https:\/\/material-ui\.com/, '')
