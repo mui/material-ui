@@ -48,12 +48,18 @@ Here are some highlights ✨:
 
 - [styles] Remove the old styles modules (#14767) @oliviertassinari
   Isolation of the styling solution of the core components in a dedicated package.
-  Remove the `MuiThemeProvider` component:
+  - Remove the `MuiThemeProvider` component:
 
-  ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/styles';
-  ```
+    ```diff
+    -import { MuiThemeProvider } from '@material-ui/core/styles';
+    +import { ThemeProvider } from '@material-ui/styles';
+    ```
+
+  - Remove the `@material-ui/styles/install` module.
+    ```diff
+    -import { install } from '@material-ui/styles';
+    -install();
+    ```
 
 #### Changes
 
