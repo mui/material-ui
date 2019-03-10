@@ -46,7 +46,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
     accent: red,
-    type: 'light',
   },
 });
 

@@ -11,7 +11,9 @@ export const onInitialClientRender = () => {
 
   // Remove the server-side injected CSS.
   const jssStyles = document.querySelector('#jss-server-side');
-  jssStyles.parentNode.removeChild(jssStyles);
+  if (jssStyles) {
+    jssStyles.parentNode.removeChild(jssStyles);
+  }
 };
 
 export const wrapRootElement = ({ element }) => {
