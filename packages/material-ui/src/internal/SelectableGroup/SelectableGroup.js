@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as utils from './utils';
 import SelectableGroupContext from './SelectableGroupContext';
-import objectIs from '../../../../material-ui-lab/src/utils/objectIs';
+import is from 'object.is';
 
 /**
  * @ignore - internal component.
@@ -19,7 +19,7 @@ function SelectableGroup(props) {
       setSelected(newSelected);
 
       // Only call onChange if it exists and state has changed (Object.is mimics React)
-      if (props.onChange && !objectIs(newSelected, selected)) {
+      if (props.onChange && !is(newSelected, selected)) {
         props.onChange(event, newSelected);
       }
     };
