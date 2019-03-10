@@ -45,19 +45,13 @@ export const styles = theme => {
       flexGrow: 1,
       transition: theme.transitions.create(['margin'], transition),
       margin: '12px 0',
-      '& > :last-child': {
-        paddingRight: 32,
-      },
       '&$expanded': {
         margin: '20px 0',
       },
     },
     /* Styles applied to the `IconButton` component when `expandIcon` is supplied. */
     expandIcon: {
-      position: 'absolute',
-      top: '50%',
-      right: 8,
-      transform: 'translateY(-50%) rotate(0deg)',
+      transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
       '&:hover': {
         // Disable the hover effect for the IconButton,
@@ -66,7 +60,7 @@ export const styles = theme => {
         backgroundColor: 'transparent',
       },
       '&$expanded': {
-        transform: 'translateY(-50%) rotate(180deg)',
+        transform: 'rotate(180deg)',
       },
     },
   };
@@ -154,6 +148,7 @@ class ExpansionPanelSummary extends React.Component {
             className={clsx(classes.expandIcon, {
               [classes.expanded]: expanded,
             })}
+            edge="end"
             component="div"
             tabIndex={-1}
             aria-hidden="true"
