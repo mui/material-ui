@@ -22,7 +22,7 @@ Here are some highlights ✨:
   -import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
   +import useMediaQuery from '@material-ui/core/useMediaQuery';
   ```
-- [DialogActions] `action` CSS class is applied to root element if `disableActionSpacing={fals€}` instead of children (#14795)
+- [DialogActions] `action` CSS class is applied to root element if `disableActionSpacing={false}` instead of children (#14795)
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1` (#14795)
 
 - [MenuItem] Remove fixed height (#14799) @KyruCabading
