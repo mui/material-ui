@@ -110,7 +110,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   - subheading => subtitle1
   - body2 => body1
   - body1 (default) => body2 (default)
-- [Typography] Remove the opinionated `display: block` default typograpghy style.
+- [Typography] Remove the opinionated `display: block` default typography style.
   You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 - [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
 
