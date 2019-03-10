@@ -27,7 +27,9 @@ const regressions = requireRegression.keys().reduce((res, path) => {
 const blacklistSuite = [
   // Flaky
   'docs-demos-progress',
-  'docs-discover-more-team', // GitHub images
+
+  // Internal dependencies
+  'docs-discover-more-languages',
 
   // Needs interaction
   'docs-demos-dialogs',
@@ -40,6 +42,7 @@ const blacklistSuite = [
   'docs-customization-default-theme',
 
   // Image load issue
+  'docs-discover-more-team',
   'docs-getting-started-page-layout-examples-album',
   'docs-getting-started-page-layout-examples-blog',
   'docs-getting-started-page-layout-examples-sign-in-side',

@@ -33,6 +33,7 @@ const pages = [
   },
   {
     pathname: '/style',
+    title: 'Content',
     children: [
       {
         pathname: '/style/icons',
@@ -114,7 +115,7 @@ const pages = [
   },
   {
     pathname: '/css-in-js',
-    title: 'CSS in JS',
+    title: 'Styles',
     children: [
       {
         pathname: '/css-in-js/basics',
@@ -281,6 +282,9 @@ const pages = [
       },
       {
         pathname: '/discover-more/changelog',
+      },
+      {
+        pathname: '/discover-more/languages',
       },
       {
         pathname: '/discover-more/governance',
