@@ -26,4 +26,6 @@ export type InputLabelClassKey =
   | 'filled'
   | 'outlined';
 
-export default class InputLabel extends React.Component<InputLabelProps> {}
+declare const InputLabel: React.ComponentType<InputLabelProps>;
+
+export default InputLabel;
