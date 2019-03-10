@@ -88,6 +88,7 @@ const pages = [
           { pathname: '/components/lists' },
           { pathname: '/components/tables' },
           { pathname: '/components/tooltips' },
+          { pathname: '/components/tree-view' },
           { pathname: '/components/typography' },
         ],
       },
