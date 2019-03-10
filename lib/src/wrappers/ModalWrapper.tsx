@@ -4,11 +4,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import ModalDialog from '../_shared/ModalDialog';
 
-export interface ModalWrapperProps<T = any> {
-  onAccept?: () => void;
-  onDismiss?: () => void;
-  onClear?: () => void;
-  onSetToday?: () => void;
+export interface ModalWrapperProps<T = {}> {
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */
@@ -27,151 +23,102 @@ export interface ModalWrapperProps<T = any> {
    * <b>Note*</b> that clear button has higher priority
    */
   showTodayButton?: boolean;
-  container?: React.ReactNode;
+  /** Props to be passed directly to material-ui Dialog */
   DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
-  isAccepted?: boolean;
+  /** Show clear action in picker dialog */
+  clearable?: boolean;
+  open: boolean;
+  onAccept: () => void;
+  onDismiss: () => void;
+  onClear: () => void;
+  onSetToday: () => void;
   wider?: boolean;
   InputComponent: React.ComponentType<T>;
   DateInputProps: T;
 }
 
-export default class ModalWrapper extends React.PureComponent<ModalWrapperProps> {
-  public static propTypes = {
-    okLabel: PropTypes.node,
-    cancelLabel: PropTypes.node,
-    clearLabel: PropTypes.node,
-    clearable: PropTypes.bool,
-    todayLabel: PropTypes.node,
-    showTodayButton: PropTypes.bool,
-    onOpen: PropTypes.func,
-    DialogProps: PropTypes.object,
-    onClose: PropTypes.func,
-  } as any;
-
-  public static defaultProps = {
-    value: new Date(),
-    okLabel: 'OK',
-    cancelLabel: 'Cancel',
-    clearLabel: 'Clear',
-    todayLabel: 'Today',
-    clearable: false,
-    showTodayButton: false,
-    isAccepted: false,
-  };
-
-  public static getDerivedStateFromProps(nextProps: ModalWrapperProps) {
-    // only if accept = true close the dialog
-    if (nextProps.isAccepted) {
-      if (nextProps.onClose) {
-        nextProps.onClose();
+export const ModalWrapper: React.FC<ModalWrapperProps<any>> = ({
+  open,
+  children,
+  okLabel,
+  cancelLabel,
+  clearLabel,
+  todayLabel,
+  showTodayButton,
+  clearable,
+  DialogProps,
+  showTabs,
+  wider,
+  InputComponent,
+  DateInputProps,
+  onClear,
+  onAccept,
+  onDismiss,
+  onSetToday,
+  ...other
+}) => {
+  const handleKeyDown = React.useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'Enter':
+          onAccept();
+          break;
+        default:
+          return; // if key is not handled, stop execution
       }
 
-      return {
-        open: false,
-      };
-    }
+      // if event was handled prevent other side effects
+      event.preventDefault();
+    },
+    [onAccept]
+  );
 
-    return null;
-  }
+  return (
+    <React.Fragment>
+      <InputComponent {...other} {...DateInputProps} />
 
-  public state = {
-    open: false,
-  };
+      <ModalDialog
+        wider={wider}
+        showTabs={showTabs}
+        open={open}
+        onKeyDownInner={handleKeyDown}
+        onClear={onClear}
+        onAccept={onAccept}
+        onDismiss={onDismiss}
+        onSetToday={onSetToday}
+        clearLabel={clearLabel}
+        todayLabel={todayLabel}
+        okLabel={okLabel}
+        cancelLabel={cancelLabel}
+        clearable={clearable}
+        showTodayButton={showTodayButton}
+        children={children}
+        {...DialogProps}
+      />
+    </React.Fragment>
+  );
+};
 
-  public handleKeyDown = (event: KeyboardEvent) => {
-    switch (event.key) {
-      case 'Enter':
-        this.handleAccept();
-        break;
-      default:
-        // if key is not handled, stop execution
-        return;
-    }
+ModalWrapper.propTypes = {
+  okLabel: PropTypes.node,
+  cancelLabel: PropTypes.node,
+  clearLabel: PropTypes.node,
+  clearable: PropTypes.bool,
+  todayLabel: PropTypes.node,
+  showTodayButton: PropTypes.bool,
+  onOpen: PropTypes.func,
+  DialogProps: PropTypes.object,
+  onClose: PropTypes.func,
+} as any;
 
-    // if event was handled prevent other side effects
-    event.preventDefault();
-  };
+ModalWrapper.defaultProps = {
+  okLabel: 'OK',
+  cancelLabel: 'Cancel',
+  clearLabel: 'Clear',
+  todayLabel: 'Today',
+  clearable: false,
+  showTodayButton: false,
+  isAccepted: false,
+} as any;
 
-  public handleSetTodayDate = () => {
-    if (this.props.onSetToday) {
-      this.props.onSetToday();
-    }
-  };
-
-  public open = () => {
-    this.setState({ open: true });
-    if (this.props.onOpen) {
-      this.props.onOpen();
-    }
-  };
-
-  public close = () => {
-    this.setState({ open: false });
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
-  };
-
-  public handleAccept = () => {
-    this.close();
-    if (this.props.onAccept) {
-      this.props.onAccept();
-    }
-  };
-
-  public handleDismiss = () => {
-    this.close();
-    if (this.props.onDismiss) {
-      this.props.onDismiss();
-    }
-  };
-
-  public handleClear = () => {
-    this.close();
-    if (this.props.onClear) {
-      this.props.onClear();
-    }
-  };
-
-  public render() {
-    const {
-      children,
-      okLabel,
-      cancelLabel,
-      clearLabel,
-      todayLabel,
-      showTodayButton,
-      DialogProps,
-      showTabs,
-      wider,
-      InputComponent,
-      DateInputProps,
-      ...other
-    } = this.props;
-
-    return (
-      <React.Fragment>
-        <InputComponent onClick={this.open} {...other} {...DateInputProps} />
-
-        <ModalDialog
-          wider={wider}
-          showTabs={showTabs}
-          open={this.props.open}
-          onKeyDownInner={this.handleKeyDown}
-          onClear={this.handleClear}
-          onAccept={this.handleAccept}
-          onDismiss={this.handleDismiss}
-          onSetToday={this.handleSetTodayDate}
-          clearLabel={clearLabel}
-          todayLabel={todayLabel}
-          okLabel={okLabel}
-          cancelLabel={cancelLabel}
-          // clearable={clearable}
-          showTodayButton={showTodayButton}
-          children={children}
-          {...DialogProps}
-        />
-      </React.Fragment>
-    );
-  }
-}
+export default ModalWrapper;

@@ -31,17 +31,16 @@ export const getDisplayDate2 = (
   value: DateType,
   format: string,
   utils: IUtils<any>,
+  isEmpty: boolean,
   { invalidLabel, emptyLabel, labelFunc }: Omit<BasePickerProps, 'value' | 'onChange'>
 ) => {
-  const isEmpty = value === null;
   const date = utils.date(value);
-
   if (labelFunc) {
     return labelFunc(isEmpty ? null : date, invalidLabel!);
   }
 
   if (isEmpty) {
-    return emptyLabel;
+    return emptyLabel || '';
   }
 
   return utils.isValid(date) ? utils.format(date, format) : invalidLabel;

@@ -11,7 +11,10 @@ export interface PureDateInputProps
   validationError: string;
 }
 
-const PureDateInput: React.FunctionComponent<PureDateInputProps> = ({
+// Do not recreate new object each render
+const PureDateInputProps = { readOnly: true };
+
+export const PureDateInput: React.FunctionComponent<PureDateInputProps> = ({
   inputValue,
   variant,
   validationError,
@@ -23,11 +26,7 @@ const PureDateInput: React.FunctionComponent<PureDateInputProps> = ({
       value={inputValue}
       error={Boolean(validationError)}
       helperText={validationError}
-      InputProps={{
-        readOnly: true,
-      }}
+      InputProps={PureDateInputProps}
     />
   );
 };
-
-export default PureDateInput;

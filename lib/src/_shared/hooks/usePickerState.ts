@@ -1,5 +1,5 @@
 import { IUtils } from '@date-io/core/IUtils';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { MaterialUiPickersDate } from '../..';
 import { getDisplayDate2 } from '../../_helpers/text-field-helper';
 import { BasePickerProps } from '../BasePicker';
@@ -12,17 +12,30 @@ const valueToDate = (utils: IUtils<any>, { value, initialFocusedDate }: BasePick
   return date && utils.isValid(date) ? date : utils.date();
 };
 
-export function usePickerState(props: BasePickerProps, getDefaultFormat: () => string) {
+function useDateValues(props: BasePickerProps, getDefaultFormat: () => string) {
   const utils = useUtils();
-  const [isOpen, setIsOpen] = useState(false);
-
   const date = valueToDate(utils, props);
   const acceptedDateRef = useRef(props.value);
   const format = props.format || getDefaultFormat();
 
+  return { acceptedDateRef, date, format };
+}
+
+export function usePickerState(props: BasePickerProps, getDefaultFormat: () => string) {
+  const utils = useUtils();
+  const [isOpen, setIsOpen] = useState(false);
+  const { acceptedDateRef, date, format } = useDateValues(props, getDefaultFormat);
+
+  useEffect(() => {
+    if (!isOpen) {
+      // if value was changed in closed state treat it as accepted
+      acceptedDateRef.current = props.value;
+    }
+  }, [props.value]);
+
   const inputProps = {
     onClick: () => setIsOpen(true),
-    inputValue: getDisplayDate2(date, format, utils, props),
+    inputValue: getDisplayDate2(date, format, utils, props.value === null, props),
   };
 
   const acceptDate = useCallback(
@@ -31,6 +44,10 @@ export function usePickerState(props: BasePickerProps, getDefaultFormat: () => s
 
       setIsOpen(false);
       props.onChange(acceptedDate);
+
+      if (props.onAccept) {
+        props.onAccept(acceptedDate);
+      }
     },
     [utils, props.onChange]
   );
@@ -40,9 +57,8 @@ export function usePickerState(props: BasePickerProps, getDefaultFormat: () => s
     format,
     open: isOpen,
     onAccept: () => acceptDate(date),
-    onClear: useCallback(() => props.onChange(null), [date, utils, props.onChange]),
+    onClear: () => acceptDate(null),
     onSetToday: useCallback(() => props.onChange(utils.date()), [date, utils, props.onChange]),
-
     onDismiss: useCallback(() => {
       setIsOpen(false);
       props.onChange(acceptedDateRef.current);

@@ -12,6 +12,7 @@ function BasicDatePicker(props) {
           value={selectedDate}
           onChange={handleDateChange}
           animateYearScrolling
+          onAccept={console.log}
         />
       </div>
 

@@ -5,7 +5,7 @@ import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core
 import { ExtendMui } from '../typings/extendMui';
 import { KeyboardIcon } from './icons/KeyboardIcon';
 
-export interface PureDateInputProps
+export interface KeyboardDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
   variant?: TextFieldProps['variant'];
@@ -13,7 +13,7 @@ export interface PureDateInputProps
   validationError: string;
 }
 
-const KeyboardDateInput: React.FunctionComponent<PureDateInputProps> = ({
+const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   inputValue,
   variant,
   validationError,

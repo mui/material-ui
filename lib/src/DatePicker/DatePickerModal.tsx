@@ -3,18 +3,19 @@ import { getFormatByViews } from '../_helpers/date-utils';
 import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
-import PureDateInput from '../_shared/PureDateInput';
+import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
 import { ExtendWrapper } from '../wrappers/ExtendWrapper';
-import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import { ModalWrapper, ModalWrapperProps } from '../wrappers/ModalWrapper';
 import DatePicker, { BaseDatePickerProps } from './DatePicker';
 
 export interface DatePickerModalProps
   extends BasePickerProps,
     BaseDatePickerProps,
-    ExtendWrapper<ModalWrapperProps> {}
+    ExtendWrapper<ModalWrapperProps, PureDateInputProps> {}
 
 export function DatePickerModal(props: DatePickerModalProps) {
   const {
+    onAccept,
     allowKeyboardControl,
     animateYearScrolling,
     autoOk,
@@ -42,26 +43,15 @@ export function DatePickerModal(props: DatePickerModalProps) {
 
   const utils = useUtils();
   const { pickerProps, inputProps, wrapperProps } = usePickerState(props, () =>
-    getFormatByViews(props.views!, utils)
+    getFormatByViews(views!, utils)
   );
 
   return (
     <ModalWrapper
-      disableFuture={disableFuture}
-      disablePast={disablePast}
-      labelFunc={labelFunc}
-      maxDate={maxDate}
-      minDate={minDate}
-      onChange={() => ({})}
-      ref={forwardedRef}
-      value={value}
-      isAccepted={false}
       InputComponent={PureDateInput}
-      DateInputProps={{
-        ...inputProps,
-        ...other,
-      }}
+      DateInputProps={inputProps}
       {...wrapperProps}
+      {...other}
     >
       <DatePicker
         {...pickerProps}

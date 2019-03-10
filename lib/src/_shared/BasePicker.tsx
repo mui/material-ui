@@ -42,6 +42,8 @@ export interface BasePickerProps {
   invalidLabel?: string;
   /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
   emptyLabel?: string;
+  /** Callback firing when date isAccepted */
+  onAccept?: (date: MaterialUiPickersDate) => void;
   minDate?: DateType;
   maxDate?: DateType;
   forwardedRef?: any;
