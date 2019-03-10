@@ -196,7 +196,7 @@ ExpansionPanelSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
-   * Properties applied to the `TouchRipple` element wrapping the expand icon.
+   * Properties applied to the `IconButton` element wrapping the expand icon.
    */
   IconButtonProps: PropTypes.object,
   /**
