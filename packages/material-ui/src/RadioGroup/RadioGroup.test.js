@@ -17,6 +17,10 @@ describe('<RadioGroup />', () => {
     mount.cleanUp();
   });
 
+  function findRadio(wrapper, value) {
+    return wrapper.find(`SwitchBase[value="${value}"]`).first();
+  }
+
   it('should render a FormGroup with the radiogroup role', () => {
     const wrapper = mount(<RadioGroup value="" />);
     const formGroupWrapper = wrapper.find(FormGroup);
@@ -51,6 +55,37 @@ describe('<RadioGroup />', () => {
     );
   });
 
+  it('should support uncontrolled mode', () => {
+    const wrapper = mount(
+      <RadioGroup name="group">
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    findRadio(wrapper, 'one')
+      .find('input')
+      .simulate('change', { target: { checked: true } });
+
+    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+  });
+
+  it('should support default value in uncontrolled mode', () => {
+    const wrapper = mount(
+      <RadioGroup name="group" defaultValue="zero">
+        <Radio value="zero" />
+        <Radio value="one" />
+      </RadioGroup>,
+    );
+
+    assert.strictEqual(findRadio(wrapper, 'zero').props().checked, true);
+
+    findRadio(wrapper, 'one')
+      .find('input')
+      .simulate('change');
+
+    assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
+  });
+
   describe('prop: onChange', () => {
     it('should fire onChange', () => {
       const handleChange = spy();
@@ -61,11 +96,11 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      const firstRadio = findOutermostIntrinsic(wrapper.find(Radio).at(0));
-      const event = { test: true };
-      firstRadio.simulate('change', event);
+      findRadio(wrapper, 'woofRadioGroup')
+        .find('input')
+        .simulate('change');
+
       assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.args[0][0].test, true);
     });
 
     it('should chain the onChange property', () => {
@@ -79,8 +114,7 @@ describe('<RadioGroup />', () => {
       );
 
       const firstRadio = findOutermostIntrinsic(wrapper.find(Radio).at(0));
-      const event = { test: true };
-      firstRadio.simulate('change', event);
+      firstRadio.find('input').simulate('change');
       assert.strictEqual(handleChange1.callCount, 1);
       assert.strictEqual(handleChange2.callCount, 1);
     });

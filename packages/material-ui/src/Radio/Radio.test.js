@@ -5,7 +5,6 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Radio from './Radio';
-import RadioGroup from '../RadioGroup';
 
 describe('<Radio />', () => {
   let classes;
@@ -19,10 +18,6 @@ describe('<Radio />', () => {
   after(() => {
     mount.cleanUp();
   });
-
-  function findRadio(wrapper, value) {
-    return wrapper.find(`SwitchBase[value="${value}"]`).first();
-  }
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
@@ -48,47 +43,6 @@ describe('<Radio />', () => {
     it('should render a checked icon', () => {
       const wrapper = mount(<Radio checked />);
       assert.strictEqual(wrapper.find(RadioButtonCheckedIcon).length, 1);
-    });
-  });
-
-  describe('RadioButtonGroup', () => {
-    it('should support uncontrolled mode', () => {
-      const wrapper = mount(
-        <RadioGroup name="group">
-          <Radio value="one" />
-        </RadioGroup>,
-      );
-
-      findRadio(wrapper, 'one').simulate('change');
-      assert.strictEqual(
-        findRadio(wrapper, 'one')
-          .childAt(0)
-          .hasClass(classes.checked),
-        true,
-      );
-    });
-
-    it('should support default value in uncontrolled mode', () => {
-      const wrapper = mount(
-        <RadioGroup name="group" defaultValue="zero">
-          <Radio value="zero" />
-          <Radio value="one" />
-        </RadioGroup>,
-      );
-
-      assert.strictEqual(
-        findRadio(wrapper, 'zero')
-          .childAt(0)
-          .hasClass(classes.checked),
-        true,
-      );
-      findRadio(wrapper, 'one').simulate('change');
-      assert.strictEqual(
-        findRadio(wrapper, 'one')
-          .childAt(0)
-          .hasClass(classes.checked),
-        true,
-      );
     });
   });
 });
