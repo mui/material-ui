@@ -2,12 +2,8 @@ import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
@@ -28,34 +24,33 @@ function renderFullPage(html, css) {
   `;
 }
 
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    accent: red,
+  },
+});
+
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
-
   // Create a sheetsManager instance.
   const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-    },
-    typography: {
-      useNextVariants: true,
-    },
-  });
-
   // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+    <StylesProvider
+      generateClassName={generateClassName}
+      sheetsRegistry={sheetsRegistry}
+      sheetsManager={sheetsManager}
+    >
+      <ThemeProvider theme={theme}>
         <App />
-      </MuiThemeProvider>
-    </JssProvider>,
+      </ThemeProvider>
+    </StylesProvider>,
   );
 
   // Grab the CSS from our sheetsRegistry.

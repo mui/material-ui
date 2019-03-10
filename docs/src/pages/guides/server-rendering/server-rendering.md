@@ -67,35 +67,32 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 ```jsx
 import ReactDOMServer from 'react-dom/server'
 import { SheetsRegistry } from 'jss';
-import { ThemeProvider, StylesProvider, createGenerateClassName } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider, createGenerateClassName } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+    accent: red,
+  },
+});
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
-
   // Create a sheetsManager instance.
   const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-      type: 'light',
-    },
-  });
-
   // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
     <StylesProvider
-      registry={sheetsRegistry}
       generateClassName={generateClassName}
+      sheetsRegistry={sheetsRegistry}
       sheetsManager={sheetsManager}
     >
       <ThemeProvider theme={theme}>
@@ -143,16 +140,16 @@ Let's take a look at our client file:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
 
 function Main() {
   React.useEffect(() => {
-    const jssStyles = document.getElementById('jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }, []);
@@ -165,7 +162,6 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
     accent: red,
-    type: 'light',
   },
 });
 
@@ -254,8 +250,8 @@ To check version numbers, run `npm list @material-ui/core` in the environment wh
 ```diff
   "dependencies": {
     ...
--   "@material-ui/core": "^1.4.2",
-+   "@material-ui/core": "1.4.3",
+-   "@material-ui/core": "^4.0.0",
++   "@material-ui/core": "4.0.0",
     ...
   },
 ```
