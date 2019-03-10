@@ -1,5 +1,92 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.3
+###### *Mar 10, 2019*
+
+A big thanks to the 14 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- ⚛️ Increase the usage of `React.forwardRef()` (#14714, #14737, #14738, #14775) @eps1lon.
+- 💅 Remove the old styles modules (#14767) @oliviertassinari.
+- 📝 Migrate many demos to use the hooks API (#14805) @adeelibr.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v4.0.0-alpha.3`
+
+#### Breaking change
+
+- [useMediaQuery] Remove unstable prefix (#14593)
+
+  ```diff
+  -import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+  +import useMediaQuery from '@material-ui/core/useMediaQuery';
+  ```
+- [MenuItem] Remove fixed height (#14799) @KyruCabading
+  Remove the fixed height of the MenuItem.
+  The padding and line-height are used by the browser to compute the height.
+
+#### Changes
+
+- [Tabs] Forward refs (#14714) @eps1lon
+- [TextField] New filled variant override example (#14725) @oliviertassinari
+- [FilledInput] Simplify border overrides (#14719) @C-Rodg
+- [CssBaseline] Apply body2 styling to the body element (#14729) @joshwooding
+- [IconButton] Add a size prop (#14649) @leMaik
+- [Popover] Forward refs (#14737) @eps1lon
+- [Modal] Forward refs (#14738) @eps1lon
+- [createSpacing] Narrow return type (#14745) @eps1lon
+- [Chip] Correct Chip Typescript Definition Class Keys (#14750) @cvanem
+- [MenuList] Remove focus method and test dependencies on instance methods (#14757) @ryancogswell
+- [Dialog] Forward refs (#14775) @eps1lon
+- [IconButton] Implement a new edge prop (#14758) @jedwards1211
+- [Dialog] Add a dividers boolean prop (#14795) @oliviertassinari
+
+### `@material-ui/styles@v4.0.0-alpha.3`
+
+#### Breaking changes
+
+- [styles] Remove the old styles modules (#14767) @oliviertassinari
+  Isolation of the styling solution of the core components in a dedicated package.
+  Remove the `MuiThemeProvider` component:
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/styles';
+  ```
+
+#### Changes
+
+- [styles] Improve ref forwarding (#13676) @eps1lon
+- [styles] Use hoist-non-react-statics (#14722) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.3`
+
+- [SpeedDial] Change actions background color (#14640) @hburrows
+- [SpeedDialAction] Pass onTouchEnd event onto called onClick handler (#14641) @hburrows
+
+### Docs
+
+- [docs] Fix Drawer demos accessibility (#14728) @tiagodreis
+- [docs] Add "Portals" to the styled components documentation (#14720) @C-Rodg
+- [docs] Specify PaletteIntention syntax (#14727) @ozydingo
+- [docs] Add button demos in ts (#14739) @eps1lon
+- [docs] Document the migration from v3 to v4 (#14741) @oliviertassinari
+- [docs] before() is Mocha; beforeEach() is Jest (#14743) @masaok
+- [docs] Fix IE 11 build (#14781) @oliviertassinari
+- [docs] Kill as many non hook demos as possible (#14805) @oliviertassinari
+- [docs] Prepare Google & Algolia i18n search + v3/v4 search (#14806) @oliviertassinari
+- [docs] Speed-up pull requests build (#14811) @oliviertassinari
+
+### Core
+
+- [test] Ignore the image load issue (#14723) @oliviertassinari
+- [icons] Fix builder failing on Windows (#14726) @joshwooding
+- [ci] Don't use -browser images (#14779) @eps1lon
+- [test] Increase the Codecov threshold (#14796) @oliviertassinari
+- [test] Disable the user sandbox security feature (#14804) @oliviertassinari
+- [core] Use hoist-non-react-statics (#14722) @oliviertassinari
+
 ## 4.0.0-alpha.2
 ###### *Mar 3, 2019*
 
@@ -16,7 +103,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.2`
 
-### Breaking changes
+#### Breaking changes
 
 - [Tabs] Simplify override (#14638) @oliviertassinari
 
@@ -41,15 +128,15 @@ Here are some highlights ✨:
   ```
 
 - Every component except `Dialog`, `MenuList`, `Modal`, `Popover` and `Tabs` forward
-  their `innerRef` (#14536). 
-  
+  their `innerRef` (#14536).
+
   This is implemented by using `React.forwardRef`. This affects the internal component
   tree and display name and therefore might break shallow or snapshot tests.
-  `innerRef` will no longer return a ref to the instance 
-  (or nothing if the inner component is a function component) but a ref to its root component. 
+  `innerRef` will no longer return a ref to the instance
+  (or nothing if the inner component is a function component) but a ref to its root component.
   The corresponding API docs list the root component.
 
-### Changes
+#### Changes
 
 - [core] Improve a11y for Collapse, ExpansionPanel and Grow (#14598) @eps1lon
 - [Transitions] Increase minimal version of react-transition-group to 2.5.3 (#14612) @wilcoschoneveld
@@ -131,7 +218,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.0.0-alpha.1`
 
-### Breaking change
+#### Breaking change
 
 - [Typography] Remove deprecated Typography variants (#14562) @joshwooding
 

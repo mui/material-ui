@@ -50,19 +50,38 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ## Handling Breaking Changes
 
+### Core
+
+- Every component forward their ref.
+  This is implemented by using `React.forwardRef()`.
+  This affects the internal component tree and display name and therefore might break shallow or snapshot tests.
+  `innerRef` will no longer return a ref to the instance (or nothing if the inner component is a function component) but a ref to its root component.
+  The corresponding API docs list the root component.
+
 ### Styles
 
-- Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the emotion and styled-components API.
+- Remove the first option argument of `withTheme()`.
+  The first argument was a placeholder for a potential future option.
+  We have never found a need for it.
+  It's time to remove this argument.
+  It matches the emotion and styled-components API.
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+- Isolation of the styling solution of the core components in a dedicated package.
+  Remove the `MuiThemeProvider` component:
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/styles';
+  ```
 
 ### Theme
 
 - The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
-To use it correctly, you have to use the returned value.
+  To use it correctly, you have to use the returned value.
 
   ```diff
   -const background = { main: color };
@@ -92,7 +111,7 @@ To use it correctly, you have to use the returned value.
   - body2 => body1
   - body1 (default) => body2 (default)
 - Remove the opinionated `display: block` default typograpghy style.
-You can use the new `display?: 'initial' | 'inline' | 'block';` property.
+  You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 - Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
 
   ```diff
@@ -123,7 +142,8 @@ You can use the new `display?: 'initial' | 'inline' | 'block';` property.
 
 ### TextField
 
-- You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component. The `FormLabelClasses` property has been removed.
+- You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
+  The `FormLabelClasses` property has been removed.
 
   ```diff
   <InputLabel
@@ -175,6 +195,11 @@ This has allowed us to removed 2 intermediary DOM elements.
 You should be able to move the custom styles to the root class key.
 
   ![capture d ecran 2019-02-23 a 15 46 48](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+
+### Menu
+
+- Remove the fixed height of the MenuItem.
+  The padding and line-height are used by the browser to compute the height.
 
 ### Node
 
