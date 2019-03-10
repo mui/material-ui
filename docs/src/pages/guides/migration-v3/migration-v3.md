@@ -202,7 +202,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Dialog
 
-- [DialogActions] `action` CSS class is applied to root element if `disableActionSpacing={false}` instead of children.
+- [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
 - [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
 
 ### Node
