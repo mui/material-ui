@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
-import SelectableGroup from '../SelectableGroup';
+import SelectableGroup from '@material-ui/core/internal/SelectableGroup';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

@@ -6,7 +6,7 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
-import useSelectedState from '@material-ui/lab/SelectableGroup/useSelectedState';
+import useSelectedState from '../internal/SelectableGroup/useSelectedState';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

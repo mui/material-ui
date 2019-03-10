@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
-import useSelectedState from '../SelectableGroup/useSelectedState';
+import useSelectedState from '@material-ui/core/internal/SelectableGroup/useSelectedState';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as utils from './utils';
 import SelectableGroupContext from './SelectableGroupContext';
-import objectIs from '../utils/objectIs';
+import objectIs from '../../../../material-ui-lab/src/utils/objectIs';
 
+/**
+ * @ignore - internal component.
+ */
 function SelectableGroup(props) {
   const [selected, setSelected] = React.useState(null);
   const { additional, children, exclusive, value: valueProp } = props;

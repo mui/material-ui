@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FormGroup from '../FormGroup';
-import SelectableGroup from '@material-ui/lab/SelectableGroup';
+import SelectableGroup from '../internal/SelectableGroup';
 
 function RadioGroup(props) {
   const { children, defaultValue, name, onChange, value: valueProp, ...other } = props;

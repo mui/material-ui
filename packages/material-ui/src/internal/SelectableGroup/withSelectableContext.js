@@ -3,6 +3,9 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import { getDisplayName } from '@material-ui/utils';
 import useSelectedState from './useSelectedState';
 
+/**
+ * @ignore - internal component.
+ */
 export default function withSelectableGroupContext(Component) {
   const WithSelectableGroupContext = props => {
     const selectState = useSelectedState();
