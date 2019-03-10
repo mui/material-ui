@@ -26,6 +26,9 @@ function Head(props) {
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/brand.png" />
       <meta property="og:ttl" content="604800" />
+      {/* Algolia */}
+      <meta name="docsearch:language" content="en" />
+      <meta name="docsearch:version" content="master" />
     </NextHead>
   );
 }
