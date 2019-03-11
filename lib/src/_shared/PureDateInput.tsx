@@ -8,7 +8,7 @@ export interface PureDateInputProps
   // Properly extend different variants from mui textfield
   inputVariant?: TextFieldProps['variant'];
   inputValue: string;
-  validationError?: string;
+  validationError?: React.ReactNode;
 }
 
 // Do not recreate new object each render

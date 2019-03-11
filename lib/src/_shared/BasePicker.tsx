@@ -27,8 +27,6 @@ export interface BasePickerProps {
   value: DateType;
   /** onChange callback */
   onChange: (date: MaterialUiPickersDate) => void;
-  /** Displaying variant */
-  variant?: WrapperVariant;
   /** Auto accept date on selection */
   autoOk?: boolean;
   /** Control 12h or 24h view mode for clock */

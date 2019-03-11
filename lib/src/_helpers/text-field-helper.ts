@@ -1,8 +1,10 @@
 import { IUtils } from '@date-io/core/IUtils';
 import { Omit } from '@material-ui/core';
+import { DatePickerProps } from '..';
 import { BasePickerProps } from '../_shared/BasePicker';
 import { DateTextFieldProps } from '../_shared/DateTextField';
 import { DateType } from '../constants/prop-types';
+import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export const getDisplayDate = ({
@@ -46,12 +48,19 @@ export const getDisplayDate2 = (
   return utils.isValid(date) ? utils.format(date, format) : invalidLabel!;
 };
 
+export interface DateValidationProps {
+  /** Error message, shown if date is less then minimal date */
+  minDateMessage?: React.ReactNode;
+  /** Error message, shown if date is more then maximal date */
+  maxDateMessage?: React.ReactNode;
+  /** Message, appearing when date cannot be parsed */
+  invalidDateMessage?: React.ReactNode;
+}
+
 export const getError = (
   value: MaterialUiPickersDate,
-  props: DateTextFieldProps
-): React.ReactNode => {
-  const {
-    utils,
+  utils: IUtils<any>,
+  {
     maxDate,
     minDate,
     disablePast,
@@ -59,8 +68,8 @@ export const getError = (
     maxDateMessage,
     minDateMessage,
     invalidDateMessage,
-  } = props;
-
+  }: DatePickerProps
+): React.ReactNode => {
   // if null - do not show error
   if (utils.isNull(value)) {
     return '';

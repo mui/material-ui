@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { getFormatByViews } from '../_helpers/date-utils';
+import { DateValidationProps, getError } from '../_helpers/text-field-helper';
 import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
@@ -9,6 +10,7 @@ import { ExtendWrapper2 } from '../wrappers/ExtendWrapper';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
 export type DatePickerProps = BasePickerProps &
+  DateValidationProps &
   BaseDatePickerProps &
   ExtendWrapper2<PureDateInputProps>;
 
@@ -42,9 +44,10 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
   } = props;
 
   const utils = useUtils();
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, () =>
-    getFormatByViews(views!, utils)
-  );
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, {
+    getDefaultFormat: () => getFormatByViews(views!, utils),
+    getValidationError: () => getError(value, utils, props),
+  });
 
   const Wrapper = getWrapperFromVariant<PureDateInputProps>(variant);
   return (
@@ -76,6 +79,9 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
 
 DatePicker.defaultProps = {
   views: ['year', 'day'],
+  invalidDateMessage: 'Invalid Date Format',
+  minDateMessage: 'Date should not be before minimal date',
+  maxDateMessage: 'Date should not be after maximal date',
 };
 
 export default React.forwardRef((props: DatePickerProps, ref) => (

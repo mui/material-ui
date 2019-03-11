@@ -5,7 +5,7 @@ import { getDisplayDate2 } from '../../_helpers/text-field-helper';
 import { DateType } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { BasePickerProps } from '../BasePicker';
-import { usePickerState } from './usePickerState';
+import { HookOptions, usePickerState } from './usePickerState';
 import { useUtils } from './useUtils';
 
 export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'value' | 'onChange'> {
@@ -22,12 +22,9 @@ function parseInputString(value: string, utils: IUtils<any>, format: string) {
   }
 }
 
-export function useKeyboardPickerState(
-  props: BaseKeyboardPickerProps,
-  getDefaultFormat: () => string
-) {
+export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: HookOptions) {
   const utils = useUtils();
-  const format = props.format || getDefaultFormat();
+  const format = props.format || options.getDefaultFormat();
   const [innerInputValue, setInnerInputValue] = useState(
     getDisplayDate2(props.value, format, utils, props.value === null, props)
   );
@@ -45,7 +42,7 @@ export function useKeyboardPickerState(
   const { inputProps: innerInputProps, wrapperProps, pickerProps } = usePickerState(
     // Extend props interface
     { ...props, value: dateValue, onChange: handleChange },
-    getDefaultFormat
+    options
   );
 
   const inputProps = {
