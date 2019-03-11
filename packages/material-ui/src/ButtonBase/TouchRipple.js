@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -119,6 +118,8 @@ class TouchRipple extends React.PureComponent {
     ripples: [],
   };
 
+  container = React.createRef();
+
   componentWillUnmount() {
     clearTimeout(this.startTimer);
   }
@@ -143,7 +144,7 @@ class TouchRipple extends React.PureComponent {
       this.ignoringMouseDown = true;
     }
 
-    const element = fakeElement ? null : ReactDOM.findDOMNode(this);
+    const element = fakeElement ? null : this.container.current;
     const rect = element
       ? element.getBoundingClientRect()
       : {
@@ -263,15 +264,11 @@ class TouchRipple extends React.PureComponent {
     const { center, classes, className, ...other } = this.props;
 
     return (
-      <TransitionGroup
-        component="span"
-        enter
-        exit
-        className={clsx(classes.root, className)}
-        {...other}
-      >
-        {this.state.ripples}
-      </TransitionGroup>
+      <span className={clsx(classes.root, className)} ref={this.container} {...other}>
+        <TransitionGroup component={null} enter exit>
+          {this.state.ripples}
+        </TransitionGroup>
+      </span>
     );
   }
 }
