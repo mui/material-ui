@@ -27,7 +27,7 @@ import { palette, spacing, typography } from '@material-ui/system';
 import styled from 'styled-components';
 
 const Box = styled.div`${palette}${spacing}${typography}`;
-// or import { unstable_Box as Box } from '@material-ui/core/Box';
+// or import Box from '@material-ui/core/Box';
 
 <Box
   color="primary.main"
@@ -130,7 +130,7 @@ To make the Box component more useful, we have been building a collection of sty
 If you are already using `@material-ui/core`, you can use our [prepackaged Box](/utils/box/) component (using JSS internally):
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 ## Interoperability
@@ -275,7 +275,7 @@ We don't support all the CSS properties. It's possible that you want to support 
 
 #### Argumentos
 
-1. `options` (*Object*): 
+1. `options` (*Object*):
   - `options.prop` (*String*): The property the style function will be triggered on.
   - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
   - `options.themeKey` (*String* [optional]): The theme path prefix.
@@ -409,7 +409,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies like Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- Large companies like Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

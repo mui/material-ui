@@ -10,7 +10,7 @@ import molecules from '../../components/molecules';
 import Header from '../../components/instapaper/Header';
 import theme from '../../theme/instapaper/theme';
 import withTheme from './withTheme';
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 const { Avatar, Icon, Typography } = atoms;
 const { Tabs, Tab } = molecules;

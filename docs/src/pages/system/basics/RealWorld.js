@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import SignalWifiOffIcon from '@material-ui/icons/SignalWifiOff';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 function RealWorld() {
   return (

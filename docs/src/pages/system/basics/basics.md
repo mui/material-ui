@@ -26,7 +26,7 @@ import { palette, spacing, typography } from '@material-ui/system';
 import styled from 'styled-components';
 
 const Box = styled.div`${palette}${spacing}${typography}`;
-// or import { unstable_Box as Box } from '@material-ui/core/Box';
+// or import Box from '@material-ui/core/Box';
 
 <Box
   color="primary.main"
@@ -131,7 +131,7 @@ To make the Box component more useful, we have been building a collection of sty
 If you are already using `@material-ui/core`, you can use our [prepackaged Box](/utils/box/) component (using JSS internally):
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 ## Interoperability

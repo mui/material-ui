@@ -16,7 +16,7 @@ import red from '@material-ui/core/colors/red';
 import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
 import { spacing, palette } from '@material-ui/system';
 import Avatar from '@material-ui/core/Avatar';
-import { styleFunction, unstable_Box as Box } from '@material-ui/core/Box/Box';
+import Box, { styleFunction } from '@material-ui/core/Box/Box';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 

@@ -52,7 +52,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 ## API
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Name                                               | Type                                                                                                              | Default                                 | Description                                                                                            |

@@ -52,7 +52,7 @@ Box儿童接受渲染道具功能。 你可以拉出 `className`。
 ## API
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | 名称                                                 | 类型                                                                                                                | 默认                                      | 描述                                                   |
