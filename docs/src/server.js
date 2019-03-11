@@ -21,20 +21,20 @@ async function run() {
   const app = express();
   app.get('*', (req, res) => {
     const parsedUrl = url.parse(req.url, true);
-    const { pathname } = parsedUrl;
+    let { pathname } = parsedUrl;
     const { userLanguage, canonical } = pathnameToLanguage(pathname);
 
     if (userLanguage !== 'en') {
       // Add support for leading / in development mode.
-      let normalized = canonical;
-      if (normalized !== '/') {
+      pathname = canonical;
+      if (pathname !== '/') {
         // The leading / is only added to support static hosting (resolve /index.html).
         // We remove it to normalize the pathname.
         // See `_rewriteUrlForNextExport` on Next.js side.
-        normalized = normalized.replace(/\/$/, '');
+        pathname = pathname.replace(/\/$/, '');
       }
 
-      nextApp.render(req, res, normalized, {
+      nextApp.render(req, res, pathname, {
         userLanguage,
         ...parsedUrl.query,
       });
