@@ -2,7 +2,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Divider from './Divider';
-import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<Divider />', () => {
   let shallow;
@@ -31,21 +30,6 @@ describe('<Divider />', () => {
   it('should set the light class', () => {
     const wrapper = shallow(<Divider light />);
     assert.strictEqual(wrapper.hasClass(classes.light), true);
-  });
-
-  describe('prop: inset', () => {
-    before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('should set the inset class', () => {
-      const wrapper = shallow(<Divider inset />);
-      assert.strictEqual(wrapper.hasClass(classes.inset), true);
-    });
   });
 
   describe('prop: variant', () => {
