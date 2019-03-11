@@ -1,8 +1,5 @@
-import * as React from 'react';
-
 import { Breakpoints } from './createBreakpoints';
 import { Spacing } from './createSpacing';
-import { StyleRules } from '../styles';
 import { CSSProperties } from './withStyles';
 
 export interface Mixins {
