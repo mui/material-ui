@@ -34,7 +34,7 @@ export const styles = theme => ({
   labelIcon: {
     minHeight: 72,
     paddingTop: 9,
-    '& $wrapper :first-child': {
+    '& $wrapper > *:first-child': {
       marginBottom: 6,
     },
   },
