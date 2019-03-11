@@ -60,6 +60,13 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ### Styles
 
+- Isolation of the styling solution of the core components in a dedicated package.
+  Remove the `MuiThemeProvider` component:
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/styles';
+  ```
 - Remove the first option argument of `withTheme()`.
   The first argument was a placeholder for a potential future option.
   We have never found a need for it.
@@ -69,13 +76,6 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
-  ```
-- Isolation of the styling solution of the core components in a dedicated package.
-  Remove the `MuiThemeProvider` component:
-
-  ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/styles';
   ```
 
 ### Theme
@@ -90,9 +90,6 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
   console.log({ background });
   ```
-
-### Typography
-
 - You can safely remove the next variant from the theme creation:
 
   ```js
@@ -100,7 +97,10 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
     useNextVariants: true,
   },
   ```
-- Remove the deprecated typography variants. You can upgrade by performing the following replacements:
+
+### Typography
+
+- [Typography] Remove the deprecated typography variants. You can upgrade by performing the following replacements:
   - display4 => h1
   - display3 => h2
   - display2 => h3
@@ -110,18 +110,18 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   - subheading => subtitle1
   - body2 => body1
   - body1 (default) => body2 (default)
-- Remove the opinionated `display: block` default typograpghy style.
+- [Typography] Remove the opinionated `display: block` default typography style.
   You can use the new `display?: 'initial' | 'inline' | 'block';` property.
-- Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
+- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
 
   ```diff
-  -<MuiTypography headlineMapping={headlineMapping}>
-  +<MuiTypography variantMapping={variantMapping}>
+  -<Typography headlineMapping={headlineMapping}>
+  +<Typography variantMapping={variantMapping}>
   ```
 
 ### Button
 
-- Remove the deprecated button variants (flat, raised and fab):
+- [Button] Remove the deprecated button variants (flat, raised and fab):
 
   ```diff
   -<Button variant="raised" />
@@ -142,7 +142,7 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ### TextField
 
-- You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
+- [InputLabel] You should be able to override all the styles of the FormLabel component using the CSS API of the InputLabel component.
   The `FormLabelClasses` property has been removed.
 
   ```diff
@@ -154,9 +154,9 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
   </InputLabel>
   ```
 
-### Grid
+### Layout
 
-- In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally county by 8, we are changing the spacing API:
 
   ```diff
     /**
@@ -171,26 +171,25 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
 ### Table
 
-- Remove the deprecated `numeric` property.
+- [TableCell] Remove the deprecated `numeric` property.
 
   ```diff
   -<TableCell numeric>{row.calories}</TableCell>
   +<TableCell align="right">{row.calories}</TableCell>
   ```
-- Remove the fixed height CSS property on the `TableRow`.
+- [TableRow] Remove the fixed height CSS property.
   The cell height is computed by the browser using the padding and line-height.
-- Move the `dense` mode to a different property:
+- [TableCell] Move the `dense` mode to a different property:
 
   ```diff
   -<TableCell padding="dense" />
   +<TableCell size="small" />
   ```
-
-- The `TablePagination` component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
+- [TablePagination] The component no longer tries to fix invalid (`page`, `count`, `rowsPerPage`) property combinations. It raises a warning instead.
 
 ### Tabs
 
-- Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
+- [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity.
 This has allowed us to removed 2 intermediary DOM elements.
 You should be able to move the custom styles to the root class key.
 
@@ -198,8 +197,13 @@ You should be able to move the custom styles to the root class key.
 
 ### Menu
 
-- Remove the fixed height of the MenuItem.
+- [MenuItem] Remove the fixed height of the MenuItem.
   The padding and line-height are used by the browser to compute the height.
+
+### Dialog
+
+- [DialogActions] `action` CSS class is applied to root element instead of children if `disableActionSpacing={false}`.
+- [DialogContentText] Use typography variant `body1` instead of `subtitle1`.
 
 ### Node
 
