@@ -37,7 +37,7 @@ export function useKeyboardPickerState(
     : props.value;
 
   useEffect(() => {
-    if (!props.inputValue && utils.isValid(props.value)) {
+    if (props.value === null || utils.isValid(props.value)) {
       setInnerInputValue(getDisplayDate2(props.value, format, utils, props.value === null, props));
     }
   }, [props.value]);
@@ -52,8 +52,8 @@ export function useKeyboardPickerState(
     ...innerInputProps,
     inputValue: props.inputValue || innerInputValue,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-      const date = utils.parse(e.target.value, wrapperProps.format);
       setInnerInputValue(e.target.value);
+      const date = e.target.value === '' ? null : utils.parse(e.target.value, wrapperProps.format);
 
       props.onChange(date, e.target.value);
     },

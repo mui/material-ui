@@ -15,7 +15,7 @@ function KeyboardDatePickerExample(props) {
             dateFns: 'MM/dd/y',
           })}
           value={selectedDate}
-          onChange={handleDateChange}
+          onChange={date => handleDateChange(date)}
           animateYearScrolling={false}
           minDate={new Date()}
         />
