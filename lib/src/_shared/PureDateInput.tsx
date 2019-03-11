@@ -4,25 +4,26 @@ import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core
 import { ExtendMui } from '../typings/extendMui';
 
 export interface PureDateInputProps
-  extends ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
+  extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
-  variant?: TextFieldProps['variant'];
+  inputVariant?: TextFieldProps['variant'];
   inputValue: string;
-  validationError: string;
+  validationError?: string;
 }
 
 // Do not recreate new object each render
 const PureDateInputProps = { readOnly: true };
 
-export const PureDateInput: React.FunctionComponent<PureDateInputProps> = ({
+export const PureDateInput: React.FC<PureDateInputProps> = ({
   inputValue,
-  variant,
+  inputVariant,
   validationError,
   ...other
 }) => {
   return (
     <TextField
       {...other}
+      variant={inputVariant as any}
       value={inputValue}
       error={Boolean(validationError)}
       helperText={validationError}

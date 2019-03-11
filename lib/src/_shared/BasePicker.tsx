@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
 import { DateType, DomainPropTypes } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
+import { WrapperVariant } from '../wrappers';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
 export interface BasePickerRenderArgs {
@@ -26,6 +27,8 @@ export interface BasePickerProps {
   value: DateType;
   /** onChange callback */
   onChange: (date: MaterialUiPickersDate) => void;
+  /** Displaying variant */
+  variant?: WrapperVariant;
   /** Auto accept date on selection */
   autoOk?: boolean;
   /** Control 12h or 24h view mode for clock */
@@ -46,8 +49,8 @@ export interface BasePickerProps {
   onAccept?: (date: MaterialUiPickersDate) => void;
   minDate?: DateType;
   maxDate?: DateType;
-  forwardedRef?: any;
   mergePreviousDateOnChange?: boolean;
+  forwardedRef?: any;
 }
 
 export interface OuterBasePickerProps extends BasePickerProps, WithUtilsProps {

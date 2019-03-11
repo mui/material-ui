@@ -1,4 +1,4 @@
-import { InlineDatePicker } from 'material-ui-pickers';
+import { DatePicker, KeyboardDatePicker } from 'material-ui-pickers';
 import React, { Fragment, useState } from 'react';
 
 function InlineDatePickerDemo(props) {
@@ -7,12 +7,18 @@ function InlineDatePickerDemo(props) {
   return (
     <Fragment>
       <div className="picker">
-        <InlineDatePicker label="Basic example" value={selectedDate} onChange={handleDateChange} />
+        <DatePicker
+          variant="inline"
+          label="Basic example"
+          value={selectedDate}
+          onChange={handleDateChange}
+        />
       </div>
 
       <div className="picker">
-        <InlineDatePicker
+        <DatePicker
           onlyCalendar
+          variant="inline"
           label="Only calendar"
           helperText="No year selection"
           value={selectedDate}
@@ -21,10 +27,9 @@ function InlineDatePickerDemo(props) {
       </div>
 
       <div className="picker">
-        <InlineDatePicker
-          keyboard
-          clearable
-          variant="outlined"
+        <KeyboardDatePicker
+          variant="inline"
+          inputVariant="outlined"
           label="With keyboard"
           value={selectedDate}
           onChange={handleDateChange}

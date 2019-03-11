@@ -36,12 +36,7 @@ function Regression() {
         <DatePicker id="basic-datepicker" {...sharedProps} />
         <DatePicker id="clearable-datepicker" clearable {...sharedProps} />
         <KeyboardDatePicker id="keyboard-datepicker" {...sharedProps} />
-        <KeyboardDatePicker
-          id="keyboard-mask-datepicker"
-          format="MM/dd/y"
-          mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-          {...sharedProps}
-        />
+        <KeyboardDatePicker id="keyboard-mask-datepicker" format="MM/dd/y" {...sharedProps} />
         <DatePicker disabled id="disabled" {...sharedProps} />
       </Grid>
     </div>

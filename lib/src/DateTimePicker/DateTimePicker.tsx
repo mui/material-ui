@@ -12,7 +12,7 @@ import View from './components/DateTimePickerView';
 import { Omit } from '@material-ui/core';
 import { withUtils, WithUtilsProps } from '../_shared/WithUtils';
 import DateTimePickerView, { DateTimePickerViewType } from '../constants/DateTimePickerView';
-import { BaseDatePickerProps } from '../DatePicker/DatePicker';
+import { BaseDatePickerProps } from '../DatePicker/DatePickerRoot';
 import { MaterialUiPickersDate } from '../typings/date';
 
 export interface BaseDateTimePickerProps

@@ -43,7 +43,7 @@ export const getDisplayDate2 = (
     return emptyLabel || '';
   }
 
-  return utils.isValid(date) ? utils.format(date, format) : invalidLabel;
+  return utils.isValid(date) ? utils.format(date, format) : invalidLabel!;
 };
 
 export const getError = (

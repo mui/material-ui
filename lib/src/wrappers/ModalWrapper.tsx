@@ -2,9 +2,10 @@ import { Omit } from '@material-ui/core';
 import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { WrapperProps } from '.';
 import ModalDialog from '../_shared/ModalDialog';
 
-export interface ModalWrapperProps<T = {}> {
+export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */
@@ -27,14 +28,6 @@ export interface ModalWrapperProps<T = {}> {
   DialogProps?: Partial<Omit<DialogPropsType, 'classes'>>;
   /** Show clear action in picker dialog */
   clearable?: boolean;
-  open: boolean;
-  onAccept: () => void;
-  onDismiss: () => void;
-  onClear: () => void;
-  onSetToday: () => void;
-  wider?: boolean;
-  InputComponent: React.ComponentType<T>;
-  DateInputProps: T;
 }
 
 export const ModalWrapper: React.FC<ModalWrapperProps<any>> = ({
@@ -118,7 +111,6 @@ ModalWrapper.defaultProps = {
   todayLabel: 'Today',
   clearable: false,
   showTodayButton: false,
-  isAccepted: false,
-} as any;
+};
 
 export default ModalWrapper;

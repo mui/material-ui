@@ -1,152 +1,97 @@
-import { Omit } from '@material-ui/core';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
+import { TextFieldProps } from '@material-ui/core/TextField';
 import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
-import DateTextField, { DateTextFieldProps } from '../_shared/DateTextField';
+import { WrapperProps } from '.';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
 
-export interface OuterInlineWrapperProps extends Omit<DateTextFieldProps, 'utils' | 'onClick'> {
-  wider?: boolean;
+export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
   /** On open callback */
   onOpen?: () => void;
   /** On close callback */
   onClose?: () => void;
   /** Dialog props passed to material-ui Dialog */
   PopoverProps?: Partial<PopoverPropsType>;
-}
-
-export interface InlineWrapperProps extends OuterInlineWrapperProps {
-  handleAccept: () => void;
-  isAccepted: boolean;
   /** Show only calendar for datepicker in popover mode */
-  onlyCalendar: boolean;
+  onlyCalendar?: boolean;
 }
 
-export class InlineWrapper extends React.PureComponent<
-  InlineWrapperProps & WithStyles<typeof styles>
-> {
-  public static propTypes: any = {
-    onlyCalendar: PropTypes.bool,
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    PopoverProps: PropTypes.object,
-  };
-
-  public static defaultProps = {
-    value: new Date(),
-    onlyCalendar: false,
-    isAccepted: false,
-  };
-
-  public static getDerivedStateFromProps(nextProps: InlineWrapperProps) {
-    // only if accept = true close the popover
-    if (nextProps.isAccepted) {
-      if (nextProps.onClose) {
-        nextProps.onClose();
+const InlineWrapper: React.FC<InlineWrapperProps & WithStyles<typeof styles>> = ({
+  open,
+  wider,
+  children,
+  onOpen,
+  onClose,
+  PopoverProps,
+  onClear,
+  onDismiss,
+  onSetToday,
+  onlyCalendar,
+  classes,
+  onAccept,
+  DateInputProps,
+  InputComponent,
+  ...other
+}) => {
+  const ref = React.useRef();
+  const handleKeyDown = React.useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'Enter':
+          onAccept();
+          break;
+        default:
+          return; // if key is not handled, stop execution
       }
 
-      return {
-        anchorEl: null,
-      };
-    }
+      // if event was handled prevent other side effects
+      event.preventDefault();
+    },
+    [onAccept]
+  );
 
-    return null;
-  }
+  return (
+    <React.Fragment>
+      {open && <EventListener target="window" onKeyDown={handleKeyDown} />}
 
-  public state = {
-    anchorEl: null,
-  };
+      <InputComponent inputRef={ref} {...other} {...DateInputProps} />
 
-  public open = (e: React.SyntheticEvent) => {
-    this.setState({ anchorEl: e.currentTarget });
-    if (this.props.onOpen) {
-      this.props.onOpen();
-    }
-  };
+      <Popover
+        id="picker-popover"
+        open={open}
+        onClose={onAccept}
+        anchorEl={ref.current}
+        classes={{
+          paper: clsx(classes.popoverPaper, { [classes.popoverPaperWider]: wider }),
+        }}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: true ? 'right' : 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: true ? 'right' : 'center',
+        }}
+        children={children}
+        {...PopoverProps}
+      />
+    </React.Fragment>
+  );
+};
 
-  public close = () => {
-    this.setState({ anchorEl: null });
+InlineWrapper.propTypes = {
+  onlyCalendar: PropTypes.bool,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
+  PopoverProps: PropTypes.object,
+} as any;
 
-    this.props.handleAccept();
-
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
-  };
-
-  public handleKeyDown = (event: KeyboardEvent) => {
-    switch (event.key) {
-      case 'Enter': {
-        this.props.handleAccept();
-        this.close();
-        break;
-      }
-      default:
-        // if key is not handled, stop execution
-        return;
-    }
-
-    // if event was handled prevent other side effects
-    event.preventDefault();
-  };
-
-  public render() {
-    const {
-      value,
-      format,
-      children,
-      onOpen,
-      onClose,
-      PopoverProps,
-      isAccepted,
-      keyboard,
-      onlyCalendar,
-      classes,
-      handleAccept,
-      wider,
-      ...other
-    } = this.props;
-
-    const isOpen = Boolean(this.state.anchorEl);
-
-    return (
-      <React.Fragment>
-        {isOpen && <EventListener target="window" onKeyDown={this.handleKeyDown} />}
-
-        <DateTextField
-          value={value}
-          format={format}
-          onClick={this.open}
-          keyboard={keyboard}
-          {...other}
-        />
-
-        <Popover
-          id="picker-popover"
-          open={isOpen}
-          anchorEl={this.state.anchorEl}
-          onClose={this.close}
-          classes={{
-            paper: clsx(classes.popoverPaper, { [classes.popoverPaperWider]: wider }),
-          }}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: keyboard ? 'right' : 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: keyboard ? 'right' : 'center',
-          }}
-          children={children}
-          {...PopoverProps}
-        />
-      </React.Fragment>
-    );
-  }
-}
+InlineWrapper.defaultProps = {
+  onlyCalendar: false,
+};
 
 export const styles = {
   popoverPaper: {

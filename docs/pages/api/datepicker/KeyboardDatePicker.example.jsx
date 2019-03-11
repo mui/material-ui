@@ -8,20 +8,21 @@ function KeyboardDatePickerExample(props) {
     <Fragment>
       <div className="picker">
         <KeyboardDatePicker
-          keyboard
           clearable
           label="Uncontrolled input"
+          format={props.getFormatString({
+            moment: 'MM/DD/YYYY',
+            dateFns: 'MM/dd/y',
+          })}
           value={selectedDate}
           onChange={handleDateChange}
           animateYearScrolling={false}
           minDate={new Date()}
-          onInputChange={e => console.log('Keyboard Input:', e.target.value)}
         />
       </div>
 
       <div className="picker">
         <KeyboardDatePicker
-          keyboard
           label="Masked input"
           format={props.getFormatString({
             moment: 'MM/DD/YYYY',
@@ -34,7 +35,6 @@ function KeyboardDatePickerExample(props) {
           }
           value={selectedDate}
           onChange={handleDateChange}
-          disableOpenOnEnter
           animateYearScrolling={false}
         />
       </div>

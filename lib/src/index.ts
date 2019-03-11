@@ -17,7 +17,7 @@ export type DateTimePickerInlineProps = DateTimePickerInlineProps;
 
 export type MaterialUiPickersDate = MaterialUiPickersDate;
 
-export { default as DatePicker, InlineDatePicker } from './DatePicker';
+export { default as DatePicker } from './DatePicker';
 
 export { default as TimePicker, InlineTimePicker } from './TimePicker';
 

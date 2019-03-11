@@ -5,22 +5,24 @@ import {
   useKeyboardPickerState,
 } from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
-import KeyboardDateInput from '../_shared/KeyboardDateInput';
+import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { ExtendWrapper } from '../wrappers/ExtendWrapper';
 import ModalWrapper, { ModalWrapperProps } from '../wrappers/ModalWrapper';
-import DatePicker, { BaseDatePickerProps } from './DatePicker';
+import DatePicker, { BaseDatePickerProps } from './DatePickerRoot';
 
 export interface DatePickerModalProps
   extends BaseKeyboardPickerProps,
     BaseDatePickerProps,
-    ExtendWrapper<ModalWrapperProps> {}
+    ExtendWrapper<ModalWrapperProps, KeyboardDateInputProps> {}
 
 export function KeyboardDatePicker(props: DatePickerModalProps) {
   const utils = useUtils();
   const { pickerProps, wrapperProps, inputProps } = useKeyboardPickerState(props, () =>
     getFormatByViews(props.views!, utils)
   );
+
   const {
+    onAccept,
     allowKeyboardControl,
     animateYearScrolling,
     autoOk,
@@ -48,14 +50,6 @@ export function KeyboardDatePicker(props: DatePickerModalProps) {
 
   return (
     <ModalWrapper
-      disableFuture={disableFuture}
-      disablePast={disablePast}
-      labelFunc={labelFunc}
-      maxDate={maxDate}
-      minDate={minDate}
-      ref={forwardedRef}
-      value={value}
-      isAccepted={false}
       InputComponent={KeyboardDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}

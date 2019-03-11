@@ -7,7 +7,7 @@ const parser = require('react-docgen-typescript').withDefaultConfig({
 const doc = {};
 const srcPath = path.resolve(__dirname, '..', '..', 'lib', 'src');
 const files = [
-  'DatePicker/DatePickerModal.tsx',
+  'DatePicker/DatePicker.tsx',
   'TimePicker/TimePickerModal.tsx',
   'DateTimePicker/DateTimePickerModal.tsx',
 ];

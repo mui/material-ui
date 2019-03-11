@@ -8,14 +8,14 @@ import { KeyboardIcon } from './icons/KeyboardIcon';
 export interface KeyboardDateInputProps
   extends ExtendMui<BaseTextFieldProps, 'onError' | 'onChange' | 'value'> {
   // Properly extend different variants from mui textfield
-  variant?: TextFieldProps['variant'];
+  inputVariant?: TextFieldProps['variant'];
   inputValue: string;
   validationError: string;
 }
 
 const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   inputValue,
-  variant,
+  inputVariant,
   validationError,
   onClick,
   ...other
@@ -23,6 +23,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   return (
     <TextField
       {...other}
+      variant={inputVariant as any}
       value={inputValue}
       error={Boolean(validationError)}
       helperText={validationError}
