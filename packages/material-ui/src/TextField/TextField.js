@@ -13,7 +13,6 @@ import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import withStyles from '../styles/withStyles';
-import withForwardedRef from '../utils/withForwardedRef';
 
 const variantComponent = {
   standard: Input,
@@ -54,133 +53,123 @@ const styles = {
  * - using the upper case props for passing values directly to the components
  * - using the underlying components directly as shown in the demos
  */
-class TextField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.labelRef = React.createRef();
-  }
+const TextField = React.forwardRef(function TextField(props, ref) {
+  const {
+    autoComplete,
+    autoFocus,
+    children,
+    classes,
+    className: classNameProp,
+    defaultValue,
+    error,
+    FormHelperTextProps,
+    fullWidth,
+    helperText,
+    id,
+    InputLabelProps,
+    inputProps,
+    InputProps,
+    inputRef,
+    label,
+    multiline,
+    name,
+    onBlur,
+    onChange,
+    onFocus,
+    placeholder,
+    required,
+    rows,
+    rowsMax,
+    select,
+    SelectProps,
+    type,
+    value,
+    variant,
+    ...other
+  } = props;
 
-  componentDidMount() {
-    if (this.props.variant === 'outlined') {
-      this.labelNode = ReactDOM.findDOMNode(this.labelRef.current);
-      this.forceUpdate();
-    }
-  }
-
-  render() {
-    const {
-      autoComplete,
-      autoFocus,
-      children,
-      classes,
-      className: classNameProp,
-      defaultValue,
-      error,
-      FormHelperTextProps,
-      fullWidth,
-      helperText,
-      id,
-      innerRef,
-      InputLabelProps,
-      inputProps,
-      InputProps,
-      inputRef,
-      label,
-      multiline,
-      name,
-      onBlur,
-      onChange,
-      onFocus,
-      placeholder,
-      required,
-      rows,
-      rowsMax,
-      select,
-      SelectProps,
-      type,
-      value,
-      variant,
-      ...other
-    } = this.props;
-
-    warning(
-      !select || Boolean(children),
-      'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
-    );
-
-    const InputMore = {};
-
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  const labelRef = React.useRef();
+  React.useEffect(() => {
     if (variant === 'outlined') {
-      if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
-        InputMore.notched = InputLabelProps.shrink;
-      }
+      // StrictMode ready
+      const labelNode = ReactDOM.findDOMNode(labelRef.current);
+      setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
+    }
+  }, [variant]);
 
-      InputMore.labelWidth = (this.labelNode && this.labelNode.offsetWidth) || 0;
+  warning(
+    !select || Boolean(children),
+    'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+  );
+
+  const InputMore = {};
+
+  if (variant === 'outlined') {
+    if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
+      InputMore.notched = InputLabelProps.shrink;
     }
 
-    const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
-    const InputComponent = variantComponent[variant];
-    const InputElement = (
-      <InputComponent
-        aria-describedby={helperTextId}
-        autoComplete={autoComplete}
-        autoFocus={autoFocus}
-        defaultValue={defaultValue}
-        fullWidth={fullWidth}
-        multiline={multiline}
-        name={name}
-        rows={rows}
-        rowsMax={rowsMax}
-        type={type}
-        value={value}
-        id={id}
-        inputRef={inputRef}
-        onBlur={onBlur}
-        onChange={onChange}
-        onFocus={onFocus}
-        placeholder={placeholder}
-        inputProps={inputProps}
-        {...InputMore}
-        {...InputProps}
-      />
-    );
-
-    return (
-      <FormControl
-        className={clsx(classes.root, classNameProp)}
-        error={error}
-        fullWidth={fullWidth}
-        ref={innerRef}
-        required={required}
-        variant={variant}
-        {...other}
-      >
-        {label && (
-          <InputLabel htmlFor={id} ref={this.labelRef} {...InputLabelProps}>
-            {label}
-          </InputLabel>
-        )}
-        {select ? (
-          <Select
-            aria-describedby={helperTextId}
-            value={value}
-            input={InputElement}
-            {...SelectProps}
-          >
-            {children}
-          </Select>
-        ) : (
-          InputElement
-        )}
-        {helperText && (
-          <FormHelperText id={helperTextId} {...FormHelperTextProps}>
-            {helperText}
-          </FormHelperText>
-        )}
-      </FormControl>
-    );
+    InputMore.labelWidth = labelWidth;
   }
-}
+
+  const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+  const InputComponent = variantComponent[variant];
+  const InputElement = (
+    <InputComponent
+      aria-describedby={helperTextId}
+      autoComplete={autoComplete}
+      autoFocus={autoFocus}
+      defaultValue={defaultValue}
+      fullWidth={fullWidth}
+      multiline={multiline}
+      name={name}
+      rows={rows}
+      rowsMax={rowsMax}
+      type={type}
+      value={value}
+      id={id}
+      inputRef={inputRef}
+      onBlur={onBlur}
+      onChange={onChange}
+      onFocus={onFocus}
+      placeholder={placeholder}
+      inputProps={inputProps}
+      {...InputMore}
+      {...InputProps}
+    />
+  );
+
+  return (
+    <FormControl
+      className={clsx(classes.root, classNameProp)}
+      error={error}
+      fullWidth={fullWidth}
+      ref={ref}
+      required={required}
+      variant={variant}
+      {...other}
+    >
+      {label && (
+        <InputLabel htmlFor={id} ref={labelRef} {...InputLabelProps}>
+          {label}
+        </InputLabel>
+      )}
+      {select ? (
+        <Select aria-describedby={helperTextId} value={value} input={InputElement} {...SelectProps}>
+          {children}
+        </Select>
+      ) : (
+        InputElement
+      )}
+      {helperText && (
+        <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+          {helperText}
+        </FormHelperText>
+      )}
+    </FormControl>
+  );
+});
 
 TextField.propTypes = {
   /**
@@ -338,4 +327,4 @@ TextField.defaultProps = {
   variant: 'standard',
 };
 
-export default withStyles(styles, { name: 'MuiTextField' })(withForwardedRef(TextField));
+export default withStyles(styles, { name: 'MuiTextField' })(TextField);
