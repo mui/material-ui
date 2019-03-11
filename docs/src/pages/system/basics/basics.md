@@ -419,7 +419,7 @@ In this example, we demonstrate how to reproduce a Banner component.
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions.
 It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies like Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
+- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

@@ -130,7 +130,7 @@ export default App
 如果你已经在使用 `@材料-ui/核心`，你可以用我们的 [预先包装的盒](/utils/box/) 部件(用调内部):
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import { unstable_Box as Box } from '@material-ui/core/Box';
 ```
 
 ## 互操作性
@@ -275,7 +275,7 @@ const Box = styled.div`
 
 #### 参数
 
-1. `选项` (*Object*):
+1. `选项` (*Object*): 
   - `的选择。托` (*串*)：酒店的风格功能将被触发。
   - `的选择。cssProperty` (*串|布尔* [optional]):默认 `的选择。托`的。 CSS财产使用。 你可以无障碍这一选项，通过提供 `假`的。 当残疾人、财产的价值将处理作为一种风格的对象。 它可以用于 [呈现的变](#variants)的。
   - `的选择。themeKey` (*串* [optional])：主题路径的前缀。
@@ -409,7 +409,7 @@ const Box = styled.div`
 - Tachyons后来在(2017年)，其次是 [顺风CSS](https://tailwindcss.com/)的。 他们已经由原子CSS更受欢迎。
 - [Twitter的引导](https://getbootstrap.com/docs/4.1/utilities/borders/) 已经慢慢介绍了原子类名在v2，v3,和v4。 我们必须用他们的集团，他们的"助手类"作为灵感。
 - 在作出反应的世界， [风格系统](https://github.com/jxnblk/styled-system) 是一个第(2017年)，以促进风格的功能。 它可以作为一个通用框部件替换原子CSS佣工及佣工中写入新的组成。
-- 这样的大公司访问网站审查，Segment.io都使用同样的方法在不同的口味的：
+- 这样的大公司访问网站审查，Segment.io都使用同样的方法在不同的口味的： 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import borders from '@material-ui/system/borders';
 import compose from '@material-ui/system/compose';
 import display from '@material-ui/system/display';
@@ -27,6 +25,9 @@ export const styleFunction = css(
   ),
 );
 
-const Box = styled('div')(styleFunction, { name: 'MuiBox' })
+/**
+ * @ignore - do not document.
+ */
+const Box = styled('div')(styleFunction, { name: 'MuiBox' });
 
 export default Box;
