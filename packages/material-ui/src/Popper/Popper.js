@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import Portal from '../Portal';
@@ -33,6 +32,8 @@ function getAnchorEl(anchorEl) {
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
 class Popper extends React.Component {
+  tooltip = React.createRef();
+
   constructor(props) {
     super();
     this.state = {
@@ -82,7 +83,7 @@ class Popper extends React.Component {
 
   handleOpen = () => {
     const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
-    const popperNode = ReactDOM.findDOMNode(this);
+    const popperNode = this.tooltip.current;
 
     if (!popperNode || !anchorEl || !open) {
       return;
@@ -171,6 +172,7 @@ class Popper extends React.Component {
     return (
       <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
         <div
+          ref={this.tooltip}
           role="tooltip"
           style={{
             // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
