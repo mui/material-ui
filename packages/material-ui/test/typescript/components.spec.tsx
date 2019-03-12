@@ -394,10 +394,10 @@ const DialogTest = () => {
           <ListItem
             button
             ref={elem => {
-              elem; // $ExpectType HTMLButtonElement | null
+              elem; // $ExpectType HTMLDivElement | null
             }}
             onClick={e => {
-              e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+              e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
               log(e);
             }}
           >
