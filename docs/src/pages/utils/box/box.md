@@ -60,7 +60,7 @@ you need to import the Box last.
 ## API
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Name | Type | Default | Description |

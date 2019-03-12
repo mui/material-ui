@@ -1,1 +1,2 @@
-export { unstable_Box, BoxProps } from './Box';
+export { default } from './Box';
+export * from './Box';
