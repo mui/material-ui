@@ -14,4 +14,4 @@ export {
   StyleRules,
   WithStyles,
 } from '@material-ui/styles/withStyles';
-export { default as withTheme, WithTheme } from '@material-ui/styles/withTheme';
+export { default as withTheme, WithTheme, withThemeCreator } from '@material-ui/styles/withTheme';
