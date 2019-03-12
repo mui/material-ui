@@ -30,6 +30,8 @@ class SwipeableDrawer extends React.Component {
 
   isSwiping = null;
 
+  paperRef = null;
+
   componentDidMount() {
     if (this.props.variant === 'temporary') {
       this.listenTouchStart();
