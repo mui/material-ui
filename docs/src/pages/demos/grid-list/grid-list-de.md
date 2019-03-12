@@ -1,33 +1,33 @@
 ---
-title: Grid List React component
+title: Rasterliste React Komponente
 components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 ---
-# Grid List
+# Rasterliste
 
-<p class="description">Grid lists display a collection of images in an organized grid.</p>
+<p class="description">Rasterlisten zeigen eine Sammlung von Bildern in einem organisierten Raster an.</p>
 
-[Grid lists](https://material.io/design/components/image-lists.html) represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
+[Rasterlisten](https://material.io/design/components/image-lists.html) repräsentieren eine Sammlung von Elementen in einem sich wiederholenden Muster. Sie verbessern das visuelle Verständnis der Inhalte, die sie enthalten.
 
-## Image-only Grid list
+## Nur-Bild Raster Liste
 
-A simple example of a scrollable image `GridList`.
+Ein einfaches Beispiel für ein scrollbare `RasterList` mit Bildern.
 
 {{"demo": "pages/demos/grid-list/ImageGridList.js", "hideEditButton": true}}
 
-## Grid list with titlebars
+## Rasterliste mit Titelleisten
 
-This example demonstrates the use of the `GridListTileBar` to add an overlay to each `GridListTile`. The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
+In diesem Beispiel wird die Verwendung der `GridListTileBar` veranschaulicht, um jeweils eine Überlagerung zu jedem `GridListTile`hinzuzufügen. Die Überlagerung kann einen `title`, `subtitle` und eine sekundäre Aktion aufnehmen - in diesem Beispiel ein `IconButton`.
 
 {{"demo": "pages/demos/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
-## Single line Grid list
+## Einzeilige Rasterliste
 
-This example demonstrates a horizontal scrollable single-line grid list of images. Horizontally scrolling grid lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension. One notable exception is a horizontally-scrolling, single-line grid list of images, such as a gallery.
+Dieses Beispiel zeigt eine horizontale, durchlaufbare, einzeilige Rasterliste von Bildern. Horizontales Scrollen von Rasterlisten wird empfohlen, da das Scrollen typische Lesemuster stört und das Verständnis beeinträchtigt. Eine Ausnahme ist eine horizontal scrollende, einzeilige Rasterliste von Bildern, z. B. einer Galerie.
 
 {{"demo": "pages/demos/grid-list/SingleLineGridList.js", "hideEditButton": true}}
 
-## Advanced Grid list
+## Erweiterte Rasterliste
 
-This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing. The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`. The secondary action `IconButton` is positioned on the left.
+In diesem Beispiel werden "vorgestellte" Fliesen dargestellt, wobei die Eigenschaften `rows` und `cols` die Größe der Kacheln festlegen und der Abstand durch die `padding` Eigenschaft einstellen wird. Die Kacheln haben eine angepasste Titleleiste, an der Spitze positioniert ist und einem benutzerdefinierten Gradienten `titleBackground` hat. Die sekundäre Aktion `IconButton` befindet sich links.
 
 {{"demo": "pages/demos/grid-list/AdvancedGridList.js", "hideEditButton": true}}

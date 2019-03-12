@@ -1,38 +1,38 @@
 ---
-title: Expansion Panel React component
+title: Erweiterungspanel React-Komponente
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
-# Expansion Panels
+# Erweiterungspanel
 
-<p class="description">Expansion panels contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">Erweiterungspanels (Tafeln) enthalten Erstellungsabläufe und ermöglichen die einfache Bearbeitung eines Elements.</p>
 
-[An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+[Ein Erweiterungspanel](https://material.io/archive/guidelines/components/expansion-panels.html) ist ein leichter Behälter, der entweder alleine stehen kann oder mit einer größeren Oberfläche verbunden ist, beispielsweise einer Karte.
 
-> **Note:** Expansion panels are no longer documented in the Material Design documentation.
+> **Hinweis:** Erweiterungspanele sind nicht mehr in der Material Design-Dokumentation dokumentiert.
 
-## Accessibility
+## Barrierefreiheit
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+Für eine optimale Erreichbarkeit empfehlen wir die Einstellung `id` und `aria-controls` in der `ExpansionPanelSummary`. Das `ExpansionPanel` leitet die notwendigen `aria-labelledby` und `id` für den Inhaltsbereich des Panels ab.
 
-## Simple Expansion Panel
+## Einfaches Erweiterungspanel
 
 {{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
 
-## Controlled Accordion
+## Kontrolliertes Akkordeon
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+Erweitern Sie das Standardbedienfeldverhalten, um ein Akkordeon mit der Komponente `ExpansionPanel` zu erstellen.
 
 {{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns
+## Sekundäre Überschrift und Spalten
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bedienfeld kann ein Hilfetext hinzugefügt werden, welches den Benutzer unterstützt.
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
-## Customized Expansion Panel
+## Individuelles Erweiterungspanel
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the background color of the `ExpansionPanelSummary` and padding of `ExpansionPanelDetails`.
+Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Hintergrundfarbe des `ExpansionPanelSummary` und den Abstand des `ExpansionPanelDetails` anpassen könntest.
 
 ⚠️ Auch wenn die material design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 

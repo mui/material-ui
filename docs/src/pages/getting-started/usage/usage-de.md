@@ -2,7 +2,7 @@
 
 <p class="description">Beginnen Sie mit React und Material-UI in kürzester Zeit.</p>
 
-Material-UI-Komponenten arbeiten isoliert. **They are self-supporting**, and will only inject the styles they need to display. Sie beruhen nicht auf einem globalen Stylesheet wie [normalize.css](https://github.com/necolas/normalize.css/).
+Material-UI-Komponenten arbeiten isoliert. **Sie sind selbst unterstützend** und injizieren, nur die Stile, die zum Anzeigen benötigt werden. Sie beruhen nicht auf einem globalen Stylesheet wie [normalize.css](https://github.com/necolas/normalize.css/).
 
 Sie können jede Komponente, wie in der Dokumentation beschrieben, verwenden. Bitte beachten Sie die [Demoseite jeder Komponente](/demos/buttons/), um zu sehen, wie sie importiert werden sollten.
 

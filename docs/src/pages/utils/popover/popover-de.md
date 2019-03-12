@@ -1,38 +1,38 @@
 ---
-title: Popover React component
+title: Popover React-Komponente
 components: Grow, Popover
 ---
 # Popover
 
-<p class="description">A Popover can be used to display some content on top of another.</p>
+<p class="description">Ein Popover kann verwendet werden, um einige Inhalte übereinander anzuzeigen.</p>
 
-Things to know when using the `Popover` component:
+Wissenswertes zur Verwendung der Komponente `Popover`:
 
-- The component is built on top of the [`Modal`](/utils/modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/utils/popper/) component.
+- Die Komponente ist auf der [`Modal`](/utils/modal/) Komponente aufgebaut.
+- Das Scrollen und das Wegklicken sind im Gegensatz zur Komponente [`Popper`](/utils/popper/) blockiert.
 
-## Simple Popover
+## Einfaches Popover
 
 {{"demo": "pages/utils/popover/SimplePopover.js" }}
 
-## Anchor playground
+## Anker Spielplatz
 
-Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions. You can also set the `anchorReference` to `anchorPosition` or `anchorEl`. When it is `anchorPosition`, the component will, instead of `anchorEl`, refer to the `anchorPosition` prop which you can adjust to set the position of the popover.
+Verwenden Sie die Optionsfelder, um die Positionen des `AnkerOrigin` und des `TransformationOrigin` anzupassen. Sie können auch die `anchorReference` auf `anchorPosition` oder `anchorEl` setzen. Wenn `anchorPosition` ausgewählt ist, wird die Komponente, anstatt an `anchorEl`, am `anchorPosition` prop gerendert.
 
-{{"demo": "pages/utils/popover/AnchorPlayground.js"}}
+{{"demo": "pages/utils/popover/AnchorPlayground.js", "hideHeader": true}}
 
-## Mouse over interaction
+## Maus Interaktionen
 
-We demonstrate how to use the `Popover` component to implement a popover behavior based on the mouse over event.
+Wir zeigen, wie Sie mit der `Popover-Komponente` ein Popover-Verhalten basierend auf dem Mouseover-Ereignis implementieren.
 
 {{"demo": "pages/utils/popover/MouseOverPopover.js"}}
 
-## Complementary projects
+## Ergänzende Projekte
 
-For more advanced use cases you might be able to take advantage of:
+Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-### PopupState helper
+### PopupState-Helfer
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
+Es gibt ein Drittanbieter-Paket [`Material-Ui-Popup-Status`](https://github.com/jcoreio/material-ui-popup-state), das sich in den meisten Fällen um Popover Status kümmern kann.
 
 {{"demo": "pages/utils/popover/PopoverPopupState.js"}}

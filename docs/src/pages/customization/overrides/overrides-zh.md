@@ -16,15 +16,15 @@
 
 覆盖组件样式的第一种方法是使用 **类名**。 每个组件都提供一个 `className` 属性，该属性始终应用于根元素。
 
-在这个例子中，它使用 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶 组件将自定义样式注入DOM，并通过其 `类` 属性将类名传递给 `ClassNames` 组件。 您可以选择[任何其他样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[ CSS注入顺序](/customization/css-in-js/#css-injection-order) ，因为通过Material-UI注入DOM 以对组件进行样式化的CSS具有最高的优先级，因为`<link>`被注入到` <head />` 的底部以确保组件始终正确渲染。
+This example uses the [`withStyles()`](/css-in-js/basics/#higher-order-component-api) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. 您可以选择[任何其他样式解决方案](/guides/interoperability/)或甚至简单的CSS创建的样式，但一定要 考虑[ CSS注入顺序](/css-in-js/advanced/#css-injection-order) ，因为通过Material-UI注入DOM 以对组件进行样式化的CSS具有最高的优先级，因为`<link>`被注入到` <head />` 的底部以确保组件始终正确渲染。
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
 ### 覆盖类
 
-当 `className` 属性不够，并且您需要访问更深层元素时，您可以利用 `classes` 属性来自定义Material-UI为给定组件注入的所有CSS。 每个 组件的类列表记录在 **Component API** 部分中。 例如，您可以查看 [Button CSS API](/api/button/#css)。 或者，你可以随时查看[实现细节](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
+When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component. 每个 组件的类列表记录在 **Component API** 部分中。 例如，您可以查看 [Button CSS API](/api/button/#css)。 Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
 
-这个例子也使用 `withStyles（）` （见上文），但是这里， `ClassesNesting` 使用 `Button`的 `类` prop到 提供了一个对象，它映射了 **个类的名称以覆盖** （样式规则） **CSS类名称应用** （值）。 组件的现有类将继续注入，因此只需要提供要添加或覆盖的特定样式 。
+这个例子也使用了 `withStyles()` （见上文），但在这里， `ClassesNesting` 使用 `Button` 的 `classes` 属性来接收一个对象，该对象将 **要覆盖的classes子项名** （样式规则）映射到 **对应的CSS属性名称** （值）。 组件的现有类将继续注入，因此只需要提供要添加或覆盖的特定样式 。
 
 请注意，除按钮样式外，按钮标签的大小写也已更改：
 
@@ -32,7 +32,7 @@
 
 ### 使用开发工具
 
-浏览器开发工具可以为您节省大量时间。 Material-UI的类名 [遵循开发模式中的简单模式](/customization/css-in-js/#class-names) ： `Mui [组件名称] - [样式规则名称] -[UUID]`。
+浏览器开发工具可以为您节省大量时间。 Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
 
 让我们回到上面的演示。 你怎么能覆盖按钮标签？
 
@@ -208,4 +208,4 @@ Material-UI尝试实现所有这些变体。 请参阅 [支持的组件](/gettin
 
 ### 全局CSS覆盖
 
-您还可以使用CSS自定义组件的所有实例。 我们公开了一个 `dangerouslyUseGlobalCSS` 选项来执行此操作。 在文档的[CSS-in-JS部分](/customization/css-in-js/#global-css)中了解有关它的更多信息。 它与您自定义Bootstrap的方式非常相似。
+您还可以使用CSS自定义组件的所有实例。 我们公开了一个 `dangerouslyUseGlobalCSS` 选项来执行此操作。 Learn more about it in the [styles section](/css-in-js/advanced/#deterministic-class-names) of the documentation. 它与您自定义Bootstrap的方式非常相似。

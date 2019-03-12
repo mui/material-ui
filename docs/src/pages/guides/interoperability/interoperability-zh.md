@@ -6,7 +6,7 @@
 
 我们提供了以下样式解决方案的示例：
 
-- [原始CSS](#raw-css)
+- [纯 CSS](#plain-css)
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
@@ -15,11 +15,11 @@
 - [CSS到MUI webpack Loader](#css-to-mui-webpack-loader)
 - [Glamor](#glamor)
 
-## 原始CSS
+## 纯 CSS
 
 没什么特别的，只是简单的旧CSS。 为什么重新发明轮子已经工作了几十年？
 
-**RawCssButton.css**
+**PlainCssButton.css**
 
 ```css
 .button {
@@ -33,31 +33,31 @@
 }
 ```
 
-**RawCssButton.js**
+**PlainCssButton.js**
 
 ```jsx
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-function RawCssButton() {
+function PlainCssButton() {
   return (
     <div>
       <Button>
         Material-UI
       </Button>
       <Button className="button">
-        Raw CSS
+        Plain CSS
       </Button>
     </div>
   );
 }
 
-export default RawCssButton;
+export default PlainCssButton;
 ```
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ## Styled Components
 
@@ -100,11 +100,11 @@ export default StyledComponents;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ### 控制优先权
 
-样式组件和JSS都将样式注入 `<head>`的底部。 确保样式组件样式最后加载的一种方法是将CSS注入顺序</a>更改为 ，如演示中所示。</p> 
+样式组件和JSS都将样式注入 `<head>`的底部。 One approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/css-in-js/advanced/#css-injection-order), as in the demo.
 
 另一种方法是使用 `&&` 在风格的组件字符 [颠簸起来特异性](https://www.styled-components.com/docs/advanced#issues-with-specificity) 通过重复类名。 使用此选项可确保在JSS样式之前应用样式化组件样式。 此解决方案的一个示例：
 
@@ -114,7 +114,7 @@ export default StyledComponents;
 
 在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent`， ，你可能会需要影响抽屉的孩子 `paper` 元。
 
-但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/customization/css-in-js/#global-css)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
+但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/css-in-js/advanced#deterministic-class-names)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
 
 以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。 它还解决了 [这个styled-components问题](https://github.com/styled-components/styled-components/issues/439) 由不应该在底层组件来通过“消耗”的特性。
 
@@ -154,7 +154,7 @@ export default StyledComponentsDeep;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ### ThemeProvider
 
@@ -162,11 +162,37 @@ export default StyledComponentsDeep;
 
 {{“demo”：“pages/guides/interoperability/StyledComponentsTheme.js”}}
 
+### Portals
+
+The [Portal](/utils/portal/) provides a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component. Because of the way styled-components scopes its CSS, you may run into issues where styling is not applied.
+
+For example, if you attempt to style the [Menu](/demos/menus/) of a [Select](/demos/selects/) component using the property `MenuProps`, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. The following example shows a workaround:
+
+```jsx
+import React from 'react';
+import styled from 'styled-components';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+const StyledMenu = styled(({ className, ...props }) => (
+  <Menu {...props} classes={{ paper: className }} />
+))`
+  box-shadow: none;
+  border: 1px solid #d3d4d5;
+  li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+`;
+```
+
+{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
+
 ## CSS Modules
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-这是很难知道的市场份额 [这个造型的解决方案](https://github.com/css-modules/css-modules) ，因为它是依赖于 人都在用捆绑的解决方案。
+It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the bundling solution people are using.
 
 **CssModulesButton.css**
 
@@ -208,13 +234,13 @@ export default CssModulesButton;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ## Emotion
 
 ![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
 
-### css Prop
+### The css Prop
 
 Emotion的 **css()** 方法与Material-UI无缝协作。
 
@@ -252,9 +278,9 @@ export default EmotionCSS;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
-### E. Styled Components
+### Styled Components
 
 `styled()` 方法适用于我们所有的组件。
 
@@ -289,17 +315,17 @@ function EmotionStyled() {
 export default EmotionStyled;
 ```
 
-{{“demo”：“pages / guides / interoperability / EmotionStyled.js”，“hideHeader”：true}}
+{{"demo": "pages/guides/interoperability/EmotionStyled.js", "hideHeader": true}}
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4q8o1y975w)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
-### E. 更深层的元素
+### 更深层的元素
 
 在某些情况下，上述方法不起作用。 例如，如果您尝试风格 [Drawer](/demos/drawers/) 与变异 `permanent`， ，你可能会需要影响抽屉的孩子 `paper` 元。
 
-但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/customization/css-in-js/#global-css)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
+但是，这不是 `Drawer` 的根元素，因此上面的样式组件自定义将不起作用。 您可以通过使用 [稳定的JSS类名](/css-in-js/advanced#deterministic-class-names)解决此问题，但最可靠的方法是使用 `classes` 属性来引入覆盖样式，然后通过 `&`以更高的特异性对其进行样式化。
 
 以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。
 
@@ -339,9 +365,9 @@ export default EmotionDeep;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xj81yqx504)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
-### E. ThemeProvider
+### ThemeProvider
 
 材料的UI具有丰富的主题，结构，您可以利用为 的颜色的处理，过渡，媒体查询等。
 
@@ -349,7 +375,7 @@ export default EmotionDeep;
 
 ## 全局CSS
 
-明确地为组件提供类名是否太费力了？ 请放心，我们提供了一个选项，使类名为 **确定性** 用于快速 原型设计： [`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css)。
+Explicitly providing the class names to the component is too much effort? Rest assured, we provide an option to make the class names **deterministic** for quick prototyping: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced#deterministic-class-names).
 
 **GlobalCssButton.css**
 
@@ -386,13 +412,13 @@ export default GlobalCssButton;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
 
-**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**注意：** JSS在 `<head>`的底部注入其样式。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。
 
 ## React JSS
 
 ![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
-Material-UI的样式解决方案与 [react-jss](https://github.com/cssinjs/react-jss)共享许多构建块。 我们继续分叉项目以处理我们的独特需求，但我们正在努力将Material-UI中的更改和修复合并到react-jss。
+Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss). We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
 
 ```jsx
 import React from 'react';
@@ -432,7 +458,7 @@ export default injectSheet(styles)(ReactJssButton);
 
 ## CSS到MUI webpack Loader
 
-用于webpack的 [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) 允许您编写可以转换为JS的CSS，以便与 [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) 高阶组件一起使用。 它提供了一些用于从CSS中访问主题的钩子。
+The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the `withStyles()` higher-order component. It provides a few hooks for accessing the theme from within the CSS.
 
 **webpack.config.js**
 
@@ -530,4 +556,4 @@ export default GlamorButton;
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
-**注意：** Glamour和JSS都在 `<head>`的底部注入了他们的风格。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/customization/css-in-js/#css-injection-order)，如演示中所示。
+**Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/css-in-js/advanced/#css-injection-order)，如演示中所示。

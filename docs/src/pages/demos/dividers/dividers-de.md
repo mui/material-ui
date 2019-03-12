@@ -1,33 +1,31 @@
 ---
-title: Divider React component
+title: Trenner React-Komponente
 components: Divider
 ---
-# Dividers
+# Trenner
 
-<p class="description">A divider is a thin line that groups content in lists and layouts.</p>
+<p class="description">Ein Trenner ist eine dünne Linie, die den Inhalt in Listen und Layouts gruppiert.</p>
 
-[Dividers](https://material.io/design/components/dividers.html) separate content into clear groups.
+[Trenner](https://material.io/design/components/dividers.html) trennt den Inhalt in klare Gruppen.
 
-## List Dividers
+## Listentrenner
 
-The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+Der Trenner wird standardmäßig als `<hr>` gerendert. Sie können sich das einzelne Rendern des DOM- Elements sparen, indem Sie die `divider` Eigenschaft der `ListItem` Komponente nutzen.
 
 {{"demo": "pages/demos/dividers/ListDividers.js"}}
 
-## HTML5 Specification
+## HTML5-Spezifikation
 
-We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
+Wir müssen sicherstellen, dass der `Trenner` als `li` gerendert wird, um der HTML5-Spezifikation zu entsprechen. Die folgenden Beispiele zeigen zwei Wege, um dies zu erreichen.
 
-## Inset Dividers
-
-Die `inset`-Eigenschaft ist von nun an veraltet. Sie sollten nun `variant="inset"` benutzen.
+## Eingerückter Trenner
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
-## Subheader Dividers
+## Subheader-Trenner
 
 {{"demo": "pages/demos/dividers/SubheaderDividers.js"}}
 
-## Middle Dividers
+## Mitteltrenner
 
 {{"demo": "pages/demos/dividers/MiddleDividers.js"}}

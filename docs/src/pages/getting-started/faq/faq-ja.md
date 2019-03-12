@@ -6,21 +6,19 @@
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
-これは、コードがproduction bundleに入った後にクラス名が競合するために発生する可能性があるn°1の問題です。 Material-UIが機能するためには、`clsx`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/customization/css-in-js/#creategenerateclassname-options-class-name-generator)の単一インスタンスによって生成される必要があります。
+これは、コードがproduction bundleに入った後にクラス名が競合するために発生する可能性があるn°1の問題です。 Material-UIが機能するためには、`className`ページ上のすべてのコンポーネントの値は、[クラス名ジェネレータ](/css-in-js/advanced/#class-names)の単一インスタンスによって生成される必要があります。
 
 この問題を解決するには、ページ上のすべてのコンポーネントを初期化して、それらの間の**クラス名ジェネレータが1つだけ**存在するようにする必要があります。
 
 さまざまなシナリオで、誤って2つのクラス名ジェネレータを使用することになる事例
 
 - 誤ってMaterial-UIの2つのバージョンを**bundle**してしまっている場合、 依存関係がMaterial-UIを対の依存関係として正しく設定されていない可能性があります
-- Reactツリーの**サブセット**に`JssProvider`を使用している場合
+- Reactツリーの**サブセット**に`StylesProvider`を使用している場合
 - bundlerを使っていて、それが複数のクラス名ジェネレータインスタンスが作成されるという方法でコード分割しています。 > webpackで [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化環境下`で`runtimeChunk`を設定してみてください](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)
 
-全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`JssProvider`](/customization/css-in-js/#jssprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
+全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`StylesProvider`](/css-in-js/api/#stylesprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
 
-解決の最後の手段は、使用しているbundlerによって異なりますが、全体的な解決方法は、上記の最初のスニペットを含む共通モジュールを確実に1回だけロードして実行することです。
-
-⚠️緊急ですか？ 安心してください。クラス名を**明示的**にエスケープするために[`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css)オプションを用意しています。
+⚠️ If you are in a hurry, we provide an option to make the class names **deterministic** as a quick escape hatch: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced/#deterministic-class-names).
 
 ## モーダルを開くと、fixed positionされたDOMが移動するのはなぜですか？
 
@@ -53,7 +51,7 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   transitions: {
-    // Então temos `transition: none;` everywhere
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
 });

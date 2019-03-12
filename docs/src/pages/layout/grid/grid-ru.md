@@ -46,7 +46,7 @@ components: Grid
 
 Ниже приведена интерактивная демонстрация, которая позволяет вам увидеть результаты различных настроек:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js"}}
+{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Авто-разметка
 

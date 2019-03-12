@@ -1,4 +1,4 @@
-# Borders
+# Rahmen
 
 <p class="description">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
 
@@ -58,7 +58,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 import { borders } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property    | Theme key                                                        |
+| Import name    | Eigenschaften  | CSS property    | Theme key                                                        |
 |:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
 | `border`       | `border`       | `border`        | `borders`                                                        |
 | `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |

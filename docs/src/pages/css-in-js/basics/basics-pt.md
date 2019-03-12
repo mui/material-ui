@@ -1,4 +1,4 @@
-# Basics
+# @material-ui/styles
 
 <p class="description">Você pode aproveitar nossa solução de estilo, mesmo se não estiver usando nossos componentes.</p>
 
@@ -6,12 +6,12 @@ Material-UI tem como objetivo fornecer bases sólidas para a construção de int
 
 ## Solução de estilo do Material-UI
 
-Nas versões anteriores, o Material-UI usava o LESS e, em seguida, uma solução personalizada no estilo inline para escrever o estilo dos componentes, mas essas abordagens provaram ser limitadas. Mais recentemente, temos [movido para](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solução. **desbloqueia muitos ótimos recursos** (aninhamento de temas, estilos dinâmicos, auto-suporte, etc.). We think that this is the future:
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. **desbloqueia muitos ótimos recursos** (aninhamento de temas, estilos dinâmicos, auto-suporte, etc.). We think that this is the future:
 
 - [Um idioma de estilo unificado](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [Converter SCSS (Sass) para CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI's styling solution is inspired by many other CSS-in-JS libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+Material-UI's styling solution is inspired by many other styling libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
 - 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
@@ -30,22 +30,6 @@ npm install @material-ui/styles
 // usando yarn
 yarn add @material-ui/styles
 ```
-
-### Migration for `@material-ui/core` users
-
-To switch from the default style implementation to this newest version, you need to execute the following code **before importing any** Material-UI's components:
-
-```js
-import { install } from '@material-ui/styles';
-
-install();
-```
-
-It is **recommended** to place the above code in a separate file (e.g. `bootstrap.js`) and to import it in your application's entry point (e.g. `index.js`). This ensures that the installation is executed before anything else, because ECMAScript imports are hoisted to the top of the module. If the installation step is not performed correctly the resulting build could have conflicting class names.
-
-We will make `@material-ui/styles` the default style implementation for the core components in Material-UI v4. This installation step is **temporary**. Behind the scenes, the `install()` function switches the styling engine the core components use.
-
-Also, the `@material-ui/core/MuiThemeProvider` component can be replaced with `@material-ui/styles/ThemeProvider`. We will remove this component in v4.
 
 ## Getting started
 
@@ -151,3 +135,18 @@ You can pass a function ("interpolations") to a style property to adapt it based
 ### Adapting higher-order component API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
+
+## Stress test
+
+In the following stress test, you can update the *theme color* and the *background-color property* live:
+
+```js
+const useStyles = makeStyles(theme => ({
+  root: props => ({
+    backgroundColor: props.backgroundColor,
+    color: theme.color,
+  }),
+}));
+```
+
+{{"demo": "pages/css-in-js/basics/StressTest.js"}}

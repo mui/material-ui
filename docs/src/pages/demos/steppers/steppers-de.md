@@ -2,25 +2,25 @@
 title: Stepper React component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
-# Steppers
+# Stepper
 
-<p class="description">Steppers convey progress through numbered steps.</p>
+<p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
 
 [Steppers](https://material.io/archive/guidelines/components/steppers.html) display progress through a sequence of logical and numbered steps. They may also be used for navigation. Steppers may display a transient feedback message after a step is saved.
 
 **Types of Steps**
 
-- Editable
+- Editierbar
 - Non-editable
-- Mobile
+- Mobil
 - Optional
 
 **Types of Steppers**
 
 - Horizontal
-- Vertical
+- Senkrecht
 - Linear
-- Non-linear
+- Nicht linear
 
 > **Note:** Steppers are no longer documented in the Material Design documentation.
 

@@ -1,4 +1,4 @@
-# Migration From v0.x
+# Migration From v0.x to v1
 
 <p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
 
@@ -23,7 +23,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 
 1. Start by installing the v1.x version of Material-UI along side the v0.x version.
     
-    With yarn:
+    Mit yarn:
     
     ```sh
     yarn add material-ui
@@ -37,7 +37,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
     npm install @material-ui/core
     ```
     
-    then
+    dann
     
     ```js
     import FlatButton from 'material-ui/FlatButton'; // v0.x
@@ -76,7 +76,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 
 4. After that, you are free to migrate one component instance at the time.
 
-## Components
+## Komponenten
 
 ### Autovervollständigung
 
@@ -84,7 +84,7 @@ Material-UI doesn't provide a high-level API for solving this problem. You're en
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 
-### Svg Icon
+### Svg-Symbol
 
 Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
 
@@ -129,7 +129,7 @@ RaisedButton upgrade path:
 +<ListSubheader>Sub Heading</ListSubheader>
 ```
 
-### Toggle
+### Umschalten
 
 ```diff
 -import Toggle from 'material-ui/Toggle';

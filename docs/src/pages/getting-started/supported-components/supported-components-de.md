@@ -6,13 +6,13 @@ Wir bemühen uns darum die Richtlinien soweit wie es praktisch möglich ist zu b
 
 Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möchten, welche hier nicht markiert sind, suchen Sie bitte nach dem entsprechenden [GitHub-Issue](https://github.com/mui-org/material-ui/issues) oder erstellen Sie ein neues, um die Realisierung zu besprechen, bevor Sie ein Pull-Request absenden.
 
-- App bars 
-  - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
-  - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
-- **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
+- App bar 
+  - **[Oben](https://material.io/design/components/app-bars-top.html) ✓**
+  - **[Unten](https://material.io/design/components/app-bars-bottom.html) ✓**
+- **[Banner](https://material.io/design/components/banners.html)** ([ Kann zusammengesetzt werden ](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
+- **[Fußzeilennavigation](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
-  - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
+  - **[ Text & enthaltene Schaltflächen (früher flach & angehoben)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/lab/about/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
@@ -55,7 +55,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - Thumbnail
   - **Controls ✓** 
     - **Checkbox ✓**
-    - **Expand/collapse ✓** (AKA Nested)
+    - **Expand/collapse ✓** (bzw. Verschachtelt)
     - **Switch ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
@@ -68,7 +68,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓** 
   - **[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legacy Material v1*)
+  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Veraltetes Material v1*)
 - **[Selection controls](https://material.io/design/components/selection-controls.html) ✓** 
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -76,12 +76,12 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
 - **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/lab/about/)) 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
-- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Veraltetes Material v1*)
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Veraltetes Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Veraltetes Material v1*) 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
@@ -89,7 +89,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
 - **[Text fields](https://material.io/design/components/text-fields.html) ✓** 
-  - **[Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓** (Legacy Material v1)
+  - ** [ Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓**(Legacy Material v1)
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - [Types](https://material.io/design/components/text-fields.html#input-types): 
@@ -100,9 +100,9 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - [Assistive elements:](https://material.io/design/components/text-fields.html#anatomy) 
     - **Helper text ✓**
     - **Error message ✓**
-    - **Icons ✓**
+    - **Symbole ✓**
     - Character counter
-- **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Legacy Material v1)
+- ** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)
 - **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 
   - **Desktop ✓**
-  - **Mobile ✓**
+  - **Mobilgerät**

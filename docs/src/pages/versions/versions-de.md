@@ -40,7 +40,7 @@ In general, you can expect the following release cycle:
 
 > Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
 
-| Date         | Version                    |
+| Datum        | Version                    |
 |:------------ |:-------------------------- |
 | January 2019 | `@material-ui/core` v4.0.0 |
 | July 2019    | `@material-ui/core` v5.0.0 |

@@ -1,5 +1,5 @@
 ---
-title: Table React component
+title: Tabellen React-Komponente
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 # Tabellen
@@ -22,7 +22,7 @@ Eine Daten-Tabelle enthält oben eine Kopfzeile, welche die Spaltennamen auflist
 
 Jede Zeile sollte ein Optionsfeld begleiten, falls die Nutzer die Daten auswählen oder ändern müssen.
 
-For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. Dies ermöglicht es Lesern, mithilfe von Zeilen- und Spaltenname den Inhalt einer Zelle zu ermitteln.
+Für die Zugänglichkeit, ist die erste Spalte ein `<th>` Element, welches ein `scope` von `"row"` hat. Dies ermöglicht es Lesern, mithilfe von Zeilen- und Spaltenname den Inhalt einer Zelle zu ermitteln.
 
 ## Einfache Tabelle
 
@@ -30,25 +30,31 @@ Ein einfaches Beispiel ohne Verzierungen.
 
 {{"demo": "pages/demos/tables/SimpleTable.js"}}
 
+## Dichte Tabelle
+
+Ein einfaches Beispiel für einen dichte Tabelle ohne Schnörkel.
+
+{{"demo": "pages/demos/tables/DenseTable.js"}}
+
 ## Sortieren & Auswahl
 
-Dieses Beispiel demonstriert die Nutzung von `Optionsfeld` und klickbaren Zeilen zur Auswahl mit einer benutzerdefinierten `Werkzeugleiste`. It uses the `TableSortLabel` component to help style column headings.
+Dieses Beispiel demonstriert die Nutzung von `Optionsfeld` und klickbaren Zeilen zur Auswahl mit einer benutzerdefinierten `Werkzeugleiste`. Es verwendet die `TableSortLabel` Komponente, um Spaltenüberschriften zu formatieren.
 
-The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-table-pagination-action) below shows the pagination within the TableFooter.)
+Der Tabelle wurde eine feste Breite zugewiesen, um das horizontale Scrollen zu veranschaulichen. Um zu verhindern, dass die Paginierungssteuerelemente einen Bildlauf ausführen, wird die TablePagination-Komponente außerhalb der Tabelle verwendet. (Das [‚Custom Tabelle Paginierung Aktion‘ Beispiel](#custom-table-pagination-action) unten zeigt die Paginierung im TableFooter.)
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
 ## Benutzerdefinierte Tabellen
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here are examples of how you can change the look of a `TableCell`.
+Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du das Design der `Zellen` anpassen könntest.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 
 ## Benutzerdefinierte Tabellen-Seitennummerierung
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+Die Eigenschaft `Action` der Komponente `TablePagination` ermöglicht die Implementierung von benutzerdefinierten Aktionen.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
@@ -64,11 +70,12 @@ Im folgenden Beispiel zeigen wir wie Sie [react-virtualized](https://github.com/
 
 {{"demo": "pages/demos/tables/ReactVirtualizedTable.js"}}
 
-## Complementary projects
+## Ergänzende Projekte
 
-For more advanced use cases you might be able to take advantage of:
+Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
-- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI table.
+- [Dx-React-Grid-Material-UI](https://devexpress. github. io/devextreme-reactive/react/grid/) Ein Datengitter für Material-UI mit Funktionen zum Blättern, Sortieren, Filtern, Gruppieren und Bearbeiten ([benutzerdefinierte Lizenz](https://js. devexpress. com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive Datentabellen für Material-UI mit Filterung, Sortierung, Suche und mehr.
+- [Material-Tabelle](https://github.com/mbrn/material-table) Auf Tabellenkomponenten basierende DataTable mit zusätzlichen Funktionen wie Suchen, Filtern, Sortieren und vieles mehr.
+- [mui-virtualized-table](https://github.com/techniq/mui-virtualized-table) Virtualized Material-UI-Tabelle.
+- [mui-tables](https://parkerself.gitbook.io/mui-table/) Anpassbare Tabelle zum Verwalten komplexer Daten. Enthält eine Zusammenfassungszeile, Deduplizierung & sowie Zusammenführen, Suchen usw.

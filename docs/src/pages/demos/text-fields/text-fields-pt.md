@@ -78,7 +78,7 @@ Os ícones podem ser especificados como anexados ou anexados.
 
 {{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
-## Limitations
+## Limitações
 
 O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "srink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
 
@@ -104,7 +104,7 @@ A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.co
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
-## Accessibility
+## Acessibilidade
 
 Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao label e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura.
 

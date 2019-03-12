@@ -8,7 +8,7 @@
 
 As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions. We are providing low-level components to maximize composition capabilities.
 
-## Composition
+## Composição
 
 You may have noticed some inconsistency in the API regarding composing components. To provide some transparency, we have been using the following rules when designing the API:
 
@@ -16,7 +16,7 @@ You may have noticed some inconsistency in the API regarding composing component
 2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
 3. API consistency matters.
 
-## Rules
+## Regras
 
 Aside from the above composition trade-off, we enforce the following rules:
 
@@ -60,7 +60,7 @@ const styles = {
 };
 ```
 
-### Nested components
+### Componentes aninhados
 
 Nested components inside a component have:
 
@@ -78,7 +78,7 @@ The name of a boolean property should be chosen based on the **default value**. 
 +<Input disabled />
 ```
 
-### Controlled components
+### Componentes controlados
 
 Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
 

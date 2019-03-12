@@ -1,32 +1,32 @@
 ---
-title: Drawer React component
+title: Navigationsleiste React-Komponente
 components: Drawer, SwipeableDrawer
 ---
-# Drawer
+# Seitliches Menü
 
-<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+<p class="description">Navigationsfächer bieten Zugriff auf Ziele in Ihrer App. Seitenblätter sind Flächen, die zusätzlichen Inhalt enthalten, der am linken oder rechten Rand des Bildschirms verankert ist.</p>
 
-[Navigation drawers](https://material.io/design/components/navigation-drawer.html) provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+[Navigationsleisten ](https://material.io/design/components/navigation-drawer.html) bieten Zugriff auf Ziele und App-Funktionen, wie z.B. Benutzer wechseln. Sie können entweder permanent auf dem Bildschirm angezeigt oder durch ein Navigationsmenüsymbol gesteuert werden.
 
-[Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
+[Die Seitenblätter](https://material.io/design/components/sheets-side.html) sind Zusatzflächen, die hauptsächlich auf Tablets und Desktops verwendet werden.
 
-## Temporary drawer
+## Temporäre Navigationsleisten
 
-Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
+Temporäre Navigationsleisten können geöffnet oder geschlossen werden. Die Leiste ist standardmäßig geschlossen und öffnet sich vorübergehend über allen anderen Inhalten, bis ein Bereich ausgewählt wird.
 
-The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
+Die Leiste kann durch Klicken auf die Überlagerung oder Drücken der Esc-Taste abgebrochen werden. Sie wird geschlossen, wenn ein Element ausgewählt wird. Dies wird durch Steuern der `open` Eigenschaft gesteuert.
 
 {{"demo": "pages/demos/drawers/TemporaryDrawer.js"}}
 
-## Swipeable Temporary drawer
+## Wischbare Navigationsleisten
 
-You can make the drawer swipeable with the `SwipeableDrawer` component.
+Sie können die Leiste mit der `SwipeableDrawer` Komponente einklappbar machen.
 
-This component comes with a 2 kB gzipped payload overhead. Some low-end mobile devices won't be able to follow the fingers at 60 FPS. You can use the `disableBackdropTransition` property to help.
+Diese Komponente ist mit einem 2-kB-gzipped -Overhead ausgestattet. Einige mobile Endgeräte können den Fingern bei 60 FPS nicht folgen. Sie können die Eigenschaft `disableBackdropTransition` als Hilfe verwenden, um dies zu verhindern.
 
 {{"demo": "pages/demos/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component: - iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough. - iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
+Wir verwenden auf dieser Dokumentations-Website die folgenden Eigenschaften, um die Komponente optimal nutzen zu können: - iOS wird auf High-End-Geräten gehostet. Wir können den Hintergrundübergang aktivieren, ohne einen Einbruch der Bilder pro Sekunde zu sehen. Die Leistung wird gut genug sein. - iOS hat eine „Swipe, um zurück zu gehen“ Feature, welches Chaos bei der Discovery-Funktion verursacht. Wir müssen es deaktivieren.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -34,48 +34,48 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## Responsive drawer
+## Responsive Navigationsleiste
 
-The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width. A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
+Die `Hidden` Responsive-Hilfskomponente ermöglicht die Anzeige verschiedener Leistentypen in Abhängigkeit von der Bildschirmbreite. Eine `temporäre` Leiste wird für kleine Bildschirme angezeigt, während eine `permanente` Leiste für breitere Bildschirme angezeigt wird.
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "iframe": true}}
 
-## Persistent drawer
+## Andauernde Navigationsleiste
 
-Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
+Andauernde Navigationsleisten können geöffnet oder geschlossen werden. Die Leiste befindet sich auf der gleichen Höhe wie der Inhalt. Sie ist standardmäßig geschlossen und wird durch Auswahl des Menüsymbols geöffnet und bleibt geöffnet, bis es vom Benutzer geschlossen wird. Der Status der Leiste wird von Aktion zu Aktion und von Sitzung zu Sitzung gespeichert.
 
-When the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.
+Wenn sich die Leiste außerhalb des Seitenrasters befindet und geöffnet wird, zwingt die Schublade andere Inhalte, ihre Größe zu ändern und sich an den kleineren Ansichtsfenster anzupassen.
 
-Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
+Andauernde Navigationsleisten sind für alle Größen, die größer als mobile sind, zulässig. Sie werden nicht für Apps mit mehreren Hierarchieebenen empfohlen, für deren Navigation ein Aufwärtspfeil erforderlich ist.
 
 {{"demo": "pages/demos/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/demos/drawers/PersistentDrawerRight.js", "iframe": true}}
 
-## Mini variant drawer
+## Mini-Variante Navigationsleiste
 
-In this variation, the persistent navigation drawer changes its width. Its resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar. When expanded, it appears as the standard persistent navigation drawer.
+Bei dieser Variante ändert die andauernde Navigationsleiste ihre Breite. Ihr Ruhezustand ist eine MiniLeiste auf derselben Höhe wie der Inhalt, die von der App-Leiste abgeschnitten wird. Wenn sie erweitert wird, wird es als standardmäßige andauernde Navigationsleiste angezeigt.
 
-The mini variant is recommended for apps sections that need quick selection access alongside content.
+Die Mini-Variante wird für Anwendungsbereiche empfohlen, die neben Inhalten einen schnellen Auswahlzugriff benötigen.
 
 {{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
 
-## Permanent drawer
+## Permanente Navigationsleiste
 
-Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+Permanente Navigationsleisten sind immer sichtbar und am linken Rand auf derselben Höhe wie der Inhalt oder der Hintergrund fixiert. Sie können nicht geschlossen werden.
 
-Permanent navigation drawers are the **recommended default for desktop**.
+Permanente Navigationsleisten sind die **empfohlene Standardeinstellung für Desktop**.
 
-### Full-height navigation
+### Navigation in voller Höhe
 
-Apps focused on information consumption that use a left-to-right hierarchy.
+Apps, welche sich auf den Informationsverbrauch konzentrieren, verwenden eine Links-Rechts-Hierarchie.
 
 {{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/demos/drawers/PermanentDrawerRight.js", "iframe": true}}
 
-### Clipped under the app bar
+### Unter der App-Leiste geschnitten
 
-Apps focused on productivity that require balance across the screen.
+Apps, welche sich auf Produktivität konzentrieren, verwenden ein ausgewogenes Verhältnis über den Bildschirm.
 
 {{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}

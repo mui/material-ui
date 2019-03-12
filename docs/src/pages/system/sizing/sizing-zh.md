@@ -1,10 +1,10 @@
-# 浆纱
+# Sizing
 
-<p class="description">使用我们的宽度和高度实用程序轻松地将元素设置为宽或高（相对于其父元素）。</p>
+<p class="description">使用width和height工具集轻松地将元素设置宽或高（相对于其父元素）。</p>
 
 ## 支持的值
 
-大小调整样式函数支持不同的属性输入类型：
+Sizing样式函数支持不同的属性输入类型：
 
 ```jsx
 <Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.

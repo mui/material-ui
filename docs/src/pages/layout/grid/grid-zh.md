@@ -46,7 +46,7 @@ components: 栅格(Grid)
 
 下面是一个交互式演示，可让您探索不同设置的可视结果：
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js"}}
+{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## 自动布局
 
@@ -96,7 +96,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 1. 在父元素上设置`overflow-x: hidden;`
 
-### 白色空间：nowrap;
+### white-space: nowrap;
 
 Flex 项目的初始设置为 `min-width: auto`。当子级使用 `white-space: nowrap;`时会导致冲突。 您可能遇到以下问题:
 

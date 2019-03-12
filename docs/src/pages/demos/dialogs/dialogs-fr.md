@@ -45,7 +45,7 @@ Vous pouvez également permuter la transition. L’exemple suivant utilise `Slid
 
 ## Dialogues de formulaire
 
-Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des champs de formulaire dans une boîte de dialogue. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des champs de formulaire dans une boîte de dialogue. Par exemple, si votre site invite les abonnés potentiels à saisir leur adresse e-mail, ils peuvent renseigner le champ e-mail et appuyer sur "Envoyer".
 
 {{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
@@ -83,7 +83,7 @@ Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer
 
 ## Accessibilité
 
-Follow the [Modal accessibility section](/utils/modal/#accessibility).
+Suivez la [section d'accessibilité de la Modal](/utils/modal/#accessibility).
 
 ## Défiler de longues contenu
 

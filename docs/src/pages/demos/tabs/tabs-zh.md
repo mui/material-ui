@@ -66,7 +66,7 @@ components: Tabs, Tab
 
 如果您已阅读[覆盖文档页面](/customization/overrides/) 但是不自信地跳进来，这里是一个如何改变 Tabs 主色的例子。
 
-⚠️虽然材料设计规范鼓励主题，但这个例子是不合适的。
+⚠️虽然 material design 规范鼓励创建主题，但这个例子是不合适的。
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 

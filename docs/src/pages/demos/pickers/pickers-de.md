@@ -9,7 +9,7 @@ components: TextField
 - On mobile, pickers are best suited for display in confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
 
-#### Notice
+#### Benachrichtigung
 
 We are falling back to **native input controls**.
 
@@ -45,7 +45,7 @@ For more advanced use cases you might be able to take advantage of.
 
 {{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
 
-### Other
+### Sonstiges
 
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
 - [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.

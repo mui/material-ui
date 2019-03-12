@@ -9,10 +9,10 @@ Material-UI ist als [npm-Paket](https://www.npmjs.com/package/@material-ui/core)
 Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgenden Befehl aus:
 
 ```sh
-// with npm
+// mit npm
 npm install @material-ui/core@next
 
-// with yarn
+// mit yarn
 yarn add @material-ui/core@next
 ```
 
@@ -32,9 +32,9 @@ Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
-## Font Icons
+## Schriftarten-Icons
 
-In order to use the font `Icon` component you must first add the [Material icons](https://material.io/tools/icons/) font. Here are [some instructions](/style/icons/#font-icons) on how to do so. Zum Beispiel über Google Web Fonts:
+Um die Font `Symbol` Komponente zu verwenden, müssen Sie zuerst die [Material Symbole Schriftart](https://material.io/tools/icons/) hinzufügen. Hier sind einige [Anweisungen](/style/icons/#font-icons) wie das geht. Zum Beispiel über Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -46,27 +46,27 @@ Oder, falls sie JSX anstatt HTML benutzen, um den Head zu rendern:
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-## SVG Icons
+## SVG Symbole
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+Um vorgefertigte SVG-Materialsymbole zu verwenden, wie sie in den [Demos der Komponente](/demos/app-bar/) enthalten sind, müssen Sie zuerst die Symbole [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) Paket installieren:
 
 ```sh
-// with npm
+// mit npm
 npm install @material-ui/icons@next
 
-// with yarn
+// mit yarn
 yarn add @material-ui/icons@next
 ```
 
 ## CDN
 
-You can start using Material-UI with minimal Front-end infrastructure, which is great for prototyping. We discourage using this approach in production though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilisation.
+Sie können mit der Material-UI mit minimaler Front-End-Infrastruktur verwenden, was sich hervorragend für das Prototyping eignet. Wir raten davon ab, diesen Ansatz in der Produktion zu verwenden: Der Client muss die gesamte Bibliothek herunterladen, unabhängig davon, welche Komponenten tatsächlich verwendet werden, was die Leistung und Bandbreitennutzung beeinflussen.
 
-#### UMD releases
+#### UMD-Versionen
 
-We are providing two Universal Module Definition (UMD) files:
+Wir bieten zwei UMD-Dateien (Universal Module Definition) an:
 
-- one for development: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
+- eine für die Entwicklung: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
+- eine für die Entwicklung: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
 
-You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) to quickly get started.
+Sie können diesem [CDN-Beispiel](https://github.com/mui-org/material-ui/tree/next/examples/cdn-next) folgen um schnell anfangen zu können.

@@ -15,7 +15,7 @@ Les [layouts responsive](https://material.io/design/layout/responsive-layout-gri
 
 De nombreux composants Material-UI utilisent `z-index`, la propriété CSS qui aide à contrôler le layout en fournissant un troisième axe pour organiser le contenu. Nous utilisons une échelle de z-index par défaut dans Material-UI qui a été conçue pour superposer proprement les menus, modales, snackbars, tooltips, etc...
 
-[Ces valeurs](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) commencent à un nombre arbitraire, élevé et suffisamment spécifique pour idéalement éviter les conflits.
+[Ces valeurs](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js) commencent à un nombre arbitraire, élevé et suffisamment spécifique pour idéalement éviter les conflits.
 
 - mobile stepper: 1000
 - app bar: 1100
