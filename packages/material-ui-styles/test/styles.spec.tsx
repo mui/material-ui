@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   createStyles,
   withStyles,
-  ThemeProvider,
   withTheme,
   WithTheme,
   WithStyles,
@@ -68,9 +67,9 @@ const AnotherStyledSFC = withStyles({
 })(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
 // withTheme
-const ComponentWithTheme = withTheme<Theme>()(({ theme }: WithTheme<Theme>) => (
-  <div>{theme.spacing(1)}</div>
-));
+const ComponentWithTheme = withTheme<Theme, React.FunctionComponent<WithTheme<Theme>>>(
+  ({ theme }: WithTheme<Theme>) => <div>{theme.spacing(1)}</div>,
+);
 
 <ComponentWithTheme />;
 
@@ -84,12 +83,12 @@ const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => 
 // missing prop theme
 <StyledComponent />; // $ExpectError
 
-const AllTheComposition = withTheme<Theme>()(StyledComponent);
+const AllTheComposition = withTheme<Theme, typeof StyledComponent>(StyledComponent);
 
 <AllTheComposition />;
 
 {
-  const Foo = withTheme<Theme>()(
+  const Foo = withTheme<Theme, React.ComponentClass<WithTheme<Theme>>>(
     class extends React.Component<WithTheme<Theme>> {
       render() {
         return null;
