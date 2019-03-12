@@ -13,7 +13,12 @@ declare module '@material-ui/styles' {
   export { default as StylesProvider } from '@material-ui/styles/StylesProvider';
   export { default as ThemeProvider } from '@material-ui/styles/ThemeProvider';
   export { default as useTheme } from '@material-ui/styles/useTheme';
-  export { default as withStyles, StyleRules, WithStyles } from '@material-ui/styles/withStyles';
+  export {
+    default as withStyles,
+    CSSProperties,
+    StyleRules,
+    WithStyles,
+  } from '@material-ui/styles/withStyles';
   export { default as withTheme, WithTheme } from '@material-ui/styles/withTheme';
 }
 
