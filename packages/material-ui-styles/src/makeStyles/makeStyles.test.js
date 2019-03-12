@@ -39,7 +39,7 @@ describe('makeStyles', () => {
   let generateClassName;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: undefined });
   });
 
   beforeEach(() => {

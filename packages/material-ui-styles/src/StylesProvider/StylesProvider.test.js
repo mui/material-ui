@@ -21,7 +21,7 @@ describe('StylesProvider', () => {
   let generateClassName;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   beforeEach(() => {

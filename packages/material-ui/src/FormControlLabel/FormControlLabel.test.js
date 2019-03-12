@@ -16,7 +16,8 @@ describe('<FormControlLabel />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Checkbox in test
+    mount = createMount({ strict: false });
     classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
   });
 

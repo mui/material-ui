@@ -29,7 +29,7 @@ describe('<Textarea />', () => {
 
   before(() => {
     shallow = createShallow();
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -62,10 +62,12 @@ describe('<Textarea />', () => {
   });
 
   describe('height behavior', () => {
+    let instanceWrapper;
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<TextareaNaked classes={{}} value="f" />);
+      wrapper = mount(<Textarea value="f" />);
+      instanceWrapper = wrapper.find('Textarea');
     });
 
     afterEach(() => {
@@ -73,24 +75,24 @@ describe('<Textarea />', () => {
     });
 
     it('should update the height when the value change', () => {
-      const instance = wrapper.instance();
+      const instance = instanceWrapper.instance();
       instance.singlelineShadowRef = { scrollHeight: 19 };
       instance.shadowRef = { scrollHeight: 19 };
       wrapper.setProps({ value: 'fo' });
-      assert.strictEqual(wrapper.state().height, 19);
+      assert.strictEqual(instanceWrapper.state().height, 19);
       instance.shadowRef = { scrollHeight: 48 };
       wrapper.setProps({ value: 'foooooo' });
-      assert.strictEqual(wrapper.state().height, 48);
+      assert.strictEqual(instanceWrapper.state().height, 48);
     });
 
     it('should respect the rowsMax property', () => {
-      const instance = wrapper.instance();
+      const instance = instanceWrapper.instance();
       const rowsMax = 4;
       const lineHeight = 19;
       instance.singlelineShadowRef = { scrollHeight: lineHeight };
       instance.shadowRef = { scrollHeight: lineHeight * 5 };
       wrapper.setProps({ rowsMax });
-      assert.strictEqual(wrapper.state().height, lineHeight * rowsMax);
+      assert.strictEqual(instanceWrapper.state().height, lineHeight * rowsMax);
     });
   });
 

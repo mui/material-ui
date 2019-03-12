@@ -21,7 +21,7 @@ describe('<NativeSelect />', () => {
 
   before(() => {
     classes = getClasses(<NativeSelect {...props} />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

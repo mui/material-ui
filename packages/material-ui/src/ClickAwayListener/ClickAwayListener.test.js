@@ -19,7 +19,7 @@ describe('<ClickAwayListener />', () => {
   let wrapper;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   afterEach(() => {

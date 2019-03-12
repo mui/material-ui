@@ -17,7 +17,8 @@ describe('<TabScrollButton />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<TabScrollButton {...props} />);
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
   });
 
   after(() => {

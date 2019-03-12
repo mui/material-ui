@@ -16,7 +16,7 @@ describe('<Step />', () => {
   before(() => {
     classes = getClasses(<Step />);
     shallow = createShallow({ dive: true });
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

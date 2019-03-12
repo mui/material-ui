@@ -32,7 +32,8 @@ describe('<SpeedDial />', () => {
   }
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses ButtonBase
+    mount = createMount({ strict: false });
     shallow = createShallow({ dive: true });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
@@ -296,7 +297,7 @@ describe('<SpeedDial />', () => {
 
     it('displays the actions on focus gain', () => {
       resetDialToOpen();
-      assert.strictEqual(wrapper.props().open, true);
+      assert.strictEqual(wrapper.find('SpeedDial').props().open, true);
     });
 
     describe('first item selection', () => {

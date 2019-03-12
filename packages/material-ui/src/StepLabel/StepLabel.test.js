@@ -18,7 +18,7 @@ describe('<StepLabel />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<StepLabel />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {

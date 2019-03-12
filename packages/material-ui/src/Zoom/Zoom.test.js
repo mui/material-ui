@@ -8,7 +8,8 @@ describe('<Zoom />', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses react-transition-group
+    mount = createMount({ strict: false });
   });
 
   after(() => {

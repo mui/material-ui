@@ -10,7 +10,7 @@ describe('<Table />', () => {
   let classes;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
     classes = getClasses(<Table>foo</Table>);
   });
 

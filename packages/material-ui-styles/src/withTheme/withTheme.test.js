@@ -12,7 +12,7 @@ describe('withTheme', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -20,8 +20,10 @@ describe('withTheme', () => {
   });
 
   it('should inject the theme', () => {
+    const ref = React.createRef();
+    const text = () => ref.current.textContent;
     function Test(props) {
-      return <span>{props.theme.foo}</span>;
+      return <span ref={ref}>{props.theme.foo}</span>;
     }
 
     Test.propTypes = {
@@ -30,12 +32,12 @@ describe('withTheme', () => {
 
     const TestWithTheme = withTheme(Test);
 
-    const wrapper = mount(
+    mount(
       <ThemeProvider theme={{ foo: 'foo' }}>
         <TestWithTheme />
       </ThemeProvider>,
     );
-    assert.strictEqual(wrapper.text(), 'foo');
+    assert.strictEqual(text(), 'foo');
   });
 
   it('hoist statics', () => {

@@ -8,7 +8,8 @@ describe('<Select> integration', () => {
   let mount;
 
   before(() => {
-    mount = createMount();
+    // StrictModeViolation: uses Portal
+    mount = createMount({ strict: false });
   });
 
   after(() => {

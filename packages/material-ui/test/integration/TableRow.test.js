@@ -11,7 +11,7 @@ describe('<TableRow> integration', () => {
 
   before(() => {
     classes = getClasses(<TableRow />);
-    mount = createMount();
+    mount = createMount({ strict: true });
   });
 
   after(() => {
