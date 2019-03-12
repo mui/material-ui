@@ -255,19 +255,7 @@ class Slider extends React.Component {
 
   touchId = undefined;
 
-  componentDidMount() {
-    if (this.containerRef) {
-      this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
-  }
-
   componentWillUnmount() {
-    // Guarding for **broken** shallow rendering method that call componentDidMount
-    // but doesn't handle refs correctly.
-    // To remove once the shallow rendering has been fixed.
-    if (this.containerRef) {
-      this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
     document.body.removeEventListener('mouseenter', this.handleMouseEnter);
     document.body.removeEventListener('mouseleave', this.handleMouseLeave);
     document.body.removeEventListener('mousemove', this.handleMouseMove);
@@ -435,7 +423,23 @@ class Slider extends React.Component {
 
   handleRef = ref => {
     setRef(this.props.innerRef, ref);
-    this.containerRef = ReactDOM.findDOMNode(ref);
+
+    // StrictMode ready
+    const nextContainer = ReactDOM.findDOMNode(ref);
+    const prevContainer = this.container;
+
+    if (prevContainer !== nextContainer) {
+      if (prevContainer) {
+        prevContainer.removeEventListener('touchstart', preventPageScrolling, {
+          passive: false,
+        });
+      }
+      if (nextContainer) {
+        nextContainer.addEventListener('touchstart', preventPageScrolling, { passive: false });
+      }
+    }
+
+    this.container = nextContainer;
   };
 
   handleDragEnd(event) {
@@ -493,7 +497,7 @@ class Slider extends React.Component {
   calculateValueFromPercent(event) {
     const { min, max, vertical } = this.props;
     const percent = calculatePercent(
-      this.containerRef,
+      this.container,
       event,
       vertical,
       this.isReverted(),
