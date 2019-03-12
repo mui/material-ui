@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -20,12 +19,15 @@ const styles = theme => ({
 });
 
 class ComposedTextField extends React.Component {
+  label = React.createRef();
+
   state = {
+    labelWidth: 0,
     name: 'Composed TextField',
   };
 
   componentDidMount() {
-    this.forceUpdate();
+    this.setState({ labelWidth: this.label.current.offsetWidth });
   }
 
   handleChange = event => {
@@ -33,19 +35,20 @@ class ComposedTextField extends React.Component {
   };
 
   render() {
+    const { labelWidth, name } = this.state;
     const { classes } = this.props;
 
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="component-simple">Name</InputLabel>
-          <Input id="component-simple" value={this.state.name} onChange={this.handleChange} />
+          <Input id="component-simple" value={name} onChange={this.handleChange} />
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="component-helper">Name</InputLabel>
           <Input
             id="component-helper"
-            value={this.state.name}
+            value={name}
             onChange={this.handleChange}
             aria-describedby="component-helper-text"
           />
@@ -53,38 +56,33 @@ class ComposedTextField extends React.Component {
         </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="component-disabled">Name</InputLabel>
-          <Input id="component-disabled" value={this.state.name} onChange={this.handleChange} />
+          <Input id="component-disabled" value={name} onChange={this.handleChange} />
           <FormHelperText>Disabled</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} error>
           <InputLabel htmlFor="component-error">Name</InputLabel>
           <Input
             id="component-error"
-            value={this.state.name}
+            value={name}
             onChange={this.handleChange}
             aria-describedby="component-error-text"
           />
           <FormHelperText id="component-error-text">Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} variant="outlined">
-          <InputLabel
-            ref={ref => {
-              this.labelRef = ReactDOM.findDOMNode(ref);
-            }}
-            htmlFor="component-outlined"
-          >
+          <InputLabel ref={this.label} htmlFor="component-outlined">
             Name
           </InputLabel>
           <OutlinedInput
             id="component-outlined"
-            value={this.state.name}
+            value={name}
             onChange={this.handleChange}
-            labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0}
+            labelWidth={labelWidth}
           />
         </FormControl>
         <FormControl className={classes.formControl} variant="filled">
           <InputLabel htmlFor="component-filled">Name</InputLabel>
-          <FilledInput id="component-filled" value={this.state.name} onChange={this.handleChange} />
+          <FilledInput id="component-filled" value={name} onChange={this.handleChange} />
         </FormControl>
       </div>
     );
