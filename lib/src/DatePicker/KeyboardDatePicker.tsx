@@ -7,12 +7,10 @@ import {
 } from '../_shared/hooks/useKeyboardPickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import KeyboardDateInput, { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
-import { ExtendWrapper2 } from '../wrappers/ExtendWrapper';
-import ModalWrapper from '../wrappers/ModalWrapper';
+import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
 import { DatePicker } from './DatePicker';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
-//
 export type KeyboardDatePickerProps = BaseDatePickerProps &
   DateValidationProps &
   BaseKeyboardPickerProps &
@@ -20,6 +18,7 @@ export type KeyboardDatePickerProps = BaseDatePickerProps &
 
 export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   const {
+    variant,
     allowKeyboardControl,
     animateYearScrolling,
     autoOk,
@@ -56,7 +55,8 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   });
 
   return (
-    <ModalWrapper
+    <Wrapper
+      variant={variant}
       InputComponent={KeyboardDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}
@@ -78,7 +78,7 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
         views={views}
         openTo={openTo}
       />
-    </ModalWrapper>
+    </Wrapper>
   );
 }
 

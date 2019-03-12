@@ -2,8 +2,8 @@ import { Omit } from '@material-ui/core';
 import { DialogProps as DialogPropsType } from '@material-ui/core/Dialog';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { WrapperProps } from '.';
 import ModalDialog from '../_shared/ModalDialog';
+import { WrapperProps } from './Wrapper';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
   /** On open callback */

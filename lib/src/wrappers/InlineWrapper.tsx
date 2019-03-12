@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import EventListener from 'react-event-listener';
-import { WrapperProps } from '.';
 import { DIALOG_WIDTH, DIALOG_WIDTH_WIDER } from '../constants/dimensions';
+import { WrapperProps } from './Wrapper';
 
 export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
   /** On open callback */

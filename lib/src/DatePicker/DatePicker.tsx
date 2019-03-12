@@ -5,8 +5,7 @@ import { BasePickerProps } from '../_shared/BasePicker';
 import { usePickerState } from '../_shared/hooks/usePickerState';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { PureDateInput, PureDateInputProps } from '../_shared/PureDateInput';
-import { getWrapperFromVariant } from '../wrappers';
-import { ExtendWrapper2 } from '../wrappers/ExtendWrapper';
+import { ExtendWrapper2, Wrapper } from '../wrappers/Wrapper';
 import DatePickerRoot, { BaseDatePickerProps } from './DatePickerRoot';
 
 export type DatePickerProps = BasePickerProps &
@@ -52,9 +51,9 @@ export const DatePicker: React.FC<DatePickerProps> = props => {
     getValidationError: () => getError(value, utils, props),
   });
 
-  const Wrapper = getWrapperFromVariant<PureDateInputProps>(variant);
   return (
     <Wrapper
+      variant={variant}
       InputComponent={PureDateInput}
       DateInputProps={inputProps}
       {...wrapperProps}

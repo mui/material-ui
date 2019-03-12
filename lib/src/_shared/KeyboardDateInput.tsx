@@ -12,7 +12,7 @@ export interface KeyboardDateInputProps
   // Properly extend different variants from mui textfield
   inputVariant?: TextFieldProps['variant'];
   inputValue: string;
-  validationError: string;
+  validationError?: React.ReactNode;
   /** Props to pass to keyboard input adornment */
   InputAdornmentProps?: Partial<InputAdornmentProps>;
   /** Props to pass to keyboard adornment button */
