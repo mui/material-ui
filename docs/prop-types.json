@@ -22,17 +22,6 @@
       "required": true,
       "type": { "name": "(date: any) => void" }
     },
-    "variant": {
-      "defaultValue": null,
-      "description": "Displaying variant",
-      "name": "variant",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": true,
-      "type": { "name": "WrapperVariant" }
-    },
     "autoOk": {
       "defaultValue": null,
       "description": "Auto accept date on selection",
@@ -123,7 +112,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback firing when date isAccepted",
+      "description": "Callback fired when date isAccepted",
       "name": "onAccept",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
@@ -153,6 +142,39 @@
       },
       "required": true,
       "type": { "name": "DateType" }
+    },
+    "minDateMessage": {
+      "defaultValue": { "value": "Date should not be before minimal date" },
+      "description": "Error message, shown if date is less then minimal date",
+      "name": "minDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "maxDateMessage": {
+      "defaultValue": { "value": "Date should not be after maximal date" },
+      "description": "Error message, shown if date is more then maximal date",
+      "name": "maxDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
+    },
+    "invalidDateMessage": {
+      "defaultValue": { "value": "Invalid Date Format" },
+      "description": "Message, appearing when date cannot be parsed",
+      "name": "invalidDateMessage",
+      "parent": {
+        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_helpers/text-field-helper.ts",
+        "name": "DateValidationProps"
+      },
+      "required": false,
+      "type": { "name": "ReactNode" }
     },
     "disablePast": {
       "defaultValue": null,
@@ -196,7 +218,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "(\"year\" | \"day\" | \"month\")[]" }
+      "type": { "name": "(\"year\" | \"month\" | \"day\")[]" }
     },
     "openTo": {
       "defaultValue": null,
@@ -207,7 +229,7 @@
         "name": "BaseDatePickerProps"
       },
       "required": false,
-      "type": { "name": "\"year\" | \"day\" | \"month\"" }
+      "type": { "name": "\"year\" | \"month\" | \"day\"" }
     },
     "openToYearSelection": {
       "defaultValue": null,
@@ -343,17 +365,6 @@
       "required": true,
       "type": { "name": "(date: any) => void" }
     },
-    "variant": {
-      "defaultValue": null,
-      "description": "Displaying variant",
-      "name": "variant",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "WrapperVariant" }
-    },
     "autoOk": {
       "defaultValue": null,
       "description": "Auto accept date on selection",
@@ -444,7 +455,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback firing when date isAccepted",
+      "description": "Callback fired when date isAccepted",
       "name": "onAccept",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
@@ -499,17 +510,6 @@
       "required": true,
       "type": { "name": "(date: any) => void" }
     },
-    "variant": {
-      "defaultValue": null,
-      "description": "Displaying variant",
-      "name": "variant",
-      "parent": {
-        "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",
-        "name": "BasePickerProps"
-      },
-      "required": false,
-      "type": { "name": "WrapperVariant" }
-    },
     "autoOk": {
       "defaultValue": null,
       "description": "Auto accept date on selection",
@@ -600,7 +600,7 @@
     },
     "onAccept": {
       "defaultValue": null,
-      "description": "Callback firing when date isAccepted",
+      "description": "Callback fired when date isAccepted",
       "name": "onAccept",
       "parent": {
         "fileName": "/Users/dmitrijkovalenko/dev/material-ui-pickers/lib/src/_shared/BasePicker.tsx",

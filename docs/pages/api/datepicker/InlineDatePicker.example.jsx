@@ -37,6 +37,9 @@ function InlineDatePickerDemo(props) {
             moment: 'MM/DD/YYYY',
             dateFns: 'MM/dd/yyyy',
           })}
+          InputAdornmentProps={{
+            position: 'start',
+          }}
           mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
         />
       </div>

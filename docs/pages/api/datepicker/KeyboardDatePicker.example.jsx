@@ -25,8 +25,8 @@ function KeyboardDatePickerExample(props) {
         <KeyboardDatePicker
           label="Masked input"
           format={props.getFormatString({
-            moment: 'MM/DD/YYYY',
-            dateFns: 'MM/dd/y', // make sure that for date-fns your format is "y" instead of "yyyy"
+            moment: 'YYYY/MM/DD',
+            dateFns: 'yyyy/MM/d', // make sure that for date-fns your format is "d" instead of "dd
           })}
           placeholder="10/10/2018"
           mask={value =>

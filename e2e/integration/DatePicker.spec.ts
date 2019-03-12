@@ -11,7 +11,7 @@ describe('DatePicker', () => {
   });
 
   it('Should open date picker on 01-01-2018', () => {
-    cy.get(`input${ids.basic}`).should('have.value', 'January 1st');
+    cy.get(`input${ids.basic}`).should('have.value', 'January 1');
 
     cy.get(ids.basic).click();
     cy.get('[data-day="21/01/2019"]').click();
@@ -24,8 +24,8 @@ describe('DatePicker', () => {
       .contains('OK')
       .click();
 
-    cy.get(`input${ids.basic}`).should('have.value', 'January 21st');
-    cy.get(`input${ids.clearable}`).should('have.value', 'January 21st');
+    cy.get(`input${ids.basic}`).should('have.value', 'January 21');
+    cy.get(`input${ids.clearable}`).should('have.value', 'January 21');
   });
 
   it('Should change the value to the next month', () => {
@@ -46,7 +46,7 @@ describe('DatePicker', () => {
     cy.get('button')
       .contains('OK')
       .click();
-    cy.get(`input${ids.basic}`).should('have.value', 'February 11th');
+    cy.get(`input${ids.basic}`).should('have.value', 'February 11');
   });
 
   // it('Should clear the input by clear button', () => {
@@ -65,14 +65,14 @@ describe('DatePicker', () => {
     cy.get(ids.keyboard).clear();
   });
 
-  it('Should accept date entered from keyboard', () => {
+  it('Should accept date entered from keyboard without mask', () => {
     cy.get(ids.keyboard).type('January 27');
     cy.get(`${ids.keyboard}-helper-text`).should('not.have.text', 'Invalid Date Format');
 
     cy.get(ids.keyboard).blur();
 
-    cy.get(`input${ids.basic}`).should('have.value', 'January 27th');
-    cy.get(`input${ids.clearable}`).should('have.value', 'January 27th');
+    cy.get(`input${ids.basic}`).should('have.value', 'January 27');
+    cy.get(`input${ids.clearable}`).should('have.value', 'January 27');
   });
 
   it('Should accept date entered from keyboard', () => {
@@ -81,7 +81,7 @@ describe('DatePicker', () => {
       .type('03/02/2019')
       .blur();
 
-    cy.get(`input${ids.basic}`).should('have.value', 'March 2nd');
+    cy.get(`input${ids.basic}`).should('have.value', 'March 2');
   });
 
   it('Should open calendar by the keyboard icon', () => {
@@ -93,6 +93,6 @@ describe('DatePicker', () => {
       .contains('OK')
       .click();
 
-    cy.get(ids.keyboard).should('have.value', 'March 19th');
+    cy.get(ids.keyboard).should('have.value', 'March 19');
   });
 });

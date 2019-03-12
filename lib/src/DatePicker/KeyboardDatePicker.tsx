@@ -20,7 +20,6 @@ export type KeyboardDatePickerProps = BaseDatePickerProps &
 
 export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
   const {
-    onAccept,
     allowKeyboardControl,
     animateYearScrolling,
     autoOk,
@@ -28,21 +27,25 @@ export function KeyboardDatePicker(props: KeyboardDatePickerProps) {
     disablePast,
     format,
     forwardedRef,
+    initialFocusedDate,
+    invalidDateMessage,
     labelFunc,
     leftArrowIcon,
     maxDate,
+    maxDateMessage,
     minDate,
-    initialFocusedDate,
+    minDateMessage,
+    onAccept,
     onChange,
+    onMonthChange,
+    onYearChange,
+    openTo,
     openToYearSelection,
     renderDay,
     rightArrowIcon,
     shouldDisableDate,
     value,
     views,
-    openTo,
-    onMonthChange,
-    onYearChange,
     ...other
   } = props;
 

@@ -38,9 +38,14 @@ export function usePickerState(props: BasePickerProps, options: HookOptions) {
     }
   }, [props.value]);
 
+  const validationError = options.getValidationError(date);
+  if (validationError && props.onError) {
+    props.onError(validationError, props.value);
+  }
+
   const inputProps = {
+    validationError,
     onClick: () => setIsOpen(true),
-    validationError: options.getValidationError(date),
     inputValue: getDisplayDate2(date, format, utils, props.value === null, props),
   };
 

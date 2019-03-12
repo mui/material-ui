@@ -14,6 +14,7 @@ function Regression() {
     value: date,
     onChange: changeDate,
     style: { margin: '0 10px' },
+    format: 'MMMM d',
     leftArrowIcon: <LeftArrowIcon data-arrow="left" />,
     rightArrowIcon: <RightArrowIcon data-arrow="right" />,
     renderDay: createRegressionDayRenderer(utils!),
@@ -36,7 +37,7 @@ function Regression() {
         <DatePicker id="basic-datepicker" {...sharedProps} />
         <DatePicker id="clearable-datepicker" clearable {...sharedProps} />
         <KeyboardDatePicker id="keyboard-datepicker" {...sharedProps} />
-        <KeyboardDatePicker id="keyboard-mask-datepicker" format="MM/dd/y" {...sharedProps} />
+        <KeyboardDatePicker id="keyboard-mask-datepicker" {...sharedProps} format="MM/dd/y" />
         <DatePicker disabled id="disabled" {...sharedProps} />
       </Grid>
     </div>

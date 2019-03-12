@@ -4,7 +4,6 @@ import * as React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
 import { DateType, DomainPropTypes } from '../constants/prop-types';
 import { MaterialUiPickersDate } from '../typings/date';
-import { WrapperVariant } from '../wrappers';
 import { withUtils, WithUtilsProps } from './WithUtils';
 
 export interface BasePickerRenderArgs {
@@ -43,8 +42,10 @@ export interface BasePickerProps {
   invalidLabel?: string;
   /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
   emptyLabel?: string;
-  /** Callback firing when date isAccepted */
+  /** Callback fired when date isAccepted */
   onAccept?: (date: MaterialUiPickersDate) => void;
+  /* Callback fired when new error should be displayed **/
+  onError?: (error: React.ReactNode, value: MaterialUiPickersDate) => void;
   minDate?: DateType;
   maxDate?: DateType;
   mergePreviousDateOnChange?: boolean;

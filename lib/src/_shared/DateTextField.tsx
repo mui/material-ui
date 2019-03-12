@@ -67,7 +67,7 @@ export interface DateTextFieldProps
   adornmentPosition?: MuiInputAdornmentProps['position'];
   onClick: (e: React.SyntheticEvent) => void;
   /* Callback firing when date that applied in the keyboard is invalid **/
-  onError?: (newValue: MaterialUiPickersDate, error: React.ReactNode) => void;
+  onError?: (error: React.ReactNode, newValue: MaterialUiPickersDate) => void;
   /* Callback firing on change input in keyboard mode **/
   onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
