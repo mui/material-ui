@@ -97,11 +97,16 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 ## Librería externa de routing
 
-Un uso común es usar el botón para empezar la navegación hacia una página nueva. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Ya que muchos de nuestros componentes interactivos dependen de `ButtonBase`, se puede sacar partido de él en todas partes:
+Un uso común es usar el botón para empezar la navegación hacia una página nueva. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Ya que muchos de nuestros componentes interactivos dependen de `ButtonBase`, puede ser aprovechado en todas partes:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+
+// required for react-router-dom < 5.0.0 
+// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
 <Button component={Link} to="/open-collective">
   Link
@@ -114,7 +119,8 @@ o si quieres evitar un choque de propiedades:
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-const MyLink = props => <Link to="/open-collective" {...props} />
+// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
+const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
 
 <Button component={MyLink}>
   Link

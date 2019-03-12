@@ -1,6 +1,6 @@
-# Substituições
+# Sobrescrevendo
 
-<p class="description">Como os componentes podem ser usados em diferentes contextos, o Material-UI suporta diferentes tipos de requisitos de personalização, desde os mais específicos até os mais genéricos.</p>
+<p class="description">Como os componentes podem ser usados em diferentes contextos, o Material-UI suporta diferentes níveis de personalização, desde os mais específicos até os mais genéricos.</p>
 
 1. [Variação específica para uma situação única](#1-specific-variation-for-a-one-time-situation)
 2. [Variação dinâmica para uma situação única](#2-dynamic-variation-for-a-one-time-situation)
@@ -12,7 +12,7 @@
 
 You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
 
-### Substituir por nomes de classes
+### Sobrescrever usando nomes de classes
 
 The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
 
@@ -20,7 +20,7 @@ This example uses the [`withStyles()`](/css-in-js/basics/#higher-order-component
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
-### Substituindo com classes
+### Sobrescrever usando classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
 
@@ -144,7 +144,7 @@ compiles to:
 
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
 
-### Substituindo com estilo inline
+### Substituir usando estilos inline
 
 The second way to override the style of a component is to use the **inline-style** approach. Every component provides a `style` property. These properties are always applied to the root element.
 
@@ -156,7 +156,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 ## 2. Variação dinâmica para uma situação única
 
-Você aprendeu a substituir o estilo dos componentes de UI de material nas seções anteriores. Now, let's see how we can make these overrides dynamic. We demonstrate 5 alternatives, each has it's pros and cons.
+Você aprendeu a substituir o estilo dos componentes do Material-UI nas seções anteriores. Now, let's see how we can make these overrides dynamic. We demonstrate 5 alternatives, each has it's pros and cons.
 
 ### CSS Dinâmico
 

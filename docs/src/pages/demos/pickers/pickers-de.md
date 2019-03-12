@@ -1,51 +1,51 @@
 ---
-title: Date Picker, Time Picker React components
+title: Datums-Auswahl, Zeit-Auswahl React Komponenten
 components: TextField
 ---
 # Pickers
 
-<p class="description">Pickers provide a simple way to select a single value from a pre-determined set.</p>
+<p class="description">Pickers bieten eine einfache Möglichkeit, um einen einzelnen Wert aus einem vorher festgelegten Satz auszuwählen.</p>
 
-- On mobile, pickers are best suited for display in confirmation dialog.
-- For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
+- Auf dem Handy sind Pcikers am besten für die Anzeige im Bestätigungsdialogfeld geeignet.
+- Für die Inline-Anzeige, z. B. in einem Formular, sollten Sie kompakte Steuerelemente wie segmentierte Dropdown-Schaltflächen verwenden.
 
 #### Benachrichtigung
 
-We are falling back to **native input controls**.
+Wir greifen auf **native Eingabesteuerelemente** zurück.
 
-⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime). Have a look at the [complementary projects](#complementary-projects) for richer solutions.
+⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Sehen Sie sich die [ergänzenden Projekte](#complementary-projects) an, um bessere Lösungen zu erhalten.
 
-## Date pickers
+## Datums-Auswahl
 
-A native date picker example with `type="date"`, it can be used as a calendar too.
+Ein natives Datumsauswahlbeispiel mit `type="date"`, es kann auch als Kalender verwendet werden.
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 
-## Date & Time pickers
+## Datum & Zeitauswahl
 
-A native date & time picker example with `type="datetime-local"`.
+Ein natives Datum & Zeitauswahlbeispiel mit `type="datetime-local"`.
 
 {{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
 
-## Time pickers
+## Zeitauswahl
 
-A native time picker example with `type="time"`.
+Ein natives Datum Zeitauswahlbeispiel mit `type="time"`.
 
 {{"demo": "pages/demos/pickers/TimePickers.js"}}
 
-## Complementary projects
+## Ergänzende Projekte
 
-For more advanced use cases you might be able to take advantage of.
+Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen.
 
 ### material-ui-pickers
 
 ![stars](https://img.shields.io/github/stars/dmtrKovalenko/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-ui-pickers.svg)
 
-[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) provides date and time controls that follow the Material Design spec.
+[material-ui-pickers](https://material-ui-pickers.firebaseapp.com/) enthält Steuerelemente für Datum und Uhrzeit, die der Material Design-Spezifikation entsprechen.
 
 {{"demo": "pages/demos/pickers/MaterialUIPickers.js"}}
 
 ### Sonstiges
 
-- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
-- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.
+- [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): Zeitauswahl.
+- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): Datums- und Zeitauswahl.

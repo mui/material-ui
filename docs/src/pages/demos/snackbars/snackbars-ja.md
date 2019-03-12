@@ -72,7 +72,7 @@ For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+![Stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/notistack.svg)
 
 In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another.
 

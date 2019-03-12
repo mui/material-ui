@@ -97,11 +97,16 @@ Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon
 
 ## Drittanbieter-Routing Bibliothek
 
-Ein häufiger Anwendungsfall ist die Verwendung eines Buttons, um eine Navigation zu einer neuen Seite auszulösen. Die `ButtonBase` Komponente stellt eine Eigenschaft für diesen Anwendungsfall bereit: `component`. Da eine Menge unserer interaktiven Komponenten auf der `ButtonBase` basieren, sollten Sie diese überall nutzen zu können:
+Ein häufiger Anwendungsfall ist die Verwendung eines Buttons, um eine Navigation zu einer neuen Seite auszulösen. Die `ButtonBase` Komponente stellt eine Eigenschaft für diesen Anwendungsfall bereit: `component`. Für bestimmte Fokus-Polyfills erfordert `ButtonBase` jedoch den DOM-Knoten der bereitgestellten Komponente. Dies wird erreicht, indem der Komponente ein Ref zugeordnet wird und erwartet wird, dass die Komponente diesen Ref an den zugrunde liegenden DOM-Knoten weiterleitet. Da eine Menge unserer interaktiven Komponenten auf der `ButtonBase` basieren, sollten Sie diese überall nutzen zu können:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+
+// benötigt für react-router-dom < 5.0.0 
+// siehe https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
 <Button component={Link} to="/open-collective">
   Link
@@ -114,7 +119,8 @@ oder wenn Sie die Kollision von Eigenschaften vermeiden möchten:
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-const MyLink = props => <Link to="/open-collective" {...props} />
+// benutze `ref` anstelle von `innerRef` mit react-router-dom@^5.0.0
+const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
 
 <Button component={MyLink}>
   Link

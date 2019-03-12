@@ -1,6 +1,6 @@
-# Composition
+# Komposition
 
-<p class="description">Material-UI tries to make composition as easy as possible.</p>
+<p class="description">Die Material-UI versucht die Komposition so einfach wie möglich zu gestalten.</p>
 
 ## Wrapping components
 
@@ -71,7 +71,10 @@ The solution is simple: **avoid inline functions and pass a static component to 
 import { Link } from 'react-router-dom';
 
 class ListItemLink extends React.Component {
-  renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
+  renderLink = React.forwardRef((itemProps, ref) => (
+    // mit react-router-dom@^5.0.0 benutze `ref` anstatt `innerRef`
+    <RouterLink to={this.props.to} {...itemProps} innerRef={ref} />
+  ));
 
   render() {
     const { icon, primary, secondary, to } = this.props;
@@ -110,3 +113,33 @@ Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-ro
 ### With TypeScript
 
 You can find the details in the [TypeScript guide](/guides/typescript#usage-of-component-property).
+
+### Vorbehalt bei Refs
+
+Einige Komponenten wie `ButtonBase` (und daher `Button`) benötigen Zugriff auf den darunterliegenden DOM-Knoten. Dies wurde zuvor mit `ReactDOM.findDOMNode(this)` durchgeführt. `FindDOMNode` ist jedoch veraltet (wodurch es im React Concurrent Modus nicht anwendbar ist), zugunsten der Komponenten Refs und ref - Forwarding.
+
+Es ist daher erforderlich, dass die Komponente, die Sie an die `Komponente` Eigenschaft übergeben, einen Ref halten kann. Dazu gehören:
+
+- Klassen-Komponenten
+- ref Weiterleitungskomponenten (`React.forwardRef`)
+- eingebaute Komponenten zB `div` oder `a`
+
+Ist dies nicht der Fall, geben wir eine Warnung ähnlich der folgenden aus:
+
+> Invalid prop `component` supplied to `ComponentName`. Es wurde ein Elementtyp erwartet, der eine Referenz enthalten kann.
+
+Zusätzlich gibt React eine Warnung aus.
+
+Sie können diese Warnung beheben, indem Sie `React.forwardRef` verwenden. Weitere Informationen dazu finden Sie in [dieser Sektion in den offiziellen React-Dokumenten](https://reactjs.org/docs/forwarding-refs.html).
+
+Um herauszufinden, ob die Material-UI - Komponente, die Sie verwenden, diese Anforderung hat, überprüfen Sie API - Dokumentation für diese Komponente. Wenn Sie Refs weiterleiten müssen, wird die Beschreibung mit diesem Abschnitt verknüpft.
+
+### Vorsicht bei StrictMode oder unstable_ConcurrentMode
+
+Wenn Sie Klassenkomponenten an die `Komponente` Eigenschaft übergeben und nicht im strikten Modus laufen, Sie müssen nichts ändern, da wir `ReactDOM.findDOMNode` sicher verwenden können. Bei Funktionskomponenten müssen Sie jedoch Ihre Komponente in `React.forwardRef` einhüllen:
+
+```diff
+- const MyButton = props => <div {...props} />
++ const MyButton = React.forwardRef((props, ref) => <div {...props} ref={ref} />)
+<Button component={MyButton} />
+```

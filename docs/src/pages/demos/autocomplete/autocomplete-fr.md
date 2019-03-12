@@ -14,6 +14,8 @@ Material-UI ne fournit aucune API de haut niveau pour résoudre ce problème. No
 
 Dans l'exemple suivant, nous montrons comment utiliser [downshift](https://github.com/paypal/downshift).
 
+The last demo allow to clear the input and show a number of options on focus.
+
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select

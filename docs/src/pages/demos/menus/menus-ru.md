@@ -4,15 +4,15 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 # Меню
 
-<p class="description">Menus display a list of choices on temporary surfaces.</p>
+<p class="description">Меню временно отображают список вариантов.</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
+[Меню](https://material.io/design/components/menus.html) отображает список вариантов на временно видимом элементе интерфейса. Этот элемент появляется, когда пользователи взаимодействуют с кнопкой, действием или другим элементом управления.
 
 ## Простое меню
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+Простые меню по умолчанию открываются над якорным элементом (это поведение можно изменить с помощью props). Находясь вблизи края экрана, простое меню располагается таким образом, чтобы все элементы меню были полностью видны.
 
-Choosing an option should immediately ideally commit the option and close the menu.
+Выбор варианта должен в идеале немедленно зафиксировать его и закрыть меню.
 
 **Disambiguation**: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user’s current context.
 
@@ -40,11 +40,11 @@ If you have been reading the [overrides documentation page](/customization/overr
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+`MenuItem` является оберткой `ListItem` с некоторыми дополнительными стилями. С компонентом `MenuItem` можно использовать те же приемы композиции списка:
 
 ## Max height menus
 
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+Если высота меню препятствует отображению всех пунктов меню, меню можно прокручивать внутри.
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 

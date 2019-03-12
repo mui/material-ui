@@ -187,7 +187,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/DarkTheme.js", "hideEditButton": true}}
 
-### Typography
+### Tipografia
 
 Too many type sizes and styles at once can spoil any layout. The theme provides a **limited set of type sizes** that work well together along with the layout grid. These sizes are used across the components.
 
@@ -355,7 +355,7 @@ const theme = createMuiTheme({
 
 ## Accessing the theme in a component
 
-You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. Aqui está um exemplo:
+You might need to access the theme variables inside your React components. Let's say you want to display the value of the primary color, you can use the `withTheme` higher-order component to do so. Veja um exemplo:
 
 {{"demo": "pages/customization/themes/WithTheme.js"}}
 

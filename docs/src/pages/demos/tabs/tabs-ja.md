@@ -16,7 +16,7 @@ A simple example with no frills.
 
 ### Wrapped Labels
 
-Os rótulos longos serão agrupados automaticamente nas guias. Se o marcador for muito longo para a guia, ele será excedido e o texto não ficará visível.
+Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 

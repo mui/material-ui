@@ -16,7 +16,7 @@ Ein einfaches Beispiel ohne Verzierungen.
 
 ### Wrapped Labels
 
-Os rótulos longos serão agrupados automaticamente nas guias. Se o marcador for muito longo para a guia, ele será excedido e o texto não ficará visível.
+Lange Reiter-Beschriftungen werden automatisch umgebrochen. Sollte die Beschriftung für den Reiter zu lang sein, läuft sie über und der Text ist nicht sichtbar.
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 

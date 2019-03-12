@@ -14,7 +14,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 - Cartes
 - Barres d'outils
 
-## Contained Buttons
+## Boutons Contained
 
 [Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. Ils contiennent des actions qui sont essentielles à votre application.
 
@@ -91,17 +91,22 @@ Si vous avez lu [la page de la documentation sur les personnalisation](/customiz
 
 ## Boutons complexes
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. Vous pouvez tirer parti de ce composant de niveau inférieur pour créer des interactions personnalisées.
+Les boutons texte, les boutons contained, les bouton d'action flottante et les boutons icône sont tous basés sur le composant `ButtonBase`. Vous pouvez tirer parti de ce composant de niveau inférieur pour créer des interactions personnalisées.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}
 
 ## Bibliothèque de routage tierce
 
-Un cas d'utilisation courant consiste à utiliser le bouton pour déclencher une navigation vers une nouvelle page. Le composant `ButtonBase` fournit une propriété pour traiter ce cas d'utilisation: `composant`. Étant donné que beaucoup de nos composants interactifs comptent sur `ButtonBase`, vous devriez être en mesure de tirer profit de partout:
+Un cas d'utilisation courant consiste à utiliser le bouton pour déclencher une navigation vers une nouvelle page. Le composant `ButtonBase` fournit une propriété pour traiter ce cas d'utilisation: `composant`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Étant donné que beaucoup de nos composants interactifs comptent sur `ButtonBase`, vous devriez être en mesure de tirer profit de partout:
 
 ```jsx
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+
+// required for react-router-dom < 5.0.0 
+// see https://github.com/ReactTraining/react-router/issues/6056#issuecomment-435524678
+const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />)
 
 <Button component={Link} to="/open-collective">
   Link
@@ -114,7 +119,8 @@ ou si vous souhaitez éviter les collisions de propriétés :
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
-const MyLink = props => <Link to="/open-collective" {...props} />
+// use `ref` instead of `innerRef` with react-router-dom@^5.0.0
+const MyLink = React.forwardRef((props, ref) => <Link to="/open-collective" {...props} innerRef={ref} />);
 
 <Button component={MyLink}>
   Link

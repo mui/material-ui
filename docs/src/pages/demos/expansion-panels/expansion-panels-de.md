@@ -30,6 +30,10 @@ Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bed
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
+## Performance
+
+Der Inhalt von ExpansionPanels wird standardmäßig bereitgestellt, auch wenn das Panel nicht erweitert wird. Bei diesem Standardverhalten werden serverseitiges Rendering und SEO berücksichtigt. Wenn Sie teure Komponentenbäume in Ihren Panels rendern oder einfach viele Panels rendern, empfiehlt es sich, dieses Standardverhalten zu ändern, indem Sie `unmountOnExit` in `TransitionProps` aktivieren: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie sicher, dass Sie zuerst Engpässe erkennen und anschließend diese Optimierungsstrategien ausprobieren.
+
 ## Individuelles Erweiterungspanel
 
 Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Hintergrundfarbe des `ExpansionPanelSummary` und den Abstand des `ExpansionPanelDetails` anpassen könntest.

@@ -4,68 +4,68 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 # Menüs
 
-<p class="description">Menus display a list of choices on temporary surfaces.</p>
+<p class="description">Menüs zeigen eine Liste von Auswahlmöglichkeiten auf temporären Oberflächen an.</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
+Ein [Menü](https://material.io/design/components/menus.html) zeigt eine Liste mit Auswahlmöglichkeiten auf einer temporären Oberfläche. Sie werden angezeigt, wenn Benutzer mit einer Schaltfläche, einer Aktion oder einem anderen Steuerelement interagieren.
 
-## Simple Menu
+## Einfaches Menü
 
-Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+Standardmäßig werden einfache Menüs über dem Ankerelement geöffnet (diese Option kann über Eigenschaften geändert werden). Wenn Sie sich nahe an einem Bildschirmrand befinden, richten sich einfache Menüs vertikal neu aus, um sicherzustellen, dass alle Menüelemente vollständig sichtbar sind.
 
-Choosing an option should immediately ideally commit the option and close the menu.
+Durch die Auswahl einer Option wird die Option sofort übernommen und das Menü geschlossen.
 
-**Disambiguation**: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user’s current context.
+**Begriffserklärung**: Im Gegensatz zu einfachen Menüs können einfache Dialogfelder zusätzliche Details in Bezug auf die für ein Listenelement verfügbaren Optionen enthalten oder Navigations- oder orthogonale Aktionen in Bezug auf die primäre Aufgabe bereitstellen. Obwohl sie den gleichen Inhalt anzeigen können, werden einfache Menüs gegenüber einfachen Dialogen bevorzugt, da einfache Menüs den aktuellen Kontext des Benutzers weniger stören.
 
 {{"demo": "pages/demos/menus/SimpleMenu.js"}}
 
-## Selected menus
+## Ausgewählte Menüs
 
-If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)).
+Wenn die Option für eine Elementauswahl verwendet wird, versuchen einfache Menüs, das aktuell ausgewählte Menüelement an dem Ankerelement vertikal auszurichten. Das aktuell ausgewählte Menüelement wird mit der Eigenschaft `selected` (von [ListItem](/api/list-item/)) festgelegt.
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
-## MenuList composition
+## MenuList-Zusammensetzung
 
-The `Menu` component uses the `Popover` component internally. However, you might want to use a different positioning strategy, or not blocking the scroll. For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+Die Komponente `Menü` verwendet intern die Komponente `Popover`. Möglicherweise möchten Sie jedoch eine andere Positionierungsstrategie verwenden oder den Bildlauf nicht blockieren. Um diese Anforderungen zu erfüllen, stellen wir eine `MenuList` Komponente bereit, die Sie zusammen mit `Popper` erstellen können.
 
-The primary responsibility of the `MenuList` component is to handle the focus.
+Die Hauptaufgabe der `MenuList` Komponente besteht darin, den Fokus festzulegen.
 
 {{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
-## Customized MenuItem
+## Angepasstes MenuItem
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
+Wenn du die [Overrides Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du das `MenuItem` anpassen könntest.
 
 ⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+Das `MenuItem` ist ein Wrapper um ein `ListItem` mit einigen zusätzlichen Stilen. Sie können dieselben Listenkompositionsfunktionen mit der `MenuItem` Komponente verwenden:
 
-## Max height menus
+## Maximale-Höhe Menüs
 
-If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
+Wenn die Höhe eines Menüs die Anzeige aller Menüelemente verhindert, kann das Menü intern gescrollt werden.
 
 {{"demo": "pages/demos/menus/LongMenu.js"}}
 
-## Limitations
+## Einschränkungen
 
-There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
+Es gibt [einen FlexBox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437), das verhindert, dass `text-overflow: ellipsis` in einem FlexBox Layout funktioniert. Sie können die Komponente `Typography` mit `noWrap` benutzen, um dieses Problem zu umgehen:
 
 {{"demo": "pages/demos/menus/TypographyMenu.js"}}
 
-## Change Transition
+## Übergang ändern
 
 Verwenden Sie einen anderen Übergang.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 
-## Complementary projects
+## Ergänzende Projekte
 
-For more advanced use cases you might be able to take advantage of:
+Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-### PopupState helper
+### PopupState-Helfer
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+Es gibt ein Drittanbieter-Paket [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state), das sich in den meisten Fällen um Popper Status kümmern kann.
 
 {{"demo": "pages/demos/menus/MenuPopupState.js"}}
