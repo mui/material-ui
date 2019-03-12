@@ -69,6 +69,7 @@ export type GridClassKey =
   | 'spacing-xs-8'
   | 'spacing-xs-16'
   | 'spacing-xs-24'
+  | 'spacing-xs-32'
   | 'spacing-xs-40'
   | 'grid-xs-auto'
   | 'grid-xs-true'
