@@ -1,5 +1,4 @@
 import { Palette } from './createPalette';
-import { Overwrite, Omit } from '..';
 import { CSSProperties } from './withStyles';
 
 export type ThemeStyle =

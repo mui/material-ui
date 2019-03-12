@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface LinkProps

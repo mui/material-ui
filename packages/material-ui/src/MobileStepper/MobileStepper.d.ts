@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { ButtonProps } from '../Button';
 import { LinearProgressProps } from '../LinearProgress';
 
 export interface MobileStepperProps extends StandardProps<PaperProps, MobileStepperClassKey> {
