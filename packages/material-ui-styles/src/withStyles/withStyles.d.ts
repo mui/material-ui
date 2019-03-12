@@ -32,7 +32,8 @@ export type Styles<Theme, Props extends {}, ClassKey extends string = string> =
   | StyleRules<Props, ClassKey>
   | StyleRulesCallback<Theme, Props, ClassKey>;
 
-export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
+export interface WithStylesOptions<Theme> extends JSS.StyleSheetFactoryOptions {
+  defaultTheme?: Theme;
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -75,8 +76,9 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<
-  S extends Styles<any, any>,
-  Options extends WithStylesOptions = {}
+  S extends Styles<Theme, any>,
+  Options extends WithStylesOptions<Theme> = {},
+  Theme = any
 >(
   style: S,
   options?: Options,

@@ -69,7 +69,7 @@ export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> exten
   ? (props?: any) => ClassNameMap<ClassKeyOfStyles<S>>
   : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 
-export default function makeStyles<S extends Styles<any, any>>(
+export default function makeStyles<S extends Styles<Theme, any>, Theme = any>(
   styles: S,
-  options?: WithStylesOptions,
+  options?: WithStylesOptions<Theme>,
 ): StylesHook<S>;
