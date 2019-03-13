@@ -256,11 +256,11 @@ class Tabs extends React.Component {
       const { scrollWidth, clientWidth } = this.tabsRef;
       const scrollLeft = getNormalizedScrollLeft(this.tabsRef, theme.direction);
 
+      // use 1 for the potential rounding error with browser zooms.
       const showLeftScroll =
-        theme.direction === 'rtl' ? scrollWidth > clientWidth + scrollLeft : scrollLeft > 0;
-
+        theme.direction === 'rtl' ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
       const showRightScroll =
-        theme.direction === 'rtl' ? scrollLeft > 0 : scrollWidth > clientWidth + scrollLeft;
+        theme.direction !== 'rtl' ? scrollLeft < scrollWidth - clientWidth - 1 : scrollLeft > 1;
 
       if (
         showLeftScroll !== this.state.showLeftScroll ||
