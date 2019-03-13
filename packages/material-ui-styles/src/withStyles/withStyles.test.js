@@ -8,8 +8,8 @@ import { createMount } from '@material-ui/core/test-utils';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // import consoleErrorMock from 'test/utils/consoleErrorMock';
-import StylesProvider from './StylesProvider';
-import ThemeProvider from './ThemeProvider';
+import StylesProvider from '../StylesProvider';
+import ThemeProvider from '../ThemeProvider';
 import withStyles from './withStyles';
 
 describe('withStyles', () => {

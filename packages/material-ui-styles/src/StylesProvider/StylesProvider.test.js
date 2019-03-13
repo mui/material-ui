@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
 import StylesProvider, { StylesContext } from './StylesProvider';
-import makeStyles from './makeStyles';
+import makeStyles from '../makeStyles';
 
 function Test() {
   const options = React.useContext(StylesContext);

@@ -5,12 +5,12 @@ import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
 import { createMuiTheme } from '@material-ui/core/styles';
-import createGenerateClassName from './createGenerateClassName';
+import createGenerateClassName from '../createGenerateClassName';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import makeStyles from './makeStyles';
-import useTheme from './useTheme';
-import StylesProvider from './StylesProvider';
-import ThemeProvider from './ThemeProvider';
+import useTheme from '../useTheme';
+import StylesProvider from '../StylesProvider';
+import ThemeProvider from '../ThemeProvider';
 
 describe('makeStyles', () => {
   let mount;
