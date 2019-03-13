@@ -2,8 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
 import withForwardedRef from '../utils/withForwardedRef';
 import Popover from '../Popover';

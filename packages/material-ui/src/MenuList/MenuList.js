@@ -8,6 +8,27 @@ import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 
+function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
+  const currentFocus = ownerDocument(list).activeElement;
+
+  const items = [];
+  for (let i = 0; i < list.children.length; i += 1) {
+    items.push(list.children[i]);
+  }
+
+  const currentFocusIndex = items.indexOf(currentFocus);
+
+  if (currentFocusIndex !== -1) {
+    return setCurrentTabIndex(currentFocusIndex);
+  }
+
+  if (selectedItem) {
+    return setCurrentTabIndex(items.indexOf(selectedItem));
+  }
+
+  return setCurrentTabIndex(0);
+}
+
 function MenuList({ actions, children, className, onBlur, onKeyDown, disableListWrap, ...other }) {
   const [currentTabIndex, setCurrentTabIndex] = React.useState(null);
   const blurTimerRef = React.useRef();
@@ -47,7 +68,7 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
   }));
 
   React.useLayoutEffect(() => {
-    resetTabIndex();
+    resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
     return () => {
       clearTimeout(blurTimerRef.current);
     };
@@ -59,7 +80,7 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
         const list = listRef.current;
         const currentFocus = ownerDocument(list).activeElement;
         if (!list.contains(currentFocus)) {
-          resetTabIndex();
+          resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
         }
       }
     }, 30);
@@ -122,28 +143,6 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
     }
   };
 
-  function resetTabIndex() {
-    const list = listRef.current;
-    const currentFocus = ownerDocument(list).activeElement;
-
-    const items = [];
-    for (let i = 0; i < list.children.length; i += 1) {
-      items.push(list.children[i]);
-    }
-
-    const currentFocusIndex = items.indexOf(currentFocus);
-
-    if (currentFocusIndex !== -1) {
-      return setCurrentTabIndex(currentFocusIndex);
-    }
-
-    if (selectedItemRef.current) {
-      return setCurrentTabIndex(items.indexOf(selectedItemRef.current));
-    }
-
-    return setCurrentTabIndex(0);
-  }
-
   return (
     <List
       role="menu"
@@ -183,6 +182,10 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
 }
 
 MenuList.propTypes = {
+  /**
+   * @ignore
+   */
+  actions: PropTypes.shape({ current: PropTypes.object }),
   /**
    * MenuList contents, normally `MenuItem`s.
    */
