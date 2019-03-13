@@ -1,13 +1,13 @@
 import React from 'react';
 import warning from 'warning';
 import { getDynamicStyles } from 'jss';
-import mergeClasses from './mergeClasses';
+import mergeClasses from '../mergeClasses';
 import multiKeyStore from './multiKeyStore';
-import useTheme from './useTheme';
-import { StylesContext } from './StylesProvider';
+import useTheme from '../useTheme';
+import { StylesContext } from '../StylesProvider';
 import { increment } from './indexCounter';
-import getStylesCreator from './getStylesCreator';
-import noopTheme from './noopTheme';
+import getStylesCreator from '../getStylesCreator';
+import noopTheme from '../getStylesCreator/noopTheme';
 
 function getClasses({ state, stylesOptions }, classes, Component) {
   if (stylesOptions.disableGeneration) {

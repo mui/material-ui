@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import withStyles from './withStyles';
+import withStyles from '../withStyles';
 
 function omit(input, fields) {
   const output = {};

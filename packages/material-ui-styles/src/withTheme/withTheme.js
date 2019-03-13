@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { chainPropTypes, getDisplayName, ponyfillGlobal } from '@material-ui/utils';
-import useTheme from './useTheme';
+import useTheme from '../useTheme';
 
 export function withThemeCreator(options = {}) {
   const { defaultTheme } = options;

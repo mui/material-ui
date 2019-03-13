@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import useTheme from './useTheme';
+import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { chainPropTypes, getDisplayName, ponyfillGlobal } from '@material-ui/utils';
-import makeStyles from './makeStyles';
-import getThemeProps from './getThemeProps';
-import useTheme from './useTheme';
-import mergeClasses from './mergeClasses';
-import getStylesCreator from './getStylesCreator';
+import makeStyles from '../makeStyles';
+import getThemeProps from '../getThemeProps';
+import useTheme from '../useTheme';
+import mergeClasses from '../mergeClasses';
+import getStylesCreator from '../getStylesCreator';
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
