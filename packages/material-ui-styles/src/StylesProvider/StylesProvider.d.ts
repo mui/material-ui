@@ -1,6 +1,6 @@
 import { GenerateId, Jss } from 'jss';
 
-interface StylesOptions {
+export interface StylesOptions {
   disableGeneration?: boolean;
   generateClassName?: GenerateId;
   jss?: Jss;

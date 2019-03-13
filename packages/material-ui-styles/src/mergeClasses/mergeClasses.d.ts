@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface Classes {
+export interface Classes {
   [k: string]: string;
 }
 
@@ -10,6 +10,4 @@ export interface MergeClassesOption {
   Component: React.ReactType;
 }
 
-declare function mergeClasses(options?: MergeClassesOption): Classes;
-
-export default mergeClasses;
+export default function mergeClasses(options?: MergeClassesOption): Classes;

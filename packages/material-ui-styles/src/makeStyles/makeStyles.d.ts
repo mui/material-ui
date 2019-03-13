@@ -1,5 +1,3 @@
-// tslint:disable:strict-export-declare-modifiers
-
 import {
   ClassKeyOfStyles,
   ClassNameMap,
@@ -9,16 +7,16 @@ import {
 } from '@material-ui/styles/withStyles';
 
 // https://stackoverflow.com/a/49928360/3406963 without generic branch types
-type IsAny<T> = 0 extends (1 & T) ? true : false;
+export type IsAny<T> = 0 extends (1 & T) ? true : false;
 
-type Or<A, B, C = false> = A extends true
+export type Or<A, B, C = false> = A extends true
   ? true
   : B extends true
   ? true
   : C extends true
   ? true
   : false;
-type And<A, B, C = true> = A extends true
+export type And<A, B, C = true> = A extends true
   ? B extends true
     ? C extends true
       ? true

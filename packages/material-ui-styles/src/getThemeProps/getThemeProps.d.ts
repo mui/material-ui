@@ -1,7 +1,7 @@
 import { ComponentsPropsList } from '@material-ui/core/styles/props';
 import { Theme as MuiTheme } from '@material-ui/core';
 
-interface NamedParams<K extends keyof ComponentsPropsList, Theme> {
+export interface NamedParams<K extends keyof ComponentsPropsList, Theme> {
   name: K;
   props: ComponentsPropsList[K];
   theme?: Theme;
