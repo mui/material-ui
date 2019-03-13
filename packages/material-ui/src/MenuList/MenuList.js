@@ -6,42 +6,71 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
+import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 
-class MenuList extends React.Component {
-  state = {
-    currentTabIndex: null,
-  };
+function MenuList({ actions, children, className, onBlur, onKeyDown, disableListWrap, ...other }) {
+  const [currentTabIndex, setCurrentTabIndex] = React.useState(null);
+  const blurTimerRef = React.useRef();
+  const listRef = React.useRef();
+  const selectedItemRef = React.useRef();
 
-  componentDidMount() {
-    this.resetTabIndex();
-  }
+  React.useImperativeHandle(actions, () => ({
+    focus: () => {
+      if (selectedItemRef.current) {
+        ReactDOM.findDOMNode(selectedItemRef.current).focus();
+        return;
+      }
 
-  componentWillUnmount() {
-    clearTimeout(this.blurTimer);
-  }
+      if (listRef.current && listRef.current.firstChild) {
+        listRef.current.firstChild.focus();
+      }
+    },
+    getContentAnchorEl: () => {
+      if (selectedItemRef.current) {
+        return ReactDOM.findDOMNode(selectedItemRef.current);
+      }
+      return listRef.current.firstChild;
+    },
+    adjustStyleForScrollbar: (containerElement, theme) => {
+      // Let's ignore that piece of logic if users are already overriding the width
+      // of the menu.
+      if (
+        containerElement.clientHeight < listRef.current.clientHeight &&
+        !listRef.current.style.width
+      ) {
+        const size = `${getScrollbarSize(true)}px`;
+        listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
+        listRef.current.style.width = `calc(100% + ${size})`;
+      }
+      return listRef.current;
+    },
+  }));
 
-  setTabIndex(index) {
-    this.setState({ currentTabIndex: index });
-  }
+  React.useLayoutEffect(() => {
+    resetTabIndex();
+    return () => {
+      clearTimeout(blurTimerRef.current);
+    };
+  }, []);
 
-  handleBlur = event => {
-    this.blurTimer = setTimeout(() => {
-      if (this.listRef) {
-        const list = this.listRef;
+  const handleBlur = event => {
+    blurTimerRef.current = setTimeout(() => {
+      if (listRef.current) {
+        const list = listRef.current;
         const currentFocus = ownerDocument(list).activeElement;
         if (!list.contains(currentFocus)) {
-          this.resetTabIndex();
+          resetTabIndex();
         }
       }
     }, 30);
 
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
+    if (onBlur) {
+      onBlur(event);
     }
   };
 
-  handleKeyDown = event => {
-    const list = this.listRef;
+  const handleKeyDown = event => {
+    const list = listRef.current;
     const key = event.key;
     const currentFocus = ownerDocument(list).activeElement;
 
@@ -49,8 +78,8 @@ class MenuList extends React.Component {
       (key === 'ArrowUp' || key === 'ArrowDown') &&
       (!currentFocus || (currentFocus && !list.contains(currentFocus)))
     ) {
-      if (this.selectedItemRef) {
-        this.selectedItemRef.focus();
+      if (selectedItemRef.current) {
+        selectedItemRef.current.focus();
       } else {
         list.firstChild.focus();
       }
@@ -58,14 +87,14 @@ class MenuList extends React.Component {
       event.preventDefault();
       if (currentFocus.nextElementSibling) {
         currentFocus.nextElementSibling.focus();
-      } else if (!this.props.disableListWrap) {
+      } else if (!disableListWrap) {
         list.firstChild.focus();
       }
     } else if (key === 'ArrowUp') {
       event.preventDefault();
       if (currentFocus.previousElementSibling) {
         currentFocus.previousElementSibling.focus();
-      } else if (!this.props.disableListWrap) {
+      } else if (!disableListWrap) {
         list.lastChild.focus();
       }
     } else if (key === 'Home') {
@@ -76,25 +105,25 @@ class MenuList extends React.Component {
       list.lastChild.focus();
     }
 
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(event);
+    if (onKeyDown) {
+      onKeyDown(event);
     }
   };
 
-  handleItemFocus = event => {
-    const list = this.listRef;
+  const handleItemFocus = event => {
+    const list = listRef.current;
     if (list) {
       for (let i = 0; i < list.children.length; i += 1) {
         if (list.children[i] === event.currentTarget) {
-          this.setTabIndex(i);
+          setCurrentTabIndex(i);
           break;
         }
       }
     }
   };
 
-  resetTabIndex() {
-    const list = this.listRef;
+  function resetTabIndex() {
+    const list = listRef.current;
     const currentFocus = ownerDocument(list).activeElement;
 
     const items = [];
@@ -105,56 +134,52 @@ class MenuList extends React.Component {
     const currentFocusIndex = items.indexOf(currentFocus);
 
     if (currentFocusIndex !== -1) {
-      return this.setTabIndex(currentFocusIndex);
+      return setCurrentTabIndex(currentFocusIndex);
     }
 
-    if (this.selectedItemRef) {
-      return this.setTabIndex(items.indexOf(this.selectedItemRef));
+    if (selectedItemRef.current) {
+      return setCurrentTabIndex(items.indexOf(selectedItemRef.current));
     }
 
-    return this.setTabIndex(0);
+    return setCurrentTabIndex(0);
   }
 
-  render() {
-    const { children, className, onBlur, onKeyDown, disableListWrap, ...other } = this.props;
+  return (
+    <List
+      role="menu"
+      ref={ref => {
+        listRef.current = ReactDOM.findDOMNode(ref);
+      }}
+      className={className}
+      onKeyDown={handleKeyDown}
+      onBlur={handleBlur}
+      {...other}
+    >
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
 
-    return (
-      <List
-        role="menu"
-        ref={ref => {
-          this.listRef = ReactDOM.findDOMNode(ref);
-        }}
-        className={className}
-        onKeyDown={this.handleKeyDown}
-        onBlur={this.handleBlur}
-        {...other}
-      >
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return null;
-          }
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the MenuList component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
 
-          warning(
-            child.type !== React.Fragment,
-            [
-              "Material-UI: the MenuList component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
-
-          return React.cloneElement(child, {
-            tabIndex: index === this.state.currentTabIndex ? 0 : -1,
-            ref: child.props.selected
-              ? ref => {
-                  this.selectedItemRef = ReactDOM.findDOMNode(ref);
-                }
-              : undefined,
-            onFocus: this.handleItemFocus,
-          });
-        })}
-      </List>
-    );
-  }
+        return React.cloneElement(child, {
+          tabIndex: index === currentTabIndex ? 0 : -1,
+          ref: child.props.selected
+            ? ref => {
+                selectedItemRef.current = ReactDOM.findDOMNode(ref);
+              }
+            : undefined,
+          onFocus: handleItemFocus,
+        });
+      })}
+    </List>
+  );
 }
 
 MenuList.propTypes = {

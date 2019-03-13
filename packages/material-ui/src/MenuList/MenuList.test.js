@@ -45,4 +45,76 @@ describe('<MenuList />', () => {
       assert.strictEqual(wrapper.find('div').length, 2);
     });
   });
+
+  describe('actions: adjustStyleForScrollbar', () => {
+    it('should not adjust style when container element height is greater', () => {
+      const menuListActionsRef = React.createRef();
+      const wrapper = mount(<MenuList actions={menuListActionsRef} />);
+      const list = wrapper.getDOMNode();
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, '');
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'ltr' },
+      );
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, '');
+    });
+
+    it('should adjust style when container element height is less', () => {
+      const menuListActionsRef = React.createRef();
+      const wrapper = mount(<MenuList actions={menuListActionsRef} />);
+      const list = wrapper.getDOMNode();
+      Object.defineProperty(list.style, 'width', { writable: true, value: '' });
+      Object.defineProperty(list, 'clientHeight', { value: 11 });
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, '');
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'ltr' },
+      );
+      assert.strictEqual(list.style.paddingRight, '0px');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, 'calc(100% + 0px)');
+    });
+
+    it('should adjust paddingLeft when direction=rtl', () => {
+      const menuListActionsRef = React.createRef();
+      const wrapper = mount(<MenuList actions={menuListActionsRef} />);
+      const list = wrapper.getDOMNode();
+      Object.defineProperty(list.style, 'width', { writable: true, value: '' });
+      Object.defineProperty(list, 'clientHeight', { value: 11 });
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, '');
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'rtl' },
+      );
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '0px');
+      assert.strictEqual(list.style.width, 'calc(100% + 0px)');
+    });
+
+    it('should not adjust styles when width already specified', () => {
+      const menuListActionsRef = React.createRef();
+      const wrapper = mount(<MenuList actions={menuListActionsRef} />);
+      const list = wrapper.getDOMNode();
+      Object.defineProperty(list.style, 'width', { writable: true, value: '10px' });
+      Object.defineProperty(list, 'clientHeight', { value: 11 });
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, '10px');
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'rtl' },
+      );
+      assert.strictEqual(list.style.paddingRight, '');
+      assert.strictEqual(list.style.paddingLeft, '');
+      assert.strictEqual(list.style.width, '10px');
+    });
+  });
 });
