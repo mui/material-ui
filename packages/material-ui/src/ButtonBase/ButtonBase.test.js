@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
@@ -419,7 +420,7 @@ describe('<ButtonBase />', () => {
 
   describe('prop: component', () => {
     it('should allow to use a link component', () => {
-      const Link = props => <div {...props} />;
+      const Link = React.forwardRef((props, ref) => <div ref={ref} {...props} />);
       const wrapper = mount(<ButtonBase component={Link}>Hello</ButtonBase>);
       assert.strictEqual(
         wrapper
@@ -465,11 +466,13 @@ describe('<ButtonBase />', () => {
     });
 
     it('should work with a functional component', () => {
-      const MyLink = props => (
-        <a href="/foo" {...props}>
-          bar
-        </a>
-      );
+      const MyLink = React.forwardRef((props, ref) => {
+        return (
+          <a href="/foo" ref={ref} {...props}>
+            bar
+          </a>
+        );
+      });
       const wrapper = mount(
         <ButtonBase theme={{}} component={MyLink}>
           Hello
@@ -676,7 +679,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(typeof buttonActions.focusVisible, 'function');
       buttonActions.focusVisible();
       wrapper.update();
-      assert.strictEqual(wrapper.find('ButtonBase').instance().button, document.activeElement);
+      assert.strictEqual(wrapper.find('button').getDOMNode(), document.activeElement);
       assert.strictEqual(wrapper.find('.focusVisible').exists(), true);
     });
   });

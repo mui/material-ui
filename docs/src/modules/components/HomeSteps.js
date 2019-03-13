@@ -89,6 +89,10 @@ const styles = theme => ({
   },
 });
 
+const PremiumThemesLink = React.forwardRef((props, ref) => {
+  return <Link href="/premium-themes" naked prefetch ref={ref} {...props} />;
+});
+
 function HomeSteps(props) {
   const { classes, t } = props;
 
@@ -178,11 +182,7 @@ function HomeSteps(props) {
           </Link>
         </div>
         <Divider className={classes.divider} />
-        <Button
-          component={buttonProps => <Link naked prefetch href="/premium-themes" {...buttonProps} />}
-        >
-          {t('themesButton')}
-        </Button>
+        <Button component={PremiumThemesLink}>{t('themesButton')}</Button>
       </Grid>
     </Grid>
   );
