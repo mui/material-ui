@@ -6,8 +6,6 @@ interface StylesCreator<Theme, Props extends object, ClassKey extends string = s
   themingEnabled: boolean;
 }
 
-declare function getStylesCreator<S extends Styles<any, any>>(
-  style: S,
-): StylesCreator<any, any>;
+declare function getStylesCreator<S extends Styles<any, any>>(style: S): StylesCreator<any, any>;
 
 export default getStylesCreator;
