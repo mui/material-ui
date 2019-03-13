@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createMount, createShallow, testRef } from '@material-ui/core/test-utils';
 import MenuList from './MenuList';
+import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 
 describe('<MenuList />', () => {
   let mount;
@@ -47,6 +48,9 @@ describe('<MenuList />', () => {
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
+
+    const expectedPadding = `${getScrollbarSize(true)}px`;
+
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
@@ -76,9 +80,9 @@ describe('<MenuList />', () => {
         { clientHeight: 10 },
         { direction: 'ltr' },
       );
-      assert.strictEqual(list.style.paddingRight, '0px');
+      assert.strictEqual(list.style.paddingRight, expectedPadding);
       assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, 'calc(100% + 0px)');
+      assert.strictEqual(list.style.width, `calc(100% + ${expectedPadding})`);
     });
 
     it('should adjust paddingLeft when direction=rtl', () => {
@@ -95,8 +99,8 @@ describe('<MenuList />', () => {
         { direction: 'rtl' },
       );
       assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '0px');
-      assert.strictEqual(list.style.width, 'calc(100% + 0px)');
+      assert.strictEqual(list.style.paddingLeft, expectedPadding);
+      assert.strictEqual(list.style.width, `calc(100% + ${expectedPadding})`);
     });
 
     it('should not adjust styles when width already specified', () => {
