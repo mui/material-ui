@@ -25,7 +25,7 @@ const findScrollButton = (wrapper, direction) => wrapper.find(`button[aria-label
 const hasLeftScrollButton = wrapper => findScrollButton(wrapper, 'left').exists();
 const hasRightScrollButton = wrapper => findScrollButton(wrapper, 'right').exists();
 
-describe.only('<Tabs />', () => {
+describe('<Tabs />', () => {
   let mount;
   let classes;
   let render;
@@ -482,7 +482,7 @@ describe.only('<Tabs />', () => {
       it('should set only left scroll button state', () => {
         const wrapper = mount(tabs);
 
-        setFakeTabs(wrapper, { scrollLeft: 1 });
+        setFakeTabs(wrapper, { scrollLeft: 2 });
 
         assert.strictEqual(hasLeftScrollButton(wrapper), true);
         assert.strictEqual(hasRightScrollButton(wrapper), false);
@@ -505,7 +505,7 @@ describe.only('<Tabs />', () => {
         const wrapper = mount(tabs);
 
         setFakeTabs(wrapper, {
-          scrollLeft: 1,
+          scrollLeft: 2,
           scrollWidth: 110,
           clientWidth: 100,
         });
