@@ -13,9 +13,9 @@ import TrapFocus from './TrapFocus';
 import Backdrop from '../Backdrop';
 import { ariaHidden } from './manageAriaHidden';
 
-function getContainer(container, defaultContainer) {
+function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
-  return ReactDOM.findDOMNode(container) || defaultContainer;
+  return ReactDOM.findDOMNode(container);
 }
 
 function getHasTransition(props) {
@@ -97,8 +97,7 @@ class Modal extends React.Component {
   }
 
   handleOpen = () => {
-    const doc = this.getDoc();
-    const container = getContainer(this.props.container, doc.body);
+    const container = getContainer(this.props.container) || this.getDoc().body;
 
     this.props.manager.add(this, container);
     if (this.modalRef) {
