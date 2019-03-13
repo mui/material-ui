@@ -1,12 +1,14 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
+import PropTypes from 'prop-types';
 import {
   createShallow,
   createMount,
   findOutermostIntrinsic,
   getClasses,
 } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
@@ -16,9 +18,7 @@ describe('<Popover />', () => {
   let shallow;
   let mount;
   let classes;
-  const defaultProps = {
-    open: false,
-  };
+  let defaultProps;
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -28,6 +28,10 @@ describe('<Popover />', () => {
         <div />
       </Popover>,
     );
+    defaultProps = {
+      open: false,
+      anchorEl: document.createElement('div'),
+    };
   });
 
   after(() => {
@@ -443,10 +447,26 @@ describe('<Popover />', () => {
         "should use anchorEl's parent body as Modal container",
       );
     });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+      PropTypes.resetWarningCache();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
 
     it('should not pass container to Modal if container or anchorEl props are not provided', () => {
       const otherWrapper = mount(<Popover open />);
       assert.strictEqual(otherWrapper.find(Modal).props().container, undefined);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'the anchorEl property provided to the component is invalid',
+      );
     });
   });
 

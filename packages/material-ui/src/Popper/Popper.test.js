@@ -6,19 +6,21 @@ import Grow from '../Grow';
 import Popper from './Popper';
 
 describe('<Popper />', () => {
-  const defaultProps = {
-    children: <span>Hello World</span>,
-    open: true,
-  };
   let shallow;
   let mount;
   let anchorEl;
+  let defaultProps;
 
   before(() => {
     anchorEl = window.document.createElement('div');
     window.document.body.appendChild(anchorEl);
     shallow = createShallow();
     mount = createMount();
+    defaultProps = {
+      anchorEl,
+      children: <span>Hello World</span>,
+      open: true,
+    };
   });
 
   after(() => {
@@ -95,7 +97,7 @@ describe('<Popper />', () => {
 
   describe('mount', () => {
     it('should mount without any issue', () => {
-      const wrapper = mount(<Popper {...defaultProps} open={false} anchorEl={anchorEl} />);
+      const wrapper = mount(<Popper {...defaultProps} open={false} />);
       assert.strictEqual(wrapper.find('span').length, 0);
       wrapper.setProps({ open: true });
       wrapper.update();
@@ -106,7 +108,7 @@ describe('<Popper />', () => {
     });
 
     it('should position the popper when opening', () => {
-      const wrapper = mount(<Popper {...defaultProps} open={false} anchorEl={anchorEl} />);
+      const wrapper = mount(<Popper {...defaultProps} open={false} />);
       const instance = wrapper.instance();
       assert.strictEqual(instance.popper == null, true);
       wrapper.setProps({ open: true });
@@ -114,7 +116,7 @@ describe('<Popper />', () => {
     });
 
     it('should not position the popper when closing', () => {
-      const wrapper = mount(<Popper {...defaultProps} open anchorEl={anchorEl} />);
+      const wrapper = mount(<Popper {...defaultProps} open />);
       const instance = wrapper.instance();
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ open: false });
@@ -125,7 +127,7 @@ describe('<Popper />', () => {
   describe('prop: transition', () => {
     it('should work', () => {
       const wrapper = mount(
-        <Popper {...defaultProps} open anchorEl={anchorEl} transition>
+        <Popper {...defaultProps} open transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
               <span>Hello World</span>
@@ -137,9 +139,7 @@ describe('<Popper />', () => {
       assert.strictEqual(wrapper.find('span').length, 1);
       assert.strictEqual(wrapper.find('span').text(), 'Hello World');
       assert.strictEqual(instance.popper !== null, true);
-      wrapper.setProps({ anchorEl: null });
-      assert.strictEqual(instance.popper !== null, true);
-      wrapper.setProps({ open: false });
+      wrapper.setProps({ anchorEl: null, open: false });
       wrapper
         .find(Grow)
         .props()
@@ -151,7 +151,7 @@ describe('<Popper />', () => {
   describe('prop: onExited', () => {
     it('should update the exited state', () => {
       const wrapper = mount(
-        <Popper {...defaultProps} open anchorEl={anchorEl} transition>
+        <Popper {...defaultProps} open transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
               <span>Hello World</span>

@@ -171,7 +171,7 @@ describe('<ExpansionPanel />', () => {
         assert.throws(() => mount(<ExpansionPanel>[]</ExpansionPanel>));
         // 2 other errors are from accesing property of undefined and react component stack
         assert.strictEqual(consoleErrorMock.callCount(), 3);
-        assert.include(consoleErrorMock.args()[0][0], 'Material-UI: Expected the first child');
+        assert.include(consoleErrorMock.args()[0][0], 'Material-UI: expected the first child');
       }); */
 
       it('needs a valid element as the first child', () => {
@@ -183,7 +183,7 @@ describe('<ExpansionPanel />', () => {
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(
           consoleErrorMock.args()[0][0],
-          "Material-UI: The ExpansionPanel doesn't accept a Fragment",
+          "Material-UI: the ExpansionPanel doesn't accept a Fragment",
         );
       });
     });

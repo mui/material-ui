@@ -60,7 +60,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: title', () => {
     it('should display if the title is present', () => {
-      const wrapper = shallow(<Tooltip {...defaultProps} open />);
+      const wrapper = mount(<Tooltip {...defaultProps} open />);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
 
