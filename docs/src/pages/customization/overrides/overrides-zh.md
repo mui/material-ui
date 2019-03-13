@@ -24,7 +24,7 @@
 
 当 `className` 属性不够，并且您需要访问更深层元素时，您可以利用 `classes` 属性来自定义Material-UI为给定组件注入的所有CSS。 每个 组件的类列表记录在 **Component API** 部分中。 例如，您可以查看 [Button CSS API](/api/button/#css)。 或者，你可以随时查看[实现细节](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
 
-这个例子也使用 `withStyles（）` （见上文），但是这里， `ClassesNesting` 使用 `Button`的 `类` prop到 提供了一个对象，它映射了 **个类的名称以覆盖** （样式规则） **CSS类名称应用** （值）。 组件的现有类将继续注入，因此只需要提供要添加或覆盖的特定样式 。
+这个例子也使用 `withStyles（）` （见上文），但是这里， `ClassesNesting` 使用 `Button`的 `classes` 属性来接收一个对象，该对象将 **要覆盖的classes子项名** （样式规则）映射到 **对应的CSS属性名称** （值）。 组件的现有类将继续注入，因此只需要提供要添加或覆盖的特定样式 。
 
 请注意，除按钮样式外，按钮标签的大小写也已更改：
 
