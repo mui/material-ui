@@ -146,6 +146,9 @@ If this is not the case we will issue a prop type warning similar to:
 
 In addition React will issue a warning.
 
+You can fix this warning by using `React.forwardRef`. Learn more about it in
+[this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+
 To find out if the Material-UI component you're using has this requirement, check
 out the the props API documentation for that component. If you need to forward refs
 the description will link to this section.
