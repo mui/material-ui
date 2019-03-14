@@ -92,12 +92,12 @@ export const styles = theme => ({
   },
   /* Styles applied to the bar1 element if `variant="determinate"`. */
   bar1Determinate: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
+    transition: `width .${TRANSITION_DURATION}s linear`,
   },
   /* Styles applied to the bar1 element if `variant="buffer"`. */
   bar1Buffer: {
     zIndex: 1,
-    transition: `transform .${TRANSITION_DURATION}s linear`,
+    transition: `width .${TRANSITION_DURATION}s linear`,
   },
   /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
   bar2Indeterminate: {
@@ -110,7 +110,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the bar2 element if `variant="buffer"`. */
   bar2Buffer: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
+    transition: `width .${TRANSITION_DURATION}s linear`,
   },
   // Legends:
   // || represents the viewport
@@ -211,7 +211,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      inlineStyles.bar1.transform = `scaleX(${value / 100})`;
+      inlineStyles.bar1.width = `${value}%`;
     } else {
       warning(
         false,
@@ -222,7 +222,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      inlineStyles.bar2.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+      inlineStyles.bar2.width = `${valueBuffer || 0}%`;
     } else {
       warning(
         false,
