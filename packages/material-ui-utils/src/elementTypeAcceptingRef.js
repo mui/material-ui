@@ -1,5 +1,4 @@
 import * as PropTypes from 'prop-types';
-import React from 'react';
 import { isLazy, isMemo } from 'react-is';
 import chainPropTypes from './chainPropTypes';
 
@@ -40,7 +39,8 @@ function elementTypeAcceptingRef(props, propName, componentName, location, propF
   if (warningHint !== undefined) {
     return new Error(
       `Invalid ${location} \`${safePropName}\` supplied to \`${componentName}\`. ` +
-        `Expected an element type that can hold a ref. ${warningHint}`,
+        `Expected an element type that can hold a ref. ${warningHint} ` +
+        'For more information see https://next.material-ui.com/guides/composition/#caveat-with-refs',
     );
   }
 
