@@ -25,7 +25,7 @@ class RadioGroup extends React.Component {
       this.wasControlledOnInit === (prevState === null),
       [
         'Material-UI: the RadioGroup component should not change between controlled and uncontrolled behavior.',
-        `This component was ${this.wasControlledOnInit ? '' : 'un'}controlled, but now it is not.`
+        `This component was ${this.wasControlledOnInit ? '' : 'un'}controlled, but now it is not.`,
       ].join('\n'),
     );
   }
