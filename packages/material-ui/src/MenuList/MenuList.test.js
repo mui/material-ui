@@ -106,7 +106,7 @@ describe('<MenuList />', () => {
       const menuListActionsRef = React.createRef();
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
       const list = wrapper.getDOMNode();
-      Object.defineProperty(list.style, 'width', { writable: true, value: '10px' });
+      list.style.width = '10px';
       Object.defineProperty(list, 'clientHeight', { value: 11 });
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
