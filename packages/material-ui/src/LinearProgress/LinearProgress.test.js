@@ -77,7 +77,11 @@ describe('<LinearProgress />', () => {
     const wrapper = shallow(<LinearProgress variant="determinate" value={77} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.determinate), true);
-    assert.strictEqual(wrapper.childAt(0).props().style.width, '77%', 'should have width set');
+    assert.strictEqual(
+      wrapper.childAt(0).props().style.transform,
+      'translateX(-23%)',
+      'should have width set',
+    );
     assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
   });
 
@@ -138,8 +142,16 @@ describe('<LinearProgress />', () => {
   it('should set width of bar1 and bar2 on buffer variant', () => {
     const wrapper = shallow(<LinearProgress variant="buffer" value={77} valueBuffer={85} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(1).props().style.width, '77%', 'should have width set');
-    assert.strictEqual(wrapper.childAt(2).props().style.width, '85%', 'should have width set');
+    assert.strictEqual(
+      wrapper.childAt(1).props().style.transform,
+      'translateX(-23%)',
+      'should have width set',
+    );
+    assert.strictEqual(
+      wrapper.childAt(2).props().style.transform,
+      'translateX(-15%)',
+      'should have width set',
+    );
   });
 
   it('should render with query classes', () => {
