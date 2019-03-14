@@ -17,12 +17,9 @@ We encourage people relying on the solutions the React community has built.
 
 In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).
 
+The last demo allow to clear the input and show a number of options on focus.
+
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
-
-In the following example, we demonstrate how to clear the downshift value when the `TextField` is cleared, show a number of options on focus, and search in all the strings -- not just strings beginning with it.
-
-{{"demo": "pages/demos/autocomplete/IntegrationDownshiftExtra.js"}}
-
 
 ## react-select
 

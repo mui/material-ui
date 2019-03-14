@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
 
-export const suggestions = [
+const suggestions = [
   { label: 'Afghanistan' },
   { label: 'Aland Islands' },
   { label: 'Albania' },
@@ -46,7 +46,7 @@ export const suggestions = [
   { label: 'Brunei Darussalam' },
 ];
 
-export function renderInput(inputProps) {
+function renderInput(inputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
 
   return (
@@ -64,7 +64,7 @@ export function renderInput(inputProps) {
   );
 }
 
-export function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
+function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
   const isHighlighted = highlightedIndex === index;
   const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
 
@@ -90,12 +90,12 @@ renderSuggestion.propTypes = {
   suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
 
-function getSuggestions(value) {
+function getSuggestions(value, { showEmpty = false } = {}) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
 
-  return inputLength === 0
+  return inputLength === 0 && !showEmpty
     ? []
     : suggestions.filter(suggestion => {
         const keep =
@@ -197,7 +197,7 @@ DownshiftMultiple.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: 250,
@@ -313,6 +313,51 @@ function IntegrationDownshift() {
                 </Paper>
               </div>
             </Popper>
+          </div>
+        )}
+      </Downshift>
+      <div className={classes.divider} />
+      <Downshift id="downshift-options">
+        {({
+          clearSelection,
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          openMenu,
+          selectedItem,
+        }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                onFocus: openMenu,
+                onChange: event => {
+                  if (event.target.value === '') {
+                    clearSelection();
+                  }
+                },
+                placeholder: 'With the clear & show empty options',
+              }),
+            })}
+            <div {...getMenuProps()}>
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue, { showEmpty: true }).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
           </div>
         )}
       </Downshift>
