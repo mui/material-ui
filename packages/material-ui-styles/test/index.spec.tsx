@@ -120,6 +120,11 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   makeStyles(style, {
     defaultTheme: validCustomTheme,
   });
+  
+  // this is an undesired behaviour. Ideally, theme interface should be inferred from style and using invalid default theme should throw
+  makeStyles(style, {
+    defaultTheme: invalidCustomTheme,
+  });
 
   // $ExpectError
   makeStyles<typeof style, CustomTheme>(style, {
