@@ -109,11 +109,14 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
   const validCustomTheme = { attribute: 8, otherStuff: true };
   const invalidCustomTheme = { otherStuff: true };
 
-  const style = createStyles((theme: CustomTheme) => ({
-    margin: theme.attribute,
-  }));
+  const style = (theme: CustomTheme) =>
+    createStyles({
+      root: {
+        margin: theme.attribute,
+      },
+    });
 
-  makeStyles<typeof style, CustomTheme>(style, {
+  makeStyles<typeof style>(style, {
     defaultTheme: validCustomTheme,
   });
 
@@ -121,14 +124,13 @@ function testGetThemeProps(theme: Theme, props: AppBarProps): void {
     defaultTheme: validCustomTheme,
   });
 
-  // this is an undesired behaviour. Ideally, theme interface should be inferred from style and using invalid default theme should throw
-  // specifying explicit generic arguments to makeStyles is a current workaround for this issue.
+  // $ExpectError
   makeStyles(style, {
     defaultTheme: invalidCustomTheme,
   });
 
   // $ExpectError
-  makeStyles<typeof style, CustomTheme>(style, {
+  makeStyles<typeof style>(style, {
     defaultTheme: invalidCustomTheme,
   });
 }

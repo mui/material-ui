@@ -76,9 +76,8 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<
-  S extends Styles<Theme, any>,
-  Options extends WithStylesOptions<Theme> = {},
-  Theme = any
+  S extends Styles<any, any>,
+  Options extends WithStylesOptions<ThemeOfStyles<S>> = {}
 >(
   style: S,
   options?: Options,
