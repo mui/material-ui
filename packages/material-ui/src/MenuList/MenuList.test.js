@@ -48,7 +48,6 @@ describe('<MenuList />', () => {
   });
 
   describe('actions: adjustStyleForScrollbar', () => {
-
     const expectedPadding = `${getScrollbarSize(true)}px`;
 
     it('should not adjust style when container element height is greater', () => {

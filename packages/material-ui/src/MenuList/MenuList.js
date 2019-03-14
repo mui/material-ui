@@ -29,16 +29,17 @@ function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
   return setCurrentTabIndex(0);
 }
 
-function MenuList({ actions, children, className, onBlur, onKeyDown, disableListWrap, ...other }) {
+function MenuList(props) {
+  const { actions, children, className, onBlur, onKeyDown, disableListWrap, ...other } = props;
   const [currentTabIndex, setCurrentTabIndex] = React.useState(null);
-  const blurTimerRef = React.useRef();
+  const blurTimeoutIDRef = React.useRef();
   const listRef = React.useRef();
   const selectedItemRef = React.useRef();
 
   React.useImperativeHandle(actions, () => ({
     focus: () => {
       if (selectedItemRef.current) {
-        ReactDOM.findDOMNode(selectedItemRef.current).focus();
+        selectedItemRef.current.focus();
         return;
       }
 
@@ -48,7 +49,7 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
     },
     getContentAnchorEl: () => {
       if (selectedItemRef.current) {
-        return ReactDOM.findDOMNode(selectedItemRef.current);
+        return selectedItemRef.current;
       }
       return listRef.current.firstChild;
     },
@@ -70,17 +71,17 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
   React.useLayoutEffect(() => {
     resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
     return () => {
-      clearTimeout(blurTimerRef.current);
+      clearTimeout(blurTimeoutIDRef.current);
     };
   }, []);
 
   const handleBlur = event => {
-    blurTimerRef.current = setTimeout(() => {
+    blurTimeoutIDRef.current = setTimeout(() => {
       if (listRef.current) {
         const list = listRef.current;
         const currentFocus = ownerDocument(list).activeElement;
         if (!list.contains(currentFocus)) {
-          resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
+          resetTabIndex(list, selectedItemRef.current, setCurrentTabIndex);
         }
       }
     }, 30);
@@ -147,6 +148,7 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
     <List
       role="menu"
       ref={ref => {
+        // StrictMode ready
         listRef.current = ReactDOM.findDOMNode(ref);
       }}
       className={className}
@@ -171,6 +173,7 @@ function MenuList({ actions, children, className, onBlur, onKeyDown, disableList
           tabIndex: index === currentTabIndex ? 0 : -1,
           ref: child.props.selected
             ? ref => {
+                // not StrictMode ready
                 selectedItemRef.current = ReactDOM.findDOMNode(ref);
               }
             : undefined,
