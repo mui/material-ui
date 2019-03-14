@@ -1,16 +1,16 @@
 import React from 'react';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeNode from '@material-ui/lab/TreeNode';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FolderIcon from '@material-ui/icons/Folder';
 
 function TreeViewDemo() {
   return (
     <TreeView
-      collapseIcon={<ExpandLessIcon />}
+      collapseIcon={<ExpandMoreIcon />}
       defaultNodeIcon={<FolderIcon />}
-      expandIcon={<ExpandMoreIcon />}
+      expandIcon={<ChevronRightIcon />}
     >
       <TreeNode title="Test" id="test">
         <TreeNode title="Test-Inner" id="testi">

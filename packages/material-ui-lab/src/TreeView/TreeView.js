@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuList from '@material-ui/core/MenuList';
 import TreeViewContext from './TreeViewContext';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles({
+  root: {
+    padding: 0,
+    margin: 0,
+    listStyle: 'none',
+  }
+});
 
 function TreeView(props) {
   const {
@@ -15,6 +23,7 @@ function TreeView(props) {
     ...other
   } = props;
   const [expanded, setExpanded] = React.useState([]);
+  const classes = useStyles();
 
   if (expandedProp && expandedProp !== expanded) {
     setExpanded(expandedProp);
@@ -50,7 +59,7 @@ function TreeView(props) {
         toggle,
       }}
     >
-      <MenuList {...other}>{children}</MenuList>
+      <ul role="tree" className={classes.root} {...other}>{children}</ul>
     </TreeViewContext.Provider>
   );
 }
