@@ -75,7 +75,7 @@ function escapeCell(value) {
 }
 
 function isElementTypeAcceptingRefProp(type) {
-  return type.raw === 'elementTypeAcceptingRef'
+  return type.raw === 'elementTypeAcceptingRef';
 }
 
 function generatePropDescription(prop) {
@@ -152,7 +152,8 @@ function generatePropDescription(prop) {
 
   let notes = '';
   if (isElementTypeAcceptingRefProp(type)) {
-    notes += '<br><sup>*</sup>Needs to forward ref if a function component.'
+    notes +=
+      '<br><sup>*</sup>[Needs to be able to hold a ref](/guides/composition/#Caveat with refs).';
   }
 
   return `${deprecated}${jsDocText}${signature}${notes}`;
