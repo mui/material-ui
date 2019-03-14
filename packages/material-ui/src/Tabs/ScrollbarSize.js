@@ -9,6 +9,8 @@ const styles = {
   position: 'absolute',
   top: -9999,
   overflow: 'scroll',
+  // TODO Do we need this style for IE 11 support?
+  msOverflowStyle: 'scrollbar',
 };
 
 /**
