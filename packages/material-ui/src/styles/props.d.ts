@@ -80,6 +80,7 @@ import { TableRowProps } from '../TableRow';
 import { TableSortLabelProps } from '../TableSortLabel';
 import { TabProps } from '../Tab';
 import { TabsProps } from '../Tabs';
+import { TextFieldProps } from '../TextField';
 import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
@@ -170,6 +171,7 @@ export interface ComponentsPropsList {
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;
+  MuiTextField: TextFieldProps;
   MuiToolbar: ToolbarProps;
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;
