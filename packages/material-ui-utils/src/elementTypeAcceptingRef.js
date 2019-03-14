@@ -25,7 +25,7 @@ function elementTypeAcceptingRef(props, propName, componentName, location, propF
    * Blacklisting will miss some components, such as React.Fragment. Those will at least
    * trigger a warning in React.
    * We can't whitelist because there is no safe way to detect React.forwardRef
-   * or class components. Safe means there's no public API.
+   * or class components. "Safe" means there's no public API.
    *
    */
   if (isLazy(propValue)) {
