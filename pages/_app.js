@@ -13,6 +13,10 @@ import getPageContext from 'docs/src/modules/styles/getPageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
 
+// Add the strict mode back once the number of warnings is manageable.
+// We might miss important warnings by keeping the strict mode 🌊🌊🌊.
+const USE_STRICT_MODE = false;
+
 let dependenciesLoaded = false;
 
 function loadDependencies() {
@@ -93,22 +97,21 @@ class MyApp extends App {
     }
     const activePage = findActivePage(pages, { ...router, pathname });
 
-    // Add the strict mode back once the number of warnings is manageable.
-    // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
-    // <React.StrictMode>
-    // </React.StrictMode>
+    const Mode = USE_STRICT_MODE ? React.StrictMode : React.Fragment;
 
     return (
-      <Container>
-        <Provider store={this.redux}>
-          <PageContext.Provider value={{ activePage, pages }}>
-            <AppWrapper pageContext={this.pageContext}>
-              <Component pageContext={this.pageContext} {...pageProps} />
-            </AppWrapper>
-          </PageContext.Provider>
-        </Provider>
-        <GoogleAnalytics key={router.route} />
-      </Container>
+      <Mode>
+        <Container>
+          <Provider store={this.redux}>
+            <PageContext.Provider value={{ activePage, pages }}>
+              <AppWrapper pageContext={this.pageContext}>
+                <Component pageContext={this.pageContext} {...pageProps} />
+              </AppWrapper>
+            </PageContext.Provider>
+          </Provider>
+          <GoogleAnalytics key={router.route} />
+        </Container>
+      </Mode>
     );
   }
 }

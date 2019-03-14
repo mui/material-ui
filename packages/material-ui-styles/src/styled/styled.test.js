@@ -6,7 +6,7 @@ import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
 import { createGenerateClassName } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import StylesProvider from './StylesProvider';
+import StylesProvider from '../StylesProvider';
 
 describe('styled', () => {
   let mount;

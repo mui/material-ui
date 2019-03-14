@@ -7,7 +7,7 @@ import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import withTheme from './withTheme';
-import ThemeProvider from './ThemeProvider';
+import ThemeProvider from '../ThemeProvider';
 
 describe('withTheme', () => {
   let mount;
