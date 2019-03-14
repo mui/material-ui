@@ -11,21 +11,21 @@ class RadioGroup extends React.Component {
 
   constructor(props) {
     super();
-    this.isControlled = props.value != null;
+    this.wasControlledOnInit = props.value != null;
 
-    if (!this.isControlled) {
+    if (!this.wasControlledOnInit) {
       this.state = {
         value: props.defaultValue,
       };
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(_prevProps, prevState) {
     warning(
-      this.isControlled,
+      this.wasControlledOnInit === (prevState === null),
       [
-        'Material-UI: the RadioGroup component should not be uncontrolled.',
-        'Consider providing an empty string instead of null as an initial value.',
+        'Material-UI: the RadioGroup component should not change between controlled and uncontrolled behavior.',
+        `This component was ${this.wasControlledOnInit ? '' : 'un'}controlled, but now it is not.`
       ].join('\n'),
     );
   }
@@ -52,7 +52,7 @@ class RadioGroup extends React.Component {
   };
 
   handleChange = event => {
-    if (!this.isControlled) {
+    if (!this.wasControlledOnInit) {
       this.setState({
         value: event.target.value,
       });
@@ -66,7 +66,7 @@ class RadioGroup extends React.Component {
   render() {
     const { children, name, value: valueProp, onChange, ...other } = this.props;
 
-    const value = this.isControlled ? valueProp : this.state.value;
+    const value = this.wasControlledOnInit ? valueProp : this.state.value;
     this.radios = [];
 
     return (
