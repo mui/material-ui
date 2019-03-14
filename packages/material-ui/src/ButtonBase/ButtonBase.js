@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
-import {elementTypeAcceptingRef} from '@material-ui/utils'
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withForwardedRef from '../utils/withForwardedRef';
 import { setRef } from '../utils/reactHelpers';
