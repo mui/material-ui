@@ -3,7 +3,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import { Input } from '@material-ui/core';
-import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
+import { isMuiElement } from '@material-ui/core/utils';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import withTheme from './withTheme';

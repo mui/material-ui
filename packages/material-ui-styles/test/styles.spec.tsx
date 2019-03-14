@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStyles, withStyles, withTheme, WithTheme, WithStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button/Button';
+import Button from '@material-ui/core/Button';
 import { Theme } from '@material-ui/core/styles';
 
 // Example 1

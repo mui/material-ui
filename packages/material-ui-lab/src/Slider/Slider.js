@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { setRef } from '@material-ui/core/utils/reactHelpers';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
-import clamp from '../utils/clamp';
+import { setRef, withForwardedRef } from '@material-ui/core/utils';
+import { clamp } from '@material-ui/lab/utils';
 
 export const styles = theme => {
   const commonTransitionsOptions = {
