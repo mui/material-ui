@@ -21,10 +21,10 @@ function elementTypeAcceptingRef(props, propName, componentName, location, propF
   let warningHint;
 
   /**
-   * blacklisting instead of whitelisting
+   * Blacklisting instead of whitelisting
    *
-   * blacklisting will miss some components like React.Fragment. Those will at least
-   * trigger a warning in react.
+   * Blacklisting will miss some components, such as React.Fragment. Those will at least
+   * trigger a warning in React.
    * We can't whitelist because there is no safe way to detect React.forwardRef
    * or class components. Safe means there's no public API.
    *
