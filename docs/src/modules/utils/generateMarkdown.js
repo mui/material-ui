@@ -152,8 +152,7 @@ function generatePropDescription(prop) {
 
   let notes = '';
   if (isElementTypeAcceptingRefProp(type)) {
-    notes +=
-      '<br><sup>*</sup>[Needs to be able to hold a ref](/guides/composition/#Caveat with refs).';
+    notes += '<br>[Needs to be able to hold a ref](/guides/composition#caveat-with-refs).';
   }
 
   return `${deprecated}${jsDocText}${signature}${notes}`;
@@ -163,7 +162,7 @@ function generatePropType(type) {
   switch (type.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
-        return `element type<sup>*</sup>`;
+        return `element type`;
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);
