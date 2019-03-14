@@ -45,7 +45,6 @@
     "csstype": "^2.5.2",
     "debounce": "^1.1.0",
     "deepmerge": "^3.0.0",
-    "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^3.2.1",
     "is-plain-object": "^2.0.4",
     "normalize-scroll-left": "^0.1.2",

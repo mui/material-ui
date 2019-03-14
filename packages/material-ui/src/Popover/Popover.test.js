@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import css from 'dom-helpers/style';
 import {
   createShallow,
   createMount,
@@ -314,6 +313,12 @@ describe('<Popover />', () => {
         if (!anchorEl) {
           anchorEl = window.document.createElement('div');
         }
+
+        const css = (element, styles) => {
+          Object.keys(styles).forEach(key => {
+            element.style[key] = styles[key];
+          });
+        };
 
         css(anchorEl, {
           width: '50px',

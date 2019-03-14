@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from '../utils/getScrollbarSize';
 import withStyles from '../styles/withStyles';
 import withForwardedRef from '../utils/withForwardedRef';
 import Popover from '../Popover';
@@ -74,9 +74,9 @@ class Menu extends React.Component {
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
     if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
-      const size = `${getScrollbarSize(true)}px`;
-      menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
-      menuList.style.width = `calc(100% + ${size})`;
+      const scrollbarSize = `${getScrollbarSize()}px`;
+      menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = scrollbarSize;
+      menuList.style.width = `calc(100% + ${scrollbarSize})`;
     }
 
     if (this.props.onEntering) {
