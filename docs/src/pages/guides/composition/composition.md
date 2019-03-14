@@ -150,7 +150,7 @@ To find out if the Material-UI component you're using has this requirement, chec
 out the the props API documentation for that component. If you need to forward refs
 the description will link to this section.
 
-# Caveat with React.StrictMode or React.unstable_ConcurrentMode
+### Caveat with StrictMode or unstable_ConcurrentMode
 
 If you pass class components to
  the `component` prop and don't run in strict mode you won't have to change anything
