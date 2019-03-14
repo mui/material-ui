@@ -18,7 +18,7 @@ export default function textToHash(text, unique = {}) {
         // eslint-disable-next-line no-useless-escape
         .replace(/[!@#\$%\^&\*\(\)=_\+\[\]{}`~;:'"\|,\.<>\/\?\s]+/g, '-')
         .replace(/-+/g, '-')
-        .replace(/-$/g, ''),
+        .replace(/^-|-$/g, ''),
     ),
     unique,
   );
