@@ -19,6 +19,11 @@ In the following example, we demonstrate how to use [downshift](https://github.c
 
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
+In the following example, we demonstrate how to clear the downshift value when the `TextField` is cleared, show a number of options on focus, and search in all the strings -- not just strings beginning with it.
+
+{{"demo": "pages/demos/autocomplete/IntegrationDownshiftExtra.js"}}
+
+
 ## react-select
 
 ![stars](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars)

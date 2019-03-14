@@ -4,7 +4,6 @@ import deburr from 'lodash/deburr';
 import keycode from 'keycode';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
-import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import { suggestions, styles, renderInput, renderSuggestion } from './IntegrationDownshift.common';
