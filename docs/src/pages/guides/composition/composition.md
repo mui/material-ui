@@ -136,6 +136,7 @@ in favour of component refs and ref forwarding.
 
 It is therefore necessary that the components you pass to the `component` prop
 can hold refs. This includes:
+
 - class components
 - ref forwarding components (`React.forwardRef`)
 - built-in components e.g. `div` or `a`
