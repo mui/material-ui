@@ -14,6 +14,13 @@ class RadioGroup extends React.Component {
     this.isControlled = props.value != null;
 
     if (!this.isControlled) {
+      warning(
+        this.isControlled,
+        [
+          'Material-UI: the RadioGroup component should not be uncontrolled.',
+          'Consider providing an empty string instead of null as an initial value.',
+        ].join('\n'),
+      );
       this.state = {
         value: props.defaultValue,
       };
