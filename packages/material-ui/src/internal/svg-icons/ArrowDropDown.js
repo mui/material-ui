@@ -1,6 +1,7 @@
-import createIcon from './createIcon';
+import React from 'react';
+import createSvgIcon from './createSvgIcon';
 
 /**
  * @ignore - internal component.
  */
-export default createIcon('ArrowDropDown', 'M7 10l5 5 5-5z');
+export default createSvgIcon(<path d="M7 10l5 5 5-5z" />, 'ArrowDropDown');
