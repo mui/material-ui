@@ -83,31 +83,28 @@ function ExpansionPanelSummary(props) {
   } = props;
 
   const [focusedState, setFocusedState] = React.useState(false);
-
-  const handleFocusVisible = React.useCallback(event => {
-      setFocusedState(true);
+  const handleFocusVisible = event => {
+    setFocusedState(true);
 
     if (onFocusVisible) {
       onFocusVisible(event);
     }
-  }, [onFocusVisible]);
-
-  const handleBlur = React.useCallback(event => {
+  };
+  const handleBlur = event => {
     setFocusedState(false);
 
     if (onBlur) {
       onBlur(event);
     }
-  }, [onBlur]);
-
-  const handleChange = React.useCallback(event => {
+  };
+  const handleChange = event => {
     if (onChange) {
       onChange(event);
     }
     if (onClick) {
       onClick(event);
     }
-  }, [onChange, onClick]);
+  };
 
   return (
     <ButtonBase

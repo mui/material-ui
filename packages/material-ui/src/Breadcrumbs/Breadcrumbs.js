@@ -62,40 +62,39 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleClickExpand = React.useCallback(() => {
+  const renderItemsBeforeAndAfter = allItems => {
+    const handleClickExpand = () => {
       setExpanded(true);
+    };
+
+    // This defends against someone passing weird input, to ensure that if all
+    // items would be shown anyway, we just show all items without the EllipsisItem
+    if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
+      warning(
+        false,
+        [
+          'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
+          `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+        ].join('\n'),
+      );
+      return allItems;
     }
-  );
 
-  const renderItemsBeforeAndAfter = React.useMemo(
-    () => allItems => {
-      // This defends against someone passing weird input, to ensure that if all
-      // items would be shown anyway, we just show all items without the EllipsisItem
-      if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
-        warning(
-          false,
-          [
-            // eslint-disable-next-line max-len
-            'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
-            // eslint-disable-next-line max-len
-            `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
-          ].join('\n'),
-        );
-        return allItems;
-      }
-
-      return [
-        ...allItems.slice(0, itemsBeforeCollapse),
-        <BreadcrumbCollapsed key="ellipsis" onClick={handleClickExpand} />,
-        ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
-      ];
-    },
-    [handleClickExpand, itemsAfterCollapse, itemsBeforeCollapse, maxItems],
-  );
+    return [
+      ...allItems.slice(0, itemsBeforeCollapse),
+      <BreadcrumbCollapsed key="ellipsis" onClick={handleClickExpand} />,
+      ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
+    ];
+  };
 
   const allItems = React.Children.toArray(children)
     .filter(child => React.isValidElement(child))
-    .map(child => <li className={classes.li}>{child}</li>);
+    .map((child, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <li className={classes.li} key={`child-${index}`}>
+        {child}
+      </li>
+    ));
 
   return (
     <Typography

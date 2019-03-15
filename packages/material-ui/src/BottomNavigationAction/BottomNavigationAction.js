@@ -69,18 +69,15 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  const handleChange = React.useCallback(
-    event => {
-      if (onChange) {
-        onChange(event, value);
-      }
+  const handleChange = event => {
+    if (onChange) {
+      onChange(event, value);
+    }
 
-      if (onClick) {
-        onClick(event);
-      }
-    },
-    [onChange, onClick, value],
-  );
+    if (onClick) {
+      onClick(event);
+    }
+  };
 
   return (
     <ButtonBase

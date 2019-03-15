@@ -92,22 +92,19 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     ...other
   } = props;
 
-  const isControlled = React.useRef(expandedProp != null);
+  const { current: isControlled } = React.useRef(expandedProp != null);
   const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-  const expanded = isControlled.current ? expandedProp : expandedState;
+  const expanded = isControlled ? expandedProp : expandedState;
 
-  const handleChange = React.useCallback(
-    event => {
-      if (!isControlled.current) {
-        setExpandedState(!expanded);
-      }
+  const handleChange = event => {
+    if (!isControlled) {
+      setExpandedState(!expanded);
+    }
 
-      if (onChange) {
-        onChange(event, !expanded);
-      }
-    },
-    [expanded, onChange],
-  );
+    if (onChange) {
+      onChange(event, !expanded);
+    }
+  };
 
   const [summary, ...children] = React.Children.toArray(childrenProp);
 

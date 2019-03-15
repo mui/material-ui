@@ -80,12 +80,12 @@ const MobileStepper = React.forwardRef(function MobileStepper(props, ref) {
       {backButton}
       {variant === 'dots' && (
         <div className={classes.dots}>
-          {[...new Array(steps)].map((_, step) => {
+          {[...new Array(steps)].map((_, index) => {
             const dotClassName = clsx(classes.dot, {
-              [classes.dotActive]: step === activeStep,
+              [classes.dotActive]: index === activeStep,
             });
             // eslint-disable-next-line react/no-array-index-key
-            return <div key={step} className={dotClassName} />;
+            return <div key={index} className={dotClassName} />;
           })}
         </div>
       )}

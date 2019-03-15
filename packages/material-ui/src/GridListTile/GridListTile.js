@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import withStyles from '../styles/withStyles';
+import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -50,48 +50,50 @@ const fit = (imgEl, classes) => {
   imgEl.removeEventListener('load', fit);
 };
 
-function ensureImageCover(imgElement, classes) {
-  if (!imgElement.current) {
+function ensureImageCover(imgEl, classes) {
+  if (!imgEl) {
     return;
   }
 
-  if (imgElement.current.complete) {
-    fit(imgElement.current, classes);
+  if (imgEl.complete) {
+    fit(imgEl, classes);
   } else {
-    imgElement.current.addEventListener('load', fit);
+    imgEl.addEventListener('load', fit);
   }
 }
 
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   const { children, classes, className, cols, component: Component, rows, ...other } = props;
 
-  const imgElement = React.useRef(null);
-  const handleResize = React.useRef(() => {});
+  const imgRef = React.useRef(null);
 
   React.useEffect(() => {
-    ensureImageCover(imgElement.current, classes);
-    if (typeof window !== 'undefined') {
-      handleResize.current = debounce(() => {
-        fit(imgElement.current, classes);
-      }, 166); // Corresponds to 10 frames at 60 Hz.
-    }
-    return () => {
-      handleResize.current.clear();
-    };
+    ensureImageCover(imgRef.current, classes);
   });
+
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      fit(imgRef.current, classes);
+    }, 166); // Corresponds to 10 frames at 60 Hz.
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [classes]);
 
   return (
     <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      <EventListener target="window" onResize={handleResize.current} />
       <div className={classes.tile}>
         {React.Children.map(children, child => {
           if (!React.isValidElement(child)) {
             return null;
           }
 
-          if (child.type === 'img') {
+          if (child.type === 'img' || isMuiElement(child, ['Image'])) {
             return React.cloneElement(child, {
-              ref: imgElement,
+              ref: imgRef,
             });
           }
 

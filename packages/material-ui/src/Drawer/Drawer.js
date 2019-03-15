@@ -87,12 +87,14 @@ const oppositeDirection = {
   bottom: 'up',
 };
 
-export function isHorizontal(anchor) {
-  return ['left', 'right'].indexOf(anchor) !== -1;
+export function isHorizontal(props) {
+  return ['left', 'right'].indexOf(props.anchor) !== -1;
 }
 
-export function getAnchor(anchor, direction) {
-  return direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
+export function getAnchor(props) {
+  return props.theme.direction === 'rtl' && isHorizontal(props)
+    ? oppositeDirection[props.anchor]
+    : props.anchor;
 }
 
 /**
@@ -122,16 +124,11 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
   // We use this state is order to skip the appear transition during the
   // initial mount of the component.
   const mounted = React.useRef(false);
-
   React.useEffect(() => {
     mounted.current = true;
   }, []);
 
-  const anchor = React.useMemo(() => getAnchor(anchorProp, theme.direction), [
-    anchorProp,
-    theme.direction,
-  ]);
-
+  const anchor = getAnchor(props);
   const drawer = (
     <Paper
       elevation={variant === 'temporary' ? elevation : 0}

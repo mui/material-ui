@@ -132,7 +132,6 @@ describe('<Drawer />', () => {
 
       it('should start closed', () => {
         const wrapper = mount(drawerElement);
-        assert.strictEqual(wrapper.find('Drawer').props().open, false);
         assert.strictEqual(wrapper.find('Modal').props().open, false);
       });
 
@@ -241,35 +240,35 @@ describe('<Drawer />', () => {
       assert.strictEqual(wrapper.find('Slide').props().direction, 'right');
     });
   });
-});
 
-describe('isHorizontal', () => {
-  it('should recognize left and right as horizontal swiping directions', () => {
-    assert.strictEqual(isHorizontal({ anchor: 'left' }), true);
-    assert.strictEqual(isHorizontal({ anchor: 'right' }), true);
-    assert.strictEqual(isHorizontal({ anchor: 'top' }), false);
-    assert.strictEqual(isHorizontal({ anchor: 'bottom' }), false);
-  });
-});
-
-describe('getAnchor', () => {
-  it('should return the anchor', () => {
-    const theme = createMuiTheme({
-      direction: 'ltr',
+  describe('isHorizontal', () => {
+    it('should recognize left and right as horizontal swiping directions', () => {
+      assert.strictEqual(isHorizontal({ anchor: 'left' }), true);
+      assert.strictEqual(isHorizontal({ anchor: 'right' }), true);
+      assert.strictEqual(isHorizontal({ anchor: 'top' }), false);
+      assert.strictEqual(isHorizontal({ anchor: 'bottom' }), false);
     });
-
-    assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'left');
-    assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'right');
-    assert.strictEqual(getAnchor({ anchor: 'top', theme }), 'top');
-    assert.strictEqual(getAnchor({ anchor: 'bottom', theme }), 'bottom');
   });
 
-  it('should switch left/right if RTL is enabled', () => {
-    const theme = createMuiTheme({
-      direction: 'rtl',
+  describe('getAnchor', () => {
+    it('should return the anchor', () => {
+      const theme = createMuiTheme({
+        direction: 'ltr',
+      });
+
+      assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'left');
+      assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'right');
+      assert.strictEqual(getAnchor({ anchor: 'top', theme }), 'top');
+      assert.strictEqual(getAnchor({ anchor: 'bottom', theme }), 'bottom');
     });
 
-    assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'right');
-    assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'left');
+    it('should switch left/right if RTL is enabled', () => {
+      const theme = createMuiTheme({
+        direction: 'rtl',
+      });
+
+      assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'right');
+      assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'left');
+    });
   });
 });

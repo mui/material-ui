@@ -5,6 +5,7 @@ import warning from 'warning';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
+import { setRef } from '../utils/reactHelpers';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
@@ -240,58 +241,49 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   const chipRef = React.useRef(null);
 
-  const handleDeleteIconClick = React.useCallback(
-    event => {
-      // Stop the event from bubbling up to the `Chip`
-      event.stopPropagation();
-      if (onDelete) {
-        onDelete(event);
-      }
-    },
-    [onDelete],
-  );
+  const handleDeleteIconClick = event => {
+    // Stop the event from bubbling up to the `Chip`
+    event.stopPropagation();
+    if (onDelete) {
+      onDelete(event);
+    }
+  };
 
-  const handleKeyDown = React.useCallback(
-    event => {
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
+  const handleKeyDown = event => {
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
 
-      // Ignore events from children of `Chip`.
-      if (event.currentTarget !== event.target) {
-        return;
-      }
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
 
-      const key = event.key;
-      if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
-        event.preventDefault();
-      }
-    },
-    [onKeyDown],
-  );
+    const key = event.key;
+    if (key === ' ' || key === 'Enter' || key === 'Backspace' || key === 'Escape') {
+      event.preventDefault();
+    }
+  };
 
-  const handleKeyUp = React.useCallback(
-    event => {
-      if (onKeyUp) {
-        onKeyUp(event);
-      }
+  const handleKeyUp = event => {
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
 
-      // Ignore events from children of `Chip`.
-      if (event.currentTarget !== event.target) {
-        return;
-      }
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
 
-      const key = event.key;
-      if (onClick && (key === ' ' || key === 'Enter')) {
-        onClick(event);
-      } else if (onDelete && key === 'Backspace') {
-        onDelete(event);
-      } else if (key === 'Escape' && chipRef) {
-        chipRef.current.blur();
-      }
-    },
-    [onClick, onDelete, onKeyUp],
-  );
+    const key = event.key;
+    if (onClick && (key === ' ' || key === 'Enter')) {
+      onClick(event);
+    } else if (onDelete && key === 'Backspace') {
+      onDelete(event);
+    } else if (key === 'Escape' && chipRef) {
+      chipRef.current.blur();
+    }
+  };
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
 
@@ -366,7 +358,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       onClick={onClick}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
-      ref={ref}
+      ref={nodeRef => {
+        setRef(chipRef, nodeRef);
+        setRef(ref, nodeRef);
+      }}
       {...other}
     >
       {avatar || icon}

@@ -166,36 +166,31 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
   } = props;
 
   const mouseDownTarget = React.useRef(null);
-
-  const handleMouseDown = React.useCallback(event => {
+  const handleMouseDown = event => {
     mouseDownTarget.current = event.target;
-  }, []);
+  };
+  const handleBackdropClick = event => {
+    // Ignore the events not coming from the "backdrop"
+    // We don't want to close the dialog when clicking the dialog content.
+    if (event.target !== event.currentTarget) {
+      return;
+    }
 
-  const handleBackdropClick = React.useCallback(
-    event => {
-      // Ignore the events not coming from the "backdrop"
-      // We don't want to close the dialog when clicking the dialog content.
-      if (event.target !== event.currentTarget) {
-        return;
-      }
+    // Make sure the event starts and ends on the same DOM element.
+    if (event.target !== mouseDownTarget.current) {
+      return;
+    }
 
-      // Make sure the event starts and ends on the same DOM element.
-      if (event.target !== mouseDownTarget.current) {
-        return;
-      }
+    mouseDownTarget.current = null;
 
-      mouseDownTarget.current = null;
+    if (onBackdropClick) {
+      onBackdropClick(event);
+    }
 
-      if (onBackdropClick) {
-        onBackdropClick(event);
-      }
-
-      if (!disableBackdropClick && onClose) {
-        onClose(event, 'backdropClick');
-      }
-    },
-    [disableBackdropClick, onBackdropClick, onClose],
-  );
+    if (!disableBackdropClick && onClose) {
+      onClose(event, 'backdropClick');
+    }
+  };
 
   return (
     <Modal

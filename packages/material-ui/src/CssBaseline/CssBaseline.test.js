@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import CssBaseline from './CssBaseline';
 
 describe('<CssBaseline />', () => {
@@ -25,12 +25,6 @@ describe('<CssBaseline />', () => {
         <div />
       </CssBaseline>,
     );
-    assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .children()
-        .name(),
-      'div',
-    );
+    assert.strictEqual(findOutermostIntrinsic(wrapper).name(), 'div');
   });
 });
