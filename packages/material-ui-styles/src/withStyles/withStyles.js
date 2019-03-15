@@ -81,7 +81,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       return acc;
     }, {});
 
-    // eslint-disable-next-line react/no-multi-comp
     class WithStylesTest extends React.Component {
       render() {
         // eslint-disable-next-line react/prop-types

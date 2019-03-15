@@ -97,7 +97,6 @@ describe('until', () => {
     assert.strictEqual(wrapper.contains(<Div />), true);
   });
 
-  // eslint-disable-next-line react/no-multi-comp
   class Bar extends React.Component {
     static childContextTypes = { quux: PropTypes.bool };
 

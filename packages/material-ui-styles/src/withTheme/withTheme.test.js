@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { assert } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';

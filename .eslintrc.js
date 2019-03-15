@@ -49,19 +49,12 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'react/no-find-dom-node': 'off',
+    'react/no-multi-comp': 'off',
 
     'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
     'consistent-this': ['error', 'self'],
-    'max-len': [
-      'error',
-      100,
-      2,
-      {
-        ignoreUrls: true,
-      },
-    ], // airbnb is allowing some edge cases
     'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
     'import/namespace': ['error', { allowComputed: true }],
     'import/order': [
@@ -93,7 +86,6 @@ module.exports = {
     'mocha/no-sibling-hooks': 'error',
     'mocha/no-skipped-tests': 'error',
     'mocha/no-top-level-hooks': 'error',
-    'mocha/prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'mocha/valid-suite-description': 'error',
   },
 };

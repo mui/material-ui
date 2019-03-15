@@ -24,7 +24,6 @@ export function withThemeCreator(options = {}) {
     });
 
     if (process.env.NODE_ENV === 'test' && !ponyfillGlobal.disableShallowSupport) {
-      // eslint-disable-next-line react/no-multi-comp
       class WithThemeTest extends React.Component {
         render() {
           // eslint-disable-next-line react/prop-types

@@ -66,7 +66,6 @@ class Breadcrumbs extends React.Component {
         false,
         [
           'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
-          // eslint-disable-next-line max-len
           `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
         ].join('\n'),
       );
