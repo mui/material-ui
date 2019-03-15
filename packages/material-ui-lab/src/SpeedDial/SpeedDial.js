@@ -8,7 +8,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import { isMuiElement, setRef, withForwardedRef } from '@material-ui/core/utils';
 import * as utils from './utils';
-import { clamp } from '@material-ui/lab/utils';
+import { clamp } from '../utils';
 
 const dialRadius = 32;
 const spacingActions = 16;
