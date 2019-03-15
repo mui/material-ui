@@ -23,15 +23,10 @@ const styles = theme => ({
   linearProgressDeterminate: {
     margin: `${theme.spacing(1)}px auto 0`,
     height: 10,
-  },
-  linearProgressDeterminateBar: {
-    height: 10,
-    borderRadius: 20,
-  },
-  linearColorSeconday: {
     backgroundColor: lighten('#ff6c5c', 0.5),
   },
-  linearBarColorSecondary: {
+  linearProgressDeterminateBar: {
+    borderRadius: 20,
     backgroundColor: '#ff6c5c',
   },
   // Reproduce the Facebook spinners.
@@ -67,10 +62,8 @@ function CustomizedProgress(props) {
         color="secondary"
         value={50}
         classes={{
-          bar: classes.linearProgressDeterminateBar,
           root: classes.linearProgressDeterminate,
-          colorSecondary: classes.linearColorSeconday,
-          barColorSecondary: classes.linearBarColorSecondary,
+          bar: classes.linearProgressDeterminateBar,
         }}
       />
       <div className={classes.facebook}>
