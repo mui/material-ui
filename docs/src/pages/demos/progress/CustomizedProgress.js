@@ -22,17 +22,17 @@ const styles = theme => ({
   },
   linearProgressDeterminate: {
     margin: `${theme.spacing.unit}px auto 0`,
-    height: '10px',
+    height: 10,
   },
   linearProgressDeterminateBar: {
-    height: '10px',
-    borderRadius: '20px',
+    height: 10,
+    borderRadius: 20,
   },
   linearColorSeconday: {
-    backgroundColor: lighten('#FF6C5C', 0.5),
+    backgroundColor: lighten('#ff6c5c', 0.5),
   },
   linearBarColorSecondary: {
-    backgroundColor: '#FF6C5C',
+    backgroundColor: '#ff6c5c',
   },
   // Reproduce the Facebook spinners.
   facebook: {
