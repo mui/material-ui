@@ -107,3 +107,7 @@ In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-l
   inputProps={{ 'aria-label': 'Checkbox A' } }
 />
 ```
+
+## Guidance
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

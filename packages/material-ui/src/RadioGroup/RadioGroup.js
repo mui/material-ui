@@ -20,12 +20,17 @@ class RadioGroup extends React.Component {
     }
   }
 
-  componentDidUpdate(_prevProps, prevState) {
+  componentDidUpdate() {
     warning(
-      this.isControlled === (prevState === null),
+      this.isControlled === (this.props.value != null),
       [
-        "Material-UI: RadioGroup shouldn't change between controlled and uncontrolled behavior.",
-        `This component was ${this.isControlled ? '' : 'un'}controlled, but now it is not.`,
+        `Material-UI: A component is changing an ${
+          this.isControlled ? '' : 'un'
+        }controlled RadioGroup to be ${this.isControlled ? 'un' : ''}controlled.`,
+        'Input elements should not switch from uncontrolled to controlled (or vice versa).',
+        'Decide between using a controlled or uncontrolled RadioGroup ' +
+          'element for the lifetime of the component.',
+        'More info: https://fb.me/react-controlled-components',
       ].join('\n'),
     );
   }
@@ -106,7 +111,7 @@ RadioGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The required default input value of an uncontrolled RadioGroup.
+   * The default input value, useful when not controlling the component.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   /**
