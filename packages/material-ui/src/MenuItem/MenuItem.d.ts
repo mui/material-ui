@@ -1,10 +1,11 @@
 import { ListItemTypeMap } from '../ListItem';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { SimplifiedPropsOf, OverridableComponent } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
 
 export type MenuItemClassKey = 'root' | 'gutters' | 'selected';
 
-declare const MenuItem: ExtendButtonBase<ListItemTypeMap<{ role?: string }, 'li'>>;
+declare const MenuItem: OverridableComponent<ListItemTypeMap<{ button: false }, 'li'>> &
+  ExtendButtonBase<ListItemTypeMap<{ button?: true }, 'li'>>;
 
 export type MenuItemProps = SimplifiedPropsOf<typeof MenuItem>;
 
