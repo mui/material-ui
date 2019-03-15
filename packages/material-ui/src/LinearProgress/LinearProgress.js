@@ -211,7 +211,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      inlineStyles.bar1.transform = `scaleX(${value / 100})`;
+      inlineStyles.bar1.transform = `translateX(${value - 100}%)`;
     } else {
       warning(
         false,
@@ -222,7 +222,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      inlineStyles.bar2.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+      inlineStyles.bar2.transform = `translateX(${(valueBuffer || 0) - 100}%)`;
     } else {
       warning(
         false,
