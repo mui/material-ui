@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/demos/expansion-panels', false, /\.m
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/demos/expansion-panels',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/demos/expansion-panels';
 

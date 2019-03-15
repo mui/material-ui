@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/demos/selection-controls', false, /\
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/demos/selection-controls',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/demos/selection-controls';
 
