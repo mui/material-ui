@@ -34,7 +34,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |   | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">string</span> |   | The value of the component. |
 
-Any other properties supplied will be spread to the root element (native element).
+Any other properties supplied will be spread to the root element ([IconButton](/api/icon-button/)).
 
 ## CSS
 
@@ -48,8 +48,6 @@ This property accepts the following keys:
 | <span class="prop-name">checked</span> | Styles applied to the root element if `checked={true}`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">indeterminate</span> | Styles applied to the root element if `indeterminate={true}`.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Checkbox/Checkbox.js)
@@ -57,6 +55,11 @@ for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
 you need to use the following style sheet name: `MuiCheckbox`.
+
+## Inheritance
+
+The properties of the [IconButton](/api/icon-button/) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Demos
 

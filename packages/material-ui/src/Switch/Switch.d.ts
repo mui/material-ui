@@ -11,12 +11,11 @@ export interface SwitchProps
 
 export type SwitchClassKey =
   | SwitchBaseClassKey
-  | 'bar'
-  | 'icon'
-  | 'iconChecked'
   | 'switchBase'
   | 'colorPrimary'
-  | 'colorSecondary';
+  | 'colorSecondary'
+  | 'thumb'
+  | 'track';
 
 declare const Switch: React.ComponentType<SwitchProps>;
 
