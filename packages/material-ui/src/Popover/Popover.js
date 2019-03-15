@@ -303,7 +303,7 @@ class Popover extends React.Component {
       onExited,
       onExiting,
       open,
-      PaperProps,
+      PaperProps = {},
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
