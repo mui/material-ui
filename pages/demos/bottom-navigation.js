@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/demos/bottom-navigation', false, /\.
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/demos/bottom-navigation',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/demos/bottom-navigation';
 

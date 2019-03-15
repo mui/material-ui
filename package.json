@@ -34,6 +34,7 @@
     "docs:start": "next start",
     "docs:i18n": "cross-env BABEL_ENV=test babel-node ./docs/scripts/i18n.js",
     "docs:typescript": "cross-env NODE_ENV=development babel docs/src --config-file ./docs/babel.config.ts.js --extensions .tsx --out-dir docs/src",
+    "docs:typescript:check": "tslint -p docs/tsconfig.json",
     "docs:typescript:formatted": "node docs/scripts/formattedTSDemos",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
@@ -53,7 +54,7 @@
     "test:umd": "yarn babel-node packages/material-ui/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
-    "typescript": "lerna run typescript && tslint -p docs/tsconfig.json"
+    "typescript": "lerna run typescript && yarn docs:typescript:check"
   },
   "peerDependencies": {
     "react": "*",
