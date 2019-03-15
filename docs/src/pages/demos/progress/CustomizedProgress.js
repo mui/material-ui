@@ -21,7 +21,7 @@ const styles = theme => ({
     backgroundColor: '#00695c',
   },
   linearProgressDeterminate: {
-    margin: `${theme.spacing.unit}px auto 0`,
+    margin: `${theme.spacing(1)}px auto 0`,
     height: 10,
   },
   linearProgressDeterminateBar: {
