@@ -155,10 +155,9 @@ the description will link to this section.
 
 ### Caveat with StrictMode or unstable_ConcurrentMode
 
-If you pass class components to
- the `component` prop and don't run in strict mode you won't have to change anything
- since we can safely use `ReactDOM.findDOMNode`. For function components, however, you have
- to wrap your component in `React.forwardRef`:
+If you pass class components to the `component` prop and don't run in strict mode you won't have to change anything
+since we can safely use `ReactDOM.findDOMNode`. For function components, however, you have
+to wrap your component in `React.forwardRef`:
 
 ```diff
 - const MyButton = props => <div {...props} />
