@@ -11,7 +11,7 @@ import * as React from 'react';
  */
 export type ComponentCreator<C extends React.ReactType> = <Theme>(
   styles: CSSProperties | ((theme: Theme) => CSSProperties),
-  options?: WithStylesOptions,
+  options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
   Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, 'classes' | 'className'> &
     StyledComponentProps<'root'> & { className?: string }

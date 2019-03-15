@@ -3,6 +3,7 @@ import {
   ClassNameMap,
   PropsOfStyles,
   Styles,
+  ThemeOfStyles,
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
 
@@ -71,5 +72,5 @@ export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> exten
 
 export default function makeStyles<S extends Styles<any, any>>(
   styles: S,
-  options?: WithStylesOptions,
+  options?: WithStylesOptions<ThemeOfStyles<S>>,
 ): StylesHook<S>;
