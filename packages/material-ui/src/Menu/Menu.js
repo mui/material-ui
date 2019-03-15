@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import classnames from 'classnames';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import withStyles from '../styles/withStyles';
 import withForwardedRef from '../utils/withForwardedRef';
