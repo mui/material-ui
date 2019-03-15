@@ -341,7 +341,7 @@ class Tooltip extends React.Component {
           })}
           placement={placement}
           anchorEl={this.childrenRef}
-          open={open}
+          open={this.childrenRef ? open : false}
           id={childrenProps['aria-describedby']}
           transition
           {...interactiveWrapperListeners}

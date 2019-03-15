@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import { chainPropTypes } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
@@ -216,8 +217,12 @@ class Popover extends React.Component {
       return anchorPosition;
     }
 
+    const resolvedAnchorEl = getAnchorEl(anchorEl);
     // If an anchor element wasn't provided, just use the parent body element of this Popover
-    const anchorElement = getAnchorEl(anchorEl) || ownerDocument(this.paperRef).body;
+    const anchorElement =
+      resolvedAnchorEl instanceof HTMLElement
+        ? resolvedAnchorEl
+        : ownerDocument(this.paperRef).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -370,7 +375,22 @@ Popover.propTypes = {
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
    */
-  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
+    if (props.open) {
+      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+
+      if (!(resolvedAnchorEl instanceof HTMLElement)) {
+        return new Error(
+          [
+            'Material-UI: the anchorEl property provided to the component is invalid.',
+            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+          ].join('\n'),
+        );
+      }
+    }
+
+    return null;
+  }),
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to. This is not used when the
