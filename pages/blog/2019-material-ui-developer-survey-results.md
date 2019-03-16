@@ -222,14 +222,24 @@ Multiple options were allowed.
 
 This data is **incredibly valuable** for our team.
 Again, thank you for participating!
-**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**. We want to work on the problems that resonate the most with our users.
-We will do our best to handle the problems reported in: [4. How can we improve Material-UI for you?](#4-how-can-we-improve-material-ui-for-you)
+We want to work on the problems that resonate the most with our users.
+[It's clear](#4-how-can-we-improve-material-ui-for-you) that we should:
+
+1. Support more components
+2. Improve the customization
+3. Improve the documentation
+4. Improve the static typings
+5. Reduce the overhead of the library
+
+**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
+We will run a similar survey next year to keep track of our progress.
+
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
 <img src="/static/blog/2019-survey/vote.gif" alt="How to upvote on GitHub" />
 
-Help us prioritize by upvoting. We will run a similar survey next year.
+Help us prioritize by upvoting.
 
 <hr />
 
