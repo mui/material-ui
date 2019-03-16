@@ -8,7 +8,7 @@ import { ThemeProvider as EmotionTheme } from 'emotion-theming';
 import { space, color, fontFamily, fontSize, compose as compose2 } from 'styled-system';
 import { spacing, palette, typography, compose } from '@material-ui/system';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { styleFunction } from '@material-ui/core/Box/Box';
+import { styleFunction } from '@material-ui/core/Box';
 import { styled, ThemeProvider as StylesThemeProvider } from '@material-ui/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,

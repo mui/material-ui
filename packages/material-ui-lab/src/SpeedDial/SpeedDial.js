@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import keycode from 'keycode';
 import warning from 'warning';
-import { withStyles } from '@material-ui/core/styles';
+import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
-import { duration } from '@material-ui/core/styles/transitions';
 import Fab from '@material-ui/core/Fab';
-import { isMuiElement, setRef } from '@material-ui/core/utils/reactHelpers';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import { isMuiElement, setRef, withForwardedRef } from '@material-ui/core/utils';
 import * as utils from './utils';
-import clamp from '../utils/clamp';
+import { clamp } from '../utils';
 
 const dialRadius = 32;
 const spacingActions = 16;

@@ -11,12 +11,11 @@ import {
   ThemeProvider,
   createGenerateClassName,
 } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import { green, red } from '@material-ui/core/colors';
 import Pricing from 'docs/src/pages/getting-started/page-layout-examples/pricing/Pricing';
 import { spacing, palette } from '@material-ui/system';
 import Avatar from '@material-ui/core/Avatar';
-import Box, { styleFunction } from '@material-ui/core/Box/Box';
+import Box, { styleFunction } from '@material-ui/core/Box';
 import styledComponents, { ServerStyleSheet } from 'styled-components';
 import styledEmotion from '@emotion/styled';
 

@@ -8,7 +8,7 @@ export default function createStyles(styles) {
   // warning(
   //   warnOnce,
   //   [
-  //     'Material-UI: @material-ui/core/styles/createStyles is deprecated.',
+  //     'Material-UI: createStyles from @material-ui/core/styles is deprecated.',
   //     'Please use @material-ui/styles/createStyles',
   //   ].join('\n'),
   // );
