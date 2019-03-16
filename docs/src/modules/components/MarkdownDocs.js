@@ -43,6 +43,7 @@ function MarkdownDocs(props) {
   const {
     classes,
     disableAd,
+    disableEdit,
     markdown: markdownProp,
     markdownLocation: markdownLocationProp,
     req,
@@ -109,12 +110,14 @@ function MarkdownDocs(props) {
             </Portal>
           )}
           <AppContent className={classes.root}>
-            <div className={classes.header}>
-              <EditPage
-                markdownLocation={markdownLocation}
-                sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-              />
-            </div>
+            {!disableEdit ? (
+              <div className={classes.header}>
+                <EditPage
+                  markdownLocation={markdownLocation}
+                  sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+                />
+              </div>
+            ) : null}
             {contents.map(content => {
               if (demos && demoRegexp.test(content)) {
                 let demoOptions;
@@ -174,6 +177,7 @@ function MarkdownDocs(props) {
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
+  disableEdit: PropTypes.bool,
   markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
