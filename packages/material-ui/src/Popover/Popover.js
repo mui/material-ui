@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -302,7 +303,7 @@ class Popover extends React.Component {
       onExited,
       onExiting,
       open,
-      PaperProps,
+      PaperProps = {},
       transformOrigin,
       TransitionComponent,
       transitionDuration: transitionDurationProp,
@@ -344,13 +345,13 @@ class Popover extends React.Component {
           onEntering={createChainedFunction(this.handleEntering, TransitionProps.onEntering)}
         >
           <Paper
-            className={classes.paper}
             data-mui-test="Popover"
             elevation={elevation}
             ref={ref => {
               this.paperRef = ReactDOM.findDOMNode(ref);
             }}
             {...PaperProps}
+            className={clsx(classes.paper, PaperProps.className)}
           >
             <EventListener target="window" onResize={this.handleResize} />
             {children}
