@@ -340,6 +340,14 @@ const pages = [
     ],
   },
   {
+    pathname: '/blog',
+    children: [
+      {
+        pathname: '/blog/2019-developer-survey-results',
+      },
+    ],
+  },
+  {
     pathname: '/versions',
     displayNav: false,
   },
