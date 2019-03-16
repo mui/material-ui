@@ -36,7 +36,12 @@ function Regression() {
       <Grid container justify="center" wrap="wrap">
         <DatePicker id="basic-datepicker" {...sharedProps} />
         <DatePicker id="clearable-datepicker" clearable {...sharedProps} />
-        <KeyboardDatePicker id="keyboard-mask-datepicker" {...sharedProps} format="MM/dd/yyyy" />
+        <KeyboardDatePicker
+          id="keyboard-mask-datepicker"
+          {...sharedProps}
+          onChange={(date: any) => changeDate(date)}
+          format="MM/dd/yyyy"
+        />
         <DatePicker disabled id="disabled" {...sharedProps} />
       </Grid>
     </div>

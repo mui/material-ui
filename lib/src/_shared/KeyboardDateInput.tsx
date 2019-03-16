@@ -18,6 +18,8 @@ export interface KeyboardDateInputProps
   format: string;
   onChange: (value: string) => void;
   validationError?: React.ReactNode;
+  /** Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__) */
+  mask?: string;
   /** Char string that will be replaced with number (for "_" mask will be "__/__/____") */
   maskChar?: string;
   /** Props to pass to keyboard input adornment */
@@ -35,15 +37,18 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   InputAdornmentProps,
   onClick,
   onChange,
+  mask,
   maskChar = '_',
   format,
   ...other
 }) => {
-  const mask = makeMaskFromFormat(format, maskChar);
-  const formatter = React.useCallback(maskedDateFormatter(mask, maskChar, refuse), [
-    mask,
-    maskChar,
-  ]);
+  const inputMask = mask || makeMaskFromFormat(format, maskChar);
+  // prettier-ignore
+  const formatter = React.useCallback(
+    maskedDateFormatter(inputMask, maskChar, refuse),
+    [mask, maskChar]
+  );
+
   const position =
     InputAdornmentProps && InputAdornmentProps.position ? InputAdornmentProps.position : 'end';
 
