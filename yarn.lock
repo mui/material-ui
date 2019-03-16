@@ -1880,6 +1880,13 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.1.tgz#48fd98c1561fe718b61733daed46ff115b496e18"
   integrity sha512-eqz8c/0kwNi/OEHQfvIuJVLTst3in0e7uTKeuY+WL/zfKn0xVujOTp42bS/vUUokhK5P2BppLd9JXMOMHcgbjA==
 
+"@types/react-dom@*":
+  version "16.8.2"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.2.tgz#9bd7d33f908b243ff0692846ef36c81d4941ad12"
+  integrity sha512-MX7n1wq3G/De15RGAAqnmidzhr2Y9O/ClxPxyqaNg96pGyeXUYPSvujgzEVpLo9oIP4Wn1UETl+rxTN02KEpBw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^16.0.9":
   version "16.8.0"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.0.tgz#c565f43f9d2ec911f9e0b8f3b74e25e67879aa3f"
@@ -1912,6 +1919,15 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-select@^2.0.14":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@types/react-select/-/react-select-2.0.14.tgz#f546d5d7cdc825641a0976959f004acdec4df551"
+  integrity sha512-2iocIutwg8sMOT5H//9B29MgksBG9aSpHmnSEbFX6GmVfGHlq48WBtuuZCnxQ8A8yqV3vGg7hYdlZ7Ra82hhfA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-dom" "*"
+    "@types/react-transition-group" "*"
+
 "@types/react-swipeable-views@^0.12.2":
   version "0.12.2"
   resolved "https://registry.yarnpkg.com/@types/react-swipeable-views/-/react-swipeable-views-0.12.2.tgz#5b50bfbe2e42043f5de85a11087bcfbcb813610e"
@@ -1926,7 +1942,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-transition-group@^2.0.16":
+"@types/react-transition-group@*", "@types/react-transition-group@^2.0.16":
   version "2.0.16"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.16.tgz#2dcb9e396ab385ee19c4af1c9caa469a14cd042f"
   integrity sha512-FUJEx2BGJPU1qVQoWd9v7wpOwnCPTWhcE4iTaU5prry9SvwiI11lCXOci8Nz9cM/Fuf650l7Skg6nlVeCYjPFA==

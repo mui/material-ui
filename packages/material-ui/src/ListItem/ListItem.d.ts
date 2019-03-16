@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface ListItemTypeMap<P, D extends React.ReactType> {
@@ -19,7 +20,7 @@ export interface ListItemTypeMap<P, D extends React.ReactType> {
 }
 
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
-  OverridableComponent<ListItemTypeMap<{ button: true }, 'button'>>;
+  ExtendButtonBase<ListItemTypeMap<{ button: true }, 'div'>>;
 
 export type ListItemClassKey =
   | 'root'
