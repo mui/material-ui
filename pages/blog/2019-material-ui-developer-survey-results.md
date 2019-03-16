@@ -218,35 +218,22 @@ Multiple options were allowed.
 - CSS Modules (+sass, less, etc): 16%
 - Emotion: 4%
 
-### Bonus
-
-We can look at the main pain point of our “detractors” (people who score between 0 and 6 in the NPS question, n°5).
-
-- 6 Better styled-components support
-- 3 More components
-- 2 Easier to customize
-- 2 Performance
-- 2 Simplify, closer to DOM
-- 1 Bundle size
-- 1 Custom font
-- 1 More page layout examples
-- 1 Layout components
-- 1 Material Design Update
-- 1 React.StrictMode
-- 1 TypeScript
-
 ## Conclusion
 
-This data is **incredibly valuable** for our team. Again, thank you for participating! **We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**. We want to work on the problems that resonate the most with our users.
+This data is **incredibly valuable** for our team.
+Again, thank you for participating!
+**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**. We want to work on the problems that resonate the most with our users.
+We will do our best to handle the problems reported in: [4. How can we improve Material-UI for you?](#4-how-can-we-improve-material-ui-for-you)
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
-help us prioritize by upvoting.
 
 <img src="/static/blog/2019-survey/vote.gif" alt="How to upvote on GitHub" />
+
+Help us prioritize by upvoting. We will run a similar survey next year.
 
 <hr />
 
 Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](https://github.com/mui-org/material-ui/blob/master/BACKERS.md). If you’d like to join them, please consider:
 
 - [Become a backer or sponsor on OpenCollective.](https://opencollective.com/material-ui)
-- [Become a backer or sponsor on Olivier's Patreon.](https://opencollective.com/material-ui)
+- [Become a backer or sponsor on Olivier's Patreon.](https://www.patreon.com/oliviertassinari)
