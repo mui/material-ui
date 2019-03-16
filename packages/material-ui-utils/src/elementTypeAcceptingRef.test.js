@@ -1,4 +1,4 @@
-/* eslint-disable react/prefer-stateless-function, react/no-multi-comp */
+/* eslint-disable react/prefer-stateless-function */
 import { assert } from 'chai';
 import * as PropTypes from 'prop-types';
 import React from 'react';
