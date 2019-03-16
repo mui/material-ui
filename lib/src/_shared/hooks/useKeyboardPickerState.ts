@@ -47,12 +47,13 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
 
   const inputProps = {
     ...innerInputProps,
+    format: wrapperProps.format,
     inputValue: props.inputValue || innerInputValue,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInnerInputValue(e.target.value);
-      const date = e.target.value === '' ? null : utils.parse(e.target.value, wrapperProps.format);
+    onChange: (value: string) => {
+      setInnerInputValue(value);
+      const date = value === '' ? null : utils.parse(value, wrapperProps.format);
 
-      props.onChange(date, e.target.value);
+      props.onChange(date, value);
     },
   };
 

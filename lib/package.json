@@ -43,6 +43,7 @@
     "react-event-listener": "^0.6.6",
     "react-text-mask": "^5.4.3",
     "react-transition-group": "^2.5.3",
+    "rifm": "^0.7.0",
     "tslib": "^1.9.3"
   },
   "size-limit": [

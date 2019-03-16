@@ -12,7 +12,7 @@ function KeyboardDatePickerExample(props) {
           label="Uncontrolled input"
           format={props.getFormatString({
             moment: 'MM/DD/YYYY',
-            dateFns: 'MM/dd/y',
+            dateFns: 'MM/dd/yyyy',
           })}
           value={selectedDate}
           onChange={date => handleDateChange(date)}
@@ -26,7 +26,7 @@ function KeyboardDatePickerExample(props) {
           label="Masked input"
           format={props.getFormatString({
             moment: 'YYYY/MM/DD',
-            dateFns: 'yyyy/MM/d', // make sure that for date-fns your format is "d" instead of "dd
+            dateFns: 'yyyy/MM/dd',
           })}
           placeholder="10/10/2018"
           mask={value =>

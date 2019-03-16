@@ -26,7 +26,7 @@ export type InlineRoot = { variant?: 'inline' } & OmitInnerWrapperProps<InlineWr
 
 // prettier-ignore
 export type ExtendWrapper2<TInput extends PureDateInputProps | KeyboardDateInputProps> =
-  Omit<TInput, 'inputValue' | 'validationError' | 'forwardedRef'> & (
+  Omit<TInput, 'inputValue' | 'validationError' | 'format' | 'forwardedRef'> & (
     ModalRoot | InlineRoot
   )
 
@@ -42,14 +42,15 @@ export function getWrapperFromVariant<T>(
   }
 }
 
-type Props = {
+type Props<T> = {
   variant?: WrapperVariant;
-} & (
-  | ModalWrapperProps<PureDateInputProps | KeyboardDateInputProps>
-  | InlineWrapperProps<PureDateInputProps | KeyboardDateInputProps>);
+  children?: React.ReactChild;
+} & (ModalWrapperProps<T> | InlineWrapperProps<T>);
 
-export const Wrapper: React.FC<Props> = ({ variant, ...props }) => {
-  const Component = getWrapperFromVariant<PureDateInputProps>(variant);
+export const Wrapper: <T extends KeyboardDateInputProps | PureDateInputProps>(
+  p: Props<T>
+) => React.ReactElement<Props<T>> = ({ variant, ...props }) => {
+  const Component = getWrapperFromVariant<typeof props.DateInputProps>(variant);
 
   return <Component {...props} />;
 };
