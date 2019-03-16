@@ -1,7 +1,6 @@
 ---
 description: 2019 Material-UI Developer Survey results
 ---
-
 # 2019 Material-UI Developer Survey results
 
 **Olivier Tassinari**
@@ -22,7 +21,7 @@ on the things that will make it even better.
 
 ### 1. How would you feel if you could no longer use Material-UI?
 
-<img src="/static/blog/2019-survey/1.png" alt="Pie chart: 74.7% Very disappointed, 18.9% disappointed, 6.4% not disappointed." />
+<img src="/static/blog/2019-survey/1.png" style="display: block; margin: 0 auto;" alt="Pie chart: 74.7% Very disappointed, 18.9% disappointed, 6.4% not disappointed." />
 
 An overwhelming majority of respondents (over 93%), would be disappointed or very disappointed if 
 they could no longer use Material-UI. The benchmark for "very disappointed" is 40%, 
@@ -38,7 +37,7 @@ so we know they love us really. 😘
 
 This word cloud was generated with [wordclouds.com](https://wordclouds.com).
 
-<img src="/static/blog/2019-survey/2.png" alt="Word cloud of who would benefit most" />
+<img src="/static/blog/2019-survey/2.png" style="display: block; margin: 0 auto;" alt="Word cloud of who would benefit most" />
 
 Developers, developers, developers! (And "anyone" and "everyone", apparently! ) This is understandable, given the
 [job role demographic](2019-developer-survey-results#7-which-of-the-following-best-describes-your-current-job-role)
@@ -47,7 +46,7 @@ easier to get started with, use, and customize Material-UI.
 
 ### 3. What is the main benefit you receive from Material-UI?
 
-<img src="/static/blog/2019-survey/3.png" alt="Word cloud of the main benefit of Material-UI" />
+<img src="/static/blog/2019-survey/3.png" style="display: block; margin: 0 auto;" alt="Word cloud of the main benefit of Material-UI" />
 
 The responses variously commented on being able to focus on the business logic, time saved, 
 good looking components, ease of use, design consistency, good documentation. 
@@ -158,11 +157,14 @@ It’s sorted descending, with the most important concerns first:
 ### 5. How likely is it that you would recommend Material-UI to a friend or colleague?
 
 <figure style="margin-inline-start: 0;">
-  <img src="/static/blog/2019-survey/5a.png" alt="Bar chart of raw data" />
-  <figcaption style="font-style: italic; margin: 8px;">Raw data.</figcaption>
+  <img src="/static/blog/2019-survey/5a.png" style="display: block; margin: 0 auto;" alt="Bar chart of raw data" />
+  <figcaption style="font-style: italic; text-align: center;">Raw data.</figcaption>
 </figure>
 <br />
-<img src="/static/blog/2019-survey/5b.png" alt="Pie chart: 70.6% promoters, 24.8% neutrals, 4.6% detractors" />
+<figure style="margin-inline-start: 0;">
+<img style="display: block; margin: 0 auto;" src="/static/blog/2019-survey/5b.png" style="display: block; margin: 0 auto;" alt="Pie chart: 70.6% promoters, 24.8% neutrals, 4.6% detractors" />
+  <figcaption style="font-style: italic; text-align: center;">Result.</figcaption>
+</figure>
 
 Developers gave Material-UI a [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter) 
 (promoters less detractors) of 66%. Given the NPS range of -100 to +100, a “positive” score or NPS 
@@ -185,17 +187,17 @@ Multiple options were allowed.
 | Search, Word of mouth, Blog | 11 |
 
 <br /><br />
-<img src="/static/blog/2019-survey/6.png" alt="Bar chart: 74.3% search, 29.6% word of mouth, 8.2% Social, 4.3% blog." />
+<img src="/static/blog/2019-survey/6.png" style="display: block; margin: 0 auto;" alt="Bar chart: 74.3% search, 29.6% word of mouth, 8.2% Social, 4.3% blog." />
 
 ### 7. Which of the following best describes your current job role?
 
-<img src="/static/blog/2019-survey/7.png" alt="Bar chart: 358 Full-stack developers, 189 Frontend developers, 103 Entrepreneurs, 31 Beginners, 42 Other" />
+<img src="/static/blog/2019-survey/7.png" style="display: block; margin: 0 auto;" alt="Bar chart: 358 Full-stack developers, 189 Frontend developers, 103 Entrepreneurs, 31 Beginners, 42 Other" />
 
 No huge surprises here!
 
 ### 8. How big is your organization?
 
-<img src="/static/blog/2019-survey/8.png" alt="Bar chart: 61 Hobby, 98 Self-employed, 181 x 2-10, 167 x 11-50, 126 x 51-500, 89 x 500 +" />
+<img  src="/static/blog/2019-survey/8.png" style="display: block; margin: 0 auto;" alt="Bar chart: 61 Hobby, 98 Self-employed, 181 x 2-10, 167 x 11-50, 126 x 51-500, 89 x 500 +" />
 
 Material-UI is most popular with small to medium sized organisations, 
 perhaps because beyond a certain size, organizations have teams building their own design system and framework.
@@ -204,17 +206,17 @@ designers to give it a bespoke look and feel for their organization.
 
 ### 9. How long have you been developing with JavaScript
 
-<img src="/static/blog/2019-survey/9.png" alt="Bar chart: 26 x I'm just getting started!, 43 x 6 months +, 150 x 1 year +, 179 x 3 years +, 155 x 5 years, 82 x 10 years +, 47 x 15 years +" />
+<img src="/static/blog/2019-survey/9.png" style="display: block; margin: 0 auto;" alt="Bar chart: 26 x I'm just getting started!, 43 x 6 months +, 150 x 1 year +, 179 x 3 years +, 155 x 5 years, 82 x 10 years +, 47 x 15 years +" />
 
 A nice bell curve, with the majority of developers having 1 to 5 years experience with Javascript.
 
 ### 10. How long have you been developing with React?
 
-<img src="/static/blog/2019-survey/10.png" alt="Bar chart: 99	x I'm just getting started!, 77	x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
+<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99	x I'm just getting started!, 77	x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
 
 ### 11. How long have you been developing with Material-UI?
 
-<img src="/static/blog/2019-survey/11.png" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
+<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
 
 We missed a trick by not including "2 years +" here, so "1 year +" looks stacked. 
 The number of users of Material-UI continues to grow at a steady pace, and once on board, many 
@@ -222,7 +224,7 @@ developers stick with it.
 
 ### 12. What were you primarily using before Material-UI?
 
-<img src="/static/blog/2019-survey/12.png" alt="Bar chart: 55% Bootstrap, 18% Custom, 12% Other, 7% Semantic-IU, 6% Materialize, 3% React Toolbox" />
+<img src="/static/blog/2019-survey/12.png" style="display: block; margin: 0 auto;" alt="Bar chart: 55% Bootstrap, 18% Custom, 12% Other, 7% Semantic-IU, 6% Materialize, 3% React Toolbox" />
 
 Given its relative popularity, and the move from CSS / HTML / jQuery towards front-end frameworks,
 it should come as no big surprise to see that the majority of respondents were previously using Bootstrap.
@@ -232,7 +234,7 @@ long-tail of other frameworks.
 
 ### 13. How many Material-UI based projects have you built?
 
-<img src="/static/blog/2019-survey/13.png" alt="Pie chart: 10.7% I'm just getting started, 23.5% 1, 52.5% 2-5, 11.1% 6-10, 2.2% 11+" />
+<img src="/static/blog/2019-survey/13.png" style="display: block; margin: 0 auto;" alt="Pie chart: 10.7% I'm just getting started, 23.5% 1, 52.5% 2-5, 11.1% 6-10, 2.2% 11+" />
 
 ## Your product
 
@@ -261,7 +263,7 @@ Multiple options were allowed.
 
 ### 16. Who are you building it for?
 
-<img src="/static/blog/2019-survey/16.png" alt="Pie chart: 54,3% for my company, 24.9% for a client, 15.2% as a side project, 5.6% more than one of these." />
+<img src="/static/blog/2019-survey/16.png" style="display: block; margin: 0 auto;" alt="Pie chart: 54,3% for my company, 24.9% for a client, 15.2% as a side project, 5.6% more than one of these." />
 
 ### 17. Which JS framework are you using, if any?
 
@@ -301,8 +303,8 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<img src="/static/blog/2019-survey/vote.gif" alt="How to upvote on GitHub" />
-<div style="font-style: italic; margin: 8px;">Help us prioritize by upvoting.</div>
+<img src="/static/blog/2019-survey/vote.gif" style="display: block; margin: 0 auto;" alt="How to upvote on GitHub" />
+<div style="font-style: italic; text-align: center; margin: 8px;">Help us prioritize by upvoting.</div>
 
 <hr />
 
