@@ -1,7 +1,6 @@
 const ids = {
   basic: '#basic-datepicker',
   clearable: '#clearable-datepicker',
-  keyboard: '#keyboard-datepicker',
   maskedKeyboard: '#keyboard-mask-datepicker',
 };
 
@@ -59,20 +58,12 @@ describe('DatePicker', () => {
   // });
 
   it('Should not accept invalid date format', () => {
-    cy.get(ids.keyboard).type('Januar');
-    cy.get(`${ids.keyboard}-helper-text`).should('have.text', 'Invalid Date Format');
+    cy.get(ids.maskedKeyboard)
+      .clear()
+      .type('01');
+    cy.get(`${ids.maskedKeyboard}-helper-text`).should('have.text', 'Invalid Date Format');
 
-    cy.get(ids.keyboard).clear();
-  });
-
-  it('Should accept date entered from keyboard without mask', () => {
-    cy.get(ids.keyboard).type('January 27');
-    cy.get(`${ids.keyboard}-helper-text`).should('not.have.text', 'Invalid Date Format');
-
-    cy.get(ids.keyboard).blur();
-
-    cy.get(`input${ids.basic}`).should('have.value', 'January 27');
-    cy.get(`input${ids.clearable}`).should('have.value', 'January 27');
+    cy.get(ids.maskedKeyboard).clear();
   });
 
   it('Should accept date entered from keyboard', () => {
@@ -93,6 +84,6 @@ describe('DatePicker', () => {
       .contains('OK')
       .click();
 
-    cy.get(ids.keyboard).should('have.value', 'March 19');
+    cy.get(ids.maskedKeyboard).should('have.value', '03/19/2019');
   });
 });
