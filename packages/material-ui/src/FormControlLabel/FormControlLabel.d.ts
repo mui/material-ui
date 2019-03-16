@@ -8,7 +8,7 @@ export interface FormControlLabelProps
     'onChange'
   > {
   checked?: boolean | string;
-  control: React.ReactElement<any>;
+  control: React.ReactElement;
   disabled?: boolean;
   inputRef?: React.Ref<any>;
   label: React.ReactNode;

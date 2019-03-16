@@ -135,7 +135,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "13.1.0",
     "jsonlint": "^1.6.3",
-    "jss-plugin-template": "^10.0.0-alpha.12",
+    "jss-plugin-template": "10.0.0-alpha.12",
     "jss-rtl": "^0.2.1",
     "karma": "4.0.0",
     "karma-browserstack-launcher": "^1.3.0",

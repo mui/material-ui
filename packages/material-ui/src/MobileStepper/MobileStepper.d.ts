@@ -5,9 +5,9 @@ import { LinearProgressProps } from '../LinearProgress';
 
 export interface MobileStepperProps extends StandardProps<PaperProps, MobileStepperClassKey> {
   activeStep?: number;
-  backButton: React.ReactElement<any>;
+  backButton: React.ReactElement;
   LinearProgressProps?: Partial<LinearProgressProps>;
-  nextButton: React.ReactElement<any>;
+  nextButton: React.ReactElement;
   position?: 'bottom' | 'top' | 'static';
   steps: number;
   variant?: 'text' | 'dots' | 'progress';

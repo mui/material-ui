@@ -8,7 +8,7 @@ import { StyledComponentProps } from './styles';
  * Adjusts valid props based on the type of `component`
  */
 export interface OverridableComponent<M extends OverridableTypeMap> {
-  <C extends React.ReactType>(props: { component: C } & OverrideProps<M, C>): JSX.Element;
+  <C extends React.ElementType>(props: { component: C } & OverrideProps<M, C>): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
 }
 
@@ -18,7 +18,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
 // prettier-ignore
 export type OverrideProps<
   M extends OverridableTypeMap,
-  C extends React.ReactType
+  C extends React.ElementType
 > = (
   & BaseProps<M>
   & Omit<React.ComponentPropsWithRef<C>, keyof CommonProps<M>>
@@ -51,10 +51,10 @@ export interface CommonProps<M extends OverridableTypeMap>
 
 export interface OverridableTypeMap {
   props: {};
-  defaultComponent: React.ReactType;
+  defaultComponent: React.ElementType;
   classKey: string;
 }
 
 export type Simplify<T> = T extends any ? { [K in keyof T]: T[K] } : never;
 
-export type SimplifiedPropsOf<C extends React.ReactType> = Simplify<React.ComponentProps<C>>;
+export type SimplifiedPropsOf<C extends React.ElementType> = Simplify<React.ComponentProps<C>>;

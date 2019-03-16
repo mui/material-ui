@@ -5,9 +5,9 @@ import { PortalProps } from '../Portal';
 
 export interface ModalProps
   extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, ModalClassKey, 'children'> {
-  BackdropComponent?: React.ReactType<BackdropProps>;
+  BackdropComponent?: React.ElementType<BackdropProps>;
   BackdropProps?: Partial<BackdropProps>;
-  children: React.ReactElement<any>;
+  children: React.ReactElement;
   closeAfterTransition?: boolean;
   container?: PortalProps['container'];
   disableAutoFocus?: boolean;

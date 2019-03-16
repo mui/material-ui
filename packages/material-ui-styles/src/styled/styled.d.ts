@@ -9,7 +9,7 @@ import * as React from 'react';
 /**
  * @internal
  */
-export type ComponentCreator<C extends React.ReactType> = <Theme>(
+export type ComponentCreator<C extends React.ElementType> = <Theme>(
   styles: CSSProperties | ((theme: Theme) => CSSProperties),
   options?: WithStylesOptions<Theme>,
 ) => React.ComponentType<
@@ -21,4 +21,4 @@ export interface StyledProps {
   className: string;
 }
 
-export default function styled<C extends React.ReactType>(Component: C): ComponentCreator<C>;
+export default function styled<C extends React.ElementType>(Component: C): ComponentCreator<C>;

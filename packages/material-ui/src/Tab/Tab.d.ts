@@ -5,7 +5,7 @@ import { ButtonBaseProps } from '../ButtonBase';
 export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'onChange'> {
   disabled?: boolean;
   fullWidth?: boolean;
-  icon?: string | React.ReactElement<any>;
+  icon?: string | React.ReactElement;
   value?: any;
   label?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{ checked: boolean }>, value: any) => void;

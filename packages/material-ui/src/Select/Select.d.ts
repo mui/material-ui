@@ -9,7 +9,7 @@ export interface SelectProps
     Pick<SelectInputProps, 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
-  IconComponent?: React.ReactType;
+  IconComponent?: React.ElementType;
   input?: React.ReactNode;
   MenuProps?: Partial<MenuProps>;
   multiple?: boolean;

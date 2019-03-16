@@ -46,8 +46,7 @@ const filledProps = {
   type RouterTextFieldProps = TextFieldProps & RouteComponentProps;
   const RouterTextField: React.FunctionComponent<RouterTextFieldProps> = () => null;
   const TextFieldWithRouter = withRouter(RouterTextField);
-  // $ExpectError
-  <TextFieldWithRouter variant="filled" {...filledProps} />; // undesired
+  <TextFieldWithRouter variant="filled" {...filledProps} />;
   // $ExpectError
   <TextFieldWithRouter {...filledProps} />; // desired
 }
