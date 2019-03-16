@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import ownerWindow from '../utils/ownerWindow';
 import withForwardedRef from '../utils/withForwardedRef';
 import { setRef } from '../utils/reactHelpers';
@@ -359,10 +360,9 @@ ButtonBase.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component. If a component is provided
-   * it must properly forward their refs via React.forwardRef.
+   * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.elementType,
+  component: elementTypeAcceptingRef,
   /**
    * If `true`, the base button will be disabled.
    */

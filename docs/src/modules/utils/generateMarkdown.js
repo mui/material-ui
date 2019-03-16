@@ -74,7 +74,13 @@ function escapeCell(value) {
     .replace(/\|/g, '\\|');
 }
 
-function generatePropDescription(description, type) {
+function isElementTypeAcceptingRefProp(type) {
+  return type.raw === 'elementTypeAcceptingRef';
+}
+
+function generatePropDescription(prop) {
+  const { description } = prop;
+  const type = prop.flowType || prop.type;
   let deprecated = '';
 
   if (type.name === 'custom') {
@@ -144,12 +150,21 @@ function generatePropDescription(description, type) {
     }
   }
 
-  return `${deprecated}${jsDocText}${signature}`;
+  let notes = '';
+  if (isElementTypeAcceptingRefProp(type)) {
+    notes += '<br>[Needs to be able to hold a ref](/guides/composition#caveat-with-refs).';
+  }
+
+  return `${deprecated}${jsDocText}${signature}${notes}`;
 }
 
 function generatePropType(type) {
   switch (type.name) {
     case 'custom': {
+      if (isElementTypeAcceptingRefProp(type)) {
+        return `element type`;
+      }
+
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
         return generatePropType({
@@ -223,7 +238,7 @@ function generateProps(reactAPI) {
       throw new Error(`The "${propRaw}"" property is missing a description`);
     }
 
-    const description = generatePropDescription(prop.description, prop.flowType || prop.type);
+    const description = generatePropDescription(prop);
 
     if (description === null) {
       return textProps;

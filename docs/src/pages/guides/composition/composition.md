@@ -131,11 +131,33 @@ You can find the details in the [TypeScript guide](/guides/typescript#usage-of-c
 
 Some components such as `ButtonBase` (and therefore `Button`) require access to the 
 underlying DOM node. This was previously done with `ReactDOM.findDOMNode(this)`.
-However `findDOMNode` was deprecated (which disqualifies its usage in react's concurrent mode)
-in favour of component refs and ref forwarding. If you pass class components to
-the `component` and don't run in strict mode you won't have to change anything
-since we can safely use `ReactDOM.findDOMNode`. For function components you have
-to wrap your component however in `React.forwardRef`:
+ However `findDOMNode` was deprecated (which disqualifies its usage in React's concurrent mode)
+in favour of component refs and ref forwarding. 
+
+It is therefore necessary that the component you pass to the `component` prop
+can hold a ref. This includes:
+
+- class components
+- ref forwarding components (`React.forwardRef`)
+- built-in components e.g. `div` or `a`
+
+If this is not the case we will issue a prop type warning similar to:
+> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+
+In addition React will issue a warning.
+
+You can fix this warning by using `React.forwardRef`. Learn more about it in
+[this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+
+To find out if the Material-UI component you're using has this requirement, check
+out the the props API documentation for that component. If you need to forward refs
+the description will link to this section.
+
+### Caveat with StrictMode or unstable_ConcurrentMode
+
+If you pass class components to the `component` prop and don't run in strict mode you won't have to change anything
+since we can safely use `ReactDOM.findDOMNode`. For function components, however, you have
+to wrap your component in `React.forwardRef`:
 
 ```diff
 - const MyButton = props => <div {...props} />
