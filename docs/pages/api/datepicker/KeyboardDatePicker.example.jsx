@@ -6,38 +6,28 @@ function KeyboardDatePickerExample(props) {
 
   return (
     <Fragment>
-      <div className="picker">
-        <KeyboardDatePicker
-          clearable
-          label="Uncontrolled input"
-          format={props.getFormatString({
-            moment: 'MM/DD/YYYY',
-            dateFns: 'MM/dd/yyyy',
-          })}
-          value={selectedDate}
-          onChange={date => handleDateChange(date)}
-          animateYearScrolling={false}
-          minDate={new Date()}
-        />
-      </div>
+      <KeyboardDatePicker
+        clearable
+        label="Uncontrolled input"
+        value={selectedDate}
+        onChange={date => handleDateChange(date)}
+        minDate={new Date()}
+        format={props.getFormatString({
+          moment: 'MM/DD/YYYY',
+          dateFns: 'MM/dd/yyyy',
+        })}
+      />
 
-      <div className="picker">
-        <KeyboardDatePicker
-          label="Masked input"
-          format={props.getFormatString({
-            moment: 'YYYY/MM/DD',
-            dateFns: 'yyyy/MM/dd',
-          })}
-          placeholder="10/10/2018"
-          mask={value =>
-            // handle clearing outside if value can be changed outside of the component
-            value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : []
-          }
-          value={selectedDate}
-          onChange={handleDateChange}
-          animateYearScrolling={false}
-        />
-      </div>
+      <KeyboardDatePicker
+        label="Masked input"
+        placeholder="10/10/2018"
+        value={selectedDate}
+        onChange={handleDateChange}
+        format={props.getFormatString({
+          moment: 'YYYY/MM/DD',
+          dateFns: 'yyyy/MM/dd',
+        })}
+      />
     </Fragment>
   );
 }

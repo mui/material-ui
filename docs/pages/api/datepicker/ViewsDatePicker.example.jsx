@@ -6,39 +6,33 @@ function YearMonthPicker(props) {
 
   return (
     <Fragment>
-      <div className="picker">
-        <DatePicker
-          views={['year']}
-          label="Year only"
-          value={selectedDate}
-          onChange={handleDateChange}
-          animateYearScrolling
-        />
-      </div>
+      <DatePicker
+        views={['year']}
+        label="Year only"
+        value={selectedDate}
+        onChange={handleDateChange}
+        animateYearScrolling
+      />
 
-      <div className="picker">
-        <DatePicker
-          views={['year', 'month']}
-          label="Year and Month"
-          helperText="With min and max"
-          minDate={new Date('2018-03-01')}
-          maxDate={new Date('2018-06-01')}
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <DatePicker
+        views={['year', 'month']}
+        label="Year and Month"
+        helperText="With min and max"
+        minDate={new Date('2018-03-01')}
+        maxDate={new Date('2018-06-01')}
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
 
-      <div className="picker">
-        <DatePicker
-          variant="inline"
-          openTo="year"
-          views={['year', 'month']}
-          label="Year and Month"
-          helperText="Start from year selection"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </div>
+      <DatePicker
+        variant="inline"
+        openTo="year"
+        views={['year', 'month']}
+        label="Year and Month"
+        helperText="Start from year selection"
+        value={selectedDate}
+        onChange={handleDateChange}
+      />
     </Fragment>
   );
 }
