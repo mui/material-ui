@@ -343,7 +343,7 @@ const pages = [
     pathname: '/blog',
     children: [
       {
-        pathname: '/blog/2019-material-ui-developer-survey-results',
+        pathname: '/blog/2019-developer-survey-results',
       },
     ],
   },
