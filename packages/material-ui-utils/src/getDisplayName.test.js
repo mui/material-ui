@@ -1,5 +1,4 @@
 /* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { assert } from 'chai';
 import getDisplayName, { getFunctionName } from './getDisplayName';

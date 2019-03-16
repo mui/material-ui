@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';

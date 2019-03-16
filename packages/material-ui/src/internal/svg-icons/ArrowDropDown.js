@@ -1,16 +1,7 @@
 import React from 'react';
-import SvgIcon from '../../SvgIcon';
+import createSvgIcon from './createSvgIcon';
 
 /**
  * @ignore - internal component.
  */
-let ArrowDropDown = props => (
-  <SvgIcon {...props}>
-    <path d="M7 10l5 5 5-5z" />
-  </SvgIcon>
-);
-
-ArrowDropDown = React.memo(ArrowDropDown);
-ArrowDropDown.muiName = 'SvgIcon';
-
-export default ArrowDropDown;
+export default createSvgIcon(<path d="M7 10l5 5 5-5z" />, 'ArrowDropDown');

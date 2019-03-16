@@ -61,7 +61,6 @@ describe('withStyles', () => {
 
     it('forwards refs to React.forwardRef types', () => {
       const StyledTarget = withStyles({})(
-        // eslint-disable-next-line react/no-multi-comp
         React.forwardRef((props, ref) => <div {...props} ref={ref} />),
       );
 
