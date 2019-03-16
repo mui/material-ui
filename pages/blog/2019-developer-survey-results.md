@@ -59,81 +59,81 @@ We have grouped the answers into different categories.
 The prefix corresponds to the number of times the concern was mentioned. 
 It’s sorted descending, with the most important concerns first:
 
-- 135 **More components**
- - 56 More components: n/a
- - 21 More components: date picker
- - 10 More components: autocomplete
- - 9 More components: layout
- - 8 More components: table++
- - 5 More components: carousel
- - 5 More components: slider
- - 3 More components: video
- - 2 More components: calendar
- - 2 More components: menu nesting
- - 2 More components: list draggable
- - 1 More components: tree view
- - 1 More components: color picker
- - 1 More components: dense mode
- - 1 More components: for landing pages
- - 1 More components: group avatar
- - 1 More components: image gallery
- - 1 More components: image picker
- - 1 More components: menu dropdown
- - 1 More components: mobile
- - 1 More components: rating
- - 1 More components: timeline
- - 1 More components: transfer
+- 135 **More components:**
+ - 56 Non-specific
+ - 21 Date picker
+ - 10 Autocomplete
+ - 9 Layout
+ - 8 Table++
+ - 5 Carousel
+ - 5 Slider
+ - 3 Video
+ - 2 Calendar
+ - 2 Menu nesting
+ - 2 List - draggable
+ - 1 Tree view
+ - 1 Color picker
+ - 1 Dense mode
+ - 1 For landing pages
+ - 1 Group avatar
+ - 1 Image gallery
+ - 1 Image picker
+ - 1 Menu - dropdown
+ - 1 Mobile
+ - 1 Rating
+ - 1 Timeline
+ - 1 Transfer
 
-- 50 **Better customization**
- - 23 Better customization: n/a
- - 15 Better customization: docs
- - 8 Better customization: easier
- - 3 Better customization: theme
- - 1 Better customization: colors
+- 50 **Better customization:**
+ - 23 Non-specific
+ - 15 Docs
+ - 8 Easier
+ - 3 Theme
+ - 1 Colors
 
-- 36 **Better documentation**
- - 11 Better documentation: n/a
- - 7 Better documentation: more examples
- - 5 Better documentation: beginner tutorials
- - 4 Better documentation: video lessons
- - 2 Better documentation: API pages
- - 2 Better documentation: icons explorer
- - 1 Better documentation: best practices
- - 1 Better documentation: customization
- - 1 Better documentation: global CSS
- - 1 Better documentation: demo source scroll issue
- - 1 Better documentation: server-side rendering
+- 36 **Better documentation:**
+ - 11 Non-specific
+ - 7 More examples
+ - 5 Beginner tutorials
+ - 4 Video lessons
+ - 2 API pages
+ - 2 Icon explorer
+ - 1 Best practices
+ - 1 Customization
+ - 1 Global CSS
+ - 1 Demo source scroll issue
+ - 1 Server-side rendering
 
-- 31 **TypeScript**
- - 14 TypeScript: n/a
- - 13 TypeScript: migrate more demos
- - 3 TypeScript: withStyles -> makeStyles
- - 1 TypeScript: rewrite
+- 31 **TypeScript:**
+ - 14 Non-specific
+ - 13 Migrate more demos
+ - 3 withStyles -> makeStyles
+ - 1 Rewrite
 
-- 24 **Performance**
- - 23 Performance: n/a
- - 1 Performance: Table
+- 24 **Performance:**
+ - 23 Non-specific
+ - 1 Table
 
 - 19 **Bundle size**
 - 17 **Material Design Update**
-- 16 **styled-components**
- - 10 styled-components: support
- - 6 styled-components: migration
+- 16 **styled-components:**
+ - 10 Support
+ - 6 Migration
 
 - 14 **Fewer breaking changes**
 - 10 **More page layout examples**
-- 9 **Theme**
- - 3 Theme: more colors
- - 3 Theme: live editor
- - 1 Theme: non-material font example
- - 2 Theme: responsive typography
+- 9 **Theme:**
+ - 3 More colors
+ - 3 Live editor
+ - 1 Non-material font example
+ - 2 Responsive typography
 
 - 8 **React.StrictMode support**
 - 8 **React Native support**
-- 6 **Accessibility**
- - 4 Accessibility: n/a
- - 1 Accessibility: docs
- - 1 Accessibility: SkipNav
+- 6 **Accessibility:**
+ - 4 Non specific
+ - 1 Docs
+ - 1 SkipNav
 
 - 6 **Hooks at 100%**
 - 4 **Animations**
