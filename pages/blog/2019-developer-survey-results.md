@@ -3,13 +3,13 @@ description: 2019 Material-UI Developer Survey results
 ---
 # 2019 Material-UI Developer Survey results
 
-**Olivier Tassinari**
+**Olivier Tassinari, Matt Brookes**
 
 _March 16, 2019_
 
-While we are currently working on the upcoming release of Material-UI v4, we need to prioritize our 
-roadmap for the coming year. To refine our focus, we launched a developer survey last month, 
-to which we received 734 contributions. Thank you for your participation! 
+While we are currently working on the upcoming release of Material-UI v4, we need to prioritize our
+roadmap for the coming year. To refine our focus, we launched a developer survey last month,
+to which we received 734 contributions. Thank you for your participation!
 The survey is now closed and this is a summary of the results.
 
 The survey was broken into three sections, "Introduction", "About you" and "Your product".
@@ -23,13 +23,13 @@ on the things that will make it even better.
 
 <img src="/static/blog/2019-survey/1.png" style="display: block; margin: 0 auto;" alt="Pie chart: 74.7% Very disappointed, 18.9% disappointed, 6.4% not disappointed." />
 
-An overwhelming majority of respondents (over 93%), would be disappointed or very disappointed if 
-they could no longer use Material-UI. The benchmark for "very disappointed" is 40%, 
-so we're on the right track. Don't worry, Material-UI isn't going away any time soon – 
+An overwhelming majority of respondents (over 93%), would be disappointed or very disappointed if
+they could no longer use Material-UI. The benchmark for "very disappointed" is 40%,
+so we're on the right track. Don't worry, Material-UI isn't going away any time soon –
 we want to focus on making even more of you "very disappointed", as it were!
 
-Curiously, the 6.4% who said they would _not_ be disappointed if they could no longer use 
-Material-UI collectively gave a Net Promoter Score of 68%, which is 
+Curiously, the 6.4% who said they would _not_ be disappointed if they could no longer use
+Material-UI collectively gave a Net Promoter Score of 68%, which is
 [higher than that of all respondents as a whole](/blog/2019-developer-survey-results#5-how-likely-is-it-that-you-would-recommend-material-ui-to-a-friend-or-colleague),
 so we know they love us really. 😘
 
@@ -48,91 +48,91 @@ easier to get started with, use, and customize Material-UI.
 
 <img src="/static/blog/2019-survey/3.png" style="display: block; margin: 0 auto;" alt="Word cloud of the main benefit of Material-UI" />
 
-The responses variously commented on being able to focus on the business logic, time saved, 
-good looking components, ease of use, design consistency, good documentation. 
+The responses variously commented on being able to focus on the business logic, time saved,
+good looking components, ease of use, design consistency, good documentation.
 We'll make sure that we continue to do more of the things that benefit you the most.
 
 ### 4. How can we improve Material-UI for you?
 
-We have grouped the answers into different categories. 
-The prefix corresponds to the number of times the concern was mentioned. 
+We have grouped the answers into different categories.
+The prefix corresponds to the number of times the concern was mentioned.
 It’s sorted descending, with the most important concerns first:
 
 - 135 **More components:**
- - 56 Non-specific
- - 21 Date picker
- - 10 Autocomplete
- - 9 Layout
- - 8 Table++
- - 5 Carousel
- - 5 Slider
- - 3 Video
- - 2 Calendar
- - 2 Menu nesting
- - 2 List - draggable
- - 1 Tree view
- - 1 Color picker
- - 1 Dense mode
- - 1 For landing pages
- - 1 Group avatar
- - 1 Image gallery
- - 1 Image picker
- - 1 Menu - dropdown
- - 1 Mobile
- - 1 Rating
- - 1 Timeline
- - 1 Transfer
+  - 56 Non-specific
+  - 21 Date picker
+  - 10 Autocomplete
+  - 9 Layout
+  - 8 Table++
+  - 5 Carousel
+  - 5 Slider
+  - 3 Video
+  - 2 Calendar
+  - 2 Menu nesting
+  - 2 List - draggable
+  - 1 Tree view
+  - 1 Color picker
+  - 1 Dense mode
+  - 1 For landing pages
+  - 1 Group avatar
+  - 1 Image gallery
+  - 1 Image picker
+  - 1 Menu - dropdown
+  - 1 Mobile
+  - 1 Rating
+  - 1 Timeline
+  - 1 Transfer
 
 - 50 **Better customization:**
- - 23 Non-specific
- - 15 Docs
- - 8 Easier
- - 3 Theme
- - 1 Colors
+  - 23 Non-specific
+  - 15 Docs
+  - 8 Easier
+  - 3 Theme
+  - 1 Colors
 
 - 36 **Better documentation:**
- - 11 Non-specific
- - 7 More examples
- - 5 Beginner tutorials
- - 4 Video lessons
- - 2 API pages
- - 2 Icon explorer
- - 1 Best practices
- - 1 Customization
- - 1 Global CSS
- - 1 Demo source scroll issue
- - 1 Server-side rendering
+  - 11 Non-specific
+  - 7 More examples
+  - 5 Beginner tutorials
+  - 4 Video lessons
+  - 2 API pages
+  - 2 Icon explorer
+  - 1 Best practices
+  - 1 Customization
+  - 1 Global CSS
+  - 1 Demo source scroll issue
+  - 1 Server-side rendering
 
 - 31 **TypeScript:**
- - 14 Non-specific
- - 13 Migrate more demos
- - 3 withStyles -> makeStyles
- - 1 Rewrite
+  - 14 Non-specific
+  - 13 Migrate more demos
+  - 3 withStyles -> makeStyles
+  - 1 Rewrite
 
 - 24 **Performance:**
- - 23 Non-specific
- - 1 Table
+  - 23 Non-specific
+  - 1 Table
 
 - 19 **Bundle size**
 - 17 **Material Design Update**
 - 16 **styled-components:**
- - 10 Support
- - 6 Migration
+  - 10 Support
+  - 6 Migration
 
 - 14 **Fewer breaking changes**
 - 10 **More page layout examples**
 - 9 **Theme:**
- - 3 More colors
- - 3 Live editor
- - 1 Non-material font example
- - 2 Responsive typography
+  - 3 More colors
+  - 3 Live editor
+  - 1 Non-material font example
+  - 2 Responsive typography
 
 - 8 **React.StrictMode support**
 - 8 **React Native support**
 - 6 **Accessibility:**
- - 4 Non specific
- - 1 Docs
- - 1 SkipNav
+  - 4 Non specific
+  - 1 Docs
+  - 1 SkipNav
 
 - 6 **Hooks at 100%**
 - 4 **Animations**
@@ -166,8 +166,8 @@ It’s sorted descending, with the most important concerns first:
   <figcaption style="font-style: italic; text-align: center;">Result.</figcaption>
 </figure>
 
-Developers gave Material-UI a [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter) 
-(promoters less detractors) of 66%. Given the NPS range of -100 to +100, a “positive” score or NPS 
+Developers gave Material-UI a [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
+(promoters less detractors) of 66%. Given the NPS range of -100 to +100, a “positive” score or NPS
 above 0 is considered “good”, +50 is “Excellent”, and above 70 is considered “world class.”
 
 ## About you
@@ -199,7 +199,7 @@ No huge surprises here!
 
 <img  src="/static/blog/2019-survey/8.png" style="display: block; margin: 0 auto;" alt="Bar chart: 61 Hobby, 98 Self-employed, 181 x 2-10, 167 x 11-50, 126 x 51-500, 89 x 500 +" />
 
-Material-UI is most popular with small to medium sized organisations, 
+Material-UI is most popular with small to medium sized organisations,
 perhaps because beyond a certain size, organizations have teams building their own design system and framework.
 We want to continue to make it easy to use the component logic of Material-UI while allowing
 designers to give it a bespoke look and feel for their organization.
@@ -218,8 +218,8 @@ A nice bell curve, with the majority of developers having 1 to 5 years experienc
 
 <img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
 
-We missed a trick by not including "2 years +" here, so "1 year +" looks stacked. 
-The number of users of Material-UI continues to grow at a steady pace, and once on board, many 
+We missed a trick by not including "2 years +" here, so "1 year +" looks stacked.
+The number of users of Material-UI continues to grow at a steady pace, and once on board, many
 developers stick with it.
 
 ### 12. What were you primarily using before Material-UI?
@@ -228,7 +228,7 @@ developers stick with it.
 
 Given its relative popularity, and the move from CSS / HTML / jQuery towards front-end frameworks,
 it should come as no big surprise to see that the majority of respondents were previously using Bootstrap.
-Custom solutions have also been replaced by Material-UI as your go-to UI library, along with a 
+Custom solutions have also been replaced by Material-UI as your go-to UI library, along with a
 long-tail of other frameworks.
 
 
@@ -274,6 +274,9 @@ Multiple options were allowed.
 - Next.js: 12%
 - Gatsby: 8%
 
+Server-side rendering isn't yet very popular.
+As the React ecosystem matures, we might see a [big](https://www.rank2traffic.com/gatsbyjs.org) [push](https://www.rank2traffic.com/nextjs.org) of server-side rendering in the coming months.
+
 ### 18. What styling system are you using?
 
 Multiple options were allowed.
@@ -283,6 +286,12 @@ Multiple options were allowed.
 - Good old CSS (+sass, less, etc): 24%
 - CSS Modules (+sass, less, etc): 16%
 - Emotion: 4%
+
+Traditional CSS users are still prevalent (24% + 16%).
+The components customization `classes` API was designed for these people.
+It's also why we allow the generation of deterministic class names (*MuiButton-root* instead of *jss113*).
+
+However, styled components is popular. We will work on better supporting it.
 
 ## Conclusion
 
@@ -299,7 +308,6 @@ We want to work on the problems that resonate the most with our users.
 
 **We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.
-
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
