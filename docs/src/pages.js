@@ -219,11 +219,11 @@ const pages = [
         pathname: '/guides/testing',
       },
       {
-        pathname: '/guides/flow',
-      },
-      {
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
+      },
+      {
+        pathname: '/guides/flow',
       },
     ],
   },
