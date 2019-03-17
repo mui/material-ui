@@ -13,6 +13,10 @@ describe('textToHash', () => {
       textToHash('createGenerateClassName([options]) => class name generator'),
       'creategenerateclassname-options-class-name-generator',
     );
+    assert.strictEqual(
+      textToHash('@material-ui/core/styles vs @material-ui/styles'),
+      'material-ui-core-styles-vs-material-ui-styles',
+    );
   });
 
   it('should generate a unique hash', () => {

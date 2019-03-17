@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import { emphasize, withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the `Button` component. */

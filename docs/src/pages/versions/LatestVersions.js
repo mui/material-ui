@@ -55,7 +55,7 @@ function LatestVersions(props) {
                 variant="body2"
                 color="secondary"
                 rel="nofollow"
-                href="https://next.material-ui.com/"
+                href="https://next--material-ui.netlify.com/"
               >
                 Documentation
               </Link>

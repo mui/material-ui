@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
-import withStyles from '@material-ui/core/styles/withStyles';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import { withStyles } from '@material-ui/core/styles';
+import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

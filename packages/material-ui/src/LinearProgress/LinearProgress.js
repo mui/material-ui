@@ -18,7 +18,6 @@ export const styles = theme => ({
   colorPrimary: {
     backgroundColor: lighten(theme.palette.primary.light, 0.6),
   },
-  // eslint-disable-next-line max-len
   /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
   colorSecondary: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
@@ -211,7 +210,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      inlineStyles.bar1.transform = `scaleX(${value / 100})`;
+      inlineStyles.bar1.transform = `translateX(${value - 100}%)`;
     } else {
       warning(
         false,
@@ -222,7 +221,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      inlineStyles.bar2.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+      inlineStyles.bar2.transform = `translateX(${(valueBuffer || 0) - 100}%)`;
     } else {
       warning(
         false,

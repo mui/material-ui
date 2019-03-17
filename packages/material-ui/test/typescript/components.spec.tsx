@@ -81,6 +81,7 @@ import {
 import { DialogProps } from '@material-ui/core/Dialog';
 import { ButtonProps } from '@material-ui/core/Button';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -394,10 +395,10 @@ const DialogTest = () => {
           <ListItem
             button
             ref={elem => {
-              elem; // $ExpectType HTMLButtonElement | null
+              elem; // $ExpectType HTMLDivElement | null
             }}
             onClick={e => {
-              e; // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+              e; // $ExpectType MouseEvent<HTMLDivElement, MouseEvent>
               log(e);
             }}
           >
@@ -618,6 +619,7 @@ const MenuTest = () => {
     'Hide sensitive notification content',
     'Hide all notification content',
   ];
+  const buttonActionRef = React.useRef<ButtonBaseActions | null>(null);
 
   return (
     <Menu
@@ -643,6 +645,9 @@ const MenuTest = () => {
         </MenuItem>
       ))}
       <MenuItem<'a'>
+        action={action => {
+          buttonActionRef.current = action;
+        }}
         component="a"
         ref={elem => {
           elem; // $ExpectType HTMLAnchorElement | null
@@ -654,6 +659,24 @@ const MenuTest = () => {
       >
         Link Item
       </MenuItem>
+      <MenuItem
+        button={false}
+        ref={elem => {
+          elem; // $ExpectType HTMLLIElement | null
+        }}
+      />
+      <MenuItem
+        action={action => {
+          buttonActionRef.current = action;
+        }}
+        // 'false' is not assignable to true | undefined
+        button={false} // $ExpectError
+        ref={elem => {
+          // previous error throws type checker off. Since this is an error anyway
+          // `any` is fine
+          elem; // $ExpectType any
+        }}
+      />
     </Menu>
   );
 };

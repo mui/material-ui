@@ -60,7 +60,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
     color,
     component: Component,
     fontSize,
-    nativeColor,
+    htmlColor,
     titleAccess,
     viewBox,
     ...other
@@ -78,7 +78,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
       )}
       focusable="false"
       viewBox={viewBox}
-      color={nativeColor}
+      color={htmlColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
       role={titleAccess ? 'img' : 'presentation'}
       ref={ref}
@@ -106,7 +106,7 @@ SvgIcon.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * You can use the `nativeColor` property to apply a color attribute to the SVG element.
+   * You can use the `htmlColor` property to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
@@ -121,7 +121,7 @@ SvgIcon.propTypes = {
   /**
    * Applies a color attribute to the SVG element.
    */
-  nativeColor: PropTypes.string,
+  htmlColor: PropTypes.string,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).

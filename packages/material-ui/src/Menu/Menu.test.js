@@ -12,14 +12,16 @@ describe('<Menu />', () => {
   let shallow;
   let classes;
   let mount;
-  const defaultProps = {
-    open: false,
-  };
+  let defaultProps;
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Menu {...defaultProps} />);
     mount = createMount();
+    defaultProps = {
+      open: false,
+      anchorEl: document.createElement('div'),
+    };
   });
 
   after(() => {
@@ -115,7 +117,7 @@ describe('<Menu />', () => {
 
   it('should open during the initial mount', () => {
     const wrapper = mount(
-      <Menu open classes={classes}>
+      <Menu {...defaultProps} open>
         <div />
       </Menu>,
     );

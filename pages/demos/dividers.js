@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/demos/dividers', false, /\.md|\.js$/
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/demos/dividers',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/demos/dividers';
 

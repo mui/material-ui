@@ -33,7 +33,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should focus the first item as nothing has been selected', () => {
-      wrapper.setState({ open: true });
+      wrapper.find('button').simulate('click');
       portalLayer = wrapper
         .find(Portal)
         .instance()
@@ -99,8 +99,7 @@ describe('<Menu> integration', () => {
 
     it('should select the 2nd item and close the menu', () => {
       portalLayer.querySelectorAll('li')[1].click();
-      assert.strictEqual(wrapper.state().selectedIndex, 1);
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.text(), 'selectedIndex: 1, open: false');
     });
   });
 
@@ -108,8 +107,7 @@ describe('<Menu> integration', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(<SimpleMenu transitionDuration={0} />);
-      wrapper.setState({ selectedIndex: 2 });
+      wrapper = mount(<SimpleMenu transitionDuration={0} selectedIndex={2} />);
     });
 
     it('should not be open', () => {
@@ -120,7 +118,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should focus the 3rd selected item', () => {
-      wrapper.setState({ open: true });
+      wrapper.find('button').simulate('click');
       const portalLayer = wrapper
         .find(Portal)
         .instance()
@@ -135,12 +133,11 @@ describe('<Menu> integration', () => {
         .getMountNode();
       const item = portalLayer.querySelector('ul').children[1];
       item.click();
-      assert.strictEqual(wrapper.state().selectedIndex, 1);
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.text(), 'selectedIndex: 1, open: false');
     });
 
     it('should focus the 2nd selected item', () => {
-      wrapper.setState({ open: true });
+      wrapper.find('button').simulate('click');
       const portalLayer = wrapper
         .find(Portal)
         .instance()
@@ -155,7 +152,7 @@ describe('<Menu> integration', () => {
 
     beforeEach(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
-      wrapper.setState({ open: true });
+      wrapper.find('button').simulate('click');
       portalLayer = wrapper
         .find(Portal)
         .instance()
@@ -169,12 +166,12 @@ describe('<Menu> integration', () => {
           done();
         },
       });
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: true');
       const list = portalLayer.querySelector('ul');
       TestUtils.Simulate.keyDown(list, {
         key: 'Tab',
       });
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: false');
     });
 
     it('should close the menu using the backdrop', done => {
@@ -184,11 +181,11 @@ describe('<Menu> integration', () => {
           done();
         },
       });
-      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: true');
       const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
       assert.strictEqual(typeof backdrop !== 'undefined', true);
       backdrop.click();
-      assert.strictEqual(wrapper.state().open, false);
+      assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: false');
     });
   });
 });

@@ -4,7 +4,11 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('docs/src/pages/demos/tables', false, /\.md|\.js$/);
-const reqSource = require.context('!raw-loader!../../docs/src/pages/demos/tables', false, /\.js$/);
+const reqSource = require.context(
+  '!raw-loader!../../docs/src/pages/demos/tables',
+  false,
+  /\.(js|tsx)$/,
+);
 const reqPrefix = 'pages/demos/tables';
 
 function Page() {

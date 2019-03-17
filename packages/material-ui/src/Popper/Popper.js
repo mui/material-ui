@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
+import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 
 function flipPlacement(placement) {
@@ -194,7 +195,22 @@ Popper.propTypes = {
    * The return value will passed as the reference object of the Popper
    * instance.
    */
-  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
+    if (props.open) {
+      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+
+      if (!(resolvedAnchorEl instanceof HTMLElement)) {
+        return new Error(
+          [
+            'Material-UI: the anchorEl property provided to the component is invalid.',
+            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+          ].join('\n'),
+        );
+      }
+    }
+
+    return null;
+  }),
   /**
    * Popper render function or node.
    */

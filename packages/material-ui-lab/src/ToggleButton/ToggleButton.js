@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
