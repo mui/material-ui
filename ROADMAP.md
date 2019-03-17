@@ -6,7 +6,7 @@
 
 We work on the problems that resonate the most with our users.
 Please **upvote** 👍 the issues you are the most interested in on GitHub.
-Thank you for participating [to our developer survey](https://material-ui.com/blog/2019-developer-survey-results/).
+Thank you for participating [in our developer survey](https://material-ui.com/blog/2019-developer-survey-results/).
 
 ## Our priorities
 
