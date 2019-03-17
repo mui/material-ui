@@ -36,8 +36,8 @@ Die Dokumentationsseite ist stark von [ A Complete Guide to Flexbox inspiriert ]
 
 ```jsx
 <Box justifyContent="flex-start">…
-<Box justifyContent="center">…
 <Box justifyContent="flex-end">…
+<Box justifyContent="center">…
 ```
 
 {{"demo": "pages/system/flexbox/JustifyContent.js"}}
@@ -109,7 +109,7 @@ Die Dokumentationsseite ist stark von [ A Complete Guide to Flexbox inspiriert ]
 import { flexbox } from '@material-ui/system';
 ```
 
-| Import name      | Prop             | CSS property      | Theme key |
+| Import name      | Eigenschaften    | CSS property      | Theme key |
 |:---------------- |:---------------- |:----------------- |:--------- |
 | `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
 | `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |

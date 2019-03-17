@@ -1,4 +1,4 @@
-# Migration From v0.x
+# Migration From v0.x to v1
 
 <p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
 
@@ -76,7 +76,7 @@ Material-UI was started [4 years ago](https://github.com/mui-org/material-ui/com
 
 4. After that, you are free to migrate one component instance at the time.
 
-## Components
+## コンポーネント
 
 ### Autocomplete
 

@@ -19,7 +19,7 @@ Things to know when using the `Popover` component:
 
 Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions. You can also set the `anchorReference` to `anchorPosition` or `anchorEl`. When it is `anchorPosition`, the component will, instead of `anchorEl`, refer to the `anchorPosition` prop which you can adjust to set the position of the popover.
 
-{{"demo": "pages/utils/popover/AnchorPlayground.js"}}
+{{"demo": "pages/utils/popover/AnchorPlayground.js", "hideHeader": true}}
 
 ## Mouse over interaction
 
@@ -31,7 +31,7 @@ We demonstrate how to use the `Popover` component to implement a popover behavio
 
 Para usos más avanzados tal vez puedas aprovercharte de:
 
-### PopupState helper
+### Ayudante PopupState
 
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popover state for you in most cases.
 

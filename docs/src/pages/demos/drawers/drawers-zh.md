@@ -60,15 +60,15 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 {{"demo": "pages/demos/drawers/MiniDrawer.js", "iframe": true}}
 
-## 永久抽屉
+## 固定抽屉
 
-永久抽屉始终可见并固定在左侧，与内容或背景位于同一高度。他们无法被关闭。
+固定抽屉始终可见并固定在左侧，与内容或背景位于同一高度。他们无法被关闭。
 
-永久抽屉是桌面**推荐的默认值**。
+固定抽屉是桌面**推荐的默认值**。
 
 ### 全高度导航栏
 
-应用程序侧重与从左到右层次结构的信息消费。
+应用程序侧重与从左到右层次结构的布局。
 
 {{"demo": "pages/demos/drawers/PermanentDrawerLeft.js", "iframe": true}}
 
@@ -76,6 +76,6 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 ### 从应用栏下开始分割
 
-应用专注于生产力，需要在整个屏幕上保持平衡。
+专注于生产力的应用，需要在整个屏幕上保持平衡。
 
 {{"demo": "pages/demos/drawers/ClippedDrawer.js", "iframe": true}}

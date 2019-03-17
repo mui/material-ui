@@ -1,8 +1,8 @@
 ---
-title: Tabs React component
+title: Tabs React-Komponente
 components: Tabs, Tab
 ---
-# Tabs
+# Reiter
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
@@ -26,17 +26,17 @@ A Tab can be disabled by setting `disabled` property.
 
 {{"demo": "pages/demos/tabs/DisabledTabs.js"}}
 
-## Fixed Tabs
+## Feste Tabs
 
 Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
 
-### Full width
+### Gesamtbreite
 
 The `variant="fullWidth"` property should be used for smaller views. This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
 
 {{"demo": "pages/demos/tabs/FullWidthTabs.js"}}
 
-### Centered
+### Zentriert
 
 The `centered` property should be used for larger views.
 
@@ -66,11 +66,11 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 If you have read the [overrides documentation page](/customization/overrides/) but aren't confident jumping in, here's an example of how you can change the main color of the Tabs.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
 
-## Nav Tabs
+## Nav-Tabs
 
 By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
 

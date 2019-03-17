@@ -2,7 +2,7 @@
 title: Menu React component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
-# Menus
+# Menüs
 
 <p class="description">Menus display a list of choices on temporary surfaces.</p>
 
@@ -36,7 +36,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here is one example of how you can customize the `MenuItem`.
 
-⚠️ While the material design specification encourages theming, this example is off the beaten path.
+⚠️ Auch wenn die Material-Design Spezifikation zur Verwendung von Themes ermutigt, liegen diese Beispiele außerhalb der üblichen Pfade.
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
 
@@ -56,7 +56,7 @@ There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=3
 
 ## Change Transition
 
-Use a different transition.
+Verwenden Sie einen anderen Übergang.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
 

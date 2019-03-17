@@ -18,7 +18,7 @@
 - `l` - 对于设置*margin-left*或*padding-left*的类
 - `r` - 对于设置*margin-right*或*padding-right*的类
 - `x` - 对于设置** -left*和** -right*的类
-- `x` - 对于设置** -top*和** -bottom*的类
+- `y` - 对于设置** -top*和** -bottom*的类
 - 空白 - 用于在元素的所有4个边上设置边距或填充的类
 
 ## 转型

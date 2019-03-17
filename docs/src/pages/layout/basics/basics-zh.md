@@ -15,7 +15,7 @@ Material Design中的[响应式布局](https://material.io/design/layout/respons
 
 一些Material-UI组件利用`z-index`这个CSS属性，通过提供编排内容的第三轴，来控制布局。 我们在Material-UI中使用一套默认的z-index刻度，被设计用于layer drawer、snackbars、tooltips等控件。
 
-[这些值](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
+[这些值](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
 
 - mobile stepper（移动设备起步）: 1000
 - app bar（应用栏）：1100

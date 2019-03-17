@@ -27,7 +27,7 @@ components: Popper
 
 ## Scroll playground
 
-{{"demo": "pages/utils/popper/ScrollPlayground.js"}}
+{{"demo": "pages/utils/popper/ScrollPlayground.js", "hideHeader": true}}
 
 ## Positioned Popper
 

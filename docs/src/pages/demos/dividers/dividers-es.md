@@ -1,5 +1,5 @@
 ---
-title: Divider React component
+title: Componente divisor de React
 components: Divider
 ---
 # Divisores
@@ -19,8 +19,6 @@ El divisor se procesa como un `<hr>` por defecto. Puede guardar la representaci�
 Debemos asegurarnos de que el `divider` se represente como `li` para que coincida con la especificación HTML5. Los siguientes ejemplos muestran dos maneras de lograr esto.
 
 ## Separadores insertados
-
-La propiedad `inset` ahora ha quedado en desuso. Ahora debería usar `variant = "inset"`.
 
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 

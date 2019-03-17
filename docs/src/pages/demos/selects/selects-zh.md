@@ -20,7 +20,7 @@ components: Select, NativeSelect
 
 ## 自定义选择
 
-如果您有阅读[重写文档](/customization/overrides/) 但你还不是很自信能够完全掌握， 以下是如何更改一个输入的主要颜色的示例
+如果您有阅读[重写文档](/customization/overrides/)，但你还不是很自信能够完全掌握，以下是的示例展示了如何更改一个输入的主要颜色。
 
 第一步是设置 `InputBase` 组件的样式。 一旦设置样式，您就可以直接将其用作文本字段，也可以将其提供给select `input` 属性作为可以选择的内容项。
 
@@ -48,4 +48,4 @@ components: Select, NativeSelect
 
 ## 文本输入框
 
-` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/demos/text-fields/#textfield)的示例
+`TextField` wrapper 组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/demos/text-fields/#textfield)的示例

@@ -210,8 +210,9 @@ export default function MyComponent() {
 一些可能有趣的实现细节：
 
 - 它添加了一个 `classes` 属性，因此您可以从外部覆盖注入的类名。
-- 它添加了一个 `innerRef` 属性，因此你可以从外部覆盖注入的类名。 ` innerRef ` 的用法与 `ref` 相同。
-- 它将转发*非 React 的静态* 属性，以便 HOC 更 "透明"。 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
+- It forwards refs to the inner component.
+- The `innerRef` prop is deprecated. Use `ref` instead.
+- It does **not** copy over statics. 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
 
 #### 参数
 
@@ -280,7 +281,7 @@ export default MyComponent
 
 #### 返回结果
 
-`Component` ：创建新组件。
+`Component` ：创建新组件。 Does forward refs to the inner component.
 
 #### 例子
 

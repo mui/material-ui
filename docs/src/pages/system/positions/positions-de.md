@@ -1,4 +1,4 @@
-# Positions
+# Positionen
 
 <p class="description">Use these shorthand utilities for quickly configuring the position of an element.</p>
 
@@ -17,11 +17,11 @@
 import { positions } from '@material-ui/system';
 ```
 
-| Import name | Prop       | CSS property | Theme key                                                      |
-|:----------- |:---------- |:------------ |:-------------------------------------------------------------- |
-| `position`  | `position` | `position`   | none                                                           |
-| `zIndex`    | `zIndex`   | `z-index`    | [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) |
-| `top`       | `top`      | `top`        | none                                                           |
-| `right`     | `right`    | `right`      | none                                                           |
-| `bottom`    | `bottom`   | `bottom`     | none                                                           |
-| `left`      | `left`     | `left`       | none                                                           |
+| Import name | Eigenschaften | CSS property | Theme-Schlüssel                                                |
+|:----------- |:------------- |:------------ |:-------------------------------------------------------------- |
+| `position`  | `position`    | `position`   | none                                                           |
+| `zIndex`    | `zIndex`      | `z-index`    | [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) |
+| `top`       | `top`         | `top`        | none                                                           |
+| `right`     | `right`       | `right`      | none                                                           |
+| `bottom`    | `bottom`      | `bottom`     | none                                                           |
+| `left`      | `left`        | `left`       | none                                                           |

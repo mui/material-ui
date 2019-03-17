@@ -27,7 +27,7 @@ The breakpoints are used internally in various components to make them responsiv
 
 ## CSS Media Queries
 
-CSS media queries is the idiomatic approach to make your UI responsive. We provide four [CSS-in-JS](/customization/css-in-js/) helpers to do so:
+CSS media queries is the idiomatic approach to make your UI responsive. We provide four styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)

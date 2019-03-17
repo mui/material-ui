@@ -8,7 +8,7 @@ components: Button, Fab, IconButton, ButtonBase, Zoom
 
 [Buttons](https://material.io/design/components/buttons.html) kommunizieren Aktionen, die Benutzer ausführen können. Sie werden normalerweise in der gesamten Benutzeroberfläche platziert, beispielsweise an folgenden Orten:
 
-- Dialogs
+- Dialoge
 - Modale Fenster
 - Formulare
 - Cards

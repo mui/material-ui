@@ -30,43 +30,37 @@ const theme = createMuiTheme({
 npm install jss-rtl
 ```
 
-在项目中安装了插件后，Material-UI组件仍然需要由jss实例加载，如下所述。 在内部，当withStyles使用该JSS插件 `direction: 'rtl'` 上设置的主题。
+在项目中安装了插件后，Material-UI组件仍然需要由jss实例加载，如下所述。 在内部，当withStyles使用该JSS插件 `direction: 'rtl'` 上设置的主题。 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
-[CSS-in-JS文档](/customization/css-in-js/#opting-out-of-rtl-transformation) 更详细地解释了这个插件的工作原理。 前往 [插件README](https://github.com/alitaheri/jss-rtl) 了解更多相关信息。
-
-使用插件创建新的JSS实例后，需要使其可用于组件树中的所有组件。 JSS有一个 [`JssProvider`](https://github.com/cssinjs/react-jss) 组件：
+Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree. We have a [`StylesProvider`](/css-in-js/api/#stylesprovider) component for this:
 
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-// Custom Material-UI class name generator.
-const generateClassName = createGenerateClassName();
-
 function RTL(props) {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <StylesProvider jss={jss}>
       {props.children}
-    </JssProvider>
+    </StylesProvider>
   );
 }
 ```
 
 ## 演示
 
-*使用右上角的方向切换按钮翻转整个文档*
+*Use the direction toggle button on the top right corner to flip the whole documentation*
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
 ## 选择退出rtl转型
 
-如果您想阻止特定规则集受到 `rtl` 转换的影响，您可以在开头添加 `flip：false`：
+If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning:
 
-*使用右上角的方向切换按钮查看效果*
+*Use the direction toggle button on the top right corner to see the effect*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}

@@ -33,4 +33,4 @@ components: Chip
 
 ## Песочница
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

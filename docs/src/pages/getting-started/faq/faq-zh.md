@@ -6,21 +6,19 @@
 
 ## 为什么我的组件在生产版本中没有正确地渲染？
 
-这样一个n°1问题很可能是当你的代码在生产模式下 bundle （打包）后，有一些class name（类名称）会产生冲突。 如果想要 material-ui 正常工作, 页面上所有组件的 `clsx` 值必须由 [类名称生成器 ](/customization/css-in-js/#creategenerateclassname-options-class-name-generator) 的单个实例生成。
+这样一个n°1问题很可能是当你的代码在生产模式下 bundle （打包）后，有一些class name（类名称）会产生冲突。 如果想要 Material-UI 正常工作, 页面上所有组件的 `classname` 值必须由 [类名称生成器](/css-in-js/advanced/#class-names) 的单个实例生成。
 
 若要更正此问题, 需要初始化页面上的所有组件, 以便它们之间只有 **1个类名称生成器 **。
 
 在很多情况下，您可能最终会意外地使用两个类名生成器：
 
 - 比如你一不小心 **打包**了 两个版本的 Material-UI。 你可能错误地将一个依赖和 material-ui 设置为同版本依赖了。
-- 对于你的React Tree（React树控件）而言，你在使用`JssProvider`构建**subject（分支）**。
+- 对于你的React Tree（React树控件）而言，你在使用`StylesProvider`构建**subset（分支）**。
 - 您正在使用打包根据，而它拆分代码的方式导致创建了多个类名生成器的实例。 >如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`optimizations(优化项)`下</code>配置 `runtimeChunk</2></a> 。</li>
 </ul>
 
-<p>总的来说，通过在其组件树顶部的<a href="/customization/css-in-js/#jssprovider"><code>JssProvider`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)来包装每个 Material-UI 应用程序，**并且在他们之间使用单个类名称生成器**，能够简单地解决这个问题。</p> 
-    [这是一个详细的解析例子](/customization/css-in-js/#jssprovider)。 任何解决方案的最后一部分将根据您使用的打包工具而有所不同，但总体目标是确保包括上述第一段代码块的公共模块只被加载且运行一次。
-    
-    ⚠️你赶时间吗？ 放心，我们提供了[`dangerouslyUseGlobalCSS`](/customization/css-in-js/#global-css)这个选项，以使类名称的**确定性**成为一个快速的解决方案：.
+<p>总的来说，通过在其组件树顶部的<a href="/css-in-js/api/#stylesprovider"><code>StylesProvider`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)来包装每个 Material-UI 应用程序，**并且在他们之间使用单个类名称生成器**，能够简单地解决这个问题。</p> 
+    ⚠️ If you are in a hurry, we provide an option to make the class names **deterministic** as a quick escape hatch: [`dangerouslyUseGlobalCSS`](/css-in-js/advanced/#deterministic-class-names).
     
     ## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
     
@@ -35,10 +33,10 @@
     
     const theme = createMuiTheme({
       props: {
-        // Name of the component ⚛️
+        // 组件的名称 ⚛️
         MuiButtonBase: {
-          // The properties to apply
-          disableRipple: true, // No more ripple, on the whole application 
+          // 要使用的属性
+          disableRipple: true, // 在整个应用中都没有涟漪效果(ripple)
         },
       },
     });

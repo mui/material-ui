@@ -20,8 +20,6 @@ components: Divider
 
 ## Вкладыш
 
-Свойство `inset` является устаревшим. Сейчас вам следует использовать `variant="inset"`.
-
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
 ## Подтитульные разделлители

@@ -33,4 +33,4 @@ Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Suppri
 
 ## Terrain de jeu de puce
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

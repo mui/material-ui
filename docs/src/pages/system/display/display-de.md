@@ -1,4 +1,4 @@
-# Display
+# Anzeige
 
 <p class="description">Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.</p>
 
@@ -22,7 +22,7 @@
 
 For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide element responsively for each screen size.
 
-| Screen Size        | Class                                                |
+| Screen Size        | Klasse                                               |
 |:------------------ |:---------------------------------------------------- |
 | Hidden on all      | `display="none"`                                     |
 | Hidden only on xs  | `display={{ xs: 'none', sm: 'block' }}`              |
@@ -66,7 +66,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 import { display } from '@material-ui/system';
 ```
 
-| Import name    | Prop           | CSS property | Theme key |
+| Import name    | Eigenschaften  | CSS property | Theme key |
 |:-------------- |:-------------- |:------------ |:--------- |
 | `displayRaw`   | `display`      | `display`    | none      |
 | `displayPrint` | `displayPrint` | `display`    | none      |

@@ -1,5 +1,5 @@
 ---
-title: Компонент Card React
+title: Card компонент из React
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 # Карточки

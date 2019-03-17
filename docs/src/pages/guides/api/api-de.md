@@ -16,11 +16,11 @@ You may have noticed some inconsistency in the API regarding composing component
 2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
 3. API consistency matters.
 
-## Rules
+## Regeln
 
 Aside from the above composition trade-off, we enforce the following rules:
 
-### Spread
+### Verteilt
 
 Undocumented properties supplied are spread to the root element; for instance, the `className` property is applied to the root.
 

@@ -14,7 +14,7 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 Only one snackbar may be displayed at a time.
 
-## Simple
+## Einfach
 
 A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
@@ -28,7 +28,7 @@ If you have been reading the [overrides documentation page](/customization/overr
 
 {{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}
 
-## Positioned
+## Positioniert
 
 There may be circumstances when the placement of the snackbar needs to be more flexible.
 
@@ -40,7 +40,7 @@ Some snackbars with varying message length.
 
 {{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
 
-## Transitions
+## Übergänge
 
 ### Consecutive Snackbars
 
@@ -62,7 +62,7 @@ Change the direction of the transition. Slide is the default transition.
 
 ### Change Transition
 
-Use a different transition.
+Verwenden Sie einen anderen Übergang.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
 

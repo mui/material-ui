@@ -27,7 +27,7 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 ## CSS 媒体查询
 
-CSS 媒体查询是让 UI 具有响应性的惯用做法。 我们提供了四个 [CSS-in-JS](/customization/css-in-js/) 的工具函数来实现媒体查询:
+CSS 媒体查询是让 UI 具有响应性的惯用做法。 We provide four styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -65,7 +65,7 @@ const styles = theme => ({
 
 ### withWidth()
 
-> ⚠️ 如果React的钩子发布稳定版本，那么 [MeuserMediaQuery](/layout/use-media-query/) 钩子，这个更高订单组件将被废弃。
+> ⚠️当React Hooks成为稳定版本时，此高阶组件将被弃用并使用[ useMediaQuery](/layout/use-media-query/) hook代替。
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度小于breakpoint key给出的屏幕大小。
 
 #### 例子
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度大于断点键给出的屏幕大小。
+`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度大于breakpoint key给出的屏幕大小。
 
 #### 例子
 

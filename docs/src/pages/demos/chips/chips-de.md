@@ -33,4 +33,4 @@ Ein Beispiel vom Rendern mehrerer Chips aus einem Array von Werten. Das Löschen
 
 ## Chip Spielwiese
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

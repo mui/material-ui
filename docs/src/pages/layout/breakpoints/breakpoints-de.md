@@ -27,7 +27,7 @@ The breakpoints are used internally in various components to make them responsiv
 
 ## CSS Media Queries
 
-CSS media queries is the idiomatic approach to make your UI responsive. We provide four [CSS-in-JS](/customization/css-in-js/) helpers to do so:
+CSS media queries is the idiomatic approach to make your UI responsive. We provide four styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -85,11 +85,11 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Arguments
+#### Argumente
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Rückgabewerte
 
 `media query`: A media query string ready to be used with JSS.
 
@@ -110,11 +110,11 @@ const styles = theme => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
-#### Arguments
+#### Argumente
 
 1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
-#### Returns
+#### Rückgabewerte
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
 
@@ -136,11 +136,11 @@ const styles = theme => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
-#### Arguments
+#### Argumente
 
 1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Rückgabewerte
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
@@ -162,12 +162,12 @@ const styles = theme => ({
 
 ### `theme.breakpoints.between(start, end) => media query`
 
-#### Arguments
+#### Argumente
 
 1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Returns
+#### Rückgabewerte
 
 `media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
@@ -199,9 +199,9 @@ Some implementation details that might be interesting to being aware of:
 
 - It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
-#### Arguments
+#### Argumente
 
-1. `options` (*Object* [optional]): 
+1. `Optionen` (*Object* [optional]): 
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.noSSR` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
     - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#properties) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
@@ -220,7 +220,7 @@ const theme = createMuiTheme({
 
 - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
-#### Returns
+#### Rückgabewerte
 
 `higher-order component`: Should be used to wrap a component.
 

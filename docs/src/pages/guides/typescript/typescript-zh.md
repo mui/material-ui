@@ -196,7 +196,7 @@ const DecoratedClass = withStyles(styles)(
 
 ## 自定义 `主题`
 
-向 `Theme`添加自定义属性时，您可以通过利用 [Typescript的模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)继续以强类型方式使用它。
+When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting [TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 以下示例添加了一个 `appDrawer` 属性，该属性合并到由 `material-ui`导出的属性中：
 

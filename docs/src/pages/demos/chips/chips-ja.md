@@ -33,4 +33,4 @@ An example of rendering multiple Chips from an array of values. Deleting a chip 
 
 ## Chip Playground
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

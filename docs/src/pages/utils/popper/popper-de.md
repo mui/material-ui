@@ -1,56 +1,56 @@
 ---
-title: Popper React component
+title: Popper React-Komponente
 components: Popper
 ---
 # Popper
 
-<p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
+<p class="description">Mit einem Popper können Inhalte übereinander angezeigt werden. Es ist eine Alternative zum React-Popper.</p>
 
-Some important features of the `Popper` component:
+Einige wichtige Funktionen der `Popper` Komponente:
 
 - 
 - 
 - 
-- The children is [`Portal`](/utils/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
-- The scroll and click away aren't blocked like with the [`Popover`](/utils/popover/) component. The placement of the popper updates with the available area in the viewport.
-- The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
+- Das untergeordnete Element des Hauptteils des Dokuments ist ein [`Portal`](/utils/portal/), um Probleme beim Rendern zu vermeiden. Sie können dieses Verhalten mit `disablePortal` deaktivieren.
+- Bildlauf und Klick werden nicht wie bei der Komponente [`Popover`](/utils/popover/) blockiert. Die Platzierung des Popper wird mit dem verfügbaren Bereich im Ansichtsfenster aktualisiert.
+- Die `anchorEl` Komponente wird als Referenzobjekt übergeben, um eine neue Instanz von `Popper.js` zu erstellen.
 
-## Simple Popper
+## Einfacher Popper
 
 {{"demo": "pages/utils/popper/SimplePopper.js" }}
 
-## Minimalist Popper
+## Minimalistischer Popper
 
-You can use the component with zero extra dependencies.
+Sie können die Komponente ohne zusätzliche Abhängigkeiten verwenden.
 
 {{"demo": "pages/utils/popper/MinimalPopper.js" }}
 
-## Scroll playground
+## Blätter Spielplatz
 
-{{"demo": "pages/utils/popper/ScrollPlayground.js"}}
+{{"demo": "pages/utils/popper/ScrollPlayground.js", "hideHeader": true}}
 
-## Positioned Popper
+## Positionierter Popper
 
 {{"demo": "pages/utils/popper/PositionedPopper.js"}}
 
-## Without transition Popper
+## Popper ohne Übergang
 
 {{"demo": "pages/utils/popper/NoTransitionPopper.js"}}
 
-## Faked reference object
+## Gefälschtes Referenzobjekt
 
-The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+Die `anchorEl` -Eigenschaft kann eine Referenz auf ein künstliches DOM-Element sein. Sie müssen nur ein Objekt mit der Form [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) erstellen.
 
-Highlight part of the text to see the popper:
+Markieren Sie einen Teil des Textes, um den Popper zu sehen:
 
 {{"demo": "pages/utils/popper/FakedReferencePopper.js"}}
 
-## Complementary projects
+## Ergänzende Projekte
 
-For more advanced use cases you might be able to take advantage of:
+Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-### PopupState helper
+### PopupState-Helfer
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
+Es gibt ein Drittanbieter-Paket [`Material-Ui-Popup-Status`](https://github.com/jcoreio/material-ui-popup-state), das sich in den meisten Fällen um Popper Status kümmern kann.
 
 {{"demo": "pages/utils/popper/PopperPopupState.js"}}
