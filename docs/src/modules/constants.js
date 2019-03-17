@@ -10,7 +10,7 @@ export const ACTION_TYPES = {
 };
 
 // Active
-export const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
+export const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es','id'];
 
 // Work in progress
-export const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja'];
+export const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja', 'id'];
