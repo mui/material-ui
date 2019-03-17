@@ -19,7 +19,7 @@ describe('<ToggleButtonGroup />', () => {
   });
 
   function findButton(wrapper, value) {
-    return wrapper.find(`ToggleButton[value="${value}"]`).first();
+    return wrapper.find(`button[value="${value}"]`).first();
   }
 
   it('should render a <div> element', () => {

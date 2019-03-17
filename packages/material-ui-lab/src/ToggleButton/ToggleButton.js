@@ -95,9 +95,7 @@ function ToggleButton(props) {
       }
     }
 
-    if (selectState) {
-      selectState.toggle(value, event);
-    }
+    selectState.toggle(value, event);
   };
 
   const selected =
@@ -117,6 +115,7 @@ function ToggleButton(props) {
       focusRipple={!disableFocusRipple}
       ref={innerRef}
       onClick={handleChange}
+      value={value}
       {...other}
     >
       <span className={classes.label}>{children}</span>

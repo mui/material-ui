@@ -26,7 +26,7 @@ describe('<ToggleButton />', () => {
   });
 
   function findButton(wrapper, value) {
-    return wrapper.find(`ToggleButton[value="${value}"]`).first();
+    return wrapper.find(`button[value="${value}"]`).first();
   }
 
   it('should render a <ButtonBase> element', () => {
@@ -75,7 +75,6 @@ describe('<ToggleButton />', () => {
 
       assert.strictEqual(
         findButton(wrapper, 'one')
-          .childAt(0)
           .hasClass(classes.selected),
         true,
       );
@@ -109,13 +108,11 @@ describe('<ToggleButton />', () => {
 
       assert.strictEqual(
         findButton(wrapper, 'one')
-          .childAt(0)
           .hasClass(classes.selected),
         true,
       );
       assert.strictEqual(
         findButton(wrapper, 'two')
-          .childAt(0)
           .hasClass(classes.selected),
         false,
       );

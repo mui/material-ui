@@ -30,7 +30,7 @@ function RadioGroup(props) {
   };
 
   return (
-    <SelectableGroup onChange={handleChange} value={value} additional={{ name }} exclusive>
+    <SelectableGroup onChange={handleChange} value={value} name={name} exclusive>
       <FormGroup role="radiogroup" {...other}>
         {children}
       </FormGroup>
