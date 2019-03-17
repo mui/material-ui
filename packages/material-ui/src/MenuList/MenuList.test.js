@@ -14,6 +14,7 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
   }
   style.width = width;
 }
+
 describe('<MenuList />', () => {
   let mount;
   let shallow;
@@ -81,10 +82,7 @@ describe('<MenuList />', () => {
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
       const list = wrapper.getDOMNode();
       setStyleWidthForJsdomOrBrowser(list.style, '');
-      Object.defineProperty(list, 'clientHeight', { value: 11 });
-      if (list.clientHeight !== 11) {
-        stub(list, 'clientHeight').value(11);
-      }
+      stub(list, 'clientHeight').get(() => 11);
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
       assert.strictEqual(list.style.width, '');
@@ -102,10 +100,7 @@ describe('<MenuList />', () => {
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
       const list = wrapper.getDOMNode();
       setStyleWidthForJsdomOrBrowser(list.style, '');
-      Object.defineProperty(list, 'clientHeight', { value: 11 });
-      if (list.clientHeight !== 11) {
-        stub(list, 'clientHeight').value(11);
-      }
+      stub(list, 'clientHeight').get(() => 11);
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
       assert.strictEqual(list.style.width, '');
