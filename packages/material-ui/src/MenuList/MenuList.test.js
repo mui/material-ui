@@ -4,6 +4,15 @@ import { createMount, createShallow, testRef } from '@material-ui/core/test-util
 import MenuList from './MenuList';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 
+function setStyleWidthForJsdomOrBrowser(style, width) {
+  style.width = '';
+  style.width = 'calc(100% + 0px)';
+  if (style.width !== 'calc(100% + 0px)') {
+    // For jsdom
+    Object.defineProperty(style, 'width', { writable: true, value: '' });
+  }
+  style.width = width;
+}
 describe('<MenuList />', () => {
   let mount;
   let shallow;
@@ -70,7 +79,7 @@ describe('<MenuList />', () => {
       const menuListActionsRef = React.createRef();
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
       const list = wrapper.getDOMNode();
-      Object.defineProperty(list.style, 'width', { writable: true, value: '' });
+      setStyleWidthForJsdomOrBrowser(list.style, '');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
@@ -88,7 +97,7 @@ describe('<MenuList />', () => {
       const menuListActionsRef = React.createRef();
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
       const list = wrapper.getDOMNode();
-      Object.defineProperty(list.style, 'width', { writable: true, value: '' });
+      setStyleWidthForJsdomOrBrowser(list.style, '');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
@@ -106,7 +115,7 @@ describe('<MenuList />', () => {
       const menuListActionsRef = React.createRef();
       const wrapper = mount(<MenuList actions={menuListActionsRef} />);
       const list = wrapper.getDOMNode();
-      list.style.width = '10px';
+      setStyleWidthForJsdomOrBrowser(list.style, '10px');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
