@@ -26,7 +26,7 @@ Here are some highlights ✨:
   +<AddIcon htmlColor={secondary.contrastText} />
   ```
 
-- [Divider] Remove Divider inset prop (#14826) @joshwooding
+- [Divider] Remove the deprecated inset prop (#14826) @joshwooding
 
   ```diff
   -<Divider inset />

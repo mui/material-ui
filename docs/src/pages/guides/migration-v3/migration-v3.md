@@ -207,7 +207,7 @@ You should be able to move the custom styles to the root class key.
 
 ### Divider
 
-- [Divider] Remove Divider inset prop.
+- [Divider] Remove the deprecated inset prop.
 
   ```diff
   -<Divider inset />
