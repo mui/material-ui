@@ -1,5 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
+import { stub } from 'sinon';
 import { createMount, createShallow, testRef } from '@material-ui/core/test-utils';
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
@@ -81,6 +82,9 @@ describe('<MenuList />', () => {
       const list = wrapper.getDOMNode();
       setStyleWidthForJsdomOrBrowser(list.style, '');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
+      if (list.clientHeight !== 11) {
+        stub(list, 'clientHeight').value(11);
+      }
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
       assert.strictEqual(list.style.width, '');
@@ -99,6 +103,9 @@ describe('<MenuList />', () => {
       const list = wrapper.getDOMNode();
       setStyleWidthForJsdomOrBrowser(list.style, '');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
+      if (list.clientHeight !== 11) {
+        stub(list, 'clientHeight').value(11);
+      }
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
       assert.strictEqual(list.style.width, '');
