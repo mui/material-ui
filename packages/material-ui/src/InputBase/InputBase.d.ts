@@ -15,7 +15,7 @@ export interface InputBaseProps
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
-  inputComponent?: React.ReactType<InputBaseComponentProps>;
+  inputComponent?: React.ElementType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
   inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense' | 'none';

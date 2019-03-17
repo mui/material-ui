@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface NativeSelectInputProps {
   disabled?: boolean;
-  IconComponent?: React.ReactType;
+  IconComponent?: React.ElementType;
   inputRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: NativeSelectInputProps['value'] },
   ) => void;

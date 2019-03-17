@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
-  component?: React.ReactType;
+  component?: React.ElementType;
   // styled API
   clone?: boolean;
 }

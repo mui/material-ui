@@ -8,7 +8,7 @@ export interface StepProps
   alternativeLabel?: boolean;
   children?: React.ReactNode;
   completed?: boolean;
-  connector?: React.ReactElement<any>;
+  connector?: React.ReactElement;
   disabled?: boolean;
   index?: number;
   last?: boolean;

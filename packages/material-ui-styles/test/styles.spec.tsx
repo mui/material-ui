@@ -201,7 +201,7 @@ withStyles(theme =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
-    children?: React.ReactElement<any>;
+    children?: React.ReactElement;
     inset?: boolean;
     row?: boolean;
   }

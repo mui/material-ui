@@ -4,7 +4,7 @@ import { StandardProps } from '..';
 export interface DividerProps
   extends StandardProps<React.HTMLAttributes<HTMLHRElement>, DividerClassKey> {
   absolute?: boolean;
-  component?: React.ReactType<DividerProps>;
+  component?: React.ElementType<DividerProps>;
   light?: boolean;
   variant?: 'fullWidth' | 'inset' | 'middle';
 }

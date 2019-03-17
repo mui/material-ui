@@ -11,8 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import Typography from '@material-ui/core/Typography';
-import MemoryRouter from 'react-router/MemoryRouter';
-import Route from 'react-router/Route';
+import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 
 const styles = theme => ({

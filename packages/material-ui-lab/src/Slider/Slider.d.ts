@@ -21,7 +21,7 @@ export interface SliderProps
   step?: number;
   value?: number;
   valueReducer?: ValueReducer;
-  thumb?: React.ReactElement<any>;
+  thumb?: React.ReactElement;
   onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
   onDragEnd?: (event: React.ChangeEvent<{}>) => void;
   onDragStart?: (event: React.ChangeEvent<{}>) => void;

@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { Orientation } from '../Stepper';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export type StepButtonIcon = React.ReactElement<any> | string | number | null;
+export type StepButtonIcon = React.ReactElement | string | number | null;
 
 export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButtonClasskey> {
   active?: boolean;
