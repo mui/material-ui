@@ -55,7 +55,7 @@ Performance is all about doing less work. We have the following leverages:
 - 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core@4.0.0-alpha.4).
 It's a continuous effort. v4 is 15% smaller so far, while adding new features.
 We are eager to find new bundle size reduction opportunities.
-  - JSS can we reduce the overhead of this module?
+  - JSS. Can we reduce the overhead of this module?
   - Migrating from class components to hooks [helps](https://twitter.com/olivtassinari/status/1106905745264652289).
   - Popper.js is working [on a smaller v2](https://bundlephobia.com/result?p=popper.js@2.0.0-next.4) version.
   - We can replace [react-event-listener](https://bundlephobia.com/result?p=react-event-listener@0.6.6) with the hook API.
