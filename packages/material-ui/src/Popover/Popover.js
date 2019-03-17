@@ -178,7 +178,7 @@ class Popover extends React.Component {
     }
 
     warning(
-      elemRect.height < heightThreshold || !elemRect.height || !heightThreshold,
+      elemRect.height <= heightThreshold || !elemRect.height || !heightThreshold,
       [
         'Material-UI: the popover component is too tall.',
         `Some part of it can not be seen on the screen (${elemRect.height - heightThreshold}px).`,
