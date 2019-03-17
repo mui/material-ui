@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 
@@ -10,7 +9,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function Types(props) {
+function Types(props) {
   const { classes } = useStyles(props);
 
   return (

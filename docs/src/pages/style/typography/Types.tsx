@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-export function Types(props: { children?: React.ReactNode }): React.ReactElement {
+function Types(props: { children?: React.ReactNode }): React.ReactElement {
   const { classes } = useStyles(props);
 
   return (
