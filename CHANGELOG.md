@@ -1,5 +1,97 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.0.0-alpha.4
+###### *Mar 17, 2019*
+
+A big thanks to the 17 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- Improve the TypeScript definitions of @material-ui/styles @VincentLanglet.
+- Prepare the migration of more TypeScript demos (#14896) @eps1lon.
+- Complete the i18n support for the documentation (#14838) @oliviertassinari.
+- And many more 🐛 bug fixes and 📝 documentation improvements.
+
+### `@material-ui/core@v4.0.0-alpha.4`
+
+#### Breaking change
+
+- [ButtonBase] Require host or ref forwarding components (#13664) @eps1lon
+- [SvgIcon] Rename nativeColor -> htmlColor (#14863) @oliviertassinari
+
+  React solved the same problem with the `for` HTML attribute, they have decided to call the prop  `htmlFor`. This change follows the same reasoning.
+
+  ```diff
+  -<AddIcon nativeColor={secondary.contrastText} />
+  +<AddIcon htmlColor={secondary.contrastText} />
+  ```
+
+- [Divider] Remove Divider inset prop (#14826) @joshwooding
+
+  ```diff
+  -<Divider inset />
+  +<Divider variant="inset" />
+  ```
+
+- [Box] Remove the unstable prefix & import the right version (#14845) @pheuter
+
+  ```diff
+  -import { unstable_Box as Box } from '@material-ui/core/Box';
+  +import Box from '@material-ui/core/Box';
+  ```
+
+#### Changes
+
+- [Grid] Adding missing 'spacing-xs-*' to TypeScript definition (#14859) @scott-martin
+- [Tabs] Fix an infinite loop (#14664) @caroe233
+- [NoSsr] Add missing defer prop to TypeScript definition (#14869) @DaleJefferson
+- [core] Remove dom-helpers dependency (#14877) @oliviertassinari
+- [TextField] Add typing for theme wide props override (#14879) @C-Rodg
+- [Autocomplete] Add a downshift variant demo (#14881) @ekoeditaa
+- [Popover][Popper] Warn when `anchorEl` is invalid (#13468) @Andarist
+- [LinearProgress] Improve customization capability (#14882) @giuliogallerini
+- [Popover] Fix PaperProps classname concat (#14902) @vitkon
+- [MenuItem] Add buttonRef (and other button props) type (#14772) @VincentLanglet
+- [TouchRipple] Remove findDOMNode usage (#14825) @eps1lon
+- [ExpansionPanelSummary] Simplify overrides (#14828) @TroySchmidt
+- [Popper] Use refs instead of findDOMNode (#14829) @eps1lon
+- [Tab] Fix alignment when using multiple children (#14844) @HaNdTriX
+- [TextField] Convert to function component (#14833) @eps1lon
+- [Table] Fix demo parse rowsPerPage value as an integer (#14848) @SimplyAhmazing
+
+### `@material-ui/styles@v4.0.0-alpha.4`
+
+- [styles] Change material-ui/styles folder structure (#14868) @VincentLanglet
+- [styles] Add WithThemeCreator typing (#14856) @VincentLanglet
+- [styles] Add types for defaultTheme option in makeStyles (#14862) @vitkon
+- [styles] Make CSSProperties public (#14802) @VincentLanglet
+
+### `@material-ui/lab@v4.0.0-alpha.4`
+
+- [Slider] Fix possible touchstart leak (#14837) @eps1lon
+
+### Docs
+
+- [docs] Prepare full TypeScript demos (#14896) @eps1lon
+- [docs] Improve documentation for new component + ref behavior (#14883) @eps1lon
+- [docs] Add perf section to ExpansionPanel (#14903) @eps1lon
+- [docs] Simplify the /examples (#14822) @oliviertassinari
+- [docs] Add ssr-next example (#14823) @oliviertassinari
+- [docs] Add missing breaking changes from #14795 (#14824) @eps1lon
+- [docs] Minor fixes to system demos (#14831) @jo shwooding
+- Complete the i18n support for the documentation] Enable the i18n search (#14838) @oliviertassinari
+- [docs] Fix babel generator extra line (#14849) @VincentLanglet
+- [docs] Remove unnecessary findDOMNode usage (#14836) @eps1lon
+
+### Core
+
+- [core] Only import from top or 2nd level (#14888) @eps1lon
+- [test] Leaner eslint config (#14901) @eps1lon
+- [core] Upgrade the dev dependencies (#14911) @oliviertassinari
+- [core] Stop using @types/jss (#14852) @VincentLanglet
+- [core] Babel plugin unwrap createStyles now handle material-ui/styles package (#14850) @VincentLanglet
+- [test] Fix unwrapCreateStyles tests for windows (#14832) @ryancogswell
+
 ## 4.0.0-alpha.3
 ###### *Mar 10, 2019*
 
