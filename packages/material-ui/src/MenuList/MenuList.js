@@ -61,7 +61,9 @@ function MenuList(props) {
         !listRef.current.style.width
       ) {
         const scrollbarSize = `${getScrollbarSize(true)}px`;
-        listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = scrollbarSize;
+        listRef.current.style[
+          theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'
+        ] = scrollbarSize;
         listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
       }
       return listRef.current;
