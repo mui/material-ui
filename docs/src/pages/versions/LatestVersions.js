@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -56,7 +55,7 @@ function LatestVersions(props) {
                 variant="body2"
                 color="secondary"
                 rel="nofollow"
-                href="https://next.material-ui.com/"
+                href="https://next--material-ui.netlify.com/"
               >
                 Documentation
               </Link>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,9 +11,8 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import Typography from '@material-ui/core/Typography';
-import MemoryRouter from 'react-router/MemoryRouter';
-import Route from 'react-router/Route';
-import { Link } from 'react-router-dom';
+import { Route, MemoryRouter } from 'react-router';
+import { Link as RouterLink } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -26,7 +26,10 @@ const styles = theme => ({
 });
 
 class ListItemLink extends React.Component {
-  renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
+  renderLink = React.forwardRef((itemProps, ref) => (
+    // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
+    <RouterLink to={this.props.to} {...itemProps} innerRef={ref} />
+  ));
 
   render() {
     const { icon, primary } = this.props;
@@ -46,6 +49,9 @@ ListItemLink.propTypes = {
   primary: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
 };
+
+// polyfill required for react-router-dom < 5.0.0
+const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);
 
 function ListItemLinkShorthand(props) {
   const { primary, to } = props;

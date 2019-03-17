@@ -21,7 +21,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |   | The content of the expansion panel summary. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |   | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |   | The icon to display as the expand indicator. |
-| <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `TouchRipple` element wrapping the expand icon. |
+| <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> |   | Properties applied to the `IconButton` element wrapping the expand icon. |
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base/)).
 

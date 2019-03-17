@@ -136,14 +136,12 @@ function CustomizedInputs(props) {
         variant="outlined"
         id="custom-css-outlined-input"
       />
-
       <ThemeProvider theme={theme}>
         <TextField
           className={classes.margin}
           label="ThemeProvider"
           id="mui-theme-provider-standard-input"
         />
-
         <TextField
           className={classes.margin}
           label="ThemeProvider"

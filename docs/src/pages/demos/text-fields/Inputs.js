@@ -24,7 +24,6 @@ function Inputs(props) {
           'aria-label': 'Description',
         }}
       />
-
       <Input
         placeholder="Placeholder"
         className={classes.input}
@@ -32,7 +31,6 @@ function Inputs(props) {
           'aria-label': 'Description',
         }}
       />
-
       <Input
         value="Disabled"
         className={classes.input}
@@ -41,7 +39,6 @@ function Inputs(props) {
           'aria-label': 'Description',
         }}
       />
-
       <Input
         defaultValue="Error"
         className={classes.input}

@@ -482,7 +482,7 @@ describe('<Tabs />', () => {
       it('should set only left scroll button state', () => {
         const wrapper = mount(tabs);
 
-        setFakeTabs(wrapper, { scrollLeft: 1 });
+        setFakeTabs(wrapper, { scrollLeft: 2 });
 
         assert.strictEqual(hasLeftScrollButton(wrapper), true);
         assert.strictEqual(hasRightScrollButton(wrapper), false);
@@ -505,13 +505,26 @@ describe('<Tabs />', () => {
         const wrapper = mount(tabs);
 
         setFakeTabs(wrapper, {
-          scrollLeft: 1,
+          scrollLeft: 2,
           scrollWidth: 110,
           clientWidth: 100,
         });
 
         assert.strictEqual(hasLeftScrollButton(wrapper), true);
         assert.strictEqual(hasRightScrollButton(wrapper), true);
+      });
+
+      it('should not set scroll button states if difference is only one pixel', () => {
+        const wrapper = mount(tabs);
+
+        setFakeTabs(wrapper, {
+          scrollLeft: 0,
+          scrollWidth: 101,
+          clientWidth: 100,
+        });
+
+        assert.strictEqual(hasLeftScrollButton(wrapper), false);
+        assert.strictEqual(hasRightScrollButton(wrapper), false);
       });
     });
   });

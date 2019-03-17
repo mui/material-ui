@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface InputAdornmentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, InputAdornmentClassKey> {
-  component?: React.ReactType<InputAdornmentProps>;
+  component?: React.ElementType<InputAdornmentProps>;
   disablePointerEvents?: boolean;
   disableTypography?: boolean;
   position: 'start' | 'end';

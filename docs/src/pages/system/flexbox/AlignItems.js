@@ -1,5 +1,5 @@
 import React from 'react';
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 function AlignItems() {
   return (

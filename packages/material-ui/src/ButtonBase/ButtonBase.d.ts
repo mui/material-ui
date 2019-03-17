@@ -12,6 +12,7 @@ export interface ButtonBaseTypeMap {
     action?: (actions: ButtonBaseActions) => void;
     buttonRef?: React.Ref<any> | React.RefObject<any>;
     centerRipple?: boolean;
+    disabled?: boolean;
     disableRipple?: boolean;
     disableTouchRipple?: boolean;
     focusRipple?: boolean;

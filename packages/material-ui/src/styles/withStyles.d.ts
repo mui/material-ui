@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit, PropInjector } from '..';
+import { PropInjector } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -28,8 +28,7 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions<ClassKey extends string = string>
-  extends JSS.CreateStyleSheetOptions<ClassKey> {
+export interface WithStylesOptions extends JSS.StyleSheetFactoryOptions {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -57,10 +56,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<
-  ClassKey extends string,
-  Options extends WithStylesOptions<ClassKey> = {}
->(
+export default function withStyles<ClassKey extends string, Options extends WithStylesOptions = {}>(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
 ): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

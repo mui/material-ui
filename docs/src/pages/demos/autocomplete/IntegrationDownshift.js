@@ -90,12 +90,12 @@ renderSuggestion.propTypes = {
   suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
 
-function getSuggestions(value) {
+function getSuggestions(value, { showEmpty = false } = {}) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
 
-  return inputLength === 0
+  return inputLength === 0 && !showEmpty
     ? []
     : suggestions.filter(suggestion => {
         const keep =
@@ -313,6 +313,51 @@ function IntegrationDownshift() {
                 </Paper>
               </div>
             </Popper>
+          </div>
+        )}
+      </Downshift>
+      <div className={classes.divider} />
+      <Downshift id="downshift-options">
+        {({
+          clearSelection,
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          openMenu,
+          selectedItem,
+        }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                onFocus: openMenu,
+                onChange: event => {
+                  if (event.target.value === '') {
+                    clearSelection();
+                  }
+                },
+                placeholder: 'With the clear & show empty options',
+              }),
+            })}
+            <div {...getMenuProps()}>
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue, { showEmpty: true }).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
           </div>
         )}
       </Downshift>

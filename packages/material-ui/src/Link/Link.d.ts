@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface LinkProps
@@ -8,7 +8,7 @@ export interface LinkProps
     LinkClassKey,
     'component'
   > {
-  component?: React.ReactType<LinkProps>;
+  component?: React.ElementType<LinkProps>;
   TypographyClasses?: TypographyProps['classes'];
   underline?: 'none' | 'hover' | 'always';
 }

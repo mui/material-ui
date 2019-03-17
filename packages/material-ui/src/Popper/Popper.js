@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
+import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 
 function flipPlacement(placement) {
@@ -33,6 +33,8 @@ function getAnchorEl(anchorEl) {
  * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
  */
 class Popper extends React.Component {
+  tooltip = React.createRef();
+
   constructor(props) {
     super();
     this.state = {
@@ -82,7 +84,7 @@ class Popper extends React.Component {
 
   handleOpen = () => {
     const { anchorEl, modifiers, open, placement, popperOptions = {}, disablePortal } = this.props;
-    const popperNode = ReactDOM.findDOMNode(this);
+    const popperNode = this.tooltip.current;
 
     if (!popperNode || !anchorEl || !open) {
       return;
@@ -171,6 +173,7 @@ class Popper extends React.Component {
     return (
       <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
         <div
+          ref={this.tooltip}
           role="tooltip"
           style={{
             // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
@@ -192,7 +195,22 @@ Popper.propTypes = {
    * The return value will passed as the reference object of the Popper
    * instance.
    */
-  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
+    if (props.open) {
+      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+
+      if (!(resolvedAnchorEl instanceof HTMLElement)) {
+        return new Error(
+          [
+            'Material-UI: the anchorEl property provided to the component is invalid.',
+            `It should be a HTMLElement instance but it's \`${resolvedAnchorEl}\` instead.`,
+          ].join('\n'),
+        );
+      }
+    }
+
+    return null;
+  }),
   /**
    * Popper render function or node.
    */

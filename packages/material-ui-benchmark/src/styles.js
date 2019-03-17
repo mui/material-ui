@@ -10,7 +10,7 @@ import { renderStylesToString } from 'emotion-server';
 import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
 import { withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
 import jss, { getDynamicStyles } from 'jss';
-import { unstable_Box as Box } from '@material-ui/core/Box/Box';
+import Box from '@material-ui/core/Box';
 
 const suite = new Benchmark.Suite('styles', {
   onError: event => {

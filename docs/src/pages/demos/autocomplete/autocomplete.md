@@ -17,6 +17,8 @@ We encourage people relying on the solutions the React community has built.
 
 In the following example, we demonstrate how to use [downshift](https://github.com/paypal/downshift).
 
+The last demo allow to clear the input and show a number of options on focus.
+
 {{"demo": "pages/demos/autocomplete/IntegrationDownshift.js"}}
 
 ## react-select

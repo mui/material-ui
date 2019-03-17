@@ -69,7 +69,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-uncontrolled"
           label="Uncontrolled"
@@ -78,7 +77,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           required
           id="outlined-required"
@@ -88,7 +86,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           error
           id="outlined-error"
@@ -98,7 +95,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           disabled
           id="outlined-disabled"
@@ -108,7 +104,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-email-input"
           label="Email"
@@ -119,7 +114,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-password-input"
           label="Password"
@@ -129,7 +123,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-read-only-input"
           label="Read Only"
@@ -141,7 +134,6 @@ class OutlinedTextFields extends React.Component {
           }}
           variant="outlined"
         />
-
         <TextField
           id="outlined-dense"
           label="Dense"
@@ -149,7 +141,6 @@ class OutlinedTextFields extends React.Component {
           margin="dense"
           variant="outlined"
         />
-
         <TextField
           id="outlined-multiline-flexible"
           label="Multiline"
@@ -162,7 +153,6 @@ class OutlinedTextFields extends React.Component {
           helperText="hello"
           variant="outlined"
         />
-
         <TextField
           id="outlined-multiline-static"
           label="Multiline"
@@ -173,7 +163,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-helperText"
           label="Helper text"
@@ -183,7 +172,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-with-placeholder"
           label="With placeholder"
@@ -192,7 +180,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-textarea"
           label="Multiline Placeholder"
@@ -202,7 +189,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-number"
           label="Number"
@@ -216,7 +202,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-search"
           label="Search field"
@@ -225,7 +210,6 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
-
         <TextField
           id="outlined-select-currency"
           select
@@ -284,7 +268,6 @@ class OutlinedTextFields extends React.Component {
             shrink: true,
           }}
         />
-
         <TextField
           id="outlined-bare"
           className={classes.textField}

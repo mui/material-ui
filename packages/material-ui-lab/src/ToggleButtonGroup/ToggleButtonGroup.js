@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '@material-ui/core/styles/withStyles';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
+import { withStyles } from '@material-ui/core/styles';
 import SelectableGroup from '@material-ui/core/internal/SelectableGroup';
 
 export const styles = theme => ({
@@ -14,17 +13,17 @@ export const styles = theme => ({
   },
 });
 
-function ToggleButtonGroup(props) {
-  const { children, className, classes, exclusive, innerRef, onChange, value, ...other } = props;
+const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(props, ref) {
+  const { children, className, classes, exclusive, onChange, value, ...other } = props;
 
   return (
     <SelectableGroup exclusive={exclusive} onChange={onChange} value={value}>
-      <div className={clsx(classes.root, className)} ref={innerRef} {...other}>
+      <div className={clsx(classes.root, className)} ref={ref} {...other}>
         {children}
       </div>
     </SelectableGroup>
   );
-}
+});
 
 ToggleButtonGroup.propTypes = {
   /**
@@ -45,11 +44,6 @@ ToggleButtonGroup.propTypes = {
    */
   exclusive: PropTypes.bool,
   /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
@@ -69,6 +63,4 @@ ToggleButtonGroup.defaultProps = {
   exclusive: false,
 };
 
-export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(
-  withForwardedRef(ToggleButtonGroup),
-);
+export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

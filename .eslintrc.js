@@ -25,64 +25,29 @@ module.exports = {
       },
     },
   },
+  /**
+   * Sorted alphanumerically within each group. built-in and each plugin form
+   * their own groups.
+   */
   rules: {
-    // It's buggy
-    'react/jsx-curly-brace-presence': 'off',
-    'react/require-default-props': 'off',
-    'jsx-a11y/label-has-associated-control': 'off',
-    'jsx-a11y/label-has-for': 'off', // deprecated
+    'consistent-this': ['error', 'self'],
     'linebreak-style': 'off', // Doesn't play nicely with Windows
-
+    'no-alert': 'error',
     // Strict, airbnb is using warn
     'no-console': 'error',
-    'no-alert': 'error',
-    'react/no-danger': 'error',
     'no-constant-condition': 'error',
-
-    // Strict, airbnb is using off
-    'react/no-direct-mutation-state': 'error',
-    'react/sort-prop-types': 'error',
-
     // Airbnb use error
     'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
-    'react/forbid-prop-types': 'off',
-    'react/destructuring-assignment': 'off',
-    'react/no-find-dom-node': 'off',
-
-    'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
-    'consistent-this': ['error', 'self'],
-    'max-len': [
-      'error',
-      100,
-      2,
-      {
-        ignoreUrls: true,
-      },
-    ], // airbnb is allowing some edge cases
-    'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
-    'import/namespace': ['error', { allowComputed: true }],
-    'import/order': [
-      'error',
-      {
-        groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
-        'newlines-between': 'never',
-      },
-    ],
-    'react/jsx-handler-names': [
-      'error',
-      {
-        // airbnb is disabling this rule
-        eventHandlerPrefix: 'handle',
-        eventHandlerPropPrefix: 'on',
-      },
-    ],
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
+
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/label-has-for': 'off', // deprecated
+    'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
+
     'material-ui/docgen-ignore-before-comment': 'error',
+
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
     'mocha/no-global-tests': 'error',
@@ -93,7 +58,40 @@ module.exports = {
     'mocha/no-sibling-hooks': 'error',
     'mocha/no-skipped-tests': 'error',
     'mocha/no-top-level-hooks': 'error',
-    'mocha/prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'mocha/valid-suite-description': 'error',
+
+    'react/destructuring-assignment': 'off',
+    // It's buggy
+    'react/forbid-prop-types': 'off',
+    'react/jsx-curly-brace-presence': 'off',
+    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
+    'react/jsx-handler-names': [
+      'error',
+      {
+        // airbnb is disabling this rule
+        eventHandlerPrefix: 'handle',
+        eventHandlerPropPrefix: 'on',
+      },
+    ],
+    'react/no-danger': 'error',
+    // Strict, airbnb is using off
+    'react/no-direct-mutation-state': 'error',
+    'react/no-find-dom-node': 'off',
+    'react/no-multi-comp': 'off',
+    'react/require-default-props': 'off',
+    'react/sort-prop-types': 'error',
+
+    'import/no-extraneous-dependencies': 'off', // It would be better to enable this rule.
+    'import/namespace': ['error', { allowComputed: true }],
+    'import/order': [
+      'error',
+      {
+        groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
+        'newlines-between': 'never',
+      },
+    ],
+
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
   },
 };

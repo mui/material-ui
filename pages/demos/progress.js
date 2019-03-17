@@ -7,7 +7,7 @@ const req = require.context('docs/src/pages/demos/progress', false, /\.md|\.js$/
 const reqSource = require.context(
   '!raw-loader!../../docs/src/pages/demos/progress',
   false,
-  /\.js$/,
+  /\.(js|tsx)$/,
 );
 const reqPrefix = 'pages/demos/progress';
 

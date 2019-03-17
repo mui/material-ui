@@ -17,9 +17,11 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 let prefixer;
 let cleanCSS;
 if (process.env.NODE_ENV === 'production') {
+  /* eslint-disable global-require */
   const postcss = require('postcss');
   const autoprefixer = require('autoprefixer');
   const CleanCSS = require('clean-css');
+  /* eslint-enable global-require */
 
   prefixer = postcss([autoprefixer]);
   cleanCSS = new CleanCSS();

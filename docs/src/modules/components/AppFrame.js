@@ -45,7 +45,7 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const languages = [
+export const languages = [
   {
     code: 'en',
     text: '🇺🇸 English',

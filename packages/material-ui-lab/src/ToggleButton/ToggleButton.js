@@ -3,10 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import withForwardedRef from '@material-ui/core/utils/withForwardedRef';
 import useSelectedState from '@material-ui/core/internal/SelectableGroup/useSelectedState';
 
 export const styles = theme => ({
@@ -71,14 +69,13 @@ export const styles = theme => ({
   },
 });
 
-function ToggleButton(props) {
+const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
   const {
     children,
     classes,
     className,
     disabled,
     disableFocusRipple,
-    innerRef,
     onClick,
     selected: selectedProp,
     value,
@@ -113,7 +110,7 @@ function ToggleButton(props) {
       )}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      ref={innerRef}
+      ref={ref}
       onClick={handleChange}
       value={value}
       {...other}
@@ -121,7 +118,7 @@ function ToggleButton(props) {
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
-}
+});
 
 ToggleButton.propTypes = {
   /**
@@ -152,11 +149,6 @@ ToggleButton.propTypes = {
   disableRipple: PropTypes.bool,
   /**
    * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
-   * @ignore
    */
   onClick: PropTypes.func,
   /**
@@ -178,4 +170,4 @@ ToggleButton.defaultProps = {
 
 ToggleButton.muiName = 'ToggleButton';
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(withForwardedRef(ToggleButton));
+export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);

@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';

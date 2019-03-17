@@ -20,7 +20,6 @@ export const styles = theme => ({
     height: 'auto',
     overflow: 'visible',
   },
-  // eslint-disable-next-line max-len
   /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
   hidden: {
     visibility: 'hidden',

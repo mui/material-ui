@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { PropTypes } from '..';
 import { ExtendButtonBase } from '../ButtonBase';
-import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
+import { SimplifiedPropsOf } from '../OverridableComponent';
 
 declare const Button: ExtendButtonBase<{
   props: {

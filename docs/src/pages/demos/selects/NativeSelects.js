@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -31,10 +30,10 @@ function NativeSelects() {
     name: 'hai',
   });
 
-  const inputLabelRef = React.useRef(null);
+  const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
-    setLabelWidth(ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth);
+    setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
   const handleChange = name => event => {
@@ -189,7 +188,7 @@ function NativeSelects() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel ref={inputLabelRef} htmlFor="outlined-age-native-simple">
+        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
           Age
         </InputLabel>
         <Select

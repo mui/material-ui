@@ -79,7 +79,7 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(
       wrapper.childAt(0).props().style.transform,
-      'scaleX(0.77)',
+      'translateX(-23%)',
       'should have width set',
     );
     assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
@@ -144,12 +144,12 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(1).props().style.transform,
-      'scaleX(0.77)',
+      'translateX(-23%)',
       'should have width set',
     );
     assert.strictEqual(
       wrapper.childAt(2).props().style.transform,
-      'scaleX(0.85)',
+      'translateX(-15%)',
       'should have width set',
     );
   });

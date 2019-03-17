@@ -36,10 +36,7 @@ describe('chainPropTypes', () => {
   it('should return an error for unsupported properties', () => {
     PropTypes.checkPropTypes(
       {
-        [propName]: chainPropTypes(
-          PropTypes.string,
-          () => new Error(`something is wrong ${Date.now()}`),
-        ),
+        [propName]: chainPropTypes(PropTypes.string, () => new Error('something is wrong')),
       },
       props,
       location,

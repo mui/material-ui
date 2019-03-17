@@ -73,11 +73,7 @@ describe('<ToggleButton />', () => {
         </ToggleButtonGroup>,
       );
 
-      assert.strictEqual(
-        findButton(wrapper, 'one')
-          .hasClass(classes.selected),
-        true,
-      );
+      assert.strictEqual(findButton(wrapper, 'one').hasClass(classes.selected), true);
     });
 
     it('should not render a selected ToggleButton when its value is not selected', () => {
@@ -106,16 +102,8 @@ describe('<ToggleButton />', () => {
         </ToggleButtonGroup>,
       );
 
-      assert.strictEqual(
-        findButton(wrapper, 'one')
-          .hasClass(classes.selected),
-        true,
-      );
-      assert.strictEqual(
-        findButton(wrapper, 'two')
-          .hasClass(classes.selected),
-        false,
-      );
+      assert.strictEqual(findButton(wrapper, 'one').hasClass(classes.selected), true);
+      assert.strictEqual(findButton(wrapper, 'two').hasClass(classes.selected), false);
     });
   });
 

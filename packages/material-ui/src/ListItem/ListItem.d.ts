@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
+import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface ListItemTypeMap<P, D extends React.ReactType> {
+export interface ListItemTypeMap<P, D extends React.ElementType> {
   props: P & {
     alignItems?: 'flex-start' | 'center';
     button?: boolean;
-    ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
+    ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
     ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
     dense?: boolean;
     disabled?: boolean;
@@ -21,7 +20,7 @@ export interface ListItemTypeMap<P, D extends React.ReactType> {
 }
 
 declare const ListItem: OverridableComponent<ListItemTypeMap<{ button?: false }, 'li'>> &
-  OverridableComponent<ListItemTypeMap<{ button: true }, 'button'>>;
+  ExtendButtonBase<ListItemTypeMap<{ button: true }, 'div'>>;
 
 export type ListItemClassKey =
   | 'root'
@@ -36,7 +35,7 @@ export type ListItemClassKey =
   | 'secondaryAction'
   | 'selected';
 
-export type ListItemProps<D extends React.ReactType = 'li', P = {}> = OverrideProps<
+export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
   ListItemTypeMap<P, D>,
   D
 >;

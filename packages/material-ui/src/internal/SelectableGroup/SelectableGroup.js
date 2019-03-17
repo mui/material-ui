@@ -15,7 +15,7 @@ const reducer = (state, action) => {
       newState = { selected: utils.select(state.selected, action.value, action.exclusive) };
       break;
     case 'deselect':
-      newState = {selected: utils.deselect(state.selected, action.value, action.exclusive) };
+      newState = { selected: utils.deselect(state.selected, action.value, action.exclusive) };
       break;
     case 'set':
       newState = { selected: action.value };
@@ -40,7 +40,7 @@ function SelectableGroup(props) {
   const [state, dispatch] = React.useReducer(reducer, { selected: valueProp });
   const { current: isControlled } = React.useRef(valueProp != null);
 
-  if (isControlled && !is(valueProp,state.selected)) {
+  if (isControlled && !is(valueProp, state.selected)) {
     dispatch({ type: 'set', value: valueProp });
   }
 

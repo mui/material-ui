@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils/helpers';
+import { capitalize } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   root: {
