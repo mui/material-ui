@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from '../utils/getScrollbarSize';
 
 function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
   const currentFocus = ownerDocument(list).activeElement;
@@ -60,9 +60,9 @@ function MenuList(props) {
         containerElement.clientHeight < listRef.current.clientHeight &&
         !listRef.current.style.width
       ) {
-        const size = `${getScrollbarSize(true)}px`;
-        listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
-        listRef.current.style.width = `calc(100% + ${size})`;
+        const scrollbarSize = `${getScrollbarSize(true)}px`;
+        listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = scrollbarSize;
+        listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
       }
       return listRef.current;
     },

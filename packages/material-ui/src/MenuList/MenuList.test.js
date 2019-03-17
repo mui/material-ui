@@ -2,7 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createMount, createShallow, testRef } from '@material-ui/core/test-utils';
 import MenuList from './MenuList';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from '../utils/getScrollbarSize';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {
   style.width = '';
