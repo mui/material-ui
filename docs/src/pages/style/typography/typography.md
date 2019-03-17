@@ -11,15 +11,16 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 
 ## General
 
-The *Roboto* font will **not** be automatically loaded by Material-UI.
+The _Roboto_ font will **not** be automatically loaded by Material-UI.
 The developer is responsible for loading all fonts used in their application.
 Roboto Font has a few easy ways to get started.
 
 ## Roboto Font CDN
 
 Shown below is a sample link markup used to load the Roboto font from a CDN.
+
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
 ```
 
 ## Install with npm
@@ -33,6 +34,7 @@ Then, you can import it in your entry-point.
 ```js
 import 'typeface-roboto';
 ```
+
 For more info check out the [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) project.
 
 ⚠️ Be careful when using this approach.
@@ -43,6 +45,14 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 ## Component
 
 {{"demo": "pages/style/typography/Types.js"}}
+
+## Custom and Self-Hosted Font
+
+If you do have a need for multiple fonts or just wish to host them yourself it is possible to customize the theme using
+overrides or create a new component which loads font styles into the global CSS namespace. Below shows how'd you add
+a custom font using `CssBaseline` overrides.
+
+{{"demo": 'pages/style/typography/TypeographyFontFamily.js}}
 
 ## Theme
 
@@ -59,10 +69,12 @@ It’s important to realize that the style of a typography is independent from t
 - You can change the underlying element for a one time occassion with the `component` property:
 
 ```jsx
-{/* We already have an h1 in the page, let's not duplicate it. */}
+{
+  /* We already have an h1 in the page, let's not duplicate it. */
+}
 <Typography variant="h1" component="h2">
   h1. Heading
-</Typography>
+</Typography>;
 ```
 
 - You can change the mapping [globally using the theme](/customization/themes/#properties):
@@ -85,5 +97,5 @@ const theme = createMuiTheme({
       },
     },
   },
-})
+});
 ```
