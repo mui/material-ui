@@ -30,7 +30,7 @@ we want to focus on making even more of you "very disappointed", as it were!
 
 Curiously, the 6.4% who said they would _not_ be disappointed if they could no longer use
 Material-UI collectively gave a Net Promoter Score of 68%, which is
-[higher than that of all respondents as a whole](/blog/2019-developer-survey-results#5-how-likely-is-it-that-you-would-recommend-material-ui-to-a-friend-or-colleague),
+[higher than that of all respondents as a whole](#5-how-likely-is-it-that-you-would-recommend-material-ui-to-a-friend-or-colleague),
 so we know they love us really. 😘
 
 ### 2. Who do you think would most benefit from Material-UI?
@@ -40,7 +40,7 @@ This word cloud was generated with [wordclouds.com](https://wordclouds.com).
 <img src="/static/blog/2019-survey/2.png" style="display: block; margin: 0 auto;" alt="Word cloud of who would benefit most" />
 
 Developers, developers, developers! (And "anyone" and "everyone", apparently! ) This is understandable, given the
-[job role demographic](2019-developer-survey-results#7-which-of-the-following-best-describes-your-current-job-role)
+[job role demographic](#7-which-of-the-following-best-describes-your-current-job-role)
 of the majority of respondents. We'll continue to work on the developer experience, making it
 easier to get started with, use, and customize Material-UI.
 
@@ -234,7 +234,10 @@ long-tail of other frameworks.
 
 ### 13. How many Material-UI based projects have you built?
 
-<img src="/static/blog/2019-survey/13.png" style="display: block; margin: 0 auto;" alt="Pie chart: 10.7% I'm just getting started, 23.5% 1, 52.5% 2-5, 11.1% 6-10, 2.2% 11+" />
+<img src="/static/blog/2019-survey/13.png" style="display: block; margin: 0 auto;" alt="Pie chart: 10.7% I'm just getting started, 23.5% 1, 52.5% 2-5, 11.1% 6-10, 2.2% 10+" />
+
+Over three quarters of you have built two or more projects with Material-UI, with 13.3% having six
+or more projects under your belt. The 2.2% with ten or more, we salute you!
 
 ## Your product
 
@@ -249,6 +252,12 @@ Multiple options were allowed.
 - e-commerce: 14%
 - Portfolio & resume: 12%
 - Blog: 8%
+
+Dashboards are at the top of the heap, and we've long known that many of you are building internal
+systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR 
+if you're bucking that tend, and have something sparkly to share! And if you're in the 40% building UI 
+components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
+section.
 
 ### 15. What “delivery mechanism” are you using?
 
