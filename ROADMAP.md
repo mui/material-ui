@@ -23,7 +23,7 @@ Everybody underestimates it, we have a relatively small core team. We are going 
   - Better support styled-components.
   - Work on the core solution.
   - Provide [more examples like this](https://mui-treasury.com/).
-- 0.3 - **Better documentation.** 📚 It's a wide topic. We don't know exactly what people want. We will focus our effort in the following dimensions:
+- 0.3 - **Better documentation.** 📚 It's a wide topic. We don't know exactly what people want. We will focus our effort in the following areas:
   - Beginner tutorials & Video lessons.
   - Page Layout Examples. They make people started really fast, we need more of them!
   - Page documentation rating 🥇🥈🥉. We will integrate a rating module in all our documentation pages. This way, we can collect high-quality data points and better prioritize.
