@@ -78,6 +78,10 @@ export const languages = [
     code: 'ja',
     text: '🇯🇵 日本語',
   },
+  {
+    code: 'id',
+    text: '🇮🇩 Indonesia',
+  },
 ];
 
 const styles = theme => ({
