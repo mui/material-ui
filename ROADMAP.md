@@ -26,7 +26,7 @@ Everybody underestimates it, we have a relatively small core team. We are going 
 - 0.3 - **Better documentation.** 📚 It's a wide topic. We don't know exactly what people want. We will focus our effort in the following areas:
   - Beginner tutorials & Video lessons.
   - Page Layout Examples. They get people started really quickly, we need more of them!
-  - Page documentation rating 🥇🥈🥉. We will integrate a rating module in all our documentation pages. This way, we can collect high-quality data points and better prioritize.
+  - Page documentation rating 🥇🥈🥉. We will integrate a rating module in all our documentation pages. This way, we can collect high-quality data points and prioritize the pages that need the most to be improved.
   - Internationalization. Not everybody can read & understand English. The documentation pages are synced with [Crowdin](https://translate.material-ui.com/). They should always be up-to-date.
 - 0.3 - **TypeScript.** 📏 There are two dimensions to this problem:
   - The documentation. We want to provide a TypeScript variant to most of our demos.
