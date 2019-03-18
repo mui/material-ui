@@ -39,6 +39,8 @@ const List = React.forwardRef(function List(props, ref) {
     subheader,
     ...other
   } = props;
+  
+  const context = React.useMemo(() => ({ dense }), [dense]);
 
   return (
     <Component
@@ -54,7 +56,7 @@ const List = React.forwardRef(function List(props, ref) {
       ref={ref}
       {...other}
     >
-      <ListContext.Provider value={{ dense }}>
+      <ListContext.Provider value={context}>
         {subheader}
         {children}
       </ListContext.Provider>
