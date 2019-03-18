@@ -7,6 +7,7 @@ import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
+import { setRef } from '../utils/reactHelpers';
 
 function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
   const currentFocus = ownerDocument(list).activeElement;
@@ -29,7 +30,7 @@ function resetTabIndex(list, selectedItem, setCurrentTabIndex) {
   return setCurrentTabIndex(0);
 }
 
-function MenuList(props) {
+const MenuList = React.forwardRef(function MenuList(props, ref) {
   const { actions, children, className, onBlur, onKeyDown, disableListWrap, ...other } = props;
   const [currentTabIndex, setCurrentTabIndex] = React.useState(null);
   const blurTimeoutIDRef = React.useRef();
@@ -149,9 +150,10 @@ function MenuList(props) {
   return (
     <List
       role="menu"
-      ref={ref => {
+      ref={refArg => {
         // StrictMode ready
-        listRef.current = ReactDOM.findDOMNode(ref);
+        listRef.current = ReactDOM.findDOMNode(refArg);
+        setRef(ref, listRef.current);
       }}
       className={className}
       onKeyDown={handleKeyDown}
@@ -174,9 +176,9 @@ function MenuList(props) {
         return React.cloneElement(child, {
           tabIndex: index === currentTabIndex ? 0 : -1,
           ref: child.props.selected
-            ? ref => {
+            ? refArg => {
                 // not StrictMode ready
-                selectedItemRef.current = ReactDOM.findDOMNode(ref);
+                selectedItemRef.current = ReactDOM.findDOMNode(refArg);
               }
             : undefined,
           onFocus: handleItemFocus,
@@ -184,7 +186,7 @@ function MenuList(props) {
       })}
     </List>
   );
-}
+});
 
 MenuList.propTypes = {
   /**
