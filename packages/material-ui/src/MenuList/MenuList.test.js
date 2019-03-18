@@ -62,7 +62,11 @@ describe('<MenuList />', () => {
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(<React.Fragment><MenuList ref={listRef} actions={menuListActionsRef} /></React.Fragment>);
+      mount(
+        <React.Fragment>
+          <MenuList ref={listRef} actions={menuListActionsRef} />
+        </React.Fragment>,
+      );
       const list = listRef.current;
       assert.strictEqual(list.style.paddingRight, '');
       assert.strictEqual(list.style.paddingLeft, '');
@@ -79,7 +83,11 @@ describe('<MenuList />', () => {
     it('should adjust style when container element height is less', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(<React.Fragment><MenuList ref={listRef} actions={menuListActionsRef} /></React.Fragment>);
+      mount(
+        <React.Fragment>
+          <MenuList ref={listRef} actions={menuListActionsRef} />
+        </React.Fragment>,
+      );
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '');
       stub(list, 'clientHeight').get(() => 11);
@@ -98,7 +106,11 @@ describe('<MenuList />', () => {
     it('should adjust paddingLeft when direction=rtl', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(<React.Fragment><MenuList ref={listRef} actions={menuListActionsRef} /></React.Fragment>);
+      mount(
+        <React.Fragment>
+          <MenuList ref={listRef} actions={menuListActionsRef} />
+        </React.Fragment>,
+      );
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '');
       stub(list, 'clientHeight').get(() => 11);
@@ -117,7 +129,11 @@ describe('<MenuList />', () => {
     it('should not adjust styles when width already specified', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(<React.Fragment><MenuList ref={listRef} actions={menuListActionsRef} /></React.Fragment>);
+      mount(
+        <React.Fragment>
+          <MenuList ref={listRef} actions={menuListActionsRef} />
+        </React.Fragment>,
+      );
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '10px');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
