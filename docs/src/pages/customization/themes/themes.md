@@ -216,7 +216,7 @@ If you want to learn more about typography, you can check out [the typography se
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-### Typography - Font family
+### Font family
 
 You can use the system font instead of the default Roboto font.
 
@@ -239,7 +239,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### Typography - Self-host fonts
+### Self-host fonts
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
@@ -294,7 +294,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### Typography - Font size
+### Font size
 
 Material-UI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
@@ -319,7 +319,7 @@ The computed font size by the browser follows this mathematical equation:
 ![font-size](/static/images/font-size.gif)
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### Typography - HTML font size
+### HTML font size
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 We provide a `htmlFontSize` theme property for this use case.
