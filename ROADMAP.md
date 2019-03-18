@@ -48,7 +48,7 @@ Performance is all about doing less work. We have the following leverages:
     **After (v4)**
 
     ![After](https://pbs.twimg.com/media/D1oZvtsXcAIyAb4?format=png&name=360x360)
-  - Avoid re-rendering. It's the responsibility of our users to prune the React rendering tree efficiently.
+  - Avoid re-rendering. It's the responsibility of the user to prune the React rendering tree efficiently,
     as most of our APIs are too low level to implement efficient memoization (React.useMemo, React.PureComponent, React.memo).
     If you find a good opportunity for it, let us know, and we will be happy to work with you on the problem.
   - Avoid rendering. We are documenting [how to implement virtualization](/demos/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
