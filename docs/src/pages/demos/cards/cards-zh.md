@@ -10,7 +10,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 他们应该易用于查看相关内容且便于操作。诸如文本和图像的元素，应以能够清晰明确地表示层次结构的方式来展示。
 
-## 简单卡片
+## 简单的卡片
 
 尽管卡片支持多操作、多UI控件和过长的菜单，但请克制使用，切记，卡片只是那些复杂且详细信息的入口。
 

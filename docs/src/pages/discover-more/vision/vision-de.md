@@ -1,16 +1,16 @@
-# Material-UI’s Vision
+# Vision der Material-UI
 
-<p class="description">Our vision is to provide an elegant React implementation of the Material Design guidelines that can be customized to fully match your brand.</p>
+<p class="description">Unsere Vision ist es, eine elegante React-Implementierung der Material Design-Richtlinien bereitzustellen, die Sie an Ihr Produkt anpassen können.</p>
 
-The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guidelines-specific implementation, we want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
+Die Material Design-Richtlinien sind ein unglaublicher Ausgangspunkt, aber sie geben keine Anleitung zu allen Aspekten oder Bedürfnissen einer Anwendung. Neben der richtlinienspezifischen Implementierung möchten wir, dass die Material-UI zu dem wird, was für die Anwendungsentwicklung generell nützlich ist, ganz im Sinne der Material Design-Richtlinien.
 
-Therefore, Material-UI will be not only be an implementation of the Material Design guidelines, but a general use UI library of components that are needed by many. This generalized use doesn't imply any other design methodology. It also means we will have components or combinations that are simply not addressed in the design guidelines.
+Daher wird die Material-UI nicht nur eine Implementierung der Material Design-Richtlinien sein, sondern auch eine allgemeine Benutzerschnittstellen-Bibliothek von Komponenten, die von vielen benötigt werden. Diese allgemeine Verwendung impliziert jedoch keine andere Entwurfsmethodik. Das bedeutet auch, dass wir Komponenten oder Kombinationen haben werden, die in den Konstruktionsrichtlinien nicht behandelt werden.
 
-We will focus on providing all the low-level tools needed to build a rich user-interface with React. Once we implement the Material design specification (which is a bar set quite high), you should be able to take advantage of it for you own business with any style customization needed. We want to see companies succeeding using Material-UI in a way that matches their brand, close to the material philosophy or not. We don't want them to feel that their UI simply looks like another Google product.
+Wir werden uns darauf konzentrieren, alle einfachen Tools bereitzustellen, die zum Aufbau einer umfassenden Benutzeroberfläche mit React erforderlich sind. Sobald wir die Material-Designspezifikation implementiert haben (was eine ziemlich hohe Messlatte ist), sollten Sie in der Lage sein, sie für Ihr eigenes Geschäft zu nutzen, und zwar mit jeder gewünschten Stilanpassung. Wir möchten, dass Unternehmen das Material-UI so einsetzen, dass sie zu ihrer Marke passen, ob Sie der Materialphilosophie nahe sind oder nicht. Wir möchten nicht, dass sie das Gefühl haben, dass ihre Benutzeroberfläche einfach wie ein anderes Google-Produkt aussieht.
 
-From a developer's point of view, we want Material-UI to:
+Aus der Sicht eines Entwicklers möchten wir, dass die Material-UI folgende Funktionen bereitstellt:
 
-- Deliver on fully encapsulated / composable React components.
-- Be themeable / customizable.
-- Be cross browser compatible and accessible.
-- Promote developer joy, a sense of community, and an environment where new and experienced developers can learn from each other.
+- Lieferung vollständig gekapselter / zusammenstellbarer React-Komponenten.
+- Es soll themeable / anpassbar sein.
+- Es soll browserübergreifend und zugänglich sein.
+- Es soll Entwicklerfreude, Gemeinschaftssinn und einer Umgebung, in der neue und erfahrene Entwickler voneinander lernen können, fördern.

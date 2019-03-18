@@ -1,13 +1,13 @@
 ---
-components: Typography
+components: Typografie
 ---
-# Typography
+# Typografie
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
 Too many type sizes and styles at once can spoil any layout. A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
 
-## General
+## Allgemein
 
 The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started.
 

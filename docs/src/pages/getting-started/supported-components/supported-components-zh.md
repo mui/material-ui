@@ -9,30 +9,30 @@
 - App bars 
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
-- **[Banners](https://material.io/design/components/banners.html)** ([可以组成](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Bottom navigation](https://material.io/design/components/bottom-navigation.html) ✓**
+- **[横幅(Banners)](https://material.io/design/components/banners.html)** ([可组装](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
+- **[底部导航(Bottom navigation)](https://material.io/design/components/bottom-navigation.html) ✓**
 - **[Buttons](https://material.io/design/components/buttons.html) ✓** 
   - **[Text & contained buttons (先前 flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/lab/about/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
   - 过渡动画: 
-    - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/lab/about/))
+    - **[快速拨号(Speed dial)](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([实验功能](/lab/about/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
-    - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
-    - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
+    - [变形(Morph)](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
+    - [全屏(Full screen)](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
   - **[Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) ✓** 
     - Speed dial
-- **[Cards](https://material.io/design/components/cards.html) ✓**
+- **[卡片(Cards)](https://material.io/design/components/cards.html) ✓**
 - **[Chips](https://material.io/design/components/chips.html) ✓** 
   - **[Input](https://material.io/design/components/chips.html#input-chips) ✓**
   - [Choice](https://material.io/design/components/chips.html#choice-chips)
   - [Filter](https://material.io/design/components/chips.html#filter-chips)
   - [Action](https://material.io/design/components/chips.html#action-chips)
-- **[Data tables](https://material.io/design/components/data-tables.html) ✓** 
+- **[数据表(Data tables)](https://material.io/design/components/data-tables.html) ✓** 
   - **Sortable ✓**
-  - **Selectable ✓**
-  - **Pagination ✓**
+  - **可选择(Selectable) ✓**
+  - **分页(Pagination) ✓**
 - **[Dialogs](https://material.io/design/components/dialogs.html) ✓** 
   - **[Alert dialog](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
   - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** （可以用Dialog和List组成。）
@@ -104,5 +104,5 @@
     - Character counter
 - **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (旧 Material v1)
 - **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 
-  - **Desktop ✓**
-  - **可移动 ✓**
+  - **桌面 ✓**
+  - **移动设备(Mobile) ✓**

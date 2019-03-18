@@ -2,7 +2,7 @@
 title: Select React component
 components: Select, NativeSelect
 ---
-# Selects
+# Auswählen
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
@@ -20,7 +20,7 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## Customized selects
 
-If you have been reading the [overrides documentation page](/customization/overrides/) but you are not confident jumping in, here's an example of how you can change the main color of an Input.
+Wenn du die [Überschreibungs Dokumentationsseite](/customization/overrides/) gelesen hast, aber dich noch nicht sicher genug fühlst, um direkt loszulegen, ist hier noch ein Beispiel, wie du die Farbe der Eingabe ändern kannst.
 
 The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a select field.
 
@@ -48,4 +48,4 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 ## Text Felder
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).
+Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. You can find an example with the select mode [in this section](/demos/text-fields/#textfield).

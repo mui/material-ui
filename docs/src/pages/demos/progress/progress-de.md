@@ -2,7 +2,7 @@
 title: Circular Progress, Linear Progress React component
 components: CircularProgress, LinearProgress
 ---
-# Progress
+# Fortschritt
 
 <p class="description">Progress indicators express an unspecified wait time or display the length of a process.</p>
 
@@ -98,7 +98,7 @@ There are [3 important limits](https://www.nngroup.com/articles/response-times-3
 
 Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
 
-![heavy load](/static/images/progress/heavy-load.gif)
+![schwere Last](/static/images/progress/heavy-load.gif)
 
 When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See https://github.com/mui-org/material-ui/issues/10327
 

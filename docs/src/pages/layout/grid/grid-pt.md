@@ -46,7 +46,7 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js"}}
+{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Auto-layout
 
@@ -78,7 +78,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/layout/grid/NestedGrid.js"}}
 
-## Limitations
+## Limitações
 
 ### Negative margin
 

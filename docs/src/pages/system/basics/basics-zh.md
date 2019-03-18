@@ -1,33 +1,31 @@
 # @material-ui/system
 
-<p class="description">风格的功能对于建设强大的设计系统。</p>
-
-> ⚠️`@material-ui/system`是实验性的（alpha版）。 我们正在努力使它稳定Material-UI v4。
+<p class="description">Styled system & style functions for building powerful design systems.</p>
 
 ## 开始
 
-`@material-ui/system` 提供了底层工具函数"*style functions*"，用于建立强大的设计系统。 一些重要特点：
+`@material-ui/system` 提供了一些底层工具函数，我们称之为 "*style functions*"，它们可以用于建立强大的设计系统。 以下是这个库的一些特点：
 
-- ⚛️从组件的props直接访问主题属性。
-- 🦋鼓励UI的一致性。
-- 🌈更方便的书写的响应式样式。
-- 🦎工作的任何主题的对象。
-- 💅工作的最受欢迎的CSS-在-JS解决方案。
-- 📦低于 [4KB压缩](https://bundlephobia.com/result?p=@material-ui/system)的。
-- 🚀 [足够快](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) 不是一个瓶颈。
+- ⚛️可以在组件的 props 上直接访问主题属性
+- 🦋使得 UI 具有一致性
+- 🌈可以方便的书写的响应式 (reponsive) 样式
+- 🦎可以和任何主题对象 (theme object) 配合
+- 💅使用广为流行的 CSS-in-JS 样式方案
+- 📦体积小 [4KB gzipped](https://bundlephobia.com/result?p=@material-ui/system)
+- 🚀 [快速](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
 
-重要的是要明白，这包暴露了纯(副作用)风格的功能，与此签署： `({ theme, ...style })=> 式`, **就是这**的。
+值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： ``({ theme, ...style })=> style<、0>。</p>
 
-### 演示
+<h3>演示</h3>
 
-在剩下的这 *开始* 部分，我们正在使用 **风格的部件** 作为参考的例子(强调的普遍性，这包)。 或者，您可以[使用JSS ](#interoperability) 。 该演示，也是基于 **默认** 材料-UI [主题对象](/customization/default-theme/)的。
+<p>在<em>开始</em>章节的余下部分，我们会配合<strong>styled-components</strong> 作为演示例子(因为这个库具有普遍性)。 或者，你也可以使用 <a href="#interoperability">JSS</a>。
+另外，以下的例子都直接使用了 Material-UI 的 <strong>默认</strong> <a href="/customization/default-theme/">主题对象</a>。</p>
 
-```jsx
-进口 { palette, spacing, typography } 从'@材料-ui/系统';
-导风格，从'的风格-成分';
+<pre><code class="jsx">import { palette, spacing, typography } from '@material-ui/system';
+import styled from 'styled-components';
 
-const框=风格。div`${palette}${spacing}${typography}`;
-//或进口 { unstable_Box as Box } 从'@材料-ui/core/框';
+const Box = styled.div`${palette}${spacing}${typography}`;
+// or import Box from '@material-ui/core/Box';
 
 <Box
   color="primary.main"
@@ -36,25 +34,25 @@ const框=风格。div`${palette}${spacing}${typography}`;
   fontSize={{ xs: 'h6.fontSize', sm: 'h4.fontSize', md: 'h3.fontSize' } }
   p={{ xs: 2, sm: 3, md: 4} }
 >
-  @材料-ui/系统
+  @material-ui/system
 </Box>
-```
+``</pre> 
 
 {{"demo": "pages/system/basics/Demo.js"}}
 
 ### 安装
 
 ```jsx
-//npm
-npm install@材料-ui/系统
+// 使用 npm
+npm install @material-ui/system
 
-//纱
-纱增加@材料-ui/系统
+// 使用 yarn
+yarn add @material-ui/system
 ```
 
-### 创建一种组分
+### 创建组件
 
-为了使用 `框` 成分，首先需要创建它。 开始，增加一个 `间隔` 和 `色` 功能的风参数。
+首先我们来创建一个 `Box` 组件。 一开始，我们给他增加 `间距(spacing)` 和 `颜色(palette)` 两个样式参数。
 
 ```jsx
 import styled from 'styled-components';
@@ -65,17 +63,17 @@ const Box = styled.div`${spacing}${palette}`;
 export default Box;
 ```
 
-这个盒子组件现在支持新 [距性](/system/spacing/#api) 和 [色性](/system/palette/#api)的。 例如，可以提供一种填补财产： `p` 和一个颜色的财产： `色`的。
+这个 Box 组件现在就支持了 [间距属性](/system/spacing/#api) 和 [颜色属性](/system/palette/#api)。 例如，你可以提供一个间距属性：`p` 和一个颜色属性： `color`。
 
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
 ```
 
-组件可以被风格提供任何有效的CSS值。
+这个组件可以接受任何有效的CSS值作为样式。
 
 ### 主题
 
-但大部分时间，你想依靠一个主题的价值增加UI的一致性。 这是最好有一个预设的填充和色彩的价值观。 进口的主题提供者的定型解决方案。
+大部分时候，你会需要使用主题来保持 UI 的一致性， 那你会需要有一组预设好的间距和颜色值。 你可以使用主题提供者(theme provider) 来注入你的定制方案。
 
 ```jsx
 import React from 'react'
@@ -99,7 +97,7 @@ function App() {
 export default App
 ```
 
-现在，你可以提供一个间距乘数值:
+现在，你可以提供一个乘数来乘上你预设的间距作为实际间距:
 
 ```jsx
 <Box p={1}>4px</Box>
@@ -107,15 +105,15 @@ export default App
 <Box p={-1}>-4px</Box>
 ```
 
-和一个主要颜色：
+同时你也可以使用主色(primary color)：
 
 ```jsx
 <Box color="primary">蓝</Box>
 ```
 
-### 所有包容各方的
+### 其他
 
-使箱组件更有用的，我们已建立的集合式功能，这是完整的清单：
+为了使 Box 组件更实用，我们已预置了一些样式函数，下面是完整列表：
 
 - [borders](/system/borders/#api)
 - [display](/system/display/#api)
@@ -127,17 +125,17 @@ export default App
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-如果你已经在使用 `@材料-ui/核心`，你可以用我们的 [预先包装的盒](/utils/box/) 部件(用调内部):
+如果你已经在使用 `@material-ui/core`，你可以用我们 [预写好的 Box ](/utils/box/)组件 (内部使用了 JSS)：
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 ## 互操作性
 
-`@material-ui/system` 适用于大多数CSS-在-JS库，包括调，风格的部件和情感。
+`@material-ui/system` 适用于大多数 CSS-in-JS 库，包括 JSS, styled-components, 还有 emotion。
 
-如果你已经在使用 `@material-ui/core`，我们鼓励你开始与 **JSS** 解决方案，以尽量减少束的大小。
+如果你已经在使用 `@material-ui/core`，我们推荐你使用 **JSS** 方案，这样有助于减少包大小。
 
 ### JSS
 
@@ -150,7 +148,7 @@ const Box = styled(compose(spacing, palette));
 
 {{"demo": "pages/system/basics/JSS.js"}}
 
-### 风格的部件
+### Styled components
 
 ```jsx
 import { palette, spacing } from '@material-ui/system';
@@ -172,9 +170,9 @@ const Box = styled.div`${palette}${spacing}`;
 
 {{"demo": "pages/system/basics/Emotion.js"}}
 
-## 响应
+## 响应式(Responsive)
 
-**所有** 的性质敏感，我们支持3个不同的Api。 它使用这种默认，但是定制的，断点的主题结构：
+**所有** 的属性都是响应式的，我们支持3种不同的 Api。 如下的配置是默认断点(breakpoints) 配置，不过同时它们是可定制的。
 
 ```js
 const values = {
@@ -193,7 +191,7 @@ const theme = {
 };
 ```
 
-### 阵列
+### Array
 
 ```jsx
 <Box p={[2, 3, 4]} />
@@ -229,9 +227,9 @@ const theme = {
  */
 ```
 
-### 搭配
+### Collocation
 
-如果你想要小组断点的价值观，可以使用我们的 `breakpoints()` 帮手。
+如果你想要聚合一组断点值，可以使用我们的工具函数 `breakpoints()` 。
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -265,25 +263,25 @@ const Box = styled.div`
  */
 ```
 
-## 定风格的道具
+## 定制样式属性
 
 ### `style(options) => style function`
 
-使用这种帮助来创建自己风格的功能。
+你可以使用这个函数来创建你自己的样式工具。
 
-我们不支持所有CSS性质。 这是可能的，你要支持新的。 这也有可能是你想改变的主题路径的前缀。
+我们没有支持所有CSS属性。 不过如果你想，你可以支持一个新的属性。 改变的主题路径的前缀也是可以的。
 
 #### 参数
 
-1. `选项` (*Object*): 
-  - `的选择。托` (*串*)：酒店的风格功能将被触发。
-  - `的选择。cssProperty` (*串|布尔* [optional]):默认 `的选择。托`的。 CSS财产使用。 你可以无障碍这一选项，通过提供 `假`的。 当残疾人、财产的价值将处理作为一种风格的对象。 它可以用于 [呈现的变](#variants)的。
-  - `的选择。themeKey` (*串* [optional])：主题路径的前缀。
-  - `的选择。变换` (*功能* [optional])：申请转换之前，将输出CSS值。
+1. `options` (*Object*): 
+  - `options.prop` (*String*)：指定样式函数会被什么属性触发
+  - `options.cssProperty` (*String|Boolean* [optional]):默认是 `options.prop`。 使用 CSS 属性。 你可以传递`false`禁用它。 禁用的情况下，这个属性会被作为样式对象应用于本身。 它可以用来 [渲染变体(rendering variants)](#variants)。
+  - `options.themeKey` (*String* [optional])：主题路径的前缀。
+  - `options.transform` (*Function* [optional])：指定在输出 CSS 值之前经过的转换
 
 #### 返回结果
 
-`式功能`：式功能创建。
+`style function`：被创建的样式函数。
 
 #### 例子
 
@@ -300,11 +298,11 @@ const borderColor = style({
 
 ### `compose(...style functions) => style function`
 
-合并的多式的功能合为一体。
+组合多个不同的样式函数。
 
 #### 返回结果
 
-`式功能`：式功能创建。
+`style function`：新的样式函数。
 
 #### 例子
 
@@ -325,9 +323,9 @@ export const bgcolor = style({
 const palette = compose(textColor, bgcolor);
 ```
 
-## 变种
+## 变种(Variants)
 
-该 `style()` 帮助也可用于地图中性风格的对象，在一个主题。 在这个例子中， `变` 性支持所有的钥匙存在 `的主题。排版`的。
+帮助函数 `style()` 也可用于根据主题来返回不同的属性给样式对象。 在在这个例子中， `variant` 属性可以是 `theme.typography` 对象的任意键(key)。
 
 ```jsx
 import React from 'react';
@@ -361,7 +359,7 @@ const theme = {
   },
 };
 
-// 呈现theme.typography.h1样式对象。
+// 渲染 theme.typography.h1 对应的样式对象
 <Text variant="h1">variant=h1</Text>
 ```
 
@@ -369,7 +367,7 @@ const theme = {
 
 ## CSS 属性
 
-如果你想要支持的定义CSS值，可以使用我们的 `css()` 帮手。 它将处理的 `css` 财产。
+如果你想要自定义CSS值，可以使用`css()`， 它可以处理的 `css` 属性。
 
 ```jsx
 import { compose, spacing, palette, css } from '@material-ui/system';
@@ -395,22 +393,22 @@ const Box = styled.div`
 
 风格的系统已经做了很多工作在 [解释它是如何工作的](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works)的。 它可以帮助建设一个心理模型对于这种"风格的功能"概念。
 
-## 真实世界中的使用情况
+## 实际用例
 
-在实践中，一个盒子成分可以节省很多时间。 在这个例子中，我们表明如何再现旗帜的组成部分。
+在实践中，Box 组件可以节省我们很多时间。 在这个例子中，我们演示了如何做一个 Banner 组件。
 
 {{"demo": "pages/system/basics/RealWorld.js"}}
 
 ## 现有技术
 
-`@材料-ui/系统` 综合的想法 & Api从几个不同的来源：
+`@material-ui/system` 从不同地方借鉴了一些想法和 API：
 
-- [Tachyons](https://tachyons.io/) 是一个第(2014年)CSS库，以促进 [原子CSS模式](https://css-tricks.com/lets-define-exactly-atomic-css/) (或功能CSS)。
-- Tachyons后来在(2017年)，其次是 [顺风CSS](https://tailwindcss.com/)的。 他们已经由原子CSS更受欢迎。
-- [Twitter的引导](https://getbootstrap.com/docs/4.1/utilities/borders/) 已经慢慢介绍了原子类名在v2，v3,和v4。 我们必须用他们的集团，他们的"助手类"作为灵感。
-- 在作出反应的世界， [风格系统](https://github.com/jxnblk/styled-system) 是一个第(2017年)，以促进风格的功能。 它可以作为一个通用框部件替换原子CSS佣工及佣工中写入新的组成。
-- 这样的大公司访问网站审查，Segment.io都使用同样的方法在不同的口味的： 
+- [Tachyons](https://tachyons.io/) (2014年) 是第一个促进了 [原子 CSS 模式(Atomic CSS pattern)](https://css-tricks.com/lets-define-exactly-atomic-css/) 发展的CSS库。
+- TachyTachyons (2017年) 跟随了 [Tailwind CSS](https://tailwindcss.com/) 的脚步 他们让原子CSS更受欢迎。
+- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 他们使用 `Helper classes` 聚合它们的方式给了我们启发。
+- 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) (2017年) 是第一个推动样式函数的。 它可以做出一个通用的 Box 组件来已经衍生其他组件，这种方式可以替换原子CSS之中的辅助原子类的做法。
+- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
-- 实际执行情况和对象响应API的灵感来自于 [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system)的。
+- 实际实现 和 对象响应API(object responsive API) 受到 [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system)的启发。

@@ -4,7 +4,7 @@ import { ButtonBaseProps } from '../ButtonBase';
 
 export interface BottomNavigationActionProps
   extends StandardProps<ButtonBaseProps, BottomNavigationActionClassKey, 'onChange'> {
-  icon?: string | React.ReactElement<any>;
+  icon?: string | React.ReactElement;
   label?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   onClick?: React.ReactEventHandler<any>;

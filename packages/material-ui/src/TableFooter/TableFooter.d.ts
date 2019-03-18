@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface TableFooterProps extends StandardProps<TableFooterBaseProps, TableFooterClassKey> {
-  component?: React.ReactType<TableFooterBaseProps>;
+  component?: React.ElementType<TableFooterBaseProps>;
 }
 
 export type TableFooterClassKey = 'root';

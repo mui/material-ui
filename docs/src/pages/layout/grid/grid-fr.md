@@ -46,7 +46,7 @@ Some columns have multiple widths defined, causing the layout to change at the d
 
 Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels utilisant différents paramètres:
 
-{{"demo": "pages/layout/grid/InteractiveGrid.js"}}
+{{"demo": "pages/layout/grid/InteractiveGrid.js", "hideHeader": true}}
 
 ## Mise en page automatique
 

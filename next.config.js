@@ -4,7 +4,7 @@ const withTM = require('next-plugin-transpile-modules');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
 
 module.exports = {
   webpack: (config, options) => {

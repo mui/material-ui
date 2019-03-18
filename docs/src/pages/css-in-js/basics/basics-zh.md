@@ -1,4 +1,4 @@
-# 基础
+# @material-ui/styles
 
 <p class="description">即使您没有使用我们的组件, 您也可以利用我们的样式解决方案。</p>
 
@@ -6,12 +6,12 @@ Material-UI 旨在为构建动态 UI 提供强大的基础。 为了简单起见
 
 ## Material-UI 的样式解决方案
 
-在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 最近，我们开始向*CSS-in-JS*解决方案方向转移。 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the components, but these approaches have proven to be limited. We have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. 它**解锁了许多很棒的功能**（主题嵌套、动态样式、自我支持等...） 我们认为这是未来：
 
 - [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [将 SCSS（Sass）转换为 CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
-Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
+Material-UI's styling solution is inspired by many other styling libraries like [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
 - 💅你可以期待 [与样式组件相同的优势](https://www.styled-components.com/docs/basics#motivation)。
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles).
@@ -31,25 +31,9 @@ npm install @material-ui/styles
 yarn add @material-ui/styles
 ```
 
-### 迁移`@material-ui/core`用户
-
-要从默认样式实现切换到此最新版本，**您需要在导入任何** Material-UI组件之前执行以下代码 ：
-
-```js
-import { install } from '@material-ui/styles';
-
-install();
-```
-
-它是 **推荐** 放置上述代码在一个单独的文件中（例如 `bootstrap.js`）和将其导入在你的应用程序的入口点（例如 `index.js`）。 这可以确保安装在其他任何操作之前执行，因为ECMAScript导入被提升到模块的顶部。 如果未正确执行安装步骤，则生成的构建可能具有冲突的类名。
-
-我们将 `@material-ui/styles` 作为Material-UI v4中核心组件的默认样式实现。 此安装步骤为 **临时**。 在幕后，`install()` 函数切换核心组件使用的样式引擎。
-
-此外， `@ material-ui / core / MuiThemeProvider` 组件可以替换为 `@ material-ui / styles / ThemeProvider`。 我们将在v4中删除此组件。
-
 ## 入门
 
-我们提供3种不同的API。 它们都具有相同的基础逻辑。
+我们实现了3中不同的API。 它们都具有相同的底层逻辑。
 
 ### Hook API
 
@@ -151,3 +135,18 @@ export default withStyles(styles)(HigherOrderComponent);
 ### 适应 higher-order component API
 
 {{"demo": "pages/css-in-js/basics/AdaptingHOC.js"}}
+
+## Stress test
+
+In the following stress test, you can update the *theme color* and the *background-color property* live:
+
+```js
+const useStyles = makeStyles(theme => ({
+  root: props => ({
+    backgroundColor: props.backgroundColor,
+    color: theme.color,
+  }),
+}));
+```
+
+{{"demo": "pages/css-in-js/basics/StressTest.js"}}

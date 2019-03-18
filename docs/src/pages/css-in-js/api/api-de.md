@@ -8,12 +8,12 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 
 #### Arguments
 
-1. `options` (*Object* [optional]): 
+1. `Optionen` (*Object* [optional]): 
     - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
     - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
     - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
 
-#### Returns
+#### Rückgabewerte
 
 `class name generator`: The generator should be provided to JSS.
 
@@ -43,7 +43,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 
-#### Returns
+#### Rückgabewerte
 
 `styles`: A function generating the styles or a styles object.
 
@@ -74,14 +74,14 @@ Link a style sheet with a function component using the **hook** pattern.
 #### Arguments
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
+2. `Optionen` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Rückgabewerte
 
 `hook`: A hook. This hook can be used in a function component. It accepts one argument: the properties that will be used for "interpolation" in the style sheet.
 
@@ -111,14 +111,14 @@ Link a style sheet with a function component using the **styled components** pat
 
 1. `Component`: The component that will be wrapped.
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-3. `options` (*Object* [optional]): 
+3. `Optionen` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Rückgabewerte
 
 `Component`: The new component created.
 
@@ -185,7 +185,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This hook returns the `theme` object so it can be used inside a function component.
 
-#### Returns
+#### Rückgabewerte
 
 `theme`: The theme object.
 
@@ -209,20 +209,21 @@ Link a style sheet with a component using the **higher-order component** pattern
 Some implementation details that might be interesting to being aware of:
 
 - It adds a `classes` property so you can override the injected class names from the outside.
-- It adds an `innerRef` property so you can get a reference to the wrapped component. The usage of `innerRef` is identical to `ref`.
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- It forwards refs to the inner component.
+- The `innerRef` prop is deprecated. Use `ref` instead.
+- It does **not** copy over statics. For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
 #### Arguments
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
+2. `Optionen` (*Object* [optional]): 
     - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
     - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
     - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/jss-api/#create-style-sheet).
 
-#### Returns
+#### Rückgabewerte
 
 `higher-order component`: Should be used to wrap a component.
 
@@ -277,9 +278,9 @@ Provide the `theme` object as a property of the input component so it can be use
 
 1. `Component`: The component that will be wrapped.
 
-#### Returns
+#### Rückgabewerte
 
-`Component`: The new component created.
+`Component`: The new component created. Does forward refs to the inner component.
 
 #### Beispiele
 

@@ -19,7 +19,7 @@ components: Grow, Popover
 
 使用单选按钮调整 `anchorOrigin` 和 `transformOrigin` 位置。 您还可以将 `anchorReference` 设置为 `anchorPosition` 或 `anchorEl`。 当它是 `anchorPosition`，该组件将代替 `anchorEl`， 指的是 `anchorPosition` 道具，其可以调整设置 的酥料饼的位置。
 
-{{"demo": "pages/utils/popover/AnchorPlayground.js"}}
+{{"demo": "pages/utils/popover/AnchorPlayground.js", "hideHeader": true}}
 
 ## 鼠标悬停在互动上
 

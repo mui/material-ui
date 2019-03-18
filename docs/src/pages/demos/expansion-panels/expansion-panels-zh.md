@@ -1,5 +1,5 @@
 ---
-title: 扩展面板 React 组件
+title: 扩展面板组件
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 # 扩展面板
@@ -8,7 +8,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 [扩展面板](https://material.io/archive/guidelines/components/expansion-panels.html)是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
-> **注意：** 材料设计文档中不再记录扩展面板。
+> **注意：**Material Design文档中不再记录扩展面板。
 
 ## 无障碍功能
 
@@ -26,7 +26,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## 次要标题和列
 
-可以使用多列来构造内容，并且可以将辅助文本添加到面板以帮助用户。
+可以使用多列来构造内容，并且可以将辅助文本添加到面板。
 
 {{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
@@ -34,6 +34,6 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 如果您已经在阅读 [组件覆写文档页面](/customization/overrides/) 但是您没有信心进入， 这里是一个关于如何自定义`ExpansionPanelSummary`组件背景自然色和给`ExpansionPanelDetails`组件添加填充的示例。
 
-⚠️虽然材料设计规范鼓励主题，但这些例子是不合适的。
+⚠️虽然Material Desig规范鼓励主题，但这些例子是不合适的。
 
 {{"demo": "pages/demos/expansion-panels/CustomizedExpansionPanel.js"}}

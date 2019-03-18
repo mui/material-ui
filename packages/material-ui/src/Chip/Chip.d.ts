@@ -3,12 +3,12 @@ import { StandardProps, PropTypes } from '..';
 
 export interface ChipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
-  avatar?: React.ReactElement<any>;
+  avatar?: React.ReactElement;
   clickable?: boolean;
   color?: PropTypes.Color;
-  component?: React.ReactType<ChipProps>;
-  deleteIcon?: React.ReactElement<any>;
-  icon?: React.ReactElement<any>;
+  component?: React.ElementType<ChipProps>;
+  deleteIcon?: React.ReactElement;
+  icon?: React.ReactElement;
   label?: React.ReactNode;
   onDelete?: React.EventHandler<any>;
   variant?: 'default' | 'outlined';

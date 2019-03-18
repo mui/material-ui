@@ -1,4 +1,4 @@
-# Sizing
+# Dimensionierung
 
 <p class="description">Easily make an element as wide or as tall (relative to its parent) with our width and height utilities.</p>
 
@@ -15,7 +15,7 @@ The sizing style functions support different property input type:
 
 {{"demo": "pages/system/sizing/Values.js"}}
 
-## Width
+## Breite
 
 ```jsx
 <Box width="25%">…
@@ -27,7 +27,7 @@ The sizing style functions support different property input type:
 
 {{"demo": "pages/system/sizing/Width.js"}}
 
-## Height
+## Höhe
 
 ```jsx
 <Box height="25%">…
@@ -44,11 +44,11 @@ The sizing style functions support different property input type:
 import { sizing } from '@material-ui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key |
-|:----------- |:----------- |:------------ |:--------- |
-| `width`     | `width`     | `width`      | none      |
-| `maxWidth`  | `maxWidth`  | `max-width`  | none      |
-| `minWidth`  | `minWidth`  | `min-width`  | none      |
-| `height`    | `height`    | `height`     | none      |
-| `maxHeight` | `maxHeight` | `max-height` | none      |
-| `minHeight` | `minHeight` | `min-height` | none      |
+| Import name | Eigenschaften | CSS property | Theme-Schlüssel |
+|:----------- |:------------- |:------------ |:--------------- |
+| `width`     | `width`       | `width`      | none            |
+| `maxWidth`  | `maxWidth`    | `max-width`  | none            |
+| `minWidth`  | `minWidth`    | `min-width`  | none            |
+| `height`    | `height`      | `height`     | none            |
+| `maxHeight` | `maxHeight`   | `max-height` | none            |
+| `minHeight` | `minHeight`   | `min-height` | none            |

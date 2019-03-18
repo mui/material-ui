@@ -204,13 +204,14 @@ export default function MyComponent() {
 
 ## `withStyles(styles, [options]) => higher-order component`
 
-Link a style sheet with a component using the **higher-order component** pattern. It does not modify the component passed to it; instead, it returns a new component with a `classes` property. This `classes` object contains the name of the class names injected in the DOM.
+Link a style sheet with a component using the **higher-order component** pattern. Ele não modifica o componente passados para ele; em vez disso, ele retorna um novo componente, com a propriedade `classes`. Este objeto `classes` contém o nome das classes inseridas no DOM.
 
-Some implementation details that might be interesting to being aware of:
+Alguns detalhes de implementação que podem ser interessantes para estar ciente:
 
 - Adiciona uma propriedade `classes`, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
-- Ele adiciona uma propriedade `innerRef` para que você possa obter uma referência ao componente encapsulado. O uso de `innerRef` é idêntico a `ref`.
-- Ele encaminha as propriedades *non React static* para que este HOC seja mais "transparente". Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
+- It forwards refs to the inner component.
+- The `innerRef` prop is deprecated. Use `ref` instead.
+- It does **not** copy over statics. Por exemplo, pode ser usado para definir um método estático (next.js) `getInitialProps()`.
 
 #### Argumentos
 
@@ -279,7 +280,7 @@ Provide the `theme` object as a property of the input component so it can be use
 
 #### Returns
 
-`Component`: The new component created.
+`Component`: The new component created. Does forward refs to the inner component.
 
 #### Exemplos
 

@@ -1,25 +1,25 @@
 ---
-title: No SSR React component
+title: NoSSR React-Komponente
 components: NoSsr
 ---
-# No SSR
+# NoSSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+<p class="description">NoSSR entfernt absichtlich Komponenten aus dem Server Side Rendering (SSR) Theme.</p>
 
-This component can be useful in a variety of situations:
+Diese Komponente kann in verschiedenen Situationen nützlich sein:
 
-- Escape hatch for broken dependencies not supporting SSR.
-- Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
-- Under too heavy server load, you can turn on service degradation.
-- Improve the time-to-interactive by only rendering what's important (with the `defer` property).
+- Notluke für gebrochene Abhängigkeiten, die SSR nicht unterstützen.
+- Verbessern Sie die Zeit bis zum ersten Rednern beim Client, indem Sie nur über der Klappe rendern.
+- Reduzieren Sie die Renderzeit auf dem Server.
+- Bei zu starker Serverlast können Sie die Dienstverschlechterung aktivieren.
+- Verbessern Sie die Zeit bis zur Interaktion, indem Sie nur das ausgeben, was wichtig ist (mit der `defer` Eigenschaft).
 
-## Client side deferring
+## Aufschiebung der Client-Seite
 
 {{"demo": "pages/utils/no-ssr/SimpleNoSsr.js"}}
 
-## Frame deferring
+## Rahmen Verzögerung
 
-In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
+Die Hauptaufgabe der NoSSR Komponente ist das **Verzögerte Rendern**. Wie in der vorherigen Demo veranschaulicht, können Sie damit das Rendern vom Server auf den Client verschieben.
 
-But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children.
+Sie können es aber auch verwenden, um das Rendern im Client selbst zu verschieben. Sie können mit der Eigenschaft `verzögern` ** einen Client Rendern abwarten**, um die Kinder zu rendern.

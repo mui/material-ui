@@ -1,8 +1,6 @@
 # @material-ui/system
 
-<p class="description">Style functions for building powerful design systems.</p>
-
-> ⚠️ `@material-ui/system` is experimental (alpha version). We are working on making it stable for Material-UI v4.
+<p class="description">Styled system & style functions for building powerful design systems.</p>
 
 ## Getting Started
 
@@ -14,7 +12,7 @@
 - 🦎 Work with any theme object.
 - 💅 Arbeite mit den bekanntesten CSS-in-JS Lösungen.
 - 📦 Weniger als [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
+- 🚀 [ Schnell genug ](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uisystem) kein Flaschenhals zur Laufzeit zu sein.
 
 It's important to understand that this package exposes pure (side-effect free) style functions with this signature: `({ theme, ...style }) => style`, **that's it**.
 
@@ -27,7 +25,7 @@ import { palette, spacing, typography } from '@material-ui/system';
 import styled from 'styled-components';
 
 const Box = styled.div`${palette}${spacing}${typography}`;
-// or import { unstable_Box as Box } from '@material-ui/core/Box';
+// or import Box from '@material-ui/core/Box';
 
 <Box
   color="primary.main"
@@ -130,7 +128,7 @@ To make the Box component more useful, we have been building a collection of sty
 If you are already using `@material-ui/core`, you can use our [prepackaged Box](/utils/box/) component (using JSS internally):
 
 ```jsx
-import { unstable_Box as Box } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 ## Interoperability
@@ -172,7 +170,7 @@ const Box = styled.div`${palette}${spacing}`;
 
 {{"demo": "pages/system/basics/Emotion.js"}}
 
-## Responsive
+## Reaktionsfähig
 
 **All** the properties are responsive, we support 3 different APIs. It uses this default, but customizable, breakpoints theme structure:
 
@@ -275,13 +273,13 @@ We don't support all the CSS properties. It's possible that you want to support 
 
 #### Arguments
 
-1. `options` (*Object*): 
+1. `Optionen` (*Object*): 
   - `options.prop` (*String*): The property the style function will be triggered on.
   - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
   - `options.themeKey` (*String* [optional]): The theme path prefix.
   - `options.transform` (*Function* [optional]): Apply a transformation before outputing a CSS value.
 
-#### Returns
+#### Rückgabewerte
 
 `style function`: The style function created.
 
@@ -302,7 +300,7 @@ const borderColor = style({
 
 Merge multiple style functions into one.
 
-#### Returns
+#### Rückgabewerte
 
 `style function`: The style function created.
 
@@ -409,7 +407,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - Tachyons was later on (2017) followed by [Tailwind CSS](https://tailwindcss.com/). They have made Atomic CSS more popular.
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. We have used the way they group their "Helper classes" as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
-- Large companies like Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
+- Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)

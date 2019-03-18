@@ -33,4 +33,4 @@ Un ejemplo de cómo renderizar múltiples Chips desde un array de valores. Elimi
 
 ## Chip Playground
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

@@ -10,9 +10,9 @@
 
 ## 样式提供者
 
-如果要自定义样式，则需要使用 `MuiThemeProvider` 组件才能将样式注入到你的应用程序中。 但是，这是可选的; Material-UI组件带有默认样式。
+If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. 但是，这是可选的; Material-UI组件带有默认样式。
 
-`MuiThemeProvider` 依赖于React的上下文功能将样式传递给组件， 因此您需要确保 `MuiThemeProvider` 是您自定义的组件的父级元素。 您可以了解更多有关这 [API部分](#muithemeprovider)。
+`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/css-in-js/api/#themeprovider).
 
 ## 样式配置变量
 
@@ -47,9 +47,9 @@
 
 如果任何的 [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary)， [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) 或 [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 提供的意图'对象，它们将取代的默认值。
 
-意图值可以是 [color](/style/color/) 对象，也可以是具有以下一个或多个键的对象：
+The intention value can either be a [color](/style/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
-```js
+```ts
 interface PaletteIntention {
   light?: string;
   main: string;
@@ -309,7 +309,7 @@ theme.spacing(2) // = 0.5rem = 8px
 
 ### 自定义变量
 
-当你在自己的组件使用Material-UI的[样式解决方案](/customization/css-in-js/)，您也可以享受到样式的优势。 可以方便地向样式添加其他变量，以便您可以在任何地方使用它们。 例如：
+When using Material-UI's theme with our [styling solution](/css-in-js/basics) or [any others](/guides/interoperability/#themeprovider). 可以方便地向样式添加其他变量，以便您可以在任何地方使用它们。 例如：
 
 {{"demo": "pages/customization/themes/CustomStyles.js"}}
 
@@ -371,39 +371,12 @@ const theme = createMuiTheme({
 
 #### 关于性能
 
-嵌套`MuiThemeProvider`组件在性能方面的影响取决于JSS在这方面上的优化。 一句话来讲，我们以 `(styles, theme)`为键值缓存了注入的CSS。
+The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. 一句话来讲，我们以 `(styles, theme)`为键值缓存了注入的CSS。
 
 - `theme`: 每次渲染时，如果你提供了一个新的主题，一个新的CSS对象将会被生成并注入。 不管是为了更统一的UI风格还是性能，都应该尽量不要每次生成新的主题 object。
 - `styles`: 样式 object 越大，需要的运算越多。
 
 ## API
-
-### `MuiThemeProvider`
-
-该组件采用`theme`属性，并使`theme`由于React上下文，可以在React树下使用。 它最好应在**组件树的根目录中使用** 。
-
-您可以在[专用页面](/api/mui-theme-provider/) 中查看完整属性API 。
-
-#### 例子
-
-```jsx
-import React from 'react';
-import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Root from './Root';
-
-const theme = createMuiTheme();
-
-function App() {
-  return (
-    <MuiThemeProvider theme={theme}>
-      <Root />
-    </MuiThemeProvider>
-  );
-}
-
-render(<App />, document.querySelector('#app'));
-```
 
 ### `createMuiTheme(options) => theme`
 
@@ -415,7 +388,7 @@ render(<App />, document.querySelector('#app'));
 
 #### 返回结果
 
-`theme` （*Object*）：一个完整的，随时可用的样式对象。
+`theme` （*Object*）：一个完整的，随时可用的主题对象。
 
 #### 例子
 
@@ -433,28 +406,4 @@ const theme = createMuiTheme({
     danger: 'orange',
   },
 });
-```
-
-### `withTheme(Component) => Component`
-
-提供`theme` object作为输入组件的属性，因此可以在render方法中使用 。
-
-#### 参数
-
-1. `Component` ：将被包装的组件。
-
-#### 返回结果
-
-`Component` ：创建的新组件。
-
-#### 例子
-
-```js
-import { withTheme } from '@material-ui/core/styles';
-
-function MyComponent(props) {
-  return <div>{props.theme.direction}</div>;
-}
-
-export default withTheme(MyComponent);
 ```

@@ -6,7 +6,7 @@ export interface BadgeProps
   children: React.ReactNode;
   badgeContent?: React.ReactNode;
   color?: PropTypes.Color | 'error';
-  component?: React.ReactType<BadgeProps>;
+  component?: React.ElementType<BadgeProps>;
   invisible?: boolean;
   max?: number;
   showZero?: boolean;

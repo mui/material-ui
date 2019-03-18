@@ -20,8 +20,6 @@ Precisamos garantir que o `Divider` seja renderizado como `li` para corresponder
 
 ## Divisores de inserção
 
-A propriedade `inset` está obsoleta e em desuso. Você deve usar agora `variant="inset"`.
-
 {{"demo": "pages/demos/dividers/InsetDividers.js"}}
 
 ## Divisores de subtítulo

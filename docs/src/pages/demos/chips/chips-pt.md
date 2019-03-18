@@ -33,4 +33,4 @@ Um exemplo de renderização de múltiplos Chips de uma matriz de valores. Delet
 
 ## Chip Playground
 
-{{"demo": "pages/demos/chips/ChipsPlayground.js"}}
+{{"demo": "pages/demos/chips/ChipsPlayground.js", "hideHeader": true}}

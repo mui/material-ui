@@ -3,10 +3,10 @@ import { StandardProps } from '..';
 
 export interface ListProps
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, ListClassKey> {
-  component?: React.ReactType<ListProps>;
+  component?: React.ElementType<ListProps>;
   dense?: boolean;
   disablePadding?: boolean;
-  subheader?: React.ReactElement<any>;
+  subheader?: React.ReactElement;
 }
 
 export type ListClassKey = 'root' | 'padding' | 'dense' | 'subheader';

