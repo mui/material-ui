@@ -37,7 +37,7 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
 Performance is all about doing less work. We can leverage the following:
   - Make the core faster. Using our table components is x3 slower than using native table elements.
     What's the difference? a Material-UI table component creates many **intermediary components**, slowing the rendering.
-    We are working on removing these intermediary components. We are migrating the codebase from class based components to hook based components.
+    We are working on removing these intermediary components by migrating the codebase from class based components to hook based components.
     [This will yield a theoretical **+30%** performance gain](https://github.com/mui-org/material-ui/issues/10778#issuecomment-472840548), as well as making the DX much better.
     Here is the React Dev Tools output for the same node:
 
