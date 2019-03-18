@@ -33,7 +33,7 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
     which should make it straightforward to use Material-UI with TypeScript. You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897).
   - The definitions. We are **continuously** improving them. We are aware that correctly typing withStyles() is cumbersome, so we encourage you to use [makeStyles()](/css-in-js/basics/#hook-api) instead. It should be much better with this Hook API.
   The codebase is written in JavaScript, we don't plan on migrating it to TypeScript in the near future. Maybe for v5, we will see.
-- 0.2 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. We can notice stark differences when rendering a large table or list.
+- 0.2 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
 Performance is all about doing less work. We have the following leverages:
   - Make the core faster. Using our table components is x3 slower than using native table elements.
     What's the difference? a Material-UI table component creates many **intermediary components**, slowing the rendering.
