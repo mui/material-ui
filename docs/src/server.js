@@ -46,7 +46,7 @@ async function run() {
 
   const server = http.createServer(app);
   const port = parseInt(process.env.PORT, 10) || 3000;
-  const host = 'localhost';
+  const host = process.env.HOST || 'localhost';
 
   server.listen(port, host, err => {
     if (err) {
@@ -54,7 +54,7 @@ async function run() {
     }
     log.info({
       name: 'http',
-      msg: `ready on http://${server.address().address}:${server.address().port}`,
+      msg: `ready on http://${host}:${port}`,
     });
   });
 
