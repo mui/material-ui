@@ -218,28 +218,12 @@ If you want to learn more about typography, you can check out [the typography se
 
 ### Typography - Font family
 
-Use Raleway with the system font as a fallback instead of the default Roboto font. Requires use of the
-[`CssBaseline`](/api/css-baseline) component to globally define Raleway as a font family.
+You can use the system font instead of the default Roboto font.
 
 ```js
-// Values extracted from https://fonts.googleapis.com/css?family=Raleway:400 stylesheet
-const raleway = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
-    local('Raleway'),
-    local('Raleway-Regular'),
-    url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2) format('woff2')
-  `,
-  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
-};
-
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      'Raleway',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
@@ -252,15 +236,10 @@ const theme = createMuiTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@font-family': [raleway]
-      }
-    }
-  }
 });
 ```
+
+### Typography - Self-host fonts
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
@@ -283,6 +262,36 @@ const raleway = {
   `,
   unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 };
+```
+
+Then, you can change the theme to use this new font. It requires use of the
+[`CssBaseline`](/style/css-baseline/) component to globally define Raleway as a font family.
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Raleway',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-family': [raleway],
+      },
+    },
+  },
+});
 ```
 
 ### Typography - Font size

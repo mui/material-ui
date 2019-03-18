@@ -1,7 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(
   createStyles({
@@ -12,7 +11,7 @@ const useStyles = makeStyles(
   }),
 );
 
-function Types(props: { children?: React.ReactNode }): React.ReactElement {
+function Types() {
   const classes = useStyles();
 
   return (
