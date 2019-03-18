@@ -13,7 +13,8 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 
 The *Roboto* font will **not** be automatically loaded by Material-UI.
 The developer is responsible for loading all fonts used in their application.
-Roboto Font has a few easy ways to get started.
+Roboto Font has a few easy ways to get started. For more advanced configuration, check out
+[the theme customization section](/customization/themes/#typography)
 
 ## Roboto Font CDN
 
@@ -45,14 +46,6 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 ## Component
 
 {{"demo": "pages/style/typography/Types.js"}}
-
-## Custom and Self-Hosted Font
-
-If you do have a need for multiple fonts or just wish to host them yourself it is possible to customize the theme using
-overrides or create a new component which loads font styles into the global CSS namespace. Below shows how'd you add
-a custom font using `CssBaseline` overrides.
-
-{{"demo": 'pages/style/typography/TypeographyFontFamily.js}}
 
 ## Theme
 
