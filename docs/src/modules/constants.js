@@ -1,7 +1,6 @@
 export const CODE_VARIANTS = {
   JS: 'JS',
   TS: 'TS',
-  HOOK: 'HOOK',
 };
 
 export const ACTION_TYPES = {

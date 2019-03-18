@@ -1,10 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const images = [
+  {
+    url: '/static/images/grid-list/breakfast.jpg',
+    title: 'Breakfast',
+    width: '40%',
+  },
+  {
+    url: '/static/images/grid-list/burgers.jpg',
+    title: 'Burgers',
+    width: '30%',
+  },
+  {
+    url: '/static/images/grid-list/camera.jpg',
+    title: 'Camera',
+    width: '30%',
+  },
+];
+
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -75,28 +92,10 @@ const styles = theme => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
-});
+}));
 
-const images = [
-  {
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: 'Breakfast',
-    width: '40%',
-  },
-  {
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Burgers',
-    width: '30%',
-  },
-  {
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Camera',
-    width: '30%',
-  },
-];
-
-function ButtonBases(props) {
-  const { classes } = props;
+function ButtonBases() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -134,8 +133,4 @@ function ButtonBases(props) {
   );
 }
 
-ButtonBases.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonBases);
+export default ButtonBases;

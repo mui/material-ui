@@ -88,11 +88,13 @@ import * as colors from './colors';
 export { colors };
 export {
   createMuiTheme,
+  createStyles,
+  makeStyles,
   StyleRulesCallback,
   Theme,
+  useTheme,
   withStyles,
   WithStyles,
-  createStyles,
   withTheme,
   WithTheme,
 } from './styles';
