@@ -30,7 +30,7 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
   - Internationalization. Not everybody can read & understand English. The documentation pages are synced with [Crowdin](https://translate.material-ui.com/). They should always be up-to-date.
 - 0.3 - **TypeScript.** 📏 There are two dimensions to this problem:
   - The documentation. We want to provide a TypeScript variant to most of our demos,
-    It should make it straightforward to use Material-UI with TypeScript. You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897).
+    which should make it straightforward to use Material-UI with TypeScript. You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897).
   - The definitions. We are **continuously** improving them. We are aware that correctly typing withStyles() is cumbersome. We encourage people to use [makeStyles()](/css-in-js/basics/#hook-api). It should be much better with this Hook API.
   The codebase is written in JavaScript, we don't plan on migrating it to TypeScript in the near future. Maybe for v5, we will see.
 - 0.2 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. We can notice stark differences when rendering a large table or list.
