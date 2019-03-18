@@ -10,7 +10,7 @@ import RalewayMediumTTF from '@material-ui/docs/src/pages/style/typography/fonts
 import Types from './Types';
 
 /**
- * By default we host the font files ourselves by loading the ttf, woff, and woff2 files into our code. The build
+ * By default we host the font files ourselves by loading the ttf and woff2 files into our code. The build
  * pipeline processes them and makes them available at runtime. Download the font files from Google Fonts - the ttf
  * versions come in the direct download zip and the woff2 files you have to manually download using the links in the
  * stylesheets Google provides, e.g. https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwIYqWqZPANqczVs.woff2

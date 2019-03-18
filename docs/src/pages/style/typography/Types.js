@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
 });
 
 function Types(props) {
-  const { classes } = useStyles(props);
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>

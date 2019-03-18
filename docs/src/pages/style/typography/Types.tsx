@@ -1,17 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    maxWidth: 500,
-  },
-});
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      width: '100%',
+      maxWidth: 500,
+    },
+  }),
+);
 
 function Types(props: { children?: React.ReactNode }): React.ReactElement {
-  const { classes } = useStyles(props);
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
