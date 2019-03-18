@@ -50,7 +50,7 @@ Performance is all about doing less work. We have the following leverages:
     ![After](https://pbs.twimg.com/media/D1oZvtsXcAIyAb4?format=png&name=360x360)
   - Avoid re-rendering. It's the responsibility of our users to prune the React rendering tree efficiently.
     Most of our APIs are too low level to implement efficient memoization (React.useMemo, React.PureComponent, React.memo).
-    If you find a good opportunity for it, let us know, we will be happy to work on the problem.
+    If you find a good opportunity for it, let us know, and we will be happy to work with you on the problem.
   - Avoid rendering. We are documenting [how to implement virtualization](/demos/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
 - 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core@4.0.0-alpha.4).
 It's a continuous effort – v4 is 15% smaller so far, while adding new features.
