@@ -20,7 +20,7 @@ Everybody underestimates it, we have a relatively small core team. We are going 
   - Encourage the usage of third-party components if they already exist and are well maintained. We can create [a search experience](https://xpvrpr7r4o.codesandbox.io/) for this.
 - 0.5 - **Better customization.** 💅 We want to make our component customization intuitive, no matter if you are using global CSS or styled-components:
   - Improve the documentation.
-  - Better support styled-components.
+  - Better support for styled-components.
   - Work on the core solution.
   - Provide [more examples like this](https://mui-treasury.com/components/card).
 - 0.3 - **Better documentation.** 📚 It's a wide topic. We don't know exactly what people want. We will focus our effort in the following areas:
