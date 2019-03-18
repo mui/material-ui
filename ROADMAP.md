@@ -22,12 +22,12 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
   - Improve the documentation.
   - Better support for styled-components.
   - Work on the core solution.
-  - Provide [more examples like this](https://mui-treasury.com/components/card).
+  - Provide [more examples like this](https://mui-treasury.com/components/button).
 - 0.3 - **Better documentation.** 📚 It's a wide topic. We don't know exactly what people want. We will focus our effort in the following areas:
   - Beginner tutorials & Video lessons.
   - Page Layout Examples. They get people started really quickly, we need more of them!
   - Page documentation rating 🥇🥈🥉. We will integrate a rating module in all our documentation pages. This way, we can collect high-quality data points and prioritize the pages that need the most to be improved.
-  - Internationalization. Not everybody can read & understand English. The documentation pages are synced with [Crowdin](https://translate.material-ui.com/). They should always be up-to-date.
+  - Localisation. Not everybody can read & understand English. The documentation pages are synced with [Crowdin](https://translate.material-ui.com/). They should always be up-to-date.
 - 0.3 - **TypeScript.** 📏 There are two dimensions to this problem:
   - The documentation. We want to provide a TypeScript variant to most of our demos,
     which should make it straightforward to use Material-UI with TypeScript. You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897).
