@@ -218,8 +218,8 @@ If you want to learn more about typography, you can check out [the typography se
 
 ### Typography - Font family
 
-Using Raleway with the system font as a fallback instead of the default Roboto font. Requires use of the
-[`CssBaseline`](/api/css-baseline) component.
+Use Raleway with the system font as a fallback instead of the default Roboto font. Requires use of the
+[`CssBaseline`](/api/css-baseline) component to globally define Raleway as a font family.
 
 ```js
 // Values extracted from https://fonts.googleapis.com/css?family=Raleway:400 stylesheet
@@ -269,7 +269,7 @@ To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` for
 CDN.
 
 ```js
-import RalewayWoff2 from './files/Raleway-Regular.woff2';
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
 
 const raleway = {
   fontFamily: 'Raleway',
