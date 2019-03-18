@@ -39,7 +39,7 @@ const List = React.forwardRef(function List(props, ref) {
     subheader,
     ...other
   } = props;
-  
+
   const context = React.useMemo(() => ({ dense }), [dense]);
 
   return (
