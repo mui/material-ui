@@ -14,7 +14,7 @@ Here are our top priorities, ordered by importance:
 
 - 1.0 - **More components**. 🧰 People want more components. This is challenging for us to handle, as building and maintaining a professional component takes an incredible amount of time.
 Everybody underestimates it. As we have a relatively small core team, we are going to try the following strategy:
-  - Identify frequently needed components. We have different leverages for this: the developer survey answers, the GitHub upvotes, the Algolia search volume, the Google search volume, documentation usage volume, npm downloads, etc.
+  - Identify frequently needed components. We have different resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage volume, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
   - Optimize for the people maintaining the components. The more people maintaining the components the better.
   - Encourage the usage of third-party components if they already exist and are well maintained. We can create [a search experience](https://xpvrpr7r4o.codesandbox.io/) for this.
