@@ -16,8 +16,8 @@ Here are our top priorities, ordered by importance:
 Everybody underestimates it. As we have a relatively small core team, we are going to try the following strategy:
   - Identify frequently needed components. We have different resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage volume, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
-  - Optimize for the people maintaining the components. The more people maintaining the components the better.
   - Encourage the usage of third-party components if they already exist and are well maintained. We can create [a search experience](https://xpvrpr7r4o.codesandbox.io/) for this.
+  - Offer an option to the highly used and well maintained components to move to the official organization: mui-org/x on GitHub, @material-ui/x on npm and x.material-ui.com for the documentation.
 - 0.5 - **Better customization.** 💅 We want to make our component customization intuitive, no matter if you are using global CSS or styled-components:
   - Improve the documentation.
   - Better support for styled-components.
