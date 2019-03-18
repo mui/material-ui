@@ -33,7 +33,19 @@ module.exports = {
       );
     }
 
+    const originalEntry = config.entry;
+    const entry = async () => {
+      const entries = await originalEntry();
+
+      if (entries['main.js'] && !entries['main.js'].includes('./pages/polyfills.js')) {
+        entries['main.js'].unshift('./pages/polyfills.js');
+      }
+
+      return entries;
+    };
+
     return Object.assign({}, config, {
+      entry,
       plugins,
       node: {
         fs: 'empty',
