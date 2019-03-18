@@ -129,6 +129,29 @@ export default withStyles(styles)(HigherOrderComponent);
 ## Adapting based on props
 
 You can pass a function ("interpolations") to a style property to adapt it based on its props.
+The function can be provided at the style rule level or at the CSS property level:
+
+```jsx
+const useStyles = makeStyles({
+  // style rule
+  foo: props => ({
+    backgroundColor: props.backgroundColor,
+  },
+  bar: {
+    // CSS property
+    color: props => props.color,
+  },
+});
+
+function MyComponent() {
+  const props = { backgroundColor: 'black', color: 'white' };
+  // It injects the props as the first argument of useStyles();
+  const classes = useStyles(props);
+
+  return <div className={`${classes.foo} ${classes.bar}`} />
+}
+```
+
 This button component has a color property that changes its color:
 
 ### Adapting hook API

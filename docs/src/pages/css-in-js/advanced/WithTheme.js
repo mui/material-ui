@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider, withTheme } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
 
 function DeepChildRaw(props) {
-  return <Button>{`spacing ${props.theme.spacing}`}</Button>;
+  return <span>{`spacing ${props.theme.spacing}`}</span>;
 }
 
 DeepChildRaw.propTypes = {
