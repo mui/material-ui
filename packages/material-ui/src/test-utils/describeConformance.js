@@ -31,13 +31,22 @@ function testClassName(element, options) {
   });
 }
 
+/**
+ * Material-UI components have a `component` prop that allows rendering a different
+ * Component from @inheritComponent
+ *
+ * @param {React.ReactElement} element
+ * @param {Object} options
+ * @param {string} options.testComponentPropWith - The host component that should
+ *                                                 be rendered instead.
+ */
 function testComponentProp(element, options) {
-  const { componentProp = 'em', mount } = options;
+  const { testComponentPropWith: component, mount } = options;
 
   it('can render another root component with the `component` prop', () => {
-    const wrapper = mount(React.cloneElement(element, { component: componentProp }));
+    const wrapper = mount(React.cloneElement(element, { component }));
 
-    assert.strictEqual(wrapper.getDOMNode().nodeName.toLowerCase(), componentProp);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), component);
   });
 }
 
@@ -118,6 +127,7 @@ const fullSuite = {
  * @param {function} options.mount - Should be a return value from createMount
  * @param {boolean} options.noForwardRef - see test testRefForwarding
  * @param {string[]} options.tests - list of tests that the component conforms to. see fullSuite
+ * @param {string?} options.testComponentPropWith - see test testComponentProp
  */
 export default function describeConformance(minimalElement, options) {
   const { tests = Object.keys(fullSuite) } = options;
