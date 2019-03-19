@@ -231,7 +231,7 @@ describe('<RadioGroup />', () => {
       consoleErrorMock.reset();
     });
 
-    it('should warn when switching between controlled to uncontrolled', () => {
+    it('should warn when switching from controlled to uncontrolled', () => {
       const wrapper = mount(
         <RadioGroup value="foo">
           <Radio value="foo" />
