@@ -128,26 +128,26 @@ describe('<Menu />', () => {
   });
 
   it('should call props.onEntering with element if exists', () => {
-    const wrapper = mount(<Menu {...defaultProps} classes={classes} />);
+    const onEnteringSpy = spy();
+    const wrapper = mount(<Menu {...defaultProps} classes={classes} onEntering={onEnteringSpy} />);
     const instance = wrapper.find('Menu').instance();
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    const onEnteringSpy = spy();
-    wrapper.setProps({ onEntering: onEnteringSpy });
     instance.handleEntering(elementForHandleEnter);
     assert.strictEqual(onEnteringSpy.callCount, 1);
     assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
   });
 
   it('should call props.onEntering, disableAutoFocusItem', () => {
-    const wrapper = mount(<Menu disableAutoFocusItem {...defaultProps} classes={classes} />);
+    const onEnteringSpy = spy();
+    const wrapper = mount(
+      <Menu disableAutoFocusItem {...defaultProps} classes={classes} onEntering={onEnteringSpy} />,
+    );
     const instance = wrapper.find('Menu').instance();
 
     const elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
 
-    const onEnteringSpy = spy();
-    wrapper.setProps({ onEntering: onEnteringSpy });
     instance.handleEntering(elementForHandleEnter);
     assert.strictEqual(onEnteringSpy.callCount, 1);
     assert.strictEqual(onEnteringSpy.calledWith(elementForHandleEnter), true);
