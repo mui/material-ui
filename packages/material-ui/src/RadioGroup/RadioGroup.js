@@ -24,8 +24,8 @@ class RadioGroup extends React.Component {
     warning(
       this.isControlled === (this.props.value != null),
       [
-        `Material-UI: A component is changing an ${
-          this.isControlled ? '' : 'un'
+        `Material-UI: A component is changing ${
+          this.isControlled ? 'a ' : 'an un'
         }controlled RadioGroup to be ${this.isControlled ? 'un' : ''}controlled.`,
         'Input elements should not switch from uncontrolled to controlled (or vice versa).',
         'Decide between using a controlled or uncontrolled RadioGroup ' +
