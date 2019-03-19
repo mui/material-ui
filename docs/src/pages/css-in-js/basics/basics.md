@@ -126,6 +126,113 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/css-in-js/basics/HigherOrderComponent.js"}}
 
+## Nesting selectors
+
+You can nest selectors to target elements inside the current class or component.
+
+### Hook API
+
+```jsx
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles({
+  root: {
+    padding: 16,
+    color: 'red',
+    '& p': {
+      color: 'green',
+      '& span': {
+        color: 'blue'
+      }
+    }
+  },
+});
+
+export default function NestedStylesHook() {
+  const classes = useStyles();
+  return (
+    <Paper className={classes.root}>
+      This is red since it is inside the paper.
+      <p>This is green since it is inside the paragraph <span>and this is blue since it is inside the span</span></p>
+    </Paper>
+  );
+}
+```
+
+{{"demo": "pages/css-in-js/basics/NestedStylesHook.js"}}
+
+### Styled components API
+
+```jsx
+import React from 'react';
+import { styled } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+
+const MyPaper = styled(Paper)({
+  padding: 16,
+  color: 'red',
+    '& p': {
+      color: 'green',
+      '& span': {
+        color: 'blue'
+      }
+    }
+});
+
+export default function NestedStylesStyledComponents() {
+  return (
+    <MyPaper>
+      This is red since it is inside MyPaper.
+      <p>This is green since it is inside the paragraph <span>and this is blue since it is inside the span</span></p>
+    </MyPaper>
+  );
+}
+```
+
+{{"demo": "pages/css-in-js/basics/NestedStylesStyledComponents.js"}}
+
+### Higher-order component API
+
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+
+const styles = {
+  root: {
+    padding: 16,
+    color: 'red',
+    '& p': {
+      color: 'green',
+      '& span': {
+        color: 'blue'
+      }
+    }
+  },
+};
+
+function NestedStylesHigherOrderComponent(props) {
+  const { classes } = props;
+  return (
+    <Paper className={classes.root}>
+      This is red since it is inside the paper.
+      <p>This is green since it is inside the paragraph <span>and this is blue since it is inside the span</span></p>
+    </Paper>
+  )
+}
+
+NestedStylesHigherOrderComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(NestedStylesHigherOrderComponent);
+```
+
+{{"demo": "pages/css-in-js/basics/NestedStylesHOC.js"}}
+
 ## Adapting based on props
 
 You can pass a function ("interpolations") to a style property to adapt it based on its props.
