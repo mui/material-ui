@@ -87,7 +87,7 @@ function testRefForwarding(element, options) {
       consoleErrorMock.reset();
     });
 
-    it(`should ${noForwardRef ? 'not' : ''} forward a ref`, () => {
+    it(`does ${noForwardRef ? 'not' : ''} forward ref`, () => {
       const ref = React.createRef();
       mount(React.cloneElement(element, { innerRef: ref }));
 
