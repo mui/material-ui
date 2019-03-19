@@ -5,12 +5,19 @@ import { createShallow, createMount } from '@material-ui/core/test-utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<RadioGroup />', () => {
   let shallow;
+  let mount;
 
   before(() => {
+    mount = createMount();
     shallow = createShallow();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a FormGroup with the radiogroup role', () => {
@@ -200,16 +207,6 @@ describe('<RadioGroup />', () => {
   });
 
   describe('register internal radios to this.radio', () => {
-    let mount;
-
-    before(() => {
-      mount = createMount();
-    });
-
-    after(() => {
-      mount.cleanUp();
-    });
-
     it('should add a child', () => {
       const wrapper = mount(
         <RadioGroup value="">
@@ -222,6 +219,42 @@ describe('<RadioGroup />', () => {
     it('should keep radios empty', () => {
       const wrapper = mount(<RadioGroup value="" />);
       assert.strictEqual(wrapper.instance().radios.length, 0);
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const wrapper = mount(
+        <RadioGroup value="foo">
+          <Radio value="foo" />
+        </RadioGroup>,
+      );
+      wrapper.setProps({ value: undefined });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing a controlled RadioGroup to be uncontrolled.',
+      );
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const wrapper = mount(
+        <RadioGroup>
+          <Radio value="foo" />
+        </RadioGroup>,
+      );
+      wrapper.setProps({ value: 'foo' });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing an uncontrolled RadioGroup to be controlled.',
+      );
     });
   });
 });
