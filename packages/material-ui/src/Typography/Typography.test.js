@@ -23,7 +23,6 @@ describe('<Typography />', () => {
       inheritComponentName: 'p',
       mount,
       noForwardRef: true,
-      testComponentPropWith: 'em'
     });
   });
 

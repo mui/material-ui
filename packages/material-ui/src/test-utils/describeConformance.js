@@ -41,7 +41,7 @@ function testClassName(element, options) {
  *                                                 be rendered instead.
  */
 function testComponentProp(element, options) {
-  const { testComponentPropWith: component, mount } = options;
+  const { testComponentPropWith: component = 'em', mount } = options;
 
   it('can render another root component with the `component` prop', () => {
     const wrapper = mount(React.cloneElement(element, { component }));
