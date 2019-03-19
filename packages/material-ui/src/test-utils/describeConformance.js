@@ -4,7 +4,9 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 function randomStringValue() {
-  return Math.random().toString(36).slice(2);
+  return Math.random()
+    .toString(36)
+    .slice(2);
 }
 
 /**
@@ -117,7 +119,7 @@ const fullSuite = {
  * @param {boolean} options.noForwardRef - see test testRefForwarding
  * @param {string[]} options.tests - list of tests that the component conforms to. see fullSuite
  */
-export default function testConformance(minimalElement, options) {
+export default function describeConformance(minimalElement, options) {
   const { tests = Object.keys(fullSuite) } = options;
 
   describe('Material-UI component API', () => {
