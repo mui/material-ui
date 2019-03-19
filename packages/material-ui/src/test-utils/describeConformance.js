@@ -54,16 +54,23 @@ function testComponentProp(element, options) {
  *
  * @param {React.ReactElement} element
  * @param {Object} options
- * @param {string} options.inheritComponent - The element type that receives spread props
+ * @param {string} options.inheritComponentName - The element type display name
+ *                                                that receives spread props.
  */
 function testPropsSpread(element, options) {
-  const { inheritComponent, mount } = options;
+  const { inheritComponentName, mount } = options;
 
-  it('should spread props', () => {
+  it(`does spread props to the first ${inheritComponentName}`, () => {
     const testProp = 'data-test-props-spread';
     const value = randomStringValue();
     const wrapper = mount(React.cloneElement(element, { [testProp]: value }));
-    assert.strictEqual(wrapper.find(inheritComponent).props()[testProp], value);
+    assert.strictEqual(
+      wrapper
+        .find(inheritComponentName)
+        .first()
+        .props()[testProp],
+      value,
+    );
   });
 }
 
