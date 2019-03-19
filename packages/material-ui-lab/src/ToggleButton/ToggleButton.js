@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { withForwardedRef } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -69,10 +68,21 @@ export const styles = theme => ({
   },
 });
 
-class ToggleButton extends React.Component {
-  handleChange = event => {
-    const { onChange, onClick, value } = this.props;
+const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    disabled,
+    disableFocusRipple,
+    onChange,
+    onClick,
+    selected,
+    value,
+    ...other
+  } = props;
 
+  const handleChange = event => {
     if (onClick) {
       onClick(event, value);
       if (event.isDefaultPrevented()) {
@@ -85,39 +95,28 @@ class ToggleButton extends React.Component {
     }
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      disabled,
-      disableFocusRipple,
-      innerRef,
-      selected,
-      ...other
-    } = this.props;
-
-    return (
-      <ButtonBase
-        className={clsx(
-          classes.root,
-          {
-            [classes.disabled]: disabled,
-            [classes.selected]: selected,
-          },
-          className,
-        )}
-        disabled={disabled}
-        focusRipple={!disableFocusRipple}
-        ref={innerRef}
-        onClick={this.handleChange}
-        {...other}
-      >
-        <span className={classes.label}>{children}</span>
-      </ButtonBase>
-    );
-  }
-}
+  return (
+    <ButtonBase
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.selected]: selected,
+        },
+        className,
+      )}
+      disabled={disabled}
+      focusRipple={!disableFocusRipple}
+      ref={ref}
+      onClick={handleChange}
+      onChange={onChange}
+      value={value}
+      {...other}
+    >
+      <span className={classes.label}>{children}</span>
+    </ButtonBase>
+  );
+});
 
 ToggleButton.propTypes = {
   /**
@@ -148,11 +147,6 @@ ToggleButton.propTypes = {
   disableRipple: PropTypes.bool,
   /**
    * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
-   * @ignore
    */
   onChange: PropTypes.func,
   /**
@@ -178,4 +172,4 @@ ToggleButton.defaultProps = {
 
 ToggleButton.muiName = 'ToggleButton';
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(withForwardedRef(ToggleButton));
+export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);
