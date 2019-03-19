@@ -15,11 +15,10 @@ function randomStringValue() {
  *
  * @param {React.ReactElement} element
  * @param {Object} options
- * @param {string} options.defaultRootClassNames - the className that should be
- *                                                applied to the outermost DOM node
+ * @param {string} options.classes - `classes` of the component from `@material-ui/styles`
  */
 function testClassName(element, options) {
-  const { defaultRootClassNames = [], mount } = options;
+  const { classes, mount } = options;
 
   it('applies the className to the outermost DOM node', () => {
     const className = randomStringValue();
@@ -27,14 +26,8 @@ function testClassName(element, options) {
     const wrapper = mount(React.cloneElement(element, { className }));
     const domWrapper = findOutermostIntrinsic(wrapper);
 
-    assert.strictEqual(domWrapper.hasClass(className), true);
-    defaultRootClassNames.forEach(defaultClassName => {
-      assert.strictEqual(
-        domWrapper.hasClass(defaultRootClassNames),
-        true,
-        `Does not have the '${defaultClassName}' class`,
-      );
-    });
+    assert.strictEqual(domWrapper.hasClass(classes.root), true, 'does have a `root` class');
+    assert.strictEqual(domWrapper.hasClass(className), true, 'does have a custom `className`');
   });
 }
 
@@ -120,7 +113,7 @@ const fullSuite = {
  *
  * @param {React.ReactElement} minimalElement - the component with it's minimal required props
  * @param {Object} options
- * @param {string} options.defaultRootClassNames - see testClassName
+ * @param {string} options.classes - see testClassName
  * @param {string} options.inheritComponentName - see testPropsSpread
  * @param {function} options.mount - Should be a return value from createMount
  * @param {boolean} options.noForwardRef - see test testRefForwarding
