@@ -20,7 +20,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   React.useImperativeHandle(actions, () => ({
     focus: () => {
       const radios = radiosRef.current;
-      if (!radios || !radios.length) {
+      if (!radios.length) {
         return;
       }
 
