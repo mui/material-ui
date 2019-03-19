@@ -29,9 +29,9 @@ The following sections cover the most important theme variables:
 - [Other variables](#other-variables)
 - [Custom variables](#custom-variables)
 
-### Palette
+## Palette
 
-#### Intentions
+### Intentions
 
 A color intention is a mapping of a palette to a given intention within your application.
 
@@ -46,7 +46,7 @@ and the un-prefixed shades for the other intentions.
 
 If you want to learn more about color, you can check out [the color section](/style/color/).
 
-#### Custom palette
+### Custom palette
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
@@ -177,15 +177,15 @@ light, and given a dark `contrastText`.
 
 Note that `contrastThreshold` follows a non-linear curve.
 
-#### Example
+### Example
 
 {{"demo": "pages/customization/themes/Palette.js"}}
 
-#### Color tool
+### Color tool
 
 Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color/#color-tool) to help you.
 
-### Type (light /dark theme)
+## Type (light /dark theme)
 
 You can make the theme dark by setting `type` to `dark`.
 While it's only a single property value change, internally it modifies the value of the following keys:
@@ -205,7 +205,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/DarkTheme.js", "hideEditButton": true}}
 
-### Typography
+## Typography
 
 Too many type sizes and styles at once can spoil any layout.
 The theme provides a **limited set of type sizes** that work well together along with the layout grid.
@@ -216,12 +216,13 @@ If you want to learn more about typography, you can check out [the typography se
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-#### Typography - Font family
+### Font family
+
+You can use the system font instead of the default Roboto font.
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -238,7 +239,62 @@ const theme = createMuiTheme({
 });
 ```
 
-#### Typography - Font size
+### Self-host fonts
+
+To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
+
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and
+`woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a
+CDN.
+
+```js
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
+const raleway = {
+  fontFamily: 'Raleway',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: 400,
+  src: `
+    local('Raleway'),
+    local('Raleway-Regular'),
+    url(${RalewayWoff2}) format('woff2')
+  `,
+  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+};
+```
+
+Then, you can change the theme to use this new font. It requires use of the
+[`CssBaseline`](/style/css-baseline/) component to globally define Raleway as a font family.
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Raleway',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-family': [raleway],
+      },
+    },
+  },
+});
+```
+
+### Font size
 
 Material-UI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
@@ -263,7 +319,7 @@ The computed font size by the browser follows this mathematical equation:
 ![font-size](/static/images/font-size.gif)
 <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-#### Typography - HTML font size
+### HTML font size
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 We provide a `htmlFontSize` theme property for this use case.
@@ -289,7 +345,7 @@ html {
 
 {{"demo": "pages/customization/themes/FontSizeTheme.js"}}
 
-### Spacing
+## Spacing
 
 We encourage you to use the `theme.spacing()` helper to create consistent spacing between the elements of your UI.
 Material-UI uses [a recommended 8px scaling factor by default](https://material.io/design/layout/understanding-layout.html).
@@ -325,7 +381,7 @@ const theme = createMuiTheme({
 theme.spacing(2) // = 0.5rem = 8px
 ```
 
-#### Multiple arity
+### Multiple arity
 
 The `theme.spacing()` helper accepts up to 4 arguments.
 You can use the arguments to reduce the boilerplate:
@@ -334,12 +390,12 @@ You can use the arguments to reduce the boilerplate:
 +  padding: theme.spacing(1, 2), // '8px 16px'
 ```
 
-### Other variables
+## Other variables
 
 In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
-### Custom variables
+## Custom variables
 
 When using Material-UI's theme with our [styling solution](/css-in-js/basics) or [any others](/guides/interoperability/#themeprovider).
 It can be convenient to add additional variables to the theme so you can use them everywhere.

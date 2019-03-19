@@ -25,7 +25,8 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [mui-downshift](https://github.com/techniq/mui-downshift) Thin layer over paypal's downshift to use Material-UI visual components.
 - [mui-tables](https://parkerself.gitbook.io/mui-table/) Customizable table for managing complex data. Features a summary row, de-duplication & merging, as well as filtering, search, etc.
-- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other
+- [notistack](https://github.com/iamhosseindhv/notistack) Highly customisable notification snackbars that can be stacked on top of each other.
+- [react-basket](https://github.com/mbrn/react-basket) A shopping basket components library based on material-ui components.
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.
 - [react-media-material-ui](https://github.com/jcoreio/react-media-material-ui) Easily use breakpoints from your Material-UI theme with [react-media](https://github.com/ReactTraining/react-media).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
