@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy } from 'sinon';
+import { act } from 'react-dom/test-utils';
 import { createMount, findOutermostIntrinsic, testRef } from '@material-ui/core/test-utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
@@ -221,22 +222,25 @@ describe('<RadioGroup />', () => {
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
-      stub(React, 'useEffect').callsFake(React.useLayoutEffect);
     });
 
     afterEach(() => {
       consoleErrorMock.reset();
-      React.useEffect.restore();
     });
 
     it('should warn when switching from controlled to uncontrolled', () => {
-      const wrapper = mount(
-        <RadioGroup value="foo">
-          <Radio value="foo" />
-        </RadioGroup>,
-      );
+      let wrapper;
 
-      wrapper.setProps({ value: undefined });
+      act(() => {
+        wrapper = mount(
+          <RadioGroup value="foo">
+            <Radio value="foo" />
+          </RadioGroup>,
+        );
+
+        wrapper.setProps({ value: undefined });
+      });
+
       assert.include(
         consoleErrorMock.args()[0][0],
         'A component is changing a controlled RadioGroup to be uncontrolled.',
@@ -244,13 +248,18 @@ describe('<RadioGroup />', () => {
     });
 
     it('should warn when switching between uncontrolled to controlled', () => {
-      const wrapper = mount(
-        <RadioGroup>
-          <Radio value="foo" />
-        </RadioGroup>,
-      );
-      wrapper.setProps({ value: 'foo' });
-      wrapper.update();
+      let wrapper;
+
+      act(() => {
+        wrapper = mount(
+          <RadioGroup>
+            <Radio value="foo" />
+          </RadioGroup>,
+        );
+
+        wrapper.setProps({ value: 'foo' });
+      });
+
       assert.include(
         consoleErrorMock.args()[0][0],
         'A component is changing an uncontrolled RadioGroup to be controlled.',
