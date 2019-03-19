@@ -10,12 +10,12 @@ function randomStringValue() {
 }
 
 /**
- * Material-UI components have a className prop. The className is applied to the
+ * Material-UI components have a `className` prop. The `className` is applied to the
  * outermost DOM node.
  *
  * @param {React.ReactElement} element
  * @param {Object} options
- * @param {string} options.classes - `classes` of the component from `@material-ui/styles`
+ * @param {string} options.classes - `classes` of the component provided by `@material-ui/styles`
  */
 function testClassName(element, options) {
   const { classes, mount } = options;
@@ -77,7 +77,9 @@ function testPropsSpread(element, options) {
 }
 
 /**
- * Some Material-UI components can forward their refs via innerRef
+ * Some Material-UI components can forward their refs via `innerRef`
+ *
+ * TODO: Use `ref` once WithStylesTest is no longer required
  *
  * @param {React.ReactElement} element
  * @param {Object} options
@@ -117,7 +119,7 @@ const fullSuite = {
 };
 
 /**
- * Tests various aspects of a component that should be equal across material-ui
+ * Tests various aspects of a component that should be equal across Material-UI
  * components.
  *
  * @param {React.ReactElement} minimalElement - the component with it's minimal required props
@@ -126,14 +128,11 @@ const fullSuite = {
  * @param {string} options.inheritComponentName - see testPropsSpread
  * @param {function} options.mount - Should be a return value from createMount
  * @param {boolean} options.noForwardRef - see test testRefForwarding
- * @param {string[]} options.tests - list of tests that the component conforms to. see fullSuite
  * @param {string?} options.testComponentPropWith - see test testComponentProp
  */
 export default function describeConformance(minimalElement, options) {
-  const { tests = Object.keys(fullSuite) } = options;
-
   describe('Material-UI component API', () => {
-    tests.forEach(testKey => {
+    Object.keys(fullSuite).forEach(testKey => {
       const test = fullSuite[testKey];
       test(minimalElement, options);
     });
