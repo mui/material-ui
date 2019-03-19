@@ -69,7 +69,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     },
   }));
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     resetTabIndex(listRef.current, selectedItemRef.current, setCurrentTabIndex);
     return () => {
       clearTimeout(blurTimeoutIDRef.current);
