@@ -57,10 +57,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     adjustStyleForScrollbar: (containerElement, theme) => {
       // Let's ignore that piece of logic if users are already overriding the width
       // of the menu.
-      if (
-        containerElement.clientHeight < listRef.current.clientHeight &&
-        !listRef.current.style.width
-      ) {
+      const noExplicitWidth = !listRef.current.style.width;
+      if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
         const scrollbarSize = `${getScrollbarSize(true)}px`;
         listRef.current.style[
           theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'
