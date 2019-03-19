@@ -182,7 +182,7 @@ class Slide extends React.Component {
    * used in cloneElement(children, { ref: handleRef })
    */
   handleRef = ref => {
-    // StrictMode ready
+    // #StrictMode ready
     this.childDOMNode = ReactDOM.findDOMNode(ref);
     setRef(this.props.children.ref, ref);
   };
