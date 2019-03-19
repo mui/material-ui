@@ -1,19 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/styles';
 
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      ...theme.mixins.gutters(),
+      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
+    },
+  }),
+);
 
-function PaperSheet(props) {
-  const { classes } = props;
+export default function PaperSheet() {
+  const classes = useStyles();
 
   return (
     <div>
@@ -28,9 +30,3 @@ function PaperSheet(props) {
     </div>
   );
 }
-
-PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(PaperSheet);
