@@ -22,25 +22,18 @@ describe('<ExpansionPanel />', () => {
     mount.cleanUp();
   });
 
-  it('should render and have isControlled set to false', () => {
+  it('should render and not be controlled', () => {
     const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
     const root = wrapper.find(`.${classes.root}`).first();
     assert.strictEqual(root.type(), Paper);
     assert.strictEqual(root.props().elevation, 1);
     assert.strictEqual(root.props().square, false);
-    assert.strictEqual(wrapper.find('ExpansionPanel').instance().isControlled, false);
-
     wrapper.setProps({ expanded: true });
-    assert.strictEqual(root.hasClass(classes.expanded), false);
+    assert.strictEqual(root.hasClass(classes.expanded), false, 'uncontrolled');
   });
 
   it('should handle defaultExpanded prop', () => {
     const wrapper = mount(<ExpansionPanel defaultExpanded>{minimalChildren}</ExpansionPanel>);
-    assert.strictEqual(
-      wrapper.find('ExpansionPanel').instance().isControlled,
-      false,
-      'should have isControlled state false',
-    );
     assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.expanded), true);
   });
 
@@ -77,12 +70,10 @@ describe('<ExpansionPanel />', () => {
     );
   });
 
-  it('should handle the expanded prop', () => {
+  it('should be controlled', () => {
     const wrapper = mount(<ExpansionPanel expanded>{minimalChildren}</ExpansionPanel>);
     const panel = wrapper.find(`.${classes.root}`).first();
     assert.strictEqual(panel.hasClass(classes.expanded), true);
-    assert.strictEqual(wrapper.find('ExpansionPanel').instance().isControlled, true);
-
     wrapper.setProps({ expanded: false });
     assert.strictEqual(wrapper.hasClass(classes.expanded), false);
   });

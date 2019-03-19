@@ -7,7 +7,6 @@ import { chainPropTypes } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
-import withForwardedRef from '../utils/withForwardedRef';
 
 export const styles = theme => {
   const transition = {
@@ -78,76 +77,66 @@ export const styles = theme => {
   };
 };
 
-class ExpansionPanel extends React.Component {
-  constructor(props) {
-    super();
-    this.isControlled = props.expanded != null;
-    this.state = {
-      expanded: Boolean(props.defaultExpanded),
-    };
-  }
+const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
+  const {
+    children: childrenProp,
+    classes,
+    className,
+    defaultExpanded,
+    disabled,
+    expanded: expandedProp,
+    onChange,
+    square,
+    TransitionComponent,
+    TransitionProps,
+    ...other
+  } = props;
 
-  handleChange = event => {
-    const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
+  const { current: isControlled } = React.useRef(expandedProp != null);
+  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
+  const expanded = isControlled ? expandedProp : expandedState;
 
-    if (!this.isControlled) {
-      this.setState({ expanded: !expanded });
+  const handleChange = event => {
+    if (!isControlled) {
+      setExpandedState(!expanded);
     }
 
-    if (this.props.onChange) {
-      this.props.onChange(event, !expanded);
+    if (onChange) {
+      onChange(event, !expanded);
     }
   };
 
-  render() {
-    const {
-      children: childrenProp,
-      classes,
-      className,
-      defaultExpanded,
-      disabled,
-      expanded: expandedProp,
-      innerRef,
-      onChange,
-      square,
-      TransitionComponent,
-      TransitionProps,
-      ...other
-    } = this.props;
-    const expanded = this.isControlled ? expandedProp : this.state.expanded;
+  const [summary, ...children] = React.Children.toArray(childrenProp);
 
-    const [summary, ...children] = React.Children.toArray(childrenProp);
-
-    return (
-      <Paper
-        className={clsx(
-          classes.root,
-          {
-            [classes.expanded]: expanded,
-            [classes.disabled]: disabled,
-            [classes.rounded]: !square,
-          },
-          className,
-        )}
-        elevation={1}
-        ref={innerRef}
-        square={square}
-        {...other}
-      >
-        {React.cloneElement(summary, {
-          disabled,
-          expanded,
-          onChange: this.handleChange,
-        })}
-        <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
-          <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
-            {children}
-          </div>
-        </TransitionComponent>
-      </Paper>
-    );
-  }
-}
+  return (
+    <Paper
+      className={clsx(
+        classes.root,
+        {
+          [classes.expanded]: expanded,
+          [classes.disabled]: disabled,
+          [classes.rounded]: !square,
+        },
+        className,
+      )}
+      elevation={1}
+      ref={ref}
+      square={square}
+      {...other}
+    >
+      {React.cloneElement(summary, {
+        disabled,
+        expanded,
+        onChange: handleChange,
+      })}
+      <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
+        <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
+          {children}
+        </div>
+      </TransitionComponent>
+    </Paper>
+  );
+});
 
 ExpansionPanel.propTypes = {
   /**
@@ -193,11 +182,6 @@ ExpansionPanel.propTypes = {
    */
   expanded: PropTypes.bool,
   /**
-   * @ignore
-   * from `withForwardRef`
-   */
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  /**
    * Callback fired when the expand/collapse state is changed.
    *
    * @param {object} event The event source of the callback
@@ -225,4 +209,4 @@ ExpansionPanel.defaultProps = {
   TransitionComponent: Collapse,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanel' })(withForwardedRef(ExpansionPanel));
+export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);

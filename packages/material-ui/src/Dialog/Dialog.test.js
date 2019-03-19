@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import Paper from '../Paper';
 import Fade from '../Fade';
 import Modal from '../Modal';
@@ -19,7 +19,6 @@ const clickBackdrop = wrapper => {
 
 describe('<Dialog />', () => {
   let mount;
-  let shallow;
   let classes;
   const defaultProps = {
     open: false,
@@ -27,7 +26,6 @@ describe('<Dialog />', () => {
 
   before(() => {
     mount = createMount();
-    shallow = createShallow({ dive: true });
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
   });
 
@@ -76,21 +74,23 @@ describe('<Dialog />', () => {
   });
 
   it('should spread custom props on the paper (dialog "root") node', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Dialog {...defaultProps} data-my-prop="woofDialog">
         foo
       </Dialog>,
     );
-    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofDialog');
+    const modal = wrapper.find(Modal);
+    assert.strictEqual(modal.props()['data-my-prop'], 'woofDialog');
   });
 
   it('should render with the user classes on the root node', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Dialog {...defaultProps} className="woofDialog">
         foo
       </Dialog>,
     );
-    assert.strictEqual(wrapper.hasClass('woofDialog'), true);
+    const modal = wrapper.find(Modal);
+    assert.strictEqual(modal.hasClass('woofDialog'), true);
   });
 
   it('should fade down and make the transition appear on first mount', () => {
@@ -168,19 +168,6 @@ describe('<Dialog />', () => {
       });
 
       assert.strictEqual(onBackdropClick.callCount, 0);
-    });
-
-    it('does not leak memory by keeping DOM references longer than needed ', () => {
-      const onBackdropClick = spy();
-      const wrapper = mount(
-        <Dialog onBackdropClick={onBackdropClick} open>
-          foo
-        </Dialog>,
-      );
-
-      clickBackdrop(wrapper);
-
-      assert.strictEqual(wrapper.find('Dialog').instance().mouseDownTarget, null);
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {

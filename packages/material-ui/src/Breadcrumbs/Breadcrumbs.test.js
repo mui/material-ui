@@ -1,18 +1,17 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import Breadcrumbs from './Breadcrumbs';
 import BreadcrumbSeparator from './BreadcrumbSeparator';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import Typography from '@material-ui/core/Typography';
 
 describe('<Breadcrumbs />', () => {
-  let shallow;
+  let mount;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(
       <Breadcrumbs>
         <span>Hello World</span>
@@ -20,37 +19,40 @@ describe('<Breadcrumbs />', () => {
     );
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   it('should render a <nav> element', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Breadcrumbs>
         <span>Hello World</span>
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.type(), Typography);
-    assert.strictEqual(wrapper.props().component, 'nav');
+    assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'nav');
   });
 
   it('should render the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Breadcrumbs className="test-class-name">
         <span>Hello World</span>
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Breadcrumbs className="test-class-name">
         <span>Hello World</span>
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.is('.test-class-name'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).is('.test-class-name'), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
   });
 
   it('should render seperators', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Breadcrumbs>
         <span />
         <span />
@@ -60,7 +62,7 @@ describe('<Breadcrumbs />', () => {
   });
 
   it('should render an ellipse', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Breadcrumbs>
         <span />
         <span />
@@ -77,8 +79,8 @@ describe('<Breadcrumbs />', () => {
     assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 1);
   });
 
-  it('should expand', () => {
-    const wrapper = shallow(
+  it('should expand when `BreadcrumbCollapsed` is clicked', () => {
+    const wrapper = mount(
       <Breadcrumbs>
         <span />
         <span />
@@ -106,7 +108,7 @@ describe('<Breadcrumbs />', () => {
     });
 
     it('should support invalid input', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Breadcrumbs maxItems={3} itemsAfterCollapse={2} itemsBeforeCollapse={2}>
           <span />
           <span />

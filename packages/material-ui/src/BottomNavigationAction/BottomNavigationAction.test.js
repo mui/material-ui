@@ -1,25 +1,18 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  createShallow,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 import BottomNavigationAction from './BottomNavigationAction';
 
 describe('<BottomNavigationAction />', () => {
   let mount;
-  let shallow;
   let classes;
   const icon = <Icon>restore</Icon>;
 
   before(() => {
     mount = createMount();
-    shallow = createShallow({ dive: true });
     classes = getClasses(<BottomNavigationAction />);
   });
 
@@ -73,14 +66,14 @@ describe('<BottomNavigationAction />', () => {
   });
 
   it('should not render an Icon if icon is not provided', () => {
-    const wrapper = shallow(<BottomNavigationAction />);
+    const wrapper = mount(<BottomNavigationAction />);
     assert.strictEqual(wrapper.find(Icon).exists(), false);
   });
 
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const wrapper = shallow(
+      const wrapper = mount(
         <BottomNavigationAction icon="book" onClick={handleClick} value="foo" />,
       );
       wrapper.simulate('click', 'bar');

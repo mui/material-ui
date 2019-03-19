@@ -26,38 +26,46 @@ const styles = {
   separator: {},
 };
 
-class Breadcrumbs extends React.Component {
-  state = {
-    expanded: false,
-  };
+function insertSeparators(items, className, separator) {
+  return items.reduce((acc, current, index) => {
+    if (index < items.length - 1) {
+      acc = acc.concat(
+        current,
+        <BreadcrumbSeparator
+          // eslint-disable-next-line react/no-array-index-key
+          key={`separator-${index}`}
+          className={className}
+        >
+          {separator}
+        </BreadcrumbSeparator>,
+      );
+    } else {
+      acc.push(current);
+    }
 
-  handleClickExpand = () => {
-    this.setState({ expanded: true });
-  };
+    return acc;
+  }, []);
+}
 
-  insertSeparators(items) {
-    return items.reduce((acc, current, index) => {
-      if (index < items.length - 1) {
-        acc = acc.concat(
-          current,
-          <BreadcrumbSeparator
-            // eslint-disable-next-line react/no-array-index-key
-            key={`separator-${index}`}
-            className={this.props.classes.separator}
-          >
-            {this.props.separator}
-          </BreadcrumbSeparator>,
-        );
-      } else {
-        acc.push(current);
-      }
+const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
+  const {
+    children,
+    classes,
+    className,
+    component: Component,
+    itemsAfterCollapse,
+    itemsBeforeCollapse,
+    maxItems,
+    separator,
+    ...other
+  } = props;
 
-      return acc;
-    }, []);
-  }
+  const [expanded, setExpanded] = React.useState(false);
 
-  renderItemsBeforeAndAfter(allItems) {
-    const { maxItems, itemsBeforeCollapse, itemsAfterCollapse } = this.props;
+  const renderItemsBeforeAndAfter = allItems => {
+    const handleClickExpand = () => {
+      setExpanded(true);
+    };
 
     // This defends against someone passing weird input, to ensure that if all
     // items would be shown anyway, we just show all items without the EllipsisItem
@@ -66,7 +74,7 @@ class Breadcrumbs extends React.Component {
         false,
         [
           'Material-UI: you have provided an invalid combination of properties to the Breadcrumbs.',
-          `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+          `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
         ].join('\n'),
       );
       return allItems;
@@ -74,50 +82,40 @@ class Breadcrumbs extends React.Component {
 
     return [
       ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed key="ellipsis" onClick={this.handleClickExpand} />,
+      <BreadcrumbCollapsed key="ellipsis" onClick={handleClickExpand} />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
-  }
+  };
 
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      component: Component,
-      itemsAfterCollapse,
-      itemsBeforeCollapse,
-      maxItems,
-      separator,
-      ...other
-    } = this.props;
+  const allItems = React.Children.toArray(children)
+    .filter(child => React.isValidElement(child))
+    .map((child, index) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <li className={classes.li} key={`child-${index}`}>
+        {child}
+      </li>
+    ));
 
-    const allItems = React.Children.toArray(children)
-      .filter(child => React.isValidElement(child))
-      .map((child, index) => (
-        <li className={classes.li} key={String(index)}>
-          {child}
-        </li>
-      ));
-
-    return (
-      <Typography
-        component={Component}
-        color="textSecondary"
-        className={clsx(classes.root, classNameProp)}
-        {...other}
-      >
-        <ol className={classes.ol}>
-          {this.insertSeparators(
-            this.state.expanded || (maxItems && allItems.length <= maxItems)
-              ? allItems
-              : this.renderItemsBeforeAndAfter(allItems),
-          )}
-        </ol>
-      </Typography>
-    );
-  }
-}
+  return (
+    <Typography
+      ref={ref}
+      component={Component}
+      color="textSecondary"
+      className={clsx(classes.root, className)}
+      {...other}
+    >
+      <ol className={classes.ol}>
+        {insertSeparators(
+          expanded || (maxItems && allItems.length <= maxItems)
+            ? allItems
+            : renderItemsBeforeAndAfter(allItems),
+          classes.separator,
+          separator,
+        )}
+      </ol>
+    </Typography>
+  );
+});
 
 Breadcrumbs.propTypes = {
   /**

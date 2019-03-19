@@ -1,17 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import {
-  createShallow,
-  createMount,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
+import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
+import ButtonBase from '../ButtonBase';
 
 describe('<ExpansionPanelSummary />', () => {
   let mount;
-  let shallow;
   let classes;
 
   function findExpandButton(wrapper) {
@@ -19,7 +14,6 @@ describe('<ExpansionPanelSummary />', () => {
   }
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<ExpansionPanelSummary />);
   });
@@ -59,34 +53,27 @@ describe('<ExpansionPanelSummary />', () => {
   });
 
   it('handleFocusVisible() should set focused state', () => {
-    const eventMock = 'woofExpansionPanelSummary';
     const wrapper = mount(<ExpansionPanelSummary />);
-
     wrapper
-      .find('ExpansionPanelSummary')
-      .instance()
-      .handleFocusVisible(eventMock);
-    // ButtonBase wont rerender otherwise resulting in the missing className
+      .find(ButtonBase)
+      .props()
+      .onFocusVisible();
     wrapper.update();
-
     assert.strictEqual(findExpandButton(wrapper).hasClass(classes.focused), true);
   });
 
   it('handleBlur() should unset focused state', () => {
-    const wrapper = mount(<ExpansionPanelSummary classes={{}} />);
-
-    const eventMock = 'woofExpansionPanelSummary';
+    const wrapper = mount(<ExpansionPanelSummary />);
     wrapper
-      .find('ExpansionPanelSummary')
-      .instance()
-      .handleFocusVisible(eventMock);
+      .find(ButtonBase)
+      .props()
+      .onFocusVisible();
     wrapper.update();
     wrapper
-      .find('ExpansionPanelSummary')
-      .instance()
-      .handleBlur(eventMock);
+      .find(ButtonBase)
+      .props()
+      .onBlur();
     wrapper.update();
-
     assert.strictEqual(findExpandButton(wrapper).hasClass(classes.focused), false);
   });
 
@@ -99,12 +86,14 @@ describe('<ExpansionPanelSummary />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<ExpansionPanelSummary {...handlers} />);
+      const wrapper = mount(<ExpansionPanelSummary {...handlers} />);
 
-      events.forEach(n => {
-        const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { persist: () => {} });
-        assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
+      events.forEach(event => {
+        wrapper
+          .find(ButtonBase)
+          .props()
+          [event]({ persist: () => {} });
+        assert.strictEqual(handlers[event].callCount, 1, `should have called the ${event} handler`);
       });
     });
   });
@@ -114,7 +103,7 @@ describe('<ExpansionPanelSummary />', () => {
       const handleChange = spy();
       const wrapper = mount(<ExpansionPanelSummary expanded={false} onChange={handleChange} />);
 
-      const control = findOutermostIntrinsic(wrapper.find('[aria-expanded]'));
+      const control = findOutermostIntrinsic(wrapper);
       const eventMock = 'woofExpansionPanelSummary';
       control.simulate('click', { eventMock });
 
@@ -126,7 +115,7 @@ describe('<ExpansionPanelSummary />', () => {
   describe('prop: click', () => {
     it('should trigger onClick', () => {
       const handleClick = spy();
-      const wrapper = shallow(<ExpansionPanelSummary onClick={handleClick} />);
+      const wrapper = mount(<ExpansionPanelSummary onClick={handleClick} />);
       wrapper.simulate('click');
       assert.strictEqual(handleClick.callCount, 1);
     });

@@ -16,9 +16,9 @@ export const styles = theme => ({
 
 const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) {
   const {
-    children: childrenProp,
+    children,
     classes,
-    className: classNameProp,
+    className,
     component: Component,
     onChange,
     showLabels,
@@ -26,33 +26,30 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) 
     ...other
   } = props;
 
-  const className = clsx(classes.root, classNameProp);
-
-  const children = React.Children.map(childrenProp, (child, childIndex) => {
-    if (!React.isValidElement(child)) {
-      return null;
-    }
-
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
-
-    const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    return React.cloneElement(child, {
-      selected: childValue === value,
-      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-      value: childValue,
-      onChange,
-    });
-  });
-
   return (
-    <Component className={className} ref={ref} {...other}>
-      {children}
+    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
+      {React.Children.map(children, (child, childIndex) => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+
+        const childValue = child.props.value === undefined ? childIndex : child.props.value;
+
+        return React.cloneElement(child, {
+          selected: childValue === value,
+          showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
+          value: childValue,
+          onChange,
+        });
+      })}
     </Component>
   );
 });

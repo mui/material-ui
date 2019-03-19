@@ -65,33 +65,39 @@ export const styles = theme => {
   };
 };
 
-class ExpansionPanelSummary extends React.Component {
-  state = {
-    focused: false,
-  };
+function ExpansionPanelSummary(props) {
+  const {
+    children,
+    classes,
+    className,
+    disabled,
+    expanded,
+    expandIcon,
+    IconButtonProps,
+    innerRef,
+    onBlur,
+    onChange,
+    onClick,
+    onFocusVisible,
+    ...other
+  } = props;
 
-  handleFocusVisible = event => {
-    this.setState({
-      focused: true,
-    });
+  const [focusedState, setFocusedState] = React.useState(false);
+  const handleFocusVisible = event => {
+    setFocusedState(true);
 
-    if (this.props.onFocusVisible) {
-      this.props.onFocusVisible(event);
+    if (onFocusVisible) {
+      onFocusVisible(event);
     }
   };
+  const handleBlur = event => {
+    setFocusedState(false);
 
-  handleBlur = event => {
-    this.setState({
-      focused: false,
-    });
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
+    if (onBlur) {
+      onBlur(event);
     }
   };
-
-  handleChange = event => {
-    const { onChange, onClick } = this.props;
+  const handleChange = event => {
     if (onChange) {
       onChange(event);
     }
@@ -100,65 +106,46 @@ class ExpansionPanelSummary extends React.Component {
     }
   };
 
-  render() {
-    const {
-      children,
-      classes,
-      className,
-      disabled,
-      expanded,
-      expandIcon,
-      IconButtonProps,
-      innerRef,
-      onBlur,
-      onChange,
-      onClick,
-      onFocusVisible,
-      ...other
-    } = this.props;
-    const { focused } = this.state;
-
-    return (
-      <ButtonBase
-        focusRipple={false}
-        disableRipple
-        disabled={disabled}
-        component="div"
-        aria-expanded={expanded}
-        className={clsx(
-          classes.root,
-          {
-            [classes.disabled]: disabled,
+  return (
+    <ButtonBase
+      focusRipple={false}
+      disableRipple
+      disabled={disabled}
+      component="div"
+      aria-expanded={expanded}
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.expanded]: expanded,
+          [classes.focused]: focusedState,
+        },
+        className,
+      )}
+      onFocusVisible={handleFocusVisible}
+      onBlur={handleBlur}
+      onClick={handleChange}
+      ref={innerRef}
+      {...other}
+    >
+      <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
+      {expandIcon && (
+        <IconButton
+          disabled={disabled}
+          className={clsx(classes.expandIcon, {
             [classes.expanded]: expanded,
-            [classes.focused]: focused,
-          },
-          className,
-        )}
-        onFocusVisible={this.handleFocusVisible}
-        onBlur={this.handleBlur}
-        onClick={this.handleChange}
-        ref={innerRef}
-        {...other}
-      >
-        <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
-        {expandIcon && (
-          <IconButton
-            disabled={disabled}
-            className={clsx(classes.expandIcon, {
-              [classes.expanded]: expanded,
-            })}
-            edge="end"
-            component="div"
-            tabIndex={-1}
-            aria-hidden="true"
-            {...IconButtonProps}
-          >
-            {expandIcon}
-          </IconButton>
-        )}
-      </ButtonBase>
-    );
-  }
+          })}
+          edge="end"
+          component="div"
+          tabIndex={-1}
+          aria-hidden="true"
+          {...IconButtonProps}
+        >
+          {expandIcon}
+        </IconButton>
+      )}
+    </ButtonBase>
+  );
 }
 
 ExpansionPanelSummary.propTypes = {
