@@ -89,7 +89,6 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          <NextScript />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
@@ -99,6 +98,7 @@ window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
+          <NextScript />
         </body>
       </html>
     );

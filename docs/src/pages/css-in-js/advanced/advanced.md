@@ -6,6 +6,22 @@
 
 Add a `ThemeProvider` to the top level of your app to access the theme down the React's component tree. Then, you can access the theme object in the style functions.
 
+```jsx
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = {
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+};
+
+function Theming() {
+  return (
+    <ThemeProvider theme={theme}>
+      <DeepChild />
+    </ThemeProvider>
+  );
+}
+```
+
 {{"demo": "pages/css-in-js/advanced/Theming.js"}}
 
 ## Accessing the theme in a component
@@ -14,9 +30,28 @@ You might need to access the theme variables inside your React components.
 
 ### `useTheme` hook
 
+```jsx
+import { useTheme } from '@material-ui/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
+
 {{"demo": "pages/css-in-js/advanced/UseTheme.js"}}
 
 ### `withTheme` HOC
+
+```jsx
+import { withTheme } from '@material-ui/styles';
+
+function DeepChildRaw(props) {
+  return <span>{`spacing ${props.theme.spacing}`}</span>;
+}
+
+const DeepChild = withTheme(DeepChildRaw);
+```
 
 {{"demo": "pages/css-in-js/advanced/WithTheme.js"}}
 
