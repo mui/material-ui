@@ -22,7 +22,7 @@ describe('<Typography />', () => {
       classes,
       inheritComponentName: 'p',
       mount,
-      noForwardRef: true,
+      forwardRef: true,
     });
   });
 

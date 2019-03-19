@@ -83,10 +83,10 @@ function testPropsSpread(element, options) {
  *
  * @param {React.ReactElement} element
  * @param {Object} options
- * @param {boolean} options.noForwardRef - If `true` then this component can't forward its refs
+ * @param {boolean} options.forwardRef - If `true` then this component forwards `ref`
  */
 function testRefForwarding(element, options) {
-  const { noForwardRef, mount } = options;
+  const { forwardRef, mount } = options;
 
   describe('prop: innerRef', () => {
     before(() => {
@@ -98,11 +98,11 @@ function testRefForwarding(element, options) {
       consoleErrorMock.reset();
     });
 
-    it(`does ${noForwardRef ? 'not' : ''} forward ref`, () => {
+    it(`does ${!forwardRef ? 'not' : ''} forward ref`, () => {
       const ref = React.createRef();
       mount(React.cloneElement(element, { innerRef: ref }));
 
-      if (noForwardRef) {
+      if (!forwardRef) {
         assert.strictEqual(ref.current, null);
       } else {
         assert.ok(ref.current);
