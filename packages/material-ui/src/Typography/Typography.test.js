@@ -20,7 +20,7 @@ describe('<Typography />', () => {
 
     describeConformance(<Typography />, {
       defaultRootClassNames: [classes.body2],
-      inheritComponentName: 'p',
+      inheritComponent: 'p',
       mount,
       noForwardRef: true,
     });
