@@ -52,7 +52,7 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 ### CssBaseline
 
 Material-UI provides an optional [CssBaseline](/components/css-baseline/) component.
-It's fixing some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
 ## Versioned Documentation
 
