@@ -69,18 +69,14 @@ function MarkdownDocs(props) {
           markdowns.en = req(filename);
         }
       } else {
-        const demoName = `${reqPrefix}/${filename.replace(/.\/|.hooks/g, '')}`;
-        const isHooks = filename.indexOf('.hooks.js') !== -1;
-        const jsType = isHooks ? 'jsHooks' : 'js';
-        const rawType = isHooks ? 'rawHooks' : 'raw';
-
+        const demoName = `${reqPrefix}/${filename.replace(/.\//g, '')}`;
         const tsFilename = filename.replace(/\.js$/, '.tsx');
         const hasTSVersion = sourceFiles.indexOf(tsFilename) !== -1;
 
         demos[demoName] = {
           ...demos[demoName],
-          [jsType]: req(filename).default,
-          [rawType]: reqSource(filename),
+          js: req(filename).default,
+          raw: reqSource(filename),
           rawTS: hasTSVersion ? reqSource(tsFilename) : undefined,
         };
       }

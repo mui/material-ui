@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {
       margin: theme.spacing(1),
@@ -17,10 +16,11 @@ const styles = (theme: Theme) =>
     extendedIcon: {
       marginRight: theme.spacing(1),
     },
-  });
+  }),
+);
 
-function ButtonSizes(props: WithStyles<typeof styles>) {
-  const { classes } = props;
+function ButtonSizes() {
+  const classes = useStyles();
   return (
     <div>
       <div>
@@ -111,8 +111,4 @@ function ButtonSizes(props: WithStyles<typeof styles>) {
   );
 }
 
-ButtonSizes.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
-
-export default withStyles(styles)(ButtonSizes);
+export default ButtonSizes;

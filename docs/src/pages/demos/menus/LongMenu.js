@@ -23,54 +23,48 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-class LongMenu extends React.Component {
-  state = {
-    anchorEl: null,
-  };
+function LongMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render() {
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-
-    return (
-      <div>
-        <IconButton
-          aria-label="More"
-          aria-owns={open ? 'long-menu' : undefined}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          <MoreVertIcon />
-        </IconButton>
-        <Menu
-          id="long-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={this.handleClose}
-          PaperProps={{
-            style: {
-              maxHeight: ITEM_HEIGHT * 4.5,
-              width: 200,
-            },
-          }}
-        >
-          {options.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-              {option}
-            </MenuItem>
-          ))}
-        </Menu>
-      </div>
-    );
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
   }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
+  return (
+    <div>
+      <IconButton
+        aria-label="More"
+        aria-owns={open ? 'long-menu' : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <MoreVertIcon />
+      </IconButton>
+      <Menu
+        id="long-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          style: {
+            maxHeight: ITEM_HEIGHT * 4.5,
+            width: 200,
+          },
+        }}
+      >
+        {options.map(option => (
+          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
 }
 
 export default LongMenu;
