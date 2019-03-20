@@ -127,7 +127,7 @@ const fullSuite = {
  * @param {string} options.classes - see testClassName
  * @param {string} options.inheritComponentName - see testPropsSpread
  * @param {function} options.mount - Should be a return value from createMount
- * @param {boolean} options.noForwardRef - see test testRefForwarding
+ * @param {boolean} options.forwardRef - see test testRefForwarding
  * @param {string?} options.testComponentPropWith - see test testComponentProp
  */
 export default function describeConformance(minimalElement, options) {
