@@ -260,8 +260,13 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
 
     const key = event.key;
-    if (key === ' ' || key === 'Enter' || key === 'Backspace'
-      || key === 'Delete' || key === 'Escape') {
+    if (
+      key === ' ' ||
+      key === 'Enter' ||
+      key === 'Backspace' ||
+      key === 'Delete' ||
+      key === 'Escape'
+    ) {
       event.preventDefault();
     }
   };
