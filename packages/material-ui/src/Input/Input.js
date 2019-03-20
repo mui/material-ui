@@ -62,7 +62,7 @@ export const styles = theme => {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not($disabled):not($focused):not($error):before': {
+      '&:hover:not($disabled):before': {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
