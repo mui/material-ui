@@ -1,12 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { act } from 'react-dom/test-utils';
 import { createMount, findOutermostIntrinsic, testRef } from '@material-ui/core/test-utils';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { act } from 'react-dom/test-utils';
 
 describe('<RadioGroup />', () => {
   let mount;
@@ -20,14 +20,7 @@ describe('<RadioGroup />', () => {
   });
 
   function findRadio(wrapper, value) {
-    return wrapper.find(`SwitchBase[value="${value}"]`).first();
-  }
-
-  function findRadioInput(wrapper, value) {
-    return wrapper
-      .find(`SwitchBase[value="${value}"]`)
-      .first()
-      .find('input');
+    return wrapper.find(`input[value="${value}"]`).first();
   }
 
   it('does forward refs', () => {
@@ -67,7 +60,7 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    findRadioInput(wrapper, 'one').simulate('change');
+    findRadio(wrapper, 'one').simulate('change');
     assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
   });
 
@@ -80,7 +73,7 @@ describe('<RadioGroup />', () => {
     );
 
     assert.strictEqual(findRadio(wrapper, 'zero').props().checked, true);
-    findRadioInput(wrapper, 'one').simulate('change');
+    findRadio(wrapper, 'one').simulate('change');
     assert.strictEqual(findRadio(wrapper, 'one').props().checked, true);
   });
 
@@ -198,7 +191,7 @@ describe('<RadioGroup />', () => {
       );
 
       const eventMock = 'something-to-match';
-      findRadioInput(wrapper, 'woofRadioGroup').simulate('change', { eventMock });
+      findRadio(wrapper, 'woofRadioGroup').simulate('change', { eventMock });
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.calledWithMatch({ eventMock }), true);
     });
@@ -213,7 +206,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      findRadioInput(wrapper, 'woofRadioGroup').simulate('change');
+      findRadio(wrapper, 'woofRadioGroup').simulate('change');
       assert.strictEqual(handleChange1.callCount, 1);
       assert.strictEqual(handleChange2.callCount, 1);
     });
@@ -229,15 +222,13 @@ describe('<RadioGroup />', () => {
     });
 
     it('should warn when switching from controlled to uncontrolled', () => {
-      let wrapper;
+      const wrapper = mount(
+        <RadioGroup value="foo">
+          <Radio value="foo" />
+        </RadioGroup>,
+      );
 
       act(() => {
-        wrapper = mount(
-          <RadioGroup value="foo">
-            <Radio value="foo" />
-          </RadioGroup>,
-        );
-
         wrapper.setProps({ value: undefined });
       });
 
@@ -248,15 +239,13 @@ describe('<RadioGroup />', () => {
     });
 
     it('should warn when switching between uncontrolled to controlled', () => {
-      let wrapper;
+      const wrapper = mount(
+        <RadioGroup>
+          <Radio value="foo" />
+        </RadioGroup>,
+      );
 
       act(() => {
-        wrapper = mount(
-          <RadioGroup>
-            <Radio value="foo" />
-          </RadioGroup>,
-        );
-
         wrapper.setProps({ value: 'foo' });
       });
 

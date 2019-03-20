@@ -7,7 +7,7 @@ function assertDOMNode(node) {
 }
 
 /**
- *
+ * Utility method to make assertions about the ref on an element
  * @param {React.ReactElement} element - The element should have a component wrapped
  *                                       in withStyles as the root
  * @param {function} mount - Should be returnvalue of createMount
