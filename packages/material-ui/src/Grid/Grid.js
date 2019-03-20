@@ -385,7 +385,7 @@ if (process.env.NODE_ENV !== 'production') {
     spacing: requireProp('container'),
     wrap: requireProp('container'),
     xs: requireProp('item'),
-    zeroMinWidth: requireProp('zeroMinWidth'),
+    zeroMinWidth: requireProp('item'),
   };
 }
 
