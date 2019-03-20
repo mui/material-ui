@@ -7,6 +7,7 @@ export {
 } from './createPalette';
 export { default as createStyles } from './createStyles';
 export { TypographyStyle } from './createTypography';
+export { default as makeStyles } from './makeStyles';
 export { ComponentsPropsList } from './props';
 export * from './transitions';
 export {
