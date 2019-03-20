@@ -471,6 +471,29 @@ describe('<Chip />', () => {
       });
     });
 
+    describe('onDelete is defined and `delete` is pressed', () => {
+      it('should call onDelete', () => {
+        const preventDefaultSpy = spy();
+        const onDeleteSpy = spy();
+        const wrapper = mount(<Chip classes={{}} onDelete={onDeleteSpy} />);
+
+        const backspaceKeyDown = {
+          preventDefault: preventDefaultSpy,
+          key: 'delete',
+        };
+        wrapper.find('div').simulate('keyDown', backspaceKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onDeleteSpy.callCount, 0);
+
+        const backspaceKeyUp = {
+          key: 'delete',
+        };
+        wrapper.find('div').simulate('keyUp', backspaceKeyUp);
+        assert.strictEqual(onDeleteSpy.callCount, 1);
+        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
+      });
+    });
+
     describe('has children that generate events', () => {
       let onClickSpy;
       let onDeleteSpy;
