@@ -7,6 +7,7 @@ import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import Transition from 'react-transition-group/Transition';
 import ownerWindow from '../utils/ownerWindow';
+import { setRef } from '../utils/reactHelpers';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -85,8 +86,8 @@ class Slide extends React.Component {
           return;
         }
 
-        if (this.transitionRef) {
-          setTranslateValue(this.props, this.transitionRef);
+        if (this.childDOMNode) {
+          setTranslateValue(this.props, this.childDOMNode);
         }
       }, 166); // Corresponds to 10 frames at 60 Hz.
     }
@@ -177,9 +178,18 @@ class Slide extends React.Component {
     }
   };
 
+  /**
+   * used in cloneElement(children, { ref: handleRef })
+   */
+  handleRef = ref => {
+    // #StrictMode ready
+    this.childDOMNode = ReactDOM.findDOMNode(ref);
+    setRef(this.props.children.ref, ref);
+  };
+
   updatePosition() {
-    if (this.transitionRef) {
-      setTranslateValue(this.props, this.transitionRef);
+    if (this.childDOMNode) {
+      setTranslateValue(this.props, this.childDOMNode);
     }
   }
 
@@ -206,13 +216,11 @@ class Slide extends React.Component {
           onExited={this.handleExited}
           appear
           in={inProp}
-          ref={ref => {
-            this.transitionRef = ReactDOM.findDOMNode(ref);
-          }}
           {...other}
         >
           {(state, childProps) => {
             return React.cloneElement(children, {
+              ref: this.handleRef,
               style: {
                 visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
                 ...style,
@@ -229,7 +237,8 @@ class Slide extends React.Component {
 
 Slide.propTypes = {
   /**
-   * A single child content element.
+   * A single child content element. The component used as a child must be able
+   * to hold a ref.
    */
   children: PropTypes.element,
   /**
