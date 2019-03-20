@@ -974,7 +974,7 @@
     "@emotion/utils" "0.11.1"
     "@emotion/weak-memoize" "0.2.2"
 
-"@emotion/core@^10.0.0", "@emotion/core@latest":
+"@emotion/core@^10.0.0", "@emotion/core@^10.0.9":
   version "10.0.9"
   resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.9.tgz#f8afbccb0011100680f5dc94657b410c6aa1350e"
   integrity sha512-v5a77dV+uWGoy9w6R3MXZG01lqHcXgoy/jGmJqPDGhPjmpWg26LWXAphYZxpZffFUwDUlDdYDiX5HtaKphvJnQ==
@@ -1057,7 +1057,7 @@
     "@emotion/utils" "0.11.1"
     object-assign "^4.1.1"
 
-"@emotion/styled@^10.0.0", "@emotion/styled@latest":
+"@emotion/styled@^10.0.0", "@emotion/styled@^10.0.9":
   version "10.0.9"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.9.tgz#3d940ec8b989853fd422dab6278a2803e1c4a608"
   integrity sha512-V+BT+KE4NKCANS18TL0yGueIyVbL5qXbgKarLcIhxmz0/dEk2k6kA18sKguJpHYa0RpgkggdhUPWWohTu3DRPw==
@@ -3044,7 +3044,7 @@ before-after-hook@^1.4.0:
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-1.4.0.tgz#2b6bf23dca4f32e628fd2747c10a37c74a4b484d"
   integrity sha512-l5r9ir56nda3qu14nAXIlyq1MmUSs0meCIaFAh8HwkFwP1F8eToOuS3ah2VAHHcY04jaYD7FpJC5JTXHYRbkzg==
 
-benchmark@latest:
+benchmark@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/benchmark/-/benchmark-2.1.4.tgz#09f3de31c916425d498cc2ee565a0ebf3c2a5629"
   integrity sha1-CfPeMckWQl1JjMLuVloOvzwqVik=
@@ -5186,7 +5186,7 @@ emojis-list@^2.0.0:
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
   integrity sha1-TapNnbAPmBmIDHn6RXrlsJof04k=
 
-emotion-server@latest:
+emotion-server@^10.0.9:
   version "10.0.9"
   resolved "https://registry.yarnpkg.com/emotion-server/-/emotion-server-10.0.9.tgz#494a94bd5c7a64d517f1e116d27c830d060f6b0e"
   integrity sha512-SSOEsOEEkI2JrM5kxAbo3jJq6PEn3jDrdk3blOPaBQlhjwCbL5ZswzruIIdtNvFXvPlgWZJSr3Pdy/3mCC+I2Q==
@@ -5202,6 +5202,14 @@ emotion-theming@^10.0.5:
     hoist-non-react-statics "^3.3.0"
     object-assign "^4.1.1"
 
+emotion@^10.0.9:
+  version "10.0.9"
+  resolved "https://registry.yarnpkg.com/emotion/-/emotion-10.0.9.tgz#2c37598af13df31dcd35a1957eaa8830f368c066"
+  integrity sha512-IMFwwWlU2TDt7eh4v6dm58E8VHAYOitqRbVoazQdxIu9/0CAH4a3UrTMnZSlWQAo09MrRRlKfgQFHswnj40meQ==
+  dependencies:
+    babel-plugin-emotion "^10.0.9"
+    create-emotion "^10.0.9"
+
 emotion@^9.1.2:
   version "9.2.12"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.2.12.tgz#53925aaa005614e65c6e43db8243c843574d1ea9"
@@ -5209,14 +5217,6 @@ emotion@^9.1.2:
   dependencies:
     babel-plugin-emotion "^9.2.11"
     create-emotion "^9.2.12"
-
-emotion@latest:
-  version "10.0.9"
-  resolved "https://registry.yarnpkg.com/emotion/-/emotion-10.0.9.tgz#2c37598af13df31dcd35a1957eaa8830f368c066"
-  integrity sha512-IMFwwWlU2TDt7eh4v6dm58E8VHAYOitqRbVoazQdxIu9/0CAH4a3UrTMnZSlWQAo09MrRRlKfgQFHswnj40meQ==
-  dependencies:
-    babel-plugin-emotion "^10.0.9"
-    create-emotion "^10.0.9"
 
 encodeurl@~1.0.1, encodeurl@~1.0.2:
   version "1.0.2"
@@ -9349,7 +9349,7 @@ node-releases@^1.1.10:
   dependencies:
     semver "^5.3.0"
 
-nodemod@latest:
+nodemod@^1.5.19:
   version "1.5.19"
   resolved "https://registry.yarnpkg.com/nodemod/-/nodemod-1.5.19.tgz#eb9a1866bb7250ea3f804e7715661aa7559800e1"
   integrity sha1-65oYZrtyUOo/gE53FWYap1WYAOE=
@@ -11038,7 +11038,7 @@ react-is@^16.5.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
   integrity sha512-PVadd+WaUDOAciICm/J1waJaSvgq+4rHE/K70j0PFqKhkTBsPv/82UGQJNXAngz1fOQLLxI6z1sEDmJDQhCTAA==
 
-react-jss@next:
+react-jss@^10.0.0-alpha.12:
   version "10.0.0-alpha.12"
   resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-10.0.0-alpha.12.tgz#d2ca3a6699cc493dd7ccb1622d2a32b3de6cab45"
   integrity sha512-4j3trVas9ZMFHlco+kBhkrAx87IToOwP/Qhk2yVqYtzBsdaxp49JEL0KSU1LqwnJNT1E0GOLbK0jAZ/Ymu3PRQ==
@@ -12698,7 +12698,7 @@ styled-jsx@3.2.1:
     stylis "3.5.4"
     stylis-rule-sheet "0.0.10"
 
-styled-system@latest:
+styled-system@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-4.0.5.tgz#40adb6039d698ad786ecfce32eb93fdd77bee78b"
   integrity sha512-9oTFHe5Wrtxw7+vOzano0hXZiRDh6JW5fH025kxCvw7r4YHyrV6HXw8qjcK2MxjrqF+p7ayVhzU7OIy6x8Dj1w==
