@@ -2,8 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import getScrollbarSize from '../utils/getScrollbarSize';
 import withStyles from '../styles/withStyles';
 import withForwardedRef from '../utils/withForwardedRef';
 import Popover from '../Popover';
@@ -32,6 +30,8 @@ export const styles = {
 };
 
 class Menu extends React.Component {
+  menuListActionsRef = React.createRef();
+
   componentDidMount() {
     if (this.props.open && this.props.disableAutoFocusItem !== true) {
       this.focus();
@@ -39,44 +39,22 @@ class Menu extends React.Component {
   }
 
   getContentAnchorEl = () => {
-    if (this.menuListRef.selectedItemRef) {
-      return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
-    }
-
-    return ReactDOM.findDOMNode(this.menuListRef).firstChild;
+    return this.menuListActionsRef.current.getContentAnchorEl();
   };
 
   focus = () => {
-    if (this.menuListRef && this.menuListRef.selectedItemRef) {
-      ReactDOM.findDOMNode(this.menuListRef.selectedItemRef).focus();
-      return;
-    }
-
-    const menuList = ReactDOM.findDOMNode(this.menuListRef);
-    if (menuList && menuList.firstChild) {
-      menuList.firstChild.focus();
-    }
-  };
-
-  handleMenuListRef = ref => {
-    this.menuListRef = ref;
+    return this.menuListActionsRef.current && this.menuListActionsRef.current.focus();
   };
 
   handleEntering = element => {
     const { disableAutoFocusItem, theme } = this.props;
-    const menuList = ReactDOM.findDOMNode(this.menuListRef);
 
-    // Focus so the scroll computation of the Popover works as expected.
-    if (disableAutoFocusItem !== true) {
-      this.focus();
-    }
-
-    // Let's ignore that piece of logic if users are already overriding the width
-    // of the menu.
-    if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
-      const scrollbarSize = `${getScrollbarSize()}px`;
-      menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = scrollbarSize;
-      menuList.style.width = `calc(100% + ${scrollbarSize})`;
+    if (this.menuListActionsRef.current) {
+      // Focus so the scroll computation of the Popover works as expected.
+      if (disableAutoFocusItem !== true) {
+        this.menuListActionsRef.current.focus();
+      }
+      this.menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
 
     if (this.props.onEntering) {
@@ -129,7 +107,7 @@ class Menu extends React.Component {
           data-mui-test="Menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
-          ref={this.handleMenuListRef}
+          actions={this.menuListActionsRef}
         >
           {children}
         </MenuList>
