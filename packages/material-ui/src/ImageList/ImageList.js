@@ -16,7 +16,7 @@ export const styles = {
   },
 };
 
-const GridList = React.forwardRef(function GridList(props, ref) {
+const ImageList = React.forwardRef(function ImageList(props, ref) {
   const {
     cellHeight,
     children,
@@ -44,7 +44,7 @@ const GridList = React.forwardRef(function GridList(props, ref) {
         warning(
           child.type !== React.Fragment,
           [
-            "Material-UI: the GridList component doesn't accept a Fragment as a child.",
+            "Material-UI: the ImageList component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -67,7 +67,7 @@ const GridList = React.forwardRef(function GridList(props, ref) {
   );
 });
 
-GridList.propTypes = {
+ImageList.propTypes = {
   /**
    * Number of px for one cell height.
    * You can set `'auto'` if you want to let the children determine the height.
@@ -105,11 +105,11 @@ GridList.propTypes = {
   style: PropTypes.object,
 };
 
-GridList.defaultProps = {
+ImageList.defaultProps = {
   cellHeight: 180,
   cols: 2,
   component: 'ul',
   spacing: 4,
 };
 
-export default withStyles(styles, { name: 'MuiGridList' })(GridList);
+export default withStyles(styles, { name: 'MuiImageList' })(ImageList);

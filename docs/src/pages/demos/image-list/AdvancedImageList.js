@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListTile from '@material-ui/core/ImageListTile';
+import ImageListTileBar from '@material-ui/core/ImageListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
@@ -50,16 +50,16 @@ const styles = theme => ({
  *   },
  * ];
  */
-function AdvancedGridList(props) {
+function AdvancedImageList(props) {
   const { classes } = props;
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={200} spacing={1} className={classes.gridList}>
+      <ImageList cellHeight={200} spacing={1} className={classes.gridList}>
         {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
+          <ImageListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
             <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
+            <ImageListTileBar
               title={tile.title}
               titlePosition="top"
               actionIcon={
@@ -70,15 +70,15 @@ function AdvancedGridList(props) {
               actionPosition="left"
               className={classes.titleBar}
             />
-          </GridListTile>
+          </ImageListTile>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 }
 
-AdvancedGridList.propTypes = {
+AdvancedImageList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdvancedGridList);
+export default withStyles(styles)(AdvancedImageList);

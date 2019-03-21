@@ -4,15 +4,15 @@ import { spy, useFakeTimers } from 'sinon';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import { act } from 'react-dom/test-utils';
 import { setRef } from '../utils/reactHelpers';
-import GridListTile from './GridListTile';
+import ImageListTile from './ImageListTile';
 
-describe('<GridListTile />', () => {
+describe('<ImageListTile />', () => {
   let mount;
   let classes;
 
   before(() => {
     mount = createMount();
-    classes = getClasses(<GridListTile />);
+    classes = getClasses(<ImageListTile />);
   });
 
   after(() => {
@@ -27,9 +27,9 @@ describe('<GridListTile />', () => {
 
   it('should render a li', () => {
     const wrapper = mount(
-      <GridListTile>
+      <ImageListTile>
         <img src={tileData.img} alt="foo" />
-      </GridListTile>,
+      </ImageListTile>,
     );
     assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'li');
   });
@@ -37,9 +37,9 @@ describe('<GridListTile />', () => {
   describe('prop: component', () => {
     it('controls the root host node', () => {
       const wrapper = mount(
-        <GridListTile component="div">
+        <ImageListTile component="div">
           <img src={tileData.img} alt="foo" />
-        </GridListTile>,
+        </ImageListTile>,
       );
       assert.strictEqual(findOutermostIntrinsic(wrapper).type(), 'div');
     });
@@ -48,14 +48,14 @@ describe('<GridListTile />', () => {
   describe('prop: children', () => {
     it('should render children by default', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = mount(<GridListTile>{children}</GridListTile>);
+      const wrapper = mount(<ImageListTile>{children}</ImageListTile>);
 
       assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
 
     it('should not change non image child', () => {
       const children = <div />;
-      const wrapper = mount(<GridListTile>{children}</GridListTile>);
+      const wrapper = mount(<ImageListTile>{children}</ImageListTile>);
       assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
   });
@@ -63,7 +63,7 @@ describe('<GridListTile />', () => {
   describe('prop: className', () => {
     it('should renders className', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = mount(<GridListTile className="foo">{children}</GridListTile>);
+      const wrapper = mount(<ImageListTile className="foo">{children}</ImageListTile>);
 
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });
@@ -84,10 +84,10 @@ describe('<GridListTile />', () => {
     Image.muiName = 'Image';
 
     return mount(
-      <GridListTile>
+      <ImageListTile>
         <Image />
         {null}
-      </GridListTile>,
+      </ImageListTile>,
     );
   }
 

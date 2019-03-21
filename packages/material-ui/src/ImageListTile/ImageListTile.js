@@ -62,7 +62,7 @@ function ensureImageCover(imgEl, classes) {
   }
 }
 
-const GridListTile = React.forwardRef(function GridListTile(props, ref) {
+const ImageListTile = React.forwardRef(function ImageListTile(props, ref) {
   const { children, classes, className, cols, component: Component, rows, ...other } = props;
 
   const imgRef = React.useRef(null);
@@ -104,10 +104,10 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   );
 });
 
-GridListTile.propTypes = {
+ImageListTile.propTypes = {
   /**
    * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case GridListTile takes care of making the image "cover" available space
+   * in which case ImageListTile takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
   children: PropTypes.node,
@@ -135,10 +135,10 @@ GridListTile.propTypes = {
   rows: PropTypes.number,
 };
 
-GridListTile.defaultProps = {
+ImageListTile.defaultProps = {
   cols: 1,
   component: 'li',
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(styles, { name: 'MuiImageListTile' })(ImageListTile);

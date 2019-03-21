@@ -2,7 +2,7 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './grid-list-tile-bar.md';
+import markdown from './image-list-tile.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

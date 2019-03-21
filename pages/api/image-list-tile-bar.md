@@ -1,15 +1,15 @@
 ---
-filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
+filename: /packages/material-ui/src/ImageListTileBar/ImageListTileBar.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# GridListTileBar API
+# ImageListTileBar API
 
-<p class="description">The API documentation of the GridListTileBar React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the ImageListTileBar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageListTileBar from '@material-ui/core/ImageListTileBar';
 ```
 
 
@@ -48,13 +48,13 @@ This property accepts the following keys:
 | <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/GridListTileBar/GridListTileBar.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ImageListTileBar/ImageListTileBar.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiGridListTileBar`.
+you need to use the following style sheet name: `MuiImageListTileBar`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list/)
+- [Image List](/demos/image-list/)
 

@@ -67,7 +67,7 @@ export const styles = theme => ({
   },
 });
 
-const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
+const ImageListTileBar = React.forwardRef(function ImageListTileBar(props, ref) {
   const {
     actionIcon,
     actionPosition,
@@ -115,7 +115,7 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   );
 });
 
-GridListTileBar.propTypes = {
+ImageListTileBar.propTypes = {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).
@@ -148,9 +148,9 @@ GridListTileBar.propTypes = {
   titlePosition: PropTypes.oneOf(['top', 'bottom']),
 };
 
-GridListTileBar.defaultProps = {
+ImageListTileBar.defaultProps = {
   actionPosition: 'right',
   titlePosition: 'bottom',
 };
 
-export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);
+export default withStyles(styles, { name: 'MuiImageListTileBar' })(ImageListTileBar);

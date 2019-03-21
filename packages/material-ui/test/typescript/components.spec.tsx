@@ -18,9 +18,9 @@ import {
   ClickAwayListener,
   Collapse,
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogContentText,
+  DialogTitle,
   Divider,
   Drawer,
   ExpansionPanel,
@@ -31,15 +31,15 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  GridList,
-  GridListTile,
   Grow,
   IconButton,
+  ImageList,
+  ImageListTile,
   Input,
   InputAdornment,
   InputLabel,
-  Link,
   LinearProgress,
+  Link,
   List,
   ListItem,
   ListItemAvatar,
@@ -584,13 +584,13 @@ const GridTest = () => (
   </Grid>
 );
 
-const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
-    <GridListTile cols={1} rows={4} onClick={e => log(e)}>
+const ImageListTest = () => (
+  <ImageList cellHeight={160} cols={3} onClick={e => log(e)}>
+    <ImageListTile cols={1} rows={4} onClick={e => log(e)}>
       <img src="img.png" alt="alt text" />
-    </GridListTile>
+    </ImageListTile>
     ,
-  </GridList>
+  </ImageList>
 );
 
 const ListTest = () => (

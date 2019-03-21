@@ -1,15 +1,15 @@
 ---
-filename: /packages/material-ui/src/GridList/GridList.js
+filename: /packages/material-ui/src/ImageList/ImageList.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# GridList API
+# ImageList API
 
-<p class="description">The API documentation of the GridList React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the ImageList React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import GridList from '@material-ui/core/GridList';
+import ImageList from '@material-ui/core/ImageList';
 ```
 
 
@@ -38,13 +38,13 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/GridList/GridList.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/ImageList/ImageList.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiGridList`.
+you need to use the following style sheet name: `MuiImageList`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list/)
+- [Image List](/demos/image-list/)
 

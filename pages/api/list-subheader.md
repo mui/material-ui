@@ -52,6 +52,6 @@ you need to use the following style sheet name: `MuiListSubheader`.
 
 ## Demos
 
-- [Grid List](/demos/grid-list/)
+- [Image List](/demos/image-list/)
 - [Lists](/demos/lists/)
 

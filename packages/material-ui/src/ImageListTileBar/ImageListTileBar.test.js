@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '@material-ui/core/test-utils';
-import GridListTileBar from './GridListTileBar';
+import ImageListTileBar from './ImageListTileBar';
 
-describe('<GridListTileBar />', () => {
+describe('<ImageListTileBar />', () => {
   let shallow;
 
   before(() => {
@@ -18,7 +18,7 @@ describe('<GridListTileBar />', () => {
 
   describe('prop: title', () => {
     it('should renders title', () => {
-      const wrapper = shallow(<GridListTileBar title={tileData.title} />);
+      const wrapper = shallow(<ImageListTileBar title={tileData.title} />);
 
       assert.strictEqual(
         wrapper.children('div').text(),

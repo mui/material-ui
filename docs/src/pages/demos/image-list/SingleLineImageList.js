@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListTile from '@material-ui/core/ImageListTile';
+import ImageListTileBar from '@material-ui/core/ImageListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
@@ -47,16 +47,16 @@ const styles = theme => ({
  *   },
  * ];
  */
-function SingleLineGridList(props) {
+function SingleLineImageList(props) {
   const { classes } = props;
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cols={2.5}>
+      <ImageList className={classes.gridList} cols={2.5}>
         {tileData.map(tile => (
-          <GridListTile key={tile.img}>
+          <ImageListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
+            <ImageListTileBar
               title={tile.title}
               classes={{
                 root: classes.titleBar,
@@ -68,15 +68,15 @@ function SingleLineGridList(props) {
                 </IconButton>
               }
             />
-          </GridListTile>
+          </ImageListTile>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 }
 
-SingleLineGridList.propTypes = {
+SingleLineImageList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SingleLineGridList);
+export default withStyles(styles)(SingleLineImageList);

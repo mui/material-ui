@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '@material-ui/core/test-utils';
-import GridList from './GridList';
+import ImageList from './ImageList';
 
 const tilesData = [
   {
@@ -16,7 +16,7 @@ const tilesData = [
   },
 ];
 
-describe('<GridList />', () => {
+describe('<ImageList />', () => {
   let shallow;
 
   before(() => {
@@ -25,18 +25,18 @@ describe('<GridList />', () => {
 
   it('should render a ul', () => {
     const wrapper = shallow(
-      <GridList>
+      <ImageList>
         <br />
-      </GridList>,
+      </ImageList>,
     );
     assert.strictEqual(wrapper.name(), 'ul');
   });
 
   it('should accept a component property', () => {
     const wrapper = shallow(
-      <GridList component="li">
+      <ImageList component="li">
         <br />
-      </GridList>,
+      </ImageList>,
     );
     assert.strictEqual(wrapper.name(), 'li');
   });
@@ -44,7 +44,7 @@ describe('<GridList />', () => {
   it('should render children and change cellHeight', () => {
     const cellHeight = 250;
     const wrapper = shallow(
-      <GridList cellHeight={cellHeight}>
+      <ImageList cellHeight={cellHeight}>
         {tilesData.map(tile => (
           <span
             key={tile.img}
@@ -55,7 +55,7 @@ describe('<GridList />', () => {
             <img src={tile.img} alt="foo" />
           </span>
         ))}
-      </GridList>,
+      </ImageList>,
     );
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
@@ -71,7 +71,7 @@ describe('<GridList />', () => {
 
   it('renders children by default', () => {
     const wrapper = shallow(
-      <GridList>
+      <ImageList>
         {tilesData.map(tile => (
           <span
             key={tile.img}
@@ -83,7 +83,7 @@ describe('<GridList />', () => {
           </span>
         ))}
         {false && <span>this is a null child</span>}
-      </GridList>,
+      </ImageList>,
     );
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
@@ -91,7 +91,7 @@ describe('<GridList />', () => {
 
   it('renders children and change cols', () => {
     const wrapper = shallow(
-      <GridList cols={4}>
+      <ImageList cols={4}>
         {tilesData.map(tile => (
           <span
             key={tile.img}
@@ -102,7 +102,7 @@ describe('<GridList />', () => {
             <img src={tile.img} alt="foo" />
           </span>
         ))}
-      </GridList>,
+      </ImageList>,
     );
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
@@ -119,7 +119,7 @@ describe('<GridList />', () => {
   it('renders children and change spacing', () => {
     const spacing = 10;
     const wrapper = shallow(
-      <GridList spacing={spacing}>
+      <ImageList spacing={spacing}>
         {tilesData.map(tile => (
           <span
             key={tile.img}
@@ -130,7 +130,7 @@ describe('<GridList />', () => {
             <img src={tile.img} alt="foo" />
           </span>
         ))}
-      </GridList>,
+      </ImageList>,
     );
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
@@ -147,7 +147,7 @@ describe('<GridList />', () => {
   it('should render children and overwrite style', () => {
     const style = { backgroundColor: 'red' };
     const wrapper = shallow(
-      <GridList style={style}>
+      <ImageList style={style}>
         {tilesData.map(tile => (
           <span
             key={tile.img}
@@ -158,7 +158,7 @@ describe('<GridList />', () => {
             <img src={tile.img} alt="foo" />
           </span>
         ))}
-      </GridList>,
+      </ImageList>,
     );
 
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
@@ -168,9 +168,9 @@ describe('<GridList />', () => {
   describe('prop: cellHeight', () => {
     it('should accept auto as a property', () => {
       const wrapper = shallow(
-        <GridList cellHeight="auto">
+        <ImageList cellHeight="auto">
           <br />
-        </GridList>,
+        </ImageList>,
       );
 
       assert.strictEqual(
