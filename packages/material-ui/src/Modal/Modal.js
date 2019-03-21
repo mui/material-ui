@@ -156,16 +156,13 @@ class Modal extends React.Component {
   };
 
   handleKeyDown = event => {
-    // event.defaultPrevented:
+    // We don't take event.defaultPrevented into account:
     //
-    // Ignore events that have been `event.preventDefault()` marked.
-    // preventDefault() is meant to stop default behaviours like
+    // event.preventDefault() is meant to stop default behaviours like
     // clicking a checkbox to check it, hitting a button to submit a form,
     // and hitting left arrow to move the cursor in a text input etc.
-    // Only special HTML elements have these default bahaviours.
-    //
-    // To remove in v4.
-    if (event.key !== 'Escape' || !this.isTopModal() || event.defaultPrevented) {
+    // Only special HTML elements have these default behaviors.
+    if (event.key !== 'Escape' || !this.isTopModal()) {
       return;
     }
 
